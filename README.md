@@ -8,7 +8,7 @@
 3. Get an event to appear in your email inbox (the email address you signed up for the account with)
 
 4. Technical Challenge: 
-  * Take a simple web app (in any language) that you've already built and instrument your code with dogstatsd.
+  * Take a simple web app ([in any language](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd.
   * While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
   * Create a histogram to see the latency; also give us the link to the graph
   * Bonus points for putting together more creative dashboards.
