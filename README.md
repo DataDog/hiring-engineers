@@ -24,8 +24,9 @@ To submit your answers:
 
 1. Fork this repo.
 2. Answer the questions in `answers.md`
-3. Commit your code for question #3.
+3. Commit your code for question #4.
 4. Submit a pull request.
+5. Don't forget to include links to your dashboard(s)
 
 # References:
 * [API docs](http://docs.datadoghq.com/api)
