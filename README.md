@@ -35,7 +35,8 @@ To submit your answers:
 4. Submit a pull request.
 5. Don't forget to include links to your dashboard(s)
 
-# References:
+## References
+
 * [API docs](http://docs.datadoghq.com/api)
 * [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
 * [Libraries](http://docs.datadoghq.com/libraries/)
