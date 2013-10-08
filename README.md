@@ -1,17 +1,24 @@
+If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot.
+
+<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
+<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
+
 # The Challenge
 
 ## Questions
-1. Sign up for Datadog, get the agent reporting metrics from your local machine. Bonus question- what is the agent?
 
-2. Submit an event via the API. 
+### Level 1
 
-3. Get an event to appear in your email inbox (the email address you signed up for the account with)
+* Sign up for Datadog, get the agent reporting metrics from your local machine. Bonus question: what is the agent?
+* Submit an event via the API.
+* Get an event to appear in your email inbox (the email address you signed up for the account with)
 
-4. Technical Challenge: 
-  * Take a simple web app ([in any language](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd.
-  * While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
-  * Create a histogram to see the latency; also give us the link to the graph
-  * Bonus points for putting together more creative dashboards.
+### Level 2
+
+* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd.
+* While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
+* Create a histogram to see the latency; also give us the link to the graph
+* Bonus points for putting together more creative dashboards.
 
 If you need a tool to load-test your web app you can use tools like:
 * [ab](https://httpd.apache.org/docs/2.2/programs/ab.html)
