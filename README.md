@@ -5,11 +5,14 @@ If you want to apply as a support engineer at [Datadog](http://datadog.com) you 
 
 # The Challenge
 
+Read on and don't forget to read the **References**.
+
 ## Questions
 
 ### Level 1
 
-* Sign up for Datadog, get the agent reporting metrics from your local machine. Bonus question: what is the agent?
+* Sign up for Datadog, get the agent reporting metrics from your local machine.
+* Bonus question: what is the agent?
 * Submit an event via the API.
 * Get an event to appear in your email inbox (the email address you signed up for the account with)
 
