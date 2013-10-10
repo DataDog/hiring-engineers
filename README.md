@@ -1,11 +1,11 @@
-If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot. Go on, it's fun, I promise.
+If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
 # The Challenge
 
-Read on and don't forget to read the **References**.
+Don't forget to read the **References**.
 
 ## Questions
 
