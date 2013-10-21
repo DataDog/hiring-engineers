@@ -51,11 +51,8 @@ Level 4
 I implemented a .cgi python script that gets "onloaded" by javascript upon page loads to create a page view counter that
 can be distinguished by tag.  Here's the .cgi code...
 
-#!/usr/bin/python                                                                      //so cgi knows where to load python interp
-# Required header that tells the browser how to render the text.
-print("Content-Type: text/plain\n\n")  # here text -- not html
-# Print a simple message to the display window.
-#print("Hello, World!\n")
+"#!/usr/bin/python"                                                                      //so cgi knows where to load python interp
+print("Content-Type: text/plain\n\n")   
 
 from statsd import statsd							      //import statsd and dogapi lib
 from dogapi import dog_http_api as api              
