@@ -5,13 +5,13 @@ Sign up for Datadog, get the agent reporting metrics from your local machine. (d
 
 Bonus question: what is the agent?  
 
-The agent is called: ddagent.exe.  It looks like software running on my computer that collects events and metrics from it and sends that to Datadog.
+The agent is a file called: ddagent.exe.  It looks like software running on my computer that collects events and metrics from it and sends that to Datadog.
 
 
-Submit an event via the API.
+Submit an event via the API. (done)
 
 
-Get an event to appear in your email inbox (the email address you signed up for the account with)
+Get an event to appear in your email inbox (the email address you signed up for the account with) (done)
 
 
 <strong>Level 2</strong>
