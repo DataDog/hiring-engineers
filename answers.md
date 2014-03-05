@@ -9,8 +9,8 @@
 
 ### Level 2
 
-* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
-* While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**. (done)
+* While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph! (done)
 * Create a histogram to see the latency; also give us the link to the graph
 * Bonus points for putting together more creative dashboards.
 
