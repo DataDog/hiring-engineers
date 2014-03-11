@@ -17,9 +17,9 @@
 ### Level 3
 
 Using the same web app from level 2:
-* tag your metrics with `support` (one tag for all metrics)
-* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
-* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+* tag your metrics with `support` (one tag for all metrics) (done)
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`) (done)
+* visualize the latency by page on a graph (using stacked areas, with one color per `page`) (done)
 
 ### Level 4
 
