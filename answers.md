@@ -24,10 +24,10 @@ Using the same web app from level 2:
 ### Level 4
 
 Same web app:
-* count the overall number of page views using dogstatsd counters.
-* count the number of page views, split by page (hint: use tags)
-* visualize the results on a graph
-* Bonus question: do you know why the graphs are very spiky?
+* count the overall number of page views using dogstatsd counters. (done)
+* count the number of page views, split by page (hint: use tags)  (done)
+* visualize the results on a graph  (done)
+* Bonus question: do you know why the graphs are very spiky? (done)
  
 ### Level 5
 
