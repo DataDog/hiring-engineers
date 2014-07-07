@@ -1,4 +1,4 @@
-If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
+If you'd like to apply as a devops evangelist at [Datadog](http://datadog.com) you are in the right spot. Here is the more formal [job description](http://jobs.datadoghq.com/apply/s2J6Da/DevOps-Evangelist.html).
 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
@@ -18,7 +18,7 @@ Don't forget to read the **References**.
 
 ### Level 2
 
-* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built, and instrument your code with dogstatsd. This will create **metrics**.
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 * Create a histogram to see the latency; also give us the link to the graph
 * Bonus points for putting together more creative dashboards.
@@ -50,6 +50,10 @@ Here is a snippet that prints a random value in python:
 import random
 print(random.random())
 ```
+
+### Level 6
+
+Now sum up your whole experience in a writeup in markdown.
 
 ## Instructions
 If you have a question, create an issue in this repository.
