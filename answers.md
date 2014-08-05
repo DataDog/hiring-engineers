@@ -42,3 +42,51 @@ I used this to php file with the load tester once again since it will automatica
 
 The link to the latency graph = "https://p.datadoghq.com/sb/808e084130"
 
+Level 3
+
+1) Added "DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'support'));"
+
+2) Added"DataDogStatsD::histogram('web.render_time', 15, array('tagname' => 'support'));"
+3) Added the "support" tag to the infrustructure of the VPS being used. This could be utilized across multiple VPS via the "support" tag.
+
+4) Added "page" to webpage view metric. 
+"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));"
+5) Created similar "page" for easier comparison via page tags.
+"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"
+
+6) Latency comparison between pages "http://i.imgur.com/xqC64ZC.png?1"
+
+
+
+Level 4)
+
+"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));" is a perfect example of a page counter. It incremently counts the web page views as the php is called.
+
+It's already setup to be compared to it's counterpart "DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));" for easy page splitting.
+
+Results of page splitting for web page view comparison can be seen here "http://i.imgur.com/lXSPxjk.png?1"
+
+Bonus - I believe the graph is spiky because of the inactivity with a surge of activity being created by the load tester.
+
+Level 5)
+
+Using "http://docs.datadoghq.com/guides/agent_checks/" the first thing I did was create the files in the appropriate locations.
+
+"test.support.random.yaml" and "test.support.random.py" were created with the yaml file going to the /etc/dd-agent folder and the py file going to /etc/dd-agent/checks.d directory.
+
+The yaml file contained 
+
+"init_config:
+
+instances:
+    [{}]"
+    
+    and the py file contained
+    "import random
+
+class TestSupportRandom(AgentCheck):
+  def check(self, instance):
+    self.gauge('test.support.random', random.random())"
+    
+    
+
