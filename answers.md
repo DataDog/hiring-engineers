@@ -83,17 +83,18 @@ Using "http://docs.datadoghq.com/guides/agent_checks/" the first thing I did was
 "test.support.random.yaml" and "test.support.random.py" were created with the yaml file going to the /etc/dd-agent folder and the py file going to /etc/dd-agent/checks.d directory.
 
 The yaml file contained 
-
- ```init_config:
+```
+init_config:
 
 instances:
     [{}]  
+```    
 
-with the py file containing```
-    ```
+with the py file containing
+```    
 import random
 
 class testsupportrandom(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random.random())
-    
+   ``` 
