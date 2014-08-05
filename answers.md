@@ -12,7 +12,7 @@ Level 1
 Level 2
 
 1)Created simple web app via PHP script. 
-
+```
 "<?php
 
 require '/var/www/html/php-datadogstatsd/libraries/datadogstatsd.php';
@@ -24,12 +24,13 @@ DataDogStatsD::increment('web.page_viewsphp');
 
 
 ?>"
+```
 
 2) Called the metrics.php file via Apache Benchmark. "ab -n 999 -c 20 http://firasimus.com/metrics.php"
 After a couple of minutes of testing with different variations this is the following result : "https://p.datadoghq.com/sb/d1030ac743?tv_mode=true"
 
 3) Made another simple php file :
-
+```
 <?php
 
 require '/var/www/html/php-datadogstatsd/libraries/datadogstatsd.php';
@@ -41,22 +42,22 @@ DataDogStatsD::histogram('web.render_time', 15);DataDogStatsD::histogram('web.re
 
 BatchedDatadogStatsD::histogram('web.render_time', 15);
 ?>
-
+```
 I used this to php file with the load tester once again since it will automatically call the php file much faster then I can do manually to gauge the latency of the server.
 
 The link to the latency graph = "https://p.datadoghq.com/sb/808e084130"
 
 Level 3
 
-1) Added "DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'support'));"
+1) Added ```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'support'));"```
 
-2) Added"DataDogStatsD::histogram('web.render_time', 15, array('tagname' => 'support'));"
+2) Added ```"DataDogStatsD::histogram('web.render_time', 15, array('tagname' => 'support'));"```
 3) Added the "support" tag to the infrustructure of the VPS being used. This could be utilized across multiple VPS via the "support" tag.
 
 4) Added "page" to webpage view metric. 
-"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));"
+```"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));"```
 5) Created similar "page" for easier comparison via page tags.
-"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"
+```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"```
 
 6) Latency comparison between pages "http://i.imgur.com/xqC64ZC.png?1"
 
@@ -64,9 +65,9 @@ Level 3
 
 Level 4)
 
-"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));" is a perfect example of a page counter. It incremently counts the web page views as the php is called.
+```"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));"``` is a perfect example of a page counter. It incremently counts the web page views as the php is called.
 
-It's already setup to be compared to it's counterpart "DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));" for easy page splitting.
+It's already setup to be compared to it's counterpart ```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"``` for easy page splitting.
 
 Results of page splitting for web page view comparison can be seen here "http://i.imgur.com/lXSPxjk.png?1"
 
@@ -80,18 +81,18 @@ Using "http://docs.datadoghq.com/guides/agent_checks/" the first thing I did was
 
 The yaml file contained 
 
-""init_config:
+```init_config:
 
 instances:
-    [{}]""
+    [{}] ```
     
     with the py file containing
     
-    "import random
+    ```"import random
 
 class testsupportrandom(AgentCheck):
   def check(self, instance):
-    self.gauge('test.support.random', random.random())"
+    self.gauge('test.support.random', random.random())"```
     
     
 
