@@ -52,10 +52,13 @@ Level 3
 1) Added ```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'support'));"```
 
 2) Added ```"DataDogStatsD::histogram('web.render_time', 15, array('tagname' => 'support'));"```
+
 3) Added the "support" tag to the infrustructure of the VPS being used. This could be utilized across multiple VPS via the "support" tag.
+
 
 4) Added "page" to webpage view metric. 
 ```"DataDogStatsD::increment('web.page_viewsphppg1', array('tagname' => 'page:pageview1','tagname' => 'support'));"```
+
 5) Created similar "page" for easier comparison via page tags.
 ```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"```
 
@@ -84,15 +87,19 @@ The yaml file contained
 ```init_config:
 
 instances:
-    [{}] ```
+    [{}] 
+    
+     ```
     
     with the py file containing
     
-    ```"import random
+    
+     ```
+      
+     "import random
 
 class testsupportrandom(AgentCheck):
   def check(self, instance):
-    self.gauge('test.support.random', random.random())"```
-    
-    
-
+    self.gauge('test.support.random', random.random())"
+     
+ ``` 
