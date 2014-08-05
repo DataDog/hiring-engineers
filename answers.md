@@ -1,7 +1,7 @@
 # Datadog Evangelist Challenge
 After speaking with Alexis Lê-Quôc on Thursday July 31, I was given the Datadog Challenge late Thursday night/early Friday morning. The challenge included a series of excercises geared to get the applicant up to speed on Datadog's capabilities and to assess the applicant's abilities to follow instructions and read between the lines. I hope I can convince you that I have succeeded on both counts.
 
-***Note:*** *The answers to the questions are called out in the text below in the form of modified paranthetical citations, denoting level and question. e.g.* **(L1Q3)** *means that this is the answer to question 3 in level 1. *
+***Note:*** *The answers to the questions are called out in the text below in the form of modified paranthetical citations, denoting level and question. e.g.* **(L1Q3)** *means that this is the answer to question 3 in level 1.*
 
 ## Level 1
 
