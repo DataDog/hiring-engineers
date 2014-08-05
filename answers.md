@@ -27,7 +27,7 @@ DataDogStatsD::increment('web.page_viewsphp');
 ```
 
 2) Called the metrics.php file via Apache Benchmark. "ab -n 999 -c 20 http://firasimus.com/metrics.php"
-After a couple of minutes of testing with different variations this is the following result : "https://p.datadoghq.com/sb/d1030ac743?tv_mode=true"
+After a couple of minutes of testing with different variations this is the following result : "http://i.imgur.com/j2aTPB4.png?1"
 
 3) Made another simple php file :
 ```
@@ -45,7 +45,7 @@ BatchedDatadogStatsD::histogram('web.render_time', 15);
 ```
 I used this to php file with the load tester once again since it will automatically call the php file much faster then I can do manually to gauge the latency of the server.
 
-The link to the latency graph = "https://p.datadoghq.com/sb/808e084130"
+The link to the latency graph = "http://i.imgur.com/ALeLxmY.png?1"
 
 Level 3
 
