@@ -80,10 +80,10 @@ Using "http://docs.datadoghq.com/guides/agent_checks/" the first thing I did was
 
 The yaml file contained 
 
-"init_config:
+""init_config:
 
 instances:
-    [{}]"
+    [{}]""
     
     with the py file containing
     
