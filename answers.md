@@ -10,7 +10,9 @@ Level 1
 
 
 Level 2
+
 1)Created simple web app via PHP script. 
+
 "<?php
 
 require '/var/www/html/php-datadogstatsd/libraries/datadogstatsd.php';
@@ -83,7 +85,8 @@ The yaml file contained
 instances:
     [{}]"
     
-    and the py file contained
+    with the py file containing
+    
     "import random
 
 class testsupportrandom(AgentCheck):
