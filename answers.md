@@ -47,7 +47,7 @@ DataDogStatsD::histogram('web.render_time', 15);DataDogStatsD::histogram('web.re
 BatchedDatadogStatsD::histogram('web.render_time', 15);
 ?>
 ```
-I used this to php file with the load tester once again since it will automatically call the php file much faster then I can do manually to gauge the latency of the server.
+I used this to php file with the load tester once again to gauge the latency of the server.
 
 The link to the latency graph = "http://i.imgur.com/ALeLxmY.png?1"
 
