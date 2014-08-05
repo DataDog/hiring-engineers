@@ -87,10 +87,10 @@ The yaml file contained
  ```init_config:
 
 instances:
-    [{}]  ```
+    [{}]  
 
-with the py file containing
-    
+with the py file containing```
+    ```
 import random
 
 class testsupportrandom(AgentCheck):
