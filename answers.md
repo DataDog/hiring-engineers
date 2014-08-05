@@ -93,16 +93,15 @@ instances:
     
     
     
+with the py file containing
     
-    with the py file containing
     
-    
-     ```
+ 
+ 
       
      "import random
 
 class testsupportrandom(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random.random())"
-     
- ``` 
+    
