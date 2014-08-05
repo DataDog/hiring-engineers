@@ -84,17 +84,15 @@ Using "http://docs.datadoghq.com/guides/agent_checks/" the first thing I did was
 
 The yaml file contained 
 
-``` init_config:
+ init_config:
 
 instances:
     [{}] 
-    ```
-    
 with the py file containing
     
-"import random
+import random
 
 class testsupportrandom(AgentCheck):
   def check(self, instance):
-    self.gauge('test.support.random', random.random())"
+    self.gauge('test.support.random', random.random())
     
