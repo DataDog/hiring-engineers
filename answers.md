@@ -31,8 +31,7 @@ I set two metrics: page views (named *web.page.views*) and form submission (*ma
 ####Vizualize page views per second in a graph during a load test
 I used Apache Bench sending 10000 requests, 30 at one time.
 
-<img src="https://www.dropbox.com/s/6732wj8lt6e9q9p/Level2%20-%20Test%20load.JPG" width="500" height="332" alt="Page view graph 1"></a>
-[Datadog link to the graph] (https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_12653/2014-08-04/a985ead1a255024be129c605789535f357d6d082.png)
+[Link to the graph on Datadog] (https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_12653/2014-08-04/a985ead1a255024be129c605789535f357d6d082.png)
 
 ####Create a histogram to see the latency
 Not done. I haven't found a way to turn the load test in a latency metrics.
@@ -55,12 +54,9 @@ Same as in Level 2. Not done.
 ###Level 4
 
 ####Count overall number of page views using counters
-<img src="https://www.dropbox.com/s/c4w3c99zwnii3lo/Level4%20-%20overall%20page%20view.JPG" width="500" height="332" alt="Overall page views"></a>
 [Link to the graph on Datadog] (https://app.datadoghq.com/dash/dash/25921?from_ts=1407077654701&to_ts=1407108317388&tile_size=m)
-1.97 K page views at 01:00:00 (using ab load test tool).
 
 ####Count number of page views split by page
-<img src="https://www.dropbox.com/s/w1zfoiptka2sc65/Level4%20-%20page%20view%20by%20page%20tag.JPG" width="500" height="332" alt="Overall page views split by page"></a>
 [Link to the graph on Datadog] (https://app.datadoghq.com/dash/dash/25921?from_ts=1407099956865&to_ts=1407106992835&tile_size=m)
 
 ###Level 5
