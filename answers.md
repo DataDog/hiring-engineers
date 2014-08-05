@@ -2,10 +2,14 @@ Your answers to the questions go here.
 
 Level 1
 
-1) Instead of downloading it locally, downloaded and installed remotely on my VPS which hosts my website.
+1) Instead of downloading it locally, I downloaded and installed remotely on my VPS which hosts my website.
+
 2) "The Datadog Agent is piece of software that runs on your hosts. Its job is to faithfully collect events and metrics and bring them to Datadog on your behalf so that you can do something useful with your monitoring and performance data." Source:"http://docs.datadoghq.com/guides/basic_agent_usage/"
+
 3) I initially was checking out the different APIs. I ended up submitting events via Ruby, Python, and lastly PHP. The PHP section took me the longest because of the installation troubleshooting I had to go through. It's pretty specific and only work's with "PECL http version 1.7.6"
+
 4)Image link to "submit an event via the API" = "http://i.imgur.com/ew6kN4Q.png?1"
+
 5)Image link to "get an event to appear in your email inbox" = "http://i.imgur.com/P8nE80h.png?1"
 
 
@@ -53,7 +57,7 @@ Level 3
 
 2) Added ```"DataDogStatsD::histogram('web.render_time', 15, array('tagname' => 'support'));"```
 
-3) Added the "support" tag to the infrustructure of the VPS being used. This could be utilized across multiple VPS via the "support" tag.
+3) Added the "support" tag to the infrustructure on datadog of the VPS being used. This could be utilized across multiple VPS via the "support" tag.
 
 
 4) Added "page" to webpage view metric. 
@@ -61,6 +65,8 @@ Level 3
 
 5) Created similar "page" for easier comparison via page tags.
 ```"DataDogStatsD::increment('web.page_viewsphp', array('tagname' => 'page:pageview2','tagname' => 'support'));"```
+
+**Added the tags via infrustructure once again**
 
 6) Latency comparison between pages "http://i.imgur.com/xqC64ZC.png?1"
 
