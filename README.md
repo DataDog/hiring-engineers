@@ -15,7 +15,7 @@ If so, we want to hear from you.
 # The Positions
 
 1. Support Engineer: check out the `support-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/support-engineer) of this repository.
-2. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devopsevangelist) of this repository.
+2. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devops-evangelist) of this repository.
 
 # How do I submit my results?
 
