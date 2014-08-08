@@ -104,4 +104,18 @@ if __name__ == '__main__':
 ## Level 5
 
 * checks.d/randomCheck.py created for the check
+```python
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', int(random.random()*1000))
+```
 * conf.d/randomCheck.yaml created for configuration
+```yaml
+init_config:
+
+instances:
+    [{}]
+
+```
