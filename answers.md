@@ -3,7 +3,7 @@
 ## Level 1
 
 * Two separate ways of sending the event via email
-1. Send using the flask-mail API (attempt can be found in mailTest.py)
+* Send using the flask-mail API (attempt can be found in mailTest.py)
 ```python
 from flask import Flask, jsonify
 from flask.ext.mail import Mail, Message
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     sendEvent()
 ```
 
-2. Send using @ notifications (attempt can be found in eventTest.py)
+* Send using @ notifications (attempt can be found in eventTest.py)
 ```python
 from dogapi import dog_http_api as api
 
