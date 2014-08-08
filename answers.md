@@ -18,7 +18,7 @@ app = Flask(__name__)
 mail = Mail(app)
 
 USERNAME = 'rhandy87@gmail.com' #enter your email address here
-PASSWORD = 'signingin' #enter your email password here
+PASSWORD = '' #enter your email password here
 
 app.config.update(
 MAIL_SERVER = 'smtp.gmail.com',
