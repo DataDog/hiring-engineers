@@ -16,12 +16,18 @@ Level 2
 
 -  Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
-see web_page_view.jpg
+	I instrumented [LEAf](http://github.com/jbmilgrom/LEAf) with a 'web.page_views' counter.  See this [commit](http://github.com/jbmilgrom/LEAf/commit/c9257f7d85a1a06f989843858322881f212c90be). 
+
+see "https://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric"
+
+also see web_page_view.png
 
 -  While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
-see load_test.jpg
+see "https://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric"
+
+see load_test.png
 
 -  Create a histogram to see the latency; also give us the link to the graph
 
-see histogram.jpg
+see histogram.png
