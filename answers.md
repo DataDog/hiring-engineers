@@ -18,7 +18,7 @@ Level 2
 
 	I instrumented [LEAf](http://github.com/jbmilgrom/LEAf) with a 'web.page_views' counter.  See this [commit](http://github.com/jbmilgrom/LEAf/commit/c9257f7d85a1a06f989843858322881f212c90be). 
 
-	See this [Datadog post](http://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric) for a resulting metric.
+	See this [Datadog post](http://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric) for a graph of the resulting metric.
 
 	Also see [web_page_view.png](http://github.com/jbmilgrom/hiring-engineers/blob/master/web_page_view.png).
 
@@ -26,7 +26,7 @@ Level 2
 
 	I load-tested [LEAf](https://github.com/jbmilgrom/LEAf) using Apache Bench while running a local server (i.e. ab -n 100 -c 2 http://localhost:3000/)
 	
-	Here is the resulting page-view metric as a [Datadog post](http://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric). 
+	Here is a graph of the resulting page-view metric as a [Datadog post](http://app.datadoghq.com/metric/explorer?from_ts=1407932373348&to_ts=1407935973348&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_group=host&exp_agg=avg&exp_row_type=metric). 
 
 	Also see [load_test.png](https://github.com/jbmilgrom/hiring-engineers/blob/master/load_test.png).
 
