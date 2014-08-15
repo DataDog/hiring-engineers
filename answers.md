@@ -54,7 +54,7 @@ Email: dara.mao@gmail.com
 		 ab -n 100 -c 10 http://127.0.0.1:3000/periods/show
 		 ab -n 750 -c 100 http://127.0.0.1:3000/periods/show
 	
-* <strong>Create a histogram to see the latency; also give us the link to the graph. Bonus points for putting together more creative dashboards.<br> Answer: </strong> This [dashboard](https://app.datadoghq.com/dash/dash/26531?from_ts=1408119180000&to_ts=1408122780000&tile_size=m) includes histogram along with page view load test. 
+* <strong>Create a histogram to see the latency; also give us the link to the graph. Bonus points for putting together more creative dashboards.<br> Answer: </strong> This [dashboard](https://app.datadoghq.com/dash/dash/26531?from_ts=1408119105197&to_ts=1408127463053&tile_size=m) includes histogram along with page view load test. 
 
  	My code for histogram:	
 			
@@ -65,5 +65,22 @@ Email: dara.mao@gmail.com
 		 end = Time.now
 		 frame = end - begin
 		 statsd.histogram('statsd.increment.latency', frame)
+
+
+
+### Level 3
+
+* <strong>tag your metrics with `support` (one tag for all metrics)
+* tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
+* <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130531330&to_ts=1408131015969&tile_size=m) of graphs.
+
+	My code for load test:	
+
+		 ab -n 120 -c 100 http://127.0.0.1:3000/periods
+		 ab -n 500 -c 10 http://127.0.0.1:3000/periods/show
+		 ab -n 45 -c 1 http://127.0.0.1:3000/periods
+		 ab -n 1532 -c 10 http://127.0.0.1:3000/periods/show
+		 ab -n 3495 -c 1 http://127.0.0.1:3000/periods
+		 ab -n 1200 -c 100 http://127.0.0.1:3000/periods/show
 
 
