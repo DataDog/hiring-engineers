@@ -83,4 +83,10 @@ Email: dara.mao@gmail.com
 		 ab -n 3495 -c 1 http://127.0.0.1:3000/periods
 		 ab -n 1200 -c 100 http://127.0.0.1:3000/periods/show
 
+### Level 4
+
+* <strong>count the overall number of page views using dogstatsd counters.
+* count the number of page views, split by page (hint: use tags)
+* visualize the results on a graph
+* Bonus question: do you know why the graphs are very spiky?<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26561?from_ts=1408130545001&to_ts=1408131288068&tile_size=m) of graphs. The spikes in the graphs are due to time lapse in page load. 
 
