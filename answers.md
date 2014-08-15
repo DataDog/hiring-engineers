@@ -1,5 +1,5 @@
 Submission for support engineer at Datadog <br> 
-Date: 08/14/2014 <br> 
+Date: 08/15/2014 <br> 
 From: Dara Mao <br>
 Email: dara.mao@gmail.com 
 
@@ -38,6 +38,7 @@ Email: dara.mao@gmail.com
 * <strong>Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.<br> Answer: </strong> I have implemented dogstatsd for one of my rails project, [Blackbox](https://github.com/daramao/blackbox2014).
 
 * <strong>While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!<br> Answer: </strong> This is the [page view graph](https://app.datadoghq.com/dash/dash/26531?from_ts=1408118740578&to_ts=1408122340578&tile_size=m&fullscreen=50557073) I generated using ApacheBench load test as follows:  
+![pageview](level2PageView.png)
 
 	My code for page view:	
 			
@@ -55,6 +56,7 @@ Email: dara.mao@gmail.com
 		 ab -n 750 -c 100 http://127.0.0.1:3000/periods/show
 	
 * <strong>Create a histogram to see the latency; also give us the link to the graph. Bonus points for putting together more creative dashboards.<br> Answer: </strong> This [dashboard](https://app.datadoghq.com/dash/dash/26531?from_ts=1408119105197&to_ts=1408127463053&tile_size=m) includes histogram along with page view load test. 
+![latency](latency.png)
 
  	My code for histogram:	
 			
@@ -73,6 +75,7 @@ Email: dara.mao@gmail.com
 * <strong>tag your metrics with `support` (one tag for all metrics)
 * tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
 * <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130627940&to_ts=1408131066693&tile_size=m) of graphs.
+![tags](level3tags.png)
 
 	My code for load test:	
 
@@ -89,8 +92,8 @@ Email: dara.mao@gmail.com
 * count the number of page views, split by page (hint: use tags)
 * visualize the results on a graph
 * Bonus question: do you know why the graphs are very spiky?<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26561?from_ts=1408130545001&to_ts=1408131288068&tile_size=m) of graphs. The spikes in the graphs are due to time lapse in page load. 
+![counter](level4.png)
 
-### Level 5
 
-* <strong>Write an agent check that samples a random value. Call this new metric: `test.support.random`<br> Answer: </strong>
-* Visualize this new metric on Datadog, send us the link.
+
+
