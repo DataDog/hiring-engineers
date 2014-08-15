@@ -72,7 +72,7 @@ Email: dara.mao@gmail.com
 
 * <strong>tag your metrics with `support` (one tag for all metrics)
 * tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
-* <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130531330&to_ts=1408131015969&tile_size=m) of graphs.
+* <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130627940&to_ts=1408131066693&tile_size=m) of graphs.
 
 	My code for load test:	
 
@@ -90,3 +90,7 @@ Email: dara.mao@gmail.com
 * visualize the results on a graph
 * Bonus question: do you know why the graphs are very spiky?<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26561?from_ts=1408130545001&to_ts=1408131288068&tile_size=m) of graphs. The spikes in the graphs are due to time lapse in page load. 
 
+### Level 5
+
+* <strong>Write an agent check that samples a random value. Call this new metric: `test.support.random`<br> Answer: </strong>
+* Visualize this new metric on Datadog, send us the link.
