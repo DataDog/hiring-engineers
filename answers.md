@@ -20,7 +20,7 @@ Email: dara.mao@gmail.com
 		 api_key = 'DATADOG_API_KEY'
 		 dog = Dogapi::Client.new(api_key)
 		 
-		 response = dog.emit_event(Dogapi::Event.new('Level 1 question 3', :msg_title => 		'Support Engineer Dara Mao')) 
+		 response = dog.emit_event(Dogapi::Event.new('Level 1 question 3', :msg_title => 'Support Engineer Dara Mao')) 
 
 
 * <strong>Get an event to appear in your email inbox (the email address you signed up for the account with)<br> Answer: </strong> By adding @dara.mao@gmail.com in the event body. 
@@ -30,7 +30,7 @@ Email: dara.mao@gmail.com
 		 api_key = 'DATADOG_API_KEY'
 		 dog = Dogapi::Client.new(api_key)
 		 
-		 response = dog.emit_event(Dogapi::Event.new('Level 1 question 4 to 		@dara.mao@gmail.com', :msg_title => 'Support Engineer Dara Mao'))
+		 response = dog.emit_event(Dogapi::Event.new('Level 1 question 4 to @dara.mao@gmail.com', :msg_title => 'Support Engineer Dara Mao'))
 
 
 ### Level 2
@@ -54,8 +54,9 @@ Email: dara.mao@gmail.com
 		 ab -n 10034 -c 1 http://127.0.0.1:3000/periods/show
 		 ab -n 100 -c 10 http://127.0.0.1:3000/periods/show
 		 ab -n 750 -c 100 http://127.0.0.1:3000/periods/show
-	
+		
 * <strong>Create a histogram to see the latency; also give us the link to the graph. Bonus points for putting together more creative dashboards.<br> Answer: </strong> This [dashboard](https://app.datadoghq.com/dash/dash/26531?from_ts=1408119105197&to_ts=1408127463053&tile_size=m) includes histogram along with page view load test. 
+
 ![latency](latency.png)
 
  	My code for histogram:	
@@ -75,6 +76,7 @@ Email: dara.mao@gmail.com
 * <strong>tag your metrics with `support` (one tag for all metrics)
 * tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
 * <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130627940&to_ts=1408131066693&tile_size=m) of graphs.
+
 ![tags](level3tags.png)
 
 	My code for load test:	
@@ -92,6 +94,7 @@ Email: dara.mao@gmail.com
 * <strong>count the number of page views, split by page (hint: use tags)</strong> 
 * <strong>visualize the results on a graph</strong> 
 * <strong>Bonus question: do you know why the graphs are very spiky?<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26561?from_ts=1408130545001&to_ts=1408131288068&tile_size=m) of graphs. The spikes in the graphs are due to time lapse in page load. 
+
 ![counter](level4.png)
 
 
