@@ -73,8 +73,8 @@ Email: dara.mao@gmail.com
 
 ### Level 3
 
-* <strong>tag your metrics with `support` (one tag for all metrics)
-* tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
+* <strong>tag your metrics with `support` (one tag for all metrics)</strong>
+* <strong>tag your metrics per page.<br> Answer: </strong> I have added `:tags =>['support, support:page1']` and `:tags =>['support, support:page2']` to all the metrics for 2 pages of the app. 
 * <strong>visualize the latency by page on a graph (using stacked areas, with one color per `page`)<br> Answer: </strong> Attached [dashboard](https://app.datadoghq.com/dash/dash/26557?from_ts=1408130627940&to_ts=1408131066693&tile_size=m) of graphs.
 
 ![tags](level3tags.png)
