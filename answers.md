@@ -98,5 +98,32 @@ Email: dara.mao@gmail.com
 ![counter](level4.png)
 
 
+ 
+### Level 5
 
+* <strong>Write an agent check that samples a random value. Call this new metric: `test.support.random`<br> Answer: </strong>
+My code for test.support.random:	
+
+		 import random
+		 import statsd
+		 
+		 from checks import AgentCheck
+		 class RandomCheck(AgentCheck):
+		 	def check(self, instance):
+		 		self.gauge('test.support.random', random.random())
+		 		self.event({
+		 			"api_key": 'DATADOG_API_KEY',
+		 			"msg_title": "testing random AgentCheck",
+		 			"tags": "test.support.random"
+         		 })
+          
+          	print(random.random())
+          
+          from statsd import statsd
+          statsd.gauge('test.support.random', random.random())
+
+    
+* <strong>Visualize this new metric on Datadog, send us the link.<br> Answer: </strong>I ran a few random tests, see attached [dashboard](https://app.datadoghq.com/dash/dash/26611?from_ts=1408221072790&to_ts=1408221687265&tile_size=m) of graphs. 
+
+![agentCheck](level5.png)
 
