@@ -79,7 +79,7 @@ Email: dara.mao@gmail.com
 
 ![tags](level3tags.png)
 
-	My code for load test:	
+My code for load test:	
 
 		 ab -n 120 -c 100 http://127.0.0.1:3000/periods
 		 ab -n 500 -c 10 http://127.0.0.1:3000/periods/show
@@ -102,7 +102,7 @@ Email: dara.mao@gmail.com
 ### Level 5
 
 * <strong>Write an agent check that samples a random value. Call this new metric: `test.support.random`<br> Answer: </strong>
-My code for test.support.random:	
+My code for random_test.py:	
 
 		 import random
 		 import statsd
@@ -112,7 +112,7 @@ My code for test.support.random:
 		 	def check(self, instance):
 		 		self.gauge('test.support.random', random.random())
 		 		self.event({
-		 			"api_key": 'DATADOG_API_KEY',
+		 			"api_key": "DATADOG_API_KEY",
 		 			"msg_title": "testing random AgentCheck",
 		 			"tags": "test.support.random"
          		 })
@@ -121,6 +121,14 @@ My code for test.support.random:
           
           from statsd import statsd
           statsd.gauge('test.support.random', random.random())
+          
+	My code for random_test.yaml:	
+
+		 init_config:
+		 	default_timeout: 5
+		 	
+		 instances:
+		 	-   url: http://127.0.0.1:3000/periods
 
     
 * <strong>Visualize this new metric on Datadog, send us the link.<br> Answer: </strong>I ran a few random tests, see attached [dashboard](https://app.datadoghq.com/dash/dash/26611?from_ts=1408221072790&to_ts=1408221687265&tile_size=m) of graphs. 
