@@ -43,6 +43,7 @@ Same web app:
 Let's switch to the agent.
 
 * Write an agent check that samples a random value. Call this new metric: `test.support.random`
+* Post a screenshot of the `test.support.random` metric
 
 Here is a snippet that prints a random value in python:
 
