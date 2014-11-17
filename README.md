@@ -1,28 +1,69 @@
-If you want to apply as an engineer at [Datadog](http://datadog.com) you are in the right spot. 
+If you want to apply as a soultion architect at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
+
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
-# Why work at Datadog?
+# The Challenge
 
-We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
+Don't forget to read the **References**.
 
-Do you want to make a difference? Are you exceptional at your job, and intrinsically motivated by it? Do you eat hard problems for breakfast and find them beautifully simple solutions by lunchtime? Do you ever wish you were there in the early days of these startups everyone is talking about?
+## Questions
 
-If so, we want to hear from you.
+### Level 1
 
-[source](http://jobs.datadoghq.com/)
+* Sign up for Datadog, get the agent reporting metrics from your local machine.
+* Bonus question: what is the agent?
+* Submit an event via the API.
+* Get an event to appear in your email inbox (the email address you signed up for the account with)
 
-# The Positions
+### Level 2
 
-1. Support Engineer: check out the `support-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/support-engineer) of this repository.
-2. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devops-evangelist) of this repository.
+* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+* While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+* Create a histogram to see the latency; also give us the link to the graph
+* Bonus points if your simple app includes a database/webserver/cache we support, and you are able to enable their "integrations" in Datadog
+* More bonus points for putting together more creative dashboards.
 
-# How do I submit my results?
+### Level 3
 
-1. Fork this repository.
-2. Check out the branch that interests you.
-3. Commit your work.
-4. Submit a pull request against this upstream repository.
+Using the same web app from level 2:
+* tag your metrics with `support` (one tag for all metrics)
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
-# Questions?
-File an issue in this repository.
+### Level 4
+
+Same web app:
+* count the overall number of page views using dogstatsd counters.
+* count the number of page views, split by page (hint: use tags)
+* visualize the results on a graph
+* Bonus question: do you know why the graphs are very spiky?
+ 
+### Level 5
+
+Let's switch to the agent.
+
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+* Visualize this new metric on Datadog, send us the link.
+
+Here is a snippet that prints a random value in python:
+
+```python
+import random
+print(random.random())
+```
+
+### Final in Person Interview
+* Come to our office and do a Demo of Datadog 
+
+
+## Instructions
+If you have a question, create an issue in this repository.
+
+To submit your answers:
+
+1. Fork this repo.
+2. Answer the questions in `answers.md`
+3. Commit your code for question #4.
+4. Submit a pull request.
+5. Don't forget to include links to your dashboard(s)
