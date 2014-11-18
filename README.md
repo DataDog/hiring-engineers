@@ -61,7 +61,7 @@ To submit your answers:
 2. Answer the questions in `answers.md`
 3. Commit your code for question #4.
 4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s)
+5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.
 
 ## References
 
