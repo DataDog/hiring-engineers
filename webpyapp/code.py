@@ -2,6 +2,8 @@ import web
 from statsd import statsd
 import time
 
+import random
+
 render = web.template.render('templates/')
 
 urls = ( '/index/(.*)' , 'index',
@@ -23,11 +25,15 @@ class index:
 
 class page1:
 	def GET(self, name):
+		randomNum = random.random()
 		start_time = time.time()
 		statsd.increment('page.views', tags = ["support", "page:page1"])
-		return render.page1(name)
+		statsd.histogram('test.support.random', random.random())
+		return render.page1(randomNum)
 		duration = time.time() - start_time
 		statsd.histogram('database.query.time.avg', duration, tags = ["support"])
+
+
 		
 
 
