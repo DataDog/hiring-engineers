@@ -18,16 +18,21 @@ The Agent has three main parts: the collector, dogstatsd, and the forwarder.
 
 #### Submit an event via the API.
 
-in file `datadog_event.rb` I write:
+The three steps I need to accomplish are:
 
-    # Load the dogstats module.
-    require 'statsd'
-    
-    # Create a stats instance.
-    statsd = Statsd.new('localhost', 8125)
-    
-    # Submit an event via the API, @mention desired e-mail (be sure e-mail subscription is enabled)
-    statsd.event('Good work!', 'You submitted and event via the API. @Jeremy.Salig@gmail.com')
+* Load the dogstats module.
+* Create a stats instance.
+* Submit an event via the API, @mention desired e-mail (be sure e-mail subscription is enabled)
+
+In my file `datadog_event.rb` I write:
+
+```ruby
+require 'statsd'
+
+statsd = Statsd.new('localhost', 8125)
+
+statsd.event('Good work!', 'You submitted and event via the API. @Jeremy.Salig@gmail.com')
+```
 
 To send an event I run:
 
@@ -48,15 +53,16 @@ The event will post to my stream and the @mention will forward the event to my e
 
 Added statsd, created a new instance, sent incriment to a new metric for my simple Ruby web app running on Sinatra:
 
-    require 'statsd'
-    
-    statsd = Statsd.new('localhost', 8125)
-    get "/" do
-      # get page elements
-      statsd.increment('pixtr.pages.views')
-      erb :index
-    end
+```ruby
+require 'statsd'
 
+statsd = Statsd.new('localhost', 8125)
+get "/" do
+  # get page elements
+  statsd.increment('pixtr.pages.views')
+  erb :index
+end
+```
 
 ####While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
@@ -74,14 +80,16 @@ Link to live shared version of this graph:
 
 First I sampled the response time using `statsd.histogram` passing in time duration as an argument:
 
-    get "/" do
-      start_time = Time.now 
-      duration = Time.now - start_time
-      
-      # page loading logic
-    
-      statsd.histogram('pixtr.pages.response.time', duration, tags: ['support', "page:home"])
-    end
+```ruby
+get "/" do
+  start_time = Time.now 
+  duration = Time.now - start_time
+
+  # page loading logic
+
+  statsd.histogram('pixtr.pages.response.time', duration, tags: ['support', "page:home"])
+end
+```
 
 I graphed median response time, 95th percentile and average response time.
 
@@ -103,20 +111,24 @@ Link to live shared version of this graph:
 
 ####tag your metrics with `support` (one tag for all metrics)
 
-To add tags I add `tags: ['support']` to the arguments list:
+To add tags, I add `tags: ['support']` to the arguments list:
 
-    statsd.increment('pixtr.pages.views', tags: ['support', "page:home"])
+```ruby
+statsd.increment('pixtr.pages.views', tags: ['support', "page:home"])
+```
 
 ####tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
 
 To add tags for individual pages, galleries in my example app, of which there are many, I use string interpolation to auto populate tag names:
 
-    get "/galleries/:id" do
-      @gallery = Gallery.find(params[:id])
-      @images = @gallery.images
-    
-      statsd.increment("pixtr.pages.views", tags: ['support', "page:gallery#{@gallery.name}"])
-    end
+```ruby
+get "/galleries/:id" do
+  @gallery = Gallery.find(params[:id])
+  @images = @gallery.images
+
+  statsd.increment("pixtr.pages.views", tags: ['support', "page:gallery#{@gallery.name}"])
+end
+```
 
 ####visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
@@ -138,13 +150,17 @@ Link to live shared version of this graph:
 
 I used `increment` to send `+1` to the `pixtr.pages.views` metric for each view of any page utilizing the support tag which all pages share:
 
-    statsd.increment("pixtr.pages.views", tags: ['support'])
+```ruby
+statsd.increment("pixtr.pages.views", tags: ['support'])
+```
 
 ####count the number of page views, split by page (hint: use tags)
 
 Adding custom tags using string interpolation automaticaly generates custom `page:name` tags we can then split by in our stacked graph:
 
-    statsd.increment("pixtr.pages.views", tags: ['support', **"page:gallery#{@gallery.name}"**])
+```ruby
+statsd.increment("pixtr.pages.views", tags: ['support', "page:gallery#{@gallery.name}"])
+```
 
 ####visualize the results on a graph
 
@@ -178,10 +194,12 @@ Worth noting is that the names must match.
 
 Within `randomval.yaml` will be:
 
-    init_config:
-    
-    instances:
-        [{}]
+```yaml
+init_config:
+
+instances:
+    [{}]
+```
 
 Within `randomval.py` will be:
 
