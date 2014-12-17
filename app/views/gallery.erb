@@ -1,0 +1,22 @@
+<h2><%= @gallery.name.capitalize %></h2>
+
+<a href="/galleries/<%= @gallery.id %>/images/new">Add</a> |
+<a href="/galleries/<%= @gallery.id %>/edit">Edit</a>
+
+<form action="/galleries/<%= @gallery.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete this gallery">
+</form>
+
+<% @images.each do |image| %>
+  <p><%= "#{image.name}: #{image.description}" %></p>
+  <p>
+    <a href="/galleries/<%= @gallery.id %>/images/<%= image.id %>/edit">Edit this image</a>
+
+    <form action="/galleries/<%= @gallery.id %>/images/<%= image.id %>" method="POST"> 
+      <input type="hidden" name="_method" value="DELETE">  
+      <input type="submit" value="Delete this image">
+    </form>
+  </p>
+  <img src='<%= image.url %>'>
+<% end %>
