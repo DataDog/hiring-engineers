@@ -1,19 +1,32 @@
 from flask import Flask
-from dogapi import dog_stats_api as dd
-import os
+from statsd import statsd
+import datetime as dt
 
-dd.start(api_key =os.environ['DOGAPIKEY'])
+datetime=dt.datetime
 app =  Flask(__name__)
 
-@dd.timed('hello_World.duration')
 @app.route("/")
-def hello_World():
-    return  "Hello World"
+@statsd.timed('page.view.time',tags=["support"])
+@statsd.timed('page.view.time',tags=["page:page0"])
+def gen():
+   #statsd.event('Flask app is running!', 'Our python app (app.py) has run')
+   title = 'This is the index page<br/>'
+   return title
 
-@app.route('/post/<int:post_id>')
-@dd.timed('post.duration')
-def post_it(post_id):
-    return 'Post %s' %post_id
+@app.route("/hello")
+@statsd.timed('page.view.time',tags=["support"])
+@statsd.timed('page.view.time',tags=["page:page1"])
+def hello_World():
+    title =  "Hello World<br/>"
+    return title
+
+@app.route("/time")
+@statsd.timed('page.view.time',tags=["support"])
+@statsd.timed('page.view.time',tags=["page:page2"])
+def time_is():
+    now = datetime.now()
+    title =  "The time is: %s<br/>" % now
+    return title
 
 if __name__ == "__main__":
     app.run()
