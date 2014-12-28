@@ -86,8 +86,18 @@ I then ran another load test to simulate more page views.
 
 Using the same web app from level 2:
 * tag your metrics with `support` (one tag for all metrics)
+
+To tag metrics within an app, I can add the tag to the options included in the argument, like so:
+
+`$statsd.increment('web.page_views', :tags => ['support'])`
+
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+
+Tagged using string interpolation in ruby: `page = "question:#{@question.id}"`
+
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+
+![Latency by page](http://i.imgur.com/Tt9wDzq.png "Average latency by page")
 
 ### Level 4
 
