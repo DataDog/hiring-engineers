@@ -103,9 +103,20 @@ Tagged using string interpolation in ruby: `page = "question:#{@question.id}"`
 
 Same web app:
 * count the overall number of page views using dogstatsd counters.
+
+To count page views, I used the .increment method: `$statsd.increment('web.page_views', :tags => ['support', page])`
+
 * count the number of page views, split by page (hint: use tags)
+
+Using the above code, I passed "page" as an argument to the method that calls the .increment method. This allows me to vary which page is being tracked based on which controller method it is called from.
+
 * visualize the results on a graph
+
+![Page Views By Page](http://i.imgur.com/ZDR5fdQ.png "Page views by page")
+
 * Bonus question: do you know why the graphs are very spiky?
+
+I would guess it is because of the way the data is graphed - we are graphing page views over time, but a page view is registered as an instantaneous event. I am thinking that at the time interval dictated by the code that graphs the metrics, the value is recorded and graphed. Since it happens every x seconds, the graph is spiky, rather than a smoother curve.
 
 ### Level 5
 
