@@ -98,6 +98,7 @@ Tagged using string interpolation in ruby: `page = "question:#{@question.id}"`
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
 ![Latency by page](http://i.imgur.com/Tt9wDzq.png "Average latency by page")
+[Latency by page](https://app.datadoghq.com/graph/embed?token=e7eae13f035e6dc52cdfc9d662edb8f54e623dd5fd5e64b698f0fcdb7cd3eaf0&height=300&width=600&legend=true)
 
 ### Level 4
 
@@ -114,6 +115,8 @@ Using the above code, I passed "page" as an argument to the method that calls th
 
 ![Page Views By Page](http://i.imgur.com/ZDR5fdQ.png "Page views by page")
 
+[Page views by page](https://app.datadoghq.com/graph/embed?token=a79451323814f3c9a39f4cea352f2b68af95c809174c543827aff9e825922105&height=300&width=600&legend=true)
+
 * Bonus question: do you know why the graphs are very spiky?
 
 I would guess it is because of the way the data is graphed - we are graphing page views over time, but a page view is registered as an instantaneous event. I am thinking that at the time interval dictated by the code that graphs the metrics, the value is recorded and graphed. Since it happens every x seconds, the graph is spiky, rather than a smoother curve.
@@ -123,11 +126,28 @@ I would guess it is because of the way the data is graphed - we are graphing pag
 Let's switch to the agent.
 
 * Write an agent check that samples a random value. Call this new metric: `test.support.random`
+First, I created a config file called randval.yaml in the agent/conf.d directory that includes the following:
+
+```
+init_config:
+
+instances:
+    [{}]
+```
+
+Next, I created a file called randval.py in agent/checks.d that includes the following:
+
+```
+import random
+
+from checks import AgentCheck
+
+class RandomCheck(AgentCheck):
+  def check(self, instance):
+    rand_val = random.random()
+    self.gauge('test.support.random', rand_val)
+```
 * Visualize this new metric on Datadog, send us the link.
 
-Here is a snippet that prints a random value in python:
+Next I ran PYTHONPATH=. python checks.d/test.py from the agent root directory. This should have resulted in the new test.support.random metric appearing on Datadog - unfortunately, I think there is something wrong in my Python version installation that is causing this not to happen. I'm not getting feedback as to any failure and after running the agent info command, it doesn't appear that the custom agent check is recognized by the system.
 
-```python
-import random
-print(random.random())
-```
