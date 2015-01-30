@@ -53,6 +53,7 @@ If you are running Windows, take a look at the Powershell code in New-DataDogEve
 New-DataDogEvent -title "Apache seems down" -text "Looks like it's using all the memory!" -ApiKey "your_api_key_goes_here"
 ```
 
+
 You should get a response with Status Code 200 and you should see the event on your Stream.
 
 If you are on Linux, pasting this into your prompt should give you the same result : 
