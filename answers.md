@@ -45,7 +45,7 @@ Now let's take a look at the Event Stream.
 The Event Stream allows you to browse what happened in your infrastructure and looks like a timeline. It also works similar to a blog : you can post events to it, comment events or search for events using different criteria.
 To look at your event stream, visit this page https://app.datadoghq.com/event/stream
 
-We'll try to create an event programmatically using Datadog's REST API. You can find the API documentation here http://docs.datadoghq.com/api/ .
+We'll try to create an event programmatically using Datadog's REST API. You can find the API documentation here http://docs.datadoghq.com/api/ . Today, we'll be using the 'events' endpoint. And because we want to post an event, we'll use the 'POST' HTTP method.
 
 If you are running Windows, take a look at the Powershell code in New-DataDogEvent.ps1, then in a Powershell session run :
 
