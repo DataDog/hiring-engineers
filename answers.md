@@ -79,6 +79,97 @@ You can find out more about the @ notifications here http://docs.datadoghq.com/f
  
 
 
+Level 2/
+
+Welcome back!
+
+Today we'll see how we can send custom data to Datadog's Agent.
+
+For that we'll use a subsystem of the agent called Dogstatsd. It is a StatsD server customized by Datadog. We can use any StatsD client to send data to Dogstatd, but Datadog's client give you some extra features.
+
+You can  get more information about it here http://docs.datadoghq.com/guides/metrics/ .
+
+Datadog and the Community have created several libraries that will allow you talk to Dogstatsd using your favorite language. The libraries are listed here http://docs.datadoghq.com/libraries/ .
 
 
+Today we'll create a very simple PHP Web App and see how we can use the php-datadogstatsd librarie. Documentation can be found here https://github.com/DataDog/php-datadogstatsd/blob/master/README.md .
+
+We'll create a PHP page that displays the date and collects some metrics using Dogstatsd :
+
+```
+<?php
+
+require './libraries/datadogstatsd.php';
+
+echo date('l jS \of F Y h:i:s A')
+
+//we implement the value of the web.page_views by 1 (default for increment)
+//metrics must use a hierarchic naming
+DataDogStatsD::increment('web.page_views'); 
+
+//we send the metric over the wire
+BatchedDatadogStatsD::increment('web.page_views'); 
+BatchedDatadogStatsD::flush_buffer(); 
+
+?>
+```
+
+To generate some load on our App, we use the Apache Benchmark tool :
+
+```
+simon@ubuntu-01:~$ ab -n  200 -c 3 http://URL-OF-YOU-APP
+This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Finished 200 requests
+
+
+Server Software:        Apache/2.4.7
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /index.php
+Document Length:        41 bytes
+
+Concurrency Level:      3
+Time taken for tests:   0.218 seconds
+Complete requests:      200
+Failed requests:        0
+Total transferred:      45600 bytes
+HTML transferred:       8200 bytes
+Requests per second:    917.78 [#/sec] (mean)
+Time per request:       3.269 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+Transfer rate:          204.35 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     0    3   3.1      3      23
+Waiting:        0    2   2.9      2      21
+Total:          0    3   3.1      3      23
+
+Percentage of the requests served within a certain time (ms)
+  50%      3
+  66%      3
+  75%      4
+  80%      4
+  90%      5
+  95%      7
+  98%     18
+  99%     20
+ 100%     23 (longest request)
+```
+
+Now let's visualize the using Datadog's graphs.
+
+Go to the Infrastructure tab and click on your host. Then click on the 'Clone this dashboard' icone in the top right corner, give it a name and clone it.
+
+Then click on 'Edit dashboard' and add a 'Time Series' widget. Choose the metric 'web.page_views', select 'Take the average' and 'Display it as Sperate lines'. Give it a name and save it.
+
+You can find an example here https://app.datadoghq.com/graph/embed?token=b6869fd65250d98855ae6e57eea558c7134707203bf00ef761258cf2129cfa7f&height=300&width=600&legend=false or look at the file capture-level2-ab-benchmark-web.page_views.PNG .
 
