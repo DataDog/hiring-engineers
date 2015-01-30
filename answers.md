@@ -41,6 +41,7 @@ Running  DatadogAgent       Datadog Agent
 ```
 
 Now let's take a look at the Event Stream. 
+
 The Event Stream allows you to browse what happened in your infrastructure and looks like a timeline. It also works similar to a blog : you can post events to it, comment events or search for events using different criteria.
 To look at your event stream, visit this page https://app.datadoghq.com/event/stream
 
@@ -67,10 +68,13 @@ curl  -X POST -H "Content-type: application/json" \
 'https://app.datadoghq.com/api/v1/events?api_key=your_api_key_goes_here'
 ```
 
-Did you know that Datadog has a notification system built into the Event Stream? Try to enter the  following in the 'text' statement of your request :
-"@your@email.domain message" 
-where "your@email.domain" is the email you have signed in with and "message" is the content of your message.
+Did you know that Datadog has a notification system built into the Event Stream? 
+
+Try to enter the  following in the 'text' statement of your request :
+"@your@email.domain message" where "your@email.domain" is the email you have signed in with and "message" is the content of your message.
+
 You can look at the file capture-api-email.PNG to see what the email looks like. 
+
 You can find out more about the @ notifications here http://docs.datadoghq.com/faq/
  
 
