@@ -55,7 +55,7 @@ New-DataDogEvent -title "Apache seems down" -text "Looks like it's using all the
 ```
 
 
-You should get a response with Status Code 200 and you should see the event on your Stream.
+You should get a response with Status Code OK and you should see the event on your Stream.
 
 If you are on Linux, pasting this into your prompt should give you the same result : 
 
