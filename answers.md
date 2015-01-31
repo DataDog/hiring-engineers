@@ -1,4 +1,4 @@
-﻿Level 1/
+﻿<h1>Level 1/</h1>
 
 Thank you for choosing Datadog!
 
@@ -79,11 +79,9 @@ You can find out more about the @ notifications here http://docs.datadoghq.com/f
  
 
 
-Level 2/
+<h1>Level 2/</h1>
 
-Welcome back!
-
-Today we'll see how we can send custom data to Datadog's Agent.
+Alright, for this second exercise we'll see how we can send custom data to Datadog's Agent.
 
 For that we'll use a subsystem of the agent called Dogstatsd. It is a StatsD server customized by Datadog. We can use any StatsD client to send data to Dogstatd, but Datadog's client give you some extra features.
 
@@ -103,7 +101,7 @@ require './libraries/datadogstatsd.php';
 
 echo date('l jS \of F Y h:i:s A');
 
-//we implement the value of the web.page_views by 1 (default for increment)
+//we increment the value of the web.page_views metric by 1 (default for increment)
 //metrics must use a hierarchic naming
 DataDogStatsD::increment('web.page_views'); 
 
@@ -132,7 +130,7 @@ Now let's visualize this information using Datadog's graphs.
 
 Go to the Infrastructure tab and click on your host. Then click on the 'Clone this dashboard' icon in the top right corner, give it a name and clone it.
 
-Then click on 'Edit dashboard' and add a 'TimeSeries' widget. Choose the metric 'web.page_views', select 'Compute as rate/sec', 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
+Then click on 'Edit dashboard' and add a 'Timeseries' widget. Choose the metric 'web.page_views', select 'Compute as rate/sec', 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
 
 You can find an example here https://app.datadoghq.com/account/settings#2b11d05fb90ab314e6dfa55686fc7a1cec4660f24aa7d4dc4270480ec7c20ff3 or look at the file screenshot-level2-ab-benchmark-web.page_views.PNG .
 
@@ -152,7 +150,7 @@ sleep($sleepy_time);
 
 echo date('l jS \of F Y h:i:s A');
 
-//we implement the value of the web.page_views by 1 (default for increment)
+//we increment the value of the web.page_views by 1 (default for increment)
 DataDogStatsD::increment('web.page_views');  
 //we create an histogram for the execution time
 DataDogStatsD::histogram('web.execution_time', microtime(true) - $start_time);
@@ -177,7 +175,7 @@ Showing the 95th percentile in a graph next to the Median and the Average might 
 You can find such a graph here https://app.datadoghq.com/graph/embed?token=a5db3ea9fe1100a7f6e7c125252df08d09fbdb73640d3135857e0d63e0218e16&height=300&width=600&legend=false or take a look at the file screenshot-level2-execution-times.PNG .
 
 
-Level 3/
+<h1>Level 3/</h1>
 
 
 Now let's look at a neat feature of Dogstatsd, the tags.
@@ -212,7 +210,7 @@ DataDogStatsD::histogram('web.execution_time', microtime(true) - $start_time, 1,
 The tag can take a key:value syntax, this will allow us to break down or metrics per 'key' in our graphs. For example, it's easy to stack the latency per `pagename`, see screenshot-level3-stacked-latency-per-page.PNG.
 
 
-Level 4/
+<h1>Level 4/</h1>
 
 Welcome back! Let's keep on working with Dogstatsd and graphs for a moment.
 
@@ -221,7 +219,7 @@ Actually, we can do that on a single graph, see the file screenshot-level4-page-
 
 
 
-Level 5/
+<h1>Level 5/</h1>
 
 For this last exercise we'll look into the agent, and specifically extending its native capabilities.
 
@@ -255,12 +253,14 @@ class RandomCheck(AgentCheck):
     
     def check(self, instance):
         rand = random.randint(0,100)
-        self.gauge('test.support.random', rand)
+        self.gauge('test.support.random', rand,tags=['support'])
 ```
 
-So here we're simply generating a pseudo-random number within the 1-100 range and sending it as a gauge. Gauge are well suited to store value that varies, going up and down as whatever it measures increases or decreases (think temperature reading).
+So here we're simply generating a pseudo-random number within the 1-100 range and sending it as a gauge with the `support` tag. Gauge are well suited to store value that varies, going up and down as whatever it measures increases or decreases (think temperature reading).
 
-Now we restart the `dd-agent` service, and in our dashboard we create a new 'Timeseries' for the metric `time.support.random`. You can such a link here https://app.datadoghq.com/account/settings#2e961ac951aa90c150e42cf1bb63c82e1cf8d03a7a43186d0ea9ed2dbb89275a or look at the file screenshot-level5-random-gauge.PNG .
+Now we restart the `dd-agent` service, and in our dashboard we create a new 'Timeseries' for the metric `time.support.random`. You can find such a graph here https://app.datadoghq.com/graph/embed?from_ts=1422732089837&to_ts=1422735689837&token=b5efc16a13597b82e9e531c9ef7f3599f6c2f4b09a00902f76c2012187402d77&height=300&width=600&tile_size=m&live=true or look at the file screenshot-level5-random-gauge.PNG .
+
+
 
 
 
