@@ -73,7 +73,7 @@ Did you know that Datadog has a notification system built into the Event Stream?
 Try to enter the  following in the 'text' statement of your request :
 "@your@email.domain message" where "your@email.domain" is the email you have signed in with and "message" is the content of your message.
 
-You can look at the file capture-api-email.PNG to see what the email looks like. 
+You can look at the file capture-level1-api-email.PNG to see what the email looks like. 
 
 You can find out more about the @ notifications here http://docs.datadoghq.com/faq/
  
@@ -113,7 +113,7 @@ DataDogStatsD::increment('web.page_views');
 To generate some load on our App, we use the Apache Benchmark tool :
 
 ```
-simon@ubuntu-01:~$ ab -n  200 -c 3 http://URL-OF-YOU-APP
+simon@ubuntu-01:~$ ab -n  200 -c 3 http://URL-OF-YOUR-APP
 [...]
 Concurrency Level:      3
 Time taken for tests:   0.218 seconds
@@ -177,3 +177,36 @@ Showing the 95th percentile in a graph next to the Median and the Average might 
 You can find such a graph here https://app.datadoghq.com/graph/embed?token=a5db3ea9fe1100a7f6e7c125252df08d09fbdb73640d3135857e0d63e0218e16&height=300&width=600&legend=false or take a look at the file capture-level2-execution-times.PNG .
 
 
+Level 3/
+
+
+Now let's look at a neat feature of Dogstatsd, the tags.
+
+Tags allow you to add some insight to the metrics your produce with your code, with information that makes sense to you. Tags are a feature of Dogstatsd, so you'll need a compatible client.
+
+Let's add two pages to our Web App so we end up with the following pages :
+
+```
+index.php
+fastpage.php
+slowpage.php
+```
+
+Now we can tag these pages as being part of the `support` tag, this way :
+
+```
+DataDogStatsD::increment('web.page_views', 1, array('support'));
+```
+
+As you can see, the third argument is an array, so we can put as many tags as we want, though Datadog recommends to keep it under 1000 tags per metric.
+
+
+Let's add a second tag to our metrics that will allow us to differentiate our pages : 
+
+```
+//for index.php
+DataDogStatsD::increment('web.page_views', 1, array('support','pagename' => 'page:index'));
+DataDogStatsD::histogram('web.execution_time', microtime(true) - $start_time, 1, array('support','pagename' => 'page:index'));
+```
+
+The tag can take a key:value syntax, this will allow us to break down or metrics per 'key' in our graphs. For example, it's easy to stack our page views per `pagename`, see capture-level3-stacked-views-per-page.PNG, or to stack the latency per `pagename`, see capture-level3-stacked-latency-per-page.PNG.
