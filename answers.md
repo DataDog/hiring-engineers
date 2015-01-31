@@ -73,7 +73,7 @@ Did you know that Datadog has a notification system built into the Event Stream?
 Try to enter the  following in the 'text' statement of your request :
 "@your@email.domain message" where "your@email.domain" is the email you have signed in with and "message" is the content of your message.
 
-You can look at the file capture-level1-api-email.PNG to see what the email looks like. 
+You can look at the file screenshot-level1-api-email.PNG to see what the email looks like. 
 
 You can find out more about the @ notifications here http://docs.datadoghq.com/faq/
  
@@ -132,9 +132,9 @@ Now let's visualize this information using Datadog's graphs.
 
 Go to the Infrastructure tab and click on your host. Then click on the 'Clone this dashboard' icon in the top right corner, give it a name and clone it.
 
-Then click on 'Edit dashboard' and add a 'Time Series' widget. Choose the metric 'web.page_views', select 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
+Then click on 'Edit dashboard' and add a 'Time Series' widget. Choose the metric 'web.page_views', select 'Compute as rate/sec', 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
 
-You can find an example here https://app.datadoghq.com/graph/embed?token=b6869fd65250d98855ae6e57eea558c7134707203bf00ef761258cf2129cfa7f&height=300&width=600&legend=false or look at the file capture-level2-ab-benchmark-web.page_views.PNG .
+You can find an example here https://app.datadoghq.com/account/settings#2b11d05fb90ab314e6dfa55686fc7a1cec4660f24aa7d4dc4270480ec7c20ff3 or look at the file screenshot-level2-ab-benchmark-web.page_views.PNG .
 
 
 Now let's introduce some latency in our application, and monitor it :
@@ -174,7 +174,7 @@ web.execution_time.95thpercentile
 
 Showing the 95th percentile in a graph next to the Median and the Average might give you a good idea of how your top queries are performing compared to the othe ones.
 
-You can find such a graph here https://app.datadoghq.com/graph/embed?token=a5db3ea9fe1100a7f6e7c125252df08d09fbdb73640d3135857e0d63e0218e16&height=300&width=600&legend=false or take a look at the file capture-level2-execution-times.PNG .
+You can find such a graph here https://app.datadoghq.com/graph/embed?token=a5db3ea9fe1100a7f6e7c125252df08d09fbdb73640d3135857e0d63e0218e16&height=300&width=600&legend=false or take a look at the file screenshot-level2-execution-times.PNG .
 
 
 Level 3/
@@ -209,4 +209,15 @@ DataDogStatsD::increment('web.page_views', 1, array('support','pagename' => 'pag
 DataDogStatsD::histogram('web.execution_time', microtime(true) - $start_time, 1, array('support','pagename' => 'page:index'));
 ```
 
-The tag can take a key:value syntax, this will allow us to break down or metrics per 'key' in our graphs. For example, it's easy to stack our page views per `pagename`, see capture-level3-stacked-views-per-page.PNG, or to stack the latency per `pagename`, see capture-level3-stacked-latency-per-page.PNG.
+The tag can take a key:value syntax, this will allow us to break down or metrics per 'key' in our graphs. For example, it's easy to stack the latency per `pagename`, see screenshot-level3-stacked-latency-per-page.PNG.
+
+
+Level 4/
+
+Welcome back! Let's keep on working with Dogstatsd and graphs for a moment.
+
+If all the pages in our Web App increment the `web.page_views` metric like in previous exercise, then we can count the number of pages that were visited and we can slip it by page. 
+Actually, we can do that on a single graph, see the file screenshot-level4-page-views-and-page-views-by-page.PNG. You'll notice that the line of `sum:web.page_views{*}.as_count()` and the top line of `sum:web.page_views{*} by {pagename}.as_count()` have the same value, that's normal.
+
+
+
