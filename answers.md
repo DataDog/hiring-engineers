@@ -1,4 +1,4 @@
-﻿<h1>Level 1/</h1>
+﻿<h2>Level 1/</h2>
 
 Thank you for choosing Datadog!
 
@@ -79,7 +79,7 @@ You can find out more about the @ notifications here http://docs.datadoghq.com/f
  
 
 
-<h1>Level 2/</h1>
+<h2>Level 2/</h2>
 
 Alright, for this second exercise we'll see how we can send custom data to Datadog's Agent.
 
@@ -175,7 +175,7 @@ Showing the 95th percentile in a graph next to the Median and the Average might 
 You can find such a graph here https://app.datadoghq.com/graph/embed?token=a5db3ea9fe1100a7f6e7c125252df08d09fbdb73640d3135857e0d63e0218e16&height=300&width=600&legend=false or take a look at the file screenshot-level2-execution-times.PNG .
 
 
-<h1>Level 3/</h1>
+<h2>Level 3/</h2>
 
 
 Now let's look at a neat feature of Dogstatsd, the tags.
@@ -210,7 +210,7 @@ DataDogStatsD::histogram('web.execution_time', microtime(true) - $start_time, 1,
 The tag can take a key:value syntax, this will allow us to break down or metrics per 'key' in our graphs. For example, it's easy to stack the latency per `pagename`, see screenshot-level3-stacked-latency-per-page.PNG.
 
 
-<h1>Level 4/</h1>
+<h2>Level 4/</h2>
 
 Welcome back! Let's keep on working with Dogstatsd and graphs for a moment.
 
@@ -219,7 +219,7 @@ Actually, we can do that on a single graph, see the file screenshot-level4-page-
 
 
 
-<h1>Level 5/</h1>
+<h2>Level 5/</h2>
 
 For this last exercise we'll look into the agent, and specifically extending its native capabilities.
 
