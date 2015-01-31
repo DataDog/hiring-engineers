@@ -212,7 +212,7 @@ The tag can take a key:value syntax, this will allow us to break down or metrics
 
 <h2>Level 4/</h2>
 
-Welcome back! Let's keep on working with Dogstatsd and graphs for a moment.
+Let's keep on working with Dogstatsd and graphs for a moment.
 
 If all the pages in our Web App increment the `web.page_views` metric like in previous exercise, then we can count the number of pages that were visited and we can slip it by page. 
 Actually, we can do that on a single graph, see the file screenshot-level4-page-views-and-page-views-by-page.PNG. You'll notice that the line of `sum:web.page_views{*}.as_count()` and the top line of `sum:web.page_views{*} by {pagename}.as_count()` have the same value, that's normal.
