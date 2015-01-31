@@ -132,7 +132,7 @@ Now let's visualize this information using Datadog's graphs.
 
 Go to the Infrastructure tab and click on your host. Then click on the 'Clone this dashboard' icon in the top right corner, give it a name and clone it.
 
-Then click on 'Edit dashboard' and add a 'Time Series' widget. Choose the metric 'web.page_views', select 'Compute as rate/sec', 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
+Then click on 'Edit dashboard' and add a 'TimeSeries' widget. Choose the metric 'web.page_views', select 'Compute as rate/sec', 'Take the average' and 'Display it as Seperate lines'. Give it a name and save it.
 
 You can find an example here https://app.datadoghq.com/account/settings#2b11d05fb90ab314e6dfa55686fc7a1cec4660f24aa7d4dc4270480ec7c20ff3 or look at the file screenshot-level2-ab-benchmark-web.page_views.PNG .
 
@@ -218,6 +218,53 @@ Welcome back! Let's keep on working with Dogstatsd and graphs for a moment.
 
 If all the pages in our Web App increment the `web.page_views` metric like in previous exercise, then we can count the number of pages that were visited and we can slip it by page. 
 Actually, we can do that on a single graph, see the file screenshot-level4-page-views-and-page-views-by-page.PNG. You'll notice that the line of `sum:web.page_views{*}.as_count()` and the top line of `sum:web.page_views{*} by {pagename}.as_count()` have the same value, that's normal.
+
+
+
+Level 5/
+
+For this last exercise we'll look into the agent, and specifically extending its native capabilities.
+
+If you are not able to implement a Dogstatsd librarie into the application's code, maybe you can use an external software to grab the information you need and feed it to Datadog.
+
+That's exactly what an Agent Check is here for. An Agent Check is a custom Python script that will be executed by the agent for you. You can find more information about Agent Checks here http://docs.datadoghq.com/guides/agent_checks/ .
+
+In this exercise we'll generate an random value and feed it to Datadog as a metric called `test.support.random`. Let's start by creating a configuration file for the check. On a Linux machine, the configuration directory is `/etc/dd-agent/conf.d` : 
+
+```
+$ echo 'init_config: 
+
+instances:
+    [{}]' \
+> /etc/dd-agent/conf.d/random.yaml
+```
+
+Because our check is pretty simple it does not need any configuration.
+
+Now we create the actual script that we save in the `check` directory. Note that the Python file must have the same name than the YAML file : 
+
+```
+$ cat /etc/dd-agent/checks.d/random.py
+# stdlib
+import random
+
+# project
+from checks import AgentCheck
+
+class RandomCheck(AgentCheck):
+    
+    def check(self, instance):
+        rand = random.randint(0,100)
+        self.gauge('test.support.random', rand)
+```
+
+So here we're simply generating a pseudo-random number within the 1-100 range and sending it as a gauge. Gauge are well suited to store value that varies, going up and down as whatever it measures increases or decreases (think temperature reading).
+
+Now we restart the `dd-agent` service, and in our dashboard we create a new 'Timeseries' for the metric `time.support.random`. You can such a link here https://app.datadoghq.com/account/settings#2e961ac951aa90c150e42cf1bb63c82e1cf8d03a7a43186d0ea9ed2dbb89275a or look at the file screenshot-level5-random-gauge.PNG .
+
+
+
+
 
 
 
