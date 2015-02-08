@@ -199,7 +199,7 @@ Let's switch to the agent
 
 ### Write an agent check that samples a random value. Call this metric: test.support.random
 
-In /etc/dd-agent/conf.d/ is my ```ranvalcheck.yaml```
+In ```/etc/dd-agent/conf.d/``` is my ```ranvalcheck.yaml```
 ```yaml
 init_config:
 
@@ -207,14 +207,14 @@ instances:
     [{}]
 ```
 
-In /etc/dd-agent/checks.d is my ```ranvalcheck.py```
-```ruby
+In ```/etc/dd-agent/checks.d``` is my ```ranvalcheck.py```
+```python
 import random
 from checks import AgentCheck
 
 class Ranvalcheck(AgentCheck):
     def check(self, instance):
-        self.gauge('test.support.random', val)
+        self.gauge('test.support.random', random.random())
 ```
 I ran ```PYTHONPATH=. python checks.d/ranvalcheck.py``` in the root directory.
 
