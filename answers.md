@@ -162,11 +162,11 @@ Bonus graph: page views rate/sec
 ### Count the overall number of page views using dogstatsd counters.
 
 Added a tag for overall count.
-```$statsd.increment('my_page_views', :tags => ['support', 'bookmark:total]') ```
+```$statsd.increment('my_page_views', :tags => ['support', 'bookmark:total']) ```
 
 ### Count the number of page views, split by page (hint: use tags)
 
-```$statsd.increment('my_page_views', :tags => ['support', 'bookmark:total]', "bookmark:#{myvariable}") ```
+```$statsd.increment('my_page_views', :tags => ['support', 'bookmark:total', "bookmark:#{myvariable}"]) ```
 
 ### visualize the results on a graph.
 ![Total page count] (http://i296.photobucket.com/albums/mm184/leungz/totalpagecount_zps16627b5a.png)
