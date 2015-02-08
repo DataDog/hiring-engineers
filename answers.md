@@ -99,10 +99,12 @@ exec 'ab -c 3 -n 234 PutYourAddressHere'
 ```
 
 [Visualization](https://app.datadoghq.com/graph/embed?token=cf4a6cd673d3b73b37c3869355a47ba66f1b371293bca720a2ab6f78f15ac5d7&height=300&width=600&legend=true" frameborder="0" height="300" width="600")
+
 ![Page View Graph] (http://i296.photobucket.com/albums/mm184/leungz/pageviewpersec_zps23bef1a0.png)
 
 ###### Troubleshooting - my own experience:
-Problem: So... my metric was created but would not increment. Solution: After I checked everything else, I realized it was because I signed up for my account more than 2 weeks ago and the free trial had expired before I started on the challenge. On the free trial you only get to store data for one day. You might be thinking, well that should still have worked - except that I was using a vm that had a wrong date and time (date was 1.5 days late, no idea why I missed out on setting it, but it's a VM I don't use a lot). On the plus side somehow I read a lot about graphite while trying to figure it out. 
+Problem: So... my metric was created but would not increment. 
+Solution: After I checked everything else, I realized it was because I signed up for my account more than 2 weeks ago and the free trial had expired before I started on the challenge. On the free trial you only get to store data for one day. You might be thinking, well that should still have worked - except that I was using a vm that had a wrong date and time (date was 1.5 days late, no idea why I missed out on setting it, but it's a VM I don't use a lot). On the plus side somehow I read a lot about graphite while trying to figure it out. 
 
 
 ### Create a histogram to see the latency
@@ -129,6 +131,7 @@ $statsd = Statsd.new 'localhost', 8125
 ...
 ```
 [Visualization](https://app.datadoghq.com/graph/embed?token=10e40f59b8db84ae1eaf2b29a84d6cb195f3df04d58c684795aad2088cf73375&height=300&width=600&legend=true" frameborder="0" height="300" width="600")
+
 ![Latency View Graph] (http://i296.photobucket.com/albums/mm184/leungz/latency_zpsc2083964.png)
 
 ### Bonus
@@ -149,6 +152,7 @@ Added tags like ```$statsd.increment('my_page_views', :tags => ['support']) ```
 I tagged my metrics for comparing page views per bookmark. I changed the method to accept an argument ```page_view_count(params[:id])``` . I made it optional in case I wanted to count the homepage which does not have an id. I used string interpolation ```bookmark:#{myargument}``` to get the different params in my bookmark tag so I know which page called this method.
 
 Bonus graph: page views rate/sec 
+
 ![Pv graph] (http://i296.photobucket.com/albums/mm184/leungz/pvmetrics_zps6659c5f8.png)
 
 
