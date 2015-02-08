@@ -172,7 +172,7 @@ Added a tag for overall count.
 
 ```$statsd.increment('my_page_views', :tags => ['support', 'bookmark:total', "bookmark:#{myvariable}"]) ```
 
-### visualize the results on a graph.
+### Visualize the results on a graph.
 ![Total page count] (http://i296.photobucket.com/albums/mm184/leungz/totalpagecount_zps16627b5a.png)
 
 ### Bonus question: do you know why the graphs are so spiky?
@@ -183,8 +183,8 @@ My best guess is ...
 Aggregation levels imposed by datadog agent causes these spikes.
 
 ##### Detailed Explanation: 
-- These are not raw points. Even if your page is hit every 0.001 seconds in a constant manner, because of the aggregation it will not be as smooth as plotting the raw points..
-- Metrics aggregation level is at 30 seconds. (In ```agent_metrics.py``` the  constant ```MAX_COLLECTION_TIME = 30```). This is divided over the aggregation period that Datadog's query engine thinks makes sense. 
+- These are not raw points. Even if your page is hit every 0.001 seconds in a constant manner, because of the aggregation it will not be as smooth as plotting the raw points.
+- Metrics aggregation level is at 30 seconds. (In ```agent_metrics.py``` the constant ```MAX_COLLECTION_TIME = 30```). This is divided over the aggregation period that Datadog's query engine thinks makes sense. 
 - For example, in one my graphs, between 18:44:30 and 18:45:00, the site was hit 775 times (seen under count). When viewed at rate/sec, it was divided into 3 periods, at 18:44:30, 18:44:40 and 18:44:50 at 265, 248 and 262 hits respectively. These add up to 775. The 30 second period before this had a total count of 816, and the 30 second period after this had a total count of 823. Datadog code probably does a weighted division when dividing the total count by three, depending on what came before and after. 
 
 ##### Things that could possibly make it extra spiky
