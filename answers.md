@@ -69,5 +69,9 @@ end
 ```
 
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+
+![Page views] (http://scottenriquez.com/datadog/page-views.png)
+
 * Create a histogram to see the latency; also give us the link to the graph
+
 * Bonus points for putting together more creative dashboards.
