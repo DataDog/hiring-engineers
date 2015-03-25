@@ -105,3 +105,32 @@ I combined a few metrics from all the ones available so far. This overlays Page 
 ![Bonus graph] (http://scottenriquez.com/datadog/db-query-page-view-cpu.png)
 
 [Link to graph](https://app.datadoghq.com/dash/44175/custom-metrics---database-cloned?from_ts=1427240838571&to_ts=1427242705238&tile_size=m&fullscreen=57437774)
+
+### Level 3
+
+Using the same web app from level 2:
+* tag your metrics with `support` (one tag for all metrics)
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+
+### Level 4
+
+Same web app:
+* count the overall number of page views using dogstatsd counters.
+* count the number of page views, split by page (hint: use tags)
+* visualize the results on a graph
+* Bonus question: do you know why the graphs are very spiky?
+ 
+### Level 5
+
+Let's switch to the agent.
+
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+* Visualize this new metric on Datadog, send us the link.
+
+Here is a snippet that prints a random value in python:
+
+```python
+import random
+print(random.random())
+```
