@@ -101,3 +101,4 @@ end
 I combined a few metrics from all the ones available so far. This overlays Page Views, DB latency, and System CPU usage.
 
 ![Bonus graph] (http://scottenriquez.com/datadog/db-query-page-view-cpu.png)
+[Link to graph](https://app.datadoghq.com/dash/44175/custom-metrics---database-cloned?from_ts=1427240838571&to_ts=1427242705238&tile_size=m&fullscreen=57437774)
