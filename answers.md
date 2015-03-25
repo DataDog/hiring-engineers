@@ -138,13 +138,13 @@ def self.render_page
 
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
 
-I added the following code to the /photos (the home or / page), and used string interpolation to tag individual photo pages. I also updated the render_page to take a page tag as a parameter and db_latency methods to take both the db query and page tag as seen below:
+I added the following methods to track page render and database query latency. Seperate methods were created for the /photos route and the /photos/:id route.
 
 ```ruby
 get '/photos' do            # Display all photos from all users
   STATSD.time('page.render', :tags => ['support', 'page:home']) do
     Datadog.render_page('page:home')
-    @photos = Datadog.db_latency(Photo.all, 'page:home')
+    @photos = Datadog.db_latency_all('page:home')
     erb :'photos/index'
   end
 end
@@ -152,7 +152,8 @@ end
 get '/photos/:id' do        # Display photo
   STATSD.time('page.render', :tags => ['support', "page:photos#{params[:id]}"]) do
     Datadog.render_page("page:photos#{params[:id]}")
-    photo = Datadog.db_latency(Photo.find_by(id: params[:id]), "page:photos#{params[:id]}")
+    id = params[:id]
+    photo = Datadog.db_latency_page(id, "page:photos#{params[:id]}")
     erb :'photos/show', locals: {photo: photo}
   end
 end
@@ -165,9 +166,17 @@ module Datadog
 		STATSD.increment('web.page_views', :tags => ['support', page])
 	end
 
-	def self.db_latency(query, page='')
+	def self.db_latency_all(page='')
 		start_time = Time.now
-		photos = query
+		photos = Photo.all
+		duration = Time.now - start_time
+		STATSD.histogram('database.query.time', duration, :tags => ['support', page])
+		photos
+	end
+
+	def self.db_latency_page(id, page='')
+		start_time = Time.now
+		photos = Photo.find_by(id: id)
 		duration = Time.now - start_time
 		STATSD.histogram('database.query.time', duration, :tags => ['support', page])
 		photos
@@ -181,7 +190,7 @@ Here are 2 graphs of latency, the first shows render time by page, the second sh
 
 ![Latency graphs](http://scottenriquez.com/datadog/page-render-database-latency.png)
 
-[Link to graph](https://app.datadoghq.com/dash/44154/page-views?from_ts=1427297414838&to_ts=1427297714838&tile_size=m)
+[Link to graph](https://app.datadoghq.com/dash/44154/page-views?from_ts=1427302013338&to_ts=1427302729535&tile_size=m)
 
 ### Level 4
 
