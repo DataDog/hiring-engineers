@@ -199,7 +199,8 @@ Here are 2 graphs of latency, the first shows render time by page, the second sh
 Same web app:
 * count the overall number of page views using dogstatsd counters.
 
-Using STATSD.increment() page view counts are accessible via Datadog. Below is a graph of overall page views.
+Page view counts are accessible via Datadog when .increment() 
+Below is a graph of overall page views.
 
 ![Overall page views](http://scottenriquez.com/datadog/overall-page-views.png)
 
