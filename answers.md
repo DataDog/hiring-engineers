@@ -151,7 +151,7 @@ end
 
 get '/photos/:id' do        # Display photo
   STATSD.time('page.render', :tags => ['support', "page:photos#{params[:id]}"]) do
-    Datadog.render_page('page:home')
+    Datadog.render_page("page:photos#{params[:id]}")
     photo = Datadog.db_latency(Photo.find_by(id: params[:id]), "page:photos#{params[:id]}")
     erb :'photos/show', locals: {photo: photo}
   end
@@ -180,15 +180,31 @@ end
 Here are 2 graphs of latency, the first shows render time by page, the second shows database query time by page.
 
 ![Latency graphs](http://scottenriquez.com/datadog/page-render-database-latency.png)
+
 [Link to graph](https://app.datadoghq.com/dash/44154/page-views?from_ts=1427297414838&to_ts=1427297714838&tile_size=m)
 
 ### Level 4
 
 Same web app:
 * count the overall number of page views using dogstatsd counters.
+
+Using STATSD.increment() page view counts are accessible via Datadog. Below is a graph of overall page views.
+
+![Overall page views](http://scottenriquez.com/datadog/overall-page-views.png)
+
+![Link to graph](https://app.datadoghq.com/dash/44249/custom-metrics---web-cloned?from_ts=1427299355158&to_ts=1427299674049&tile_size=m)
+
 * count the number of page views, split by page (hint: use tags)
+
 * visualize the results on a graph
+
+![Views by page](http://scottenriquez.com/datadog/views-by-page.png)
+
+![Link to graph](https://app.datadoghq.com/dash/44249/custom-metrics---web-cloned?from_ts=1427299337823&to_ts=1427299637823&tile_size=m)
+
 * Bonus question: do you know why the graphs are very spiky?
+
+Every time the .increment() method runs a new point is added to the graph. The graphs are spiky because this method can be called severl times per second.
  
 ### Level 5
 
