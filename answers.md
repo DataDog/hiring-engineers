@@ -110,7 +110,71 @@ I combined a few metrics from all the ones available so far. This overlays Page 
 
 Using the same web app from level 2:
 * tag your metrics with `support` (one tag for all metrics)
+
+I added one more metric to the /photos controller and added 'support' tag to all the metrics:
+
+```ruby
+get '/photos' do            # Display all photos from all users
+  STATSD.time('page.render', :tags => ['support']) do
+    Datadog.render_page
+    @photos = Datadog.db_latency
+    erb :'photos/index'
+  end
+end
+
+
+def self.render_page
+		STATSD.increment('web.page_views', :tags => ['support'])
+	end
+
+	def self.db_latency
+		start_time = Time.now
+		photos = Photo.all
+		duration = Time.now - start_time
+		STATSD.histogram('database.query.time', duration, :tags => ['support'])
+		photos
+	end
+```
+
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+
+I added the following code to the /photos (the home or / page), and used string interpolation to tag individual photo pages. I also updated the render_page to take a page tag as a parameter and db_latency methods to take both the db query and page tag as seen below:
+
+```ruby
+get '/photos' do            # Display all photos from all users
+  STATSD.time('page.render', :tags => ['support', 'page:home']) do
+    Datadog.render_page('page:home')
+    @photos = Datadog.db_latency(Photo.all, 'page:home')
+    erb :'photos/index'
+  end
+end
+
+get '/photos/:id' do        # Display photo
+  STATSD.time('page.render', :tags => ['support', "page:photos#{params[:id]}"]) do
+    Datadog.render_page('page:home')
+    photo = Datadog.db_latency(Photo.find_by(id: params[:id]), "page:photos#{params[:id]}")
+    erb :'photos/show', locals: {photo: photo}
+  end
+end
+
+module Datadog
+
+	STATSD = Statsd.new
+
+	def self.render_page(page='')
+		STATSD.increment('web.page_views', :tags => ['support', page])
+	end
+
+	def self.db_latency(query, page='')
+		start_time = Time.now
+		photos = query
+		duration = Time.now - start_time
+		STATSD.histogram('database.query.time', duration, :tags => ['support', page])
+		photos
+	end
+end
+```
+
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
 ### Level 4
