@@ -44,7 +44,7 @@ dog.emit_event(Dogapi::Event.new("Here's my second Datadog event, bark bark @sje
 
 * Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
 
-I used a motorcycle social web app I built where users upload motorcycle photos and upvote/downvote their favorites.
+I used a motorcycle social web app I built in Sinatra where users upload motorcycle photos and upvote/downvote their favorites.
 
 I created a helper module that is called when the main photos page is requested.
 
@@ -71,7 +71,33 @@ end
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 ![Page views] (http://scottenriquez.com/datadog/page-views.png)
+[Link to graph](https://app.datadoghq.com/dash/integration/custom%3Aweb?from_ts=1427240500666&to_ts=1427242634000&tile_size=m&tpl_var_scope=*)
 
 * Create a histogram to see the latency; also give us the link to the graph
 
+I defined a db_latency method in the Datadog module to measure database query latency.
+
+```ruby
+def self.db_latency
+	start_time = Time.now
+	photos = Photo.all
+	duration = Time.now - start_time
+	STATSD.histogram('database.query.time', duration)
+	photos
+end
+```
+
+This method is called inside the photos controller.
+```ruby
+get '/photos' do            # Display all photos from all users
+  Datadog.render_page
+  @photos = Datadog.db_latency
+  erb :'photos/index'
+end
+```
+
 * Bonus points for putting together more creative dashboards.
+
+I combined a few metrics from all the ones available so far. This overlays Page Views, DB latency, and System CPU usage.
+
+![Bonus graph] (http://scottenriquez.com/datadog/db-query-page-view-cpu.png)
