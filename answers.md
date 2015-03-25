@@ -157,7 +157,9 @@ get '/photos/:id' do        # Display photo
     erb :'photos/show', locals: {photo: photo}
   end
 end
+```
 
+```ruby
 module Datadog
 
 	STATSD = Statsd.new
