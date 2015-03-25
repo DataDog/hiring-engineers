@@ -225,9 +225,44 @@ Let's switch to the agent.
 * Write an agent check that samples a random value. Call this new metric: `test.support.random`
 * Visualize this new metric on Datadog, send us the link.
 
-Here is a snippet that prints a random value in python:
+I followed the guide and started by making a configuration file named random_test.yaml located in conf.d/
 
 ```python
-import random
-print(random.random())
+init_config:
+
+instances:
+    [{}]
 ```
+
+Next I wrote the agent check to send various metrics, the file is named random_test.py located in checks.d/
+
+```python
+import time
+import random
+
+from checks import AgentCheck
+
+class Random(AgentCheck):
+	def check(self, instance):
+		random_num = random.random()
+		print('In check method')
+		# self.gauge('test.support.random', random_num)
+		self.histogram('test.support.random', random_num)
+		self.event({
+            'timestamp': int(time.time()),
+            'event_type': 'random_check',
+            'api_key': 'dcdf369ae295b6a9d7b1da683c12f1fc',
+            'msg_title': 'Random Submit',
+            'msg_text': 'This is an event submitted when check method was called',
+            'aggregation_key': '123456'
+        })
+
+
+if __name__ == '__main__':
+	check, instance = Random.from_yaml('./conf.d/random_test.yaml')
+	check.check(instance)
+```
+
+I then ran the file with the command ```PYTHONPATH=. python checks.d/http.py```.
+
+Unfortunately, I could not get the metrics or event to sucessfully show up on Datadog. I wrote a simple print statment to confirm that the check method ran, this did print to the terminal.
