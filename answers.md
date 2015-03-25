@@ -177,6 +177,11 @@ end
 
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
+Here are 2 graphs of latency, the first shows render time by page, the second shows database query time by page.
+
+![Latency graphs](http://scottenriquez.com/datadog/page-render-database-latency.png)
+[Link to graph](https://app.datadoghq.com/dash/44154/page-views?from_ts=1427297414838&to_ts=1427297714838&tile_size=m)
+
 ### Level 4
 
 Same web app:
