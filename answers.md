@@ -211,7 +211,7 @@ Using STATSD.increment() page view counts are accessible via Datadog. Below is a
 
 ![Views by page](http://scottenriquez.com/datadog/views-by-page.png)
 
-![Link to graph](https://app.datadoghq.com/dash/44249/custom-metrics---web-cloned?from_ts=1427299337823&to_ts=1427299637823&tile_size=m)
+[Link to graph](https://app.datadoghq.com/dash/44249/custom-metrics---web-cloned?from_ts=1427299337823&to_ts=1427299637823&tile_size=m)
 
 * Bonus question: do you know why the graphs are very spiky?
 
