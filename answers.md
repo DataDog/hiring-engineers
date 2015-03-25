@@ -3,6 +3,7 @@
 * Sign up for Datadog, get the agent reporting metrics from your local machine.
 
 Install went smoothly.
+
 ![Datadog agent install] (http://scottenriquez.com/datadog/datadog-install.png)
 
 * Bonus question: what is the agent?
@@ -71,6 +72,7 @@ end
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 ![Page views] (http://scottenriquez.com/datadog/page-views.png)
+
 [Link to graph](https://app.datadoghq.com/dash/integration/custom%3Aweb?from_ts=1427240500666&to_ts=1427242634000&tile_size=m&tpl_var_scope=*)
 
 * Create a histogram to see the latency; also give us the link to the graph
@@ -101,4 +103,5 @@ end
 I combined a few metrics from all the ones available so far. This overlays Page Views, DB latency, and System CPU usage.
 
 ![Bonus graph] (http://scottenriquez.com/datadog/db-query-page-view-cpu.png)
+
 [Link to graph](https://app.datadoghq.com/dash/44175/custom-metrics---database-cloned?from_ts=1427240838571&to_ts=1427242705238&tile_size=m&fullscreen=57437774)
