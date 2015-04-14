@@ -1,4 +1,4 @@
-Hi there, Datadog Support Engineering Team - I'm Kaleigh.  I currently live/work in Seattle, WA and I am very excited about the oportunity to work with you! 
+Hi there, Datadog Support Engineering Team - I'm Kaleigh.  I currently live/work in Seattle, WA and I am very excited about the opportunity to work with you! 
 
 Level 1
 
@@ -116,7 +116,7 @@ http://cl.ly/image/3e0k2F401M1p
 
 In any case, if we wanted to visualize this new metric in Datadog we would first check that the metric (test.support.random) was showing up in our Metrics Summary.  Using the Metrics Explorer, we could graph test.support.random and save this graph to a new or existing dashboard.  The graph will be a timeseries and will likely be as spiky as the other graphs we've seen throughout the exercise - with values ranging between [0.0, 1.0).  
 
-This concludes my submission to the challenge - I would like to take this opportunity to thank you all for your consideration! I still have a lot to learn and I am very much looking forward to the opportunity to meet/work with you.  Also, special thanks to the two Marketing Team members (David Tritto and Darren Hazeltine) who reached out to me during my Free Trial!  Please let me know if you have any questions or if any additional information is needed - I can be reached via email at gerlich.kaleigh@gmail.com or at (720)988-6887.
+This concludes my submission to the challenge - I would like to take this opportunity to thank you all for your consideration! I still have a lot to learn and I am very much looking forward to meeting/working with you.  Also, special thanks to the two Marketing Team members (David Tritto and Darren Hazeltine) who reached out to me during my Free Trial!  Please let me know if you have any questions or if any additional information is needed - I can be reached via email at gerlich.kaleigh@gmail.com or at (720)988-6887.
 
 Cheers!
 Kaleigh
