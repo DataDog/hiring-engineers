@@ -128,4 +128,4 @@ instances:
 
 !["https://app.datadoghq.com/graph/embed?token=eba6c06059d62a4129ca1d07a45d3a55fca962946332d6b580a469a22cdf84af&height=300&width=600&legend=true" width="600" height="300" frameborder="0"](http://i.imgur.com/XAEpevH.png) 
 
-Here are links to [my system metrics dash](https://app.datadoghq.com/dash/46764), and [my web app metrics dash.](https://app.datadoghq.com/dash/46759) Links to every other 
+Here are links to [my system metrics dash](https://app.datadoghq.com/dash/46764), and [my web app metrics dash.](https://app.datadoghq.com/dash/46759) Links to each graph can be found in the graph image's alt-text.
