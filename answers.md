@@ -3,10 +3,10 @@
 * Sign up for Datadog, get the agent reporting metrics from your local machine.
 
 Here are some metrics from my laptop:
-![https://app.datadoghq.com/dash/46764](http://i.imgur.com/ysGS9y3.png) 
+![https://app.datadoghq.com/dash/46764](http://i.imgur.com/ysGS9y3.png "sdfd") 
 
 * Bonus question: what is the agent?
-* 
+
 The agent is a mysterious program/dog who collects server events/metrics from the host computer and reports them to Datadog so they can be displayed in cool graphs. Metrics are collected both from the system (CPU load, available memory, etc) and apps using dogstatsd.
 
 * Submit an event via the API.
@@ -72,9 +72,8 @@ Using the same web app from level 2:
 ```
 statsd.increment('web.page_views', tags=['support'])
 ```
-* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with `page:page1`)
 
-`page:page1`)
 ```
 statsd.increment('web.page_views', tags=['support', 'page:home'])
 statsd.increment('web.page_views', tags=['support', 'page:success'])
@@ -84,6 +83,7 @@ statsd.increment('web.page_views', tags=['support', 'page:success'])
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
 ![https://app.datadoghq.com/graph/embed?token=e8c8c16227c1d6dd49feb8d144b1e534ca2e48256a1e476c6574bb5d6c36acb8&height=300&width=600&legend=true" width="600" height="300" frameborder="0"](http://i.imgur.com/PM3Lezq.png)
+
 Light grey is the home page, darker grey is the success page. The success page doesn't have too much to generate (no forms) so it's way faster.
 
 ### Level 4
@@ -128,4 +128,4 @@ instances:
 
 !["https://app.datadoghq.com/graph/embed?token=eba6c06059d62a4129ca1d07a45d3a55fca962946332d6b580a469a22cdf84af&height=300&width=600&legend=true" width="600" height="300" frameborder="0"](http://i.imgur.com/XAEpevH.png) 
 
-Here are links to [my system metrics dash](https://app.datadoghq.com/dash/46764), and [my web app metrics dash.](https://app.datadoghq.com/dash/46759)
+Here are links to [my system metrics dash](https://app.datadoghq.com/dash/46764), and [my web app metrics dash.](https://app.datadoghq.com/dash/46759) Links to every other 
