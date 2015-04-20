@@ -10,4 +10,18 @@
   2. **Dogstatsd** is a statsd backend server you can send custom metrics to from an application.
   3. **The Forwarder** retrieves data from both the collector and dogstatsd and then queues it up to be sent on to Datadog.
 
+##### Submit an event via the API
+
+``` ruby
+require 'rubygems'
+require 'dogapi'
+
+api_key = "hidden" #Normally I would mask this
+
+dog = Dogapi::Client.new(api_key)
+
+dog.emit_event(Dogapi::Event.new('This is my first submitted event!', :msg_title => 'Winning'))
+```
+![First Event Submission](images/firstsubmit.png)
+
 
