@@ -27,6 +27,8 @@ dog.emit_event(Dogapi::Event.new('This is my first submitted event!', :msg_title
 #### Get an event to appear in your email inbox
 
 **Event Emailed**
+
+``` ruby
 require 'rubygems'
 require 'dogapi'
 
