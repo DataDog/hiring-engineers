@@ -39,5 +39,40 @@ dog.emit_event(Dogapi::Event.new("Here's another event to be sent to my email @r
 
 ![Emailed Event](images/emailevent.png)
 
+### Level Two
 
+#### Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd.
 
+I built a StackOverflow like site in Rails called Macoverflow. This is a website where you can sign in and post questions about macaroni and cheese or post your homemade recipe!
+
+- The following code is included inside a file titled datadog_helper.rb
+
+``` ruby
+module DatadogHelper
+
+  STATSD = Statsd.new
+
+  def self.render_page
+    STATSD.increment('web.page_views')
+  end
+end
+```
+
+####While running a load test for a few minutes, visualize page views per second.
+
+- I tested this on my question index page. The following code is in the Question Controller
+
+``` ruby
+class QuestionsController < ApplicationController
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+
+#GET /questions
+  def index
+    @questions = Question.all
+    DatadogHelper.render_page
+  end
+```
+
+-After running a load test on this page I was able to generate the graph below.
+
+![Page View Load Test](images/pageviewsgraph.png)
