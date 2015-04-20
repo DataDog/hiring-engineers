@@ -35,7 +35,7 @@ dog = Dogapi::Client.new(api_key)
 dog.emit_event(Dogapi::Event.new("Here's another event to be sent to my email @rickythomas.rt@gmail.com", :msg_title => 'Datadog Event', :priority => 'normal', :alert_type=> 'success'))
 ```
 
-![Emailed Event] (images/emailevent.png)
+![Emailed Event](images/emailevent.png)
 
 
 
