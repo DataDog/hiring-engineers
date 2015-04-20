@@ -24,4 +24,18 @@ dog.emit_event(Dogapi::Event.new('This is my first submitted event!', :msg_title
 ```
 ![First Event Submission](images/firstsubmit.png)
 
+##### Get an event to appear in your email inbox
+
+**Event Emailed**
+require 'rubygems'
+require 'dogapi'
+
+dog = Dogapi::Client.new(api_key)
+
+dog.emit_event(Dogapi::Event.new("Here's another event to be sent to my email @rickythomas.rt@gmail.com", :msg_title => 'Datadog Event', :priority => 'normal', :alert_type=> 'success'))
+```
+
+![Emailed Event] (images/emailevent.png)
+
+
 
