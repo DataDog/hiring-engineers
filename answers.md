@@ -213,3 +213,9 @@ I realized that something strange was going on in my Agent that I had running. I
 
 ![Combined Page Views Graph](images/agenterror.png)
 
+### Conclusion
+
+Though I am bummed I have yet to be able to figure out the last bit, I've had a great time working on this challenge. I really enjoyed playing with all of the charting and experimenting with the DD api in my app. I'll definitely continue using Datadogs regardless of the outcome of my application. Thanks so much for taking the time to go over this! Looking forward to meeting you.
+
+Best,
+Ricky Thomas
