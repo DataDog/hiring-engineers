@@ -108,3 +108,45 @@ Here's a picture of the graph I was able to generate with this.
 Here's a picture of the dashboard I've been playing around with.
 
 ![Macoverflow Dashboard](images/macdash.png)
+
+### Level Three
+
+#### Tag your metrics with support (one tag for all metrics)
+
+I've added support and page tags to all of my metrics (including some new ones) below.I added a check for latency when querying the db for users and also metrics to measure page views on a few other pages.
+
+``` ruby
+module DatadogHelper
+  require 'statsd'
+
+  STATSD = Statsd.new
+
+  def self.render_questions_page
+    STATSD.increment('web.page_views', :tags => ['support', 'page:questions'])
+  end
+
+  def self.render_users_page
+    STATSD.increment('web.page_views', :tags => ['support', 'page:users'])
+  end
+
+  def self.render_home_page
+    STATSD.increment('web.page_views', :tags => ['support', 'page:home'])
+  end
+
+  def self.questions_latency
+    start_time = Time.now
+    questions = Question.all
+    duration = Time.now - start_time
+    STATSD.histogram('database.query.time', duration, :tags => ['support', 'page:questions'])
+    questions
+  end
+
+  def self.users_latency
+    start_time = Time.now
+    users = User.all
+    duration = Time.now - start_time
+    STATSD.histogram('database.query.time', duration, :tags => ['support', 'page:users'])
+    users
+  end
+end
+```
