@@ -100,3 +100,11 @@ I also changed the index action in the Question Controller to the following:
     DatadogHelper.render_page
   end
 ```
+
+Here's a picture of the graph I was able to generate with this.
+
+![Latency Histogram](images/latencyhistogram.png)
+
+Here's a picture of the dashboard I've been playing around with.
+
+![Macoverflow Dashboard](images/macdash.png)
