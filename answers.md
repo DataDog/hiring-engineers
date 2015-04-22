@@ -111,7 +111,7 @@ Here's a picture of the dashboard I've been playing around with.
 
 ### Level Three
 
-#### Tag your metrics with support (one tag for all metrics)
+#### Tag your metrics with support (one tag for all metrics) and tag your metrics per page
 
 I've added support and page tags to all of my metrics (including some new ones) below.I added a check for latency when querying the db for users and also metrics to measure page views on a few other pages.
 
@@ -150,3 +150,11 @@ module DatadogHelper
   end
 end
 ```
+
+Below is a picture of the graph illustrating latency for both users and questions.
+
+![Question/User Latency](images/dbqueries.png)
+
+### Level Four
+
+
