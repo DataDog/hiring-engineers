@@ -76,3 +76,27 @@ class QuestionsController < ApplicationController
 -After running a load test on this page I was able to generate the graph below.
 
 ![Page View Load Test](images/pageviewsgraph.png)
+
+####Create a histogram to see the latency; also give us the link to the graph
+
+I added the following code to my DatadogHelper Module in order to calculate the load time for all of of the questions on the page.
+
+``` ruby
+  def self.db_latency
+    start_time = Time.now
+    questions = Question.all
+    duration = Time.now - start_time
+    STATSD.histogram('database.query.time', duration)
+    questions
+  end
+```
+
+I also changed the index action to the following:
+
+``` ruby
+#GET /questions
+  def index
+    @questions = DatadogHelper.db_latency
+    DatadogHelper.render_page
+  end
+```
