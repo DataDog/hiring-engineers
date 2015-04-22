@@ -91,7 +91,7 @@ I added the following code to my DatadogHelper Module in order to calculate the 
   end
 ```
 
-I also changed the index action to the following:
+I also changed the index action in the Question Controller to the following:
 
 ``` ruby
 #GET /questions
