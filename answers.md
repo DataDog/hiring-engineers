@@ -61,35 +61,41 @@ Datadog Screenshot:
 ### Level 2
 
 * Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+
+For this exercise I will be intergrating the code into an application called Hidden Treasures, a Sinatra Geocaching Application that allows users to place digital treasures in the world for their friends to find.
+
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+
+To assist with accessing my code I have created a helper method that will be called withing my controller:
+
+```ruby
+    def update_count
+      statsd = Statsd.new
+      statsd.increment('web.page_views')
+    end
+```
+
+[Link to the Graph](https://app.datadoghq.com/dash/47296/hidden-treasures?live=true&from_ts=1429664285082&to_ts=1429667885082&tile_size=m)
 * Create a histogram to see the latency; also give us the link to the graph
+
+I added a method to Datadog module to assist with adding a histogram of the database latency based off the API Docs.
+
+```ruby
+    def update_count
+      statsd = Statsd.new
+      statsd.increment('web.page_views', :tags => ['support'])
+    end
+
+    def latency
+      statsd = Statsd.new
+      start_time = Time.now
+      results = Treasure.all
+      duration = Time.now - start_time
+      statsd.histogram('database.query.time', duration)
+    end
+```
+[Link to the Graph](https://app.datadoghq.com/dash/47296/hidden-treasures?live=true&from_ts=1429665376561&to_ts=1429668976561&tile_size=m)
+
+
 * Bonus points for putting together more creative dashboards.
 
-### Level 3
-
-Using the same web app from level 2:
-* tag your metrics with `support` (one tag for all metrics)
-* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
-* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
-
-### Level 4
-
-Same web app:
-* count the overall number of page views using dogstatsd counters.
-* count the number of page views, split by page (hint: use tags)
-* visualize the results on a graph
-* Bonus question: do you know why the graphs are very spiky?
-
-### Level 5
-
-Let's switch to the agent.
-
-* Write an agent check that samples a random value. Call this new metric: `test.support.random`
-* Visualize this new metric on Datadog, send us the link.
-
-Here is a snippet that prints a random value in python:
-
-```python
-import random
-print(random.random())
-```
