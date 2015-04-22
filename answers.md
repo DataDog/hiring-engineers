@@ -157,4 +157,14 @@ Below is a picture of the graph illustrating latency for both users and question
 
 ### Level Four
 
+#### Count the overall number of page views using dogstatsd counters.
 
+As I've already implemented counters for the home, questions, and users pages in the code above; below you can see graph displaying the result as I ran various load tests.
+
+![Combined Page Views Graph](images/pageviewsgraph2.png)
+
+#### Why are the Graphs so spiky?
+
+The graphs are spiky because I'm having Apache Bench load test these pages with a concurrency of 100 page loads 10000 times over the course of an hour. The seperation between times the server is pinged is what causes the dips in the chart.
+
+### Level Five
