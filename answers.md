@@ -168,3 +168,48 @@ As I've already implemented counters for the home, questions, and users pages in
 The graphs are spiky because I'm having Apache Bench load test these pages (especially the questions page) with a concurrency of 100 page loads 10000 times over the course of an hour. The seperation between times the server is pinged is what causes the dips in the chart.
 
 ### Level Five
+
+#### Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+I followed along with the guides for writing AgentChecks in the docs and felt pretty good about it. I continued to add the following to a file titled sample_test.yaml inside of the conf.d directory
+
+```yaml
+init_config:
+
+instances:
+    [{}]
+```
+
+And also I added the following code to a file called sample_test.py in my checks.d directory
+
+
+```python
+import random
+
+from checks import AgentCheck
+
+class SampleTest(AgentCheck):
+    def check(self, instance):
+      random_num = random.random()
+      self.count('test.support.random', random_num, tags=['support'])
+
+
+```
+
+I experimented with this file by running
+**PYTHONPATH=. python checks.d/sample_check.py**
+
+I was able to get past a few errors by installing various packages my machine was missing. Though after finally getting it to run without errors, there is seemingly no result at my metric summary on DD for the metric I am trying to see.
+
+I realized that the guides mentioned custom checks using
+**sudo -u dd-agent dd-agent check my_check**
+
+which I tried as
+**sudo -u rickythomas dd-agent check sample_check.py**
+and a number of other attempts still with no success.
+
+I realized that something strange was going on in my Agent that I had running. It appears that my forwarder is no longer booting. Which would definitely explain why my metric isn't being sent off to the datadogs site. The error is as pictured below:
+
+
+![Combined Page Views Graph](images/agenterror.png)
+
