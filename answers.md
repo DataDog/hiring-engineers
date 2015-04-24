@@ -99,3 +99,4 @@ I added a method to Datadog module to assist with adding a histogram of the data
 
 * Bonus points for putting together more creative dashboards.
 
+![Screen Shot of Custom Dashboard](customdash.png)
