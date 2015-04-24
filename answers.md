@@ -162,3 +162,40 @@ I was able to get the totals from each page view and visualize their load test o
 It appears the graphs are very spiky based on the method of load testing.  I am making multiple requests over the course of 15 minutes with the possibility of multiple requests made at once.  The spikes in the graph seem to represent the gaps in requests to the database.
 
 
+### Level 5
+
+Let's switch to the agent.
+
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+I followed the instructions from the Guide and ran into a few problems.  It appears that my python environment was not setup correctly for some of the items needed for the agent.  I corrected these issues and continue on trying to get the metric to appear in the dashboard.
+
+Here is the yaml file:
+
+```python
+init_config:
+
+instances:
+  [{}]
+```
+Here is the random_test.py file:
+
+```python
+import random
+from checks import AgentCheck
+
+class RandomTest(AgentCheck):
+
+  def check(self, instance):
+    random_num = random.random()
+    self.gauge('test.support.random', random_num)
+    print('This worked')
+
+if __name__ == '__main__':
+  check, instance = RandomTest.from_yaml('./conf.d/random_test.yaml')
+  check.check(instance)
+```
+
+* Visualize this new metric on Datadog, send us the link.
+
+I unfortunately was unable to get the metric to appear in the dashbaord.  I input a print statement to ensure that the code was being run but still wan unable to see the metric online.  I still feel that the challenge was a sucess and that I was able to get a better understanding for the support engineer role while troubleshooting the problems I encountered.
