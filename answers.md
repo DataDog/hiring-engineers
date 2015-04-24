@@ -110,10 +110,10 @@ Using the same web app from level 2:
 Here is the code with the added tags:
 
 ```ruby
-    def update_count
-      statsd = Statsd.new
-      statsd.increment('web.page_views', :tags => ['support'])
-    end
+def update_count
+  statsd = Statsd.new
+  statsd.increment('web.page_views', :tags => ['support'])
+end
 
 def latency
   statsd = Statsd.new
