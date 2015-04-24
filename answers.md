@@ -23,7 +23,7 @@ require 'rubygems'
 require 'dogapi'
 
 
-api_key = "f1ef993e5fb3d4d7eddf8bd3be232971"
+api_key = "This would be hidden"
 
 dog = Dogapi::Client.new(api_key)
 
@@ -100,3 +100,65 @@ I added a method to Datadog module to assist with adding a histogram of the data
 * Bonus points for putting together more creative dashboards.
 
 ![Screen Shot of Custom Dashboard](customdash.png)
+
+### Level 3
+
+Using the same web app from level 2:
+* tag your metrics with `support` (one tag for all metrics)
+
+Here is the code with the added tags:
+
+```ruby
+    def update_count
+    statsd = Statsd.new
+    statsd.increment('web.page_views', :tags => ['support'])
+end
+
+def latency
+  statsd = Statsd.new
+   start_time = Time.now
+    results = Treasure.all
+    duration = Time.now - start_time
+    statsd.histogram('database.query.time', duration, :tags => ['support'])
+end
+
+def treasures_latency
+  statsd = Statsd.new
+   start_time = Time.now
+    results = Treasure.all
+    duration = Time.now - start_time
+    statsd.histogram('database.query.time', duration, :tags => ['support', 'page:treasures'])
+end
+
+def users_latency
+  statsd = Statsd.new
+   start_time = Time.now
+    results = User.all
+    duration = Time.now - start_time
+    statsd.histogram('database.query.time', duration, :tags => ['support', 'page:users'])
+end
+```
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+
+* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+
+![DB Latency](dbquerytime.png)
+
+### Level 4
+
+Same web app:
+* count the overall number of page views using dogstatsd counters.
+* count the number of page views, split by page (hint: use tags)
+* visualize the results on a graph
+
+I was able to get the totals from each page view and visualize their load test on the below graph taken from another custom dashboard:
+
+![Page Views by Tag](pageviews.png)
+![Page Views by Lines](pageviewslines.png)
+
+
+* Bonus question: do you know why the graphs are very spiky?
+
+It appears the graphs are very spiky based on the method of load testing.  I am making multiple requests over the course of 15 minutes with the possibility of multiple requests made at once.  The spikes in the graph seem to represent the gaps in requests to the database.
+
+
