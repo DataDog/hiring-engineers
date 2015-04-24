@@ -1,14 +1,15 @@
 Thank you taking the time to review my coding challenge and I look forward to speaking with members of the team regarding this opportunity.
 
 Obligatory Excitement Gif
+
 ![StormTroopersDance](http://i.giphy.com/mzTKsByk8Xl6g.gif)
 
 ### Level 1
 
 * Sign up for Datadog, get the agent reporting metrics from your local machine.
 
-![Screen Shot of the Datadog dashboard after initial setup](dashboarddd.png)
-![Screen Shot of Terminal Success Message](terminalsuccess.png)
+![Screen Shot of the Datadog dashboard after initial setup](DashboardDD.png)
+![Screen Shot of Terminal Success Message](Terminalsuccess.png)
 
 * Bonus question: what is the agent?
 
@@ -31,7 +32,7 @@ dog.emit_event(Dogapi::Event.new("This is the intial setup event for the datadog
 ```
 And the screenshot showing successful submission:
 
-![Screen Shot of Terminal Success Message](event1.png)
+![Screen Shot of Terminal Success Message](Event1.png)
 
 * Get an event to appear in your email inbox (the email address you signed up for the account with)
 
@@ -52,11 +53,11 @@ dog.emit_event(Dogapi::Event.new("Now submitting a second event to showcase the 
 
 Email screenshot from Gmail:
 
-![Screen Shot of Terminal Success Message](email.png)
+![Screen Shot of Terminal Success Message](Email.png)
 
 Datadog Screenshot:
 
-![Screen Shot of Terminal Success Message](emaildata.png)
+![Screen Shot of Terminal Success Message](EmailData.png)
 
 ### Level 2
 
@@ -110,32 +111,32 @@ Here is the code with the added tags:
 
 ```ruby
     def update_count
-    statsd = Statsd.new
-    statsd.increment('web.page_views', :tags => ['support'])
-end
+      statsd = Statsd.new
+      statsd.increment('web.page_views', :tags => ['support'])
+    end
 
 def latency
   statsd = Statsd.new
-   start_time = Time.now
-    results = Treasure.all
-    duration = Time.now - start_time
-    statsd.histogram('database.query.time', duration, :tags => ['support'])
+  start_time = Time.now
+  results = Treasure.all
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support'])
 end
 
 def treasures_latency
   statsd = Statsd.new
-   start_time = Time.now
-    results = Treasure.all
-    duration = Time.now - start_time
-    statsd.histogram('database.query.time', duration, :tags => ['support', 'page:treasures'])
+  start_time = Time.now
+  results = Treasure.all
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:treasures'])
 end
 
 def users_latency
   statsd = Statsd.new
-   start_time = Time.now
-    results = User.all
-    duration = Time.now - start_time
-    statsd.histogram('database.query.time', duration, :tags => ['support', 'page:users'])
+  start_time = Time.now
+  results = User.all
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:users'])
 end
 ```
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
