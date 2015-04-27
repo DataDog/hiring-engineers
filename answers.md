@@ -118,7 +118,39 @@ ____
 ###Same web app:
 
 #### Count the overall number of page views using dogstatsd counters.
+You can count the overall page views using the following line in your rails controller.
+```
+statsd.count('page.overall_views')
+```
+
+![PageviewsOverall](imgs/pageviews_overall.png)
 
 #### Count the number of page views, split by page (hint: use tags)
-#### visualize the results on a graph
+You can split the count by page view by using the page tag as we did for graphing latency in level 3.  It could look somewhat like this. with a tag for each page view
+```
+statsd.count('page.overall_views', rand(100), :tags => ["page:recipes"])
+```
+
+#### Visualize the results on a graph
+As I was running the benchmark test I added another page to count in the controller code and the agent picked up on it and started reporting right away without restarting the server or restarting the benchmark test, which is what you would want when adding metrics to a live app/site.
+
+![PageviewsPerPage](imgs/page_views_per_page.png)
+
 #### Bonus question: do you know why the graphs are very spiky?
+The graphs are spiky becuause of how the agent collector collects the data in and then sends it out to the server at specified intervals.
+
+____
+
+## Level 5
+
+Let's switch to the agent.
+
+#### Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+#### Visualize this new metric on Datadog, send us the link.
+
+Here is a snippet that prints a random value in python:
+
+```python
+import random
+print(r
