@@ -79,3 +79,38 @@ In the same recipes_controller.rb file you can add
 
 ____
 
+## Level 3
+Using the same web app from level 2:
+
+#### tag your metrics with `support` (one tag for all metrics)
+To tag your Metrics with support you can do so like this.
+'''statsd.increment('page.views', :tags => ["support"])'''
+
+#### tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+You can then tag the metrics/page in this case page.views, for the next section  we will need to tag the Latency metric with this tag.
+
+'''statsd.increment('page.views', :tags => ["support", "page:recipes"])'''
+
+
+#### visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+The following tag creates a histogram of Page latency and tags it with support, and page.
+'''
+statsd.histogram('page.latency', rand(100), :tags => ["support", "page:recipes"])
+'''
+
+This graph visualizes the latency for the recipes#index and recipes#new pages in the recipes controller.  The index page doesn't have a lot of images or text to render so performance was across the board a little better than the recipes#new page.
+
+![LatencyPerPageGraph](imgs/latency_perpage_graph.png)
+![LatencyPerPage](imgs/latency_perpage.png)
+
+
+____
+
+## Level 4
+###Same web app:
+
+#### Count the overall number of page views using dogstatsd counters.
+
+#### Count the number of page views, split by page (hint: use tags)
+#### visualize the results on a graph
+#### Bonus question: do you know why the graphs are very spiky?
