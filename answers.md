@@ -61,7 +61,7 @@ This leads to the graph below.  You can load Test with Apache Benchmark from the
 
 ![PageViewsPerSecond](imgs/index_load_test.png)
 
-[PageViewsGraph](https://app.datadoghq.com/dash/47811/recipe-menu?from_ts=1429997451354&to_ts=1429998109419&tile_size=m&fullscreen=58266516)
+[PageViewsGraph](https://app.datadoghq.com/graph/embed?token=4e73193c2a00b2f360a6101c03c70737c463702043102d73716e63c4adee5c33&height=300&width=600&legend=true)
 
 
 #### Create a histogram to see the latency; also give us the link to the graph
@@ -147,10 +147,31 @@ Let's switch to the agent.
 
 #### Write an agent check that samples a random value. Call this new metric: `test.support.random`
 
+1. To Start make sure the agent is properly configured per the docs.
+2. Then navigate to the conf.d file in my case located at ```~/.datadog-agent/agent/conf.d/```.  Create a Yaml file and include the code listed below in it.
+
+![YAMLAgentcheck](imgs/yaml_test1_check.png)
+
+3. Now create a new Python file in the ```~/.datadog-agent/agent/checks.d``` directory.
+
+4. In that new file (which should be named exactly like the YAML file with the exception of the extention) include your agent check code.  In my case I changed the appropriate fields as requested in this challenge along with the random value snippet below.  Remember to change the class name from the Hello world example that is in the documentation.
+
+![PYAgentcheck](imgs/python_test1_check.png)
+
+
+
+
 #### Visualize this new metric on Datadog, send us the link.
+Here is screen grab of the agent check in action!
+
+![Agentcheck](imgs/agent_test1_check.png)
+
+[Test Agent Check](https://app.datadoghq.com/graph/embed?token=af940601902cce998a04f3121258716440a4f4b5c13f1f848076933aac89f76a&height=300&width=600&legend=false)
+
 
 Here is a snippet that prints a random value in python:
 
 ```python
 import random
-print(r
+print(random.random())
+```
