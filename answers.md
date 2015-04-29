@@ -1,24 +1,35 @@
-### Level 1
+# Level 1
 
-* Sign up for Datadog, get the agent reporting metrics from your local machine.
+## Sign up for Datadog, get the agent reporting metrics from your local machine.
+
 Successful installation!
+
 ![installation](images/level1-1-1.png)
+
 Metrics reported from my local machine!
+
 ![local_metrics](images/level1-1-2.png)
-* Bonus question: What is the agent?
+
+## Bonus question: What is the agent?
+
 The Datadog agent is software that runs on host machines to collect events and metrics. The data is then sent to
 Datadog where it is presented in an easy to read format for clients.
 
 The Datadog agent is comprised of
-    * The Collector - Runs checks on the host and captures system metrics.
-    * Dogstatsd - A statsd backend server that receives custom metrics from applications.
-    * The Forwarder - Responsible for forwarding data from "The Collector" and "Dogstatsd" to Datadog.
-* Submit an event via the API.
+
+* The Collector - Runs checks on the host and captures system metrics.
+* Dogstatsd - A statsd backend server that receives custom metrics from applications.
+* The Forwarder - Responsible for forwarding data from "The Collector" and "Dogstatsd" to Datadog.
+
+## Submit an event via the API.
+
 [Full code found here!](code/level1.py)
+
 """
 # Submit an event via the API.
 print api.Event.create(title="My First Event!", text="This event was created via the Datadog API.")
 """
+
 """
 Response:
 {
@@ -36,13 +47,18 @@ Response:
     }
 }
 """
+
 ![api_event](images/level1-3-1.png)
-* Get an event to appear in your email inbox (the email address you signed up for the account with)
+
+## Get an event to appear in your email inbox (the email address you signed up for the account with)
+
 [Full code found here!](code/level1.py)
+
 """
 # Submit an event via the API and send out an email notification.
 print api.Event.create(title="My First Email Event!", text="@cs.Li.Kevin@gmail.com This event was created via the Datadog API.")
 """
+
 """
 Response:
 {
@@ -60,5 +76,7 @@ Response:
     }
 }
 """
+
 ![email_event_1](images/level1-4-2.png)
+
 ![email_event_2](images/level1-4-1.png)
