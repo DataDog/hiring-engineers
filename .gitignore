@@ -3,3 +3,6 @@
 
 # Ignore the folder containing IDE settings.
 /.idea/
+
+# Ignore compiled python files.
+*.pyc

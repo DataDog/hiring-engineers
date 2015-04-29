@@ -80,3 +80,51 @@ Response:
 ![email_event_1](images/level1-4-2.png)
 
 ![email_event_2](images/level1-4-1.png)
+
+# Level 2
+
+## Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+
+I added dogstatsd to a simple web application so that the page view counter is incremented every time the home page is visited. [Full code found here!](code/level2.py)
+
+```
+class Home:
+    def GET(self):
+        # Increment the page view counter every time the home page is viewed.
+        statsd.increment("page.views")
+        return "Homepage"
+```
+
+## While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+
+```
+apt-get install apache2-utils
+ab -n 100000 -c 100 -r http://0.0.0.0.:8080/
+```
+
+Note: The -r option is required to prevent Apache from exiting when there is a socket error.
+
+![benchmark_results](images/level2-2-1.png)
+
+![benchmark_graph](images/level2-2-2.png)
+
+<a href="https://app.datadoghq.com/graph/embed?token=a12aeb9d0a74e7b2db2e819dc15ce6c4fa46f646adcbdfac14639e11eb93250d&height=300&width=600&legend=false">Link to live graph.</a>
+
+## Create a histogram to see the latency; also give us the link to the graph
+
+I used the timed decorator to get the latency each request. [Full code found here!](code/level2.py)
+
+```
+class Home:
+    @statsd.timed("page.latency")
+    def GET(self):
+        # Increment the page view counter every time the home page is viewed.
+        statsd.increment("page.views")
+        return "Home"
+```
+
+![latency_graph](images/level2-3-1.png)
+
+<a href="https://app.datadoghq.com/graph/embed?token=8790353a418d362afd53bbe8c6cfa559473da8bec357b887377512188d786e71&height=300&width=600&legend=false">Link to live graph.</a>
+
+## Bonus points for putting together more creative dashboards.
