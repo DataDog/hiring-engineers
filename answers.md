@@ -104,11 +104,11 @@ ab -n 100000 -c 100 -r http://0.0.0.0.:8080/
 
 Note: The -r option is required to prevent Apache from exiting when there is a socket error.
 
+<a href="https://app.datadoghq.com/graph/embed?token=a12aeb9d0a74e7b2db2e819dc15ce6c4fa46f646adcbdfac14639e11eb93250d&height=300&width=600&legend=false">Link to live graph.</a>
+
 ![benchmark_results](images/level2-2-1.png)
 
 ![benchmark_graph](images/level2-2-2.png)
-
-<a href="https://app.datadoghq.com/graph/embed?token=a12aeb9d0a74e7b2db2e819dc15ce6c4fa46f646adcbdfac14639e11eb93250d&height=300&width=600&legend=false">Link to live graph.</a>
 
 ## Create a histogram to see the latency; also give us the link to the graph
 
@@ -123,8 +123,40 @@ class Home:
         return "Home"
 ```
 
-![latency_graph](images/level2-3-1.png)
-
 <a href="https://app.datadoghq.com/graph/embed?token=8790353a418d362afd53bbe8c6cfa559473da8bec357b887377512188d786e71&height=300&width=600&legend=false">Link to live graph.</a>
 
+![latency_graph](images/level2-3-1.png)
+
 ## Bonus points for putting together more creative dashboards.
+
+# Level 3
+
+Using the same web app from level 2:
+
+## tag your metrics with `support` (one tag for all metrics)
+
+[Full code found here!](code/level3.py)
+
+## tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+
+[Full code found here!](code/level3.py)
+
+## visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+
+I ran the following commands at the same time in different terminals.
+
+```
+ab -n 2500 -c 100 -r http://0.0.0.0.:8080/
+ab -n 2500 -c 100 -r http://0.0.0.0.:8080/about
+ab -n 2500 -c 100 -r http://0.0.0.0.:8080/contact
+```
+
+<a href="https://app.datadoghq.com/graph/embed?token=cdbd5397ab1f2bfc16ae5e8e42a3d3eda27cae8e7834193d8e178092e7b78b94&height=300&width=600&legend=true">Link to live graph.</a>
+
+![stacked_latency_graph](images/level3-3-1.png)
+
+![benchmark_results_home](images/level3-3-2.png)
+
+![benchmark_results_about](images/level3-3-3.png)
+
+![benchmark_results_contact](images/level3-3-4.png)
