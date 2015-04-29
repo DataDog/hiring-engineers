@@ -10,6 +10,7 @@ urls = (
 )
 app = application(urls, globals())
 
+
 class Home:
     @statsd.timed("page.latency")
     def GET(self):
@@ -17,9 +18,11 @@ class Home:
         statsd.increment("page.views")
         return "Home"
 
+
 class About:
     def GET(self):
         return "About"
+
 
 class Contact:
     def GET(self):

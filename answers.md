@@ -160,3 +160,37 @@ ab -n 2500 -c 100 -r http://0.0.0.0.:8080/contact
 ![benchmark_results_about](images/level3-3-3.png)
 
 ![benchmark_results_contact](images/level3-3-4.png)
+
+# Level 4
+
+Same web app:
+
+## count the overall number of page views using dogstatsd counters.
+
+## count the number of page views, split by page (hint: use tags)
+
+## visualize the results on a graph
+
+Total page view graph
+
+![total_page_view_graph](images/level4-3-1.png)
+
+Total page view graph by page
+
+![total_page_view_by_page_graph](images/level4-3-2.png)
+
+Total Home page view graph
+
+![total_page_view_home_graph](images/level4-3-3.png)
+
+Total About page view graph
+
+![total_page_view_about_graph](images/level4-3-4.png)
+
+Total Contact page view graph
+
+![total_page_view_contact_graph](images/level4-3-5.png)
+
+## Bonus question: do you know why the graphs are very spiky?
+
+It has to do with the interval that stats are being collected at. For example the Collector collects standard metrics every 15 seconds so all data within that 15 seconds are lumped together resulting in sharp points.

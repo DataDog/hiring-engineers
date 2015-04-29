@@ -13,6 +13,7 @@ urls = (
 )
 app = application(urls, globals())
 
+
 class Home:
     @statsd.timed("page.latency", tags=["support", "page:home"])
     def GET(self):
@@ -22,6 +23,7 @@ class Home:
         sleep(randint(0, 2))
         return "Home"
 
+
 class About:
     @statsd.timed("page.latency", tags=["support", "page:about"])
     def GET(self):
@@ -30,6 +32,7 @@ class About:
         # Add random delay.
         sleep(randint(0, 2))
         return "About"
+
 
 class Contact:
     @statsd.timed("page.latency", tags=["support", "page:contact"])
