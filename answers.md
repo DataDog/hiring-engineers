@@ -1,6 +1,6 @@
-# Level 1
+## Level 1
 
-## Sign up for Datadog, get the agent reporting metrics from your local machine.
+#### Sign up for Datadog, get the agent reporting metrics from your local machine.
 
 Successful installation!
 
@@ -10,7 +10,7 @@ Metrics reported from my local machine!
 
 ![local_metrics](images/level1-1-2.png)
 
-## Bonus question: What is the agent?
+#### Bonus question: What is the agent?
 
 The Datadog agent is software that runs on host machines to collect events and metrics. The data is then sent to
 Datadog where it is presented in an easy to read format for clients.
@@ -21,7 +21,7 @@ The Datadog agent is comprised of
 * Dogstatsd - A statsd backend server that receives custom metrics from applications.
 * The Forwarder - Responsible for forwarding data from "The Collector" and "Dogstatsd" to Datadog.
 
-## Submit an event via the API.
+#### Submit an event via the API.
 
 [Full code found here!](code/level1.py)
 
@@ -50,7 +50,7 @@ Response:
 
 ![api_event](images/level1-3-1.png)
 
-## Get an event to appear in your email inbox (the email address you signed up for the account with)
+#### Get an event to appear in your email inbox (the email address you signed up for the account with)
 
 [Full code found here!](code/level1.py)
 
@@ -81,9 +81,9 @@ Response:
 
 ![email_event_2](images/level1-4-1.png)
 
-# Level 2
+## Level 2
 
-## Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+#### Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
 
 I added dogstatsd to a simple web application so that the page view counter is incremented every time the home page is visited. [Full code found here!](code/level2.py)
 
@@ -95,7 +95,7 @@ class Home:
         return "Homepage"
 ```
 
-## While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+#### While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 ```
 apt-get install apache2-utils
@@ -110,7 +110,7 @@ Note: The -r option is required to prevent Apache from exiting when there is a s
 
 ![benchmark_graph](images/level2-2-2.png)
 
-## Create a histogram to see the latency; also give us the link to the graph
+#### Create a histogram to see the latency; also give us the link to the graph
 
 I used the timed decorator to get the latency each request. [Full code found here!](code/level2.py)
 
@@ -127,21 +127,21 @@ class Home:
 
 ![latency_graph](images/level2-3-1.png)
 
-## Bonus points for putting together more creative dashboards.
+#### Bonus points for putting together more creative dashboards.
 
-# Level 3
+## Level 3
 
 Using the same web app from level 2:
 
-## tag your metrics with `support` (one tag for all metrics)
+#### tag your metrics with `support` (one tag for all metrics)
 
 [Full code found here!](code/level3.py)
 
-## tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+#### tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
 
 [Full code found here!](code/level3.py)
 
-## visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+#### visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 
 I ran the following commands at the same time in different terminals.
 
@@ -161,15 +161,15 @@ ab -n 2500 -c 100 -r http://0.0.0.0.:8080/contact
 
 ![benchmark_results_contact](images/level3-3-4.png)
 
-# Level 4
+## Level 4
 
 Same web app:
 
-## count the overall number of page views using dogstatsd counters.
+#### count the overall number of page views using dogstatsd counters.
 
-## count the number of page views, split by page (hint: use tags)
+#### count the number of page views, split by page (hint: use tags)
 
-## visualize the results on a graph
+#### visualize the results on a graph
 
 Total page view graph
 
@@ -191,6 +191,20 @@ Total Contact page view graph
 
 ![total_page_view_contact_graph](images/level4-3-5.png)
 
-## Bonus question: do you know why the graphs are very spiky?
+#### Bonus question: do you know why the graphs are very spiky?
 
 It has to do with the interval that stats are being collected at. For example the Collector collects standard metrics every 15 seconds so all data within that 15 seconds are lumped together resulting in sharp points.
+
+## Level 5
+
+Let's switch to the agent.
+
+#### Write an agent check that samples a random value. Call this new metric: `test.support.random`
+#### Visualize this new metric on Datadog, send us the link.
+
+Here is a snippet that prints a random value in python:
+
+```python
+import random
+print(random.random())
+```
