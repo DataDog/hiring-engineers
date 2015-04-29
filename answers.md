@@ -1,3 +1,10 @@
+## Dashboards
+
+<a href="https://app.datadoghq.com/dash/integration/custom%3Apage?live=true&from_ts=1430329225608&to_ts=1430332825608&tile_size=m">Integration Dashboard</a>
+
+<a href="https://app.datadoghq.com/dash/48205/latency-by-page?live=true&from_ts=1430329151844&to_ts=1430332751844&tile_size=m">Custom Dashboard</a>
+
+
 ## Level 1
 
 #### Sign up for Datadog, get the agent reporting metrics from your local machine.
@@ -25,7 +32,7 @@ The Datadog agent is comprised of
 
 [Full code found here!](code/level1.py)
 
-```
+```python
 # Submit an event via the API.
 print api.Event.create(title="My First Event!", text="This event was created via the Datadog API.")
 ```
@@ -54,7 +61,7 @@ Response:
 
 [Full code found here!](code/level1.py)
 
-```
+```python
 # Submit an event via the API and send out an email notification.
 print api.Event.create(title="My First Email Event!", text="@cs.Li.Kevin@gmail.com This event was created via the Datadog API.")
 ```
@@ -87,7 +94,7 @@ Response:
 
 I added dogstatsd to a simple web application so that the page view counter is incremented every time the home page is visited. [Full code found here!](code/level2.py)
 
-```
+```python
 class Home:
     def GET(self):
         # Increment the page view counter every time the home page is viewed.
@@ -114,7 +121,7 @@ Note: The -r option is required to prevent Apache from exiting when there is a s
 
 I used the timed decorator to get the latency each request. [Full code found here!](code/level2.py)
 
-```
+```python
 class Home:
     @statsd.timed("page.latency")
     def GET(self):
@@ -200,11 +207,21 @@ It has to do with the interval that stats are being collected at. For example th
 Let's switch to the agent.
 
 #### Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+Put [this file](code/level5.py) in '/etc/dd-agent/checks.d/' if you are using Linux.
+
+`sudo ln -s ~/Documents/hiring-engineers/code/level5.py /etc/dd-agent/checks.d/level5.py`
+
+Put [this file](code/level5.yaml) in '/etc/dd-agent/conf.d/' if you are using Linux.
+
+`sudo ln -s ~/Documents/hiring-engineers/code/level5.yaml /etc/dd-agent/conf.d/level5.yaml`
+
+Don't forget to restart the Datadog agent!
+
+`sudo /etc/init.d/datadog-agent restart`
+
 #### Visualize this new metric on Datadog, send us the link.
 
-Here is a snippet that prints a random value in python:
+<a href="https://app.datadoghq.com/graph/embed?token=f11136a85cd799b9ad100d0e4c87d8811e3c1f434db4f20f9469332687765446&height=300&width=600&legend=true">Link to live graph.</a>
 
-```python
-import random
-print(random.random())
-```
+![random_agent_graph](images/level5-2-1.png)
