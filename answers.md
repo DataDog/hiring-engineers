@@ -25,12 +25,12 @@ The Datadog agent is comprised of
 
 [Full code found here!](code/level1.py)
 
-"""
+'''
 # Submit an event via the API.
 print api.Event.create(title="My First Event!", text="This event was created via the Datadog API.")
-"""
+'''
 
-"""
+'''
 Response:
 {
     u'status': u'ok',
@@ -46,7 +46,7 @@ Response:
         u'id': 2785078421481329528
     }
 }
-"""
+'''
 
 ![api_event](images/level1-3-1.png)
 
@@ -54,12 +54,12 @@ Response:
 
 [Full code found here!](code/level1.py)
 
-"""
+'''
 # Submit an event via the API and send out an email notification.
 print api.Event.create(title="My First Email Event!", text="@cs.Li.Kevin@gmail.com This event was created via the Datadog API.")
-"""
+'''
 
-"""
+'''
 Response:
 {
     u'status': u'ok',
@@ -75,7 +75,7 @@ Response:
         u'id': 2785101829824845689
     }
 }
-"""
+'''
 
 ![email_event_1](images/level1-4-2.png)
 
