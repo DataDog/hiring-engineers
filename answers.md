@@ -4,7 +4,7 @@
 I really liked doing it and I'm looking forward to hearing from you if you have feedback.
 
 All the best,
-*Charly*.
+*Charly Fontaine*.
 
 My document is divided in two parts, the first one is a pragmatic text that lists my answers to the challenge step by step.
 The second is the V0 of a tutorial, based on my attempt to do the challenge using the collaborative node.js APIs.
@@ -24,10 +24,10 @@ Here is a table to smooth your navigation throughout my report
 ----------
 
 ##Challenge 
-This part contains the answers of the questions for the coding challenge of [Datadog](datadoghq.com). I chose to do the challenge using python, given the fact that the library for python was really well documented. My knowledge in python is only about signal processing yet. You'll find here, my answers for the different levels, step by step. With my reflexions and the troubleshoot I faced, with the solution I found.
+This part contains the answers of the questions for the coding challenge of [Datadog](datadoghq.com). I chose to do the challenge using python, given the fact that the library for python was really well documented. My knowledge in python is only about signal processing yet. You'll find here, my answers for the different levels, step by step. With my reflexions and the troubleshoot I faced, and the solution I found.
 ##Level1
 ####Installation of the Agent
-The Agent can be downloaded on the Free Trial tab on the web site of Datadog. The installation can be done via the terminal. Once all the basics information registered, we can get some insights from our local machine.
+The Agent can be downloaded on the Free Trial tab on the web site of Datadog. The installation can be done via the terminal. Once all the information are registered, we can get some insights from our local machine.
 ![Dashboard of my local machine](https://lh3.googleusercontent.com/mbPLXpy05oTBscUV8xEqFEgvK4R1OnIsrlnmSi6rZrI=s0 "Dashboard_local.png")
 -----
 ####What is the Agent?
@@ -70,7 +70,7 @@ Then, has expected we receive the mail that alerts us :
 ----------
 ##Level2
 I took a really simple web application in python with which you can vote for different subjects, with an admin page to create questions and change the choices or see the statistics.
-The code is available on demand, however, along the way of the document, I'll explaine the way I integrated the code to get insights from my app and [here](https://github.com/CharlyF/hiring-engineers/blob/master/Code/views.py) you can find the page that gathers most of the calls and exchanges with the API.
+The whole code is available on demand. However, along the way of the document, I'll explain the way I integrated the code to get insights from my app. [Here](https://github.com/CharlyF/hiring-engineers/blob/master/Code/views.py) you can find the page that gathers most of the calls and exchanges with the API.
 
 #####The load test & the latency
 To compute the latency and the page views, I used the following code, inspired from the documentation for the API in python ([Documentation](http://docs.datadoghq.com/api/)) :
@@ -80,7 +80,7 @@ Then, to do a load test, after going through the [references](https://httpd.apac
 > admin$ ab -n 1000 -c 10 -t 180 https://calm-caverns-8773.herokuapp.com/
 
 Troubleshoot : The command didn't work with my local webserver at first, I had to install some addictional lib. cf [Troubleshoot](#troubleshoot).
-Which gave me the following result (I throw away some lines to make it clearer)
+Which gave me the following result (I threw away some lines to make it clearer)
 
 >This is ApacheBench, Version 2.3
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -109,7 +109,7 @@ The value seems good according to the documentation of Datadog, that states that
 
 ####The Creative Chart
 ![Creative Chart](https://lh3.googleusercontent.com/G4NcofrE7os0vYUWlopwydMUtC8OAZ1HXAox_S2Zey4=s0 "OriginalGraph.png")
-For this chart I decided to display 3 data streams that are strongly correlated. Indeed, the number of sent packet, the latency and the page views, show the reactivity of the web site to a certain 'stimulation'. Plus, we can identify the pattern of system reactivity with the input (number of packet sent), the behaviour of the system (which is the latency) and the output of the system (which is the page views). I chose to display with 3 different type of representations and color so it is clearer.
+For this chart I decided to display 3 data streams that are strongly correlated. Indeed, the number of sent packet, the latency and the page views, show the reactivity of the web site to a certain 'stimulation'. Plus, we can identify the pattern of system reactivity with the input (number of packet sent), the behaviour of the system (which is the latency) and the output of the system (which is the page views). I chose to display with 3 different type of representations and colors so it is clearer.
 PS: I wanted to correlate with my system's data (network IO, CPU...) but the values were too different to be represented together, and I didn't find an easy way (without coding) to compute a log scale.
 
 ----------
@@ -124,14 +124,14 @@ After tagging all my pages, I ran 3 threads of load testing, and displayed a sta
 
 ![Latency per page](https://lh3.googleusercontent.com/seIEl7liuRHV6VL9ZK-GNpUCGrCPhMPTZAF_g6gCTeE=s0 "Latency_StackLayer.png")
 
-We can see that the sollicitations are different and more importantly, one sollicitation stopped earlier than the other (page /, tagged as N/A).
+We can see that the sollicitations are different and more importantly, one sollicitation stopped earlier than the other (page /, tagged as N/A), which is due to the parameters I set for the load testing commands.
  
 ----------
 ##Level4
 ####Counting the pages with Dogstatsd
 This graph sums up everything concerning the page views.
 ![Global Page Views](https://lh3.googleusercontent.com/FwhjJQCvCPzUFtiAvCnhFHDgsMwNSm3ngLfKUiuwC7A=s0 "CountOfPages_StackedLines.png")
-Indeed, the dotted lines reprensent each page (only two of them are represented). And the stack graph on the background helps to see the sum of both, as we can see the yellow part stands for the sum, and we can distinguish every contribution by it's position in the stack (i.e. the orange represents the contribution of the detail page).
+Indeed, the dotted lines reprensent each page (only two of them are represented). And the stack graph in the background helps to see the sum of both, as we can see the yellow part stands for the sum, and we can distinguish every contribution by it's position in the stack (i.e. the orange represents the contribution of the detail page).
 Additionally, I've been using the dogstatsd since the very beginning to increment my variables.
 
 ####Bonus Question:
@@ -142,18 +142,18 @@ The graphs are spiky because of the flushing of the data stream. The flow of dat
 
  As stated in the [documentation](http://docs.datadoghq.com/guides/agent_checks/), the agent writing is pretty straight forward.
  The very first step is to create a new file which can be called [test.yaml](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.yaml), it will be responsible for the initialisation. This file should be placed in the conf.d folder in your API folder (usually ~/.datadog-agent/agent/conf.d).And the script in python [test.py](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.py) will provide a random value, which will basically prove that the system is up and running and thus we have succeeded to set our own agent check. This file should be added in the checks.d folder (usually ~/.datadog-agent/agent/checks.d).
- Then, I used the snippet to import random, and send this value has a metric.
+ Then, I used the snippet to import random, and sent this value as a metric.
 Here is the [link](https://app.datadoghq.com/dash/48571/testpython?from_ts=1430877484194&to_ts=1430879289747&tile_size=m&tile_focus=58826549) to my dashboard and a screenshot of the agent writing graph:
  ![Agent wrinting Graph](https://lh3.googleusercontent.com/71d7l2BSawTuaJeMomSB_Z7Xm2lSsIxtyA5BgRFmuak=s0 "AgentWriting_RandomGraph.png")
 ----------
 
 ###Troubleshoot
-Here is a non exhaustive list of the issues I faced, and the solution I found:
+Here is a non exhaustive list of the issues I faced, and the solutions I found:
 - Running the ab load testing in local wasn't possible I faced the following status: "apr_pollset_poll: The timeout specified has expired (70007)" I imported other libraries and run a few upgrades such as: pip --upgrade ndg-httpsclient, pip install requests==2.5.3;pip install pyopenssl. Plus, I add the option -s for the timeout. 
-My solution was first to deploy my site on a heroku server, and then I figured out that I reached the limit of requests, so I just decreased it and it worked.
-- Often, I faced problem with python and the import of the datadog library, I had to move the folders like the datadog folder so it can be imported, another way is to change the path.
-- The @statsd query didn't work for some reason that I didnt' understand, but there is another way to do according to the API documentation. 
-- I tryed to run my site on a localserver and on my heroku server on the same time, and I didn't succeed to get the insight of the source of the generation of the data on the graph. I assume it can be done if we look at the UUID or the sourcename.
+My solution was first to deploy my site on a heroku server which worked, but then I figured out that I reached the limit of requests, so I just decreased it and it worked even locally.
+- Often, I faced problem with python and the import of the datadog library, I had to move the folders like the datadog folder so it can be imported, another way is to change the path of the imported libraries.
+- The @statsd query didn't work for some reasons that I didn't understand, but there is another way to do according to the API documentation. 
+- I tried to run my site on a localserver and on my heroku server on the same time, and I didn't succeed to get the insight of the source of the generation of the data on the graph. I assume it can be done if we look at the UUID or the source name.
 - I had to restart the Agent to be sure that all the changes were taken into account
 
 ---------
@@ -163,6 +163,6 @@ In this second part, I'd like to propound a tutorial. At first, I tried to do th
  - The documentation for the Node.js API is not sufficient for someone that isn't familiar with it
  - Showing my abilities to convey a clear message, which is one of the most important asset needed in this job.
  
-To read this tutorial, please go to this [link](https://github.com/CharlyF/hiring-engineers/blob/master/Tutorial_node/TutorialDD_nojeJS.md) (on progress)
+To read this tutorial, please go to this [link](https://github.com/CharlyF/hiring-engineers/blob/master/Tutorial_node/TutorialDD_nojeJS.md) (on progress, not online yet)
 ----------
 
