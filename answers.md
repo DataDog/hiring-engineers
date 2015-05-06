@@ -103,6 +103,7 @@ PS: I wanted to correlate with my system's data (network IO, CPU...) but the val
 ----------
 ##Level 3
 
+####Latency of each page in a stack
 Using the very same web app, I introduce tags in the code (can be seen on the command for the latency of Level2), and I access to the tag filter as in the following image:
 
 ![Selection of the tags](https://lh3.googleusercontent.com/fTQOzD8smOYD4v7JP9O7RSdo6gJlbqfmKGfNokRln_o=s0 "TagSelection.png")
@@ -112,7 +113,18 @@ After tagging all my pages, I ran 3 threads of load testing, and displayed a sta
 ![Latency per page](https://lh3.googleusercontent.com/seIEl7liuRHV6VL9ZK-GNpUCGrCPhMPTZAF_g6gCTeE=s0 "Latency_StackLayer.png")
 
 We can see that the sollicitations are different and more importantly, one sollicitation stopped earlier than the other (page /, tagged as N/A).
+ 
+----------
+##Level 4
+####Counting the pages with Dogstatsd
+This graph sums up everything concerning the page views.
+![Global Page Views](https://lh3.googleusercontent.com/FwhjJQCvCPzUFtiAvCnhFHDgsMwNSm3ngLfKUiuwC7A=s0 "CountOfPages_StackedLines.png")
+Indeed, the dotted lines reprensent each page (only two of them are represented). And the stack graph on the background helps to see the sum of both, as we can see the yellow part stands for the sum, and we can distinguish every contribution by it's position in the stack (i.e. the orange represents the contribution of the detail page).
+Additionally, I've been using the dogstatsd since the very beginning to increment my variables.
 
+####Bonus Question:
+The graphs are spiky because of the flushing of the data stream. The flow of data goes way faster on one side of the system, so even though the refreshing is fast, the pace cannot be capture at it's finest. Maybe the interpolation between to point is done linearly, in which case it could be improved with a least squares or a Lagrange polynomial method.
+ 
 ----------
 
 ##Tutorial
