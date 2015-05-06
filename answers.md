@@ -154,6 +154,7 @@ My solution was first to deploy my site on a heroku server, and then I figured o
 - The @statsd query didn't work for some reason that I didnt' understand, but there is another way to do according to the API documentation. 
 - I tryed to run my site on a localserver and on my heroku server on the same time, and I didn't succeed to get the insight of the source of the generation of the data on the graph. I assume it can be done if we look at the UUID or the sourcename.
 - I had to restart the Agent to be sure that all the changes were taken into account
+
 ---------
 ##Tutorial
 In this second part, I'd like to propound a tutorial. At first, I tried to do the challenge with the Node.js APIs but the hard time I had trying to figure out the ways to reach the results, made me thinking that it could be useful to have a tutorial. The basis is still the same, the challenge, yet the reasons why I'm doing it are the following:
