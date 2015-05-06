@@ -70,7 +70,7 @@ Then, has expected we receive the mail that alerts us :
 ----------
 ##Level2
 I took a really simple web application in python with which you can vote for different subjects, with an admin page to create questions and change the choices or see the statistics.
-The code is available on demand, but here are the way I integrated the code to get insights from my app.
+The code is available on demand, however, along the way of the document, I'll explaine the way I integrated the code to get insights from my app and [here](https://github.com/CharlyF/hiring-engineers/blob/master/Code/views.py) you can find the page that gathers most of the calls and exchanges with the API.
 
 #####The load test & the latency
 To compute the latency and the page views, I used the following code, inspired from the documentation for the API in python ([Documentation](http://docs.datadoghq.com/api/)) :
@@ -141,8 +141,9 @@ The graphs are spiky because of the flushing of the data stream. The flow of dat
 ##Level5
 
  As stated in the [documentation](http://docs.datadoghq.com/guides/agent_checks/), the agent writing is pretty straight forward.
- The very first step is to create a new file which can be called [test.yaml](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.yaml), it will be responsible for the initialisation. And the script in python [test.py](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.py) will provide a random value, which will basically prove that the system is up and running and thus we have succeeded to set our own agent check.
-Here is the[link](https://app.datadoghq.com/dash/48571/testpython?from_ts=1430877484194&to_ts=1430879289747&tile_size=m&tile_focus=58826549) to my dashboard and a screenshot of the agent writing graph:
+ The very first step is to create a new file which can be called [test.yaml](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.yaml), it will be responsible for the initialisation. This file should be placed in the conf.d folder in your API folder (usually ~/.datadog-agent/agent/conf.d).And the script in python [test.py](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.py) will provide a random value, which will basically prove that the system is up and running and thus we have succeeded to set our own agent check. This file should be added in the checks.d folder (usually ~/.datadog-agent/agent/checks.d).
+ Then, I used the snippet to import random, and send this value has a metric.
+Here is the [link](https://app.datadoghq.com/dash/48571/testpython?from_ts=1430877484194&to_ts=1430879289747&tile_size=m&tile_focus=58826549) to my dashboard and a screenshot of the agent writing graph:
  ![Agent wrinting Graph](https://lh3.googleusercontent.com/71d7l2BSawTuaJeMomSB_Z7Xm2lSsIxtyA5BgRFmuak=s0 "AgentWriting_RandomGraph.png")
 ----------
 
@@ -162,6 +163,6 @@ In this second part, I'd like to propound a tutorial. At first, I tried to do th
  - The documentation for the Node.js API is not sufficient for someone that isn't familiar with it
  - Showing my abilities to convey a clear message, which is one of the most important asset needed in this job.
  
-
+To read this tutorial, please go to this [link](https://github.com/CharlyF/hiring-engineers/blob/master/Tutorial_node/TutorialDD_nojeJS.md) (on progress)
 ----------
 
