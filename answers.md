@@ -1,7 +1,10 @@
 
-Welcome to my answer page for the Challenge, I really liked doing it and I'm looking forward to hearing from you if you have feedback.
+***Welcome*** to my answer page for the Challenge. 
+
+I really liked doing it and I'm looking forward to hearing from you if you have feedback.
+
 All the best,
-Charly
+*Charly*.
 
 My document is divided in two parts, the first one is a pragmatic text that lists my answers to the challenge step by step.
 The second is the V0 of a tutorial, based on my attempt to do the challenge using the collaborative node.js APIs. 
@@ -96,6 +99,19 @@ The value seems good according to the documentation of Datadog, that states that
 ![Creative Chart](https://lh3.googleusercontent.com/G4NcofrE7os0vYUWlopwydMUtC8OAZ1HXAox_S2Zey4=s0 "OriginalGraph.png")
 For this chart I decided to display 3 data streams that are strongly correlated. Indeed, the number of sent packet, the latency and the page views, show the reactivity of the web site to a certain 'stimulation'. Plus, we can identify the pattern of the input (number of packet sent, the behaviour of the system which is the latency and the output of the system which is the page views). I chose to display with 3 different type of representations and color so it is clearer.
 PS: I wanted to correlate with my system's data (network IO, CPU...) but the values were too different to be represented together, and I didn't find an easy way (without coding) to compute a log scale.
+
+----------
+##Level 3
+
+Using the very same web app, I introduce tags in the code (can be seen on the command for the latency of Level2), and I access to the tag filter as in the following image:
+
+![Selection of the tags](https://lh3.googleusercontent.com/fTQOzD8smOYD4v7JP9O7RSdo6gJlbqfmKGfNokRln_o=s0 "TagSelection.png")
+
+After tagging all my pages, I ran 3 threads of load testing, and displayed a stack graph of the latency of each page.
+
+![Latency per page](https://lh3.googleusercontent.com/seIEl7liuRHV6VL9ZK-GNpUCGrCPhMPTZAF_g6gCTeE=s0 "Latency_StackLayer.png")
+
+We can see that the sollicitations are different and more importantly, one sollicitation stopped earlier than the other (page /, tagged as N/A).
 
 ----------
 
