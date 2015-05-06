@@ -124,9 +124,15 @@ Additionally, I've been using the dogstatsd since the very beginning to incremen
 
 ####Bonus Question:
 The graphs are spiky because of the flushing of the data stream. The flow of data goes way faster on one side of the system, so even though the refreshing is fast, the pace cannot be capture at it's finest. Maybe the interpolation between to point is done linearly, in which case it could be improved with a least squares or a Lagrange polynomial method.
+
+----------
+##Level 5
+
+ As stated in the [documentation](http://docs.datadoghq.com/guides/agent_checks/), the agent writing is pretty straight forward.
+ The very first step is to create a new file which can be called [test.yaml](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.yaml)
+ [test.py](https://github.com/CharlyF/hiring-engineers/blob/master/Code/test.py), it will be responsible for the initialisation. And the script in python will provide a random value, which will basically prove that the system is up and running and thus we have succeeded to set our own agent check.
  
 ----------
-
 ##Tutorial
 In this second part, I'd like to propound a tutorial. At first, I tried to do the challenge with the Node.js APIs but the hard time I had trying to figure out the ways to reach the results, made me thinking that it could be useful to have a tutorial. The basis is still the same, the challenge, yet the reasons why I'm doing it are the following:
 
