@@ -137,7 +137,7 @@ As I was running the benchmark test I added another page to count in the control
 ![PageviewsPerPage](imgs/page_views_per_page.png)
 
 #### Bonus question: do you know why the graphs are very spiky?
-The graphs are spiky becuause of how the agent collector collects the data in and then sends it out to the server at specified intervals.
+The graphs are spiky because of how the agent collector collects the data in and then sends it out to the server at specified intervals.
 
 ____
 
