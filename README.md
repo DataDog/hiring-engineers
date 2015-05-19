@@ -37,7 +37,7 @@ Same web app:
 * count the number of page views, split by page (hint: use tags)
 * visualize the results on a graph
 * Bonus question: do you know why the graphs are very spiky?
- 
+
 ### Level 5
 
 Let's switch to the agent.
