@@ -1,4 +1,4 @@
-#### Level 1
+# Level 1
 
 The Agent is a piece of software running on a host machine that collects events and metrics. This data is sent to Datadog where the user can analize the monitoring and performance data and act accordingly.
 
@@ -10,7 +10,7 @@ The Agent can be broken down into three parts:
 
 All of this is controlled by one supervisor process, helping to minimizing overhead.
 
-## Submit event via the API:
+#### Submit event via the API:
 
 ``` ruby
 
@@ -27,7 +27,7 @@ dog.emit_event(Dogapi::Event.new('some message text here', :msg_title => "Submit
 
 ![Event Submission from the API](images/submitevent.png)
 
-## Event in email inbox
+#### Event in email inbox
 
 ``` ruby
 
@@ -44,9 +44,9 @@ dog.emit_event(Dogapi::Event.new('@jjparseghian@gmail.com some message text', :m
 
 ![Event Submission from the API](images/emailevent.png)
 
-#### Level 2
+# Level 2
 
-## Instrument your code with dogstatsd
+#### Instrument your code with dogstatsd
 
 I added the dogstatsd-ruby gem to the Gemfile of my rails application and ran a bundle install.
 
@@ -93,14 +93,14 @@ This is the resulting histogram for average index page response times
 
 ![Index Page Response Time](images/index_page_response_time.png)
 
-## Bonus: Creative Dashboard
+#### Bonus: Creative Dashboard
 
 ![Dashboard](images/creative_dashboard.png)
 [Dashboard](https://app.datadoghq.com/dash/54495/riddle-me-this-metrics?live=false&page=0&is_auto=false&from_ts=1433962498553&to_ts=1433964598241&tile_size=m)
 
-#### Level 3
+# Level 3
 
-## Tag metrics with `support`
+#### Tag metrics with `support`
 
 In order to add the `support` tag to the metrics I had to designate tags in the options hash as follows.
 
@@ -108,7 +108,7 @@ In order to add the `support` tag to the metrics I had to designate tags in the 
   STATSD.histogram('page_response_time', duration, :tags => ["support"])
 ```
 
-## Tag metrics per page
+#### Tag metrics per page
 
 By adding another string to the tags array in the options hash, I was able tag metrics per page.
 
@@ -118,33 +118,33 @@ By adding another string to the tags array in the options hash, I was able tag m
   STATSD.histogram('page_response_time', duration, :tags => ["support", "page:answered_riddles"])
 ```
 
-## Visualize the latency by page on a graph (using stacked areas, with one color per page)
+#### Visualize the latency by page on a graph (using stacked areas, with one color per page)
 
 By running the apache bench on multiple threads. I was able to compare the latency of multiple pages as seen in the graph below
 
 ![Latency By Page](images/latency_by_page.png)
 
-#### Level 4
+# Level 4
 
-## Count overall number of page views using dogstatsd counters
+#### Count overall number of page views using dogstatsd counters
 
 The following graph illustrates overall page views.
 
 ![Overall Page Views](images/overall_page_views_count.png)
 
-## Count the number of page views, split by page
+#### Count the number of page views, split by page
 
 The graph below displays page view counts split by the page.
 
 ![Page View Counts by Page](images/page_view_counts_by_page.png)
 
-## Bonus: Do you know why the graphs are very spiky?
+#### Bonus: Do you know why the graphs are very spiky?
 
 My apache bench load test sent 500 requests in multiples of 10 multiple times per second, because StatsD counters are normalized in per-second units the graphs look very spiky when connecting the varying points. If one person visted a page every second the graph would appear flat.
 
-#### Level 5
+# Level 5
 
-## Write an agent check that samples a random value. Call this metric: `test.support.random`
+#### Write an agent check that samples a random value. Call this metric: `test.support.random`
 
 ``` python
   import random
@@ -158,6 +158,6 @@ My apache bench load test sent 500 requests in multiples of 10 multiple times pe
 
 The above agent check was a simple python script that submitted random values to the `test.support.random` metric. I ran into multiple problems trying to get this to work. At first I realized that did not have the tornado python module installed. When trying to install that I noticed that pip was also not installed. After getting both of those up and running I started experiencing problems with the agent Forwarder. I was able to fix that by restarting my computer and running this command `~/.datadog-agent/bin/agent restart` in the terminal. Once all there agent components were working I was able visualize the data in the graph below.
 
-## Visualize the new metric on Datadog
+#### Visualize the new metric on Datadog
 
 ![Agent Check Test Metric](images/agent_check_test_metric.png)
