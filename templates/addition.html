@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <script type="text/javascript">
+function calc()
+{
+ var a = document.getElementById('num1').value;
+ var b = document.getElementById('num2').value;
+ document.getElementById('sum').value = (a*1) + (b*1);
+}
+
+function checkInp()
+{
+  var a=document.getElementById('num1').value;
+  var b = document.getElementById('num2').value;
+  if (isNaN(a) || isNaN(b)) 
+  {
+    alert("Must input numbers");
+    return false;
+  }
+}
+</script>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Addition</h1>
+      <br>
+      <form name="myForm" onclick="return checkInp()" action ="" method = "post">
+        A: <input type="text" placeholder="Enter a Number" name="num1" id="num1" value="{{request.form.num1}}"><br>
+        B: <input type="text" placeholder="Enter a Number" name="num2" id="num2" value="{{request.form.num2}}"><br><br>
+        <input type="button" value="ADD" onclick="calc()"><br><br>
+        A + B = <input type="text" name = "sum" id="sum" value=""><br>
+      </form>
+      {% if error %}
+        <p class = "error"><strong>Error:</strong>{{ error}}</p>
+      {% endif %}
+    </div>
+  </body>
+</html> 
