@@ -36,7 +36,7 @@ Here's the event appearing in my inbox:
 ##Level 2
 ####•	Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
-I created a very basic app using Python and the Flask framework. The user inputs two numbers into a form and then clicks a button that adds the numbers and displays the sum (nothiing flashy, just bare bones for the sake of this exercise). This could be expanded to include more mathematical operations and build a full calculator. 
+I created a very basic app using Python and the Flask framework. The user inputs two numbers into a form and then clicks a button that adds the numbers and displays the sum (nothing flashy, just bare bones for the sake of this exercise). This could be expanded to include more mathematical operations and build a full calculator. 
 App link: https://mysterious-bastion-5857.herokuapp.com/
 
 ####•	While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
