@@ -116,6 +116,14 @@ Python script that generates a random number and sends metric to Datadog goes in
 
 ####•	Visualize this new metric on Datadog, send us the link.
 
-I launch the Python Shell and enter the commands shown below but am getting a scanner error that's expecting a colon in a .pyc file. This is preventing me from outputting the random value metric to Datadog. Currently troubleshooting.
+I launch the Python Shell and enter the commands shown below but am getting a scanner error.
 
 ![Python Shell](https://36.media.tumblr.com/a0f94ac6f1deac8ebd60c4b520e9ed1a/tumblr_nrtd8gKS6k1ubyepco1_1280.png)
+
+Based on the above, the source of the error is the scanner.pyc file in the remove_possible_simple_key module. As such, I installed and ran uncompyle2 (https://github.com/wibiti/uncompyle2) on this file. In the decompiled code, I found the following source of the error:
+
+![remove_possible_simple_key](https://40.media.tumblr.com/243ff3c2365e5b5ef024b5bcc8927753/tumblr_nrulifERAi1ubyepco1_540.png)
+
+The error is raised if the simple key is required. As seen below in the code for the initialization of a simple key, the key is set to required which explains the error message. I will have to modify the code in this file, recompile, and add back into the Datadog Agent files library to fix it.
+
+![Scanner](https://40.media.tumblr.com/675826bbabde34fab184661be7a4caed/tumblr_nrulio11h71ubyepco1_1280.png)
