@@ -104,7 +104,7 @@ I believe the graphs are spiky because not all the raw data is plotted, which wo
 
 Configuration file that goes into C:\ProgramData\Datadog\conf.d
 ```
-init_config
+init_config:
 
 instances:
 [{}]
@@ -115,5 +115,7 @@ Python script that generates a random number and sends metric to Datadog goes in
 ![Agent Check](https://41.media.tumblr.com/15d9402d2f2b7899a55dd05e85120272/tumblr_nrropr0FHt1ubyepco1_500.png)
 
 ####•	Visualize this new metric on Datadog, send us the link.
-Getting an error when I try to import the AgentCheck interface, says "No module named checks."
-Once I get this working I should be able to see the test.support.random metric available to graph on Datadog.
+
+I launch the Python Shell and enter the commands shown below but am getting a scanner error that's expecting a colon in a .pyc file. This is preventing me from outputting the random value metric to Datadog. Currently troubleshooting.
+
+![Python Shell](https://36.media.tumblr.com/a0f94ac6f1deac8ebd60c4b520e9ed1a/tumblr_nrtd8gKS6k1ubyepco1_1280.png)
