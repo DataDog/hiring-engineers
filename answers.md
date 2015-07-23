@@ -4,7 +4,7 @@ Your answers to the questions go here.
 
 ####•	Sign up for Datadog, get the agent reporting metrics from your local machine
 
-Metric from my laptop, Stephens-MBP(Clone):
+Metrics from my laptop, Stephens-MBP(Clone):
 ![Stephen-MBP](http://s4.postimg.org/5lfzxjoi5/Screen_Shot_2015_07_23_at_10_03_56_AM.png "My MBP")
 
 
@@ -16,26 +16,27 @@ The datadog agent is an open-source software that runs on your hosts. The agent'
 
 Step 1: Setup API and APP keys:
 
-Images
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![API key](http://s28.postimg.org/881loryzh/Screen_Shot_2015_07_23_at_10_12_59_AM.png "Logo Title Text 1")
+![APP key](http://s4.postimg.org/mqbjothhp/Screen_Shot_2015_07_23_at_11_02_29_AM.png "Logo Title Text 1")
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-The above event was sent to my Events tab on Datadog.
+Event was created and send to my datadog Event feed:
+![Event Feed](http://s2.postimg.org/gzyy04o6h/Screen_Shot_2015_07_23_at_10_16_39_AM.png "Event Feed")
+####•	Get an event to appear in your email inbox (the email address you signed up for the account with)####
 
 Event appeared in my email:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Emailed Event](http://s13.postimg.org/n1qqbp8jb/Screen_Shot_2015_07_23_at_10_15_29_AM.png "Event sent to email")
 
 
 ##Level 2
 ####•	Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
-For this exercise in particular I decided to create a test application in flask. The amateur application has two views, home and page one, so that I can gather and compare metrics for both pages. I used vegeta for load testing as a personal preference. 
+For this exercise in particular I decided to create a test application in flask. This amateur local web application has two views, home page and page one, so that I can gather and compare metrics for both pages. I used vegeta for load testing as a personal preference. 
 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ####•	Create a histogram to see the latency; also give us the link to the graph
-Latency of the graph avg
+
+<a href="">Latency Graph</a>
 Further description of graphs
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
