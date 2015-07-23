@@ -76,7 +76,7 @@ Graph showing the overall number of page views using dogstatsd counters:
 ####•	visualize the results on a graph
 
 
-![Views Per Page](http://postimg.org/image/hn7cvqdkh/ "Total Views PP")
+![Views Per Page](http://s16.postimg.org/nbdnmmhx1/Screen_Shot_2015_07_23_at_12_03_06_PM.png "Total Views PP")
 
 ####•	Bonus question: do you know why the graphs are very spiky?
 
