@@ -30,9 +30,10 @@ Step 1: Setup API and APP keys:
 ##Level 2
 ####•	Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
-For this exercise in particular I decided to create a test application in flask. This amateur local web application has two views, home page and page one, so that I can gather and compare metrics for both pages. I used vegeta for load testing as a personal preference. 
+For this exercise in particular I decided to create a test application in flask. This amateur application has two views, home page and page one, so that I can gather and compare metrics for both pages. I used 'vegeta' for load testing as a personal preference, by 
+running in the CLI -  echo "GET http://localhost:5000/" | vegeta attack -duration=30s
 
-Average Page View Per Second <a href="https://app.datadoghq.com/graph/embed?from_ts=1437584620112&to_ts=1437671020112&token=5dfb1586fcad56d9d558c727f3142c533ebe45e34c8a13475eac2886cacd01ea&height=300&width=600&legend=true&tile_size=m&live=true">Link</a> while running load test
+<a href="https://app.datadoghq.com/graph/embed?from_ts=1437584620112&to_ts=1437671020112&token=5dfb1586fcad56d9d558c727f3142c533ebe45e34c8a13475eac2886cacd01ea&height=300&width=600&legend=true&tile_size=m&live=true">Average Page View Per Second </a> while running load test
 
 ![alt text](http://s23.postimg.org/s1wy9r4x7/Screen_Shot_2015_07_23_at_1_02_46_PM.png "Average Page View Per Second")
 
@@ -40,8 +41,7 @@ Average Page View Per Second <a href="https://app.datadoghq.com/graph/embed?from
 
 ####•	Create a histogram to see the latency; also give us the link to the graph
 
-
-Shows average latency in blue and 95th percentile latency, for page views, while running the load test.
+Shows <a href="https://app.datadoghq.com/graph/embed?token=6e0c02a08be212a8a235ba6281277f526052e1e337f7f7889e49f00507438398&height=300&width=600&legend=true">average latency</a> in blue and 95th percentile latency in red/orange, for page views, while running the load test.
 ![alt text](http://s12.postimg.org/6v4bnfn8t/Screen_Shot_2015_07_23_at_12_02_15_PM.png "Logo Title Text 1")
 
 ##Level 3
@@ -55,7 +55,8 @@ Showing support tag in page views graph.
 
 ####•	tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1with page:page1)
 
-Created a decorator function so that the view names, 'page:hello_word' and 'page:page_one', would be appended to tags. 
+Part of the decorator functionality is to process view name, 'page:hello_word' and 'page:page_one', and append it to tags.
+ 
 ![Decorator](http://s24.postimg.org/kv3m7l385/Screen_Shot_2015_07_23_at_1_28_56_PM.png "Decorator")
 
 ####•	visualize the latency by page on a graph (using stacked areas, with one color per page)
@@ -84,7 +85,10 @@ Graph showing the overall number of page views using dogstatsd counters:
 ##Level 5
 ####Let's switch to the agent.
 ####•	Write an agent check that samples a random value. Call this new metric: test.support.random
-
+![RTSA](http://s2.postimg.org/sio1f13e1/Screen_Shot_2015_07_23_at_6_57_37_PM.png "Random Test Support Agent")
 
 
 ####•	Visualize this new metric on Datadog, send us the link.
+Random test, using custom agent. 
+
+![RTS](http://s24.postimg.org/p01xi6qr9/Screen_Shot_2015_07_23_at_6_55_36_PM.png "Random Test Support")
