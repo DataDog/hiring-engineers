@@ -55,13 +55,13 @@ Showing support tag in page views graph.
 
 ####•	tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1with page:page1)
 
-Created a decorator function so that the view names, 'page:hello_word' and 'page:page_one', can caught and appended to tags
+Created a decorator function so that the view names, 'page:hello_word' and 'page:page_one', would be appended to tags. 
 ![Decorator](http://s24.postimg.org/kv3m7l385/Screen_Shot_2015_07_23_at_1_28_56_PM.png "Decorator")
 
 ####•	visualize the latency by page on a graph (using stacked areas, with one color per page)
 
 Displaying latency using stacked areas of home page and page one
-![alt text]http://s23.postimg.org/n3immpfvv/Screen_Shot_2015_07_23_at_11_59_11_AM.png "Logo Title Text 1")
+![alt text](http://s23.postimg.org/n3immpfvv/Screen_Shot_2015_07_23_at_11_59_11_AM.png "Logo Title Text 1")
 
 ##Level 4
 ####Same web app:
