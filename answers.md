@@ -5,7 +5,7 @@ Your answers to the questions go here.
 ####•	Sign up for Datadog, get the agent reporting metrics from your local machine
 
 Metric from my laptop, Stephens-MBP(Clone):
-![Stephen-MBP](http://postimg.org/image/i02rxvg09/ "My MBP")
+![Stephen-MBP](http://s4.postimg.org/5lfzxjoi5/Screen_Shot_2015_07_23_at_10_03_56_AM.png "My MBP")
 
 
 ####•	Bonus question: what is the agent?
