@@ -16,12 +16,12 @@ Your answers to the questions go here.
 
   # "Bonus question: what is the agent?"
 
-     The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
+     - The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
 
-       Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
-       Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
-       Forwarder - Cues data pushed from both the Collector and Dogstatsd by listening for requests over HTTP. This cued data is buffered and forwarded to Datadog via HTTPS, after which it can be used to create visual graphs.
-       SupervisorD - This is the master process that essentially supervises the other three main components. 
+      - Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
+      - Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
+      - Forwarder - Cues data pushed from both the Collector and Dogstatsd by listening for requests over HTTP. This cued data is buffered and forwarded to Datadog via HTTPS, after which it can be used to create visual graphs.
+      - SupervisorD - This is the master process that essentially supervises the other three main components. 
 
 
   # "Submit an event via the API."
@@ -42,11 +42,11 @@ Your answers to the questions go here.
   # "Get an event to appear in your email inbox (the email address you signed up for the account with)"
 
     - I added my email in the event message text section of the API request via a "@" notification.
-      * screenshot => https://flic.kr/p/vzhKLu
+      
 ![Email-tag](https://farm1.staticflickr.com/263/19411059664_7708dd517f_o.jpg)
 
     - The event notification email then arrived in my inbox.
-      * screenshot => https://flic.kr/p/wj1Tpa
+      
 ![Event-email](https://farm4.staticflickr.com/3718/19894572875_fa044a4a68.jpg)
 
 
@@ -62,9 +62,9 @@ Your answers to the questions go here.
     For stress testing I used Tsung, per the references provided. I'm new to Tsung but after spending lots of time with it I can say that I'm a fan. It's an awesome piece of software that I plan to continue using going forward. Setup was not particularly intuitive (See image => http://memegenerator.net/instance/53090695) but the program worked very well when all was said and done. Tsung runs an XML file that I configured using the Tsung recorder to create a session. I accomplished this by configuring a proxy in Firefox to listen on port 8090 and then by mimcking typical user behavior in my app on the local server. Tsung records this session as a log file. Adding this session log code to the XML file (in addition to setting the client, server, and load params) completed my testing script (please see included 'tsung.xml' for code implementation.)
 
     - Here are two (partial) screenshots of the main Tsung report. The first is a summary. The second shows some visual graphs.
-      * screenshot(summary) => https://flic.kr/p/vwnqRU
+      
 ![Tsung-summary](https://farm1.staticflickr.com/331/19378022134_87e791d3a0_b.jpg)
-      * screenshot(graphs) => https://flic.kr/p/wr5mfY
+      
 ![Tsung-graphs](https://farm4.staticflickr.com/3780/19974464036_cb9262cc7c_c.jpg)
 
 
@@ -73,7 +73,7 @@ Your answers to the questions go here.
     - Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
       * link => a href="http://bit.ly/1IpePTP"
     - Here is a screenshot of my Datadog views-per-second graph captured just after running the Tsung load test.
-      * screenshot => https://flic.kr/p/wtSjFg
+      
 ![View-per-sec](https://farm1.staticflickr.com/333/20006066861_a62d9f0f99_z.jpg)
 
 
@@ -81,7 +81,7 @@ Your answers to the questions go here.
 
     - I included four metrics on this latency histogram: 'page_view_latency.median', 'page_view_latency.95percentile', 'page_view_latency.avg', and 'page_view_latency.count'. 
       * Latency Histogram link (timeframe: past week) => http://bit.ly/1KsWE1O
-      * Latency Histogram screenshot => https://flic.kr/p/wsY8kf
+      
 ![Latency-screenshot](https://farm1.staticflickr.com/430/19995882872_9208107cc7_c.jpg)
 
 
@@ -109,11 +109,11 @@ Your answers to the questions go here.
     - I included three metrics for each page on this graph: 'page_view_latency.median', 'page_view_latency.95percentile', and 'page_view_latency.avg'. Links and screenshots below (included support-by-page-avg.-views as well).
 
       * Latency graph tagged with "support" and pages link (timeframe: past week) => http://bit.ly/1VHWibe
-      * Latency graph tagged with "support" and pages screenshot => https://flic.kr/p/wt7mQA
+      
 ![Support-latency-graph](https://farm1.staticflickr.com/425/19997489202_49373a7172_c.jpg)
 
       * Average page views graph tagged with "support" and pages link (timeframe: past week) => http://bit.ly/1D0yzwY
-      * Average page views graph tagged with "support" and pages screenshot => https://flic.kr/p/wuz5Wq
+      
 ![Support-views-graph](https://farm1.staticflickr.com/540/20014020236_039e1afc20_c.jpg)
 
 
@@ -133,7 +133,7 @@ Your answers to the questions go here.
     - Here is a toplist visualization displaying total hits by page. Note that 'N/A' represents hits before the page tags were implemented. The 'home' tag was originally 'index' before I changed it, hence the 'index' count. 
 
       * Total views by page graph link => http://bit.ly/1IoUTR8
-      * Total views by page graph screenshot => https://flic.kr/p/wrHmoE
+      
 ![Total-page-views](https://farm1.staticflickr.com/313/19981683626_e0260901e8_c.jpg)
 
 
@@ -153,7 +153,7 @@ Your answers to the questions go here.
   # "Visualize this new metric on Datadog, send us the link."
 
       * test.support.random graph link => http://bit.ly/1fx7NBb
-      * test.support.random graph screenshot => https://flic.kr/p/webxAq
+      
 ![Test-support-random](https://farm1.staticflickr.com/321/19839874888_726c5cf291_c.jpg)
 
 
