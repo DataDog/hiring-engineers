@@ -16,7 +16,7 @@ Your answers to the questions go here.
 
   # "Bonus question: what is the agent?"
 
-#    - The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
+    - The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
 
       - Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
       - Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
@@ -27,15 +27,15 @@ Your answers to the questions go here.
   # "Submit an event via the API."
 
     - First things first... I set up an API key.
-      * screenshot => https://flic.kr/p/wgw4pb
+     
   ![Matthew-MBP](https://farm1.staticflickr.com/479/19866315276_7a12c51970_c.jpg)
   
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
-      * screenshot => https://flic.kr/p/wiSigX
+      
   ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg)
       
     - Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
-      * screenshot => https://flic.kr/p/wwKDkM
+      
   ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
   
   
