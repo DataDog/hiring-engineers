@@ -1,7 +1,9 @@
 
 
 
-############ LEVEL 1 #################################################################################################################
+<br>
+Level 1 
+<br>
 
 ####"Sign up for Datadog, get the agent reporting metrics from your local machine."
 
@@ -49,8 +51,9 @@ The agent is a lightweight piece of open-source software that is responsible for
 ![Event-email](https://farm4.staticflickr.com/3718/19894572875_fa044a4a68.jpg)
 
 
-
-############ LEVEL 2 ################################################################################################################
+<br>
+Level 2
+<br>
 
 ####"Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics."
 
@@ -93,9 +96,9 @@ True!!
 
 * My Dashboard link => https://app.datadoghq.com/dash/60254/matt?live=true&page=0&is_auto=false&from_ts=1437354976014&to_ts=1437959776014&tile_size=m
 
-
-
-############### LEVEL 3 ###############################################################################################################
+<br>
+Level 3
+<br>
 
 ####"tag your metrics with support (one tag for all metrics)"
 
@@ -119,10 +122,9 @@ True!!
       
 ![Support-views-graph](https://farm1.staticflickr.com/540/20014020236_039e1afc20_c.jpg)
 
-
-
-   
-################# LEVEL 4 #############################################################################################################
+<br>
+Level 4
+<br>
 
 ####"count the overall number of page views using dogstatsd counters."
 
@@ -144,9 +146,9 @@ Here is a toplist visualization displaying total hits by page. Note that 'N/A' r
 
 That graphs appear 'spiky' because of the time value increments represented by the x-axis. My tests generally lasted for a few minutes each so the wider the time range on the x-axis, the more 'spiky' the graphs will appear. Selecting 'The Past Hour' range smooths out the graphs somewhat. Also, because dogstatsd flushes data in ten-second intervals, exact point-in-time metrics are unknown. Instead dogstatsd plots metrics to each interval and normalizes them over the graph.
 
-
-
-################ LEVEL 5 ##############################################################################################################
+<br>
+Level 5
+<br>
 
 ####"Write an agent check that samples a random value. Call this new metric: test.support.random"
 
