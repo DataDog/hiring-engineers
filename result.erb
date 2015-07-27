@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+    <h1>Here's the random giphy you sent to <%= @recipient %>!!</h1>
+    <h2>"<%= @message %>"<br>
+    Sent by: <%= @sender %></h2>
+    <br>
+    <img src=<%= @gif %>>
+    <br>
+    <h2>Thanks for using the Mega Random Giphy MMS Magical Generator Machine!!</h2>
+    <h3><a href="/">Send another!!</a></h3>
+  </body>
+</html>
