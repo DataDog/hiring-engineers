@@ -31,7 +31,9 @@ Your answers to the questions go here.
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
       
-  ![API-download](https://farm1.staticflickr.com/532/19892897185_68b45fe5bf_o.jpg" width="449" height="101" alt="Screen Shot 2015-07-21 at 2.26.01 PM")
+  ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg)
+  
+  [url=https://flic.kr/p/wiSigX][img]https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg[/img][/url][url=https://flic.kr/p/wiSigX]Screen Shot 2015-07-21 at 2.26.01 PM[/url] by [url=https://www.flickr.com/photos/manybeverages/]Matthew Stines[/url], on Flickr
       
     - Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
       * screenshot => https://flic.kr/p/wwKDkM
