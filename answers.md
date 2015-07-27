@@ -8,8 +8,11 @@ Your answers to the questions go here.
 
     - Local metrics: Matthews-MacBook-Pro.local
       * Host Dashboard screenshot => https://flic.kr/p/w2cDKb
+  ![Host-dashboard](https://farm4.staticflickr.com/3720/19704292740_b210fb4d3c_c.jpg)
+  
       * System Overview - Integration Dashboard Screenshot => https://flic.kr/p/wf4uM7
-
+  ![System-overview](https://farm1.staticflickr.com/324/19849816128_cab98d2c1d_c.jpg)
+      
 
   # "Bonus question: what is the agent?"
 
@@ -25,28 +28,26 @@ Your answers to the questions go here.
 
     - First things first... I set up an API key.
       * screenshot => https://flic.kr/p/wgw4pb
-      
   ![Matthew-MBP](https://farm1.staticflickr.com/540/20014020236_039e1afc20.jpg" width="500" height="268" alt="Screen Shot")
   
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
-      
   ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg)
       
     - Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
       * screenshot => https://flic.kr/p/wwKDkM
-      
   ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
-  
-  [url=https://flic.kr/p/wwKDkM][img]https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg[/img][/url][url=https://flic.kr/p/wwKDkM]Screen Shot[/url] by [url=https://www.flickr.com/photos/manybeverages/]Matthew Stines[/url], on Flickr
   
   
   # "Get an event to appear in your email inbox (the email address you signed up for the account with)"
 
     - I added my email in the event message text section of the API request via a "@" notification.
       * screenshot => https://flic.kr/p/vzhKLu
+![Email-tag](https://farm1.staticflickr.com/263/19411059664_7708dd517f_o.jpg)
+
     - The event notification email then arrived in my inbox.
       * screenshot => https://flic.kr/p/wj1Tpa
+![Event-email](https://farm4.staticflickr.com/3718/19894572875_fa044a4a68.jpg)
 
 
 
