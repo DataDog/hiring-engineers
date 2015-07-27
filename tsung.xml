@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+
+  <clients>
+     <client host="localhost" use_controller_vm="true"/>
+  </clients>
+
+  <servers>
+    <server host="myserver" port="80" type="tcp"></server>
+  </servers>
+
+  <load>
+    <arrivalphase phase="1" duration="15" unit="minute">
+      <users interarrival="1" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users interarrival="0.125" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="25" unit="minute">
+      <users interarrival="1" unit="second"></users>
+    </arrivalphase>
+  </load>
+
+  <sessions>
+    <session name='rec20150724-1356' probability='100'  type='ts_http'>
+      <request><http url='http://127.0.0.1:9393/' version='1.1' method='GET'></http></request>
+      <thinktime random='true' value='29'/>
+      <request><http url='/' version='1.1'  contents='recipient=Matt&amp;number=917-370-1083&amp;keyword=Do+your+job%21&amp;message=test+4&amp;sender=Sparky' content_type='application/x-www-form-urlencoded' method='POST'></http></request>
+      <thinktime random='true' value='2'/>
+      <request><http url='http://s3.amazonaws.com/giphygifs/media/b52v0NWODrqSI/giphy.gif' version='1.1' method='GET'></http></request>
+      <thinktime random='true' value='4'/>
+      <request><http url='http://127.0.0.1:9393/' version='1.1' method='GET'></http></request>
+    </session>
+  </sessions>
+</tsung>
