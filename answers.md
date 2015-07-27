@@ -36,9 +36,9 @@ Your answers to the questions go here.
     - Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
       * screenshot => https://flic.kr/p/wwKDkM
       
-  ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d.jpg)
+  ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
   
-  [url=https://flic.kr/p/wwKDkM][img]https://farm1.staticflickr.com/519/20038713351_33e1f34b2d.jpg[/img][/url][url=https://flic.kr/p/wwKDkM]Screen Shot[/url] by [url=https://www.flickr.com/photos/manybeverages/]Matthew Stines[/url], on Flickr
+  [url=https://flic.kr/p/wwKDkM][img]https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg[/img][/url][url=https://flic.kr/p/wwKDkM]Screen Shot[/url] by [url=https://www.flickr.com/photos/manybeverages/]Matthew Stines[/url], on Flickr
   
   
   # "Get an event to appear in your email inbox (the email address you signed up for the account with)"
