@@ -70,8 +70,8 @@ Your answers to the questions go here.
 
   # "While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
 
-    - <a href="http://bit.ly/1IpePTP">Here</a> is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
-      * link => <a href="http://bit.ly/1IpePTP">Here</a>
+    - Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
+      * link => a href="http://bit.ly/1IpePTP"
     - Here is a screenshot of my Datadog views-per-second graph captured just after running the Tsung load test.
       * screenshot => https://flic.kr/p/wtSjFg
 ![View-per-sec](https://farm1.staticflickr.com/333/20006066861_a62d9f0f99_z.jpg)
@@ -82,6 +82,8 @@ Your answers to the questions go here.
     - I included four metrics on this latency histogram: 'page_view_latency.median', 'page_view_latency.95percentile', 'page_view_latency.avg', and 'page_view_latency.count'. 
       * Latency Histogram link (timeframe: past week) => http://bit.ly/1KsWE1O
       * Latency Histogram screenshot => https://flic.kr/p/wsY8kf
+![Latency-screenshot](https://farm1.staticflickr.com/430/19995882872_9208107cc7_c.jpg)
+
 
     
   # "Bonus points for putting together more creative dashboards."
@@ -108,9 +110,12 @@ Your answers to the questions go here.
 
       * Latency graph tagged with "support" and pages link (timeframe: past week) => http://bit.ly/1VHWibe
       * Latency graph tagged with "support" and pages screenshot => https://flic.kr/p/wt7mQA
+![Support-latency-graph](https://farm1.staticflickr.com/425/19997489202_49373a7172_c.jpg)
 
       * Average page views graph tagged with "support" and pages link (timeframe: past week) => http://bit.ly/1D0yzwY
       * Average page views graph tagged with "support" and pages screenshot => https://flic.kr/p/wuz5Wq
+![Support-views-graph](https://farm1.staticflickr.com/540/20014020236_039e1afc20_c.jpg)
+
 
 
    
@@ -129,6 +134,7 @@ Your answers to the questions go here.
 
       * Total views by page graph link => http://bit.ly/1IoUTR8
       * Total views by page graph screenshot => https://flic.kr/p/wrHmoE
+![Total-page-views](https://farm1.staticflickr.com/313/19981683626_e0260901e8_c.jpg)
 
 
   # "Bonus question: do you know why the graphs are very spiky?"
@@ -148,6 +154,7 @@ Your answers to the questions go here.
 
       * test.support.random graph link => http://bit.ly/1fx7NBb
       * test.support.random graph screenshot => https://flic.kr/p/webxAq
+![Test-support-random](https://farm1.staticflickr.com/321/19839874888_726c5cf291_c.jpg)
 
 
 
