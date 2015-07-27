@@ -9,9 +9,11 @@ Level 1
 
 Local metrics: Matthews-MacBook-Pro.local
 * Host Dashboard
+
 ![Host-dashboard](https://farm4.staticflickr.com/3720/19704292740_b210fb4d3c_c.jpg)
   
 * System Overview - Integration Dashboard
+
 ![System-overview](https://farm1.staticflickr.com/324/19849816128_cab98d2c1d_c.jpg)
       
 
