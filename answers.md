@@ -59,13 +59,17 @@ I made a simple Sinatra app based on an example I'd recently built for the Intro
 
 For metric testing purposes I ran the app locally. I actually spent a fair amount of time trying to re-deploy the app to Heroku using the Datadog Heroku Buildpack. Unfortunately I was having issues getting the app the work correctly. I believe I've narrowed the problem down to a few possible causes (no thanks to Heroku's woefully uninformative logs!) but I didn't want to get too far off track while working on this challenge. I'll continue looking into the problem after I complete this assessment. I could use the API to submit metrics, or course, but I'm determined to install a working agent in the Heroku build using your buildpack. I'll happily send the link when it's up and running correctly!
 
-For stress testing I used Tsung, per the references provided. I'm new to Tsung but after spending lots of time with it I can say that I'm a fan. It's an awesome piece of software that I plan to continue using going forward. Setup was not particularly intuitive (See image => http://memegenerator.net/instance/53090695) but the program worked very well when all was said and done. Tsung runs an XML file that I configured using the Tsung recorder to create a session. I accomplished this by configuring a proxy in Firefox to listen on port 8090 and then by mimcking typical user behavior in my app on the local server. Tsung records this session as a log file. Adding this session log code to the XML file (in addition to setting the client, server, and load params) completed my testing script (please see included 'tsung.xml' for code implementation.)
+For stress testing I used Tsung, per the references provided. I'm new to Tsung but after spending lots of time with it I can say that I'm a fan. It's an awesome piece of software that I plan to continue using going forward. Setup was not particularly intuitive but the program worked very well when all was said and done. Tsung runs an XML file that I configured using the Tsung recorder to create a session. I accomplished this by configuring a proxy in Firefox to listen on port 8090 and then by mimcking typical user behavior in my app on the local server. Tsung records this session as a log file. Adding this session log code to the XML file (in addition to setting the client, server, and load params) completed my testing script (please see included 'tsung.xml' for code implementation.)
 
 Here are two (partial) screenshots of the main Tsung report. The first is a summary. The second shows some visual graphs.
       
 ![Tsung-summary](https://farm1.staticflickr.com/331/19378022134_87e791d3a0_b.jpg)
       
 ![Tsung-graphs](https://farm4.staticflickr.com/3780/19974464036_cb9262cc7c_c.jpg)
+
+True!!
+
+![Tsung-meme](http://cdn.meme.am/instances/500x/53090695.jpg)
 
 
 "While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
