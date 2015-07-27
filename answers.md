@@ -4,7 +4,7 @@ Your answers to the questions go here.
 
 ############ LEVEL 1 #################################################################################################################
 
-"Sign up for Datadog, get the agent reporting metrics from your local machine."
+####"Sign up for Datadog, get the agent reporting metrics from your local machine."
 
 Local metrics: Matthews-MacBook-Pro.local
 * Host Dashboard
@@ -14,7 +14,7 @@ Local metrics: Matthews-MacBook-Pro.local
 ![System-overview](https://farm1.staticflickr.com/324/19849816128_cab98d2c1d_c.jpg)
       
 
-"Bonus question: what is the agent?"
+####"Bonus question: what is the agent?"
 
 The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows:
 
@@ -24,7 +24,7 @@ The agent is a lightweight piece of open-source software that is responsible for
 - SupervisorD - This is the master process that essentially supervises the other three main components. 
 
 
-"Submit an event via the API."
+####"Submit an event via the API."
 
 - First things first... I set up an API key.
      
@@ -39,7 +39,7 @@ The agent is a lightweight piece of open-source software that is responsible for
 ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
   
   
-"Get an event to appear in your email inbox (the email address you signed up for the account with)"
+####"Get an event to appear in your email inbox (the email address you signed up for the account with)"
 
 - I added my email in the event message text section of the API request via a "@" notification.
       
@@ -53,7 +53,7 @@ The agent is a lightweight piece of open-source software that is responsible for
 
 ############ LEVEL 2 ################################################################################################################
 
-"Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics."
+####"Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics."
 
 I made a simple Sinatra app based on an example I'd recently built for the Intro to Software Engineering Course I taught at the Flatiron school. It uses the Giphy and Twilio APIs the fire off an animated gif MMS based on keyword search parameters. I provided the 'application-controller.rb' file, the'metric.rb' file and both view files ('home.erb' and 'result.erb') in this commit. Note: I created a Metric class ('metric.rb') to handle all dogstatsd metrics. 
 
@@ -72,7 +72,7 @@ True!!
 ![Tsung-meme](http://cdn.meme.am/instances/500x/53090695.jpg)
 
 
-"While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
+####"While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
 
 - Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
       * link => a href="http://bit.ly/1IpePTP"
@@ -81,7 +81,7 @@ True!!
 ![View-per-sec](https://farm1.staticflickr.com/333/20006066861_a62d9f0f99_z.jpg)
 
 
-"Create a histogram to see the latency; also give us the link to the graph"
+####"Create a histogram to see the latency; also give us the link to the graph"
 
 - I included four metrics on this latency histogram: 'page_view_latency.median', 'page_view_latency.95percentile', 'page_view_latency.avg', and 'page_view_latency.count'. 
 * Latency Histogram link (timeframe: past week) => http://bit.ly/1KsWE1O
@@ -90,7 +90,7 @@ True!!
 
 
     
-"Bonus points for putting together more creative dashboards."
+####"Bonus points for putting together more creative dashboards."
 
 * My Dashboard link => https://app.datadoghq.com/dash/60254/matt?live=true&page=0&is_auto=false&from_ts=1437354976014&to_ts=1437959776014&tile_size=m
 
@@ -98,17 +98,17 @@ True!!
 
 ############### LEVEL 3 ###############################################################################################################
 
-"tag your metrics with support (one tag for all metrics)"
+####"tag your metrics with support (one tag for all metrics)"
 
 * Please see included metric.rb for 'support' tag implementations.
 
 
-"tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)"
+####"tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)"
 
 * Please see included metric.rb for 'page' tag implementations.
     
 
-"visualize the latency by page on a graph (using stacked areas, with one color per page)"
+####"visualize the latency by page on a graph (using stacked areas, with one color per page)"
 
 - I included three metrics for each page on this graph: 'page_view_latency.median', 'page_view_latency.95percentile', and 'page_view_latency.avg'. Links and screenshots below (included support-by-page-avg.-views as well).
 
@@ -125,14 +125,14 @@ True!!
    
 ################# LEVEL 4 #############################################################################################################
 
-"count the overall number of page views using dogstatsd counters."
+####"count the overall number of page views using dogstatsd counters."
 
 - Here is a toplist visualization displaying the total number of page hits.
 * Total Page hits graph link => http://bit.ly/1GPiyoc
 
 
-"count the number of page views, split by page (hint: use tags)"
-"visualize the results on a graph"
+####"count the number of page views, split by page (hint: use tags)"
+####"visualize the results on a graph"
 
 Here is a toplist visualization displaying total hits by page. Note that 'N/A' represents hits before the page tags were implemented. The 'home' tag was originally 'index' before I changed it, hence the 'index' count. 
 
@@ -141,7 +141,7 @@ Here is a toplist visualization displaying total hits by page. Note that 'N/A' r
 ![Total-page-views](https://farm1.staticflickr.com/313/19981683626_e0260901e8_c.jpg)
 
 
-"Bonus question: do you know why the graphs are very spiky?"
+####"Bonus question: do you know why the graphs are very spiky?"
 
 That graphs appear 'spikey' because of the time value increments represented by the x-axis. My tests generally lasted for a few minutes each so the wider the time range on the x-axis, the more 'spikey' the graphs will appear. Selecting 'The Past Hour' range smooths out the graphs somewhat. Also, because dogstatsd flushes data in ten-second intervals, exact point-in-time metrics are unknown. Instead dogstatsd plots metrics to each interval and normalizes them over the graph.
 
@@ -149,12 +149,12 @@ That graphs appear 'spikey' because of the time value increments represented by 
 
 ################ LEVEL 5 ##############################################################################################################
 
-"Write an agent check that samples a random value. Call this new metric: test.support.random"
+####"Write an agent check that samples a random value. Call this new metric: test.support.random"
 
 For the agent check I basically followed the Datadog Docs. I created a simple 'matt.yaml' configuration file and placed it in the 'conf.d' directory. Then, I added the check script, 'matt.py', to the 'checks.d' directory in the Agent root. (see included 'matt.py' and 'matt.yaml' files for code implementation.) After implementing my agent check the 'test.support.random' metric began reporting to Datadog. 
 
 
-"Visualize this new metric on Datadog, send us the link."
+####"Visualize this new metric on Datadog, send us the link."
 
 * test.support.random graph link => http://bit.ly/1fx7NBb
       
