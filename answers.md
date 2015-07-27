@@ -31,12 +31,12 @@ Your answers to the questions go here.
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
       
-  ![Matthew-MBP](https://farm1.staticflickr.com/532/19892897185_0ba1f22594.jpg" width="449" height="101" alt="Screen Shot 2015-07-21 at 2.26.01 PM")
+  ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594.jpg" width="449" height="101" alt="Screen Shot 2015-07-21 at 2.26.01 PM")
       
     - Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
       * screenshot => https://flic.kr/p/wwKDkM
       
-  ![Matthew-MBP](https://www.flickr.com/photos/manybeverages/20038713351/" title="Screen Shot")
+  ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_n.jpg" width="320" height="141" alt="Screen Shot")
   
   
   # "Get an event to appear in your email inbox (the email address you signed up for the account with)"
