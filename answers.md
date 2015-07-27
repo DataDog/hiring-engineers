@@ -26,7 +26,8 @@ Your answers to the questions go here.
     - First things first... I set up an API key.
       * screenshot => https://flic.kr/p/wgw4pb
       
-  ![Matthew-MBP](https://flic.kr/p/wgw4pb)
+  ![Matthew-MBP](https://farm1.staticflickr.com/540/20014020236_039e1afc20.jpg" width="500" height="268" alt="Screen Shot")
+  <a data-flickr-embed="true" href="https://www.flickr.com/photos/manybeverages/20014020236/in/dateposted-public/" title="Screen Shot"><img src="https://farm1.staticflickr.com/540/20014020236_039e1afc20.jpg" width="500" height="268" alt="Screen Shot"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
