@@ -19,7 +19,7 @@ Local metrics: Matthews-MacBook-Pro.local
 
 ####"Bonus question: what is the agent?"
 
-The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows:
+The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and then delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows:
 
 - Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
 - Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
@@ -37,7 +37,7 @@ The agent is a lightweight piece of open-source software that is responsible for
       
 ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg)
       
-- Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in the pry. The following JSON event response was the output.
+- Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in pry. The following JSON event response was the output.
       
 ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
   
@@ -59,11 +59,11 @@ Level 2
 
 ####"Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics."
 
-I made a simple Sinatra app based on an example I'd recently built for the Intro to Software Engineering Course I taught at the Flatiron school. It uses the Giphy and Twilio APIs the fire off an animated gif MMS based on keyword search parameters. I provided the 'application-controller.rb' file, the'metric.rb' file and both view files ('home.erb' and 'result.erb') in this commit. Note: I created a Metric class ('metric.rb') to handle all dogstatsd metrics. 
+I made a simple Sinatra app based on an example I'd recently built for the Intro to Software Engineering Course I taught at the Flatiron school. It uses the Giphy and Twilio APIs to fire off an animated gif MMS based on keyword search parameters. I provided the 'application-controller.rb' file, the'metric.rb' file and both view files ('home.erb' and 'result.erb') in this commit. Note: I created a Metric class ('metric.rb') to handle all dogstatsd metrics. 
 
 For metric testing purposes I ran the app locally. I actually spent a fair amount of time trying to re-deploy the app to Heroku using the Datadog Heroku Buildpack. Unfortunately I was having issues getting the app the work correctly. I believe I've narrowed the problem down to a few possible causes (no thanks to Heroku's woefully uninformative logs!) but I didn't want to get too far off track while working on this challenge. I'll continue looking into the problem after I complete this assessment. I could use the API to submit metrics, or course, but I'm determined to install a working agent in the Heroku build using your buildpack. I'll happily send the link when it's up and running correctly!
 
-For stress testing I used Tsung, per the references provided. I'm new to Tsung but after spending lots of time with it I can say that I'm a fan. It's an awesome piece of software that I plan to continue using going forward. Setup was not particularly intuitive but the program worked very well when all was said and done. Tsung runs an XML file that I configured using the Tsung recorder to create a session. I accomplished this by configuring a proxy in Firefox to listen on port 8090 and then by mimcking typical user behavior in my app on the local server. Tsung records this session as a log file. Adding this session log code to the XML file (in addition to setting the client, server, and load params) completed my testing script (please see included 'tsung.xml' for code implementation.)
+For stress testing I used Tsung, per the references provided. I'm new to Tsung but after spending lots of time with it I can say that I'm a fan. It's an awesome piece of software that I plan to continue using going forward. Setup was not particularly intuitive but, once ready, the program worked very well. Tsung runs an XML file which is configured using the Tsung recorder to create a session. I accomplished this by configuring a proxy in Firefox to listen on port 8090 and then by mimcking typical user behavior in my app on the local server. Tsung records this session as a log file. Adding this session log code to the XML file (in addition to setting the client, server, and load params) completed my testing script (please see included 'tsung.xml' for code implementation.)
 
 Here are two (partial) screenshots of the main Tsung report. The first is a summary. The second shows some visual graphs.
       
@@ -146,7 +146,7 @@ Here is a toplist visualization displaying total hits by page. Note that 'N/A' r
 
 ####"Bonus question: do you know why the graphs are very spiky?"
 
-That graphs appear 'spiky' because of the time value increments represented by the x-axis. My tests generally lasted for a few minutes each so the wider the time range on the x-axis, the more 'spiky' the graphs will appear. Selecting 'The Past Hour' range smooths out the graphs somewhat. Also, because dogstatsd flushes data in ten-second intervals, exact point-in-time metrics are unknown. Instead dogstatsd plots metrics to each interval and normalizes them over the graph.
+That graphs appear 'spiky' because of the time value increments represented on the x-axis. My tests generally lasted for a few minutes each so the wider the time range on the x-axis, the more 'spiky' the graphs will appear. Selecting 'The Past Hour' range smooths out the graphs. Also, because dogstatsd flushes data in ten-second intervals, exact point-in-time metrics are unknown. Instead dogstatsd plots metrics to each interval and normalizes them over the graph.
 
 <br>
 Level 5
