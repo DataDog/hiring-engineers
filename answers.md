@@ -28,7 +28,7 @@ Your answers to the questions go here.
 
     - First things first... I set up an API key.
       * screenshot => https://flic.kr/p/wgw4pb
-  ![Matthew-MBP](https://farm1.staticflickr.com/540/20014020236_039e1afc20.jpg" width="500" height="268" alt="Screen Shot")
+  ![Matthew-MBP](https://farm1.staticflickr.com/479/19866315276_7a12c51970_c.jpg)
   
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
