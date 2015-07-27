@@ -25,6 +25,8 @@ Your answers to the questions go here.
 
     - First things first... I set up an API key.
       * screenshot => https://flic.kr/p/wgw4pb
+      
+      ![Matthew-MBP](https://flic.kr/p/wgw4pb)
 
     - Next, I downloaded the 'dogapi' gem and add it to my gemfile.
       * screenshot => https://flic.kr/p/wiSigX
