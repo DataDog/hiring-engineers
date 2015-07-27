@@ -16,12 +16,12 @@ Your answers to the questions go here.
 
   # "Bonus question: what is the agent?"
 
-    - The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
+     The agent is a lightweight piece of open-source software that is responsible for collecting events and metrics on behalf of the host user and delivering them to Datadog. Its architecture comprises four main components, each running as a separate process. They are as follows: 
 
-      - Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
-      - Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
-      - Forwarder - Cues data pushed from both the Collector and Dogstatsd by listening for requests over HTTP. This cued data is buffered and forwarded to Datadog via HTTPS, after which it can be used to create visual graphs.
-      - SupervisorD - This is the master process that essentially supervises the other three main components. 
+       Collector - Checks the current machine for integrations and captures standard system metrics (i.e., CPU, memory usage, etc.) every fifteen seconds.
+       Dogstatsd - Aggregates local metrics via code from the host. This is a StatD backend server implemented in Python.
+       Forwarder - Cues data pushed from both the Collector and Dogstatsd by listening for requests over HTTP. This cued data is buffered and forwarded to Datadog via HTTPS, after which it can be used to create visual graphs.
+       SupervisorD - This is the master process that essentially supervises the other three main components. 
 
 
   # "Submit an event via the API."
