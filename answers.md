@@ -70,14 +70,13 @@ Your answers to the questions go here.
 
   # "While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
 
-    - Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
-      * link => http://bit.ly/1IpePTP
-<a href="http://bit.ly/1IpePTP"></a>
-
+    - <a href="http://bit.ly/1IpePTP">Here</a> is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
+      * link => <a href="http://bit.ly/1IpePTP">Here</a>
     - Here is a screenshot of my Datadog views-per-second graph captured just after running the Tsung load test.
       * screenshot => https://flic.kr/p/wtSjFg
+![View-per-sec](https://farm1.staticflickr.com/333/20006066861_a62d9f0f99_z.jpg)
 
-  
+
   # "Create a histogram to see the latency; also give us the link to the graph"
 
     - I included four metrics on this latency histogram: 'page_view_latency.median', 'page_view_latency.95percentile', 'page_view_latency.avg', and 'page_view_latency.count'. 
