@@ -63,13 +63,16 @@ Your answers to the questions go here.
 
     - Here are two (partial) screenshots of the main Tsung report. The first is a summary. The second shows some visual graphs.
       * screenshot(summary) => https://flic.kr/p/vwnqRU
+![Tsung-summary](https://farm1.staticflickr.com/331/19378022134_87e791d3a0_b.jpg)
       * screenshot(graphs) => https://flic.kr/p/wr5mfY
+![Tsung-graphs](https://farm4.staticflickr.com/3780/19974464036_cb9262cc7c_c.jpg)
 
 
   # "While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
 
     - Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
       * link => http://bit.ly/1IpePTP
+<a href="http://bit.ly/1IpePTP"></a>
 
     - Here is a screenshot of my Datadog views-per-second graph captured just after running the Tsung load test.
       * screenshot => https://flic.kr/p/wtSjFg
