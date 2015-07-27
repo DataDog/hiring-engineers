@@ -78,8 +78,8 @@ True!!
 
 ####"While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!"
 
-- Here is a link my real-time Datadog graph that displays average views per second (timeframe: past week.)
-      * link => a href="http://bit.ly/1IpePTP"
+- Here is a link to my real-time Datadog graph that displays average views per second (timeframe: past week.)
+      * link => http://bit.ly/1IpePTP
 - Here is a screenshot of my Datadog views-per-second graph captured just after running the Tsung load test.
       
 ![View-per-sec](https://farm1.staticflickr.com/333/20006066861_a62d9f0f99_z.jpg)
