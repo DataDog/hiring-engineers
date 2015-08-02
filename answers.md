@@ -9,7 +9,8 @@
 
 
 * **Submit an event via the API.**
-![API Event](http://www.markewaldron.com/img/API_Event.png)
+
+    * ![API Event](http://www.markewaldron.com/img/API_Event.png)
 
 ``` ruby
 
