@@ -14,7 +14,3 @@ text = 'And it was submitted via the API @myemailhere'
 tags = ['version:1', 'application:web']
 
 api.Event.create(title=title, text=text, tags=tags)
-
-# If you are programmatically adding a comment to this new event
-# you might want to insert a pause of .5 - 1 second to allow the
-# event to be available.
