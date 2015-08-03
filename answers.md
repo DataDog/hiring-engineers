@@ -37,7 +37,7 @@ The agent is a lightweight piece of open-source software that is responsible for
       
 ![API-download](https://farm1.staticflickr.com/532/19892897185_0ba1f22594_n.jpg)
       
-- Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding a created a new event object in pry. The following JSON event response was the output.
+- Then I fired up shotgun, added a binding and reloaded the app. Once I hit the binding I created a new event object in pry. The following JSON event response was the output.
       
 ![API-response](https://farm1.staticflickr.com/519/20038713351_33e1f34b2d_c.jpg)
   
