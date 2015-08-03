@@ -134,7 +134,7 @@ For this to work I had to fix some classes and methods in the views.py file.
 ```
 class IndexView(generic.ListView):
 	"""
-	Displays all current polls.
+	Index view for the polls. Displays all current polls.
 	"""
 	latency("page:polls")
 	template_name = 'polls/index.html'
@@ -193,7 +193,7 @@ DogStatsD aggregates many points into a single metric over 10 seconds by default
 Let's switch to the agent.
 
 **Write an agent check that samples a random value. Call this new metric: `test.support.random`**
-* Visualize this new metric on Datadog, send us the link.**
+**Visualize this new metric on Datadog, send us the link.**
 
 Following the guide to writing the agent check I started by creating a 'agentcheck.yaml' file with the following contents:
 
