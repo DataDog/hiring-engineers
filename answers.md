@@ -7,7 +7,7 @@
 <br><br>
 After installing the Agent on my local MacBook and grabbing an API key, I was able to successfully create a small Ruby app to send an Event back to Datadog, which also forwarded to my email inbox by the use of tagging myself.
 </p>
-```
+```ruby
 require 'rubygems'
 require 'dogapi'
 #Define api_key from Datadog
