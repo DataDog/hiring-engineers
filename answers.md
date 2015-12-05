@@ -20,8 +20,19 @@ dog.emit_event(Dogapi::Event.new('Send me an email @chrisjslaight@gmail.com '))
 
 <h2>Level 2</h2>
 
-<p>Answer goes here</p>
-
+<p>For this level, I've chosen to implement Dogstatsd on my Cloud9 IDE Ubuntu development server for a holiday shopping list Rails app I've been working on. The below method was placed in the main application_controller.rb file to be accessible by all controllers:</p>
+```ruby
+def render_page
+	#This is to be called for any generic web page load
+	statsd = Statsd.new
+	statsd.increment('web.page_views')
+	return 'Page viewed.'
+end
+```
+<p>For the actual implementation, I added a before_action for all page navigation controller actions for my primary controller, people_controller.rb:</p>
+```ruby
+before_action :render_page, only: [:index,:export,:new,:edit,:show]
+```
 <h2>Level 3</h2>
 
 <p>Answer goes here</p>
