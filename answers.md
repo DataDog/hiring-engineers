@@ -35,6 +35,10 @@ before_action :render_page, only: [:index,:export,:new,:edit,:show]
 ```
 <h2>Level 3</h2>
 
+<p>Level 3 goes here</p>
+
+<h2>Level 4</h2>
+
 <p>With this exercise, the three pages chosen to test with would be my ShopWithRails app Home, Login and Register pages. First, I've implemented the following methods in the main application_controller.rb file:</p>
 
 ```ruby
@@ -79,10 +83,6 @@ before_action :view_page_register, only: [:new]
 <p>Finally, I combined the metrics into to the below Dashboard in Datadog:</p>
 
 <a href="http://chrisslaight.com/dev/datadog/level_3_dashboard.png">Screenshot of Dashboard</a>
-
-<h2>Level 4</h2>
-
-<p>Answer goes here</p>
 
 <h2>Level 5</h2>
 
