@@ -35,7 +35,38 @@ before_action :render_page, only: [:index,:export,:new,:edit,:show]
 ```
 <h2>Level 3</h2>
 
-<p>Level 3 goes here</p>
+<p>For this challenge, I chose to capture metrics on the 'Create Person' database save operation for my shopping app. This was accomplished by modifying the 'create' action of the people_controller.rb file as follows:</p>
+
+```ruby
+def create
+    #Define start time for Datadog metrics
+    startTime = Time.now
+    #Define @person instance variable based on explicit parameters
+    @person = Person.new(p_params)
+    #Set new person's user to the current user
+    @person.user = current_user
+    #Save the person to the database
+    @person.save
+    #Define end time for Datadog metrics
+    transactionDuration = Time.now - startTime
+    #Send to Datadog
+    statsd = Statsd.new
+    statsd.histogram('support.people.create', transactionDuration)
+    #If successful, redirect to this person's view
+    if @person.save
+      redirect_to @person
+    #Otherwise, render the form again (will include future validation)
+    else
+      render 'new'
+    end
+  end
+```
+
+<p>This allows me to capture and graph these queries in the below Dashboard:</p>
+
+<a href="http://chrisslaight.com/dev/datadog/Level_3_screenshot.png">Screenshot of Dashboard</a>
+
+<a href="https://app.datadoghq.com/dash/85692/create-person-metrics">Link to the Dashboard in Datadog</a>
 
 <h2>Level 4</h2>
 
@@ -82,7 +113,9 @@ before_action :view_page_register, only: [:new]
 ```
 <p>Finally, I combined the metrics into to the below Dashboard in Datadog:</p>
 
-<a href="http://chrisslaight.com/dev/datadog/level_3_dashboard.png">Screenshot of Dashboard</a>
+<a href="http://chrisslaight.com/dev/datadog/level_4_dashboard.png">Screenshot of Dashboard</a>
+
+<a href="https://app.datadoghq.com/dash/85603/homeloginregister-page-views">Link to the Dashboard in Datadog</a>
 
 <h2>Level 5</h2>
 
