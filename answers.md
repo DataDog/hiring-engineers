@@ -35,7 +35,50 @@ before_action :render_page, only: [:index,:export,:new,:edit,:show]
 ```
 <h2>Level 3</h2>
 
-<p>Answer goes here</p>
+<p>With this exercise, the three pages chosen to test with would be my ShopWithRails app Home, Login and Register pages. First, I've implemented the following methods in the main application_controller.rb file:</p>
+
+```ruby
+#Method for home page calls
+def view_page_home
+  statsd = Statsd.new
+  statsd.increment('support.page:home')
+  return 'Home page viewed.'
+end
+
+#Method for login page calls
+def view_page_login
+  statsd = Statsd.new
+  statsd.increment('support.page:login')
+  return 'Login page viewed.'
+end
+
+#Method for register page calls
+def view_page_register
+  statsd = Statsd.new
+  statsd.increment('support.page:register')
+  return 'Register page viewed.'
+end
+```
+
+<p>Next, the following headers were added to the specific page rendering actions within the welcome_controller (for Home), users_controller (for Register) and logins_controller (for Login): </p>
+
+```ruby
+#Call Datadog API on loading of home page
+before_action :view_page_home, only: [:index]
+```
+
+```ruby
+#Call Datadog API on loading of login page
+before_action :view_page_login, only: [:new]
+```
+
+```ruby
+#Call Datadog API on loading of register page
+before_action :view_page_register, only: [:new]
+```
+<p>Finally, I combined the metrics into to the below Dashboard in Datadog:</p>
+
+<a href="http://chrisslaight.com/dev/datadog/level_3_dashboard.png">Screenshot of Dashboard</a>
 
 <h2>Level 4</h2>
 
