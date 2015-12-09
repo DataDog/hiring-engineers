@@ -1,9 +1,10 @@
 #question 1
-agent setup complete  
-![Agent Setup](imgs/agentSetUp.png)
+##agent setup 
+<img src="imgs/agentSetUp.png" width="500" height="332">
 
-code used in question one to create an event and email it
-![Agent Setup](imgs/question1Code.png)
+##Sending an event
+* following is the code I used to emit an event and then send it as an email.  
+<img src="imgs/question1Code.png" width="500" height="332">
 
-email comfirmation  
-![Agent Setup](imgs/emailSuccess.png)
+####Email Comfirmation  
+<img src="imgs/emailSuccess.png" width="500" height="332">
