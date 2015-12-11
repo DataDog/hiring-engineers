@@ -22,7 +22,7 @@ test_event = dog.emit_event(Dogapi::Event.new("this will be the text\n@jroth@col
 
 
 I had previously built a web app where users can post questions and read/answer eachothers questions. The site can be found <a href="http://shaq-overflo.herokuapp.com/">here</a>. This was a challenge I did at DBC where my team and I had to build something like stack over flow so we made shaq overflow(we had fun with it). The dashboard I made to report metrics can be found in the link, there is also an image to show you what the code resulted in.  
-<a href="https://p.datadoghq.com/sb/4fa302c67-1a701484c8">Broken link</a>  
+<a href="https://p.datadoghq.com/sb/4fa302c67-1a701484c8">Dashboard</a>  
 <img src="imgs/graphs.png" width="500" height="332">
 The dashboard has 4 graphs to answer the questions. Starting top left and going clockwise we have a graph of latency tagged with support, then we have the total page count, then a graph of all the seperate page counts(I tracked three pages), and then the last graph in the bottom left shows the different latencies per page(I again tracked three total pages).
 
