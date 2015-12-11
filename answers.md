@@ -36,4 +36,4 @@ I wrote helper methods in my application controller so that all controllers woul
     stats.histogram(tag, duration)
   end
 ```
-The fake_work call replaces any db queiries that would be done there. I only really had querying done on the main questions index page but to make more interesting graphs I basically faked out metrics so I could have more data. 
+The fake_work call replaces any db queiries that would be done there. I only really had querying done on the main questions index page but to make more interesting graphs I basically faked out metrics so I could have more data. After the first time loading the page my computer would cache most of the data cause there to be a hug spike in the begining but then bascially flatline. I had never used the load test tools os maybe they would have produced meanginful results, but for the sake of time I decided to focus on Datadog api and  I didnt really look into those tools. 
