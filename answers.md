@@ -64,13 +64,14 @@ def create
 
 <p>This allows me to capture and graph these queries in the below Dashboard:</p>
 
-<a href="http://chrisslaight.com/dev/datadog/Level_3_screenshot.png">Screenshot of Dashboard</a>
+![Image of Datadog Chart]
+(http://chrisslaight.com/dev/datadog/Level_3_screenshot.png)
 
 <a href="https://app.datadoghq.com/dash/85692/create-person-metrics">Link to the Dashboard in Datadog</a>
 
 <h2>Level 4</h2>
 
-<p>With this exercise, the three pages chosen to test with would be my ShopWithRails app Home, Login and Register pages. First, I've implemented the following methods in the main application_controller.rb file:</p>
+<p>With this exercise, the three pages chosen to test with would be my ShopWithRails app Home, Login and Register pages. Essentially, the graphs are spiky due to the intermittent nature of the page views being rendered. First, I've implemented the following methods in the main application_controller.rb file:</p>
 
 ```ruby
 #Method for home page calls
@@ -113,7 +114,8 @@ before_action :view_page_register, only: [:new]
 ```
 <p>Finally, I combined the metrics into to the below Dashboard in Datadog:</p>
 
-<a href="http://chrisslaight.com/dev/datadog/level_4_dashboard.png">Screenshot of Dashboard</a>
+![Image of Datadog Chart]
+(http://chrisslaight.com/dev/datadog/level_4_dashboard.png)
 
 <a href="https://app.datadoghq.com/dash/85603/homeloginregister-page-views">Link to the Dashboard in Datadog</a>
 
@@ -128,7 +130,7 @@ instances:
     [{}]
 ```
 
-<p>To complete this, I created a 'random.py' Python file, that actually calls the random number and sends this metric to Datadog:</p>
+<p>Finally, I created a 'random.py' Python file, that actually calls the random number and sends this metric to Datadog:</p>
 
 ```python
 import random
@@ -138,10 +140,9 @@ class RandomNumberCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
+<p>Screenshots and link to Dashboard:</p>
 
 ![Image of Datadog Chart]
 (http://chrisslaight.com/dev/datadog/level_5_screenshot.png)
-
-<img src="http://chrisslaight.com/dev/datadog/level_5_screenshot.png">
 
 <a href="https://app.datadoghq.com/dash/86562/random-number-from-mbp">Link to the Dashboard in Datadog</a>
