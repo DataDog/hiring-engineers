@@ -1,9 +1,9 @@
-<h1>DataDog Support Engineer Challenge</p>
+<h1>Datadog Support Engineer Challenge</p>
 <p>By Chris Slaight</p>
 
 <h2>Level 1</h2>
 
-<p>To answer the question regarding the Agent, this is essentially the component of the software that resides within whatever host you're monitoring with Datadog. Its essential purpose is to collect metrics and events and then send them into the Datadog cloud, where you can truly make something of the data.
+<p>To answer the question regarding the Agent, this is essentially the component of the Datadog software ecosystem that resides within whatever host you choose to monitor. Its essential purpose is to collect metrics and events and then send them into the Datadog cloud, where you can truly make something of the data.
 <br><br>
 After installing the Agent on my local MacBook and grabbing an API key, I was able to successfully create a small Ruby app to send an Event back to Datadog, which also forwarded to my email inbox by the use of tagging myself.
 </p>
@@ -121,7 +121,7 @@ before_action :view_page_register, only: [:new]
 
 <h2>Level 5</h2>
 
-<p>For the final exercise, I was able to utilize the Datadog Agent running locally on my MacBook. To implement this, first I added the following 'random.yaml' file under the conf.d directory:</p>
+<p>For the final exercise, I was able to utilize the Datadog Agent running locally on my MacBook to write an Agent Check that samples a random number. To implement this, first I added the following 'random.yaml' file under the conf.d directory:</p>
 
 ```yaml
 init_config:
