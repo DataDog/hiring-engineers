@@ -1,15 +1,13 @@
 #Question 1
 ##Sending an event
-Following is the code I used to emit an event and then send it as an email.  
+Following is the code I used to emit an event and then send it as an email.
 ```ruby
 require 'rubygems'
 require 'dogapi'
 
 api_key='822c15b7b2f9fb8c49e8827404903e58'
-app_key='f1dab6bb368ffa58b5d5af3358d77e42f48a1a21'
 
-dog = Dogapi::Client.new(api_key, app_key)
-host_name = 'vagrant-ubuntu-trusty-64'
+dog = Dogapi::Client.new(api_key)
 
 test_event = dog.emit_event(Dogapi::Event.new("this will be the text\n@jroth@colgate.edu", 
                                               :msg_title => 'My Title :)'))
@@ -43,7 +41,7 @@ the other helpers and the code for the web app can be found <a href = "https://g
 The fake_work call replaces any db queries that would be done there. I only really had querying done on the main questions index page but to make more interesting graphs I basically faked out metrics so I could have more data. After the first time loading the page my computer would cache most of the data cause there to be a hug spike in the beginning but then basically flat-line. I had never used the load test tools so maybe they would have produced meaningful results, but for the sake of time I decided to focus on Datadog api and I didn't really look into those tools.  
 
 #####Why do the graphs lookspiky?  
-The times calculated and saved as duration are all erratic, when That info gets saved as a metric and sent to Datadog, connecting those points make the graphs spiky. 
+The times calculated and saved as duration are all erratic. When that info gets saved as a metric and sent to Datadog, connecting those points make the graphs spiky. 
 
 #Question 5
 I ran into some difficulty with this challenge. I ran into some problems when creating and writing to the yaml file needed as a prerequisite. There was some strange permissions errors which I had seen once before. Because of that I wasn't able to get the code running. and create a dashboard. The python code I wrote is not much different than the code given in the resource for agent checks. 
