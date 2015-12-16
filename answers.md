@@ -2,8 +2,11 @@ Hi Datadog!  Thanks for the opportunity to work with such a cool technology.  Ho
 
 -Connor Hammond
 
+NB - My computer is formerly my brother's, so that's why hostname is "zak" :)
+
+
 #Level 1
-Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
+>Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
 ![local_metrics](/images/host_metrics.png)
 
 - ###Bonus question: what is the agent?
@@ -17,11 +20,14 @@ Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field),
         - The forwarder retrieves data from both dogstatsd and the collector and then queues it up to be sent to Datadog.
 
 Submit an event via the API.
+>Following the instructions in the API docs, I was able to create an event after utilizing provided / created app & API keys.
 
-![event](images/event_mention.png)
+![event_on_site](images/event_on_site.png)
 
 Get an event to appear in your email inbox (the email address you signed up for the account with)
+> By mentioning my email address in the created event, I got an email sent to me from DataDog.
 
+![event](images/event_mention.png)
 ![email](images/email.png)
 
 
@@ -29,7 +35,7 @@ Get an event to appear in your email inbox (the email address you signed up for 
 ```python
 
         from datadog import initialize, api
-
+is
         options = {
             'api_key': '',#excluded for security
             'app_key': ''# excluded for security
@@ -163,6 +169,4 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random_val, tags=['support'])
 ```
 
-Notes - I'm using a computer gifted to me, so my hostname "zak" reads that way for that reason :)
-
-Had import issues with Level 5.
+Had import issues with Level 5 (no module "check")
