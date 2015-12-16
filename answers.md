@@ -2,7 +2,7 @@
 
 ##1##
 What is the Agent?
------------------
+----------------
 <h3>The Agent is the software that runs on my hosts.  It collects events and metrics and reports them to Datadog.</h3>
 <h2>Submitting an Event</h2>
 <h3>Here is the code that I used to submit my first event</h3>
