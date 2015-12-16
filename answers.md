@@ -3,9 +3,9 @@
 ##1##
 What is the Agent?
 -----------------
-The Agent is the software that runs on my hosts.  It collects events and metrics and reports them to Datadog.
+<h3>The Agent is the software that runs on my hosts.  It collects events and metrics and reports them to Datadog.</h3>
 <h2>Submitting an Event</h2>
-<h4>Here is the code that I used to submit my first event</h4>
+<h3>Here is the code that I used to submit my first event</h3>
 ```ruby
 1 require 'rubygems'
 2 require 'dogapi'
@@ -43,20 +43,20 @@ The Agent is the software that runs on my hosts.  It collects events and metrics
   ```python
 #random_check.py
 
-  import random
-  from checks import AgentCheck
-  class RandCheck(AgentCheck):
+import random
+from checks import AgentCheck
+class RandCheck(AgentCheck):
     def check(self, instance):
-      self.gauge('test.support.random', random.random())
+	self.gauge('test.support.random', random.random())
 ```
 
 ```yaml
 #random_check.yaml
 
-      init_config:
+    init_config:
 
-instances:
-[{}]
+    instances:
+        [{}]
 ```
 [Link to test.support.random graph](https://p.datadoghq.com/sb/188ad36eb-d0cf596a6f)
 ![enter image description here](https://lh3.googleusercontent.com/-8WTFfcjMX7U/VnHUQRb9pxI/AAAAAAAABao/AprNCQr6bLQ/s0/Screen+Shot+2015-12-16+at+4.14.29+PM.png "Screen Shot 2015-12-16 at 4.14.29 PM.png")
