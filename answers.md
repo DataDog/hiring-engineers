@@ -8,7 +8,25 @@ Level 1 - Answers
 
   B. The Agent is a series of processes that run regularly (a few times a minute) to collect key performance data from your system and integrated tools. It sends this performance data to Datadog so that you can graph it on your dashboards and more easily monitor your systems’ performance. It's kind of like Datadog's, well, dog--it loyally fetches everything Datadog needs to help the user understand their systems' performance. 
   
-  C. I submitted an event via the API.
+  C. I submitted an event via the API. To do this, I wrote the following code:
+  
+      from datadog import initialize, api
+    
+      options = {
+          'api_key': 'b79f2e891614183a0a6fded2c1d2301b',
+          'app_key': 'test_api_key123asd145124gw5987'
+      }
+      
+      initialize(**options)
+      
+      title = 'this is an event'
+      text = 'but it is really just a test. in fact, nothing much happened. ' \
+             '@stephenlechner@gmail.com'
+      tags = ['tag:test']
+      
+      api.Event.create(title=title, text=text, tags=tags)
+  
+  Here's a screenshot of the event that it created.
   ![submitted event](https://cloud.githubusercontent.com/assets/12688271/11882944/9f2fbca6-a4dd-11e5-9f5e-18f68cfbe15e.png "I submitted an event via the API!")
   
   D. I got en event notification to appear in my email inbox (the one I signed up with).
