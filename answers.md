@@ -86,6 +86,6 @@ Level 5 - Answers
   
   Finally, I ran the "random_check" check through the agent by sending "datadog-agent check random_check" through the command line.
   
-  B. I graphed the random values in a dashboard. (Here's a link: [[https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450321008040&to_ts=1450407408040&tile_size=m&fullscreen=70006677]]
+  B. I graphed the random values in a dashboard. (Here's a link: [[https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450321008040&to_ts=1450407408040&tile_size=m&fullscreen=70006677]])
   ![test.support.random metric graphed](https://cloud.githubusercontent.com/assets/12688271/11888347/5fe30382-a50a-11e5-8d14-96d3cb577db6.png "test.support.random graphed")
   
