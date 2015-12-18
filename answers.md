@@ -29,13 +29,13 @@ Level 1 - Answers
   Here's a screenshot of the event that it created.
   ![submitted event](https://cloud.githubusercontent.com/assets/12688271/11882944/9f2fbca6-a4dd-11e5-9f5e-18f68cfbe15e.png "I submitted an event via the API!")
   
-  D. I got en event notification to appear in my email inbox (the one I signed up with).
+  D. I got en event notification to appear in my email inbox since I used the "@" and my email.
   ![and I got an email for the event](https://cloud.githubusercontent.com/assets/12688271/11882947/a31c6f3a-a4dd-11e5-9577-3dbfe913a59c.png "And I got an email for the event!")
   
   
 Level 2 - Answers
   
-  A. I took a very simple web app that I wrote (an online catalog that is editable by users who login with a Google account) and added dogstatd and threadstatd code to collect metrics through the agent. (See "application.py" in this repo for reference.) Some of the relevant lines of code I wrote to do this are as follows:
+  A. I took a very simple web app that I wrote (an online catalog that is editable by users who login with a Google account) and added dogstatd and threadstats code to collect metrics through the agent. (See "application.py" in this repo for reference.) Some of the relevant lines of code I wrote to do this are as follows:
 
         from datadog import initialize, threadstats
         from datadog.dogstatsd.base import DogStatsd
@@ -81,7 +81,7 @@ Level 4 - Answers
   ![page count stacked by page](https://cloud.githubusercontent.com/assets/12688271/11882993/d58ac8ea-a4dd-11e5-83d1-d03c0c5d6d30.png "page count stacked by page")
   
   D. In this case, the graph was not very spikey. But I think that's a result of the way I set up the load test. The load test was very consistent in the number of hits it was making on the app, and even in the distribution of which pages it was hitting. As a result, there was only mild change in the rate of counts per reporting period for the agent. 
-  That being said, when I played around with the web app manually, the dashboards did register big spikes in view counts. I suspect these spikes ocurred because the agent counters grouped the page views to be shown on a per-reporting-period basis. Manual activity tends to be less consistent, which would result in more jarring jumps between metric points. 
+  That being said, when I played around with the web app manually, the dashboards did register big spikes in view counts. I suspect these spikes occurred because the agent counters grouped the page views to be shown on a per-reporting-period basis. Manual activity tends to be less consistent, which would result in more jarring jumps between metric points. 
   
 
 Level 5 - Answers
