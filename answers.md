@@ -67,4 +67,25 @@ Level 4 - Answers
   
 
 Level 5 - Answers
+
+  A. I wrote a custom agent check that samples a random value, which I called "test.support.random". To do this, I added a "random_check.py" file to the agent's "checks.d" directory that had the following content:
+  
+      from random import random
+      from checks import AgentCheck
+      
+      class RandomCheck(AgentCheck):
+          def check(self, instance):
+              self.gauge('test.support.random', random())
+  
+  I then added a "random_check.yaml" file to the agent's "conf.d" directory with the following content:
+  
+      init_config:
+      
+      instances:
+          [{}]
+  
+  Finally, I ran the "random_check" check through the agent by sending "datadog-agent check random_check" through the command line.
+  
+  B. I graphed the random values in a dashboard. (Here's a link: [[https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450321008040&to_ts=1450407408040&tile_size=m&fullscreen=70006677]]
+  ![test.support.random metric graphed](https://cloud.githubusercontent.com/assets/12688271/11888347/5fe30382-a50a-11e5-8d14-96d3cb577db6.png "test.support.random graphed")
   
