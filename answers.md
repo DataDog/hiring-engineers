@@ -35,7 +35,7 @@ Level 1 - Answers
   
   ![and I got an email for the event](https://cloud.githubusercontent.com/assets/12688271/11882947/a31c6f3a-a4dd-11e5-9577-3dbfe913a59c.png "And I got an email for the event!")
   
-    
+___
   
 Level 2 - Answers
   
@@ -79,7 +79,7 @@ Level 2 - Answers
   
   ![catalog views by category and item](https://cloud.githubusercontent.com/assets/12688271/11901462/bd06eadc-a579-11e5-8c6c-22c416464a68.png "catalog views by category and item")
   
-    
+___
   
 Level 3 - Answers
 
@@ -87,7 +87,7 @@ Level 3 - Answers
   
   ![latency stacked by page](https://cloud.githubusercontent.com/assets/12688271/11882988/d274563a-a4dd-11e5-9f49-828f2a2aebdc.png "latency stacked by page")
   
-    
+___
 
 Level 4 - Answers
 
@@ -99,7 +99,7 @@ Level 4 - Answers
   
   That being said, when I played around with the web app manually, the dashboards did register big spikes in view counts. I suspect these spikes occurred because the agent counters grouped the page views to be shown on a per-reporting-period basis. Manual activity tends to be less consistent, which would result in more jarring jumps between metric points. 
   
-    
+___
 
 Level 5 - Answers
 
