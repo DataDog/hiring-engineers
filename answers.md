@@ -66,7 +66,10 @@ Level 2 - Answers
   C. I made a histogram to show the latency (by "latency" I assume we mean response time for each request) in seconds of the three pages I tested on the web app. (If you look at what makes up each page, it makes a lot of sense that each page had different consistent response times.) (Here's a link to the graph:[[https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450390898013&to_ts=1450394498013&tile_size=m&fullscreen=69982587]])
   ![latency during a load test](https://cloud.githubusercontent.com/assets/12688271/11884943/49c91df8-a4eb-11e5-8443-f85a78b575a4.png "latency during a load test")
   
-  D.
+  D. The web app that I've been testing for this exercise is a very simple category app where users can create categories and items within those categories. Any user can then wander around the catalog and view each category's items, their descriptions, and pictures.
+  If someone were to be using this kind of app for business purposes, they would probably want to be able to visualize what categories and items are being viewed more or less than others. Interestingly, this catelog is only shown in the home page, and what category and item appears on the home page depends on each user's inputs. By tagging each home page-view by user input, however, I was able to make a Datadog dashboard that shows the nubmer of views of each category and item. The tags themselves are made from the names that the users give to each category and item, and are preceeded by either "category:" or "item:" appropriately. As a result, there's no need to add new tags every time a user creates a new category type or item--the dashboard is already set up to display views of new categories and items, and it will identify them as categories or items appropriately. 
+  (Here's a link to the table, and a picture below: https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450367730855&to_ts=1450454130855&tile_size=m&fullscreen=70053119)
+  ![catalog views by category and item](https://cloud.githubusercontent.com/assets/12688271/11901462/bd06eadc-a579-11e5-8c6c-22c416464a68.png "catalog views by category and item")
   
   
 Level 3 - Answers
@@ -103,6 +106,8 @@ Level 5 - Answers
           [{}]
   
   Finally, I ran the "random_check" check through the agent by sending "datadog-agent check random_check" through the command line.
+  
+  (I learned how to do all this from links I found in the references--specifically ![this](http://docs.datadoghq.com/guides/agent_checks/) one. I got a little thrown off by differences in the directory locations of my "conf.d" and "checks.d" folders, and also by the fact that my agent's name isn't dd-agent but datadog-agent, but with a little head-tapping I figured it out.)
   
   B. I graphed the random values in a dashboard. (Here's a link: [[https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450321008040&to_ts=1450407408040&tile_size=m&fullscreen=70006677]])
   ![test.support.random metric graphed](https://cloud.githubusercontent.com/assets/12688271/11888347/5fe30382-a50a-11e5-8d14-96d3cb577db6.png "test.support.random graphed")
