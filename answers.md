@@ -1,7 +1,7 @@
 Support Engineer Branch, Answers by Stephen Lechner
 
 
-Level 1 - Answers
+## Level 1 - Answers
 
   A. I signed up for Datadog and got the agent reporting metrics from my local machine. For some reason, even after I manually updated the API key, the update didn't seem to take, which stopped the agent from being able to forward data to Datadog. Fortunately, as soon as I checked the forwarder logs, it became pretty clear that the agent wasn't using the correct API key. Once I restarted the agent it used the correct API key and worked correctly.
   
@@ -37,7 +37,7 @@ Level 1 - Answers
   
 ___
   
-Level 2 - Answers
+## Level 2 - Answers
   
   A. I took a very simple web app that I wrote (an online catalog that is editable by users who login with a Google account) and added dogstatd and threadstats code to collect metrics through the agent. (See "application.py" in this repo for reference.) Some of the relevant lines of code I wrote to do this are as follows:
 
@@ -81,7 +81,7 @@ Level 2 - Answers
   
 ___
   
-Level 3 - Answers
+## Level 3 - Answers
 
   A, B, C. Using the same web app, I tagged each metric I was collecting with "support", as well as the separate page tags I was already using. (Those pages were "home", "json", and "login", and they were tagged to "catalog:home", "catalog:json", and "catalog:login" respectively.) I showed the latency per page with each page's latency stacked up on top of the other in a different color. (The "login" page has very little response time, so it makes sense that it's generally hard to see.) ([Here's a link to the graph](https://app.datadoghq.com/dash/87624/testdashboard1?live=false&page=0&is_auto=false&from_ts=1450381314000&to_ts=1450381869000&tile_size=m&fullscreen=69986319).)
   
@@ -89,7 +89,7 @@ Level 3 - Answers
   
 ___
 
-Level 4 - Answers
+## Level 4 - Answers
 
   A, B, C. While load testing the same web app, I counted the total number of page views using tagged dogstatd counters and visualized each page's counts stacked together on the same graph. ([Here's a link to the graph](https://app.datadoghq.com/dash/87624/testdashboard1?live=true&page=0&is_auto=false&from_ts=1450391166821&to_ts=1450394766821&tile_size=m&fullscreen=69988481).)
   
@@ -101,7 +101,7 @@ Level 4 - Answers
   
 ___
 
-Level 5 - Answers
+## Level 5 - Answers
 
   A. I wrote a custom agent check that samples a random value, which I called "test.support.random". To do this, I added a "random_check.py" file to the agent's "checks.d" directory that had the following content:
   
