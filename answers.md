@@ -155,3 +155,12 @@
   ![total views by page](screenshots/dd-total-views-by-page2.png)
 
   These results can be found on the [same dashboard](https://app.datadoghq.com/dash/90969/collaboetry-latency--views?live=false&page=0&is_auto=false&from_ts=1452524208016&to_ts=1452542317147&tile_size=m) as well.
+* Bonus question: do you know why the graphs are very spiky?
+  * I'm guessing that this has to do with how the data is being collected. The graphs in the previous two bullet points aren't really great examples, since, again, they're the result of my haphazard clicking through the app. However, if we were to look at an example from one of my load tests, like this:
+
+    ![total page views--load test](screenshots/dd-total-views.png)
+
+  We can see here that it's a little more spiky, which is likely a result of the number of requests that the loadtest is sending per second, and the refresh rate for Datadog's agent. They're probably not going at the exact same rate, hence the jagged line graph.
+
+# Level 5
+* Write an agent check that samples a random value. Call this new metric: test.support.random
