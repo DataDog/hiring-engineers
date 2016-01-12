@@ -10,35 +10,35 @@
 * Submit an event via the API:
   * I instrumented code for a MEAN stack app called [Loci](https://github.com/kwwalter/MemoryPalace), using the dogapi npm package):
 
-  ```javascript
-  var dogapi = require('dogapi');
+    ```javascript
+    var dogapi = require('dogapi');
 
-  // dogapi configuration
-  var options = {
-    api_key: process.env.DD_API_KEY,
-    app_key: process.env.DD_APP_KEY
-  };
+    // dogapi configuration
+    var options = {
+      api_key: process.env.DD_API_KEY,
+      app_key: process.env.DD_APP_KEY
+    };
 
-  dogapi.initialize(options);
+    dogapi.initialize(options);
 
-  // dummy event submission via API
+    // dummy event submission via API
 
-  var title = "It works!",
-      text  = "Loci app successfully accessed through Heroku!",
-      properties = {
-        priority: "low",
-        tags: ["loci", "heroku"],
-        alert_type: "info"
-      };
+    var title = "It works!",
+        text  = "Loci app successfully accessed through Heroku!",
+        properties = {
+          priority: "low",
+          tags: ["loci", "heroku"],
+          alert_type: "info"
+        };
 
-  dogapi.event.create(title, text, properties, function(err, res){
-    if (err) {
-      console.log("error posting dummy event to dogapi: ", err);
-    } else {
-      console.log("here's the response: ", res);
-    }
-  });
-  ```
+    dogapi.event.create(title, text, properties, function(err, res){
+      if (err) {
+        console.log("error posting dummy event to dogapi: ", err);
+      } else {
+        console.log("here's the response: ", res);
+      }
+    });
+    ```
 
 * Get an event to appear in your email inbox:
   * Hooray!
