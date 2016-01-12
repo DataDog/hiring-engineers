@@ -163,29 +163,28 @@
   We can see here that it's a little more spiky, which is likely a result of the number of requests that the loadtest is sending per second, and the refresh rate for Datadog's agent. They're probably not going at the exact same rate, hence the jagged line graph.
 
 # Level 5
-Before starting out, I tried following along with the HTTP example [here](http://docs.datadoghq.com/guides/agent_checks/), but had some trouble with the `checks` module, which I can't seem to find. Forgive me if this is an easy solution, but I've never had any real experience with Python. I was able to install pip, and then install the `requests` module that's specified in line 2 of the `http.py` sample file. But, when I try to run `PYTHONPATH=. python checks.d/http.py` again, I get the following error:
-```
-Traceback (most recent call last):
-  File "checks.d/http.py", line 4, in <module>
-    from checks import AgentCheck
-ImportError: No module named checks
-```
-Then, when I try to install the `checks` module that's apparently missing, I see the following:
-```
-Collecting checks
-  Could not find a version that satisfies the requirement checks (from versions: )
-No matching distribution found for checks
-```
-Again, maybe this is just something basic that I'm overlooking, but I thought I'd at least try to document some of the problems I had before I tried creating the test check for this exercise.
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+  To do this, I followed along with the two examples in the Datadog ["Writing an Agent Check"](http://docs.datadoghq.com/guides/agent_checks/) documentation. Once I figured out how to actually *run* the check through the agent, it was smooth sailing :)
 
-When I tried to run `sudo -u dd-agent dd-agent check http`, I got an error saying `sudo: unknown user: dd-agent`.
+  In the `conf.d` folder, I created the following `level5-test.yaml` file:
+  ```yaml
+  init_config:
 
-This exact same thing is happening when I try to run the basic `hello` example that's specified at the [same link](http://docs.datadoghq.com/guides/agent_checks/).
+  instances:
+      [{}]
+  ```
 
-This could have to do with how my datadog-agent files are structured. I see a `checks.d` folder in the `/opt/datadog-agent/agent` directory, but there's no `conf.d` folder in here. When I tried to touch a new `.py` in the `checks.d` folder, I got a permission denied error. I can `sudo touch`, of course, but then I can't actually modify the file when I open it in Atom.
+  Then, in the `checks.d` folder, I touched a new `.py` file with the exact same name as the configuration file. Here's what my `level5-test.py` file ended up looking like:
+  ```python
+  import random
+  from checks import AgentCheck
 
-Instead, I worked within the `/opt/datadog-agent/etc/conf.d` and `/opt/datadog-agent/etc/checks.d` folders, and ran into the errors above, which leads me to believe that I'm not looking in the right place :)
-
-Sorry for the long-winded question, but I just want to make sure I'm looking in the right location before I begin writing the test script for this exercise in Level 5. Even if I don't necessarily need to know this for the exercise, I'd kind of like to know just for my own edification.
-
-* Write an agent check that samples a random value. Call this new metric: test.support.random
+  class TestCheck(AgentCheck):
+      def check(self, instance):
+          self.gauge('test.support.random', random.random(), tags=['level_5_test'])
+  ```
+* Visualize this new metric on Datadog, send us the link.
+  The dashboard I created for this can be found [here](https://app.datadoghq.com/dash/91336/level-5----testsupportrandom?live=true&page=0&is_auto=false&from_ts=1452631074844&to_ts=1452634674844&tile_size=m).
+  And here's a quick screenshot as well!
+  
+  ![test-support-random visualization](screenshots/dd-test-support-random.png)
