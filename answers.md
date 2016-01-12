@@ -121,17 +121,17 @@
 # Level 3
 * tag your metrics with `support` (one tag for all metrics).
   * Building on the same example from Level 2, I've added the `support` tag to both `collaboetry-login.latency` and `collaboetry.page_views`, as well as `collaboetry-1poem.page_views`:
-  ```javascript
-  router.get('/login', function(req, res){
-      var start = Date.now();
+    ```javascript
+    router.get('/login', function(req, res){
+        var start = Date.now();
 
-      var latency = Date.now() - start;
-      dogstatsd.histogram('collaboetry-login.latency', latency, ['support']);
-      dogstatsd.increment('collaboetry.page_views', ['support']);
+        var latency = Date.now() - start;
+        dogstatsd.histogram('collaboetry-login.latency', latency, ['support']);
+        dogstatsd.increment('collaboetry.page_views', ['support']);
 
-      res.render('users/login');
-  });
-  ```
+        res.render('users/login');
+    });
+    ```
 * tag your metrics per page
   * I went through and added page-specific metrics throughout my app, with tags such as:
 
