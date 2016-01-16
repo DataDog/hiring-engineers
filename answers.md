@@ -15,3 +15,22 @@ The agent is the service that runs in the host and collects events and metrics t
 * Forwarder: Captures the data from the collector and dogstatsd and sets it to be sent to Data Dog.
 
 There is also a supervisor process that controls and ties everything together.
+
+* Submit an event via the API.
+
+```
+#!/bin/sh
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "title": "Can you hear me DD?",
+      "text": "First event test.",
+      "priority": "normal",
+      "tags": ["environment:test"],
+      "alert_type": "info"
+  }' \
+'https://app.datadoghq.com/api/v1/events?api_key=f22de6751add6c71161b8582cac9e488'
+```
+
+![First event](./Screenshots/first_event.png)
+[First event](https://app.datadoghq.com/event/event?id=365550117954820773)
