@@ -122,3 +122,10 @@ public function getPatients()
 
 ![Dogstatsd PHP page views](./Screenshots/dogstatsd_php_latency_histogram.png)
 [Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452978295793&to_ts=1452981895793&tile_size=m&exp_metric=php.latency.histogram.95percentile%2Cphp.latency.histogram.avg%2Cphp.latency.histogram.count%2Cphp.latency.histogram.max%2Cphp.latency.histogram.median&exp_scope=&exp_agg=avg&exp_row_type=metric)
+
+* Bonus points for putting together more creative dashboards.
+
+I made a dashboard graph to compare page views and the median latency during a load test. There is a period of time where the median latency is zero and the page view rate is over 50 per second. I then introduced some extra latency by adding a `time_nanosleep(0, rand(100000000, 500000000))`. This made the page view rate drop significantly to around 2 - 4 per second.
+
+![Dogstatsd PHP page views versus median latency](./Screenshots/dogstatsd_php_page_views_latency_histogram_median.png)
+[Dogstatsd PHP page views versus median latency](https://app.datadoghq.com/dash/92254/page-views--histograms?live=true&page=0&is_auto=false&from_ts=1452983323999&to_ts=1452986923999&tile_size=m&fullscreen=72191252)
