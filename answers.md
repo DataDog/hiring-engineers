@@ -54,3 +54,29 @@ curl  -X POST -H "Content-type: application/json" \
 ![Email event](./Screenshots/event_email.png)
 ![Email event - Inbox](./Screenshots/event_email_inbox.png)
 [Email event](https://app.datadoghq.com/event/event?id=365560316136793562)
+
+### Level 2
+
+* Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+
+For this section I will use a web app with a PHP backend.
+
+To install dogstatsd I added this dependency to `composer.json`:
+
+```
+"datadog/php-datadogstatsd": "0.3.*"
+```
+
+To increment a counter I added this to the login function of the UserController:
+
+```
+public function login()
+{
+  \Datadogstatsd::increment('php.user.login');
+
+  ...
+}
+```
+
+![Dogstatsd PHP user login](./Screenshots/dogstatsd_php_user_login.png)
+[Dogstatsd PHP user login](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452965171334&to_ts=1452968771334&tile_size=m&exp_metric=php.user.login&exp_scope=&exp_agg=avg&exp_row_type=metric)
