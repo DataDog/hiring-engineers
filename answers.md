@@ -102,3 +102,23 @@ Route::get('/patients', function () {
 
 ![Dogstatsd PHP page views](./Screenshots/dogstatsd_php_page_views.png)
 [Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1452974048178&to_ts=1452974471940&tile_size=l&exp_metric=php.page.views&exp_scope=&exp_agg=avg&exp_row_type=metric&exp_calc_as_rate=true)
+
+* Create a histogram to see the latency; also give us the link to the graph
+
+Using the same load test I added this code to the getPatients function:
+
+```
+public function getPatients()
+{
+    ...
+
+    $start_time = microtime(true);
+    $patients = $this->_getPatientsByUnit($unitId);
+    \Datadogstatsd::histogram('php.latency.histogram', microtime(true) - $start_time);
+
+    return $patients;
+}
+```
+
+![Dogstatsd PHP page views](./Screenshots/dogstatsd_php_latency_histogram.png)
+[Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452978295793&to_ts=1452981895793&tile_size=m&exp_metric=php.latency.histogram.95percentile%2Cphp.latency.histogram.avg%2Cphp.latency.histogram.count%2Cphp.latency.histogram.max%2Cphp.latency.histogram.median&exp_scope=&exp_agg=avg&exp_row_type=metric)
