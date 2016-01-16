@@ -80,3 +80,25 @@ public function login()
 
 ![Dogstatsd PHP user login](./Screenshots/dogstatsd_php_user_login.png)
 [Dogstatsd PHP user login](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452965171334&to_ts=1452968771334&tile_size=m&exp_metric=php.user.login&exp_scope=&exp_agg=avg&exp_row_type=metric)
+
+* While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+
+To run the load test I used this command:
+
+```
+ab -t 360 -c 100 http://localhost:8000/patients
+```
+
+
+To monitor the page views I added this to the patients route function:
+
+```
+Route::get('/patients', function () {
+    Datadogstatsd::increment('php.page.views');
+
+    ...
+});
+```
+
+![Dogstatsd PHP page views](./Screenshots/dogstatsd_php_page_views.png)
+[Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1452974048178&to_ts=1452974471940&tile_size=l&exp_metric=php.page.views&exp_scope=&exp_agg=avg&exp_row_type=metric&exp_calc_as_rate=true)
