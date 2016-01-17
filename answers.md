@@ -129,7 +129,9 @@ public function getPatients()
 I made a dashboard graph to compare page views and the median latency during a load test. There is a period of time where the median latency is zero and the page view rate is over 50 per second. I then introduced some extra latency by adding a `time_nanosleep(0, rand(100000000, 500000000))`. This made the page view rate drop significantly to around 2 - 4 per second.
 
 ![Dogstatsd PHP page views versus median latency](./Screenshots/dogstatsd_php_page_views_latency_histogram_median.png)
-[Dogstatsd PHP page views versus median latency](https://app.datadoghq.com/dash/92254/page-views--histograms?live=true&page=0&is_auto=false&from_ts=1452983323999&to_ts=1452986923999&tile_size=m&fullscreen=72191252)
+[Dogstatsd PHP page views versus median latency](https://app.datadoghq.com/dash/92254/page-views--histograms?live=false&page=0&is_auto=false&from_ts=1452982677013&to_ts=1452989792822&tile_size=m&fullscreen=72191252)
+
+Link to [dashboard](https://app.datadoghq.com/dash/92254/page-views--histograms?live=false&page=0&is_auto=false&from_ts=1452982677000&to_ts=1452989792000&tile_size=m&fullscreen=false)
 
 ### Level 3
 
