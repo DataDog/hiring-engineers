@@ -157,3 +157,45 @@ curl  -X POST -H "Content-type: application/json" \
 ```
 
 This ensures that all metrics coming from that particular host will have this tag.
+
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+
+Based on the metrics used on level 2, I used this syntax to apply different tags to each metric.
+
+```
+\Datadogstatsd::increment('php.user.login', array('tagname' => 'page:login'));
+\Datadogstatsd::increment('php.page.views', array('tagname' => 'page:patients'));
+\Datadogstatsd::histogram('php.latency.histogram', microtime(true) - $start_time, array('tagname' => 'page:patients'));
+```
+
+For reasons I haven't determined yet, none of these metrics had tags assigned to them. When grouping by page tag (using this query `avg:php.latency.histogram.median{*} by {page}`) they all showed up ad `page:N/A`. In order to test the origin of the problem I attempted sending a time series with tags using this script:
+
+```
+#!/bin/sh
+
+currenttime=$(date +%s)
+curl  -X POST -H "Content-type: application/json" \
+-d "{ \"series\" :
+         [{\"metric\":\"php.test.latency\",
+          \"points\":[[$currenttime, 2]],
+          \"type\":\"gauge\",
+          \"host\":\"jorge-RV411\",
+          \"tags\":[\"page:test\"]}
+        ]
+    }" \
+'https://app.datadoghq.com/api/v1/series?api_key=f22de6751add6c71161b8582cac9e488'
+
+currenttime=$(date +%s)
+curl  -X POST -H "Content-type: application/json" \
+-d "{ \"series\" :
+         [{\"metric\":\"php.test.latency\",
+          \"points\":[[$currenttime, 1]],
+          \"type\":\"gauge\",
+          \"host\":\"jorge-RV411\",
+          \"tags\":[\"page:test2\"]}
+        ]
+    }" \
+'https://app.datadoghq.com/api/v1/series?api_key=f22de6751add6c71161b8582cac9e488'
+```
+
+This script allows to simulate metrics being sent from two different pages of the app. I used this metrics to complete the last part of this level.
