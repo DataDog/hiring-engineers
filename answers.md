@@ -129,3 +129,31 @@ I made a dashboard graph to compare page views and the median latency during a l
 
 ![Dogstatsd PHP page views versus median latency](./Screenshots/dogstatsd_php_page_views_latency_histogram_median.png)
 [Dogstatsd PHP page views versus median latency](https://app.datadoghq.com/dash/92254/page-views--histograms?live=true&page=0&is_auto=false&from_ts=1452983323999&to_ts=1452986923999&tile_size=m&fullscreen=72191252)
+
+### Level 3
+
+* tag your metrics with `support` (one tag for all metrics)
+
+In order to tag all metrics from a host at once, I used this script:
+
+```
+#!/bin/sh
+
+api_key=f22de6751add6c71161b8582cac9e488
+app_key=e8767e5bb4244c8738057d01a7d6d7d242fdf0fe
+host=jorge-RV411
+
+# Find a host to add a tag to
+host_name=$(curl -G "https://app.datadoghq.com/api/v1/search" \
+    -d "api_key=${api_key}" \
+    -d "application_key=${app_key}" \
+    -d "q=hosts:$host" | cut -d'"' -f6)
+
+curl  -X POST -H "Content-type: application/json" \
+-d "{
+      \"tags\" : [\"support\"]
+    }" \
+"https://app.datadoghq.com/api/v1/tags/hosts/${host_name}?api_key=${api_key}&application_key=${app_key}"
+```
+
+This ensures that all metrics coming from that particular host will have this tag.
