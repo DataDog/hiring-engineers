@@ -219,7 +219,7 @@ Link to [dashboard](https://app.datadoghq.com/dash/92263/level-3---tag-grouped-m
 Using this query `sum:php.page.views{*} by {host}.as_count()` I was able to sum all page views from this host:
 
 ![Dogstatsd PHP sum of all page views from host](./Screenshots/dogstatsd_php_page_views_counter.png)
-[Dogstatsd PHP sum of all page views from host](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453007161480&to_ts=1453010761480&tile_size=m&fullscreen=72212886)
+[Dogstatsd PHP sum of all page views from host](https://app.datadoghq.com/dash/92284/level-4?live=true&page=0&is_auto=false&from_ts=1452459210986&to_ts=1453064010986&tile_size=m&fullscreen=72243609)
 
 * Count the number of page views, split by page (hint: use tags)
 
@@ -231,12 +231,12 @@ sum:php.page.views{page:test2}.as_count()
 ```
 
 ![Dogstatsd PHP page views split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page.png)
-[Dogstatsd PHP page views split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442037991&to_ts=1453046837991&tile_size=m&fullscreen=false)
+[Dogstatsd PHP page views split by page](https://app.datadoghq.com/dash/92284/level-4?live=true&page=0&is_auto=false&from_ts=1452459393037&to_ts=1453064193037&tile_size=m)
 
 * Visualize the results on a graph
 
 ![Dogstatsd PHP sum of all page views from host split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page_graph.png)
-[Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442291604&to_ts=1453047091604&tile_size=m&fullscreen=72244980)
+[Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92284/level-4?live=true&page=0&is_auto=false&from_ts=1452459393037&to_ts=1453064193037&tile_size=m&fullscreen=72244980)
 
 * Bonus question: do you know why the graphs are very spiky?
 
