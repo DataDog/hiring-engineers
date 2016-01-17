@@ -236,3 +236,32 @@ sum:php.page.views{page:test2}.as_count()
 * Bonus question: do you know why the graphs are very spiky?
 
 I see to possible reasons for that. First, the agent collects metrics regularly every 15-20 seconds. This makes the graph less smooth than it would be if that data was collected more frequently. Second, because of the physical size constraints of the window holding the graph, data gets aggregated in order to be displayed. The longer the period of time shown in the graph, more data gets aggregated into one single data point in the graph.
+
+### Level 5
+
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+In order to achieve this I wrote two files. The first, `test_random.yaml` in `/etc/dd-agent/conf.d/`:
+
+```
+init_config:
+
+instances:
+    [{}]
+
+```
+
+The second, `test_random.py` in `/etc/dd-agent/checks.d/`:
+
+```
+from checks import AgentCheck
+
+import random
+
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+
+```
+
+After this, I had to restart the agent and run a command in order to initialize the check. The command suggested in the guide `PYTHONPATH=. python checks.d/test_random.py` didn't work for me so I searched for help in the #datadog freenode and found this command `sudo -u dd-agent dd-agent check test_random.py` that worked.
