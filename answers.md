@@ -199,3 +199,10 @@ curl  -X POST -H "Content-type: application/json" \
 ```
 
 This script allows to simulate metrics being sent from two different pages of the app. I used this metrics to complete the last part of this level.
+
+* visualize the latency by page on a graph (using stacked areas, with one color per page)
+
+Using the metrics provided by the script I was able to create this graph:
+
+![Dogstatsd PHP simulated latency using shell script grouped by page tag](./Screenshots/dogstatsd_php_simulated_latency_grouped_by_page_tag.png)
+[Dogstatsd PHP simulated latency using shell script grouped by page tag](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453006026794&to_ts=1453009626794&tile_size=m&fullscreen=72211744)
