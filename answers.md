@@ -206,3 +206,12 @@ Using the metrics provided by the script I was able to create this graph:
 
 ![Dogstatsd PHP simulated latency using shell script grouped by page tag](./Screenshots/dogstatsd_php_simulated_latency_grouped_by_page_tag.png)
 [Dogstatsd PHP simulated latency using shell script grouped by page tag](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453006026794&to_ts=1453009626794&tile_size=m&fullscreen=72211744)
+
+### Level 4
+
+* count the overall number of page views using dogstatsd counters.
+
+Using this query `sum:php.page.views{*} by {host}.as_count()` I was able to sum all page views from this host:
+
+![Dogstatsd PHP sum of all page views from host](./Screenshots/dogstatsd_php_page_views_counter.png)
+[Dogstatsd PHP sum of all page views from host](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453007161480&to_ts=1453010761480&tile_size=m&fullscreen=72212886)
