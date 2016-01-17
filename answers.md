@@ -208,7 +208,7 @@ This script allows to simulate metrics being sent from two different pages of th
 Using the metrics provided by the script I was able to create this graph:
 
 ![Dogstatsd PHP simulated latency using shell script grouped by page tag](./Screenshots/dogstatsd_php_simulated_latency_grouped_by_page_tag.png)
-[Dogstatsd PHP simulated latency using shell script grouped by page tag](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453006026794&to_ts=1453009626794&tile_size=m&fullscreen=72211744)
+[Dogstatsd PHP simulated latency using shell script grouped by page tag](https://app.datadoghq.com/dash/92263/level-3---tag-grouped-metrics?live=false&page=0&is_auto=false&from_ts=1453008666250&to_ts=1453009371543&tile_size=m&fullscreen=72211744)
 
 ### Level 4
 
