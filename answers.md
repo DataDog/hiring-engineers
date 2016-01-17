@@ -232,3 +232,7 @@ sum:php.page.views{page:test2}.as_count()
 
 ![Dogstatsd PHP sum of all page views from host split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page_graph.png)
 [Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442291604&to_ts=1453047091604&tile_size=m&fullscreen=72244980)
+
+* Bonus question: do you know why the graphs are very spiky?
+
+I see to possible reasons for that. First, the agent collects metrics regularly every 15-20 seconds. This makes the graph less smooth than it would be if that data was collected more frequently. Second, because of the physical size constraints of the window holding the graph, data gets aggregated in order to be displayed. The longer the period of time shown in the graph, more data gets aggregated into one single data point in the graph.
