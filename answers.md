@@ -210,6 +210,8 @@ Using the metrics provided by the script I was able to create this graph:
 ![Dogstatsd PHP simulated latency using shell script grouped by page tag](./Screenshots/dogstatsd_php_simulated_latency_grouped_by_page_tag.png)
 [Dogstatsd PHP simulated latency using shell script grouped by page tag](https://app.datadoghq.com/dash/92263/level-3---tag-grouped-metrics?live=false&page=0&is_auto=false&from_ts=1453008666250&to_ts=1453009371543&tile_size=m&fullscreen=72211744)
 
+Link to [dashboard](https://app.datadoghq.com/dash/92263/level-3---tag-grouped-metrics?live=false&page=0&is_auto=false&from_ts=1453008666250&to_ts=1453009371543&tile_size=m).
+
 ### Level 4
 
 * Count the overall number of page views using dogstatsd counters.
