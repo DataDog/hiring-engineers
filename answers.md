@@ -122,7 +122,7 @@ public function getPatients()
 ```
 
 ![Dogstatsd PHP page views](./Screenshots/dogstatsd_php_latency_histogram.png)
-[Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452978295793&to_ts=1452981895793&tile_size=m&exp_metric=php.latency.histogram.95percentile%2Cphp.latency.histogram.avg%2Cphp.latency.histogram.count%2Cphp.latency.histogram.max%2Cphp.latency.histogram.median&exp_scope=&exp_agg=avg&exp_row_type=metric)
+[Dogstatsd PHP page views](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452456909671&to_ts=1453061709671&tile_size=m&exp_metric=php.latency.histogram.95percentile%2Cphp.latency.histogram.avg%2Cphp.latency.histogram.count%2Cphp.latency.histogram.max%2Cphp.latency.histogram.median&exp_scope=&exp_agg=avg&exp_row_type=metric)
 
 * Bonus points for putting together more creative dashboards.
 
