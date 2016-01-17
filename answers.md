@@ -80,7 +80,7 @@ public function login()
 ```
 
 ![Dogstatsd PHP user login](./Screenshots/dogstatsd_php_user_login.png)
-[Dogstatsd PHP user login](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1452965171334&to_ts=1452968771334&tile_size=m&exp_metric=php.user.login&exp_scope=&exp_agg=avg&exp_row_type=metric)
+[Dogstatsd PHP user login](https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1452951789053&to_ts=1453013300997&tile_size=m&exp_metric=php.user.login&exp_scope=&exp_agg=avg&exp_row_type=metric)
 
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
