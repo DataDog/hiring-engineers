@@ -215,3 +215,15 @@ Using this query `sum:php.page.views{*} by {host}.as_count()` I was able to sum 
 
 ![Dogstatsd PHP sum of all page views from host](./Screenshots/dogstatsd_php_page_views_counter.png)
 [Dogstatsd PHP sum of all page views from host](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453007161480&to_ts=1453010761480&tile_size=m&fullscreen=72212886)
+
+* count the number of page views, split by page (hint: use tags)
+
+Due to the problem I mentioned on level 3 I had to simulate tagged page views using a script similar to the one used in the second part of Level 3. I was then able to split the number of page views by page tab using this queries:
+
+```
+sum:php.page.views{page:test}.as_count()
+sum:php.page.views{page:test2}.as_count()
+```
+
+![Dogstatsd PHP page views split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page.png)
+[Dogstatsd PHP page views split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442037991&to_ts=1453046837991&tile_size=m&fullscreen=false)
