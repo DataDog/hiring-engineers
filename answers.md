@@ -265,3 +265,8 @@ class RandomCheck(AgentCheck):
 ```
 
 After this, I had to restart the agent and run a command in order to initialize the check. The command suggested in the guide `PYTHONPATH=. python checks.d/test_random.py` didn't work for me so I searched for help in the #datadog freenode and found this command `sudo -u dd-agent dd-agent check test_random.py` that worked.
+
+* Visualize this new metric on Datadog, send us the link.
+
+![Dogstatsd PHP sum of all page views from host split by page](./Screenshots/agent_check_test_random.png)
+[Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92295/level-5?live=true&page=0&is_auto=false&from_ts=1453055709440&to_ts=1453059309440&tile_size=m&fullscreen=72252411)
