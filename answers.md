@@ -53,6 +53,7 @@ curl  -X POST -H "Content-type: application/json" \
 
 ![Email event](./Screenshots/event_email.png)
 ![Email event - Inbox](./Screenshots/event_email_inbox.png)
+
 [Email event](https://app.datadoghq.com/event/event?id=365560316136793562)
 
 ### Level 2
@@ -132,7 +133,7 @@ I made a dashboard graph to compare page views and the median latency during a l
 
 ### Level 3
 
-* tag your metrics with `support` (one tag for all metrics)
+* Tag your metrics with `support` (one tag for all metrics)
 
 In order to tag all metrics from a host at once, I used this script:
 
@@ -158,7 +159,7 @@ curl  -X POST -H "Content-type: application/json" \
 
 This ensures that all metrics coming from that particular host will have this tag.
 
-* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+* Tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
 
 Based on the metrics used on level 2, I used this syntax to apply different tags to each metric.
 
@@ -168,7 +169,7 @@ Based on the metrics used on level 2, I used this syntax to apply different tags
 \Datadogstatsd::histogram('php.latency.histogram', microtime(true) - $start_time, array('tagname' => 'page:patients'));
 ```
 
-For reasons I haven't determined yet, none of these metrics had tags assigned to them. When grouping by page tag (using this query `avg:php.latency.histogram.median{*} by {page}`) they all showed up ad `page:N/A`. In order to test the origin of the problem I attempted sending a time series with tags using this script:
+For reasons I haven't determined yet, none of these metrics had tags assigned to them. When grouping by page tag (using this query `avg:php.latency.histogram.median{*} by {page}`) they all showed up as `page:N/A`. In order to test the origin of the problem I attempted sending a time series with tags using this script:
 
 ```
 #!/bin/sh
@@ -200,7 +201,7 @@ curl  -X POST -H "Content-type: application/json" \
 
 This script allows to simulate metrics being sent from two different pages of the app. I used this metrics to complete the last part of this level.
 
-* visualize the latency by page on a graph (using stacked areas, with one color per page)
+* Visualize the latency by page on a graph (using stacked areas, with one color per page)
 
 Using the metrics provided by the script I was able to create this graph:
 
@@ -209,14 +210,14 @@ Using the metrics provided by the script I was able to create this graph:
 
 ### Level 4
 
-* count the overall number of page views using dogstatsd counters.
+* Count the overall number of page views using dogstatsd counters.
 
 Using this query `sum:php.page.views{*} by {host}.as_count()` I was able to sum all page views from this host:
 
 ![Dogstatsd PHP sum of all page views from host](./Screenshots/dogstatsd_php_page_views_counter.png)
 [Dogstatsd PHP sum of all page views from host](https://app.datadoghq.com/dash/92263/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1453007161480&to_ts=1453010761480&tile_size=m&fullscreen=72212886)
 
-* count the number of page views, split by page (hint: use tags)
+* Count the number of page views, split by page (hint: use tags)
 
 Due to the problem I mentioned on level 3 I had to simulate tagged page views using a script similar to the one used in the second part of Level 3. I was then able to split the number of page views by page tab using this queries:
 
@@ -228,7 +229,7 @@ sum:php.page.views{page:test2}.as_count()
 ![Dogstatsd PHP page views split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page.png)
 [Dogstatsd PHP page views split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442037991&to_ts=1453046837991&tile_size=m&fullscreen=false)
 
-* visualize the results on a graph
+* Visualize the results on a graph
 
 ![Dogstatsd PHP sum of all page views from host split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page_graph.png)
 [Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442291604&to_ts=1453047091604&tile_size=m&fullscreen=72244980)
