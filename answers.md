@@ -227,3 +227,8 @@ sum:php.page.views{page:test2}.as_count()
 
 ![Dogstatsd PHP page views split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page.png)
 [Dogstatsd PHP page views split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442037991&to_ts=1453046837991&tile_size=m&fullscreen=false)
+
+* visualize the results on a graph
+
+![Dogstatsd PHP sum of all page views from host split by page](./Screenshots/dogstatsd_php_page_views_counter_by_page_graph.png)
+[Dogstatsd PHP sum of all page views from host split by page](https://app.datadoghq.com/dash/92284/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1452442291604&to_ts=1453047091604&tile_size=m&fullscreen=72244980)
