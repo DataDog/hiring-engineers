@@ -1,4 +1,4 @@
-#Level 1
+# Level 1
 
 <h2>
 - Sign up for Datadog, get the agent reporting metrics.
@@ -75,3 +75,135 @@ After launching 4 times the Event via the API, I logically received the followin
 ![Email-3](../hiring-engineers/images-challenge/mail-content.png) 
 
 I settled my alert to be triggered when 3 events happened in a timeslot of 4 hours. Therefore I received an email of recovery 4 hours after the initial alert, informing me that the alert was recovered. 
+
+# Level 2 
+
+<h2>
+- Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
+
+I chose to achieve this question on my Ruby on Rails based blog. 
+
++ So I had to ***first integrate the dogstatsd-ruby gem.***
+
+I added the gem to the Gemfile to do so, then ran the command bundle install to update the installations:
+
+```python
+#Monitor with Datadog
+gem 'dogstatsd-ruby', '~> 1.6'
+```
+Then I needed to enable the application to send metrics through the Statsd, from anywhere in the app. 
+I did that by updating my blog app on my test environment located in a Vagrant virtual machine. That enabled me to test any changes I was applying to my web app : 
+
++ Update the ***config>application.rb*** file 
+
+We configure the whole application to access ‘statsd’ when needed and create the global value $statsd referring to the creation of an instance of statsd server :
+
+```ruby
+require File.expand_path('../boot', __FILE__)
+
+require 'rails/all'
+
+#Enable the statsd server to aggregate the data from the appplication
+require 'statsd'
+$statsd = Statsd.new('localhost', 8125)
+```
+
++ Create dedicated metrics for my app 
+
+I began by monitoring the pages views and the posts views. I updated the posts-controller.rb file:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Counting the number of views of the Index/Home page :
+
+```ruby
+def index
+		@posts = Post.all.order('created_at DESC')
+# Everytime a user sees the home page containing the post index, 
+#statsd will increment the count and send it to Datadog
+		tags = "page:index"
+		$statsd.increment('blog.page.views', :tags => [tags])
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Counting the number of views of the posts, tagging the posts as per their titles : 
+
+```ruby
+def show
+		@post = Post.find(params[:id])
+		tags = "page:#{@post.title}"
+		$statsd.increment('blog.page.views', :tags => [tags])
+	end
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Counting the number of failures of post creations and updates, creating one metric with two tags : 
+
+New Metric: blog.failed.post
+
+***Tag1 : post:creation***
+
+```ruby
+def create
+		@post = Post.new(post_params)
+		if @post.save
+			redirect_to @post
+		else 
+			render 'new'
+	#Every-time someone fails to create a new post, statsd increments the count and sends it to Datadog
+	#Here the metrics refers to a post creation failure, tag refers to the initial creation of a post
+			tags = "post:creation"
+			$statsd.increment('blog.failed.post', :tags => [tags])
+		end
+end
+```
+
+***Tag2 : post:update***
+
+```ruby
+def update
+		@post =  Post.find(params[:id])
+
+		if @post.update(params[:post].permit(:title, :body, :image))
+			redirect_to @post
+		else
+			render 'edit'
+	#Every-time someone fails to create a new post, statsd increments the count and sends it to Datadog
+	#Here the metrics refers to a post creation failure, tags refers to the update of a post
+			tags = "post:update"
+			$statsd.increment('blog.failed.post', :tags => [tags])
+		end
+	end
+```
+
+After a few tests viewing posts a purposely failing post creations and updates, here are the data visualized on the Datadog platform : 
+
+
+![statsd-test-metrics-vagrant](../hiring-engineers-support/images-challenge/statsd-test-metrics-vagrant.png) 
+
+<h2>
+- While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
+- Create a histogram to see the latency; also give us the link to the graph
+
+
+I ran the load test on my EC2 blog-server after updating my production environment with Datadog monitoring: 
+
++ I first did a ***ab load test*** on 500 queries, but the result was not that demonstrating as shown in below :
+
+![blog-initial-load-test](../hiring-engineers-support/images-challenge/initial-load-test.png) 
+
+
++ I decided to really stress the system through ***a 500,000 request load test*** and decided to show several metrics as shown below
+
+![blog-real-load-test](../hiring-engineers-support/images-challenge/real-loadtest.png) 
+
+
+The full Blog Dashboard is also available [here](https://p.datadoghq.com/sb/15d4408a4-8201f2536e) 
+
+*See what happened on January 18th, between 9h30 pm and 10:30pm, EST*  
+
+We can see several interesting elements here: 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* The CPU was loaded up to 80%, as if there were a limit in its usage 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* The latency is very limited : this should come from the fact that the web server, web app and database are hosted on the same physical server
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* We notice that the maximum of Apache requests per second is twice as low as the MySQL. The max requests per second amount is at 200 for Apache, and 400 for MySQL
+
+
