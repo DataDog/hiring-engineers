@@ -194,8 +194,9 @@ I ran the load test on my EC2 blog-server after updating my production environme
 ![blog-real-load-test](../hiring-engineers-support/images-challenge/real-loadtest.png) 
 
 
-The full Blog Dashboard is also available [here](https://p.datadoghq.com/sb/15d4408a4-8201f2536e) 
+The full public Blog Dashboard is also available [here](https://p.datadoghq.com/sb/15d4408a4-8201f2536e) 
 
+The timeboard blog Dashboard is available can also be accessed on [my Datadog personal account](https://app.datadoghq.com/dash/92559/blog---challenge-support-engineer?live=true&page=0&is_auto=false&from_ts=1453091885894&to_ts=1453264685894&tile_size=m)
 *See what happened on January 18th, between 9h30 pm and 10:30pm, EST*  
 
 We can see several interesting elements here: 
