@@ -2,8 +2,7 @@
 
 # Level 1
 
-<h2>
-- Sign up for Datadog, get the agent reporting metrics.
+##- Sign up for Datadog, get the agent reporting metrics.
 
 
 After signing up to Datadog using *"Datadog Recruiting Candidate"* as Company Input, I installed the agent on my EC2 server hosting my Blog web application. The host is based on Ubuntu.   
@@ -17,14 +16,14 @@ I chose to represent three main metrics:
 These three metrics will enable me to help me monitor my web app and make sure I constantly have enough memory, disk space available and responsive CPU.
 
 Here are the representations of these three metrics : 
-![Initial metrics](../hiring-engineers/images-challenge/Blog-initial-metrics.png)
+![Initial metrics](/images-challenge/Blog-initial-metrics.png)
 
 
 The complete Blog Dashboard can also be found [here](https://p.datadoghq.com/sb/15d4408a4-8201f2536e)
 
 
-<h2>
-- Bonus question: what is the agent?
+
+##- Bonus question: what is the agent?
 
 The agent is a piece of software embedded on the host to be monitored. It is composed of three main parts:
 
@@ -33,8 +32,7 @@ The agent is a piece of software embedded on the host to be monitored. It is com
 - ***The Forwarder*** collects data from the collector and the dogstatsd , puts them on a queue then send them do Datadog for analysis and visualization capabilities.
 
 
-<h2>
-- Submit an event via the API.
+##- Submit an event via the API.=
 
 In order to do that, I first created an API key on the personal-account Datadog *Integration>API* tab, to enable the transactions to be authenticated. I then created the Python script as follows :
 
@@ -61,27 +59,27 @@ tags = ['API-test']
 api.Event.create(title=title, text=text, tags=tags)
 ```
 
-![Event](../hiring-engineers/images-challenge/event.png) 
+![Event](/images-challenge/event.png) 
 
-<h2>
-- Get an event to appear in your email inbox (the email address you signed up for the account with)
+
+##- Get an event to appear in your email inbox (the email address you signed up for the account with)
 
 In order to get an event to appear in my mailbox, I created an alert thanks to the Datadog's *Monitor>New_Monitor>Event* section. 
 I configured the Alert to send me a notification when at least 3 Events containing the text “Something” occurred over the past 4 Hours 
 
-![Alert-creation](../hiring-engineers/images-challenge/Alert-creation.png) 
+![Alert-creation](/images-challenge/Alert-creation.png) 
 
 
 After launching 4 times the Event via the API, I logically received the following email : 
-![Email-2](../hiring-engineers/images-challenge/mail-alert.png) 
-![Email-3](../hiring-engineers/images-challenge/mail-content.png) 
+![Email-2](/images-challenge/mail-alert.png) 
+![Email-3](/images-challenge/mail-content.png) 
 
 I settled my alert to be triggered when 3 events happened in a timeslot of 4 hours. Therefore I received an email of recovery 4 hours after the initial alert, informing me that the alert was recovered. 
 
 # Level 2 
 
-<h2>
-- Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
+
+##- Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
 I chose to achieve this question on my Ruby on Rails based blog. 
 
@@ -179,9 +177,9 @@ After a few tests viewing posts a purposely failing post creations and updates, 
 
 ![statsd-test-metrics-vagrant](../hiring-engineers-support/images-challenge/statsd-test-metrics-vagrant.png) 
 
-<h2>
-- While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
-- Create a histogram to see the latency; also give us the link to the graph
+
+##- While running a load test for a few minutes, visualize page views per second. Send us the link to this graph!
+##- Create a histogram to see the latency; also give us the link to the graph
 
 
 I ran the load test on my EC2 blog-server after updating my production environment with Datadog monitoring: 
@@ -211,8 +209,8 @@ We can see several interesting elements here:
 
 # Level 3 
 
-<h2>
-- Tag your metrics with support (one tag for all metrics)
+
+##- Tag your metrics with support (one tag for all metrics)
 
 I update the metrics from level 2 with the tag "support"
 
@@ -270,8 +268,8 @@ Here are the graphs I get on the Datadog interface :
 
 This is coherent with the fact that I first queried normal page views that purposely failed post creations and updates 
 
-<h2>
-- Tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)
+
+##- Tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)
 
 *See Level 2 for the beginning*
 
