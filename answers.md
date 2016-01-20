@@ -209,6 +209,7 @@ We can see several interesting elements here:
 
 # Level 3 
 
+For this part, I will use my Vagrant environment as there are more pages to view (more blog-posts), so the analysis seems more interesting
 
 ## Tag your metrics with support (one tag for all metrics)
 
@@ -360,5 +361,50 @@ I update the code for all the blog page views. In order to correctly classify th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Visualization 
 
 Using the ***Metrics>Explorer*** section of the Datadog Website, I filtered the data to be vizualized first by host, then selected the sum by tag ***page*** rendering the data from all the pages described previously :
+
+![latency-per-page](/images-challenge/latency-per-page.png) 
+
+
+# Level 4 
+
+## Count the overall number of page views using dogstatsd counters.
+
+Overall count independently from which page is a sum of every page counts settled on the host, explained in level 2 and level 3 
+For this part, I also use my Vagrant environment as there are more pages to view, so the analysis seems more interesting
+We can visualize this through the ***Metrics>Explorer*** section :
+
+![sum-page-views](/images-challenge/sum-page-views.png) 
+
+## Count the number of page views, split by page (hint: use tags)
+
+Thank to level 2 and 3, I have already gathered data on the page views
+I visualize the results using the Top List feature, decreasing order , over the past 4 hours
+
+![split-page-views](/images-challenge/split-page-views.png) 
+
+
+## Bonus question: do you know why the graphs are very spiky?
+
+To me the graphs are spiky because they count isolated events, the data is not continually displayed as could be a CPU use for example. This is well represented through a histogram. We can indeed visualize that there are time slots in which there are no events / page view. 
+The load on the system is sudden, not continuous 
+
+![histo-replace-spike](/images-challenge/split-page-views.png) 
+
+# Level 5 
+
+## Write an agent check that samples a random value. Call this new metric: test.support.random
+
+
+
+## Visualize this new metric on Datadog, send us the link.
+
+
+
+
+
+
+
+
+
 
 
