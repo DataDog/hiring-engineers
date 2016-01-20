@@ -1,3 +1,5 @@
+# Challenge : Hiring Support Engineer
+
 # Level 1
 
 <h2>
@@ -206,5 +208,159 @@ We can see several interesting elements here:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* The latency is very limited : this should come from the fact that the web server, web app and database are hosted on the same physical server
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* We notice that the maximum of Apache requests per second is twice as low as the MySQL. The max requests per second amount is at 200 for Apache, and 400 for MySQL
+
+# Level 3 
+
+<h2>
+- Tag your metrics with support (one tag for all metrics)
+
+I update the metrics from level 2 with the tag "support"
+
+```ruby
+def index
+		@posts = Post.all.order('created_at DESC')
+# Everytime a user sees the home page containing the post index, 
+#statsd will increment the count and send it to Datadog
+		tags = "page:index"
+		$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+```
+
+```ruby
+def show
+		@post = Post.find(params[:id])
+		tags = "page:#{@post.title}"
+		$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+	end
+```
+
+```ruby
+def create
+		@post = Post.new(post_params)
+		if @post.save
+			redirect_to @post
+		else 
+			render 'new'
+	#Every-time someone fails to create a new post, statsd increments the count and sends it to Datadog
+	#Here the metrics refers to a post creation failure, tag refers to the initial creation of a post
+			tags = "post:creation"
+			$statsd.increment('blog.failed.post', :tags => [tags, 'support'])
+		end
+end
+```
+
+```ruby
+def update
+		@post =  Post.find(params[:id])
+
+		if @post.update(params[:post].permit(:title, :body, :image))
+			redirect_to @post
+		else
+			render 'edit'
+	#Every-time someone fails to create a new post, statsd increments the count and sends it to Datadog
+	#Here the metrics refers to a post creation failure, tags refers to the update of a post
+			tags = "post:update"
+			$statsd.increment('blog.failed.post', :tags => [tags, 'support'])
+		end
+	end
+```
+
+Here are the graphs I get on the Datadog interface : 
+
+![support-tag](../hiring-engineers-support/images-challenge/support-tag.png) 
+
+This is coherent with the fact that I first queried normal page views that purposely failed post creations and updates 
+
+<h2>
+- Tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)
+
+*See Level 2 for the beginning*
+
+I have started with tagging my index, posts and the failure notification. Let’s do that for the rest of the web app. 
+
+Remain the following pages : 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Sign up and Log in
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* New post page ( dedicated to the admin, that is me )
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* As the comments for the posts are directly written below the post, this refers to the same page view
+
+***Sign up and log-in pages*** counts using dogstatsd. These pages are linked to the devise gem.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Sign-up : We can update the code on the ***views>devise>registration>new.html.erb*** section of the app 
+
+![sign-up](../hiring-engineers-support/images-challenge/sign-up-increment.png) 
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Log-in : We can update the code on the ***views>devise>session>new.html.erb*** section of the app 
+
+![log-in](../hiring-engineers-support/images-challenge/log-in-increment.png) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* New post:
+
+```ruby
+def new
+		@post = Post.new
+	#Every-time the authorized user wants to create a new post, statsd increments the count and sends it to Datadog
+	#Here the metrics refers to a new post view, tag refers to the initial creation of a post
+			tags = "post:creation"
+			$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+```
+
+Here is a graph of the various page views with a different color per page view
+
+![Aggregated-pages](../hiring-engineers-support/images-challenge/aggregated-pages.png) 
+
+
+<h2>
+- Visualize the latency by page on a graph (using stacked areas, with one color per page)
+
+Let’s add some code to visualize latency : latency is defined as the difference of time between the rendering and the beginning of the action 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Index page view latency 
+
+```ruby
+def index
+	#Start the count before the action of rendering the index page
+		start_time = Time.now
+		@posts = Post.all.order('created_at DESC')
+	#After the action, calculate the timeslot with the duration variable
+		duration = Time.now - start_time
+		tags = "page:index"
+	#Add the histogram of the new metrics 'blob.latency'. We keep the same tag to well identify the page view
+		$statsd.histogram('blog.latency', duration, :tags => [tags, 'support'])
+		$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+	end
+```
+
+Following the same rules :
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Post View
+
+```ruby
+def show
+		start_time = Time.now
+		@post = Post.find(params[:id])
+		duration = Time.now - start_time
+		tags = "page:#{@post.title}"
+		$statsd.histogram('blog.latency', duration, :tags => [tags, 'support'])
+		$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+	end
+```
+
+I update the code for all the blog page views. In order to correctly classify them I also updated the sign up and log_in tags into ***page:sign_up*** and ***post:log_in***
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Sign up
+
+![sign-up](../hiring-engineers-support/images-challenge/sign-up-hist.png) 
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Log in
+
+![log-in](../hiring-engineers-support/images-challenge/log-in-hist.png) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Visualization 
+
+Using the ***Metrics>Explorer*** section of the Datadog Website, I filtered the data to be vizualized first by host, then selected the sum by tag ***page*** rendering the data from all the pages described previously :
 
 
