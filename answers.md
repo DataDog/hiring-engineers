@@ -5,12 +5,15 @@
 ## Sign up for Datadog, get the agent reporting metrics.
 
 
-After signing up to Datadog using *"Datadog Recruiting Candidate"* as Company Input, I installed the agent on my EC2 server hosting my Blog web application. The host is based on Ubuntu.   
+I had already subscribed to Datadog a few months ago to monitor the blog I was building. I changed the name of the Company to *"Datadog Recruiting Candidate"* for the Challenge.
 
-I used the *easy one-step install* instruction to be found in the *Integrations>Agent* tab on Datadog personal account. System-related metrics are available on the *Metrics>Explorer* tab. 
+I had installed the agent on my EC2 server hosting my Blog. The host is based on Ubuntu.
+
+I used the *easy one-step install* instruction to be found in the ***Integrations>Agent*** tab on Datadog personal account. 
+System-related metrics are available on the ***Metrics>Explorer*** tab. 
 I chose to represent three main metrics:
 + the available disk space on the host (or system.disk.in.use )
-+ the CPU use ( or system.cpu.user)
++ the CPU usage ( or system.cpu.user)
 + the average available memory percentage over the past 5 minutes.
 
 These three metrics will enable me to help me monitor my web app and make sure I constantly have enough memory, disk space available and responsive CPU.
@@ -32,7 +35,7 @@ The agent is a piece of software embedded on the host to be monitored. It is com
 - ***The Forwarder*** collects data from the collector and the dogstatsd , puts them on a queue then send them do Datadog for analysis and visualization capabilities.
 
 
-## Submit an event via the API.=
+## Submit an event via the API.
 
 In order to do that, I first created an API key on the personal-account Datadog *Integration>API* tab, to enable the transactions to be authenticated. I then created the Python script as follows :
 
@@ -81,7 +84,8 @@ I settled my alert to be triggered when 3 events happened in a timeslot of 4 hou
 
 ## Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
 
-I chose to achieve this question on my Ruby on Rails based blog. 
+I chose to achieve this question on my Ruby on Rails based [blog](http://blog.ofievet.net/).
+The code can be found [here](https://github.com/oceanef/Blog).
 
 + So I had to ***first integrate the dogstatsd-ruby gem.***
 
@@ -91,7 +95,7 @@ I added the gem to the Gemfile to do so, then ran the command bundle install to 
 #Monitor with Datadog
 gem 'dogstatsd-ruby', '~> 1.6'
 ```
-Then I needed to enable the application to send metrics through the Statsd, from anywhere in the app. 
+Then I needed to enable the application to send metrics through the Statsd client, from anywhere in the app. 
 I did that by updating my blog app on my test environment located in a Vagrant virtual machine. That enabled me to test any changes I was applying to my web app : 
 
 + Update the ***config>application.rb*** file 
@@ -199,6 +203,24 @@ The full public Blog Dashboard is also available [here](https://p.datadoghq.com/
 The timeboard blog Dashboard is available can also be accessed on [my Datadog personal account](https://app.datadoghq.com/dash/92559/blog---challenge-support-engineer?live=true&page=0&is_auto=false&from_ts=1453091885894&to_ts=1453264685894&tile_size=m)
 *See what happened on January 18th, between 9h30 pm and 10:30pm, EST*  
 
+In order to get the latency of the pages, I added a custom metrics using the Statsd client as follows : 
+
+```ruby
+def index
+	#Start the count before the action of rendering the index page
+		start_time = Time.now
+		@posts = Post.all.order('created_at DESC')
+	#After the action, calculate the timeslot with the duration variable
+		duration = Time.now - start_time
+		tags = "page:index"
+	#Add the histogram of the new metrics 'blob.latency'. We keep the same tag to well identify the page view
+		$statsd.histogram('blog.latency', duration, :tags => [tags, 'support'])
+		$statsd.increment('blog.page.views', :tags => [tags, 'support'])
+	end
+```
+A detailed description of the concerned pages is present in Level 3
+
+
 We can see several interesting elements here: 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* The CPU was loaded up to 80%, as if there were a limit in its usage 
@@ -208,8 +230,6 @@ We can see several interesting elements here:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* We notice that the maximum of Apache requests per second is twice as low as the MySQL. The max requests per second amount is at 200 for Apache, and 400 for MySQL
 
 # Level 3 
-
-For this part, I will use my Vagrant environment as there are more pages to view (more blog-posts), so the analysis seems more interesting
 
 ## Tag your metrics with support (one tag for all metrics)
 
@@ -288,12 +308,21 @@ Remain the following pages :
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Sign-up : We can update the code on the ***views>devise>registration>new.html.erb*** section of the app 
 
-![sign-up](/images-challenge/sign-up-increment.png) 
+```erb
+<%= render "devise/shared/links" %>
 
+  <% tags = "page:sign_up" %>
+  <% $statsd.increment('blog.page.views', :tags => [tags]) %>
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Log-in : We can update the code on the ***views>devise>session>new.html.erb*** section of the app 
 
-![log-in](/images-challenge/log-in-increment.png) 
+```erb
+<%= render "devise/shared/links" %>
+
+<% tags = "page:log_in" %>
+<% $statsd.increment('blog.page.views', :tags => [tags]) %>
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* New post:
 
@@ -302,15 +331,11 @@ def new
 		@post = Post.new
 	#Every-time the authorized user wants to create a new post, statsd increments the count and sends it to Datadog
 	#Here the metrics refers to a new post view, tag refers to the initial creation of a post
-			tags = "post:creation"
+			tags = "page:creation"
 			$statsd.increment('blog.page.views', :tags => [tags, 'support'])
 ```
 
 Here is a graph of the various page views with a different color per page view
-
-![Aggregated-pages](/images-challenge/aggregated-pages.png) 
-
-
 
 ## Visualize the latency by page on a graph (using stacked areas, with one color per page)
 
@@ -351,12 +376,29 @@ I update the code for all the blog page views. In order to correctly classify th
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Sign up
 
-![sign-up](/images-challenge/sign-up-hist.png) 
+```erb
+ <% start_time=Time.now %>
 
+<%= render "devise/shared/links" %>
+
+  <% duration = Time.now - start_time %>
+  <% tags = "page:sign_up" %>
+  <% $statsd.increment('blog.page.views', :tags => [tags]) %>
+  <% $statsd.histogram('blog.latency', duration, :tags => [tags]) %>
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Log in
 
-![log-in](/images-challenge/log-in-hist.png) 
+```erb
+<% start_time=Time.now %>
+
+<%= render "devise/shared/links" %>
+
+<% duration = Time.now - start_time %>
+<% tags = "page:log_in" %>
+<% $statsd.increment('blog.page.views', :tags => [tags]) %>
+<% $statsd.histogram('blog.latency', duration, :tags => [tags]) %>
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Visualization 
 
@@ -394,10 +436,37 @@ The load on the system is sudden, not continuous
 
 ## Write an agent check that samples a random value. Call this new metric: test.support.random
 
+In order to set up an Agent Check, both etc ***/etc/dd-agent/checks.d*** and ***/etc/dd-agent/conf.d***  need to be updated
 
+Once in my ***/etc/dd-agent/conf.d*** folder I initiated the *random_check.yaml* config file as follows : 
+
+```yaml
+init_config:
+
+instances:
+    [{}]
+```
+
+I then configured the *random_check.py* that I created in my ***/etc/dd-agent/checks.d*** to run the check
+
+```python
+from checks import AgentCheck
+import random
+
+class random_check(AgentCheck):
+    def check(self,instance):
+ 		self.gauge('test.support.random' , random.random() )
+```
+
+I restarted the Agent thanks to the ***sudo /etc/init.d/datadog-agent restart*** command to take these changes into account.
 
 ## Visualize this new metric on Datadog, send us the link.
 
+After some time running, the visualization of the check is as follows: we can see that all values belong to the intervall[0;1], which is relevant to the definition of the random function 
+
+![Agent-random-check](/images-challenge/Agent-random-check.png) 
+
+A real-time view of this Agent Check can be viewd [here](https://p.datadoghq.com/sb/15d4408a4-1390d6e3fd)
 
 
 
