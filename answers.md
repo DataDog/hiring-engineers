@@ -415,7 +415,12 @@ Overall count independently from which page is a sum of every page counts settle
 For this part, I also use my Vagrant environment as there are more pages to view, so the analysis seems more interesting
 We can visualize this through the ***Metrics>Explorer*** section :
 
+![sum-page-views](/images-challenge/sum-page-views-set-up.png) 
+
 ![sum-page-views](/images-challenge/sum-page-views.png) 
+
+![sum-page-views](/images-challenge/sum-page-views-graph.png) 
+
 
 ## Count the number of page views, split by page (hint: use tags)
 
@@ -427,16 +432,16 @@ I visualize the results using the Top List feature, decreasing order , over the 
 
 ## Bonus question: do you know why the graphs are very spiky?
 
-To me the graphs are spiky because they count isolated events, the data is not continually displayed as could be a CPU use for example. This is well represented through a histogram. We can indeed visualize that there are time slots in which there are no events / page view. 
+To me the graphs are spiky because they count isolated events, the data is not continually displayed as could be a CPU usage for example. This is well represented through a histogram. We can indeed visualize that there are time slots in which there are no events / page view. 
 The load on the system is sudden, not continuous 
 
-![histo-replace-spike](/images-challenge/split-page-views.png) 
+![histo-replace-spike](/images-challenge/aggregated-pages.png) 
 
 # Level 5 
 
 ## Write an agent check that samples a random value. Call this new metric: test.support.random
 
-In order to set up an Agent Check, both etc ***/etc/dd-agent/checks.d*** and ***/etc/dd-agent/conf.d***  need to be updated
+In order to set up an Agent Check, both ***/etc/dd-agent/checks.d*** and ***/etc/dd-agent/conf.d***  need to be updated
 
 Once in my ***/etc/dd-agent/conf.d*** folder I initiated the *random_check.yaml* config file as follows : 
 
@@ -466,7 +471,7 @@ After some time running, the visualization of the check is as follows: we can se
 
 ![Agent-random-check](/images-challenge/Agent-random-check.png) 
 
-A real-time view of this Agent Check can be viewd [here](https://p.datadoghq.com/sb/15d4408a4-1390d6e3fd)
+A real-time view of this Agent Check can be viewed [here](https://p.datadoghq.com/sb/15d4408a4-1390d6e3fd)
 
 
 
