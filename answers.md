@@ -59,3 +59,25 @@ end
 Results in level2-page_views_per_sec.png and level2-latency.png
 
 I'm quite surprise by the result of the page views per second. There is none sometimes whereas there are some page views (level2-page_views.png).
+
+# Level 3
+
+### Tagging metrics
+
+To tag metrics all metrics I've introduced a variable in my controller 
+```ruby
+common_tags = ["support"]
+```
+
+Then in each function I've introduced the specific tag
+```ruby
+  def contact
+    start = Time.now
+    s = Statsd.new
+    tags = Array.new(common_tags).push("page:contact")
+    s.increment('web.page_views', :tags => tags)
+    render 'contact'
+    lag = Time.now - start
+    s.histogram('latency', lag, :tags => tags)
+  end
+```
