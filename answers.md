@@ -3,7 +3,7 @@
 ### Regristration
 Adress used : guillaume.deberdt@hec.edu
 
-## What is the agent ?
+### What is the agent ?
 The agent is a software that watch for metrics on your machine and send it to datadog.
 
 ### Event API
@@ -27,7 +27,7 @@ dog.emit_event(Dogapi::Event.new('What if @guillaume.deberdt@hec.edu ?', :msg_ti
 # Level 2
 
 For this par I took a local web app in Ruby on Rails with 4 public pages
-* demoreel (home)
+* demoreel (root)
 * production
 * resume
 * contact
@@ -56,4 +56,3 @@ class StaticPagesController < ApplicationController
 
 end
 ```
-
