@@ -56,3 +56,6 @@ class StaticPagesController < ApplicationController
 
 end
 ```
+Results in level2-page_views_per_sec.png and level2-latency.png
+
+I'm quite surprise by the result of the page views per second. There is none sometimes whereas there are some page views (level2-page_views.png).
