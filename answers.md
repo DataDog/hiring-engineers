@@ -81,3 +81,11 @@ Then in each function I've introduced the specific tag
     s.histogram('latency', lag, :tags => tags)
   end
 ```
+
+Results in level3-latency_per_page_per_tag.png and level3-latency_per_page_per_tag-settings.png
+
+# Level 4
+
+### Overall number of page views and by page
+
+Results in level4-page_views_overall.png, level4-page_views_per_page.png & level4-page_views_per_page-graph.png
