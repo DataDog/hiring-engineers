@@ -89,3 +89,30 @@ Results in level3-latency_per_page_per_tag.png and level3-latency_per_page_per_t
 ### Overall number of page views and by page
 
 Results in level4-page_views_overall.png, level4-page_views_per_page.png & level4-page_views_per_page-graph.png
+
+# Level 5
+
+### Agent check that samples a random values
+
+First we need to create a ***random_check.yaml*** in ***/etc/dd-agent/conf.d/***
+
++```yaml
+init_config:
+
+instances:
+  [{}]
+```
+Then ***random_check.py*** in ***/etc/dd-agent/checks.d/***
+
+```python
+from checks import AgentCheck
+import random
+
+class random_check(AgentCheck):
+  def check(self,instance):
+    self.gauge('test.support.random' , random.random())
+```
+And we restrat with ***sudo /etc/init.d/datadog-agent restart***
+
+### Visualize it
+
