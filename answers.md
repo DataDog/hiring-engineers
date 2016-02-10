@@ -1,7 +1,7 @@
 # Level 1
 
 ### Regristration
-Adress used : guillaume.deberdt@hec.edu
+Adress mail : guillaume.deberdt@hec.edu
 
 ### What is the agent ?
 The agent is a software that watch for metrics on your machine and send it to datadog.
