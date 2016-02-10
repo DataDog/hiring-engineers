@@ -96,7 +96,7 @@ Results in level4-page_views_overall.png, level4-page_views_per_page.png & level
 
 First we need to create a ***random_check.yaml*** in ***/etc/dd-agent/conf.d/***
 
-+```yaml
+```yaml
 init_config:
 
 instances:
