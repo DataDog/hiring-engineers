@@ -14,6 +14,7 @@ api_key='...'
 dog = Dogapi::Client.new(api_key)
 dog.emit_event(Dogapi::Event.new('Hello dog !', :msg_title => 'Hello'))
 ```
+![level1-event-API.png](/level1-event-API.png)
 
 ### Event API with email
 ```ruby
@@ -23,6 +24,7 @@ api_key='...'
 dog = Dogapi::Client.new(api_key)
 dog.emit_event(Dogapi::Event.new('What if @guillaume.deberdt@hec.edu ?', :msg_title => 'Mailing with mention'))
 ```
+![level1-event-API-email.png](/level1-event-API-email.png)
 
 # Level 2
 
@@ -56,9 +58,11 @@ class StaticPagesController < ApplicationController
 
 end
 ```
-Results in level2-page_views_per_sec.png and level2-latency.png
+![level2-page_views_per_sec.png](/level2-page_views_per_sec.png)
+![level2-latency.png](/level2-latency.png)
 
-I'm quite surprise by the result of the page views per second. There is none sometimes whereas there are some page views (level2-page_views.png).
+I'm quite surprise by the result of the page views per second. There is none sometimes whereas there are some page views.
+![level2-page_views.png](/level2-page_views.png).
 
 # Level 3
 
@@ -82,13 +86,16 @@ Then in each function I've introduced the specific tag
   end
 ```
 
-Results in level3-latency_per_page_per_tag.png and level3-latency_per_page_per_tag-settings.png
+![level3-latency_per_page_per_tag.png](/level3-latency_per_page_per_tag.png)
+![level3-latency_per_page_per_tag-settings.png](/level3-latency_per_page_per_tag-settings.png)
 
 # Level 4
 
 ### Overall number of page views and by page
 
-Results in level4-page_views_overall.png, level4-page_views_per_page.png & level4-page_views_per_page-graph.png
+![level4-page_views_overall.png](/level4-page_views_overall.png)
+![level4-page_views_per_page.png](/level4-page_views_per_page.png)
+![level4-page_views_per_page-graph.png](/level4-page_views_per_page-graph.png)
 
 # Level 5
 
@@ -116,4 +123,4 @@ And we restrat with ***sudo /etc/init.d/datadog-agent restart***
 
 ### Visualize it
 
-Results in level5-test.support.random.png
+![level5-test.support.random.png](/level5-test.support.random.png)
