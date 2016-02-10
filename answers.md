@@ -86,8 +86,8 @@ Then in each function I've introduced the specific tag
   end
 ```
 
-![level3-latency_per_page_per_tag.png](/level3-latency_per_page_per_tag.png)
-![level3-latency_per_page_per_tag-settings.png](/level3-latency_per_page_per_tag-settings.png)
+![level3-latency_per_tag.png](/level3-latency_per_tag.png)
+![level3-latency_per_tag-settings.png](/level3-latency_per_tag-settings.png)
 
 # Level 4
 
