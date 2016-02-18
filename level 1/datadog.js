@@ -1,8 +1,4 @@
-Your answers to the questions go here.
-
-Level 1:
-
-```var dataDog = require('dogapi');
+var dataDog = require('dogapi');
 var nodemailer = require('nodemailer');
 
 var options = {
@@ -34,12 +30,4 @@ dataDog.event.create(title, text, function(err, results) {
     console.log(info);
   });
   console.log(results);
-});```
-
-level 2:
-
-level 3:
-
-level 4:
-
-level 5:
+});

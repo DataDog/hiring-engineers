@@ -1,0 +1,15 @@
+{
+  "name": "level_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "datadog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dogapi": "^1.1.0",
+    "nodemailer": "^2.1.0"
+  }
+}
