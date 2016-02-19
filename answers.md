@@ -57,6 +57,7 @@ Project Used:
 [Liverpool FC Forum](https://peaceful-gorge-7113.herokuapp.com/)
 
 [Github Repo](https://github.com/alschofield/LiverpoolForum)
+*Look in server.rb in the github repo*
 
 Part 2:
 
