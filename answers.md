@@ -2,7 +2,8 @@ Your answers to the questions go here.
 
 Level 1:
 
-```var dataDog = require('dogapi');
+```
+var dataDog = require('dogapi');
 var nodemailer = require('nodemailer');
 
 var options = {
@@ -34,59 +35,78 @@ dataDog.event.create(title, text, function(err, results) {
     console.log(info);
   });
   console.log(results);
-});```
+});
+```
 
 level 2:
-```statsd = Statsd.new()```
+```
+statsd = Statsd.new()
+```
 
+```
 statsd.increment('page.views')
+```
 
-```def histogram_create_user
-      statsd = Statsd.new()
-      start_time = Time.now
-      results = User.create();
-      duration = Time.now - start_time
-      statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
-    end```
+```
+def histogram_create_user
+  statsd = Statsd.new()
+  start_time = Time.now
+  results = User.create();
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
+end
+```
 
 level 3 and 4:
-```def histogram_create_user
-      statsd = Statsd.new()
-      start_time = Time.now
-      results = User.create(username: 'test_user');
-      duration = Time.now - start_time
-      statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
-    end```
+```
+def histogram_create_user
+  statsd = Statsd.new()
+  start_time = Time.now
+  results = User.create(username: 'test_user');
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
+end
+```
 
-```def histogram_find_user
-      statsd = Statsd.new()
-      start_time = Time.now
-      results = User.find_by({username: 'test_user'});
-      duration = Time.now - start_time
-      statsd.histogram('database.query.time', duration, :tags => ['support', 'page:login'])
-    end```
+```
+def histogram_find_user
+  statsd = Statsd.new()
+  start_time = Time.now
+  results = User.find_by({username: 'test_user'});
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:login'])
+  end
+```
 
-```get('/') do
-      statsd.increment('page.views', :tags => ['support', 'page:login'])
-      histogram_find_user()
-      erb :login_form
-    end```
+```
+get('/') do
+  statsd.increment('page.views', :tags => ['support', 'page:login'])
+  histogram_find_user()
+  erb :login_form
+end
+```
 
-```get('/sign_up') do
-      statsd.increment('page.views', :tags => ['support', 'page:sign_up'])
-      histogram_create_user()
-      erb :signup_form
-    end```
+```
+get('/sign_up') do
+  statsd.increment('page.views', :tags => ['support', 'page:sign_up'])
+  histogram_create_user()
+  erb :signup_form
+end
+```
 
 level 5:
 
-```init_config:
+```
+init_config:
 
 instances:
-    [{}]```
+    [{}]
+```
 
-```from checks import AgentCheck
+```
+from checks import AgentCheck
 import random
 class TestCheck(AgentCheck):
   def check(self, instance):
-    self.gauge('test.support.random', random.random())```
+    self.gauge('test.support.random', random.random())
+```
