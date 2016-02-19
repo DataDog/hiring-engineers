@@ -78,6 +78,8 @@ end
 
 level 3 and 4:
 
+Language: Ruby
+
 ![db-time-by-page](/imgs/db_time_by_page.png)
 
 ![views-by-page](/imgs/views_by_page.png)
