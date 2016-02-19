@@ -2,6 +2,8 @@ Your answers to the questions go here.
 
 Level 1:
 
+Language: Node.js
+
 ```
 var dataDog = require('dogapi');
 var nodemailer = require('nodemailer');
@@ -39,6 +41,10 @@ dataDog.event.create(title, text, function(err, results) {
 ```
 
 level 2:
+
+Language: Ruby
+
+
 ```
 statsd = Statsd.new()
 ```
@@ -106,6 +112,8 @@ end
 ```
 
 level 5:
+
+Language: Python
 
 ```
 init_config:
