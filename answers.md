@@ -45,7 +45,7 @@ statsd = Statsd.new()
 
 ```
 def histogram_create_user
-  <!-- For some reason when the program forgets what statsd is when running this block -->
+  <!-- For some reason the program forgets what statsd is when running this block -->
   statsd = Statsd.new()
   start_time = Time.now
   results = User.create();
@@ -69,7 +69,7 @@ statsd = Statsd.new()
 
 ```
 def histogram_create_user
-  <!-- For some reason when the program forgets what statsd is when running these blocks -->
+  <!-- For some reason the program forgets what statsd is when running these blocks -->
   statsd = Statsd.new()
   start_time = Time.now
   results = User.create(username: 'test_user');
@@ -80,7 +80,7 @@ end
 
 ```
 def histogram_find_user
-  <!-- For some reason when the program forgets what statsd is when running these blocks -->
+  <!-- For some reason the program forgets what statsd is when running these blocks -->
   statsd = Statsd.new()
   start_time = Time.now
   results = User.find_by({username: 'test_user'});
