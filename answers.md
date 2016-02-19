@@ -39,7 +39,7 @@ dataDog.event.create(title, text, function(err, results) {
 level 2:
 ```statsd = Statsd.new()```
 
-```statsd.increment('page.views')```
+statsd.increment('page.views')
 
 ```def histogram_create_user
       statsd = Statsd.new()
