@@ -6,7 +6,7 @@ Link: [My Dashboard](https://app.datadoghq.com/dash/100189/pageviews?live=true&p
 
 ![dd-dashboard](/imgs/dd_dashboard.png)
 
-Level 1:
+**Level 1**:
 
 Language: Node.js
 
@@ -48,15 +48,21 @@ dataDog.event.create(title, text, function(err, results) {
 });
 ```
 
-level 2:
+**Level 2, 3, & 4**:
 
 Language: Ruby
 
-My Project URL: [Liverpool FC Forum](https://peaceful-gorge-7113.herokuapp.com/)
+Project Used: 
+
+[Liverpool FC Forum](https://peaceful-gorge-7113.herokuapp.com/)
+
+[Github Repo](https://github.com/alschofield/LiverpoolForum)
 
 ![login-page-views](/imgs/login_page_views.png)
 
 ![avg-db-time](/imgs/avg_db_time.png)
+
+Part 2:
 
 ```
 statsd = Statsd.new()
@@ -81,7 +87,7 @@ get('/sign_up') do
 end
 ```
 
-level 3 and 4:
+Part 3 and 4:
 
 Language: Ruby
 
@@ -131,7 +137,7 @@ get('/sign_up') do
 end
 ```
 
-level 5:
+**level 5**:
 
 Language: Python
 
