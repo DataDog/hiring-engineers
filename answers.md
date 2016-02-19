@@ -44,27 +44,35 @@ statsd = Statsd.new()
 ```
 
 ```
-statsd.increment('page.views')
-```
-
-```
 def histogram_create_user
   statsd = Statsd.new()
   start_time = Time.now
   results = User.create();
   duration = Time.now - start_time
-  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
+  statsd.histogram('database.create_user.time', duration)
+end
+```
+
+```
+get('/sign_up') do
+  statsd.increment('page.views')
+  histogram_create_user()
+  erb :signup_form
 end
 ```
 
 level 3 and 4:
+```
+statsd = Statsd.new()
+```
+
 ```
 def histogram_create_user
   statsd = Statsd.new()
   start_time = Time.now
   results = User.create(username: 'test_user');
   duration = Time.now - start_time
-  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:sign_up'])
+  statsd.histogram('database.create_user.time', duration, :tags => ['support', 'page:sign_up'])
 end
 ```
 
@@ -74,8 +82,8 @@ def histogram_find_user
   start_time = Time.now
   results = User.find_by({username: 'test_user'});
   duration = Time.now - start_time
-  statsd.histogram('database.query.time', duration, :tags => ['support', 'page:login'])
-  end
+  statsd.histogram('database.fins_user.time', duration, :tags => ['support', 'page:login'])
+end
 ```
 
 ```
