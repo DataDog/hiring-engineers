@@ -90,8 +90,6 @@ end
 
 Part 3 and 4:
 
-Language: Ruby
-
 ```
 statsd = Statsd.new()
 ```
