@@ -58,11 +58,11 @@ Project Used:
 
 [Github Repo](https://github.com/alschofield/LiverpoolForum)
 
+Part 2:
+
 ![login-page-views](/imgs/login_page_views.png)
 
 ![avg-db-time](/imgs/avg_db_time.png)
-
-Part 2:
 
 ```
 statsd = Statsd.new()
