@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 
 DataDog Dashboard:
-!(dd-dashboard)[/imgs/dd_dashboard.png]
+![dd-dashboard](/imgs/dd_dashboard.png)
 
 Level 1:
 
