@@ -157,3 +157,5 @@ class TestCheck(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random.random())
 ```
+
+*Files for level 1 and 5 are in their respective folders*
