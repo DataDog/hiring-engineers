@@ -7,6 +7,8 @@ Level 1:
 
 Language: Node.js
 
+![dd-email](/imgs/dd_email.png)
+
 ```
 var dataDog = require('dogapi');
 var nodemailer = require('nodemailer');
@@ -47,6 +49,9 @@ level 2:
 
 Language: Ruby
 
+![login-page-views](/imgs/login_page_views.png)
+
+![avg-db-time](/imgs/avg_db_time.png)
 
 ```
 statsd = Statsd.new()
@@ -72,6 +77,11 @@ end
 ```
 
 level 3 and 4:
+
+![db-time-by-page](/imgs/db_time_by_page.png)
+
+![views-by-page](/imgs/views_by_page.png)
+
 ```
 statsd = Statsd.new()
 ```
@@ -117,6 +127,8 @@ end
 level 5:
 
 Language: Python
+
+![dd-agent-check](/imgs/dd_agent_check.png)
 
 ```
 init_config:
