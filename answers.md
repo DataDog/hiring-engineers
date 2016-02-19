@@ -60,10 +60,6 @@ Project Used:
 
 Part 2:
 
-![login-page-views](/imgs/login_page_views.png)
-
-![avg-db-time](/imgs/avg_db_time.png)
-
 ```
 statsd = Statsd.new()
 ```
@@ -87,13 +83,14 @@ get('/sign_up') do
 end
 ```
 
+![login-page-views](/imgs/login_page_views.png)
+
+![avg-db-time](/imgs/avg_db_time.png)
+
+
 Part 3 and 4:
 
 Language: Ruby
-
-![db-time-by-page](/imgs/db_time_by_page.png)
-
-![views-by-page](/imgs/views_by_page.png)
 
 ```
 statsd = Statsd.new()
@@ -137,11 +134,13 @@ get('/sign_up') do
 end
 ```
 
+![db-time-by-page](/imgs/db_time_by_page.png)
+
+![views-by-page](/imgs/views_by_page.png)
+
 **level 5**:
 
 Language: Python
-
-![dd-agent-check](/imgs/dd_agent_check.png)
 
 ```
 init_config:
@@ -157,5 +156,7 @@ class TestCheck(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random.random())
 ```
+
+![dd-agent-check](/imgs/dd_agent_check.png)
 
 *Files for level 1 and 5 are in their respective folders*
