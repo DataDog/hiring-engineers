@@ -1,11 +1,19 @@
 Your answers to the questions go here.
 Kristyn Bryan
+Link to my dashboard: https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1456023600000&live=true&is_zoomed=false&to_ts=1456628400000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=10800000
 
 ## Questions
 
 ### Level 1
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
+Fill in the required information, no need to pay now. You have a free 14 day trial.
+![Ruby Email Example](/images/metrics.png)
+Follow the instructions to install a Datadog agent on your system.
+![Ruby Email Example](/images/install_agent.png)
+If you are using a Mac OS, you will follow instructions to install this using your teminal window.
+![Ruby Email Example](/images/install_agent_2.png)
+When it has finished downloading, your Datadog dashboard will show your system's metrics.
 ![Ruby Email Example](/images/metrics.png)
 
 * Bonus question: what is the agent?
@@ -46,9 +54,43 @@ Run your ruby file and your event and email will be submitted.
 ### Level 2
 
 * Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.
+Go to https://github.com/DataDog/dogstatsd-ruby and follow the instructions to install dogstatsd (for Ruby, `gem install dogstatsd-ruby`).
+
+In the main application controller, add the code to the "index" function to create metrics for the index page.
+```
+def index
+  @tasks = Task.all
+  # Render a web page.
+  #
+  puts 'posting to datadog'
+  statsd = Statsd.new
+  statsd.increment('web.page_views')
+end
+```
+
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+https://p.datadoghq.com/sb/86f7d456a-11a75a5241
+
 * Create a histogram to see the latency; also give us the link to the graph
+Add the code inside the index function in the main controller to receive the data for the histogram:
+```
+def index
+  @tasks = Task.all
+
+  # Render a web page.
+  # Metrics for Datadog
+  puts 'posting to datadog'
+  statsd = Statsd.new
+  start_time = Time.now
+  statsd.increment('web.page_views')
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration)
+
+end
+```
 * Bonus points for putting together more creative dashboards.
+https://p.datadoghq.com/sb/86f7d456a-3ba11049ed
+![Histograms](/images/Histograms.png)
 
 ### Level 3
 
