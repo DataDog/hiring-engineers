@@ -73,19 +73,15 @@ https://p.datadoghq.com/sb/86f7d456a-11a75a5241
 
 * Create a histogram to see the latency; also give us the link to the graph
 Add the code inside the index function in the main controller to receive the data for the histogram:
+Example code:
 ```
 def index
   @tasks = Task.all
 
-  # Render a web page.
-  # Metrics for Datadog
-  puts 'posting to datadog'
   statsd = Statsd.new
   start_time = Time.now
-  statsd.increment('web.page_views')
   duration = Time.now - start_time
   statsd.histogram('database.query.time', duration)
-
 end
 ```
 * Bonus points for putting together more creative dashboards.
@@ -96,23 +92,93 @@ https://p.datadoghq.com/sb/86f7d456a-3ba11049ed
 
 Using the same web app from level 2:
 * tag your metrics with `support` (one tag for all metrics)
+Example code:
+```
+def index
+  @tasks = Task.all
+
+  statsd = Statsd.new
+  start_time = Time.now
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['support'])
+end
+```
+
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+Example code:
+```
+def edit
+  statsd = Statsd.new
+  start_time = Time.now
+  duration = Time.now - start_time
+  statsd.histogram('database.query.time', duration, :tags => ['page:edit'])
+end
+```
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+To setup the overlay:
+![Setup for Overlay](/images/95_setting_up_overlay.png)
+
+Link to live Screenboard: https://p.datadoghq.com/sb/86f7d456a-94173115a4
+
+Images of some graphs:
+![95 Percentile](/images/95_percentile.png)
+![Overlay Graphs](/images/overlay_graphs.png)
 
 ### Level 4
 
 Same web app:
 * count the overall number of page views using dogstatsd counters.
 * count the number of page views, split by page (hint: use tags)
+Example code:
+```
+def edit
+  @tasks = Task.all
+
+  statsd = Statsd.new
+  statsd.increment('web.page_views', :tags => ['page:edit'])
+end
+```
 * visualize the results on a graph
+Link to live Screenboard: https://p.datadoghq.com/sb/86f7d456a-fc96804048
+Image of graph:
+![Page Views](/images/page_views.png)
+
 * Bonus question: do you know why the graphs are very spiky?
+The reason that the graphs are spiky is because of the database queries. The order of events is as follows:
+1) The user sends the initial request to the server (processing power is low)
+2) The server queries the database (causing the spike which is the database processing of the code).
+3) The server serves the information back to the user (processing power is low once again).
 
 ### Level 5
 
 Let's switch to the agent.
 
 * Write an agent check that samples a random value. Call this new metric: `test.support.random`
+
+In a file called `randomval.py` located in `/opt/datadog-agent/agent/checks.d`
+
+```
+import random
+
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random, random())
+```
+
+In the file called randomval.yaml located in `/opt/datadog-agent/agent/conf.d`:
+```
+init_config:
+
+instances:
+    [{}]
+```
+
 * Visualize this new metric on Datadog, send us the link.
+Live link: https://p.datadoghq.com/sb/86f7d456a-c64013a19c
+
+Image of the data (graphed two ways):
+![Random Number Views](/images/random_number.png)
 
 Here is a snippet that prints a random value in python:
 
