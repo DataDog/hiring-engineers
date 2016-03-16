@@ -53,7 +53,7 @@ I'm not sure how much detail you'd like, so I'll err on the side of providing to
     ```
     but that doesn't work on OS X.  I needed to change it to
 
-    	```bash
+    ```bash
     currenttime2=time2=$(date -v-1d +%s)
     ```
 
