@@ -48,16 +48,16 @@ I'm not sure how much detail you'd like, so I'll err on the side of providing to
     * The docs mention IDs, for example the `monitor_id` in "Get a monitor's details".  But until I read down further (in "Get all monitor details"), it wasn't clear to me how to obtain a monitor's ID. I'd like to mention this when the ID is first mentioned.
     * The Shell example for "Query the Event Stream" shows this
 
-	```bash
-    currenttime2=$(date --date='1 day ago' +%s)
-    ```
-    but that doesn't work on OS X.  I needed to change it to
+        ```bash
+        currenttime2=$(date --date='1 day ago' +%s)
+        ```
+        but that doesn't work on OS X.  I needed to change it to
 
-    ```bash
-    currenttime2=time2=$(date -v-1d +%s)
-    ```
+        ```bash
+        currenttime2=time2=$(date -v-1d +%s)
+        ```
 
-    (I notice that it is correct in "Query time series points".)
+        (I notice that it is correct in "Query time series points".)
 
 * I used the API to query events for the last few days. I noticed that
  the data returned always starts and ends at midnight, even if other start/end times are specified.
