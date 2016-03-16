@@ -111,8 +111,9 @@ The email triggers the monitor and sends an email to my primary account.
 	![Screenshot showing a dashboard](screenshot.dashboard.web app-simple.png)
 	* That dashboard is [here](https://app.datadoghq.com/dash/107088/web-application-a).
 
-	But I don't know if you'll have permission to see those links.  Since it isn't a ScreenBoard, I don't see a way to generate a public URL.  The [FAQ](http://docs.datadoghq.com/faq) says that I should be able to share one of the grapphs: "In a time board, pick a graph on a dashboard, click on the cog to edit it and you’ll find the “share” tab", but I don't see that option.
+	But I don't know if you'll have permission to see that link.  Since it isn't a ScreenBoard, I don't see a way to generate a public URL.  The [FAQ](http://docs.datadoghq.com/faq) says that I should be able to share one of the graphs: "In a time board, pick a graph on a dashboard, click on the cog to edit it and you’ll find the “share” tab", but I don't see that option.
     ![Screenshot of the cog menu](screenshot.cog menu.png)
+    
     Am I looking in the wrong place?
 
 * I also tried using Perl.
