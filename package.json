@@ -1,0 +1,20 @@
+{
+  "name": "hiring-engineers",
+  "version": "1.0.0",
+  "description": "If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amattbryan/hiring-engineers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amattbryan/hiring-engineers/issues"
+  },
+  "homepage": "https://github.com/amattbryan/hiring-engineers#readme"
+}
