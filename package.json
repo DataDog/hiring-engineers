@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/amattbryan/hiring-engineers/issues"
   },
-  "homepage": "https://github.com/amattbryan/hiring-engineers#readme"
+  "homepage": "https://github.com/amattbryan/hiring-engineers#readme",
+  "dependencies": {
+    "dogapi": "^2.2.0"
+  }
 }
