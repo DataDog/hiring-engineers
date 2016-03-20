@@ -22,7 +22,7 @@ The Agent collects events and metrics to send them back to DataDog for monitorin
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 I ran a few load tests from between 100 and 1000 requests, and here's the graph:
-![Page Views]("https://app.datadoghq.com/graph/embed?token=d9e3121636f7d3d9886f5fd13fe40c2cd0f4b53dac505bb6f21dce508b7b37e9&height=300&width=600&legend=true" width="600" height="300" frameborder="0")
+![Page Views]("https://app.datadoghq.com/graph/embed?token=d9e3121636f7d3d9886f5fd13fe40c2cd0f4b53dac505bb6f21dce508b7b37e9&height=300&width=600&legend=true")
 ![Page Views](./imgs/page_views.png "Page views")
 * Create a histogram to see the latency; also give us the link to the graph
 * Bonus points for putting together more creative dashboards.
