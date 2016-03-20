@@ -25,4 +25,7 @@ I ran a few load tests from between 100 and 1000 requests, and here's the graph:
 [Page Views](https://app.datadoghq.com/graph/embed?token=d9e3121636f7d3d9886f5fd13fe40c2cd0f4b53dac505bb6f21dce508b7b37e9&height=300&width=600&legend=true)
 ![Page Views](./imgs/page_views.png "Page views")
 * Create a histogram to see the latency; also give us the link to the graph
+![Average Latency](./imgs/latency.png "Average Latency")
+[Average Latency](https://app.datadoghq.com/graph/embed?token=6387f0c7caba0fa2e0506dd60cf52e403b5dc263bd4a0daf3f8f40af84e8ccd3&height=300&width=600&legend=true)
+
 * Bonus points for putting together more creative dashboards.
