@@ -37,4 +37,8 @@ Using the same web app from level 2:
 I've added this code to my application controller:
 ![Tag metrics with Support](./imgs/tags_part_1.png "Support tag")
 * tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+To do this, I added a few methods in the controller to add tags for the main page (questions/index), and the user signup page (users/new).
+![Tag metrics part 2](./imgs/tags_part_2.png "Support tag part 2")
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
+Here the dark blue shows the questions page and light blue shows new user page.
+![Latency with tags](./imgs/latency_by_page.png "Latency with tags")
