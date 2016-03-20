@@ -42,3 +42,15 @@ To do this, I added a few methods in the controller to add tags for the main pag
 * visualize the latency by page on a graph (using stacked areas, with one color per `page`)
 Here the dark blue shows the questions page and light blue shows new user page.
 ![Latency with tags](./imgs/latency_by_page.png "Latency with tags")
+
+### Level 4
+
+Same web app:
+* count the overall number of page views using dogstatsd counters.
+* count the number of page views, split by page (hint: use tags)
+I can count the number of page views by page using the tags we created in level 3. In the chart options, if I select the following, I can see each page as a different color.
+![Chart Selection](./imgs/chart_selection.png "Chart Selection")
+* visualize the results on a graph
+![Page views by page](./imgs/tags_part_3.png "Page views by page")
+* Bonus question: do you know why the graphs are very spiky?
+The graphs are spiky because the load tests executes the page calls at once. In my case in particular, I was telling the load test to send 100 requests at once for both kinds of pages, so that's when the spike occus.
