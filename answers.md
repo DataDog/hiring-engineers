@@ -29,3 +29,12 @@ I ran a few load tests from between 100 and 1000 requests, and here's the graph:
 [Average Latency](https://app.datadoghq.com/graph/embed?token=6387f0c7caba0fa2e0506dd60cf52e403b5dc263bd4a0daf3f8f40af84e8ccd3&height=300&width=600&legend=true)
 
 * Bonus points for putting together more creative dashboards.
+
+### Level 3
+
+Using the same web app from level 2:
+* tag your metrics with `support` (one tag for all metrics)
+I've added this code to my application controller:
+![Tag metrics with Support](./imgs/tags_part_1.png "Support tag")
+* tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)
+* visualize the latency by page on a graph (using stacked areas, with one color per `page`)
