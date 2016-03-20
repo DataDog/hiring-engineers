@@ -4,6 +4,8 @@ Level 1
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
 ![Successful Signup](../imgs/agent_setup.png "Signup")
+![Successful Signup](./imgs/agent_setup.png "Signup")
+![Successful Signup](/imgs/agent_setup.png "Signup")
 
 * Bonus question: what is the agent?
 * Submit an event via the API.
