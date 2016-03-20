@@ -13,4 +13,6 @@ The Agent collects events and metrics to send them back to DataDog for monitorin
 * Submit an event via the API.
 * Get an event to appear in your email inbox (the email address you signed up for the account with)
 
+![Submit Event Code](./imgs/event_submit_code.png "Submit Event Code")
+![Submit Event Email](./imgs/event_submitted_email.png "Submit Event Email")
 
