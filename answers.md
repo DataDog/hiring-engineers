@@ -54,3 +54,23 @@ I can count the number of page views by page using the tags we created in level 
 ![Page views by page](./imgs/tags_part_3.png "Page views by page")
 * Bonus question: do you know why the graphs are very spiky?
 The graphs are spiky because the load tests executes the page calls at once. In my case in particular, I was telling the load test to send 100 requests at once for both kinds of pages, so that's when the spike occus.
+
+### Level 5
+
+Let's switch to the agent.
+
+* Write an agent check that samples a random value. Call this new metric: `test.support.random`
+* Visualize this new metric on Datadog, send us the link.
+
+Here is a snippet that prints a random value in python:
+
+```python
+import random
+print(random.random())
+```
+
+I followed the instructions but could not get the visualization to work, and I'm not sure why. First, I created a file called random.yaml in the conf.d directory:
+![YAML file](./imgs/five_one.png "YAML file")
+Then I created a Python file in the checks.d folder implementing the random number generator:
+![Python file](./imgs/five_two.png "Python file")
+But after running PYTHONPATH=. python checks.d/http.py, I could not get the metrics to generate. Not sure what's going on here.
