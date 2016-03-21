@@ -1,5 +1,5 @@
 ##Level 1
-The agent is a process that runs on client's machines. It provides data three ways (that I've observed so far): some system information is passed automatically, and users can pass data to the agent through agent checks and by sending metrics to the dogstatsd server.
+The agent is a process that runs on client's machines. It provides data three ways (that I've observed so far): some system information is passed automatically, and users can pass data to the agent through agent checks as well as by sending metrics to the dogstatsd server.
 
 I used the dogapi npm library to submit an event in app.js; a monitor I set up then alerted me by email.
 
