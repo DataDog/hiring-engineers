@@ -232,26 +232,51 @@ Therefore, you can notice that the querries for the 'Toolkit community' page ( i
 
 ##Level4;
 
+In Level 4, we want to count (web.page_count metric) the different pages individually, and have a total count, which is the sum of the different counts.
+
+To do so, we increment a global total count metric everytime a web.page_count metric is incremented.
+
+For example, for my 'Login' webpage, when we increment '**web.page_views_login**', we also increment '**web.page_views_total**'.
+
+```
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+	#metric to count the web.page_views_login
+	statsd.increment('web.page_views_login',tags = ["page:login"])
+	
+	#metric to count the overall number of page views
+	statsd.increment('web.page_views_total')
+	
+	
+	error = None
+	if request.method == 'POST':
+		if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+			error = 'Invalid Credentials. Please try again.'
+		else:
+			return redirect(url_for('main'))
+	return render_template('login.html', error=error)
+
+```
+
+
 I have created **different web.page_views metrics** for the different pages of the website in the **same graph**.
 
 ![Alt text](Level4_ count per page.jpg?raw=true "Count for different pages")
 
 
 
-For a better visibility, I have displayed the single page count metrics in lines, and the total number of page views in column.
+For a better visibility, I have displayed the single page web.page_count metrics in lines, and the total number of page views in column.
 
 The colors are associated to the following pages of my website:
 
--dark blue : home page
--red: community page
--purple: friends page
--orange: login page
--grey: signup page
-
-Please also refer to the link to the dashboard:
+1. **dark blue**: home page
+2. **red**: community page
+3. **purple**: friends page
+4. **orange**: login page
+5. **grey**: signup page
 
 You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/107211/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1458213034894&to_ts=1458216634894&tile_size=m&fullscreen=76684262)
-
 
 
 The graphs are spiky because they are 'counts'.
