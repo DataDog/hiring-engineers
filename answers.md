@@ -260,13 +260,11 @@ def login():
 ```
 
 
-I have created **different web.page_views metrics** for the different pages of the website in the **same graph**.
+I have created **different web.page_views metrics** (**in lines**) for the different pages of the website in the **same graph**. I have overlapped with these count metrics the total count metric '**web.page_views_total**' (**in blue column**) for a better visibility.
 
 ![Alt text](Level4_ count per page.jpg?raw=true "Count for different pages")
 
 
-
-For a better visibility, I have displayed the single page web.page_count metrics in lines, and the total number of page views in column.
 
 The colors are associated to the following pages of my website:
 
@@ -284,21 +282,49 @@ The graphs are spiky because they are 'counts'.
 
 ##Level5
 
-I display the metrics from the agentcheck test.support.random which shows some random values every 15 seconds.
-
-Please refer to the link to the dashboard: https://app.datadoghq.com/dash/113226/level-5---agentcheck?live=true&page=0&is_auto=false&from_ts=1459249191528&to_ts=1459252791528&tile_size=m&fullscreen=77704229
+I display here the metrics from the agentcheck test.support.random which shows some random values every 15 seconds.
 
 
-Moreover, please refer to the screenshot: 'Level5 - RandomCheck test.support.random.jpg'
+![Alt text](Level5 - AgentCheck test.support.random .jpeg?raw=true "Agent check - random")
 
-Also, see the file randomCheck.py  ( located in /etc/dd-agent/checks.d/ )
-and the file randomCheck.yaml ( located in /etc/dd-agent/conf.d/ )
+You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/113226/level-5---agentcheck?live=true&page=0&is_auto=false&from_ts=1459249191528&to_ts=1459252791528&tile_size=m&fullscreen=77704229)
 
 
+Also, see the file randomCheck.py  ( located in /etc/dd-agent/checks.d/ in a Unix OS )
+
+```
+from checks import AgentCheck
+import random
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+
+```
+
+
+and the file randomCheck.yaml ( located in /etc/dd-agent/conf.d/ in a Unix OS )
+
+```
+init_config:
+
+instances:
+    [{}]
+
+```
+
+These two files are linked and need to have the same name: randomCheck.py, and randomCheck.yaml.
+randonCheck.py is the check code. It imports the AgentCheck library and the random library. It will call the randomCheck.yaml to check the configuration and the defined instances. Here we didn't need any init_config and instances. Then the metric 'test.support.random' is defined as a gauge and sent to the agent, displaying a random value. By default, every 15 seconds, the random data will be sent. The random value is a normalized number between 0 and 1.
+
+The following section is only optional. I wanted to try to use the docker container and integrate it with the datadog agent.
 
 ##Level6 
 ###(Docker container )
 
-I have created a docker container and integrated it to Datadog.
-Please see the integration in the screenshots below:
-'Level6_docker_started.png', 'Level6_docker_running.png' and 'Level6_docker.png'
+I have followed the tutorial and created a docker container which was then integrated in Datadog. In the two screenshots below, we can see the successful integration of the docker container with Datadog.
+
+
+![Alt text](Level6_datadog_docker.png?raw=true "Docker ...")
+
+![Alt text](Level6_docker_running.png?raw=true "Docker ...")
+
+
