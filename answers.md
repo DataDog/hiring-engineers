@@ -3,7 +3,7 @@
 
 I enjoyed to do this project a lot. Cloud monitoring sounds very interesting to me. Datadog has a bright future and I hope to be part of it with you.
 
-Please see below the 5 levels I have completed, and an additional level 6 I have enjoyed doing to try the datadog - docker countainer integration:
+Please see below the 5 levels I have completed, and an additional level 6 I have enjoyed doing to try the datadog - Docker container integration:
 - [Level1](#Level1)
 - [Level2](#Level2)
 - [Level3](#level3)
@@ -37,268 +37,84 @@ This is all controlled by one supervisor process. This is separate so that the c
 ![Alt text](welcome email .jpg?raw=true "welcome email received on my email tranlaurent@hotmail.fr")
 
 
-###Level2
+##Level2
 
+I created a website using python in backend.
 
+I visualize page views per second by using web.page_views metrics. See the link and the screenshot following the links below:
 
-*3. Event submitted via the API*
+[page views per second] https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric
+https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1457952953446&to_ts=1457956553446&tile_size=l&exp_metric=database.query.time.95percentile%2Cdatabase.query.time.median&exp_scope=&exp_agg=avg&exp_row_type=metric
+Also please refer to the screenshot 'Level2_web.page_views.jpg'
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
+I visualize the latency metric using database.querry.time.95percentile to see how long the queries took. We used a database of users subscribed to the website
+I can challenge this metric by increasing the size of the database.
 
+See the latency evolution of the queries, depending on the database size:
+--for 115 rows in the database, the average latency is 0.06s  (Queries between 7.40am to 7.50am ). Please refer to the screenshot 'Level2_database_query_time_115rows.jpg'
+--for 250 rows in the database, the average latency is 0.14 s (Queries between 8.03am to 8.04am ). Please refer to the screenshot 'Level2_database_query_time_250rowsjpg.jpg'
+--for 500 rows in the database, the average latency is 0.26 s (Queries between 10.05pm to 10.11pm ). Please refer to the screenshot ' Level2_database_query_time_500rowsjpg.jpg'
+I overlapped on the same graph the 95 percentile (blue line)showing the querry longest times, and the median (purple line)showing the query median time, following the example in the datadog tutorial.
+This enables to see the average time and detect a peak of latency. The difference between the 95 percentile and the median time would have been more accurante with more query requests. 
+https://app.datadoghq.com/dash/106169/database-query-time?live=true&page=0&is_auto=false&from_ts=1457953796671&to_ts=1457957396671&tile_size=m&fullscreen=76417418
+Please refer to the screenshot 'Level2_database_query_time_comparaisons.jpg'
 
-*3. Event submitted via the API*
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
+##Level3;
 
-*3. Event submitted via the API*
+I created a Tagged metrics - web.page_views tagged page:home 
+Please refer to the screenshot 'Level3_Tagged metrics - web.page_views tagged page home.jpg'
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
+Also, I created a latency metrics tagged for two pages on a same graph: community ( purple ) and friends ( blue)
+https://app.datadoghq.com/dash/107211/blank-dashboard?live=false&page=0&is_auto=false&from_ts=1458210156000&to_ts=1458213756000&tile_size=m&fullscreen=76678605
 
-*3. Event submitted via the API*
+See refer to the screenshot ' Level3_Tagged latency metrics per page.jpg'
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
 
-*3. Event submitted via the API*
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
+##Level4;
 
+I have created different page views metrics for the different pages of the website in the same graph.
 
-*3. Event submitted via the API*
+Please refer to the screenshot 'Level 4 count per page . jpg'
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
+For a better visibility, I have displayed the single page count metrics in lines, and the total number of page views in column.
 
-*3. Event submitted via the API*
+The colors are associated to the following pages of my website:
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
+-dark blue : home page
+-red: community page
+-purple: friends page
+-orange: login page
+-grey: signup page
 
+Please also refer to the link to the dashboard: https://app.datadoghq.com/dash/107211/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1458213034894&to_ts=1458216634894&tile_size=m&fullscreen=76684262
 
-*3. Event submitted via the API*
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
+The graphs are spiky because they are 'counts'.
 
-*3. Event submitted via the API*
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
+##Level5
 
+I display the metrics from the agentcheck test.support.random which shows some random values every 15 seconds.
 
-*3. Event submitted via the API*
+Please refer to the link to the dashboard: https://app.datadoghq.com/dash/113226/level-5---agentcheck?live=true&page=0&is_auto=false&from_ts=1459249191528&to_ts=1459252791528&tile_size=m&fullscreen=77704229
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
+Moreover, please refer to the screenshot: 'Level5 - RandomCheck test.support.random.jpg'
 
-*3. Event submitted via the API*
+Also, see the file randomCheck.py  ( located in /etc/dd-agent/checks.d/ )
+and the file randomCheck.yaml ( located in /etc/dd-agent/conf.d/ )
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
 
 
-*3. Event submitted via the API*
+##Level6 (Docker container )
 
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-##Level3
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
-*3. Event submitted via the API*
-
-*4. Event appeared on my email tranlaurent@hotmail.fr*
-
-
+I have created a docker container and integrated it to Datadog.
+Please see the integration in the screenshots below:
+'Level6_docker_started.png', 'Level6_docker_running.png' and 'Level6_docker.png'
