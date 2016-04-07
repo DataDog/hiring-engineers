@@ -12,7 +12,7 @@ Please see below the 5 levels I have completed, and an additional level ^ I have
 - [Level6](#level6)
 
 
-###Level 1
+###level 1
 
 *1.Signed up for Datadog*
 
