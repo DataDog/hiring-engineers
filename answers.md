@@ -124,7 +124,7 @@ You can also see the metrics in the datadog interface following the link below w
 [page views per second] (https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric)
 
 
-Moreover, we can visualize the **latency metric** using *database.querry.time.95percentile* to see how long the queries took. We used a database of users subscribed to the website to perform querries on that database. Indeed, this way we can challenge this metric by increasing or decreasing the size of the database, to check that the latency increases or decreases.
+Moreover, we can visualize the **latency metric** using *database.querry.time.95percentile* to see how long the queries took. We used a database of users subscribed to the website to perform querries. Thus, we can challenge this metric by increasing or decreasing the size of the database to check that the latency effectively increases or decreases.
 
 An extract of my code to see the latency is:
 
