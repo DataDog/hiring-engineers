@@ -90,7 +90,7 @@ An extract of my code for the page view metrics on the home page looks like:
 def main():
 
 	#metric to count the  web.page_view
-	statsd.increment('web.page_views',tags = ["page:home"])
+	statsd.increment('web.page_views')
 
 	
 	"""Render the main page."""
@@ -153,15 +153,20 @@ def showCommunity():
 
 ```
 
+
+I overlapped on the same graph the **95 percentile (blue line)** showing the **querry longest times**, and the **median (purple line)** showing the query **median time**, following the example in the datadog tutorial.
+This enables to compare the average time and longuest querries to **eventually detect a bug/default in the server** expressed by a **peak of the blue line**. In our example, the difference between the 95 percentile and the median time would have been more accurate and significant with more query requests.
+
+
 See the latency evolution of the queries, depending on the database size:
 For 115 rows in the database, the average latency is 0.06s  (Queries between 7.40am to 7.50am ). 
-![Alt text](Level2_database_query_time_115rows.jpg?raw=true "Page Views per second")
+![Alt text](Level2_database_query_time_115rows.jpg?raw=true "Latency for a SQL querry in a 115 rows database")
 
 
 For 250 rows in the database, the average latency is 0.14 s (Queries between 8.03am to 8.04am ). 
-![Alt text](Level2_database_query_time_250rowsjpg.jpg?raw=true "Page Views per second")
+![Alt text](Level2_database_query_time_250rowsjpg.jpg?raw=true "Latency for a SQL querry in a 250 rows database")
 For 500 rows in the database, the average latency is 0.26 s (Queries between 10.05pm to 10.11pm ). 
-![Alt text](Level2_database_query_time_500rowsjpg.jpg?raw=true "Page Views per second")
+![Alt text](Level2_database_query_time_500rowsjpg.jpg?raw=true "Latency for a SQL querry in a 500 rows database")
 
 
 We can summarize this result in the following tab:
@@ -174,26 +179,48 @@ We can summarize this result in the following tab:
 | 500 | 260      |    Queries between 10.05pm to 10.11pm |
 
 
+We can see the whole graph over the day between 7 am and 11 pm below:
+
+
+![Alt text](Level2_database_query_time_comparaisons.jpg?raw=true "Latency for the three SQL querries")
+
+*We notice that there is an anormal peak at the very beginning at around 7 am. Let's not take into accunt this peak. This peak may have been cause by a bug in my computer which made the querry time slightly longer that what it was supposed to.*
+
+You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/106169/database-query-time?live=true&page=0&is_auto=false&from_ts=1457953796671&to_ts=1457957396671&tile_size=m&fullscreen=76417418)
 
 
 
-I overlapped on the same graph the 95 percentile (blue line)showing the querry longest times, and the median (purple line)showing the query median time, following the example in the datadog tutorial.
-This enables to see the average time and detect a peak of latency. The difference between the 95 percentile and the median time would have been more accurante with more query requests. 
-https://app.datadoghq.com/dash/106169/database-query-time?live=true&page=0&is_auto=false&from_ts=1457953796671&to_ts=1457957396671&tile_size=m&fullscreen=76417418
-Please refer to the screenshot 'Level2_database_query_time_comparaisons.jpg'
+##Level3
+
+I created a Tagged metrics - web.page_views tagged page:home.
+
+See an extract of the code showing the tag for the web.page_views
+
+```
+@app.route('/')
+def main():
+
+	#metric to count the  web.page_view
+	statsd.increment('web.page_views',tags = ["page:home"])
+	
+	
+	"""Render the main page."""
+	return render_template('index.html')
+	
+
+```
+
+You can notice that I have added a tag: I have  tagged the metric '**web.page_views**' by '**page:home**'.
 
 
-
-##Level3;
-
-I created a Tagged metrics - web.page_views tagged page:home 
-Please refer to the screenshot 'Level3_Tagged metrics - web.page_views tagged page home.jpg'
+![Alt text](Level3_Tagged metrics - web.page_views tagged page home.jpg?raw=true "Tagged web.page_views metric")
 
 
-Also, I created a latency metrics tagged for two pages on a same graph: community ( purple ) and friends ( blue)
-https://app.datadoghq.com/dash/107211/blank-dashboard?live=false&page=0&is_auto=false&from_ts=1458210156000&to_ts=1458213756000&tile_size=m&fullscreen=76678605
+Also, I created a **latency metrics tagged for two pages on a same graph**: community ( purple ) and friends ( blue).
+![Alt text](Level3_Tagged latency metrics per page.jpg?raw=true "Tagged web.page_views metric")
 
-See refer to the screenshot ' Level3_Tagged latency metrics per page.jpg'
+You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/107211/blank-dashboard?live=false&page=0&is_auto=false&from_ts=1458210156000&to_ts=1458213756000&tile_size=m&fullscreen=76678605)
+
 
 
 
