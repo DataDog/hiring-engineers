@@ -216,20 +216,21 @@ You can notice that I have added a tag: I have  tagged the metric '**web.page_vi
 ![Alt text](Level3_Tagged metrics - web.page_views tagged page home.jpg?raw=true "Tagged web.page_views metric")
 
 
-Also, I created a **latency metrics tagged for two pages on a same graph**: community ( purple ) and friends ( blue).
+Also, I created a **latency metrics tagged for two pages on a same graph**: 'Toolkit community' page ( purple ) and 'Toolkit friend' page ( blue).
 ![Alt text](Level3_Tagged latency metrics per page.jpg?raw=true "Tagged web.page_views metric")
 
 You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/107211/blank-dashboard?live=false&page=0&is_auto=false&from_ts=1458210156000&to_ts=1458213756000&tile_size=m&fullscreen=76678605)
 
-
+Therefore, you can notice that the querries for the 'Toolkit community' page ( in purple ) take longer that the querries for the 'Toolkit friends' page ( in blue), because the friend list is smaller than the list of all the website's users.
 
 
 
 ##Level4;
 
-I have created different page views metrics for the different pages of the website in the same graph.
+I have created **different web.page_views metrics** for the different pages of the website in the **same graph**.
 
-Please refer to the screenshot 'Level 4 count per page . jpg'
+![Alt text](Level 4 count per page . jpg?raw=true "Count for different pages")
+
 
 
 For a better visibility, I have displayed the single page count metrics in lines, and the total number of page views in column.
