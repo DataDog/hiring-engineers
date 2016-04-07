@@ -82,7 +82,7 @@ Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiri
 
 *url_for: generates an endpoint for the provided method*
 
-**from werkzeug import generate_password_hash, check_password_hash **
+**from werkzeug import generate_password_hash, check_password_hash**
 
 *To create a hashed password*
 
