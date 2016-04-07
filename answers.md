@@ -53,7 +53,6 @@ The libraries I used to build my python web application are:
 
 import MySQLdb 
 #Create a connection to MySQL
-
 import sys 
 #import the system library
 
