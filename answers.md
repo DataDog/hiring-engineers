@@ -12,6 +12,11 @@ Please see below the 5 levels I have completed, and an additional level 6 I have
 - [Level6](#level6)
 
 
+*Level 1 to Level 4 were done on the email id tranlaurent@hotmail.fr
+
+Level 5 and 6 were done on the email id viet-tuan_laurent.tran@telecom-sudparis.eu
+The trial version expired when I was doing Level 5 so I had to switch. I also switched the OS from Windows to Ubuntu to make the agentcheck installation easier.*
+
 ##Level1
 
 *1.Signed up for Datadog*
@@ -243,7 +248,9 @@ The colors are associated to the following pages of my website:
 -orange: login page
 -grey: signup page
 
-Please also refer to the link to the dashboard: https://app.datadoghq.com/dash/107211/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1458213034894&to_ts=1458216634894&tile_size=m&fullscreen=76684262
+Please also refer to the link to the dashboard:
+
+You can also look at the dashboard directly in the interface [here] (https://app.datadoghq.com/dash/107211/blank-dashboard?live=true&page=0&is_auto=false&from_ts=1458213034894&to_ts=1458216634894&tile_size=m&fullscreen=76684262)
 
 
 
