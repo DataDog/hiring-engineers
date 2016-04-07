@@ -229,7 +229,7 @@ Therefore, you can notice that the querries for the 'Toolkit community' page ( i
 
 I have created **different web.page_views metrics** for the different pages of the website in the **same graph**.
 
-![Alt text](Level 4 count per page . jpg?raw=true "Count for different pages")
+![Alt text](Level4_ count per page.jpg?raw=true "Count for different pages")
 
 
 
