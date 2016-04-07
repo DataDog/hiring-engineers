@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> Python Flask Bucket List App</title>
+	
+	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+ 
+	<!-- CSS for the audio player not needed
+	<link rel="stylesheet" type="text/css" href="../static/player.css" />
+	-->
+	
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script>
+	function initialize() {
+	  var mapProp = {
+		center:new google.maps.LatLng(40.748817,-73.985428),
+		zoom:12,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };
+	  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+	</script> 
+	
+	<meta charset="UTF-8">
+
+ 
+ </head>
+ 
+
+ <body>
+ 
+	<div class="container">
+		<div class="header">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#">Home</a> </li>
+					<li role="presentation"><a href = "login">Sign In</a>	</li>
+					<li role="presentation"><a href = "showSignUp">Sign Up</a>	</li>
+					<li role="presentation"><a href = "showCommunity">Toolkit community</a>	</li>			
+					<li role="presentation"><a href = "showFriends">Toolkit friends</a>	</li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">Toolkit List Application</h3>
+		</div>
+		
+		<div class="jumbotron">
+			<h1>Toolkit App</h1>
+			<p class="lead"></p>
+			<p><a class = "btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
+			</p>
+		</div>
+		
+		<div class="row marketing">
+			<div class="col-lg-6">
+			
+				<h4>Toolkit #1</h4>
+				<p>Youtube Video player</p>
+				<iframe width="500" height="350"
+				src="https://www.youtube.com/embed/HWKzTYWCqRc">
+				</iframe>
+				
+				<h4>Toolkit #2</h4>
+				<p>Audio Player - The Blue Danube </p>
+				 <div id="divPlayer">
+					  					
+					  <audio id="audioPlayer" ontimeupdate="update(this)">
+						<source src="static/background_music/The_Blue_Danube.mp3"></source>
+					  </audio>
+
+					  <div>
+						<div id="progressBarControl">
+						  <div id="progressBar" onclick="clickProgress('audioPlayer', this, event)">Pas de lecture</div>
+						</div>
+						<span id="progressTime">00:00</span>
+					  </div>
+
+					  <button class="control" onclick="play('audioPlayer', this)">Play</button>
+					  <button class="control" onclick="resume('audioPlayer')">Stop</button>
+
+					</div>
+
+					<script>
+						
+					  function play(idPlayer, control) {
+						  var player = document.querySelector('#' + idPlayer);
+
+						  if (player.paused) {
+							  player.play();
+							  control.textContent = 'Pause';
+						  } else {
+							  player.pause();
+							  control.textContent = 'Play';
+						  }
+					  }
+
+					  function resume(idPlayer) {
+						  var player = document.querySelector('#' + idPlayer);
+						  
+						  player.currentTime = 0;
+						  player.pause();
+						  
+					  }
+
+					  function volume(idPlayer, vol) {
+						  var player = document.querySelector('#' + idPlayer);
+
+						  player.volume = vol;
+					  }
+
+					  function update(player) {
+						  var duration = player.duration;    // total time
+						  var time     = player.currentTime; // spent time
+						  var fraction = time / duration;
+						  var percent  = Math.ceil(fraction * 100);
+
+						  var progress = document.querySelector('#progressBar');
+
+						  progress.style.width = percent + '%';
+						  progress.textContent = percent + '%';
+
+						  document.querySelector('#progressTime').textContent = formatTime(time);
+					  }
+
+					  function formatTime(time) {
+						  var hours = Math.floor(time / 3600);
+						  var mins  = Math.floor((time % 3600) / 60);
+						  var secs  = Math.floor(time % 60);
+
+						  if (secs < 10) {
+							  secs = "0" + secs;
+						  }
+
+						  if (hours) {
+							  if (mins < 10) {
+								  mins = "0" + mins;
+							  }
+
+							  return hours + ":" + mins + ":" + secs; // hh:mm:ss
+						  } else {
+							  return mins + ":" + secs; // mm:ss
+						  }
+					  }
+
+					  function clickProgress(idPlayer, control, event) {
+						  var parent = getPosition(control);    // progression
+						  var target = getMousePosition(event); // progression where clicked
+						  var player = document.querySelector('#' + idPlayer);
+
+						  var x = target.x - parent.x;
+						  var y = target.y - parent.y;
+
+						  var wrapperWidth = document.querySelector('#progressBarControl').offsetWidth;
+
+						  var percent  = Math.ceil((x / wrapperWidth) * 100);
+						  var duration = player.duration;
+
+						  player.currentTime = (duration * percent) / 100;
+					  }
+
+					  function getMousePosition(event) {
+						  return {
+							  x: event.pageX,
+							  y: event.pageY
+						  };
+					  }
+
+					  function getPosition(element){
+						  var top = 0, left = 0;
+
+						  do {
+							  top  += element.offsetTop;
+							  left += element.offsetLeft;
+						  } while (element = element.offsetParent);
+
+						  return { x: left, y: top };
+					  }
+
+					</script>
+				
+				
+				
+				<h4>Toolkit #3</h4>
+				<p>Google Maps</p>
+				
+				<div id="googleMap" style="width:500px;height:380px;"></div>
+				
+				<h4>Toolkit #4</h4>
+				<p>CNN News</p>
+				<!-- start feedwind code -->
+				<script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') 
+				+ 'feed.mikle.com/js/rssmikle.js">\x3C/script>');
+				</script>
+				<script type="text/javascript">(function() {var params = {rssmikle_url: "http://rss.cnn.com/rss/cnn_us.rss",rssmikle_frame_width: "500",rssmikle_frame_height: "400",
+				frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",
+				responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",
+				mcspeed: "20",sort: "Off",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#0066FF",rssmikle_title_color: "#FFFFFF",
+				rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",
+				rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",
+				rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M %p",item_description_style: "text+tn",item_thumbnail: "full",item_thumbnail_selection: "auto",
+				article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();
+				</script>
+				<div style="font-size:10px; text-align:center; width:300px;"><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a>
+				
+				
+				
+				
+				
+			</div>
+		</div>
+			
+		<footer class="footer">
+			<p>&copy; LTCorp 2016</p>
+		</footer>
+			
+	</div>
+		
+</body>
+
+</html>
