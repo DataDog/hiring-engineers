@@ -90,7 +90,7 @@ Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiri
 
 *To interact with the operating system*
 
-**from time import time **
+**from time import time**
 
 *To have the current time*
 
