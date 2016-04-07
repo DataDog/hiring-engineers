@@ -272,7 +272,7 @@ def login():
 ```
 
 
-I have created **different web.page_views metrics** (**in lines**) for the different pages of the website in the **same graph**. I have overlapped with these count metrics the total count metric '**web.page_views_total**' (**in blue column**) for a better visibility.
+I have created **different web.page_views metrics** (**in colored lines**) for the different pages of the website in the **same graph**. I have overlapped with these count metrics the total count metric '**web.page_views_total**' (**in blue column**) for a better visibility.
 
 ![Alt text](Level4_ count per page.jpg?raw=true "Count for different pages")
 
