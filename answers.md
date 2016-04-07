@@ -55,26 +55,31 @@
 
 ### Level 2
 
-* **Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create **metrics**.**
+* **Take a simple web app ([in any of our supported languages](http://docs.datadoghq.com/libraries/)) that you've already built and instrument your code with dogstatsd. This will create *metrics*.**
 * **While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!**
 * **Create a histogram to see the latency; also give us the link to the graph**
 * **Bonus points for putting together more creative dashboards.**
 
+
 ### Level 3
 
-Using the same web app from level 2:
+**Using the same web app from level 2:**
+
 * **tag your metrics with `support` (one tag for all metrics)**
 * **tag your metrics per page (e.g. metrics generated on `/` can be tagged with `page:home`, `/page1` with  `page:page1`)**
 * **visualize the latency by page on a graph (using stacked areas, with one color per `page`)**
 
+
 ### Level 4
 
-Same web app:
+**Same web app:**
+
 * **count the overall number of page views using dogstatsd counters.**
 * **count the number of page views, split by page (hint: use tags)**
 * **visualize the results on a graph**
 * **Bonus question: do you know why the graphs are very spiky?**
  
+
 ### Level 5
 
 **Let's switch to the agent.**
@@ -88,6 +93,9 @@ Same web app:
 import random
 print(random.random())
 ```
+
+
+
 
 ## Instructions
 If you have a question, create an issue in this repository.
