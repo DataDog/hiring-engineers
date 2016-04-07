@@ -330,9 +330,11 @@ I have followed the tutorial and created a docker container which was then integ
 ![Alt text](Level6_docker_running.png?raw=true "Docker ...")
 
 
+##Conclusion
 To conclude, my first experience with Datadog was very interesting and pleasant. I am very motivated to pursue the hiring process. 
-Please don't hesitate if you have further questions and feedbacks.
 
+Thank you for reading my answers, and please don't hesitate if you have further questions,
 
-Thank you for reading my answers,
+Best,
+Laurent Tran
 
