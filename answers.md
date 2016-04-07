@@ -159,9 +159,9 @@ For 115 rows in the database, the average latency is 0.06s  (Queries between 7.4
 
 
 For 250 rows in the database, the average latency is 0.14 s (Queries between 8.03am to 8.04am ). 
-![Alt text](Level2_database_query_time_250rows.jpg?raw=true "Page Views per second")
+![Alt text](Level2_database_query_time_250rowsjpg.jpg?raw=true "Page Views per second")
 For 500 rows in the database, the average latency is 0.26 s (Queries between 10.05pm to 10.11pm ). 
-![Alt text](Level2_database_query_time_500rows.jpg?raw=true "Page Views per second")
+![Alt text](Level2_database_query_time_500rowsjpg.jpg?raw=true "Page Views per second")
 
 
 We can summarize this result in the following tab:
