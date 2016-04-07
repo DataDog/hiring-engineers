@@ -18,7 +18,7 @@ Please see below the 5 levels I have completed, and an additional level 6 I have
 
 *2.What is Datadog ?*
 
-The **Datadog Agent ** is piece of software that runs on the client's hosts. 
+The **Datadog Agent** is piece of software that runs on the client's hosts. 
 Its job is to faithfully **collect events and metrics** and bring them to Datadog on the client's behalf so that the client can do 
 something useful with his monitoring and performance data.
 
