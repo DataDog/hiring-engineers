@@ -47,7 +47,7 @@ This is all controlled by one supervisor process. This is separate so that the c
 I created a simple website using python in backend. 
 Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiring-engineers/edit/master/webapp)
 
-*The application is a toolkit in which you can watch videos, listen to your music playlist, locate yourself on a map, and  have access to the CNN's RSS. I have named my web application 'MyAmazingToolKit.com'. The Youtube, Google Maps and CNN APIs are used. You need to register / login to access to your toolkit. You can then also be part of a group of friends within the community of users. Our metrics are mainly based on the 'Homepage', 'Sign up' and 'Toolkit Friends' pages. We will see the different characteristics of these pages, including the page count metrics and  the latency metrics. We will see that the 'Toolkit Friends' webpage, displaying the name of the friends within your community, have different response times, according to the number of your friends within the community*
+*The application is a toolkit in which you can watch videos, listen to your music playlist, locate yourself on a map, and  have access to the CNN's RSS. I have named my web application 'MyAmazingToolKit.com'. The Youtube, Google Maps and CNN APIs are used. You need to register / login to access to your toolkit. You can then also be part of a group of friends within the community of users. Our metrics are mainly based on the 'Homepage', 'Sign up' and 'Toolkit Friends' pages. We will see the different characteristics of these pages, including the page count metrics and  the latency metrics. We will see that the 'Toolkit Friends' webpage, displaying the name of the friends within your community, have different response times, according to the number of your friends within the community.*
 
 
 ####This is a screenshot of the homepage of MyAmazingToolKit.com:
@@ -57,32 +57,45 @@ Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiri
 ####The libraries I used to build my python web application are:
 
 import MySQLdb 
+
 *Create a connection to MySQL*
 
 import sys 
+
 *import the system library*
 
 import random 
+
 *to sample a random value*
 
 from flask import Flask, render_template, request, json, redirect, url_for 
-*Flask: A python Framework for creating web applications,
-render_template : Library used to render the template files,
-json: used to return json data,
-request: Library used to read the posted values for the logging and signing up,
-redirect: redirects to a url,
+
+*Flask: A python Framework for creating web applications
+
+render_template : Library used to render the template files
+
+json: used to return json data
+
+request: Library used to read the posted values for the logging and signing up
+
+redirect: redirects to a url
+
 url_for: generates an endpoint for the provided method*
 
 from werkzeug import generate_password_hash, check_password_hash 
+
 *To create a hashed password*
 
 import os 
+
 *To interact with the operating system*
 
 from time import time 
+
 *To have the current time*
 
 from datadog import statsd 
+
 *Python client for DogStatsd*
 
 You can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
