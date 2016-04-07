@@ -49,6 +49,43 @@ This is a screenshot of the homepage of MyAmazingToolKit.com:
 
 ![Alt text](Level 1 -Python Web Application - FlaskApp.jpg?raw=true "Homepage of MyAmazingToolKit.com")
 
+*The libraries I used to build my python web application are:
+
+-import MySQLdb 
+#Create a connection to MySQL
+
+-import sys 
+#import the system library
+
+-import random 
+#to sample a random value
+
+-from flask import Flask, render_template, request, json, redirect, url_for
+#Flask: A python Framework for creating web applications
+#render_template : Library used to render the template files
+#json: used to return json data
+#request: Library used to read the posted values for the logging and signing up
+#redirect: redirects to a url
+#url_for: generates an endpoint for the provided method
+
+-from werkzeug import generate_password_hash, check_password_hash
+#To create a hashed password
+
+-import os
+#To interact with the operating system
+
+-from time import time 
+#To have the current time
+
+-from datadog import statsd
+# Use Statsd, a Python client for DogStatsd*
+
+
+
+
+
+
+
 
 We can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
 
