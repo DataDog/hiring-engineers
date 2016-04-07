@@ -49,7 +49,7 @@ This is a screenshot of the homepage of MyAmazingToolKit.com:
 
 ![Alt text](Level 1 -Python Web Application - FlaskApp.jpg?raw=true "Homepage of MyAmazingToolKit.com")
 
-*The libraries I used to build my python web application are:
+The libraries I used to build my python web application are:
 
 import MySQLdb 
 #Create a connection to MySQL
@@ -78,7 +78,7 @@ from time import time
 #To have the current time
 
 from datadog import statsd
-# Use Statsd, a Python client for DogStatsd*
+# Use Statsd, a Python client for DogStatsd
 
 
 
