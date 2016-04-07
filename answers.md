@@ -230,9 +230,6 @@ def main():
 
 ```
 
-You can notice that I have added a tag: I have  tagged the metric '**web.page_views**' by '**page:home**'.
-
-
 ![Alt text](Level3_Tagged metrics - web.page_views tagged page home.jpg?raw=true "Tagged web.page_views metric")
 
 
