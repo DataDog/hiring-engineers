@@ -212,7 +212,7 @@ You can also look at the dashboard directly in the interface [here] (https://app
 
 ##Level3
 
-I created a Tagged metrics - web.page_views tagged page:home.
+I created a Tagged metrics **web.page_views** tagged with **page:home**.
 
 See an extract of the code showing the tag for the web.page_views
 
