@@ -242,9 +242,9 @@ Therefore, you can notice that the querries for the 'Toolkit community' page ( i
 
 
 
-##Level4;
+##Level4
 
-In Level 4, we want to count (web.page_count metric) the different pages individually, and have a total count, which is the sum of the different counts.
+In Level 4, we want to count the page views for each pages *individually* with the metric **web.page_count**, and have a *total page view count*, which is the sum of the different counts with the metric **web.page_views_tota**.
 
 To do so, we increment a global total count metric everytime a web.page_count metric is incremented.
 
