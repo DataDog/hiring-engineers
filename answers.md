@@ -45,15 +45,22 @@ Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiri
 *The application is a toolkit in which you can watch videos, listen to your music playlist, locate yourself on a map, and  have access to the CNN's RSS. I have named my web application 'MyAmazingToolKit.com'. The Youtube, Google Maps and CNN APIs are used. You need to register / login to access to your toolkit. You can then also be part of a community of friends. Our metrics are mainly based on the 'Sign up' and 'Toolkit Community' pages. We will see the different characteristics of these pages, including the count of page view, the latency of the 'Toolkit Community' displaying the name of the friends within your community, according to the number of your friends.*
 
 
-This is a screenshot of the homepage:
+This is a screenshot of the homepage of MyAmazingToolKit.com:
 
 ![Alt text](Level 1 -Python Web Application - FlaskApp.jpg?raw=true "Homepage of MyAmazingToolKit.com")
 
 
+We can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
 
-I visualize page views per second by using web.page_views metrics. See the link and the screenshot following the links below:
+![Alt text](Level2_web.page_views.jpg?raw=true "Page Views per second")
 
-[page views per second] https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric
+
+
+You can also see the metrics in the datadog interface following the link below with correct credentials: 
+[page views per second] (https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric)
+
+
+
 https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1457952953446&to_ts=1457956553446&tile_size=l&exp_metric=database.query.time.95percentile%2Cdatabase.query.time.median&exp_scope=&exp_agg=avg&exp_row_type=metric
 Also please refer to the screenshot 'Level2_web.page_views.jpg'
 
