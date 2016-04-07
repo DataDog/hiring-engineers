@@ -45,11 +45,11 @@ Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiri
 *The application is a toolkit in which you can watch videos, listen to your music playlist, locate yourself on a map, and  have access to the CNN's RSS. I have named my web application 'MyAmazingToolKit.com'. The Youtube, Google Maps and CNN APIs are used. You need to register / login to access to your toolkit. You can then also be part of a community of friends. Our metrics are mainly based on the 'Sign up' and 'Toolkit Community' pages. We will see the different characteristics of these pages, including the count of page view, the latency of the 'Toolkit Community' displaying the name of the friends within your community, according to the number of your friends.*
 
 
-This is a screenshot of the homepage of MyAmazingToolKit.com:
+####This is a screenshot of the homepage of MyAmazingToolKit.com:
 
 ![Alt text](Level 1 -Python Web Application - FlaskApp.jpg?raw=true "Homepage of MyAmazingToolKit.com")
 
-The libraries I used to build my python web application are:
+####The libraries I used to build my python web application are:
 
 import MySQLdb 
 *Create a connection to MySQL*
@@ -80,34 +80,98 @@ from time import time
 from datadog import statsd 
 *Python client for DogStatsd*
 
+You can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
+
+An extract of my code for the page view metrics on the home page looks like:
 
 
+```
+@app.route('/')
+def main():
+
+	#metric to count the  web.page_view
+	statsd.increment('web.page_views',tags = ["page:home"])
+
+	
+	"""Render the main page."""
+	return render_template('index.html')
 
 
+```
 
-
-
-We can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
 
 ![Alt text](Level2_web.page_views_2.jpg?raw=true "Page Views per second")
-
-
 
 You can also see the metrics in the datadog interface following the link below with correct credentials: 
 [page views per second] (https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric)
 
 
+Moreover, we can visualize the latency metric using *database.querry.time.95percentile* to see how long the queries took. We used a database of users subscribed to the website to perform querries on that database. Indeed, this way we can challenge this metric by increasing or decreasing the size of the database, to check that the latency increases or decreases.
 
-https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1457952953446&to_ts=1457956553446&tile_size=l&exp_metric=database.query.time.95percentile%2Cdatabase.query.time.median&exp_scope=&exp_agg=avg&exp_row_type=metric
-Also please refer to the screenshot 'Level2_web.page_views.jpg'
+An extract of my code to see the latency is:
 
-I visualize the latency metric using database.querry.time.95percentile to see how long the queries took. We used a database of users subscribed to the website
-I can challenge this metric by increasing the size of the database.
+```
+
+@app.route('/showCommunity')
+def showCommunity():
+
+	#start timer
+	start_time = time()
+	print start_time
+	#connection to the DB
+	connection = MySQLdb.connect (host = "localhost", user = "root", passwd = "cacapipi", db = "bucketlist")
+	
+	#prepare a cursor object using cursor() method
+	cursor = connection.cursor()
+	
+	#execute the SQL query using execute() method
+	cursor.execute("select user_name, user_username, user_password from tbl_user ")
+	
+	#fetch all the rows from the query
+	data = cursor.fetchall()
+	
+	#print the rows
+	
+		
+	for row in data:	
+		print row[0], row[1]
+	
+	
+	cursor.close()
+	
+	#close the connection
+	connection.close()
+	
+	#return timer
+	duration = time() - start_time
+	print duration
+	statsd.histogram('database.query.time', duration, tags = ["page:community"])
+	statsd.gauge('test2',200)
+	#exit the program
+	sys.exit()
+	
+
+```
 
 See the latency evolution of the queries, depending on the database size:
---for 115 rows in the database, the average latency is 0.06s  (Queries between 7.40am to 7.50am ). Please refer to the screenshot 'Level2_database_query_time_115rows.jpg'
---for 250 rows in the database, the average latency is 0.14 s (Queries between 8.03am to 8.04am ). Please refer to the screenshot 'Level2_database_query_time_250rowsjpg.jpg'
---for 500 rows in the database, the average latency is 0.26 s (Queries between 10.05pm to 10.11pm ). Please refer to the screenshot ' Level2_database_query_time_500rowsjpg.jpg'
+For 115 rows in the database, the average latency is 0.06s  (Queries between 7.40am to 7.50am ). Please refer to the screenshot 'Level2_database_query_time_115rows.jpg'
+For 250 rows in the database, the average latency is 0.14 s (Queries between 8.03am to 8.04am ). Please refer to the screenshot 'Level2_database_query_time_250rowsjpg.jpg'
+For 500 rows in the database, the average latency is 0.26 s (Queries between 10.05pm to 10.11pm ). Please refer to the screenshot ' Level2_database_query_time_500rowsjpg.jpg'
+
+
+We can summarize this result in the following tab:
+
+
+| Number of the database rows        | Latency (ms)           | Time when the querry was performed  |
+| ---------------------- |:--------------------:| -------------------------------------------------------:|
+| 115      | 60 | Queries between 7.40am to 7.50am |
+| 250      | 140      |  Queries between 8.03am to 8.04am |
+| 500 | 260      |    Queries between 10.05pm to 10.11pm |
+
+
+
+
+
 I overlapped on the same graph the 95 percentile (blue line)showing the querry longest times, and the median (purple line)showing the query median time, following the example in the datadog tutorial.
 This enables to see the average time and detect a peak of latency. The difference between the 95 percentile and the median time would have been more accurante with more query requests. 
 https://app.datadoghq.com/dash/106169/database-query-time?live=true&page=0&is_auto=false&from_ts=1457953796671&to_ts=1457957396671&tile_size=m&fullscreen=76417418
