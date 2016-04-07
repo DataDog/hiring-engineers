@@ -42,6 +42,15 @@ This is all controlled by one supervisor process. This is separate so that the c
 I created a simple website using python in backend. 
 Please see the code  [In this repository](https://github.com/tranlaurentnyc/hiring-engineers/edit/master/webapp)
 
+*The application is a toolkit in which you can watch videos, listen to your music playlist, locate yourself on a map, and  have access to the CNN's RSS. I have named my web application 'MyAmazingToolKit.com'. The Youtube, Google Maps and CNN APIs are used. You need to register / login to access to your toolkit. You can then also be part of a community of friends. Our metrics are mainly based on the 'Sign up' and 'Toolkit Community' pages. We will see the different characteristics of these pages, including the count of page view, the latency of the 'Toolkit Community' displaying the name of the friends within your community, according to the number of your friends.*
+
+
+This is a screenshot of the homepage:
+
+![Alt text](Level 1 -Python Web Application - FlaskApp.jpg?raw=true "Homepage of MyAmazingToolKit.com")
+
+
+
 I visualize page views per second by using web.page_views metrics. See the link and the screenshot following the links below:
 
 [page views per second] https://app.datadoghq.com/metric/explorer?live=false&page=0&is_auto=false&from_ts=1457524711086&to_ts=1457534945500&tile_size=m&exp_metric=web.page_views&exp_scope=&exp_agg=avg&exp_row_type=metric
