@@ -294,7 +294,7 @@ The graphs are spiky because they are 'counts'.
 
 ##Level5
 
-I display here the metrics from the agentcheck test.support.random which shows some random values every 15 seconds.
+I display here the metrics from the agentcheck **test.support.random** which shows some random values every 15 seconds.
 
 
 ![Alt text](Level5 - AgentCheck test.support.random .jpeg?raw=true "Agent check - random")
