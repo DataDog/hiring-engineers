@@ -17,7 +17,7 @@ Please see below the 5 levels I have completed, and an additional level 6 I have
 Level 5 and 6 were done on the email id viet-tuan_laurent.tran@telecom-sudparis.eu
 The trial version expired when I was doing Level 5 so I had to switch. I also switched the OS from Windows to Ubuntu to make the agentcheck installation easier.
 
-Moreover, I have tried the project in both windows and unix, and found out that it's easier to do it in unix ( Ubuntu 12) because the tutorial is more adapted to Unix, especially for the location of the different check and configuration folders during the level5 for the agentcheck. Moreover, the troubleshooting in windows was painful for the Level5, so I decided to do th level5 in Ubuntu only *
+Moreover, I have tried the project in both windows and unix, and found out that it's easier to do it in unix ( Ubuntu 12) because the tutorial is more adapted to Unix, especially for the location of the different check and configuration folders during the level5 for the agentcheck. Moreover, the troubleshooting in windows was painful for the Level5, so I decided to do th level5 in Ubuntu only*
 
 ##Level1
 
