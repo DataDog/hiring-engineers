@@ -335,6 +335,7 @@ To conclude, my first experience with Datadog was very interesting and pleasant.
 
 Thank you for reading my answers, and please don't hesitate if you have further questions,
 
-Best,
+Best regards,
+
 Laurent Tran
 
