@@ -52,7 +52,7 @@ This is a screenshot of the homepage of MyAmazingToolKit.com:
 
 We can visualize page views per second metrics on datadog interface, by using web.page_views metrics.
 
-![Alt text](Level2_web.page_views.jpg?raw=true "Page Views per second")
+![Alt text](Level2_web.page_views_2.jpg?raw=true "Page Views per second")
 
 
 
