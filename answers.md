@@ -197,6 +197,8 @@ We can summarize this result in the following tab:
 | 500 | 260      |    Queries between 10.05pm to 10.11pm |
 
 
+Therefore, we conclude that this metric makes sense because when the database doubles, the response time of the querry also doubles. The time seems proportional to the database size in our testing model.
+
 We can see the whole graph over the day between 7 am and 11 pm below:
 
 
