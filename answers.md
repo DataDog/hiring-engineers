@@ -325,7 +325,14 @@ instances:
 ```
 
 These two files are linked and need to have the same name: randomCheck.py, and randomCheck.yaml.
-randonCheck.py is the check code. It imports the AgentCheck library and the random library. It will call the randomCheck.yaml to check the configuration and the defined instances. Here we didn't need any init_config and instances. Then the metric 'test.support.random' is defined as a gauge and sent to the agent, displaying a random value. By default, every 15 seconds, the random data will be sent. The random value is a normalized number between 0 and 1.
+
+randomCheck.py is the check code. It imports the AgentCheck library and the random library. It will call the randomCheck.yaml to check the configuration and the defined instances. Here we didn't need any configuration nor instances. Then the metric **test.support.random**, displaying a random value. By default, every 15 seconds, the random data will be sent. The random value is a normalized number between 0 and 1.
+
+To conclude, Level 5 was tricky for me because I did it in windows and no data was sent to the datadog interface even though i followed the tutorial. Moreover, the troubleshot executable didn't work. So, I decided to do it in Ubuntu and it was a success.
+
+Moreover, I want to precise that this step took me more time than expected because from the code I have pulled from the dd-agent-master github, some lines were not necessary and had to be removed because some files were calling themselves in a cycle way, which displayed an error.
+
+
 
 The following section is only optional. I wanted to try to use the docker container and integrate it with the datadog agent.
 
@@ -339,6 +346,8 @@ I have followed the tutorial and created a docker container which was then integ
 
 ![Alt text](Level6_docker_running.png?raw=true "Docker ...")
 
+
+The installation and integration of Docker was very fast and easy thanks to the tutorial. It shows the great simplicity and efficiency of datadog.
 
 ##Conclusion
 To conclude, my first experience with Datadog was very interesting and pleasant. I am very motivated to pursue the hiring process. 
