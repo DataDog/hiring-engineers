@@ -10,7 +10,8 @@ The agent is the software that runs on the user's computer, monitors the metrics
 * Submit an event via the API.
 
 <img src="img/1-2.png">
-Code: see level1.rb.
+
+Code: see <a href="level1.rb">level1.rb</a>.
 
 * Get an event to appear in your email inbox (the email address you signed up for the account with)
 
@@ -24,7 +25,7 @@ I tried to do this as follows, but no success yet:
 
 My app is a Rails app, so I first added the appropriate gem to my Gemfile:
 
-gem 'dogstatsd-ruby'
+    gem 'dogstatsd-ruby'
 
 Next I added code to my sessions controller, so it would run whenever the home page is hit:
 
