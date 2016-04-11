@@ -1,4 +1,4 @@
-## Matthew Main - Answers
+## Answers - Matthew Main
 
 ### Level 1
 
@@ -195,8 +195,6 @@
 
 		statsd.increment('page_views', :tags => ["page:#{page}", "page:all"])
 
-		statsd.histogram('page_views.time', duration, :tags => ["page:#{page}", "page:all"])
-
 
 <br>
 * **visualize the results on a graph**
@@ -243,8 +241,7 @@ print(random.random())
 ```
 
 
-
-
+<br><br>
 ## Instructions
 If you have a question, create an issue in this repository.
 
