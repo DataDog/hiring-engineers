@@ -37,17 +37,19 @@ Next I added code to my sessions controller, so it would run whenever the home p
         statsd.increment('web.page_views')
       end
 
-
-
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 I ran a load test on my app locally with the following command:
 
-ab -n 10000 -c 10 http://127.0.0.1:3000/
+    ab -n 10000 -c 10 http://127.0.0.1:3000/
 
+[is this the right graph?]
 Here is the resulting graph: https://p.datadoghq.com/sb/1a534df4e-6235422a4d
 <img src="img/1-3.png">
 
 * Create a histogram to see the latency; also give us the link to the graph
+
+
+
 
 * Bonus points for putting together more creative dashboards.
