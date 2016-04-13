@@ -80,6 +80,8 @@ I ran this test in Terminal:
 Here is the resulting graph:
 <img src="img/img-5.png">
 
+Graph link: https://p.datadoghq.com/sb/1a534df4e-4ef8e97552
+
 *Bonus points for putting together more creative dashboards.*
 
 [FORTHCOMING]
