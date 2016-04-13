@@ -117,6 +117,7 @@ Then I set the metrics on the graph via the following JSON:
     }
 
 Here is the resulting graph:
+
 <img src="img/img-6.png">
 
 
