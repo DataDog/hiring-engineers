@@ -132,3 +132,62 @@ Here is the resulting graph:
 
 Here's how I created the graph:
 <img src="img/img-8.png">
+
+# Level 4
+
+*Same web app:
+
+count the overall number of page views using dogstatsd counters.*
+
+I used the following JSON:
+
+    {    
+      "viz": "timeseries",
+      "requests": [
+        {
+          "q": "cumsum(avg:web.page_views{host:Jeffs-MacBook-Air.local} by {host})",
+          "aggregator": "avg",
+          "conditional_formats": [],
+          "type": "area"
+        }
+      ]
+    }
+
+And changed the code in my app as shown here:
+
+https://github.com/jeffslutzky/pomodoro/commit/da6a7b7f6fd2d5e61249356387399e16f621c648
+
+Here is the resulting graph:
+<img src="img/img-9.png">
+
+
+*count the number of page views, split by page (hint: use tags)*
+
+I used the following JSON:
+
+    {    
+      "viz": "timeseries",
+      "requests": [
+        {
+          "q": "cumsum(avg:web.page_views{host:Jeffs-MacBook-Air.local} by {page})",
+          "aggregator": "avg",
+          "conditional_formats": [],
+          "type": "area"
+        }
+      ]
+    }
+
+I changed my code as shown here:
+
+https://github.com/jeffslutzky/pomodoro/commit/ef9fcd89780dac27584907b3020facec7ea97d8d
+
+*visualize the results on a graph*
+
+Here is the resulting graph:
+<img src="img/img-10.png">
+
+*Bonus question: do you know why the graphs are very spiky?*
+
+Because I am not getting a steady stream of visitors locally unless I run the load test. So the number of visitors jumps from 0 per second to 100 per second.
+
+# Level 5
