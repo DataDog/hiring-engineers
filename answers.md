@@ -135,9 +135,7 @@ Here's how I created the graph:
 
 # Level 4
 
-*Same web app:
-
-count the overall number of page views using dogstatsd counters.*
+*Same web app: count the overall number of page views using dogstatsd counters.*
 
 I used the following JSON:
 
@@ -191,3 +189,10 @@ Here is the resulting graph:
 Because I am not getting a steady stream of visitors locally unless I run the load test. So the number of visitors jumps from 0 per second to 100 per second.
 
 # Level 5
+
+*Write an agent check that samples a random value. Call this new metric:    test.support.random*
+
+
+
+
+*Visualize this new metric on Datadog, send us the link.*
