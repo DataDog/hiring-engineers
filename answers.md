@@ -192,7 +192,11 @@ Because I am not getting a steady stream of visitors locally unless I run the lo
 
 *Write an agent check that samples a random value. Call this new metric:    test.support.random*
 
-
+See code at <a href="sample.yaml">sample.yaml</a> and <a href="sample.py">sample.py</a>.
 
 
 *Visualize this new metric on Datadog, send us the link.*
+
+Here is the resulting graph:
+<img src="img/img-11.png">
+(Link: https://p.datadoghq.com/sb/1a534df4e-adc96c9b23)
