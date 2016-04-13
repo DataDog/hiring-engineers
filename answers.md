@@ -16,7 +16,7 @@ The agent is the software that runs on the user's computer, monitors the metrics
 
 *Get an event to appear in your email inbox (the email address you signed up for the account with)*
 
-I tried to do this as follows, but no success yet:
+I tried to do this as follows, but I didn't receive an email in my inbox:
 <img src="img/img-3.png">
 
 
@@ -52,7 +52,7 @@ Here is the resulting graph: https://p.datadoghq.com/sb/1a534df4e-6235422a4d
 
 *Create a histogram to see the latency; also give us the link to the graph*
 
-I changed my session controller's "new" method to the following adding a "before" action to create a time starting point:
+I changed my session controller's "new" method to the following, adding a "before" action to mark the start of a time interval:
 
     class SessionsController < ApplicationController
       before_action :get_time
@@ -64,7 +64,7 @@ I changed my session controller's "new" method to the following adding a "before
         statsd.histogram('database.query.time', duration)
       end
 
-And I added the following private method:
+And I added the following private method that gets called by the "before" action:
 
     private
       def get_time
@@ -119,11 +119,13 @@ Then I set the metrics on the graph via the following JSON:
 Here is the resulting graph:
 
 <img src="img/img-6.png">
-
+Graph link: https://p.datadoghq.com/sb/1a534df4e-feac4d9ace
 
 *tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)*
 
 Since my app is essentially a single-page app, I added some test "about" and "contact" pages and tagged them: https://github.com/jeffslutzky/pomodoro/commit/53a7294b5c4dd8158eeb718362b9aed1ce680584
+
+Graph link: https://p.datadoghq.com/sb/1a534df4e-c187780a90
 
 *visualize the latency by page on a graph (using stacked areas, with one color per page)*
 
@@ -157,7 +159,7 @@ https://github.com/jeffslutzky/pomodoro/commit/da6a7b7f6fd2d5e61249356387399e16f
 
 Here is the resulting graph:
 <img src="img/img-9.png">
-
+Graph link: https://p.datadoghq.com/sb/1a534df4e-feac4d9ace
 
 *count the number of page views, split by page (hint: use tags)*
 
@@ -199,4 +201,4 @@ See code at <a href="sample.yaml">sample.yaml</a> and <a href="sample.py">sample
 
 Here is the resulting graph:
 <img src="img/img-11.png">
-(Link: https://p.datadoghq.com/sb/1a534df4e-adc96c9b23)
+Graph link: https://p.datadoghq.com/sb/1a534df4e-adc96c9b23
