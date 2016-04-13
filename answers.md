@@ -1,7 +1,7 @@
 # Level 1
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
-<img src="img/1-1.png">
+<img src="img/img-1.png">
 
 * Bonus question: what is the agent?
 
@@ -9,14 +9,14 @@ The agent is the software that runs on the user's computer, monitors the metrics
 
 * Submit an event via the API.
 
-<img src="img/1-2.png">
+<img src="img/img-2.png">
 
-Code: see <a href="level1.rb">level1.rb</a>.
+(See code at <a href="level1.rb">level1.rb</a>.)
 
 * Get an event to appear in your email inbox (the email address you signed up for the account with)
 
 I tried to do this as follows, but no success yet:
-<img src="img/1-4.png">
+<img src="img/img-3.png">
 
 
 # Level 2
@@ -37,6 +37,9 @@ Next I added code to my sessions controller, so it would run whenever the home p
         statsd.increment('web.page_views')
       end
 
+(See code under app/controllers/sessions_controller.rb at  https://github.com/jeffslutzky/pomodoro/commit/67f0617d36ea6ace1fe7e0f30bab00ad4ef46d98.)
+
+
 * While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
 
 I ran a load test on my app locally with the following command:
@@ -44,7 +47,7 @@ I ran a load test on my app locally with the following command:
     ab -n 10000 -c 10 http://127.0.0.1:3000/
 
 Here is the resulting graph: https://p.datadoghq.com/sb/1a534df4e-6235422a4d
-<img src="img/1-3.png">
+<img src="img/img-4.png">
 
 * Create a histogram to see the latency; also give us the link to the graph
 
@@ -67,12 +70,14 @@ And I added the following private method:
         @start_time = Time.now
       end
 
+(See lines 2, 28-32 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
+
 I ran this test in Terminal:
 
     ab -n 3000 -c 10 http://127.0.0.1:3000/
 
 Here is the resulting graph:
-<img src="img/1-5.png">
+<img src="img/img-5.png">
 
 * Bonus points for putting together more creative dashboards.
 [FORTHCOMING]
@@ -92,6 +97,9 @@ I adjusted my "new" method in the sessions controller by assigning a tag:
       duration = Time.now - @start_time
       statsd.histogram('database.query.time', duration, :tags => ['support'])
     end
+(See line 8 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
+
+
 
 Then I set the metrics on the graph via the following JSON:
 
@@ -108,10 +116,17 @@ Then I set the metrics on the graph via the following JSON:
     }
 
 Here is the resulting graph:
-<img src="img/1-6.png">
-
+<img src="img/img-6.png">
 
 
 * tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)
 
+Since my app is essentially a single-page app, I added some test "about" and "contact" pages and tagged them: https://github.com/jeffslutzky/pomodoro/commit/53a7294b5c4dd8158eeb718362b9aed1ce680584
+
 * visualize the latency by page on a graph (using stacked areas, with one color per page)
+
+Here is the resulting graph:
+<img src="img/img-7.png">
+
+Here's how I set it up:
+<img src="img/img-8.png">
