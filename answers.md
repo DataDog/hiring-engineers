@@ -159,6 +159,7 @@ https://github.com/jeffslutzky/pomodoro/commit/da6a7b7f6fd2d5e61249356387399e16f
 
 Here is the resulting graph:
 <img src="img/img-9.png">
+
 Graph link: https://p.datadoghq.com/sb/1a534df4e-feac4d9ace
 
 *count the number of page views, split by page (hint: use tags)*
