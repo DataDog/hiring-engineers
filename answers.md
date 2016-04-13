@@ -47,7 +47,7 @@ I ran a load test on my app locally with the following command:
 
     ab -n 10000 -c 10 http://127.0.0.1:3000/
 
-Here is the resulting graph: https://p.datadoghq.com/sb/1a534df4e-6235422a4d
+Here is the resulting graph:
 <img src="img/img-4.png">
 
 *Create a histogram to see the latency; also give us the link to the graph*
@@ -81,6 +81,7 @@ Here is the resulting graph:
 <img src="img/img-5.png">
 
 *Bonus points for putting together more creative dashboards.*
+
 [FORTHCOMING]
 
 
