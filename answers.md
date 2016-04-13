@@ -89,9 +89,9 @@ Graph link: https://p.datadoghq.com/sb/1a534df4e-4ef8e97552
 
 # Level 3
 
-*Using the same web app from level 2:
+*Using the same web app from level 2:*
 
-tag your metrics with support (one tag for all metrics)*
+*tag your metrics with support (one tag for all metrics)*
 
 I adjusted my "new" method in the sessions controller by assigning a 'support' tag:
 
