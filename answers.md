@@ -125,12 +125,12 @@ Graph link: https://p.datadoghq.com/sb/1a534df4e-feac4d9ace
 
 Since my app is essentially a single-page app, I added some test "about" and "contact" pages and tagged them: https://github.com/jeffslutzky/pomodoro/commit/53a7294b5c4dd8158eeb718362b9aed1ce680584
 
-Graph link: https://p.datadoghq.com/sb/1a534df4e-c187780a90
 
 *visualize the latency by page on a graph (using stacked areas, with one color per page)*
 
 Here is the resulting graph:
 <img src="img/img-7.png">
+Graph link: https://p.datadoghq.com/sb/1a534df4e-c187780a90
 
 Here's how I created the graph:
 <img src="img/img-8.png">
