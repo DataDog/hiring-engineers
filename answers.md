@@ -130,6 +130,7 @@ Since my app is essentially a single-page app, I added some test "about" and "co
 
 Here is the resulting graph:
 <img src="img/img-7.png">
+
 Graph link: https://p.datadoghq.com/sb/1a534df4e-c187780a90
 
 Here's how I created the graph:
