@@ -1,19 +1,20 @@
 # Level 1
 
-* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.
+*Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the agent reporting metrics from your local machine.*
+
 <img src="img/img-1.png">
 
-* Bonus question: what is the agent?
+*Bonus question: what is the agent?*
 
 The agent is the software that runs on the user's computer, monitors the metrics, and sends them to Datadog. It consists of the Collector, Dogstatsd, and the Forwarder.
 
-* Submit an event via the API.
+*Submit an event via the API.*
 
 <img src="img/img-2.png">
 
 (See code at <a href="level1.rb">level1.rb</a>.)
 
-* Get an event to appear in your email inbox (the email address you signed up for the account with)
+*Get an event to appear in your email inbox (the email address you signed up for the account with)*
 
 I tried to do this as follows, but no success yet:
 <img src="img/img-3.png">
@@ -21,7 +22,7 @@ I tried to do this as follows, but no success yet:
 
 # Level 2
 
-* Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.
+*Take a simple web app (in any of our supported languages) that you've already built and instrument your code with dogstatsd. This will create metrics.*
 
 My app is a Rails app, so I first added the appropriate gem to my Gemfile:
 
@@ -40,7 +41,7 @@ Next I added code to my sessions controller, so it would run whenever the home p
 (See code under app/controllers/sessions_controller.rb at  https://github.com/jeffslutzky/pomodoro/commit/67f0617d36ea6ace1fe7e0f30bab00ad4ef46d98.)
 
 
-* While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!
+*While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!*
 
 I ran a load test on my app locally with the following command:
 
@@ -49,7 +50,7 @@ I ran a load test on my app locally with the following command:
 Here is the resulting graph: https://p.datadoghq.com/sb/1a534df4e-6235422a4d
 <img src="img/img-4.png">
 
-* Create a histogram to see the latency; also give us the link to the graph
+*Create a histogram to see the latency; also give us the link to the graph*
 
 I changed my session controller's "new" method to the following adding a "before" action to create a time starting point:
 
@@ -79,17 +80,17 @@ I ran this test in Terminal:
 Here is the resulting graph:
 <img src="img/img-5.png">
 
-* Bonus points for putting together more creative dashboards.
+*Bonus points for putting together more creative dashboards.*
 [FORTHCOMING]
 
 
 # Level 3
 
-* Using the same web app from level 2:
+*Using the same web app from level 2:
 
-* tag your metrics with support (one tag for all metrics)
+tag your metrics with support (one tag for all metrics)*
 
-I adjusted my "new" method in the sessions controller by assigning a tag:
+I adjusted my "new" method in the sessions controller by assigning a 'support' tag:
 
     def new
       require 'statsd'
@@ -97,8 +98,8 @@ I adjusted my "new" method in the sessions controller by assigning a tag:
       duration = Time.now - @start_time
       statsd.histogram('database.query.time', duration, :tags => ['support'])
     end
-(See line 8 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
 
+(See line 8 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
 
 
 Then I set the metrics on the graph via the following JSON:
@@ -107,7 +108,7 @@ Then I set the metrics on the graph via the following JSON:
       "viz": "timeseries",
       "requests": [
         {
-          "q": "avg:database.query.time.median{* } by {support}",
+          "q": "avg:database.query.time.median{\*} by {support}",
           "aggregator": "avg",
           "conditional_formats": [],
           "type": "area"
@@ -119,14 +120,14 @@ Here is the resulting graph:
 <img src="img/img-6.png">
 
 
-* tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)
+*tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)*
 
 Since my app is essentially a single-page app, I added some test "about" and "contact" pages and tagged them: https://github.com/jeffslutzky/pomodoro/commit/53a7294b5c4dd8158eeb718362b9aed1ce680584
 
-* visualize the latency by page on a graph (using stacked areas, with one color per page)
+*visualize the latency by page on a graph (using stacked areas, with one color per page)*
 
 Here is the resulting graph:
 <img src="img/img-7.png">
 
-Here's how I set it up:
+Here's how I created the graph:
 <img src="img/img-8.png">
