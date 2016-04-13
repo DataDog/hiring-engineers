@@ -155,7 +155,7 @@ I used the following JSON:
       ]
     }
 
-And changed the code in my app as shown here:
+And I changed the code in my app as shown here:
 
 https://github.com/jeffslutzky/pomodoro/commit/da6a7b7f6fd2d5e61249356387399e16f621c648
 
