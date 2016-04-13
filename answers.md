@@ -38,7 +38,7 @@ Next I added code to my sessions controller, so it would run whenever the home p
         statsd.increment('web.page_views')
       end
 
-(See code under app/controllers/sessions_controller.rb at  https://github.com/jeffslutzky/pomodoro/commit/67f0617d36ea6ace1fe7e0f30bab00ad4ef46d98.)
+(See code under app/controllers/sessions_controller.rb at  https://github.com/jeffslutzky/pomodoro/commit/67f0617d36ea6ace1fe7e0f30bab00ad4ef46d98)
 
 
 *While running a load test (see References) for a few minutes, visualize page views per second. Send us the link to this graph!*
@@ -71,7 +71,7 @@ And I added the following private method that gets called by the "before" action
         @start_time = Time.now
       end
 
-(See lines 2, 28-32 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
+(See lines 2, 28-32 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b)
 
 I ran this test in Terminal:
 
@@ -100,7 +100,7 @@ I adjusted my "new" method in the sessions controller by assigning a 'support' t
       statsd.histogram('database.query.time', duration, :tags => ['support'])
     end
 
-(See line 8 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b.)
+(See line 8 at https://github.com/jeffslutzky/pomodoro/commit/3a7a51595c93c9be29f97617455ece872b4af51b)
 
 
 Then I set the metrics on the graph via the following JSON:
