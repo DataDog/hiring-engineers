@@ -125,6 +125,7 @@ Then I set the metrics on the graph via the following JSON:
 Here is the resulting graph:
 
 <img src="img/img-6.png">
+
 Graph link: https://p.datadoghq.com/sb/1a534df4e-feac4d9ace
 
 *tag your metrics per page (e.g. metrics generated on / can be tagged with page:home, /page1 with page:page1)*
