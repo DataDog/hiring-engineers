@@ -84,7 +84,10 @@ Graph link: https://p.datadoghq.com/sb/1a534df4e-4ef8e97552
 
 *Bonus points for putting together more creative dashboards.*
 
-[FORTHCOMING]
+See below:
+<img src="img/img-5a.png">
+
+Graph link: https://p.datadoghq.com/sb/1a534df4e-610ee1fa44
 
 
 # Level 3
