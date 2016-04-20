@@ -9,7 +9,7 @@ Don't forget to read the **References**.
 
 ## Questions
 
-### (optional) Level 0 - Setup an Ubuntu VM
+### Level 0 (optional) - Setup an Ubuntu VM
 
 * While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
 
