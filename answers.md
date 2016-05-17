@@ -116,4 +116,6 @@ E. Bonus: Since this monitor is going to alert pretty often, you don't want to b
 
 Scheduled downtime for out-of-office hours: weekends (http://ge.tt/51Xytaa2) and weekdays (http://ge.tt/7ci4uaa2)
 
-Received email notification at 7pm on Friday night: http://ge.tt/1FJT9Za2 //ADD SCREENSHOT of email notification of weekday downtime notification here
+Received email notification at 7pm on Friday night for downtime through Monday 9am: http://ge.tt/1FJT9Za2 
+
+Received email notification at 7pm Monday night for downtime through Tuesday 9am, to be repeated Mon-Thurs: http://ge.tt/8KCoQea2
