@@ -1,37 +1,47 @@
 Your answers to the questions go here.
 
-** Level 1 - Collecting your Data
+### Level 1 - Collecting your Data
 
-A. Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
-I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account is populated with "Datadog".
+I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account was populated with "Datadog". For this challenge, I renamed my admin organization to "Datadog "
 
-I installed the agent following in-app instructions: http://ge.tt/8xFqjWa2
+I installed the agent following in-app instructions. 
 
-Upon successful agent installation, I saw my local host up on the Datadog agent: http://ge.tt/8qvuXWa2
+![Agent installed](http://ge.tt/8xFqjWa2)
 
-Snapshot of ~1 hour of metrics: http://ge.tt/9tbWVWa2
+Upon successful agent installation, I saw my local host up on the Datadog agent.
 
-B. Bonus question: In your own words, what is the Agent?
+![Localhost up on agent](http://ge.tt/8qvuXWa2)
+
+* Bonus question: In your own words, what is the Agent?
 
 The Datadog Agent is software that runs on a user's servers and lets users monitor, visualize, and manage data in one place. It has three components: 1. the collector, which runs checks on the host machine for the user's selected integrations and captures system metrics (ie CPU, memory, load average); 2. DogStatsD, a backend server to which the user can send custom application metrics; and 3. the forwarder, which transfers to Datadog data from both DogStatsD and the collector.
 
-C. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 In the Agent config file (~/.datadog-agent/agent/datadog.conf), I un-commented line 27, 'tags', and set four sample tags for my host: env:prod, role:database, region:ne, and app:system.
 
-Host and tags on Host Map page: http://ge.tt/81GZlWa2
+![Edited datadog.conf to set sample tags](http://ge.tt/6bEjlfa2)
 
-D. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+Then I was able to see my host and associated tags on the Host Map page.
 
-I installed MongoDB and then installed the MongoDB integration in Datadog using in-app configuration instructions: http://ge.tt/2nGV6Xa2 && http://ge.tt/7ykAraa2
+![Host and tags on Host Map page](http://ge.tt/81GZlWa2)
 
-I accidentally attempted to configure the MongoDB integration twice using an extraneously generated password, so I had to reset the admin user password using the db.changeUserPassword() command: http://ge.tt/5X3Csaa2. 
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+I installed MongoDB on my local host, and then installed the MongoDB integration in Datadog using in-app configuration instructions. 
 
-E. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+![Installed MongoDB](http://ge.tt/2nGV6Xa2)
+![Installed MongoDB in the Datadog Agent](http://ge.tt/7ykAraa2)
 
-Once again following Datadog Docs (http://bit.ly/1sitxHf), I wrote a custom Agent check sampling a random value: http://ge.tt/9QGyKXa2
+I accidentally attempted to configure the MongoDB integration twice using an extraneously generated password, so I had to reset the admin user password using the db.changeUserPassword() command. 
+
+![Reset admin user password](http://ge.tt/5X3Csaa2)
+
+* Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+
+Once again following Datadog's [Docs](http://bit.ly/1sitxHf), I wrote a custom Agent check sampling a random value. http://ge.tt/9QGyKXa2
 
 In the configuration file, at conf.d/hello.yaml:
 
@@ -53,66 +63,98 @@ class HelloCheck(AgentCheck):
     self.gauge('test.support.random', random.random())
 ```
 
-** Level 2 - Visualizing your Data
+### Level 2 - Visualizing your Data
 
-A. Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+* Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-I cloned my MongoDB dashboard, naming the new dash "Steph's Mongo Dashboard". I added additional database metrics, including test.support.random: http://ge.tt/2TEAtaa2 && http://ge.tt/7DwZYXa2
+I cloned my MongoDB dashboard, naming the new dash "Steph's Mongo Dashboard". I added additional database metrics, including test.support.random. 
 
-B. Bonus question: What is the difference between a timeboard and a screenboard?
+![](http://ge.tt/2TEAtaa2) 
+
+![](http://ge.tt/7DwZYXa2)
+
+* Bonus question: What is the difference between a timeboard and a screenboard?
 
 - https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-
 
 - https://www.datadoghq.com/blog/introducing-screenboards-your-data-your-way/
 
-Timeboards appear in a grid layout and are always scoped to the same time period. Data is retained for up to a year, with one-second granularity, allowing for easier correlation and troubleshooting. Timeboard graphs can be shared individually.
+Timeboards appear in a grid layout and are always scoped to the same time period, making them the tool of choice for correlating events across systems. Data is retained for up to a year, with one-second granularity, allowing for easier correlation and troubleshooting. Timeboard graphs can also be shared individually.
 
-Timeboard example: http://ge.tt/1kYfGca2
+![Link to timeboard example](http://bit.ly/1WBHcqb)
+![Timeboard example](http://ge.tt/1kYfGca2)
 
 A screenboard is better for showing statuses and sharing information. Users can use the precise, drag-and-drop layout to mix and match widgets and timeframes in a customized, visually pleasing way, rendering it unnecessary for devops teams to painstakingly build their own custom dashboards simply to get critical data across their IT infrastructure to fit on one screen. Screenboards also support varied widget types: time series, color-coded numbers, event streams, text notes, and images.
 
-Screenboard example (from Datadog blog): http://ge.tt/7aMdGca2
+![Link to screenboard example](http://bit.ly/1NxgKuw)
 
-C. Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+![Screenboard example](http://ge.tt/6xH8pfa2)
+
+* Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
 I was unable to send an email notification from my admin account to my admin email account, so I hypothesized that perhaps one cannot email-notify oneself. To test this, I created a second Datadog account using a test email and used it to notify my admin account. To double check, I also notified the test user account from my admin account. In each case, I received email notifications immediately.
 
-Snapshot of test.support.random graph going above .90: http://ge.tt/2OK6BZa2
+I used the camera widget to take a snapshot of the test.support.random graph going above .90.
 
-Annotated graph and sent snapshot to admin email from test account: http://ge.tt/7FPFBZa2
+![test.support.random exceeding .90](http://ge.tt/2OK6BZa2)
 
-Received email notification in admin account: http://ge.tt/6ck0BZa2
+Then I annotated the graph and mentioned '@stephaniesher18@gmail.com', which sent a snapshot to my admin email from the test account.
 
-Annotated graph and sent snapshot to test email from admin account: http://ge.tt/6CpdFea2
+![Notified admin email of metric exceeding .90](http://ge.tt/7FPFBZa2)
 
-Received email notification in test account: http://ge.tt/5ONuFea2
+I immediately received an email notification in my admin email account.
 
+![Received notification in admin email account](http://ge.tt/6ck0BZa2)
 
-** Level 3 - Alerting on your Data
+To gain another data point, I reversed the process and annotated the graph from within my admin Datadog account. I annotated the test.support.random graph and sent a snapshot to my test email account.
+
+![Notified test email of metric exceeding .90](http://ge.tt/6CpdFea2)
+
+I immediately received an email notification in my test email account.
+
+![Received email notification in test email account](http://ge.tt/5ONuFea2)
+
+### Level 3 - Alerting on your Data
 
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
-A. Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
 Defined metric and set alert conditions: http://ge.tt/8kJUkYa2
 
-B. Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+* Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
-Made a multi-alert by host: http://ge.tt/825hlYa2
+In the 'Monitors' tab in the Agent, I clicked into 'Manage Monitors' and created a new multi-alert that should trigger for new hosts as the infrastructure scales.  
 
-Monitor, set up in Datadog: http://ge.tt/271O4ea2
+![Multi-alert by host](http://ge.tt/6rbfrfa2)
 
-C. Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+Here is the monitor as it appears in the list of monitors currently managed in the account: 
 
-Created a descriptive monitor name and message: http://ge.tt/4oDymYa2
+![Multi-alert in 'Manage Monitors'](http://ge.tt/271O4ea2)
 
-D. This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
-Received email notification in admin email account: http://ge.tt/7a48nYa2
+I kept things straightforward and named the monitor 'Metric test.support.random exceeds .90'. I included the following message: 
 
-Notified test user from admin account in agent, received email notification test email account: http://ge.tt/4t21EZa2
+'''
+Mongo metric test.support.random exceeds .90. See Mongo dashboard here: http://bit.ly/1TKTfKT  
 
-E. Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+To fix, follow these steps: {{fix}}
+
+If {{solution}}, then fixed. 
+
+Notify: @stephaniesher18@gmail.com
+'''
+
+Here is a ![link](http://bit.ly/1qrOPBf) to the monitor.
+
+* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+Shortly after creating the monitor, I received an email notification in my admin email account that the test.support.random exceeded .90.
+
+![test.support.random monitor triggered](http://ge.tt/7a48nYa2)
+
+* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 Scheduled downtime for out-of-office hours: weekends (http://ge.tt/51Xytaa2) and weekdays (http://ge.tt/7ci4uaa2)
 
