@@ -16,7 +16,7 @@ Upon successful agent installation, I saw my local host up on the Datadog agent.
 
 * Bonus question: In your own words, what is the Agent?
 
-The Datadog Agent is software that runs on a user's servers and lets users monitor, visualize, and manage data in one place. It has three components: 1. the collector, which runs checks on the host machine for the user's selected integrations and captures system metrics (ie CPU, memory, load average); 2. DogStatsD, a backend server to which the user can send custom application metrics; and 3. the forwarder, which transfers to Datadog data from both DogStatsD and the collector.
+The Datadog Agent is software that runs on a user's servers and lets users monitor, visualize, and manage data in one place. It has three components: 1. the collector, which is responsible for gathering system and application metrics from the machine once every 15 seconds; 2. DogStatsD, a backend server to which the user can send custom application metrics; 3. the forwarder, which transfers to Datadog data from both DogStatsD and the collector; and 4. SupervisorD, which is responsible for keeping processes 1-3 up and running.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -82,7 +82,7 @@ Timeboard example: https://app.datadoghq.com/dash/131778/stephs-mongo-dashboard?
 
 ![Timeboard example](https://farm8.staticflickr.com/7772/27083651065_00b4de5e90_b.jpg
 
-A screenboard is better for showing statuses and sharing information. Users can use the precise, drag-and-drop layout to mix and match widgets and timeframes in a customized, visually pleasing way, rendering it unnecessary for devops teams to painstakingly build their own custom dashboards simply to get critical data across their IT infrastructure to fit on one screen. Screenboards also support varied widget types: time series, color-coded numbers, event streams, text notes, and images.
+A screenboard is better for showing statuses and sharing information, providing a high-level overview of a service. Users can use the precise, drag-and-drop layout to mix and match widgets and timeframes in a customized, visually pleasing way, rendering it unnecessary for devops teams to painstakingly build their own custom dashboards simply to get critical infrastructure data to fit on one screen. Screenboards also support varied widget types: time series, color-coded numbers, event streams, text notes, and images.
 
 Link to screenboard example: https://app.datadoghq.com/screen/85406/stephs-screenboard-example
 
