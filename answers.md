@@ -8,11 +8,11 @@ I already had a Datadog account under my personal email address (stephaniesher18
 
 I installed the agent following in-app instructions. 
 
-![Agent installed](https://farm8.staticflickr.com/7205/26479969873_9b418a62c4_b.jpg)
+![Agent installed](https://farm8.staticflickr.com/7404/27083751985_519a09d6c5_z.jpg)
 
 Upon successful agent installation, I saw my local host up on the Datadog agent.
 
-![Localhost up on agent](http://ge.tt/8qvuXWa2)
+![Localhost up on agent](https://farm8.staticflickr.com/7205/26479969873_9b418a62c4_b.jpg)
 
 * Bonus question: In your own words, what is the Agent?
 
@@ -22,26 +22,27 @@ The Datadog Agent is software that runs on a user's servers and lets users monit
 
 In the Agent config file (~/.datadog-agent/agent/datadog.conf), I un-commented line 27, 'tags', and set four sample tags for my host: env:prod, role:database, region:ne, and app:system.
 
-![Edited datadog.conf to set sample tags](http://ge.tt/6bEjlfa2)
+![Edited datadog.conf to set sample tags](https://farm8.staticflickr.com/7199/26989098282_cd3b3cd302_z.jpg)
 
 Then I was able to see my host and associated tags on the Host Map page.
 
-![Host and tags on Host Map page](http://ge.tt/81GZlWa2)
+![Host and tags on Host Map page](https://farm8.staticflickr.com/7226/27015292961_35778b79dd_b.jpg)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 I installed MongoDB on my local host, and then installed the MongoDB integration in Datadog using in-app configuration instructions. 
 
-![Installed MongoDB](http://ge.tt/2nGV6Xa2)
-![Installed MongoDB in the Datadog Agent](http://ge.tt/7ykAraa2)
+![Installed MongoDB](https://farm8.staticflickr.com/7008/26479827943_143d165d1f_b.jpg)
+
+![Installed MongoDB in the Datadog Agent](https://farm8.staticflickr.com/7538/27015292881_17b77051e7_z.jpg)
 
 I accidentally attempted to configure the MongoDB integration twice using an extraneously generated password, so I had to reset the admin user password using the db.changeUserPassword() command. 
 
-![Reset admin user password](http://ge.tt/5X3Csaa2)
+![Reset admin user password](https://farm8.staticflickr.com/7205/26479827993_eee88995a9.jpg)
 
 * Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-Once again following Datadog's [Docs](http://bit.ly/1sitxHf), I wrote a custom Agent check sampling a random value. http://ge.tt/9QGyKXa2
+Once again following Datadog's [Docs](http://bit.ly/1sitxHf), I wrote a custom Agent check sampling a random value.
 
 In the configuration file, at conf.d/hello.yaml:
 
@@ -69,50 +70,47 @@ class HelloCheck(AgentCheck):
 
 I cloned my MongoDB dashboard, naming the new dash "Steph's Mongo Dashboard". I added additional database metrics, including test.support.random. 
 
-![Added database metrics](http://ge.tt/2TEAtaa2) 
+![Added database metrics](https://farm8.staticflickr.com/7035/27015292651_45775c86f5_b.jpg) 
 
-![Added test.support.random](http://ge.tt/7DwZYXa2)
+![Added test.support.random](https://farm8.staticflickr.com/7325/27083651095_1669a0f939_b.jpg)
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
-- https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-
-
-- https://www.datadoghq.com/blog/introducing-screenboards-your-data-your-way/
-
 Timeboards appear in a grid layout and are always scoped to the same time period, making them the tool of choice for correlating events across systems. Data is retained for up to a year, with one-second granularity, allowing for easier correlation and troubleshooting. Timeboard graphs can also be shared individually.
 
-![Link to timeboard example](http://bit.ly/1WBHcqb)
-![Timeboard example](http://ge.tt/1kYfGca2)
+Timeboard example: https://app.datadoghq.com/dash/131778/stephs-mongo-dashboard?live=true&page=0&is_auto=false&from_ts=1463536320000&to_ts=1463539920000&tile_size=m
+
+![Timeboard example](https://farm8.staticflickr.com/7772/27083651065_00b4de5e90_b.jpg
 
 A screenboard is better for showing statuses and sharing information. Users can use the precise, drag-and-drop layout to mix and match widgets and timeframes in a customized, visually pleasing way, rendering it unnecessary for devops teams to painstakingly build their own custom dashboards simply to get critical data across their IT infrastructure to fit on one screen. Screenboards also support varied widget types: time series, color-coded numbers, event streams, text notes, and images.
 
-![Link to screenboard example](http://bit.ly/1NxgKuw)
+Link to screenboard example: https://app.datadoghq.com/screen/85406/stephs-screenboard-example
 
-![Screenboard example](http://ge.tt/6xH8pfa2)
+![Screenboard example](https://farm8.staticflickr.com/7433/27015292551_b38b193bd6_b.jpg)
 
 * Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-I was unable to send an email notification from my admin account to my admin email account, so I hypothesized that perhaps one cannot email-notify oneself. To test this, I created a second Datadog account using a test email and used it to notify my admin account. To double check, I also notified the test user account from my admin account. In each case, I received email notifications immediately.
+I was unable to send an email notification from my admin account to my admin email account, so I hypothesized that perhaps one cannot email-notify oneself. I created a second Datadog account using a test email and used it to notify my admin account. To double check, I also notified the test user account from my admin account. In each case, I received email notifications immediately.
 
 I used the camera widget to take a snapshot of the test.support.random graph going above .90.
 
-![test.support.random exceeding .90](http://ge.tt/2OK6BZa2)
+![test.support.random exceeding .90](https://farm8.staticflickr.com/7173/27015292431_b68eed5285_z.jpg)
 
 Then I annotated the graph and mentioned '@stephaniesher18@gmail.com', which sent a snapshot to my admin email from the test account.
 
-![Notified admin email of metric exceeding .90](http://ge.tt/7FPFBZa2)
+![Notified admin email of metric exceeding .90](https://farm8.staticflickr.com/7078/26479827753_34c6e641f8_z.jpg)
 
 I immediately received an email notification in my admin email account.
 
-![Received notification in admin email account](http://ge.tt/6ck0BZa2)
+![Received notification in admin email account](https://farm8.staticflickr.com/7296/27015292371_71603799ab_b.jpg)
 
 To gain another data point, I reversed the process and annotated the graph from within my admin Datadog account. I annotated the test.support.random graph and sent a snapshot to my test email account.
 
-![Notified test email of metric exceeding .90](http://ge.tt/6CpdFea2)
+![Notified test email of metric exceeding .90](https://farm8.staticflickr.com/7374/27083651045_cc34f517a2.jpg)
 
 I immediately received an email notification in my test email account.
 
-![Received email notification in test email account](http://ge.tt/5ONuFea2)
+![Received email notification in test email account](https://farm8.staticflickr.com/7323/27083651055_9d30499791_b.jpg)
 
 
 ### Level 3 - Alerting on your Data
@@ -125,13 +123,13 @@ Defined metric and set alert conditions: http://ge.tt/8kJUkYa2
 
 * Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
-In the 'Monitors' tab in the Agent, I clicked into 'Manage Monitors' and created a new multi-alert that should trigger for new hosts as the infrastructure scales.  
+In the 'Monitors' tab in the Agent, I clicked into 'Manage Monitors' and defined the metric. Then I created a new multi-alert, which should trigger for new hosts as the infrastructure scales, and set alert conditions.  
 
-![Multi-alert by host](http://ge.tt/6rbfrfa2)
+![Multi-alert by host](https://farm8.staticflickr.com/7048/27015292271_f50e194ba2_b.jpg)
 
 Here is the monitor as it appears in the list of monitors currently managed in the account: 
 
-![Multi-alert in 'Manage Monitors'](http://ge.tt/271O4ea2)
+![Multi-alert in 'Manage Monitors'](https://farm8.staticflickr.com/7039/26479827603_6a0465fe20_b.jpg)
 
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
@@ -147,18 +145,26 @@ If {{solution}}, then fixed.
 Notify: @stephaniesher18@gmail.com
 '''
 
-Here is a ![link](http://bit.ly/1qrOPBf) to the monitor.
+Link to the monitor: https://app.datadoghq.com/monitors#616213?group=all&live=4h
 
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
 Shortly after creating the monitor, I received an email notification in my admin email account that the test.support.random exceeded .90.
 
-![test.support.random monitor triggered](http://ge.tt/7a48nYa2)
+![test.support.random monitor triggered](https://farm8.staticflickr.com/7033/26989097902_6a0465fe20_z.jpg)
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Scheduled downtime for out-of-office hours: weekends (http://ge.tt/51Xytaa2) and weekdays (http://ge.tt/7ci4uaa2)
+Scheduled downtime for out-of-office hours: 
 
-Received email notification at 7pm on Friday night for downtime through Monday 9am: http://ge.tt/1FJT9Za2 
+![weekdays](https://farm8.staticflickr.com/7064/26481120543_f47616af98_b.jpg) 
 
-Received email notification at 7pm Monday night for downtime through Tuesday 9am, to be repeated Mon-Thurs: http://ge.tt/8KCoQea2
+![and weekends](https://farm8.staticflickr.com/7783/27051745556_9afabc84cc_b.jpg)
+
+Received email notification at 7pm on Friday night for downtime through Monday 9am.
+
+![Weekend downtime email notification](https://farm8.staticflickr.com/7408/27083651115_cb29a1131d_b.jpg) 
+
+Received email notification at 7pm Monday night for downtime through Tuesday 9am, to be repeated Mon-Thurs.
+
+![Weekday downtime email notification](https://farm8.staticflickr.com/7667/27050458766_e2ce14b6e6_b.jpg)
