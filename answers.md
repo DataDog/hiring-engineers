@@ -4,11 +4,11 @@ Your answers to the questions go here.
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
-I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account was populated with "Datadog". For this challenge, I renamed my admin organization to "Datadog "
+I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account was populated with "Datadog". For this challenge, I renamed my admin organization to "Datadog".
 
 I installed the agent following in-app instructions. 
 
-![Agent installed](http://ge.tt/8xFqjWa2)
+![Agent installed](http://bit.ly/1TX5dRD)
 
 Upon successful agent installation, I saw my local host up on the Datadog agent.
 
@@ -113,6 +113,7 @@ To gain another data point, I reversed the process and annotated the graph from 
 I immediately received an email notification in my test email account.
 
 ![Received email notification in test email account](http://ge.tt/5ONuFea2)
+
 
 ### Level 3 - Alerting on your Data
 
