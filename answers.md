@@ -119,8 +119,6 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
-Defined metric and set alert conditions: http://ge.tt/8kJUkYa2
-
 * Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
 In the 'Monitors' tab in the Agent, I clicked into 'Manage Monitors' and defined the metric. Then I created a new multi-alert, which should trigger for new hosts as the infrastructure scales, and set alert conditions.  
@@ -156,6 +154,8 @@ Shortly after creating the monitor, I received an email notification in my admin
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 To account for all out-of-office hours, I scheduled two instances of downtime - one for weeknights, and one for weekends.
+
+Link to downtime manager: https://app.datadoghq.com/monitors#/downtime
 
 Scheduled downtime for out-of-office hours: 
 
