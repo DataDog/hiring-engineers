@@ -8,7 +8,7 @@ I already had a Datadog account under my personal email address (stephaniesher18
 
 I installed the agent following in-app instructions. 
 
-![Agent installed](https://flic.kr/p/GkWLuH)
+![Agent installed](https://farm8.staticflickr.com/7205/26479969873_9b418a62c4_b.jpg)
 
 Upon successful agent installation, I saw my local host up on the Datadog agent.
 
