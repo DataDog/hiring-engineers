@@ -4,7 +4,7 @@ Your answers to the questions go here.
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
-I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account was populated with "Datadog". For this challenge, I renamed my admin organization to "Datadog".
+I already had a Datadog account under my personal email address (stephaniesher18@gmail.com), from my Marketing days, so the "Company" field for my account was populated with "Datadog". For this challenge, I renamed my admin organization to "Datadog Recruiting Candidate".
 
 I installed the agent following in-app instructions. 
 
@@ -16,7 +16,7 @@ Upon successful agent installation, I saw my local host up on the Datadog agent.
 
 * Bonus question: In your own words, what is the Agent?
 
-The Datadog Agent is software that runs on a user's servers and lets users monitor, visualize, and manage data in one place. It has three components: 1. the collector, which is responsible for gathering system and application metrics from the machine once every 15 seconds; 2. DogStatsD, a backend server to which the user can send custom application metrics; 3. the forwarder, which transfers to Datadog data from both DogStatsD and the collector; and 4. SupervisorD, which is responsible for keeping processes 1-3 up and running.
+The Datadog Agent is software that runs on a user's servers and lets users monitor, visualize, and manage data in one place. It has four main components: 1. the collector, which is responsible for gathering system and application metrics from the machine once every 15 seconds; 2. DogStatsD, a backend server to which the user can send custom application metrics; 3. the forwarder, which transfers to Datadog data from both DogStatsD and the collector; and 4. SupervisorD, which is responsible for keeping processes 1-3 up and running.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -78,9 +78,9 @@ I cloned my MongoDB dashboard, naming the new dash "Steph's Mongo Dashboard". I 
 
 Timeboards appear in a grid layout and are always scoped to the same time period, making them the tool of choice for correlating events across systems. Data is retained for up to a year, with one-second granularity, allowing for easier correlation and troubleshooting. Timeboard graphs can also be shared individually.
 
-Timeboard example: https://app.datadoghq.com/dash/131778/stephs-mongo-dashboard?live=true&page=0&is_auto=false&from_ts=1463536320000&to_ts=1463539920000&tile_size=m
+Link to timeboard example: https://app.datadoghq.com/dash/131778/stephs-mongo-dashboard?live=true&page=0&is_auto=false&from_ts=1463536320000&to_ts=1463539920000&tile_size=m
 
-![Timeboard example](https://farm8.staticflickr.com/7772/27083651065_00b4de5e90_b.jpg
+![Timeboard example](https://farm8.staticflickr.com/7772/27083651065_00b4de5e90_b.jpg)
 
 A screenboard is better for showing statuses and sharing information, providing a high-level overview of a service. Users can use the precise, drag-and-drop layout to mix and match widgets and timeframes in a customized, visually pleasing way, rendering it unnecessary for devops teams to painstakingly build their own custom dashboards simply to get critical infrastructure data to fit on one screen. Screenboards also support varied widget types: time series, color-coded numbers, event streams, text notes, and images.
 
@@ -155,16 +155,20 @@ Shortly after creating the monitor, I received an email notification in my admin
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+To account for all out-of-office hours, I scheduled two instances of downtime - one for weeknights, and one for weekends.
+
 Scheduled downtime for out-of-office hours: 
 
+Weekdays
 ![weekdays](https://farm8.staticflickr.com/7064/26481120543_f47616af98_b.jpg) 
 
+Weekends
 ![and weekends](https://farm8.staticflickr.com/7783/27051745556_9afabc84cc_b.jpg)
-
-Received email notification at 7pm on Friday night for downtime through Monday 9am.
-
-![Weekend downtime email notification](https://farm8.staticflickr.com/7408/27083651115_cb29a1131d_b.jpg) 
 
 Received email notification at 7pm Monday night for downtime through Tuesday 9am, to be repeated Mon-Thurs.
 
 ![Weekday downtime email notification](https://farm8.staticflickr.com/7667/27050458766_e2ce14b6e6_b.jpg)
+
+Received email notification at 7pm on Friday night for downtime through Monday 9am.
+
+![Weekend downtime email notification](https://farm8.staticflickr.com/7408/27083651115_cb29a1131d_b.jpg) 
