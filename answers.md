@@ -8,7 +8,7 @@ I already had a Datadog account under my personal email address (stephaniesher18
 
 I installed the agent following in-app instructions. 
 
-![Agent installed](https://www.flickr.com/photos/141072933@N07/26479969873/in/dateposted-public/)
+![Agent installed](https://flic.kr/p/GkWLuH)
 
 Upon successful agent installation, I saw my local host up on the Datadog agent.
 
@@ -69,9 +69,9 @@ class HelloCheck(AgentCheck):
 
 I cloned my MongoDB dashboard, naming the new dash "Steph's Mongo Dashboard". I added additional database metrics, including test.support.random. 
 
-![](http://ge.tt/2TEAtaa2) 
+![Added database metrics](http://ge.tt/2TEAtaa2) 
 
-![](http://ge.tt/7DwZYXa2)
+![Added test.support.random](http://ge.tt/7DwZYXa2)
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
