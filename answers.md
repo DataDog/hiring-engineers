@@ -7,9 +7,13 @@ I ran the datadog installation prompts through the command line to get the Agent
 ###Bonus question: In your own words, what is the Agent?
 
  The Agent is software, written in python, that can be installed on the user's hosts to help monitor them. It is what allows the user to easily configure and customize what metrics they need to monitor. The agent is made up of four moving parts, three of which the user mostly interacts with directly. The four parts are the:
+
  1.The Collector - Responsible for capturing system metrics.
- 2. DogStatsD - A backend server to which the user can send custom metrics from an application
+
+ 2. DogStatsD - A backend server to which the user can send custom metrics from an application.
+
  3.The Forwarder - Grabs the metrics from the DogStasD and the Collector to be sent up to Datadog.
+
  4. The Supervisord - Monitors the first three processes like a controller.
 
 ###Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
