@@ -11,5 +11,12 @@ I have added a copy of the config file to this github repo, indicating the tags 
 ![Host map](/Hostmap.png)
 
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+###Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+ I have attached a PostgreSQL YAML configuration file, templated from the example YAML file provided by the documentation.
+
+
+###Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+
+I have attached both the YAML file and the python script that runs the check for the random test.
+
+
