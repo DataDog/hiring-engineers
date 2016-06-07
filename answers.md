@@ -16,7 +16,7 @@ I ran the datadog installation prompts through the command line to get the Agent
 
 I have added a copy of the config file to this github repo, indicating the tags I attached to the local host and a screenshot of the hostmap.
 
-![Host map](/Hostmap.png)
+![Host map](/images/Hostmap.png)
 
 
 ###Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -57,7 +57,7 @@ Screenboards are more visually friendly in that it is created through a drag and
 
 ###Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-![Random Test snapshot](/random_test.png)
+![Random Test snapshot](/images/Random_test.png)
 
 
 ##Level 3 - Alerting on your Data
@@ -67,8 +67,8 @@ Screenboards are more visually friendly in that it is created through a drag and
 ###Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 ###This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-![Email alert](/email_alert.png)
+![Email alert](/images/email_alert.png)
 
 ###Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![Downtime settings](/downtime.png)
+![Downtime settings](/images/downtime.png)
