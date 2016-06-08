@@ -64,6 +64,8 @@ Screenboards are more visually friendly in that it is created through a drag and
 
 ![Random Test snapshot](/images/Random_test.png)
 
+![Random_test_with_box](/images/Random_test_snapshot.png)
+
 
 ##Level 3 - Alerting on your Data
 
