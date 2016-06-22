@@ -49,7 +49,7 @@ Bonus question: What is the difference between a timeboard and a screenboard? **
 
 
 # Level 3
-**Added a monitor to alert when it surpasses 0.90 at least once every 5 minutes.**
+**Added a monitor to alert when it surpasses 0.90 at least once during the last 5 minutes.**
 
 
 <img src="http://i.imgur.com/zq6dW4m.png width="500" height="332" >
