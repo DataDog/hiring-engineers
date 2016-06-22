@@ -67,6 +67,6 @@ Bonus points: Make it a multi-alert by host so that you won't have to recreate i
 
 
 <img src="http://i.imgur.com/Z6eS4S8.png" width="500" height="332" >
-<img src="http://i.imgur.com/swL9SGN.png" width="500" height="332" >
+<img src="http://i.imgur.com/swL9SGN.png">
 
 
