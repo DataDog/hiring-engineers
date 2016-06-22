@@ -10,7 +10,7 @@ Bonus question: In your own words, what is the Agent?: **The Agent is a program 
 **Added the tag Algorithm:three and Algorithm:four.**
 
 
-<img src="http://i.imgur.com/013yado.png" width="500" height="332" >
+<img src="http://i.imgur.com/013yado.png" >
 
 
 **Installed PostgreSQL.**
