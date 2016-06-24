@@ -21,7 +21,7 @@
   * Add Tags  
    Edit congifure file - /etc/dd-agent/datadog.conf
    screenshots for tags & host: 
-   
+   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png)
 
 
 ##Level 2
