@@ -8,7 +8,6 @@
    Set up: 
   * Install VirtualBox
   * Intall Vagerant
- 
   * Install mongoDB
 
 ##Level 1
@@ -17,13 +16,43 @@
       [install datadog agent link](https://app.datadoghq.com/account/settings#agent/ubuntu)
       [basic usage](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
   
-
   * Add Tags  
    Edit congifure file - /etc/dd-agent/datadog.conf
    screenshots for tags & host: 
-  -![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png "hostmap VM")
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png "hostmap VM")
+  * Add Datadog integration for MongoDB:
+  
+  ep. mongoDB - [link](http://docs.datadoghq.com/integrations/mongodb/)
+  
+  -configuration file: /etc/dd-agent/conf.d/mongo.yaml:
+  ```
+  init_config:
+  instances:
+  - server: mongodb://datadog:84917zzsjingang@localhost:27017/admin
+   
+    tags:
+      - role:database
+    additional_metrics:
+      - top
+   ```
+  * Custom Agent check 
+  check file: /etc/dd-agent/checks.d/first_check.py  
+  ```python
+  from checks import AgentCheck
+  import random
+  def randomValue():
+      return random.random()
 
-
+  class RandomSampleCheck(AgentCheck):
+      def check(self, instance):
+          self.gauge("test.support.random",randomValue())
+  ```
+  -configuration file: /etc/dd-agent/conf.d/first_check.yaml
+  ```
+  init_config:
+  instances:
+    [{}]
+  ```
 ##Level 2
 
 #Local Machine (Mac OSX)
