@@ -55,6 +55,17 @@
   ```
 ##Level 2
 
+  *Database intergration dashboard: 
+  [link]https://app.datadoghq.com/screen/97078/mongodb
+
+  Screenshot: 
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Intergration Dashboard")
+  
+  *test.support.random graph
+
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph snapshot")
+##Level 3
+
 #Local Machine (Mac OSX)
 ##Level 1
   * Sign Up for Datadog and Install datadog agent 
@@ -67,7 +78,7 @@
       then restart datadog agent 
    screenshots for tags & hosts: 
 
-   -![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_mac.png "HostMap Mac")
+   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_mac.png "HostMap Mac")
 
 
 ##Level 2
