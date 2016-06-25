@@ -21,7 +21,7 @@
   * Add Tags  
    Edit congifure file - /etc/dd-agent/datadog.conf
    screenshots for tags & host: 
-   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png)
+  -![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png "hostmap VM")
 
 
 ##Level 2
@@ -37,5 +37,8 @@
    Mac osx: edit congifure file -  ~/.datadog-agent/datadog.conf
       then restart datadog agent 
    screenshots for tags & hosts: 
+
+   -![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_mac.png "HostMap Mac")
+
 
 ##Level 2
