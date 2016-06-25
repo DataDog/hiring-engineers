@@ -1,0 +1,96 @@
+===================
+Collector (v 5.8.0)
+===================
+
+  Status date: 2016-06-25 17:10:13 (3s ago)
+  Pid: 12276
+  Platform: Linux-4.2.0-27-generic-i686-with-debian-jessie-sid
+  Python Version: 2.7.11, 32bit
+  Logs: <stderr>, /var/log/datadog/collector.log, syslog:/dev/log
+
+  Clocks
+  ======
+
+    NTP offset: 0.0533 s
+    System UTC time: 2016-06-25 21:10:16.550480
+
+  Paths
+  =====
+
+    conf.d: /etc/dd-agent/conf.d
+    checks.d: /opt/datadog-agent/agent/checks.d
+
+  Hostnames
+  =========
+
+    socket-hostname: andy-VirtualBox
+    ec2-hostname: andy-VirtualBox
+    hostname: andy-VirtualBox
+    socket-fqdn: andy-VirtualBox
+
+  Checks
+  ======
+
+    random_sample
+    -------------
+      - instance #0 [OK]
+      - Collected 1 metric, 0 events & 1 service check
+
+    postgres
+    --------
+      - instance #0 [OK]
+      - Collected 13 metrics, 0 events & 2 service checks
+
+    ntp
+    ---
+      - Collected 0 metrics, 0 events & 1 service check
+
+    disk
+    ----
+      - instance #0 [OK]
+      - Collected 24 metrics, 0 events & 1 service check
+
+    network
+    -------
+      - instance #0 [OK]
+      - Collected 15 metrics, 0 events & 1 service check
+
+
+  Emitters
+  ========
+
+    - http_emitter [OK]
+
+===================
+Dogstatsd (v 5.8.0)
+===================
+
+  Status date: 2016-06-25 17:10:11 (5s ago)
+  Pid: 12274
+  Platform: Linux-4.2.0-27-generic-i686-with-debian-jessie-sid
+  Python Version: 2.7.11, 32bit
+  Logs: <stderr>, /var/log/datadog/dogstatsd.log, syslog:/dev/log
+
+  Flush count: 1204
+  Packet Count: 0
+  Packets per second: 0.0
+  Metric count: 1
+  Event count: 0
+  Service check count: 0
+
+===================
+Forwarder (v 5.8.0)
+===================
+
+  Status date: 2016-06-25 17:10:15 (2s ago)
+  Pid: 12275
+  Platform: Linux-4.2.0-27-generic-i686-with-debian-jessie-sid
+  Python Version: 2.7.11, 32bit
+  Logs: <stderr>, /var/log/datadog/forwarder.log, syslog:/dev/log
+
+  Queue Size: 0 bytes
+  Queue Length: 0
+  Flush Count: 4181
+  Transactions received: 1833
+  Transactions flushed: 1833
+  Transactions rejected: 0
