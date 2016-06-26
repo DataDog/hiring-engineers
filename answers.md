@@ -99,16 +99,17 @@
   * Set up monitoring and set one alert 
 
   Screenshot for the setting: 
-  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/set_monitor.png "Alert Setting")
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/set_monitoring.png "Alert Setting")
 
   * Alert sent to my email 
+
   Number is higher than 0.9 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/alert.png "Alert Setting")
   * Downtime notification
 
-  Start:
+  Downtime start:
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_start.png "Downtime Starts")
   
-  End: 
+  Downtime end: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_end.png "Downtime Ends")
 
