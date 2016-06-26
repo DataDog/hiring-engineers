@@ -107,9 +107,9 @@
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/alert.png "Alert Setting")
   * Downtime notification
 
-  Downtime start:
+  Downtime starts:
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_start.png "Downtime Starts")
   
-  Downtime end: 
+  Downtime ends: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_end.png "Downtime Ends")
 
