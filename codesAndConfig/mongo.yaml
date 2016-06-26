@@ -1,6 +1,0 @@
-init_config:
-instances:
-  - server: mongodb://datadog:LhZnOmyCFRlDnHsYo2T9jf4M@localhost:27017/admin
-    tags:
-      - db:mongo
-      - user:datadog
