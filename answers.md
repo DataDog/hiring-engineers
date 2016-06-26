@@ -12,9 +12,9 @@
  
   Each graph of a timeboard can be shared individually by generating embed code (iframe), while screenboards can be shared as a whole using a public url. 
    An example of embed codes: 
-   
- <iframe src="https://app.datadoghq.com/graph/embed?token=9b52006b02ad16b4e4266a04932b0c40e65c39e4ebf06a48578c98f10ab49c7f&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
-  
+  ```  
+  <iframe src="https://app.datadoghq.com/graph/embed?token=9b52006b02ad16b4e4266a04932b0c40e65c39e4ebf06a48578c98f10ab49c7f&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
+  ``` 
    
   Timeboard: [link to my timeboard](https://app.datadoghq.com/dash/152383/zhengshis-timeboard-25-jun-2016-1803?live=true&page=0&is_auto=false&from_ts=1466911339692&to_ts=1466914939692&tile_size=m&fullscreen=false)
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/timeboard.png "Timeboard")
@@ -24,7 +24,7 @@
 
 ## 2, Datadog 
 
-  I installed Datadog Agent for both Vagrant VM running Ubuntu and my local machine, Mac OS X. Although there are small differences when installing the agent and databases, other setttings on datadog are the same. Here I am giving answers only using Virtual Machine (Vagrant Ubuntu 12.04). 
+  I installed Datadog Agent for both Vagrant VM running Ubuntu and my local machine, Mac OS X. Although there are small differences when installing the agent and databases, other setttings on datadog are the same. Here I am giving answers using Virtual Machine (Vagrant Ubuntu 12.04). 
 
 ###Level 0 Install VM
    Set up: 
@@ -36,7 +36,9 @@
   * Sign up for Datadog and install datadog agent 
 
    For ubuntu: 
+
       [Install datadog agent link](https://app.datadoghq.com/account/settings#agent/ubuntu)
+
       [Basic usage](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
   
   * Add Tags  
@@ -49,13 +51,13 @@
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png "hostmap VM")
   * Add Datadog integration for MongoDB:
   
-  Add MongoDB - [link](http://docs.datadoghq.com/integrations/mongodb/)
+  Add MongoDB - [link to Datadog docs](http://docs.datadoghq.com/integrations/mongodb/)
   
    Configuration file: /etc/dd-agent/conf.d/mongo.yaml:
    ```
    init_config:
    instances:
-   - server: mongodb://datadog:84917zzsjingang@localhost:27017/admin
+   - server: mongodb://datadog:<mypassword>@localhost:27017/admin
    
      tags:
        - role:database
@@ -83,20 +85,28 @@
 ###Level 2 Visualizing Data
 
   * Database integration dashboard: 
-  [link](https://app.datadoghq.com/screen/97078/mongodb)
+  [link to database dashboard](https://app.datadoghq.com/screen/97078/mongodb)
 
   Screenshot: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Integration Dashboard")
   
   * Graph for test.support.random 
 
-  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph Snapshot")
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot_large.png "Graph Snapshot")
 
 ###Level 3 Alerting on Data
-  * Set up monitoring and set an alert 
+  * Set up monitoring and set one alert 
+
   Screenshot for the setting: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/set_monitor.png "Alert Setting")
+
   * Alert sent to my email 
   
   * Downtime notification
-  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_vm.png "Downtime")
+
+  Start:
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_vm.png "Downtime Starts")
+  
+  End: 
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_end_vm.png "Downtime Ends")
+
