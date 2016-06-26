@@ -1,9 +1,9 @@
 ##General qustions:
 
-  * What is Datadog Agent?
+  ### What is Datadog Agent?
     Datadog Agent is a software running on systems (hosts). It collects system events and matrics, for example, CPU usages, disk usages, network traffics etc. and send those data to Datadog. By adding integrations and setting up corresponding configurations, Datadog Agent can also collect intergrations' metrics. In addition, it also has a small server, DogStatsd, which aggregates custom app metrics.
 
-  * What is the difference between a timeboard and a screenboard?
+  ### What is the difference between a timeboard and a screenboard?
    Timeboard and screenboard are two different types of costum dashboards. Timeboard is better for troubleshooting and correaltion while screenboard is better for looking into system status. Thus, screenboards has more options, such as Eventstream, check status, Free text, etc.
 
    All graphs of timeboards are scoped to the same time slot. for example, in the past 1 hour. On the contrary, screenboards can have different time frames. 
@@ -16,9 +16,9 @@
    screenboard: [link to my screenboard](https://p.datadoghq.com/sb/b32ee517e-8c5f4c1c2a)
    ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/screenboard.png "Screenboard")
 
-## I installed datadog Agent for both Vagrant VM, Ubantu system and my local machine, Mac os X. Although there are little differences on installing agent and databases, but the other setttings on datadog are the same. So here I am giving answers only using Vitual Machine. 
+### I installed datadog Agent for both Vagrant VM, Ubantu system and my local machine, Mac os X. Although there are little differences on installing agent and databases, but the other setttings on datadog are the same. So here I am giving answers only using Vitual Machine. 
 
-#Virtual Machine (Vagrant Ubrantu 12.04):
+##Virtual Machine (Vagrant Ubrantu 12.04):
 ##Level 0 Install VM
    Set up: 
   * Install VirtualBox
@@ -90,20 +90,3 @@
   
   * Downtime notification
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_vm.png "Downtime")
-
-#Local Machine (Mac OSX)
-##Level 1
-  * Sign Up for Datadog and Install datadog agent 
-   For Mac OSX: 
-      [install datadog agent link](https://app.datadoghq.com/account/settings#agent/mac)
-      [basic usage](http://docs.datadoghq.com/guides/basic_agent_usage/osx/)
-  
-  * Add Tags  
-   Mac osx: edit congifure file -  ~/.datadog-agent/datadog.conf
-      then restart datadog agent 
-   screenshots for tags & hosts: 
-
-   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_mac.png "HostMap Mac")
-
-
-##Level 2
