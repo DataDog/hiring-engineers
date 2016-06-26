@@ -65,6 +65,7 @@
        - top
    ```
   * Custom Agent check 
+
   Check file: /etc/dd-agent/checks.d/first_check.py  
   ```python
   from checks import AgentCheck
@@ -90,7 +91,7 @@
   Screenshot: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Integration Dashboard")
   
-  * Graph for test.support.random 
+  * Snapshot of test.support.random metric
 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph Snapshot")
 
