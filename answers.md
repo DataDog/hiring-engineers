@@ -1,14 +1,21 @@
-##General qustions:
+##General questions:
 
-  ### What is Datadog Agent?
-    Datadog Agent is a software running on systems (hosts). It collects system events and matrics, for example, CPU usages, disk usages, network traffics etc. and send those data to Datadog. By adding integrations and setting up corresponding configurations, Datadog Agent can also collect intergrations' metrics. In addition, it also has a small server, DogStatsd, which aggregates custom app metrics.
+### What is Datadog Agent?
 
-  ### What is the difference between a timeboard and a screenboard?
-   Timeboard and screenboard are two different types of costum dashboards. Timeboard is better for troubleshooting and correaltion while screenboard is better for looking into system status. Thus, screenboards has more options, such as Eventstream, check status, Free text, etc.
+    Datadog Agent is a software running on systems (hosts). It collects system events and metrics, e.g., CPU usage, disk usage, network traffic, and sends these data to Datadog. By adding integrations and setting up corresponding configurations, Datadog Agent can also collect integrations' metrics. In addition, it also has a small server, DogStatsd, which aggregates custom app metrics.
 
-   All graphs of timeboards are scoped to the same time slot. for example, in the past 1 hour. On the contrary, screenboards can have different time frames. 
+### What is the difference between a timeboard and a screenboard?
+
+   Timeboard and screenboard are two different types of custom dashboards. Timeboard is better for troubleshooting and tracking correlations between different metrics/events while screenboard is better for looking into system status. Screenboards have more options, such as Eventstream, Check Status, Free Text, etc.
+
+   All graphs in a timeboard display the same time range, for example, the past 1 hour. On the contrary, each panel in a screenboard can display data for a different time period appropriate to that metric.
  
-   Each graphs of timeboards can be shared individualy by generating embeded code, while screenboards can be shared as a whole by generating public url. 
+   Each graph of a timeboard can be shared individually by generating embed code (iframe), 
+   ```
+   <iframe src="https://app.datadoghq.com/graph/embed?token=9b52006b02ad16b4e4266a04932b0c40e65c39e4ebf06a48578c98f10ab49c7f&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
+
+   ```
+   while screenboards can be shared as a whole using a public url. 
    
    timeboard: [link to my timeboard](https://app.datadoghq.com/dash/152383/zhengshis-timeboard-25-jun-2016-1803?live=true&page=0&is_auto=false&from_ts=1466911339692&to_ts=1466914939692&tile_size=m&fullscreen=false)
    ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/timeboard.png "Timeboard")
@@ -16,30 +23,32 @@
    screenboard: [link to my screenboard](https://p.datadoghq.com/sb/b32ee517e-8c5f4c1c2a)
    ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/screenboard.png "Screenboard")
 
-### I installed datadog Agent for both Vagrant VM, Ubantu system and my local machine, Mac os X. Although there are little differences on installing agent and databases, but the other setttings on datadog are the same. So here I am giving answers only using Vitual Machine. 
+### I installed Datadog Agent for both Vagrant VM running Ubuntu and my local machine, Mac OS X. Although there are small differences when installing the agent and databases, other setttings on datadog are the same. Here I am giving answers only using Virtual Machine. 
 
-##Virtual Machine (Vagrant Ubrantu 12.04):
+##Virtual Machine (Vagrant Ubuntu 12.04):
 ##Level 0 Install VM
    Set up: 
   * Install VirtualBox
-  * Intall Vagerant
-  * Install mongoDB
+  * Install Vagrant
+  * Install MongoDB
 
 ##Level 1 Collecting Data
-  * Sign Up for Datadog and Install datadog agent 
+  * Sign up for Datadog and install datadog agent 
 
-   For ubantu: 
+   For ubuntu: 
+
       [install datadog agent link](https://app.datadoghq.com/account/settings#agent/ubuntu)
+
       [basic usage](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
   
   * Add Tags  
-   Edit congifure file - /etc/dd-agent/datadog.conf
+   Edit configuration file - /etc/dd-agent/datadog.conf
 
-   screenshots for tags & host: 
+   Screenshots for tags & host: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/hostmap_vm.png "hostmap VM")
   * Add Datadog integration for MongoDB:
   
-  ep. mongoDB - [link](http://docs.datadoghq.com/integrations/mongodb/)
+  mongoDB - [link](http://docs.datadoghq.com/integrations/mongodb/)
   
   -configuration file: /etc/dd-agent/conf.d/mongo.yaml:
   ```
@@ -72,18 +81,18 @@
   ```
 ##Level 2 Visualizing Data
 
-  * Database intergration dashboard: 
+  * Database integration dashboard: 
   [link](https://app.datadoghq.com/screen/97078/mongodb)
 
   Screenshot: 
-  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Intergration Dashboard")
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Integration Dashboard")
   
   * test.support.random graph
 
-  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph snapshot")
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph Snapshot")
 
 ##Level 3 Alerting on Data
-  * Set up a monitor and set an alert 
+  * Set up monitoring and set an alert 
   screenshot for the setting: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/set_monitor.png "Alert Setting")
   * Alert sent to email 
