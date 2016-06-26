@@ -10,7 +10,7 @@
   * Intall Vagerant
   * Install mongoDB
 
-##Level 1
+##Level 1 Collecting Data
   * Sign Up for Datadog and Install datadog agent 
    For ubantu: 
       [install datadog agent link](https://app.datadoghq.com/account/settings#agent/ubuntu)
@@ -53,18 +53,26 @@
   instances:
     [{}]
   ```
-##Level 2
+##Level 2 Visualizing Data
 
-  *Database intergration dashboard: 
-  [link]https://app.datadoghq.com/screen/97078/mongodb
+  * Database intergration dashboard: 
+  [link](https://app.datadoghq.com/screen/97078/mongodb)
 
   Screenshot: 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/dashboard.png "Database Intergration Dashboard")
   
-  *test.support.random graph
+  * test.support.random graph
 
   ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/snapshot.png "Graph snapshot")
-##Level 3
+
+##Level 3 Alerting on Data
+  * Set up a monitor and set an alert 
+  screenshot for the setting: 
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/set_monitor.png "Alert Setting")
+  * Alert sent to email 
+  
+  * Downtime notification
+  ![alt text](https://github.com/zhengshizhao/hiring-engineers/blob/support-engineer/img/downtime_vm.png "Downtime")
 
 #Local Machine (Mac OSX)
 ##Level 1
