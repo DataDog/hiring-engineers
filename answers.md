@@ -15,4 +15,4 @@
 
 -  Monitor: https://app.datadoghq.com/monitors#699301?group=all&live=4h
 
-### Screenshots are in the "img" folder
+
