@@ -11,4 +11,4 @@ class TestCheck(AgentCheck):
 	def check(self,instance):
 		self.gauge('test.support.random', random.random(), tags=['kevin3'])
 		self.increment('test.support.random', random.random())
-		sel.log.info('mongo')
+		self.log.info('mongo')
