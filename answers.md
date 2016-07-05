@@ -44,7 +44,11 @@ instances:
 	![Graph](https://github.com/thechad12/hiring-engineers/blob/master/level-2.png)
 
 ## Level 3:
+
+#### Monitor above 0.9
 ![Email alert](https://github.com/thechad12/hiring-engineers/blob/master/monitor-alert.png)
+
+#### Monitor downtime email alert
 ![Downtime alert](https://github.com/thechad12/hiring-engineers/blob/master/monitor-downtime.png)
 	
 
