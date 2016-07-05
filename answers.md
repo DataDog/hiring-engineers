@@ -3,7 +3,7 @@
 ## Level 1:
 -  What is the agent?
 	*  The agent is software that runs on your computer and collects data and metrics from database integrations running on your computer. It reports the data to datadog so you can analyze it.
-	![Host Map](https://github.com/thechad12/hiring-engineers/master/hostmap.png)
+	![Host Map](https://github.com/thechad12/hiring-engineers/blob/master/hostmap.png)
 
 ### mongo.py
 
@@ -41,11 +41,11 @@ instances:
 -  What is the difference between a timeboard and a screenboard?
 	*  A timeboard consists of graphs scoped to the same time, and graphs always appear in a grid-like fashion.
 	*  A screenboard is created with drag-and-drop widgets that have different time-frames. They are more flexible in terms of the time scope. They can be shared both as a live and a read-only entity, where as timeboards cannot.
-	![Graph](https://github.com/thechad12/hiring-engineers/master/level-2.png)
+	![Graph](https://github.com/thechad12/hiring-engineers/blob/master/level-2.png)
 
 ## Level 3:
-![Email alert](https://github.com/thechad12/hiring-engineers/master/monitor-alert.png)
-![Downtime alert](https://github.com/thechad12/hiring-engineers/master/monitor-downtime.png)
+![Email alert](https://github.com/thechad12/hiring-engineers/blob/master/monitor-alert.png)
+![Downtime alert](https://github.com/thechad12/hiring-engineers/blob/master/monitor-downtime.png)
 	
 
 ## Links:
