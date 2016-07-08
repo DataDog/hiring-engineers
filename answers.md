@@ -1,4 +1,4 @@
-# Vincent Colavin's sweet answers.
+# Vincent Colavin's really cool answers.
 
 ## Level 1
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
