@@ -1,5 +1,15 @@
 # Vincent Colavin's really cool answers.
 
+I've added my custom check to vincents_check.py.
+
+[Here is the link to my dashboard](https://app.datadoghq.com/dash/158974/postgres---overview-cloned)
+
+And here is what my dashboard looks like:
+
+<img src="http://i.imgur.com/vXqn8Xf.png">
+
+Here are my answers and screenshots:
+
 ## Level 1
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
