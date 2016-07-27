@@ -97,6 +97,6 @@ vagrant@testbox:~$ sudo service datadog-agent info
 
 Moments later, the random values were correctly being tracked in the app:
 
-!(Custom Agent Check Metrics)[screenshots/random_metrics.png]
+![Custom Agent Check Metrics](screenshots/random_metrics.png)
 
 ### Other Things I Stumbled Across
