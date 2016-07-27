@@ -18,7 +18,8 @@ There are two ways to add tags to a host.
 
 First, tags can be added to the agent's `datadog.conf` configuration file. Here is a snippet from my configuration file for my `testbox` host:
 
-```# Set the host's tags
+```
+# Set the host's tags
 tags: testboxtag, env:answers, role:testing
 ```
 
@@ -40,7 +41,8 @@ The "Generate Password" link was really cool.
 
 After restarting my agent, I confirmed the integration was working:
 
-```vagrant@testbox:~$ sudo service datadog-agent info
+```
+vagrant@testbox:~$ sudo service datadog-agent info
 (...)
     postgres
     --------
@@ -61,9 +63,10 @@ to the forehead and was instead thankful for learning something new.
 
 My custom Agent check for sampling a random number is committed to this project along with its configuration file, but because they are small I have copied them here:
 
-`checks.d/random.py`:
+Contents of `checks.d/random.py`:
 
-```from checks import AgentCheck
+```
+from checks import AgentCheck
 import random
 
 
@@ -72,9 +75,10 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-`conf.d/random.yaml`:
+And `conf.d/random.yaml`:
 
-```init_config:
+```
+init_config:
 
 instances:
     [{}]
@@ -82,7 +86,8 @@ instances:
 
 After creating the check and related configuration file, I restarted the Agent and similar to the Postgres integration, confirmed that it was working:
 
-```vagrant@testbox:~$ sudo service datadog-agent info
+```
+vagrant@testbox:~$ sudo service datadog-agent info
 (...)
     random
     ------
