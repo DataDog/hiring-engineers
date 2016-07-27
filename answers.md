@@ -1,6 +1,9 @@
+Submitted by Trevor Veralrud
+
 # Challenge Answers
 
-Below are the answers to the Support Engineer challenge. It was really fun getting to dive in and figure out how everything worked!
+Below are the answers to the Support Engineer challenge. I may be a little verbose in my answers, but that's so you can assess my
+thinking process, understanding, and personality a bit better.
 
 ## Level 1 - Collecting Data
 
@@ -67,7 +70,7 @@ check already written, but I withheld a slap to the forehead and was instead tha
 My custom Agent check for sampling a random number is committed to this project along with its configuration file, but because
 they are small I have also copied them here:
 
-Contents of `checks.d/random.py`:
+Contents of `dd-agent/checks.d/random.py`:
 
 ```
 from checks import AgentCheck
@@ -79,7 +82,7 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-And a boilerplate `conf.d/random.yaml`:
+And a boilerplate `dd-agent/conf.d/random.yaml`:
 
 ```
 init_config:
@@ -113,17 +116,18 @@ Sleepless in Seattle GIF:
 
 ### Creating a Custom Dashboard
 
-I pulled up my Postgres dashboard and used the gear icon in the top right corner to Clone it to a new Custom dashboard,
+I pulled up my Postgres dashboard and used the gear icon in the top right corner to Clone it to a new Custom dashboard:
 [Postgres and Random Together at Last](https://app.datadoghq.com/dash/165011/postgres-and-random-together-at-last). Naturally,
 I starred this Dashboard to quickly access it from the Dashboard menu.
 
 I then used the "Add Graphs" button next to the Dashboard title to add a Timeseries widget to my new Dashboard, allowing me
 to see the values of my custom `test.support.random` metric over time. I selected my custom metric and opted to read the value
-from only my `testbox` host. I picked "warm bars" for the style type, and man, was it looking good:
+from only my `testbox` host. I picked "warm bars" for the style type in this screenshot, but I would later revert to the default lines,
+as they showed more granular data.
 
-!(Setting up the custom metric graph)[screenshots/random_graph.png]
+![Setting up the custom metric graph](screenshots/random_graph.png)
 
-I also recreated the graph using the Metrics Explorer and saved it to my custom dashboard as a secondary method of solving
+I also recreated the graph using the **Metrics Explorer** and saved it to my custom dashboard as a secondary method of solving
 this question.
 
 ### Bonus Question: Timeboards vs. Screenboards
@@ -132,20 +136,74 @@ this question.
 you a consistent overview of all of your data.
 
 **Screenboards** are a more flexible, graphical type of dashboard allowing you to add graphs with different times and widgets
-not found in Timeboards, such as notes and titles. Screenboards can also be shared with a generated public URL, allowing people
+not found in Timeboards, such as notes and images. Screenboards can also be shared with a generated public URL, allowing people
 to view it without requiring a Datadog account. This is perfect for sharing metrics with upper management, because in my experience,
 they tend to freak out and call you all the time if they have access to raw metrics.
 
-Below is an example
+Below is an example of a screenboard, which I made publicly available at https://p.datadoghq.com/sb/9a8bf5a28-88d2c2ef77.
+
+![Test Screenboard](screenshots/test_screenboard.png)
 
 ### Taking a Snapshot of a Graph
 
 Clicking the camera icon that appears after hovering over a graph allowed me to take a snapshot of the data. I was then able to draw
 a box around the section I wanted to highlight.
 
-!(Highlighting a snapshot)[screenshots/snapshot_comment_random.png]
+![Highlighting a snapshot](screenshots/snapshot_comment_random.png)
 
-Now this might lose me some points here, but I was not able to get an email by using an @notification. I went into my user
+Now this might lose me some points here, but I was **not** able to get an email by using an @notification. I went into my user
 preferences and confirmed both "Reply to posts you follow" and "@mention email notifications from event stream" were
 enabled in my Email Subscriptions, but no emails were ever sent, even after adding more comments and mentions to
-the event stream. I did see a LOT of funky stuff in my Spam folder, though.
+the event stream. The next day my Daily Digest email was properly delivered, but alas, no @mention emails.
+
+I did see a LOT of funky unrelated stuff in my Spam folder, though.
+
+## Level 3 - Alerting Your Data
+
+### Monitoring the Random Test Metric
+
+I was able to add a new Monitor by using the Monitoring section of the app. I configured it to look at my `test.support.random`
+metric with an alert value of 0.9, triggering to go off at least once during the last 5 minutes:
+
+![Monitoring Random Values](screenshots/monitor_random.png)
+
+### Bonus Points: Multi Alert By Host
+
+I also configured the Monitor to have a Multi Alert trigger by host. Because the "from" section of the definition was "(everywhere)",
+once I set up the Multi Alert by host, another host I had installed the `test.support.random` metric on appeared in the graph:
+
+![Multi Alert Graph](screenshots/multi_alert.png)
+
+### Sending a Message
+
+I added a message to the monitor and, because this was a Multi Alert, I used variables to reflect which host was raising the alert.
+ I added my email address to be notified and added a link back to my custom dashboard. _Side note: I later discovered that
+ you can omit the dashboard name from the URL when linking to it. You only need its unique ID._
+ 
+![Monitor message](screenshots/monitor_message.png)
+
+Multiple emails were properly received for each host:
+
+![Monitor Emails](screenshots/monitor_emails.png)
+
+And here is one in detail:
+
+![Monitor Email Detail](screenshots/monitor_email_detail.png)
+
+### Managing Downtime
+
+I used the **Manage Downtime** section of Monitors to setup a recurring daily downtime for my random metric monitor from 7PM to 9AM daily:
+
+![Scheduled Downtime](screenshots/downtime.png)
+
+I then fudged the numbers so I could get an email:
+
+![Downtime email](screenshots/downtime_email.png)
+
+# Closing Thoughts
+
+Dustin had mentioned that this challenge was designed to be fun, and he was right. I was really impressed with the Datadog
+app every step of the way, and I can see supporting user issues being very interesting and challenging. I've hit the tip
+of the iceberg with this challenge, and I'd definitely like to learn more.
+
+Thanks for setting this up, I really enjoyed working on it!
