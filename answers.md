@@ -1,20 +1,24 @@
 Your answers to the questions go here.
+Level -1 Collecting Data 
 
-Level 1 - Collecting your Data
-Here is initial Agent Install
-Screenshot 1 
+To start off, here is the initial Agent Install
 
-Here's my laptop on Datadog :)
-Screenshot 2 
+ 
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%201.png)
 
-Adding my first tags 
-Screenshot 3
+Here's my laptop on Datadog, well..., my girlfriend's laptop. :)
+
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%202.png)
+
+Now, lets add my first tags 
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%203.png)
 
 Postgresql reporting locally
-Screenshot 4
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%204.png)
 
-Postgresql integration installed 
-Screenshot 5
+
+Look! Postgresql integration installed 
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%205.png)
 
 
 
@@ -39,10 +43,12 @@ Level 2
 
 
 Random Value succesfully reporting!
-Screenshot 6
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%206.png)
+
 
 Alerting over 0.9 
-Screenshot 7
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%207.png)
+
 
 Bonus: Difference between a timeboard and a Screenboard?
 
@@ -52,15 +58,19 @@ Screenboard is more flexible and custamizible.. more high level - good for seein
 
 Level 3 
 
-Email Alert!
-Screenshot 8
+There you have it, an Email Alert!
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%208.png)
+
 
 
 
 Bonus: 
-Downtime
-Screenshot 9
+After many email alerts, looks like I'm in need of some Downtime
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%209.png)
+
 
 Extra:
 
-Experimenting with CPU load
+Experimenting with CPU load. After experimenting with a few applications to stress test the CPU, I found this command ```yes > /dev/null``` - which simply prints out the letter 'y' as fast as possible until the CPU is at 100% usage. Datadog really makes it easy to understand the performance of our stack!
+
+![ScreenShot](https://github.com/jramon1/hiring-engineers/blob/master/Screenshot%2010.png)
