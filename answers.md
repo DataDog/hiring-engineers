@@ -1,4 +1,4 @@
-Your answers to the questions go here.
+Mark Wheat answers to hiring engineers assignment
 
 ## Level 0 - Setup an Ubuntu VM
 I setup the VM as outlined.  I was not familiar with Vagrant but think it is pretty freaking cool right now.  I have also always used VMware Fusion for all my virtualization and was blown away at how good VirtualBox preformed.
@@ -20,7 +20,7 @@ I setup the VM as outlined.  I was not familiar with Vagrant but think it is pre
 - I installed mySQL on Vagrant image, no issues.  Where installing the DD integration there was a problem as I provided a root password during the DB installation and that caused some issue when trying to create the Datadog DB user.  I got to try chat support and it was spectacular!  See transcript below:
 
 
-- ![alt tag](DD-Support.png)
+![alt tag](DD-Support.png)
 
 
 - Wrote the custom Agent check, it is not fancy but works very well:
