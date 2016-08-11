@@ -62,6 +62,9 @@ https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=
 -**Monitor activation email:**
 ![alt tag](DD-monitor-email.png)
 
+-**Scheduled Downtime email notification:**
+![alt tag](DD-maint.png)
+
 -**Scheduled Downtime config:**
 ![alt tag](DD-Scheduled 1.png)
 
