@@ -14,6 +14,8 @@ I setup the VM as outlined.  I was not familiar with Vagrant but think it is pre
 
 
 - **Adding Tags:**
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false
+
 ![alt tag](/DD-Tags.png)
 
 
