@@ -111,7 +111,7 @@ Each graph of a timeboard can be shared individually by generating embed code (i
 
 Screenboard: [Public url](https://p.datadoghq.com/sb/6026d6b5e-0b141c1724)
 
-![Screenboard](img/screenboard.png)
+![Screenboard](img/screenBoard.png)
 
 
 - **Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification** - I used the camera widget to take a snapshot of the test.support.random graph going above .90. I drew a box around the peak of the graph. I then sent an email to myself at '@testtravisdunn@gmail.com'.
