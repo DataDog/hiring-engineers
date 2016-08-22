@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-
 ##level 1:
 ###In your own words, what is the Agent?
 
