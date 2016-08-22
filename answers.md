@@ -27,14 +27,21 @@ class RandomCheck(AgentCheck):
 ###What is the difference between a timeboard and a screenboard?
 * A timeboard has an automatic layout with all your metrics and graphs time synchronized and can be shared individually. 
 
-* A screenboard is more customizable, and can give you a more flexible look into your system, allows for read-only sharing, and every widget has an individual time window. 
+* A screenboard is more customizable, and can give you a more flexible look into your system, allows for read-only sharing, and every widget has an individual time window.
+
+snapshot of graph with box drawn around area above threshold: 
 ![snapshot of box around above .90](/snapshot of above .90.png)
 
 ##Level 3:
 link to dashboard:
 [dashboard](https://p.datadoghq.com/sb/237636259-745aba0497)
+Screen shot of custom check:
 ![screen shot of custom agent check](/custom agent check.png)
+
+Screen shot of email notification for scheduled downtime:
 ![screen shot of email for downtime](/email for downtime.png)
+
+Screen shot of email notification for monitor trigger:
 ![screen shot of email for monitor trigger](/email for monitor trigger.png)
 
 
