@@ -31,6 +31,7 @@ B) What is the difference between a timeboard and a screenboard?:
 TimeBoards and ScreenBoards are the two types of dashboards available with Datadog. Both provide a graphical view into multiple metrics. The key difference is that all graphs on a TimeBoard are on the same time scale, whereas ScreenBoards are more flexible and can have graphs with different time frames. Additionally, while ScreenBoards can be shared as a whole and as a read-only entity or by individual graph, TimeBoard graphs can only be shared individually and annotated by hand. The use cases for TimeBoards and Screenboards are distinct. TimeBoards are generally more useful for taking a granular look at your suite of metrics over some fixed time frame in order to diagnose a problem. ScreenBoards, by contrast, are more favored for providing a higher-level view to multiple team members.
 
 C) Screenshot of annotated graph:
+
 ![Host Tags](Annotated Graph.bmp)
 
 Level 3:
