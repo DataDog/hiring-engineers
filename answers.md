@@ -45,7 +45,7 @@ instances:
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
-> A timeboard is a synchronized dashboard used for viewing a number of metrics at once. The entire dashboard can be adjusted based on the range in time needed. Aditionally each metric is locked into identically sized boxes. A screenboard is a much more flexible and open ended dashboard. It does not force synchronisity and allows elements to take any size. Rather than being used to compare metrics, it's simply used as a common location for any type of element one might want on sreen at a time. This includes custom notes and images.
+> A timeboard is a synchronized dashboard used for viewing a number of metrics at once. The entire dashboard can be adjusted based on the range in time needed. Additionally each metric is locked into identically sized boxes. A screenboard is a much more flexible and open ended dashboard. It does not force synchronicity and allows elements to take any size. Rather than being used to compare metrics, it's simply used as a common location for any type of element one might want on screen at a time. This includes custom notes and images.
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
