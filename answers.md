@@ -4,7 +4,7 @@
 
 * Bonus question: In your own words, what is the Agent?
 
-> The Agent is a program that runs on my local machines. It's responsible for collecting various information, including custom metrics, and sending it to Datadog to be analyzed.
+> The Agent is a program that runs on the user's local machines. It's responsible for collecting various information, including custom metrics, and sending it to Datadog to be analyzed.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
