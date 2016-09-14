@@ -2,6 +2,17 @@
 
 The Datadog Agent is a piece of software installed on all of your hosts that will link them up to your Datadog infrastructure. Each Agent will send up data from their host providing you a map of all your data and metrics.
 
+### Tags
+
+Here is a screenshot of the host map with added tags.
+![hosttags]
+
+### Database Integration clone
+
+This is a link to the timeboard clone of my database integration.
+[Cloned Dash Link][dash]
+Also a screenshot:
+![dashboard]
 
 ## What is the difference between a timeboard and a screenboard?
 
@@ -19,9 +30,28 @@ ScreenBoards have a highly customizable display that you can hone to create the 
 
 In summary, TimeBoards are preferable for troubleshooting and ScreenBoards are preferable for sharing information, especially more holistic data.
 
------
-![hosttags]
+### Snapshot notification
+
+Here is a screenshot of an @notification email showing test.support.random peaking over 0.9.
+![snapshotpeak]
+
+### Alert notification
+
+Here is a screenshot of an alert email triggered when test.support.random peaks over 0.9 in a five minute window.
 ![peakingalert]
+
+### Scheduled Downtime notification
+
+Here is a screenshot of an email alerting a scheduled downtime on the alert above.
+![downtime]
+
+
+
+
+
 [hosttags]: ./images/host-with-tags.png
+[snapshotpeak]: ./images/snapshot-peak.png
 [peakingalert]: ./images/peaking-alert.png
------
+[downtime]: ./images/downtime-notification.png
+[dashboard]: ./images/dashboard.png
+[dash]: https://app.datadoghq.com/dash/178726/postgres---overview-cloned
