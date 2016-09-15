@@ -5,7 +5,7 @@ Bonus question: In your own words, what is the Agent?
 The Datadog agent is a program that runs on your host machine and monitors performance (CPU and memory usage) as well as events. The user can also specify custom metrics to allow the agent to keep track of. This is then all sent over by the agent to the Datadoghq site where the metrics are put to use.
 
 Add tags in the Agent config file:
-https://github.com/msr23/hiring-engineers/blob/master/tags%20config.png?raw=true
+
 
 
 Screenshot of host and its tags on the Host Map page in Datadog:
