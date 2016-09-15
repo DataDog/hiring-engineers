@@ -9,28 +9,18 @@ Add tags in the Agent config file:
 
 
 Screenshot of host and its tags on the Host Map page in Datadog:
-
-
-
-
-
-
-
-
-
-
-
+![hostmap](https://cloud.githubusercontent.com/assets/4193161/18540876/a9c80cf2-7aef-11e6-975d-130b34fabf13.png)
 
 
 Install a database on your machine (MySQL) and then install the respective Datadog integration for that database.
-
+![datintegration](https://cloud.githubusercontent.com/assets/4193161/18540896/c93aaf0e-7aef-11e6-8c86-b995020ac30a.png)
 
 Write a custom Agent check that samples a random value. Call this new metric: test.support.random
-
 random.py code that will send a random number to agent:
+![random](https://cloud.githubusercontent.com/assets/4193161/18540916/ec409e8c-7aef-11e6-9d42-f1081dc34814.png)
 
 random.yaml put in config folder conf.d:
-
+![yaml](https://cloud.githubusercontent.com/assets/4193161/18540920/ef89d8ba-7aef-11e6-8c00-3f82f76cd7be.png)
 
 
 
