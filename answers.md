@@ -15,6 +15,7 @@ Screenshot of host and its tags on the Host Map page in Datadog:
 Install a database on your machine (MySQL) and then install the respective Datadog integration for that database.
 ![datintegration](https://cloud.githubusercontent.com/assets/4193161/18540896/c93aaf0e-7aef-11e6-8c86-b995020ac30a.png)
 #### I ran into some problems with the MySQL database integration, I followed the steps accordingly and edited the necessary files 
+I switched to a different host machine beacuse of permissions problems being thrown and redid the integration. 
 ![datadog permissions](https://cloud.githubusercontent.com/assets/4193161/18567060/80d45ce0-7b64-11e6-9bb4-dfb524d80c8b.PNG)
 ![sqlyaml](https://cloud.githubusercontent.com/assets/4193161/18567084/94a27f9a-7b64-11e6-8174-58d8944d1629.PNG)
 
