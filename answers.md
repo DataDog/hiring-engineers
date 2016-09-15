@@ -20,7 +20,7 @@ Install a database on your machine (MySQL) and then install the respective Datad
 
 
 
-####but the agentkept returning this erorr in the checks
+####but the agent check was informing me of this error!
 ![mysql error](https://cloud.githubusercontent.com/assets/4193161/18567020/4564a958-7b64-11e6-8c51-1ceff5128781.PNG)
 
 Write a custom Agent check that samples a random value. Call this new metric: test.support.random
