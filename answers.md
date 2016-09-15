@@ -28,9 +28,13 @@ class RandomCheck(AgentCheck):
 ```
 
 random.yaml put in config folder conf.d:
-![yaml](https://cloud.githubusercontent.com/assets/4193161/18540920/ef89d8ba-7aef-11e6-8c00-3f82f76cd7be.png)
+```yaml
+init_config:
+min_collection_interval: 30
 
-
+instances:
+    [{}]
+```
 
 
 
