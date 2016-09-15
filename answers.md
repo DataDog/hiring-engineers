@@ -60,7 +60,7 @@ Make sure this snapshot is sent to your email by using the @notification
 Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes. This is a multi-alert by host. (had to change the average to at least once)
 ![monitor](https://cloud.githubusercontent.com/assets/4193161/18541037/ac4cf22a-7af0-11e6-9dfd-8aa4a722d428.png)
 
-Email alert from monitor:
+**Bonus: **Email alert from monitor:
 ![alert](https://cloud.githubusercontent.com/assets/4193161/18541040/afbfb14a-7af0-11e6-816d-e7e85b2972f0.png)
 Scheduled Downtime on Monitor:
 ![downtime](https://cloud.githubusercontent.com/assets/4193161/18541046/b579477c-7af0-11e6-9ede-3586a536f400.png)
