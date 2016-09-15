@@ -17,7 +17,15 @@ Install a database on your machine (MySQL) and then install the respective Datad
 
 Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 random.py code that will send a random number to agent:
-![random](https://cloud.githubusercontent.com/assets/4193161/18540916/ec409e8c-7aef-11e6-9d42-f1081dc34814.png)
+```python
+import random
+from checks import AgentCheck
+
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+#built using hello.world example on http://docs.datadoghq.com/guides/agent_checks/
+```
 
 random.yaml put in config folder conf.d:
 ![yaml](https://cloud.githubusercontent.com/assets/4193161/18540920/ef89d8ba-7aef-11e6-8c00-3f82f76cd7be.png)
