@@ -66,8 +66,8 @@ Email alert from monitor:
 ![downtime](https://cloud.githubusercontent.com/assets/4193161/18541046/b579477c-7af0-11e6-9ede-3586a536f400.png)
 
 ##Links
-[screen](https://app.datadoghq.com/screen/119081/michaels-screenboard-15-sep-2016-0108 "Michael ScreenBoard")
-[time](https://app.datadoghq.com/dash/183841/visualizing-data?live=true&page=0&is_auto=false&from_ts=1473920203653&to_ts=1473923803653&tile_size=l "Visualizing Data TimeBoard")
+[Michael ScreenBoard](https://app.datadoghq.com/screen/119081/michaels-screenboard-15-sep-2016-0108 "Michael ScreenBoard")
+[Visualizing Data TimeBoard](https://app.datadoghq.com/dash/183841/visualizing-data?live=true&page=0&is_auto=false&from_ts=1473920203653&to_ts=1473923803653&tile_size=l "Visualizing Data TimeBoard")
 
 ###Thank you for taking the time to look over my submission. I'm available to be contacted at any time at MichaelSRodriguezz@outlook.com | 914-602-3603
 
