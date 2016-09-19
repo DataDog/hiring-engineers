@@ -1,5 +1,6 @@
-Your answers to the questions go here.
+#Spencer Brown Data Dog Coding Challenge Answers
 
+##General Information
 Link to DataDog profile: <br> 
 https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1473714000000&priority=normal&live=true&is_zoomed=false&status=all&to_ts=1474318800000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=10800000 
 
@@ -55,7 +56,9 @@ Link to Downtime:<br>
 * https://app.datadoghq.com/monitors#downtime?id=195363148 
 
 ###Screenshots of Monitor Setup:
+####Monitor Setup 1:
 ![host-image-1](screenshots/monitor_definition_1.png)
+####Monitor Setup 2:
 ![host-image-1](screenshots/monitor_definition_2.png)
 
 ###Screenshot of Monitor Downtime Setup:
@@ -67,7 +70,7 @@ Link to Downtime:<br>
 ###Screenshot of Downtime Alert:
 ![host-image-1](screenshots/downtime_alert.png)
 
-####Final Notes:<br>
+####Final Notes Part 3:<br>
 * I scheduled the downtime to be a few minutes ahead of the current time in 
 order to get a screenshot and submit earlier, then deleted and redid the downtime
 to be listed as 7:00 p.m. to 9:00 a.m. 
