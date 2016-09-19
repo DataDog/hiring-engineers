@@ -113,7 +113,7 @@ Looking at Figure 4, the graph indicates where the value is above 0.9 in the gre
 
 I created a monitor to send me an e-mail whenever the random value went over 0.9.  I made the alert a multi alert by host.  I wrote a message with a link to my dashboard.  The alert message that I received is displayed in Figure 6.  I also set up scheduled downtime between 7pm and 9am daily.  Figure 7 shows a screenshot of the scheduled downtime alert I recieved in my e-mail.
 
-![E-Mail Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/email_alert.png)
+![G-Mail Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/gmail_alert.png)
 
 				Figure 6: Email I recieved indicating a random value > 0.9
 
