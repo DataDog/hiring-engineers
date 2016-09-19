@@ -55,7 +55,7 @@ A diagram explaining the architecture is depcited in Figure 1 below.
 
 ![Agent Diagram](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/agent_diagram.png)
 
-				 Figure 1: Diagram of the Agent Architecture
+							 Figure 1: Diagram of the Agent Architecture
 
 ### Setting Up DataDog On My Machine
 
@@ -63,7 +63,7 @@ To set up DataDog on my machine, I first created an Ubuntu Virtual Machine using
 
 ![System Metrics](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/system_metrics.png)
 
-				 Figure 2: Screenshot of my System's Metrics
+							 Figure 2: Screenshot of my System's Metrics
 
 ### Setting Up MySQL DataDog Integration
 
@@ -87,7 +87,7 @@ A copy of the MySQL database with additional metrics (test.support.random and th
 
 ![Database Integration](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/database_integration_dashboard.png)
 
-					Figure 3: Integration of MySQL
+							Figure 3: Integration of MySQL
 
 ###ScreenBoards Vs TimeBoards
 
@@ -99,11 +99,11 @@ Looking at Figure 4, the graph indicates where the value is above 0.9 in the gre
 
 ![Random Value over 0.9](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/random_over_9.png)
 
-				Figure 4: Graph displaying where random value > 0.9
+							Figure 4: Graph displaying where random value > 0.9
 
 ![E-Mail Random Value Graph](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/random_over_9_email.png)
 
-				Figure 5: Graph displaying where random value > 0.9, e-mailed to me. 
+							Figure 5: Graph displaying where random value > 0.9, e-mailed to me. 
 
 
 ##Level 3
@@ -115,11 +115,11 @@ I created a monitor to send me an e-mail whenever the random value went over 0.9
 
 ![G-Mail Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/gmail_alert.png)
 
-				Figure 6: Email I recieved indicating a random value > 0.9
+							Figure 6: Email I recieved indicating a random value > 0.9
 
 ![Scheduled Downtime Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/scheduled_downtime_email.png)
 
-				Figure 7: Email I recieved indicating scheduled downtime.
+							Figure 7: Email I recieved indicating scheduled downtime.
 
 ## Closing Remarks
 
