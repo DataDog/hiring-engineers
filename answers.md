@@ -37,17 +37,34 @@ instances:
 ````
 
 ##Part 2:
-Bonus Question 2: What is the difference between a timeboard and a screenboard? <br> 
-* A timeboard and a screenboard are two different types of dashboard. The obvious differences begin with an enforced layout for a timeboard, and a fluid drag-and-drop layout for a screenboard. The two boards represent two different types of monitoring of systems. A timeboard focuses on snapshots of system values over time, and primarily serves as a resource to see how resources are being utilized over time. A screenboard can also achieve this as they can have the same time graphs, but the purpose of a screenboard is generally to get an overview of an entire system, and I believe would probably be used to get a snapshot of *right now* for the things being monitered. 
 
 Link to Dashboard: <br> 
 * https://app.datadoghq.com/dash/185301/postgresrandom-metric-dashboard?live=true&page=0&is_auto=false&from_ts=1474307023437&to_ts=1474310623437&tile_size=m 
+
+Bonus Question 2: What is the difference between a timeboard and a screenboard? <br> 
+* A timeboard and a screenboard are two different types of dashboard. The obvious differences begin with an enforced layout for a timeboard, and a fluid drag-and-drop layout for a screenboard. The two boards represent two different types of monitoring of systems. A timeboard focuses on snapshots of system values over time, and primarily serves as a resource to see how resources are being utilized over time. A screenboard can also achieve this as they can have the same time graphs, but the purpose of a screenboard is generally to get an overview of an entire system, and I believe would probably be used to get a snapshot of *right now* for the things being monitered. 
+
+###Screnshot of Graph With Comment:
+![host-image-1](screenshots/snapshot_with_comments_above_.90.png)
 
 ##Part 3:
 Link to Monitor:<br>
 * https://app.datadoghq.com/monitors#937913?group=all&live=4h
 Link to Downtime:<br> 
 * https://app.datadoghq.com/monitors#downtime?id=195363148 
+
+###Screenshots of Monitor Setup:
+![host-image-1](screenshots/monitor_definition_1.png)
+![host-image-1](screenshots/monitor_definition_2.png)
+
+###Screenshot of Monitor Downtime:
+![host-image-1](screenshots/monitor_downtime_definition.png)
+
+###Screenshot of Monitor Alert:
+![host-image-1](screenshots/monitor_alert.png)
+
+###Screenshot of Downtime Alert:
+![host-image-1](screenshots/downtime_alert.png)
 
 ##Final Notes:<br>
 * I scheduled the downtime to be a few minutes ahead of the current time in 
