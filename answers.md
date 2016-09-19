@@ -16,9 +16,9 @@ Bonus Question 1: In your own words, what is the Agent? <br>
 
 ###Host Screenshots:
 ####Host Image 1:
-![host-image-1](https://github.com/stb2132/hiring-engineers/tree/spencer_brown_answers/screenshots/host_map_view_1.png)
+![host-image-1](https://github.com/stb2132/hiring-engineers/blob/spencer_brown_answers/screenshots/host_map_view_1.png)
 ####Host Image 2:
-![host-image-1](https://github.com/stb2132/hiring-engineers/tree/spencer_brown_answers/screenshots/host_map_view_2.png)
+![host-image-1](https://github.com/stb2132/hiring-engineers/blob/spencer_brown_answers/screenshots/host_map_view_2.png)
 
 ###Code:
 ####randomcheck.py:
