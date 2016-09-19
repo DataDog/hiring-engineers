@@ -1,5 +1,10 @@
 Your answers to the questions go here.
 
+Link to DataDog profile: https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1473714000000&priority=normal&live=true&is_zoomed=false&status=all&to_ts=1474318800000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=10800000
+
+Associated User Email: stb2132@columbia.edu
+Associated Name: Spencer Brown
+
 Bonus Question 1: In your own words, what is the Agent?
    The agent is effectively a daemon that fills several
    rolls. It is somewhat similar to an http daemon (httpd) 
