@@ -62,6 +62,7 @@ A diagram explaining the architecture is depcited in Figure 1 below.
 To set up DataDog on my machine, I first created an Ubuntu Virtual Machine using Vagrant.  This was to ensure a consistent development environment and to eliminate issues regarding dependencies or machine’s operating system (OSX Yosemite).  My virtual machine’s metrics are displayed through DataDog in Figure 2.  As shown, I added several tags to my host.  I decided to specifically tag my host with the region of the world it is in (New England).  This would be useful if, as a user, I wanted to detect specific metrics from my hosts in one part of the country.  
 
 ![System Metrics](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/system_metrics.png)
+
 				 Figure 2: Screenshot of my System's Metrics
 
 ### Setting Up MySQL DataDog Integration
@@ -85,6 +86,7 @@ sudo -u dd-agent dd-agent check my_check
 A copy of the MySQL database with additional metrics (test.support.random and the number of tables in the database) is displayed in Figure 3.  The dashboard can also be found at https://app.datadoghq.com/dash/185089/mysql---overview-cloned?live=true&page=0&is_auto=true&from_ts=1474285180288&to_ts=1474288780288&tile_size=xs.  
 
 ![Database Integration](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/database_integration_dashboard.png)
+
 					Figure 3: Integration of MySQL
 
 ###ScreenBoards Vs TimeBoards
@@ -96,9 +98,11 @@ A ScreenBoard provides a heads-up display into a user’s system, allowing the u
 Looking at Figure 4, the graph indicates where the value is above 0.9 in the grey box.  A snapshot of the graph going over 0.9 sent to my e-mail is shown in Figure 5.  
 
 ![Random Value over 0.9](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/random_over_9.png)
+
 				Figure 4: Graph displaying where random value > 0.9
 
 ![E-Mail Random Value Graph](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/random_over_9_email.png)
+
 				Figure 5: Graph displaying where random value > 0.9, e-mailed to me. 
 
 
@@ -110,13 +114,13 @@ Looking at Figure 4, the graph indicates where the value is above 0.9 in the gre
 I created a monitor to send me an e-mail whenever the random value went over 0.9.  I made the alert a multi alert by host.  I wrote a message with a link to my dashboard.  The alert message that I received is displayed in Figure 6.  I also set up scheduled downtime between 7pm and 9am daily.  Figure 7 shows a screenshot of the scheduled downtime alert I recieved in my e-mail.
 
 ![E-Mail Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/email_alert.png)
+
 				Figure 6: Email I recieved indicating a random value > 0.9
 
 ![Scheduled Downtime Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/scheduled_downtime_email.png)
+
 				Figure 7: Email I recieved indicating scheduled downtime.
 
 ## Closing Remarks
 
 I enjoyed doing this exercise a lot! It was extremely rewarding to solve each problem and learn such a complex, interesting system.  It challenged me in a different technical manner that I was not used to; figuring out how a system works and troubleshooting it, rather than just sitting down and writing code.  I hope I have the opportunity to continue solving problems like the ones in this exercise with DataDog!
-
- 
