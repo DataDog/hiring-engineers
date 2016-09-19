@@ -11,4 +11,19 @@ Bonus Question: In your own words, what is the Agent?
    the data can be compiled with data served by other agents
    to build a picture of one's infrastructure. 
    
+Bonus Question: What is the difference between a timeboard and a screenboard?
+   A timeboard and a screenboard are two different types of dashboard. The 
+   obvious differences begin with an enforced layout for a timeboard, and a
+   fluid drag-and-drop layout for a screenboard. The two boards represent two
+   different types of monitoring of systems. A timeboard focuses on snapshots
+   of system values over time, and primarily serves as a resource to see how
+   resources are being utilized over time. A screenboard can also achieve this
+   as they can have the same time graphs, but the purpose of a screenboard
+   is generally to get an overview of an entire system, and I believe would
+   probably be used to get a snapshot of *right now* for the things being 
+   monitered. 
+
+Link to Dashboard: https://app.datadoghq.com/dash/185301/postgresrandom-metric-dashboard?live=true&page=0&is_auto=false&from_ts=1474307023437&to_ts=1474310623437&tile_size=m
+
+
 
