@@ -20,9 +20,12 @@
 	d. Creating a Custom Agent
 	
 2. Level 2
+
 	a. My Dashboard
 	b. ScreenBoards vs TimeBoards
+
 3. Level 3
+
 	a. Setting up a Monitor  
 
 ##Level 1 
