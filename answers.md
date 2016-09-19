@@ -31,3 +31,7 @@ Link to Downtime: https://app.datadoghq.com/monitors#downtime?id=195363148
 Notes: I scheduled the downtime to be a few minutes ahead of the current time in 
 order to get a screenshot and submit earlier, then deleted and redid the downtime
 to be listed as 7:00 p.m. to 9:00 a.m. 
+
+Bonus question approach: In answering these questions, I tried to minimize the amount
+I looked at guides online. I wanted to determine if I could figure out what was happening 
+purely based upon information on the machine and that I could derive from the app page. 
