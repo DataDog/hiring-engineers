@@ -91,7 +91,7 @@ A copy of the MySQL database with additional metrics (test.support.random and th
 
 ###ScreenBoards Vs TimeBoards
 
-DataDog has the ability to create two different types of dashboards; ScreenBoards and TimeBoards.  Both allow the user to visualize data collected from their system.  However, there are some key differences between these two dashboards.  TimeBoards scope all of the data within a specific time interval.  As shown in database_integration_dashboard.png, the time interval selected is “The Past Hour”.  This means the data in the graphs is scoped to data points within the last hour.  Individual graphs on a TimeBoard can be shared between collaborators.
+DataDog has the ability to create two different types of dashboards; ScreenBoards and TimeBoards.  Both allow the user to visualize data collected from their system.  However, there are some key differences between these two dashboards.  TimeBoards scope all of the data within a specific time interval.  As shown in Figure 3, the time interval selected is “The Past Hour”.  This means the data in the graphs is scoped to data points within the last hour.  Individual graphs on a TimeBoard can be shared between collaborators.
 
 A ScreenBoard provides a heads-up display into a user’s system, allowing the user to determine their system’s current status or performance.   Widgets on a screenboard are not bound by the same time frame.  A ScreenBoard can be shared as a whole unit, while a TimeBoard can only share its individual graphs.
 
