@@ -7,13 +7,13 @@
 
 	a. What is an Agent?
 		
-		i.Collector
+	   - i.Collector
 		
-		ii. DogStatsD
+	   - ii. DogStatsD
 		
-		iii. Forwarder
+	   - iii. Forwarder
 		
-		iv. SupervisorD
+	   - iv. SupervisorD
 		
 	b. Setting Up DataDog on my Machine
 	c. Setting Up MySQL DataDog Integration
