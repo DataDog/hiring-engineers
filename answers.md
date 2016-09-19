@@ -41,7 +41,7 @@ The collector (agent.py) performs two operations.  Firstly, the collector gather
 
 ##### DogStatsD
 
-DogStatsD (dogstatsd.py) is a StatsD backend that takes the aggregation several data points into a single custom metric over a preset period of time.  For example, if a user wanted to count page views on their website, they could insert a command to increment a metric every time the page is rendered.  Each time the command to increment the metric is called, a UDP packet is created.  DogStatsD collects these metric increments over a defined period of time (10 seconds by default) and sends the aggregated metric count to DataDog using an HTTPs connection.  The user can then go on DataDog to visualize the aggregated metric data.  
+DogStatsD (dogstatsd.py) is a StatsD backend that takes the aggregation several data points into a single custom metric over a preset period of time.  For example, if a user wanted to count page views on their website, they could insert a command to increment a metric every time the page is rendered.  Each time the command to increment the metric is called, a UDP packet is created.  DogStatsD collects these metric increments over a defined period of time (10 seconds by default) and sends the aggregated metric count to DataDog using an HTTPS connection.  The user can then go on DataDog to visualize the aggregated metric data.  
 
 ##### Forwarder
 
@@ -59,7 +59,7 @@ A diagram explaining the architecture is depcited in Figure 1 below.
 
 ### Setting Up DataDog On My Machine
 
-To set up DataDog on my machine, I first created an Ubuntu Virtual Machine using Vagrant.  This was to ensure a consistent development environment and to eliminate issues regarding dependencies or machine’s operating system (OSX Yosemite).  My virtual machine’s metrics are displayed through DataDog in Figure 2.  As shown, I added several tags to my host.  I decided to specifically tag my host with the region of the world it is in (New England).  This would be useful if, as a user, I wanted to detect specific metrics from my hosts in one part of the country.  
+To set up DataDog on my machine, I first created an Ubuntu Virtual Machine using Vagrant.  This was to ensure a consistent development environment and to eliminate issues regarding dependencies or my machine’s operating system (OSX Yosemite).  My virtual machine’s metrics are displayed through DataDog in Figure 2.  As shown, I added several tags to my host.  I decided to specifically tag my host with the region of the world it is in (New England).  This would be useful if, as a user, I wanted to detect specific metrics from my hosts in one part of the country.  
 
 ![System Metrics](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/system_metrics.png)
 
@@ -67,12 +67,12 @@ To set up DataDog on my machine, I first created an Ubuntu Virtual Machine using
 
 ### Setting Up MySQL DataDog Integration
 
-I chose to use a MySQL DataDog integration because out of the databases listed in the assignment, MySQL is the database I have most experience with.  Since I was using Vagrant to run a Virtual Machine, I had to first install MySQL, then create a DataDog user on my MySQL server, and update the mysql.yaml file in my conf.d directory.  I found using the info command (sudo /etc/init.d/datadog-agent info) very helpful in troubleshooting issues during this process.  
+I chose to use a MySQL DataDog integration because out of the databases listed in the assignment, MySQL is the database I have most experience with.  Since I was using Vagrant to run a Virtual Machine, I had to first install MySQL, then create a DataDog user on my MySQL server, then update the mysql.yaml file in my conf.d directory.  I found using the info command (sudo /etc/init.d/datadog-agent info) very helpful in troubleshooting issues during this process.  
 
 Now that I know how to integrate DataDog with MySQL, I look forward to using it to visualize the performances of MySQL databases used in my various projects and in any projects I work on in the future!
 
 ### Creating a Custom Agent
-The first step in creating an agent was to create a new Agent Check to sample a random number between 0 and 1.  This agent check was written in the file (/etc/dd-agent/checks.d/random.py) using Python.  My custom created check inherits from the AgentCheck module and sends a gauge of a randomly sampled number between zero and one each time it is called to the test.support.random metric.   The second step was to create a configuration file (/etc/dd-agent/conf.d/random.yaml) using YAML.  Both the agent check and configuration files are located in this pull request.
+The first step in creating an agent was to create a new Agent Check to sample a random number between 0 and 1.  This agent check was written in the file (/etc/dd-agent/checks.d/random.py) using Python.  My custom created check inherits from the AgentCheck module, then sends a gauge of a randomly sampled number between zero and one each time it is called to the test.support.random metric.   The second step was to create a configuration file (/etc/dd-agent/conf.d/random.yaml) using YAML.  Both the agent check and configuration files are located in this pull request.
 
 I found using the following command very helpful in troubleshooting the process of setting up an agent: 
 
@@ -111,7 +111,7 @@ Looking at Figure 4, the graph indicates where the value is above 0.9 in the gre
 ### Setting up a Monitor
 
 
-I created a monitor to send me an e-mail whenever the random value went over 0.9.  I made the alert a multi alert by host.  I wrote a message with a link to my dashboard.  The alert message that I received is displayed in Figure 6.  I also set up scheduled downtime between 7pm and 9am daily.  Figure 7 shows a screenshot of the scheduled downtime alert I recieved in my e-mail.
+I created a monitor to send me an e-mail whenever the random value went over 0.9.  I made the alert a multi alert by host and wrote an alert message with a link to my dashboard.  The alert message that I received is displayed in Figure 6.  I also set up scheduled downtime between 7pm and 9am daily.  Figure 7 shows a screenshot of the scheduled downtime alert I recieved in my e-mail.
 
 ![G-Mail Alert](https://raw.githubusercontent.com/shauncarland/hiring-engineers/support-engineer/gmail_alert.png)
 
