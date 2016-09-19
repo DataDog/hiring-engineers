@@ -14,8 +14,9 @@ Bonus Question 1: In your own words, what is the Agent? <br>
 * The agent is effectively a daemon that fills several rolls. It is somewhat similar to an http daemon (httpd) like apache, but is much more specific in that it only connects and serves information to a specified site, or sites. The central purpose of the agent is to monitor other long-running processes while collecting data and serving it to a centralized location, on which the data can be compiled with data served by other agents to build a picture of one's infrastructure. 
    
 ###Host Screenshots:
+####Host Image 1:
 ![host-image-1](screenshots/host_map_view_1.png)
-
+####Host Image 2:
 ![host-image-1](screenshots/host_map_view_2.png)
 
 ###Code:
@@ -57,7 +58,7 @@ Link to Downtime:<br>
 ![host-image-1](screenshots/monitor_definition_1.png)
 ![host-image-1](screenshots/monitor_definition_2.png)
 
-###Screenshot of Monitor Downtime:
+###Screenshot of Monitor Downtime Setup:
 ![host-image-1](screenshots/monitor_downtime_definition.png)
 
 ###Screenshot of Monitor Alert:
@@ -66,12 +67,12 @@ Link to Downtime:<br>
 ###Screenshot of Downtime Alert:
 ![host-image-1](screenshots/downtime_alert.png)
 
-##Final Notes:<br>
+####Final Notes:<br>
 * I scheduled the downtime to be a few minutes ahead of the current time in 
 order to get a screenshot and submit earlier, then deleted and redid the downtime
 to be listed as 7:00 p.m. to 9:00 a.m. 
 
-###Bonus question approach:<br>
+##Bonus question approach:<br>
 * In answering these questions, I tried to minimize the amount
 I looked at guides online. I wanted to determine if I could figure out what was happening 
 purely based upon information on the machine and that I could derive from the app page. 
