@@ -1,11 +1,11 @@
 Your answers to the questions go here.
 
-Link to DataDog profile: 
+Link to DataDog profile: <br> 
 https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1473714000000&priority=normal&live=true&is_zoomed=false&status=all&to_ts=1474318800000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=10800000 
 
-Associated User Email: 
+Associated User Email:<br>
 	stb2132@columbia.edu
-Associated Name: 
+Associated Name:<br>
 	Spencer Brown
 
 Part 1:
