@@ -29,10 +29,12 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ````
 ####randomcheck.yaml:
+````yaml
 init_config:
 
 instances:
     [{}]
+````
 
 ##Part 2:
 Bonus Question 2: What is the difference between a timeboard and a screenboard? <br> 
