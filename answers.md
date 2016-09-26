@@ -21,7 +21,7 @@ sudo /etc/init.d/datadog-agent start
 
 
 * To get Agent Reporting on Metrics, login to DataDog's web dashboard interface
-(IMAGE OF WEB DASHBOARD INTERFACE) ---------------------------------------------------------------->
+<img src="http://https://github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig1.PNG" width="500" height="332" alt="_DSC4652">
 
 
 #### What is an Agent?
