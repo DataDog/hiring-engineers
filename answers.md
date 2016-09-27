@@ -71,4 +71,5 @@ Level 3
 
 -Screenshot of the email regarding scheduled downtime in file ScheduledDowntime.
 
+Link to dashboard: https://p.datadoghq.com/sb/24161fe7d-bc7ccd51ef
 
