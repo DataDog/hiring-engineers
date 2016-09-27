@@ -66,8 +66,8 @@ A timeboard has functionality that caters to all time series graphs available on
 A screen board is more customizable and allows users to add basic functionalities like warnings, images and notes in addition to the graphing functionalities.
 
 #### snapshot of test.support.random graph
+![alt tag](https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig8.PNG)
 
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig8.PNG" width="500" height="332" alt="_DSC4652">
 
 ##Level 3 - Alerting Data
 <img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig9.PNG" width="500" height="332" alt="_DSC4652">
