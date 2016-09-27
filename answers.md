@@ -47,9 +47,9 @@ uuid
 
 -Screenshot of tags in file DataDogTags.
 
--Installed MongoDB integration.
+-Installed MongoDB integration. See file mongo.yaml.
 
--test.support.random is appearing in the metrics explorer. Screenshot in file NewMetric.
+-Custom agent check found in files randomCheck.py and randomCheck.yaml. test.support.random is appearing in the metrics explorer. Screenshot in file NewMetric. 
 
 
 Level 2
