@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+      -   server: mongodb://datadog:dRV1Zw8hgoTOibYHNFuE3dwG@localhost:27016
+          tags:
+              - db
+              - mongodb
+      -   server: mongodb://datadog:dRV1Zw8hgoTOibYHNFuE3dwG@localhost:27017
+          tags:
+              - db
+              - mongodb
