@@ -47,5 +47,19 @@ uuid
 
 -Screenshot of tags in file DataDogTags.
 
--test.support.random is appearing in the metrics explorer.
+-Installed MongoDB integration.
+
+-test.support.random is appearing in the metrics explorer. Screenshot in file NewMetric.
+
+
+Level 2
+
+-The cloned dashboard is called MongoDBClone. I added graphs for the test.support.random metric and the mongodb.uptime metric.
+Screenshot in file AddedMetrics.
+
+-Timeboards show a specific time range for all event graphs, while screenboards allow the user to position widgets where they want and allows these widgets to have different time ranges. Screenboards can be shared live and read-only so that others can get a high-level look at the system in question, whereas timeboards can only be shared individually (graph-by-graph).
+
+-Screenshot of the snapshot in file SpikeInMetric.
+
+
 
