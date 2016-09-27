@@ -34,25 +34,47 @@ Access the nano text editor
 ```
 I uncommented the sample tag provided by datadog and added my own tag: ziquanstag
 
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig2.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig2.PNG" width="500" height="332" alt="_DSC4652">
 The picture below shows a screenshot of my host and its tags in the Host Map Page of Datadog.
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig3.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig3.PNG" width="500" height="332" alt="_DSC4652">
 		
 
 #### Connecting and Integrating MongoDB
 I integrated Mongodb following the instructions [here](https://app.datadoghq.com/account/settings#integrations/mongodb)
 
 The image below shows my connection activity to MongoDB from the hosts page
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
 
 
 
 #### Custom Agent Check
 I added the conf.YAML and check.py files into the correct locations, allowing me to access the metric on datadoghq
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig5.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig6.PNG" width="500" height="332" alt="_DSC4652">
+
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="500" height="332" alt="_DSC4652">
 
 
 ## Level 2 - Visualization of Data
+I created a new dashboard, this dashboard tracks 3 metrics, the test.support.random metric is tracked as well as the system's uptime and the number of connections in mongodb. 
+
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="500" height="332" alt="_DSC4652">
+
+
+#### What is the difference between a timeboard and a screenboard?
+
+A timeboard has functionality that caters to all time series graphs available on the board. What this means is that when a user hovers over a specific time frame (denoted by the mouses position within that graphs frame), vertical lines will be drawn for all other time series graphs that reveals the corresponding values across other graphs at that time instance.
+A screen board is more customizable and allows users to add basic functionalities like warnings, images and notes in addition to the graphing functionalities.
+
+#### snapshot of test.support.random graph
+
+<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig8.PNG" width="500" height="332" alt="_DSC4652">
+
+##Level 3 - Alerting Data
+<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig9.PNG" width="500" height="332" alt="_DSC4652">
+The screenshot above shows the setup for monitering the test.support.random
+
+<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig10.PNG" width="500" height="332" alt="_DSC4652">
+Shows the monitor initialization and the first event ping telling me that the monitor has been triggered
 
 
 ---------------- NOTES TO DELETE AT END
