@@ -62,4 +62,13 @@ Screenshot in file AddedMetrics.
 -Screenshot of the snapshot in file SpikeInMetric.
 
 
+Level 3
+
+
+- Created new monitor named "Random Metric Above 0.9". Monitor is multi-alert by host. Screenshot of the monitor in file Monitor.
+
+-Screenshot of the email alert in file AlertEmail.
+
+-Screenshot of the email regarding scheduled downtime in file ScheduledDowntime.
+
 
