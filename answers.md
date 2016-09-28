@@ -72,13 +72,13 @@ instances:
 	[{}]
 ```
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="600" height="400" alt="_DSC4652">
 
 ## Level 2 - Visualization of Data
 I created a new dashboard, this dashboard tracks 3 metrics, the test.support.random metric is tracked as well as the system's uptime and the number of connections in mongodb. 
 Below is a simple dashboard visualization tracking the test.support.random metric, the number of mongodb connections available and the system uptime
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="600" height="400" alt="_DSC4652">
 
 #### What is the difference between a timeboard and a screenboard?
 
@@ -86,15 +86,23 @@ A timeboard has functionality that caters to all time series graphs available on
 A screen board is more customizable and allows users to add basic functionalities like warnings, images and notes in addition to the graphing functionalities.
 
 #### snapshot of test.support.random graph
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig8.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig8.PNG" width="600" height="400" alt="_DSC4652">
 
 
 ##Level 3 - Alerting Data
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="500" height="332" alt="_DSC4652">
-The screenshot above shows the setup for monitering the test.support.random
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig10.PNG" width="500" height="332" alt="_DSC4652">
-Shows the monitor initialization and the first event ping telling me that the monitor has been triggered
+#### Setting up monitor with multihost
+* Go to Monitors tab of Datadog's dashboard and click on New Monitor
+
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig10.PNG" width="700" height="450" alt="_DSC4652">
+
+
+*Provide a descriptive monitor name, like: Randomly generated number exceeded .9
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="700" height="450" alt="_DSC4652">
+
+*Schedule downtime using the "Manage Downtime" feature in the Monitors tab of the datadog web dashboard
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig13.PNG" width="700" height="450" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig12.PNG" width="700" height="450" alt="_DSC4652">
 
 
 ---------------- NOTES TO DELETE AT END
