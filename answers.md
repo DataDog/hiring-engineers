@@ -30,10 +30,12 @@ sudo /etc/init.d/datadog-agent start
 An agent is a software specific solution that is integrated into a web or infrastructure service tracking all the conceivable metrics produced. The agent interacts with Datadog's webservice allowing serviced members to determine the quality and health of their systems using DataDog's high level visualization tools. 
 
 #### Adding tags to config file
-*Use nano once again to edit the config file found in /etc/dd-agent/datadog.conf
+* Use nano once again to edit the config file found in /etc/dd-agent/datadog.conf
 ```
 	sudo nano /etc/dd-agent/datadog.conf 
 ```
+Add the relevant tags code into the instances scope. For our purpose, we are tracking ziquanstag and the datadog suggest tags
+
 <img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig2.PNG" width="600" height="150" alt="_DSC4652">
 
 * Below is a screenshot of my host containing the tags I initialized: #ziquanstag, env:prod, role:database
@@ -46,13 +48,12 @@ An agent is a software specific solution that is integrated into a web or infras
 
 * Integrated Mongodb following the instructions [here](https://app.datadoghq.com/account/settings#integrations/mongodb)
 
-The image below shows my connection activity to MongoDB from the hosts page
+Successful integration allows datadog to showcase various metrics for mongodb
 <img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
 
 
-
 #### Custom Agent Check
-*Add  conf.YAML and check.py files into the correct locations, creating a custom agent firstCheck to issue to datadog the test.support.random metric
+* Add the following python agent check and yaml configuration files into the corresponding locations, to establish data transfer to datadog for the test.support.random metric
 
 /etc/dd-agent/data.conf/firstCheck.py
 ```
@@ -70,17 +71,14 @@ init_config:
 instances:
 	[{}]
 ```
-*Setting up the configuration file and the agent python code allows datadog to access the random value on their web browser
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig6.PNG" width="500" height="332" alt="_DSC4652">
 
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="500" height="332" alt="_DSC4652">
 
-
 ## Level 2 - Visualization of Data
 I created a new dashboard, this dashboard tracks 3 metrics, the test.support.random metric is tracked as well as the system's uptime and the number of connections in mongodb. 
+Below is a simple dashboard visualization tracking the test.support.random metric, the number of mongodb connections available and the system uptime
 
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="500" height="332" alt="_DSC4652">
-
 
 #### What is the difference between a timeboard and a screenboard?
 
@@ -88,14 +86,14 @@ A timeboard has functionality that caters to all time series graphs available on
 A screen board is more customizable and allows users to add basic functionalities like warnings, images and notes in addition to the graphing functionalities.
 
 #### snapshot of test.support.random graph
-![alt tag](https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig8.PNG)
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig8.PNG" width="500" height="332" alt="_DSC4652">
 
 
 ##Level 3 - Alerting Data
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig9.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="500" height="332" alt="_DSC4652">
 The screenshot above shows the setup for monitering the test.support.random
 
-<img src="https://raw.github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig10.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig10.PNG" width="500" height="332" alt="_DSC4652">
 Shows the monitor initialization and the first event ping telling me that the monitor has been triggered
 
 
