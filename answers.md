@@ -3,12 +3,13 @@ This .md file contains the procedure [outlined](https://github.com/DataDog/hirin
 # Challenge Completion
 
 ## Level 0 - Installation of Vagrant on Windows 
-* Download [Vagrant](https://www.vagrantup.com/docs/installation/)
-Setting up a vagrant environment in Windows
-* Installation of Vagrant will require a hard system restart, but this procedure allows the use of vagrant in the windows command line
+* To complete Level 0, I downloaded [Vagrant](https://www.vagrantup.com/docs/installation/) for Windows
+* From there, I installed a ubuntu environment that I could ssh into using Git
+* I received assistance from [stackoverflow](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path) which highlighted a common problem in which the console could not recognize the ssh command. The solution sets the path so that Git can be successfully using for SSHing
+```
+set PATH=%PATH%;C:\Program Files\Git\usr\bin
+```
 
-###Installation of Agent to Ubuntu Environment
-Note this step assumes the user is logged into DataDog with their default browser
 * [Install](https://app.datadoghq.com/account/settings#agent) the DataDog Agent onto the Ubuntu Interface
 * Start the Agent using the code snippet provided by DataDog
 ```terminal
@@ -19,9 +20,11 @@ sudo /etc/init.d/datadog-agent start
 
 ## Level 1 - Collecting Data
 
+* To get the agent working on vagrant's Ubuntu environment, I refered to the documentation [here](https://app.datadoghq.com/account/settings#agent)
+* Basic agent interface commands such as starting, shutting down, and restarting were found [here](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
+* To get Agent Reporting on the default metrics for my local machine, I refered to [DataDog's Web Dashboard](https://app.datadoghq.com/dash/list)
 
-* To get Agent Reporting on Metrics, login to DataDog's web dashboard interface
-<img src="http://https://github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig1.PNG" width="500" height="332" alt="_DSC4652">
+<img src="http://https://github.com/ziquanmiao/hiring-engineers/tree/master/imgs/fig1.PNG" width="800" height="600" alt="ERROR">
 
 
 #### In my own words, what is an Agent?
