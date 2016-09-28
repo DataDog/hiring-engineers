@@ -23,7 +23,7 @@ sudo /etc/init.d/datadog-agent start
 * Basic agent interface commands such as starting, shutting down, and restarting were found [here](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
 * To get Agent Reporting on the default metrics for my local machine, I refered to [DataDog's Web Dashboard](https://app.datadoghq.com/dash/list)
 
-<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig1.PNG" width="800" height="600" alt="ERROR">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig1.PNG" width="700" height="550" alt="ERROR">
 
 
 #### In my own words, what is an Agent?
@@ -36,11 +36,11 @@ An agent is a software specific solution that is integrated into a web or infras
 ```
 Add the relevant tags code into the instances scope. For our purpose, we are tracking ziquanstag and the datadog suggest tags
 
-<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig2.PNG" width="600" height="150" alt="_DSC4652">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig2.PNG" width="500" height="150" alt="_DSC4652">
 
 * Below is a screenshot of my host containing the tags I initialized: #ziquanstag, env:prod, role:database
 
-<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig3.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig3.PNG" width="700" height="550" alt="_DSC4652">
 		
 
 #### Connecting and Integrating MongoDB
@@ -49,7 +49,7 @@ Add the relevant tags code into the instances scope. For our purpose, we are tra
 * Integrated Mongodb following the instructions [here](https://app.datadoghq.com/account/settings#integrations/mongodb)
 
 Successful integration allows datadog to showcase various metrics for mongodb
-<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig4.PNG" width="700" height="550" alt="_DSC4652">
 
 
 #### Custom Agent Check
@@ -72,13 +72,13 @@ instances:
 	[{}]
 ```
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="600" height="400" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="700" height="550" alt="_DSC4652">
 
 ## Level 2 - Visualization of Data
 I created a new dashboard, this dashboard tracks 3 metrics, the test.support.random metric is tracked as well as the system's uptime and the number of connections in mongodb. 
 Below is a simple dashboard visualization tracking the test.support.random metric, the number of mongodb connections available and the system uptime
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="600" height="400" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig7.PNG" width="700" height="550" alt="_DSC4652">
 
 #### What is the difference between a timeboard and a screenboard?
 
@@ -86,7 +86,7 @@ A timeboard has functionality that caters to all time series graphs available on
 A screen board is more customizable and allows users to add basic functionalities like warnings, images and notes in addition to the graphing functionalities.
 
 #### snapshot of test.support.random graph
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig8.PNG" width="600" height="400" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig8.PNG" width="700" height="550" alt="_DSC4652">
 
 
 ##Level 3 - Alerting Data
@@ -94,14 +94,15 @@ A screen board is more customizable and allows users to add basic functionalitie
 #### Setting up monitor with multihost
 * Go to Monitors tab of Datadog's dashboard and click on New Monitor
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig10.PNG" width="700" height="450" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig10.PNG" width="700" height="550" alt="_DSC4652">
 
 
 *Provide a descriptive monitor name, like: Randomly generated number exceeded .9
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="700" height="450" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="700" height="550" alt="_DSC4652">
 
 *Schedule downtime using the "Manage Downtime" feature in the Monitors tab of the datadog web dashboard
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig13.PNG" width="700" height="450" alt="_DSC4652">
+<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig13.PNG" width="400" height="700" alt="_DSC4652">
+*wbelow shows the two events, the trigger of when the test.support.random metric exceeds .90 and the initialization of the downtime disabling the agent check at night
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig12.PNG" width="700" height="450" alt="_DSC4652">
 
 
