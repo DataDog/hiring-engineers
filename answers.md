@@ -1,7 +1,7 @@
 This .md file contains the procedure [outlined](https://github.com/DataDog/hiring-engineers/tree/support-engineer) by [DataDog] (https://www.datadoghq.com/)
 
-# Challenge Completion
-
+# Challenge Completion Overview
+The completion of this exercise required me to download Vagrant for Windows (the system I am currently using) to create a linux instance that would be monitored by Datadog's agent. From ther, I installed the agent for the linux instance as well as for the mongodb instance that I also installed onto the server. 
 ## Level 0 - Installation of Vagrant on Windows 
 * To complete Level 0, I downloaded [Vagrant](https://www.vagrantup.com/docs/installation/) for Windows
 * From there, I installed a ubuntu environment that I could ssh into using Git
@@ -15,10 +15,9 @@ set PATH=%PATH%;C:\Program Files\Git\usr\bin
 ```terminal
 sudo /etc/init.d/datadog-agent start
 ```
-* [Install](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-ubuntu/) Mongodb following the instructions here
-
 
 ## Level 1 - Collecting Data
+#### getting agent reporting metrics 
 
 * To get the agent working on vagrant's Ubuntu environment, I refered to the documentation [here](https://app.datadoghq.com/account/settings#agent)
 * Basic agent interface commands such as starting, shutting down, and restarting were found [here](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
@@ -31,27 +30,47 @@ sudo /etc/init.d/datadog-agent start
 An agent is a software specific solution that is integrated into a web or infrastructure service tracking all the conceivable metrics produced. The agent interacts with Datadog's webservice allowing serviced members to determine the quality and health of their systems using DataDog's high level visualization tools. 
 
 #### Adding tags to config file
-Access the nano text editor 
+*Use nano once again to edit the config file found in /etc/dd-agent/datadog.conf
 ```
 	sudo nano /etc/dd-agent/datadog.conf 
 ```
-I uncommented the sample tag provided by datadog and added my own tag: ziquanstag
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig2.PNG" width="600" height="150" alt="_DSC4652">
 
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig2.PNG" width="500" height="332" alt="_DSC4652">
-The picture below shows a screenshot of my host and its tags in the Host Map Page of Datadog.
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig3.PNG" width="500" height="332" alt="_DSC4652">
+* Below is a screenshot of my host containing the tags I initialized: #ziquanstag, env:prod, role:database
+
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig3.PNG" width="500" height="332" alt="_DSC4652">
 		
 
 #### Connecting and Integrating MongoDB
-I integrated Mongodb following the instructions [here](https://app.datadoghq.com/account/settings#integrations/mongodb)
+* [Install](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-ubuntu/) Mongodb v3 for ubuntu v12
+
+* Integrated Mongodb following the instructions [here](https://app.datadoghq.com/account/settings#integrations/mongodb)
 
 The image below shows my connection activity to MongoDB from the hosts page
-<img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig4.PNG" width="500" height="332" alt="_DSC4652">
 
 
 
 #### Custom Agent Check
-I added the conf.YAML and check.py files into the correct locations, allowing me to access the metric on datadoghq
+*Add  conf.YAML and check.py files into the correct locations, creating a custom agent firstCheck to issue to datadog the test.support.random metric
+
+/etc/dd-agent/data.conf/firstCheck.py
+```
+from checks import AgentCheck
+from random import random
+
+class HelloCheck(AgentCheck):
+	def check(self, instance):
+		self.gauge('test.support.random', random.random())
+```
+/etc/dd-agent/conf.d/firstCheck.yaml
+```
+init_config:
+
+instances:
+	[{}]
+```
+*Setting up the configuration file and the agent python code allows datadog to access the random value on their web browser
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig6.PNG" width="500" height="332" alt="_DSC4652">
 
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig5.PNG" width="500" height="332" alt="_DSC4652">
