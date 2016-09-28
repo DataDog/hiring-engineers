@@ -24,7 +24,7 @@ sudo /etc/init.d/datadog-agent start
 * Basic agent interface commands such as starting, shutting down, and restarting were found [here](http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/)
 * To get Agent Reporting on the default metrics for my local machine, I refered to [DataDog's Web Dashboard](https://app.datadoghq.com/dash/list)
 
-<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig1.PNG" width="800" height="600" alt="ERROR">
+<img src="https://raw.githubusercontent.com/ziquanmiao/hiring-engineers/master/imgs/fig1.PNG" width="600" height="400" alt="ERROR">
 
 
 #### In my own words, what is an Agent?
