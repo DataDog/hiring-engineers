@@ -101,16 +101,10 @@ A screen board is more customizable and allows users to add basic functionalitie
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig9.PNG" width="700" height="550" alt="_DSC4652">
 
 *Schedule downtime using the "Manage Downtime" feature in the Monitors tab of the datadog web dashboard
+
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig13.PNG" width="400" height="700" alt="_DSC4652">
-*wbelow shows the two events, the trigger of when the test.support.random metric exceeds .90 and the initialization of the downtime disabling the agent check at night
+
+* below shows the two events, the trigger of when the test.support.random metric exceeds .90 and the initialization of the downtime disabling the agent check at night
+
 <img src="https://github.com/ziquanmiao/hiring-engineers/blob/master/imgs/fig12.PNG" width="700" height="450" alt="_DSC4652">
 
-
----------------- NOTES TO DELETE AT END
-Steps.
-Installation of Software
-Setup of Directory
-	http://stackoverflow.com/questions/23874260/error-when-trying-vagrant-up
-SSH into Virtual Machine on windows
-	http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path
-	set PATH=%PATH%;C:\Program Files\Git\usr\bin
