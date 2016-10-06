@@ -51,7 +51,7 @@ The Data dog agent is a program that is installed on any server that you want me
 
 ## Adding tags
 
-Tags are user-created, nominal dimensions that make it easier to group and filter hosts within an infrastructure. There are a few sorts of tags, but fo rnow let's restrict ourselves to Agent tags. We'll tag our agent by adding this line to the agent config file, found (on linux) at /etc/dd-agent/datadog.conf:
+Tags are user-created, nominal dimensions that make it easier to group and filter hosts within an infrastructure. There are a few sorts of tags, but for now let's restrict ourselves to Agent tags. We'll tag our agent by adding the following line to the agent config file, found (on linux) at /etc/dd-agent/datadog.conf:
 
 ```
 tags: firstname:sam, lastname:jacobs, hello:world
@@ -63,12 +63,38 @@ Tags are often structured as key/value pairs, but this is not a requirement. Aft
 vagrant$ sudo /etc/init.d/datadog-agent restart
 ```
 
-We can see these chages reflected in the Datadog UI on the Host Map (https://app.datadoghq.com/infrastructure/map)
+We can now see these chages reflected in the Datadog UI on the Host Map (https://app.datadoghq.com/infrastructure/map)
 
 ![Agent reporting for duty](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/Tags.png?raw=true)
 
+More info on tags can be found [here](http://docs.datadoghq.com/guides/tagging/).
+
 ## Database Integrations
 
+While it's cool that we've been able to get Datadog communicating with a remote host, what we'd really like to do is a) run useful applications and b) use Datadog to monitor them. To try this out, let's set up a Postgres database and pull some metrics on it. We'll follow [this guide](http://tecadmin.net/install-postgresql-server-on-ubuntu/) to set up the our DB and [this one](http://docs.datadoghq.com/integrations/postgresql/) to enable Data dog integrations.
 
+The following commands will install Postgres, switch to a DB admin role, and create a Datadog user with the appropriate permissions:
 
-  
+```
+vagrant$ sudo apt-get install postgresql postgresql-contrib
+vagrant$ sudo su - postgres
+postgres$ psql
+    create user datadog with password 'helloworld';
+    grant SELECT ON pg_stat_database to datadog;
+    \q
+postgres$ su - vagrant
+```
+
+After we've finished on the Postgres side, we still need to add an integration yaml file to Datadog. Because we don't have any special configuration needs, we can use the pre-built yaml.example:
+
+```
+vagrant$ sudo cp /etc/dd-agent/conf.d/postgres.yaml.example /etc/dd-agent/conf.d/postgres.yaml
+vagrant$ sudo /etc/init.d/datadog-agent restart
+```
+
+And in the Host Map we can see our new app on precise64!
+
+![Agent reporting for duty](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/Postgres_Activated.png?raw=true)
+
+## Agent checks
+
