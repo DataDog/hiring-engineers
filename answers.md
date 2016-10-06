@@ -1,8 +1,14 @@
-Your answers to the questions go here.
+# Level -1 - Hello, world!
+
+**[TODO]**
+
+[my Linkedin](https://www.linkedin.com/in/samxjacobs).
+
+Hi there! 
 
 # Level 0 - Setting up Ubuntu
 
-To ensure that we won't run into any OS or dependency issues, we'll start by create a new virtual machine running Ubuntu. After installing Virtual Box and Vagrant, this can be done with the command
+To ensure that we won't run into any OS or dependency issues, we'll start by creating a new virtual machine running Ubuntu. After installing VirtualBox and Vagrant, this can be done with the command
 
 ```
 $ vagrant init hashicorp/precise64
@@ -71,7 +77,7 @@ More info on tags can be found [here](http://docs.datadoghq.com/guides/tagging/)
 
 ## Database Integrations
 
-While it's cool that we've been able to get Datadog communicating with a remote host, what we'd really like to do is a) run useful applications and b) use Datadog to monitor them. To try this out, let's set up a Postgres database and pull some metrics on it. We'll follow [this guide](http://tecadmin.net/install-postgresql-server-on-ubuntu/) to set up the our DB and [this one](http://docs.datadoghq.com/integrations/postgresql/) to enable Data dog integrations.
+While it's cool that we've been able to get Datadog communicating with a remote host, what we'd really like to do is a) run useful applications and b) use Datadog to monitor them. To try this out, let's set up a Postgres database and pull some metrics on it. We'll follow [this guide](http://tecadmin.net/install-postgresql-server-on-ubuntu/) to set up the our DB and [this one](http://docs.datadoghq.com/integrations/postgresql/) to enable Datadog integrations.
 
 The following commands will install Postgres, switch to a DB admin role, and create a Datadog user with the appropriate permissions:
 
@@ -97,4 +103,9 @@ And in the Host Map we can see our new app on precise64!
 ![Agent reporting for duty](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/Postgres_Activated.png?raw=true)
 
 ## Agent checks
+
+Agent checks are a powerful interface for creating custom metrics and aggregations. They are composed of two parts: the check, a python script that performs a calculation and a config file that determines how the check will be run and on what instances it will be run.
+
+For a quick example, here are the [check file](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/checks.d/random.py) and the [check configuration](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/conf.d/random.yaml) for a simple Agent Check that reports a sample from the distribution Uniform(0, 1) every 15 seconds. We'll see how we can use this check for graphing and monitoring next.
+
 
