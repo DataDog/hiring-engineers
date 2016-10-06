@@ -38,7 +38,7 @@ $ bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/p
 
 We can see that the host is up and reporting metrics in Datadog on the infrastructure list (https://app.datadoghq.com/infrastructure)
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Agent reporting for duty](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/Agent_up_and_running.png?raw=true)
 
 
 ## Bonus Question: What is the Agent?
