@@ -29,11 +29,11 @@ $ vagrant ssh
 
 ## Getting the Agent reporting on our local machine
 
-Installing and activating the Datadog agent is simple enough, using the script provided for your OS of choice (in this case, found at https://app.datadoghq.com/account/settings#agent/ubuntu). The script can be downloaded and run using the following command:
+Installing and activating the Datadog agent is simple enough, using the script provided for your OS of choice (in this case, found at https://app.datadoghq.com/account/settings#agent/ubuntu). After installing **curl**, which isn't by default on our bare bones ubuntu box, the script can be downloaded and run using the following command:
 
 ```
-$ DD_API_KEY=<YOUR API KEY>
-$ bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+vagrant$ DD_API_KEY=<YOUR API KEY>
+vagrant$ bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 ```
 
 We can see that the host is up and reporting metrics in Datadog on the infrastructure list (https://app.datadoghq.com/infrastructure)
@@ -50,6 +50,25 @@ The Data dog agent is a program that is installed on any server that you want me
 * To push those aggregations across the network to Datadog, where they can be viewed in the context of your entire infrastructure
 
 ## Adding tags
+
+Tags are user-created, nominal dimensions that make it easier to group and filter hosts within an infrastructure. There are a few sorts of tags, but fo rnow let's restrict ourselves to Agent tags. We'll tag our agent by adding this line to the agent config file, found (on linux) at /etc/dd-agent/datadog.conf:
+
+```
+tags: firstname:sam, lastname:jacobs, hello:world
+```
+
+Tags are often structured as key/value pairs, but this is not a requirement. After we've altered the config, we must update the agent by running
+
+```
+vagrant$ sudo /etc/init.d/datadog-agent restart
+```
+
+We can see these chages reflected in the Datadog UI on the Host Map (https://app.datadoghq.com/infrastructure/map)
+
+![Agent reporting for duty](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/Tags.png?raw=true)
+
+## Database Integrations
+
 
 
   
