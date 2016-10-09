@@ -1,4 +1,4 @@
-# Level -1 - Hello, world!
+# Level (-1) - Hello, world!
 
 **[TODO]**
 
@@ -77,7 +77,7 @@ More info on tags can be found [here](http://docs.datadoghq.com/guides/tagging/)
 
 ## Database Integrations
 
-While it's cool that we've been able to get Datadog communicating with a remote host, what we'd really like to do is a) run useful applications and b) use Datadog to monitor them. To try this out, let's set up a Postgres database and pull some metrics on it. We'll follow [this guide](http://tecadmin.net/install-postgresql-server-on-ubuntu/) to set up the our DB and [this one](http://docs.datadoghq.com/integrations/postgresql/) to enable Datadog integrations.
+While it's cool that we've been able to get Datadog communicating with a remote host, what we'd really like to do is a) run useful applications on our hosts and b) use Datadog to monitor them. To try this out, let's set up a Postgres database and pull some metrics on it. We'll follow [this guide](http://tecadmin.net/install-postgresql-server-on-ubuntu/) to set up the our DB and [this one](http://docs.datadoghq.com/integrations/postgresql/) to enable Datadog integrations.
 
 The following commands will install Postgres, switch to a DB admin role, and create a Datadog user with the appropriate permissions:
 
@@ -104,8 +104,28 @@ And in the Host Map we can see our new app on precise64!
 
 ## Agent checks
 
-Agent checks are a powerful interface for creating custom metrics and aggregations. They are composed of two parts: the check, a python script that performs a calculation and a config file that determines how the check will be run and on what instances it will be run.
+Agent checks are a powerful interface for creating custom metrics and aggregations. They are composed of two parts: the check (a python script that performs calculations and reports metrics), and a config file (that determines how the check will be run and on what instances it will be run). These must be named with the same basename and must be stored in dd-agent/checks.d and dd-agent/conf.d, respectively.
 
-For a quick example, here are the [check file](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/checks.d/random.py) and the [check configuration](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/conf.d/random.yaml) for a simple Agent Check that reports a sample from the distribution Uniform(0, 1) every 15 seconds. We'll see how we can use this check for graphing and monitoring next.
+For a quick example, let's write a simple Agent Check that samples a random float between 0.0 and 1.0 every 15 seconds. The code can be found here for the [check file](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/checks.d/random.py) and the [check configuration](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/dd-agent/conf.d/random.yaml). We'll use this check in the following sections for graphing and monitoring.
+
+# Visualizing our data
+
+## Adding the Agent Check to the Database Dashboard
+
+The Agent check that we wrote in teh alst section should be sampling and sending results every 15 seconds
+
+## Bonus: What is the difference between a timeboard and a screenboard?
+
+## Snapshots and Event Notifications
+
+# Alerting on our data
+
+## Setting up the monitor
+
+## Bonus: Multi-alerts!
+
+## Monitor Message and Email notification
+
+## Bonus: Scheduling Downtime
 
 
