@@ -128,7 +128,7 @@ The screenboard relaxes this condition, and also alllows for a more flexible lay
 
 ## Snapshots and Event Notifications
 
-
+Once we have created a graph, we can annotate points of interest using the camera icon at the top right of the graph to selct regions of the display. These annotations can be shared with others on the team using the pattern @{team_member_name} in our comment. These annotations are added to the event stream, and emails or other 3rd party notifications are sent to teammates tagged uisng the @notificaion:
 
 ![Event stream notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/snapshot_with_at_notification.png?raw=true)
 
@@ -140,7 +140,8 @@ Often a metric is of interest only if it is not behaving in ordinary boundaries.
 
 Monitors can be defined on particular metrics and metric aggregations across subsets of the the infrastructure, time, and the team. 
 
-As an example, let's create a monitor that 
+As an example, let's create a monitor that
+
 1. alerts team member @smjacob4@asu.edu 
 2. if the max value of test.support.random exceeds 0.9
 3 on any host in the infrastructure
@@ -154,9 +155,15 @@ While an alert can be set on a particular host, it is possible to create a gener
 
 ## Monitor Message and Email notification
 
+Monitors can be set to notify specific members of the team when an alert is triggered, using the same @notification format we used to share a snapshot. Once our monitor is reporting, we can see what this alert email will look like:
+
 ![Alert email notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/alert_triggered.png?raw=true)
 
 ## Bonus: Scheduling Downtime
+
+Just as a monitor can be set to only trigger on hosts with certain tags, it can also be set to only trigger during specific timewindows. This can be done on the "Manage Down time tab" found at [https://app.datadoghq.com/monitors#/downtime](https://app.datadoghq.com/monitors#/downtime). 
+
+Downtime can be scheduled either one-off or on a repeating interval. In this case, let's set our trigger to be silent between 7pm and 9am, so we can get some sleep :)
 
 ![Make it repeat](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/downtime_repeating.png?raw=true))
 
