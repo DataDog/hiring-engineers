@@ -95,7 +95,7 @@ postgres$ psql
 postgres$ su - vagrant
 ```
 
-After we've finished on the Postgres side, we still need to add an integration yaml file to Datadog. Because we don't have any special configuration needs, we can use the pre-built yaml.example:
+After we've finished on the Postgres side, we still need to add an integration yaml file to Datadog. We can copy the pre-built yaml.example (making sure to update the username and password):
 
 ```
 vagrant$ sudo cp /etc/dd-agent/conf.d/postgres.yaml.example /etc/dd-agent/conf.d/postgres.yaml
