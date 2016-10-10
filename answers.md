@@ -112,11 +112,23 @@ For a quick example, let's write a simple Agent Check that samples a random floa
 
 ## Adding the Agent Check to the Database Dashboard
 
-The Agent check that we wrote in teh alst section should be sampling and sending results every 15 seconds
+The Agent check that we wrote in the last section should be sampling and sending results every 15 seconds.
+
+We can visualize this by creating a graph of this metric in a dashboard. To do so, we can clone the dashboard of our Postgres db from the host map and find the resulting dashboard at [https://app.datadoghq.com/dash/list](https://app.datadoghq.com/dash/list)
+
+Once on the "Postgres Overview -- Cloned" dashboard, we can add a graph using the "Add Graph" button at the top of the page, and create a timeseries graph reporting the test.support.random metric.
+
+![Metric Graph](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/metric_reporting.png?raw=true)
 
 ## Bonus: What is the difference between a timeboard and a screenboard?
 
+Datadog dashboards can be defined as either a timeboard or a screenboard. The defining feature of a timeboard is that all graphs are scoped to the same time. This facilitates troubleshooting and correlation across metrics. 
+
+The screenboard relaxes this condition, and also alllows for a more flexible layout of graphs. This makes it easy to take in the metrics that you have deemed important at a glance.
+
 ## Snapshots and Event Notifications
+
+
 
 ![Event stream notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/snapshot_with_at_notification.png?raw=true)
 
@@ -124,7 +136,19 @@ The Agent check that we wrote in teh alst section should be sampling and sending
 
 ## Setting up the monitor
 
+Often a metric is of interest only if it is not behaving in ordinary boundaries. Conveniently, we can create monitors that alert members of the team if certain conditions are met by a gieven metric. New monitors can be created at [https://app.datadoghq.com/monitors#create/metric](https://app.datadoghq.com/monitors#create/metric) while existing metrics can be managed at [https://app.datadoghq.com/monitors#manage](https://app.datadoghq.com/monitors#manage). A detailed guide to setting up monitors can be found [here](http://docs.datadoghq.com/guides/monitoring/).
+
+Monitors can be defined on particular metrics and metric aggregations across subsets of the the infrastructure, time, and the team. 
+
+As an example, let's create a monitor that 
+1. alerts team member @smjacob4@asu.edu 
+2. if the max value of test.support.random exceeds 0.9
+3 on any host in the infrastructure
+4. per 5minute window. 
+
 ## Bonus: Multi-alerts!
+
+While an alert can be set on a particular host, it is possible to create a generic alert to be set on all hosts with a given tag, called a multi-alert. This is done  in the "New Monitor +" menu, as shown below. In this case, we will configure this monitor to be set on each host in our infrastructure:
 
 ![Set it as a multi alert](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/multi_alert_setting.png?raw=true)
 
@@ -135,6 +159,8 @@ The Agent check that we wrote in teh alst section should be sampling and sending
 ## Bonus: Scheduling Downtime
 
 ![Make it repeat](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/downtime_repeating.png?raw=true))
+
+Using @notifications, other members of the team can be updated when the downtime conditions on an alert are changed, as shown below.
 
 ![Send an email notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/downtime_notification.png?raw=true)
 
