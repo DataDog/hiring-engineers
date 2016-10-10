@@ -4,7 +4,7 @@ Hi There!
 
 I'm excited for the chance to join the Datadog Support team! In addition to knowing DD by reputation as one of the best tech companies to work for in NY, I had the opportunity to speak with Scott Enriquez last week -- he generously helped me understand more about the team and the work, and confirmed my suspicions that it is a great role at a great company.
  
-While my background is in math and data analytics I currently work in a customer-facing role at a startup, providing a DevOps platform for data scientists. I believe that my track record working with a highly technical clientele to understand their infrastructure needs and communicate the capabiliteis of our solution will make me an asset to the Support Engineering team at Datadog.
+While my background is in math and data analytics, I currently work in a customer-facing role at a startup that provides a DevOps platform for data scientists. I believe that my track record working with a highly technical clientele to understand their infrastructure needs and communicate the capabiliteis of our solution will make me an asset to the Support Engineering team at Datadog.
 
 More info can be found on [my Linkedin](https://www.linkedin.com/in/samxjacobs).
 
@@ -20,13 +20,13 @@ $ vagrant init hashicorp/precise64
 
 This adds a new Vagrantfile to the project directory. Because we'll be editing the Datadog Agent config files on the vm to complete these challenges, it will be desirable to replicate those changes in the project directory so they can be pushed to the repo for submission.
 
-Conveniently, Vagrant has the ability to sync folders between the vm and the host. To set this up, we only need to add the following line to our Vagrantfile:
+Conveniently, Vagrant has the ability to sync folders between the vm and the host. After first creating an empty directory "dd-agent/" in the root of our project, we only need to add the following line to our Vagrantfile:
 
 ```
-config.vm.synced_folder "dd-agent/", "/etc/dd-agent", create: true, mount_options: ["dmode=775, fmode=664"]
+config.vm.synced_folder "dd-agent/", "/etc/dd-agent", mount_options: ["dmode=775, fmode=664"]
 ```
 
-The "create" option here will create the directory "dd-agent" in the project directory, and the "mount_options" are set to enable the Datadog Agent to write logs to the directory within the vm (NOTE: it is not advisable to give global write priveleges in general, but in the case of running dev on my laptop I think we're pretty ok).
+The "mount_options" are set to enable the Datadog Agent to write logs to the directory within the vm (NOTE: it is not advisable to give global write priveleges in general, but in the case of running dev on my laptop I think we're pretty ok).
 
 Once we've done this, we can spin up our vm and SSH in to begin playing around:
 
@@ -39,7 +39,7 @@ $ vagrant ssh
 
 ## Getting the Agent reporting on our local machine
 
-Installing and activating the Datadog agent is simple enough, using the script provided for your OS of choice (in this case, found at https://app.datadoghq.com/account/settings#agent/ubuntu). After installing **curl**, which isn't by default on our bare bones ubuntu box, the script can be downloaded and run using the following command:
+Installing and activating the Datadog agent is simple enough, using the script provided for your OS of choice (in this case, found at https://app.datadoghq.com/account/settings#agent/ubuntu). After installing **curl**, which isn't installed by default on our bare bones ubuntu box, the script can be downloaded and run using the following command:
 
 ```
 vagrant$ DD_API_KEY=<YOUR API KEY>
@@ -89,7 +89,7 @@ The following commands will install Postgres, switch to a DB admin role, and cre
 vagrant$ sudo apt-get install postgresql postgresql-contrib
 vagrant$ sudo su - postgres
 postgres$ psql
-    create user datadog with password 'helloworld';
+    create user datadog with password '<YOUR PASSWORD>';
     grant SELECT ON pg_stat_database to datadog;
     \q
 postgres$ su - vagrant
@@ -132,7 +132,7 @@ The screenboard relaxes this condition, and also alllows for a more flexible lay
 
 ## Snapshots and Event Notifications
 
-Once we have created a graph, we can annotate points of interest using the camera icon at the top right of the graph to selct regions of the display. These annotations can be shared with others on the team using the pattern @{team_member_name} in our comment. These annotations are added to the event stream, and emails or other 3rd party notifications are sent to teammates tagged uisng the @notificaion:
+Once we have created a graph, we can annotate points of interest using the camera icon at the top right of the graph to select regions of the display. These can be shared with others on the team using the pattern @{team_member_name} in our comment. The annotations are added to the event stream, and emails (or other 3rd party notifications) are sent to teammates tagged uisng the @notificaion:
 
 ![Event stream notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/snapshot_with_at_notification.png?raw=true)
 
@@ -140,7 +140,7 @@ Once we have created a graph, we can annotate points of interest using the camer
 
 ## Setting up the monitor
 
-Often a metric is of interest only if it is not behaving in ordinary boundaries. Conveniently, we can create monitors that alert members of the team if certain conditions are met by a gieven metric. New monitors can be created at [https://app.datadoghq.com/monitors#create/metric](https://app.datadoghq.com/monitors#create/metric) while existing metrics can be managed at [https://app.datadoghq.com/monitors#manage](https://app.datadoghq.com/monitors#manage). A detailed guide to setting up monitors can be found [here](http://docs.datadoghq.com/guides/monitoring/).
+Often a metric is of interest only if it is not behaving within ordinary boundaries. Conveniently, we can create monitors that alert members of the team if certain conditions are met by a gieven metric. New monitors can be created at [https://app.datadoghq.com/monitors#create/metric](https://app.datadoghq.com/monitors#create/metric) while existing metrics can be managed at [https://app.datadoghq.com/monitors#manage](https://app.datadoghq.com/monitors#manage). A detailed guide to setting up monitors can be found [here](http://docs.datadoghq.com/guides/monitoring/).
 
 Monitors can be defined on particular metrics and metric aggregations across subsets of the the infrastructure, time, and the team. 
 
@@ -154,7 +154,7 @@ As an example, let's create a monitor that
 
 ## Bonus: Multi-alerts!
 
-While an alert can be set on a particular host, it is possible to create a generic alert to be set on all hosts with a given tag, called a multi-alert. This is done  in the "New Monitor +" menu, as shown below. In this case, we will configure this monitor to be set on each host in our infrastructure:
+While an alert can be set on a particular host, it is possible to create a generic alert to be set on all hosts with a given tag, called a multi-alert. This is done  in the "New Monitor" menu, as shown below. In this case, we will configure this monitor to be set on each host in our infrastructure:
 
 ![Set it as a multi alert](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/multi_alert_setting.png?raw=true)
 
@@ -166,7 +166,7 @@ Monitors can be set to notify specific members of the team when an alert is trig
 
 ## Bonus: Scheduling Downtime
 
-Just as a monitor can be set to only trigger on hosts with certain tags, it can also be set to only trigger during specific timewindows. This can be done on the "Manage Down time tab" found at [https://app.datadoghq.com/monitors#/downtime](https://app.datadoghq.com/monitors#/downtime). 
+Just as a monitor can be set to only trigger on hosts with certain tags, it can also be set to only trigger during specific timewindows. This can be done on the "Manage Downtime" tab found at [https://app.datadoghq.com/monitors#/downtime](https://app.datadoghq.com/monitors#/downtime). 
 
 Downtime can be scheduled either one-off or on a repeating interval. In this case, let's set our trigger to be silent between 7pm and 9am, so we can get some sleep :)
 
