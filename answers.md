@@ -118,14 +118,24 @@ The Agent check that we wrote in teh alst section should be sampling and sending
 
 ## Snapshots and Event Notifications
 
+![Event stream notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/snapshots_with_at_notification.png?raw=true)
+
 # Alerting on our data
 
 ## Setting up the monitor
 
 ## Bonus: Multi-alerts!
 
+![Set it as a multi alert](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/multi_alert_setting.png?raw=true)
+
 ## Monitor Message and Email notification
 
+![Alert email notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/aler_triggered.png?raw=true)
+
 ## Bonus: Scheduling Downtime
+
+![Make it repeat](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/downtime_repeating.png?raw=true))
+
+![Send an email notification](https://github.com/PerplexedSphex/hiring-engineers/blob/support-engineer/screenshots/downtime_notification.png?raw=true)
 
 
