@@ -1,10 +1,14 @@
 # Level (-1) - Hello, world!
 
-**[TODO]**
+Hi There! 
 
-[my Linkedin](https://www.linkedin.com/in/samxjacobs).
+I'm excited for the chance to join the Datadog Support team! In addition to knowing DD by reputation as one of the best tech companies to work for in NY, I had the opportunity to speak with Scott Enriquez last week -- he generously helped me understand more about the team and the work, and confirmed my suspicions that it is a great role at a great company.
+ 
+While my background is in math and data analytics I currently work in a customer-facing role at a startup, providing a DevOps platform for data scientists. I believe that my track record working with a highly technical clientele to understand their infrastructure needs and communicate the capabiliteis of our solution will make me an asset to the Support Engineering team at Datadog.
 
-Hi there! 
+More info can be found on [my Linkedin](https://www.linkedin.com/in/samxjacobs).
+
+That's probably more than enough bio -- let's get started!
 
 # Level 0 - Setting up Ubuntu
 
@@ -144,8 +148,9 @@ As an example, let's create a monitor that
 
 1. alerts team member @smjacob4@asu.edu 
 2. if the max value of test.support.random exceeds 0.9
-3 on any host in the infrastructure
-4. per 5minute window. 
+3. on any host in the infrastructure
+4. per 5minute window
+5. between 9am and 7pm EST
 
 ## Bonus: Multi-alerts!
 
