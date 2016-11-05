@@ -3,6 +3,9 @@ Your answers to the questions go here.
 ##Level 0 
 Downloaded and Installed  Vagrant and Virtual Box <br>
 This is pretty neat, I was recently talking about virtual servers and how it generally works in AWS. 
+![ScreenShot](/images/vargrant.png)
+![ScreenShot](/images/virualbox.png)
+
 
 ##Level 1 
  Signed up!<br>
