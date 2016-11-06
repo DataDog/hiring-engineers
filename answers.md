@@ -41,7 +41,9 @@ helpful psql commands if you need to restart making a <code> ROLE </code>
 ![ScreenShot](/images/psql_dd.png)
 <br> 
 <br>
-![ScreenShot](/images/psql_intergration.png)
+I was having some confusion as to why the postgres checks were not showing up 
+after checking syntax in the yaml file, restarting, and playing around with dbnames. However, the dashboard for postgres says it was properly intergrated.
+![ScreenShot](/images/db_intergration.png)
 <br> 
 <br>
 ![ScreenShot](/images/psql_dashboard.png)
