@@ -9,18 +9,44 @@ This is pretty neat, I was recently talking about virtual servers and how it gen
 
 ##Level 1 
  - Signed up! 
+
 <br>
+
 ![ScreenShot](/images/datadog_agent.png)
+
 <br>
  - Bonus Question: What is an Agent? 
 
 <br> 
  In general, An Agent is like an an authorized user who has permission to keep tally and retrieve information from whatever location you send. I really like to imagine the idea seeing the SPY vs. SPY  entering computers then collecting data, metrics. Once found, the spys report that information back to their "spy work place" see what can be done with the found knowledge. <br>
  With Datadog, the Agent is set into a server so it may know what is going on. With this information, it allows an user to have a clear understanding of what is going on and be able to use that data to find issues, solutions, etc. 
-<br>
+<br> 
+
+- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
 ![ScreenShot](/images/host_map.png)
+<br> 
 <br>
 ![ScreenShot](/images/datadog_conf.png)
+<br> 
+<br>
+
+ - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+<br>
+helpful psql commands if you need to restart making a <code> ROLE </code>
+![ScreenShot](/images/psql_role.png)
+<br>
+<br>
+![ScreenShot](/images/psql_dd.png)
+<br> 
+<br>
+![ScreenShot](/images/psql_intergration.png)
+<br> 
+<br>
+![ScreenShot](/images/psql_dashboard.png)
+
+ - Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
 
     
