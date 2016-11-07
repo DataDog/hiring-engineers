@@ -96,7 +96,7 @@ Note for others: Line space is touchy with postgreSQL, so copy and paste should 
 
 Timeboards focuses on time - which means that whatever is on this board, it's going to be all at the same time. This is helpful with troubleshooting. I think of this a focusing on a specific area instead of an entire picture. 
 
-Screenboards focuses more of the broader perpective, that allows an user to see the bigger picture - not everything is on the same time and mix what you want to be displayed. 
+Screenboards focuses more of the broader perspective, that allows an user to see the bigger picture - not everything is on the same time and mix what you want to be displayed. 
 
 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
@@ -105,21 +105,54 @@ Screenboards focuses more of the broader perpective, that allows an user to see 
 ![ScreenShot](/images/notify.png)
 <br> 
 <br>
+<br> 
+<br>
+![ScreenShot](/images/snap.png)
+<br> 
+<br>
 
 ##Level 3
 
 - Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
+
+
 - Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+
+<br>
+![ScreenShot](/images/alert.png)
+<br> 
+<br>
 
 - Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
+<br>
+![ScreenShot](/images/monitor.png)
+<br> 
+<br>
+
 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+
+<br>
+![ScreenShot](/images/message.png)
+<br> 
+<br>
 
 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
+<br>
+![ScreenShot](/images/email.png)
+<br> 
+<br>
+
 - Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+Not sure if it was I scheduled the downtime and it would send an email once downtime was over OR when it was initialized. Here it is on the dashboard. 
+
+<br>
+![ScreenShot](/images/dtime.png)
+<br> 
+<br>
 
 
 
