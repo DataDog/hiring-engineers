@@ -141,7 +141,7 @@ Screenboards focuses more of the broader perspective, that allows an user to see
 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
 <br>
-![ScreenShot](/images/email.png)
+![ScreenShot](/images/email_alert.png)
 <br> 
 <br>
 
