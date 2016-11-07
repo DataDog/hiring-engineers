@@ -76,15 +76,35 @@ Note for others: Line space is touchy with postgreSQL, so copy and paste should 
 ![ScreenShot](/images/test.png)
 <br> 
 <br>
+<a href="https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1478488702062&to_ts=1478492302062&tile_size=m&exp_metric=test.support.random&exp_scope=&exp_agg=avg&exp_row_type=metric">Graph Link</a>
 
 ##Level 2
 <br>
 
 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
+<br>
+![ScreenShot](/images/clone.png)
+<br> 
+<br>
+![ScreenShot](/images/clonestat.png)
+<br> 
+<br>
+
+
 - Bonus question: What is the difference between a timeboard and a screenboard?
 
+Timeboards focuses on time - which means that whatever is on this board, it's going to be all at the same time. This is helpful with troubleshooting. I think of this a focusing on a specific area instead of an entire picture. 
+
+Screenboards focuses more of the broader perpective, that allows an user to see the bigger picture - not everything is on the same time and mix what you want to be displayed. 
+
 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
+<br> 
+<br>
+![ScreenShot](/images/notify.png)
+<br> 
+<br>
 
 ##Level 3
 
