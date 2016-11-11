@@ -9,62 +9,62 @@ BONUS QUESTIONS
 
 1. What is an agent?
 
-An agent is a software daemon that gathers system and application metrics from hosts and sends them to a data collector for further analysis, trending, alerting, troubleshooting, etc.
+	An agent is a software daemon that gathers system and application metrics from hosts and sends them to a data collector for further analysis, trending, alerting, troubleshooting, etc.
 
 2. What is the difference between a timeboard and a screenboard?
 
-Timeboards are used for troubleshooting and correlation where all graphs are always scoped to the same time. Timeboards also use an automatic layout.
+	Timeboards are used for troubleshooting and correlation where all graphs are always scoped to the same time. Timeboards also use an automatic layout.
 
-Screenboards allow mix widgets and timeframes as well as a custom drag-and-drop layout.
+	Screenboards allow mix widgets and timeframes as well as a custom drag-and-drop layout.
 
 
 STEP-BY-STEP
 
 1. Installed vagrant
 
-# removed embedded curl in vagrant bin directory as it fails to bind curl dylib in Mac OS X Sierra
+	# removed embedded curl in vagrant bin directory as it fails to bind curl dylib in Mac OS X Sierra
 
 2. Installed virtualbox
 
 3. Deployed 3 Ubuntu hosts with vagrant
 
-cd ~/Vagrant/ubuntu1
-vagrant init hashicorp/precise64
+	cd ~/Vagrant/ubuntu1
+	vagrant init hashicorp/precise64
 
-# set hostname in Vagrantfile with config.vm.hostname = "ubuntu1"
-# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
-# set forwarded port to 2201 with config.vm.network :forwarded_port, guest: 2201, host: 22
+	# set hostname in Vagrantfile with config.vm.hostname = "ubuntu1"
+	# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
+	# set forwarded port to 2201 with config.vm.network :forwarded_port, guest: 2201, host: 22
 
-vagrant up
+	vagrant up
 
-cd ~/Vagrant/ubuntu2
-vagrant init hashicorp/precise64
+	cd ~/Vagrant/ubuntu2
+	vagrant init hashicorp/precise64
 
-# set hostname in Vagrantfile with config.vm.hostname = "ubuntu2"
-# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
-# set forwarded port to 2202 with config.vm.network :forwarded_port, guest: 2202, host: 22
+	# set hostname in Vagrantfile with config.vm.hostname = "ubuntu2"
+	# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
+	# set forwarded port to 2202 with config.vm.network :forwarded_port, guest: 2202, host: 22
 
-vagrant up
+	vagrant up
 
-cd ~/Vagrant/ubuntu3
-vagrant init hashicorp/precise64
+	cd ~/Vagrant/ubuntu3
+	vagrant init hashicorp/precise64
 
-# set hostname in Vagrantfile with config.vm.hostname = "ubuntu3"
-# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
-# set forwarded port to 2203 with config.vm.network :forwarded_port, guest: 2203, host: 22
+	# set hostname in Vagrantfile with config.vm.hostname = "ubuntu3"
+	# disabled default forwarded port with config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
+	# set forwarded port to 2203 with config.vm.network :forwarded_port, guest: 2203, host: 22
 
-vagrant up
+	vagrant up
 
 4. Installed DD agent (without default startup) on 3 Ubuntu hosts
 
-vagrant ssh
-sudo apt-get update
-sudo apt-get install curl
-DD_INSTALL_ONLY=true DD_API_KEY=de8da8514bf762cc4e493241d222c783 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+	vagrant ssh
+	sudo apt-get update
+	sudo apt-get install curl
+	DD_INSTALL_ONLY=true DD_API_KEY=de8da8514bf762cc4e493241d222c783 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
 5. Configured DD agent on 3 Ubuntu hosts
 
-sudo vi /etc/dd-agent/datadog.conf
+	sudo vi /etc/dd-agent/datadog.conf
 
 	5.1. Added following tags on ubuntu1 host
 
@@ -80,64 +80,64 @@ sudo vi /etc/dd-agent/datadog.conf
 
 6. Started DD agent on 3 Ubuntu hosts
 
-sudo service datadog-agent start
+	sudo service datadog-agent start
 
 7. Installed mysql on ubuntu1 / Configure DD mysql.yaml
 
-sudo apt-get install mysql-server
+	sudo apt-get install mysql-server
 
-sudo mysql
+	sudo mysql
 	CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'IbkM06RPObbMCvXTOdGELdFi';
 	GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 	GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
 	GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
 
-sudo /etc/init.d/datadog-agent restart
-sudo /etc/init.d/datadog-agent info
+	sudo /etc/init.d/datadog-agent restart
+	sudo /etc/init.d/datadog-agent info
 
 8. Installed mongodb on ubuntu2
 
-sudo apt-get install mongodb
+	sudo apt-get install mongodb
 
-mongo
+	mongo
 	use admin
 	db.auth("admin", "admin-password")
 	db.addUser("datadog", "bxniIBNxFOgaktJ4lRKzfGNG", true)
 
-sudo /etc/init.d/datadog-agent restart
-sudo /etc/init.d/datadog-agent info
+	sudo /etc/init.d/datadog-agent restart
+	sudo /etc/init.d/datadog-agent info
 
 9. Installed postgresql on ubuntu3
 
-sudo apt-get install postgresql
+	sudo apt-get install postgresql
 
-sudo -u postgres psql postgres
+	sudo -u postgres psql postgres
 	create user datadog with password 'EFRmwHx6FVGh3CDOjJcZ9Dnt';
 	grant SELECT ON pg_stat_database to datadog;
 
-sudo /etc/init.d/datadog-agent restart
-sudo /etc/init.d/datadog-agent info
+	sudo /etc/init.d/datadog-agent restart
+	sudo /etc/init.d/datadog-agent info
 
 10. Write a custom agent check on ubuntu1
 
-test.py
+	test.py
 
-import random
-from checks import AgentCheck
-class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('test.support.random', random.random())
+	import random
+	from checks import AgentCheck
+	class HelloCheck(AgentCheck):
+	    def check(self, instance):
+        	self.gauge('test.support.random', random.random())
 
-check.yaml
+	check.yaml
 
-init_config:
+	init_config:
 
-instances:
-    [{}]
+	instances:
+		[{}]
 
 11. Created a snapshot with a box showing the spike. Unfortunately never got an email on this one. Reached out to Stephen at support, he confirmed I did it right, and is now checking DD logs why my email never got sent.
 
-# In fact Stephen and I found the issue here, and I asked him to file a bug. Somehow DD is not sending emails on snapshots if the email has a + sign. (Full support comm. at the end of this file)
+	# In fact Stephen and I found the issue here, and I asked him to file a bug. Somehow DD is not sending emails on snapshots if the email has a + sign. (Full support comm. at the end of this file)
 
 12. Created a new Dashboard as a clone of "MySQL Dashboard". Added a widget with test.support.random
 
