@@ -33,6 +33,14 @@ In many cases, users might start their diagnostics with a ScreenBoard and then d
 
 I added a snapshot (annotation) to the graph of my random value check as shown in this screenshot:
 ![Screenshot of snapshot/annotation](./Snapshot.jpg)
+You can also use this [link](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1479664730099&to_ts=1479679130099&tile_size=m&exp_metric=random.value&exp_scope=&exp_agg=avg&exp_row_type=metric)  Unfortunately, I did not receive an e-mail after adding this snapshot and two more.  I also did not receive a desktop notification after enabling that in my user settings.
 
-You can also use this [link](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1479664730099&to_ts=1479679130099&tile_size=m&exp_metric=random.value&exp_scope=&exp_agg=avg&exp_row_type=metric)
+Level 3:
+
+I set up a monitor on my random value check with a threshold of 90 and reconfigured its yaml file to use random integers between 90 and 100 so that an alert would be triggered.  Here are screenshots of the monitor definition and triggering and the e-mail that I received:
+![Monitor Definition](./MonitorDefinition.jpg)
+![Monitor Triggered](./TriggeredMonitor.jpg)
+![Received e-mail](./AlertEmail.jpg)
+You can see the monitor with this [link](https://app.datadoghq.com/monitors#1302781)
+
 
