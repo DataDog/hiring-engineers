@@ -25,8 +25,10 @@ I cloned the standard MySQL dashboard, removed some graphs, and added a graph th
 You can see the dashboard in my account with this [link](https://app.datadoghq.com/dash/214576/mysql---overview-with-randomvalue-check?live=true&page=0&is_auto=false&from_ts=1479672831047&to_ts=1479676431047&tile_size=m&tpl_var_scope=host%3Ai-f1b5fb62)
 
 Datadog supports two kinds of dashboards, both of which can be customized by users:
+
 1.  TimeBoards are time-synchronized collections of metric and event graphs that are always laid out in a grid and all show data for a particular time period selected by the user.  They are useful for correlation of metrics and events when troubleshooting performance problems.
 2.   ScreenBoards are intended for showing the status of various entities and for sharing information.  Their graphs are not necessarily synchronized and they support a wider range of widgets and layouts.  Note that ScreenBoards can be shared in a read-only mode with external users who do not have permission to log into Datadog.
+
 In many cases, users might start their diagnostics with a ScreenBoard and then drill into TimeBoards that provide more details.
 
 I added a snapshot (annotation) to the graph of my random value check as shown in this screenshot:
