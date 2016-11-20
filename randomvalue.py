@@ -8,10 +8,6 @@ from util import Platform
 # stdlib
 import random
 
-# Load values from the check config file
-first = self.init_config.get('first', 1)
-last = self.init_config.get('last', 100)
-
 class MyRandomValueCheck(AgentCheck):
     def check(self, instance):
         # Load values from the randomvalue.yaml file
