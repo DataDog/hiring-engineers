@@ -33,6 +33,7 @@ In many cases, users might start their diagnostics with a ScreenBoard and then d
 
 I added a snapshot (annotation) to the graph of my random value check as shown in this screenshot:
 ![Screenshot of snapshot/annotation](./Snapshot.jpg)
+
 You can also use this [link](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1479664730099&to_ts=1479679130099&tile_size=m&exp_metric=random.value&exp_scope=&exp_agg=avg&exp_row_type=metric)  Unfortunately, I did not receive an e-mail after adding this snapshot and two more.  I also did not receive a desktop notification after enabling that in my user settings.
 
 Level 3:
