@@ -1,0 +1,6 @@
+init_config:
+    first: 1
+    last: 100
+
+instances:
+    [{}]
