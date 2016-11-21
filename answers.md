@@ -44,6 +44,8 @@ I set up a monitor on my random value check with a threshold of 90 and reconfigu
 ![Received e-mail](./AlertEmail.jpg)
 You can see the monitor with this [link](https://app.datadoghq.com/monitors#1302781)
 
+After receiving the alert once, I edited the yaml file again to change the range back to 50 to 60 to suppress the alerts.
+
 I configured a daily downtime window for this monitor so I won't be notified between 7pm and 9am every day. Here is a screenshot:
 ![Screenshot of Downtime window](./MonitorDowntime.jpg)
 You can also see this in my account with this [link](https://app.datadoghq.com/monitors#downtime)
