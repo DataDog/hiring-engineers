@@ -4,13 +4,13 @@ Signup------ https://github.com/rhyno9/hiring-engineers/blob/master/sign-up.pdf
 
 
 The agent is actually 4 pieces of software.  
-  Collector: which runs checks to collect gather metrics from the machine.
+  Collector: which runs checks to gather metrics from the machine.
   
-  Dogstatsd: allows for the capture of custom instumentation metric collection.
+  Dogstatsd: allows for the capture of custom instumentation metrics.
   
-  Forwarder: responsible for gathering the data from the 2 previous components to send Datadog cloud.
+  Forwarder: responsible for gathering the data from the 2 previous components to send to Datadog cloud.
 
-  Supervisor: this controls the previous 3 components.
+  Supervisor: controls the previous 3 components.
 
 Install Database and add integration-------https://github.com/rhyno9/hiring-engineers/blob/master/host.pdf
 
