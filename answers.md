@@ -26,6 +26,7 @@ Thank you for your consideration and your time. I selected the **DevOps_Evangeli
 
 **Level 5:**
   * [Link to the Agent Check Random Value over Time graph](https://app.datadoghq.com/dash/231358/ddarwinlevel5dashboard-agent-check-example?live=true&page=0&is_auto=false&from_ts=1483826305890&to_ts=1483829905890&tile_size=xl&fullscreen=false)
+  * [Link to Agent Check file, mycheck.py, used for this challenge](https://github.com/ddarwin/hiring-engineers/blob/master/source/mycheck.py)
  
 **Level 6:**
   * As you suggested, this was a fun exercise that helped me learn more about the features and capabilties of the Datadog solution. My initial impressions were very good. I particularly liked the AWS Integration and dashboarding capabilities. 
