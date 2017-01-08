@@ -1,6 +1,4 @@
 # DevOps_Evangelist Challenge Answers for Don Darwin
-Thank you for your consideration and your time. I selected the **DevOps_Evangelist** branch in order to try out some of the more interesting features of DataDog. Below are my answers to the Challenge questions grouped by _Level_.
-
 
 **Level 1:**
   * **What is the Agent:**
