@@ -12,3 +12,6 @@
 
 1. *What is the difference between a timeboard and a screenboard?*
     All of the graphs on a TimeBoard are synced up to the same time frame and are shown in a standardized grid format, making them ideal for troubleshooting. Whereas ScreenBoards are more customizable and ideal for seeing the overall status of a system. Each graph on a ScreenBoard can have a different time frame and the graphs can be arranged in a variety of formats. Another difference is that while the live status of an entire ScreenBoard can be shared though a unique public link, only images of an individual graph in a TimeBoard can be shared.
+    
+2. *a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90.*
+![screenshot of a snapshot of the test.support.random graph](test.support.random-snapshot.png)
