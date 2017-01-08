@@ -2,7 +2,7 @@
 
 **Level 1:**
   * **What is the Agent?**
-      The Datadog agent is a lightweight service or daemon that provides out-of-the-box host monitoring of resources including CPU, Memory, Disk, and Network I/O. The Agent includes 3 components: the collector, which collects the metrics; Dogstatsd, a statsd server for sending custom metrics; and the forwarder that collects the metrics from the collector and Dogstatsd and sends them to Datadog. 
+      The Datadog agent is a lightweight service or daemon that provides out-of-the-box (OOTB) host monitoring of resources including CPU, Memory, Disk, and Network I/O. The Agent includes 3 components: the collector, which collects the metrics; Dogstatsd, a statsd server for sending custom metrics; and the forwarder that collects the metrics from the collector and Dogstatsd and sends them to Datadog. 
 
   * **Creating a simple Event:**
       Here is [a screenshot of the email notification](https://github.com/ddarwin/hiring-engineers/blob/master/images/_Monitor_Alert__Triggered__We_received_a_Farce_Event_%E2%80%94_Inbox_and_Events___Datadog.png) from a simple Event I generated through the Event API.
@@ -27,7 +27,7 @@
   * [Link to Agent Check file, mycheck.py, used for this challenge](https://github.com/ddarwin/hiring-engineers/blob/master/source/mycheck.py)
  
 **Level 6:**
-  * **Summary:** I found this to be a fun exercise and a fantastic way to get familiar with Datadog. It's a great tool for evaluating candidates and for training new hires. It gave me a good sense for the flexibility and customizability of the Datadog solution. I was particularly impressed by the ease of installation and the out-of-the-box (OOTB) dashboards of the Integrations I installed. I also liked the breadth of the dashboarding and the expressiveness of the Monitors (alerts).  
+  * **Summary:** I found this to be a fun exercise and a fantastic way to get familiar with Datadog. It's a great tool for evaluating candidates and for training new hires. It gave me a good sense for the flexibility and customizability of the Datadog solution. I was particularly impressed by the ease of installation and the OOTB dashboards of the Integrations I installed. I also liked the breadth of the dashboarding and the expressiveness of the Monitors (alerts).  
   
   I installed 3 Integrations: AWS, Slack, and New Relic. They were easy to install and provided a comprehensive OOTB set of metrics and dashboards. The automatics deployment of the Datadog agent on EC2 instances was incredibily helpful. I created 2 Alerts, one through the Event API and another on a custom metric, CPU temperature. I found the documentation to be good although sometimes hard to find exactly what I was looking to do. The References list provided was very helpful as was the Quick Start Guide.   
   
