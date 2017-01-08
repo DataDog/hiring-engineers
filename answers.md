@@ -8,6 +8,15 @@
 * *a screenshot of your host and its tags*
 ![screenshot of host map and tags](host-map-screenshot.png)
 
+* *a custom Agent check that samples a random value*
+````
+from checks import AgentCheck
+import random
+class RandomCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('test.support.random', random.random())
+````
+
 ###Level 2
 
 * *screenshot of cloned database integration dashboard with additional metrics plus the test.support.random metric*
