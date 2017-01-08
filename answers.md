@@ -18,3 +18,6 @@
 2. *a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90.*
 ![screenshot of a snapshot of the test.support.random graph](test.support.random-snapshot.png)
 
+2. *a screenshot of the email alert sent after the monitor was triggered*
+![screenshot of the email alert](alert-email.png)
+![closeup of the alert](alert-closeup.png)
