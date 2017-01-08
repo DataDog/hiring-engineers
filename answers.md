@@ -17,6 +17,9 @@ class RandomCheck(AgentCheck):
     self.gauge('test.support.random', random.random())
 ````
 
+* *screenshot of the output of the custom Agent check, 'random_check'*
+![screenshot of random_check](random-check-output-screenshot.png)
+
 ###Level 2
 
 * *screenshot of cloned database integration dashboard with additional metrics plus the test.support.random metric*
@@ -31,6 +34,11 @@ class RandomCheck(AgentCheck):
 * *a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90*
 ![screenshot of a snapshot of the test.support.random graph](test.support.random-snapshot.png)
 
+###Level 3
+
 * *a screenshot of the email alert sent after the monitor was triggered*
 ![screenshot of the email alert](alert-email.png)
 ![closeup of the alert](alert-closeup.png)
+
+* *a screenshot of the notification that downtime has been scheduled for the monitor daily between 7:00 pm and 9:00 am EST*
+![notification that downtime has been scheduled](downtime-notification-screenshot.png)
