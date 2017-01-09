@@ -7,6 +7,7 @@
     
 * *a screenshot of your host and its tags*
 ![screenshot of host map and tags](host-map-screenshot.png)
+![screenshot of tags](host-tags-screenshot.png)
 
 * *a custom Agent check that samples a random value*
 ````
