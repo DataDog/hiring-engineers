@@ -144,6 +144,9 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
 
 * Setting up a monitor to automatically email me if the test.support.example metric was greater than .9 was very straight forward.  Below is a gif reviewing my created monitor for this custom metric.  
 
+  <a href="https://j.gifs.com/JZ1zLg.gif" title="Monitor">
+  <img src="https://j.gifs.com/JZ1zLg.gif" width="800" height="600" alt="Issue with Dropbox"></a>
+  
   #### Bonus - Multialert  
 
   Gif above shows me selecting the multi alert option to trigger on any host that reports this metric.  This is great for scaling or churn.  Less management overhead for maintaining monitors across a service or group of hosts.  
