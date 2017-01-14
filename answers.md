@@ -144,8 +144,8 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
 
 * Setting up a monitor to automatically email me if the test.support.example metric was greater than .9 was very straight forward.  Below is a gif reviewing my created monitor for this custom metric.  
 
-  <a href="https://j.gifs.com/JZ1zLg.gif" title="Monitor">
-  <img src="https://j.gifs.com/JZ1zLg.gif" width="800" height="600" alt="Issue with Dropbox"></a>
+  <a href="https://dl.dropboxusercontent.com/u/6427521/monitor.gif" title="Monitor">
+  <img src="https://dl.dropboxusercontent.com/u/6427521/monitor.gif" alt="Issue with Dropbox"></a>
   
   #### Bonus - Multialert  
 
