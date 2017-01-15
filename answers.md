@@ -172,7 +172,4 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
 ### Conclusion
   Really enjoyed this exercise.  Really excited to be able to continue this process and see if Datadog and I are a good fit!
   
-  Contact information:
-    Victor Gonzalez
-    860.803.5785
-    victorg1001@gmail.com
+  Contact information: Victor Gonzalez - cell:860.803.5785 - email:victorg1001@gmail.com
