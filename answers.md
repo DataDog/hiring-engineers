@@ -1,27 +1,24 @@
 Below you will find the answers for Victor Gonzalez.  Thank you in advance for taking the time to read my answers.  If you have any questions, issues or concerns please do not hesitate to contact me (victorg1001@gmail.com).  
 
-  <a href="https://dl.dropboxusercontent.com/u/6427521/haha.jpg" title="New Hire Hazing">
-  <img src="https://dl.dropboxusercontent.com/u/6427521/haha.jpg" width="300" height="332" alt="Issue with Dropbox"></a>
-
 ## Answers
 
 ### Level 0 (optional) - Setup an Ubuntu VM
 
-* Although not required, followed the recommendations to spin up a fresh linux VM via Vagrant.  Very straight forward and had a fresh linux VM up in short order. 
+* Although not required, followed the recommendations to spin up a fresh Ubuntu VM via Vagrant.  Very straight forward and had a fresh VM up in short order. 
 
   <a href="https://j.gifs.com/y8z6k6.gif" title="Vagrant Up">
   <img src="https://j.gifs.com/y8z6k6.gif" width="500" height="332" alt="Issue with Dropbox"></a>
 
 ### Level 1 - Collecting your Data
 
-* Signed up for a Datadog trial.  Was very impressed with the smooth onboarding process without the extra step of needing to have a conversation with a sales representative before the trial is approved.  Installed the datadog agent on a macOS(CLI), Win10(wizard) and Ubuntu(CLI) system.  Within minutes, I had system metrics being gathered right out of the box...REALLY COOL! 
+* Signed up for a Datadog trial.  Was very impressed with the smooth onboarding process without needing to have a conversation with a sales representative before the trial is approved.  Installed the datadog agent on a macOS(CLI), Win10(wizard) and Ubuntu(CLI) system.  Within minutes, I had system metrics being gathered right out of the box...REALLY COOL! 
 
   <a href="https://dl.dropboxusercontent.com/u/6427521/infrastructure_list.jpg" title="Infrastructure List">
   <img src="https://dl.dropboxusercontent.com/u/6427521/infrastructure_list.jpg"  alt="Issue with Dropbox"></a>
   
   #### Bonus question: What is the Agent
 
-    The Datadog Agent is an open source software solution that will collect, store and forward performance metrics and checks against its     host.  The agent leverages 3 components to complete its tasks:
+    The Datadog agent is an open source software solution that will collect, store and forward performance metrics and checks against its     host.  The agent leverages 3 components to complete its tasks:
     
      * Collector - runs checks and gathers performance metrics against host and any integrations in place.
      * Dogstatsd - backend service that can store check results and performance metrics.  
@@ -47,7 +44,7 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
   sudo /etc/init.d/datadog-agent info  
   ```
 
-  Querying the agent returned the following where I could look in the Checks section to validate the integration
+  Querying the agent returned the following where I could look in the checks section to validate the integration
   
   <a href="https://dl.dropboxusercontent.com/u/6427521/integration.jpg" title="MySQL">
   <img src="https://dl.dropboxusercontent.com/u/6427521/integration.jpg" alt="Issue with Dropbox"></a>
@@ -128,7 +125,7 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
 
   #### Bonus question - What is the difference between a Timeboard and a Screenboard
   
-  Difference between a timeboard and a screenboard.  First noticed the distinction between the two when creating a new dashboard from some collected data.  When creating a new Dashboard, I was presented with the option to create either a timeboard or a screenboard.  Both are unique ways of visualizing the data being gathered by your Datadog Agents.  After creating one of each there were some obvious differences.  
+  First noticed the distinction between the two when creating a new dashboard from some collected data.  When creating a new Dashboard, I was presented with the option to create either a timeboard or a screenboard.  Both are unique ways of visualizing the data being gathered by your Datadog Agents.  After creating one of each there were some obvious differences.  
 
   Timeboards are a collection of graphs where the layout has been taken care of for me.  All graphs show the same timeframe and hovering over any individual graph allows me to follow along with all graphs making it easier to correlate potential issues. 
 
