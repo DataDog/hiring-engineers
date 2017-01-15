@@ -142,10 +142,10 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
 
 ### Level 3 - Alerting on your Data
 
-* Setting up a monitor to automatically email me if the test.support.example metric was greater than .9 was very straight forward.  Below is a gif reviewing my created monitor for this custom metric.  
+* Setting up a monitor to automatically email me if the test.support.example metric was greater than .9 was very straight forward.  Gave it a descriptive name and message.  Below is a gif reviewing my created monitor for this custom metric.
 
   <a href="https://j.gifs.com/Q1Xg0L.gif" title="Monitor">
-  <img src="https://j.gifs.com/Q1Xg0L.gif" walt="Issue with Dropbox"></a>
+  <img src="https://j.gifs.com/Q1Xg0L.gif" alt="Issue with Dropbox"></a>
   
   #### Bonus - Multialert  
 
@@ -155,3 +155,18 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
   
   <a href="https://dl.dropboxusercontent.com/u/6427521/alert_email.jpg" title="Alert Email">
   <img src="https://dl.dropboxusercontent.com/u/6427521/alert_email.jpg" alt="Issue with Dropbox"></a>
+  
+  #### Bonus - Scheduled downtime
+  
+  Adding scheduled downtime was easy as well.  This can be helpful and reduce the noise on distributed systems and applications that may not be running all the time.  Add the power of tags and you can easily silence notifications for a service or application instead of managing scheduled maintenance for individual servers.  
+
+  <a href="https://j.gifs.com/xGyoq3.gif" title="Downtime">
+  <img src="https://j.gifs.com/xGyoq3.gif" alt="Issue with Dropbox"></a>
+
+### Additional information for consideration  
+  I currently support a suite of products at VMware known as Workspace One.  A corner stone of this suite of products is VMware Identity Manager which competes with the likes Okta.  As we build our catalog of apps to ease integration for our customers, one common complaint is that we did not have out of the box integrations with known apps that support SSO.  Myself and a couple of other Sales Engineers took it upon ourselves to get some guides written and added to the following site (https://www.vmware.com/support/pubs/vidm_webapp_sso.html)  I have recently submitted the following document to our marketing teams so that it may be branded and legal fine print added.  I’ve also included a gif that shows logging into the Workspace One Portal and single signing onto Datadog.  
+
+  <a href="https://j.gifs.com/pgnRY2.gif" title="Downtime">
+  <img src="https://j.gifs.com/pgnRY2.gif" alt="Issue with Dropbox"></a>
+
+
