@@ -107,6 +107,16 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
     [{}]
   ```
 
+  Once I restarted the datadog agent.  I checked the agent info and was showing that I had a check for test.support.random
+  
+  <a href="https://dl.dropboxusercontent.com/u/6427521/agent_info.jpg" title="Agent Info">
+  <img src="https://dl.dropboxusercontent.com/u/6427521/agent_info.jpg" alt="Issue with Dropbox"></a>
+
+  Below is a screenshot of the Metric Explorer showing gathering this custom metric after disabling the above created cron job
+  
+  <a href="https://dl.dropboxusercontent.com/u/6427521/metric_explorer.jpg" title="Metric Explorer">
+  <img src="https://dl.dropboxusercontent.com/u/6427521/metric_explorer.jpg" alt="Issue with Dropbox"></a>
+
 ### Level 2 – Visualizing your Data
 
 * Thought the visualization components available to Datadog admins were really slick.  I’ve worked with monitoring solutions in the past where visualization and reporting capabilities were always lacking.  Looks like Datadog has so much of what I wished for with every update of previous monitoring solutions I have supported.  
