@@ -164,9 +164,15 @@ Below you will find the answers for Victor Gonzalez.  Thank you in advance for t
   <img src="https://j.gifs.com/xGyoq3.gif" alt="Issue with Dropbox"></a>
 
 ### Additional information for consideration  
-* I currently support a suite of products at VMware known as Workspace One.  A corner stone of this suite of products is VMware Identity Manager which competes with the likes Okta.  As we build our catalog of apps to ease integration for our customers, one common complaint is that we did not have out of the box integrations with known apps that support SSO.  Myself and a couple of other Sales Engineers took it upon ourselves to get some guides written and added to the following site (https://www.vmware.com/support/pubs/vidm_webapp_sso.html)  I have recently submitted the following document to our marketing teams so that it may be branded and legal fine print added.  I’ve also included a gif that shows logging into the Workspace One Portal and single signing onto Datadog.  
+* I currently support a suite of products at VMware known as Workspace One.  A corner stone of this suite of products is VMware Identity Manager which competes with the likes Okta.  As we build our catalog of apps to ease integration for our customers, one common complaint is that we did not have out of the box integrations with known apps that support SSO.  Myself and a couple of other Sales Engineers took it upon ourselves to get some guides written and added to the following site (https://www.vmware.com/support/pubs/vidm_webapp_sso.html)  I have recently submitted the following document https://dl.dropboxusercontent.com/u/6427521/Datadog_vIDM_integration.docx to our marketing teams so that it may be branded and legal fine print added.  I’ve also included a gif that shows logging into the Workspace One Portal and single signing onto Datadog.  
 
   <a href="https://j.gifs.com/pgnRY2.gif" title="Downtime">
   <img src="https://j.gifs.com/pgnRY2.gif" alt="Issue with Dropbox"></a>
 
-
+### Conclusion
+  Really enjoyed this exercise.  Really excited to be able to continue this process and see if Datadog and I are a good fit!
+  
+  Contact information:
+    Victor Gonzalez
+    860.803.5785
+    victorg1001@gmail.com
