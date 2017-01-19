@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: my_password
+    tags: 
+       - test-datadog
