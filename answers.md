@@ -9,7 +9,7 @@ It is developed in the Open Source: https://github.com/DataDog/dd-agent.
 The data shipped to Datadog can then be processed and analysed with several tools that Datadog provides (monitoring system).
 
 ####Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog. 
-See tags.png
+See `tags.png`.
 
 ####Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 See `mysql.yaml` (saved in `/etc/dd-agent/conf.d`).
@@ -24,7 +24,7 @@ See `cloned_dashboard.png`.
 
 ####Bonus question: What is the difference between a timeboard and a screenboard?
 TimeBoards and ScreenBoards are the 2 types of dashboards Datadog allows to create:
-- Timeboards: For troubleshooting purposes. Timecard can be shared individually.
+- Timeboards: For troubleshooting purposes. Timecard can be shared individually. All graphs appear as a grid.
 - Screenboards: more customizables, with drag and drop widgets, with a possibility to have different timeframes. Unlike timeboards, it is possible to generate a read-only link that allows everyone to access them.
 
 ####Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
@@ -39,4 +39,4 @@ See `alert_monitor.png`
 See `alert_monitor_email.png`
 
 ####Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-See `downtime.png`
+See `downtime.png` and `downtime_email.png`.
