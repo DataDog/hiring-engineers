@@ -84,7 +84,7 @@
 
             ...
   ```
-- Checked MongoDB Dashboard (see [Level1/MongoDB-Dashboard.png](./Level1/MongoDB-Dashboard.png)) to verify proper data coming in.
+- Checked MongoDB Dashboard at [https://app.datadoghq.com/screen/integration/mongodb?tpl_var_scope=host%3Aprecise64](https://app.datadoghq.com/screen/integration/mongodb?tpl_var_scope=host%3Aprecise64)  to verify proper data coming in. (see [Level1/MongoDB-Dashboard.png](./Level1/MongoDB-Dashboard.png))
   ![alt text](./Level1/MongoDB-Dashboard.png "MongoDB Dashboard")
 - Installed DataDog python library: 
     ```
@@ -99,7 +99,7 @@
   ![alt text](./Level1/TestSupportRandomMetric.png "test.support.random Metrics Screen")
 
 # Level 2: 
-- Cloned MongoDB Dashboard to Custom MongoDB Dashboard and added test.support.random to the view along with other metrics. (see [Level2/Custom-MongoDB-Dashboard.png](./Level2/Custom-MongoDB-Dashboard.png))
+- Cloned MongoDB Dashboard to Custom MongoDB Dashboard at [https://app.datadoghq.com/screen/151875/custom-mongodb](https://app.datadoghq.com/screen/151875/custom-mongodb) and added test.support.random to the view along with other metrics. (see [Level2/Custom-MongoDB-Dashboard.png](./Level2/Custom-MongoDB-Dashboard.png))
   ![alt text](./Level2/Custom-MongoDB-Dashboard.png "Custom Mongo Dashboard with Random Metric")
 - *Bonus*: What is the difference between a timeboard and a screenboard?
     A timeboard is scoped to the same time across all reporting (ie. 1hr, 4hrs, 1d, etc) and all graphs are presented in a grid.
