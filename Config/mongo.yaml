@@ -1,0 +1,7 @@
+init_config:
+
+instances:
+      -   server: mongodb://datadog:68usIaHv7f0dbt5E8ovNp0MR@localhost:27017
+          tags:
+              - mytag1
+              - mytag2
