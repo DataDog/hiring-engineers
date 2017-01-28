@@ -9,7 +9,7 @@
 
 # Level 1:
 - Signed up under mike@t******d.com.
-- Activated, and installed agent on host as well as added tags for the host to datadog.conf:
+- Activated, and installed agent on host as well as added tags for the host to [datadog.conf](./Config/datadog.conf):
 
     `$ DD_API_KEY=XXXXXXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"`
     
@@ -38,12 +38,13 @@
     $ echo "db.auth('datadog', 'xxxxxxxxxx')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
       datadog user - OK
     ```
+    Updates for monogoDB agent configuration in [mongo.yaml](./Config/mongo.yaml):
     ```
     $ vi /etc/dd-agent/conf.d/mongo.yaml
         init_config:
 
         instances:
-        -   server: mongodb://datadog:68usIaHv7f0dbt5E8ovNp0MR@localhost:27017
+        -   server: mongodb://datadog:xxxxxxxxx@localhost:27017
             tags:
               - mytag1
               - mytag2
