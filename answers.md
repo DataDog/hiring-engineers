@@ -9,7 +9,7 @@
 
 # Level 1:
 - Signed up under mike@t******d.com.
-- Activated, and installed agent on host as well as added tags for the host to datadog.conf:
+- Activated, and installed agent on host as well as added tags for the host to [datadog.conf](./Config/datadog.conf):
 
     `$ DD_API_KEY=XXXXXXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"`
     
@@ -38,12 +38,13 @@
     $ echo "db.auth('datadog', 'xxxxxxxxxx')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
       datadog user - OK
     ```
+    Updates for monogoDB agent configuration in [mongo.yaml](./Config/mongo.yaml):
     ```
     $ vi /etc/dd-agent/conf.d/mongo.yaml
         init_config:
 
         instances:
-        -   server: mongodb://datadog:68usIaHv7f0dbt5E8ovNp0MR@localhost:27017
+        -   server: mongodb://datadog:xxxxxxxxx@localhost:27017
             tags:
               - mytag1
               - mytag2
@@ -83,7 +84,7 @@
 
             ...
   ```
-- Checked MongoDB Dashboard (see [Level1/MongoDB-Dashboard.png](./Level1/MongoDB-Dashboard.png)) to verify proper data coming in.
+- Checked MongoDB Dashboard at [https://app.datadoghq.com/screen/integration/mongodb?tpl_var_scope=host%3Aprecise64](https://app.datadoghq.com/screen/integration/mongodb?tpl_var_scope=host%3Aprecise64)  to verify proper data coming in. (see [Level1/MongoDB-Dashboard.png](./Level1/MongoDB-Dashboard.png))
   ![alt text](./Level1/MongoDB-Dashboard.png "MongoDB Dashboard")
 - Installed DataDog python library: 
     ```
@@ -98,7 +99,7 @@
   ![alt text](./Level1/TestSupportRandomMetric.png "test.support.random Metrics Screen")
 
 # Level 2: 
-- Cloned MongoDB Dashboard to Custom MongoDB Dashboard and added test.support.random to the view along with other metrics. (see [Level2/Custom-MongoDB-Dashboard.png](./Level2/Custom-MongoDB-Dashboard.png))
+- Cloned MongoDB Dashboard to Custom MongoDB Dashboard at [https://app.datadoghq.com/screen/151875/custom-mongodb](https://app.datadoghq.com/screen/151875/custom-mongodb) and added test.support.random to the view along with other metrics. (see [Level2/Custom-MongoDB-Dashboard.png](./Level2/Custom-MongoDB-Dashboard.png))
   ![alt text](./Level2/Custom-MongoDB-Dashboard.png "Custom Mongo Dashboard with Random Metric")
 - *Bonus*: What is the difference between a timeboard and a screenboard?
     A timeboard is scoped to the same time across all reporting (ie. 1hr, 4hrs, 1d, etc) and all graphs are presented in a grid.
