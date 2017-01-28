@@ -104,7 +104,9 @@
 - *Bonus*: What is the difference between a timeboard and a screenboard?
     A timeboard is scoped to the same time across all reporting (ie. 1hr, 4hrs, 1d, etc) and all graphs are presented in a grid.
     A screenboard is more flexible and allows multiple graphs across different timelines and are far more customizable.
-- Snapshot of test.support.random was created using the Metrics tab and sent to e-mail. Oddly, sending something to yourself didn't seem to really work (probably because you're sending to yourself!) so I created a second user to tag and send an e-mail to. (see [Level2/MetricNotification.pdf](./Level2/MetricNotification.pdf))
+- Snapshot of test.support.random was created using the Metrics tab and sent to e-mail. Oddly, sending something to yourself didn't seem to really work (probably because you're sending to yourself!) so I created a second user to tag and send an e-mail to. (see [Level2/MetricSnapshot.png](./Level2/MetricSnapshot.png) and [Level2/MetricNotification.pdf](./Level2/MetricNotification.pdf))
+  ![alt text](./Level2/MetricSnapshot.png "test.support.random Metrics Snapshot")
+
 
 # Level 3: 
 - Set up a monitor that alerts when test.support.random goes above 0.90 at least once during the last 5 minutes. (see [Level3/MonitorAlertSettings.png](./Level3/MonitorAlertSettings.png))
