@@ -10,6 +10,7 @@ The data shipped to Datadog can then be processed and analysed with several tool
 
 ####Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog. 
 See `tags.png`.
+![Tags](tags.png?raw=true "Tags")
 
 ####Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 See `mysql.yaml` (saved in `/etc/dd-agent/conf.d`).
