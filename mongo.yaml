@@ -1,0 +1,9 @@
+
+init_config:
+
+instances:
+
+      -   server: mongodb://datadog:6955Xx3Ux9Ckunzv6TPhkrJY@localhost:27017
+          tags:
+              - Kevin3
+              - Kevin4
