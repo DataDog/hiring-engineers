@@ -1,0 +1,13 @@
+Level5
+
+We display the metrics from the agentcheck test.support.random which show random values.
+
+See the link to the dashboard:
+
+https://app.datadoghq.com/dash/113226/level-5---agentcheck?live=true&page=0&is_auto=false&from_ts=1459249191528&to_ts=1459252791528&tile_size=m&fullscreen=77704229
+
+
+Moreover, see the screenshot: 'Level5 - RandomCheck test.support.random.jpg'
+
+Also, see the file randomCheck.py  ( located in /etc/dd-agent/checks.d/ )
+and the file randomCheck.yaml ( located in /etc/dd-agent/conf.d/ ) 

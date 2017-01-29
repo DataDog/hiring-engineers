@@ -1,0 +1,19 @@
+Welcome to Datadog, laurent
+
+Your account is now fully functional. To get started:
+1- Your username is tranlaurent@hotmail.fr
+2- Log in at https://app.datadoghq.com
+3- Watch a short intro video: http://vimeo.com/134626763
+4- Read our documentation: http://docs.datadoghq.com
+
+Found yourself stuck or wishing for a new feature? Reach out to us anytime:
+- in Datadog, by mentioning @support in your posts
+- on IRC: irc://irc.freenode.net/datadog
+- by email: help@datadoghq.com
+- in user forums: http://help.datadoghq.com/
+
+That's it. Do tell us what you think: we're on a mission to make *your* job easy and fun again, and we'd love to hear from you.
+
+--
+Team Datadog.
+Follow-us on twitter for news and updates: http://twitter.com/datadoghq
