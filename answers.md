@@ -1,3 +1,7 @@
+Vincent Lee
+vincent.lee@10kbulbs.com
+1/29/2017
+
 The Datadog Agent is a software package that collects your servers performance data.
 On every machine on which the agent is run, data will be collected regarding the processes,
 CPU, memory, network, disk utilization, etc.. and transfer this data back to Datadog's database. The
