@@ -1,6 +1,9 @@
 Vincent Lee
 vincent.lee@10kbulbs.com
 1/29/2017
+Dashboard: https://app.datadoghq.com/screen/152086/mongodb-clone-1
+Monitors: https://app.datadoghq.com/monitors#1543609?group=all&live=4h
+
 
 The Datadog Agent is a software package that collects your servers performance data.
 On every machine on which the agent is run, data will be collected regarding the processes,
