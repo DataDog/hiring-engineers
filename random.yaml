@@ -1,0 +1,4 @@
+init_config:
+
+instances:
+  - user: test.support.random
