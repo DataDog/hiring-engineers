@@ -1,0 +1,8 @@
+# Ignore the folder containing the virtual environment.
+/virtualenv/
+
+# Ignore the folder containing IDE settings.
+/.idea/
+
+# Ignore compiled python files.
+*.pyc
