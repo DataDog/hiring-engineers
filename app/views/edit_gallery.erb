@@ -1,0 +1,13 @@
+<h2>Edit Gallery</h2>
+
+<form action="/galleries/<%= @gallery.id %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <div>
+    <label for= "gallery_name">Name</label>
+    <input type= "text" id="gallery_name" name="gallery[name]" value="<%= @gallery.name %>">
+  </div>
+
+  <div>
+    <input type="submit" value="Update">
+  </div>
+</form>
