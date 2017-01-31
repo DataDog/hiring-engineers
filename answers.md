@@ -4,7 +4,7 @@ Your answers to the questions go here.
 While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
 
 I installed Vagrant and Virtual Box and very quickly, following the documentation, was able to spin up a Vagrant server `vagrant up` followed by `vagrant ssh`
-![Alt text](images/vagrant.jpg "Vagrant Server")
+![Alt text](./images/vagrant.jpg "Vagrant Server")
 
 ### Level 1 - Collecting your Data
 
