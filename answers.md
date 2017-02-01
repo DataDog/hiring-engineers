@@ -1,34 +1,64 @@
 ## Level 0 (optional) - Setup an Ubuntu VM
 
 I installed Vagrant and Virtual Box and very quickly, following the documentation, was able to spin up a Vagrant server `vagrant up` followed by `vagrant ssh` running on Ubuntu 12.04
+
 ![vagrant](https://cloud.githubusercontent.com/assets/13028695/22488518/7ceec406-e7e0-11e6-93de-772d284c6342.png)
 
 
 ## Level 1 - Collecting your Data
 
 Having signed up for Datadog, I very quickly installed the Agent, following the one-step installation, on my VM and got it up and running, reporting metrics from my local machine. 
+
+
 ####Bonus question: In your own words, what is the Agent?
-(<<<ADD ANSWER >>>)
+
+- The Agent is software that runs on a client's host which is responsible for communicating local metrics to Data Dog's platform to understand performance and potential issues. The Agent is easy to use and allows for integrations ranging from databases like MySQL to applications such as Slack. The Agent is comprised of 3 parts: the collector (which grabs metrics from local machine for integrations), Dogstatsd (which helps combine data into useful, clear metrics over a period of time), and the forwarder (which talks to both the collector and Dogstatsd to compile and queue information to send to the Datadog platform).
+
 In order to edit the Agent config file to add tags, I had to sync folders from my host to the VM by adding the following line in the Vagrantfile:
-![screen shot 2017-01-31 at 12 29 46 pm](https://cloud.githubusercontent.com/assets/13028695/22513310/dc24182a-e869-11e6-8de8-937e405a3b82.png)
+`config.vm.synced_folder "./dd-agent", "/etc/dd-agent" `
 
 This enabled me to easily open my text editor of choice (I typically use Atom) to quickly add lines of code to the Vagrantfile and Agent files locally to then be "mirrored" on my VM. Having added these lines of code, I added the following to my datadog.conf file to add tags:
 
-![tags_config](https://cloud.githubusercontent.com/assets/13028695/22513501/6f1479b8-e86a-11e6-93ae-9987179969a7.png)
+```
+# Set the host's tags
+# tags: mytag, env:prod, role:database
+tags: test_tag, env:stage, role:testing, data_dog_test:tags, name:todd
+```
+Added `postgres.yaml` to the `conf.d` file and got it to report metrics to the Datadog platform:
+```yaml
+init_config:
 
-
-Added `postgres.yaml` and got it to report metrics to the Datadog platform:
-![screen shot 2017-01-31 at 12 29 04 pm](https://cloud.githubusercontent.com/assets/13028695/22515550/ce37c944-e870-11e6-9eb7-f90fb1e531e3.png)
-
+instances:
+   -   host: localhost
+       port: 5432
+       username: datadog
+       password: pass1234
+       tags:
+            - optional_tag1
+            - optional_tag2
+```
 Updated Host Map:
 ![screen shot 2017-01-31 at 12 30 16 pm](https://cloud.githubusercontent.com/assets/13028695/22513796/4ac806b4-e86b-11e6-8176-bd58cd3cf4aa.png)
 
 Custom agent check in `conf.d/random.py`, I used the `gauge` method to measure a value over time:
-![screen shot 2017-01-31 at 12 28 54 pm](https://cloud.githubusercontent.com/assets/13028695/22515014/26916c28-e86f-11e6-8492-e23f7bc55256.png)
+```python
+from checks import AgentCheck
+import random
+
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+
+```
 
 Configuration file `random.yaml`:
+```yaml
+init_config:
 
-![screen shot 2017-02-01 at 11 18 07 am](https://cloud.githubusercontent.com/assets/13028695/22515398/53bb7f9e-e870-11e6-939f-cecb0b73a012.png)
+instances:
+    [{}]
+
+```
 
 Running `sudo /etc/init.d/datadog-agent info` to check that integration is working properly: 
 ![screen shot 2017-01-31 at 12 26 20 pm](https://cloud.githubusercontent.com/assets/13028695/22515124/7276af86-e86f-11e6-8ee4-5a8cb743f12b.png)
