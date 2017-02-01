@@ -86,21 +86,21 @@ Email notification (note: the notifcation did not immediately appear in my email
 - Timeboards and Screenboards are both types of dashboards available on the Datadog platform. A timeboard has all graphs reporting about the same timeframe (time-synchronized metrics) and has an automatic layout (grid). A sreenboard allows for much more customization, has a drag and drop capibility with widgets which can report on different timeframes. Perhaps one of the greatest differences is that a timeboard's graphs can be shared individually whereas the whole screenboard can be shared live and read-only. The timeboard is better for troubleshooting/correlation while the screenboard gives a better higher level overview at the system.
  
  
-Level 3 - Alerting on your Data
+### Level 3 - Alerting on your Data
 
 `test.support.random` monitor: 
 ![screen shot 2017-02-01 at 11 55 11 am](https://cloud.githubusercontent.com/assets/13028695/22516925/6d854c52-e875-11e6-9b45-bd8067e698f6.png)
 
-Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes:
-Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up:
-![screen shot 2017-02-01 at 11 55 11 am](https://cloud.githubusercontent.com/assets/13028695/22516925/6d854c52-e875-11e6-9b45-bd8067e698f6.png)
+Monitor list:
 ![screen shot 2017-01-31 at 1 34 43 pm](https://cloud.githubusercontent.com/assets/13028695/22516976/909c44b6-e875-11e6-8a1c-42c5d90ec689.png)
+
+Monitor set-up and multi-alert trigger:
 ![screen shot 2017-02-01 at 11 59 52 am](https://cloud.githubusercontent.com/assets/13028695/22517099/04e81886-e876-11e6-93f6-6aaec2bb64eb.png)
 ![screen shot 2017-02-01 at 12 00 05 pm](https://cloud.githubusercontent.com/assets/13028695/22517098/04e7d7ae-e876-11e6-9650-4b581ac4a91f.png)
-Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email:
+Monitor name and message:
 ![screen shot 2017-02-01 at 12 03 38 pm](https://cloud.githubusercontent.com/assets/13028695/22517251/8e0751d6-e876-11e6-84c9-328f7210047c.png)
 
-Monitor Email:
+Monitor Alert Email:
 ![screen shot 2017-02-01 at 12 05 34 pm](https://cloud.githubusercontent.com/assets/13028695/22517359/cdbcf218-e876-11e6-9999-8a6a42e38f72.png)
 
 Downtime Schedule:
