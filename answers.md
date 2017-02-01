@@ -64,8 +64,8 @@ Running `sudo /etc/init.d/datadog-agent info` to check that integration is worki
 ![screen shot 2017-01-31 at 12 26 20 pm](https://cloud.githubusercontent.com/assets/13028695/22515124/7276af86-e86f-11e6-8ee4-5a8cb743f12b.png)
 ![screen shot 2017-01-31 at 12 25 56 pm](https://cloud.githubusercontent.com/assets/13028695/22515145/82ccfa98-e86f-11e6-9325-3585b2ddf3b3.png)
 
-With everything working and my integration in place, [Link to dashboard](https://app.datadoghq.com/dash/host/265897649?live=true&page=0&is_auto=false&from_ts=1485962899156&to_ts=1485966499156&tile_size=m) had looked like this:
-![screen shot 2017-02-01 at 11 29 20 am](https://cloud.githubusercontent.com/assets/13028695/22515825/da5d257e-e871-11e6-9596-e69554d581c2.png)
+With everything working and my integration in place my [Dashboard](https://app.datadoghq.com/dash/host/265897649?live=true&page=0&is_auto=false&from_ts=1485962899156&to_ts=1485966499156&tile_size=m) looked like this:
+![screen shot 2017-02-01 at 11 29 20 am](https://cloud.githubusercontent.com/assets/13028695/22515825/da5d257e-e871-11e6-9596-e69554d581c2.png) 
 
 
 ### Level 2 - Visualizing your Data
