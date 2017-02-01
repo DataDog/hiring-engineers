@@ -80,10 +80,11 @@ Snapshot of `test.support.random` graph with box around a section that shows it 
 ![screen shot 2017-01-31 at 1 19 08 pm](https://cloud.githubusercontent.com/assets/13028695/22516196/0602c7d2-e873-11e6-973d-25f1f051fa73.png)
 
 Email notification (note: the notifcation did not immediately appear in my email but rather in a summary email of the day's events):
+<br>
 ![screen shot 2017-02-01 at 11 42 05 am](https://cloud.githubusercontent.com/assets/13028695/22516349/86dd75a0-e873-11e6-9f7e-1de477cc4f06.png)
  
 ####Bonus question: What is the difference between a timeboard and a screenboard?	
-- Timeboards and Screenboards are both types of dashboards available on the Datadog platform. A timeboard has all graphs reporting about the same timeframe (time-synchronized metrics) and has an automatic layout (grid). A sreenboard allows for much more customization, has a drag and drop capibility with widgets which can report on different timeframes. Perhaps one of the greatest differences is that a timeboard's graphs can be shared individually whereas the whole screenboard can be shared live and read-only. The timeboard is better for troubleshooting/correlation while the screenboard gives a better higher level overview at the system.
+- Timeboards and Screenboards are both types of dashboards available on the Datadog platform. A timeboard has all graphs reporting about the same timeframe (time-synchronized metrics) and has an automatic layout (grid). A screenboard allows for much more customization, has a drag and drop capability with widgets that can report on different timeframes. Perhaps one of the greatest differences is that a timeboard's graphs can be shared individually whereas the whole screenboard can be shared live and read-only. The timeboard is better for troubleshooting/correlation while the screenboard gives a better higher-level overview of the system.
  
  
 ### Level 3 - Alerting on your Data
