@@ -16,8 +16,6 @@ This enabled me to easily open my text editor of choice (I typically use Atom) t
 
 ![tags_config](https://cloud.githubusercontent.com/assets/13028695/22513501/6f1479b8-e86a-11e6-93ae-9987179969a7.png)
 
-Host Map page updated in Datadog:
-![screen shot 2017-01-31 at 12 30 16 pm](https://cloud.githubusercontent.com/assets/13028695/22513796/4ac806b4-e86b-11e6-8176-bd58cd3cf4aa.png)
 
 Added `postgres.yaml` and got it to report metrics to the Datadog platform:
 ![screen shot 2017-01-31 at 12 29 04 pm](https://cloud.githubusercontent.com/assets/13028695/22515550/ce37c944-e870-11e6-9eb7-f90fb1e531e3.png)
@@ -29,6 +27,7 @@ Custom agent check in `conf.d/random.py`, I used the `gauge` method to measure a
 ![screen shot 2017-01-31 at 12 28 54 pm](https://cloud.githubusercontent.com/assets/13028695/22515014/26916c28-e86f-11e6-8492-e23f7bc55256.png)
 
 Configuration file `random.yaml`:
+
 ![screen shot 2017-02-01 at 11 18 07 am](https://cloud.githubusercontent.com/assets/13028695/22515398/53bb7f9e-e870-11e6-939f-cecb0b73a012.png)
 
 Running `sudo /etc/init.d/datadog-agent info` to check that integration is working properly: 
@@ -41,17 +40,44 @@ Running `sudo /etc/init.d/datadog-agent info` to check that integration is worki
 
 ### Level 2 - Visualizing your Data
 
- Since your database integration is reporting now, clone your database intergration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.	
+Cloned Database Integration Dashboard:
+![screen shot 2017-02-01 at 11 34 53 am](https://cloud.githubusercontent.com/assets/13028695/22516051/88a832c2-e872-11e6-82b5-4e9044d4a616.png)
+
+
+Additional database metrics and `test.support.random` metric from the custom Agent check:
+![screen shot 2017-01-31 at 1 55 55 pm](https://cloud.githubusercontent.com/assets/13028695/22516112/c13686d4-e872-11e6-868b-a49d30a7a7ef.png)
+
+Snapshot of `test.support.random` graph with box around a section that shows it going above 0.90:
+![screen shot 2017-01-31 at 1 19 08 pm](https://cloud.githubusercontent.com/assets/13028695/22516196/0602c7d2-e873-11e6-973d-25f1f051fa73.png)
+
+Email notification (note: the notifcation did not immediately appear in my email but rather in a summary email of the day's events):
+![screen shot 2017-02-01 at 11 42 05 am](https://cloud.githubusercontent.com/assets/13028695/22516349/86dd75a0-e873-11e6-9f7e-1de477cc4f06.png)
  
   * Bonus question: What is the difference between a timeboard and a screenboard?		 
-  * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification		
+ 
 
 Level 3 - Alerting on your Data
 
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
+`test.support.random` monitor: 
+![screen shot 2017-02-01 at 11 55 11 am](https://cloud.githubusercontent.com/assets/13028695/22516925/6d854c52-e875-11e6-9b45-bd8067e698f6.png)
 
-Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
-Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
-Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
-This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes:
+Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up:
+![screen shot 2017-02-01 at 11 55 11 am](https://cloud.githubusercontent.com/assets/13028695/22516925/6d854c52-e875-11e6-9b45-bd8067e698f6.png)
+
+![screen shot 2017-01-31 at 1 34 43 pm](https://cloud.githubusercontent.com/assets/13028695/22516976/909c44b6-e875-11e6-8a1c-42c5d90ec689.png)
+![screen shot 2017-02-01 at 11 59 52 am](https://cloud.githubusercontent.com/assets/13028695/22517099/04e81886-e876-11e6-93f6-6aaec2bb64eb.png)
+![screen shot 2017-02-01 at 12 00 05 pm](https://cloud.githubusercontent.com/assets/13028695/22517098/04e7d7ae-e876-11e6-9650-4b581ac4a91f.png)
+Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email:
+![screen shot 2017-02-01 at 12 03 38 pm](https://cloud.githubusercontent.com/assets/13028695/22517251/8e0751d6-e876-11e6-84c9-328f7210047c.png)
+
+Monitor Email:
+![screen shot 2017-02-01 at 12 05 34 pm](https://cloud.githubusercontent.com/assets/13028695/22517359/cdbcf218-e876-11e6-9999-8a6a42e38f72.png)
+
+Downtime Schedule:
+![screen shot 2017-01-31 at 1 28 28 pm](https://cloud.githubusercontent.com/assets/13028695/22517414/01b3416c-e877-11e6-8162-76fce69851a0.png)
+
+
+Downtime Email:
+
+![screen shot 2017-02-01 at 10 24 23 am](https://cloud.githubusercontent.com/assets/13028695/22517388/e5db5e66-e876-11e6-838e-285b7eaa228b.png)
