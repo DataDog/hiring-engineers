@@ -105,7 +105,9 @@ Monitor Alert Email:
 ![screen shot 2017-02-01 at 12 05 34 pm](https://cloud.githubusercontent.com/assets/13028695/22517359/cdbcf218-e876-11e6-9999-8a6a42e38f72.png)
 
 Downtime Schedule:
+<br>
 ![screen shot 2017-01-31 at 1 28 28 pm](https://cloud.githubusercontent.com/assets/13028695/22517414/01b3416c-e877-11e6-8162-76fce69851a0.png)
 
 Downtime Email:
+<br>
 ![screen shot 2017-02-01 at 10 24 23 am](https://cloud.githubusercontent.com/assets/13028695/22517388/e5db5e66-e876-11e6-838e-285b7eaa228b.png)
