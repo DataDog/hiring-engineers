@@ -187,7 +187,6 @@ I am receiving notification emails as per the monitor. [Email Notification](http
    
 Ans: 
 ![Image ScreenShot12] (https://github.com/sethu87/hiring-engineers/blob/master/ScreenShots/ScreenShot12_Email_Monitor.png)   
-Screen shot: ScreenShot12
 
 ##### Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
