@@ -46,7 +46,7 @@ With the data being graphed by the maximum value of `test.support.random` instea
 
 Although basic in formatting, the alert notification email format that I went with was clear and easy to decipher what was going on. While such a *comforting* note might not find its way into an actual alert message, being able to customize the content of the body of the message itself was quick and easy.
 
-*** Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+**Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
 ![Downtime Screenshot](./downtime.png)
 
