@@ -18,6 +18,7 @@ class RandCheck(AgentCheck):
 ## Level 2 - Visualizing your Data
 
 **Clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.**
+
 https://app.datadoghq.com/dash/249972/support-engineering-dashboard
 
 Cloning the database integration dashboard - in this case, the MySQL integration dashboard based off of the database that I installed in level 1 - was straight forward. From the MySQL integration dashboard page, I clicked the gear icon in the top right and Clone Dashboard. From there, I assigned a unique name for this dashboard, and then added the `test.support.random` graph as a Timeseries, as this data was a value that changed over time, and was best displayed in this format.
@@ -25,7 +26,7 @@ Cloning the database integration dashboard - in this case, the MySQL integration
 **Bonus question: What is the difference between a timeboard and a screenboard?**
 A timeboard shows modules that utilize the same time window, often used for viewing real time data. Integration dashboards look to be comprised mostly of timeboards by default. Screenboards, however, have modules with individual time windows, or even static data that doesn't rely on time.
 
-**Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. **
+**Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90.**
 
 ![Above 0.9](./above.png)
 
