@@ -1,0 +1,8 @@
+init_config:
+    default_timeout: 5
+
+instances:
+    -   url: http://104.155.139.136:8081/artifactory/webapp/
+
+    -   url: http://104.155.139.136:8081/artifactory/webapp/#/builds/
+        timeout: 8

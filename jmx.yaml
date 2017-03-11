@@ -1,0 +1,113 @@
+init_config: ~
+instances:
+  -
+    host: localhost
+    name: artifactory
+    password: password
+    port: 7199
+    user: monitorRole
+    conf:
+      - include:
+          attribute:
+            - ArtifactsTotalSize
+            - CorePoolSize
+            - MaximumPoolSize
+            - LargestPoolSize
+            - MaxIdle
+            - MaxWait
+            - MinIdle
+            - MaxActive
+            - Size
+            - NumIdle
+            - NumActive
+            - Active
+            - Idle
+            - MaxAge
+            - InitialSize
+            - AbandonWhenPercentageFull
+            - MinEvictableIdleTimeMillis
+            - NumTestsPerEvictionRun
+            - ValidationInterval
+            - SuspectTimeout
+            - TimeBetweenEvictionRunsMillis
+            - ValidationQueryTimeout
+          domain: org.jfrog.artifactory
+      - include:
+          attribute:
+            ActiveConnectionCount:
+              metric_type: counter
+            ActiveCount:
+              metric_type: counter
+            ArtifactsCount:
+              metric_type: counter
+            CompletedTaskCount:
+              metric_type: counter
+            IdleConnectionsCount:
+              metric_type: counter
+            SelectQueriesCount:
+              metric_type: counter
+            TaskCount:
+             metric_type: counter
+            UpdateQueriesCount:
+              metric_type: counter
+            WaitCount:
+              metric_type: counter
+          domain: org.jfrog.artifactory
+      - include:
+          attribute:
+            - maxTime
+            - bytesReceived
+            - bytesSent
+            - processingTime
+            - size
+            - maxSize
+            - processingTime
+            - backlog
+            - objectMaxSize
+            - cacheSize
+            - activeSessions
+            - available
+            - maxThreads
+            - currentThreadsBusy
+            - maxActive
+            - expiredSessions
+            - sessionCreateRate
+            - sessionExpireRate
+            - sessionMaxAliveTime
+            - rejectedSessions
+            - sessionAverageAliveTime
+            - activeSessions
+            - maxInstances
+            - maxActiveSessions
+          domain: Catalina
+        exclude:
+          bean_regex:
+            - Catalina.*type=RequestProcessor.*
+      - include:
+          attribute:
+            acceptorThreadCount:
+              metric_type: counter
+            accessCount:
+              metric_type: counter
+            countAllocated:
+              metric_type: counter
+            currentThreadCount:
+              metric_type: counter
+            errorCount:
+              metric_type: counter
+            hitCount:
+              metric_type: counter
+            lookupCount:
+              metric_type: counter
+            maxHeaderCount:
+              metric_type: counter
+            pollerThreadCount:
+              metric_type: counter
+            requestCount:
+              metric_type: counter
+            sessionCounter:
+              metric_type: counter
+          domain: Catalina
+        exclude:
+          bean_regex:
+            - Catalina.*type=RequestProcessor.*
