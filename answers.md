@@ -28,6 +28,7 @@ A screenboard is a more customizable dashboard that allows individual graphs to 
 <b>Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification</b>
 
   I made several snapshots using the @ annotation directly in metric explorer to notify myself but never received the email...
+  [Link to metric explorer](https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1489841842047&to_ts=1489856242047&tile_size=xl&exp_metric=test.support.random&exp_scope=&exp_agg=avg&exp_row_type=metric&tile_focus=1000)
 
 <b>Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
