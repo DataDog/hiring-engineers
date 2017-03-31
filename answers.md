@@ -12,3 +12,5 @@
 
 ## Level 3 - Alerting on Your Data
 * ![Screenshot of monitor](Screenshot-Monitor.png)
+
+* ![Screenshot of downtime](Screenshot-Downtime.png)
