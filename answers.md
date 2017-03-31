@@ -11,6 +11,8 @@
 * ![Screenshot of test.support.random snapshot](Screenshot-GraphAnnotation.png)
 
 ## Level 3 - Alerting on Your Data
-* ![Screenshot of monitor](Screenshot-Monitor.png)
+* Monitor created: ![Screenshot of monitor](Screenshot-Monitor.png)
 
-* ![Screenshot of downtime](Screenshot-Downtime.png)
+* Downtime scheduled: ![Screenshot of downtime](Screenshot-Downtime.png)
+
+* Email alert from monitor: ![Screenshot of email alert](Screenshot-MonitorAlert.png)
