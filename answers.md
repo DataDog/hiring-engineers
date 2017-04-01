@@ -18,3 +18,5 @@
 * Downtime scheduled: ![Screenshot of downtime](Images/Screenshot-Downtime.png)
 
 * Email alert from monitor: ![Screenshot of email alert](Images/Screenshot-MonitorAlert.png)
+
+* Downtime notification: ![Screenshot of downtime notification email](Images/Screenshot-Downtime.png)
