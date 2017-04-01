@@ -13,6 +13,8 @@
 ## Level 3 - Alerting on Your Data
 * Monitor created: ![Screenshot of monitor](Images/Screenshot-Monitor.png)
 
+* Multi-Alert: ![Screenshot of multi-alert](Images/Screenshot-MultiAlert.png)
+
 * Downtime scheduled: ![Screenshot of downtime](Images/Screenshot-Downtime.png)
 
 * Email alert from monitor: ![Screenshot of email alert](Images/Screenshot-MonitorAlert.png)
