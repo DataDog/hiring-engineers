@@ -1,1 +1,32 @@
-Your answers to the questions go here.
+# DataDog Support Engineer Challenge
+[Dashboard](https://app.datadoghq.com/dash/268940/cloned-dashboard)
+
+## Level 1 - Collecting Your Data
+* Bonus Question: An agent is the program that runs on a customer's local machine to track performance and metrics. It then consolidates and packages the data to send to DataDog.
+
+* ![Screenshot of Host Map & Tag](Images/Screenshot-HostMap.png)
+
+* YAML file: ![Screenshot of yaml file](Images/Screenshot-yaml.png)
+
+* Custom Agent Check in random.py file: ![Screenshot of random.py](Images/Screenshot-Check.png)
+
+## Level 2 - Visualizing Your Data
+* Bonus Question: A timeboard is useful for troubleshooting and grabbing a snapshot of the systems for a certain period. The graph layout can't be customized since they're all shown together. The screenboard is more customizable and flexible for showing a high-level overview of the system. It can also incorporate widget and can be shared in real-time as a read-only.
+
+* ![Screenshot of test.support.random snapshot](Images/Screenshot-GraphAnnotation.png)
+
+## Level 3 - Alerting on Your Data
+* Monitor created: ![Screenshot of monitor](Images/Screenshot-Monitor.png)
+
+* Multi-Alert: ![Screenshot of multi-alert](Images/Screenshot-MultiAlert.png)
+
+* Downtime scheduled: ![Screenshot of downtime](Images/Screenshot-Downtime.png)
+
+* Email alert from monitor: ![Screenshot of email alert](Images/Screenshot-MonitorAlert.png)
+
+* Downtime notification: ![Screenshot of downtime notification email](Images/Screenshot-Downtime.png)
+
+## Candidate Info
+[Jennifer Young](mailto:jyoung488@gmail.com)
+
+[LinkedIn](https://www.linkedin.com/in/jennifercyoung/) | [GitHub](https://github.com/jyoung488) | [Personal Site](https://jyoung488.github.io/)
