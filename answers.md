@@ -5,6 +5,10 @@
 
 * ![Screenshot of Host Map & Tag](Images/Screenshot-HostMap.png)
 
+* YAML file: ![Screenshot of yaml file](Images/Screenshot-yaml.png)
+
+* Custom Agent Check in random.py file: ![Screenshot of random.py](Images/Screenshot-Check.png)
+
 ## Level 2 - Visualizing Your Data
 * Bonus Question: A timeboard is useful for troubleshooting and grabbing a snapshot of the systems for a certain period. The graph layout can't be customized since they're all shown together. The screenboard is more customizable and flexible for showing a high-level overview of the system. It can also incorporate widget and can be shared in real-time as a read-only.
 
@@ -20,3 +24,8 @@
 * Email alert from monitor: ![Screenshot of email alert](Images/Screenshot-MonitorAlert.png)
 
 * Downtime notification: ![Screenshot of downtime notification email](Images/Screenshot-Downtime.png)
+
+## Candidate Info
+[Jennifer Young](mailto:jyoung488@gmail.com)
+
+[LinkedIn](https://www.linkedin.com/in/jennifercyoung/) | [GitHub](https://github.com/jyoung488) | [Personal Site](https://jyoung488.github.io/)
