@@ -10,3 +10,6 @@ Level 1 - Collecting your Data
 	* Intall database: See "Screen Shot - Database dashboard.png"
 
 	* Custom Agent Check: See "Screen Shot - Custom Agent Check.png"
+
+Level 2 - Visualizing your Data
+	* Clone database dashboard and add Agent Check metrics: "Screen Shot - Custom Agent Check.png"
