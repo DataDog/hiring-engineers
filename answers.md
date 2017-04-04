@@ -13,3 +13,8 @@ Level 1 - Collecting your Data
 
 Level 2 - Visualizing your Data
 	* Clone database dashboard and add Agent Check metrics: "Screen Shot - Custom Agent Check.png"
+
+	* What is the difference between a timeboard and a screenboard?
+	All the graphs on timeboard are synchronized on the same time and they are sorted in a grid-like fashion.  
+	Screenboard provides more flexibility.  Graphs can have different time frame and can be palced anywhere on the page.  Text and pictures can be added to screenboard as well.  
+	Graphs on timeboard can be shared individuly but ScreenBoard can be shared as a whole.
