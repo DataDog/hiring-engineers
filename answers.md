@@ -18,3 +18,8 @@ Level 2 - Visualizing your Data
 	All the graphs on timeboard are synchronized on the same time and they are sorted in a grid-like fashion.  
 	Screenboard provides more flexibility.  Graphs can have different time frame and can be palced anywhere on the page.  Text and pictures can be added to screenboard as well.  
 	Graphs on timeboard can be shared individuly but ScreenBoard can be shared as a whole.
+
+	* Draw a box around a section that shows it going above 0.90 on test.support.random graph: See "Screen Shot - Custom Agent Check.png"
+
+Level 3 - Alerting on your Data
+	* Set up a monitor: See "Screen Shot - monitor email"
