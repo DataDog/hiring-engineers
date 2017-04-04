@@ -8,3 +8,5 @@ Level 1 - Collecting your Data
 	* Add tags: See "Screen Shot - host tags.png"
 
 	* Intall database: See "Screen Shot - Database dashboard.png"
+
+	* Custom Agent Check: See "Screen Shot - Custom Agent Check.png"
