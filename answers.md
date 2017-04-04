@@ -2,6 +2,9 @@ Your answers to the questions go here.
 
 Level 1 - Collecting your Data
   -Bonus question: In your own words, what is the Agent?
+    -The Agent is exactly that, an agent, in which the software gathers
+     information on my behalf so that I can better assess and utilize my
+     monitoring and performance data.
 
   -Add tags in the Agent config file and show us a screenshot
    of your host and its tags on the Host Map page in Datadog.
