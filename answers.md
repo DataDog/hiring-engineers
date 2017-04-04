@@ -23,3 +23,10 @@ Level 2 - Visualizing your Data
 
 Level 3 - Alerting on your Data
 	* Set up a monitor: See "Screen Shot - monitor email"
+
+	* Make it a multi-alert: See Manage Monitors at https://app.datadoghq.com/monitors#manage
+
+	* Give it a descriptive monitor and message: See "Screen Shot - monitor email"
+	
+	* Downtime: See downtime setup at this link https://app.datadoghq.com/monitors#downtime
+		- downtime is setup for daily from 7pm to 9am.  it was setup after 7pm today so the email will be sent tomorrow.
