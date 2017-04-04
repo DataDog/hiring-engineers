@@ -16,7 +16,11 @@ Level 2 - Visualizing your Data
   -Bonus question: What is the difference between a timeboard and a screenboard?
     -A timeboard has all of the graphs scanned at the same time.
       -The graphs are grid-like, easier to troubleshoot, shows correlation better,
-       and can be shared individually. 
+       and can be shared individually.
     -A screenboard is more customizeable, high-level, and flexible.
       -They have drag-and-drop widgets, which allow them to have different time lines.
       -Screenboards can be shared as a whole and have read-only access.
+
+  -Take a snapshot of your 'test.support.random' graph and draw a box around a section
+   show it going above 0.90.
+      -Added!
