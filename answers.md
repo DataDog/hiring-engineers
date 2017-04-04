@@ -6,3 +6,5 @@ Level 1 - Collecting your Data
 	Agent is a datadog program/softwar which can be installed on any system or app.  It will monitor and collect metrics and events from that system or app.
 
 	* Add tags: See "Screen Shot - host tags.png"
+
+	* Intall database: See "Screen Shot - Database dashboard.png"
