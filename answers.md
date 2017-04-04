@@ -24,3 +24,11 @@ Level 2 - Visualizing your Data
   -Take a snapshot of your 'test.support.random' graph and draw a box around a section
    show it going above 0.90.
       -Added!
+
+Level 3 - Alerting on your Data
+  -Added multi-alert by host
+
+  -Screenshot of the monitor alert
+    -http://i.imgur.com/dJ90hkZ.png
+
+  -Screenshot of the downtime schedule
