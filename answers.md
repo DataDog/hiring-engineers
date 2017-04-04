@@ -9,6 +9,13 @@ Level 1 - Collecting your Data
 
   -Installed PostgreSQL and the Datadog integration
 
+  -Write a custom Agent check. Metric 'test.support.random'
+    import random
+    from checks import AgentCheck
+
+    class TestCheck(AgentCheck):
+        def check(self, instance):
+            self.gauge('test.support.random', random.random())
 
 Level 2 - Visualizing your Data
   -Cloned Postgres integration dashboard
@@ -35,3 +42,8 @@ Level 3 - Alerting on your Data
     -Note: Instead of 7pm - 9am, I put 2am - 10am so that the message will show
      currently 1:41am
     -http://i.imgur.com/xcxwNM3.png
+
+
+
+
+[dashboard link](https://app.datadoghq.com/graph/embed?token=509c61ab2ff4a860e96df1739bc636897e2003d214acdab6f86a3dd0b8a66b32&height=300&width=600&legend=false)
