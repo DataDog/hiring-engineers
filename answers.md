@@ -32,3 +32,6 @@ Level 3 - Alerting on your Data
     -http://i.imgur.com/dJ90hkZ.png
 
   -Screenshot of the downtime schedule
+    -Note: Instead of 7pm - 9am, I put 2am - 10am so that the message will show
+     currently 1:41am
+    -http://i.imgur.com/xcxwNM3.png
