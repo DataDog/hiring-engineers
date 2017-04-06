@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-
 ## Level 0 (optional) - Setup an Ubuntu VM
 ### While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues.
 
