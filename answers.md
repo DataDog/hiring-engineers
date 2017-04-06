@@ -138,6 +138,8 @@ The names for the check and the config file must be the same. So I named my file
 
 Since I just want to send a random number as a metric, the configuration file was simple. 
 
+test.support.random.yaml:
+
 ```
 init_config:
 
