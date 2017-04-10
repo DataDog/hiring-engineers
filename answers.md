@@ -16,13 +16,13 @@ Copy the one-step install instructions from Datadog:
 
 <img src="figures/Level1_install your first Datadog Agent.png" alt="Install Datadog Agent" width="600">
   
-Enter the one-step install insructions at the command line to initiate installation:  
+Enter the one-step install instructions at the command line to initiate installation:  
   
 <img src="figures/Level1_install on ubuntu.png" alt="Begin Installation" width="600">  
 
 * Bonus question: In your own words, what is the Agent?  
 
-The Agent is that part of Datadog's service that lives on a client's host(s) and collects system and application data.  It's responsible for collecting basic system metrics (e.g. cpu usage, memory, disk I/O, network latency), checking which services are set to be monitored (i.e. what integrations has the client configured), aggregating custom metrics and events from a client's applications and infrastructure, and sending data to Datadog's intake servers via HTTPS.
+The Agent is that part of Datadog's service that lives on a client's host(s) and collects system and application data.  It's responsible for collecting basic system metrics (e.g. cpu usage, memory, disk I/O, network latency), checking which services are set to be monitored (i.e. what integrations has the client configured), aggregating custom metrics and events from a client's applications and infrastructure, and reliably sending the data to Datadog's intake servers via HTTPS.
 
 It is an open-source, python-based service designed for simple, potentially automated set-up and integration with modern devops stacks.  That means it works on all modern operating systems, on a variety of platforms (e.g. virtual machines, containers, cloud platforms), and with a variety of configurable [integrations](https://www.datadoghq.com/product/integrations/) for popular devops tools (e.g. web servers, databases, message queues, code repositories) allowing its monitoring capabilities to be tailored to clients' needs.
 
@@ -32,7 +32,7 @@ Editing the Agent config file (`/etc/dd-agent/datadog.conf`) to add tags:
   
 <img src="figures/Level1_add tags.png" alt="Add tags to Agent Config file" width="600">  
 
-Screenshot of host and its tags on the Host Map page:  
+Screenshot of my host and its tags on the Host Map page:  
     
 <img src="figures/Level1_Host Map with tags.png" alt="Host Map with tags" width="600">  
 
@@ -88,9 +88,9 @@ instances:
   
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
   
-Links to cloned database dashboard with test.support.random metric (links to two different timespans): 
-https://app.datadoghq.com/dash/272733/clones---the-sql?live=true&page=0&is_auto=false&from_ts=1491712990718&to_ts=1491799390718&tile_size=m  
-https://app.datadoghq.com/dash/272733/clones---the-sql?live=false&page=0&is_auto=false&from_ts=1491774764925&to_ts=1491791690293&tile_size=m  
+Links to cloned database dashboard with test.support.random metric (links to same dashboard over two different timespans): 
+[Cloned Dashboard - 1](https://app.datadoghq.com/dash/272733/clones---the-sql?live=true&page=0&is_auto=false&from_ts=1491712990718&to_ts=1491799390718&tile_size=m)  
+[Cloned Dashboard - 2](https://app.datadoghq.com/dash/272733/clones---the-sql?live=false&page=0&is_auto=false&from_ts=1491774764925&to_ts=1491791690293&tile_size=m)  
   
 Screenshot of cloned database dashboard:
 <img src="figures/Level2_Dashboard_Clone1.PNG" alt="Dashboard Clone with random value metric" width="800">
@@ -112,11 +112,11 @@ In comparison, screenboards are more general dashboards featuring a cutomizable 
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 
-<img src="figure/Level3_Set up Monitor.PNG" alt="Multi-alert by host" width="600">  
+<img src="figures/Level3_Set up Monitor.PNG" alt="Multi-alert by host" width="600">  
 
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-<img src="figure/Level3_Email_Alert.PNG" alt="Email Alert" width="600">  
+<img src="figures/Level3_Email_Alert.PNG" alt="Email Alert" width="600">  
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
