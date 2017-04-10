@@ -104,7 +104,7 @@ In comparison, screenboards are more general dashboards featuring a cutomizable 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
 <img src="figures/Level2_random_value_snapshot_notification.PNG" alt="Snapshot of random value with box around high value" width="600">
-<img src="figures/Level2_snapshot_in_event_stream.PNG" alt="Snapshots appearing in event stream" width="600">
+<img src="figures/Level2_snapshot_in_event_stream.PNG" alt="Snapshots appearing in event stream" width="400">
 
 ### Level 3 - Alerting on your Data
 
