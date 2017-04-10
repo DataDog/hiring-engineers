@@ -24,7 +24,7 @@ Enter the one-step install insructions at the command line to initiate installat
 
 The Agent is that part of Datadog's service that lives on a client's host(s) and collects system and application data.  It's responsible for collecting basic system metrics (e.g. cpu usage, memory, disk I/O, network latency), checking which services are set to be monitored (i.e. what integrations has the client configured), aggregating custom metrics and events from a client's applications and infrastructure, and sending data to Datadog's intake servers via HTTPS.
 
-It is an open-source, python-based service designed for simple, potentially automated set-up and integration with modern devops stacks.  That means it works on all modern operating systems, on a variety of platforms (e.g. virtual machines, containers, cloud platforms), and with a variety of configurable ![integrations](https://www.datadoghq.com/product/integrations/) for popular devops tools (e.g. web servers, databases, message queues, code repositories) allowing its monitoring capabilities to be tailored to clients' needs.
+It is an open-source, python-based service designed for simple, potentially automated set-up and integration with modern devops stacks.  That means it works on all modern operating systems, on a variety of platforms (e.g. virtual machines, containers, cloud platforms), and with a variety of configurable [integrations](https://www.datadoghq.com/product/integrations/) for popular devops tools (e.g. web servers, databases, message queues, code repositories) allowing its monitoring capabilities to be tailored to clients' needs.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
 
@@ -79,15 +79,21 @@ init_config:
 
 instances:
     [{}]
-```
-<img src="figures/Level1_Custom_Agent_Check_Metric.png" alt="Custom Agent Check Metric Graph" width="600">
+```  
+  
+<img src="figures/Level1_Custom_Agent_Check_Metric.PNG" alt="Custom Agent Check Metric Graph" width="600">
 
 
 ### Level 2 - Visualizing your Data  
   
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
-
-<img src="figures/Level2_Dashboard_Clone1.png" alt="Dashboard Clone with random value metric" width="800">
+  
+Links to cloned database dashboard with test.support.random metric (links to two different timespans): 
+https://app.datadoghq.com/dash/272733/clones---the-sql?live=true&page=0&is_auto=false&from_ts=1491712990718&to_ts=1491799390718&tile_size=m  
+https://app.datadoghq.com/dash/272733/clones---the-sql?live=false&page=0&is_auto=false&from_ts=1491774764925&to_ts=1491791690293&tile_size=m  
+  
+Screenshot of cloned database dashboard:
+<img src="figures/Level2_Dashboard_Clone1.PNG" alt="Dashboard Clone with random value metric" width="800">
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
@@ -97,8 +103,8 @@ In comparison, screenboards are more general dashboards featuring a cutomizable 
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-<img src="figures/Level2_random_value_snapshot_notification.png" alt="Snapshot of random value with box around high value" width="600">
-<img src="figures/Level2_snapshot_in_event_stream.png" alt="Snapshots appearing in event stream" width="600">
+<img src="figures/Level2_random_value_snapshot_notification.PNG" alt="Snapshot of random value with box around high value" width="600">
+<img src="figures/Level2_snapshot_in_event_stream.PNG" alt="Snapshots appearing in event stream" width="600">
 
 ### Level 3 - Alerting on your Data
 
@@ -106,16 +112,16 @@ In comparison, screenboards are more general dashboards featuring a cutomizable 
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 
-<img src="figure/Level3_Set up Monitor.png" alt="Multi-alert by host" width="600">  
+<img src="figure/Level3_Set up Monitor.PNG" alt="Multi-alert by host" width="600">  
 
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-<img src="figure/Level3_Email_Alert.png" alt="Email Alert" width="600">  
+<img src="figure/Level3_Email_Alert.PNG" alt="Email Alert" width="600">  
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 Schedule the downtime:  
-<img src="figures/Level3_Schedule_Downtime.png" alt="Scheduling Downtime" width="600">
+<img src="figures/Level3_Schedule_Downtime.PNG" alt="Scheduling Downtime" width="600">
   
 Receive email alert about downtime:  
-<img src="figures/Level3_Downtime Email.png" alt="Downtime Email alert" width="600">
+<img src="figures/Level3_Downtime Email.PNG" alt="Downtime Email alert" width="600">
