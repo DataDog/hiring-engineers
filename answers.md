@@ -6,7 +6,7 @@ I used [Vagrant](https://www.vagrantup.com/intro/index.html) with the recommende
 
 *Bonus question: In your own words, what is the Agent?**
 
-The Agent is
+The Agent is software that runs on hosts, collecting valuable data and performance metrics about systems, applications, and select integrations to be sent to the Datadog dashboard. 
 
 **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
@@ -35,6 +35,3 @@ Custom agent check file - `/etc/dd-agent/checks.d/test_support_random.py`:
 
 Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`
 <img src ='images/level_1_custom_agent_check_config.png'>
-
-`test.support.random` graph in dashboard:
-<img src='images/level_1_custom_agent_check_graph.png'>
