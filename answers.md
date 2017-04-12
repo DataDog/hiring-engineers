@@ -1,8 +1,8 @@
-### Level 0 (optional) - Setup an Ubuntu VM
+## Level 0 (optional) - Setup an Ubuntu VM
 
 I used [Vagrant](https://www.vagrantup.com/intro/index.html) with the recommended [hashicorp precise64](https://atlas.hashicorp.com/hashicorp/boxes/precise64) box with Virtualbox which is a standard Ubuntu 12.04 LTS 64-bit box.
 
-### Level 1 - Collecting your Data
+## Level 1 - Collecting your Data
 
 **Bonus question: In your own words, what is the Agent?**
 
