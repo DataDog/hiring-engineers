@@ -2,9 +2,6 @@
 
 I used [Vagrant](https://www.vagrantup.com/intro/index.html) with the recommended [hashicorp precise64](https://atlas.hashicorp.com/hashicorp/boxes/precise64) box with Virtualbox which is a standard Ubuntu 12.04 LTS 64-bit box.
 
-The following is a screen shot of an SSH session:
-<img src='images/level_0_vagrant_ssh.png'>
-
 ### Level 1 - Collecting your Data
 
 *Bonus question: In your own words, what is the Agent?**
@@ -24,9 +21,11 @@ Screenshot of tags on the Host Map page:
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 Installation of PostgreSQL on VM:
+
 <img src='images/level_1_install_postgresql.png'>
 
 Installation of PostgreSQL integration:
+
 <img src='images/level_1_install_integration.png'>
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
