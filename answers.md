@@ -11,11 +11,6 @@ The following is a screen shot of an SSH session:
 
 The Agent is
 
-**Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.**
-
-Confirmation of agent set up on VM:
-<img src='images/level_1_start_agent.png'>
-
 **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
 Added two tags `region:us-west-1` and `owner:alibaker` to Agent config file.
@@ -32,7 +27,7 @@ Installation of PostgreSQL on VM:
 <img src='images/level_1_install_postgresql.png'>
 
 Installation of PostgreSQL integration:
-<img src='images/level_1_integration_psql_user.png'>
+<img src='images/level_1_install_integration.png'>
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
 
