@@ -4,7 +4,7 @@ I used [Vagrant](https://www.vagrantup.com/intro/index.html) with the recommende
 
 ### Level 1 - Collecting your Data
 
-*Bonus question: In your own words, what is the Agent?**
+**Bonus question: In your own words, what is the Agent?**
 
 The Agent is software that runs on hosts, collecting valuable data and performance metrics about systems, applications, and select integrations to be sent to the Datadog dashboard. 
 
