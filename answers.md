@@ -55,7 +55,7 @@ Added `test.support.random`, `postgresql.max_connections`, and `system.uptime`:
 
 **Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes; Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
 
-![multi-alert by host](http://imgur.com/0SQJTdU)
+![multi-alert by host](http://i.imgur.com/0SQJTdU.png)
 
 **Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.**
 
