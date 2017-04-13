@@ -52,6 +52,7 @@ Screenboards are customizable and flexible with drag and drop widgets that can b
 Added `test.support.random`, `postgresql.max_connections`, and `system.uptime`:
 
 ![cloned dashboard added metrics](http://i.imgur.com/pkraiPS.png)
+[link to cloned postgres dashboard](https://app.datadoghq.com/dash/274309/postgres---overview-cloned)
 
 **Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.**
 
