@@ -13,25 +13,31 @@ The Agent is software that runs on hosts, collecting valuable data and performan
 Added two tags `region:us-west-1` and `owner:alibaker` to Agent config file.
 
 Modified agent config file - `/etc/dd-agent/datadog.conf`:
+
 ![agent config](http://i.imgur.com/vW6yIVY.png)
 
 Screenshot of tags on the Host Map page:
+
 ![tags on host map](http://i.imgur.com/qXpur1S.png)
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 Installation of PostgreSQL on VM:
+
 ![postgresql installation](http://i.imgur.com/tRpfPbw.png)
 
 Installation of PostgreSQL integration:
+
 ![postgresql integration](http://i.imgur.com/m2kxOV7.png)
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
 
 Custom agent check file - `/etc/dd-agent/checks.d/test_support_random.py`:
+
 ![custom agent check file](http://i.imgur.com/3DiYAac.png)
 
-Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`
+Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`:
+
 ![custom agent check config](http://i.imgur.com/b2lTBIB.png)
 
 ## Level 2 - Visualizing your Data
