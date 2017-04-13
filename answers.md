@@ -28,7 +28,7 @@ Installation of PostgreSQL on VM:
 
 Installation of PostgreSQL integration:
 
-![postgresql integration](http://i.imgur.com/m2kxOV7.png)
+![postgresql integration](http://i.imgur.com/22kvHhI.png)
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
 
