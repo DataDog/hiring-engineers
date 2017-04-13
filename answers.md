@@ -13,28 +13,28 @@ The Agent is software that runs on hosts, collecting valuable data and performan
 Added two tags `region:us-west-1` and `owner:alibaker` to Agent config file.
 
 Modified agent config file - `/etc/dd-agent/datadog.conf`:
-<img src='images/level_1_add_tags.png'>
+<img src='http://imgur.com/vW6yIVY'>
 
 Screenshot of tags on the Host Map page:
-<img src='images/level_1_host_map_tags.png'>
+<img src='http://imgur.com/qXpur1S'>
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 Installation of PostgreSQL on VM:
 
-<img src='images/level_1_install_postgresql.png'>
+<img src='http://imgur.com/tRpfPbw'>
 
 Installation of PostgreSQL integration:
 
-<img src='images/level_1_install_integration.png'>
+<img src='http://imgur.com/m2kxOV7'>
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
 
 Custom agent check file - `/etc/dd-agent/checks.d/test_support_random.py`:
-<img src='images/level_1_write_custom_agent_check.png'>
+<img src='http://imgur.com/3DiYAac'>
 
 Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`
-<img src ='images/level_1_custom_agent_check_config.png'>
+<img src ='http://imgur.com/b2lTBIB'>
 
 ## Level 2 - Visualizing your Data
 
@@ -47,19 +47,22 @@ Screenboards are customizable and flexible with drag and drop widgets that can b
 
 Added `test.support.random`, `postgresql.max_connections`, and `system.uptime`:
 
-*image of dashboard*
-
+<img src ='http://imgur.com/pkraiPS'>
 
 **Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.**
 
-*image of dashboard*
+<img src ='http://imgur.com/wFK3h69'>
 
 ## Level 3 - Alerting on your Data
 
-* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes; Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
+**Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes; Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
 
-* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+<img src='http://imgur.com/0SQJTdU'>
 
-* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+**Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.**
 
-* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<img src ='http://imgur.com/IhZwMif'>
+
+**Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+
+<img src ='http://imgur.com/5DnZkYl'>
