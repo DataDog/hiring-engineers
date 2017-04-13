@@ -39,7 +39,9 @@ Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`
 ## Level 2 - Visualizing your Data
 
 **Bonus question: What is the difference between a timeboard and a screenboard?**
+Timeboards are for troubleshooting and correlations by viewing all graphs in the same time scope.The graphs are shown in a grid. Individual graphs can be shared on their own.
 
+Screenboards are customizable and flexible with drag and drop widgets that can be scoped to their own custom timeframes. All graphs on the board can be shared  at once as a live, read-only version.
 
 **Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.**
 
