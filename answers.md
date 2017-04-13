@@ -13,26 +13,26 @@ The Agent is software that runs on hosts, collecting valuable data and performan
 Added two tags `region:us-west-1` and `owner:alibaker` to Agent config file.
 
 Modified agent config file - `/etc/dd-agent/datadog.conf`:
-![agent config](http://imgur.com/vW6yIVY)
+![agent config](http://i.imgur.com/vW6yIVY.png)
 
 Screenshot of tags on the Host Map page:
-![tags on host map](http://imgur.com/qXpur1S)
+![tags on host map](http://i.imgur.com/qXpur1S.png)
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 Installation of PostgreSQL on VM:
-![postgresql installation](http://imgur.com/tRpfPbw)
+![postgresql installation](http://i.imgur.com/tRpfPbw.png)
 
 Installation of PostgreSQL integration:
-![postgresql integration](http://imgur.com/m2kxOV7)
+![postgresql integration](http://i.imgur.com/m2kxOV7.png)
 
 **Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`**
 
 Custom agent check file - `/etc/dd-agent/checks.d/test_support_random.py`:
-![custom agent check file](http://imgur.com/3DiYAac)
+![custom agent check file](http://i.imgur.com/3DiYAac.png)
 
 Custom agent check config - `/etc/dd-agent/conf.d/test_support_random.yaml`
-![custom agent check config](http://imgur.com/b2lTBIB)
+![custom agent check config](http://i.imgur.com/b2lTBIB.png)
 
 ## Level 2 - Visualizing your Data
 
@@ -45,11 +45,11 @@ Screenboards are customizable and flexible with drag and drop widgets that can b
 
 Added `test.support.random`, `postgresql.max_connections`, and `system.uptime`:
 
-![cloned dashboard added metrics](http://imgur.com/pkraiPS)
+![cloned dashboard added metrics](http://i.imgur.com/pkraiPS.png)
 
 **Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.**
 
-![random graph snapshot](http://imgur.com/wFK3h69)
+![random graph snapshot](http://i.imgur.com/wFK3h69.png)
 
 ## Level 3 - Alerting on your Data
 
@@ -59,8 +59,8 @@ Added `test.support.random`, `postgresql.max_connections`, and `system.uptime`:
 
 **Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.**
 
-![monitor email](http://imgur.com/IhZwMif)
+![monitor email](http://i.imgur.com/IhZwMif.png)
 
 **Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
-![monitor downtime email](http://imgur.com/5DnZkYl)
+![monitor downtime email](http://i.imgur.com/5DnZkYl.png)
