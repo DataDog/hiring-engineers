@@ -13,7 +13,7 @@ vagrant@precise64:~$ grep -m 1 tags: /etc/dd-agent/datadog.conf
 tags: RoyMullinsExercise, env:test, role:exercise
 ```
 
-[Host Tags](../HostTags.PNG)
+[Host Tags](./HostTags.PNG)
 
 
 
