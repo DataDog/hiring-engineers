@@ -89,7 +89,7 @@ A new monitor was set up with these specifications. Screenshots below outline co
 
 This monitor was put in place and it successfully triggered an alert moments later. Alert is documented in screenshot:
 
-![Screenshot](img/emalalert.PNG)
+![Screenshot](img/emailalert.PNG)
 
 > Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
