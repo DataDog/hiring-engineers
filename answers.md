@@ -40,7 +40,7 @@ class RandomCheck(AgentCheck):
 
 **Bonus question: What is the difference between a timeboard and a screenboard?**
 
-> A timeboard is _ while a screenboard is _
+> Timeboards are individual performance monitoring widgets linked together with a common timestamp. Screenboards are a unified set of data metrics which can be shared as a whole, as opposed to individually as with timeboards.
 
 **Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification**
 
