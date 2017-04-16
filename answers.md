@@ -52,9 +52,9 @@ The main difference between a timeboard and a screenboard is a timeboard is...
 
 I took a few snapshots of instances when the threshold for test.support.random > 0.90. I am still waiting on my notifications, which have not come as quickly as my monitor alerts.
 
-![Initial snapshots](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_snapshot_test_support_random.png)
+![Initial snapshots](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_snapshot_test_support_random.png)
 
-![Second snapshot](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_second_snapshot.png)
+![Second snapshot](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_second_snapshot.png)
 
 
 ## Level 3 - Alerting on your Data
@@ -65,28 +65,28 @@ I took a few snapshots of instances when the threshold for test.support.random >
 
 I setup a *multi-alert* monitor for test.support.random to alert me when the threshold is greater than 0.90.
 
-![Multi-alert monitor](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_monitor_setup_form.png)
+![Multi-alert monitor](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_monitor_setup_form.png)
 
 The monitor was created successfully.
 
-![List of Monitors](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_monitors_listed.png))
+![List of Monitors](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_monitors_listed.png))
 
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 
 I named this monitor: ``` Threshold reached on test.support.random ```
 
-![Monitor Description](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_monitor_description.png)
+![Monitor Description](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_monitor_description.png)
 
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
 I've received over 20 alerts within the past 15 minutes. So, this monitor is definitely doing its job.
 
-![Monitor Alert Email](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_email_notif_threshold_reached.png)
+![Monitor Alert Email](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_email_notif_threshold_reached.png)
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 I scheduled downtime for the ``` Threshold reached on test.support.random ``` monitor from 7PM - 9 AM daily.
 
-![Downtime Setup](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_downtime_setup.png)
+![Downtime Setup](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_downtime_setup.png)
 
 (Note: I am waiting on the email notification from Datadog. It's a little over an hour until downtime.)
