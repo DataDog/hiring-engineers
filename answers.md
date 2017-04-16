@@ -19,21 +19,21 @@ I added the tags: inventory_owner: catkhuu, interactive_user: catkhuu, and role:
 
 I already had PostgreSQL installed, so I chose the Postgres integration. After installing the integration, I added a ``` postgres.yaml ``` file to ``` conf.d ``` to hookup the integration to the Agent so it can report metrics.
 
-![postgres.yaml](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_postgres_yaml.png)
+![postgres.yaml](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_postgres_yaml.png)
 
 I restarted the Agent again for good measure. Afterwards, my host included the recent Postgres integration.
 
-![host post-postgres integration](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_postgres_yaml.png)
+![host post-postgres integration](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_postgres_yaml.png)
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
 I created a file ``` random.py ``` in ```checks.d ``` where I created my custom Agent Check ``` RandomCheck``` that will send a gauge of a randomly selected number for the metric ``` test.support.random ```. For this check, I chose self.gauge because I am sampling a metric.
 
-![RandomCheck](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_random_py.png)
+![RandomCheck](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_random_py.png)
 
 To configure our Agent Check, I added a ``` random.yaml ``` file to ``` conf.d ```.  
 
-![random config](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_random_yaml.png)
+![random config](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_random_yaml.png)
 
 
 ## Level 2 - Visualizing your Data
@@ -42,7 +42,7 @@ To configure our Agent Check, I added a ``` random.yaml ``` file to ``` conf.d `
 
 I cloned my Postgres Overview Dashboard and added a few metrics for test.support.random and system.loads 1,5, and 15.
 
-![Cloned Database Dashboard with Metrics](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_updated_cloned_dashboard.png)
+![Cloned Database Dashboard with Metrics](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_updated_cloned_dashboard.png)
 
 ### Bonus question: What is the difference between a timeboard and a screenboard?
 
