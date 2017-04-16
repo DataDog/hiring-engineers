@@ -46,7 +46,9 @@ I cloned my Postgres Overview Dashboard and added a few metrics for test.support
 
 ### Bonus question: What is the difference between a timeboard and a screenboard?
 
-The main difference between a timeboard and a screenboard is a timeboard is...
+A timeboard is used for troubleshooting and correlation because all graphs are scoped to the same time and the layout is a standard grid. While, a screenboard is more customizable in terms of layout, integrated widgets, and metrics. Screenboards can be shared as a whole while graphs from a timeboard can be shared individually.
+
+Overall, timeboards are great for troubleshooting and correlation for its grid-like layout and time-synchronized graphs, while screenboards offer a high-level look into a system. 
 
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
