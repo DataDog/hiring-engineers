@@ -12,7 +12,8 @@
 
 I added the tags: inventory_owner: catkhuu, interactive_user: catkhuu, and role: admin. The tags did not show up until I restarted the Agent with ``` /usr/local/bin/datadog-agent restart ```
 
-![Added Tags](https://github.com/catkhuu/hiring-engineers/catkhuu-support-eng/images/dd_host_map_with_tags.png)
+![Added Tags](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_host_map_with_tags.png)
+
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
