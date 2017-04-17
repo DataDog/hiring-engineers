@@ -53,7 +53,11 @@ Overall, timeboards are great for troubleshooting and correlation for its grid-l
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-I took a few snapshots of instances when the threshold for test.support.random > 0.90. I am still waiting on my notifications, which have not come as quickly as my monitor alerts.
+I took a few snapshots of instances when the threshold for test.support.random > 0.90.
+
+![Datadog Daily Digest Email](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_daily_digest_email.png)
+
+(Update: My snapshot came in the form of a daily digest email fro Datadog. This took longer than the notifications or alerts.)
 
 ![Initial snapshots](https://github.com/catkhuu/hiring-engineers/blob/catkhuu-support-eng/images/dd_snapshot_test_support_random.png)
 
