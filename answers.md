@@ -19,7 +19,7 @@ The agent is a small software app that sits on your machine(s), keeps track of i
 #### 3) Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 See level-1-assets/screenshots/level1-step3.jpg
 
-![Level1, Step3](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step3.jpg)
+![Level1, Step3: Agent Tags](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step3.jpg)
 
 
 #### 4) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -43,7 +43,9 @@ See level-1-assets/postgres.yaml
                 
 See level-1-assets/screenshots/level1-step4.jpg
 
-![Level1, Step4](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step4.jpg)
+![Level1, Step4: DataDog info results](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step4-a.jpg)
+
+![Level1, Step4: DataDog UI](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step4-b.jpg)
 
 
 ##### 5) Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
@@ -72,7 +74,7 @@ See level-1-assets/screenshots/level1-step4.jpg
 
 ##### 1) Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
 
-**URL:  ** 
+**URL:** https://app.datadoghq.com/dash/276498/postgres---overview?live=true&page=0&is_auto=false&from_ts=1492693270125&to_ts=1492696870125&tile_size=m
 ![Level2, Step1](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-2-assets/screenshots/level2-step1.jpg)
 
 ##### 2) Bonus question: What is the difference between a timeboard and a screenboard?
