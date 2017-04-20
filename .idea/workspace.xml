@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b9d9cd-631a-4b64-b0dc-b1358605c6d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/answers.md" afterPath="$PROJECT_DIR$/answers.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level-3-assets/screenshots/level3-step2.jpg" afterPath="$PROJECT_DIR$/level-3-assets/screenshots/level3-step2.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +22,8 @@
         <entry file="file://$PROJECT_DIR$/answers.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="603">
-                <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <first_editor relative-caret-position="468">
+                <caret line="97" column="37" lean-forward="true" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -659,8 +660,8 @@
     <entry file="file://$PROJECT_DIR$/answers.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="603">
-            <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <first_editor relative-caret-position="468">
+            <caret line="97" column="37" lean-forward="true" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
             <folding />
           </first_editor>
           <second_editor />
