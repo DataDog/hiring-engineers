@@ -107,4 +107,6 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 ![Level3, Step4](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-3-assets/screenshots/level3-step4.jpg)
 
 ##### 5) Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![Level3, Step5](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-3-assets/screenshots/level3-step3.jpg)
+![Level3, Step5a](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-3-assets/screenshots/level3-step5-a.jpg)
+
+![Level3, Step5b](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-3-assets/screenshots/level3-step5-b.jpg)
