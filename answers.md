@@ -15,6 +15,8 @@ The agent is a small software app that sits on your machine(s), keeps track of i
 #### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 See level-1-assets/screenshots/level1-step3.jpg
 
+![alt tag](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step3.jpg)
+
 
 #### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     sudo apt-get install postgresql postgresql-contrib    
@@ -36,6 +38,8 @@ See level-1-assets/postgres.yaml
                 - dd_stats
                 
 See level-1-assets/screenshots/datadog-agent-info.jpg
+
+![alt tag](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/datadog-agent-info.jpg)
 
 ##### Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
