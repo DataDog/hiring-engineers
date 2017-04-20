@@ -1,5 +1,12 @@
 # Answers
 
+Table of Contents:
+- [Level0](#level0)
+- [Level1](#level1)
+- [Level2](#level2)
+- [Level3](#level3)
+
+<a name="level0"></a>
 ## Level 0 (optional) - Setup an Ubuntu VM
 
 ##### While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
@@ -7,6 +14,7 @@
     vagrant up
     vagrant ssh
 
+<a name="level1"></a>
 ## Level 1 - Collecting your Data
 
 #### 1) Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
@@ -70,6 +78,7 @@ See level-1-assets/screenshots/level1-step4.jpg
     instances:
         [{}]
         
+<a name="level2"></a>
 ## Level 2 - Visualizing your Data
 
 ##### 1) Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
@@ -93,6 +102,7 @@ https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-be
 NOTE:  I created this one just to explore the system.  It uses the last random result and highlights the field in either red or green based on the random value.
 ![Level2, Step3b](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-2-assets/screenshots/level2-step3-b.jpg)
 
+<a name="level3"></a>
 ## Level 3 - Alerting on your Data
 
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.  
