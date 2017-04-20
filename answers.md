@@ -1,5 +1,10 @@
 # Answers
 
+Thanks for taking the time to review my answers!  I had a great time exploring the system and would love the opportunity to continue doing so.
+
+Jeff Kwiat | j@jeffkwiat.com | 980.226.8766
+
+
 Table of Contents:
 - [Level0](#level0)
 - [Level1](#level1)
@@ -13,6 +18,8 @@ Table of Contents:
 
     vagrant up
     vagrant ssh
+
+NOTE:  I later spun up 3 VMs to see how the Host Map and alerting components worked - very cool!
 
 <a name="level1"></a>
 ## Level 1 - Collecting your Data
@@ -55,6 +62,7 @@ See level-1-assets/screenshots/level1-step4.jpg
 
 ![Level1, Step4: DataDog UI](https://github.com/jeffkwiat/hiring-engineers/blob/solutions-engineer/level-1-assets/screenshots/level1-step4-b.jpg)
 
+NOTE:  I later created the Python Integration as well, mainly just to tinker around with some of my personal web apps, etc.
 
 ##### 5) Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
