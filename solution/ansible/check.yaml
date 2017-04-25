@@ -1,0 +1,30 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: add check script
+      copy:
+        src: checks/random.py
+        dest: /etc/dd-agent/checks.d/random.py
+        owner: dd-agent
+        group: dd-agent
+        mode: 0644
+
+    - name: add check config 
+      copy:
+        src: conf/random.yaml
+        dest: /etc/dd-agent/conf.d/random.yaml
+        owner: dd-agent
+        group: dd-agent
+        mode: 0644
+
+    - name: restart agent
+      service:
+        name: datadog-agent
+        state: restarted
+
+
+
