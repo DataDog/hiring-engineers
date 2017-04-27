@@ -1,26 +1,26 @@
 
 # Overview
 
-* [Datadog Agent](#Datadog-Agent)
-  * [Example Ubuntu Installation](#Example-Ubuntu-Installation)
-* [Collecting Data](#Collecting-Data)
-  * [Tags](#Tags)
-* [Integrations](#Integrations)
-  * [Example MongoDB](#Example-MongoDB)
-* [Custom Checks](#Custom-Checks)
-  * [Example Agent Check](#Example-Agent-Check)
-* [Timeboards](#Timeboards)
-* [Screenboards](#Screenboards)
-* [Notifications](#Notifications)
-* [Monitors](#Monitors)
-  * [Example Monitor](#Example-Monitor)
-* [Downtime](#Downtime)
-  * [Example Downtime](#Example-Downtime)
-* [Links](#Links)
-  * [Agent](#Agent)
-  * [KBA](#KBA)
-  * [Example Configs](#Example-Configs)
-  * [Custom Tools](#Custom-Tools)
+* [Datadog Agent](#datadog-agent)
+  * [Example Ubuntu Installation](#example-ubuntu-installation)
+* [Collecting Data](#collecting-data)
+  * [Tags](#tags)
+* [Integrations](#integrations)
+  * [Example MongoDB](#example-mongoDB)
+* [Custom Checks](#custom-checks)
+  * [Example Agent Check](#example-agent-check)
+* [Timeboards](#timeboards)
+* [Screenboards](#screenboards)
+* [Notifications](#notifications)
+* [Monitors](#monitors)
+  * [Example Monitor](#example-monitor)
+* [Downtime](#downtime)
+  * [Example Downtime](#example-downtime)
+* [Links](#links)
+  * [Agent](#agent)
+  * [KBA](#kba)
+  * [Example Configs](#example-configs)
+  * [Custom Tools](#custom-tools)
 
 
 # Datadog Agent 
@@ -77,7 +77,7 @@ $ ansible-playbook -i [ip_address], mongo.yaml
 
 # Custom Checks
 
-You may find use cases that require the collection of metrics not already provided by Datadog's many functions and Integrations. Custom [Agent Checks]( http://docs.datadoghq.com/guides/agent_checks/) have the ability to run personalized scripts to meet these requirements.
+You may find use cases that require the collection of metrics not already provided by Datadog's many functions and Integrations. Custom [Agent Checks](http://docs.datadoghq.com/guides/agent_checks/) have the ability to run personalized scripts to meet these requirements.
 
 ## Example Agent Check
 
@@ -196,8 +196,3 @@ Downtime allows for the suppresion of alerts while performing maintenance and de
 ## Custom Tools
 * https://github.com/DataDog/Miscellany
 * https://github.com/DataDog/Miscellany/pull/12
-
-
-```python
-
-```
