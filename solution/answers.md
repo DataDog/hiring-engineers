@@ -1,47 +1,203 @@
 
-# Level 0 (optional) - Setup an Ubuntu VM
+# Overview
 
-I created a [Terraform module](terraform/main.tf) for instance creation with dd-agent installed. Additionally I added AmazonEC2ReadOnlyAccess policy to the instance definition and enabled ec2 tags datadog.conf ([Ansible config](ansible/dd-conf.yaml)).
+* [Datadog Agent](#Datadog-Agent)
+ * [Example Ubuntu Installation](#Example-Ubuntu-Installation)
+* [Collecting Data](#Collecting-Data)
+ * [Tags](#Tags)
+* [Integrations](#Integrations)
+ * [Example MongoDB](#Example-MongoDB)
+* [Custom Checks](#Custom-Checks)
+ * [Example Agent Check](#Example-Agent-Check)
+* [Timeboards](#Timeboards)
+* [Screenboards](#Screenboards)
+* [Notifications](#Notifications)
+* [Monitors](#Monitors)
+ * [Example Monitor](#Example-Monitor)
+* [Downtime](#Downtime)
+ * [Example Downtime](#Example-Downtime)
+* [Links](#Links)
+ * [Agent](#Agent)
+ * [KBA](#KBA)
+ * [Example Configs](#Example-Configs)
+ * [Custom Tools](#Custom-Tools)
 
-## Level 1 - Collecting your Data
 
-* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
-Bonus question: In your own words, what is the Agent?
+# Datadog Agent 
 
+An open source customizable application that lives on each host relaying various events and time-series data to datadog for visualization; such as system and application performace metrics, aggregated log parsing and custom user created checks.
 
->**Bonus question: In your own words, what is the Agent?**
->It is a highly customizable application that lives on each host relaying various events and time-series data to datadog for visualization; such as system and application performace metrics, aggregated log parsing and custom user created checks. 
+* Agent Source Code: https://github.com/DataDog/dd-agent
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![alt text](images/host_tags.png "Host Tags")
+## Example Ubuntu Installation
+* https://app.datadoghq.com/account/settings#agent
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
- * [Ansible mongo](ansible/mongo.yaml)
-* Write a custom Agent check that samples a random value. Call this new metric: test.support.random
- * [Ansible check](ansible/check.yaml)
+```
+$ DD_API_KEY=[secret] bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```
 
-## Level 2 - Visualizing your Data
+# Collecting Data
 
-* Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check. [MongoDB - Random Service](https://app.datadoghq.com/screen/177581/mongodb---random-service)
+Basic system metrics begin flowing into your Datadog account after setup. Several features are available to provide further meaning into your environment.
 
-> **Bonus question: What is the difference between a timeboard and a screenboard?** Timeboards share a common time-frame and have less control over widget size and placement. Screenboards allow widgets to specify different time-frames in addition to providing flexibility of placement and widget size.
+## Tags
 
-* Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+Use the power of tags for locating and grouping metrics.
+
+* Added automatically through integrations
+* Created using the API
+* Configured in the agent configuration
+
+![alt text](images/tags_agent.png "Tags agent config")
+
+* Editable in the UI for hosts
+
+![alt text](images/tags_ui.png "Tags host UI")
+
+# Integrations
+
+Datadog comes with several [Integrations](https://www.datadoghq.com/product/integrations/) that make installation a snap and add dashboards out of the box so you can visualize meaningful data instantly. 
+
+## Example MongoDB
+
+* Add the Datadog integration
+![alt text](images/integrations_menu.png "Integrations Menu")
+![alt text](images/integrations_setup.png "Integrations Setup")
+
+* Install MongoDB on an instance
+ * [Ansible MongoDB](ansible/mongo.yaml) 
+
+```
+$ ansible-playbook -i [ip_address], mongo.yaml
+```
+
+* Check for successful installation
+
+![alt text](images/info_mongo.png "Info mongodb check")
+
+# Custom Checks
+
+You may find use cases that require the collection of metrics not already provided by Datadog's many functions and Integrations. Custom [Agent Checks]( http://docs.datadoghq.com/guides/agent_checks/) have the ability to run personalized scripts to meet these requirements.
+
+## Example Agent Check
+
+* Create the script `/etc/dd-agent/checks.d/random.py`
+
+```python
+from random import random
+
+from checks import AgentCheck
+
+class RandomMetric(AgentCheck):
+    """sends a random number > 0 < 1"""
+
+    def check(self, instance):
+        self.gauge('test.support.random', random())
+```
+
+* Each check requires a config with the same name `/etc/dd-agent/conf.d/random.yaml`
+
+```yaml
+init_config:
+
+instances:
+    [{}]
+
+```
+
+* Restart the agent and confirm the installation
+
+```
+$ sudo /etc/init.d/datadog-agent restart && sudo dd-agent info
+```
+
+![alt text](images/info_check.png "Info random check")
+
+# Timeboards
+
+* Are laid out in a grid and good for analysing events during a specific window of time
+* Graphs and widgets share a common time frame
+![alt text](images/timeboard_show.png "Timeboard Time Selector")
+
+* Available widgets: Timeseries, Query Value, Heat Map, Distribution, Top List, Change, Hostmap
+![alt text](images/timeboard_widgets.png "Timeboard Widgets")
+
+# Screenboards
+
+* Screenboards allow widgets to specify different time frames 
+* providing flexibility of placement and widget size.
+* Available widgets: Free Text, Graph, Query Value, Toplist, Change, Event Timeline, Event Stream, Image, Note, Alert Graph, Alert Value, IFrame, Check Status, Hostmap
+
+![alt text](images/screenboard_widgets.png "Screenboard Widgets")
+
+# Notifications
+
+* Share findings from graphs in Timeboards and Metrics Explorer
+
+![alt text](images/annotate_icon.png "Annotation Icon") 
+![alt text](images/annotation.png "Annotation") 
+
+* Use @name to send an email notification
+
 ![alt text](images/snapshot_comment.png "Snapshot Comment")
 
-## Level 3 - Alerting on your Data
+# Monitors
 
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
+Datadog provides Monitors for alerting on metrics
 
-* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
-> **Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**![alt text](images/bonus_multi_alert.png "Multi Alert")
-* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+## Example Monitor
+
+![alt text](images/monitors_menu.png "Snapshot Comment")
+![alt text](images/monitor_metric.png "Snapshot Comment")
+
+* Simple Alerts fire once when the conditions you set match while Multi Alerts will alert for each member of the provided grouping tag
+
+![alt text](images/bonus_multi_alert.png "Multi Alert")
+
+* Provide a meaningful message so receipients can understand the event and take action if needed
+
 ![alt text](images/alert_config_message.png "Alert Message Config")
-* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-![alt text](images/email_alert.png "Email Alert")
 
-> **Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+# Downtime
+
+Downtime allows for the suppresion of alerts while performing maintenance and deployments or to remove noise and mitigate alert fatigue.
+
+## Example Downtime
+
+* Alerts from a POC environment are not required outside normal business hours, let the team get some sleep
+
+![alt text](images/downtime_config.png "Downtime configuration")
+
+* By using @name again you can send notifications when a Downtime is configured
 ![alt text](images/alert_downtime.png "Alert Suppression/Downtime")
-**I had to move the suppression time to the following day as it was already past 7p when adding this alert. It would be nice to remove this restriction on downtime schedules with `repeat` selected.**
 
-## Please contact me with questions or if you would like me to elaborate on any exercise.
+# Questions?
+
+
+# Links
+
+## Agent
+* https://github.com/DataDog/dd-agent
+
+## KBA
+* [Agent Settings](https://app.datadoghq.com/account/settings#agent)
+* [Guide to Tagging](http://docs.datadoghq.com/guides/tagging/)
+* [Integrations](http://docs.datadoghq.com/integrations/)
+* [Writing an Agent Check](http://docs.datadoghq.com/guides/agent_checks/)
+* [Guide to Monitors](http://docs.datadoghq.com/guides/monitors/)
+* [Downtime](https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/)
+* [Screenboard vs Timeboard](https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-)
+* [Converting Dashboards](https://help.datadoghq.com/hc/en-us/articles/211244183-How-to-Transform-a-Timeboard-to-a-Screenboard-or-vice-versa)
+
+## Example Configs
+* [Terraform Instance](terraform/)
+* [Ansible Resources](ansible/)
+
+## Custom Tools
+* https://github.com/DataDog/Miscellany
+* https://github.com/DataDog/Miscellany/pull/12
+
+
+```python
+
+```
