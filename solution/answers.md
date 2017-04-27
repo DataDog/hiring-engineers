@@ -38,7 +38,7 @@ $ DD_API_KEY=[secret] bash -c "$(curl -L https://raw.githubusercontent.com/DataD
 
 # Collecting Data
 
-Basic system metrics begin flowing into your Datadog account after setup. Several features are available to provide further meaning into your environment.
+Basic system metrics begin flowing into your Datadog account after Agent setup. Several features are available to provide further insight and meaning into your environment.
 
 ## Tags
 
@@ -125,7 +125,7 @@ $ sudo /etc/init.d/datadog-agent restart && sudo dd-agent info
 # Screenboards
 
 * Screenboards allow widgets to specify different time frames 
-* providing flexibility of placement and widget size.
+* Provide flexibility of placement and widget size.
 * Available widgets: Free Text, Graph, Query Value, Toplist, Change, Event Timeline, Event Stream, Image, Note, Alert Graph, Alert Value, IFrame, Check Status, Hostmap
 
 ![alt text](images/screenboard_widgets.png "Screenboard Widgets")
