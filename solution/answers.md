@@ -9,6 +9,7 @@
   * [Example MongoDB](#example-mongoDB)
 * [Custom Checks](#custom-checks)
   * [Example Agent Check](#example-agent-check)
+* [Cloning Dashboard](#cloning-dashboard)
 * [Timeboards](#timeboards)
 * [Screenboards](#screenboards)
 * [Notifications](#notifications)
@@ -112,6 +113,21 @@ $ sudo /etc/init.d/datadog-agent restart && sudo dd-agent info
 ```
 
 ![alt text](images/info_check.png "Info random check")
+
+# Cloning Dashboard
+
+Integration dashboards come preloaded with several domain specific graphs and widgets making them a good place to create custom dashboards from.
+
+* Navigate to the integration dashboard
+![alt text](images/dd_dashboard_list.png "Dashboard list")
+![alt text](images/dd_dashboard.png "MongoDB integration dashboard")
+* Clone the dashboard
+![alt text](images/dd_clone.png "Clone dashboard")
+![alt text](images/dd_clone_name.png "Name dashboard")
+* Add additional MongoDB stats and the [Example Agent Check](#example-agent-check)
+![alt text](images/dd_edit_board.png "Edit dashboard")
+![alt text](images/dd_added_metrics.png "Adding metrics")
+                   
 
 # Timeboards
 
