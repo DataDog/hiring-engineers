@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+      -   server: mongodb://datadog:{{ dd_pw }}@localhost:27017
+          tags:
+              - admin
+              - local
+

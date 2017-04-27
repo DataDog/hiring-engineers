@@ -1,0 +1,61 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+
+  vars_prompt:
+    - name: dd_pw
+      prompt: "Enter datadog user password"
+      private: yes
+
+  tasks:
+    - name: add mongo repo
+      yum_repository:
+        name: mongodb_repo
+        description: mongo
+        baseurl: https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.0/x86_64/
+        gpgcheck: no
+        enabled: yes
+
+    - name: install mongodb
+      yum: name=mongodb-org state=present
+      tags: mongodb
+
+    - name: enable/start mongod
+      service:
+        name: mongod
+        state: started
+        enabled: yes
+
+    - name: install pymongo
+      pip:
+        name: pymongo
+
+    - name: add datadog user 
+      mongodb_user:
+        database: admin
+        name: datadog
+        password: "{{ dd_pw }}"
+        roles:
+          - db: admin
+            role: read 
+          - db: admin
+            role: clusterMonitor
+          - db: local
+            role: read
+        state: present
+
+    - name: add mongo.yaml to conf.d/
+      template:
+        src: conf/mongo.yaml.j2
+        dest: /etc/dd-agent/conf.d/mongo.yaml
+        owner: dd-agent
+        group: dd-agent
+        mode: 0644
+
+    - name: restart agent
+      service:
+        name: datadog-agent
+        state: restarted
+
