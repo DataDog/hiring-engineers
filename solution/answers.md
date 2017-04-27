@@ -2,25 +2,25 @@
 # Overview
 
 * [Datadog Agent](#Datadog-Agent)
- * [Example Ubuntu Installation](#Example-Ubuntu-Installation)
+  * [Example Ubuntu Installation](#Example-Ubuntu-Installation)
 * [Collecting Data](#Collecting-Data)
- * [Tags](#Tags)
+  * [Tags](#Tags)
 * [Integrations](#Integrations)
- * [Example MongoDB](#Example-MongoDB)
+  * [Example MongoDB](#Example-MongoDB)
 * [Custom Checks](#Custom-Checks)
- * [Example Agent Check](#Example-Agent-Check)
+  * [Example Agent Check](#Example-Agent-Check)
 * [Timeboards](#Timeboards)
 * [Screenboards](#Screenboards)
 * [Notifications](#Notifications)
 * [Monitors](#Monitors)
- * [Example Monitor](#Example-Monitor)
+  * [Example Monitor](#Example-Monitor)
 * [Downtime](#Downtime)
- * [Example Downtime](#Example-Downtime)
+  * [Example Downtime](#Example-Downtime)
 * [Links](#Links)
- * [Agent](#Agent)
- * [KBA](#KBA)
- * [Example Configs](#Example-Configs)
- * [Custom Tools](#Custom-Tools)
+  * [Agent](#Agent)
+  * [KBA](#KBA)
+  * [Example Configs](#Example-Configs)
+  * [Custom Tools](#Custom-Tools)
 
 
 # Datadog Agent 
@@ -65,7 +65,7 @@ Datadog comes with several [Integrations](https://www.datadoghq.com/product/inte
 ![alt text](images/integrations_setup.png "Integrations Setup")
 
 * Install MongoDB on an instance
- * [Ansible MongoDB](ansible/mongo.yaml) 
+  * [Ansible MongoDB](ansible/mongo.yaml) 
 
 ```
 $ ansible-playbook -i [ip_address], mongo.yaml
