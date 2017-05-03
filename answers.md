@@ -34,7 +34,7 @@ $ vagrant ssh
 ```
 
 ### Thinkthrough
-I noticed initially that the instructions the readme linked to for vagrant had linux commands for starting vagrant.
+I noticed initially that the instructions in the readme for Vagrant had linux commands for starting vagrant.
 ```
 $ vagrant init hasicorp/precise64
 $ vagrant up
