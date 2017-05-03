@@ -10,9 +10,9 @@ Each level will be broken up into 2 sections.
 2. Thinkthrough: This section is to give you insight into my process going through the level. I'll share what was straightforward, where I encountered problems, how I approached those problems, how I fixed them (if I did), and other insights.
 
 ## Prework
-This project was started on May 3, 2017.
-Before I started the levels, I read through the reference material and took notes in order to prime myself on the material. You can find those notes in notes.md. 
-I also did a quick tutorial online[^1] for writing in markdown so that I could write a good-looking answers.md. 
+This project was started on May 3, 2017.  
+Before I started the levels, I read through the reference material and took notes in order to prime myself on the material. You can find those notes in notes.md.  
+I also did a quick tutorial online (See Appendix) for writing in markdown so that I could write a good-looking answers.md. 
 I had originally planned to write this all in Google docs, but after seeing the repository, 
 I decided it made more sense to use markdown. Especially sense most github readme's tend to use it!
 
@@ -45,8 +45,9 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 ## Appendix
 
 ### Software Used
+- Ubuntu 16.04 LTS - Partition on my Personal Computer. This is my preferred coding environment.
 - VIM - for editing Markdown files
 
 ### Online Reference Material
-- [^1]: [Markdown Tutorial](http://www.markdowntutorial.com/)
+- [Markdown Tutorial](http://www.markdowntutorial.com/)
 - [Markdown Quick Reference](https://en.support.wordpress.com/markdown-quick-reference/)
