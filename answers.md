@@ -11,7 +11,9 @@ Optional Step to avoid dependency issues
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
-Bonus question: In your own words, what is the Agent?
+Bonus question: In your own words, what is the Agent?  
+Reference link: http://docs.datadoghq.com/guides/basic_agent_usage/  
+Idea: Draw a diagram outlining the 3 key components and how they work together
 
 ### Walkthrough
 
