@@ -19,6 +19,28 @@ I decided it made more sense to use markdown. Especially sense most github readm
 ## Level 0 (optional) - Setup an Ubuntu VM
 Optional Step to avoid dependency issues
 
+### Walkthrough
+
+1. Install Virtualbox 
+2. Install Vagrant
+3. Launch Ubuntu 12.04 VM using Vagrant with the following commands
+```
+$ vagrant init hasicorp/precise64
+$ vagrant up
+```
+4. SSH into the new vagrant host
+``` 
+$ vagrant ssh
+```
+
+### Thinkthrough
+I noticed initially that the instructions the readme linked to for vagrant had linux commands for starting vagrant.
+```
+$ vagrant init hasicorp/precise64
+$ vagrant up
+```
+So I figured I should run the VM on my laptop's linux partition to make it easy for setup.
+
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
@@ -28,7 +50,7 @@ Idea: Draw a diagram outlining the 3 key components and how they work together
 
 ### Walkthrough
 
-### My Thinking for each Step
+### Thinkthrough
 
 ## Level 2 - Visualizing your Data
 You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
