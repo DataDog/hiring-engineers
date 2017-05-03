@@ -13,6 +13,10 @@ You will create a DataDog Account, modify the Agent's configuration, install a d
 
 Bonus question: In your own words, what is the Agent?
 
+### Walkthrough
+
+### My Thinking for each Step
+
 ## Level 2 - Visualizing your Data
 You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
 
