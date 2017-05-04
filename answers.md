@@ -1,5 +1,4 @@
-# Hello. 
-# DataDog. ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "DataDog")
+# Hello DataDog. ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "DataDog")
 
 * Bonus question: In your own words, what is the Agent?
 
