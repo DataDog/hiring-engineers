@@ -24,6 +24,7 @@ Optional Step to avoid dependency issues
 1. Install Virtualbox. [Download](https://www.virtualbox.org/wiki/Downloads)
 ![Running Virtualbox](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/virtualbox-installed.png)
 2. Install Vagrant. [Download](https://www.vagrantup.com/)
+![Vagrant Installed](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-installed.png)
 3. Launch Ubuntu 12.04 VM using Vagrant with the following commands
 ```
 $ vagrant init hasicorp/precise64
@@ -45,7 +46,8 @@ So I figured I should run the VM on my laptop's linux partition to make it easy 
 I've installed Virtualbox several times for previous jobs so I just followed the install wizard after
 downloading it from the website. Since I'm running 64-bit Ubuntu 16.04, I downloaded the AMD64 version for Ubuntu 16.04.
 
-
+Vagrant gave the option of a 64-bit debian installer on their website. Ubuntu is based on Debian, so I downloaded that. I avoided using my package manager with `$ sudo apt-get install` because I've had
+cases in the past where the package manager version was behind the software's official download.
 
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
