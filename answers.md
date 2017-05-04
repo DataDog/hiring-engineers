@@ -61,6 +61,22 @@ After Enabling virtualization in the bios, vagrant worked!
 ![VT-x enabled](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/bios-vt.jpg)
 ![Vagrant is up](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-up.png)
 
+As an extra check, after I SSH'd into vagrant, I ran `ping www.google.com` to make sure I had network
+access. If I didn't have access, that might cause me some problems with the Datadog agent later!
+```
+vagrant@precise64:~$ ping www.google.com
+PING www.google.com (172.217.6.68) 56(84) bytes of data.
+64 bytes from sfo07s17-in-f68.1e100.net (172.217.6.68): icmp_req=1 ttl=63 time=18.8 ms
+64 bytes from sfo07s17-in-f4.1e100.net (172.217.6.68): icmp_req=2 ttl=63 time=17.8 ms
+64 bytes from sfo07s17-in-f68.1e100.net (172.217.6.68): icmp_req=3 ttl=63 time=20.0 ms
+64 bytes from sfo07s17-in-f4.1e100.net (172.217.6.68): icmp_req=4 ttl=63 time=18.5 ms
+64 bytes from sfo07s17-in-f68.1e100.net (172.217.6.68): icmp_req=5 ttl=63 time=19.4 ms
+^C
+--- www.google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4013ms
+rtt min/avg/max/mdev = 17.826/18.939/20.003/0.767 ms
+```
+
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
@@ -88,7 +104,7 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 
 ### Software Used
 - Ubuntu 16.04 LTS - Partition on my Personal Computer. This is my preferred coding environment.
-- VIM - for editing Markdown files
+- VIM - for editing Mhttps://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/earkdown files
 
 ### Online Reference Material
 - [Markdown Tutorial](http://www.markdowntutorial.com/)
