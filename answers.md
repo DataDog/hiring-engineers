@@ -22,7 +22,7 @@ Optional Step to avoid dependency issues
 ### Walkthrough
 
 1. Install Virtualbox. [Download](https://www.virtualbox.org/wiki/Downloads)
-![Running Virtualbox](./virtualbox-installed.png)
+![Running Virtualbox](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/virtualbox-installed.png)
 2. Install Vagrant. [Download](https://www.vagrantup.com/)
 3. Launch Ubuntu 12.04 VM using Vagrant with the following commands
 ```
@@ -43,7 +43,9 @@ $ vagrant up
 So I figured I should run the VM on my laptop's linux partition to make it easy for setup.
 
 I've installed Virtualbox several times for previous jobs so I just followed the install wizard after
-downloading it from the website.
+downloading it from the website. Since I'm running 64-bit Ubuntu 16.04, I downloaded the AMD64 version for Ubuntu 16.04.
+
+
 
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
