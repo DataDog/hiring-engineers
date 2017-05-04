@@ -9,6 +9,8 @@ Let's run it in a Google Cloud Platform and test other integrations. Should we?
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
 It's alive! 
+
+
 ![alt text](https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/really_up_datadog.PNG "Host is alive!") 
 
 
@@ -36,7 +38,7 @@ The main difference is the data correlation between the graphs on the timeboard.
 <img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/oh_my_god_its_alive.PNG"> 
 
 #### Thanks for letting me know!
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/snapshot.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/snapshot.PNG"> 
 
 #### Oh. I need to go to sleep know. Stop. Bothering. Me. ( And I have work to do. Let's make it a bit longer one Ok? ).  
 <img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/hey_thanks_for_the_information.PNG"> 
@@ -47,7 +49,7 @@ The main difference is the data correlation between the graphs on the timeboard.
 
 My concern. Since I see the events on the graph, I want to corelate them easier. Give me hover infomration please!
 
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/event_but_where_is_the_detail.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/event_but_where_is_the_detail.PNG"> 
 
 ### Links here and there
 
