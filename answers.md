@@ -28,7 +28,12 @@ choice. We chose to use Ubuntu 12.04 run with Vagrant.
 ![Running Virtualbox](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/virtualbox-installed.png)
 2. Install Vagrant. Here is the [Download](https://www.vagrantup.com/)
 ![Vagrant Installed](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-installed.png)
-3. Launch a Ubuntu 12.04 VM using Vagrant with the following commands
+You can verify the installation by running
+```
+$ vagrant -v
+Vagrant 1.9.4
+```
+3. Launch an Ubuntu 12.04 VM using Vagrant with the following commands
 ```
 $ vagrant init hasicorp/precise64
 $ vagrant up
