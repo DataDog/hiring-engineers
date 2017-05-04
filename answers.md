@@ -35,21 +35,21 @@ The main difference is the data correlation between the graphs on the timeboard.
 ### Level 3 - Alerting on your Data
 
 #### The Alert game is on!
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/oh_my_god_its_alive.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/oh_my_god_its_alive.PNG"> 
 
 #### Thanks for letting me know!
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/snapshot.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/snapshot.PNG"> 
 
 #### Oh. I need to go to sleep know. Stop. Bothering. Me. ( And I have work to do. Let's make it a bit longer one Ok? ).  
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/hey_thanks_for_the_information.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/hey_thanks_for_the_information.PNG"> 
 
 ### Bonus level. I really like that timeboard! 
 
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/where_is_the_zoom.PNG">
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/where_is_the_zoom.PNG">
 
 My concern. Since I see the events on the graph, I want to corelate them easier. Give me hover infomration please!
 
-<img src="https://raw.githubusercontent.com/makak/hiring-engineers/blob/solutions-engineer/images/event_but_where_is_the_detail.PNG"> 
+<img src="https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/event_but_where_is_the_detail.PNG"> 
 
 ### Links here and there
 
