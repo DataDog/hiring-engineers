@@ -49,6 +49,10 @@ downloading it from the website. Since I'm running 64-bit Ubuntu 16.04, I downlo
 Vagrant gave the option of a 64-bit debian installer on their website. Ubuntu is based on Debian, so I downloaded that. I avoided using my package manager with `$ sudo apt-get install` because I've had
 cases in the past where the package manager version was behind the software's official download.
 
+I checked that vagrant installed correctly with the proper version with `vagrant -v` and that was all good. But, as you can see in the screen shot below, VT-x was disabled in the bios, and that caused 
+an error when vagrant attempted to use virtualbox.
+![VT-x Error](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/VT-x_disabled.png)
+
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
