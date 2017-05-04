@@ -21,19 +21,20 @@ Optional Step to avoid dependency issues
 
 ### Walkthrough
 
-1. Install Virtualbox. [Download](https://www.virtualbox.org/wiki/Downloads)
+1. Install Virtualbox. Here is the [Download](https://www.virtualbox.org/wiki/Downloads)
 ![Running Virtualbox](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/virtualbox-installed.png)
-2. Install Vagrant. [Download](https://www.vagrantup.com/)
+2. Install Vagrant. Here is the [Download](https://www.vagrantup.com/)
 ![Vagrant Installed](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-installed.png)
-3. Launch Ubuntu 12.04 VM using Vagrant with the following commands
+3. Launch a Ubuntu 12.04 VM using Vagrant with the following commands
 ```
 $ vagrant init hasicorp/precise64
 $ vagrant up
 ```
-4. SSH into the new vagrant host
+4. SSH into the new Vagrant host
 ``` 
 $ vagrant ssh
 ```
+Congrats! You're now ready to get started with Datadog
 
 ### Thinkthrough
 I noticed initially that the instructions for Vagrant in the readme on Github had linux commands for starting vagrant.
@@ -54,7 +55,7 @@ an error when vagrant attempted to use virtualbox.
 ![VT-x Error](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/VT-x_disabled.png)
 
 After Enabling virtualization in the bios, vagrant worked!
-![VT-x enabled](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/bios-tv.jpg)
+![VT-x enabled](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/bios-vt.jpg)
 ![Vagrant is up](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-up.png)
 
 ## Level 1 - Collecting your Data
