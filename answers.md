@@ -11,13 +11,16 @@ Each level will be broken up into 2 sections.
 
 ## Prework
 This project was started on May 3, 2017.  
-Before I started the levels, I read through the reference material and took notes in order to prime myself on the material. You can find those notes in notes.md.  
-I also did a quick tutorial online (See Appendix) for writing in markdown so that I could write a good-looking answers.md. 
-I had originally planned to write this all in Google docs, but after seeing the repository, 
-I decided it made more sense to use markdown. Especially sense most github readme's tend to use it!
+Before I started the levels, I read through the reference links and took notes in order to prime myself on the material. You can find those notes in notes.md.  
+I also did a quick tutorial [online](http://www.markdowntutorial.com/) (See Appendix) for writing in markdown so that I could write a good-looking answers.md. 
 
-## Level 0 (optional) - Setup an Ubuntu VM
-Optional Step to avoid dependency issues
+I had originally planned to write this all in Google docs, but after seeing the repository, 
+I decided it made more sense to use markdown. Especially sense most github readme's tend to use it, 
+and so do Datadog's notifications!
+
+## Level 0 (optional) - Set up an Ubuntu VM
+This step is optional but it will help you to avoid any dependency issues. You may use any VM of your
+choice. We chose to use Ubuntu 12.04 run with Vagrant.
 
 ### Walkthrough
 
