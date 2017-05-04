@@ -53,6 +53,10 @@ I checked that vagrant installed correctly with the proper version with `vagrant
 an error when vagrant attempted to use virtualbox.
 ![VT-x Error](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/VT-x_disabled.png)
 
+After Enabling virtualization in the bios, vagrant worked!
+![VT-x enabled](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/bios-tv.jpg)
+![Vagrant is up](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-up.png)
+
 ## Level 1 - Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
