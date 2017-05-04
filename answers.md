@@ -28,7 +28,8 @@ choice. We chose to use Ubuntu 12.04 run with Vagrant.
 ![Running Virtualbox](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/virtualbox-installed.png)
 2. Install Vagrant. Here is the [Download](https://www.vagrantup.com/)
 ![Vagrant Installed](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/vagrant-installed.png)
-You can verify the installation by running
+You can verify the installation by running `vagrant -v` and you should see the
+following output
 ```
 $ vagrant -v
 Vagrant 1.9.4
