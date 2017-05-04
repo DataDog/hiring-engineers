@@ -1,4 +1,4 @@
-# Hello DataDog. ![alt text](https://p4.zdassets.com/hc/settings_assets/634376/200103325/e0dpcDm5xaOKOuvtZa30xg-Datadog_Logo.png "DataDog")
+# Hello DataDog. <img src="https://p4.zdassets.com/hc/settings_assets/634376/200103325/e0dpcDm5xaOKOuvtZa30xg-Datadog_Logo.png" height="48">
 
 ### Level 0 (optional) - Setup an Ubuntu VM
 
