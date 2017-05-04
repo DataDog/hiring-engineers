@@ -1,4 +1,13 @@
-# Hello DataDog. ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "DataDog")
+# Hello DataDog. ![alt text](https://p4.zdassets.com/hc/settings_assets/634376/200103325/e0dpcDm5xaOKOuvtZa30xg-Datadog_Logo.png "DataDog")
+
+### Level 0 (optional) - Setup an Ubuntu VM
+
+Let's run it in a Google Cloud Platform and test other integrations. Should we?
+
+### Level 1 - Collecting your Data
+
+* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+--- It's alive! ![alt text](https://raw.githubusercontent.com/makak/hiring-engineers/solutions-engineer/images/really_up_datadog.PNG "Host is alive!") 
 
 * Bonus question: In your own words, what is the Agent?
 
