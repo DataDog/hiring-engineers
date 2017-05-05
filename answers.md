@@ -1,8 +1,19 @@
 Your answers to the questions go here.
 
 # Getting Started with DataDog
-
-[click on this link](#level-0)
+**Table of Contents**
+[Level 0](#level-0)
+- [Walkthrough](###walkthrough-0)
+- [Thinkthrough](###thinkthrough-0)
+[Level 1](#level-1)
+- [Walkthrough](###walkthrough-1)
+- [Thinkthrough](###thinkthrough-1)
+[Level 2](#level-2)
+- [Walkthrough](###walkthrough-2)
+- [Thinkthrough](###thinkthrough-2)
+[Level 3](#level-3)
+- [Walkthrough](###walkthrough-3)
+- [Thinkthrough](###thinkthrough-3)
 
 ## Overview
 This document will provide a walkthrough on how to set up a monitored host in Datadog, and from there, add a custom metric with checks and alerts. 
@@ -25,7 +36,7 @@ and so do Datadog's notifications!
 This step is optional but it will help you to avoid any dependency issues. You may use any VM of your
 choice. We chose to use Ubuntu 12.04 run with Vagrant.
 
-### Walkthrough
+### Walkthrough 0
 
 1. Install Virtualbox. Here is the [Download](https://www.virtualbox.org/wiki/Downloads)  
 To verify it installed, just run `virtualbox` in your terminal, and the virtualbox GUI will launch
@@ -50,7 +61,7 @@ $ vagrant ssh
 ```
 Congrats! You're now ready to get started with Datadog
 
-### Thinkthrough
+### Thinkthrough 0
 I noticed initially that the instructions for Vagrant in the readme on Github had linux commands for starting vagrant.
 ```
 $ vagrant init hasicorp/precise64
@@ -88,14 +99,15 @@ PING www.google.com (172.217.6.68) 56(84) bytes of data.
 rtt min/avg/max/mdev = 17.826/18.939/20.003/0.767 ms
 ```
 
-## Level 1 - Collecting your Data
+## Level 1
+###Collecting your Data
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
 Bonus question: In your own words, what is the Agent?  
 Reference link: http://docs.datadoghq.com/guides/basic_agent_usage/  
 Idea: Draw a diagram outlining the 3 key components and how they work together
 
-### Walkthrough
+### Walkthrough 1
 
 1. Go to https://www.datadoghq.com and click the "Get Started Free" button
 2. Enter your Username and Password and other account details, then click next
@@ -147,7 +159,7 @@ and click on your host, and you'll be greeted with additional details like metri
 
 
 
-### Thinkthrough
+### Thinkthrough 1
 Signing up was straight forward. Since I did Level 0 the evening before Level 1, 
 once I got to the Install an Agent screen, I went back to my terminal and double 
 checked that my VM was still running by running `vagrant ssh`. 
@@ -267,17 +279,26 @@ postgres=#
 
 
 
-## Level 2 - Visualizing your Data
+## Level 2
+###Visualizing your Data
 You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
 
 Bonus question: What is the difference between a timeboard and a screenboard?
 
-## Level 3 - Alerting on your Data
+### Walkthrough 2
+
+### Thinkthrough 2
+
+## Level 3
+###Alerting on your Data
 You will set up a monitor for your metric (it should alert you within 15 minutes).
 
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+### Walkthrough 3
+
+### Thinkthrough 3
 
 ## Appendix
 
