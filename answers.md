@@ -174,3 +174,43 @@ Collector (v 5.13.0)
   
 ...
 ```
+# Level 2 - Visualizing your Data
+
+Database dashboard here: https://app.datadoghq.com/dash/integration/mysql?live=true&tpl_var_scope=host%3Avagrant-ubuntu-trusty-64&page=0&is_auto=false&from_ts=1494015509696&to_ts=1494019109696&tile_size=m
+
+![db dashboard](https://github.com/markjeffery/hiring-engineers/blob/master/screen%20shot%20-%20standard%20db%20dashboard.png)
+
+Cloned and added random
+
+https://app.datadoghq.com/dash/285369/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1494015710972&to_ts=1494019310972&tile_size=m
+
+![db dashboard with random](https://github.com/markjeffery/hiring-engineers/blob/master/screen%20shot%20-%20db%20dashboard%20with%20random.png)
+
+## Bonus question: What is the difference between a timeboard and a screenboard?
+
+A timeboard shows a *grid* of dashboard elements that share a same time period. The time period can be chosen, and all the dashboard elements will be in sync, allowing the user to check different metrics for correlation.
+
+https://app.datadoghq.com/dash/285372/marks-timeboard-5-may-2017-2225?live=true&page=0&is_auto=false&from_ts=1494016194790&to_ts=1494019794790&tile_size=m
+
+![timeboard example](https://github.com/markjeffery/hiring-engineers/blob/master/Screen%20Shot%20-%20timeboard%20example.png)
+
+A screenboard shows a more flexible layout of differently sized dashboard elements that have independent time periods.
+
+https://app.datadoghq.com/screen/181381/marks-screenboard-5-may-2017-2225
+
+![screenboard example](https://github.com/markjeffery/hiring-engineers/blob/master/Screen%20Shot%20-%20screenboard%20example.png)
+
+## Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
+Not sure I understand this yet: https://app.datadoghq.com/screen/181381/marks-screenboard-5-may-2017-2225
+
+It has a line at 0.9 (dashed)
+
+![marker at 0.9](https://github.com/markjeffery/hiring-engineers/blob/master/Screen%20Shot%20marker%20at%200.9.png)
+
+I've setup a monitor - I really like the colour coding of the chart to show where the monitors will trigger - it makes it much easier to set thresholds correctly.
+
+![setting up monitor](https://github.com/markjeffery/hiring-engineers/blob/master/Screen%20Shot%20setting%20up%20monitor.png)
+
+https://app.datadoghq.com/monitors#2001094?group=all&live=4h
+
