@@ -112,7 +112,7 @@ rtt min/avg/max/mdev = 17.826/18.939/20.003/0.767 ms
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
 Bonus question: In your own words, what is the Agent?  
-Reference link: http://docs.datadoghq.com/guides/basic_agent_usage/  
+Reference link: http://docs.datadoghq.com/guides/basic\_agent\_usage/  
 Idea: Draw a diagram outlining the 3 key components and how they work together
 
 ### Walkthrough 1
@@ -219,8 +219,40 @@ And see if your check is OK.
 ```
     - If you want to go even further, check [this page](http://docs.datadoghq.com/integrations/postgresql/) for custom metrics you can configure for PostgreSQL
 14. You've got your first integration running, you're almost a pro! Now let's write our own custom check. We'll use "Agent Check," a Python Plugin, to achieve
-this. 
+this. We'll just do something easy, and create a custom check called randomsample.
+15. Create randomsample.yaml in `/etc/dd.agent/conf.d` and randomsample.py in `/etc/dd.agent/check.d`  
+Make sure the names of the .py and .yaml file match. Any check you write will 
+follow these rules and exist in these two locations. This is how the agent knows
+how to find your check!
+    - You might need to run your text editor with sudo to save these files
+16. For randomsample.yaml, paste this code
+```
+init\_config:
+    min_collection_interval: 3
 
+instances:
+    [{}]
+
+```
+This just tells our check to be ran every 3 seconds.
+17. For randomsample.py, paste this code
+```
+from checks import AgentCheck
+import random
+class RandomSampleCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('random.sample', random.random())
+```
+All checks derive from the AgentCheck class. When it is run, the check method is
+called, and we will sample a simple gauge metric. In this case, a random value
+between [0.0, 1.0). If you want to try something more difficult, read [this page](http://docs.datadoghq.com/guides/agent_checks/)
+18. Now restart your agent with `sudo /etc/init.d/datadog-agent restart`  
+You can verify your check is working with `sudo /etc/init.d/datadog-agent info`
+![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-info-OK.png)
+19. Then go to your host map, you should see something like this!
+![Random Host Map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-success.png)
+20. Congratulations, you just wrote your first custom check! We'll use this check
+in Level 2.
 
 ### Thinkthrough 1
 Signing up was straight forward. Since I did Level 0 the evening before Level 1, 
@@ -303,7 +335,7 @@ Then I went to the [Host map](https://app.datadoghq.com/infrastructure/map) via 
 
 ---
 Time to install a database. MySQL is [EOL/deprecated](https://www.mysql.com/support/eol-notice.html) for Ubuntu 12.04, and Postgres had a [pretty simple install](https://www.postgresql.org/download/linux/ubuntu/) for 
-Ubuntu. You can see the process next
+Ubuntu. So I decided on postgres. You can see the process for installatin below
 ```
 $ sudo vi /etc/apt/sources.list.d/pgdg.list
 // I added the line for the postgresql repository and saved
@@ -344,7 +376,7 @@ postgres=#
 ```
 
 ---
-Now that the database is installed. I needed to install the integration. I went to the Datadog docs site, and found the [Installing Integrations Page](http://docs.datadoghq.com/guides/installcoreextra/)  
+Now that the database is installed, I need to install the integration. I went to the Datadog docs site, and found the [Installing Integrations Page](http://docs.datadoghq.com/guides/installcoreextra/). 
 I also found the [Integrations install dashboard](https://app.datadoghq.com/account/settings#integrations).  
 I decided to try out the install from the website, to see if it would push the installation to my host. 
 It looks like the dashboard page give instructions on how to configure the 
@@ -356,10 +388,10 @@ Type "help" for help.
 
 postgres=# create user datadog with password 'hYrmS03SQVy6sPWcYmt0cSzk';
 CREATE ROLE
-postgres=# grant SELECT ON pg_stat_database to datadog;
+postgres=# grant SELECT ON pg\_stat\_database to datadog;
 GRANT
 postgres=# \q
-vagrant@precise64:/etc/dd-agent$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"  
+vagrant@precise64:/etc/dd-agent$ psql -h localhost -U datadog postgres -c "select * from pg\_stat\_database LIMIT(1);"  
 Password for user datadog: 
 vagrant@precise64:/etc/dd-agent$ sudo vi conf.d/postgres.yaml
 // Then I pasted in the default config for the agent to connect to postgres and saved
@@ -386,7 +418,7 @@ was able to run after restarting the agent. Looks like it worked!
 ![Hello World Check](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/hello-world-check.png)
 
 Alright now its time to start writing the random sample. But first, I want to build out my configuration file. I know the check needs to be run multiple times so that
-there will be enough data to have visuals of in Level 2. I'll put min_collection_interval of 3 (seconds) so that I can see if its working quickly
+there will be enough data to have visuals for in Level 2. I'll put min_collection_interval of 3 (seconds) so that I can see if its working quickly
  I'm not sure what to put for the instances section yet, but I'll come back to that.
 
 Now to write the randomsample.py.
@@ -410,6 +442,11 @@ Success! The random app now appears on my hostmap
 Then I clicked on the "random dashboard" \([link](https://app.datadoghq.com/dash/integration/custom%3Arandom?live=true&tpl_var_scope=host%3Aprecise64&page=0&is_auto=false&from_ts=1493953750085&to_ts=1493957350085&tile_size=m)\)
 and I can see my values that are being sampled. Sweet!
 ![Random Dashboard](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-dashboard.png)
+Just one last check, I ran the info command for the agent, and I got an OK for my random sample check
+![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-info-OK.png)
+
+Well that looks like the end of level 1 besides the bonus! Time to finish 
+the walkthrough section
 
 ## Level 2
 ###Visualizing your Data
