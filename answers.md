@@ -251,7 +251,7 @@ from checks import AgentCheck
 import random
 class RandomSampleCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('random.sample', random.random())
+        self.gauge('test.support.random', random.random())
 ```
 All checks derive from the AgentCheck class. When it is run, the check method is
 called, and we will sample a simple gauge metric. In this case, a random value
@@ -446,7 +446,7 @@ So roughly 10% of the time, I should see a 0.9 or greater, Cool.
 Going off the hello world example, I used self.gauge again, since it seems to be 
 used to sample a simple metric. self.rate, self.increment, etc are for more complex
 metrics involving rates and incrementing counters and the like.  
-I replaced `self.gauge('hello.world', 1)` with `self.gauge('random.sample', random.random())` as a preliminary test.  
+I replaced `self.gauge('hello.world', 1)` with `self.gauge('test.support.random', random.random())` as a preliminary test.  
 Time to restart the agent, and check my host map!
 
 Success! The random app now appears on my hostmap
@@ -483,6 +483,10 @@ If I had built an application, I could use a dogstatsd
 library for my app's language of choice, and send metrics to it from within the 
 app source code. [Library list](http://docs.datadoghq.com/libraries/)  
 
+I created a simple diagram in visio to illustrate my understanding of how the 3 
+main components work together on a host system.
+![Datadog Agent Diagram](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/datadog-agent-diagram.png)
+
 ## Level 2
 ###Visualizing your Data
 You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
@@ -492,6 +496,11 @@ Bonus question: What is the difference between a timeboard and a screenboard?
 ### Walkthrough 2
 
 ### Thinkthrough 2
+Upon start level 2, I realized I named my metric incorrectly. I named it "random.sample" and your readme stated it should be "test.support.random"  
+So I quickly renamed it in the self.gauge function in randomsample.py and restarted
+the Datadog agent.
+
+
 
 ### Bonus 2
 
