@@ -1,7 +1,10 @@
 Your answers to the questions go here.
 
 # Getting Started with DataDog
-**Table of Contents**
+## Table of Contents
+[Overview](#overview)
+
+[Preparation](#preparation)
 
 [Level 0](#level-0)
 - [Walkthrough](#walkthrough-0)
@@ -19,14 +22,16 @@ Your answers to the questions go here.
 - [Walkthrough](#walkthrough-3)
 - [Thinkthrough](#thinkthrough-3)
 
+[Appendix](#appendix)
+
 ## Overview
 This document will provide a walkthrough on how to set up a monitored host in Datadog, and from there, add a custom metric with checks and alerts. 
 
 Each level will be broken up into 2 sections.
-1. Walkthrough: This catalogues the steps you would take to accomplish the tasks in the level. It's written as though it might be used as a guide for a customer
-2. Thinkthrough: This section is to give you insight into my process going through the level. I'll share what was straightforward, where I encountered problems, how I approached those problems, how I fixed them (if I did), and other insights.
+1. **Walkthrough**: This catalogues the steps you would take to accomplish the tasks in the level. It's written as though it might be used as a guide for a customer
+2. **Thinkthrough**: This section is to give you insight into my process going through the level. I'll share what was straightforward, where I encountered problems, how I approached those problems, how I fixed them (if I did), and other insights.
 
-## Prework
+## Preparation
 This project was started on May 3, 2017.  
 Before I started the levels, I read through the reference links and took notes in order to prime myself on the material. You can find those notes in notes.md.  
 I also did a quick tutorial [online](http://www.markdowntutorial.com/) (See Appendix) for writing in markdown so that I could write a good-looking answers.md. 
@@ -159,7 +164,52 @@ $ sudo /etc/init.d/datadog-agent restart
 ![host map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/host-map.png)
 and click on your host, and you'll be greeted with additional details like metrics and your Datadog Agent tags
 ![host map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/host-map-with-tags.png)
-10. 
+10. Good job. So far we just have metrics for our host, let's monitor something else on our host too, like a database. I recommend PostgreSQL, it's free and pretty
+easy to install. Here's their [install guide](https://www.postgresql.org/download/linux/ubuntu/) for your reference, but I'll show you my process below
+```
+$ sudo vi /etc/apt/sources.list.d/pgdg.list
+// I added the line for the postgresql repository and saved
+// deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main
+$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+$ sudo apt-get update
+$ apt-get install postgresql-9.4
+```
+
+Postgres is installed. Now we just need to be able to login. Follow my process or
+refer to this [helpful online post](https://www.codeproject.com/Articles/898303/Installing-and-Configuring-PostgreSQL-on-Linux-Min)
+```
+vagrant@precise64:/etc/dd-agent$ sudo su -
+root@precise64:~# su - postgres
+postgres@precise64:~$ psql
+psql (9.4.11)
+Type "help" for help.
+
+postgres=# CREATE USER vagrant
+postgres-# WITH SUPERUSER CREATEDB CREATEROLE
+postgres-# PASSWORD 'datadoginterview'
+postgres-# ;
+CREATE ROLE
+postgres=# \q
+postgres@precise64:~$ exit
+logout
+root@precise64:~# exit
+logout
+vagrant@precise64:/etc/dd-agent$ psql postgres
+psql (9.4.11)
+Type "help" for help.
+
+postgres=#
+```
+11. Time to install an integration for our database. If you used a core integration, like postgres or mysql, you don't need to do a separate install.
+Core integrations are installed with the agent.  
+Otherwise, for non-core integrations, run `sudo apt-get install dd-check-integration` and just replace the integration with what you want. e.g. dd-check-custom
+12. Go to the [integrations page](https://app.datadoghq.com/account/settings#integrations)
+![Integrations Page](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/integrations-page.png)
+ and click install for the one that matches your database.  
+![Postgres Integration Install](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/install-postgres-integration.png)  
+Then follow the instructions
+
 
 
 
@@ -236,6 +286,9 @@ updated. I probably need to restart the agent to have it update it's configurati
 but I googled just in case there was a way to do it without an agent restart.
 A [help post by Dustin Lawler](https://help.datadoghq.com/hc/en-us/articles/203764515-Start-Stop-Restart-the-Datadog-Agent) said a reload of agent configuration
 requires a restart, so I did that.
+```
+sudo /etc/init.d/datadog-agent restart
+```
 
 Then I went to the [Host map](https://app.datadoghq.com/infrastructure/map) via the navigation bar under infrastructure and saw the tags when I clicked on my host.
 
@@ -250,6 +303,7 @@ $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
   sudo apt-key add -
 $ sudo apt-get update 
 $ apt-get install postgresql-9.4 
+vagrant@precise64:/etc/dd-agent$ sudo vi conf.d/postgres.yaml
 ```
 I googled for how to start the postgres server and found a few different pages 
 [1](https://www.postgresql.org/docs/9.4/static/tutorial-createdb.html), 
@@ -280,8 +334,39 @@ Type "help" for help.
 postgres=# 
 ```
 
+---
+Now that the database is installed. I needed to install the integration. I went to the Datadog docs site, and found the [Installing Integrations Page](http://docs.datadoghq.com/guides/installcoreextra/)  
+I also found the [Integrations install dashboard](https://app.datadoghq.com/account/settings#integrations).  
+I decided to try out the install from the website, to see if it would push the installation to my host. 
+It looks like the dashboard page give instructions on how to configure the 
+integration once its installed. so I ran the installer, and then followed the main steps. 
+```
+vagrant@precise64:/etc/dd-agent$ psql postgres
+psql (9.4.11)
+Type "help" for help.
 
+postgres=# create user datadog with password 'hYrmS03SQVy6sPWcYmt0cSzk';
+CREATE ROLE
+postgres=# grant SELECT ON pg_stat_database to datadog;
+GRANT
+postgres=# \q
+vagrant@precise64:/etc/dd-agent$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"  
+Password for user datadog: 
+vagrant@precise64:/etc/dd-agent$ sudo vi conf.d/postgres.yaml
+// Then I pasted in the default config for the agent to connect to postgres and saved
+vagrant@precise64:/etc/dd-agent$ sudo /etc/init.d/datadog-agent restart
+ \* Stopping Datadog Agent (stopping supervisord) datadog-agent              [ OK ] 
+ \* Starting Datadog Agent (using supervisord) datadog-agent                 [ OK ] 
+vagrant@precise64:/etc/dd-agent$ sudo /etc/init.d/datadog-agent info 
+```
+The info command let me know that the postgres check was OK. Sweet!
+![Postgres Check OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/postgres-check-OK.png)
 
+And I checked the hostmap to see if it showed up on my host. It did!
+![postgres on hostmap](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/hostmap-shows-postgres.png)
+
+---
+Time for the custom agent check!
 
 ## Level 2
 ###Visualizing your Data
@@ -309,7 +394,14 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 ### Software Used
 - Ubuntu 16.04 LTS - Partition on my Personal Computer. This is my preferred coding environment.
 - VIM - for editing Mhttps://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/earkdown files
+- git - Version control, used to push changes to my fork of the github repository
+- Github - to store my fork of the original github repo
+- Markdown - for all text files in my github submission
+- Vagrant - for creating a VM to work in
+- PostgreSQL - Database that was monitored with a Datadog integration
 
 ### Online Reference Material
 - [Markdown Tutorial](http://www.markdowntutorial.com/)
 - [Markdown Quick Reference](https://en.support.wordpress.com/markdown-quick-reference/)
+- [Markdown Linking](http://stackoverflow.com/questions/2822089/how-to-link-to-part-of-the-same-document-in-markdown)
+- [Datadog Guides](http://docs.datadoghq.com/)
