@@ -2,6 +2,8 @@ Your answers to the questions go here.
 
 # Getting Started with DataDog
 
+[click on this link](#level-0)
+
 ## Overview
 This document will provide a walkthrough on how to set up a monitored host in Datadog, and from there, add a custom metric with checks and alerts. 
 
@@ -18,7 +20,8 @@ I had originally planned to write this all in Google docs, but after seeing the 
 I decided it made more sense to use markdown. Especially sense most github readme's tend to use it, 
 and so do Datadog's notifications!
 
-## Level 0 (optional) - Set up an Ubuntu VM
+## Level 0 
+### Set up an Ubuntu VM - (Optional)
 This step is optional but it will help you to avoid any dependency issues. You may use any VM of your
 choice. We chose to use Ubuntu 12.04 run with Vagrant.
 
