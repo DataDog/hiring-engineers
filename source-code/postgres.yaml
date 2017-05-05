@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+   -   host: localhost
+       port: 5432
+       username: datadog
+       password: hYrmS03SQVy6sPWcYmt0cSzk
+       tags:
+            - optional_tag1
+            - optional_tag2
+

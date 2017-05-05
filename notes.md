@@ -104,4 +104,4 @@ mycheck.YAML = mycheck.py
 - The configuration file for the Agent is located at /etc/dd-agent/datadog.conf
 - Configuration files for integrations are located in /etc/dd-agent/conf.d/
 - http://docs.datadoghq.com/integrations/postgresql/
-
+- basic agent usage: http://docs.datadoghq.com/guides/basic_agent_usage/ubuntu/

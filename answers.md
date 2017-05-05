@@ -37,8 +37,7 @@ Before I started the levels, I read through the reference links and took notes i
 I also did a quick tutorial [online](http://www.markdowntutorial.com/) (See Appendix) for writing in markdown so that I could write a good-looking answers.md. 
 
 I had originally planned to write this all in Google docs, but after seeing the repository, 
-I decided it made more sense to use markdown. Especially sense most github readme's tend to use it, 
-and so do Datadog's notifications!
+I decided it made more sense to use markdown. Especially sense most github readme's tend to use it, and so do Datadog's notifications and docs!
 
 ## Level 0 
 ### Set up an Ubuntu VM - (Optional)
@@ -208,9 +207,19 @@ Otherwise, for non-core integrations, run `sudo apt-get install dd-check-integra
 ![Integrations Page](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/integrations-page.png)
  and click install for the one that matches your database.  
 ![Postgres Integration Install](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/install-postgres-integration.png)  
-Then follow the instructions
-
-
+Then follow the instructions or click the "Install Integration" button.
+![Postgres instructions](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/postgres-instruct.png)
+13.Verify your integration is working by running `sudo /etc/init.d/datadog-agent info`
+And see if your check is OK. 
+```
+    postgres (5.13.0)
+    -----------------
+      - instance #0 [OK]
+      - Collected 12 metrics, 0 events & 1 service check
+```
+    - If you want to go even further, check [this page](http://docs.datadoghq.com/integrations/postgresql/) for custom metrics you can configure for PostgreSQL
+14. You've got your first integration running, you're almost a pro! Now let's write our own custom check. We'll use "Agent Check," a Python Plugin, to achieve
+this. 
 
 
 ### Thinkthrough 1
@@ -366,7 +375,41 @@ And I checked the hostmap to see if it showed up on my host. It did!
 ![postgres on hostmap](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/hostmap-shows-postgres.png)
 
 ---
-Time for the custom agent check!
+Time for the custom agent check! I started by looking at the reference page for [writing an agent check](http://docs.datadoghq.com/guides/agent_checks/)
+
+Before I create the python check, I figured I should make a config file first.
+I decided on the name randomsample, so I need matching names with randomsample.yaml
+in conf.d and randomsample.py in checks.d
+
+I started by pasting the "Hello World" example from the guide, and seeing if that
+was able to run after restarting the agent. Looks like it worked!
+![Hello World Check](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/hello-world-check.png)
+
+Alright now its time to start writing the random sample. But first, I want to build out my configuration file. I know the check needs to be run multiple times so that
+there will be enough data to have visuals of in Level 2. I'll put min_collection_interval of 3 (seconds) so that I can see if its working quickly
+ I'm not sure what to put for the instances section yet, but I'll come back to that.
+
+Now to write the randomsample.py.
+Your readme mentioned grabbing a random value with random.random() in python, so
+I checked the [python docs](https://docs.python.org/2/library/random.html) to see the usage
+```
+random.random()
+    Return the next random floating point number in the range [0.0, 1.0).
+
+```
+So roughly 10% of the time, I should see a 0.9 or greater, Cool.
+Going off the hello world example, I used self.gauge again, since it seems to be 
+used to sample a simple metric. self.rate, self.increment, etc are for more complex
+metrics involving rates and incrementing counters and the like.  
+I replaced `self.gauge('hello.world', 1)` with `self.gauge('random.sample', random.random())` as a preliminary test.  
+Time to restart the agent, and check my host map!
+
+Success! The random app now appears on my hostmap
+![Random Host Map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-success.png)
+
+Then I clicked on the "random dashboard" \([link](https://app.datadoghq.com/dash/integration/custom%3Arandom?live=true&tpl_var_scope=host%3Aprecise64&page=0&is_auto=false&from_ts=1493953750085&to_ts=1493957350085&tile_size=m)\)
+and I can see my values that are being sampled. Sweet!
+![Random Dashboard](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-dashboard.png)
 
 ## Level 2
 ###Visualizing your Data
