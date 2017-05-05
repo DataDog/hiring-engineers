@@ -116,8 +116,8 @@ host list!
 8. Great, now our host is being monitored! Let's add some tags to it so we can find
 it easily through search and group it with other hosts (once we add more!). We 
 could do it through the infrastructure web page, but lets edit the config file.
-Lets `cd /etc/dd-agent` and using your favorite text editor (I won't make any VI
-vs Emacs comments here), find these lines
+Lets do `cd /etc/dd-agent` and use our favorite text editor (I won't make any VI
+vs Emacs comments here) to find these lines
 ```
 # Set the host's tags (optional)
 # tags: mytag, env:prod, role:database
@@ -184,8 +184,10 @@ I saw all Green "OK" so that looked good enough for me to continue
 The next guideline was to add tags in the agent config file. I noticed that
 I could do that from the infrastructure page on app.datadoghq.com but I wanted to
 check out the config file to see what it looked like.
+
 ![update host tags online](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/update-host-tags.png)
-Back to my notes, I remembered the /etc/dd-agent/conf.d location and figured that
+
+Back to my notes.md, I remembered the /etc/dd-agent/conf.d location and figured that
 was a good place to look for a config file. I ran `ls` in that directory and a huge
 number of example files were shown on the screen.  
 Then I thought, oh there's that Agent Overview page in the github readme, so I went
@@ -217,8 +219,9 @@ A [help post by Dustin Lawler](https://help.datadoghq.com/hc/en-us/articles/2037
 requires a restart, so I did that.
 
 Then I went to the [Host map](https://app.datadoghq.com/infrastructure/map) via the navigation bar under infrastructure and saw the tags when I clicked on my host.
+
 ---
-Time to install a database. MySQL is deprecated for Ubuntu 12.04, and Postgres had a [pretty simple install](https://www.postgresql.org/download/linux/ubuntu/) for 
+Time to install a database. MySQL is [EOL/deprecated](https://www.mysql.com/support/eol-notice.html) for Ubuntu 12.04, and Postgres had a [pretty simple install](https://www.postgresql.org/download/linux/ubuntu/) for 
 Ubuntu. You can see the process next
 ```
 $ sudo vi /etc/apt/sources.list.d/pgdg.list
