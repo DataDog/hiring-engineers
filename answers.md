@@ -257,7 +257,7 @@ between \[0.0, 1.0\). If you want to try something more difficult, read [this pa
 
 18. Now restart your agent with `sudo /etc/init.d/datadog-agent restart`  
 You can verify your check is working with `sudo /etc/init.d/datadog-agent info`
-![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-info-OK.png)
+![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-info-OK.png)
 
 19. Then go to your host map, you should see something like this!
 ![Random Host Map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-success.png)
