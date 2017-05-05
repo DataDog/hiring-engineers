@@ -454,7 +454,7 @@ Then I clicked on the "random dashboard" \([link](https://app.datadoghq.com/dash
 and I can see my values that are being sampled. Sweet!
 ![Random Dashboard](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-dashboard.png)
 Just one last check, I ran the info command for the agent, and I got an OK for my random sample check
-![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-info-OK.png)
+![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-info-OK.png)
 
 Well that looks like the end of level 1 besides the bonus! Time to finish 
 the walkthrough section
