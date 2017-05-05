@@ -13,23 +13,27 @@ Your answers to the questions go here.
 [Level 1](#level-1)
 - [Walkthrough](#walkthrough-1)
 - [Thinkthrough](#thinkthrough-1)
+- [Bonus](#bonus-1)
 
 [Level 2](#level-2)
 - [Walkthrough](#walkthrough-2)
 - [Thinkthrough](#thinkthrough-2)
+- [Bonus](#bonus-2)
 
 [Level 3](#level-3)
 - [Walkthrough](#walkthrough-3)
 - [Thinkthrough](#thinkthrough-3)
+- [Bonus](#bonus-3)
 
 [Appendix](#appendix)
 
 ## Overview
 This document will provide a walkthrough on how to set up a monitored host in Datadog, and from there, add a custom metric with checks and alerts. 
 
-Each level will be broken up into 2 sections.
+Each level will be broken up into 3 sections.
 1. **Walkthrough**: This catalogues the steps you would take to accomplish the tasks in the level. It's written as though it might be used as a guide for a customer
 2. **Thinkthrough**: This section is to give you insight into my process going through the level. I'll share what was straightforward, where I encountered problems, how I approached those problems, how I fixed them (if I did), and other insights.
+3. **Bonus**: This is to answer any bonus questions from the readme. 
 
 ## Preparation
 This project was started on May 3, 2017.  
@@ -109,10 +113,8 @@ rtt min/avg/max/mdev = 17.826/18.939/20.003/0.767 ms
 
 ## Level 1
 ###Collecting your Data
-You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
+This section will guide you through how to create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and finally write a custom agent check.
 
-Bonus question: In your own words, what is the Agent?  
-Reference link: http://docs.datadoghq.com/guides/basic_agent_usage/  
 Idea: Draw a diagram outlining the 3 key components and how they work together
 
 ### Walkthrough 1
@@ -459,6 +461,28 @@ Just one last check, I ran the info command for the agent, and I got an OK for m
 Well that looks like the end of level 1 besides the bonus! Time to finish 
 the walkthrough section
 
+### Bonus 1
+**In your own words, what is the Agent?**
+
+The Datadog agent is a piece of software written in python that runs continuously 
+on each host that a user wants to monitor. It's goal is to collect data and metrics from the host system itself (such as CPU Usage, Network Traffic, Load Average, etc) as well as to collect data and metrics from other software that have been 
+connected through datadog integrations (such as PostgreSQL, Apache, Hadoop, etc).
+
+The Agent is composed of 3 main components that are controlled by a supervisor 
+process. 
+1. **Collector** - This checks your host for integrations, and it grabs the system 
+metrics like network traffic or CPU utilization. 
+2. **Dogstatsd** - This is the server you can send custom metrics to from an application
+3. **Forwarder** -  This puts together the data from the collector and dogstatsd, 
+and then sends them up to Datadog for use in the dashboards, hostmap, etc.
+
+In Level 1, my randomsample check sent random values to self.gauge, which were then
+picked up by the Collector. Then the Forwarder grabbed the values collected by the Collecter, and sent those to Datadog so that I could see them in my host map.
+
+If I had built an application, I could use a dogstatsd
+library for my app's language of choice, and send metrics to it from within the 
+app source code. [Library list](http://docs.datadoghq.com/libraries/)  
+
 ## Level 2
 ###Visualizing your Data
 You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
@@ -468,6 +492,8 @@ Bonus question: What is the difference between a timeboard and a screenboard?
 ### Walkthrough 2
 
 ### Thinkthrough 2
+
+### Bonus 2
 
 ## Level 3
 ###Alerting on your Data
@@ -479,6 +505,8 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 ### Walkthrough 3
 
 ### Thinkthrough 3
+
+### Bonus 3
 
 ## Appendix
 
