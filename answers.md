@@ -19,11 +19,11 @@ Edited /etc/dd-agent/datadog.conf
 
 Added some tags to define the server
 
-Add Screenshot here: screen shot - tag definition
+![definition of tags](https://github.com/markjeffery/hiring-engineers/blob/master/screen%20shot%20-%20tag%20definition.png)
 
 Restarted agent (not sure if I needed to)
 
 Checked out the infrastructure menu, selected my new server in the host map, and clicked on system. It shows the tags.
 
-Add Screenshot here: screen shot - tag results
+![tags shown in datadog](https://github.com/markjeffery/hiring-engineers/blob/master/screen%20shot%20-%20tag%20results.png)
 
