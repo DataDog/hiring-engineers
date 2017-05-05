@@ -7,8 +7,7 @@ over a local network.
 
 Installed the agent for CentOS/RedHat using:
 
-    <DD_API_KEY> bash -c "$(curl -L
-https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+    <DD_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
 The agent is a piece of software that runs on your host machine and collects
 data to send to datadog so that you can display useful metrics about your
@@ -62,7 +61,7 @@ class TestSupportRandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-##Level 2 - Visualizing Data
+## Level 2 - Visualizing Data
 
 The `test.support.random` check is now visible on my timeboard:
 
@@ -78,7 +77,7 @@ Each metric can be displayed with it's own individual timeframe.
 
 ![test.support.random spike](https://s3-us-west-2.amazonaws.com/datadoghiringimages/dd_04.png)
 
-##Level 3 - Alerting on Data
+## Level 3 - Alerting on Data
 
 Creating a Monitor allows us to alert people who need to know then one of your
 metrics crosses certain thresholds.
