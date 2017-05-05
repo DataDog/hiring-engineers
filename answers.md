@@ -2,15 +2,19 @@ Your answers to the questions go here.
 
 # Getting Started with DataDog
 **Table of Contents**
+
 [Level 0](#level-0)
 - [Walkthrough](###walkthrough-0)
 - [Thinkthrough](###thinkthrough-0)
+
 [Level 1](#level-1)
 - [Walkthrough](###walkthrough-1)
 - [Thinkthrough](###thinkthrough-1)
+
 [Level 2](#level-2)
 - [Walkthrough](###walkthrough-2)
 - [Thinkthrough](###thinkthrough-2)
+
 [Level 3](#level-3)
 - [Walkthrough](###walkthrough-3)
 - [Thinkthrough](###thinkthrough-3)
