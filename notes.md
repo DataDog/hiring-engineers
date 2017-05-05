@@ -95,3 +95,11 @@ mycheck.YAML = mycheck.py
 /etc/dd-agent/conf.d
 - HTTP checks let you check HTTP endpoints
 - custom agent checks cant be called by python, call with agent 
+
+## Notes while I was following the technical exercise
+
+- can see my VM appear in https://app.datadoghq.com/infrastructure
+- stop agent with `sudo /etc/init.d/datadog-agent stop`
+- start agent with `sudo /etc/init.d/datadog-agent start`
+- The configuration file for the Agent is located at /etc/dd-agent/datadog.conf
+- Configuration files for integrations are located in /etc/dd-agent/conf.d/
