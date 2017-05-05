@@ -112,7 +112,7 @@ rtt min/avg/max/mdev = 17.826/18.939/20.003/0.767 ms
 You will create a DataDog Account, modify the Agent's configuration, install a database, add the DataDog integration for that DB, and write a custom agent check.
 
 Bonus question: In your own words, what is the Agent?  
-Reference link: http://docs.datadoghq.com/guides/basic\_agent\_usage/  
+Reference link: http://docs.datadoghq.com/guides/basic_agent_usage/  
 Idea: Draw a diagram outlining the 3 key components and how they work together
 
 ### Walkthrough 1
@@ -159,10 +159,12 @@ $ sudo /etc/init.d/datadog-agent restart
  * Stopping Datadog Agent (stopping supervisord) datadog-agent              [ OK ] 
  * Starting Datadog Agent (using supervisord) datadog-agent                 [ OK ] 
 ```
+
 9. Let's make sure the tags were loaded. Go to the [Host Map page](https://app.datadoghq.com/infrastructure/map)
 ![host map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/host-map.png)
 and click on your host, and you'll be greeted with additional details like metrics and your Datadog Agent tags
 ![host map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/host-map-with-tags.png)
+
 10. Good job. So far we just have metrics for our host, let's monitor something else on our host too, like a database. I recommend PostgreSQL, it's free and pretty
 easy to install. Here's their [install guide](https://www.postgresql.org/download/linux/ubuntu/) for your reference, but I'll show you my process below
 ```
@@ -203,12 +205,14 @@ postgres=#
 11. Time to install an integration for our database. If you used a core integration, like postgres or mysql, you don't need to do a separate install.
 Core integrations are installed with the agent.  
 Otherwise, for non-core integrations, run `sudo apt-get install dd-check-integration` and just replace the integration with what you want. e.g. dd-check-custom
+
 12. Go to the [integrations page](https://app.datadoghq.com/account/settings#integrations)
 ![Integrations Page](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/integrations-page.png)
  and click install for the one that matches your database.  
 ![Postgres Integration Install](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/install-postgres-integration.png)  
 Then follow the instructions or click the "Install Integration" button.
 ![Postgres instructions](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/postgres-instruct.png)
+
 13.Verify your integration is working by running `sudo /etc/init.d/datadog-agent info`
 And see if your check is OK. 
 ```
@@ -218,16 +222,19 @@ And see if your check is OK.
       - Collected 12 metrics, 0 events & 1 service check
 ```
     - If you want to go even further, check [this page](http://docs.datadoghq.com/integrations/postgresql/) for custom metrics you can configure for PostgreSQL
+
 14. You've got your first integration running, you're almost a pro! Now let's write our own custom check. We'll use "Agent Check," a Python Plugin, to achieve
 this. We'll just do something easy, and create a custom check called randomsample.
+
 15. Create randomsample.yaml in `/etc/dd.agent/conf.d` and randomsample.py in `/etc/dd.agent/check.d`  
 Make sure the names of the .py and .yaml file match. Any check you write will 
 follow these rules and exist in these two locations. This is how the agent knows
 how to find your check!
     - You might need to run your text editor with sudo to save these files
+
 16. For randomsample.yaml, paste this code
 ```
-init\_config:
+init_config:
     min_collection_interval: 3
 
 instances:
@@ -235,6 +242,7 @@ instances:
 
 ```
 This just tells our check to be ran every 3 seconds.
+
 17. For randomsample.py, paste this code
 ```
 from checks import AgentCheck
@@ -245,12 +253,15 @@ class RandomSampleCheck(AgentCheck):
 ```
 All checks derive from the AgentCheck class. When it is run, the check method is
 called, and we will sample a simple gauge metric. In this case, a random value
-between [0.0, 1.0). If you want to try something more difficult, read [this page](http://docs.datadoghq.com/guides/agent_checks/)
+between \[0.0, 1.0\). If you want to try something more difficult, read [this page](http://docs.datadoghq.com/guides/agent_checks/)
+
 18. Now restart your agent with `sudo /etc/init.d/datadog-agent restart`  
 You can verify your check is working with `sudo /etc/init.d/datadog-agent info`
 ![Random Info OK](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-info-OK.png)
+
 19. Then go to your host map, you should see something like this!
 ![Random Host Map](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/random-check-success.png)
+
 20. Congratulations, you just wrote your first custom check! We'll use this check
 in Level 2.
 
@@ -388,10 +399,10 @@ Type "help" for help.
 
 postgres=# create user datadog with password 'hYrmS03SQVy6sPWcYmt0cSzk';
 CREATE ROLE
-postgres=# grant SELECT ON pg\_stat\_database to datadog;
+postgres=# grant SELECT ON pg_stat_database to datadog;
 GRANT
 postgres=# \q
-vagrant@precise64:/etc/dd-agent$ psql -h localhost -U datadog postgres -c "select * from pg\_stat\_database LIMIT(1);"  
+vagrant@precise64:/etc/dd-agent$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"  
 Password for user datadog: 
 vagrant@precise64:/etc/dd-agent$ sudo vi conf.d/postgres.yaml
 // Then I pasted in the default config for the agent to connect to postgres and saved
