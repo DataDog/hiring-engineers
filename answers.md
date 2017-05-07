@@ -488,24 +488,151 @@ main components work together on a host system.
 ![Datadog Agent Diagram](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/datadog-agent-diagram.png)
 
 ## Level 2
-###Visualizing your Data
-You will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
+### Visualizing your Data
+In this section you will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
 
-Bonus question: What is the difference between a timeboard and a screenboard?
 
 ### Walkthrough 2
 
+1. Make sure you're logged in at datadoghq.com and go to your dashboard list
+![Go to dashboard list](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/goto-dashboard-list.png)
+
+2. Now choose your integration dashboard from the list. Recall from Level 1, I used Postgres, so I'll choose that one.
+![Go to dashboard list](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/choose-integration-dashboard.png)
+
+3. Press the Gear icon on the top right and click clone dashboard.
+![gear icon menu](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/clone-dash.png)  
+It's okay to leave the cloned dash description and name as the defaults
+![clone dash](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/clone-this-question.png)  
+
+4. Now lets add a few metrics, Click the add a graph area  
+![add a graph](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/add-a-graph.png)
+You should see a menu bar at the bottom of the window now. Just drag the graph type you want to use onto the dashboard. 
+![drag widget](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/drag-widgets.png)
+Let's add a timeseries. After dragging it onto the dashboard, a window will appear.
+Under the "Choose metrics and events" section, click the metric listed by "get" and
+scroll through until you find the metrics labeled like postgresql.something.  
+I'm going to choose postgresql.bgwriter.percent\_usage\_connections.
+![choose a metric](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/choose-metric.png)
+Now add a Query value widget. I would recommend postgresql.max\_connections for 
+this. And Lastly add a timeseries again, this time for our test.support.random 
+metric. You should see something like this at the bottom of your dashboard.
+![your 3 metrics](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/3-more-metrics.png)
+
+5. Awesome, now we have 3 extra metrics on this dashboard. Now let's see how to 
+annotate a graph. Click the icon that looks like a camera and it will let you 
+annotate. Drag a box around the part of the graph you want, and you can leave a 
+comment about it. Something precise like "values over 0.9" or maybe something 
+exciting like "ITS OVER 9000!" Whatever you want your team to be able to see.
+![Over 0.9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.png)
+![Over 9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.gif)
+
+6. If you have team members in your Datadog organization. You can notify them in
+events, or comments by using an @mention. For example, @all will notify everyone
+in the organization, or @some-email@gmail.com will notify that email address. There
+will be an email alert sent to the mentioned users' accounts. Go ahead and give it a try.
+![2nd acct comment](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/2nd-acct.png)
+
 ### Thinkthrough 2
-Upon start level 2, I realized I named my metric incorrectly. I named it "random.sample" and your readme stated it should be "test.support.random"  
+Upon starting level 2, I realized I named my metric incorrectly. I named it "random.sample" and your readme stated it should be "test.support.random"  
 So I quickly renamed it in the self.gauge function in randomsample.py and restarted
 the Datadog agent.
 
+This section is about creating a dashboard, so I went to the navigation menu on datadoghq.com and saw a dashboard menu with a dashboard list. I saw the list of 
+integration dashboards, and chose the one for postgres. I need to add additonal metrics and my test.support.random metric. I didn't see where to add metrics yet, but
+I remembered I first I need to clone it.
+
+I went to the Datadog docs. And saw an entry for [Guide to Dashboard templating](http://docs.datadoghq.com/guides/templating/) and clicked on there. I saw that the
+gear icon on the top right of any dashboard has a clone dash option, so I clicked
+and hit clone on the clone dialog.
+
+Ahh, now there is an "Add A Graph" area at the bottom of the dashboard
+![add a graph](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/add-a-graph.png)
+
+I clicked on that and saw the menu bar that said "drag widgets on to board," and I dragged timeseries (since it seemed like that was simplest) onto the board.
+I was brought to a new window for choosing a metric, and I saw the "`get` metric.name" style section. I clicked on that and was brought to a dropdown list of a ton
+of metrics, sweet. I scrolled through and saw some labeled like postgres.something. I also saw my test.support.random metric, cool! This is where I need to be.
+![a few metric](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/a-few-metrics.png)
+
+I also noticed there were tabs for Share, JSON, and Edit. I remembered this from my
+notes. I'm in the GUI graph editor, which is probably easiest for now. But I could edit the JSON definition of the graph directly in the JSON tab. I added a few extra
+metrics to see how the JSON changed.
+![json editor](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/json-editor.png)
+
+And I can grab iframes to embed in an HTML document from share.
+![iframes](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/iframe.png)
+
+Okay but back to adding these metrics. I repeated this process 3 times to get 2 
+postgresql metrics, as well as my test.support.random metric. For the postgres 
+metrics, I had to try a few before I got some that gave me graphs with 
+visuals. This because I don't have my postgres instance doing anything other than
+just existing. If I had it supporting an app or running queries, all those metrics
+would be lit up with data.
+
+Now that that's done. The next step is to take a snapshot of a graph and highlight
+where my test.support.random metric is above 0.9. I quickly googled, "snapshot a
+graph datadog" and I went to the [real time graph annotations page](https://www.datadoghq.com/blog/real-time-graph-annotations/). Looks like I just click the snapshot
+/annotate icon. I click around there and noticed you can just drag a box around 
+what you want to highlight, and there is a comment field for your notes. 
+![Over 0.9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.png)
+
+Oops, I forgot to use @notification. My first thought it that you just throw that 
+into the annotation's comment and it should notify me by email. I test that out. 
+I couldn't find out how to modify/delete my previous annotation comment on the
+dashboard. But I thought, since annotations are meant to be seen by the team,
+they probably get sent to the event stream. Aha! There it is, with an edit button.
+![Edit in Stream](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/event-stream-edit.png)
+I tried just putting "@notification" first. No email. After a quick google,
+I saw [this page](https://help.datadoghq.com/hc/en-us/articles/203038119-What-do-notifications-do-in-Datadog-). Ah you need to specify their name. I'll try my email.
+typing @p started to autofill my name or email. Thats pretty nifty. But it didn't 
+notify me still. It must only happen on even create or on a new comment. I'll try 
+a new comment first. Hmm, no success in receiving an email. I check my settings
+to make sure I'm set up to receive email. I am. I'll just retry making an annotation. Still no luck
+
+I wonder if Datadog doesn't notify me for @mentions of myself. If I invite another
+"user" from a different email account. Maybe that will work. I created a second
+account with my pktemple@ucdavis.edu email. I commented on my pktemple8@gmail.com's
+annotation using my new ucdavis.edu acct on the event stream.
+![2nd acct comment](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/2nd-acct.png)
+And there we go, got an email notification! The platform must be trying to avoid
+excessive notifications to my account. I could see this being a problem if I 
+was @all mentioning a lot, and I kept giving myself email alerts.
+![email notification](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/email-notify.png)
+
+Lastly there is the bonus question. I thought at first timeboards and screenboards
+are likely referring to the use of the timeseries graphs. I found a [blog post](https://www.datadoghq.com/blog/introducing-screenboards-your-data-your-way/)
+for when screenboards were introduced. It seems like they support more types of
+widgets as well as images. 
+
+I couldn't find if my cloned dashboard for postgres was a timeboard, but I assumed
+it was because all the graphs were for time series. So I went to create a new 
+dashboard and I was prompted to choose: timeboard or screenboard?
+![time vs screen](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/time-vs-screen.png)
+
+I clicked on screenboard, and I can already see the widget options are much more
+expansive. 
+![screenboard widgets](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/screenboard-widgets.png)
+I threw a few new widgets on there. I think I understand. It's to make a much
+more visual and creative dashboard. One that is likely geared for business users.
+![screenboard](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/screenboard.png)
 
 
 ### Bonus 2
+**What is the difference between a timeboard and a screenboard?**
+A timeboard is designed to have a prearranged layout, only with metrics that are
+sycronized to a certain time. E.g. The past hour, yesterday, the past 5 minutes. 
+This is geared for system administrators and technical users who need fine grained
+detail.
+![timeboard timepicker](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/timeboard-timepicker.png)
+
+A Screenboard has a more flexible layout. The graphs and other widgets aren't 
+synchronized with a timepicker at the top. This allows for a more flexible
+dashboard that can have additional visuals, and can be designed to be easier
+for less-technical, business users to understand and find actionable data.
+
 
 ## Level 3
-###Alerting on your Data
+### Alerting on your Data
 You will set up a monitor for your metric (it should alert you within 15 minutes).
 
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
