@@ -643,8 +643,6 @@ useful if you want to get alerted before something crashes and burns!
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![plotting](https://68.media.tumblr.com/2b753a54c9bcd506c2d0bd59f44fe60a/tumblr_oo69mz8X7J1uy3noqo1_500.gif)
-
 ### Walkthrough 3
 
 1. On the Datadog Navigation, hover your mouse over "Monitors," and in the menu
@@ -696,7 +694,11 @@ under the monitors menu, choose "Manage Downtime."
 11. In the menu that appears. choose our Monitor we just created. Mine was called "It's over 9000!" Set the "scope" to "\*" so that it applies to all hosts. Then Schedule it from 7pm tonight, to 9am tomorrow morning, and have it repeat daily. Lastly, choose a message and add your user accounts or your team to the notify list. 
 ![dt options](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/dt-opts.png)
 
-12. You're all done! You basically a pro at Datadog. Now it's time for you to start scheming, and plan out all sorts of fun, crazy monitors for your environments
+12. Hit Save. And the members you listed will be sent a scheduled downtime email notification. 
+![downtime email](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/downtime-email.png)
+
+13. You're all done! You basically a pro at Datadog. Now it's time for you to start scheming, and plan out all sorts of fun, crazy monitors for your environments
+![plotting](https://68.media.tumblr.com/2b753a54c9bcd506c2d0bd59f44fe60a/tumblr_oo69mz8X7J1uy3noqo1_500.gif)
 
 
 ### Thinkthrough 3
@@ -748,13 +750,15 @@ menu so I click that. I saw the schedule downtime button in the top right.
 I filled out the settings, and the save button wasn't clickable. Ah, I forgot to
 set the scope. It looks like it chooses from the tags and other host identifiers.
 I decided to choose the wild card character "\*" That should grab any host, so that
-this downtime applies to all hosts in the future that have this metric. Now I
-just wait for my email notification of downtime at 7pm, and I'm all done!
+this downtime applies to all hosts in the future that have this metric. 
 
 One last thing I noticed, while I had the event stream open, was that my monitor
 also automatically notifies me when it recovers! I had a 5m window with no values
 over 0.9. Pretty cool.
 ![recovered](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/recovered.png)
+
+Looks like I'm all done! Gotta say, Datadog is pretty sweet. Looking forward to
+hearing back from you all about how I did on the technical exercise!
 
 ### Bonus 3
 Both bonuses were done in the walkthrough and thinkthrough.
