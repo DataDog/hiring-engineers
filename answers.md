@@ -635,20 +635,131 @@ for less-technical, business users to understand and find actionable data.
 
 ## Level 3
 ### Alerting on your Data
-You will set up a monitor for your metric (it should alert you within 15 minutes).
+You will set up a monitor for your test.support.random metric (it should alert you within 15 minutes). By setting up a monitor, you won't have to constantly watch
+your metric to see if it goes above 0.9, you can just get alerted. This might be
+useful if you want to get alerted before something crashes and burns!
+![crash and burn](https://68.media.tumblr.com/aa556b30d803e51f4ff9a24ad4a84eb7/tumblr_oo5u3c2F271v1zngbo1_540.gif)
 
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![crash and burn](https://68.media.tumblr.com/aa556b30d803e51f4ff9a24ad4a84eb7/tumblr_oo5u3c2F271v1zngbo1_540.gif)
 ![plotting](https://68.media.tumblr.com/2b753a54c9bcd506c2d0bd59f44fe60a/tumblr_oo69mz8X7J1uy3noqo1_500.gif)
-![it must be the future](https://s-media-cache-ak0.pinimg.com/originals/89/89/fd/8989fd77040f19dd011a6ea3341f60b4.gif)
 
 ### Walkthrough 3
 
+1. On the Datadog Navigation, hover your mouse over "Monitors," and in the menu
+that appears. Choose new monitor
+![new monitor](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/new-monitor.png)
+
+2. Recall that our custom check, test.support.random, is a standard metric collected by the agent. So choose the metric option for our monitor.
+![choose metric](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/choose-metric.png)
+
+3. Now choose test.support.random under "1 Define the Metric" 
+![choose random](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/choose-random.png)
+
+4. You can change this from a simple alert to a multi-alert if you want. This will
+let you trigger this alert for each host or each tagged group. Then you won't have
+to setup a new monitor for this metric every time you add hosts.
+![choose multi](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/multi-for-host.png)
+
+5. We'll leave this as a "Threshold" alert since we want to be notified when
+we go over a threshold value of 0.9. "change" alerts happen when your delta over a threshold is a certain amount, and "anomaly" alerts occur when something deviates
+from the norm. For our settings choose:  
+*Above* the threshold *at least once* during the *last 5 minutes* for any **host**
+Alert threshold: *0.9*
+
+And leave the rest at the default. This will tell us if we go over 0.9 in the past 5 minutes.
+![alert conditions](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/alert-conds.png)
+
+6. Fill in a useful description, maybe with resolution steps, for "Say what's happening." And let's make sure we notify our team. I added myself and my alternate
+ user account for the purposes of testing. Notice it puts "@notifications" in the
+alert description.
+![what happening](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/what-happen.png)
+
+7. Hit save. And you'll now be on your completed monitor's edit page. At the top,
+you'll see a graph of our metric, with a red highlighted region where we'll be 
+alerted. Who would have though it could be this easy, we must be living in the 
+future!
+![alert graph](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/alert-graph.png)
+![it must be the future](https://s-media-cache-ak0.pinimg.com/originals/89/89/fd/8989fd77040f19dd011a6ea3341f60b4.gif)
+
+8. Okay, now go to your event stream. The monitor, takes a few minutes to start
+looking at the data, but once it collects 5 minutes of data you will be greeted
+with an alert in your event stream. 
+![event alert](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/event-alert.png)
+
+9. We might not want to have these alerts occur outside of business hours, 
+especially if we chose email notifications. Back on your datadog navigation,
+under the monitors menu, choose "Manage Downtime."
+
+10. At the top right of the screen, hit ![sched downtime](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/schedule-dt.png)  
+11. In the menu that appears. choose our Monitor we just created. Mine was called "It's over 9000!" Set the "scope" to "\*" so that it applies to all hosts. Then Schedule it from 7pm tonight, to 9am tomorrow morning, and have it repeat daily. Lastly, choose a message and add your user accounts or your team to the notify list. 
+![dt options](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/dt-opts.png)
+
+12. You're all done! You basically a pro at Datadog. Now it's time for you to start scheming, and plan out all sorts of fun, crazy monitors for your environments
+
+
 ### Thinkthrough 3
 
+The final level. Since it's going to be focused on monitors and alerts, I should find those pages in Datadog docs. [Guide to monitors](http://docs.datadoghq.com/guides/monitors/). I read through the steps, and I saw step 2 is choosing the alert
+grouping, whether my alert is simple or multi. That's one of the bonus points, so 
+I'll remember to set that!
+
+Alert type is definitely going to be threshold, rather than change, because we want
+to know any time it goes over the 0.9 threshold. And since we want to know every 
+time it goes over 0.9, we'll want our alert to trigger if it happens "at least once" rather than "on average," "at all times," or "in total."
+
+As I scroll down, there is a section on scheduling downtime. It looks like I 
+can set up scheduled downtime (for the other bonus) after my monitor has been 
+created. Well, I think that's all I need, so now I'm going to get working
+on making it happen. 
+
+I clicked on new monitor on the navigation. I figured that just "metric" was the
+right option, since my custom check sent a simple number to self.gauge. I was able
+to choose test.support random on the metric monitor setup page so that looked good.
+
+When I chose multi alert, I noticed it will multi-alert for each *blank*. Ah, these must be how I can use tags. Sure enough, the suggested options were "env, purpose,
+role, host." And I recalled that I set these tags in my datadog.conf
+```
+# Set the host's tags (optional)
+tags: env:test, role:database, purpose:interview
+```
+Perfect. But for the purposes of the bonus, I'll just do this by host rather
+than by tag.
+
+Since we want this to trigger when we go over 0.9, I left it as a threshold alert
+and set the trigger to be:
+*Above* the threshold *at least once* during the *last 5 minutes* for any **host**
+Alert threshold: *0.9*
+I chose 5 minutes so that I'd get an email pretty quickly. And I left the other options as defaults. 
+
+I added a quick description. and set it to "never" renotify if I don't resolve this
+ issue. I don't want to get blown up with emails, haha. For the walkthrough, I made
+ sure I added my user and my alt user to the notify section, but I removed it 
+before I saved so that my email wouldn't blow up, haha.
+
+Next, I went to the event stream to wait for my alert to trigger. After 5 minutes, I didn't see anything, but I thought that the monitor make take a minute or two 
+to get set up and start monitoring. Then after about 8 minutes, I got an alert
+in my event stream. Awesome. 
+
+Now the last piece. Setting downtime. I saw schedule downtime on the monitors nav
+menu so I click that. I saw the schedule downtime button in the top right. 
+
+I filled out the settings, and the save button wasn't clickable. Ah, I forgot to
+set the scope. It looks like it chooses from the tags and other host identifiers.
+I decided to choose the wild card character "\*" That should grab any host, so that
+this downtime applies to all hosts in the future that have this metric. Now I
+just wait for my email notification of downtime at 7pm, and I'm all done!
+
+One last thing I noticed, while I had the event stream open, was that my monitor
+also automatically notifies me when it recovers! I had a 5m window with no values
+over 0.9. Pretty cool.
+![recovered](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/recovered.png)
+
 ### Bonus 3
+Both bonuses were done in the walkthrough and thinkthrough.
+1. Multi-alert by host
+2. Scheduled Downtime
 
 ## Appendix
 
