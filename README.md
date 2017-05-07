@@ -44,6 +44,42 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+### Level 4: Collecting and Visualizing APM Data
+
+Now that you have collected your Infrastructire based metrics, we will begin collecting Application Level metrics
+
+* Intsrument the following Python Application using Datadog APM. 
+
+```
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+   return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+   return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+   return 'Posting Traces'
+
+if __name__ == '__main__':
+   app.run()
+```
+
+* Access each of the specifed endpoints from the Python Script above, or create some of your own. 
+
+* View the list of endpoints that you accessed within the APM section of the Datadog UI. Provide a screenshot of the list of these
+
+* Bonus Question: In your own words, what is the difference between a Service and a Resource?
+
+* Take a look at one of the specific endpoints you accessed within the Datadog UI. Take a screenshot of the number of HTTP status code and time it took to serve one of these specific requests. 
+
+* Bonus: Create a Dashboard showcasing some of the Metrics being submitted by the Datadog Trace Agent about your application
+
 ## Instructions
 If you have a question, create an issue in this repository.
 
@@ -62,6 +98,7 @@ To submit your answers:
 * [Datadog overview](http://docs.datadoghq.com/overview/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
 * [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
+* [APM Overview](https://app.datadoghq.com/apm/docs)
 
 ### The Datadog Agent and Metrics
 
