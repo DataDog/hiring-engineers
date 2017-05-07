@@ -489,7 +489,7 @@ main components work together on a host system.
 
 ## Level 2
 ### Visualizing your Data
-In this section you will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with @notification.
+In this section you will clone the starting dashboard, add additional metrics, and make sure your email recieves a snapshot with an @notification.
 
 
 ### Walkthrough 2
@@ -507,15 +507,18 @@ It's okay to leave the cloned dash description and name as the defaults
 
 4. Now lets add a few metrics, Click the add a graph area  
 ![add a graph](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/add-a-graph.png)
+
 You should see a menu bar at the bottom of the window now. Just drag the graph type you want to use onto the dashboard. 
 ![drag widget](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/drag-widgets.png)
+
 Let's add a timeseries. After dragging it onto the dashboard, a window will appear.
 Under the "Choose metrics and events" section, click the metric listed by "get" and
 scroll through until you find the metrics labeled like postgresql.something.  
 I'm going to choose postgresql.bgwriter.percent\_usage\_connections.
 ![choose a metric](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/choose-metric.png)
+
 Now add a Query value widget. I would recommend postgresql.max\_connections for 
-this. And Lastly add a timeseries again, this time for our test.support.random 
+this. And lastly add a timeseries again, this time for our test.support.random 
 metric. You should see something like this at the bottom of your dashboard.
 ![your 3 metrics](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/3-more-metrics.png)
 
@@ -527,7 +530,7 @@ exciting like "ITS OVER 9000!" Whatever you want your team to be able to see.
 ![Over 0.9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.png)
 ![Over 9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.gif)
 
-6. If you have team members in your Datadog organization. You can notify them in
+6. If you have team members in your Datadog organization, you can notify them in
 events, or comments by using an @mention. For example, @all will notify everyone
 in the organization, or @some-email@gmail.com will notify that email address. There
 will be an email alert sent to the mentioned users' accounts. Go ahead and give it a try.
@@ -630,13 +633,16 @@ synchronized with a timepicker at the top. This allows for a more flexible
 dashboard that can have additional visuals, and can be designed to be easier
 for less-technical, business users to understand and find actionable data.
 
-
 ## Level 3
 ### Alerting on your Data
 You will set up a monitor for your metric (it should alert you within 15 minutes).
 
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![crash and burn](https://68.media.tumblr.com/aa556b30d803e51f4ff9a24ad4a84eb7/tumblr_oo5u3c2F271v1zngbo1_540.gif)
+![plotting](https://68.media.tumblr.com/2b753a54c9bcd506c2d0bd59f44fe60a/tumblr_oo69mz8X7J1uy3noqo1_500.gif)
+![it must be the future](https://s-media-cache-ak0.pinimg.com/originals/89/89/fd/8989fd77040f19dd011a6ea3341f60b4.gif)
 
 ### Walkthrough 3
 
