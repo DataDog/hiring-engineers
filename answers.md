@@ -694,10 +694,12 @@ under the monitors menu, choose "Manage Downtime."
 11. In the menu that appears. choose our Monitor we just created. Mine was called "It's over 9000!" Set the "scope" to "\*" so that it applies to all hosts. Then Schedule it from 7pm tonight, to 9am tomorrow morning, and have it repeat daily. Lastly, choose a message and add your user accounts or your team to the notify list. 
 ![dt options](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/dt-opts.png)
 
-12. Hit Save. And the members you listed will be sent a scheduled downtime email notification. 
+12. Hit Save. And the members you listed will be sent a scheduled downtime email notification. They'll also receive another email when the downtime begins.
 ![downtime email](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/downtime-email.png)
+![downtime start email](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/scheduled-dt.png)
 
 13. You're all done! You basically a pro at Datadog. Now it's time for you to start scheming, and plan out all sorts of fun, crazy monitors for your environments
+
 ![plotting](https://68.media.tumblr.com/2b753a54c9bcd506c2d0bd59f44fe60a/tumblr_oo69mz8X7J1uy3noqo1_500.gif)
 
 
@@ -755,6 +757,7 @@ this downtime applies to all hosts in the future that have this metric.
 One last thing I noticed, while I had the event stream open, was that my monitor
 also automatically notifies me when it recovers! I had a 5m window with no values
 over 0.9. Pretty cool.
+
 ![recovered](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level3/recovered.png)
 
 Looks like I'm all done! Gotta say, Datadog is pretty sweet. Looking forward to
