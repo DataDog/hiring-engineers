@@ -577,6 +577,7 @@ where my test.support.random metric is above 0.9. I quickly googled, "snapshot a
 graph datadog" and I went to the [real time graph annotations page](https://www.datadoghq.com/blog/real-time-graph-annotations/). Looks like I just click the snapshot
 /annotate icon. I click around there and noticed you can just drag a box around 
 what you want to highlight, and there is a comment field for your notes. 
+
 ![Over 0.9 Thousand](https://github.com/GuavaKhan/hiring-engineers/blob/parker-solutions-engineer/images/level2/over-9000.png)
 
 Oops, I forgot to use @notification. My first thought it that you just throw that 
