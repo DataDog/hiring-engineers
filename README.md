@@ -48,7 +48,7 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 Now that you have collected your Infrastructire based metrics, we will begin collecting Application Level metrics
 
-* Intsrument the following Python Application using Datadog APM. 
+* Intsrument the following Python Flask Application using Datadog APM. 
 
 ```
 from flask import Flask
@@ -70,7 +70,7 @@ if __name__ == '__main__':
    app.run()
 ```
 
-* Access each of the specifed endpoints from the Python Script above, or create some of your own. 
+* Access each of the specifed endpoints from the Python Script above, or create some of your own. By default, these endpoints should be available at localhost:5000/<Endpoint>
 
 * View the list of endpoints that you accessed within the APM section of the Datadog UI. Provide a screenshot of the list of these
 
