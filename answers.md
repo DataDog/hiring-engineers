@@ -1,1 +1,2 @@
-Your answers to the questions go here.
+Level 1 Account: email
+Level 1 Agent: the Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service), and forwarding state engine that securely relays data to the cloud.
