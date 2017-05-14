@@ -1,5 +1,5 @@
 **Datadog Challenge**
--- Jordan Fritz
+-- Jordan Fritz -- Support Engineer
 
 •	Opened Github page and quickly read/skimmed through all reference pages before beginning. This helped me to establish a small level of knowledge with regards to the Datadog software, how it works, and its functions.
 
