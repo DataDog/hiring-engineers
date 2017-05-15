@@ -2,7 +2,9 @@ Level 1
 
 Account: email
 
-Agent: the Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service), and forwarding state engine that securely relays data to the cloud.
+Bonus question: In your own words, what is the Agent?
+
+The Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service), and forwarding state engine that securely relays data to the cloud.
 
 Tags: line 31/259 of /etc/dd-agent/datadog.conf
 
@@ -39,4 +41,13 @@ Service Metadata:[{}]
       - Collected 0 metrics, 0 events & 0 service checks
 
 
+
+
 Level 2
+
+
+Bonus question: What is the difference between a timeboard and a screenboard?
+
+The biggest distinction between timeboard and screenboards is that timeboards are rather fixed graphs, scoped to the same time appearing in a grid format. You can use these for time series based root cause analysis and event correlation. 
+
+Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. 
