@@ -27,3 +27,12 @@ The biggest distinction between timeboard and screenboards is that timeboards co
 Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. Very modular and multifunctional. 
 
 Snapshot Notification sent via TimeBoard *NOT* Screenboard. see Screenshot folder graph screenshot sent to email notification via UI.
+
+
+Level 3 - Alerting
+
+Bonus: multi-alert by host preconfigured
+
+Monitor notification via email: see monitoralert.png in screenshots folder
+
+Bonus: see downtimeschedule.png in screenshots folder
