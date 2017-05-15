@@ -16,11 +16,14 @@ Screenshots: *Tags* screenshots
  
  test.support.random: Code can be found in conf.d and checks.d. I used 'testcheck' to learn and 'randomcheck' to poll 'test.support.random'. 
  
-Level 2
+Level 2 - Visualizations
 
+Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc metrics.
 
 Bonus question: What is the difference between a timeboard and a screenboard?
 
 The biggest distinction between timeboard and screenboards is that timeboards contain time or query based graphs or metrics, scoped to the same time appearing in a grid format. You can use these for time series based root cause analysis and event correlation. TimeBoards can only be shared to individuals.
 
 Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. Very modular and multifunctional. 
+
+Snapshot Notification sent via TimeBoard *NOT* Screenboard. see Screenshot folder graph screenshot sent to email notification via UI.
