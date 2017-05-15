@@ -23,23 +23,17 @@ root@datadogvm:/etc/dd-agent# dd-agent check randomcheck
 
 **('test.support.random', 0.35526151404083917)**
 
-Metrics: 
+Metrics: []
 
-[]
+Events: []
 
-Events: 
+Service Checks: []
 
-[]
-
-Service Checks: 
-
-[]
-
-Service Metadata: 
-
-[{}]
+Service Metadata:[{}]
     randomcheck (5.13.2)
+    
     --------------------
+    
       - instance #0 [OK]
       - Collected 0 metrics, 0 events & 0 service checks
 
