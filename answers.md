@@ -328,47 +328,47 @@ root@ddog:/etc/dd-agent#  tail /var/log/datadog/collector.log
 ### Installing database and respective Datadog integration
 * Installing MySQL database
   * Checked for mysql-version in repository
-```
-root@ddog:~#  apt search mysql-server
-Sorting... Done
-Full Text Search... Done
-auth2db/trusty 0.2.5-2+dfsg-4 all
-  Powerful and eye-candy IDS logger, log viewer and alert generator
+  ```
+  root@ddog:~#  apt search mysql-server
+  Sorting... Done
+  Full Text Search... Done
+  auth2db/trusty 0.2.5-2+dfsg-4 all
+    Powerful and eye-candy IDS logger, log viewer and alert generator
 
-mysql-server/trusty-updates,trusty-security 5.5.55-0ubuntu0.14.04.1 all
-  MySQL database server (metapackage depending on the latest version)
-```
+  mysql-server/trusty-updates,trusty-security 5.5.55-0ubuntu0.14.04.1 all
+    MySQL database server (metapackage depending on the latest version)
+  ```
 
-  * Downloaded an installed mysql-server
-```
-root@ddog:~#  apt-get install mysql-server
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
+  * Downloaded and installed mysql-server
+  ```
+  root@ddog:~#  apt-get install mysql-server
+  Reading package lists... Done
+  Building dependency tree
+  Reading state information... Done
 
-...<snipped
+  ...<snipped
 
-The following NEW packages will be installed:
-  libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18
-  libterm-readkey-perl mysql-client-5.5 mysql-client-core-5.5 mysql-common
-  mysql-server mysql-server-5.5 mysql-server-core-5.5
-0 upgraded, 12 newly installed, 0 to remove and 0 not upgraded.
-Need to get 9,714 kB of archives.
-After this operation, 97.2 MB of additional disk space will be used.
-Do you want to continue? [Y/n] Y
+  The following NEW packages will be installed:
+    libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18
+    libterm-readkey-perl mysql-client-5.5 mysql-client-core-5.5 mysql-common
+    mysql-server mysql-server-5.5 mysql-server-core-5.5
+  0 upgraded, 12 newly installed, 0 to remove and 0 not upgraded.
+  Need to get 9,714 kB of archives.
+  After this operation, 97.2 MB of additional disk space will be used.
+  Do you want to continue? [Y/n] Y
 
-...<snipped
+  ...<snipped
 
-170514  1:55:51 [Note] /usr/sbin/mysqld (mysqld 5.5.55-0ubuntu0.14.04.1) starting as process 12870 ...
-mysql start/running, process 13019
-Setting up libhtml-template-perl (2.95-1) ...
-Processing triggers for ureadahead (0.100.0-16) ...
-Setting up mysql-server (5.5.55-0ubuntu0.14.04.1) ...
-Processing triggers for libc-bin (2.19-0ubuntu6.11) ...
+  170514  1:55:51 [Note] /usr/sbin/mysqld (mysqld 5.5.55-0ubuntu0.14.04.1) starting as process 12870 ...
+  mysql start/running, process 13019
+  Setting up libhtml-template-perl (2.95-1) ...
+  Processing triggers for ureadahead (0.100.0-16) ...
+  Setting up mysql-server (5.5.55-0ubuntu0.14.04.1) ...
+  Processing triggers for libc-bin (2.19-0ubuntu6.11) ...
 
-root@ddog:~#  mysql --version
-mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.3
-```
+  root@ddog:~#  mysql --version
+  mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.3
+  ```
 
 * Installing Datadog integration for MySQL. Integrations > Integrations > search “mysql”
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/fhy55gpso91ry50/106.png?dl=0" />
