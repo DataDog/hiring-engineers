@@ -10,42 +10,43 @@
 #### Oracle VM VirtualBox
   *  Source: https://www.virtualbox.org/
   <img hspace="20" src="https://dl.dropboxusercontent.com/s/euih82oyla8ze1h/001.png=0" />
-  *  Downloaded an installed the VirtualBox platform for Windows Hosts
-  *  Downloaded and installed Oracle CM VirtualBox Exension Pack. Useful for private net
+  
+  *  Downloaded an installed the VirtualBox platform for Windows Hosts.
+  *  Downloaded and installed Oracle CM VirtualBox Exension Pack. Useful for private VLAN
   *  Version: 5.1.22
   <img hspace="20" src="https://dl.dropboxusercontent.com/s/8ft4733ehqltjon/002.png?dl=0" />
  
 
 #### Vagrant
-*  Source: https://www.vagrantup.com/
+* Source: https://www.vagrantup.com/
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/uxmugieq3rv4yfm/003.png?dl=0" />
 
-*  Downloaded an installed latest available version of Vagrant for Windows.
-*  Version: 1.9.4
+* Downloaded an installed latest available version of Vagrant for Windows.
+* Version: 1.9.4
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/5sttcgvjj40txli/004.png?dl=0" />
 
 
 #### MobaXterm
-*  Source: http://mobaxterm.mobatek.net
+* Source: http://mobaxterm.mobatek.net
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/e5qxvgjjewg34p4/005.png?dl=0" />
 
-*  Brings some common Linux command tools to windows. Acts as shell, SSH, SCP client.
-*  Version 10.2
+* Brings some common Linux command tools to windows. Acts as shell, SSH, SCP client.
+* Version 10.2
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/9w7v6yh6rrfs634/006.png?dl=0" />
 
-
-*  Additional configuration needed to make MobaXterm work with Vagrant.
+* Additional configuration needed to make MobaXterm work with Vagrant.
   * Set environment variable “VAGRANT_HOME”
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/s8betn46h6rnv30/007.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/s8betn46h6rnv30/007.png?dl=0" />
 
   * Configure MobaXterm to use Windows PATH variable. This will bring variables within the Windows space to be available in the Linux-like environment in MobaXterm
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/5hhmppkxufqkn7q/008.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/5hhmppkxufqkn7q/008.png?dl=0" />
 
-<img hspace="20" src="https://dl.dropboxusercontent.com/s/qz8sauxoee5efzi/009.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/qz8sauxoee5efzi/009.png?dl=0" />
 
  
+ 
 #### Provisioning the VM
-*  Verify Vagrant setup.
+* Verify Vagrant setup.
   * Ran `vagrant -h` to check if vagrant binaries are accessible.
   * Error encountered below.
    <img hspace="20" src="https://dl.dropboxusercontent.com/s/lr564n0qvgjcvpt/010.png?dl=0" />
@@ -62,32 +63,31 @@
    <img hspace="20" src="https://dl.dropboxusercontent.com/s/y5upe4jo25igzqs/013.png?dl=0" />
 
 
-*  Created VagrantFile to provision an Ubuntu 14.04 VM using virtualbox as provider.
+* Created VagrantFile to provision an Ubuntu 14.04 VM using virtualbox as provider.
    <img hspace="20" src="https://dl.dropboxusercontent.com/s/r5w8tmc23j0mnvg/014.png?dl=0" />
 
   * ../data on the host PC is shared to /vagrant_data on VM in case files needs to be transferred to and fro
   * IP address set explicitly but will actually still get a default IP from VirtualBox starting from .15
 
-
-*  Provision the VM
-  * Once VagrantFile is created, create/provision Vm using “vagrant up” command.
+* Provision the VM
+  * Once VagrantFile is created, create/provision Vm using `vagrant up` command.
   * Downloaded the binaries for Ubuntu successfully.
-  * Error encountered below when provisioning/starting up the VM using “vagrant up” command.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/t0h0ulky85uls14/015.png?dl=0" />
+  * Error encountered below when provisioning/starting up the VM using `vagrant up` command.
+  <img hspace="20" src="https://dl.dropboxusercontent.com/s/t0h0ulky85uls14/015.png?dl=0" />
 
   * Resolution: Upgrade to Vagrant 1.9.5 (Not yet GA)
-  * As per research, the error message is already a known issue 
+    * As per research, the error message is already a known issue 
   * Workaround: Replace certain YAML and Ruby files
     * Backed up original files and replaced with ones downloaded below.
     * Reference: https://github.com/mitchellh/vagrant/issues/8520
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/cwn3ulotz260crr/016.png?dl=0" />
+    <img hspace="20" src="https://dl.dropboxusercontent.com/s/cwn3ulotz260crr/016.png?dl=0" />
 
   * `vagrant up` command no longer resulted to errors and successfully provisioned the VM
   * Checked if VM is running.
   <img hspace="20" src="https://dl.dropboxusercontent.com/s/fq9efrev4igx37u/017.png?dl=0" />
 
 
-*  Verify access to VM
+* Verify access to VM
   * Issue when accessing VM via `vagrant ssh`.
   <img hspace="20" src="https://dl.dropboxusercontent.com/s/gu0yzkksdcvqv2q/018.png?dl=0" />
 
@@ -105,7 +105,7 @@
     <img hspace="25" src="https://dl.dropboxusercontent.com/s/p0ottr0yg22vtmp/022.png?dl=0" />
 
 
-*  Used below modified script to allow running `vagrant ssh <name>`
+* Used below modified script to allow running `vagrant ssh <name>`
 ```
 [mibucad.Bucad-Lenovo] → cat .bashrc
 
@@ -132,15 +132,15 @@ vagrant() {
 
 ## Level 1 – Collecting your Data
 ### Sign up with Datadog
-*  Accessed www.datadoghq.com via browser
+* Accessed www.datadoghq.com via browser
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/aghws3su8ffq38s/101.png?dl=0" />
 
 ### Installing the Datadog Agent
-*  After signup, went to next step installing the agent.
-*  Checked instructions for Ubuntu
+* After signup, went to next step installing the agent.
+* Checked instructions for Ubuntu
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/avncrotul0q749x/102.png?dl=0" />
 
-*  Executed installation steps
+* Executed installation steps
 ```
 vagrant@ddog:~$ sudo su
 root@ddog:/home/vagrant# DD_INSTALL_ONLY=true
@@ -267,7 +267,7 @@ And to run it again run:
     sudo /etc/init.d/datadog-agent start
 ```
 
-*  Verified agent is running
+* Verified agent is running
 ```
 root@ddog:/home/vagrant#  ps -ef |grep datadog
 dd-agent  2516     1  0 00:21 ?        00:00:01 /opt/datadog-agent/embedded/bin/python /opt/datadog-agent/bin/supervisord -c /etc/dd-agent/supervisor.conf --pidfile /opt/datadog-agent/run/datadog-supervisord.pid
@@ -278,19 +278,22 @@ dd-agent  2523  2516  0 00:21 ?        00:00:13 /opt/datadog-agent/embedded/bin/
 root      5781  2056  0 01:09 pts/0    00:00:00 grep --color=auto datadog
 ```
 
-*  Verified reporting data to Datadog. Found 1 host reporting to Datadog with correct hostname.
+* Verified reporting data to Datadog. Found 1 host reporting to Datadog with correct hostname.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/pwq5l1xdb3utzl4/103.png?dl=0" />
 
 
 
 ### Bonus question: In your own words, what is the Agent?
-*  The agent is a small piece of software installed/deployed on target resources which are to be monitored and collect defined metrics from. It does so as often as configured, stores them then sends the data to a central location/server/service (Datadog in this case) to be collated, processed, and transformed to more meaningful information.
+* The agent is a small piece of software installed/deployed on target resources which are to be monitored and collect defined metrics from. It does so as often as configured, stores them then sends the data to a central location/server/service (Datadog in this case) to be collated, processed, and transformed to more meaningful information.
 
 
 
 ### Add tags and view in Host Map
-*  Modified datadog agent configuration file to add tags.
+* Modified datadog agent configuration file to add tags.
+```
 root@ddog:/etc/dd-agent#  vim datadog.conf
+```
+
 ```
 …
 #  Set the host's tags (optional)
@@ -299,7 +302,7 @@ tags: challenge, env:test, role:database
 …
 ```
 
-*  Restarted service for changes to take effect.
+* Restarted service for changes to take effect.
 ```
 root@ddog:/etc/dd-agent#  service datadog-agent restart
  * Stopping Datadog Agent (stopping supervisord) datadog-agent                   [ OK ]
@@ -315,7 +318,7 @@ root@ddog:/etc/dd-agent#  tail /var/log/datadog/collector.log
 2017-05-14 01:30:04 UTC | INFO | dd.collector | checks.collector(collector.py:530) | Finished run # 1. Collection time: 4.71s. Emit time: 0.09s
 ```
 
-*  Verified tags on Host Map page in Datadog.
+* Verified tags on Host Map page in Datadog.
   <img hspace="25" src="https://dl.dropboxusercontent.com/s/rvwxou8ktxx1vuo/104.png?dl=0" />
  
   <img hspace="25" src="https://dl.dropboxusercontent.com/s/cjestc5futryvjt/105.png?dl=0" />
@@ -323,7 +326,7 @@ root@ddog:/etc/dd-agent#  tail /var/log/datadog/collector.log
  
 
 ### Installing database and respective Datadog integration
-*  Installing MySQL database
+* Installing MySQL database
   * Checked for mysql-version in repository
 ```
 root@ddog:~#  apt search mysql-server
@@ -336,7 +339,7 @@ mysql-server/trusty-updates,trusty-security 5.5.55-0ubuntu0.14.04.1 all
   MySQL database server (metapackage depending on the latest version)
 ```
 
-*  Downloaded an installed mysql-server
+* Downloaded an installed mysql-server
 ```
 root@ddog:~#  apt-get install mysql-server
 Reading package lists... Done
@@ -367,17 +370,17 @@ root@ddog:~#  mysql --version
 mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.3
 ```
 
-*  Installing Datadog integration for MySQL. Integrations > Integrations > search “mysql”
+* Installing Datadog integration for MySQL. Integrations > Integrations > search “mysql”
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/fhy55gpso91ry50/106.png?dl=0" />
 
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/tt2hl6ljtmb0nky/107.png?dl=0" />
 
 
-*  Checked for instructions under Configuration tab
+* Checked for instructions under Configuration tab
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/aqfl3zjf9p8a329/108.png?dl=0" />
 
 
-*  Clicked “Generate Password” and ran commands after logging in to mysql as root.
+* Clicked “Generate Password” and ran commands after logging in to mysql as root.
 ```
 root@ddog:~#  mysql -u root -p
 Enter password:
@@ -398,7 +401,7 @@ mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-*  Verified user and replication rights
+* Verified user and replication rights
 ```
 root@ddog:~#  mysql -u datadog --password=A6VLkdC58RgBGTbLJicT39q8 -e "show status" | \
 > grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
@@ -412,7 +415,7 @@ root@ddog:~#  mysql -u datadog --password=A6VLkdC58RgBGTbLJicT39q8 -e "show slav
 MySQL grant - OK
 ```
 
-*  Verified privileges for full metric catalogs
+* Verified privileges for full metric catalogs
 ```
 root@ddog:~#  mysql -u datadog --password=A6VLkdC58RgBGTbLJicT39q8 -e "SELECT * FROM performance_schema.threads" && \
 > echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
@@ -429,7 +432,7 @@ root@ddog:~#  mysql -u datadog --password=A6VLkdC58RgBGTbLJicT39q8 -e "SELECT * 
 MySQL PROCESS grant - OK
 ```
 
-*  Configure the Agent with mysql credentials
+* Configure the Agent with mysql credentials
 ```
 root@ddog:~#  cat > /etc/dd-agent/conf.d/mysql.yaml
 init_config:
@@ -444,13 +447,17 @@ instances:
     options:
         replication: 0
         galera_cluster: 1
+```
 
-*  Restarted the Agent for changes to take effect
+* Restarted the Agent for changes to take effect
+```
 root@ddog:~#  service datadog-agent restart
  * Stopping Datadog Agent (stopping supervisord) datadog-agent           [ OK ]
  * Starting Datadog Agent (using supervisord) datadog-agent              [ OK ]
+```
 
-*  Verified MySQL integration by checking info
+* Verified MySQL integration by checking info
+```
 root@ddog:~#  dd-agent info
 ====================
 Collector (v 5.13.2)
@@ -471,13 +478,12 @@ Collector (v 5.13.2)
 ```
 
 
-
 ### Writing a Custom Check
 - Metric name: test.support.random
 - Check script: zz_Random.py
 - Reference: http://docs.datadoghq.com/guides/agent_checks/
 
-*  Created configuration file
+* Created configuration file
 ```
 root@ddog:~#  cat /etc/dd-agent/conf.d/zz_Random.yaml
 
@@ -488,7 +494,7 @@ instances:
 
 ```
 
-*  Created script to send a random number for metric.
+* Created script to send a random number for metric.
 ```
 root@ddog:~#  vim /opt/datadog-agent/agent/checks.d/zz_Random.py
 
@@ -501,7 +507,7 @@ class zz_Random(AgentCheck):
 
 ```
 
-*  Tested custom metric
+* Tested custom metric
 ```
 root@ddog:/opt/datadog-agent/agent#  sudo -u dd-agent dd-agent check zz_Random
 2017-05-14 10:42:46,408 | INFO | dd.collector | config(config.py:1139) | initialized checks.d checks: ['zz_Random', 'network', 'mysql', 'ntp', 'disk']
@@ -531,41 +537,40 @@ Service Metadata:
   
 ## Level 2 – Visualizing your Data
 Clone database integration
-*  Opened the Dashboard List
+* Opened the Dashboard List
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/zf4egfclikdb88g/201.png?dl=0" />
  
-*  Launched the default “MySQL – Overview” Dashboard
+* Launched the default “MySQL – Overview” Dashboard
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/7sy27wdc9hxxjnd/202.png?dl=0" />
 
-*  Clicked on the gear icon and chose “Clone Dashboard”
+* Clicked on the gear icon and chose “Clone Dashboard”
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/o81dmpk08ejzd9j/203.png?dl=0" />
 
-*  Named the cloned dashboard as “MySQL – Clone”
+* Named the cloned dashboard as “MySQL – Clone”
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/hk7lgzbuzn5y6fr/204.png?dl=0" />
 
  
 ### Add additional metric (Custom Check)
-*  Drag and drop Timeseries widget to the cloned dashboard
+* Drag and drop Timeseries widget to the cloned dashboard
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/w0nxbfwzi65kfq6/205.png?dl=0" />
 
-*  Configure the widget
+* Configure the widget
   * Search for the Metric and provide a title for the graph
   <img hspace="25" src="https://dl.dropboxusercontent.com/s/a009vv497dfs3tm/206.png?dl=0" />
 
-*  Verified widget added with Random Check metric.
-<img hspace="25" src="https://dl.dropboxusercontent.com/s/szz1mip80ksn9pm/207.png?dl=0" />
+* Verified widget added with Random Check metric.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/szz1mip80ksn9pm/207.png?dl=0" />
  
-
 
 ### Bonus question: What is the difference between a timeboard and a screenboard?
 
-*  TimeBoard
+* TimeBoard
   * General purpose: troubleshooting and correlating metric data.
   * Time scope: All graphs share the same configure time range to display.
   * Customizability: Graphs will always show in grid-like fashion but can be rearranged.
   * Shareability: Each graph can be shared individually
   
-*  Screenboard
+* Screenboard
   * General purpose: status boards and data sharing
   * Time scope: Each graph can be configured with different time spans.
   * Customizability: Graphs are more flexible and are more customizable. Graphs can be of different dimensions.
@@ -578,18 +583,15 @@ Clone database integration
 * Highlight to zoom graph containing values of above 0.90
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/9hcalx1aas8e4e8/208.png?dl=0" />
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/71uem1jcpq1be3d/209.png?dl=0" />
-
  
 * Annotated graph to send an event. Can draw a box before posting.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/nuqt15g9hiupa37/210.png?dl=0" />
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/1n2zjp2bear8mrg/211.png?dl=0" />
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/cbmgexg1ed4qvx6/212.png?dl=0" />
-
   
 * Check Events and found the annotated graph. Clicked on the graph to take a snapshot.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/kl5e6i9urbpsanr/213.png?dl=0" />
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/atlt9xz739ew3tl/214.png?dl=0" />
-
  
 * Draw and snapshot the graph
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/v5iix9ed1wl5p1r/215.png?dl=0" />
@@ -598,7 +600,6 @@ Clone database integration
 * Email verification. Checked if notification received via email.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/8hzg8x2v757wzrj/217.png?dl=0" />
 
- 
 * Issues encountered
   * Some Email notifications were not being received
   * Nothing found  in Spam/Junk folder
@@ -614,40 +615,40 @@ Clone database integration
 * Clicked on the gear icon for a specific graph to base the Monitor.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/rpu2kly6j9kyhgg/301.png?dl=0" />
 
-*  Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+* Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/gj1k34t9qg1vhyy/302.png?dl=0" />
  
-*  Set conditions to alert if threshold crossed once during last 5 minutes.
+* Set conditions to alert if threshold crossed once during last 5 minutes.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/pj8p4g8b65gjzp5/303.png?dl=0" />
 
-*  Set the description/message for the alert and set to Notify intended recipients.
+* Set the description/message for the alert and set to Notify intended recipients.
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/a913z03hpw8dnoi/304.png?dl=0" />
 
-*  Check if Monitor has been triggered
+* Check if Monitor has been triggered
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/od4zxn8vymwttkg/305.png?dl=0" />
 
-*  Verify Email alert
+* Verify Email alert
 *Note: Email alert received in both Gmail and Outlook. Likely because sender is not no-reply=datadoghq.com@dtdg.co*
 
   * Gmail
     <img hspace="25" src="https://dl.dropboxusercontent.com/s/9kelofpvps9f3m5/306.png?dl=0" />
-	<img hspace="25" src="https://dl.dropboxusercontent.com/s/g7eya8bppo6vgkd/307.png?dl=0" />
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/g7eya8bppo6vgkd/307.png?dl=0" />
 
   * Outlook
     <img hspace="25" src="https://dl.dropboxusercontent.com/s/29hdynqk1jyon6n/308.png?dl=0" />
 
  
 ### Bonus: Set up a scheduled downtime
-*  Defined a downtime schedule by going to Monitors > “Manage Downtime”
+* Defined a downtime schedule by going to Monitors > “Manage Downtime”
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/syv2eivuge1cz2x/309.png?dl=0" />
 
-*  Set the Schedule and message
+* Set the Schedule and message
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/zczmafwdot5ug9r/310.png?dl=0" />
 
-*  Verified created scheduled downtime
+* Verified created scheduled downtime
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/9hdyjh3a1d9zj6z/311.png?dl=0" />
 
-*  Verified that Email notification is received
+* Verified that Email notification is received
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/gcminfv7iyeui6h/312.png?dl=0" />
  
 
