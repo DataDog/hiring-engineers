@@ -547,6 +547,7 @@ Clone database integration
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/o81dmpk08ejzd9j/203.png?dl=0" />
 
 * Named the cloned dashboard as “MySQL – Clone”
+  * Link: [MySQL Clone](https://app.datadoghq.com/dash/288989/mysql---clone)
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/hk7lgzbuzn5y6fr/204.png?dl=0" />
 
  
@@ -570,11 +571,12 @@ Clone database integration
   * Customizability: Graphs will always show in grid-like fashion but can be rearranged.
   * Shareability: Each graph can be shared individually
   
-* Screenboard
+* ScreenBoard
   * General purpose: status boards and data sharing
   * Time scope: Each graph can be configured with different time spans.
   * Customizability: Graphs are more flexible and are more customizable. Graphs can be of different dimensions.
-  * Shareablility: Graphs are shared as a whole but as a read-only entity
+  * Shareablility: Graphs are shared as a whole but as a read-only entity. 
+    * e.g. [Sample ScreenBoard](https://p.datadoghq.com/sb/5a8ad3031-babcede94c)
   
   - Reference: https://p.datadoghq.com/sb/5a8ad3031-18d4027fe9
 
