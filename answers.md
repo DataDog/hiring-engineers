@@ -6,6 +6,7 @@
 
 - Operating System: Windows 10 Home x64
 
+
 #### Oracle VM VirtualBox
   *  Source: https://www.virtualbox.org/
   <img hspace="20" src="https://dl.dropboxusercontent.com/s/euih82oyla8ze1h/001.png=0" />
@@ -33,7 +34,6 @@
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/9w7v6yh6rrfs634/006.png?dl=0" />
 
 
-
 *  Additional configuration needed to make MobaXterm work with Vagrant.
   * Set environment variable “VAGRANT_HOME”
  <img hspace="20" src="https://dl.dropboxusercontent.com/s/s8betn46h6rnv30/007.png?dl=0" />
@@ -48,22 +48,22 @@
 *  Verify Vagrant setup.
   * Ran `vagrant -h` to check if vagrant binaries are accessible.
   * Error encountered below.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/lr564n0qvgjcvpt/010.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/lr564n0qvgjcvpt/010.png?dl=0" />
 
   * As per research, it is a known issue which can be resolved by upgrading vagrant-share plugin
   * Resolution: Upgrade vagrant-share plugin
   * Reference: https://github.com/mitchellh/vagrant/issues/8532
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/i6t2zrwl148djet/011.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/i6t2zrwl148djet/011.png?dl=0" />
 
   * Ran the command to upgrade the plugin
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/kvenlbj7324c5nn/012.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/kvenlbj7324c5nn/012.png?dl=0" />
 
   * Verified if issue was resolved. Successfully ran `vagrant -h` 
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/y5upe4jo25igzqs/013.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/y5upe4jo25igzqs/013.png?dl=0" />
 
 
 *  Created VagrantFile to provision an Ubuntu 14.04 VM using virtualbox as provider.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/r5w8tmc23j0mnvg/014.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/r5w8tmc23j0mnvg/014.png?dl=0" />
 
   * ../data on the host PC is shared to /vagrant_data on VM in case files needs to be transferred to and fro
   * IP address set explicitly but will actually still get a default IP from VirtualBox starting from .15
@@ -84,26 +84,26 @@
 
   * `vagrant up` command no longer resulted to errors and successfully provisioned the VM
   * Checked if VM is running.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/fq9efrev4igx37u/017.png?dl=0" />
+  <img hspace="20" src="https://dl.dropboxusercontent.com/s/fq9efrev4igx37u/017.png?dl=0" />
 
 
 *  Verify access to VM
   * Issue when accessing VM via `vagrant ssh`.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/gu0yzkksdcvqv2q/018.png?dl=0" />
+  <img hspace="20" src="https://dl.dropboxusercontent.com/s/gu0yzkksdcvqv2q/018.png?dl=0" />
 
   * Workarounds
-    * If private IP accessible from Host, SSH directly.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/21480zy8zh2c46v/019.png?dl=0" />
+    - If private IP accessible from Host, SSH directly.
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/21480zy8zh2c46v/019.png?dl=0" />
+      
+    - If Oracle VirtualBox Extensions installed, SSH via forwarded port.
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/scs8vs7g32f2j2e/020.png?dl=0" />
+      
+    - Override `vagrant` command via .BASHRC
+      - Reference: https://github.com/mitchellh/vagrant/issues/5559
+    
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/v718qds1l3sbacr/021.png?dl=0" />
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/p0ottr0yg22vtmp/022.png?dl=0" />
 
-    * If Oracle VirtualBox Extensions installed, SSH via forwarded port
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/scs8vs7g32f2j2e/020.png?dl=0" />
-
-    * Override “vagrant” command via .BASHRC
-      * Reference: https://github.com/mitchellh/vagrant/issues/5559
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/v718qds1l3sbacr/021.png?dl=0" />
-<img hspace="20" src="https://dl.dropboxusercontent.com/s/p0ottr0yg22vtmp/022.png?dl=0" />
-
- 
 
 *  Used below modified script to allow running `vagrant ssh <name>`
 ```
@@ -126,7 +126,7 @@ vagrant() {
 ```
 
   * Verified that “vagrant ssh” is able to access default VM.
- <img hspace="20" src="https://dl.dropboxusercontent.com/s/hj1ac1yh5rtbrpy/023.png?dl=0" />
+   <img hspace="20" src="https://dl.dropboxusercontent.com/s/hj1ac1yh5rtbrpy/023.png?dl=0" />
 
 
 
@@ -139,7 +139,6 @@ vagrant() {
 *  After signup, went to next step installing the agent.
 *  Checked instructions for Ubuntu
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/avncrotul0q749x/102.png?dl=0" />
-
 
 *  Executed installation steps
 ```
@@ -283,8 +282,11 @@ root      5781  2056  0 01:09 pts/0    00:00:00 grep --color=auto datadog
  <img hspace="25" src="https://dl.dropboxusercontent.com/s/pwq5l1xdb3utzl4/103.png?dl=0" />
 
 
+
 ### Bonus question: In your own words, what is the Agent?
 *  The agent is a small piece of software installed/deployed on target resources which are to be monitored and collect defined metrics from. It does so as often as configured, stores them then sends the data to a central location/server/service (Datadog in this case) to be collated, processed, and transformed to more meaningful information.
+
+
 
 ### Add tags and view in Host Map
 *  Modified datadog agent configuration file to add tags.
@@ -314,9 +316,9 @@ root@ddog:/etc/dd-agent#  tail /var/log/datadog/collector.log
 ```
 
 *  Verified tags on Host Map page in Datadog.
- <img hspace="25" src="https://dl.dropboxusercontent.com/s/rvwxou8ktxx1vuo/104.png?dl=0" />
+  <img hspace="25" src="https://dl.dropboxusercontent.com/s/rvwxou8ktxx1vuo/104.png?dl=0" />
  
-<img hspace="25" src="https://dl.dropboxusercontent.com/s/cjestc5futryvjt/105.png?dl=0" />
+  <img hspace="25" src="https://dl.dropboxusercontent.com/s/cjestc5futryvjt/105.png?dl=0" />
 
  
 
@@ -371,11 +373,9 @@ mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/tt2hl6ljtmb0nky/107.png?dl=0" />
 
 
-
 *  Checked for instructions under Configuration tab
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/aqfl3zjf9p8a329/108.png?dl=0" />
 
- 
 
 *  Clicked “Generate Password” and ran commands after logging in to mysql as root.
 ```
@@ -470,11 +470,12 @@ Collector (v 5.13.2)
 
 ```
 
+
+
 ### Writing a Custom Check
 - Metric name: test.support.random
 - Check script: zz_Random.py
 - Reference: http://docs.datadoghq.com/guides/agent_checks/
-
 
 *  Created configuration file
 ```
@@ -501,6 +502,7 @@ class zz_Random(AgentCheck):
 ```
 
 *  Tested custom metric
+```
 root@ddog:/opt/datadog-agent/agent#  sudo -u dd-agent dd-agent check zz_Random
 2017-05-14 10:42:46,408 | INFO | dd.collector | config(config.py:1139) | initialized checks.d checks: ['zz_Random', 'network', 'mysql', 'ntp', 'disk']
 2017-05-14 10:42:46,412 | INFO | dd.collector | config(config.py:1140) | initialization failed checks.d checks: []
@@ -520,7 +522,8 @@ Service Metadata:
     ------------------
       - instance # 0 [OK]
       - Collected 1 metric, 0 events & 0 service checks
+```
 
 *  Verified in Datadog if metric was received from the agent
-<img hspace="25" src="https://dl.dropboxusercontent.com/s/x8x8a9yzv1jca0m/109.png?dl=0" />
+  <img hspace="25" src="https://dl.dropboxusercontent.com/s/x8x8a9yzv1jca0m/109.png?dl=0" />
 
