@@ -339,7 +339,7 @@ mysql-server/trusty-updates,trusty-security 5.5.55-0ubuntu0.14.04.1 all
   MySQL database server (metapackage depending on the latest version)
 ```
 
-* Downloaded an installed mysql-server
+  * Downloaded an installed mysql-server
 ```
 root@ddog:~#  apt-get install mysql-server
 Reading package lists... Done
@@ -376,11 +376,11 @@ mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.
 <img hspace="25" src="https://dl.dropboxusercontent.com/s/tt2hl6ljtmb0nky/107.png?dl=0" />
 
 
-* Checked for instructions under Configuration tab
-<img hspace="25" src="https://dl.dropboxusercontent.com/s/aqfl3zjf9p8a329/108.png?dl=0" />
+  * Checked for instructions under Configuration tab
+  <img hspace="25" src="https://dl.dropboxusercontent.com/s/aqfl3zjf9p8a329/108.png?dl=0" />
 
 
-* Clicked “Generate Password” and ran commands after logging in to mysql as root.
+  * Clicked “Generate Password” and ran commands after logging in to mysql as root.
 ```
 root@ddog:~#  mysql -u root -p
 Enter password:
