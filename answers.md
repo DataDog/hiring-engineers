@@ -5,8 +5,10 @@ Account: email
 Agent: the Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service), and forwarding state engine that securely relays data to the cloud.
 
 Tags: line 31/259 of /etc/dd-agent/datadog.conf
- tags: Test, env:test, role:candidatetest, region:west
- Screenshots: *Tags* screenshots
+
+tags: Test, env:test, role:candidatetest, region:west
+
+Screenshots: *Tags* screenshots
  
  Database install: See mongo.yaml
  
@@ -33,7 +35,6 @@ Service Metadata:[{}]
     randomcheck (5.13.2)
     
     --------------------
-    
       - instance #0 [OK]
       - Collected 0 metrics, 0 events & 0 service checks
 
