@@ -14,17 +14,29 @@ Tags: line 31/259 of /etc/dd-agent/datadog.conf
  
 Output:
 root@datadogvm:/etc/dd-agent# dd-agent check randomcheck
+
 2017-05-15 13:20:12,747 | INFO | dd.collector | config(config.py:1139) | initialized checks.d checks: ['mongo', 'randomcheck', 'ntp', 'disk', 'testcheck', 'network']
+
 2017-05-15 13:20:12,748 | INFO | dd.collector | config(config.py:1140) | initialization failed checks.d checks: []
+
 2017-05-15 13:20:12,748 | INFO | dd.collector | checks.collector(collector.py:542) | Running check randomcheck
+
 **('test.support.random', 0.35526151404083917)**
+
 Metrics: 
+
 []
+
 Events: 
+
 []
+
 Service Checks: 
+
 []
+
 Service Metadata: 
+
 [{}]
     randomcheck (5.13.2)
     --------------------
