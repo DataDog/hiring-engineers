@@ -12,7 +12,7 @@ tags: Test, env:test, role:candidatetest, region:west
 
 Screenshots: *Tags* screenshots
  
- Database install: See mongo.yaml
+MongoDB database integration install: See mongo.yaml
  
  test.support.random: Code can be found in conf.d and checks.d. I used 'testcheck' to learn and 'randomcheck' to poll 'test.support.random'. 
  
