@@ -1,11 +1,15 @@
 
-#The Challenger – Marc Ian Bucad
-##Level 0 – Setting up an Ubuntu VM
-###Installing and configuring the software and tools to set up an Ubuntu VM provisioned using Vagrant using Oracle VirtualBox as the hypervisor/provider.
--Operating System: Windows 10 Home x64
-####Oracle VM VirtualBox
+# The Challenger – Marc Ian Bucad
+
+## Level 0 – Setting up an Ubuntu VM
+
+### Installing and configuring the software and tools to set up an Ubuntu VM provisioned using Vagrant using Oracle VirtualBox as the hypervisor/provider.
+
+- Operating System: Windows 10 Home x64
+
+#### Oracle VM VirtualBox
   *  Source: https://www.virtualbox.org/
- 
+ <img src="https://www.dropbox.com/s/euih82oyla8ze1h/001.png?dl=0" />
   *  Downloaded an installed the VirtualBox platform for Windows Hosts
   *  Downloaded and installed Oracle CM VirtualBox Exension Pack. Useful for private net
   * Version: 5.1.22
