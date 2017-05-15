@@ -527,3 +527,128 @@ Service Metadata:
 *  Verified in Datadog if metric was received from the agent
   <img hspace="25" src="https://dl.dropboxusercontent.com/s/x8x8a9yzv1jca0m/109.png?dl=0" />
 
+
+  
+## Level 2 – Visualizing your Data
+Clone database integration
+*  Opened the Dashboard List
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/zf4egfclikdb88g/201.png?dl=0" />
+ 
+*  Launched the default “MySQL – Overview” Dashboard
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/7sy27wdc9hxxjnd/202.png?dl=0" />
+
+*  Clicked on the gear icon and chose “Clone Dashboard”
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/o81dmpk08ejzd9j/203.png?dl=0" />
+
+*  Named the cloned dashboard as “MySQL – Clone”
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/hk7lgzbuzn5y6fr/204.png?dl=0" />
+
+ 
+### Add additional metric (Custom Check)
+*  Drag and drop Timeseries widget to the cloned dashboard
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/w0nxbfwzi65kfq6/205.png?dl=0" />
+
+*  Configure the widget
+  * Search for the Metric and provide a title for the graph
+  <img hspace="25" src="https://dl.dropboxusercontent.com/s/a009vv497dfs3tm/206.png?dl=0" />
+
+*  Verified widget added with Random Check metric.
+<img hspace="25" src="https://dl.dropboxusercontent.com/s/szz1mip80ksn9pm/207.png?dl=0" />
+ 
+
+
+### Bonus question: What is the difference between a timeboard and a screenboard?
+
+*  TimeBoard
+  * General purpose: troubleshooting and correlating metric data.
+  * Time scope: All graphs share the same configure time range to display.
+  * Customizability: Graphs will always show in grid-like fashion but can be rearranged.
+  * Shareability: Each graph can be shared individually
+  
+*  Screenboard
+  * General purpose: status boards and data sharing
+  * Time scope: Each graph can be configured with different time spans.
+  * Customizability: Graphs are more flexible and are more customizable. Graphs can be of different dimensions.
+  * Shareablility: Graphs are shared as a whole but as a read-only entity
+  
+  - Reference: https://p.datadoghq.com/sb/5a8ad3031-18d4027fe9
+
+  
+### Take snapshot of `test.support.random` graph
+* Highlight to zoom graph containing values of above 0.90
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/9hcalx1aas8e4e8/208.png?dl=0" />
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/71uem1jcpq1be3d/209.png?dl=0" />
+
+ 
+* Annotated graph to send an event. Can draw a box before posting.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/nuqt15g9hiupa37/210.png?dl=0" />
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/1n2zjp2bear8mrg/211.png?dl=0" />
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/cbmgexg1ed4qvx6/212.png?dl=0" />
+
+  
+* Check Events and found the annotated graph. Clicked on the graph to take a snapshot.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/kl5e6i9urbpsanr/213.png?dl=0" />
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/atlt9xz739ew3tl/214.png?dl=0" />
+
+ 
+* Draw and snapshot the graph
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/v5iix9ed1wl5p1r/215.png?dl=0" />
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/88mkfa5z150f96z/216.png?dl=0" />
+
+* Email verification. Checked if notification received via email.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/8hzg8x2v757wzrj/217.png?dl=0" />
+
+ 
+* Issues encountered
+  * Some Email notifications were not being received
+  * Nothing found  in Spam/Junk folder
+  * Notified Outlook.com email instead of Gmaill.com – Received successfully
+  * _Conclusion_: Gmail servers have blocked incoming mail from "noreply=datadoghq.com@dtdg.co"
+ 
+ 
+ 
+## Level 3 – Alerting on your Data
+
+### Setup Monitor
+* Threshold: 0.90
+* Clicked on the gear icon for a specific graph to base the Monitor.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/rpu2kly6j9kyhgg/301.png?dl=0" />
+
+*  Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/gj1k34t9qg1vhyy/302.png?dl=0" />
+ 
+*  Set conditions to alert if threshold crossed once during last 5 minutes.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/pj8p4g8b65gjzp5/303.png?dl=0" />
+
+*  Set the description/message for the alert and set to Notify intended recipients.
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/a913z03hpw8dnoi/304.png?dl=0" />
+
+*  Check if Monitor has been triggered
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/od4zxn8vymwttkg/305.png?dl=0" />
+
+*  Verify Email alert
+*Note: Email alert received in both Gmail and Outlook. Likely because sender is not no-reply=datadoghq.com@dtdg.co*
+
+  * Gmail
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/9kelofpvps9f3m5/306.png?dl=0" />
+	<img hspace="25" src="https://dl.dropboxusercontent.com/s/g7eya8bppo6vgkd/307.png?dl=0" />
+
+  * Outlook
+    <img hspace="25" src="https://dl.dropboxusercontent.com/s/29hdynqk1jyon6n/308.png?dl=0" />
+
+ 
+### Bonus: Set up a scheduled downtime
+*  Defined a downtime schedule by going to Monitors > “Manage Downtime”
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/syv2eivuge1cz2x/309.png?dl=0" />
+
+*  Set the Schedule and message
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/zczmafwdot5ug9r/310.png?dl=0" />
+
+*  Verified created scheduled downtime
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/9hdyjh3a1d9zj6z/311.png?dl=0" />
+
+*  Verified that Email notification is received
+ <img hspace="25" src="https://dl.dropboxusercontent.com/s/gcminfv7iyeui6h/312.png?dl=0" />
+ 
+
+# END
