@@ -34,9 +34,9 @@ Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc
 
 - Bonus question: What is the difference between a timeboard and a screenboard?
 
-*The biggest distinction between boards is that timeboards contain graphs or metrics scoped to the same time frame appearing in a grid format. You can use these for time series based root cause analysis and event correlation. TimeBoards can only be shared to individuals.*
+*The biggest distinction between boards is that timeboards contain graphs or metrics scoped to the same time frame appearing in a grid format. You can use these for time series based root cause analysis and event correlation. TimeBoards can only be shared to individuals.
 
-*Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. Very modular and multifunctional. *
+*Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. Very modular and multifunctional.
 
 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
