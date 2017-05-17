@@ -309,7 +309,7 @@ Monitor notifications via email:
 ### Downtime Scheduling
 5. Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. I helpfully included a link for the user to revisit the schedule inside the schedule message. These configurations can be found under [Monitors > Manager Downtime].(https://app.datadoghq.com/monitors#/downtime).
+I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. I included a helpful link for the user to revisit the schedule inside the schedule message. These configurations can be found under [Monitors > Manager Downtime].(https://app.datadoghq.com/monitors#/downtime).
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeschedule2.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeemail.png"></p>
