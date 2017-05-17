@@ -110,7 +110,14 @@ Because we're using Ubuntu 16.04 there is no need to muck around with as many co
      sudo apt-get install -y mongodb-org
 
 #### E. MongoDB database integration install: 
-[/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
+Simply copy paste from the [Datadog UI](https://app.datadoghq.com/account/settings#integrations/mongodb)
+```bash
+use admin
+db.auth("admin", "admin-password")
+db.createUser({"user":"datadog", "pwd": "PASSWORD", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
+```
+
+And edit [/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
 ```yaml
 init_config:
 
@@ -127,12 +134,58 @@ instances:
               - region:west
 ```
 
+#### F. Verify Datadog MongoDB agent integration install:
+```bash
+root@datadogvm:~# dd-agent info
+====================
+Collector (v 5.13.2)
+====================
+
+  Status date: 2017-05-16 18:28:18 (14s ago)
+  Pid: 1375
+  Platform: Linux-4.8.0-49-generic-x86_64-with-Ubuntu-16.04-xenial
+  Python Version: 2.7.13, 64bit
+  Logs: <stderr>, /var/log/datadog/collector.log, syslog:/dev/log
+
+  Clocks
+  ======
+  
+    NTP offset: 19.3469 s
+    System UTC time: 2017-05-17 01:28:33.186652
+  
+  Paths
+  =====
+  
+    conf.d: /etc/dd-agent/conf.d
+    checks.d: /opt/datadog-agent/agent/checks.d
+  
+  Hostnames
+  =========
+  
+    socket-hostname: datadogvm
+    hostname: datadogvm
+    socket-fqdn: datadogvm
+  
+  Checks
+  ======
+  
+    mongo (5.13.2)
+    --------------
+      - instance #0 [ERROR]: 'localhost:27016: [Errno 111] Connection refused'
+      - instance #1 [OK]
+      - Collected 114 metrics, 0 events & 2 service checks
+      - Dependencies:
+          - pymongo: 3.2
+
+...
+
+```
 
 ### Custom Agent Check 
 
 5. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-`test.support.random`: Code can be found in conf.d and checks.d. I used `testcheck` to learn and `randomcheck` to poll `test.support.random`. 
+`test.support.random`: I used `testcheck` to learn and `randomcheck` to poll `test.support.random`. 
  
  [/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
  ```python
@@ -171,7 +224,28 @@ instances:
     [{}]
  ```
  
- 
+ To test `randomcheck` I ran the following command: 
+ ```bash
+ root@datadogvm:~# dd-agent check randomcheck
+2017-05-16 18:26:59,668 | INFO | dd.collector | config(config.py:1139) | initialized checks.d checks: ['mongo', 'randomcheck', 'ntp', 'disk', 'testcheck', 'network']
+2017-05-16 18:26:59,669 | INFO | dd.collector | config(config.py:1140) | initialization failed checks.d checks: []
+2017-05-16 18:26:59,669 | INFO | dd.collector | checks.collector(collector.py:542) | Running check randomcheck
+Metrics: 
+[('test.support.random',
+  1494984419,
+  0.7399072281918588,
+  {'hostname': 'datadogvm', 'type': 'gauge'})]
+Events: 
+[]
+Service Checks: 
+[]
+Service Metadata: 
+[{}]
+    randomcheck (5.13.2)
+    --------------------
+      - instance #0 [OK]
+      - Collected 1 metric, 0 events & 0 service checks
+```
  
  
 ## Level 2 - Visualizations
