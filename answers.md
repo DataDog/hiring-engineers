@@ -33,7 +33,7 @@ Datadog (pronounced *day-ta-dog*) is a monitoring service for cloud-scale applic
   * [Alerting](#alerting)
   * [Downtime Scheduling](#downtime-scheduling)
 * [Conclusion](#conclusion)
-* [Misc Links](#misc-links)
+* [Helpful Links](#helpful-links)
  
 
 
@@ -323,9 +323,7 @@ After completing this technical challenge I feel confident with a Datadog troubl
 If there are any questions please feel free to reach out via [email](mailto:bradleyseth.weinstein@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bradleysweinstein/)
 
 
-##### Misc Links
-   [Datadog Solutions Engineering github branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)
-
-   [Datadog Docs: Agent Checks](https://docs.datadoghq.com/guides/agent_checks/)
-
-   [Datadog Docs: Tagging Guide](https://docs.datadoghq.com/guides/tagging/)
+##### Helpful Links
+* [Datadog Solutions Engineering github branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)
+* [Datadog Docs: Agent Checks](https://docs.datadoghq.com/guides/agent_checks/)
+* [Datadog Docs: Tagging Guide](https://docs.datadoghq.com/guides/tagging/)
