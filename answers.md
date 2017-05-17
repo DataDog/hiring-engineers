@@ -255,7 +255,7 @@ Service Metadata:
 ### Dashboards
 1. Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc metrics:
+Cloned MongoDB ScreenBoard under [Dashboards > Dashboard List](https://app.datadoghq.com/dash/list) to "DB Clone Dashboard", added custom metric and misc metrics:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_screenboardclone_16_05_2017_18_54_40.png"></p>
 
 I felt that screenboard was a bit too cluttered and created my own:
@@ -276,7 +276,7 @@ I felt that screenboard was a bit too cluttered and created my own:
 
 3. Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-Fun fact for newbies: Snapshot Notification are sent via TimeBoard *NOT* Screenboard. Maybe that will change in the future?
+Fun fact for newbies: Snapshot Notification are sent via TimeBoard *NOT* Screenboard. Maybe this functionality will change in the future?
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogevent.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/emailnotification.png"></p>
@@ -288,6 +288,8 @@ Fun fact for newbies: Snapshot Notification are sent via TimeBoard *NOT* Screenb
 ### Monitors
 1. Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 2. Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+
+Monitors can be found under [Monitors > Manage Monitors](https://app.datadoghq.com/monitors/manage).
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogmonitor.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/multialert.png"></p>
@@ -307,7 +309,7 @@ Monitor notifications via email:
 ### Downtime Scheduling
 5. Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. I helpfully included a link for the user to revisit the schedule inside the schedule message.
+I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. I helpfully included a link for the user to revisit the schedule inside the schedule message. These configurations can be found under [Monitors > Manager Downtime].(https://app.datadoghq.com/monitors#/downtime).
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeschedule2.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeemail.png"></p>
