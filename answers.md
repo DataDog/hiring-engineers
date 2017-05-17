@@ -28,7 +28,7 @@ Datadog (pronounced *day-ta-dog*) is a monitoring service for cloud-scale applic
   * [Dashboards](#dashboards)
   * [TimeBoard vs Screenboard](#timeboard-vs-screenboard)
   * [Snapshots](#snapshots)
-* [Level 3 - Alerting](#level--3--alerting)
+* [Level 3 - Alerting](#level--3---alerting)
   * [Monitors](#monitors)
   * [Alerting](#alerting)
   * [Downtime Scheduling](#downtime-scheduling)
