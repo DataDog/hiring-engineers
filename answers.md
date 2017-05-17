@@ -15,7 +15,7 @@ Datadog (pronounced *day-ta-dog*) is a monitoring service for cloud-scale applic
 * Full REST API access to capture events and metrics, creating or tag servers, query Datadog information or structure dashboards in JSON. 
 
 
-# Table of Contents
+## Table of Contents
 
 * [Level 0 - Setup](#level-0-setup)
   * [Ubuntu Install](#ubuntu-install)
