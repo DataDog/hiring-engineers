@@ -76,7 +76,7 @@ DD_API_KEY=[API KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDo
 
 3. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Tags can be easily added via API, editing configuration files in the Datadog agent, or via the UI
+Tags can be easily added via API, editing configuration files in the Datadog agent, or via the UI. Tags are great when working with services and other objects at scale. From my experience, efficient tagging leads to amazing correlation!
 
 Added ```tags: Test, env:test, role:candidatetest, region:west``` to `datadog.conf`
 
