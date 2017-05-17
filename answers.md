@@ -255,7 +255,13 @@ Service Metadata:
 ### Dashboards
 1. Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc metrics.
+Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc metrics:
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_screenboardclone_16_05_2017_18_54_40.png"></p>
+
+I felt that screenboard was a bit too cluttered and created my own:
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_screenboard_16_05_2017_18_54_40.png"></p>
+
+
 
 
 ### TimeBoard vs Screenboard
@@ -264,13 +270,17 @@ Cloned MongoDB ScreenBoard to "DB Clone Dashboard", added custom metric and misc
 
 *The biggest distinction between boards is that timeboards contain graphs or metrics scoped to the same time frame appearing in a grid format. You can use these for time series based root cause analysis and event correlation. TimeBoards can only be shared to individuals.*
 
-*Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within your organization. Very modular and multifunctional.*
+*Screenboards are very customizable, widget based boards. They can have checks, status, queries or any data from the Datadog system in the dashboard. Screenboards are shareable as live entities within or outside your organization. Very modular and multifunctional.*
 
 ### Snapshots
 
 3. Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
 Snapshot Notification are sent via TimeBoard *NOT* Screenboard. See screenshots folder of notification.png	for information sent to email notifier via UI. 
+
+
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogevent.png"></p>
+
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/notification.png"></p>
 
 
@@ -281,15 +291,21 @@ Snapshot Notification are sent via TimeBoard *NOT* Screenboard. See screenshots 
 1. Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 2. Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
-See screenshot multialert.png in screenshots folder
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogmonitor.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/multialert.png"></p>
 
 ### Alerting
 3. Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/monitormessage.png"></p>
+
 4. This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-Monitor notification via email: see monitoralert.png in screenshots folder
+Monitor notifications via email:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/monitoralert.png"></p>
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/advancedmonitoralert.png"></p>
+
+
 
 ### Downtime Scheduling
 5. Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
