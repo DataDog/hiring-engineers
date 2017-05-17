@@ -79,7 +79,7 @@ Tags: line 31/259 of /etc/dd-agent/datadog.conf:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_tags_15_05_2017_08_02_27.png"></p>
 
 View from Datadog UI:
-<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/screenshots/VirtualBox_datadogvm_tags2_15_05_2017_08_02_27.png"></p>
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_tags2_15_05_2017_08_02_27.png"></p>
 
 
 ### Integrations
