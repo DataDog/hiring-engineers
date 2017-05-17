@@ -187,7 +187,7 @@ Collector (v 5.13.2)
 
 5. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place a check execution script in `/etc/dd-agent/checks.d/` and a configuration file in `/etc/dd-agent/conf.d` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
+To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place a check execution script in `/etc/dd-agent/checks.d/` and a configuration file in `/etc/dd-agent/conf.d/` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
  
  [/etc/dd-agent/checks.d/testcheck.py](/checks.d/testcheck.py):
  ```python
