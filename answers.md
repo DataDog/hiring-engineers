@@ -314,8 +314,13 @@ I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. 
 
 
 
+
+
 ## Conclusion
 
+After completed this technical challenge it gives me a much better idea what a troubleshooting or installation session would look like. I'd like to give my thanks to the Datadog crew for letting me attempt this challenge.
+
+If there are any questions please feel free to reach out via [email](mailto:bradleyseth.weinstein@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bradleysweinstein/)
 
 
 ##### Misc Links
