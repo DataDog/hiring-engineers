@@ -32,11 +32,15 @@ Datadog (pronounced *day-ta-dog*) is a monitoring service for cloud-scale applic
   * [Monitors](#monitors)
   * [Alerting](#alerting)
   * [Downtime Scheduling](#downtime-scheduling)
+* [Conclusion](#conclusion)
 * [Misc Links](#misc-links)
  
 
 
+
 ## Level 0 - Setup
+
+
 
 ### Ubuntu Install
 Downloaded ISO for [Ubuntu](https://www.ubuntu.com/download) version 16.04 (Xenial Xerus)
@@ -44,8 +48,6 @@ Downloaded ISO for [Ubuntu](https://www.ubuntu.com/download) version 16.04 (Xeni
 Installed [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.1.22
 
 Launched Ubuntu VM with a 1G memory, 10G disk for hosting the Datadog agent and associated integrations. Snapshots were saved every level to recreate/rebuild technical challenge if needed.
-
-
 
 
 
@@ -65,7 +67,8 @@ DD_API_KEY=[API KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDo
 
 2. Bonus question: In your own words, what is the Agent?
 
-*The Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service called dogstatsd), and event forwarding engine that securely relays data to the cloud.*
+
+> The Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service called dogstatsd), and event forwarding engine that securely relays data to the cloud.
 
 
 
@@ -73,9 +76,9 @@ DD_API_KEY=[API KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDo
 
 3. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-tags: Test, env:test, role:candidatetest, region:west
+Added ```tags: Test, env:test, role:candidatetest, region:west``` to `datadog.conf`
 
-Tags: line 31/259 of /etc/dd-agent/datadog.conf:
+Tags: line 31/259 of `/etc/dd-agent/datadog.conf`:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_tags_15_05_2017_08_02_27.png"></p>
 
 View from Datadog UI:
@@ -86,13 +89,88 @@ View from Datadog UI:
 
 4. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-MongoDB database integration install: See mongo.yaml in conf.d folder
+I went with installing MongoDB via command line. Since we're using Ubuntu 16.04 there are a few additional steps we need to take before installing the Datadog MongoDB integration. If you're interested in how to do this yourself, check out the MongoDB [install page](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). 
+
+Because we're using Ubuntu 16.04 there is no need to muck around with as many configuration files. All hail `systemd`.
+
+#### A. Import public security keys 
+   
+     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+    
+#### B. Create list files for MongoDB 
+   
+     echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+   
+#### C. Update apt-get
+   
+     sudo apt-get update
+   
+#### D. Install MongoDB
+   
+     sudo apt-get install -y mongodb-org
+
+#### E. MongoDB database integration install: 
+[/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
+```yaml
+init_config:
+
+...
+
+instances:
+      -   server: mongodb://datadog:RwdqaIg2CjAN1n0mESxpHBvr@localhost:27016
+          tags:
+              - env:test
+              - region:west
+      -   server: mongodb://datadog:RwdqaIg2CjAN1n0mESxpHBvr@localhost:27017
+          tags:
+              - env:test
+              - region:west
+```
+
 
 ### Custom Agent Check 
 
 5. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-test.support.random: Code can be found in conf.d and checks.d. I used 'testcheck' to learn and 'randomcheck' to poll 'test.support.random'. 
+`test.support.random`: Code can be found in conf.d and checks.d. I used `testcheck` to learn and `randomcheck` to poll `test.support.random`. 
+ 
+ [/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
+ ```python
+ from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('hello.datadoggers', 1)
+```
+[/checks.d/randomcheck.py](hiring-engineers/checks.d/randomcheck.py):
+```python
+import random
+
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+    #    print('test.support.random', random.random())
+    #     self.service_check('test.support.random', message='test.support.random:', random.random())
+    # currentRandom=random.random()
+    
+     self.gauge('test.support.random', random.random())
+```
+
+[/conf.d/testcheck.yaml](hiring-engineers/conf.d/testcheck.yaml):
+```yaml
+init_config:
+
+instances:
+    [{}]
+ ```
+ 
+[/conf.d/randomcheck.yaml](hiring-engineers/conf.d/randomcheck.yaml):
+```yaml
+init_config:
+
+instances:
+    [{}]
+ ```
+ 
  
  
  
@@ -146,5 +224,13 @@ I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. 
 
 
 
+## Conclusion
 
-###### Misc Links
+
+
+##### Misc Links
+[Datadog Solutions Engineering github branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)
+
+[Datadog Docs: Agent Checks](https://docs.datadoghq.com/guides/agent_checks/)
+
+[Datadog Docs: Tagging Guide](https://docs.datadoghq.com/guides/tagging/)
