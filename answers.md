@@ -276,8 +276,7 @@ I felt that screenboard was a bit too cluttered and created my own:
 
 3. Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-Snapshot Notification are sent via TimeBoard *NOT* Screenboard. See screenshots folder of notification.png	for information sent to email notifier via UI. 
-
+Fun fact for newbies: Snapshot Notification are sent via TimeBoard *NOT* Screenboard. Maybe that will change in the future?
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogevent.png"></p>
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/emailnotification.png"></p>
@@ -310,7 +309,8 @@ Monitor notifications via email:
 
 I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. I helpfully included a link for the user to revisit the schedule inside the schedule message.
 
-<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeschedule.png"></p>
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeschedule2.png"></p>
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/downtimeemail.png"></p>
 
 
 
