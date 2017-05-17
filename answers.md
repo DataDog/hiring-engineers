@@ -320,7 +320,7 @@ I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. 
 
 ## Conclusion
 
-After completing this technical challenge I feel confident with a Datadog troubleshooting or installation session would look like. I'd like to give my thanks to the Datadog crew for letting me attempt this challenge.
+After completing this technical challenge I feel confident I could easily complete a Datadog troubleshooting or installation session. I'd like to give my thanks to the Datadog crew for letting me attempt this challenge.
 
 If there are any questions please feel free to reach out via [email](mailto:bradleyseth.weinstein@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bradleysweinstein/)
 
