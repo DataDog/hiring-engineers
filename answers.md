@@ -78,7 +78,7 @@ DD_API_KEY=[API KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDo
 
 Tags can be easily added via API, editing configuration files in the Datadog agent, or via the UI. Tags are great when working with services and other objects at scale. From my experience, efficient tagging leads to amazing correlation!
 
-Added ```tags: Test, env:test, role:candidatetest, region:west``` to `datadog.conf`
+Added ```tags: Test, env:test, role:candidatetest, region:west``` to `/etc/dd-agent/datadog.conf`
 
 Tags: line 31/259 of `/etc/dd-agent/datadog.conf`:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/VirtualBox_datadogvm_tags_15_05_2017_08_02_27.png"></p>
@@ -112,14 +112,14 @@ Because we're using Ubuntu 16.04 there is no need to muck around with as many co
      sudo apt-get install -y mongodb-org
 
 #### E. MongoDB database integration install: 
-Simply copy paste from the [Datadog UI](https://app.datadoghq.com/account/settings#integrations/mongodb) into the mongo console.
+Simply copy paste from the [Datadog UI](https://app.datadoghq.com/account/settings#integrations/mongodb) into the mongo console. Open the MongoDB console with the command `mongo`.
 ```mongodb
 use admin
 db.auth("admin", "admin-password")
 db.createUser({"user":"datadog", "pwd": "PASSWORD", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
 
-And edit [/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
+And edit [/etc/dd-agent/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
 ```yaml
 init_config:
 
@@ -187,16 +187,16 @@ Collector (v 5.13.2)
 
 5. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place an check execution script in `/checks.d/` and a configuration file in `/conf.d` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
+To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place a check execution script in `/etc/dd-agent/checks.d/` and a configuration file in `/etc/dd-agent/conf.d` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
  
- [/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
+ [/etc/dd-agent/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
  ```python
  from checks import AgentCheck
 class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('hello.datadoggers', 1)
 ```
-[/checks.d/randomcheck.py](hiring-engineers/checks.d/randomcheck.py):
+[/etc/dd-agent/checks.d/randomcheck.py](hiring-engineers/checks.d/randomcheck.py):
 ```python
 import random
 
@@ -210,7 +210,7 @@ class RandomCheck(AgentCheck):
      self.gauge('test.support.random', random.random())
 ```
 
-[/conf.d/testcheck.yaml](hiring-engineers/conf.d/testcheck.yaml):
+[/etc/dd-agent/conf.d/testcheck.yaml](hiring-engineers/conf.d/testcheck.yaml):
 ```yaml
 init_config:
 
@@ -218,7 +218,7 @@ instances:
     [{}]
  ```
  
-[/conf.d/randomcheck.yaml](hiring-engineers/conf.d/randomcheck.yaml):
+[/etc/dd-agent/conf.d/randomcheck.yaml](hiring-engineers/conf.d/randomcheck.yaml):
 ```yaml
 init_config:
 
