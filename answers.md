@@ -68,13 +68,15 @@ DD_API_KEY=[API KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDo
 2. Bonus question: In your own words, what is the Agent?
 
 
-> The Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service called dogstatsd), and event forwarding engine that securely relays data to the cloud.
+> The Datadog agent is a multi-use tool, deployable to hosts and enables metrics collection for the Datadog service in "on-premise" environments. To support a wide variety of possible use cases, the agent contains a collector, a custom variant of statsd (a time based metrics aggregation sub-service called dogstatsd), and event forwarding engine that securely relays data to the cloud.
 
 
 
 ### Tags
 
 3. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+Tags can be easily added via API, editing configuration files in the Datadog agent, or via the UI
 
 Added ```tags: Test, env:test, role:candidatetest, region:west``` to `datadog.conf`
 
@@ -110,8 +112,8 @@ Because we're using Ubuntu 16.04 there is no need to muck around with as many co
      sudo apt-get install -y mongodb-org
 
 #### E. MongoDB database integration install: 
-Simply copy paste from the [Datadog UI](https://app.datadoghq.com/account/settings#integrations/mongodb)
-```bash
+Simply copy paste from the [Datadog UI](https://app.datadoghq.com/account/settings#integrations/mongodb) into the mongo console.
+```mongodb
 use admin
 db.auth("admin", "admin-password")
 db.createUser({"user":"datadog", "pwd": "PASSWORD", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
@@ -185,7 +187,7 @@ Collector (v 5.13.2)
 
 5. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-`test.support.random`: I used `testcheck` to learn and `randomcheck` to poll `test.support.random`. 
+To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place an check execution script in `/checks.d/` and a configuration file in `/conf.d` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
  
  [/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
  ```python
