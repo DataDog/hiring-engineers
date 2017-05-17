@@ -318,14 +318,14 @@ I already had a downtime schedule setup, let's change that to 7p-9a OOTO hours. 
 
 ## Conclusion
 
-After completing this technical challenge I'm much more in tune with what a Datadog troubleshooting or installation session would look like. I'd like to give my thanks to the Datadog crew for letting me attempt this challenge.
+After completing this technical challenge I feel confident with a Datadog troubleshooting or installation session would look like. I'd like to give my thanks to the Datadog crew for letting me attempt this challenge.
 
 If there are any questions please feel free to reach out via [email](mailto:bradleyseth.weinstein@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bradleysweinstein/)
 
 
 ##### Misc Links
-[Datadog Solutions Engineering github branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)
+   [Datadog Solutions Engineering github branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)
 
-[Datadog Docs: Agent Checks](https://docs.datadoghq.com/guides/agent_checks/)
+   [Datadog Docs: Agent Checks](https://docs.datadoghq.com/guides/agent_checks/)
 
-[Datadog Docs: Tagging Guide](https://docs.datadoghq.com/guides/tagging/)
+   [Datadog Docs: Tagging Guide](https://docs.datadoghq.com/guides/tagging/)
