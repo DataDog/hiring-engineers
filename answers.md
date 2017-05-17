@@ -17,18 +17,18 @@ Datadog (pronounced *day-ta-dog*) is a monitoring service for cloud-scale applic
 
 ## Table of Contents
 
-* [Level 0 - Setup](#level-0-setup)
+* [Level 0 - Setup](#level-0---setup)
   * [Ubuntu Install](#ubuntu-install)
-* [Level 1 - Collecting your Data](#level-1-collecting-your-data)
+* [Level 1 - Collecting your Data](#level-1---collecting-your-data)
   * [Agent Install](#agent-install)
   * [Tags](#tags)
   * [Integrations](#integrations)
   * [Custom Agent Check](#custom-agent-check)
-* [Level 2 - Visualizations](#level-2-visualizations)
+* [Level 2 - Visualizations](#level-2---visualizations)
   * [Dashboards](#dashboards)
   * [TimeBoard vs Screenboard](#timeboard-vs-screenboard)
   * [Snapshots](#snapshots)
-* [Level 3 - Alerting](#level-3-alerting)
+* [Level 3 - Alerting](#level--3--alerting)
   * [Monitors](#monitors)
   * [Alerting](#alerting)
   * [Downtime Scheduling](#downtime-scheduling)
