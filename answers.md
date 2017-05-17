@@ -119,7 +119,7 @@ db.auth("admin", "admin-password")
 db.createUser({"user":"datadog", "pwd": "PASSWORD", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
 
-And edit [/etc/dd-agent/conf.d/mongo.yaml](hiring-engineers/conf.d/mongo.yaml):
+And edit [/etc/dd-agent/conf.d/mongo.yaml](/hiring-engineers/conf.d/mongo.yaml):
 ```yaml
 init_config:
 
@@ -189,14 +189,14 @@ Collector (v 5.13.2)
 
 To create `test.support.random` I've learned how to write a Datadog check from scratch following [this](http://docs.datadoghq.com/guides/agent_checks/) guide. The process is very easy if you're familiar with `statsd`. Simply place a check execution script in `/etc/dd-agent/checks.d/` and a configuration file in `/etc/dd-agent/conf.d` and the custom checks will be executed like any native integration. I've used `testcheck` to learn and `randomcheck` to transmit `test.support.random` to Datadog. 
  
- [/etc/dd-agent/checks.d/testcheck.py](hiring-engineers/checks.d/testcheck.py):
+ [/etc/dd-agent/checks.d/testcheck.py](/hiring-engineers/checks.d/testcheck.py):
  ```python
  from checks import AgentCheck
 class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('hello.datadoggers', 1)
 ```
-[/etc/dd-agent/checks.d/randomcheck.py](hiring-engineers/checks.d/randomcheck.py):
+[/etc/dd-agent/checks.d/randomcheck.py](/hiring-engineers/checks.d/randomcheck.py):
 ```python
 import random
 
@@ -210,7 +210,7 @@ class RandomCheck(AgentCheck):
      self.gauge('test.support.random', random.random())
 ```
 
-[/etc/dd-agent/conf.d/testcheck.yaml](hiring-engineers/conf.d/testcheck.yaml):
+[/etc/dd-agent/conf.d/testcheck.yaml](/hiring-engineers/conf.d/testcheck.yaml):
 ```yaml
 init_config:
 
@@ -218,7 +218,7 @@ instances:
     [{}]
  ```
  
-[/etc/dd-agent/conf.d/randomcheck.yaml](hiring-engineers/conf.d/randomcheck.yaml):
+[/etc/dd-agent/conf.d/randomcheck.yaml](/hiring-engineers/conf.d/randomcheck.yaml):
 ```yaml
 init_config:
 
