@@ -280,8 +280,7 @@ Snapshot Notification are sent via TimeBoard *NOT* Screenboard. See screenshots 
 
 
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/datadogevent.png"></p>
-
-<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/notification.png"></p>
+<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/emailnotification.png"></p>
 
 
 
@@ -303,7 +302,6 @@ Snapshot Notification are sent via TimeBoard *NOT* Screenboard. See screenshots 
 
 Monitor notifications via email:
 <p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/monitoralert.png"></p>
-<p align="left"><img width=65% src="https://github.com/bradweinstein/hiring-engineers/blob/master/screenshots/advancedmonitoralert.png"></p>
 
 
 
