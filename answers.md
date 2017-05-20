@@ -103,13 +103,30 @@ instances:
 
 * Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 
-[Bruce] - Please see screenshots of the check and config files that were used to create a new metric called test.support.random to sample a random value, along with a screenshot of test.support.random listed on the Metrics > Summary page:
+[Bruce] - Please see the check and config files that were used to create a new metric called test.support.random to sample a random value, along with a screenshot of test.support.random listed on the Metrics > Summary page:
 
-https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.py
+**random.py**
 
-(https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.yaml)
+```
+import random
 
-(https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+
+**random.yaml**
+
+```
+init_config:
+
+instances:
+    [{}]
+
+```
+
+![Preview]((https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
 
 **Level 2 - Visualizing your Data**
 
