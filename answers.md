@@ -30,8 +30,28 @@ Your answers to the questions go here.
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
 
-* Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
+* Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
-* Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up. [Bruce] - Done.
+**Level 2 - Visualizing your Data**
+
+* Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+
+[Bruce] - 
+
+* Bonus question: What is the difference between a timeboard and a screenboard?
+
+[Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
+
+* Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
+**Level 3 - Alerting on your Data**
+
+* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
+
+[Bruce] - 
+
+* Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+
+[Bruce] - Please see a screenshot from
 
 **Helpful Links:**
