@@ -10,7 +10,10 @@ While it is not required, we recommend that you spin up a fresh linux VM via Vag
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Virtual%20Box%20Showing%20VM%20Running%20.png)
 
-Bonus question: In your own words, what is the Agent?  [Bruce] - The agent is a python process that runs on a given host and monitors resources, applications, etc... on that host by executing a series of "checks".  The agent then sends the collected information from these checks to the Datadog cloud to in order to monitor your entire infrastucture with an emphasis on meeting performance SLAs.
+Level 1 - Collecting your Data
+
+Bonus question: In your own words, what is the Agent?
+[Bruce] - The agent is a python process that runs on a given host and monitors resources, applications, etc... on that host by executing a series of "checks".  The agent then sends the collected information from these checks to the Datadog Cloud to in order to monitor an  entire infrastucture with an emphasis on meeting performance SLAs.
 
 Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
 
