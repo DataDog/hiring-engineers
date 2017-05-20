@@ -158,6 +158,8 @@ instances:
 
 [Bruce] - Please see the screenshot below in making it a multi-alert:
 
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Multi-Alert.png)
+
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
