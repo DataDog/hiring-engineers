@@ -161,12 +161,20 @@ instances:
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-[Bruce] - Please see a screenshot of the alert email per the 0.9 monitor.
+[Bruce] - Please see a screenshot of the alert email per the 0.9 monitor below:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Random%20Alert%20%3E%20.9%20Email.png)
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-[Bruce] - Please see a screenshot of the scheduled downtime, along with the associated email:
+[Bruce] - Please see a screenshot of the scheduled downtime email below:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Scheduled%20Downtime%20Email.png)
+
+
 
 
 
 **Helpful Links:**
+
+
