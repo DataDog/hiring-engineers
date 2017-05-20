@@ -3,8 +3,11 @@ Your answers to the questions go here.
 Level 0 (optional) - Setup an Ubuntu VM
 
 While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
+
 [Bruce] - Please see the two below screenshots showing the "vagrant status", along with the Ubuntu VM running within Virtual Box:
+
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Vagrant%20Status.png)
+
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Virtual%20Box%20Showing%20VM%20Running%20.png)
 
 Bonus question: In your own words, what is the Agent?  [Bruce] - The agent is a python process that runs on a given host and monitors resources, applications, etc... on that host by executing a series of "checks".  The agent then sends the collected information from these checks to the Datadog cloud to in order to monitor your entire infrastucture with an emphasis on meeting performance SLAs.
