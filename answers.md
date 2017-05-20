@@ -30,17 +30,86 @@ Your answers to the questions go here.
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
 
-![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/mysql.yaml)
+**mysql.yaml**
+
+```
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: vagrant
+    port: 3306             # Optional
+    # sock: /path/to/sock    # Connect via Unix Socket
+    # defaults_file: my.cnf  # Alternate configuration mechanism
+    # connect_timeout: None  # Optional integer seconds
+    tags:                  # Optional
+      - mysql:bruce_db
+    options:               # Optional
+      replication: false
+      replication_non_blocking_status: false  # grab slave count in non-blocking manner (req. performance_schema)
+      galera_cluster: false
+      extra_status_metrics: true
+      extra_innodb_metrics: true
+      extra_performance_metrics: true
+      schema_size_metrics: false
+      disable_innodb_metrics: false
+    #
+    #     NOTE: disable_innodb_metrics should only be used by users with older (unsupported) versions of
+    #           MySQL who do not run/have innodb engine support and may experiment issue otherwise.
+    #           Should this flag be enabled you will only receive a small subset of metrics.
+    #
+    #     NOTE: extra_performance_metrics will only be reported if `performance_schema` is enabled
+    #           in the MySQL instance and if the version for that instance is >= 5.6.0
+    #
+    #           extra_performance_metrics and schema_size_metrics will run two heavier queries
+    #           against your DB to compute the relevant metrics for all your existing schemas.
+    #           Due to the nature of these calls, if you have a high number of tables and/or schemas,
+    #           you may be subject to some negative impact in the performance of your DB.
+    #           Please bear that in mind when enabling them.
+    #           Metrics provided by the options:
+    #                     - mysql.info.schema.size (per schame)
+    #                     - mysql.performance.query_run_time.avg (per schema)
+    #                     - mysql.performance.digest_95th_percentile.avg_us
+    #
+    #           With the addition of new metrics to the MySQL catalog starting with agent >=5.7.0, because
+    #           we query additional schemas to get this full set of metrics. Some of these require the user
+    #           defined for the instance to have PROCESS and SELECT privileges. Please take a look at the
+    #           MySQL integration tile in the Datadog WebUI for further instructions.
+    #
+    # ssl:               # Optional
+    #   key: /path/to/my/key.file
+    #   cert: /path/to/my/cert.file
+    #   ca: /path/to/my/ca.file
+
+    # queries:               # Optional
+    #  - # Sample Custom metric
+    #    query: SELECT TIMESTAMPDIFF(second,MAX(create_time),NOW()) as last_accessed FROM requests
+    #    metric: app.seconds_since_last_request
+    #    tags:               # Optional - only applied to this custom metric query, will not affect default mysql metrics
+    #        - custom_tag1
+    #        - custom_tag2
+    #    type: gauge
+    #    field: last_accessed
+    #  - # Sample Custom metric
+    #    query: SELECT TIMESTAMPDIFF(second,MAX(create_time),NOW()) as last_user FROM users
+    #    metric: app.seconds_since_new_user
+    #    tags:               # Optional - only applied to this custom metric query, will not affect default mysql metrics
+    #        - custom_tag1
+    #        - custom_tag2
+    #    type: gauge
+    #    field: last_user
+```
 
 * Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 
 [Bruce] - Please see screenshots of the check and config files that were used to create a new metric called test.support.random to sample a random value, along with a screenshot of test.support.random listed on the Metrics > Summary page:
 
-![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.py)
+https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.py
 
-![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.yaml)
+(https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.yaml)
 
-![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
+(https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
 
 **Level 2 - Visualizing your Data**
 
