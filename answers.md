@@ -44,6 +44,10 @@ Your answers to the questions go here.
 
 * Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
+[Bruce] - Please see a screenshot of the Snapshot below:
+
+
+
 **Level 3 - Alerting on your Data**
 
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
@@ -52,6 +56,17 @@ Your answers to the questions go here.
 
 * Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
-[Bruce] - Please see a screenshot from
+[Bruce] - Please see the screenshot below in making it a multi-alert:
+
+* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+[Bruce] - Please see a screenshot of the alert email per the 0.9 monitor.
+
+* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+[Bruce] - Please see a screenshot of the scheduled downtime, along with the associated email:
+
+
 
 **Helpful Links:**
