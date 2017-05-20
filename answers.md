@@ -1,8 +1,8 @@
 Your answers to the questions go here.
 
-Level 0 (optional) - Setup an Ubuntu VM
+**Level 0 (optional) - Setup an Ubuntu VM**
 
-While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
+* While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
 
 [Bruce] - Please see the two below screenshots showing the "vagrant status", along with the Ubuntu VM running within Virtual Box:
 
@@ -10,10 +10,17 @@ While it is not required, we recommend that you spin up a fresh linux VM via Vag
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Virtual%20Box%20Showing%20VM%20Running%20.png)
 
-Level 1 - Collecting your Data
+**Level 1 - Collecting your Data**
 
 Bonus question: In your own words, what is the Agent?
 [Bruce] - The agent is a python process that runs on a given host and monitors resources, applications, etc... on that host by executing a series of "checks".  The agent then sends the collected information from these checks to the Datadog Cloud to in order to monitor an  entire infrastucture with an emphasis on meeting performance SLAs.
+
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+[Bruce] - Please see the screenshot below showing my Ubuntu host and its tags on the Host Map page.
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map.png)
+
 
 Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
 
