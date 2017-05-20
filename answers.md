@@ -126,7 +126,7 @@ instances:
 
 ```
 
-![Preview]((https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
 
 **Level 2 - Visualizing your Data**
 
