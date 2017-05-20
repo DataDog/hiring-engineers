@@ -15,3 +15,5 @@ https://app.datadoghq.com/monitors#/downtime
 https://app.datadoghq.com/metric/summary
 
 https://app.datadoghq.com/dash/list
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
