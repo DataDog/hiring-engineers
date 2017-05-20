@@ -144,13 +144,15 @@ instances:
 
 [Bruce] - Please see a screenshot of the Snapshot below:
 
-
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Snapshot%20of%20Random%20over%200.9.png)
 
 **Level 3 - Alerting on your Data**
 
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
-[Bruce] - 
+[Bruce] - Please see a screenshot of the Monitor for when the test.support.random metric goes above 0.9:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Random%20over%200.9%20Monitor%20.png)
 
 * Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
