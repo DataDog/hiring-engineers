@@ -18,21 +18,20 @@ Your answers to the questions go here.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-[Bruce] - Please see the screenshot below showing my Ubuntu host and its tags on the Host Map page.
+[Bruce] - Please see the screenshot below showing my Ubuntu host and its tags on the Host Map page:
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map.png)
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that 
-database.
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-[Bruce] - Please see a screenshot from 
+[Bruce] - Please see a screenshot from Dashboard List showing the MySQL - Overview Dashboard being listed, along with a screenshot showing that the MySQL tag has now been added to the Host Map page:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Dashboard%20List.png)
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
 
 * Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
 
 * Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up. [Bruce] - Done.
 
 **Helpful Links:**
-
-
-
-![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
