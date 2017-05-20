@@ -4,7 +4,7 @@ Your answers to the questions go here.
 
 * While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
 
-[Bruce] - Please see the two below screenshots showing the "vagrant status", along with the Ubuntu VM running within Virtual Box:
+[Bruce] - Please see the two screenshots below showing the "vagrant status", along with the Ubuntu VM running within Virtual Box:
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Vagrant%20Status.png)
 
