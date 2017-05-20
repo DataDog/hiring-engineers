@@ -12,7 +12,8 @@ Your answers to the questions go here.
 
 **Level 1 - Collecting your Data**
 
-Bonus question: In your own words, what is the Agent?
+* Bonus question: In your own words, what is the Agent?
+
 [Bruce] - The agent is a python process that runs on a given host and monitors resources, applications, etc... on that host by executing a series of "checks".  The agent then sends the collected information from these checks to the Datadog Cloud to in order to monitor an  entire infrastucture with an emphasis on meeting performance SLAs.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -21,19 +22,17 @@ Bonus question: In your own words, what is the Agent?
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map.png)
 
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that 
+database.
 
-Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
+[Bruce] - Please see a screenshot from 
 
-Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up. [Bruce] - Done.
+* Bonus question: What is the difference between a timeboard and a screenboard? [Bruce] - With TimeBoards, all widgets/panels on a dashboard are always based on the same moment in time.  ScreenBoards provide a high-level view of a system and are very customizable, and each widget/panel can have different windows of time.
 
-Helpful Links:
+* Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up. [Bruce] - Done.
 
-https://app.datadoghq.com/dash/285620/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1494216838779&to_ts=1494220438779&tile_size=m
+**Helpful Links:**
 
-https://app.datadoghq.com/monitors#/downtime
 
-https://app.datadoghq.com/metric/summary
-
-https://app.datadoghq.com/dash/list
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
