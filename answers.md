@@ -24,13 +24,23 @@ Your answers to the questions go here.
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-[Bruce] - Please see a screenshot from Dashboard List showing the MySQL - Overview Dashboard being listed, along with a screenshot showing that the MySQL tag has now been added to the Host Map page:
+[Bruce] - Please see a screenshot from Dashboard List showing the MySQL - Overview Dashboard being listed, along with a screenshot showing that the MySQL tag has now been added to the Host Map page and the mysql.yaml config file used to make this happen:
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/Dashboard%20List.png)
 
 ![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20host%20and%20its%20tags%20on%20the%20Host%20Map%20with%20MySQL.png)
 
-* Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/mysql.yaml)
+
+* Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
+
+[Bruce] - Please see screenshots of the check and config files that were used to create a new metric called test.support.random to sample a random value, along with a screenshot of test.support.random listed on the Metrics > Summary page:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.py)
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/random.yaml)
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/test.support.random%20metric.png)
 
 **Level 2 - Visualizing your Data**
 
