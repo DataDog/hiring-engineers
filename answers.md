@@ -132,7 +132,9 @@ instances:
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-[Bruce] - 
+[Bruce] - Please see a screenshot of the cloned MySQL - Overview dashboard which includes a times series graph of the test.support.random metric along with the average mysql innodb buffer pool:
+
+![Preview](https://github.com/brucepenn/hiring-engineers/blob/solutions-engineer/My%20Cloned%20MySQL%20Dashboard.png)
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
