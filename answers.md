@@ -3,20 +3,8 @@ Table of contents
 
 - [Level 0 - (optional) Setup an Ubuntu VM](#level-0)
 - [Level 1 - Collecting your Data](#level-1)
-	* [Task 1](#task-1)
-	* [Task 2](#task-2)
-	* [Task 3](#task-3)
-	* [Task 4](#task-4)
 - [Level 2 - Visualizing your Data](#level-2)
-	* [Task 1](#task-1)
-	* [Task 1](#task-2)
-	* [Task 1](#task-3)
 - [Level 3 - Alerting on your Data](#level-3) 
-	* [Task 1](#task-1)
-	* [Task 1](#task-2)
-	* [Task 1](#task-3)
-	* [Task 1](#task-4)
-	* [Task 1](#task-5)
 
 
 
@@ -42,7 +30,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
   
   ![sql_server_agent_config](images/sql_server_agent_config.png)
 
-  * Writing a agent check was quiet simple. The documentation on agent checks found [here](http://docs.datadoghq.com/guides/agent_checks/) was quite good. and after reading it i wrote a agent check that generates a random number and sends the result as a metric as well as a custom tag
+  * Writing a agent check was quiet simple. The documentation on agent checks found [here](http://docs.datadoghq.com/guides/agent_checks/) was quite good. After reading it i wrote the agent check that generates a random number and sends the result as a metric as well as a custom tag.
 
 ## Level 2 - Visualizing your Data
 
@@ -52,6 +40,7 @@ https://app.datadoghq.com/dash/292968/sqlserver--test-agent--overview?live=false
   * 
    - TimeBoards have all their graphs scoped to the time selected in the show drop down box. Also all graphs a displayed in a grid-like fashion and each graph can be share individually.
    - ScreenBoards are more flexable and are made up of widgets which can be drag and dropped in. Each graph can be set to a different time frame. ScreenbBoards can also can be share as a whole and\or as a read only entity.
+
   *
 https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1494990000000&priority=normal&is_zoomed=false&status=all&to_ts=1495594800000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&live=true&bucket_size=10800000#
 
@@ -62,11 +51,18 @@ https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_
 
 https://app.datadoghq.com/monitors#2123423/edit  - link to the metric setup
 
-  *
+  * After reading the documentation found (here)[http://docs.datadoghq.com/guides/monitors/], I was able to setup a monitor to the specifications of the task and began recieving notifications. After a while I muted the monitor so that my email would stop recieving notifications. I then setup the down time in the as specified and after reading the portion on setting up the monitor down time. Just before 7pm I unmuted the monitor and began receiving emails again. While I received the email notification of the down time being activated and seeing that there was a mute applied to the monitor with a time to expiration I still continued to receive notification. At this point I'am not sure what i may have missed in the setup and I'm going back over the documentation and doing google searchs to see what i can find. 
+
+
+  * Below is a screen shot of the monitor setup
+  	![monitor_setup](images/monitor_setup.png) 
+
+  * Below is a screen shot of the monitor down time setup
+  	![monitor_down_time_setup](images/monitor_down_time_setup.png)
 
   * Below is a screen shot of the email notification of threshold breach for the agent check i created
 	![email_alert](images/email_alert.png)
 
   * Below is screen shotof the email notification of the scheduled down time.
-	![email_notification_of_down_time](email_notification_of_down_time.png)
+	![email_notification_of_down_time](images/email_notification_of_down_time.png)
 
