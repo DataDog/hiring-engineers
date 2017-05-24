@@ -27,7 +27,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
 ## Level 1 - Collecting your Data
 
-1. Signing up for Datadog was quite simple. Once I filled out the form I was taken to the agent integration page. Here I selected the agent for windows and downloaded it and then installed it. Once the agent was installed it required a api key to finish the setup and to begin sending data. Unfortunatlyi was unable to easly get the api key as it required going to the integration api page which was not possible until Datadog received a confirmation from the agent. I able to get the api key by typing the url to the intgration api page. Once  
+1. Signing up for Datadog was quite simple. Once I filled out the form I was taken to the agent integration page. Here I selected the agent for windows and downloaded it and then installed it. Once the agent was installed it required a api key to finish the setup and to begin sending data. Unfortunatlyi was unable to easly get the api key as it required going to the integration api page which was not possible until Datadog received a confirmation from the agent. I able to get the api key by typing the url to the intgration api page. Once the agent confirmation was obtained i was free to begin browseing the site. 
 
 2. An agent is a program which is installed on a host and has 3 functions, the collector, dogstatd, and the forwarder.
     - The collector is responsible for gathering various system metrics from the host machine it is installed on, as well as running the checks for each integrations installed for that host.
@@ -47,6 +47,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
 1.
 https://app.datadoghq.com/dash/292968/sqlserver--test-agent--overview?live=false&page=0&is_auto=false&from_ts=1495582671070&to_ts=1495582971070&tile_size=s
+
 2. 
    - TimeBoards have all their graphs scoped to the time selected in the show drop down box. Also all graphs a displayed in a grid-like fashion and each graph can be share individually.
    - ScreenBoards are more flexable and are made up of widgets which can be drag and dropped in. Each graph can be set to a different time frame. ScreenbBoards can also can be share as a whole and\or as a read only entity.
@@ -60,8 +61,14 @@ https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_
 
 https://app.datadoghq.com/monitors#2123423/edit
 1.
+
 2.
+
 3.
-4.
-5.
+
+4. Below is a screen shot of the email notification of threshold breach for the agent check i created
+![email_alert](images/email_alert.png)
+
+5. Below is screen shotof the email notification of the scheduled down time.
+![email_notification_of_down_time](email_notification_of_down_time.png)
 
