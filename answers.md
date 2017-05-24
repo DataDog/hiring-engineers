@@ -1,7 +1,7 @@
 Table of contents
 =================
 
-- [Level 0 - (optional) Setup an Ubuntu VM](#level-0)
+- [Level 0 - (optional) Setup an Ubuntu VM](#level-0---(optional)-Setup-an-Ubuntu-VM)
 - [Level 1 - Collecting your Data](#level-1)
 	* [Task 1](#task-1)
 	* [Task 2](#task-2)
@@ -11,7 +11,7 @@ Table of contents
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
-- [Level 3 - Alerting on your Data](#level-3)
+- [Level 3 - Alerting on your Data](#level-3---Alerting-on-your-Data)
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
@@ -59,7 +59,7 @@ https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_
 ## Level 3 - Alerting on your Data
 
 
-https://app.datadoghq.com/monitors#2123423/edit
+https://app.datadoghq.com/monitors#2123423/edit  - link to the metric setup
 1.
 
 2.
