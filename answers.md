@@ -1,17 +1,17 @@
 Table of contents
 =================
 
-- [Level 0 - (optional) Setup an Ubuntu VM](#level-0---(optional)-Setup-an-Ubuntu-VM)
-- [Level 1 - Collecting your Data](##level-1)
+- [Level 0 - (optional) Setup an Ubuntu VM](#level-0)
+- [Level 1 - Collecting your Data](#level-1)
 	* [Task 1](#task-1)
 	* [Task 2](#task-2)
 	* [Task 3](#task-3)
 	* [Task 4](#task-4)
-- [Level 2 - Visualizing your Data](##level-2)
+- [Level 2 - Visualizing your Data](#level-2)
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
-- [Level 3 - Alerting on your Data](##level-3) 
+- [Level 3 - Alerting on your Data](#level-3) 
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
