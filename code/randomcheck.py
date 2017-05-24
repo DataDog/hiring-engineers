@@ -1,8 +1,5 @@
-try:
-    import random
-    from checks import AgentCheck
-except ImportError as e:
-    pass
+import random
+from checks import AgentCheck
 
 
 class RandomCheck(AgentCheck):
