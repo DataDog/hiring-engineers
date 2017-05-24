@@ -11,7 +11,7 @@ Table of contents
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
-- [Level 3 - Alerting on your Data](#level 3 Alerting on your Data)
+- [Level 3 - Alerting on your Data](#level-3) - Alerting on your Data
 	* [Task 1](#task-1)
 	* [Task 1](#task-2)
 	* [Task 1](#task-3)
