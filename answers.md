@@ -4,7 +4,7 @@ Table of contents
 - [Level 0 - (Optional) Setup an Ubuntu VM](##level-0)
 - [Level 1 - Collecting your Data](##level-1)
 - [Level 2 - Visualizing your Data](##level-2)
-- [Level 3 - Alerting on your Data](##level-3) 
+- [Level 3 - Alerting on your Data](#level-3---Alerting-on-your-Data) 
 
 
 
