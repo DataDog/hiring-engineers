@@ -4,7 +4,7 @@ Table of contents
 - [Level 0 - (Optional) Setup an Ubuntu VM](##level-0)
 - [Level 1 - Collecting your Data](##level-1)
 - [Level 2 - Visualizing your Data](#Level-2---Visualizing-your-Data)
-- [Level 3  Alerting on your Data](#Level-3-Alerting-on-your-Data) 
+- [Level 3  Alerting on your Data](#level-3-alerting-on-your-data) 
 
 
 
@@ -15,7 +15,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
 ## Level 1 - Collecting your Data
 
-  * Signing up for Datadog was quite simple. Once I filled out the form I was taken to the agent integration page. Here I selected the agent for windows and downloaded it and then installed it. Once the agent was installed it required a api key to finish the setup and to begin sending data. Unfortunately I was unable to easily get the api key as it required going to the integration api page which was not possible until Datadog received a confirmation from the agent. I able to get the api key by typing the URL to the integration api page. Once the agent confirmation was obtained I was free to begin browsing the site. 
+  * Signing up for Datadog was quite simple. Once I filled out the form I was taken to the agent integration page. Here I selected the agent for windows and downloaded it and then installed it. Once the agent was installed it required a api key to finish the setup and to begin sending data. Unfortunately I was unable to easily get the api key as it required going to the integration api page which was not possible until Datadog received a confirmation from the agent. I able to get the api key by typing the URL to the integration api page into the browser. Once the agent confirmation was obtained I was free to begin browsing the site. 
 
   * An agent is a program which is installed on a host and has 3 functions, the collector, dogstatd, and the forwarder.
     - The collector is responsible for gathering various system metrics from the host machine it is installed on, as well as running the checks for each integrations installed for that host.
