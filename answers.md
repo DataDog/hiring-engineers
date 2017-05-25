@@ -3,8 +3,8 @@ Table of contents
 
 - [Level 0 - (Optional) Setup an Ubuntu VM](##level-0)
 - [Level 1 - Collecting your Data](##level-1)
-- [Level 2 - Visualizing your Data](##level-2)
-- [Level 3  Alerting on your Data](#level-3-Alerting-on-your-Data) 
+- [Level 2 - Visualizing your Data](#Level-2---Visualizing-your-Data)
+- [Level 3  Alerting on your Data](#Level-3-Alerting-on-your-Data) 
 
 
 
@@ -51,7 +51,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
 ## Level 3 Alerting on your Data
 
-  * After reading the documentation found (here)[http://docs.datadoghq.com/guides/monitors/], I was able to setup a monitor to the specifications of the task ([monitor setup](https://app.datadoghq.com/monitors#2123423/edit)) and began receiving notifications. After a while I muted the monitor so that my email would stop receiving notifications. I then setup the down time in the as specified and after reading the portion on setting up the monitor down time. Just before 7pm I unmuted the monitor and began receiving emails again. While I received the email notification of the down time being activated and seeing that there was a mute applied to the monitor with a time to expiration I still continued to receive notification. At this point I'm not sure what I may have missed in the setup and I'm going back over the documentation and doing google searches to see what I can find. 
+  * After reading the documentation found (here)[http://docs.datadoghq.com/guides/monitors//], I was able to setup a monitor to the specifications of the task ([monitor setup](https://app.datadoghq.com/monitors#2123423/edit)) and began receiving notifications. After a while I muted the monitor so that my email would stop receiving notifications. I then setup the down time in the as specified and after reading the portion on setting up the monitor down time. Just before 7pm I unmuted the monitor and began receiving emails again. While I received the email notification of the down time being activated and seeing that there was a mute applied to the monitor with a time to expiration I still continued to receive notification. At this point I'm not sure what I may have missed in the setup and I'm going back over the documentation and doing google searches to see what I can find. 
 
   * Below is a screen shot of the monitor setup
   	![monitor_setup](images/monitor_setup.png) 
