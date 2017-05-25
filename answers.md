@@ -44,7 +44,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
   * Creating a snapshot of the test.support.random metric was a simple task where I clicked on the annotation icon that appears when you hove the mouse on a graph. Then I selected the section I wished to display and entered a brief message. Then next part of sending a @notification to my email was not so easy. I was able to used the @ notation but I did not receive an email. I even checked my junk box just in case and even tried again. but nothing appeared. After a search I found [this](https://help.datadoghq.com/hc/en-us/articles/203038119-What-do-notifications-do-in-Datadog-) document which states that it is not possible to send a @notification email to yourself from the events page but you can setup monitor notification to yourself. So I send the notification to my google email to make sure everything work and it did. [Here](https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1494990000000&priority=normal&is_zoomed=false&status=all&to_ts=1495594800000&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&live=true&bucket_size=10800000#) is a link to my events page
 
   Below is a screen shot of the snap shot on the events page
-  ![snapshot_of_metric](snapshot_of_metric.png)
+  ![snapshot_of_metric](images/snapshot_of_metric.png)
 
   Below is screen shot of the email that I received to my google account
   ![email_notification_of_snapshot](images/email_notification_of_snapshot.png)
