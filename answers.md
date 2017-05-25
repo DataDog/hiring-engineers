@@ -1,10 +1,10 @@
 Table of contents
 =================
 
-- [Level 0 - (Optional) Setup an Ubuntu VM](#level-0)
-- [Level 1 - Collecting your Data](#level-1)
-- [Level 2 - Visualizing your Data](#level-2)
-- [Level 3 - Alerting on your Data](#level-3) 
+- [Level 0 - (Optional) Setup an Ubuntu VM](##level-0)
+- [Level 1 - Collecting your Data](##level-1)
+- [Level 2 - Visualizing your Data](##level-2)
+- [Level 3 - Alerting on your Data](##level-3) 
 
 
 
@@ -24,7 +24,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
     Custom tags setup in the agent config ![custom_host_tags](images/custom_host_tags.png)
 
-    Custom tags in the hostmap in Datadog ![custom_tags_from_agent](images/custom_tags_from_agent.png) 
+    Custom tags in the hostmap in Datadog ![custom_tags_from_agent](images/Custom_tags_from_agent.png) 
 
   * I installed the database integration for Microsoft SQL Server as I had it already installed on my machine. The documentation [here](https://app.datadoghq.com/account/settings#integrations/SQL_server) was very helpful, it provided SQL scripts for creating a Datadog SQL account and granting permission to the account. Configuring the agent was simple, though I had a minor issue with the yaml configuration file initially but after removing the comments to make sure the formatting was correct it began to work properly. Below is the screen shot of the final working yaml file.
   
