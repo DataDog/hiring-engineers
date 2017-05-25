@@ -1,19 +1,19 @@
 Table of contents
 =================
 
-- [Level 0 - (Optional) Setup an Ubuntu VM](##level-0)
-- [Level 1 - Collecting your Data](##level-1)
-- [Level 2 - Visualizing your Data](#Level-2---Visualizing-your-Data)
+- [Level 0  (Optional) Setup an Ubuntu VM](#level-0-optional-setup-an-ubuntu-vm)
+- [Level 1  Collecting your Data](#level-1-collecting-your-data)
+- [Level 2  Visualizing your Data](#Level-2-visualizing-your-data)
 - [Level 3  Alerting on your Data](#level-3-alerting-on-your-data) 
 
 
 
-## Level 0 - (optional) Setup an Ubuntu VM
+## Level 0 (optional) Setup an Ubuntu VM
 
 I opted to use the windows agent and not the Ubuntu VM using Vagrant for a few reasons. Firstly I was curious to see how well the cross compatibility of Datadog agent was. 
 Secondly there were some teething issues with setting up Vagrant, as Vagrant requires virtual box to operate and for the virtual box to operate it requires that Virtualisation on the CPU be turned on which is done through the bios as not all machine have it turned on by default. I did an initial attempt but I was unable to access the bios as the documentation for my laptop was incorrect so I left it and proceeded with the rest of the tasks as this task was only optional.
 
-## Level 1 - Collecting your Data
+## Level 1 Collecting your Data
 
   * Signing up for Datadog was quite simple. Once I filled out the form I was taken to the agent integration page. Here I selected the agent for windows and downloaded it and then installed it. Once the agent was installed it required a api key to finish the setup and to begin sending data. Unfortunately I was unable to easily get the api key as it required going to the integration api page which was not possible until Datadog received a confirmation from the agent. I able to get the api key by typing the URL to the integration api page into the browser. Once the agent confirmation was obtained I was free to begin browsing the site. 
 
@@ -32,7 +32,7 @@ Secondly there were some teething issues with setting up Vagrant, as Vagrant req
 
   * Writing a agent check was quiet simple. The documentation on agent checks found [here](http://docs.datadoghq.com/guides/agent_checks/) was quite good. After reading it I wrote the agent check that generates a random number and sends the result as a metric as well as a custom tag. The source can be found [here](/code)
 
-## Level 2 - Visualizing your Data
+## Level 2 Visualizing your Data
 
   * Creating this combined dashboard was a simple task. I accessed the SQL server dashboard from the hostmap then clicked on the gear button in the top right hand corner and click clone. I then edited the dashboard and added in a new graph for the test.support.random metric. [Here](https://app.datadoghq.com/dash/292968/sqlserver--test-agent--overview?live=true&page=0&is_auto=false&from_ts=1495674984858&to_ts=1495678584858&tile_size=s) is a link to my dashboard and below is a screen shot of the the new combined dash board
   
