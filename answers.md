@@ -1,5 +1,7 @@
 Your answers to the questions go here.
+
 Steps I Took:
+
 1.) Set up an Ubuntu 16.04 VM in VirtualBox on Mac OSX
 
 2.) Sign up for Datadog, using "Datadog Recruiting Candidate" in the "Company" field.
