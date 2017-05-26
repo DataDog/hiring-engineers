@@ -344,17 +344,18 @@ Trace Agent (v 5.13.2)
   Traces sent (1 min): 0
   Stats sent (1 min): 0
   
+  Link: https://app.datadoghq.com/dash/integration/mysql?live=true&page=0&is_auto=false&from_ts=1495766092386&to_ts=1495769692386&tile_size=s
+  
   11.) Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
   12.) Cloned MySQL integration dashboard (MySQL Cloned Dashboard.png), and added another metric (MySQL Performance Open Tables Added Metric.png), as well as the custom test.support.random metric from the custom Agent Check (test.support.random metric.png)
   
-  https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
+ Link: https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
   
   13.) Bonus question: What is the difference between a timeboard and a screenboard?
   A timeboard gives you metrics and event graphs and can be shared individually, whereas a screenboard has drag and drop widgets, are customizable, and allow a higher-level look into a host.
   
   14.) Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification (snapshot over 0.90.png)
   
-  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes (Monitor Setup.png)
+  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes (Monitor Setup.png), have monitor email notifications (Monitor Alert - Trigger.png and Monitor Alert - Recovery.png) 
   
-  16.) 
