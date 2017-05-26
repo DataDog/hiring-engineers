@@ -10,7 +10,7 @@ Table of contents
 
 ## Level 0 (optional) Setup an Ubuntu VM
 
-I opted to use the windows agent and not the Ubuntu VM using Vagrant as there were some teething issues with setting up Vagrant, as Vagrant requires virtual box to operate and for the virtual box to operate it requires that Virtualisation on the CPU be turned on which is done through the bios and it is not always turned on. I did an initial attempt but I was unable to access the bios as the documentation for my laptop was incorrect so I left it and proceeded with the rest of the tasks as this task was only optional.
+I opted to use the windows agent and not the Ubuntu VM using Vagrant as suggested as there were some teething issues with setting up Vagrant. Vagrant requires virtual box to operate and for the virtual box to operate it requires that Virtualisation on the CPU be turned on, which is done through the bios and it is not always turned on. I did an initial attempt but I was unable to access the bios as the documentation for my laptop was incorrect so I left it and proceeded with the rest of the tasks as this task was only optional.
 
 CPU Virtualisation
 ![cpu_virtualisation](images/cpu_virtualisation.png)
@@ -24,10 +24,10 @@ CPU Virtualisation
     - Dogstatd is local api server that allows you to send custom metrics from your applications to Datadog.
     - The forwarder is responsible for gathering all the collected data from both the collector and dogstatd and then queueing it to be sent to Datadog.
 
-  * Custom tags setup in the agent config. 
+    Custom tags setup in the agent config. 
 	![custom_host_tags](images/custom_host_tags.png)
 
-  * Custom tags in the hostmap in Datadog. 
+    Custom tags in the hostmap in Datadog. 
  	![custom_tags_from_agent](images/Custom_tags_from_agent.png) 
 
   * I installed the database integration for Microsoft SQL Server as I had it already installed on my machine. The documentation [here](https://app.datadoghq.com/account/settings#integrations/SQL_server) was very helpful, it provided SQL scripts for creating a Datadog SQL account and granting permission to the account. Configuring the agent was simple, though I had a minor issue with the yaml configuration file initially but after removing the comments to make sure the formatting was correct it began to work properly. Below is the screen shot of the final working yaml file.
@@ -57,15 +57,15 @@ While ScreenBoards are more flexible and are made up of widgets which can be dra
 
  * After reading the documentation found [here](http://docs.datadoghq.com/guides/monitors/), I was able to setup a monitor to the specifications of the task ([monitor setup](https://app.datadoghq.com/monitors#2123423/edit)) and began receiving notifications. After a while I muted the monitor so that my email would stop receiving notifications. I then setup the down time in the as specified and after reading the portion on setting up the monitor down time. Just before 7pm I unmuted the monitor and began receiving emails again. While I received the email notification of the down time being activated and seeing that there was a mute applied to the monitor with a time to expiration I still continued to receive notification. At this point I'm not sure what I may have missed in the setup and I'm going back over the documentation and doing google searches to see what I can find. 
 
-  * Below is a screen shot of the monitor setup.
+    Below is a screen shot of the monitor setup.
   	![monitor_setup](images/monitor_setup.png) 
 
-  * Below is a screen shot of the monitor down time setup.
+    Below is a screen shot of the monitor down time setup.
   	![monitor_down_time_setup](images/monitor_down_time_setup.png)
 
-  * Below is a screen shot of the email notification of threshold breach for the agent check I created.
+    Below is a screen shot of the email notification of threshold breach for the agent check I created.
 	![email_alert](images/email_alert.png)
 
-  * Below is screen shot of the email notification of the scheduled down time.
+    Below is screen shot of the email notification of the scheduled down time.
 	![email_notification_of_down_time](images/email_notification_of_down_time.png)
 
