@@ -38,7 +38,7 @@ CPU Virtualisation
 
 ## Level 2 Visualizing your Data
 
-  * Creating this combined dashboard was a simple task. I accessed the SQL server dashboard from the hostmap then clicked on the gear button in the top right hand corner and clicked clone. I then edited the dashboard and added in a new graph for the test.support.random metric. [Here](https://app.datadoghq.com/dash/292968/sqlserver--test-agent--overview?live=true&page=0&is_auto=false&from_ts=1495674984858&to_ts=1495678584858&tile_size=s) is a link to my dashboard and below is a screen shot of the the new combined dash board
+  * Creating this combined dashboard was a simple task. I accessed the SQL server dashboard from the hostmap then clicked on the gear button in the top right hand corner and clicked clone. I then edited the dashboard and added in a new graph for the test.support.random metric. [Here](https://app.datadoghq.com/dash/292968/sqlserver--test-agent--overview?live=true&page=0&is_auto=false&from_ts=1495674984858&to_ts=1495678584858&tile_size=s) is a link to my dashboard and below is a screen shot of the new combined dash board
   
   ![clone_sql_and_extra_metric](images/clone_sql_and_extra_metric.png)
 
