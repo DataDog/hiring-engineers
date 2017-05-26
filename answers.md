@@ -10,8 +10,10 @@ Table of contents
 
 ## Level 0 (optional) Setup an Ubuntu VM
 
-I opted to use the windows agent and not the Ubuntu VM using Vagrant for a few reasons. Firstly I was curious to see how well the cross compatibility of Datadog agent was. 
-Secondly there were some teething issues with setting up Vagrant, as Vagrant requires virtual box to operate and for the virtual box to operate it requires that Virtualisation on the CPU be turned on which is done through the bios as not all machine have it turned on by default. I did an initial attempt but I was unable to access the bios as the documentation for my laptop was incorrect so I left it and proceeded with the rest of the tasks as this task was only optional.
+I opted to use the windows agent and not the Ubuntu VM using Vagrant as there were some teething issues with setting up Vagrant, as Vagrant requires virtual box to operate and for the virtual box to operate it requires that Virtualisation on the CPU be turned on which is done through the bios and it is not always turned on. I did an initial attempt but I was unable to access the bios as the documentation for my laptop was incorrect so I left it and proceeded with the rest of the tasks as this task was only optional.
+
+CPU Virtualisation
+![cpu_virtualisation](images/cpu_virtualisation.png)
 
 ## Level 1 Collecting your Data
 
