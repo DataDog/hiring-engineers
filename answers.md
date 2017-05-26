@@ -352,3 +352,9 @@ Trace Agent (v 5.13.2)
   
   13.) Bonus question: What is the difference between a timeboard and a screenboard?
   A timeboard gives you metrics and event graphs and can be shared individually, whereas a screenboard has drag and drop widgets, are customizable, and allow a higher-level look into a host.
+  
+  14.) Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification (snapshot over 0.90.png)
+  
+  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes (Monitor Setup.png)
+  
+  16.) 
