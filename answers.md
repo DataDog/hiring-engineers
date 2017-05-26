@@ -58,19 +58,23 @@ CPU Virtualisation
 
  * After reading the documentation found [here](http://docs.datadoghq.com/guides/monitors/), I was able to setup a monitor to the specifications of the task ([monitor setup](https://app.datadoghq.com/monitors#2123423/edit)) and began receiving notifications. After a while I muted the monitor so that my email would stop receiving notifications. After reading the portion on down time setup for the monitor setup page, I proceeded to setup a downtime for that monitor I created. Just before 7pm I unmuted the monitor and began receiving emails again. At 7pm I received the email notification of the down time being activated, I checked the monitor in Datadog and saw that there was a mute applied to the monitor with a time to expiration. Unfortunately I still continued to receive notification. At this point I'm not sure what I may have missed in the setup and I'm going back over the documentation and doing Google searches to see what I can find. 
 
-
+  
     Below is a screen shot of the monitor setup.
+    
   	![monitor_setup](images/monitor_setup.png) 
 
-
+  
     Below is a screen shot of the monitor down time setup.
+
   	![monitor_down_time_setup](images/monitor_down_time_setup.png)
 
-
+  
     Below is a screen shot of the email notification of threshold breach for the agent check I created.
+
 	![email_alert](images/email_alert.png)
 
-
+  
     Below is screen shot of the email notification of the scheduled down time.
+
 	![email_notification_of_down_time](images/email_notification_of_down_time.png)
 
