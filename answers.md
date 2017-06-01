@@ -346,9 +346,18 @@ Trace Agent (v 5.13.2)
   
   Link: https://app.datadoghq.com/dash/integration/mysql?live=true&page=0&is_auto=false&from_ts=1495766092386&to_ts=1495769692386&tile_size=s
   
+  Working Agent with tags
+  
+    ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
+    
+  MySQL Dashboard View
+  
+    ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
+  
   11.) Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
   12.) Cloned MySQL integration dashboard 
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
   and added another metric 
@@ -363,7 +372,17 @@ Trace Agent (v 5.13.2)
   13.) Bonus question: What is the difference between a timeboard and a screenboard?
   A timeboard gives you metrics and event graphs and can be shared individually, whereas a screenboard has drag and drop widgets, are customizable, and allow a higher-level look into a host.
   
-  14.) Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification (snapshot over 0.90.png)
+  14.) Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
   
-  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes (Monitor Setup.png), have monitor email notifications (Monitor Alert - Trigger.png and Monitor Alert - Recovery.png) 
-  
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
+
+  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
+ 
+Trigger:
+
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Trigger.png)
+
+Recovery:
+
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Recovery.png)
+ 
