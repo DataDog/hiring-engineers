@@ -349,6 +349,7 @@ Trace Agent (v 5.13.2)
   Working Agent with tags
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
+  
     
   MySQL Dashboard View
   
