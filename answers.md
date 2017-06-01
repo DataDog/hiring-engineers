@@ -348,11 +348,11 @@ Trace Agent (v 5.13.2)
   
   Working Agent with tags
   
-    ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
     
   MySQL Dashboard View
   
-    ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
   
   11.) Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
@@ -361,6 +361,7 @@ Trace Agent (v 5.13.2)
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
   and added another metric 
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Performance%20Open%20Tables%20Added%20Metric.png)
   
   as well as the custom test.support.random metric from the custom Agent Check 
