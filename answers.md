@@ -349,7 +349,14 @@ Trace Agent (v 5.13.2)
   11.) Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
   12.) Cloned MySQL integration dashboard 
-  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png), and added another metric (MySQL Performance Open Tables Added Metric.png), as well as the custom test.support.random metric from the custom Agent Check (test.support.random metric.png)
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
+  
+  and added another metric 
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Performance%20Open%20Tables%20Added%20Metric.png)
+  
+  as well as the custom test.support.random metric from the custom Agent Check 
+  
+  ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/test.support.random%20metric.png)
   
  Link: https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
   
