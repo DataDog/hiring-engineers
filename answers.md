@@ -32,6 +32,9 @@ relevant to the metrics at that moment in time.
   - [Tagging](#tagging)
   - [Installing & Monitoring MongoDB](#installing--monitoring-mongodb)
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
+- [Visualizing Data](#visualizing-data)
+  - [Mongo Dashboard](#mongo-dashboard)
+  - [Snapshot and Annotation](#snapshot-and-annotation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -165,7 +168,6 @@ documentation](http://docs.datadoghq.com/guides/agent_checks/).
 
 To install our custom check follow these steps:
 
-
 - If the vagrant VM isn't already running then `vagrant up`
 - `vagrant ssh`
 - `bash /vagrant_data/agent_check/install.sh`
@@ -177,3 +179,38 @@ To install our custom check follow these steps:
 [Hostmap](https://app.datadoghq.com/infrastructure/map) see the agent check
 reporting:
 ![agent_check](screenshots/agent_check.png)
+
+# Visualizing Data
+Visualizing data is really important for humans. Humans are experts at pattern
+and anomaly recognition, but patterns and anomalies a hard to see when presented
+purely as plain text. Visualizing data also makes it easier for someone to
+perform a quick analysis over months and years of data in a very short amount
+of time, where-as with non-visual data it would be a very lengthy task.
+
+> Bonus question: What is the difference between a timeboard and a screenboard?
+
+TimeBoards are used to sync all metrics and event graphs together via time for
+the purpose of event correlation and troubleshooting. They are also bound to a
+specific layout that cannot be altered much. Click
+[here](https://app.datadoghq.com/dash/297522/mongo-dash-kelner) for an example.
+
+ScreenBoards are for displaying data such as status (e.g. "Are all hosts up?")
+and sharing data. These are great to put on display in the office or operations
+center. ScreenBoards allow for a mixture of widgets and timeframes and allow for
+custom layouts. Click [here](https://app.datadoghq.com/screen/190281) for an
+example.
+
+## Mongo Dashboard
+> Since your database integration is reporting now, clone your database
+> integration dashboard and add additional database metrics to it as well as
+> your `test.support.random` metric from the custom Agent check.
+
+[Mongo Dash Kelner](https://app.datadoghq.com/dash/297522/mongo-dash-kelner) =>
+![custom mongo dashboard](screenshots/mongo_dash.png)
+
+## Snapshot and Annotation
+> Take a snapshot of your `test.support.random` graph and draw a box around a
+> section that shows it going above 0.90. Make sure this snapshot is sent to
+> your email by using the @notification
+
+![snapshot and annotation](screenshots/snap_annotate.png)
