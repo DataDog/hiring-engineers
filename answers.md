@@ -35,6 +35,10 @@ relevant to the metrics at that moment in time.
 - [Visualizing Data](#visualizing-data)
   - [Mongo Dashboard](#mongo-dashboard)
   - [Snapshot and Annotation](#snapshot-and-annotation)
+- [Alerting on Data](#alerting-on-data)
+  - [Create a Monitor](#create-a-monitor)
+  - [Email Screenshot](#email-screenshot)
+  - [Night Time Down Time](#night-time-down-time)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -214,3 +218,40 @@ example.
 > your email by using the @notification
 
 ![snapshot and annotation](screenshots/snap_annotate.png)
+
+# Alerting on Data
+Alerting can help teams get in front of issues before they become systematic or
+cause outages for customers. Datadog alerts can be aggregate, focusing on higher
+level viewpoints rather than granular data points. This is great because in
+modern computing systems are built for failure and have tolerance and recovery
+built-in. Datadog offers configuration for outliers, missing data, catching
+unexpected trends, acceptable failure levels, and tons of integrations for
+modern collaboration tooling and services.
+
+## Create a Monitor
+> Set up a monitor on this metric that alerts you when it goes above 0.90 at
+least once during the last 5 minutes
+> Bonus points: Make it a multi-alert by host so that you won't have to recreate
+> it if your infrastructure scales up.
+> Give it a descriptive monitor name and message (it might be worth it to
+> include the link to your previously created dashboard in the message). Make
+> sure that the monitor will notify you via email.
+
+[Random is above 0.9! Check it
+out!](https://app.datadoghq.com/monitors#2155663?group=all&live=4h) =>
+![monitor](screenshots/monitor.png)
+
+## Email Screenshot
+> This monitor should alert you within 15 minutes. So when it does, take a
+screenshot of the email that it sends you.
+
+![email](screenshots/email.png)
+
+## Night Time Down Time
+> Bonus: Since this monitor is going to alert pretty often, you don't want to be
+> alerted when you are out of the office. Set up a scheduled downtime for this
+> monitor that silences it from 7pm to 9am daily. Make sure that your email is
+> notified when you schedule the downtime and take a screenshot of that
+> notification.
+
+![downtime](screenshots/downtime.png)
