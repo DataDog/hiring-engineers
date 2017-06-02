@@ -1,4 +1,3 @@
-Your answers to the questions go here.
 # Datadog Solutions Engineer Exercise
 A technical exercise for the Solutions Engineering interview process at Datadog.
 
@@ -23,3 +22,28 @@ something goes wrong and operations teams can discuss in real-time about what
 they are seeing within the dashboard itself. This keeps the context and history
 relevant to the metrics at that moment in time.
 
+# Setup an Ubuntu VM
+[Vagrant](https://www.vagrantup.com/) is a tool for building and managing
+virtual machine environments. Vagrant provides easy to configure, reproducible,
+and portable work environments built on top of industry-standard technology.
+
+To get started with Vagrant follow the instruction set below:
+
+- [Install Vagrant](https://www.vagrantup.com/docs/installation/) for your
+specific operating system.
+- [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads); VirtualBox is
+a general-purpose full virtualizer for x86 hardware, targeted at server, desktop
+and embedded use.
+- Clone this repository to your local workstation: `git clone
+https://github.com/ckelner/hiring-engineers.git`
+- Now run `vagrant up` from your terminal in this directory. This will add an
+Ubuntu 12.04 Vagrant Box to your local workstation if you don't have it already.
+A Box is simply a base virtual machine image to work with. Vagrant will then
+boot a virtual machine using this image and any customizations found in the
+`Vagrantfile` in this project. You'll know that it is successful if you see the
+message `No Datadog API key found. Make sure 'secrets.yaml' exists. VM will
+come up without Datadog agent installed.` -- we will address this in the next
+session, but for now that is fine.
+- You can SSH into your virtual machine by running `vagrant ssh`; you will see a
+message similar to `Welcome to your Vagrant-built virtual machine` and you'll be
+dropped to the VM's command prompt.
