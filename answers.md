@@ -7,10 +7,10 @@ solutions can span numerous cloud and service providers with SOA and
 micro-service architectures where messaging, queuing, caching, routing, and
 service discovery are critical working components. These resources can be
 configured and deployed in a host of ways, from containers, to virtual machines,
-to bare metal.
+to bare metal. Datadog tackles all these scenarios, plus more.
 
 Datadog boasts a huge library of integrations that allows customers to get
-metrics into their system quickly and easily from almost any source, be it an
+metrics into Datadog quickly and easily from almost any source, be it an
 application, a database, tooling, a cloud provider, or third party services. And
 with an API first approach developers can build custom integrations and push
 custom metrics with ease. Even Graphs and Dashboards can be codified!
@@ -21,6 +21,8 @@ their environments. Datadog can be configured to alert customers before
 something goes wrong and operations teams can discuss in real-time about what
 they are seeing within the dashboard itself. This keeps the context and history
 relevant to the metrics at that moment in time.
+
+Check out [https://www.datadoghq.com/](https://www.datadoghq.com/) for more!
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -39,6 +41,7 @@ relevant to the metrics at that moment in time.
   - [Create a Monitor](#create-a-monitor)
   - [Email Screenshot](#email-screenshot)
   - [Night Time Down Time](#night-time-down-time)
+- [Conclusion](#conclusion)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -63,7 +66,7 @@ boot a virtual machine using this image and any customizations found in the
 `Vagrantfile` in this project. You'll know that it is successful if you see the
 message `No Datadog API key found. Make sure 'secrets.yaml' exists. VM will
 come up without Datadog agent installed.` -- we will address this in the next
-session, but for now that is fine.
+section, but for now this message can be considered a success.
 - You can SSH into your virtual machine by running `vagrant ssh`; you will see a
 message similar to `Welcome to your Vagrant-built virtual machine` and you'll be
 dropped to the VM's command prompt.
@@ -73,16 +76,16 @@ dropped to the VM's command prompt.
 
 Data is at the core of all monitoring solutions. Datadog has a few ways to
 collect data. The primary means is via an agent. The Datadog agent is a piece of
-software that collects metrics and alerts and pushes them back to Datadog on
+software that collects metrics and events and pushes them back to Datadog on
 your behalf. Typically these are system level metrics (CPU, memory, disk) but
-can also include custom application metrics as well.
+can also include custom application metrics and events as well.
 
 ## Installing the Agent on Ubuntu
 Datadog offers step-by-step guides for the majority of common operating system
 platforms which can be found
 [here](https://app.datadoghq.com/account/settings#agent). For each there is
-typically a one-line install snippet that can be used, typically this will only
-apply when doing operations by hand. As an example, for our target platform
+a one-line install snippet that can be used, however this will only be
+applicable when doing operations by hand. As an example, for our target platform
 of Ubuntu, that looks like:
 
 ```bash
@@ -90,21 +93,69 @@ DD_API_KEY=$YOUR_API_KEY_HERE bash -c "$(curl -L https://raw.githubusercontent.c
 ```
 
 For a more controlled and automated approach Datadog list the step-by-step
-instructions as well. The [`Vagrantfile`](Vagrantfile) in this repo has adopted
-those instructions to install the agent via a
-[provisioner](https://www.vagrantup.com/docs/provisioning/). To take advantage
-of this provisioner and install the Datadog agent when you run `vagrant up`
-or `vagrant provision` you need to do the following:
+instructions as well. The [`Vagrantfile`](Vagrantfile) included in this repo has
+adopted those instructions to install the agent via a
+[provisioner](https://www.vagrantup.com/docs/provisioning/).
+
+A snippet of the important parts of [`Vagrantfile`](Vagrantfile) pertaining to
+the Datadog agent install and configuration:
+```ruby
+# Get sensitive data from file
+secrets_file = 'secrets.yaml'
+if File.file?(secrets_file)
+  secrets = YAML.load_file(secrets_file)
+  dd_api_key = secrets["dd_api_key"]
+end
+APIKEY="#{dd_api_key}"
+if [[ $APIKEY = "" || -z $APIKEY ]]; then
+  # In cases where `vagrant provision` is being run rather than `vagrant up`
+  # or `vagrant reload` #{dd_api_key} will not be available, so try loading
+  # the file from disk via bash
+  # try to eval, if not fall back to `true` -- allows script to exit cleanly
+  eval $(parse_yaml #{secrets_file} "config_")
+  APIKEY="$config_dd_api_key"
+  if [[ $APIKEY = "" || -z $APIKEY ]]; then
+    echo "No Datadog API key found. Make sure 'secrets.yaml' exists. VM will come up without Datadog agent installed."
+    # Do not exit here -- we still want the vagrant box to come up if the
+    # user has not yet created `secrets.yaml`
+  fi
+fi
+config.vm.provision "shell", inline: <<-SHELL
+  sudo apt-get update
+  sudo apt-get install apt-transport-https
+  sudo sh -c "echo 'deb https://apt.datadoghq.com/ stable main' > /etc/apt/sources.list.d/datadog.list"
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7A7DA52
+  sudo apt-get update
+  sudo apt-get install datadog-agent
+  sudo sh -c "sed 's/api_key:.*/api_key: $APIKEY/' /etc/dd-agent/datadog.conf.example > /etc/dd-agent/datadog.conf"
+  sudo sh -c "mv /etc/dd-agent/temp.conf /etc/dd-agent/datadog.conf"
+  sudo /etc/init.d/datadog-agent start
+SHELL
+```
+
+To take advantage of this provisioner and install the Datadog agent when you run
+`vagrant up` or `vagrant provision` you need to do the following:
 
 - In this directory copy [`secrets.yaml.example`](secrets.yaml.example) to
   `secrets.yaml`.
   - `secrets.yaml` is never checked into source control as it is ignored through
   [`.gitignore`](.gitignore).
-- Replace the `$YOUR_API_KEY_GOES_HERE` value with the real one from Datadog.
+- Replace the `$YOUR_API_KEY_GOES_HERE` value in the newly created
+`secrets.yaml` with the real one from Datadog.
 - If you still have your vagrant box running you can do `vagrant provision` and
 you should see the provisioner run and install the agent. You can now go to
 your [Infrastructure Host Map](https://app.datadoghq.com/infrastructure/map) to
 see the agent reporting from the VM.
+- A successful `vagrant up` or `vagrant provision` will now end with:
+  ```
+  ==> default:    /etc/rc4.d/S20datadog-agent -> ../init.d/datadog-agent
+  ==> default:    /etc/rc5.d/S20datadog-agent -> ../init.d/datadog-agent
+  ==> default: Enabling service datadog-agent
+  ==> default: Creating dd-agent group
+  ==> default: Creating dd-agent user
+  ==> default:  * Starting Datadog Agent (using supervisord) datadog-agent
+  ==> default:    ...done.
+  ```
 
 ## Tagging
 > Add tags in the Agent config file and show us a screenshot of your host and
@@ -116,11 +167,25 @@ assigned via the UI, the API, the agent configuration, or inherited from an
 integration.
 
 For this project the tags are modified in the agent configuration with the
-values defined in `tags.yaml`. This is automated through the
+values defined in []`tags.yaml`](tags.yaml). This is automated through the
 [`Vagrantfile`](Vagrantfile) provisioner. You can modify the tags in
 [`tags.yaml`](tags.yaml) then run `vagrant provision` and it will alter the tags
 in the agent config. It will take a few minutes to update in the
 [Datadog UI](https://app.datadoghq.com/infrastructure/map).
+
+A snippet of the important parts of [`Vagrantfile`](Vagrantfile) pertaining to
+tags:
+```ruby
+# Get tags data from file
+tags_file = 'tags.yaml'
+if File.file?(tags_file)
+  tags = YAML.load_file(tags_file)
+  dd_tags = tags["dd_tags"]
+end
+```
+```bash
+sudo sh -c "sed 's/# tags:.*/tags: $TAGS/' /etc/dd-agent/datadog.conf > /etc/dd-agent/temp.conf"
+```
 
 Below is a screenshot of the default tags that will be applied to the host:
 ![tag image](screenshots/tags.png)
@@ -130,7 +195,36 @@ Below is a screenshot of the default tags that will be applied to the host:
 > install the respective Datadog integration for that database.
 
 This task we'll do via a script rather than the [`Vagrantfile`](Vagrantfile)
-provisioner. Perform the following steps:
+provisioner.
+
+A snippet of [scripts/mongo-install.sh](scripts/mongo-install.sh):
+```bash
+# Install mongo
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+mongo admin --eval "db.createUser({'user':'datadog', 'pwd': '$pwd', 'roles' : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})"
+
+# check that it is working
+echo "db.auth('datadog', '$pwd')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
+echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
+
+sudo tee /etc/dd-agent/conf.d/mongo.yaml > /dev/null <<EOF
+init_config:
+
+instances:
+  - server: mongodb://datadog:$pwd@localhost:27017
+    tags:
+      - kelnerrox
+      - kelnerhax
+EOF
+
+sudo /etc/init.d/datadog-agent restart
+```
+
+Perform the following steps:
 
 - If the vagrant VM isn't already running then `vagrant up`
 - `vagrant ssh`
@@ -179,7 +273,19 @@ To install our custom check follow these steps:
   [randomcheck.py](agent_check/randomcheck.py) and
   [randomcheck.yaml](agent_check/randomcheck.yaml) in their appropriate
   directories and restart the agent.
-- Shortly there after you can revisit the
+
+[randomcheck.py](agent_check/randomcheck.py):
+```python
+import random
+from checks import AgentCheck
+
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+
+
+Shortly there after you can revisit the
 [Hostmap](https://app.datadoghq.com/infrastructure/map) see the agent check
 reporting:
 ![agent_check](screenshots/agent_check.png)
@@ -255,3 +361,10 @@ screenshot of the email that it sends you.
 > notification.
 
 ![downtime](screenshots/downtime.png)
+
+# Conclusion
+This was a fun refresher on Datadog. The product is strong and easy to work
+with. I did not find this too technically challenging, so I look forward to some
+harder problems in the future. In particular I'd love to work with the API and
+SDKs more deeply, and work on codifying or scripting dashboards, monitors,
+alerts, and so on.
