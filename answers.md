@@ -4,12 +4,10 @@ These are answers from Bill Garrett (bgarrett@sonic.net) to the Solutions Engine
 
 *Still is a work in progress!*
 
-## Questions
-
-### Level 0 - Setting up an Ubuntu VM
+## Level 0 - Setting up an Ubuntu VM
 I used the instructions provided to set up a fresh Ubuntu VM with Vagrant and connected to run a few quick smoke tests.
 
-### Level 1 - Collecting Data
+## Level 1 - Collecting Data
 
 I installed an agent in my environment. Here's a screenshot from the Infrastructure dashboard:
 
@@ -17,7 +15,7 @@ I installed an agent in my environment. Here's a screenshot from the Infrastruct
 
 There are two hosts here because I changed the hostname after seeing how it appears. Hashicorp's default of 'precise64' seemed dull, so I went with the more apropos dogpatch01. [Why dogpatch?](#the-dogpatch)
 
-#### What is an agent?
+### What is an agent?
 
 **Executive explanation:** DataDog's agent is a light-weight service
 that runs on each of your systems, collecting configurable metrics,
@@ -37,7 +35,7 @@ root      1683  1628  0 17:25 pts/0    00:00:00 grep --color=auto -i datadog
 The agent is installed in `/opt/datadog-agent`.
 The main configuration file is `/etc/dd-agent/datadog.conf`.
 
-#### Adding tags
+### Adding tags
 
 I found the tag settings in `/etc/dd-agent/datadog.conf`. After a bit of experimentation and searching to learn how they work I settled on changing them to:
 ```
@@ -48,6 +46,35 @@ tags: owner:bill, env:dev, role:database
 Here's a screenshot of the host map showing these tags:
 
 ![Host map showing tags](./screenshots/03-HostMapShowingTags.png)
+
+### Monitoring Postgres
+
+I installed Postgres on my machine and added monitoring for it. See the following section for a simple dashboard I created.
+
+### Custom Agent Check
+
+I followed the instructions at http://docs.datadoghq.com/guides/agent_checks/ to create a custom agent check. Here's my (simple) code:
+
+`/etc/dd-agent/conf.d/random.yaml`:
+```
+init_config:
+
+instances:
+    [{}]
+```
+
+`/etc/dd-agent/checks.d/random.py`:
+```
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+
+Here's a screenshot of a simple timeboard I put together showing activity in my Postgres database and values from the random check:
+
+![Dashboard Showing Postgres and Random Metrics](./screenshots/05-TimeboardShowingPostgresAndRandom.png)
 
 ## Level 2 - Visualizing Data
 
