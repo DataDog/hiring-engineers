@@ -48,7 +48,7 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 Now that you have collected your Infrastructire based metrics, we will begin collecting Application Level metrics
 
-* Intsrument the following Python Flask Application using Datadog APM. 
+* Instrument the following Python Flask Application using Datadog APM. 
 
 ```
 from flask import Flask
