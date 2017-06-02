@@ -22,6 +22,18 @@ something goes wrong and operations teams can discuss in real-time about what
 they are seeing within the dashboard itself. This keeps the context and history
 relevant to the metrics at that moment in time.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Setup an Ubuntu VM](#setup-an-ubuntu-vm)
+- [Collecting Data](#collecting-data)
+  - [Installing the Agent on Ubuntu](#installing-the-agent-on-ubuntu)
+  - [Tagging](#tagging)
+  - [Installing & Monitoring MongoDB](#installing--monitoring-mongodb)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Setup an Ubuntu VM
 [Vagrant](https://www.vagrantup.com/) is a tool for building and managing
 virtual machine environments. Vagrant provides easy to configure, reproducible,
@@ -49,6 +61,8 @@ message similar to `Welcome to your Vagrant-built virtual machine` and you'll be
 dropped to the VM's command prompt.
 
 # Collecting Data
+> Bonus question: In your own words, what is the Agent?
+
 Data is at the core of all monitoring solutions. Datadog has a few ways to
 collect data. The primary means is via an agent. The Datadog agent is a piece of
 software that collects metrics and alerts and pushes them back to Datadog on
@@ -85,6 +99,9 @@ your [Infrastructure Host Map](https://app.datadoghq.com/infrastructure/map) to
 see the agent reporting from the VM.
 
 ## Tagging
+> Add tags in the Agent config file and show us a screenshot of your host and
+> its tags on the Host Map page in Datadog.
+
 [Tags](http://docs.datadoghq.com/guides/tagging/) make it easier to collect,
 query, and filter for those resources which share the same tags. Tags can be
 assigned via the UI, the API, the agent configuration, or inherited from an
@@ -99,3 +116,37 @@ in the agent config. It will take a few minutes to update in the
 
 Below is a screenshot of the default tags that will be applied to the host:
 ![tag image](screenshots/tags.png)
+
+## Installing & Monitoring MongoDB
+> Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then
+> install the respective Datadog integration for that database.
+
+This task we'll do via a script rather than the [`Vagrantfile`](Vagrantfile)
+provisioner. Perform the following steps:
+
+- If the vagrant VM isn't already running then `vagrant up`
+- `vagrant ssh`
+- `bash /vagrant_data/mongo-install.sh`
+- The [scripts/mongo-install.sh](scripts/mongo-install.sh) will install mongodb,
+configure the datadog database user, and configure the datadog-agent to be mongo
+aware.
+- The last command in the script is `sudo /etc/init.d/datadog-agent info` which
+will display what checks are running. There should be a mongo check similar to
+the one below:
+  ```
+  Checks
+  ======
+  ...
+      mongo (5.13.2)
+      --------------
+        - instance #0 [OK]
+        - Collected 112 metrics, 0 events & 1 service check
+        - Dependencies:
+            - pymongo: 3.2
+  ```
+
+And now when you revisit your
+[Hostmap](https://app.datadoghq.com/infrastructure/map) you'll see that mongodb
+metrics are reporting:
+![mongo-metrics](screenshots/mongo.png)
+
