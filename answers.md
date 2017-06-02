@@ -31,6 +31,7 @@ relevant to the metrics at that moment in time.
   - [Installing the Agent on Ubuntu](#installing-the-agent-on-ubuntu)
   - [Tagging](#tagging)
   - [Installing & Monitoring MongoDB](#installing--monitoring-mongodb)
+  - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -150,3 +151,29 @@ And now when you revisit your
 metrics are reporting:
 ![mongo-metrics](screenshots/mongo.png)
 
+## Writing a Custom Agent Check
+> Write a custom Agent check that samples a random value.
+> Call this new metric: `test.support.random`
+
+Datadog has a [great guide for writing an Agent
+Check](http://docs.datadoghq.com/guides/agent_checks/) that has lots of details.
+The basics are that a python check file which contains the check logic must be
+placed in the `checks.d` directory and a YAML check configuration file by the
+same name must be placed in the `conf.d` directory. This check and config abide
+by certain structure which can be found in the [Datadog
+documentation](http://docs.datadoghq.com/guides/agent_checks/).
+
+To install our custom check follow these steps:
+
+
+- If the vagrant VM isn't already running then `vagrant up`
+- `vagrant ssh`
+- `bash /vagrant_data/agent_check/install.sh`
+- The [agent_check/install.sh](agent_check/install.sh) will place
+  [randomcheck.py](agent_check/randomcheck.py) and
+  [randomcheck.yaml](agent_check/randomcheck.yaml) in their appropriate
+  directories and restart the agent.
+- Shortly there after you can revisit the
+[Hostmap](https://app.datadoghq.com/infrastructure/map) see the agent check
+reporting:
+![agent_check](screenshots/agent_check.png)
