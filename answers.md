@@ -47,3 +47,55 @@ session, but for now that is fine.
 - You can SSH into your virtual machine by running `vagrant ssh`; you will see a
 message similar to `Welcome to your Vagrant-built virtual machine` and you'll be
 dropped to the VM's command prompt.
+
+# Collecting Data
+Data is at the core of all monitoring solutions. Datadog has a few ways to
+collect data. The primary means is via an agent. The Datadog agent is a piece of
+software that collects metrics and alerts and pushes them back to Datadog on
+your behalf. Typically these are system level metrics (CPU, memory, disk) but
+can also include custom application metrics as well.
+
+## Installing the Agent on Ubuntu
+Datadog offers step-by-step guides for the majority of common operating system
+platforms which can be found
+[here](https://app.datadoghq.com/account/settings#agent). For each there is
+typically a one-line install snippet that can be used, typically this will only
+apply when doing operations by hand. As an example, for our target platform
+of Ubuntu, that looks like:
+
+```bash
+DD_API_KEY=$YOUR_API_KEY_HERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```
+
+For a more controlled and automated approach Datadog list the step-by-step
+instructions as well. The [`Vagrantfile`](Vagrantfile) in this repo has adopted
+those instructions to install the agent via a
+[provisioner](https://www.vagrantup.com/docs/provisioning/). To take advantage
+of this provisioner and install the Datadog agent when you run `vagrant up`
+or `vagrant provision` you need to do the following:
+
+- In this directory copy [`secrets.yaml.example`](secrets.yaml.example) to
+  `secrets.yaml`.
+  - `secrets.yaml` is never checked into source control as it is ignored through
+  [`.gitignore`](.gitignore).
+- Replace the `$YOUR_API_KEY_GOES_HERE` value with the real one from Datadog.
+- If you still have your vagrant box running you can do `vagrant provision` and
+you should see the provisioner run and install the agent. You can now go to
+your [Infrastructure Host Map](https://app.datadoghq.com/infrastructure/map) to
+see the agent reporting from the VM.
+
+## Tagging
+[Tags](http://docs.datadoghq.com/guides/tagging/) make it easier to collect,
+query, and filter for those resources which share the same tags. Tags can be
+assigned via the UI, the API, the agent configuration, or inherited from an
+integration.
+
+For this project the tags are modified in the agent configuration with the
+values defined in `tags.yaml`. This is automated through the
+[`Vagrantfile`](Vagrantfile) provisioner. You can modify the tags in
+[`tags.yaml`](tags.yaml) then run `vagrant provision` and it will alter the tags
+in the agent config. It will take a few minutes to update in the
+[Datadog UI](https://app.datadoghq.com/infrastructure/map).
+
+Below is a screenshot of the default tags that will be applied to the host:
+![tag image](screenshots/tags.png)
