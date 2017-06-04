@@ -6,6 +6,7 @@ These are answers from Bill Garrett (bgarrett@sonic.net) to the Solutions Engine
 
 ## Level 0 - Setting up an Ubuntu VM
 I used the instructions provided to set up a fresh Ubuntu VM with Vagrant and connected to run a few quick smoke tests.
+[Color commentary](#virtualization--automation-rock)
 
 ## Level 1 - Collecting Data
 
@@ -121,6 +122,17 @@ portfolio, doubling of versions and platforms to support, etc.-- without more th
 We had already gone through the costly exercises of adding electric capacity to our server room and, subsequently,
 adding cooling capacity-- which included not just HVAC parts and technicians but a crane operator (to put the
 equipment on the roof!) and the all the safety permits, inspectors, and signoffs that go along with that.
+Virtualization gave us the ability to support 2x, 3x, 4x as many environments within the physical limits of
+electricity, cooling capacity, and floorspace.
+
+Subsequently I spoke to many of my firms client's about virtualization. I saw it means various things to various
+stakeholders. The value I'd seen at my own company was from the POV of a VP Engineering, CIO, or other executive.
+From the perspective of a software development manager, the perspective was "How *long* does it take to get a new
+environment ready?" One customer told me that the big IT firms his employer used all quoted 3 days to configure a new
+system-- and that was after the months it can take to get the hardware ordered, shipped, and unboxed. With
+virtualization that wait time-- and the direct and indirect costs of it-- could be reduced to hours.
+
+Now, with good automation tools atop virtualization, new environments can be titled up in minutes. The future is awesome.
 
 ### The Dogpatch
 The Dogpatch is a neighborhood in San Francisco, south of Giants Stadium. It's a newly hip area that tech firms have been moving to in recent years.
