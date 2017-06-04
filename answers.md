@@ -78,7 +78,49 @@ Here's a screenshot of a simple timeboard I put together showing activity in my 
 
 ## Level 2 - Visualizing Data
 
+### Clone dashboard and add metrics
+
+I cloned my original Basic TimeBoard and added a few extra metrics to it. The new version is called Slightly Less Basic Timeboard. :wink:
+
+![Dashboard Showing Additional Postgres Metrics](./screenshots/06-TimeboardMoreMetrics.png)
+
+### TimeBoards vs. ScreenBoards
+
+To answer the question about the difference between timeboards and screenboards I figured first I'd try creating a screenboard
+to see how it work. Right away it leapt out at me that screenboards substantially more control over visual layout. Here's a basic
+screenboard I created as I explored the functionality:
+
+![Basic ScreenBoard](./screenshots/07-BasicScreenBoard.png)
+
+Screenboards seem to include all widgets available in timeboards plus several extra, including image and note.
+
+Next I decided to search for a more authoritative description, such as a manual. The \#2 hit on my Google search was
+the company's blog post from a few years ago introducing the feature:
+
+https://www.datadoghq.com/blog/introducing-screenboards-your-data-your-way/
+
+It confirmed that the purpose of screenboards is to provide customized layout control not offered in the dashboard feature. It
+noted that customers were clamoring for more control, going so far as to use other dashboarding tools and populate them with
+data from Datadog. Screenboards are certainly an improvement!
+
+### Snapshot and @notification
+
+Doing this next!
+
+## Level 3 - Alerting Data
+
+Doing this next+1.
+
 # Color Commentary & Notes
+
+### Virtualization & Automation *Rock*
+I remember ~10 years ago when virtualization was first taking hold across companies for production infrastructure.
+I worked for a small company at the time that had been doubling year over year for a few years. For us virtualization
+was the most cost effective solution to handle all that doubling-- doubling of staff, doubling of products in the
+portfolio, doubling of versions and platforms to support, etc.-- without more than doubling our costs.
+We had already gone through the costly exercises of adding electric capacity to our server room and, subsequently,
+adding cooling capacity-- which included not just HVAC parts and technicians but a crane operator (to put the
+equipment on the roof!) and the all the safety permits, inspectors, and signoffs that go along with that.
 
 ### The Dogpatch
 The Dogpatch is a neighborhood in San Francisco, south of Giants Stadium. It's a newly hip area that tech firms have been moving to in recent years.
