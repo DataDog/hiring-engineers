@@ -6,7 +6,7 @@ These are answers from Bill Garrett (bgarrett@sonic.net) to the Solutions Engine
 
 ## Level 0 - Setting up an Ubuntu VM
 I used the instructions provided to set up a fresh Ubuntu VM with Vagrant and connected to run a few quick smoke tests.
-[Color commentary](#virtualization--automation-rock)
+[Color commentary on VMs](#virtualization--automation-rock).
 
 ## Level 1 - Collecting Data
 
@@ -126,26 +126,37 @@ Doing this next.
 # Color Commentary & Notes
 
 ### Virtualization & Automation *Rock*
-I remember ~10 years ago when virtualization was first taking hold across companies for production infrastructure.
-I worked for a small company at the time that had been doubling year over year for a few years. For us virtualization
-was the most cost effective solution to handle all that doubling-- doubling of staff, doubling of products in the
-portfolio, doubling of versions and platforms to support, etc.-- without more than doubling our costs.
-We had already gone through the costly exercises of adding electric capacity to our server room and, subsequently,
-adding cooling capacity-- which included not just HVAC parts and technicians but a crane operator (to put the
-equipment on the roof!) and the all the safety permits, inspectors, and signoffs that go along with that.
-Virtualization gave us the ability to support 2x, 3x, 4x as many environments within the physical limits of
-electricity, cooling capacity, and floorspace.
+It took me a little over an hour to set up a VM. More than half of that was
+because I had to install Vagrant on my personal machine; I've only used it on
+work machines before. Then, I had to download a system image over DSL. That
+took about 20 minutes. Then another few minutes to initialize it. But that
+was **awesome**.  Why?
 
-Subsequently I spoke to many of my firms client's about virtualization. I saw it means various things to various
-stakeholders. The value I'd seen at my own company was from the POV of a VP Engineering, CIO, or other executive.
-From the perspective of a software development manager, the perspective was "How *long* does it take to get a new
-environment ready?" One customer told me that the big IT firms his employer used all quoted 3 days to configure a new
-system-- and that was after the months it can take to get the hardware ordered, shipped, and unboxed. With
-virtualization that wait time-- and the direct and indirect costs of it-- could be reduced to hours.
+Set your time machine to a time before widespread virtualization. It's not
+even that long ago. I remember in 2005-2006 pitching in to help my company's
+release manager image a bunch of systems for regression testing. My customers
+were waiting on that release! Building out a few systems took me most of a
+day, and even that was with tools like Ghost.
 
-Now, with good automation tools atop virtualization, new environments can be titled up in minutes. The future is awesome.
+Some of my customers had it worse. Those with big-name consulting firms doing
+their IT were routinely quoted 3 days to configure a new system-- and that
+was after the *months* it would take to get the hardware ordered, shipped,
+and unboxed.
+
+Now roll the clock in the time machine forward just a few years, to when
+virtualization was first taking hold across companies for production
+infrastructure. (I remember hearing about VMs as early as 1997 but it was
+very research-y stuff back then.) The 3 days it used to take to build out a
+server could be reduced to hours. 
+
+And within the past few years, with automation tools layered atop virtualized
+infrastructure, new environments can be tilted up in minutes.
+
+The future is awesome.
 
 ### The Dogpatch
-The Dogpatch is a neighborhood in San Francisco, south of Giants Stadium. It's a newly hip area that tech firms have been moving to in recent years.
+The Dogpatch is a neighborhood in San Francisco. Long known as a tough part
+of town, encompassing the docks area south of Giants Stadium, it's recently
+become a hip hub for dozens of tech firms and gleaming residential towers.
 
 ![The Dogpatch](./screenshots/a1-TheDogpatch.png)
