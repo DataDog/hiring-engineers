@@ -49,7 +49,7 @@ The documentation might be improved by telling the user that the check will not 
 **NOTE**: 
 The custom check code might be improved in two ways:
 
-1. By writing better errors messages if the config file is missing. Currently check will fail, without any meaningful message. 
+1. By writing better error messages if the config file is missing. Currently check will fail, without any meaningful message. 
 2. By supporting `*.yml` config files as well as the more standard `*.yaml` files (or by explicitly calling this out as a `gotcha`). See [this link](https://stackoverflow.com/questions/21059124/is-it-yaml-or-yml). 
 
 ## Level 2 - Visualizing your Data
@@ -80,9 +80,6 @@ A snapshot of the `test.support.random` graph with a box showing numbers above 0
 The key here is `from (everywhere)`
 
 ![Custom Check](images/alert2.png)
-
-Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
-Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
 ### Answer 4 - Email Alert
 
