@@ -106,11 +106,22 @@ data from Datadog. Screenboards are certainly an improvement!
 
 ### Snapshot and @notification
 
-Doing this next!
+First I tried a basic @notification on my random metric, as directed:
+
+![Snapshot with @notification](./screenshots/08-SnapshotWithNotification.png)
+
+This didn't send me an email. As the docs note at https://help.datadoghq.com/hc/en-us/articles/203038119-What-do-notifications-do-in-Datadog-
+you can't send an email to yourself. I added another comment using an a second email address...
+
+![Snapshot with @notification, take 2](./screenshots/09-NotificationAltAddress.png)
+
+...And this one worked (i.e., sent me an email):
+
+![Received email notification](./screenshots/10-NotificationEmail.png)
 
 ## Level 3 - Alerting Data
 
-Doing this next+1.
+Doing this next.
 
 # Color Commentary & Notes
 
