@@ -7,9 +7,9 @@ Todd Densmore
 
 My running VM
 
-![](images/vm1.tiff)
+![](images/vm1.png)
 
-![](images/vm2.tiff)
+![](images/vm2.png)
 
 ## Level 1 - Collecting your Data
 
@@ -25,23 +25,23 @@ The Datadog Agent is a background process that collects metrics from different `
 
 A screenshot showing the tags `test.domain` in the Agent config file:
 
-![Host Map](images/host1.tiff)
+![Host Map](images/host1.png)
 
 Also a screenshot of the Host Dashboard:
 
-![Host Dashboard](images/host2.tiff)
+![Host Dashboard](images/host2.png)
 
 ### Answer 4 - MongoDB
 
 My `mongodb` database integration:
 
-![https://app.datadoghq.com/screen/integration/mongodb](images/mongodb1.tiff)
+![https://app.datadoghq.com/screen/integration/mongodb](images/mongodb1.png)
 
 ### Answer 5 - Custom Check
 
 My custom agent check called `test.support.random`:
 
-![Custom Check](images/random1.tiff)
+![Custom Check](images/random1.png)
 
 **NOTE**: 
 The documentation might be improved by telling the user that the check will not get compiled if the config file is missing (which is strange). 
@@ -67,27 +67,27 @@ Since your database integration is reporting now, clone your database integratio
 
 A snapshot of the `test.support.random` graph with a box showing numbers above 0.90. 
 
-![Custom Check](images/random2.tiff)
+![Custom Check](images/random2.png)
 
 ## Level 3 - Alerting on your Data
 
 ### Answer 1 - Monitor
 
-![Custom Check](images/alert1.tiff)
+![Custom Check](images/alert1.png)
 
 ### Answer 2 - Multi-Alert (Bonus)
 
 The key here is `from (everywhere)`
 
-![Custom Check](images/alert2.tiff)
+![Custom Check](images/alert2.png)
 
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
 ### Answer 4 - Email Alert
 
-![Custom Check](images/email1.tiff)
+![Custom Check](images/email1.png)
 
 ### Answer 5 - Alert Downtime (Bonus)
 
-![Custom Check](images/email2.tiff)
+![Custom Check](images/email2.png)
