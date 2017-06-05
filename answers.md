@@ -16,6 +16,8 @@ There are two hosts here because I changed the hostname after seeing how it appe
 
 ### What is an agent?
 
+How I'd answer "What is an agent?" varies slightly depending on the audience.
+
 **Executive explanation:** DataDog's agent is a light-weight service
 that runs on each of your systems, collecting configurable metrics,
 and sending them to DataDog's hosted service to display shareable,
@@ -168,7 +170,11 @@ very research-y stuff back then.) The 3 days it used to take to build out a
 server could be reduced to hours. 
 
 And within the past few years, with automation tools layered atop virtualized
-infrastructure, new environments can be tilted up in minutes.
+infrastructure, new environments can be tilted up in minutes. ...And that's just
+the value from the perspective of time-to-readiness for a system. There's a
+whole other dimenion of value in terms of number of environments supportable
+per unit of electricity, cooling capacity, and floorspace. That's a story for
+another day.
 
 The future is awesome.
 
