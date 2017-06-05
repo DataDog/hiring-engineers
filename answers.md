@@ -2,8 +2,6 @@
 
 These are answers from Bill Garrett (bgarrett@sonic.net) to the Solutions Engineer exercise, June 2017.
 
-*Still is a work in progress!*
-
 ## Level 0 - Setting up an Ubuntu VM
 I used the instructions provided to set up a fresh Ubuntu VM with Vagrant and connected to run a few quick smoke tests.
 [Color commentary on VMs](#virtualization--automation-rock).
@@ -121,7 +119,27 @@ you can't send an email to yourself. I added another comment using an a second e
 
 ## Level 3 - Alerting Data
 
-Doing this next.
+I created a monitor for alerting per the instructions. Here's a screenshot of the first part of the setup...
+
+![Monitor setup](./screenshots/11-MonitorSetup1.png)
+
+And the second part of the setup:
+
+![Monitor setup, continued](./screenshots/12-MonitorSetup2.png)
+
+As expected, I received an alert message not long thereafter. Here's a screenshot of the email:
+
+![Monitor Alert Email](./screenshots/13-MonitorAlertEmail.png)
+
+To squelch messages after-hours I configured repeating downtime as per the instructions:
+
+![Downtime Configuration](./screenshots/14-MonitorDowntimeSetup.png)
+
+Since I was working on this exercise *during* the downtime hours the downtime wouldn't begin
+until 5pm the following day. So I created another downtime plan triggering sooner. Here's
+the email from that one:
+
+![Downtime Notification](./screenshots/15-MonitorDowntimeEmail.png)
 
 # Color Commentary & Notes
 
@@ -136,7 +154,7 @@ Set your time machine to a time before widespread virtualization. It's not
 even that long ago. I remember in 2005-2006 pitching in to help my company's
 release manager image a bunch of systems for regression testing. My customers
 were waiting on that release! Building out a few systems took me most of a
-day, and even that was with tools like Ghost.
+day, and even that was with tools like Ghost and install discs in hand.
 
 Some of my customers had it worse. Those with big-name consulting firms doing
 their IT were routinely quoted 3 days to configure a new system-- and that
