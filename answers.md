@@ -143,6 +143,16 @@ the email from that one:
 
 ![Downtime Notification](./screenshots/15-MonitorDowntimeEmail.png)
 
+I experimented a bit more with the monitors, including marking one as resolved.
+Resolving it caused the system to send me an alert message implying the monitor had
+been triggered! I quickly remembered the example conditional code I'd seen when
+creating the monitor, checked the references on it, and updated the monitor body to
+be:
+
+![Monitor with conditional text](./screenshots/16-MonitorSetupWithRecovery.png)
+
+Now when the monitor recovers, I get an email clarifying that it has recovered. 
+
 # Color Commentary & Notes
 
 ### Virtualization & Automation *Rock*
