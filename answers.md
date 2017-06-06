@@ -27,7 +27,7 @@ A screenshot showing the tags `test.domain` in the Agent config file:
 
 ![Host Map](images/host1.png)
 
-Also a screenshot of the Host Dashboard:
+Also a screenshot of the [Host Dashboard](https://app.datadoghq.com/dash/host/299935943):
 
 ![Host Dashboard](images/host2.png)
 
