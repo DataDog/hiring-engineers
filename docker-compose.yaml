@@ -1,0 +1,29 @@
+version: "2"
+services:
+  datadog:
+    build: datadog
+    depends_on:
+     - db
+    env_file:
+     - .env
+    links:
+     - redis
+     - db
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/mounts:/host/proc/mounts:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  redis:
+    image: redis
+  db:
+    image: mongo
+    ports:
+     - "27017:27017"
+     - "28017:28017"
+  provision:
+    build: provision
+    command: bash /etc/provision_datadog_user.sh
+    depends_on:
+     - db
+    env_file:
+     - .env
