@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+  - server: mongodb://datadog:mousepad@db:27017/admin
+    tags:
+      - dev_db
+    additional_metrics:
+      - durability
+      - locks
+      - top
