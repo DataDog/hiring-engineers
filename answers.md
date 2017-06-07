@@ -56,4 +56,8 @@
 
 * I scheduled downtime on the test.support.random monitor from 7pm-9am PST and my "teammate" received an email notification.
 
+# Final Thoughts
 
+Overall, I found that the provided documentation was extremely clear and helpful in detailing the product's available features and explaining how to utilize the Agent and the Datadog web app. Although I just scratched the surface of integrations and Agent checks in this exercise, I can tell that they're powerful tools and would be interested in delving deeper into their applications. As for the web app, I found the provided functionalities user-friendly and enjoyed exploring the different features. Although I was just looking at a small sample size of data from my own local machine, I can imagine how useful these tools would be when applied to the large-scale systems of a major organization.
+
+After taking some time to explore the product, I think that working at Datadog would be an engaging challenge and a great way to continue my growth and development as an engineer.
