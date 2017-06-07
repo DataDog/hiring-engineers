@@ -56,18 +56,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def api_entry():
-   return 'Entrypoint to the Application'
+    return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
 def apm_endpoint():
-   return 'Getting APM Started'
+    return 'Getting APM Started'
 
 @app.route('/api/trace')
 def trace_endpoint():
-   return 'Posting Traces'
+    return 'Posting Traces'
 
 if __name__ == '__main__':
-   app.run()
+    app.run()
 ```
 
 * Access each of the specifed endpoints from the Python Script above, or create some of your own. By default, these endpoints should be available at localhost:5000/<Endpoint>
