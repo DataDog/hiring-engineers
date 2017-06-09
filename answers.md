@@ -44,31 +44,29 @@ Finally, I added a graph of my test.support.random metric to the timeboard.
 ### test.support.random Graph Snapshot
 ![](./screenshots/snapshot.png)
 
-Graph snapshots was one of my favorite features I utilized in the web app because
-
-* I took a snapshot of the test.support.random graph going above 0.9 and sent myself a notification. I liked the easy-to-use interface for pinpointing a specific segment of a graph and notifying a teammate about it.
+Graph snapshots was one of my favorite features I utilized in the web app because it was extremely intuitive and I could tell how useful it would be when interacting with teammates. I took a snapshot of the test.support.random graph going above 0.9 and tagged myself so I would receive a notification.
 
 # Level 3
 
 ### test.support.random Multi-Alert Monitor
 ![](./screenshots/multialert.png)
 
-* I set up a multi-alert monitor on the test.support.random metric so that I would be notified if it went above 0.9 on any host within the past 5 minutes.
+Before beginning the Level 3 steps, I read through the documentation on Monitors to learn about how they can be used and the available features. I navigated to the New Monitor page and created a monitor on the test.support.random metric that would alert me if it went above 0.9 within the past 5 minutes. I also made it a multi-alert monitor so that I could monitor the metric on multiple hosts if my infrastructure scaled up.
 
 ### Monitor Notification
 ![](./screenshots/monitor_notification.png)
 
-* Next, I set up a notification message that would tell me which host the issue occurred on, send me a link to the relevant dashboard in the message body, and send an additional notification when the random value returned to "safe" levels.
+Next, I wrote the notification message using the provided syntax to include the name of the affected host in the message title. I added an alert message body that contained a link to the relevant dashboard, and a recovery message that would be sent out when the random value returned to "safe" levels. I set the message to notify me by email when either of these things happened.
 
 ### Monitor Email Received
 ![](./screenshots/monitor_email.png)
 
-* I successfully received an email notification from the monitor.
+Soon, I successfully received an email notification that the test.support.random metric had exceeded 0.9. Afterwards, I received the recovery message (not pictured).
 
 ### Downtime Scheduled
 ![](./screenshots/downtime.png)
 
-* I scheduled downtime on the test.support.random monitor from 7pm-9am PST and my "teammate" received an email notification.
+I scheduled recurring daily downtime on the monitor from 7am-9m PST. I tagged one of my other email addresses in the notification as though I were tagging a teammate and received the above email.
 
 # Final Thoughts
 
