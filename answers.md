@@ -172,7 +172,7 @@
 #### Screenshots: randomvalue Agent Check
 
 
-  * Created "randomnumber" Agent Check:
+  * Created "randomvalue" Agent Check:
     * Configuration file [`randomvalue.yaml`](precise64/etc/dd-agent/conf.d/randomvalue.yaml):  
       ```yaml  
       init_config:
