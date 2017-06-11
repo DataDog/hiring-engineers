@@ -173,7 +173,7 @@
 
 
   * Created "randomnumber" Agent Check:
-    * Configuration file [`randomnumber.yaml`](precise64/etc/dd-agent/conf.d/randomnumber.yaml):  
+    * Configuration file [`randomvalue.yaml`](precise64/etc/dd-agent/conf.d/randomvalue.yaml):  
       ```yaml  
       init_config:
 
@@ -201,7 +201,7 @@
                 - Expected:fail
       ```
 
-    * Python Script [`randomnumber.py`](precise64/etc/dd-agent/checks.d/randomnumber.py):  
+    * Python Script [`randomvalue.py`](precise64/etc/dd-agent/checks.d/randomvalue.py):  
       ```python
       import random
       from checks import AgentCheck
