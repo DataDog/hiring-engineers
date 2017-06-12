@@ -1,0 +1,12 @@
+init_config:
+    min_collection_interval: 120
+
+instances:
+    -   theDB: mysql
+        iterations: 10
+        userName: root
+        userPassword: Chestnut1999
+        concurrentUsers: 100
+        tags:
+           - GenerateDBLoad: MySQL
+

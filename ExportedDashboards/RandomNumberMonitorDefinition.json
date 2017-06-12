@@ -1,0 +1,22 @@
+{
+	"name": "Random Number is exceeding threshold for {{host.name}}",
+	"type": "metric alert",
+	"query": "max(last_5m):avg:test.support.random{*} by {host} >= 0.9",
+	"message": "Hi,\n\nThe random number generator on host {{host}} at ip {{host.ip}} has had a value of .9 or greater in the last 5 minutes.\n\nA Timeboard with that metric can be found here: https://app.datadoghq.com/dash/300232/davids-mysql-and-others-screenboard?live=true\n\nA Screenboard containing a graph of the value is here: https://p.datadoghq.com/sb/0191be845-8d782d46e2\n\nNotify: @david.judge@computer.org",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {},
+		"thresholds": {
+			"critical": 0.9
+		},
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"evaluation_delay": "",
+		"no_data_timeframe": 10
+	}
+}
