@@ -1,9 +1,9 @@
-#Datadog Hiring Challenge
+# Datadog Hiring Challenge
 
-##Level 0 - Setup an Ubuntu VM
+## Level 0 - Setup an Ubuntu VM
 I spun up an Ubuntu VM using Vagrant.
 
-##Level 1 - Collecting Your Data
+## Level 1 - Collecting Your Data
 
 I added some [Host map tags](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&host=303670348 "DataDog host map tags") in the Agent config file.
 
@@ -23,13 +23,13 @@ I also made sure the custom Agent check was sent successfully to Datadog by chec
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284676/metricsSummary_ntbmr8.png =500x "metrics summary page")
 
 
-###Bonus Question: What is the Agent?
+### Bonus Question: What is the Agent?
 
 The Agent is software that runs in the background on your hosts, collects events and metrics from your applications, stores them, and sends them to the datadog dashboard for analysis. 
 
 The 3 components of the Agent are the collector, which checks for integrations and metrics, dogstatsd, a server that stores all the metrics, and forwarder, which helps format the data to send to the Datadog dashboard.
 
-##Level 2 - Visualizing Your Data
+## Level 2 - Visualizing Your Data
 
 I cloned my [database integration dashboard](https://app.datadoghq.com/dash/list):
 
@@ -49,7 +49,7 @@ And tagged myself in an email notification:
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285925/emailTagged_lokhdd.png =500x "tagged in email")
 
 
-###Bonus Question: What is the difference between a timeboard and a screenboard?
+### Bonus Question: What is the difference between a timeboard and a screenboard?
 
 
 Timeboard | Screenboard 
@@ -64,7 +64,7 @@ A timeboard displays all metrics for the same scope of time.
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497286254/timeboard_iwww5r.png =500x "timeboard")
 
 
-##Level 3 - Alerting on your Data
+## Level 3 - Alerting on your Data
 I created a monitor - multi-alert by host - that alerts me when my custom metric goes above .90.
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497287082/monitor_q2ihwf.png =500x "monitor configuration")
