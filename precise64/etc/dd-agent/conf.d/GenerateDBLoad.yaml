@@ -1,5 +1,7 @@
 init_config:
-
+    min_collection_interval: 180
+    tags:
+       - GenerateDBLoad: MySQL
 instances:
     [{}]
 
