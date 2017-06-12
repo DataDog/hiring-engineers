@@ -10,7 +10,7 @@ I added some [Host map tags](https://app.datadoghq.com/infrastructure/map?fillby
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284251/tags_txgh1g.png "tags screen shot")
 
 
-After installing postgresql and the respective integration with Datadog, I and wrote a custom Agent check called `test.support.random`, ensuring the installations were successful with the info command - `sudo /etc/init.d/datadog-agent info
+After installing postgresql and the respective integration with Datadog, I wrote a custom Agent check called `test.support.random`, ensuring the installations were successful with the info command - `sudo /etc/init.d/datadog-agent info
 `
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497283642/pginstall2_hatx2x.png "cmd postgres and custom agent installation")
