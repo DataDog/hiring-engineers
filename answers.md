@@ -259,6 +259,10 @@
       ```
       <!-- ![Python code for GenerateDBLoad][Python code for  GenerateDBLoad] -->
 
+      Further changes to the code and a new (configurable) version was also written on "precise64" to get a better grip on the yaml file and investigating the functionality for submitting multiple metrics.  However as this is quite outside the scope of the exercise, I have simply included the code and yaml file in the repo:
+      * [NewGenerateDBLoad.py](precise64/etc/dd-agent/checks.d/NewGenerateDBLoad.py)
+      * [NewGenerateDBLoad.yaml](precise64/etc/dd-agent/checks.d/NewGenerateDBLoad.yaml)
+
 
 
 
