@@ -10,14 +10,12 @@ I added some [Host map tags](https://app.datadoghq.com/infrastructure/map?fillby
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284251/tags_txgh1g.png "tags screen shot")
 
 
-I then installed postgresql and the respective integration with Datadog, and wrote a custom Agent check called `test.support.random`
-
-I ensured the successful installations using the info command - `sudo /etc/init.d/datadog-agent info
+After installing postgresql and the respective integration with Datadog, I and wrote a custom Agent check called `test.support.random`, ensuring the installations were successful with the info command - `sudo /etc/init.d/datadog-agent info
 `
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497283642/pginstall2_hatx2x.png "cmd postgres and custom agent installation")
 
-I also made sure the custom Agent check was sent successfully to Datadog by checking the [metrics summary](https://app.datadoghq.com/metric/summary) page.
+Checking the [metrics summary](https://app.datadoghq.com/metric/summary) page is another way to make sure the metric came through:
 
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284676/metricsSummary_ntbmr8.png "metrics summary page")
@@ -31,19 +29,19 @@ The 3 components of the Agent are the collector, which checks for integrations a
 
 ## Level 2 - Visualizing Your Data
 
-I cloned my [database integration dashboard](https://app.datadoghq.com/dash/list):
+After cloning my [database integration dashboard](https://app.datadoghq.com/dash/list):
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285220/cloned_uhfm2g.png "cloned database integration dashboard")
 
-And then added additional metrics as well as my `test.support.random` metric:
+I added additional metrics as well as my `test.support.random` metric:
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285138/Screen_Shot_2017-06-12_at_9.28.14_AM_o00oul.png "dashboard with added metrics")
 
-When the graph for `test.support.random` went over .90, I drew a box around it... 
+When the graph for `test.support.random` went over .90, I highlighted the specific region and tagged myself...
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285637/over90dash_jhqy8k.png "graph over .90")
 
-And tagged myself in an email notification:
+...in order to receive an email notification:
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285925/emailTagged_lokhdd.png "tagged in email")
 
@@ -64,15 +62,16 @@ A timeboard displays all metrics for the same scope of time.
 
 
 ## Level 3 - Alerting on your Data
-I created a monitor - multi-alert by host - that alerts me when my custom metric goes above .90.
+The multi-alert by host monitor alerts me when my `test.support.random` metric goes above .90:
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497287082/monitor_q2ihwf.png "monitor configuration")
 
-Here is the email the monitor alerted when the graph went above .90: 
+Here is the email the monitor triggers when the graph meets this threshold: 
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497288873/alertEmailTriggered_v2k0gy.png "email alert")
 
-Since I don't want to be alerted when I'm out of the office, I scheduled downtime that silences the alert from 7pm - 9am. Here is the email that notified me when I scheduled the downtime:
+Since I don't want to be alerted when I'm out of the office, I scheduled downtime that silences the alert from 7pm - 9am...
 
 ![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497288873/downtimeAlert_zilslh.png "downtime alert")
 
+I enjoyed completing this challenge and look forward to next steps!
