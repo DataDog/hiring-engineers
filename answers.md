@@ -1,7 +1,7 @@
 # Datadog Hiring Challenge
 
 ## Level 0 - Setup an Ubuntu VM
-I spun up an Ubuntu VM using Vagrant.
+I used Vagrant to spin up an Ubuntu VM.
 
 ## Level 1 - Collecting Your Data
 
