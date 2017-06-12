@@ -1,1 +1,79 @@
-Your answers to the questions go here.
+#Datadog Hiring Challenge
+
+##Level 0 - Setup an Ubuntu VM
+I spun up an Ubuntu VM using Vagrant.
+
+##Level 1 - Collecting Your Data
+
+I added some [Host map tags](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&host=303670348 "DataDog host map tags") in the Agent config file.
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284251/tags_txgh1g.png =500x "tags screen shot")
+
+
+I then installed postgresql and the respective integration with Datadog, and wrote a custom Agent check called `test.support.random`
+
+I ensured the successful installations using the info command - `sudo /etc/init.d/datadog-agent info
+`
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497283642/pginstall2_hatx2x.png =500x "cmd postgres and custom agent installation")
+
+I also made sure the custom Agent check was sent successfully to Datadog by checking the [metrics summary](https://app.datadoghq.com/metric/summary) page.
+
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497284676/metricsSummary_ntbmr8.png =500x "metrics summary page")
+
+
+###Bonus Question: What is the Agent?
+
+The Agent is software that runs in the background on your hosts, collects events and metrics from your applications, stores them, and sends them to the datadog dashboard for analysis. 
+
+The 3 components of the Agent are the collector, which checks for integrations and metrics, dogstatsd, a server that stores all the metrics, and forwarder, which helps format the data to send to the Datadog dashboard.
+
+##Level 2 - Visualizing Your Data
+
+I cloned my [database integration dashboard](https://app.datadoghq.com/dash/list):
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285220/cloned_uhfm2g.png =500x "cloned database integration dashboard")
+
+And then added additional metrics as well as my `test.support.random` metric:
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285138/Screen_Shot_2017-06-12_at_9.28.14_AM_o00oul.png =500x "dashboard with added metrics")
+
+When the graph for `test.support.random` went over .90, I drew a box around it... 
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285637/over90dash_jhqy8k.png
+ =500x "graph over .90")
+
+And tagged myself in an email notification:
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497285925/emailTagged_lokhdd.png =500x "tagged in email")
+
+
+###Bonus Question: What is the difference between a timeboard and a screenboard?
+
+
+Timeboard | Screenboard 
+------------------------ | ------------------------
+Better for troubleshooting and comparison | Better for high level analysis
+All graphs scoped to the same time  | Each graph can be scoped to different time 
+Graphs can be shared individually | Graphs can be shared all at once
+Always displayed in a grid | Custom drag and drop layout
+
+A timeboard displays all metrics for the same scope of time.
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497286254/timeboard_iwww5r.png =500x "timeboard")
+
+
+##Level 3 - Alerting on your Data
+I created a monitor - multi-alert by host - that alerts me when my custom metric goes above .90.
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497287082/monitor_q2ihwf.png =500x "monitor configuration")
+
+Here is the email the monitor alerted when the graph went above .90: 
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497288873/alertEmailTriggered_v2k0gy.png =500x "email alert")
+
+Since I don't want to be alerted when I'm out of the office, I scheduled downtime that silences the alert from 7pm - 9am. Here is the email that notified me when I scheduled the downtime:
+
+![alt text](http://res.cloudinary.com/dtk22y6kq/image/upload/v1497288873/downtimeAlert_zilslh.png =500x "downtime alert")
+
