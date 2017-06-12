@@ -377,15 +377,12 @@ Contrary to annotations, you can send monitor notifications to yourself.
     I changed the body of the alert message to include the value, the comparator and the threshold value so that if these are changed in the future, the message won't have to be updated.  Furthermore, providing the value which triggered the alerts can be useful in triage.  
     The line I changed was the one for alerts:
     ```
-    {{#is_alert}}The random number generator on host {{host}} at ip {{host.ip}} has had a value of {{value}} which is {{comparator}} {{threshold}}  in the last 5 minutes.{{/is_alert}}
-    ```
-    After that I also added the value, comparator and threshold for the alert.  
-
-    ```
-    The random number generator on host {{host}} at ip {{host.ip}} has had a value of {{value}} which is {{comparator}} {{threshold}}  in the last 5 minutes.
+    {{#is_alert}}The random number generator on host {{host}} at ip {{host.ip}}
+    has had a value of {{value}} which is {{comparator}} {{threshold}}  
+    in the last 5 minutes.{{/is_alert}}
     ```
 
-    The `{{value}}`, `{{comparator}}` and `{{threshold}}` are replaced with actual valuesused by the monitor at the time of evaluation:
+    The `{{value}}`, `{{comparator}}` and `{{threshold}}` are replaced with actual values used by the monitor at the time of evaluation:
 
     ![Value comparator and threshold][Value comparator and threshold]
 
