@@ -363,6 +363,17 @@ Trace Agent (v 5.13.2)
   
   10. Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
+```import random
+from time import sleep
+from checks import AgentCheck
+
+class RandomValue(AgentCheck): #class definition
+    def check(self, instance):
+	while True:
+	    self.gauge('test.support.random', random.random()) #this sends a random value for the metric 'test.support.random'
+	    time.sleep(20)   #send the random value every 20 seconds
+```
+  
   11. Cloned MySQL integration dashboard 
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
