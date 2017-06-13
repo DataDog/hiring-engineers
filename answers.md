@@ -7,11 +7,12 @@ Your answers to the questions go here.
 
 **Bonus Question: What is the agent?**
 The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
-*The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
-*Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
-*Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
-3.) Installed the DataDog agent for Ubuntu:
+*The collector* (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
+*Dogstatsd* (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
+*Forwarder* (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
+
+3. Installed the DataDog agent for Ubuntu:
 ```root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -130,9 +131,9 @@ https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=
 
 ```apt-get install mysql-server```
 
-8.) Installed DataDog integration for MySQL, and checked to make sure all was well
+7. Installed DataDog integration for MySQL, and checked to make sure all was well
 
-root@zaps-VirtualBox:/etc/dd-agent# mysql -u root -p
+```root@zaps-VirtualBox:/etc/dd-agent# mysql -u root -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 8
@@ -212,20 +213,20 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +----+---------+-----------+------+---------+------+-----------+----------------------------------------------+
 | 17 | datadog | localhost | NULL | Query   |    0 | executing | SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST |
 +----+---------+-----------+------+---------+------+-----------+----------------------------------------------+
-MySQL PROCESS grant - OK
+MySQL PROCESS grant - OK```
 
-9.) Copied MySQL YAML file into its own file, and altered it (mysql.yaml)
+8. Copied MySQL YAML file into its own file, and altered it (mysql.yaml)
 
-init_config:
+```init_config:
 
 instances:
   - server: localhost
     user: datadog
-    pass: dogmysql
+    pass: dogmysql```
 
-10.) Reset the DataDog service to allow the change to take place, then checked info to make sure everything was working
+9. Reset the DataDog service to allow the change to take place, then checked info to make sure everything was working
 
-root@zaps-VirtualBox:/etc/dd-agent/conf.d# /etc/init.d/datadog-agent restart
+```root@zaps-VirtualBox:/etc/dd-agent/conf.d# /etc/init.d/datadog-agent restart
 [ ok ] Restarting datadog-agent (via systemctl): datadog-agent.service.
 root@zaps-VirtualBox:/etc/dd-agent/conf.d# /etc/init.d/datadog-agent info
 
@@ -341,7 +342,7 @@ Trace Agent (v 5.13.2)
 
   Bytes sent (1 min): 0
   Traces sent (1 min): 0
-  Stats sent (1 min): 0
+  Stats sent (1 min): 0```
   
   Link: https://app.datadoghq.com/dash/integration/mysql?live=true&page=0&is_auto=false&from_ts=1495766092386&to_ts=1495769692386&tile_size=s
   
@@ -354,9 +355,9 @@ Trace Agent (v 5.13.2)
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
   
-  11.) Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
+  10. Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
   
-  12.) Cloned MySQL integration dashboard 
+  11. Cloned MySQL integration dashboard 
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
@@ -370,14 +371,14 @@ Trace Agent (v 5.13.2)
   
  Link: https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
   
-  13.) Bonus question: What is the difference between a timeboard and a screenboard?
+  **Bonus question: What is the difference between a timeboard and a screenboard?**
   A timeboard gives you metrics and event graphs and can be shared individually, whereas a screenboard has drag and drop widgets, are customizable, and allow a higher-level look into a host.
   
-  14.) Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
+  12. Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
 
-  15.) Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
+  13. Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
  
 Trigger:
 
