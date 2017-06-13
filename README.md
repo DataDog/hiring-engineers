@@ -107,3 +107,6 @@ To submit your answers:
 
 ### Other questions:
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+
+### Flask
+* [Installing Flask](http://flask.pocoo.org/docs/0.12/installation/)
