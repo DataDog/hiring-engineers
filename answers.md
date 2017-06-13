@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-# H1 Steps I Took:
+# Steps I Took:
 
 1. Set up an Ubuntu 16.04 Virtual Machine in VirtualBox on Mac OSX
 2. Sign up for Datadog, using "Datadog Recruiting Candidate" in the "Company" field.
@@ -12,7 +12,7 @@ The DataDog Agent is a program that runs on one's host (can also run in Docker o
 *Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
 3.) Installed the DataDog agent for Ubuntu:
-root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -114,21 +114,21 @@ If you ever want to stop the Agent, run:
 
 And to run it again run:
 
-    sudo /etc/init.d/datadog-agent start
+    sudo /etc/init.d/datadog-agent start```
 
-5.) Added tags in the Agent config file (etc/dd-agent/datadog.conf)
+4. Added tags in the Agent config file (etc/dd-agent/datadog.conf)
 
-tags: env:vm, database:mysql
+```tags: env:vm, database:mysql```
 
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&host=298892401
 
-6.) Restarted DataDog service in order for the tags to show up
+5. Restarted DataDog service in order for the tags to show up
 
-/etc/init.d/datadog-agent restart
+```/etc/init.d/datadog-agent restart```
 
-7.) Installed MySQL on the VM
+6. Installed MySQL on the VM
 
-apt-get install mysql-server
+```apt-get install mysql-server```
 
 8.) Installed DataDog integration for MySQL, and checked to make sure all was well
 
