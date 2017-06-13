@@ -7,7 +7,7 @@ Your answers to the questions go here.
 
 3. Bonus Question: What is the agent?
 
-The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
+   The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
 
    The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
 
@@ -353,12 +353,12 @@ Trace Agent (v 5.13.2)
   
   Link: https://app.datadoghq.com/dash/integration/mysql?live=true&page=0&is_auto=false&from_ts=1495766092386&to_ts=1495769692386&tile_size=s
   
-  Working Agent with tags
+  **Working Agent with tags**
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
   
     
-  MySQL Dashboard View
+  **MySQL Dashboard View**
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
   
@@ -376,14 +376,17 @@ class RandomValue(AgentCheck): #class definition
   
   12. Cloned MySQL integration dashboard 
   
+  **MySQL Integration Dashboard**
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
-  and added another metric 
+  and added another metric
   
+  **Performance Open Tables Metric Added**
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Performance%20Open%20Tables%20Added%20Metric.png)
   
   as well as the custom test.support.random metric from the custom Agent Check 
   
+  **test.support.random metric**
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/test.support.random%20metric.png)
   
  Link: https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
@@ -393,6 +396,7 @@ class RandomValue(AgentCheck): #class definition
   
   14. Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
   
+  **test.support.random graph**
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
 
   15. Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
