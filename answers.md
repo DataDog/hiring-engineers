@@ -9,11 +9,11 @@ Your answers to the questions go here.
 
    The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
 
-   The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
+   **_The collector_** (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
 
-   Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
+   **_Dogstatsd_** (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
 
-   Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
+   **_Forwarder_** (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
 4. Installed the DataDog agent for Ubuntu:
 ```root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
@@ -383,6 +383,7 @@ class RandomValue(AgentCheck): #class definition
   
   
   **MySQL Integration Dashboard**
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
   
@@ -390,6 +391,7 @@ class RandomValue(AgentCheck): #class definition
   and added another metric
   
   **Performance Open Tables Metric Added**
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Performance%20Open%20Tables%20Added%20Metric.png)
   
   
@@ -398,6 +400,7 @@ class RandomValue(AgentCheck): #class definition
   
   
   **test.support.random metric**
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/test.support.random%20metric.png)
   
   
@@ -411,6 +414,7 @@ class RandomValue(AgentCheck): #class definition
   
   
   **test.support.random graph**
+  
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
 
 
@@ -418,9 +422,11 @@ class RandomValue(AgentCheck): #class definition
  
  
 **Trigger:**
+
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Trigger.png)
 
 
 **Recovery:**
+
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Recovery.png)
  
