@@ -8,11 +8,11 @@ Your answers to the questions go here.
 3. Bonus Question: What is the agent?
 The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
 
-+The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
+  *The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
 
-+Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
+  *Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
 
-+Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
+  *Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
 4. Installed the DataDog agent for Ubuntu:
 ```root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
@@ -120,21 +120,21 @@ And to run it again run:
     sudo /etc/init.d/datadog-agent start
 ```
 
-4. Added tags in the Agent config file (etc/dd-agent/datadog.conf)
+5. Added tags in the Agent config file (etc/dd-agent/datadog.conf)
 
 ```tags: env:vm, database:mysql```
 
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&host=298892401
 
-5. Restarted DataDog service in order for the tags to show up
+6. Restarted DataDog service in order for the tags to show up
 
 ```/etc/init.d/datadog-agent restart```
 
-6. Installed MySQL on the VM
+7. Installed MySQL on the VM
 
 ```apt-get install mysql-server```
 
-7. Installed DataDog integration for MySQL, and checked to make sure all was well
+8. Installed DataDog integration for MySQL, and checked to make sure all was well
 
 ```root@zaps-VirtualBox:/etc/dd-agent# mysql -u root -p
 Enter password: 
@@ -219,7 +219,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 MySQL PROCESS grant - OK
 ```
 
-8. Copied MySQL YAML file into its own file, and altered it (mysql.yaml)
+9. Copied MySQL YAML file into its own file, and altered it (mysql.yaml)
 
 ```init_config:
 
@@ -229,7 +229,7 @@ instances:
     pass: dogmysql
 ```
 
-9. Reset the DataDog service to allow the change to take place, then checked info to make sure everything was working
+10. Reset the DataDog service to allow the change to take place, then checked info to make sure everything was working
 
 ```root@zaps-VirtualBox:/etc/dd-agent/conf.d# /etc/init.d/datadog-agent restart
 [ ok ] Restarting datadog-agent (via systemctl): datadog-agent.service.
@@ -361,8 +361,7 @@ Trace Agent (v 5.13.2)
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
   
-  10. Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
-  
+  11. Wrote custom agent to sample a random value (randomval.py, in check.d directory and randomval.yaml in conf.d directory)
 ```import random
 from time import sleep
 from checks import AgentCheck
@@ -374,7 +373,7 @@ class RandomValue(AgentCheck): #class definition
 	    time.sleep(20)   #send the random value every 20 seconds
 ```
   
-  11. Cloned MySQL integration dashboard 
+  12. Cloned MySQL integration dashboard 
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
@@ -388,20 +387,20 @@ class RandomValue(AgentCheck): #class definition
   
  Link: https://app.datadoghq.com/dash/294541/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1495764683206&to_ts=1495768283206&tile_size=m
   
-  **Bonus question: What is the difference between a timeboard and a screenboard?**
+  13. Bonus question: What is the difference between a timeboard and a screenboard?
   A timeboard gives you metrics and event graphs and can be shared individually, whereas a screenboard has drag and drop widgets, are customizable, and allow a higher-level look into a host.
   
-  12. Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
+  14. Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
 
-  13. Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
+  15. Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
  
-Trigger:
+**Trigger:**
 
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Trigger.png)
 
-Recovery:
+**Recovery:**
 
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Recovery.png)
  
