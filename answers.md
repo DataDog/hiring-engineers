@@ -115,7 +115,8 @@ If you ever want to stop the Agent, run:
 
 And to run it again run:
 
-    sudo /etc/init.d/datadog-agent start```
+    sudo /etc/init.d/datadog-agent start
+```
 
 4. Added tags in the Agent config file (etc/dd-agent/datadog.conf)
 
