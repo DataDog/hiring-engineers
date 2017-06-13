@@ -9,7 +9,9 @@ Your answers to the questions go here.
 The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
 
 *The collector* (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
+
 *Dogstatsd* (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
+
 *Forwarder* (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
 3. Installed the DataDog agent for Ubuntu:
@@ -214,7 +216,8 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +----+---------+-----------+------+---------+------+-----------+----------------------------------------------+
 | 17 | datadog | localhost | NULL | Query   |    0 | executing | SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST |
 +----+---------+-----------+------+---------+------+-----------+----------------------------------------------+
-MySQL PROCESS grant - OK```
+MySQL PROCESS grant - OK
+```
 
 8. Copied MySQL YAML file into its own file, and altered it (mysql.yaml)
 
@@ -223,7 +226,8 @@ MySQL PROCESS grant - OK```
 instances:
   - server: localhost
     user: datadog
-    pass: dogmysql```
+    pass: dogmysql
+```
 
 9. Reset the DataDog service to allow the change to take place, then checked info to make sure everything was working
 
@@ -343,7 +347,8 @@ Trace Agent (v 5.13.2)
 
   Bytes sent (1 min): 0
   Traces sent (1 min): 0
-  Stats sent (1 min): 0```
+  Stats sent (1 min): 0
+  ```
   
   Link: https://app.datadoghq.com/dash/integration/mysql?live=true&page=0&is_auto=false&from_ts=1495766092386&to_ts=1495769692386&tile_size=s
   
