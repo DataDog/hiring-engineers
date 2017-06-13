@@ -1,18 +1,17 @@
 Your answers to the questions go here.
 
-Steps I Took:
+# H1 Steps I Took:
 
-1.) Set up an Ubuntu 16.04 VM in VirtualBox on Mac OSX
+1. Set up an Ubuntu 16.04 Virtual Machine in VirtualBox on Mac OSX
+2. Sign up for Datadog, using "Datadog Recruiting Candidate" in the "Company" field.
 
-2.) Sign up for Datadog, using "Datadog Recruiting Candidate" in the "Company" field.
-
-3.) Bonus Question: What is the agent?
+**Bonus Question: What is the agent?**
 The DataDog Agent is a program that runs on one's host (can also run in Docker or a VM) that aggregates events and methods, and sends them to DataDog. It is composed of three parts, which are, in turn, controlled and coordinated by a supervisor process.
--The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
--Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
--Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
+*The collector (a program that runs continously and checks on integrations, in addition to system stats such as CPU usage, disk latency, network traffic, etc) 
+*Dogstatsd (a backend server that utilizes etsy's stats aggregation daemon (statsd) to receive custom metrics)
+*Forwarder (a program that aggregates data from the collector and dogstatsd to present to DataDog) 
 
-4.) Installed the DataDog agent for Ubuntu:
+3.) Installed the DataDog agent for Ubuntu:
 root@zaps-VirtualBox:~# DD_API_KEY=d5ed33bc1830f93767bbc1a16056ca95 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
