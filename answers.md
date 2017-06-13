@@ -358,11 +358,13 @@ Trace Agent (v 5.13.2)
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Agent%20Tag%20Host%20View.png)
   
-    
+  
+ 
     
   **MySQL Dashboard View**
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Dashboard%20View.png)
+  
   
   
   
@@ -379,16 +381,19 @@ class RandomValue(AgentCheck): #class definition
 ```
 
   
+  
   12. Cloned MySQL integration dashboard 
   
   
   **MySQL Integration Dashboard**
+  
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/MySQL%20Cloned%20Dashboard.png)
   
   
   
   and added another metric
+  
   
   **Performance Open Tables Metric Added**
   
@@ -397,6 +402,7 @@ class RandomValue(AgentCheck): #class definition
   
   
   as well as the custom test.support.random metric from the custom Agent Check 
+  
   
   
   **test.support.random metric**
@@ -413,17 +419,21 @@ class RandomValue(AgentCheck): #class definition
   14. Took a snapshot of the test.support.random graph and drew a box around the section that showed it going above 0.90, and had the snapshot sent to my email using the @notification 
   
   
+  
   **test.support.random graph**
   
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/snapshot%20over%200.90.png)
 
 
+
   15. Set up monitor on the test.support.random metric that alerts when it goes above 0.90 at least once during the last 5 minutes, and have monitor email notifications:
+ 
  
  
 **Trigger:**
 
   ![Alt text](https://github.com/szaporta/Sarah_Zaporta_Support_Engineer/blob/master/Monitor%20Alert%20-%20Trigger.png)
+
 
 
 **Recovery:**
