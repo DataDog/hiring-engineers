@@ -1,0 +1,6 @@
+- src: https://github.com/DataDog/ansible-datadog
+  version: 1.3.0
+  name: galaxy-datadog
+
+- src: https://github.com/lesmyrmidons/ansible-role-mongodb
+  name: galaxy-mongodb

@@ -1,0 +1,36 @@
+---
+- name: Create demo custom check
+  copy:
+    src: demo.py
+    dest: "{{ datadog_check_path }}"
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - datadog-custom-check
+  notify:
+   - restart datadog-agent
+
+- name: Create demo custom conf
+  copy:
+    src: demo.yaml
+    dest: "{{ datadog_conf_path }}"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - datadog-custom-check
+  notify:
+   - restart datadog-agent
+
+- name: Create mongodb conf
+  copy:
+    src: mongo.yaml
+    dest: "{{ datadog_conf_path }}"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - datadog-custom-check
+  notify:
+   - restart datadog-agent

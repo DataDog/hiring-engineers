@@ -1,0 +1,4 @@
+ansible/env
+ansible/ssh.config
+ansible/roles/galaxy-*
+terraform/terraform.tfstate*
