@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+ansible-playbook -i inventories/demo/hosts.ini demo.yml "$@"

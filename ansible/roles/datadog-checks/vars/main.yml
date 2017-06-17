@@ -1,0 +1,3 @@
+---
+datadog_check_path: /etc/dd-agent/checks.d
+datadog_conf_path: /etc/dd-agent/conf.d
