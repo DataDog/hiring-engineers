@@ -1,0 +1,25 @@
+{
+	"name": "random test",
+	"type": "metric alert",
+	"query": "max(last_5m):avg:test.support.random{host:DESKTOP-AE0VVCH} > 0.9",
+	"message": "@hicham.bennis@hotmail.fr there is a problem with the random metric, please take a look.",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {
+			"host:DESKTOP-AE0VVCH": 1497942000
+		},
+		"include_tags": true,
+		"thresholds": {
+			"critical": 0.9
+		},
+		"require_full_window": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"evaluation_delay": "",
+		"no_data_timeframe": 10
+	}
+}

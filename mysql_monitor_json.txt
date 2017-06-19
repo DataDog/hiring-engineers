@@ -1,0 +1,24 @@
+{
+	name alert mysql,
+	type metric alert,
+	query sum(last_5m)summysql.innodb.data_reads{hostDESKTOP-AE0VVCH}  20,
+	message @hicham.bennis@hotmail.fr,
+	tags [],
+	options {
+		notify_audit true,
+		locked true,
+		timeout_h 0,
+		silenced {},
+		include_tags false,
+		thresholds {
+			critical 20,
+			warning 2
+		},
+		require_full_window false,
+		new_host_delay 300,
+		notify_no_data false,
+		renotify_interval 0,
+		evaluation_delay 60,
+		no_data_timeframe 10
+	}
+}

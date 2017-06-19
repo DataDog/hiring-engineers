@@ -1,0 +1,12 @@
+Level 1 :
+What is an agent ?
+An agent is a software which purpose is to be the interface between the user and a service.
+When a user is browing the web, it connect to services throught its browser; in this case, the brower is the agent.
+In the case of datadog, the agent is the software that connects to datadog server. 
+
+Level 2 :
+What is the difference between a timeboard and a screenboard?
+A timeboard will provide a certain amount of data for a period of time. 
+For example, the evolution of disk memory usage within the last hour.
+A screenboard will provide a certain amount of data at a specific instant.
+For example, the disk memory usage at the present moment.
