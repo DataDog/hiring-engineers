@@ -10,7 +10,8 @@ The Datadog Agent is a software that act on our behalf  in gathering/collecting 
 Adding tag, [more information on tagging can be found here](http://docs.datadoghq.com/guides/basic_agent_usage/osx/)
 See picture here (005)
 
-/usr/local/bin/datadog-agent start
+`/usr/local/bin/datadog-agent start`
+`/usr/local/bin/datadog-agent stop`
 
 On the integrations part (located on the left pane), select the application you wish to install(example postgres), under the configuration tab hit the install integration to begin the installation. See picture here (006, 007)
 
