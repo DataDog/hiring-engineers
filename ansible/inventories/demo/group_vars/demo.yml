@@ -1,0 +1,3 @@
+---
+datadog_config:
+  tags: "demo, thematthewgreen, turtles"
