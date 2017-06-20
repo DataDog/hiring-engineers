@@ -1,0 +1,21 @@
+---
+- name: Create demo group
+  group:
+    name: demo
+    state: present
+
+- name: Add users
+  user:
+    name: "{{item.user}}"
+    groups: demo
+    append: yes
+  with_items: "{{users}}"
+
+- name: Configure SSH keys
+  authorized_key:
+    user: "{{ item.user }}"
+    key: "{{ item.key }}"
+  with_items: "{{users}}"
+
+- name: Add demo group to sudoers
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%demo' line='%demo ALL=(ALL) NOPASSWD: ALL'"
