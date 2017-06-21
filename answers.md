@@ -2,7 +2,7 @@ Name : M Usman Sadiq
 Task : Support Engineer Challenge
 Date : 17 June 2017
 
-******************x
+******************
 Level 0
 ******************
 
@@ -12,7 +12,7 @@ Git was installed using apt-get, and the hiring-engineers repo was cloned.
 sudo apt-get install git
 git clone https://github.com/DataDog/hiring-engineers.git
 
-![Alt text](http://screenshots/001-Git-Install.jpeg)
+![Alt text](http://screenshots/001-Git-Install.jpeg?raw=true)
 
 - A branch of the repo was created in which changes would be made (see image 002).
 
