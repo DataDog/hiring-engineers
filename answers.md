@@ -12,7 +12,7 @@ Git was installed using apt-get, and the hiring-engineers repo was cloned.
 sudo apt-get install git
 git clone https://github.com/DataDog/hiring-engineers.git
 
-![Alt text](http://github.com/usmansadiq/hiring-engineers/screenshots/001-Git-Install.jpeg?raw=true)
+![Alt text](http://github.com/usmansadiq/hiring-engineers/screenshots/001-Git-Install.jpeg)
 
 - A branch of the repo was created in which changes would be made (see image 002).
 
