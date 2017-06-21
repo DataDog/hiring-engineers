@@ -7,11 +7,12 @@ Level 0
 ******************
 
 - A fresh Ubuntu 12.04 VM was created using a Virtual Box image
-Git was installed using apt-get, and the hiring-engineers repo was cloned (see image 001).
+Git was installed using apt-get, and the hiring-engineers repo was cloned.
 
 sudo apt-get install git
 git clone https://github.com/DataDog/hiring-engineers.git
 
+![Alt text](http://screenshots/001-Git-Install.jpeg)
 
 - A branch of the repo was created in which changes would be made (see image 002).
 
