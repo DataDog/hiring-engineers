@@ -93,7 +93,7 @@ which minimises impact on applications running on the host. Statistical calculat
 are also calculated for some metrics.
 
 
-- To add tags, edit the config file, /etc/dd-agent/datadog.conf to add the desired tags (see images 004), for example:
+- To add tags, edit the config file, /etc/dd-agent/datadog.conf to add the desired tags, for example:
 
 ![Alt text](./screenshots/004-1-Add-Tags-in-Config.png)
 
@@ -108,7 +108,7 @@ will see the tags that were added, matching the config file.
 
 ![Alt text](./screenshots/004-2-Host-Map-Tags.png)
 
-- PostgreSQL was installed using apt-get  (see images 005).
+- PostgreSQL was installed using apt-get.
 
 sudo apt-get install postgresql postgresql-contrib
 
@@ -173,8 +173,8 @@ sudo /etc/init.d/datadog-agent info
 
 ![Alt text](./screenshots/005-9-Datadog-Agent-Info.png)
 
-- To write a custom agent, a config file, as well as a matching checks file is needed. The names of these files should match
-(see images 006). For example, create the file /etc/dd-agent/checks.d/randomcheck.py containing a random value sampler:
+- To write a custom agent, a config file, as well as a matching checks file is needed. The names of these files should match.
+For example, create the file /etc/dd-agent/checks.d/randomcheck.py containing a random value sampler:
 
 ![Alt text](./screenshots/006-1-Custom-Agent-Check.png)
 
@@ -194,7 +194,7 @@ sudo /etc/init.d/datadog-agent info
 
 ![Alt text](./screenshots/006-3-Datadog-Agent-Info.png)
 
-If you go to the Metrics Explorer in the datadog portal, you will also see that test.support.random metrics are being received  (see image 006-4).
+If you go to the Metrics Explorer in the datadog portal, you will also see that test.support.random metrics are being received.
 
 ![Alt text](./screenshots/006-4-Datadog-Portal-Random-Check.png)
 
@@ -220,7 +220,6 @@ In the cloned dashboard, additional metrics is added by clicking the dashed-line
 
 A query value showing the average system.cpu.iowait was added, as well as a timeseries graph of our custom metric, 
 test.support.random
-(see images 007)
 
 ![Alt text](./screenshots/007-5-Dashboard-Add-Timeseries-Graph.png)
 
@@ -259,7 +258,7 @@ For example, I have mentioned myself, and added a descriptive comment to the gra
 
 ![Alt text](./screenshots/008-2-Snapshot-Notification.png)
 
-The notification appears as an Event in the Events page, as well as an email sent (see images 008).
+The notification appears as an Event in the Events page, as well as an email sent.
 
 ![Alt text](./screenshots/008-3-Snapshot-Notification-Event.png)
 
@@ -272,13 +271,13 @@ Level 3
 ![Alt text](./screenshots/009-1-Create-Monitor.png)
 
 Detailed conditions for when alerts should be triggered can be set. For example, I set the alert threshold to 0.9, to trigger 
-when the threshold was reached at least once in the last 5 minutes (see images 010).
+when the threshold was reached at least once in the last 5 minutes.
 
 ![Alt text](./screenshots/009-2-Set-Alert-Condition.png)
 
 - Bonus: To make a multialert, click the dropdown and choose MultiAlert instead of the standard SingleAlert. When MultiAlert 
 is selected, there is the option of alerting separately, such as for each host, which means that additional monitors do not 
-need to be added as applications scale.
+need to be added as applications scale. This is shown in the screenshot above.
 
 
 - The monitor was given a descriptive name 'test.random.support exceeded 0.90 at least once in the last 5 minutes'
@@ -329,7 +328,7 @@ sudo /etc/init.d/datadog-agent info
 
 ![Alt text](./screenshots/011-2-Data-Agent-Info.jpeg)
 
-If ntp offset is not ok, you may need to sync your ntp (see images 011).
+If ntp offset is not ok, you may need to sync your ntp.
 
 First, make sure openssl is updated:
 
