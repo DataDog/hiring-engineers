@@ -1,5 +1,4 @@
-If you want to apply as a support engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
-
+If you want to apply as an engineer at [Datadog](http://datadog.com) you are in the right spot. 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
@@ -55,9 +54,28 @@ To submit your answers:
 4. Submit a pull request.
 5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.
 
-## References
+Do you want to make a difference? Are you exceptional at your job, and intrinsically motivated by it? Do you eat hard problems for breakfast and find them beautifully simple solutions by lunchtime? Do you ever wish you were there in the early days of these startups everyone is talking about?
 
-### How to get started with Datadog
+If so, we want to hear from you.
+
+[source](http://jobs.datadoghq.com/)
+
+# The Positions
+
+1. Support Engineer: check out the `support-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/support-engineer) of this repository.
+2. Solutions Engineer: check out the `solutions-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) of this repository.
+3. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devops-evangelist) of this repository.
+
+
+# How do I submit my results?
+
+1. Fork this repository.
+2. Check out the branch that interests you.
+3. Commit your work.
+4. Submit a pull request against this upstream repository.
+
+# Questions?
+File an issue in this repository.
 
 * [Datadog overview](http://docs.datadoghq.com/overview/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
@@ -70,3 +88,4 @@ To submit your answers:
 
 ### Other questions:
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+>>>>>>> 40871bb2289b7b5ca26e791a3066d2ae77281a1e
