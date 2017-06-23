@@ -2,11 +2,6 @@ If you want to apply as an engineer at [Datadog](http://datadog.com) you are in 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
-<<<<<<< HEAD
-# Why work at Datadog?
-
-We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
-=======
 # The Challenge
 
 Don't forget to read the **References**.
@@ -58,13 +53,11 @@ To submit your answers:
 3. Commit as much code as you need to support your answers.
 4. Submit a pull request.
 5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.
->>>>>>> 40871bb2289b7b5ca26e791a3066d2ae77281a1e
 
 Do you want to make a difference? Are you exceptional at your job, and intrinsically motivated by it? Do you eat hard problems for breakfast and find them beautifully simple solutions by lunchtime? Do you ever wish you were there in the early days of these startups everyone is talking about?
 
 If so, we want to hear from you.
 
-<<<<<<< HEAD
 [source](http://jobs.datadoghq.com/)
 
 # The Positions
@@ -83,7 +76,7 @@ If so, we want to hear from you.
 
 # Questions?
 File an issue in this repository.
-=======
+
 * [Datadog overview](http://docs.datadoghq.com/overview/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
 * [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
