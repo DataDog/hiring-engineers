@@ -143,7 +143,7 @@ Link to cloned dashboard: https://app.datadoghq.com/dash/306231/mysql---overview
 After an initial google search attempting find information about how to add new metrics to the dashboard, I turned my search towards fiddling with the dashboard itself. I followed the "Add A Graph" button, located in the top of the dashboard, and was provided with a few options to create a new metric. The window provided me with 7 visualization graphs to choose from, a drop down menu filled with the types of metrics and events I wanted to build a graph for, and a labeling option for the new graph.
 ![](images/add_metrics_dashboard.png)
  
-The "MySQL - Overview Clone" dashboard now displayed my newly made graph.
+The "MySQL - Overview Clone" dashboard now displayed my newly made graph. Link: https://app.datadoghq.com/dash/306231/mysql---overview-clone?live=true&page=0&is_auto=false&from_ts=1498174243875&to_ts=1498177843875&tile_size=m
 ![](images/updated_metrics_dashboard.png)
  
 I then began repeating the same "Add A Graph" process to build a metric for my "test.support.random" custom Agent check.
