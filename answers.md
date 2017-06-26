@@ -74,13 +74,103 @@ sudo apt-get update
 sudo apt-get install mysql-server-5.5
 ```
 <img src="./pics/16MySQLInstall.png">
+
 The installation process will ask for a password for the MySQL root account.
 Key in a new password for MySQL.
-  <img src="./pics/16MySQLPassword.png">
+  <img src="./pics/16MySQLPassword.png"> 
+
 After the installation process, we should see our Terminal displaying **mysqld** started as a process in our Ubuntu host.
   <img src="./pics/16MySQLRunning.png">
+
 To make sure the installation was successful, run this command line snippet to test.
 ```
 sudo netstat -tap | grep mysql
 ```
-  <img src="./pics/17MySQLRunningTest.png">
+You should see something like the pic below:
+<img src="./pics/17MySQLRunningTest.png">
+
+To install the Datadog MySQL Agent, we first need to grant the Datadog Agent replication rights from our newly installed MySQL Server.
+From the Terminal, login to MySql using the code below. It should prompt you for your MySQL password
+```
+mysql -u root -p
+```
+Let us run this code snippet, while replacing <UNIQUEPASSWORD> with your own password:
+```SQL
+CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
+GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+```
+Exit MySQL's command prompt by running the command quit:
+```
+quit
+```
+To verify if the creation of the new user was a success, let us run this command in the Terminal:
+```
+mysql -u datadog --password=<UNIQUEPASSWORD> -e "show status" | \
+grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \
+echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+```
+That was a lot of commands in succession. Your terminal should look something similar to this:  
+<img src="./pics/18MySQLDataDogAccessConfig_1.png">
+
+Now, we need to setup our Datadog Agent to connect to MySQL.
+We need to open and edit the **mysql.yaml** file. In Ubuntu, we can find this file in **/etc/dd-agent/conf.d**. The **conf.d** folder has example templates for most of the integration that Datadog provides.
+We could just copy the **mysql.yaml.example** file and edit that file. Lets run this in the terminal. The code below used gedit as a text editor. You can use your text editor of choice.
+```
+sudo cp /etc/dd-agent/conf.d/mysql.yaml.example /etc/dd-agent/conf.d/mysql.yaml
+sudo gedit /etc/dd-agent/conf.d/mysql.yaml
+```
+Your **mysql.yaml** file would originally look like this:
+<img src="./pics/19MysqlYaml.png">
+
+The Important part of the configuration is the snippet below:
+```
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: <UNIQUEPASSWORD>
+
+    tags:
+        - optional_tag1
+        - optional_tag2
+    options:
+        replication: 0
+        galera_cluster: 1
+        disable_innodb_metrics: 1
+```
+_We disabled  innodb metrics , because it does not work on MySQL 5.5_
+
+The finished **mysql.yaml** file should look like something like this:
+<img src="./pics/20MysqlYamlEdited_1.png">
+
+YAML files require the use of spaces instead of tabs. So please take care to use spaces, else the Agent will not be able to parse the information correctly.
+After saving the **mysql.yaml** file, lets restart the Datadog Agent for the changes to get picked up.
+Let's Run the code snippet below:
+```
+sudo /etc/init.d/datadog-agent restart
+```
+After restarting the Agent, lets verify that our configuration passed the integration check.
+Lets run the Datadog Agent command called info.
+```
+sudo /etc/init.d/datadog-agent info
+```
+After running the info command we should see something like this:
+<img src="./pics/21MysqlYamlCheck_1.png">
+
+After verifying that our MySQL integration is correct, open your browser and go to the [Datadog MySQL Integration](https://app.datadoghq.com/account/settings#integrations/mysql) page and click on the "Install Integration" button.
+<img src="./pics/22MyqlIntegration_1.png">
+
+We should see that the "Install Integation" button will change from Blue to White, once the installation is done.
+<img src="./pics/22MyqlIntegrationInstalled_1.png">
+
+After successfully installing the MySQL Integration from the Datadog website, go to your Datadog Dashboard and we should see the "MySQL - Overview" in the Integration Dashboards section.
+<img src="./pics/23DashboardView_1.png">
+
+**Useful Links**
+  * Step by step [instructions](http://dbadiaries.com/how-to-install-mysql-5-5-on-ubuntu-server-12-04-lts) on how to install MySQL 5 on Ubuntu 12.04.   
+  * [MySQL Installer Downloads](https://dev.mysql.com/downloads/mysql/)  
+  * [MySQL Datadog Integration](http://docs.datadoghq.com/integrations/mysql/)
