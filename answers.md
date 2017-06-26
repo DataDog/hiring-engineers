@@ -174,3 +174,42 @@ After successfully installing the MySQL Integration from the Datadog website, go
   * Step by step [instructions](http://dbadiaries.com/how-to-install-mysql-5-5-on-ubuntu-server-12-04-lts) on how to install MySQL 5 on Ubuntu 12.04.   
   * [MySQL Installer Downloads](https://dev.mysql.com/downloads/mysql/)  
   * [MySQL Datadog Integration](http://docs.datadoghq.com/integrations/mysql/)
+5. Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
+>We need to create 2 files to get this going. A check file, which is a python script and a YAML configuration file. The file name of both files must match.
+
+Lets start with the python check file. Create a new python script called randomcheck.py
+```
+sudo gedit /etc/dd-agent/check.d/randomcheck.py
+```
+Here is the content of the python script:
+```python
+import random
+from checks import AgentCheck
+class randomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+<img src="./pics/24RandomCheckPy.png">
+
+Up next is the randomcheck.yaml file:
+```
+sudo gedit /etc/dd-agent/conf.d/randomcheck.yaml
+```
+The content of the yaml file:
+```
+init_config:
+
+instances:
+    [{}]
+```
+<img src="./pics/25RandomCheckYaml.png">
+
+After creating both files, lets restart the Datadog Agent for the changes to take effect.
+```
+sudo /etc/init.d/datadog-agent restart
+```
+We should be able to see our newly created Check in the Dashboard.
+<img src="./pics/26DashboardTest_1.png">
+
+**Useful links**
+  * [Agent Checks](http://docs.datadoghq.com/guides/agent_checks/)
