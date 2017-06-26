@@ -20,8 +20,8 @@ Open a terminal and execute the code.
 <img src="./pics/06CLIInstall.png">
 The Datadog Agent installation is pretty quick and will show quite a long text showing the installation progress.
 <img src="./pics/07CLIInstallStart.png">
-<img src="./pics/08CLIInstallEnd.png">
-After all that action in the Terminal is finished, lets go back to our web browser and click the "Finish" button.
+<img src="./pics/08CLIInstallEnd.png">    
+After finishing all that action in the Terminal, lets go back to our web browser and click the "Finish" button.
 <img src="./pics/09NextPage_1.png">
 On the next page, we should be able to see that our Ubuntu host is now sending data to our Datadog account in the cloud.
 <img src="./pics/10GetAgentDone.png">
@@ -65,3 +65,22 @@ sudo /etc/init.d/datadog-agent restart
 *Useful links* 
 * [Where is the configuration file for the Agent?](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-)  
 * [Getting Started with Tags](https://help.datadoghq.com/hc/en-us/articles/204312749-Getting-started-with-tags)
+4. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
+>Run the code below in the terminal to install MySQL Server. 
+It will prompt us to continue or not with the installation.
+We of course choose yes.
+```
+sudo apt-get update
+sudo apt-get install mysql-server-5.5
+```
+<img src="./pics/16MySQLInstall.png">
+The installation process will ask for a password for the MySQL root account.
+Key in a new password for MySQL.
+  <img src="./pics/16MySQLPassword.png">
+After the installation process, we should see our Terminal displaying **mysqld** started as a process in our Ubuntu host.
+  <img src="./pics/16MySQLRunning.png">
+To make sure the installation was successful, run this command line snippet to test.
+```
+sudo netstat -tap | grep mysql
+```
+  <img src="./pics/17MySQLRunningTest.png">
