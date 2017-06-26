@@ -213,3 +213,48 @@ We should be able to see our newly created Check in the Dashboard.
 
 **Useful links**
   * [Agent Checks](http://docs.datadoghq.com/guides/agent_checks/)
+  
+## Level 2 - Visualizing your Data
+1. Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
+> To clone our MySQL integration dashboard, lets navigate to it first. 
+<img src="./pics/27MySQLIntegrationDash_1.png">
+
+Click the gear icon on the top most right of the screen.
+<img src="./pics/28MySQLIntegrationDashGear_1.png">
+
+You should be able to see a "Clone Dashboard" button to click on.
+<img src="./pics/29MySQLIntegrationDashClone_1.png">
+
+A prompt will come up, asking if we want to clone our dashboard. Click the blue button that reads "Clone".
+<img src="./pics/30MySQLIntegrationDashCloned.png">
+
+We should be immediately be presented with the newly cloned MySQL dashboard.
+<img src="./pics/31MySQLIntegrationDashClonedGraphs.png">
+
+Lets add a new graph looking at the database metric **mysql.performance.user_time**.
+Click and hold the Timeseries icon on the widget bar on top of the page and drag and drop it on to the empty slot on the lower right.
+<img src="./pics/32MySQLIntegrationDashClonedNewGraph.png">
+
+Upon dropping the widget on the empty slot, a prompt asking for the details of the new Timeseries widget shall appear.
+<img src="./pics/33MySQLIntegrationDashClonedPrompt.png">
+
+Click the field which says **system.load.1** and type in **mysql.performance.user_time**. Press Enter and click the blue save button below.
+<img src="./pics/34MySQLIntegrationDashClonedPromptDetail_1.png">
+
+We should now be able to see our newly added MySQL metric in Out Cloned Dashboard.
+<img src="./pics/35MySQLIntegrationDashClonedPromptDone_1.png">
+
+Lets add another metric to our cloned dashboard. Let's add **test.support.random**. We shall follow the same steps we did for **mysql.performance.user_time**.
+<img src="./pics/36MySQLIntegrationDashClonedPromptTest.png">
+<img src="./pics/37MySQLIntegrationDashClonedTest_1.png">
+
+2. Bonus question: What is the difference between a timeboard and a screenboard?
+> The timeboard, as the name implies, is time bound. All graphs within a timeboard are scoped or synced to the same time.
+This could be really useful when investigating an event in time, whereby multiple metrics could reveal patterns or trends that should lead to a certain outcome.
+
+The screenboard, in practice, could be very useful for getting a bird's eye view of a system. 
+It is more flexible in terms of presentation than the timeboard. Also, each widget or graph could have a different time frame.
+
+**Useful links**
+  * [What is the difference between a ScreenBoard and a TimeBoard?](https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-)
+3. Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
