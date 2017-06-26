@@ -38,7 +38,7 @@ print(random.random())
 ### Level 3 - Alerting on your Data
 
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.  
-* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes 
+* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
@@ -53,7 +53,7 @@ To submit your answers:
 2. Answer the questions in `answers.md`
 3. Commit as much code as you need to support your answers.
 4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.
+5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.  
 
 ## References
 
