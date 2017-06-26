@@ -53,7 +53,7 @@ To submit your answers:
 2. Answer the questions in `answers.md`
 3. Commit as much code as you need to support your answers.
 4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your snapshots inline with your answers.  
+5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.  
 
 ## References
 
