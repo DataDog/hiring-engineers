@@ -31,15 +31,15 @@ DataDog Candidate Technical Checklist
   ```
 - Snapshot test.support.random going over .90 and send notification
 
-  ![](<screenshots/2017-06-28 Snapshot and Notification.png>)  
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-28%20Snapshot%20and%20Notification.png)  
 - Monitor/[Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>) when test.support.random >= .90 Warn >=.80
 - Make alert scalable (I used a tag instead of hostname)
 - Have alerts sent via email
 
-  ![](screenshots/2017-06-29 Email Alerts.png)  
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Email%20Alerts.png)  
 - Setup [Multi Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>)
 
-  ![](screenshots/2017-06-29 Multi Alert.png)
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Multi%20Alert.png)
 - Schedule [Downtime](<https://app.datadoghq.com/monitors#downtime?>) from 7pm-9am
 
-  ![](screenshots/2017-06-29 Scheduled Downtime.png)
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime.png)
