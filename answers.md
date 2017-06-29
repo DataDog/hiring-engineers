@@ -6,10 +6,10 @@
 An agent is a software which purpose is to be the interface between the user and a service. When a user is browing the web, it connect to services throught its browser; in this case, the brower is the agent. In the case of datadog, the agent is the software that connects to datadog server
 
 #### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* ![Hostmap](/Host_map.JPG)
-* ![Hostmap with tags](/Hostmap + tags.JPG)
-* ![Tags on agent](/tags_on_agent.JPG)
-* ![Tags on WebUI](/tags_on_webUI.JPG)
+* ![Hostmap](https://github.com/hichambennis/hiring-engineers/blob/master//Host_map.JPG)
+* ![Hostmap with tags](https://github.com/hichambennis/hiring-engineers/blob/master//Hostmap%20+%20tags.JPG)
+* ![Tags on agent](https://github.com/hichambennis/hiring-engineers/blob/master//tags_on_agent.JPG)
+* ![Tags on WebUI](https://github.com/hichambennis/hiring-engineers/blob/master//tags_on_webUI.JPG)
 
 #### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * ![Tags on WebUI](/Integrations.JPG)
