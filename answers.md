@@ -20,27 +20,26 @@ DataDog Candidate Technical Checklist
       def check(self, instance):
         self.gauge('test.support.random', random.random())
   ```  
-- Clone Database Dashboard (Added ***number of Mongo DBs***  and ***test.support.random***)
+- Clone Database [Dashboard](<https://app.datadoghq.com/dash/311475/mint-cloned?live=true&page=0&is_auto=false&from_ts=1498752492052&to_ts=1498756092052&tile_size=m>) (Added ***number of Mongo DBs***  and ***test.support.random***)
 
   ![](screenshots/2017-06-28 Snapshot and Notification.png)
 
 - Difference between Timeboard and Screenboard
   ```
   A Timeboard is used to display values over the same time period.  
-  A Screenboard  is highly customizable and allows you mix widgets with timelines to get a better view of the entire system.
+  A Screenboard is highly customizable and allows you mix widgets with timelines to get a better view of the entire system.
   ```
 - Snapshot test.support.random going over .90 and send notification
 
   ![](screenshots/2017-06-28 Snapshot and Notification.png)  
-- Monitor/Alert when test.support.random >= .90 Warn >=.80
+- Monitor/[Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>) when test.support.random >= .90 Warn >=.80
 - Make alert scalable (I used a tag instead of hostname)
 - Have alerts sent via email
 
   ![](screenshots/2017-06-29 Email Alerts.png)  
-- Setup Multi Alert
+- Setup [Multi Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>)
 
   ![](screenshots/2017-06-29 Multi Alert.png)
-- Schedule downtime from 7pm-9am
+- Schedule [Downtime](<https://app.datadoghq.com/monitors#downtime?>) from 7pm-9am
 
   ![](screenshots/2017-06-29 Scheduled Downtime.png)
-- Fork Git repo and create a pull request
