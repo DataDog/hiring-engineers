@@ -1,6 +1,6 @@
 # Level 1 - Collecting your Data
 #### Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
-* ![Local machine metrics](/System metrics.JPG)
+* ![Local machine metrics](https://github.com/hichambennis/hiring-engineers/blob/master/System%20metrics.JPG)
 
 #### Bonus question: In your own words, what is the Agent?
 An agent is a software which purpose is to be the interface between the user and a service. When a user is browing the web, it connect to services throught its browser; in this case, the brower is the agent. In the case of datadog, the agent is the software that connects to datadog server
