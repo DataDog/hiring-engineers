@@ -49,6 +49,6 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
   * ![Alert](images/alert.png "alert")
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-  * [Scheduled downtime](https://app.datadoghq.com/monitors#downtime?id=234185877)
-  * In the interest of saving time I changed the start time of the downtime monitor for now. That way I could get the downtime email notification without having to wait until 7pm tonight. Screenshot of email below:
+  * [Scheduled Downtime Link](https://app.datadoghq.com/monitors#downtime?id=234185877)
+  * In the interest of saving time I changed the start time of the downtime monitor to [right now](https://youtu.be/rMV-fenGP1g?t=85). That way I could get the downtime email notification without having to wait until 7pm tonight. Screenshot of email below:
   ![downtime](images/downtime.png "downtime")
