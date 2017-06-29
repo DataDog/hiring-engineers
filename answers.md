@@ -31,7 +31,7 @@ DataDog Candidate Technical Checklist
   ```
 - Snapshot test.support.random going over .90 and send notification
 
-  ![](screenshots/2017-06-28 Snapshot and Notification.png)  
+  ![](<screenshots/2017-06-28 Snapshot and Notification.png>)  
 - Monitor/[Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>) when test.support.random >= .90 Warn >=.80
 - Make alert scalable (I used a tag instead of hostname)
 - Have alerts sent via email
