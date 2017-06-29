@@ -22,7 +22,7 @@ DataDog Candidate Technical Checklist
   ```  
 - Clone Database [Dashboard](<https://app.datadoghq.com/dash/311475/mint-cloned?live=true&page=0&is_auto=false&from_ts=1498752492052&to_ts=1498756092052&tile_size=m>) (Added ***number of Mongo DBs***  and ***test.support.random***)
 
-  ![](hiring-engineers/screenshots/2017-06-28 Snapshot and Notification.png)
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-28%20Snapshot%20and%20Notification.png)
 
 - Difference between Timeboard and Screenboard
   ```
