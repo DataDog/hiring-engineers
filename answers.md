@@ -42,6 +42,6 @@ DataDog Candidate Technical Checklist
   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Multi%20Alert.png)
 - Schedule [Downtime](<https://app.datadoghq.com/monitors#downtime?>) from 7pm-9am
 
-  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime%20Email.png)
+   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime.png)
 
-  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime.png)
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime%20Email.png)
