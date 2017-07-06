@@ -49,10 +49,22 @@ Level 2 - Visualizing data
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard.png "Screenshot of test metric on cloned dashboard")
 
+4. Screenshot of email notification. It shows the test.support.random graph with a box around the section that shows it going above 0.90. 
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Notification%20email%20with%20red%20box%20on%20the%20graph.png "Email notification with graph highlighted in red")
+
+Bonus section Answer:
+
+tbd
+
+
 Level 3 - Alerting on data
 1. Set up multi-alert by host monitor on the test.support.random metric.
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric.png "Screenshot of monitor on test metric")
+
+Bonus section step:
+Setting up of a multi-alert by host on the metric.
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Setting%20up%20a%20multi-alert%20by%20host.png "Setting up a multi-alert by host on the monitor")
 
 2. Added a descriptive name and message for the alert notification as shown below.
 
@@ -65,3 +77,4 @@ Since it is a multi-alert by host, it includes the description of the host (dell
 
 Bonus section step:
 4. Set up a scheduled downtime to silence notifications between 7PM and 9AM daily. See monitor management screen below:
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Scheduled%20downtime%20on%20monitor.png "Screenshot of scheduled downtime on the monitor")
