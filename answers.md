@@ -86,8 +86,7 @@ Bonus section step:
 4. Set up a scheduled downtime to silence notifications between 7PM and 9AM daily. See monitor management screen below:
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Scheduled%20downtime%20on%20monitor.png "Screenshot of scheduled downtime on the monitor")
 
-
-ISSUES ENCOUNTERED:
+MAIN ISSUES ENCOUNTERED:
 
 1. RESOLVED
 While installing the Datadog integration for AWS, I encountered several issues with authentication. The permissions included for the role and policy were not sufficient to allow Datadog to assume a third-party role with my AWS account.
@@ -97,7 +96,14 @@ See screenshot of AWS on hostmap below:
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/AWS%20host%20map.png "Screenshot of AWS instance on host map")
 
-2. NOT RESOLVED 
+2. RESOLVED
+I encounted the following error when I tried to test my custom check using the shell.exe prompt:
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/shell%20error%20for%20config.png "Testing error for yaml file")
+
+I used an online YAML parser to fix the indentation and text in my yaml file, in order to resolve the issue.
+
+3. NOT RESOLVED 
 I got a MySQL client to run on my AWS EC2 instance. I also managed to get Datadog running on it. I added Datadog as a user and granted the required permissions to collect metrics. Screenshot of verification query result below:
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/datadog%20running.png "Datadog added and running on MySQL")
 My SSH client became inactive after I left my computer to hibernate overnight. When I logged back in, Datadog seemed to have lost the data collection from the MySQL integration. It did not start collecting even after I restarted a fresh SSH client window.
