@@ -61,6 +61,10 @@ Level 2 - Visualizing data
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard.png "Screenshot of test metric on cloned dashboard")
 
+The following screenshot shows the custom metric along with other selected metrics from the Mongodb integration.
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard%202.png "Screenshot of test metric and other mongo data on cloned dashboard")
+
 4. Screenshot of email notification. It shows the test.support.random graph with a box around the section that shows it going above 0.90. 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Notification%20email%20with%20red%20box%20on%20the%20graph.png "Email notification with graph highlighted in red")
 
