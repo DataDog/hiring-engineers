@@ -46,6 +46,8 @@ The Datadog agent is a program that runs on host systems and integrations. It mo
 
 A number of enterprises today no longer own data centers but instead use cloud storage for the same purpose. The datadog Agent can be a useful tool to monitor and troubleshoot cloud infrastructure. The data from the agent can then be visualised on the dashboard to create alerts and events as required.
 
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Datadog%20agent%20structure.png "Datadog agent structure")
+
 Level 2 - Visualizing data
 
 1. Cloned the Mongodb integration dashboard.
@@ -83,3 +85,20 @@ Since it is a multi-alert by host, it includes the description of the host (dell
 Bonus section step:
 4. Set up a scheduled downtime to silence notifications between 7PM and 9AM daily. See monitor management screen below:
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Scheduled%20downtime%20on%20monitor.png "Screenshot of scheduled downtime on the monitor")
+
+
+ISSUES ENCOUNTERED:
+
+1. RESOLVED
+While installing the Datadog integration for AWS, I encountered several issues with authentication. The permissions included for the role and policy were not sufficient to allow Datadog to assume a third-party role with my AWS account.
+I then referred to the required policy permissions at http://docs.datadoghq.com/integrations/aws/
+Once I changed the required permissions on the AWS IAM console, the integration was installed and configured correctly.
+See screenshot of AWS on hostmap below:
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/AWS%20host%20map.png "Screenshot of AWS instance on host map")
+
+2. NOT RESOLVED 
+I got a MySQL client to run on my AWS EC2 instance. I also managed to get Datadog running on it. I added Datadog as a user and granted the required permissions to collect metrics. Screenshot of verification query result below:
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/datadog%20running.png "Datadog added and running on MySQL")
+My SSH client became inactive after I left my computer to hibernate overnight. When I logged back in, Datadog seemed to have lost the data collection from the MySQL integration. It did not start collecting even after I restarted a fresh SSH client window.
+I have not managed to resolve this issue yet, so I used MongoDB installed on my Windows host as my database integration.
