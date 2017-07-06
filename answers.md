@@ -62,3 +62,6 @@ Level 3 - Alerting on data
 Since it is a multi-alert by host, it includes the description of the host (dell-PC in this case) in the subect line of the notification email.
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Notification%20email%20from%20monitor.png "Screenshot of notification email from the monitor on test metric")
+
+Bonus section step:
+4. Set up a scheduled downtime to silence notifications between 7PM and 9AM daily. See monitor management screen below:
