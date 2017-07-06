@@ -41,6 +41,11 @@ Level 1 - Collecting data
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20test.support.random%20on%20windows%20host.png "Screenshot of test metric running on Windows host")
 
+Bonus section answer:
+The Datadog agent is a program that runs on host systems and integrations. It monitors the systems that it runs on and collects several types of data for example performance metrics, latency, throughput etc. It can also be configured to collect custom metrics.
+
+A number of enterprises today no longer own data centers but instead use cloud storage for the same purpose. The datadog Agent can be a useful tool to monitor and troubleshoot cloud infrastructure. The data from the agent can then be visualised on the dashboard to create alerts and events as required.
+
 Level 2 - Visualizing data
 
 1. Cloned the Mongodb integration dashboard.
