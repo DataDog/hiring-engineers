@@ -50,3 +50,8 @@ Level 2 - Visualizing data
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard.png "Screenshot of test metric on cloned dashboard")
 
 Level 3 - Alerting on data
+1. Set up on a monitor on the test.support.random metric.
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric.png "Screenshot of monitor on test metric")
+
+2. 
