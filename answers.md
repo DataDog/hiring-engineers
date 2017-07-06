@@ -10,7 +10,7 @@ Level 1 - Collecting data
 5. Installed the Datadog Agent for Windows.
 6. Added the tags vinnakotatag0 an vinnakotatag1 in datadog.config. See screenshot of the host and its tags on the Host Map page in Datadog below:
 
-![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Screenshot%20of%20host%20dell-PC%20%20on%20hostmap.png "Screenshot of host map with Windows and AWS")
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Screenshot%20of%20host%20dell-PC%20on%20hostmap.png "Screenshot of host map with dell-PC and tags")
 
 The Datadog Agent Manager for Windows:
 
