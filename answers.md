@@ -61,8 +61,21 @@ Level 2 - Visualizing data
 
 Bonus section Answer:
 
-tbd
+Difference between a screenboard and a timeboard:
+Datadog allows the user to create two types of dashboards - a screenboard and a timeboard.
 
+SCREENBOARD
+1. It is used to create status boards and data visualisations that can be shared with others. 
+It also allows the user to specify a different time scope for each metric and each graph that they have on the board.
+2. It allows the user to drag and drop widgets on to the board. It has a greater number of widgets available for use.
+3. It also allows the user to customise the display on the board in order to create our own layout.
+Therefore, the screenboard is more suitable for reporting.
+
+TIMEBOARD
+1. It is used to track time-varying metrics for e.g. average system load over a particular host. 
+However, ALL the graphs are required to have the same time scope. This means that if the time scope is set as "Show past hour", every graph on the board display metrics collected over the past 1 hour.
+2. While the timeboard allows for drag-and-drop widgets, there are fewer widget available in comparison to the Screenboard. Also, it does not allows the user to create a custom layout and all graphs are laid out according to an automatic layout.
+Therefore, the timeboard is more useful for troubleshooting.
 
 Level 3 - Alerting on data
 1. Set up multi-alert by host monitor on the test.support.random metric.
