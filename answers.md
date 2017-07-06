@@ -36,3 +36,5 @@ STEPS FOLLOWED:
          [{}]
 
 9. Restarted the Datadog agent on Windows using Datadog Agent Manager
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20test.support.random%20on%20windows%20host.png "Screenshot of test metric running on Windows host")
