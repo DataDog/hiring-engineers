@@ -1,6 +1,8 @@
 Vinnakota - Support Engineer - Hiring Exercise
 
 STEPS FOLLOWED:
+
+Level 1 - Collecting data
 1. Created an EC2 instance using Amazon Web services and a SSH client (Putty).
 2. Installed MySQL on the EC2 instance.
 3. Installed the Datadog integration for MySQL.
@@ -38,3 +40,11 @@ STEPS FOLLOWED:
 9. Restarted the Datadog agent on Windows using Datadog Agent Manager
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20test.support.random%20on%20windows%20host.png "Screenshot of test metric running on Windows host")
+
+Level 2 - Visualizing data
+
+1. Cloned the Mongodb integration dashboard.
+2. Added the custom metric test.support.random to this clone dashboard.
+3. Created a red marker to indicate on the graph, when the value of the custom metric goes above 0.90.
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard.png "Screenshot of test metric on cloned dashboard")
