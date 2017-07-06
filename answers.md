@@ -14,3 +14,25 @@ STEPS FOLLOWED:
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Mongo%20running%20on%20dell-PC.png "Screenshot of Mongo running on Windows host")
 
+8. Wrote a custom check my_check to collect the metric test.support.random.
+   a) Used the following code in my_check.py and placed it in C:\Program Files\Datadog\Datadog Agent\agent\checks.d:
+   # (C) Datadog, Inc. 2010-2016
+   # Hiring Engineers
+   # Vinnakota Custom Check to send a random value on each call
+   import time
+   #storing randomly generated value in n
+   import random
+   n = random.random()
+   # Sends the value of n for the test.support.random metric on each call
+   from checks import AgentCheck
+   class CustomCheck(AgentCheck):
+       def check(self, instance):
+           self.gauge('test.support.random', n, tags=['custom_check'])
+           
+   b) Used the following code in my_check.yaml and placed it in C:\ProgramData\Datadog\conf.d:
+   init_config:
+   min_collection_interval: 10
+   instances:
+         [{}]
+
+9. Restarted the Datadog agent on Windows using Datadog Agent Manager
