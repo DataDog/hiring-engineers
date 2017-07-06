@@ -126,3 +126,11 @@ I got a MySQL client to run on my AWS EC2 instance. I also managed to get Datado
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/datadog%20running.png "Datadog added and running on MySQL")
 My SSH client became inactive after I left my computer to hibernate overnight. When I logged back in, Datadog seemed to have lost the data collection from the MySQL integration. It did not start collecting even after I restarted a fresh SSH client window.
 I have not managed to resolve this issue yet, so I used MongoDB installed on my Windows host as my database integration.
+
+LINKS TO MY DATADOG DASHBOARDS:
+
+1. Cloned dashboard with custom metric monitor:
+https://app.datadoghq.com/screen/200676/mongodb-cloned
+
+2. Screenboard:
+https://app.datadoghq.com/screen/200915/madhulikas-screenboard-6-jul-2017-1618
