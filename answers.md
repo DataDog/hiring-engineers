@@ -54,4 +54,6 @@ Level 3 - Alerting on data
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric.png "Screenshot of monitor on test metric")
 
-2. 
+2. Added a descriptive name and message for the alert notification as shown below.
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric%202.png "Screenshot of descriptive monitor on test metric")
