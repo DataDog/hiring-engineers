@@ -11,6 +11,10 @@ Level 1 - Collecting data
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Screenshot%20of%20host%20dell-PC%20%20on%20hostmap.png "Screenshot of host map with Windows and AWS")
 
+The Datadog Agent Manager for Windows:
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Agent%20manager.png "Screenshot of Datadog Agent Manager for Windows")
+
 6. Installed mongodb on Windows.
 7. Installed the Datadog integration for Mongo.
 
