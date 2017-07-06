@@ -50,10 +50,15 @@ Level 2 - Visualizing data
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Custom%20check%20metric%20on%20cloned%20dashboard.png "Screenshot of test metric on cloned dashboard")
 
 Level 3 - Alerting on data
-1. Set up on a monitor on the test.support.random metric.
+1. Set up multi-alert by host monitor on the test.support.random metric.
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric.png "Screenshot of monitor on test metric")
 
 2. Added a descriptive name and message for the alert notification as shown below.
 
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Monitor%20set%20up%20on%20custom%20metric%202.png "Screenshot of descriptive monitor on test metric")
+
+3. Received an alert notification via email from the monitor when the value of the test metric breached 0.9. Screenshot of the email below.
+Since it is a multi-alert by host, it includes the description of the host (dell-PC in this case) in the subect line of the notification email.
+
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Notification%20email%20from%20monitor.png "Screenshot of notification email from the monitor on test metric")
