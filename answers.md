@@ -104,6 +104,9 @@ Bonus section step:
 4. Set up a scheduled downtime to silence notifications between 7PM and 9AM daily. See monitor management screen below:
 ![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Scheduled%20downtime%20on%20monitor.png "Screenshot of scheduled downtime on the monitor")
 
+Screenshot of notification email that signals the start of scheduled downtime.
+![alt text](https://github.com/madhulikavinnakota/hiring-engineers/blob/screenshots/Notification%20email%20for%20scheduled%20downtime.png "Notification email for start of scheduled downtime on the monitor")
+
 MAIN ISSUES ENCOUNTERED:
 
 1. RESOLVED
