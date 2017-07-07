@@ -44,3 +44,8 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 
 ![downtime](https://user-images.githubusercontent.com/29982897/27966792-24767656-6306-11e7-8db7-0d5a7c194d0a.PNG)
 
+## Summary
+This was a fun excercise that exposed me to some new technologies and took me back to my development days.  I really enjoyed exploring the potential of the Datadog product.  The possibilities seems endless and the setup was remarkably simple.  Thank you for the opportunity, and I look forward to hearing from you.
+
+### Links
+https://app.datadoghq.com/dash/317271/postgres---level-2?live=true&page=0&is_auto=false&from_ts=1499441575500&to_ts=1499445175500&tile_size=m
