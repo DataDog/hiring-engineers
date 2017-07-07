@@ -42,14 +42,14 @@ DataDog Candidate Technical Checklist
 - In addition to sending notifications you can send email alerts.
 
   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Email%20Alerts.png)  
-- Converting to a [Multi Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>) will notify for each individual host or role for that threshold.
+- Converting to a [Multi Alert](<https://app.datadoghq.com/monitors#2299689?group=triggered&live=4h>) will send a notication for each individual host or role for that threshold.
 
   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Multi%20Alert.png)
 - Schedule [Downtime](<https://app.datadoghq.com/monitors#downtime?>) from 7pm-9am
 
- You can schedule alert downtime in preparation for code deployments, planned outages, or environment maintenance.
+  You can schedule alert downtime in preparation for code deployments, planned outages, or environment maintenance.
 
-   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime.png)
+  ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime.png)
 - Here is the email Alert from the Scheduled Downtime
 
   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-29%20Scheduled%20Downtime%20Email.png)
