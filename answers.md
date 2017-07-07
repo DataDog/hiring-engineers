@@ -23,7 +23,7 @@ DataDog Candidate Technical Checklist
   ```
   Dashboards are real time graphs of metrics that are synchronized over time.  As you move your cursor along a timeline of an individual graph the cursor simultaneously moves on all the other graphs on the screen.    
   
-- In this example I cloned the Database [Dashboard](<https://app.datadoghq.com/dash/311475/mint-cloned?live=true&page=0&is_auto=false&from_ts=1498752492052&to_ts=1498756092052&tile_size=m>) then added additional metrics to capture the *number of Mongo DBs*  and our custom *test.support.random* metric,
+- In this example I cloned the Database [Dashboard](<https://app.datadoghq.com/dash/311475/mint-cloned?live=true&page=0&is_auto=false&from_ts=1498752492052&to_ts=1498756092052&tile_size=m>) then added additional metrics to capture the *number of Mongo DBs*  and our custom *test.support.random* metric.
 
   ![](https://github.com/sbeamish/hiring-engineers/blob/master/screenshots/2017-06-28%20Snapshot%20and%20Notification.png)
 
