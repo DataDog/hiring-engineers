@@ -69,7 +69,7 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
   <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.00.13%20PM.png">  
   
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.  
-  <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.11.27%20PM.png">  
+  <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.26.42%20PM.png">  
   
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.  
 
