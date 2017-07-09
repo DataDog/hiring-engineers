@@ -72,16 +72,12 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
   <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.26.42%20PM.png">  
   
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.  
+  <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.37.57%20PM.png">
 
-* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-## Instructions
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-1. Fork this repo.
-2. Answer the questions in `answers.md`
-3. Commit as much code as you need to support your answers.
-4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.  
+* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.  
+  - Since I am working on it at 8:55pm, and I realized that the email can only be sent at the start time of the silence(7pm is the past time so can not be set for tonight). I changed the time to start from 8:58pm. As expected, I received the email at 8:58pm. However, it still uses UTC in the email though I use CEST in the setting. I think it should be fixed.  
+    <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%209.06.32%20PM.png">  
+  
+    <img src="https://github.com/YIYIZH/hiring-engineers/blob/master/Screen%20Shot%202017-07-09%20at%208.59.20%20PM.png">  
+  
+ 
