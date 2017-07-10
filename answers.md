@@ -1,6 +1,6 @@
 # Level 1
 
-Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+1. Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
 ![ScreenShot](/screenshots/Signup.png)
 
@@ -8,23 +8,42 @@ Bonus question: In your own words, what is the Agent?
 
 * The Agent is small software that collects data and events that runs on a host. It will collect data such as memory and CPU and send the metrics to the monitoring system application.
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+2. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+Completed
+
+This is the result from adding tags to the Agent config file.
 ![ScreenShot](/screenshots/Tags.png)
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+3. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+*Completed
 
+Below is the screenshot of postgresql showing up in checks using info command.
+![ScreenShot](/screenshots/Postgresql1.png)
+
+Below is the postgres.yaml config code.
+![ScreenShot](/screenshots/Postgresql2.png)
+
+Below is the confirmation from the Datadog application that postgres was integrated.
+![ScreenShot](/screenshots/Postgresql3.png)
+
+4. Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
 Here is a snippet that prints a random value in python:
 
 import random
 print(random.random())
 
+* I have included the files for making a custom Agent check of random. 
+
+Below is the screenshot of running the custome Agent check.
+![ScreenShot](/screenshots/RandomCheck.png)
+
 # Level 2 - Visualizing your Data
 
 Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+
 Bonus question: What is the difference between a timeboard and a screenboard?
 Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
