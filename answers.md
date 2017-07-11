@@ -11,14 +11,14 @@ Bonus question: In your own words, what is the Agent?
 2. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Completed
-
+Tags were added through the Datadog config file as brianlee, hosttest, tagtest
 This is the result from adding tags to the Agent config file.
 ![ScreenShot](/screenshots/Tags.png)
 
 3. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Completed
-
+PostgreSQL was installed and the database was named datadog, the user however was my computer name under 'ProfoundPupil'.
 Below is the screenshot of postgresql showing up in checks using info command.
 ![ScreenShot](/screenshots/Postgresql1.png)
 
@@ -35,7 +35,8 @@ Here is a snippet that prints a random value in python:
 import random
 print(random.random())
 
-I have included the files for making a custom Agent check of random. 
+I have included the files for making a custom Agent check of random under the checks folder.
+It includes the python and yaml files.
 
 Below is the screenshot of running the custome Agent check.
 ![ScreenShot](/screenshots/RandomCheck.png)
@@ -79,3 +80,8 @@ Completed
 
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+Completed
+![ScreenShot](/screenshots/DowntimeSetup.png)
+
+This is the email notification for the start of the downtime scheduled.
+![ScreenShot](/screenshots/DowntimeConfirm.png)
