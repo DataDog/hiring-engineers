@@ -59,10 +59,23 @@ Completed
 
 # Level 3 - Alerting on your Data
 
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
+1. Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
 Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+
 Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
-Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+
+Completed
+![ScreenShot](/screenshots/HostAlert.png)
+
+   I setup the alert to retrieve from the host tag rather than the host itself so the user can just add the tag to whatever host they want this monitor to be on.
+
+
+2. Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+Completed
+![ScreenShot](/screenshots/DatadogEmail.png)
+
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
