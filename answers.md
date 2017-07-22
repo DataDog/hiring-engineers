@@ -36,6 +36,7 @@ Steven Wang's Answer
   + Config file
 
     Following shows YAML config file for test.support.random
+    
     ![image](https://user-images.githubusercontent.com/8587006/28491906-668aafe8-6f3c-11e7-8188-5a2a8c9afc02.png)
 # Level 2 - Visualizing your Data
 + screenshot of database and customer random metrics : 
