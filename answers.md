@@ -36,7 +36,7 @@ Steven Wang's Answer
   + Config file
 
     Following shows YAML config file for test.support.random
-    
+
     ![image](https://user-images.githubusercontent.com/8587006/28491906-668aafe8-6f3c-11e7-8188-5a2a8c9afc02.png)
 # Level 2 - Visualizing your Data
 + screenshot of database and customer random metrics : 
@@ -46,7 +46,7 @@ Steven Wang's Answer
     
 + Bonus : 
     
-    The timeboards shows all graphs scoped to the same time. All the showed graphs will be displayed in a grid-like structure. In such way, users can do troubleshooting and correlation easily. In addition, a TimeBoard graphic can be shared individually. A screenboard is used to illustrated higher level of monitoring. It has more customised options. Lots of widgets can be operated by drag-and-drop anywhere you like, and displayed in a different time frame. We can even add notes or call-outs. Moreover, live ScreenBoards can be easily shared as read-only with others, whereas TimeBoards cannot.
+    The timeboards show all graphs scoped to the same time. All the showed graphs will be displayed in a grid-like structure. In such way, users can do troubleshooting and correlation easily. In addition, a TimeBoard graphic can be shared individually. A screenboard is used to illustrated higher level of monitoring. It has more customised options. Lots of widgets can be operated by drag-and-drop to anywhere you like, and displayed in a different time frame. We can even add notes or call-outs. Moreover, live ScreenBoards can be easily shared as read-only with others, whereas TimeBoards cannot.
 
 + Screenshot snapshot of 'test.support.random' graph :
     
