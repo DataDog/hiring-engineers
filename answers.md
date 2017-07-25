@@ -4,6 +4,8 @@
 
 * I launched a small instance on Google Cloud Platform using Google Compute Engine (GCE). Since I was using GCE, I was able to leverage the Google Compute Engine Integration. Here is a screenshot of the GCE dashboard:
 
+![gce dash](./l0_gce.png)
+
 
 ### Level 1 - Collecting your Data
 
@@ -16,8 +18,12 @@ __In your own words, what is the Agent?__
 __Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.__
 * I added two custom tags to my DataDog Agent config file: 'env: learn' and 'owner: chris.' Here is a screenshot of the tags on the Host Map page:
 
+![tags](./l1_tags.png)
+
 __Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.__
 * I installed a MySQL database on my instance, created a privileged service user for Datadog to collect database metrics, configured the mysql.yaml file, then installed the MySQL Datadog Integration. Here is a screenshot of the dashboard I created by installing and configuring the MySQL Integration:
+
+![mysql dash](./l1_mysql_data.png)
 
 __Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`__
 * I created a file called checkval.py in */etc/dd-agent/checks.d/*. The file contains the following snippet:
@@ -32,11 +38,15 @@ class RandomCheck(AgentCheck):
 
 The code successfully returns a random decimal value between 0 and 1. I created this initial timeseries chart to plot the random values returned over time:
 
+![custom check](./l1_custom_check.png)
+
 
 ### Level 2 - Visualizing your Data
 
 __Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.__
 * I cloned the MySQL dashboard, added the `test.support.random` timeseries graph, and two additional widgets: 1) a query value that shows the number of MySQL queries per second, 2) a timeseries graph that shows the number of bytes received over time. Here is a screenshot of the dashboard:
+
+![custom dash](./l2_dashboard.png)
 
 __Bonus question: What is the difference between a timeboard and a screenboard?__
 * With Datadog, you can create two types of dashboards; timeboards and screenboards, both of which enable you to create custom graphs, charts, and other widgets to help you better understand your data. The difference between these dashboards lies in their scope and their customizability:
@@ -46,17 +56,26 @@ __Bonus question: What is the difference between a timeboard and a screenboard?_
 __Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification__
 * Here is a screenshot of the snapshot I sent to myself:
 
+![snapshot notify](./l2_snapshot_notify.png)
+
 * Here is a screenshot of the `test.support.random` graph with a red line at .90:
+
+![snapshot](./l2_snapshot.png)
+
 
 ### Level 3 - Alerting on your Data
 
 __Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes__
 * I created a monitor that will alert me if any host with the 'env:learn' tag has a `test.support.random` metric that goes above 0.9 at least once during the last 5 minutes. This alert is a Multi Alert which will send me a separate alert for every host that meets this condition. Also, since the 'env:learn' tag is specified, this monitor will automatically apply to additional instances I add to this environment. Here is a screenshot of the monitor config:
 
-  
+![monitor config](./l3_multi_alert.png)
+
 __Give it a descriptive monitor name and message. Make sure that the monitor will notify you via email. Take a screenshot of the email that it sends you.__
 * I created a simple message that will notify me of a host that has a `test.support.random` metric that went above 0.9. The message provides simple dummy instructions and troubleshooting steps. The message references simple host tags like {{host.name}} and {{host.ip}}. Here is a screenshot of the email:
 
+![monitor notify](./l3_email_instructions.png)
 
 __Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.__
-* I scheduled a couple monitor downtimes, one between 7pm and 9pm daily, and the other between 1:22am and 9:22am. Here are screenshots of the start and end of the scheduled downtime:
+* I scheduled a couple monitor downtimes, one between 7pm and 9pm daily, and the other between 4:04pm and 9:04am. Here is a screenshot of the notification to start the downtime:
+
+![downtime](./l3_downtime.png)
