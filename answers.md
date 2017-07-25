@@ -2,7 +2,7 @@
 
 ### Level 0 (optional) - Setup an Ubuntu VM
 
-* I launched a small instance on Google Cloud Platform using Google Compute Engine (GCE). Since I was using GCE, I was able to leverage the Google Compute Engine Integration. [Click here](https://p.datadoghq.com/sb/68e249c37-543864fd21) to view a read-only version of the GCE dashboard. Here is a screenshot of the dashboard:
+* I launched a small instance on Google Cloud Platform using Google Compute Engine (GCE). Since I was using GCE, I was able to leverage the Google Compute Engine Integration. Here is a screenshot of the GCE dashboard:
 
 
 ### Level 1 - Collecting your Data
