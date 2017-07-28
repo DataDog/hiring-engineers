@@ -53,7 +53,7 @@ Agent Checks provide a fantastic way to collect metrics from custom applications
 and the other folder we care about is 
 > C:\ProgramData\Datadog\conf.d\
 
-To write a custom Agent check that samples a random value whose metric is called `test.support.random`, two files called myrandomcheck.py and myrandomcheck.yaml are placed in the above mentioned folders respectively and the Agent is then restarted.
+To write a custom Agent check that samples a random value whose metric is called `test.support.random`, two files called [myrandomcheck.py](myrandomcheck.py) and [myrandomcheck.yaml](myrandomcheck.yaml) are placed in the above mentioned folders respectively and the Agent is then restarted.
 After a few minutes, the Hostmap will show the Agent check.
 
 <img src="dd_agentcheck.png">
