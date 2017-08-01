@@ -9,6 +9,24 @@ The Agent is software that collects data from a client's host systems and delive
 ### My Host + Tags:
 !['Screenshot of Host Map Page:'](/Screenshots/Host_Map.png)
 
+### Code snippet of my Agent check in ~.datadog-agent/checks.d/mycheck.py
+```python
+import random
+
+from checks import AgentCheck
+
+class MyCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+
+### Code snippet of my Agent check's configuration file in ~.datadog-agent/conf.d/mycheck.yaml
+```yaml
+init_config:
+
+instances:
+    [{}]
+```
 
 ## Level 2 - Visualizing Data:
 
