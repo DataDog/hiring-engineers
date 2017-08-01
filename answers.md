@@ -3,13 +3,13 @@ Completed by Jodie Ly
 
 ## Level 1 - Collecting Data:
 
-#### In your own words, what is the Agent?
+### In your own words, what is the Agent?
 The Agent is software that collects data from a client's host systems and delivers them to Datadog in order for the client to easily visualize and analyze their monitoring and performance data. It runs checks that capture system metrics as well as data from integrations, includes a statsd backend server that clients can send custom metrics to, and then gathers the data from these two parts and lines it up to be sent to Datadog. The Agent allows clients to view data from their entire stack in much more granular and customizable way than other cloud-based services do because it can collect data from over 50 metrics every 15 seconds, as opposed to only 10+ metrics every ~5-25 minutes.
 
 ### My Host + Tags:
 !['Screenshot of Host Map Page:'](/Screenshots/Host_Map.png)
 
-### Code snippet of my Agent check in ~.datadog-agent/checks.d/mycheck.py
+### Code snippet of my Agent check in ~.datadog-agent/checks.d/mycheck.py:
 ```python
 import random
 
@@ -20,7 +20,8 @@ class MyCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-### Code snippet of my Agent check's configuration file in ~.datadog-agent/conf.d/mycheck.yaml
+
+### Code snippet of my Agent check's configuration file in ~.datadog-agent/conf.d/mycheck.yaml:
 ```yaml
 init_config:
 
@@ -30,7 +31,7 @@ instances:
 
 ## Level 2 - Visualizing Data:
 
-#### What is the difference between a timeboard and a screenboard?
+### What is the difference between a timeboard and a screenboard?
 A timeboard shows time-synchronized metrics and event graphs in an automatic grid layout, and it is meant to help troubleshoot or correlate. A screenboard displays widgets and timeframes in a customizable drag-and-drop layout, and its purpose is for checking statuses and sharing data. 
 
 [Postgres-dashboard Clone:](https://app.datadoghq.com/dash/331943/postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1501546923391&to_ts=1501550523391&tile_size=m)
