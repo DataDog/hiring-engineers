@@ -10,10 +10,12 @@ The Agent is software that collects data from a client's host systems and delive
 #### What is the difference between a timeboard and a screenboard?
 A timeboard shows time-synchronized metrics and event graphs in an automatic grid layout, and it is meant to help troubleshoot or correlate. A screenboard displays widgets and timeframes in a customizable drag-and-drop layout, and its purpose is for checking statuses and sharing data. 
 
-Postgres-dashboard Clone: https://app.datadoghq.com/dash/331943/postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1501546923391&to_ts=1501550523391&tile_size=m
+**Postgres-dashboard Clone:** https://app.datadoghq.com/dash/331943/postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1501546923391&to_ts=1501550523391&tile_size=m
+
 ![](/Screenshots/Postgres_Dashboard_Clone.png)
 
-Test.support.random graph: https://app.datadoghq.com/dash/integration/custom%3Atest?live=true&page=0&is_auto=false&from_ts=1501547162584&to_ts=1501550762584&tile_size=m
+**Test.support.random graph:** https://app.datadoghq.com/dash/integration/custom%3Atest?live=true&page=0&is_auto=false&from_ts=1501547162584&to_ts=1501550762584&tile_size=m
+
 ![](/Screenshots/Test.support.random_Graph.png)
 
 ### Level 3 - Alerting on Data:
