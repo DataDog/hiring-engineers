@@ -59,7 +59,7 @@ There are several configuration steps neccessary to configure vagrant to startup
 From the Windows command prompt issue the command: `vagrant start`
 
 Output from the command should be something like below
-![tag image](screenshots/vm-startup.png)
+![tag image](vm-startup.png)
 
 ## Collecting Your Data
 ### Installing the Datadog Agent on Ubuntu
