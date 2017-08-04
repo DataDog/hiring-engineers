@@ -2,8 +2,7 @@
 The documented steps below are designed to provide an introduction to the Datadog monitoring service to a prospective solution engineer.   By executing on the below items an engineer can gain a basic understanding of how the Datadog monitoring service can collect, report and notify based on metrics.  Installation of agents on multiple platforms, configuring of collectors for multiple products, and configuring items within the Datadog web based console are all documented in the items listed in the table of contents below.
 ## Table of Contents
 - [Setup an Ubuntu VM](#setup-an-ubuntu-vm)
-  - [Installing Oracle VirtualBox on Windows](#installing-oracle-virtualbox-on-windows)
-  - [Installing Vagrant on Windows](#installing-vagrant-on-windows)
+  - [Installing Oracle VirtualBox on Windows](#installing-oracle-virtualbox-on-windows)  - [Installing Vagrant on Windows](#installing-vagrant-on-windows)
   - [Configuring Vagrantfile](#configuring-vagrantfile)
   - [Starting the Ubuntu VM](#starting-the-ubuntu-vm)
 - [Collecting Your Data](#collecting-your-data)
@@ -13,12 +12,11 @@ The documented steps below are designed to provide an introduction to the Datado
   - [Group the Infrastructure by Tag](#group-the-infrastructure-by-tag)
   - [Installing PostgreSQL on Ubuntu](#installing-postgresql-on-ubuntu)
   - [Adding User Account in PostgreSQL for Datadog](#adding-user-account-in-postgresql-for-datadog)
-  - [Collect PostgreSQL Metrics in Datadog](#collect-postgresql-metrics-in-datadog)
-  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog-console)
+  - [Collect PostgreSQL Metrics in Datadog](#collect-postgresql-metrics-in-datadog)  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog-console)
   - [Verify PostgreSQL Metric Collection](#verify-postgresql-metric-collection)
   - [Configure the Agent to Sample Random Data](#configure-the-agent-to-sample-random-data)
 - [Visualizing Your Data](#visualizing-your-data)
-  - [Adding the PostgreSQL and Random Metrics to a Dashboard](#adding-the-postgresql-and-random-metrics-to-a-dashboard)
+  - [Adding Random Metrics to the Cloned Postgre Dashboard](#adding-random-metrics-to-the-cloned-postgre-dashboard)
   - [Snapshot and Notify Based on Threshold](#snapshot-and-notify-based-on-threshold)
 - [Alerting on Your Data](#alerting-on-your-data)
   - [Configure a Monitor Based on Threshold](#configure-a-monitor-based-on-threshold)
@@ -26,13 +24,13 @@ The documented steps below are designed to provide an introduction to the Datado
   - [Configure Downtime for Monitor](#configure-downtime-for-monitor)
 - [Extended Use Cases](#extended-use-cases)
   - [Collecting Metrics from Docker](#collecting-metrics-from-docker)
-    - [Installing the Datadog Agent on RHEL](#installing-the-datadog-agent-on-rhel)
-    - [Collect Docker Metrics in Datadog](#collect-docker-metrics-in-datadog)
-    - [Verify Docker Metric Collection](#verify-docker-metric-collection)
+	- [Installing the Datadog Agent on RHEL](#installing-the-datadog-agent-on-rhel)
+	- [Collect Docker Metrics in Datadog](#collect-docker-metrics-in-datadog)
+	- [Verify Docker Metric Collection](#verify-docker-metric-collection)
   - [Collecting Metrics from VMWare VSphere](#collecting-metrics-from-vmware-vsphere)
-    - [Installing the Datadog Agent on Windows](#installing-the-datadog-agent-on-windows)
-    - [Collect VSphere Metrics in Datadog](#collect-vsphere-metrics-in-datadog)
-    - [Verify VSphere Metric Collection](#verify-vsphere-metric-collection)
+	- [Installing the Datadog Agent on Windows](#installing-the-datadog-agent-on-windows)
+	- [Collect VSphere Metrics in Datadog](#collect-vsphere-metrics-in-datadog)
+	- [Verify VSphere Metric Collection](#verify-vsphere-metric-collection)
 
 ## Setup an Ubuntu VM
 ### Installing Oracle VirtualBox on Windows
@@ -222,19 +220,171 @@ class RandomCheck(AgentCheck):
 ![random check info](screenshots/random-check-info.PNG)
 
 ## Visualizing Your Data
-### Adding the PostgreSQL and Random Metrics to a Dashboard
+`Bonus question: What is the difference between a timeboard and a screenboard?`
+
+Largest difference is in how much customization can be done. Timeboards are use metric graphs can be viewed for a given interval of time. The layouts of timeboards are automatic and can’t be customized that much. Usually timeboards are used for quick and dirty graphs to troubleshoot an issue. Screenboards allow for more customization, allowing for drag and drop of multiple widgets built on different metrics and time periods.
+
+After installing an integration into Datadog you will have a specialized dashboard view for that integration.  Additionally dashboards can be cloned and modified with additional metrics that may be relevant for what is being managed.
+
+To clone the PostgreSQL dashboard and customize it:
+
+- Log into [https://www.datadoghq.com/](https://www.datadoghq.com/)
+- Click the Dashboard List tab under Dashboards on the left:
+![dashboard list tab](screenshots/dashboard-list-tab.PNG)
+- Click the tab for the Postgres - Overview dashboard on the right:
+![postgres overview tab](screenshots/postgres-overview-tab.PNG)
+- On the top right, click the gear icon and then Clone Dashboard:   
+![clone dashboard](screenshots/clone-dashboard.PNG)
+- Click Clone to clone the dashboard with the title entered:
+![clone button](screenshots/clone-button.PNG)
+### Adding Random Metrics to the Cloned Postgre Dashboard
+Cloned dashboards can be customized with graphs for metrics for anything being collected in Datadog.
+
+To add the Random metric to the cloned Postgre dashboard
+
+- From the Dasboards view, under Your Custom Dashboards click the Postgres Overview (cloned) dashboard:
+![postgres clone button](screenshots/postgres-clone-button.PNG)
+- At the top of the dashboard click the Add Graphs button:
+![add graphs button](screenshots/add-graphs-button.PNG)
+- Click the button for Timeseries and drag it to the dashboard:
+![timeseries button](screenshots/timeseries-button.PNG)
+- Select the test.support.random metric from dropdown then click Save:
+![test random select](screenshots/test-random-select.PNG)
+- The test.support.random metric graph will be added to the dashboard:
+![test random graph](screenshots/test-random-graph.PNG)
 ### Snapshot and Notify Based on Threshold
+A notation or snapshot is a way to take a sample metric range from a dashboard graph and be able to notate or alert based on it.
+
+To notate the test.support.random metric for a time and value range and notify:
+
+- Click the camera icon on the Avg of test.support.random graph
+- Using the pencil, draw a box around some of the data near peak (0.9) value:
+![sample peak values](screenshots/sample-peak-values.PNG)
+- In the comments field below, send a notification to your user:
+![notify user on snapshot](screenshots/notify-user-on-snapshot.PNG)
+
 ## Alerting on Your Data
+Configuring alerting will allow notification based on the metrics collected into Datadog.
+
 ### Configure a Monitor Based on Threshold
-### Re-Configure the Monitor for Multi-Alert
+A monitor will allow an alert to be sent based on a metric threshold.
+
+To configure a multi-alert monitor for the test.support.random metric:
+
+- Under Monitors, select the Manage Monitors tab:  
+![manage monitors tab](screenshots/manage-monitors-tab.PNG)
+- Click the New Monitor button on the top right: ![new monitor button](screenshots/new-monitor-button.PNG)
+- Click the Metric button under Monitor Type: ![metric button](screenshots/metric-button.PNG)
+- Define which metric, avg by env, and set the alert conditions:
+![metric conditions](screenshots/metric-conditions.PNG)
+- Add a notification message and notification user, then click Save:
+![notify message](screenshots/notify-message.PNG)
+- Within 15 minutes an e-mail should be sent which looks like below:
+
+
 ### Configure Downtime for Monitor
+Downtime is a way to silence a monitor activity over a period of time.
+
+To setup a downtime window for the test.support.random metric monitor:
+
+- Under Monitors select Manage Downtime:   
+![downtime tab](screenshots/downtime-tab.PNG)
+- In the top right click the schedule downtime button: ![schedule downtime button](screenshots/schedule-downtime-button.PNG)
+- Select the downtime settings and click Save:
+![downtime settings](screenshots/downtime-settings.PNG)
 ## Extended Use Cases
 ### Collecting Metrics from Docker
+The Docker integration can collect relevant metrics about the docker infrastructure and docker containers.
+
 #### Installing the Datadog Agent on RHEL
+To collect docker related metrics from a host running docker, an agent for Datadog needs to be installed.
+
+To install the agent on RHEL:
+
+- Open a browser and navigate to [https://www.datadoghq.com/](https://www.datadoghq.com/)
+- Login to your Datadog account
+- Click the Agent tab on the left under integrations as shown below
+![agent tab screenshot](screenshots/agent-tab.PNG)
+- Click the tab for CentOS/RedHat.
+- Copy the installation command for the one-step install to the clipboard, it should look like:
+
+```bash
+DD_API_KEY=e628d674717c2be4bb030c701a746656 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```
+
+- In a root shell session on the RHEL host running docker, paste the string and press enter
+- The datadog agent will download from their website and install using yum a successful install will look like below
+![rhel agent install](screenshots/rhel-agent-install.PNG)
+
 #### Collect Docker Metrics in Datadog
+In order to enable metrics collection for Docker from the agent, it needs to be enabled in configuration.
+
+To enable Docker metrics collection:
+
+- In a shell session as the dd-agent user, copy the example configuration: `cp /etc/dd-agent/conf.d/docker_daemon.yaml.example /etc/dd-agent/conf.d/docker_daemon.yaml`
+- Modify the docker configuration with the code snippet below:
+```yaml
+init_config:
+
+instances:
+    - url: "unix://var/run/docker.sock"
+      new_tag_names: true
+```
+- Add the docker group to the dd-agent user: `usermod -a -G docker dd-agent`
+- In a shell session as root, restart the Datadog Agent service: `service datadog-agent restart`
+- In the Datadog console click on the Integrations tab under Integrations.
+- Scroll to the Docker integration tile and click Install.
+
 #### Verify Docker Metric Collection
+
+- In the Datadog console, click on the Host Map tab under Infrastructure.
+- For the docker host, click the Docker tag to view the metrics graphs, should look like below.
+![docker metrics](screenshots/docker-metrics.PNG)
+
 ### Collecting Metrics from VMWare VSphere
+Metrics for the VSphere infrastructure can be collected with a Datadog agent installed on the VCenter host.
+
 #### Installing the Datadog Agent on Windows
+
+To install the Datadog agent on the VSphere windows host:
+
+- Download the Datadog agent Windows installer from [here](https://s3.amazonaws.com/ddagent-windows-stable/ddagent-cli-latest.msi) to the VSphere VCenter host
+- From a Windows command prompt in the directory where the agent msi is located run:  `msiexec /qn /i ddagent-cli-latest.msi APIKEY="e628d674717c2be4bb030c701a746656" HOSTNAME="my_hostname" TAGS="mytag1,mytag2"`
+
 #### Collect VSphere Metrics in Datadog
+In order to collect the VSphere Metrics in Datadog, several steps are required.
+
+- In the Administration section of VCenter, create a read only Datadog user:
+![read only user](screenshots/read-only-vcenter.PNG)
+- From the start menu open the Datadog Agent Manager Application.
+- Scroll down and select the Vsphere yaml on the left.
+- Update the yaml with the below snippet
+```yaml
+instances:
+  # name must be a unique key representing your vCenter instance
+  # mandatory
+-   name: CLM-VC
+
+    # the host used to resolve the vCenter IP
+    # mandatory
+    host: clm-vc.bmc.local
+
+    # Read-only credentials to connect to vCenter
+    # mandatory
+    # see https://app.datadoghq.com/account/settings#integrations/vsphere
+    username: DatadogAgent
+    password: Password123
+
+    # Set to false to disable SSL verification, when connecting to vCenter
+    # optional
+    ssl_verify: false
+```
+- Click Save and Enable
+- Click the Actions button and then Restart
+
 #### Verify VSphere Metric Collection
+
+- From the Datadog console click the Dashboard List under Dashboards
+- Click on the VSphere Dashboard and observe metrics below:
+- ![vsphere dashboard](screenshots/vsphere-dashboard.PNG)
 
