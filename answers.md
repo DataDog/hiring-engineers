@@ -12,9 +12,9 @@ The documented steps below are designed to provide an introduction to the Datado
   - [Restart the Datadog Agent](#restart-the-datadog-agent)
   - [Group the Infrastructure by Tag](#group-the-infrastructure-by-tag)
   - [Installing PostgreSQL on Ubuntu](#installing-postgresql-on-ubuntu)
-  - [Adding User Account in PostgreSQL for Datadog](#adding-user-account-in-postgres-for-datadog)
+  - [Adding User Account in PostgreSQL for Datadog](#adding-user-account-in-postgresql-for-datadog)
   - [Collect PostgreSQL Metrics in Datadog](#collect-postgresql-metrics-in-datadog)
-  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog)
+  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog-console)
   - [Verify PostgreSQL Metric Collection](#verify-postgresql-metric-collection)
   - [Configure the Agent to Sample Random Data](#configure-the-agent-to-sample-random-data)
  - [Visualizing Your Data](#visualizing-your-data)
@@ -61,7 +61,7 @@ There are several configuration steps neccessary to configure vagrant to startup
 From the Windows command prompt issue the command: `vagrant start`
 
 Output from the command should be something like below
-![vm startup screenshot](screenshots\vm-startup.PNG)
+![vm startup screenshot](screenshots/vm-startup.PNG)
 
 ## Collecting Your Data
 `Bonus question: In your own words, what is the Agent?`
@@ -76,7 +76,7 @@ The following steps are required to install the agent on Ubuntu and send the bas
 - Open a browser and navigate to [https://www.datadoghq.com/](https://www.datadoghq.com/)
 - Login to your Datadog account
 - Click the Agent tab on the left under integrations as shown below
-![agent tab screenshot](screenshots\agent-tab.PNG)
+![agent tab screenshot](screenshots/agent-tab.PNG)
 - Click the tab for Ubuntu
 - Copy the installation command for the one-step install to the clipboard, it should look like:
 
@@ -86,7 +86,7 @@ The following steps are required to install the agent on Ubuntu and send the bas
 
 - In the command prompt window, paste the string and press enter
 - The datadog agent will download from their website and install using apt-get a successful install will look like below
-![ddagent install screenshot](screenshots\ddagent-install.PNG)
+![ddagent install screenshot](screenshots/ddagent-install.PNG)
 
 ### Adding Tags to the agentconfig file
 Tagging allows for grouping of infrastructure and application objects within the Datadog monitoring service.  They can be added to the agent configuration file or within the infrastructure host map on their site.  The steps for updating the agent configuration are below.
@@ -103,18 +103,18 @@ After configuration changes to the Datadog agent, it needs to be restarted in or
 From the root shell prompt execute: `service datadog-agent restart`
 
 Successful agent restart will have output like below.
-![ddagent restart screenshot](screenshots\datadog-agent-restart.PNG)
+![ddagent restart screenshot](screenshots/datadog-agent-restart.PNG)
 
 ### Group the Infrastructure by Tag
 Now that the installed agent has a few tags associated with it, you can utilize those tags to group within the infrastructure host map view.
 
 - Log into [https://www.datadoghq.com/](https://www.datadoghq.com/)
 - Click on the Host Map tab under Infrastructure on the left menu bar
-![hostmap tab](screenshots\host-map-tab.PNG)
+![hostmap tab](screenshots/host-map-tab.PNG)
 - Click the group by tag drop down on the top/center of the panel
-![hostmap tab](screenshots\group-by-tag.PNG)
+![hostmap tab](screenshots/group-by-tag.PNG)
 - Select env or role - host map is now grouped by that tag
-![hostmap tab](screenshots\group-by-env-tag.PNG)
+![hostmap tab](screenshots/group-by-env-tag.PNG)
 
 ### Installing PostgreSQL on Ubuntu
 PostgreSQL, often simply Postgres, is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards compliance. As a database server, its primary functions are to store data securely and return that data in response to requests from other software applications.
@@ -125,7 +125,7 @@ To install PostgreSQL:
 - Change to root access: `sudo su -`
 - Initiate the download and install through apt-get: `apt-get-install postgresql`
 - A successful install will look like:
-![postgresql install](screenshots\install-postgresql.PNG)
+![postgresql install](screenshots/install-postgresql.PNG)
 
 ### Adding User Account in PostgreSQL for Datadog
 In order for the Datadog agent to collect metrics on the default instance of postgreSQL it will need read only user access.
@@ -143,7 +143,7 @@ echo -e "\e[0;31mCannot connect to Postgres\e[0m"`
 When prompted for the password enter: `k2a93rA4T7V8zTrpNvijeQHs`
 
 A successful query will output:
-![query output](screenshots\query-output.PNG)
+![query output](screenshots/query-output.PNG)
 
 Exit psql with the `\q` command.
 
@@ -174,7 +174,7 @@ Once the agent is collecting the postgres metrics, we can now install the integr
 
 - Log into [https://www.datadoghq.com/](https://www.datadoghq.com/)
 - Click on the Integrations tab under Integrations on the left:        
-![integrations tab](screenshots\integrations-tab.PNG)
+![integrations tab](screenshots/integrations-tab.PNG)
 - Scroll down to the PostgreSQL tile and click install
 
 ### Verify PostgreSQL Metric Collection
@@ -183,17 +183,17 @@ There are two areas to verify metric collection for an activated integration
 To verify from the command prompt as root: `service datadog info`
 
 Output should look like below under checks for posgres:
-![postgres check info](screenshots\postgres-check-info.PNG)
+![postgres check info](screenshots/postgres-check-info.PNG)
 
 To verify from the Datadog console:
 
 - Log into [https://www.datadoghq.com/](https://www.datadoghq.com/)
 - Click on the host map tab under infrastructure     
-![hostmap tab](screenshots\host-map-tab.PNG)
+![hostmap tab](screenshots/host-map-tab.PNG)
 - Click on postgres on the host which has the agent installed     
-![postgres host](screenshots\postgres-host.PNG)
+![postgres host](screenshots/postgres-host.PNG)
 - Several metrics from postgres will be displayed in graphs
-![postgres metrics](screenshots\postgres-metrics.PNG)
+![postgres metrics](screenshots/postgres-metrics.PNG)
 
 ### Configure the Agent to Sample Random Data
 The Datadog agent is extensible via script the below steps will collect a random number into Datadog from the agent using a python script.
@@ -219,7 +219,7 @@ class RandomCheck(AgentCheck):
 ```
 - Exit to a root prompt and restart the agent: `service datadog-agent restart`
 - Run info for the Datadog service and ensure that the check is being run: `service datadog-agent info` output should look like:
-![random check info](screenshots\random-check-info.PNG)
+![random check info](screenshots/random-check-info.PNG)
 
 ## Visualizing Your Data
 ### Adding the PostgreSQL and Random Metrics to a Dashboard
