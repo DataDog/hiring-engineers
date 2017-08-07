@@ -107,9 +107,9 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
     - Select [**Save**]
 ![Image](https://user-images.githubusercontent.com/30754481/29039104-92c14a74-7b6f-11e7-86d7-f17cdc71a158.png)
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
+### Create simple PHP webpage that connects to database
 - From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
-### Create simple PHP webpage that connects to database
 - From your SSH window, enter the following commands:
     - **sudo su**  (to elevate permissions to root)
     - **yum update -y** (to apply all updates to EC2 instance)
