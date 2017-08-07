@@ -2,7 +2,8 @@
 The documented steps below are designed to provide an introduction to the Datadog monitoring service to a prospective solution engineer.   By executing on the below items an engineer can gain a basic understanding of how the Datadog monitoring service can collect, report and notify based on metrics.  Installation of agents on multiple platforms, configuring of collectors for multiple products, and configuring items within the Datadog web based console are all documented in the items listed in the table of contents below.
 ## Table of Contents
 - [Setup an Ubuntu VM](#setup-an-ubuntu-vm)
-  - [Installing Oracle VirtualBox on Windows](#installing-oracle-virtualbox-on-windows)  - [Installing Vagrant on Windows](#installing-vagrant-on-windows)
+  - [Installing Oracle VirtualBox on Windows](#installing-oracle-virtualbox-on-windows)
+  - [Installing Vagrant on Windows](#installing-vagrant-on-windows)
   - [Configuring Vagrantfile](#configuring-vagrantfile)
   - [Starting the Ubuntu VM](#starting-the-ubuntu-vm)
 - [Collecting Your Data](#collecting-your-data)
@@ -12,7 +13,8 @@ The documented steps below are designed to provide an introduction to the Datado
   - [Group the Infrastructure by Tag](#group-the-infrastructure-by-tag)
   - [Installing PostgreSQL on Ubuntu](#installing-postgresql-on-ubuntu)
   - [Adding User Account in PostgreSQL for Datadog](#adding-user-account-in-postgresql-for-datadog)
-  - [Collect PostgreSQL Metrics in Datadog](#collect-postgresql-metrics-in-datadog)  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog-console)
+  - [Collect PostgreSQL Metrics in Datadog](#collect-postgresql-metrics-in-datadog)
+  - [Install the PostgreSQL Integration into Datadog Console](#install-the-postgresql-integration-into-datadog-console)
   - [Verify PostgreSQL Metric Collection](#verify-postgresql-metric-collection)
   - [Configure the Agent to Sample Random Data](#configure-the-agent-to-sample-random-data)
 - [Visualizing Your Data](#visualizing-your-data)
@@ -24,13 +26,13 @@ The documented steps below are designed to provide an introduction to the Datado
   - [Configure Downtime for Monitor](#configure-downtime-for-monitor)
 - [Extended Use Cases](#extended-use-cases)
   - [Collecting Metrics from Docker](#collecting-metrics-from-docker)
-	- [Installing the Datadog Agent on RHEL](#installing-the-datadog-agent-on-rhel)
-	- [Collect Docker Metrics in Datadog](#collect-docker-metrics-in-datadog)
-	- [Verify Docker Metric Collection](#verify-docker-metric-collection)
+	  - [Installing the Datadog Agent on RHEL](#installing-the-datadog-agent-on-rhel)
+	  - [Collect Docker Metrics in Datadog](#collect-docker-metrics-in-datadog)
+	  - [Verify Docker Metric Collection](#verify-docker-metric-collection)
   - [Collecting Metrics from VMWare VSphere](#collecting-metrics-from-vmware-vsphere)
-	- [Installing the Datadog Agent on Windows](#installing-the-datadog-agent-on-windows)
-	- [Collect VSphere Metrics in Datadog](#collect-vsphere-metrics-in-datadog)
-	- [Verify VSphere Metric Collection](#verify-vsphere-metric-collection)
+	    - [Installing the Datadog Agent on Windows](#installing-the-datadog-agent-on-windows)
+	    - [Collect VSphere Metrics in Datadog](#collect-vsphere-metrics-in-datadog)
+	    - [Verify VSphere Metric Collection](#verify-vsphere-metric-collection)
 
 ## Setup an Ubuntu VM
 ### Installing Oracle VirtualBox on Windows
@@ -38,7 +40,7 @@ VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at s
 
 Version 5.1.26 for Windows can be downloaded [here](http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Win.exe)
 
-Download, run the installer and referance the wiki [here](https://www.virtualbox.org/manual/ch02.html#installation_windows) for the specific installation directions for Windows
+Download, run the installer and reference the wiki [here](https://www.virtualbox.org/manual/ch02.html#installation_windows) for the specific installation directions for Windows
 
 ### Installing Vagrant on Windows
 Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.
@@ -280,7 +282,7 @@ To configure a multi-alert monitor for the test.support.random metric:
 - Add a notification message and notification user, then click Save:
 ![notify message](screenshots/notify-message.PNG)
 - Within 15 minutes an e-mail should be sent which looks like below:
-
+![email](screenshots/email.PNG)
 
 ### Configure Downtime for Monitor
 Downtime is a way to silence a monitor activity over a period of time.
