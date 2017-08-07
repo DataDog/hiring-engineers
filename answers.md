@@ -13,7 +13,7 @@ I got the agent running flawlessly in minutes with the metrics coming in from
 
 I went ahead with the agent and installed in both locations using the same account access key). I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
 
-![ScreenShot]('https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/download vagrant.png')
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
 Local, Vagrant & AWS Setup
 
