@@ -61,26 +61,19 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
     - **echo "&lt;?php phpinfo();?&gt;" &gt; /var/www/html/index.php** (to create simple PHP webpage)
     - **cd /var/www/html**  (to change to Apache directory)
     - **nano connect.php** (to create the following PHP script to connect to MySQL database):
-
+```php
 &lt;?php
-
 $username = "iluvdatadog";
-
 $password = "*********";
-
 $hostname = "iluvdatadog.c2zwfrvpwfuo.us-east-1.rds.amazonaws.com:3306";
-
 $dbname = "iluvdatadog";
 
 //connection to the database
-
 $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
-
 echo "Connected to MySQL using username - $username, host - $hostname&lt;br&gt;";
-
 $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again.");
-
 ?&gt;
+```
 
 - 
 - 
