@@ -6,12 +6,13 @@ A technical exercise for the Solutions Engineering interview process at Datadog.
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
-
+### Pre-requisites
 - Set up a free trial account at [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
 - You will need access to an SSH terminal
     - On Mac: use **Terminal**
     - On Windows: use **Putty** and **Putty Keygen**  
 [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+### Create Instance
 - Log in to your AWS Management Console at [https://aws.amazon.com/console/](https://aws.amazon.com/console/)
 - From the **Console Home** page, select **EC2** under "Compute":  
 ![Image](https://user-images.githubusercontent.com/30754481/29040773-e9cf5e22-7b75-11e7-8280-0c3a8edacb94.png)
@@ -50,35 +51,9 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
         - **chmod 400 KeyPairFile.pem**
         - **ssh ec2-user@_publicIP_ -i KeyPairFile.pem** (using "IPv4 Public IP" address copied above)
 ![Image](https://user-images.githubusercontent.com/30754481/29040965-b0b73a1e-7b76-11e7-9b01-45ebc95b6d45.png)
-- From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
-![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
 - From your SSH window, enter the following commands:
     - **sudo su**  (to elevate permissions to root)
     - **yum update -y** (to apply all updates to EC2 instance)
-    - **yum install httpd php php-mysql -y** (to install Apache, PHP, and PHP-MySQL)
-    - **service httpd start** (to start Apache service)
-    - **chkconfig httpd on** (to start Apache service automatically on re-boot)
-    - **echo "&lt;?php phpinfo();?&gt;" &gt; /var/www/html/index.php** (to create simple PHP webpage)
-    - **cd /var/www/html**  (to change to Apache directory)
-    - **nano connect.php** (to create the following PHP script to connect to MySQL database):
-```php
-&lt;?php
-$username = "iluvdatadog";
-$password = "*********";
-$hostname = "iluvdatadog.c2zwfrvpwfuo.us-east-1.rds.amazonaws.com:3306";
-$dbname = "iluvdatadog";
-
-//connection to the database
-$dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
-echo "Connected to MySQL using username - $username, host - $hostname&lt;br&gt;";
-$selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again.");
-?&gt;
-```
-
-- 
-- 
-    - **NOTE**:  The **$hostname** value is from the database endpoint copied above.
-
 
 ## Create a **MySQL** instance
 
@@ -132,3 +107,31 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
     - Select [**Save**]
 ![Image](https://user-images.githubusercontent.com/30754481/29039104-92c14a74-7b6f-11e7-86d7-f17cdc71a158.png)
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
+- From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
+![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
+### Create simple PHP webpage that connects to database
+- From your SSH window, enter the following commands:
+    - **sudo su**  (to elevate permissions to root)
+    - **yum update -y** (to apply all updates to EC2 instance)
+    - **yum install httpd php php-mysql -y** (to install Apache, PHP, and PHP-MySQL)
+    - **service httpd start** (to start Apache service)
+    - **chkconfig httpd on** (to start Apache service automatically on re-boot)
+    - **echo "&lt;?php phpinfo();?&gt;" &gt; /var/www/html/index.php** (to create simple PHP webpage)
+    - **cd /var/www/html**  (to change to Apache directory)
+    - **nano connect.php** (to create the following PHP script to connect to MySQL database):
+```php
+&lt;?php
+$username = "iluvdatadog";
+$password = "*********";
+$hostname = "iluvdatadog.c2zwfrvpwfuo.us-east-1.rds.amazonaws.com:3306";
+$dbname = "iluvdatadog";
+
+//connection to the database
+$dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
+echo "Connected to MySQL using username - $username, host - $hostname&lt;br&gt;";
+$selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again.");
+?&gt;
+```
+
+    - **NOTE**:  The **$hostname** value is from the database endpoint copied above.
+
