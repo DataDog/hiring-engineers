@@ -12,60 +12,47 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
     - On Mac: use **Terminal**
     - On Windows: use **Putty** and **Putty Keygen**  
 [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-
 - Log in to your AWS Management Console at [https://aws.amazon.com/console/](https://aws.amazon.com/console/)
-
-### Create EC2 instance and simple PHP webpage
- 
 - From the **Console Home** page, select **EC2** under "Compute":  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(148).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040773-e9cf5e22-7b75-11e7-8280-0c3a8edacb94.png)
 - Select **Instances** from the left-hand navigation bar:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(149).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040800-03b08a28-7b76-11e7-8c9c-23dd6d0d7dc2.png)
 - Select [**Launch Instance**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(150).png)  
-
+![Image](https://user-images.githubusercontent.com/30754481/29040815-12bfaa1c-7b76-11e7-91c8-2809c7eb7a51.png)  
 - Select **Amazon Linux AMI**:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(151).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040834-250e336e-7b76-11e7-92ab-480eecaed446.png)
 - Select **t2.micro** instance type (to stay within free tier), then select [**Next: Configure Instance Details**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(152).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040851-3721bb16-7b76-11e7-88bf-76858f395206.png)
 - Leave all defaults and select [**Next: Add Storage**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(153).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040866-45eba404-7b76-11e7-8902-5f29aa42a181.png)
 - Leave all defaults and select [**Next: Add Tags**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(154).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040882-5ae3d9c6-7b76-11e7-8fb0-40085122c8e1.png)
 - Select [**Add Tag**] and enter:
-- 
     - Key: **Name**
     - Value: **DatadogWebServer**
     - Select [**Next: Configure Security Group**]
-
-- 
+![Image](https://user-images.githubusercontent.com/30754481/29040902-68540004-7b76-11e7-97a6-a18683f8bfd4.png)
 - Choose "Select an **existing** security group", select **MyWebDMZ**, then select [**Review and Launch**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(156).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040911-72fa62be-7b76-11e7-849f-d20fde3b1dad.png)
 - Select [**Launch**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(157).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040927-82a15ff6-7b76-11e7-8723-1ea15cd8af2e.png)
 - Select "Choose an existing key pair" **MyNVPuttyKey** (or "Create a new key pair", enter "Key pair name", then select [Download Key Pair] if necessary)
 - Check the "I acknowledge..." box, then select [Launch Instances]  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(158).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040931-8dd84380-7b76-11e7-9d69-da572f86cc78.png)
 - Select [**View Instances**]. When **Instance State** changes to **running**, copy the **IPv4 Public IP** address, and SSH into the EC2 instance using the public IP and the key pair generated above
-- 
     - Windows:
-    - 
         - Use "PuTTY Key Generator" to translate .pem file created above to .ppk format.
         - Use "PuTTY" to SSH into EC2 instance
         - Go to "Connection &gt; SSH &gt; Auth" and enter path to .ppk file created above
         - Go to "Session" and enter "Host Name (or IP address)": **ec2-user@_publicIP_** (using "IPv4 Public IP" address copied above)
-
     - Mac:
-    - 
         - From "Terminal" window, change to directory with key pair file
         - **chmod 400 KeyPairFile.pem**
         - **ssh ec2-user@_publicIP_ -i KeyPairFile.pem** (using "IPv4 Public IP" address copied above)
-
-- 
+![Image](https://user-images.githubusercontent.com/30754481/29040965-b0b73a1e-7b76-11e7-9b01-45ebc95b6d45.png)
 - From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(160).png)
+![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
 - From your SSH window, enter the following commands:
-- 
     - **sudo su**  (to elevate permissions to root)
     - **yum update -y** (to apply all updates to EC2 instance)
     - **yum install httpd php php-mysql -y** (to install Apache, PHP, and PHP-MySQL)
