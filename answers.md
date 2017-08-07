@@ -23,7 +23,7 @@ See https://www.datadoghq.com/ for **your** full story.
 - [Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)](#setup-an-aws-ec2-instance-using-a-linux-ami-amazon-machine-image)
   - [Pre-requisites](#pre-requisites)
   - [Create Instance](#create-instance)
-- [Collecting Data](#collecting-data)
+- [Collecting Your Data](#collecting-your-data)
   - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
   - [Tagging](#tagging)
 - [Create a MySQL instance](#create-a-mysql-instance)
@@ -37,11 +37,8 @@ See https://www.datadoghq.com/ for **your** full story.
   - [Email Screenshot](#email-screenshot)
 - [Conclusion](#conclusion)
 
-**Bonus Question: What is the Agent?**
-
-The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
-
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
+You can fairly easily set up your own AWS EC2 instance by following these step-by-step instructions:
 ### Pre-requisites
 - Set up a free trial account at [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
 - You will need access to an SSH terminal
@@ -97,7 +94,11 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
     - **sudo su**  (to elevate permissions to root)
     - **yum update -y** (to apply all updates to EC2 instance)
 
-## Collecting Data
+## Collecting Your Data
+
+**Bonus Question: What is the Agent?**
+
+The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
 ### Installing the Agent on AWS Linux AMI
 
