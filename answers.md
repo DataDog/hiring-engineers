@@ -2,12 +2,12 @@ Patrick McBrien
 
 DataDog Answer
 08/07/17
-Level 0 & 1 
+
 I got the agent running flawlessly in minutes with the metrics coming in from 
 
-AWS including ec2 instances and disks
-Using a Vagrant Ubuntu based VM called “ddog” running on my Mac, 
-and locally on a Macintosh running under OSX. 
+1.AWS including ec2 instances and disks
+2. Using a Vagrant Ubuntu based VM called “ddog” running on my Mac, 
+3. Locally on a Macintosh running under OSX. 
 
 I went ahead with the agent and installed in both locations using the same account access key). I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion
 Local, Vagrant & AWS Setup
@@ -18,10 +18,7 @@ Whether it is bare metal, virtual machines or even communicating to my servers i
 
 Vagrant is up and running using a precise64 base is the image we went with
 
-
-
-
-Level 1 - The agent has infinite possibilities beyond normal metrics like CPU and disk or memory utilization.  The agent is like your favorite dog playing fetch. I like the examples you provide. 
+The agent has infinite possibilities beyond normal metrics like CPU and disk or memory utilization.  The agent is like your favorite dog playing fetch. I like the examples you provide. 
 
 Now i have this agent, that can via the webapp at datadoghq.com monitor more than just my cpu. I can write my own custom itegrations, or use ones that datadog has written just like MySQL. 
 
