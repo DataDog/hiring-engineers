@@ -5,14 +5,21 @@ DataDog Answer
 
 I got the agent running flawlessly in minutes with the metrics coming in from 
 
-1.AWS including ec2 instances and disks
+1. AWS including ec2 instances and disks
 2. Using a Vagrant Ubuntu based VM called “ddog” running on my Mac, 
 3. Locally on a Macintosh running under OSX. 
 
-I went ahead with the agent and installed in both locations using the same account access key). I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
+
+I went ahead with the agent and installed in both locations using the same account access key). I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/download vagrant.png)
+
 Local, Vagrant & AWS Setup
 
 I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of. They even have a step by step of commands needed to integrate. 
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/3outof4hostsup.png)
 
 Whether it is bare metal, virtual machines or even communicating to my servers in the cloud is pretty easy to do with no knowledge needed depending on cups of coffee consumed. Datadog is making it easier for people to monitor infrastructure and web applications, that is for sure. Maybe these screenshots I took will help others along the way. 
 
