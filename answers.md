@@ -5,7 +5,7 @@ DataDog Answer
 
 I got the agent running flawlessly in minutes with the metrics coming in from 
 
-1. AWS including ec2 instances and disks
+1. AWS including ec2 instances and disks. Just type in the API key create a IAM role and you are AWS cloud monitoring.
 2. Using a Vagrant Ubuntu based VM called “ddog” running on my Mac, 
 3. Locally on a Macintosh running under OSX. 
 
@@ -39,9 +39,9 @@ sudo apt-get -y install apache2
 sudo apt-get install mysql-server
 sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
-In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh. Just type in the API key and AWS cloud monitoring.
+In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh.
 
-
+I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql working.
 
 
 
