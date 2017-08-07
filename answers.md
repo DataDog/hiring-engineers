@@ -29,23 +29,22 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
 ![Image](https://user-images.githubusercontent.com/30754481/29035618-df974244-7b61-11e7-9fe3-d8757db82811.png)
 - **Specify DB Details** page:
 ![Image](https://user-images.githubusercontent.com/30754481/29036979-44d26760-7b67-11e7-8a66-673e91cbb030.png)
-
-      1. DB Instance Class: **db.t2.micro** (to stay within free tier)
-      2. Multi-AZ Deployment: **No** (also for free tier)
-      3. Enter "DB Instance Identifier": **iluvdatadog**
-      4. Enter "Master Username": **iluvdatadog**
-      5. Enter "Master Password": ************
-      6. Enter "Confirm Password": ************
-      7. Select [Next Step]
+    - (1) DB Instance Class: **db.t2.micro** (to stay within free tier)
+    - (2) Multi-AZ Deployment: **No** (also for free tier)
+    - (3) Enter "DB Instance Identifier": **iluvdatadog**
+    - (4) Enter "Master Username": **iluvdatadog**
+    - (5) Enter "Master Password": ************
+    - (6) Enter "Confirm Password": ************
+    - (7) Select [Next Step]
 
 **NOTE: Keeping DB Name and Username the same for ease of administration during this exercise only.  This is not best practice for a production environment.**
 - **Configure Advanced Settings** page:
-![Image](https://user-images.githubusercontent.com/30754481/29035624-e7289170-7b61-11e7-810d-7cf91fab4858.png)
-    - Confirm "VPC" is **Default VPC**
-    - Select "Publicly Accessible": **No**
-    - Select "VPC Security Group(s)": **Create new Security Group**
-    - Enter "Database Name": **iluvdatadog**
-    - Select [Launch DB Instance]
+![Image](https://user-images.githubusercontent.com/30754481/29037812-de7cefc2-7b6a-11e7-81c4-94fa12b652ac.png)
+    - (1) Confirm "VPC" is **Default VPC**
+    - (2) Select "Publicly Accessible": **No**
+    - (3) Select "VPC Security Group(s)": **Create new Security Group**
+    - (4) Enter "Database Name": **iluvdatadog**
+    - (5) Select [Launch DB Instance]
 - Select [**View Your DB Instances**]  
 ![Image](https://user-images.githubusercontent.com/30754481/29035631-eb7e52e6-7b61-11e7-8bbf-3eef92f63bbb.png)
 - Select "Details" tab, then select link beside **Security Groups**:  
