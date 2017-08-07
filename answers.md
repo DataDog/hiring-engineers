@@ -61,12 +61,11 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
         - (7) Type: **SSH**; (8) Source: **0.0.0.0/0, ::/0**
     - (9) Select [**Create**]
 - Select **Inbound** rule tab of **rds-launch-wizard** group, then select [**Edit**]  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(146).png)
+![Image](https://user-images.githubusercontent.com/30754481/29039097-88670f14-7b6f-11e7-9190-b335eea685fb.png)
 - **Edit inbound rules** page:
-- 
     - Change the **Source** from the public IP to the security group you just created (you can type "**s**" to see a list of available security groups).
     - Select [**Save**]
-
+![Image](https://user-images.githubusercontent.com/30754481/29039104-92c14a74-7b6f-11e7-86d7-f17cdc71a158.png)
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
 
 - Create EC2 instance and simple PHP webpage
