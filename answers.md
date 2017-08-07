@@ -38,7 +38,7 @@ See https://www.datadoghq.com/ for **your** full story.
 - [Conclusion](#conclusion)
 
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
-You can fairly easily set up your own AWS EC2 instance by following these step-by-step instructions:
+You can fairly easily set up your own free AWS EC2 instance by following these step-by-step instructions (~10 min):
 ### Pre-requisites
 - Set up a free trial account at [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
 - You will need access to an SSH terminal
