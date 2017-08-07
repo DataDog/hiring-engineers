@@ -1,6 +1,25 @@
 # Datadog Solutions Engineer Exercise
 A technical exercise for the Solutions Engineering interview process at Datadog.
 
+## Table of Contents
+
+- [Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)](#setup-an-aws-ec2-instance-using-a-linux-ami-amazon-machine-image)
+  - [Pre-requisites](#pre-requisites)
+  - [Create Instance](#create-instance)
+- [Collecting Data](#collecting-data)
+  - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
+  - [Tagging](#tagging)
+- [Create a MySQL instance](#create-a-mysql-instance)
+  - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
+  - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
+- [Visualizing Data](#visualizing-data)
+  - [MySQL Dashboard](#mysql-dashboard)
+  - [Snapshot and Annotation](#snapshot-and-annotation)
+- [Alerting on Data](#alerting-on-data)
+  - [Create a Monitor](#create-a-monitor)
+  - [Email Screenshot](#email-screenshot)
+- [Conclusion](#conclusion)
+
 **Bonus Question: What is the Agent?**
 
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
@@ -60,6 +79,12 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
 - From your SSH window, enter the following commands:
     - **sudo su**  (to elevate permissions to root)
     - **yum update -y** (to apply all updates to EC2 instance)
+
+## Collecting Data
+
+### Installing the Agent on AWS Linux AMI
+
+### Tagging
 
 ## Create a **MySQL** instance
 
@@ -130,3 +155,14 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
 
 **NOTE**:  The **$hostname** value is from the database endpoint copied above.
 
+### Writing a Custom Agent Check
+
+## Visualizing Data
+### MySQL Dashboard
+### Snapshot and Annotation
+
+## Alerting on Data
+### Create a Monitor
+### Email Screenshot
+
+## Conclusion
