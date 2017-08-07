@@ -37,8 +37,8 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
 ![Image](https://user-images.githubusercontent.com/30754481/29040911-72fa62be-7b76-11e7-849f-d20fde3b1dad.png)
 - Select [**Launch**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040927-82a15ff6-7b76-11e7-8723-1ea15cd8af2e.png)
-- Select "Choose an existing key pair" **MyNVPuttyKey** (or "Create a new key pair", enter "Key pair name", then select [Download Key Pair] if necessary)
-- Check the "I acknowledge..." box, then select [Launch Instances]  
+- Select "Choose an existing key pair" **MyNVPuttyKey** (or "Create a new key pair", enter "Key pair name", then select [**Download Key Pair**] if necessary)
+- Check the "I acknowledge..." box, then select [**Launch Instances**]  
 ![Image](https://user-images.githubusercontent.com/30754481/29040931-8dd84380-7b76-11e7-9d69-da572f86cc78.png)
 - Select [**View Instances**]. When **Instance State** changes to **running**, copy the **IPv4 Public IP** address, and SSH into the EC2 instance using the public IP and the key pair generated above
     - Windows:
@@ -133,5 +133,5 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
 ?&gt;
 ```
 
-    - **NOTE**:  The **$hostname** value is from the database endpoint copied above.
+**NOTE**:  The **$hostname** value is from the database endpoint copied above.
 
