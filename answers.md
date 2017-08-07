@@ -16,6 +16,8 @@ Datadog offers a myriad of easy to configure integrations from data sources such
 
 ...and more.
 
+See https://www.datadoghq.com/ for **your** full story.
+
 ## Table of Contents
 
 - [Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)](#setup-an-aws-ec2-instance-using-a-linux-ami-amazon-machine-image)
