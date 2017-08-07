@@ -37,7 +37,6 @@ Mostly complete script to install LAMP environment.
 sudo apt-get -y update
 sudo apt-get -y install apache2
 sudo apt-get install mysql-server
-# Installing PHP and it's dependencies
 sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
 In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh. Just type in the API key and AWS cloud monitoring.
