@@ -43,6 +43,7 @@ In the meantime, We are showing multiple hosts in the infrastructure area! First
 
 I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql working.
 
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/mysql.png)
 
 
 
