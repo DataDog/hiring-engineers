@@ -1,6 +1,21 @@
 # Datadog Solutions Engineer Exercise
 A technical exercise for the Solutions Engineering interview process at Datadog.
 
+Monitoring all of your applications and services, whether on-premises or in the cloud is a difficult task.  Each component has the potential of generating hundreds or thousands of events and metrics, and this only increases as your infrastructure scales to meet growing demands. You have to be able to correlate the datapoints from a wide variety of sources in order to get the full picture. Datadog solves this problem by letting you see everything in one place, in an intelligent and easily consumable format.
+
+Datadog offers a myriad of easy to configure integrations from data sources such as:
+
+- Cloud Providers
+- Message Queues
+- Code Repositories
+- Cluster Tools
+- Web Servers
+- Monitoring Solutions
+- Databases
+- Operation Systems
+
+...and more.
+
 ## Table of Contents
 
 - [Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)](#setup-an-aws-ec2-instance-using-a-linux-ami-amazon-machine-image)
