@@ -33,8 +33,14 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
     - Value: **DatadogWebServer**
     - Select [**Next: Configure Security Group**]
 ![Image](https://user-images.githubusercontent.com/30754481/29040902-68540004-7b76-11e7-97a6-a18683f8bfd4.png)
-- Choose "Select an **existing** security group", select **MyWebDMZ**, then select [**Review and Launch**]:  
-![Image](https://user-images.githubusercontent.com/30754481/29040911-72fa62be-7b76-11e7-849f-d20fde3b1dad.png)
+- **Configure Security Group** page:
+    - (1) Choose "Create a **new** security group"
+    - (2) Security group name: **MyWebDMZ**
+    - (3) Description: **MyWebDMZ**
+    - (4) Select [**Add Rule**]
+    - (5) Type: **HTTP**
+    - (6) Select [**Review and Launch**]:
+![Image](https://user-images.githubusercontent.com/30754481/29044613-d823fe7a-7b85-11e7-8ee1-4aa92f61717a.png)
 - Select [**Launch**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040927-82a15ff6-7b76-11e7-8723-1ea15cd8af2e.png)
 - Select "Choose an existing key pair" **MyNVPuttyKey** (or "Create a new key pair", enter "Key pair name", then select [**Download Key Pair**] if necessary)
@@ -89,17 +95,6 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
 ![Image](https://user-images.githubusercontent.com/30754481/29035631-eb7e52e6-7b61-11e7-8bbf-3eef92f63bbb.png)
 - Select "Details" tab, then select link beside **Security Groups**:  
 ![Image](https://user-images.githubusercontent.com/30754481/29035636-eed51920-7b61-11e7-86ca-31eb61274a55.png)
-- Select [**Create Security Group**]:   
-![Image](https://user-images.githubusercontent.com/30754481/29039054-648ad60c-7b6f-11e7-8f76-296dde87b691.png)
-- **Create Security Group** page:
-![Image](https://user-images.githubusercontent.com/30754481/29039446-f3b57318-7b70-11e7-845b-dc3b6b8772bb.png)
-    - (1) Security group name: **MyWebDMZ**
-    - (2) Description: **MyWebDMZ**
-    - (3) VPC: leave as **default**
-    - (4) **Inbound** rule tab -- [**Add Rule**]
-        - (5) Type: **HTTP**; (6) Source: **0.0.0.0/0, ::/0**
-        - (7) Type: **SSH**; (8) Source: **0.0.0.0/0, ::/0**
-    - (9) Select [**Create**]
 - Select **Inbound** rule tab of **rds-launch-wizard** group, then select [**Edit**]  
 ![Image](https://user-images.githubusercontent.com/30754481/29039097-88670f14-7b6f-11e7-9190-b335eea685fb.png)
 - **Edit inbound rules** page:
