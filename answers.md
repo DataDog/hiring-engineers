@@ -45,6 +45,7 @@ I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql worki
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/mysql.png)
 
+Now we can see that our service is being monitored with a few steps that can be found in datadog documentaion.
 
-
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/More-Apps-MYSQL.png)
 
