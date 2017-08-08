@@ -209,10 +209,139 @@ Tagging makes it easy to group and filter on related sets of metrics and infrast
 
 For this exercise, the AWS Integration was installed as follows:
 #### AWS Integration
+Setting up the Datadog integration with Amazon Web Services requires configuring role delegation using AWS Identity Access Management.
 
+- From the **Console Home** page, select **IAM** under "Security, Identity & Compliance":  
+![Image](https://user-images.githubusercontent.com/30754481/29098273-2cef8d46-7c64-11e7-958c-076276769e7a.png)  
+  
+
+- Select **Policies** from the left-hand navigation bar:  
+![Image](https://user-images.githubusercontent.com/30754481/29098284-44e1115e-7c64-11e7-806e-1992e536cbd2.png)  
+  
+
+- Select [**Create policy**]:  
+![Image](https://user-images.githubusercontent.com/30754481/29098297-5fb0029c-7c64-11e7-86ab-01f00fe43c88.png)  
+  
+
+- [**Select**] "Create Your Own Policy":  
+![Image](https://user-images.githubusercontent.com/30754481/29098312-7026c444-7c64-11e7-8119-128cea9cf73f.png)  
+  
+
+- On **Review Policy** screen:
+- 
+    - Policy Name: **DatadogAWSIntegrationPolicy**
+    - Description: **DatadogAWSIntegrationPolicy**
+    - Policy Document: _Copy and paste the following text:_  
+```json
+{  
+  "Version": "2012-10-17",  
+  "Statement": [  
+    {  
+      "Action": [  
+        "autoscaling:Describe*",  
+        "budgets:ViewBudget",  
+        "cloudtrail:DescribeTrails",  
+        "cloudtrail:GetTrailStatus",  
+        "cloudwatch:Describe*",  
+        "cloudwatch:Get*",  
+        "cloudwatch:List*",  
+        "codedeploy:List*",  
+        "codedeploy:BatchGet*",  
+        "dynamodb:list*",  
+        "dynamodb:describe*",  
+        "ec2:Describe*",  
+        "ec2:Get*",  
+        "ecs:Describe*",  
+        "ecs:List*",  
+        "elasticache:Describe*",  
+        "elasticache:List*",  
+        "elasticfilesystem:DescribeFileSystems",  
+        "elasticfilesystem:DescribeTags",  
+        "elasticloadbalancing:Describe*",  
+        "elasticmapreduce:List*",  
+        "elasticmapreduce:Describe*",  
+        "es:ListTags",  
+        "es:ListDomainNames",  
+        "es:DescribeElasticsearchDomains",  
+        "kinesis:List*",  
+        "kinesis:Describe*",  
+        "lambda:List*",  
+        "logs:Get*",  
+        "logs:Describe*",  
+        "logs:FilterLogEvents",  
+        "logs:TestMetricFilter",  
+        "rds:Describe*",  
+        "rds:List*",  
+        "route53:List*",  
+        "s3:GetBucketTagging",  
+        "s3:ListAllMyBuckets",  
+        "ses:Get*",  
+        "sns:List*",  
+        "sns:Publish",  
+        "sqs:ListQueues",  
+        "support:*",  
+        "tag:getResources",  
+        "tag:getTagKeys",  
+        "tag:getTagValues"  
+      ],  
+      "Effect": "Allow",  
+      "Resource": "*"  
+    }  
+  ]}  
+```
+    - Select [**Create Policy**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(166).png)  
+  
+
+- Type first few letters of new policy name in search field to confirm success creation. Then select **Roles** from the left-hand navigation bar:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(167).png)  
+  
+
+- Select [**Create new role**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(168).png)  
+  
+
+- Choose **Role for cross-account access**, then [**Select**] **Provide access between your AWS account and a 3rd party AWS account**:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(169).png)  
+  
+
+- On the next screen, enter the following:
+- 
+    - Account ID: **464622532012**
+    - External ID: _**Generated from Datadog website**_
+    - Require MFA: **_Leave unchecked_**
+    - Select [**Next Step**]  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(170).png)  
+  
+
+- Select the **DatadogAWSIntegrationPolicy** created above, then select [**Next Step**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(171).png)  
+  
+
+- On **Set role name and review** screen:
+- 
+    - Role name: **DatadogAWSIntegrationRole**
+    - Role description: **DatadogAWSIntegrationRole**
+    - Select [**Create role**]  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(172).png)  
+  
+
+- From the Datadog console, open the AWS Integration tile ([https://app.datadoghq.com/account/settings#integrations/amazon_web_services](https://app.datadoghq.com/account/settings#integrations/amazon_web_services))
+- 
+    - (1) Select the **Role Delegation** tab
+    - (2) Enter your **AWS Account ID** without dashes. Your Account ID can be found in the ARN of the newly created role.
+    - (3) Enter **AWS Role name** you just created.
+    - (4) Enter the **AWS External ID** you specified above.
+    - (5) Choose the **AWS Service**s you want to collect metrics for on the left side of the dialog.  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(173).png)
+    - Select [**Install Integration**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(174).png)  
+  
+
+- **AWS specific tags are automatically assigned! **![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(175).png)
 ## Create a **MySQL** instance
 
-- From the **Console Home** page, Select **RDS** under "Database":  
+- From the **Console Home** page, select **RDS** under "Database":  
 ![Image](https://user-images.githubusercontent.com/30754481/29035490-677d754e-7b61-11e7-9916-6a8da69fabf2.png)
 - Select **Instances** from left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29035597-cb71219a-7b61-11e7-8b8c-37e57c8cc174.png)
