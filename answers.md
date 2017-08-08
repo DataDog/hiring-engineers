@@ -5,7 +5,7 @@ DataDog Answer
 
 **Let's really expand on what others have already accomplished**
 
-Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how github user cklener has done a thorough job in answering the questions and explaining along the way. So far I have several datadog agents running with the metrics coming in from these 3 sources. I can look at graphs and CPU but let's go further. I have data is coming from a few places right now.
+Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how github user cklener has done a thorough job in answering the questions and explaining along the way. I can look at graphs and CPU but let's go further. I have data is coming from a few places right now. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
 
 1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
 2. Datadog agent on Vagrant Ubuntu based VM
