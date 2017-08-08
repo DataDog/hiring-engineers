@@ -27,6 +27,7 @@ See https://www.datadoghq.com/ for **your** full story.
   - [**Bonus Question: What is the Agent?**](#bonus-question-what-is-the-agent)
   - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
   - [Tagging](#tagging)
+    - [AWS Integration](#aws-integration)
 - [Create a MySQL instance](#create-a-mysql-instance)
   - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
