@@ -5,19 +5,19 @@ DataDog Answer
 
 **Let's really expand on what others have already accomplished**
 
-Taking a step back, I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how cklener has done a thorough job in answering the questions and explaining along the way. So far I have several datadog agents running with the metrics coming in from these 3 sources.
+Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how github user cklener has done a thorough job in answering the questions and explaining along the way. So far I have several datadog agents running with the metrics coming in from these 3 sources. I can look at graphs and CPU but let's go further. I have data is coming from a few places right now.
 
 1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
 2. Datadog agent on Vagrant Ubuntu based VM
 3. Locally on a Macintosh running under OSX
 
-It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino. You could even alert on something like temperature or humidity or any 3rd party or custom application.
+It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
 
 I went ahead with the agent and installed in both locations using the same account access key. I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
 
-Installing something I can monitor, including mysql
+**Installing something I can monitor, including mysql**
 
 Mostly complete script to install LAMP environment. 
 
@@ -29,7 +29,7 @@ sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
-Local, Vagrant & AWS Setup
+**Local, Vagrant & AWS Setup**
 
 I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of. They even have a step by step of commands needed to integrate. 
 
