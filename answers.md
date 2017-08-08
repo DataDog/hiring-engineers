@@ -19,7 +19,7 @@ Local, Vagrant & AWS Setup
 
 I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of. They even have a step by step of commands needed to integrate. 
 
-![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/3outof4hostsup.png)
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/ps -A or ps -aux.png)
 
 Whether it is bare metal, virtual machines or even communicating to my servers in the cloud is pretty easy to do with no knowledge needed depending on cups of coffee consumed. Datadog is making it easier for people to monitor infrastructure and web applications, that is for sure. Maybe these screenshots I took will help others along the way. 
 
