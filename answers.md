@@ -99,6 +99,10 @@ You know you are close to the finish line when you get an email like this
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/emailddog.png)
 
+While you are sleeping, turn off the alerts.
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Mute.png)
+
 I would love to take this to the next level.
 
 Patrick McBrien
