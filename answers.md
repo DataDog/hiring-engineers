@@ -84,3 +84,7 @@ Screenboards can be shared as a whole live and as a read-only entity and are ver
 Take a look at my graph going over .9
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Overload.png)
+
+Time Series AVG
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/TimeSeries.png)
