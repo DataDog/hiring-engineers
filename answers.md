@@ -49,5 +49,8 @@ Now we can see that our service is being monitored with a few steps that can be 
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/More-Apps-MYSQL.png)
 
+Here is an example of an AWS alert with team notifications
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/AWSalertNotify.png)
 
 
