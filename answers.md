@@ -3,11 +3,11 @@ Patrick McBrien
 DataDog Answer
 08/07/17
 
-I got the agent running flawlessly in minutes with the metrics coming in from 
+I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how cklener has done a thorough job in answering the questions and explaining along the way. So far I have datadog agents running with the metrics coming in from these 3 sources.
 
-1. AWS including ec2 instances and disks. Just type in the API key create a IAM role and you are AWS cloud monitoring.
-2. Using a Vagrant Ubuntu based VM called “ddog” running on my Mac, 
-3. Locally on a Macintosh running under OSX. 
+1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
+2. Datadog agent on Vagrant Ubuntu based VM
+3. Locally on a Macintosh running under OSX
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
 
@@ -29,7 +29,9 @@ The agent has infinite possibilities beyond normal metrics like CPU and disk or 
 
 Now i have this agent, that can via the webapp at datadoghq.com monitor more than just my cpu. I can write my own custom itegrations, or use ones that datadog has written just like MySQL. 
 
-I am going to be using a Vagrant VM, and get the datadog agent installed to monitor mysqld. 
+I am going to be using a Vagrant VM, install virtualbox locally and get the datadog agent installed to monitor mysqld. So far everything has gone smoothly.
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/installing_virtualbox_mac.png)
 
 Mostly complete script to install LAMP environment. 
 
@@ -48,4 +50,5 @@ I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql worki
 Now we can see that our service is being monitored with a few steps that can be found in datadog documentaion.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/More-Apps-MYSQL.png)
+
 
