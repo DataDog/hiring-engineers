@@ -93,3 +93,9 @@ The monitor is also installed now with a threshold of .9
 
 https://app.datadoghq.com/monitors#2600683?group=all&live=4h
 
+**Email has arrived**
+
+You know you are close to the finish line when you get an email like this
+
+
+
