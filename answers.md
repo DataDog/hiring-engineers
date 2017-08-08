@@ -110,6 +110,10 @@ While you are sleeping, turn off the alerts. You can choose any time you think w
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Mute.png)
 
+**HTTP CHECK**
+
+There are a ton of scripts in the folder so I wrote a nice tool that checks on my website and looks for a 200. A POST or a GET can be done.
+
 I would love to take this to the next level.
 
 Patrick McBrien
