@@ -24,6 +24,7 @@ See https://www.datadoghq.com/ for **your** full story.
   - [Pre-requisites](#pre-requisites)
   - [Create Instance](#create-instance)
 - [Collecting Your Data](#collecting-your-data)
+  - [**Bonus Question: What is the Agent?**](#bonus-question--what-is-the-agent)
   - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
   - [Tagging](#tagging)
 - [Create a MySQL instance](#create-a-mysql-instance)
@@ -96,7 +97,7 @@ You can fairly easily set up your own free AWS EC2 instance by following these s
 
 ## Collecting Your Data
 
-**Bonus Question: What is the Agent?**
+### **Bonus Question: What is the Agent?**
 
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
