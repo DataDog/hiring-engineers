@@ -39,6 +39,11 @@ sudo apt-get -y install apache2
 sudo apt-get install mysql-server
 sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
+This worked on Ubuntu to get the agent running
+
+DD_API_KEY=X123123XXXXXYOURKEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+
+
 In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh.
 
 I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql working.
