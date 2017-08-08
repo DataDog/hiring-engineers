@@ -217,22 +217,18 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
 
 - Select **Policies** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098284-44e1115e-7c64-11e7-806e-1992e536cbd2.png)  
-  
 
 - Select [**Create policy**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098297-5fb0029c-7c64-11e7-86ab-01f00fe43c88.png)  
-  
 
 - [**Select**] "Create Your Own Policy":  
 ![Image](https://user-images.githubusercontent.com/30754481/29098312-7026c444-7c64-11e7-8119-128cea9cf73f.png)  
-  
 
 - On **Review Policy** screen:
-- 
     - Policy Name: **DatadogAWSIntegrationPolicy**
     - Description: **DatadogAWSIntegrationPolicy**
     - Policy Document: _Copy and paste the following text:_  
-```json
+```
 {  
   "Version": "2012-10-17",  
   "Statement": [  
@@ -289,56 +285,46 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
     }  
   ]}  
 ```
-    - Select [**Create Policy**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(166).png)  
-  
+    - Select [**Create Policy**]:
+![Image](https://user-images.githubusercontent.com/30754481/29098330-855c5734-7c64-11e7-8e24-f26a7644a6d2.png)
 
 - Type first few letters of new policy name in search field to confirm success creation. Then select **Roles** from the left-hand navigation bar:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(167).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098339-92a39100-7c64-11e7-961d-9a8ef0a495f6.png)  
 
 - Select [**Create new role**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(168).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098349-9ff46442-7c64-11e7-8e5b-7ba6d1e67a9d.png)  
 
 - Choose **Role for cross-account access**, then [**Select**] **Provide access between your AWS account and a 3rd party AWS account**:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(169).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098395-cc180e48-7c64-11e7-837e-e8982ef1008b.png)  
 
 - On the next screen, enter the following:
-- 
     - Account ID: **464622532012**
     - External ID: _**Generated from Datadog website**_
     - Require MFA: **_Leave unchecked_**
     - Select [**Next Step**]  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(170).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098408-dbd8f284-7c64-11e7-93da-a2e5ad9e7de3.png)  
 
 - Select the **DatadogAWSIntegrationPolicy** created above, then select [**Next Step**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(171).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098422-ea80ce56-7c64-11e7-817a-9e9e39a1ba4d.png)  
 
 - On **Set role name and review** screen:
-- 
     - Role name: **DatadogAWSIntegrationRole**
     - Role description: **DatadogAWSIntegrationRole**
     - Select [**Create role**]  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(172).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098431-f77eaac4-7c64-11e7-8ffe-de798b2f282a.png)  
 
 - From the Datadog console, open the AWS Integration tile ([https://app.datadoghq.com/account/settings#integrations/amazon_web_services](https://app.datadoghq.com/account/settings#integrations/amazon_web_services))
-- 
     - (1) Select the **Role Delegation** tab
     - (2) Enter your **AWS Account ID** without dashes. Your Account ID can be found in the ARN of the newly created role.
     - (3) Enter **AWS Role name** you just created.
     - (4) Enter the **AWS External ID** you specified above.
     - (5) Choose the **AWS Service**s you want to collect metrics for on the left side of the dialog.  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(173).png)
+![Image](https://user-images.githubusercontent.com/30754481/29098446-05c25518-7c65-11e7-988f-70f095ba4d0f.png)
     - Select [**Install Integration**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(174).png)  
-  
+![Image](https://user-images.githubusercontent.com/30754481/29098454-12e00452-7c65-11e7-91c7-f7bea3404d4c.png)  
 
-- **AWS specific tags are automatically assigned! **![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(175).png)
+- **AWS specific tags are automatically assigned! **
+![Image](https://user-images.githubusercontent.com/30754481/29098467-1eac3210-7c65-11e7-87be-cefcdbcff8e6.png)
 ## Create a **MySQL** instance
 
 - From the **Console Home** page, select **RDS** under "Database":  
