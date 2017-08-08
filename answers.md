@@ -101,7 +101,102 @@ You can fairly easily set up your own free AWS EC2 instance by following these s
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
 ### Installing the Agent on AWS Linux AMI
+Installing a Datadog agent is as easy as 1, 2, 3...
 
+1. Choose your OS type:  
+![Image](https://user-images.githubusercontent.com/30754481/29050454-a8724bca-7ba1-11e7-815c-b06e4ba33ed6.png)  
+
+2. For Amazon Linux, copy and paste their installer command in your SSH session (you should have administrator permissions). This will install the YUM packages for the Datadog Agent:
+```
+DD_API_KEY=c2341ce4c3d18943f6ca2bced618e823 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)" 
+```
+3. Press enter!  Here is expected output for Amazon Linux:  
+```
+[root@ip-172-31-30-110 ec2-user]# DD_API_KEY=c2341ce4c3d18943f6ca2bced618e823 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"  
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current  
+                                 Dload  Upload   Total   Spent    Left  Speed  
+100  9911  100  9911    0     0  54278      0 --:--:-- --:--:-- --:--:-- 54456  
+
+* Installing YUM sources for Datadog  
+
+* Installing the Datadog Agent package  
+
+Loaded plugins: priorities, update-motd, upgrade-helper  
+Resolving Dependencies  
+--&gt; Running transaction check  
+---&gt; Package datadog-agent.x86_64 1:5.16.0-1 will be installed  
+--&gt; Finished Dependency Resolution  
+
+Dependencies Resolved  
+
+================================================================================  
+ Package               Arch           Version             Repository       Size  
+================================================================================  
+Installing:  
+ datadog-agent         x86_64         1:5.16.0-1          datadog          69 M  
+
+Transaction Summary  
+================================================================================  
+Install  1 Package  
+
+Total download size: 69 M  
+Installed size: 69 M  
+Downloading packages:  
+warning: /var/cache/yum/x86_64/latest/datadog/packages/datadog-agent-5.16.0-1.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 4172a230: NOKEY  
+Public key for datadog-agent-5.16.0-1.x86_64.rpm is not installed  
+Retrieving key from https://yum.datadoghq.com/DATADOG_RPM_KEY.public  
+Importing GPG key 0x4172A230:  
+ Userid     : "Datadog Packages &lt;package@datadoghq.com&gt;"  
+ Fingerprint: 60a3 89a4 4a0c 32ba e3c0 3f0b 069b 56f5 4172 a230  
+ From       : https://yum.datadoghq.com/DATADOG_RPM_KEY.public  
+Retrieving key from https://yum.datadoghq.com/DATADOG_RPM_KEY_E09422B3.public  
+Importing GPG key 0xE09422B3:  
+ Userid     : "Datadog, Inc &lt;package@datadoghq.com&gt;"  
+ Fingerprint: a4c0 b90d 7443 cf6e 4e8a a341 f106 8e14 e094 22b3  
+ From       : https://yum.datadoghq.com/DATADOG_RPM_KEY_E09422B3.public  
+Running transaction check  
+Running transaction test  
+Transaction test succeeded  
+Running transaction  
+  Installing : 1:datadog-agent-5.16.0-1.x86_64                              1/1  
+Stopping Datadog Agent (using killproc on supervisord): [FAILED]  
+/etc/dd-agent/datadog.conf not found. Exiting.  
+  Verifying  : 1:datadog-agent-5.16.0-1.x86_64                              1/1  
+
+Installed:  
+  datadog-agent.x86_64 1:5.16.0-1  
+
+Complete!  
+
+* Adding your API key to the Agent configuration: /etc/dd-agent/datadog.conf  
+
+* Starting the Agent...  
+
+Stopping Datadog Agent (using killproc on supervisord):    [FAILED]  
+Starting Datadog Agent (using supervisord):                [  OK  ]  
+
+Your Agent has started up for the first time. We're currently verifying that  
+data is being submitted. You should see your Agent show up in Datadog shortly  
+at:  
+
+    https://app.datadoghq.com/infrastructure  
+
+Waiting for metrics.................................  
+
+Your Agent is running and functioning properly. It will continue to run in the  
+background and submit metrics to Datadog.  
+
+If you ever want to stop the Agent, run:  
+
+    sudo /etc/init.d/datadog-agent stop  
+
+And to run it again run:  
+
+    sudo /etc/init.d/datadog-agent start  
+
+[root@ip-172-31-30-110 ec2-user]# 
+```
+**That's all there is to it!**
 ### Tagging
 
 ## Create a **MySQL** instance
