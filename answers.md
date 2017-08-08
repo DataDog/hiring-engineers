@@ -24,7 +24,7 @@ See https://www.datadoghq.com/ for **your** full story.
   - [Pre-requisites](#pre-requisites)
   - [Create Instance](#create-instance)
 - [Collecting Your Data](#collecting-your-data)
-  - [**Bonus Question: What is the Agent?**](#bonus-question--what-is-the-agent)
+  - [**Bonus Question: What is the Agent?**](#bonus-question-what-is-the-agent)
   - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
   - [Tagging](#tagging)
 - [Create a MySQL instance](#create-a-mysql-instance)
