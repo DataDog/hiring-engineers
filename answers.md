@@ -101,7 +101,7 @@ You can fairly easily set up your own free AWS EC2 instance by following these s
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
 ### Installing the Agent on AWS Linux AMI
-Installing a Datadog agent is as easy as 1, 2, 3...
+Installing a Datadog agent is as easy as 1, 2, 3... (< 1 min)
 
 1. Choose your OS type:  
 ![Image](https://user-images.githubusercontent.com/30754481/29050454-a8724bca-7ba1-11e7-815c-b06e4ba33ed6.png)  
