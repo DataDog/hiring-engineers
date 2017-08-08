@@ -199,6 +199,15 @@ And to run it again run:
 ```
 **That's all there is to it!**
 ### Tagging
+Tagging makes it easy to group and filter on related sets of metrics and infrastructure components so that you can rapidly get to the root cause of an issue.  Datadog provides four methods to assign tags:
+
+- **Inherited from the integration** - This is most recommended and easiest method to assign tags. Just install the integration, and the most common tags are automatically assigned.
+- **Configuration files** - All tags are defined in the yaml configuration files located in the /etc/dd-agent/conf.d/ directory on Linux (C:\ProgramData\Datadog\conf.d\ on Windows). You can also define tags for the overall agent in /etc/dd-agent/datadog.conf on Linux (C:\ProgramData\Datadog\datadog.conf on Windows). Tags are defined using **key:value** pairs (recommended), although simple values are also valid.
+- **Using the UI** - This method lets you assign tag to host through the user interface, however not to the integrations.
+- **Using the API** - As with the UI method above, this method lets you assign tag to host through an API, however not to the integrations.
+
+For this exercise, the AWS Integration was installed as follows:
+#### AWS Integration
 
 ## Create a **MySQL** instance
 
