@@ -123,9 +123,9 @@ DD_API_KEY=c2341ce4c3d18943f6ca2bced618e823 bash -c "$(curl -L https://raw.
 
 Loaded plugins: priorities, update-motd, upgrade-helper  
 Resolving Dependencies  
---&gt; Running transaction check  
----&gt; Package datadog-agent.x86_64 1:5.16.0-1 will be installed  
---&gt; Finished Dependency Resolution  
+--> Running transaction check  
+---> Package datadog-agent.x86_64 1:5.16.0-1 will be installed  
+--> Finished Dependency Resolution  
 
 Dependencies Resolved  
 
