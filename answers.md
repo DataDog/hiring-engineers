@@ -89,7 +89,16 @@ Time Series AVG
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/TimeSeries.png)
 
-The monitor is also installed now with a threshold of .9
+The monitor is also installed now with a threshold of .9. 
+
+**Alerting on data**
+
+Where its deviation or a jumped number, switches can be pushed. Alerts can fire, any chain of events can be strung together.
+
+Threshold Alerts
+Change Alerts
+Anomoly
+Outlier
 
 https://app.datadoghq.com/monitors#2600683?group=all&live=4h
 
