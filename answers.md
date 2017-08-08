@@ -5,27 +5,27 @@ DataDog Answer
 
 **Let's really expand on what others have already accomplished**
 
-Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how github user cklener has done a thorough job in answering the questions and explaining along the way. I can look at graphs and CPU but let's go further. I have data is coming from a few places right now. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
+Taking a step back i realized that anything on the internet can be monitored with the agent.  I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how github user cklener has done a thorough job in answering the questions and explaining along the way. I can look at graphs and CPU usage over a specified time period, but knowing this let's go further. I have data is coming from Vagrant but would love to setup AWS. An external key is provided and the setup was actually easy. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
 
 1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
 2. Datadog agent on Vagrant Ubuntu based VM
 3. Locally on a Macintosh running under OSX
 
-It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application.
+It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application. However under normal circumstances a customer would monitor a web server, a web application, a cluster, a hard drive, or something more granular.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
 
-I went ahead with the agent and installed in both locations using the same account access key. I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
+I went ahead with the agent and installed in both locations using the same account access key. I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion. I have also uploaded some of the tools that helped along the way to github.
 
-**Installing something I can monitor, including mysql**
+**Installing something I can monitor, including a web server mysql**
 
-Mostly complete script to install LAMP environment. 
+Mostly complete script to install LAMP environment to monitor mysql and apache.
 
-#!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y install apache2
-sudo apt-get install mysql-server 
-sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
+	#!/bin/bash
+	sudo apt-get -y update
+	sudo apt-get -y install apache2
+	sudo apt-get install mysql-server 
+	sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
@@ -45,13 +45,11 @@ I am going to be using a Vagrant VM, install virtualbox locally and get the data
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/installing_virtualbox_mac.png)
 
-This worked on Ubuntu to get the agent running
+This command worked on Ubuntu to get the agent installed
 
 DD_API_KEY=X123123XXXXXYOURKEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
-In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh.
-
-I now have a nice HTTP symbol in my infrastucture. Now i need to get mysql working.
+In the meantime, We are showing multiple hosts in the infrastructure area of datadoghq.com! First is my precise64 Ubuntu box, then my Macintosh, then we have Amazon cloud ec2 instances.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/mysql.png)
 
@@ -95,10 +93,10 @@ The monitor is also installed now with a threshold of .9.
 
 Where its deviation or a jumped number, switches can be pushed. Alerts can fire, any chain of events can be strung together.
 
-Threshold Alerts
-Change Alerts
-Anomoly
-Outlier
+	Threshold Alerts
+	Change Alerts
+	Anomoly
+	Outlier
 
 https://app.datadoghq.com/monitors#2600683?group=all&live=4h
 
@@ -108,7 +106,7 @@ You know you are close to the finish line when you get an email like this
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/emailddog.png)
 
-While you are sleeping, turn off the alerts.
+While you are sleeping, turn off the alerts. You can choose any time you think would be acceptable to mute the emails.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Mute.png)
 
