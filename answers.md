@@ -63,5 +63,6 @@ Here is an example of an AWS alert with team notifications
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/AWSalertNotify.png)
 
-** Here is my infrastructure running myrandomcheck and a test program that collects data **
+**Here is my infrastructure running myrandomcheck and a test program that collects data**
 
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/CustomIntegration.png)
