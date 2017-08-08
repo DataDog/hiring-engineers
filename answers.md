@@ -3,15 +3,29 @@ Patrick McBrien
 DataDog Answer
 08/07/17
 
-I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how cklener has done a thorough job in answering the questions and explaining along the way. So far I have datadog agents running with the metrics coming in from these 3 sources.
+**Let's really expand on what others have already accomplished**
+
+Taking a step back, I got the agent running flawlessly in minutes so I am going to add to what others have already done but go in a slightly different direction seeing as how cklener has done a thorough job in answering the questions and explaining along the way. So far I have several datadog agents running with the metrics coming in from these 3 sources.
 
 1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
 2. Datadog agent on Vagrant Ubuntu based VM
 3. Locally on a Macintosh running under OSX
 
+It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino. You could even alert on something like temperature or humidity or any 3rd party or custom application.
+
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
 
-I went ahead with the agent and installed in both locations using the same account access key). I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
+I went ahead with the agent and installed in both locations using the same account access key. I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion.
+
+Installing something I can monitor, including mysql
+
+Mostly complete script to install LAMP environment. 
+
+#!/bin/bash
+sudo apt-get -y update
+sudo apt-get -y install apache2
+sudo apt-get install mysql-server 
+sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
@@ -31,18 +45,9 @@ I am going to be using a Vagrant VM, install virtualbox locally and get the data
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/installing_virtualbox_mac.png)
 
-Mostly complete script to install LAMP environment. 
-
-#!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y install apache2
-sudo apt-get install mysql-server
-sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
-
 This worked on Ubuntu to get the agent running
 
 DD_API_KEY=X123123XXXXXYOURKEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
-
 
 In the meantime, We are showing multiple hosts in the infrastructure area! First is my precise64 Ubuntu box, then my Macintosh.
 
