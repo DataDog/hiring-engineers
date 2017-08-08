@@ -77,7 +77,9 @@ Setting up a basic monitor with tags
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Monitor.png)
 
-You can also see here that the metrics area now has our custom random check
+You can also see here that the metrics area now has our custom random check. Check out /var/log/datadog to see where the bugs in the yaml or py scripts are. When a service is highlights yellow, you know that there could be a bug in the code.
+
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Error.png)
 
 https://app.datadoghq.com/dash/336506?live=true&page=0&is_auto=false&from_ts=1502153472687&to_ts=1502157072687&tile_size=m
 
