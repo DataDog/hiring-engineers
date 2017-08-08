@@ -213,7 +213,6 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
 
 - From the **Console Home** page, select **IAM** under "Security, Identity & Compliance":  
 ![Image](https://user-images.githubusercontent.com/30754481/29098273-2cef8d46-7c64-11e7-958c-076276769e7a.png)  
-  
 
 - Select **Policies** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098284-44e1115e-7c64-11e7-806e-1992e536cbd2.png)  
@@ -227,7 +226,7 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
 - On **Review Policy** screen:
     - Policy Name: **DatadogAWSIntegrationPolicy**
     - Description: **DatadogAWSIntegrationPolicy**
-    - Policy Document: _Copy and paste the following text:_  
+    - Policy Document: **_Copy and paste the following text:_**
 ```
 {  
   "Version": "2012-10-17",  
@@ -283,7 +282,7 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
       "Effect": "Allow",  
       "Resource": "*"  
     }  
-  ]}  
+  ]}
 ```
     - Select [**Create Policy**]:
 ![Image](https://user-images.githubusercontent.com/30754481/29098330-855c5734-7c64-11e7-8e24-f26a7644a6d2.png)
