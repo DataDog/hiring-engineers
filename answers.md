@@ -74,3 +74,13 @@ Setting up a basic monitor with tags
 You can also see here that the metrics area now has our custom random check
 
 https://app.datadoghq.com/dash/336506?live=true&page=0&is_auto=false&from_ts=1502153472687&to_ts=1502157072687&tile_size=m
+
+Bonus: Difference between Timeboard and Screenboard.
+
+TimeBoards are used for data correclation so you can make decisions based on grid like data from diffrent sources. They are very specific.
+
+Screenboards can be shared as a whole live and as a read-only entity and are very flexible in terms of the layout. They can also be a summary of datapoints from different places.
+
+Take a look at my graph going over .9
+
+
