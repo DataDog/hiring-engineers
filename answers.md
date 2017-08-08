@@ -234,6 +234,10 @@ There are a ton of scripts in the folder so I wrote a nice tool that checks on m
 	    # Defaults to True.
 	    #
 	    # allow_redirects: true
+	    
+**MYSQL CUSTOM METRIC CHECK**
+
+In the mysql.yaml file you can run a query to check a certain field in the database. This is a great way to find data issues or other problems in your database content, structure, or cluster/network.
 
 I would love to take this to the next level.
 
