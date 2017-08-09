@@ -25,7 +25,7 @@ I went ahead with the agent and installed in both locations using the same accou
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
-**Local, Vagrant & LAMP setup in one shell script**
+**Autoinstall the Datadag Agent & Vagrant & Ubuntu based LAMP stack, All in one shell script**
 
 	#!/bin/bash
 	mkdir datadog
