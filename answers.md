@@ -436,13 +436,13 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
         - mysql> **exit**
     - Verification Commands:
 ```
-        **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"**
-        **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"**
+mysql -h yourhostaddress -P 3306 -u datadog --password= dd-generated-pwd -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 ```
-    - If you have also granted additional privileges, verify them with:
+If you have also granted additional privileges, verify them with:
 ```
-      **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
-      **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
+mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"
+mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 ```
     - Create the **mysql.yaml** file as follows:
       - **cd /etc/dd-agent/conf.d**
