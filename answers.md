@@ -7,7 +7,7 @@ DataDog Answer
 
 Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes which was really nice. I am going to add to what others have already done but go in a slightly different approach seeing as how github user cklener has done a great job in answering the questions and explaining along the way. 
 
-What can the product do?
+What can the product and agent do?
 
 I can look at many graphs and metrics such as CPU usage over a specified time period, but knowing this let's go further. I have data is coming from a Vagrant VM but would love to setup AWS. An external key is provided and the setup was actually easy. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
 
@@ -15,11 +15,11 @@ I can look at many graphs and metrics such as CPU usage over a specified time pe
 2. Datadog agent on Vagrant Ubuntu based VM
 3. Locally on a Macintosh running under OSX
 
-It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application. However under normal circumstances a customer would monitor a web server, a web application, a cluster, a hard drive, or something more granular.
+It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application. However under normal circumstances a customer would monitor a web server, a web application, a cluster, a hard drive, or something more granular. The agent basically communicates anything you would like back to be visualized on graphs, screenshot and emailed, or databased for future reporting and archiving purposes. There are many example yaml files to choose from.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
 
-I went ahead with the agent and installed in both locations using the same account access key. I also added a LAMP stack as well as mysql to the a shell script and used a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion. I have also uploaded some of the tools that helped along the way to github.
+I went ahead with the agent and installed in both locations using the same account access key unser same account on datadoghq.com. I also went ahead and installed a LAMP stack as well as mysql server under a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion. I have also uploaded some of the tools that helped along the way to github. Docker is another solution.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
@@ -97,7 +97,7 @@ Time Series AVG
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/TimeSeries.png)
 
-The monitor is also installed now with a threshold of .9. 
+The monitor is also installed now with a threshold of .9. Not only can you select time periods like 5m 1h etc. you can overlay different datapoints and use any mathematics you like.
 
 **Alerting on data**
 
@@ -112,7 +112,7 @@ https://app.datadoghq.com/monitors#2600683?group=all&live=4h
 
 **Email has arrived**
 
-You know you are close to the finish line when you get an email like this
+You know you are close to the finish line when you get an email like the one below. It means the .9 threshold from our custom integration has been triggered.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/emailddog.png)
 
