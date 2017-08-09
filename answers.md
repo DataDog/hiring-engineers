@@ -409,7 +409,80 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
 ![Image](https://user-images.githubusercontent.com/30754481/29101773-21ac449a-7c7a-11e7-95ac-41403b711d37.png)
 - Call the **connect.php** script to connect to the database:  
 ![Image](https://user-images.githubusercontent.com/30754481/29102424-9e8d9546-7c7e-11e7-818b-f9f57a059da3.png)
+
 #### MySQL Integration
+- From Datadog console, select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(179).png)  
+
+- Type in the first few letters of the Integration in the search field:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(180).png)  
+
+- Select [**+ Install**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(181).png)  
+
+- Select **Configuration** tab, and [**Generate Password**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(182).png)  
+
+- In order to run the installation and configuration commands on the AWS MySQL instance, you will have to SSH into the EC2 instance you created and run the following commands:
+    - **yum install mysql -y** (to install MySQL client)
+    - To create a **datadog** user with replication rights in your MySQL server, run the following:
+        - **mysql -h _yourhostaddress_ -P 3306 -u iluvdatadog --password**
+        - Enter password: _**yourpassword**_
+        - mysql&gt; **CREATE USER datadog IDENTIFIED BY '_dd-generated-pwd_';**
+        - mysql&gt; **GRANT REPLICATION CLIENT ON *.* TO datadog WITH MAX_USER_CONNECTIONS 5;**
+
+    - If you'd like to get the full metrics catalog, please also grant the following privileges:
+        - mysql&gt; **GRANT PROCESS ON *.* TO datadog;**
+        - mysql&gt; **GRANT SELECT ON performance_schema.* TO datadog;**
+        - mysql&gt; **exit**
+
+    - Verification Commands:
+        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"**
+        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"**
+- If you have also granted additional privileges, verify them with:
+        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
+        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
+
+    - Create the **mysql.yaml** file as follows:
+
+        - **cd /etc/dd-agent/conf.d**
+        - **cp mysql.yaml.example mysql.yaml**
+        - **vi mysql.yaml**
+        - Uncomment and edit the following lines:  
+```
+init_config:
+
+instances:
+  - server: _**yourhostaddress**_
+    user: datadog
+    pass: _**dd-generated-pwd**_
+    port: 3306
+    tags:
+        - database:mysql_on_aws
+        - dd_rockstar:djb
+    options:
+        replication: 0
+        galera_cluster: 1
+```
+    - Restart the Agent:
+        - **/etc/init.d/datadog-agent stop**
+        - **/etc/init.d/datadog-agent start**
+
+    - Run **/etc/init.d/datadog-agent info** and look for output similar to:  
+```
+    mysql (5.16.0)
+    --------------
+      - instance #0 [OK]
+      - Collected 62 metrics, 0 events & 1 service check
+      - Dependencies:
+          - pymysql: 0.6.6.None
+```
+- When all steps are completed, select [**Install Integration**]:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(183).png)  
+  
+
+- Select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window, and scroll down to confirm if integration is install successfully:  
+![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(184).png)
 #### Writing a Custom Agent Check
 
 ## Visualizing Data
