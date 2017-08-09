@@ -572,16 +572,16 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 
 - From the custom graph on your dashboard, click the "Settings" gear icon in the upper right-hand corner, then select [**Create Monitor**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29120850-c65f5c96-7cd1-11e7-9a40-e3ab6cad9802.png)  
-
-- (1) from: **instance-type:t2.micro**
-- (2) avg by: **host**
-- (3) **Multi Alert** Trigger a separate alert for each
-- (4) **host** reporting your metric
-- (5) Trigger when the metric is **above** the threshold
-- (6) **at least once**
-- (7) during the last **5 minutes** for any host
-- (8) Alert threshold: 0.9
-- (9) Warning threshold: 0.85  
+- **Schedule Downtime** page:
+  - (1) from: **instance-type:t2.micro**
+  - (2) avg by: **host**
+  - (3) **Multi Alert** Trigger a separate alert for each
+  - (4) **host** reporting your metric
+  - (5) Trigger when the metric is **above** the threshold
+  - (6) **at least once**
+  - (7) during the last **5 minutes** for any host
+  - (8) Alert threshold: **0.9**
+  - (9) Warning threshold: **0.85**
 ![Image](https://user-images.githubusercontent.com/30754481/29120889-ea36264a-7cd1-11e7-9a90-d1f1af618ec5.png)  
 
 - Give the monitor a meaningful name, and helpful details like a link to the graph, notify interested parties, then select [**Save**]:  
