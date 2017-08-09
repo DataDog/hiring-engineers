@@ -428,22 +428,22 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
     - To create a **datadog** user with replication rights in your MySQL server, run the following:
         - **mysql -h _yourhostaddress_ -P 3306 -u iluvdatadog --password**
         - Enter password: _**yourpassword**_
-        - mysql&gt; **CREATE USER datadog IDENTIFIED BY '_dd-generated-pwd_';**
-        - mysql&gt; **GRANT REPLICATION CLIENT ON *.* TO datadog WITH MAX_USER_CONNECTIONS 5;**
-
+        - mysql> **CREATE USER datadog IDENTIFIED BY '_dd-generated-pwd_';**
+        - mysql> **GRANT REPLICATION CLIENT ON *.* TO datadog WITH MAX_USER_CONNECTIONS 5;**
     - If you'd like to get the full metrics catalog, please also grant the following privileges:
-        - mysql&gt; **GRANT PROCESS ON *.* TO datadog;**
-        - mysql&gt; **GRANT SELECT ON performance_schema.* TO datadog;**
-        - mysql&gt; **exit**
-
+        - mysql> **GRANT PROCESS ON *.* TO datadog;**
+        - mysql> **GRANT SELECT ON performance_schema.\* TO datadog;**
+        - mysql> **exit**
     - Verification Commands:
-        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"**
-        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"**
-
+```
+        **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"**
+        **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"**
+```
     - If you have also granted additional privileges, verify them with:
-      - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
-      - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
-
+```
+      **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
+      **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
+```
     - Create the **mysql.yaml** file as follows:
       - **cd /etc/dd-agent/conf.d**
       - **cp mysql.yaml.example mysql.yaml**
