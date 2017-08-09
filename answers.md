@@ -549,7 +549,7 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 ### MySQL Dashboard
 (3 min)
 
-- Here is the MySQL dashboard created by the integration, which you can clone by clicking on the "Settings" icon in the upper right-hand corner, then selecting **Clone Dashboard**:
+- Here is the [MySQL dashboard](https://app.datadoghq.com/dash/integration/mysql) created by the integration, which you can clone by clicking on the "Settings" icon in the upper right-hand corner, then selecting **Clone Dashboard**:
 ![Image](https://user-images.githubusercontent.com/30754481/29113139-dbbe3646-7cb5-11e7-897e-b36f07b36e87.png)
 - Give it a new **Dashboard name**, change the **Dashboard description** if desired, then select [**Clone**]:
 ![Image](https://user-images.githubusercontent.com/30754481/29113166-f0bdb26a-7cb5-11e7-867e-16a92c3b1931.png)
@@ -563,7 +563,7 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 ![Image](https://user-images.githubusercontent.com/30754481/29113245-273b249e-7cb6-11e7-82da-d354a66237a3.png)
 - Select the _**finish editing**_ block when done adding new widgets:
 ![Image](https://user-images.githubusercontent.com/30754481/29113271-365d2cc4-7cb6-11e7-833a-c104bc091ec8.png)
-- Here is the custom dashboard including NEW metric and custom Agent check metric (test.support.random):
+- Here is the [custom dashboard](https://app.datadoghq.com/dash/337619/mysql---djb-custom) including NEW metric and custom Agent check metric (test.support.random):
 ![Image](https://user-images.githubusercontent.com/30754481/29113291-41d87cac-7cb6-11e7-8a40-259a21626b0c.png)
 
 ### Bonus Question: What is the difference between a timeboard and a screenboard?
