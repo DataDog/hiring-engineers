@@ -63,7 +63,7 @@ In the meantime, We are showing multiple hosts in the infrastructure area of dat
 
 Now we can see that our all of our service(s) are being monitored including MYSQL, HTTP using Apache, NTP. We can now start a monitor or add a new service integtration with a few steps that can be found in datadog documentaion.
 
-![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/More-Apps-MYSQL.png)
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/ServicesUpRunning.png)
 
 Here is an example of an AWS alert with team notifications
 
@@ -245,11 +245,9 @@ There are a ton of scripts in the folder so I wrote a nice tool that checks on m
 	    
 **MYSQL CUSTOM METRIC CHECK**
 
-In the mysql.yaml file you can run a query to check a certain field in the database. This is a great way to find data issues or other problems in your database content, structure, or cluster/network.
+In the mysql.yaml file you can run a query to check a certain field or row in the database. This is a great way to find data issues or other problems in your database content, structure, or cluster/network. You can ensure the database is working by inserting a row every few minutes and comparing timestamps to those previous entries.
 
-After some debugging, I was able to get my checks working properly
-
-![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/ServicesUpRunning.png)
+After some debugging, I was able to get http, mysql, and a custom check working properly
 
 I would love to take this to the next level.
 
