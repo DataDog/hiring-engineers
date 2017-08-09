@@ -485,8 +485,8 @@ Run **/etc/init.d/datadog-agent info** and look for output similar to:
 ![Image](https://user-images.githubusercontent.com/30754481/29105822-41cdea3c-7c96-11e7-9cd9-9ede039932b4.png)  
   
 
-- Select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window, and scroll down to confirm if integration is install successfully:  
-![Image](https://user-images.githubusercontent.com/30754481/29105830-4f020616-7c96-11e7-9bdb-5f6be2bbd894.png)
+- Select [**Host Map**](https://app.datadoghq.com/infrastructure/map) from the left-hand navigation window, and select **mysql** app to confirm that integration is installed successfully:  
+![Image](https://user-images.githubusercontent.com/30754481/29107170-6a55d480-7c9e-11e7-8faa-579e58348255.png)
 #### Writing a Custom Agent Check
 
 ## Visualizing Data
