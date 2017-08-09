@@ -1,4 +1,5 @@
 #!/bin/bash
+#patrick mcbrien
 mkdir datadog
 cd datadog
 
