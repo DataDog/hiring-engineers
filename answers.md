@@ -412,16 +412,16 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
 
 #### MySQL Integration
 - From Datadog console, select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(179).png)  
+![Image](https://user-images.githubusercontent.com/30754481/29105762-c2dbea44-7c95-11e7-83b0-885fb7cffd2b.png)  
 
 - Type in the first few letters of the Integration in the search field:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(180).png)  
+![Image](https://user-images.githubusercontent.com/30754481/29105768-d12df524-7c95-11e7-84dc-f77eb16cd311.png)  
 
 - Select [**+ Install**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(181).png)  
+![Image](https://user-images.githubusercontent.com/30754481/29105775-dad45974-7c95-11e7-9620-bdf23193eb9e.png)  
 
 - Select **Configuration** tab, and [**Generate Password**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(182).png)  
+![Image](https://user-images.githubusercontent.com/30754481/29105782-e7864664-7c95-11e7-9937-7399bdd608a4.png)  
 
 - In order to run the installation and configuration commands on the AWS MySQL instance, you will have to SSH into the EC2 instance you created and run the following commands:
     - **yum install mysql -y** (to install MySQL client)
@@ -439,16 +439,16 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
     - Verification Commands:
         - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"**
         - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"**
-- If you have also granted additional privileges, verify them with:
-        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
-        - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
+
+    - If you have also granted additional privileges, verify them with:
+      - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"**
+      - **mysql -h ****_yourhostaddress_****-P 3306 -u datadog --password=****_dd-generated-pwd_****-e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"**
 
     - Create the **mysql.yaml** file as follows:
-
-        - **cd /etc/dd-agent/conf.d**
-        - **cp mysql.yaml.example mysql.yaml**
-        - **vi mysql.yaml**
-        - Uncomment and edit the following lines:  
+      - **cd /etc/dd-agent/conf.d**
+      - **cp mysql.yaml.example mysql.yaml**
+      - **vi mysql.yaml**
+      - Uncomment and edit the following lines:
 ```
 init_config:
 
@@ -478,11 +478,11 @@ instances:
           - pymysql: 0.6.6.None
 ```
 - When all steps are completed, select [**Install Integration**]:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(183).png)  
+![Image](https://user-images.githubusercontent.com/30754481/29105822-41cdea3c-7c96-11e7-9cd9-9ede039932b4.png)  
   
 
 - Select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window, and scroll down to confirm if integration is install successfully:  
-![Image](file:///C:/Users/dbeal/Evernote/TEMP/enhtmlclip/Image(184).png)
+![Image](https://user-images.githubusercontent.com/30754481/29105830-4f020616-7c96-11e7-9bdb-5f6be2bbd894.png)
 #### Writing a Custom Agent Check
 
 ## Visualizing Data
