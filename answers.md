@@ -405,6 +405,8 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
 ```
 
 **NOTE**:  The **$hostname** value is from the database endpoint copied above.
+- Enter the public IP address into you browser window to confirm PHP was installed successfully:  
+![Image](https://user-images.githubusercontent.com/30754481/29101773-21ac449a-7c7a-11e7-95ac-41403b711d37.png)
 #### MySQL Integration
 #### Writing a Custom Agent Check
 
