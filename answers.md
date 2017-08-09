@@ -39,9 +39,9 @@ See https://www.datadoghq.com/ for **your** full story.
   - [**Bonus Question: What is the difference between a timeboard and a screenboard?**](#bonus-question-what-is-the-difference-between-a-timeboard-and-a-screenboard)
   - [**Snapshot and Annotation**](#snapshot-and-annotation)
 - [Alerting on your Data](#alerting-on-your-data)
-  - [Create a Monitor](#create-a-monitor)
+  - [**Create a Monitor**](#create-a-monitor)
   - [**Bonus: Manage Downtime**](#bonus-manage-downtime)
-  - [Email Screenshot](#email-screenshot)
+  - [**Email Screenshot**](#email-screenshot)
 - [Conclusion](#conclusion)
 
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
