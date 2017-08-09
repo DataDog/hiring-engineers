@@ -37,7 +37,7 @@ See https://www.datadoghq.com/ for **your** full story.
 - [Visualizing your Data](#visualizing-your-data)
   - [**MySQL Dashboard**](#mysql-dashboard)
   - [**Bonus Question: What is the difference between a timeboard and a screenboard?**](#bonus-question-what-is-the-difference-between-a-timeboard-and-a-screenboard)
-  - [Snapshot and Annotation](#snapshot-and-annotation)
+  - [**Snapshot and Annotation**](#snapshot-and-annotation)
 - [Alerting on your Data](#alerting-on-your-data)
   - [Create a Monitor](#create-a-monitor)
   - [Email Screenshot](#email-screenshot)
@@ -556,7 +556,8 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 - **ScreenBoards** are for status boards and sharing data. They include a mix of widgets and timeframes, and the layout is custom drag-and-drop.  Here are the various widgets that can be used on a ScreenBoard (notice they can be placed anywhere on the dashboard):  
 ![Image](https://user-images.githubusercontent.com/30754481/29114870-31b22de6-7cbb-11e7-9b1e-a96705122046.png)
 ### Snapshot and Annotation
-
+To add an annotation, click a graph’s snapshot icon, mark the interesting region, and notify interested parties:  
+![Image](https://user-images.githubusercontent.com/30754481/29115769-5cb19696-7cbe-11e7-8e88-c79d27fb228f.png)
 ## Alerting on your Data
 ### Create a Monitor
 ### Email Screenshot
