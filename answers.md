@@ -18,6 +18,8 @@ The configuration file for the Agent is located in */etc/dd-agent/datadog.conf*
 I also add tag using the UI
 ![datadog.conf](images/hostmap.png)
 
+both tags appear in the host map page.
+
 I choose MySQL and install the respective Datadog integration by following instructions [here](https://app.datadoghq.com/account/settings#integrations/mysql)
 
 And check if the integration is ok by using the command : 
@@ -29,8 +31,8 @@ $ sudo /etc/init.d/datadog-agent info
 
 I created *test.support.random.yaml* and *test.support.random.yaml* files on *checks.d* and *conf.d* repertory (respectively) 
 Py file : 
-
 ![datadog.conf](images/test.support.random.py.png)
+
 Yaml file : 
 ![datadog.conf](images/test.support.random.yaml.png)
 
@@ -41,7 +43,7 @@ $ sudo -u dd-agent dd-agent check test.support.random
 
 ## Level 2 - Visualizing your Data
 
-I clone my database integration dashboard by using the User Interface and add test.support.random metric by using [metrics explorer ](https://app.datadoghq.com/metric/explorer)
+I clone my database integration dashboard by using the User Interface and add test.support.random metric by using [metrics explorer](https://app.datadoghq.com/metric/explorer)
 ![datadog.conf](images/DBcloned.png)
 
 > *Bonus question: What is the difference between a timeboard and a screenboard?*
@@ -64,14 +66,13 @@ I go [here](https://app.datadoghq.com/monitors#create/metric) to create a monito
 ![datadog.conf](images/create_monitor.png)
 
 > *Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.*
-
+The multi alert setting is avalaible in step 2 : *define the metric*
 ![datadog.conf](images/set_multialert_monitor.png)
 
 
 ![datadog.conf](images/describe_monitor.png)
 
-> *This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.*
-
+Here the email notification : 
 ![datadog.conf](images/notification_mail.png)
 
 > *Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
@@ -80,8 +81,7 @@ I go [here](https://app.datadoghq.com/monitors#/downtime) to schedule my downtim
 
 ![datadog.conf](images/scheduled_downtime1.png)
 ![datadog.conf](images/scheduled_downtime2.png)
+
+I got 2 mails mentionned the end and the start of th monitor 
 ![datadog.conf](images/scheduled_downtime_mail.png)
 ![datadog.conf](images/scheduled_downtime_mail2.png)
-
-
-
