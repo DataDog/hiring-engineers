@@ -7,6 +7,8 @@ DataDog Answer
 
 Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes which was really nice. I am going to add to what others have already done but go in a slightly different approach seeing as how github user cklener has done a great job in answering the questions and explaining along the way. 
 
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/metrics.png)
+
 What can the product and agent do?
 
 I can look at many graphs and metrics such as CPU usage over a specified time period, but knowing this let's go further. I have data is coming from a Vagrant VM but would love to setup AWS. An external key is provided and the setup was actually easy. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
