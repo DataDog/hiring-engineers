@@ -613,3 +613,4 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29121006-57f6cbbc-7cd2-11e7-91af-c99788d6197d.png)
 
 ## Conclusion
+Although this document is very detailed, the process is straight-forward and intuitive. I look forward to being a part of the Datadog team!
