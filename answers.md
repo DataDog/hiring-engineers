@@ -36,7 +36,7 @@ See https://www.datadoghq.com/ for **your** full story.
     - [**Writing a Custom Agent Check**](#writing-a-custom-agent-check)
 - [Visualizing your Data](#visualizing-your-data)
   - [MySQL Dashboard](#mysql-dashboard)
-  - [Bonus Question: What is the difference between a timeboard and a screenboard?](#bonus-question-what-is-the-difference-between-a-timeboard-and-a-screenboard)
+  - [**Bonus Question: What is the difference between a timeboard and a screenboard?**](#bonus-question-what-is-the-difference-between-a-timeboard-and-a-screenboard)
   - [Snapshot and Annotation](#snapshot-and-annotation)
 - [Alerting on your Data](#alerting-on-your-data)
   - [Create a Monitor](#create-a-monitor)
