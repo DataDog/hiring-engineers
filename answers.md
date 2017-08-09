@@ -591,6 +591,8 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29120914-05d85422-7cd2-11e7-9f1f-474e1b142705.png)
 
 ### Email Screenshot
+- ...and this is the email that will be generated:  
+![Image](https://user-images.githubusercontent.com/30754481/29120927-14bc0d6c-7cd2-11e7-91d2-a1599da6c4ef.png)
 
 ### Bonus: Manage Downtime
 
