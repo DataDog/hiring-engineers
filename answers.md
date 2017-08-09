@@ -16,7 +16,7 @@ Datadog offers a myriad of easy to configure integrations from data sources such
 
 ...and more.
 
-See https://www.datadoghq.com/ for **your** full story.
+See https://www.datadoghq.com/ for **_your_** full story.
 
 ## Table of Contents
 
