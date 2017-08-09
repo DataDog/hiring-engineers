@@ -27,8 +27,6 @@ And check if the integration is ok by using the command :
 $ sudo /etc/init.d/datadog-agent info
 ```
 
-<-- ![datadog.conf](images/dd-agent_info.png) -->
-
 I created *test.support.random.yaml* and *test.support.random.yaml* files on *checks.d* and *conf.d* repertory (respectively) 
 Py file : 
 ![datadog.conf](images/test.support.random.py.png)
