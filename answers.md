@@ -32,6 +32,7 @@ See https://www.datadoghq.com/ for **your** full story.
     - [Tags Defined in Configuration File](#tags-defined-in-configuration-file)
   - [Create a MySQL instance](#create-a-mysql-instance)
     - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
+    - [MySQL Integration](#mysql-integration)
     - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
 - [Visualizing Data](#visualizing-data)
   - [MySQL Dashboard](#mysql-dashboard)
@@ -404,7 +405,7 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
 ```
 
 **NOTE**:  The **$hostname** value is from the database endpoint copied above.
-
+#### MySQL Integration
 #### Writing a Custom Agent Check
 
 ## Visualizing Data
