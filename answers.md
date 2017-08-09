@@ -489,7 +489,7 @@ Run **/etc/init.d/datadog-agent info** and look for output similar to:
 ![Image](https://user-images.githubusercontent.com/30754481/29107170-6a55d480-7c9e-11e7-8faa-579e58348255.png)
 
 #### Writing a Custom Agent Check
-See **[Writing an Agent Check](https://docs.datadoghq.com/guides/agent_checks)** for more info:
+Agent Checks are a great way to collect metrics from custom applications or unique systems. See **[Writing an Agent Check](https://docs.datadoghq.com/guides/agent_checks)** for more info:
 
 - **The names of the configuration and check files must match**
 - Go to your SSH window
