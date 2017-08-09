@@ -25,21 +25,24 @@ I went ahead with the agent and installed in both locations using the same accou
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
-**Local, Vagrant & AWS Setup**
+**Local, Vagrant & LAMP setup in one shell script**
+
+	#!/bin/bash
+	mkdir datadog
+	cd datadog
 
 	vagrant init hashicorp/precise64
 	vagrant up
-	vagrant ssh
-	
-**Installing something I can monitor, including a web server mysql**
 
-Mostly complete script to install LAMP environment to monitor mysql and apache.
-	
-	#!/bin/bash
-	sudo apt-get -y update
-	sudo apt-get -y install apache2
-	sudo apt-get install mysql-server 
-	sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
+	vagrant ssh -c 'sudo apt-get -y update'
+	vagrant ssh -c 'sudo apt-get -y install apache2 mysql'
+	vagrant ssh -c 'sudo apt-get -y install mysql-server'
+	vagrant ssh -c 'sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt'
+	vagrant ssh -c 'DD_API_KEY=API_KEY_GOES_HERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"'
+
+	vagrant ssh
+
+**Installing something I can monitor, including a webserver and a database server **
 
 I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of. They even have a step by step of commands needed to integrate. 
 
