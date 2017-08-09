@@ -469,9 +469,9 @@ Uncomment and edit the following lines:
 init_config:
 
 instances:
-  - server: _**yourhostaddress**_
+  - server: yourhostaddress
     user: datadog
-    pass: _**dd-generated-pwd**_
+    pass: dd-generated-pwd
     port: 3306
     tags:
         - database:mysql_on_aws
