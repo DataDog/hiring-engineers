@@ -572,7 +572,7 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 
 - From the custom graph on your dashboard, click the "Settings" gear icon in the upper right-hand corner, then select [**Create Monitor**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29120850-c65f5c96-7cd1-11e7-9a40-e3ab6cad9802.png)  
-- **Schedule Downtime** page:
+- **Monitor Setup** page:
   - (1) from: **instance-type:t2.micro**
   - (2) avg by: **host**
   - (3) **Multi Alert** Trigger a separate alert for each
@@ -595,5 +595,21 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29120927-14bc0d6c-7cd2-11e7-91d2-a1599da6c4ef.png)
 
 ### Bonus: Manage Downtime
+- To schedule a maintenance window, or to just silence alerts during off hours, go to **Monitors &gt; Manage Downtime** from the left-hand navigation bar:  
+![Image](https://user-images.githubusercontent.com/30754481/29120954-1f3257c4-7cd2-11e7-8038-4947db03c53f.png)  
+- **Schedule Downtime** page:
+  - (1) Select [**Schedule Downtime**]
+  - (2) Choose your monitor
+  - (3) Choose tags to be included in downtime
+  - (4) Select **Recurring**
+  - (5) Set downtime hours
+  - (6) Create message
+  - (7) Notify interested parties
+  - (8) Select [**Save**]  
+![Image](https://user-images.githubusercontent.com/30754481/29120986-417ed71c-7cd2-11e7-94dc-d70dacc1f0d8.png)  
+
+- And here is the finished product:  
+![Image](https://user-images.githubusercontent.com/30754481/29120997-4c253350-7cd2-11e7-963d-60517c177cc6.png)  
+![Image](https://user-images.githubusercontent.com/30754481/29121006-57f6cbbc-7cd2-11e7-91af-c99788d6197d.png)
 
 ## Conclusion
