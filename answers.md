@@ -40,8 +40,8 @@ See https://www.datadoghq.com/ for **your** full story.
   - [**Snapshot and Annotation**](#snapshot-and-annotation)
 - [Alerting on your Data](#alerting-on-your-data)
   - [**Create a Monitor**](#create-a-monitor)
-  - [**Bonus: Manage Downtime**](#bonus-manage-downtime)
   - [**Email Screenshot**](#email-screenshot)
+  - [**Bonus: Manage Downtime**](#bonus-manage-downtime)
 - [Conclusion](#conclusion)
 
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
@@ -560,11 +560,38 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 To add an annotation, click a graph’s snapshot icon, mark the interesting region, and notify interested parties:  
 ![Image](https://user-images.githubusercontent.com/30754481/29115769-5cb19696-7cbe-11e7-8e88-c79d27fb228f.png)
 ## Alerting on your Data
+Alerting gives you the ability notify your team when certain conditions are met.  There are four types of alerts Datadog provides:
+
+- **Threshold Alert** - compares the value in the selected timeframe against a given threshold.
+- **Change Alert** - compares the absolute or percentage change in value between now and some time ago against a given threshold.
+- **Anomaly Detection** - an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns.
+- **Outlier Detection** - an algorithmic feature that allows you to detect when some members of a group are behaving strangely compared to the others. 
 
 ### Create a Monitor
+To set up a **Threshold Alert** that notifies you when the metric **test.support.random** goes above 0.90, follow these steps:
 
-### Bonus: Manage Downtime
+- From the custom graph on your dashboard, click the "Settings" gear icon in the upper right-hand corner, then select [**Create Monitor**]:  
+![Image](https://user-images.githubusercontent.com/30754481/29120850-c65f5c96-7cd1-11e7-9a40-e3ab6cad9802.png)  
+
+- (1) from: **instance-type:t2.micro**
+- (2) avg by: **host**
+- (3) **Multi Alert** Trigger a separate alert for each
+- (4) **host** reporting your metric
+- (5) Trigger when the metric is **above** the threshold
+- (6) **at least once**
+- (7) during the last **5 minutes** for any host
+- (8) Alert threshold: 0.9
+- (9) Warning threshold: 0.85  
+![Image](https://user-images.githubusercontent.com/30754481/29120889-ea36264a-7cd1-11e7-9a90-d1f1af618ec5.png)  
+
+- Give the monitor a meaningful name, and helpful details like a link to the graph, notify interested parties, then select [**Save**]:  
+![Image](https://user-images.githubusercontent.com/30754481/29120896-f37ac8fa-7cd1-11e7-9fd6-f9ba837a597a.png)  
+
+- When an alert is triggered, it will look like this from the console:  
+![Image](https://user-images.githubusercontent.com/30754481/29120914-05d85422-7cd2-11e7-9f1f-474e1b142705.png)
 
 ### Email Screenshot
+
+### Bonus: Manage Downtime
 
 ## Conclusion
