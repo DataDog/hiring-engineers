@@ -634,6 +634,6 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29121006-57f6cbbc-7cd2-11e7-91af-c99788d6197d.png)
 
 ## Conclusion
-Although this document is very detailed, the process is straight-forward, intuitive, with rapid time to value. I have indicated approximate times for relevant sections. I look forward to being a part of the Datadog team!
+Although this document is very detailed, the process is straight-forward, intuitive, with rapid time to value. I have indicated approximate times for relevant sections. I am proud to submit this document, and hope it will be useful for your AWS customers as well as future Datadog team members. I look forward to being a part of the Datadog team!
 
 -- Daniel J. Beal
