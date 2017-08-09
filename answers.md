@@ -30,9 +30,9 @@ See https://www.datadoghq.com/ for **your** full story.
     - [AWS Integration](#aws-integration)
     - [Tags Inherited from Integration](#tags-inherited-from-integration)
     - [Tags Defined in Configuration File](#tags-defined-in-configuration-file)
-- [Create a MySQL instance](#create-a-mysql-instance)
-  - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
-  - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
+  - [Create a MySQL instance](#create-a-mysql-instance)
+    - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
+    - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
 - [Visualizing Data](#visualizing-data)
   - [MySQL Dashboard](#mysql-dashboard)
   - [Snapshot and Annotation](#snapshot-and-annotation)
@@ -336,7 +336,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
 ```
 ![Image](https://user-images.githubusercontent.com/30754481/29100965-c80ce26e-7c74-11e7-9b94-c5fd918c9f13.png)
 
-## Create a **MySQL** instance
+### Create a **MySQL** instance
 
 - From the **Console Home** page, select **RDS** under "Database":  
 ![Image](https://user-images.githubusercontent.com/30754481/29035490-677d754e-7b61-11e7-9916-6a8da69fabf2.png)
@@ -377,7 +377,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
     - Select [**Save**]
 ![Image](https://user-images.githubusercontent.com/30754481/29039104-92c14a74-7b6f-11e7-86d7-f17cdc71a158.png)
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
-### Create simple PHP webpage that connects to database
+#### Create simple PHP webpage that connects to database
 - From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
 - From your SSH window, enter the following commands:
@@ -405,7 +405,7 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect t
 
 **NOTE**:  The **$hostname** value is from the database endpoint copied above.
 
-### Writing a Custom Agent Check
+#### Writing a Custom Agent Check
 
 ## Visualizing Data
 ### MySQL Dashboard
