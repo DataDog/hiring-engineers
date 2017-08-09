@@ -444,11 +444,13 @@ If you have also granted additional privileges, verify them with:
 mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SELECT * FROM performance_schema.threads" && echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || echo -e "\033[0;31mMissing SELECT grant\033[0m"
 mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 ```
-    - Create the **mysql.yaml** file as follows:
-        - **cd /etc/dd-agent/conf.d**
-        - **cp mysql.yaml.example mysql.yaml**
-        - **vi mysql.yaml**
-        - Uncomment and edit the following lines:
+Create the **mysql.yaml** file as follows:
+```
+cd /etc/dd-agent/conf.d
+cp mysql.yaml.example mysql.yaml
+vi mysql.yaml
+```
+Uncomment and edit the following lines:
 ```
 init_config:
 
@@ -464,11 +466,12 @@ instances:
         replication: 0
         galera_cluster: 1
 ```
-    - Restart the Agent:
-        - **/etc/init.d/datadog-agent stop**
-        - **/etc/init.d/datadog-agent start**
-
-    - Run **/etc/init.d/datadog-agent info** and look for output similar to:  
+Restart the Agent:
+```
+/etc/init.d/datadog-agent stop
+/etc/init.d/datadog-agent start
+```
+Run **/etc/init.d/datadog-agent info** and look for output similar to:  
 ```
     mysql (5.16.0)
     --------------
