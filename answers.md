@@ -436,7 +436,7 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
         - mysql> **exit**
     - Verification Commands:
 ```
-mysql -h yourhostaddress -P 3306 -u datadog --password= dd-generated-pwd -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 ```
 If you have also granted additional privileges, verify them with:
@@ -445,10 +445,10 @@ mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SEL
 mysql -h yourhostaddress -P 3306 -u datadog --password=dd-generated-pwd -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 ```
     - Create the **mysql.yaml** file as follows:
-      - **cd /etc/dd-agent/conf.d**
-      - **cp mysql.yaml.example mysql.yaml**
-      - **vi mysql.yaml**
-      - Uncomment and edit the following lines:
+        - **cd /etc/dd-agent/conf.d**
+        - **cp mysql.yaml.example mysql.yaml**
+        - **vi mysql.yaml**
+        - Uncomment and edit the following lines:
 ```
 init_config:
 
