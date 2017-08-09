@@ -111,6 +111,7 @@ The Datadog agent is a small piece of software that is loaded on your hosts, whi
 
 ### Installing the Agent on AWS Linux AMI
 (<3 min)
+
 Installing a Datadog agent is as easy as 1, 2, 3!
 
 1. Choose your OS type:  
@@ -218,6 +219,7 @@ Tagging makes it easy to group and filter on related sets of metrics and infrast
 For this exercise, the AWS Integration was installed as follows:
 #### AWS Integration
 (5 min)
+
 Setting up the Datadog integration with Amazon Web Services requires configuring role delegation using AWS Identity Access Management.
 
 - From the **Console Home** page, select **IAM** under "Security, Identity & Compliance":  
@@ -344,6 +346,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
 ![Image](https://user-images.githubusercontent.com/30754481/29100965-c80ce26e-7c74-11e7-9b94-c5fd918c9f13.png)
 
 ### Create a **MySQL** instance
+(10 min)
 
 - From the **Console Home** page, select **RDS** under "Database":  
 ![Image](https://user-images.githubusercontent.com/30754481/29035490-677d754e-7b61-11e7-9916-6a8da69fabf2.png)
@@ -386,6 +389,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
 #### Create simple PHP webpage that connects to database
 (3 min)
+
 - From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
 - From your SSH window, enter the following commands:
@@ -419,6 +423,7 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
 
 #### MySQL Integration
 (~20 min)
+
 - From Datadog console, select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window:  
 ![Image](https://user-images.githubusercontent.com/30754481/29105762-c2dbea44-7c95-11e7-83b0-885fb7cffd2b.png)  
 
@@ -498,6 +503,7 @@ Run **/etc/init.d/datadog-agent info** and look for output similar to:
 
 #### Writing a Custom Agent Check
 (5 min)
+
 Agent Checks are a great way to collect metrics from custom applications or unique systems. See **[Writing an Agent Check](https://docs.datadoghq.com/guides/agent_checks)** for more info:
 
 - **The names of the configuration and check files must match**
@@ -542,6 +548,7 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 
 ### MySQL Dashboard
 (3 min)
+
 - Here is the MySQL dashboard created by the integration, which you can clone by clicking on the "Settings" icon in the upper right-hand corner, then selecting **Clone Dashboard**:
 ![Image](https://user-images.githubusercontent.com/30754481/29113139-dbbe3646-7cb5-11e7-897e-b36f07b36e87.png)
 - Give it a new **Dashboard name**, change the **Dashboard description** if desired, then select [**Clone**]:
@@ -566,6 +573,7 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 ![Image](https://user-images.githubusercontent.com/30754481/29114870-31b22de6-7cbb-11e7-9b1e-a96705122046.png)
 ### Snapshot and Annotation
 (<1 min)
+
 To add an annotation, click a graph’s snapshot icon, mark the interesting region, and notify interested parties:  
 ![Image](https://user-images.githubusercontent.com/30754481/29115769-5cb19696-7cbe-11e7-8e88-c79d27fb228f.png)
 ## Alerting on your Data
@@ -578,6 +586,7 @@ Alerting gives you the ability notify your team when certain conditions are met.
 
 ### Create a Monitor
 (3 min)
+
 To set up a **Threshold Alert** that notifies you when the metric **test.support.random** goes above 0.90, follow these steps:
 
 - From the custom graph on your dashboard, click the "Settings" gear icon in the upper right-hand corner, then select [**Create Monitor**]:  
@@ -606,6 +615,7 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 
 ### Bonus: Manage Downtime
 (2 min)
+
 - To schedule a maintenance window, or to just silence alerts during off hours, go to **Monitors &gt; Manage Downtime** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29120954-1f3257c4-7cd2-11e7-8038-4947db03c53f.png)  
 - **Schedule Downtime** page:
