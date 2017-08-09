@@ -487,7 +487,44 @@ Run **/etc/init.d/datadog-agent info** and look for output similar to:
 
 - Select [**Host Map**](https://app.datadoghq.com/infrastructure/map) from the left-hand navigation window, and select **mysql** app to confirm that integration is installed successfully:  
 ![Image](https://user-images.githubusercontent.com/30754481/29107170-6a55d480-7c9e-11e7-8faa-579e58348255.png)
+
 #### Writing a Custom Agent Check
+See **[Writing an Agent Check](https://docs.datadoghq.com/guides/agent_checks)** for more info:
+
+- **The names of the configuration and check files must match**
+- Go to your SSH window
+- **cd /etc/dd-agent/checks.d**
+- **vi mycheck.py**
+- Enter the following:
+```
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random.random())
+```
+- **cd /etc/dd-agent/conf.d**
+- **vi mycheck.yaml**
+- Enter the following:
+```
+init_config:
+  min_collection_interval: 30
+instances:
+    [{}]
+```
+- Restart the Agent:
+    - **/etc/init.d/datadog-agent stop**
+    - **/etc/init.d/datadog-agent start**
+
+- Run **/etc/init.d/datadog-agent info** and look for output similar to:
+```
+    mycheck (5.16.0)
+    ----------------
+      - instance #0 [OK]
+      - Collected 1 metric, 0 events & 0 service checks
+```
+- Select [Host Map](https://app.datadoghq.com/infrastructure/map) from the left-hand navigation window, and select test app to confirm that Agent Check is installed successfully:
+![Image](https://user-images.githubusercontent.com/30754481/29109728-b75f97f6-7ca9-11e7-8f24-be72593758a9.png)
 
 ## Visualizing Data
 ### MySQL Dashboard
