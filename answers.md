@@ -375,7 +375,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
     - (2) Select "Publicly Accessible": **No**
     - (3) Select "VPC Security Group(s)": **Create new Security Group**
     - (4) Enter "Database Name": **iluvdatadog**
-    - (5) Select [Launch DB Instance]
+    - (5) Select [**Launch DB Instance**]
 - Select [**View Your DB Instances**]  
 ![Image](https://user-images.githubusercontent.com/30754481/29035631-eb7e52e6-7b61-11e7-8bbf-3eef92f63bbb.png)
 - Select "Details" tab, then select link beside **Security Groups**:  
