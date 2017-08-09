@@ -45,7 +45,8 @@ See https://www.datadoghq.com/ for **your** full story.
 - [Conclusion](#conclusion)
 
 ## Setup an AWS EC2 Instance using a Linux AMI (Amazon Machine Image)
-You can fairly easily set up your own free AWS EC2 instance by following these step-by-step instructions (~10 min):
+(~10 min)
+You can fairly easily set up your own free AWS EC2 instance by following these step-by-step instructions:
 ### Pre-requisites
 - Set up a free trial account at [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
 - You will need access to an SSH terminal
@@ -108,7 +109,8 @@ You can fairly easily set up your own free AWS EC2 instance by following these s
 The Datadog agent is a small piece of software that is loaded on your hosts, which will collect system level metrics (like CPU, memory, disk, etc.), and sends them to Datadog for reporting and analysis.  It can also collect custom application metrics via a small statsd server built in to the agent (DogStatsD).
 
 ### Installing the Agent on AWS Linux AMI
-Installing a Datadog agent is as easy as 1, 2, 3! (<1 min)
+(<3 min)
+Installing a Datadog agent is as easy as 1, 2, 3!
 
 1. Choose your OS type:  
 ![Image](https://user-images.githubusercontent.com/30754481/29050454-a8724bca-7ba1-11e7-815c-b06e4ba33ed6.png)  
@@ -214,6 +216,7 @@ Tagging makes it easy to group and filter on related sets of metrics and infrast
 
 For this exercise, the AWS Integration was installed as follows:
 #### AWS Integration
+(5 min)
 Setting up the Datadog integration with Amazon Web Services requires configuring role delegation using AWS Identity Access Management.
 
 - From the **Console Home** page, select **IAM** under "Security, Identity & Compliance":  
@@ -381,6 +384,7 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
 ![Image](https://user-images.githubusercontent.com/30754481/29039104-92c14a74-7b6f-11e7-86d7-f17cdc71a158.png)
 **NOTE**: This is to allow traffic in from web server on port 3306 (MySQL) so it can communicate with database.
 #### Create simple PHP webpage that connects to database
+(3 min)
 - From the RDS Dashboard in the AWS Console, select the MySQL database you created above, and copy the database Endpoint address to your clipboard buffer:  
 ![Image](https://user-images.githubusercontent.com/30754481/29040990-c70c0d94-7b76-11e7-8f14-060304cfe7a1.png)
 - From your SSH window, enter the following commands:
@@ -413,6 +417,7 @@ $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to 
 ![Image](https://user-images.githubusercontent.com/30754481/29102424-9e8d9546-7c7e-11e7-818b-f9f57a059da3.png)
 
 #### MySQL Integration
+(~20 min)
 - From Datadog console, select [**Integrations**](https://app.datadoghq.com/account/settings#integrations) from the left-hand navigation window:  
 ![Image](https://user-images.githubusercontent.com/30754481/29105762-c2dbea44-7c95-11e7-83b0-885fb7cffd2b.png)  
 
@@ -491,6 +496,7 @@ Run **/etc/init.d/datadog-agent info** and look for output similar to:
 ![Image](https://user-images.githubusercontent.com/30754481/29107170-6a55d480-7c9e-11e7-8faa-579e58348255.png)
 
 #### Writing a Custom Agent Check
+(5 min)
 Agent Checks are a great way to collect metrics from custom applications or unique systems. See **[Writing an Agent Check](https://docs.datadoghq.com/guides/agent_checks)** for more info:
 
 - **The names of the configuration and check files must match**
@@ -534,6 +540,7 @@ Dashboards allow you to group near real-time graphs of related metrics into an e
 You can create your own dashboard from scratch, or "clone" an existing dashboard created by an integration and modify it to suit your needs.
 
 ### MySQL Dashboard
+(3 min)
 - Here is the MySQL dashboard created by the integration, which you can clone by clicking on the "Settings" icon in the upper right-hand corner, then selecting **Clone Dashboard**:
 ![Image](https://user-images.githubusercontent.com/30754481/29113139-dbbe3646-7cb5-11e7-897e-b36f07b36e87.png)
 - Give it a new **Dashboard name**, change the **Dashboard description** if desired, then select [**Clone**]:
@@ -557,6 +564,7 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 - **ScreenBoards** are for status boards and sharing data. They include a mix of widgets and timeframes, and the layout is custom drag-and-drop.  Here are the various widgets that can be used on a ScreenBoard (notice they can be placed anywhere on the dashboard):  
 ![Image](https://user-images.githubusercontent.com/30754481/29114870-31b22de6-7cbb-11e7-9b1e-a96705122046.png)
 ### Snapshot and Annotation
+(<1 min)
 To add an annotation, click a graph’s snapshot icon, mark the interesting region, and notify interested parties:  
 ![Image](https://user-images.githubusercontent.com/30754481/29115769-5cb19696-7cbe-11e7-8e88-c79d27fb228f.png)
 ## Alerting on your Data
@@ -568,6 +576,7 @@ Alerting gives you the ability notify your team when certain conditions are met.
 - **Outlier Detection** - an algorithmic feature that allows you to detect when some members of a group are behaving strangely compared to the others. 
 
 ### Create a Monitor
+(3 min)
 To set up a **Threshold Alert** that notifies you when the metric **test.support.random** goes above 0.90, follow these steps:
 
 - From the custom graph on your dashboard, click the "Settings" gear icon in the upper right-hand corner, then select [**Create Monitor**]:  
@@ -595,6 +604,7 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29120927-14bc0d6c-7cd2-11e7-91d2-a1599da6c4ef.png)
 
 ### Bonus: Manage Downtime
+(2 min)
 - To schedule a maintenance window, or to just silence alerts during off hours, go to **Monitors &gt; Manage Downtime** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29120954-1f3257c4-7cd2-11e7-8038-4947db03c53f.png)  
 - **Schedule Downtime** page:
@@ -613,4 +623,6 @@ To set up a **Threshold Alert** that notifies you when the metric **test.support
 ![Image](https://user-images.githubusercontent.com/30754481/29121006-57f6cbbc-7cd2-11e7-91af-c99788d6197d.png)
 
 ## Conclusion
-Although this document is very detailed, the process is straight-forward and intuitive. I look forward to being a part of the Datadog team!
+Although this document is very detailed, the process is straight-forward, intuitive, with rapid time to value. I have indicated approximate times for relevant sections. I look forward to being a part of the Datadog team!
+
+-- Daniel J. Beal
