@@ -40,6 +40,7 @@ See https://www.datadoghq.com/ for **your** full story.
   - [**Snapshot and Annotation**](#snapshot-and-annotation)
 - [Alerting on your Data](#alerting-on-your-data)
   - [Create a Monitor](#create-a-monitor)
+  - [**Bonus: Manage Downtime**](#bonus-manage-downtime)
   - [Email Screenshot](#email-screenshot)
 - [Conclusion](#conclusion)
 
@@ -559,7 +560,11 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 To add an annotation, click a graph’s snapshot icon, mark the interesting region, and notify interested parties:  
 ![Image](https://user-images.githubusercontent.com/30754481/29115769-5cb19696-7cbe-11e7-8e88-c79d27fb228f.png)
 ## Alerting on your Data
+
 ### Create a Monitor
+
+### Bonus: Manage Downtime
+
 ### Email Screenshot
 
 ## Conclusion
