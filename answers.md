@@ -28,6 +28,8 @@ See https://www.datadoghq.com/ for **your** full story.
   - [Installing the Agent on AWS Linux AMI](#installing-the-agent-on-aws-linux-ami)
   - [Tagging](#tagging)
     - [AWS Integration](#aws-integration)
+    - [Tags Inherited from Integration](#tags-inherited-from-integration)
+    - [Tags Defined in Configuration File](#tags-defined-in-configuration-file)
 - [Create a MySQL instance](#create-a-mysql-instance)
   - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
@@ -322,9 +324,10 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
     - Select [**Install Integration**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098454-12e00452-7c65-11e7-91c7-f7bea3404d4c.png)  
 
+#### Tags Inherited from Integration
 - **AWS specific tags are automatically assigned!**
 ![Image](https://user-images.githubusercontent.com/30754481/29098467-1eac3210-7c65-11e7-87be-cefcdbcff8e6.png)
-
+#### Tags Defined in Configuration File
 - Tags can also be added to **/etc/dd-agent/datadog.conf** as follows:
 ```
 # Set the host's tags (optional)  
