@@ -226,7 +226,9 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
 - On **Review Policy** screen:
     - Policy Name: **DatadogAWSIntegrationPolicy**
     - Description: **DatadogAWSIntegrationPolicy**
-    - Policy Document: **_Copy and paste the following text:_**
+    - Policy Document: **_Copy and paste the text below_**
+    - Select [**Create Policy**]:
+![Image](https://user-images.githubusercontent.com/30754481/29098330-855c5734-7c64-11e7-8e24-f26a7644a6d2.png)
 ```
 {  
   "Version": "2012-10-17",  
@@ -284,8 +286,6 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
     }  
   ]}
 ```
-    - Select [**Create Policy**]:
-![Image](https://user-images.githubusercontent.com/30754481/29098330-855c5734-7c64-11e7-8e24-f26a7644a6d2.png)
 
 - Type first few letters of new policy name in search field to confirm success creation. Then select **Roles** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098339-92a39100-7c64-11e7-961d-9a8ef0a495f6.png)  
@@ -322,8 +322,9 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
     - Select [**Install Integration**]:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098454-12e00452-7c65-11e7-91c7-f7bea3404d4c.png)  
 
-- **AWS specific tags are automatically assigned! **
+- **AWS specific tags are automatically assigned!**
 ![Image](https://user-images.githubusercontent.com/30754481/29098467-1eac3210-7c65-11e7-87be-cefcdbcff8e6.png)
+
 ## Create a **MySQL** instance
 
 - From the **Console Home** page, select **RDS** under "Database":  
