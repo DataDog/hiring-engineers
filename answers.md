@@ -34,10 +34,11 @@ See https://www.datadoghq.com/ for **your** full story.
     - [Create simple PHP webpage that connects to database](#create-simple-php-webpage-that-connects-to-database)
     - [**MySQL Integration**](#mysql-integration)
     - [**Writing a Custom Agent Check**](#writing-a-custom-agent-check)
-- [Visualizing Data](#visualizing-data)
+- [Visualizing your Data](#visualizing-your-data)
   - [MySQL Dashboard](#mysql-dashboard)
+  - [Bonus Question: What is the difference between a timeboard and a screenboard?](#Bonus Question: What is the difference between a timeboard and a screenboard?)
   - [Snapshot and Annotation](#snapshot-and-annotation)
-- [Alerting on Data](#alerting-on-data)
+- [Alerting on your Data](#alerting-on-your-data)
   - [Create a Monitor](#create-a-monitor)
   - [Email Screenshot](#email-screenshot)
 - [Conclusion](#conclusion)
@@ -526,11 +527,12 @@ instances:
 - Select [Host Map](https://app.datadoghq.com/infrastructure/map) from the left-hand navigation window, and select test app to confirm that Agent Check is installed successfully:
 ![Image](https://user-images.githubusercontent.com/30754481/29109728-b75f97f6-7ca9-11e7-8f24-be72593758a9.png)
 
-## Visualizing Data
+## Visualizing your Data
 ### MySQL Dashboard
+### Bonus Question: What is the difference between a timeboard and a screenboard?
 ### Snapshot and Annotation
 
-## Alerting on Data
+## Alerting on your Data
 ### Create a Monitor
 ### Email Screenshot
 
