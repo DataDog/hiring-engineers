@@ -551,7 +551,10 @@ You can create your own dashboard from scratch, or "clone" an existing dashboard
 ![Image](https://user-images.githubusercontent.com/30754481/29113291-41d87cac-7cb6-11e7-8a40-259a21626b0c.png)
 
 ### Bonus Question: What is the difference between a timeboard and a screenboard?
-
+- **TimeBoards** are for troubleshooting and correlation. They include time-synchronized metrics and event graphs, and the layout is automatic. There are limited widgets available for TimeBoards, and they can only be added to fixed locations:  
+![Image](https://user-images.githubusercontent.com/30754481/29114852-292fd4b6-7cbb-11e7-9f03-df2b8a960df2.png)
+- **ScreenBoards** are for status boards and sharing data. They include a mix of widgets and timeframes, and the layout is custom drag-and-drop.  Here are the various widgets that can be used on a ScreenBoard (notice they can be placed anywhere on the dashboard):  
+![Image](https://user-images.githubusercontent.com/30754481/29114870-31b22de6-7cbb-11e7-9b1e-a96705122046.png)
 ### Snapshot and Annotation
 
 ## Alerting on your Data
