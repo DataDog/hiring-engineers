@@ -391,17 +391,17 @@ tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
     - **cd /var/www/html**  (to change to Apache directory)
     - **nano connect.php** (to create the following PHP script to connect to MySQL database):
 ```php
-&lt;?php
-$username = "iluvdatadog";
-$password = "*********";
-$hostname = "iluvdatadog.c2zwfrvpwfuo.us-east-1.rds.amazonaws.com:3306";
+<?php 
+$username = "iluvdatadog"; 
+$password = "yourpassword";
+$hostname = "yourhostameaddress";
 $dbname = "iluvdatadog";
 
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
-echo "Connected to MySQL using username - $username, host - $hostname&lt;br&gt;";
-$selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again.");
-?&gt;
+echo "Connected to MySQL using username - $username, host - $hostname<br>";
+$selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again.");
+?>
 ```
 
 **NOTE**:  The **$hostname** value is from the database endpoint copied above.
