@@ -287,7 +287,7 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
   ]}
 ```
 
-- Type first few letters of new policy name in search field to confirm success creation. Then select **Roles** from the left-hand navigation bar:  
+- Type first few letters of new policy name in the search field to confirm successful creation. Then select **Roles** from the left-hand navigation bar:  
 ![Image](https://user-images.githubusercontent.com/30754481/29098339-92a39100-7c64-11e7-961d-9a8ef0a495f6.png)  
 
 - Select [**Create new role**]:  
@@ -324,6 +324,14 @@ Setting up the Datadog integration with Amazon Web Services requires configuring
 
 - **AWS specific tags are automatically assigned!**
 ![Image](https://user-images.githubusercontent.com/30754481/29098467-1eac3210-7c65-11e7-87be-cefcdbcff8e6.png)
+
+- Tags can also be added to **/etc/dd-agent/datadog.conf** as follows:
+```
+# Set the host's tags (optional)  
+# tags: mytag, env:prod, role:database  
+tags: name:king_arthur, quest:seek_holy_grail, fav_color:blue
+```
+![Image](https://user-images.githubusercontent.com/30754481/29100965-c80ce26e-7c74-11e7-9b94-c5fd918c9f13.png)
 
 ## Create a **MySQL** instance
 
