@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  datadog-agent:
+    image: datadog/docker-dd-agent
+    volumes:
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /proc/:/host/proc/:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/dd-agent-conf.d:/conf.d:ro
+      - /opt/dd-agent-checks.d:/checks.d:ro
+    environment:
+      - API_KEY={Insert Your API Key} # Don't forget to replace this with your API_KEY
+      - SD_BACKEND=docker
+      - TAGS=docker-dd-agent,domain:stuffnthings.io,role:registry
+    ports:
+      - "9001:9001"
+      - "8125:8125"
+    networks:
+      - dd-agent-network
+
+networks:
+  dd-agent-network:
+    driver: bridge

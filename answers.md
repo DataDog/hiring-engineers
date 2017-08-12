@@ -9,12 +9,11 @@
     - [Installing and Launching a Docker Container](#installing-and-launching-a-docker-continer)
   - [Tagging Your VM](#tagging-your-vm)
   - [Installing & Monitoring PostgreSQL](#installing--monitoring-postgresql)
-  - [Installing & Monitoring Docker](#installing--monitoring-docker)
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
 - [Visualizing Data](#visualizing-data)
-  - [PostgreSQL Dashboard](#mongo-dashboard)
-  - [Snapshot and Annotation](#snapshot-and-annotation)
-- [Alerting on Data](#alerting-on-data)
+  - [PostgreSQL Dashboard](#postgresql-dashboard)
+  - [Snapshots](#snapshots)
+- [Alerting on your Data](#alerting-on-your-data)
   - [Create a Monitor](#create-a-monitor)
   - [Email Screenshot](#email-screenshot)
   - [Night Time Down Time](#night-time-down-time)
@@ -66,7 +65,7 @@ The Datadog-agent can also be added to existing docker deployments. Reasons for 
 
 At times it is much faster to pull a docker image that is set up to meet the monitoring requirements to a specific host or set of hosts you wish to monitor. Introducing a Datadog-agent container to a swarm configuration will make deploying and monitoring your docker stack a simple push button solution.
 
-* You can get a copy of the Datadog docker image with the following command.
+* You can get a copy of the official Datadog docker image with the following command.
 `docker pull datadog/docker-dd-agent`
 
 * Then once you have the imaged pulled go ahead and run it. Remember to change the API_KEY to your key.
@@ -80,6 +79,10 @@ At times it is much faster to pull a docker image that is set up to meet the mon
   -e SD_BACKEND=docker \
   -e TAGS=docker-dd-agent,domain:stuffnthings.io,role:registry \
   datadog/docker-dd-agent`
+
+* If those manual options don't see viable on a daily bases, try launching the docker container using [docker-compose](https://docs.docker.com/compose/install/). Just change directories to the datadog_docker/ and run the command below.
+
+`docker-compose up -d`
 
 ### Quick Docker Explanation
 * First the line `docker run -d --name dd-agent` will detach the container and then print the container's id and name the running container **dd-agent**.
@@ -96,10 +99,54 @@ At times it is much faster to pull a docker image that is set up to meet the mon
 * The final three lines are environment variables that fill in entries of the datadog.conf file. API key, tags, and autodiscovery configuration insertions.
 
 ## Tagging Your VM
+
+Tags make collecting, searching, filtering, and grouping hosts and their metrics to your monitoring easy. You can assign tags to your hosts by using the UI (User Interface), API, directly in your datadog.conf file and tags are also assigned through inheritance from an integration (e.g. #docker_version:17.06.0-ce is pulled from a docker integration).
+
+In these examples tags were assigned using the recommended method of directly modifying the datadog.conf.
+
+##### Qemu-KVM Ubuntu:
+
+Highlighted with a red circle are the tags that were manually modified in the datadog.conf file.
+![Qemu-KVM VM Datadog-agent](screenshots/host_map_lowkeyshift_ss.png)
+
+##### Agent Container on Ubuntu:
+
+In this example there was an environment variable introduced during the creation of the docker images. The docker environment variable allows the use of substitution within the datadog.conf. You can trigger the `TAGS` variable just how it is explained in the [Installing and Launching a Docker Container](#installing-and-launching-a-docker-continer).
+
+Highlighted with a red circle you can see the tags that were introduced during the docker run command.
+![Dockerized Datadog-agent](screenshots/host_map_gateway_ss.png)
+
 ## Installing & Monitoring PostgreSQL
-## Installing & Monitoring Docker
+
 ## Writing a Custom Agent Check
 
+In this custom check that has been placed in `/etc/dd-agent/checks.d` we are leveraging two features built into DogstatsD. The first being the AgentCheck and the second being the error logging. If any failures occur during the run of this custom check it will be sent to the datadog-agent logging.
+
+You can see the agent's logs by running the command below. It will be named based off the name of your check module.
+ `sudo /etc/init.d/datadog-agent info`
+
+```
+#!/bin/env python3
+
+from random import random
+from checks import AgentCheck
+
+class (AgentCheck):
+    def check(self, instance):
+        try:
+            self.gauge(test.support.random, random())
+            break
+        except Exception as e:
+            self.log.info(e)
+```
+
+## Visualizing Data
+### PostgreSQL Dashboard
+### Snapshots
+## Alerting on your Data
+### Create a Monitor
+### Email Screenshot
+### Night Time Down Time
 
 
 
@@ -114,8 +161,11 @@ An agent is a service that is constantly collecting data. The data the agent is 
 
 In my own words the Datadog agent is a "secret agent" out in the field collecting information Datadog "HQ" can keep tabs on difference hosts "targets". So if the target goes rogue (triggers a threshold) the agent will alert HQ so that it can alert the special forces to secure the target.
 
+> Bonus question #2: What is the difference between a timeboard and a screenboard?
 
-# Found syntax errors
+> Bonus question #3: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+
+# Documentation syntax errors
 
 ##### Currently
 `psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"
