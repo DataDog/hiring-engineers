@@ -5,27 +5,29 @@ DataDog Answer
 
 **I will expand on what others have already accomplished**
 
-Taking a step back i realized that anything on the internet can be monitored with the agent. I got the agent running flawlessly in minutes which was really nice. I am going to add to what others have already done but go in a slightly different approach seeing as how github user cklener has done a great job in answering the questions and explaining along the way. 
+Taking a step back i realized that anything on the internet or premise can be monitored with the agent. I got the agent running flawlessly in minutes which was really nice.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/metrics.png)
 
 **What can the product and agent do?**
 
-I can look at many graphs and metrics such as CPU usage over a specified time period, but knowing this let's go further. I have data is coming from a Vagrant VM but would love to setup AWS. An external key is provided and the setup was actually easy. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
+![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
+
+I can look at many graphs and metrics such as CPU usage over a specified time period, but knowing this let's go further. I have data is coming from a lcaol Vagrant VM but would love to setup AWS and get cloud monitoring setup. An external key is provided and the setup was a breeze. So far I have several datadog agents running with the metrics coming in from these 3 sources. 
 
 1. AWS including ec2 instances and disks. Just type in the API key, create a IAM role and you are AWS cloud monitoring.
 2. Datadog agent on Vagrant Ubuntu based VM
 3. Locally on a Macintosh running under OSX
 
-It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application. However under normal circumstances a customer would monitor a web server, a web application, a cluster, a hard drive, or something more granular. The agent basically communicates anything you would like back to be visualized on graphs, screenshot and emailed, or databased for future reporting and archiving purposes. There are many example yaml files to choose from.
+It really does not matter where the agent gets installed! You can even install it on any IOT device, or even Rasberry PI or Arduino, or a nuclear reactor or a dam. You could even alert on something like temperature or humidity or any 3rd party or custom application. However, under normal circumstances a customer would likely monitor a web server, a web application, a cluster, or perhaps hard drive space. 
 
-![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/linking-to_aws.png)
+The agent basically communicates any data you would like back to be visualized on graphs, screenshot and emailed, or databased for future reporting and archiving purposes. There are many example yaml files to choose from.
 
-I went ahead with the agent and installed in both locations using the same account access key unser same account on datadoghq.com. I also went ahead and installed a LAMP stack as well as mysql server under a very basic Vagrant image. This is a very easy to use system and I really do like using it. I took a slightly different approach to add to the discussion. I have also uploaded some of the tools that helped along the way to github. Docker is another solution.
+I went ahead with the agent and installed in both locations using the same account access key unser same account on datadoghq.com. I also went ahead and installed a LAMP stack as well as mysql server under a very basic Vagrant image. This is a very easy to use system and I really do like using it. I have also uploaded some of the tools that helped along the way to github. Docker is another solution that would work.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/downloadvagrant.png)
 
-**Autoinstall the Datadog Agent, Spin up Vagrant using Ubuntu based LAMP stack, in one EZ shell script**
+**Autoinstall the Datadog Agent, Spin up Vagrant using Ubuntu based LAMP stack, in one easy shell script**
 
 	#!/bin/bash
 	mkdir datadog
@@ -48,7 +50,9 @@ I went ahead with the agent and installed in both locations using the same accou
 
 **Integrate something to monitor, I will be including a webserver and a database server**
 
-I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of. They even have a step by step of commands needed to integrate. Whether it is bare metal, virtual machines or even communicating to my servers in the cloud is pretty easy to do with no knowledge needed depending on cups of coffee consumed. Datadog is making it easier for people to monitor infrastructure and web applications, that is for sure. Maybe these screenshots I took will help others along the way. Vagrant is up and running using a precise64 base is the image we went with. The agent has infinite possibilities beyond normal metrics like CPU and disk or memory utilization.  The agent is like your favorite dog playing fetch. Now i have this agent, that can via the webapp at datadoghq.com monitor more than just my cpu. I can write my own custom itegrations, or use ones that datadog has written just like MySQL. I am going to be using a Vagrant VM, install virtualbox locally and get the datadog agent installed to monitor mysqld. So far everything has gone smoothly.
+I headed on over to datadoghq.com and created an account that took care of the explaining of most of the integrations. The icons are arranged nicely and mention every devops tool i have ever heard of and more. They even have a step by step of commands needed to integrate. 
+
+Whether it is bare metal, virtual machines or even communicating to my servers in the cloud is pretty easy to do with no knowledge needed depending on cups of coffee consumed. Datadog is making it easier for people to monitor infrastructure and web applications, that is for sure.  Vagrant is up and running using a precise64 base is the image we went with. The agent has infinite possibilities beyond normal metrics like CPU and disk or memory utilization.  The agent is like your favorite dog playing fetch. I can also write my own custom itegrations, or use ones that datadog has written just like the MySQL exampl provided. I am going to be using a Vagrant VM, install virtualbox locally and get the datadog agent installed to monitor mysqld. So far everything has gone smoothly.
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/installing_virtualbox_mac.png)
 
@@ -68,7 +72,7 @@ Here is an example of an AWS alert with team notifications
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/CustomIntegration.png)
 
-Setting up a basic monitor with tags
+Setting up a basic monitor with tags using widgets centered around time periods
 
 ![ScreenShot](https://raw.github.com/pmcbrien/hiring-engineers/master/ddog/Monitor.png)
 
@@ -78,9 +82,9 @@ https://app.datadoghq.com/dash/336506?live=true&page=0&is_auto=false&from_ts=150
 
 Bonus: Difference between Timeboard and Screenboard.
 
-TimeBoards are used for data correclation so you can make decisions based on grid like data from diffrent sources. They are very specific.
+A timeboard is an extremely robust tool for viewing top level metrics of a system for correlation of data and troubleshooting.
 
-Screenboards can be shared as a whole live and as a read-only entity and are very flexible in terms of the layout. They can also be a summary of datapoints from different places.
+Screenboards are for sharing data with others
 
 Take a look at my graph going over .9
 
