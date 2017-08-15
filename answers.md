@@ -6,7 +6,7 @@
 - [Collecting Your Data](#collecting-your-data)
   - [Installing Datadog-Agent on Ubuntu](#installing-datadog-agent-on-ubuntu)
     - [Installing an Agent Directly](#installing-an-agent-directly)
-    - [Installing and Launching a Docker Container](#installing-and-launching-a-docker-continer)
+    - [Launching a Docker Container](#installing-and-launching-a-docker-continer)
   - [Tagging Your VM](#tagging-your-vm)
   - [Installing & Monitoring PostgreSQL](#installing--monitoring-postgresql)
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
@@ -32,7 +32,7 @@ To install KVM on Ubuntu follow the link below:
 
 Once KVM is installed here is a small script that will install the latest version of the Ubuntu LTS iso. Then begin creating the Ubuntu vm with memory=1GB, cpu=1, and storage=15GB. To complete the install a vnc window will appear. Follow the Ubuntu guided install to finish building your vm.
 
-`cd /var/lib/libvirt/boot/ && \
+```cd /var/lib/libvirt/boot/ && \
 sudo wget https://www.ubuntu.com/download/server/thank-you?version=16.04.3&architecture=amd64 && \
 sudo virt-install \
 --virt-type=kvm \
@@ -46,7 +46,8 @@ sudo virt-install \
 --network=bridge=br0,model=virtio \
 --network=bridge=br1,model=virtio \
 --graphics vnc \
---disk path=/var/lib/libvirt/images/ubuntu_xenial.qcow2,size=15,bus=virtio,format=qcow2`
+--disk path=/var/lib/libvirt/images/ubuntu_xenial.qcow2,size=15,bus=virtio,format=qcow2
+```
 
 # Collecting Your Data
 
@@ -59,7 +60,7 @@ There is a quick setup one-line install for each operating system platform. As a
 
 `DD_API_KEY={Insert Your API Key} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"`
 
-### Installing and Launching Agent in Docker Container
+### Launching Agent in Docker Container
 
 The Datadog-agent can also be added to existing docker deployments. Reasons for using a docker container apposed to directly installing the agent are speed, compatibility and easy of deploy.
 
@@ -70,7 +71,7 @@ At times it is much faster to pull a docker image that is set up to meet the mon
 
 * Then once you have the imaged pulled go ahead and run it. Remember to change the API_KEY to your key.
 
-`docker run -d --name dd-agent \
+```docker run -d --name dd-agent \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   -v /proc/:/host/proc/:ro \
   -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
@@ -78,7 +79,8 @@ At times it is much faster to pull a docker image that is set up to meet the mon
   -e API_KEY={Insert Your API Key} \
   -e SD_BACKEND=docker \
   -e TAGS=docker-dd-agent,domain:stuffnthings.io,role:registry \
-  datadog/docker-dd-agent`
+  datadog/docker-dd-agent
+  ```
 
 * If those manual options don't see viable on a daily bases, try launching the docker container using [docker-compose](https://docs.docker.com/compose/install/). Just change directories to the datadog_docker/ and run the command below.
 
@@ -117,28 +119,31 @@ Highlighted with a red circle you can see the tags that were introduced during t
 ![Dockerized Datadog-agent](screenshots/host_map_gateway_ss.png)
 
 ## Installing & Monitoring PostgreSQL
+Rather than installing PostgreSQL manually you can use the install script located here at [scripts/install_postgresql.sh](scripts/install_postgresql.sh).
+
+This script covers all the various areas such as:
+1. Postgresql installation
+2. Creation of a database, user and alteration of the user's permissions
+3. Testing user connection
+4. Dynamically writting the postgres.yaml file
+
+Lines 74 & 86 may need to be tab indented before running script. This is dependent on the settings being used by the editor. I recommend you turn off any "tab to space" modifiers you may have enabled.
 
 ## Writing a Custom Agent Check
-
-In this custom check that has been placed in `/etc/dd-agent/checks.d` we are leveraging two features built into DogstatsD. The first being the AgentCheck and the second being the error logging. If any failures occur during the run of this custom check it will be sent to the datadog-agent logging.
-
-You can see the agent's logs by running the command below. It will be named based off the name of your check module.
- `sudo /etc/init.d/datadog-agent info`
+Learning to use the checks() python library to write this simple customer agent was easy grasp. Thanks to [Datadog's Documentation](https://docs.datadoghq.com/guides/agent_checks/) I was able to quickly find `self.gauge()` and learn of its uses.
 
 ```
 #!/bin/env python3
-
 from random import random
 from checks import AgentCheck
 
-class (AgentCheck):
+
+class RandomTest(AgentCheck):
+
     def check(self, instance):
-        try:
-            self.gauge(test.support.random, random())
-            break
-        except Exception as e:
-            self.log.info(e)
+        self.gauge('test.support.random', random())
 ```
+![Customer Agent Check](screenshots/custom_agent_check.png)
 
 ## Visualizing Data
 ### PostgreSQL Dashboard
@@ -162,6 +167,10 @@ An agent is a service that is constantly collecting data. The data the agent is 
 In my own words the Datadog agent is a "secret agent" out in the field collecting information Datadog "HQ" can keep tabs on difference hosts "targets". So if the target goes rogue (triggers a threshold) the agent will alert HQ so that it can alert the special forces to secure the target.
 
 > Bonus question #2: What is the difference between a timeboard and a screenboard?
+
+TimeBoard metrics and event graphs are always kept in sync by time. These types of graphs are great for being able to look back at what time an event or alert occurred to aid in troubleshooting. They are also form fitted to a layout. Sharing these graphs can be done by editing them and getting an iFrame of just the graph to be shared.
+
+ScreenBoards display various types of data such as host up time or storage thresholds. Anytime you see live displays of graphs and metrics in an IT office you can thank ScreenBoards. ScreenBoards allow for a mixture of widgets and timeframes that are drag & drop to make it easy and customizable. Sharing a ScreenBoard can be done much more publicly generating a public URL. This will generate a URL which gives live and read-only access to just the contents of that ScreenBoard.
 
 > Bonus question #3: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
