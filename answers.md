@@ -30,7 +30,8 @@ To install KVM on Ubuntu follow the link below:
 
 Once KVM is installed here is a small script that will install the latest version of the Ubuntu LTS iso. Then begin creating the Ubuntu vm with memory=1GB, cpu=1, and storage=15GB. To complete the install a vnc window will appear. Follow the Ubuntu guided install to finish building your vm.
 
-```cd /var/lib/libvirt/boot/ && \
+```
+cd /var/lib/libvirt/boot/ && \
 sudo wget https://www.ubuntu.com/download/server/thank-you?version=16.04.3&architecture=amd64 && \
 sudo virt-install \
 --virt-type=kvm \
