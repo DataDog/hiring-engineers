@@ -126,6 +126,7 @@ This script covers all the various areas such as:
 2. Creation of a database, user and alteration of the user's permissions
 3. Testing user connection
 4. Dynamically writting the postgres.yaml file
+5. Restarting the Datadog-agent
 
 Lines 74 & 86 may need to be tab indented before running script. This is dependent on the settings being used by the editor. I recommend you turn off any "tab to space" modifiers you may have enabled.
 
