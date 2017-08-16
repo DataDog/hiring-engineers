@@ -69,7 +69,7 @@ At times it is much faster to pull a docker image that is set up to meet the mon
 
 * Then once you have the imaged pulled go ahead and run it. Remember to change the API_KEY to your key.
 
-```docker run -d --name dd-agent \
+``` docker run -d --name dd-agent \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   -v /proc/:/host/proc/:ro \
   -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
