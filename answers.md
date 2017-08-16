@@ -153,8 +153,9 @@ Cloned PostgreSQL dashboard and replicated the test.support.random custom agent 
 ![Custom Agent Check](screenshots/cloned_test_support_random.png)
 
 ### PostgreSQL Cloned Dashboard
-You can view the cloned dashboard by clicking [here](https://app.datadoghq.com/dash/341722/edwin-postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1502849549762&to_ts=1502853149762&tile_size=m)
-During the @notify and annotation around my passed threshold of .90%.
+You can view the cloned dashboard by clicking [here](https://app.datadoghq.com/dash/341722/edwin-postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1502849549762&to_ts=1502853149762&tile_size=m).
+
+Here is the notification and annotation around the passed threshold of .90%.
 ![Notifying admin to chart threshold](screenshots/snapshot_clone_test_notify.png)
 ![Zoomed notification](screenshots/zoomed_shot.png)
 
