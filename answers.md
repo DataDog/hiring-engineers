@@ -12,11 +12,9 @@
   - [Writing a Custom Agent Check](#writing-a-custom-agent-check)
 - [Visualizing Data](#visualizing-data)
   - [PostgreSQL Dashboard](#postgresql-dashboard)
-  - [Snapshots](#snapshots)
 - [Alerting on your Data](#alerting-on-your-data)
-  - [Create a Monitor](#create-a-monitor)
+  - [Creating a Monitor with Bonus Points](#create-a-monitor-with-bonus-points)
   - [Email Screenshot](#email-screenshot)
-  - [Night Time Down Time](#night-time-down-time)
 - [Conclusion](#conclusion)
 - [Bonus Questions](#bonus-questions)
 - [Found Syntax Errors](#found-syntax-errors)
@@ -62,7 +60,7 @@ There is a quick setup one-line install for each operating system platform. As a
 
 ### Launching Agent in Docker Container
 
-The Datadog-agent can also be added to existing docker deployments. Reasons for using a docker container apposed to directly installing the agent are speed, compatibility and easy of deploy.
+The Datadog-agent can also be added to existing docker deployments. Reasons for using a docker container apposed to directly installing the agent are speed, compatibility and easy of deploy. You can view this docker datadog-agent's dashboard [here](https://app.datadoghq.com/screen/integration/docker?tpl_var_scope=host%3Agateway).
 
 At times it is much faster to pull a docker image that is set up to meet the monitoring requirements to a specific host or set of hosts you wish to monitor. Introducing a Datadog-agent container to a swarm configuration will make deploying and monitoring your docker stack a simple push button solution.
 
@@ -130,7 +128,7 @@ This script covers all the various areas such as:
 Lines 74 & 86 may need to be tab indented before running script. This is dependent on the settings being used by the editor. I recommend you turn off any "tab to space" modifiers you may have enabled.
 
 ## Writing a Custom Agent Check
-Learning to use the checks() python library to write this simple customer agent was easy grasp. Thanks to [Datadog's Documentation](https://docs.datadoghq.com/guides/agent_checks/) I was able to quickly find `self.gauge()` and learn of its uses.
+Learning to use the checks() python library to write this simple custom agent was easy grasp. Thanks to [Datadog's Documentation](https://docs.datadoghq.com/guides/agent_checks/) I was able to quickly find `self.gauge()` and learn of its uses.
 
 ```
 #!/bin/env python3
@@ -143,17 +141,31 @@ class RandomTest(AgentCheck):
     def check(self, instance):
         self.gauge('test.support.random', random())
 ```
-![Customer Agent Check](screenshots/custom_agent_check.png)
+![Custom Agent Check](screenshots/custom_agent_check.png)
 
 ## Visualizing Data
-### PostgreSQL Dashboard
-### Snapshots
+
+Cloned PostgreSQL dashboard and replicated the test.support.random custom agent check.
+![Custom Agent Check](screenshots/clone_test_support_random.png)
+
+### PostgreSQL Cloned Dashboard
+You can view the cloned dashboard by clicking [here](https://app.datadoghq.com/dash/341722/edwin-postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1502849549762&to_ts=1502853149762&tile_size=m)
+During the @notify and annotation around my passed threshold of .90%.
+![Notifying admin to chart threshold](screenshots/snapshot_clone_test_notify.png)
+![Zoomed notification](screenshots/zoomed_shot.png)
+
+
 ## Alerting on your Data
-### Create a Monitor
+
+### Creating a Monitor with Bonus Points
+
+Using multi-alert is perfect for configuring monitoring on a wide range of hosts by using tags.
+Notice the link to the old dashboard added in with markdown.
+![Monitor creation with multi-alert](screenshots/monitor_with_multialert.png)
+
 ### Email Screenshot
-### Night Time Down Time
-
-
+This is the notification email sent when the .90 threshold is triggered.
+![Email notification](screenshots/notification_email.png)
 
 # Conclusion
 This project was one of the most fun technical assessments I have ever worked on. It opened my eyes to how robust and easy to use Datadog software can be. I'm really eager to receive more complicated problems that can really push my limits to the next level.
@@ -170,9 +182,9 @@ In my own words the Datadog agent is a "secret agent" out in the field collectin
 
 TimeBoard metrics and event graphs are always kept in sync by time. These types of graphs are great for being able to look back at what time an event or alert occurred to aid in troubleshooting. They are also form fitted to a layout. Sharing these graphs can be done by editing them and getting an iFrame of just the graph to be shared.
 
-ScreenBoards display various types of data such as host up time or storage thresholds. Anytime you see live displays of graphs and metrics in an IT office you can thank ScreenBoards. ScreenBoards allow for a mixture of widgets and timeframes that are drag & drop to make it easy and customizable. Sharing a ScreenBoard can be done much more publicly generating a public URL. This will generate a URL which gives live and read-only access to just the contents of that ScreenBoard.
+ScreenBoards display various types of data such as host up time or storage thresholds. Anytime you see live displays of graphs and metrics in an IT office you can thank ScreenBoards. ScreenBoards allow for a mixture of widgets and timeframes that are drag & drop to make it easy and customizable. Sharing a ScreenBoard can be done much more publicly generating a public URL. This will generate a URL which gives a live and read-only access to just the contents of that ScreenBoard.
 
-> Bonus question #3: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+> Bonus question #3: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 # Documentation syntax errors
 

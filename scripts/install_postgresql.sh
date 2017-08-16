@@ -1,6 +1,8 @@
 #!/bin/bash
 # Installs PostgreSQL, Creates a user & Configures Datadog integration
 # It is assumed that datadog is already installed prior to running this script
+# Main reason for this style of script was to avoid hard coding passwords and allows
+# for reusability. 
 
 set -e
 
