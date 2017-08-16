@@ -149,7 +149,8 @@ class RandomTest(AgentCheck):
 ## Visualizing Data
 
 Cloned PostgreSQL dashboard and replicated the test.support.random custom agent check.
-![Custom Agent Check](screenshots/clone_test_support_random.png)
+
+![Custom Agent Check](screenshots/cloned_test_support_random.png)
 
 ### PostgreSQL Cloned Dashboard
 You can view the cloned dashboard by clicking [here](https://app.datadoghq.com/dash/341722/edwin-postgres---overview-cloned?live=true&page=0&is_auto=false&from_ts=1502849549762&to_ts=1502853149762&tile_size=m)
