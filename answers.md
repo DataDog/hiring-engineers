@@ -142,7 +142,9 @@ In order to learn how to write an Agent check, I read the guide provided on the 
 I have cloned my database integration, mongodb, and have added the database metrics mongodb.connections.available and mongodb.network.numrequestsps along with test.support.random. I've included screenshots for my cloned database integration:
 
 **screenboard: AndrewMongoDB**
+
 [Public Url](https://p.datadoghq.com/sb/bc9b95d7a-c54fd9b176)
+
 ![Alt text](/screenshots/level2_mongo_screenboard.png?raw=true) 
 
 **timeboard:  Andrew's TimeBoard 15 Aug 2017 16:17**
