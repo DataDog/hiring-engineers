@@ -21,18 +21,18 @@ A screen shot of the Host Map can be found here:
 
 ## Level 2 - Visualizing your Data
 
-Bonus question: What is the difference between a timeboard and a screenboard?
+> Bonus question: What is the difference between a timeboard and a screenboard?
 
 The difference between a timeboard and a screenboard is that a timeboard represents a series of one or more time series graphs, while a screenboard can contain a mashup of various objects that may be related or unrelated in context and format.
 
-A timeboard contains one more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required (i.e. enabling you "align the bumps" to understand performance relationships).
+A timeboard contains one or more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required (i.e. enabling you "align the bumps" to understand performance relationships).
 
 A screenboard can contain various objects that do not need to be related to one another in time context, and they are comprised of any number of widgets that can be dragged and dropped onto the screen to providing the author with a custom ability to present relevant information.  Screenboards can be shared in whole as well (while timeboards cannot).
 
-Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
+> Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
-A screen shot of this email can be found here:  
-https://www.dropbox.com/s/bepjljwv2icuqoe/Screenshot%202017-08-16%2022.01.40.png?dl=0
+A screen shot of this email can be found here.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
+![threshold](https://github.com/dbirck/hiring-engineers/blob/master/snapshot.png)
 
 -----
 
