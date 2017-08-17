@@ -66,6 +66,7 @@ In order to learn how to write an Agent check, I read the guide provided on the 
   ```
 
   **http.py**
+  ```python
   import time
   import requests
 
@@ -118,7 +119,6 @@ In order to learn how to write an Agent check, I read the guide provided on the 
           if check.has_events():
               print 'Events: %s' % (check.get_events())
           print 'Metrics: %s' % (check.get_metrics())
-
     ```
 
     **http.yaml**
