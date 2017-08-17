@@ -202,7 +202,7 @@ ScreenBoards display various types of data such as host up time or storage thres
  && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ ||
 echo -e "\e[0;31mCannot connect to Postgres\e[0m"`
 
-There are two mistakes in this script that tests the connection of the read only user "datadog" in a PostgreSQL integration.
+There are two mistakes in this script that tests the connection of the read only user "datadog" in a PostgreSQL integration. The documentation can be found [here](https://docs.datadoghq.com/integrations/postgresql/).
 1. There is no trailing `\` at the end of the first line. This will cause the first line to complete without executing the '&&' that ties the lines together. Normally this wouldn't be a problem if the script was on a single line, but to make this truely copy & paste friendly the trailing `\` is really necessary.
 2. The next error here is on the second line. The `|| \ ||` will fail. You can't test to see if an OR will fail to another OR. The solution is to remove the `||` at the end.
 
