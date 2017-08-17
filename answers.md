@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-#Level 1 - Collecting your Data
+# Level 1 - Collecting your Data
 
 *Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.*
 
@@ -47,7 +47,7 @@ In order to learn how to write an Agent check, I read the guide provided on the 
       [{}]
   ```
 
-  ##Code I used from Datadog tutorial.
+  ## Code I used from Datadog tutorial.
 
   **hello.py**
   ```python
@@ -135,7 +135,7 @@ In order to learn how to write an Agent check, I read the guide provided on the 
         -   url: http://httpbin.org/status/400
     ```
 
-#Level 2 - Visualizing your Data
+# Level 2 - Visualizing your Data
 
 *Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.*
 
@@ -159,7 +159,7 @@ I emailed a snapshot of test.support.random going above 0.90 to the email as0424
 ![Alt text](/screenshots/level2_snapshot_notification_email.png?raw=true)
 
 
-#Level 3 - Alerting on your data
+# Level 3 - Alerting on your data
 
 *Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes. Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.*
 *Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.*
