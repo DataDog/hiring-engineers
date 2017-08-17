@@ -157,6 +157,8 @@ You can view the cloned dashboard by clicking [here](https://app.datadoghq.com/d
 
 Here is the notification and annotation around the passed threshold of .90%.
 ![Notifying admin to chart threshold](screenshots/snapshot_clone_test_notify.png)
+
+This is the same graph with an additional annotation in the larger view.
 ![Zoomed notification](screenshots/zoomed_shot.png)
 
 
@@ -190,6 +192,8 @@ TimeBoard metrics and event graphs are always kept in sync by time. These types 
 ScreenBoards display various types of data such as host up time or storage thresholds. Anytime you see live displays of graphs and metrics in an IT office you can thank ScreenBoards. ScreenBoards allow for a mixture of widgets and timeframes that are drag & drop to make it easy and customizable. Sharing a ScreenBoard can be done much more publicly generating a public URL. This will generate a URL which gives a live and read-only access to just the contents of that ScreenBoard.
 
 > Bonus question #3: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![System Downtime](screenshots/System_downtime.png)
 
 # Documentation syntax errors
 
