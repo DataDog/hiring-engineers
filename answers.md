@@ -16,9 +16,8 @@ A high level architecture diagram of Datadog can be found here:
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-A screen shot of this email can be found here:  https://www.dropbox.com/s/uw7hqk5by0s2jqi/datadog-host-map.png
-
------
+A screen shot of the Host Map can be found here:  
+![host map](https://github.com/dbirck/hiring-engineers/blob/master/datadog-host-map.png)
 
 ## Level 2 - Visualizing your Data
 
