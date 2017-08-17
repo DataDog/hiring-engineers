@@ -25,7 +25,7 @@ A screen shot of the Host Map can be found here:
 
 The difference between a timeboard and a screenboard is that a timeboard represents a series of one or more time series graphs, while a screenboard can contain a mashup of various objects that may be related or unrelated in context and format.
 
-A timeboard contains one or more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required (i.e. enabling you "align the bumps" to understand performance relationships).
+A timeboard contains one or more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required.  Timeboards allow you to visually "align the bumps" in order to better understand performance relationships.
 
 A screenboard can contain various objects that do not need to be related to one another in time context, and they are comprised of any number of widgets that can be dragged and dropped onto the screen to providing the author with a custom ability to present relevant information.  Screenboards can be shared in whole as well (while timeboards cannot).
 
