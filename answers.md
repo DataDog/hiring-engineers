@@ -34,21 +34,6 @@ A screenboard can contain various objects that do not need to be related to one 
 A screen shot of this email can be found here.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
 ![threshold](https://github.com/dbirck/hiring-engineers/blob/master/snapshot.png)
 
------
-
-Level 3 - Alerting on your Data
-
-This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-
-A screen shot of this email can be found here:  
-https://www.dropbox.com/s/63wa6fal9914r0k/Screenshot 2017-08-16 21.44.34.png?dl=0
-
-Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-A screen shot of this email can be found here:
-
-https://www.dropbox.com/s/bf82ld4p2t4yj2p/Screenshot 2017-08-16 21.42.46.png?dl=0
-
 ## Level 3 - Alerting on your Data
 
 >This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
