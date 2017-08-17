@@ -31,16 +31,15 @@ A screenboard can contain various objects that do not need to be related to one 
 
 > Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
-A screen shot of this email can be found here.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
+A screen shot of this email can be found below.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
 ![threshold](https://github.com/dbirck/hiring-engineers/blob/master/snapshot.png)
 
 ## Level 3 - Alerting on your Data
 
 >This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-A screen shot of this email can be found here:  
-
-![my email](http://i.imgur.com/4UH2N1o.png)
+A screen shot of this email can be found below.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
+![metric alert](https://github.com/dbirck/hiring-engineers/blob/master/metric-alert.png)
 
 >Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
