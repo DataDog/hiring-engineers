@@ -6,7 +6,7 @@ Your answers to the questions go here.
 
 I signed up successfully and included a screenshot of the Agent reporting metrics from my local machine.
 
-![Alt text](/screenshots/level1_agent_rept_metrics.png?raw=true)
+![Alt text](/screenshots/level1_agent_rep_metrics.png?raw=true)
 
 *Bonus: In your own words, what is the Agent?*
 
