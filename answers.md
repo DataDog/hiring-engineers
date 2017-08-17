@@ -119,21 +119,21 @@ In order to learn how to write an Agent check, I read the guide provided on the 
           if check.has_events():
               print 'Events: %s' % (check.get_events())
           print 'Metrics: %s' % (check.get_metrics())
-    ```
+  ```
 
-    **http.yaml**
-    ```YAML
-    init_config:
-      default_timeout: 5
+  **http.yaml**
+  ```YAML
+  init_config:
+    default_timeout: 5
 
-    instances:
-        -   url: https://google.com
+  instances:
+      -   url: https://google.com
 
-        -   url: http://httpbin.org/delay/10
-            timeout: 8
+      -   url: http://httpbin.org/delay/10
+          timeout: 8
 
-        -   url: http://httpbin.org/status/400
-    ```
+      -   url: http://httpbin.org/status/400
+  ```
 
 # Level 2 - Visualizing your Data
 
