@@ -44,6 +44,13 @@ A screen shot of this email can be found below.  Note:  I actually did not recei
 
 >Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-A screen shot of this email can be found below.  In this case, I had created a second Datadog user.  By mentioning @ them, I received the email immediately.
+A screen shot of this email can be found below.  In this case, I had created a second Datadog user.  By mentioning @ this new user, I then received the email immediately (a nice learning experience here!).
 
 ![downtime notice](https://github.com/dbirck/hiring-engineers/blob/master/downtime.png)
+
+## A bit more to share around integrations...
+
+During this excercise, I also configured bi-directional integration with PagerDuty.  This combination provides an excellent workflow between these 2 services.  
+
+A screenshots can be found below:
+![PD1](https://github.com/dbirck/hiring-engineers/blob/master/pd1.png)
