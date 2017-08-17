@@ -27,7 +27,7 @@ The difference between a timeboard and a screenboard is that a timeboard represe
 
 A timeboard contains one or more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required.  Timeboards allow you to visually "align the bumps" in order to better understand performance relationships.
 
-A screenboard can contain various objects that do not need to be related to one another in time context, and they are comprised of any number of widgets that can be dragged and dropped onto the screen to providing the author with a custom ability to present relevant information.  Screenboards can be shared in whole as well (while timeboards cannot).
+A screenboard can contain various objects that do not need to be related to one another in time context.  They are comprised of any number of widgets that can be dragged and dropped onto the screen to provide the author with customization options to present relevant information as desired.  Screenboards can be shared in whole as well (while timeboards cannot).
 
 > Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
