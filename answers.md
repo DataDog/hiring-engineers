@@ -38,10 +38,10 @@ A screen shot of this email can be found below.  Note:  I actually did not recei
 
 >This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
-A screen shot of this email can be found below.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user.  
+A screen shot of this email can be found below.  Note:  I actually did not receive this email immediately as my @notification was linked to my only Datadog email/admin user. 
 ![metric alert](https://github.com/dbirck/hiring-engineers/blob/master/metric-alert.png)
 
 >Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-A screen shot of this email can be found here:
-
+A screen shot of this email can be found below.  In this case, I had created a second, new Datadog user.  By mentioning @ them, I received the email immediately.
+![downtime notice](https://github.com/dbirck/hiring-engineers/blob/master/downtime.png)
