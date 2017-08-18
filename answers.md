@@ -50,7 +50,7 @@ A screen shot of this email can be found below.  **Note:**  In this case, I had 
 
 ## A bit more to share around integrations...
 
-During this excercise, I also configured bi-directional integration with PagerDuty.  This combination of functionality delivers an excellent workflow between the 2 services.  
+During this excercise, I also configured bi-directional integration with a popular incident management/notificaiton service.  This combination of functionality delivers an excellent workflow between the 2 services.
 
 A screenshot can be found below:
 ![PD1](https://github.com/dbirck/hiring-engineers/blob/master/pd1.png)
