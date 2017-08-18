@@ -31,6 +31,15 @@ This process was straighforward and easy to follow due to the clear instructions
 
 >Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
+By following the example instructions provided and replicating the file configurations for the test.support.random metric, the random value generator worked correctly and transmitted the samples to Datadog correctly.  I did need to work through this a few times, and the following command was very helpful in determining when it started to work:
+
+    sudo -u dd-agent dd-agent check <CHECK_NAME>
+
+I've included those 2 files with this submission:
+
+    /etc/dd-agent/checks.d/support.py
+    /etc/dd-agent/conf.d/support.yaml
+
 ## Level 2 - Visualizing your Data
 
 > Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
