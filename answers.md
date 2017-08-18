@@ -23,7 +23,7 @@ A screen shot of the Host Map can be found here:
 
 > Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-A screen shot of my cloned database dashboard can be found here.  It contains graphs that display MySQL performance as well as my test.support.random metric:  
+A screen shot of my cloned database dashboard can be found here.  It contains graphs that display MySQL performance and my test.support.random metric in the lower right corner:  
 ![host map](https://github.com/dbirck/hiring-engineers/blob/master/my-custom-dashboard.png)
 
 > Bonus question: What is the difference between a timeboard and a screenboard?
