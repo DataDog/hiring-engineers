@@ -24,7 +24,7 @@ A screen shot of the Host Map can be found here:
 > Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
 A screen shot of my cloned database dashboard can be found here.  It contains graphs that display MySQL performance and my test.support.random metric in the lower right corner:  
-![host map](https://github.com/dbirck/hiring-engineers/blob/master/my-custom-dashboard.png)
+![cloned dashboard](https://github.com/dbirck/hiring-engineers/blob/master/my-custom-dashboard.png)
 
 > Bonus question: What is the difference between a timeboard and a screenboard?
 
@@ -33,6 +33,9 @@ The difference between a timeboard and a screenboard is that a timeboard represe
 A timeboard contains one or more graphs, each of which displays performance data plotted over the same time period (i.e. all graphs are always scoped to the same time) for comparison purposes and context in situations where troubleshooting is required.  Timeboards allow you to visually "align the bumps" in order to better understand performance relationships.
 
 A screenboard can contain various objects that do not need to be related to one another in time context.  They are comprised of any number of widgets that can be dragged and dropped onto the screen to provide the author with many customization options to present relevant information as desired.  Screenboards can be shared in whole as well (while timeboards cannot).
+
+An screenshot of a screenboard that I created during this excercise is found below:
+![screenboard]()
 
 > Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
