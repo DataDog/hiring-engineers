@@ -25,6 +25,12 @@ I've included a copy of my datadog.conf file for reference.  The section within 
 A screen shot of the Host Map can be found here:  
 ![host map](https://github.com/dbirck/hiring-engineers/blob/master/datadog-host-map.png)
 
+>Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+This process was straighforward and easy to follow due to the clear instructions provided when enabling the integration.  
+
+>Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+
 ## Level 2 - Visualizing your Data
 
 > Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
