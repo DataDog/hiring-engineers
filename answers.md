@@ -16,7 +16,7 @@ A high level architecture diagram of Datadog can be found here:
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-I've included a copy of my datadog.conf file for reference.  The lines within this file that I changed (30-32) look like this:
+I've included a copy of my datadog.conf file for reference.  The section within this file that I modified (30-32) looks like this:
 
     # Set the host's tags (optional)
     # tags: mytag, env:prod, role:database
