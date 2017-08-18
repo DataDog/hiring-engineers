@@ -34,7 +34,7 @@ A timeboard contains one or more graphs, each of which displays performance data
 
 A screenboard can contain various objects that do not need to be related to one another in time context.  They are comprised of any number of widgets that can be dragged and dropped onto the screen to provide the author with many customization options to present relevant information as desired.  Screenboards can be shared in whole as well (while timeboards cannot).
 
-An screenshot of a screenboard that I created during this excercise is found below:
+A screenshot of a screenboard that I created during this excercise is found below:
 ![screenboard]()
 
 > Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
