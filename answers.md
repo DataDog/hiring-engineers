@@ -6,11 +6,11 @@ The Datadog agent is software that is deployed onto an operating system for the 
 
 Because the Datadog agent has access to the local OS, it is able to provide a detailed view of the system.   Additionally, as the agent is onboard the host, there is no loss of data when the agent loses connectivity to Datadog.  The agent is also lightweight in its CPU/memory/disk footprint, while also offering action / command based capabilities in addition to the aforementioned data collection features (i.e. restart a process, reboot, etc.).
 
-Some organizations may be “anti-agent” for any number of reasons.  Datadog understands this is the case for some environments, and as a result, an agent-optional approach can be taken whereby only a single Datadog agent needs to be deployed, from which remote monitoring metrics can be collected.    Some examples of elements where agentless data collection is applicable includes the monitoring of hypervisors, network devices and more.  Cloud environments such as AWS can be monitored remotely via their API, or Datadog agents can be deployed on hosts for more granular and timely data collection.
+Some organizations may be “anti-agent” for any number of reasons.  Datadog understands this is the case for some environments, and as a result, an agent-optional approach can be taken whereby only a single Datadog agent needs to be deployed, from which remote monitoring metrics can be collected.    Some examples of elements where agentless data collection is applicable include the monitoring of hypervisors, network devices and more.  Cloud environments such as AWS can be monitored remotely via their API, or Datadog agents can be deployed on hosts for more granular and timely data collection.
 
 To summarize, by strategically deploying Datadog agents across your environment, you can easily monitor local or remote systems, making this architecture ideal for managing cloud or hybrid infrastructures.
 
-A high level architecture diagram of Datadog can be found here:  
+A high-level architecture diagram of Datadog can be found here:  
 
 ![arch](https://github.com/dbirck/hiring-engineers/blob/master/arch-overview.png)
 
@@ -27,7 +27,7 @@ A screen shot of the Host Map can be found here:
 
 >Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-This process was straighforward and easy to follow due to the clear instructions provided when enabling the integration.  
+This process was straightforward and easy to follow due to the clear instructions provided when enabling the integration.  
 
 >Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
@@ -55,7 +55,7 @@ A timeboard contains one or more graphs, each of which displays performance data
 
 A screenboard can contain various objects that do not need to be related to one another in time context.  They are comprised of any number of widgets that can be dragged and dropped onto the screen to provide the author with many customization options to present relevant information as desired.  Screenboards can be shared in whole as well (while timeboards cannot).
 
-A screenshot of a screenboard that I created during this excercise is found below:
+A screenshot of a screenboard that I created during this exercise is found below:
 ![screenboard](https://github.com/dbirck/hiring-engineers/blob/master/my-screenboard.png)
 
 > Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
@@ -79,7 +79,7 @@ A screen shot of this email can be found below.  **Note:**  In this case, I had 
 
 ## A bit more to share around integrations...
 
-During this excercise, I also configured bi-directional integration with a popular incident management/notification product.  This combination of functionality delivers an excellent workflow between the 2 services.
+During this exercise, I also configured bi-directional integration with a popular incident management/notification product.  This combination of functionality delivers an excellent workflow between the 2 services.
 
 A screenshot can be found below:
 ![PD1](https://github.com/dbirck/hiring-engineers/blob/master/pd1.png)
