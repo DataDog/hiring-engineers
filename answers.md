@@ -12,7 +12,7 @@ To summarize, by strategically deploying Datadog agents across your environment,
 
 A high level architecture diagram of Datadog can be found here:  
 
-![arch](https://github.com/dbirck/hiring-engineers/blob/master/arch-overview-1.png)
+![arch](https://github.com/dbirck/hiring-engineers/blob/master/arch-overview.png)
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
