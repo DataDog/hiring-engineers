@@ -11,3 +11,8 @@ IMAGES
 3 - I decided to use PostgreSQL to host my database as I'm most familiar with it (I have experience with MYSQL also). Here I updated the postgresql yaml file with the generated username and password per the integration installation instructions. I named the database 'datadogdb'
 
 4 - Here I am showing my terminal where my postgresql integration check was passed. I split the screen to show my dashboard display of the host map. I am monitoring 2 hosts (home and local) on my macbook. The postgresql integration was added to my home host.
+
+5 - I created a yaml configuration file here, with the required inputs but empty values.
+
+6 - Here is the python file with methods for the random sample check. First there is the sample method, printing a random integer value. Then there is the DogStatsD gauge method, naming the check as the first parameter and the random value (method) as the second parameter.
+
