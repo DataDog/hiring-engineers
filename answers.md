@@ -1,6 +1,9 @@
+QUESTIONS
 1. The agent is data monitoring and collection software that runs in the background of a client's hosts. For whatever settings the client customizes it to monitor, the software collects data on these items and sends it to Datadog. Datadog then takes this data and creates graphical visualization and other data analytics tools.
 
 
 
 IMAGES
 1 - This screenshot shows where I added personalized tags to my agent in the Datadog configuration file.
+
+2 - My host (Macbook - local) with the customized tags in my Datadog dashboard.
