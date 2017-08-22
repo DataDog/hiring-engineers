@@ -1,0 +1,12 @@
+datadog_agent::tags:
+  - 'env:test'
+  - 'app:foo'
+  - 'role:database'
+  - linux
+  - postgres
+
+postgresql::postgres_password: YOUR_PASSWORD_HERE
+postgresql::server::service_ensure: running
+postgresql::server::service_enable: true
+postgresql::server::service_manage: true
+postgresql::server::needs_initdb: true

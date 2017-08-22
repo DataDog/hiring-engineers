@@ -1,0 +1,2 @@
+class {'datadog_agent':}
+
