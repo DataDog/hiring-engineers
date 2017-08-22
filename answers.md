@@ -1,6 +1,8 @@
 QUESTIONS
 1. The agent is data monitoring and collection software that runs in the background of a client's hosts. For whatever settings the client customizes it to monitor, the software collects data on these items and sends it to Datadog. Datadog then takes this data and creates graphical visualization and other data analytics tools.
 
+2. A timeboard is shows all the dashboard graphs phased during the same time period in a grid display. This option is great for comparing and troubleshooting issues across multiple metrics. Also, each graph can be shared individually. A screenboard is the more customizable option for a high level review of metrics and are able to be viewed across different time frames. Screenboards can only be shared as a whole. It seems timeboards are better utilized when studying details and smaller troubleshooting system issues. Screenboards seem to be better utilized when presenting a high level view of metrics.
+
 
 
 IMAGES
