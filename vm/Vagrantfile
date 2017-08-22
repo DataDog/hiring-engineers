@@ -1,0 +1,20 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    echo db1 | sudo cat > /etc/hostname
+    echo 127.0.1.2 db1 | sudo cat >> /etc/hosts
+    sudo hostname -F /etc/hostname
+    sudo curl -Lo /tmp/puppet.deb https://apt.puppet.com/puppet-release-xenial.deb
+    sudo dpkg -i /tmp/puppet.deb
+    sudo apt-get update
+    sudo apt-get install puppet-agent
+  SHELL
+
+  config.vm.provision 'puppet' do |puppet|
+    puppet.hiera_config_path = 'hiera.yaml'
+    puppet.environment = 'test'
+    puppet.environment_path = 'environments'
+    puppet.module_path = 'modules'
+  end
+end

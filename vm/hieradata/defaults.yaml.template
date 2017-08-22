@@ -1,0 +1,3 @@
+---
+datadog_agent::api_key: YOUR_API_KEY
+datadog_agent::integrations::postgres::password: YOUR_DATADOG_PG_USER_PASSWORD
