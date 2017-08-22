@@ -16,5 +16,16 @@ IMAGES
 
 5 - I created a yaml configuration file here, with the required inputs but empty values.
 
-6 - Here is the python file with methods for the random sample check. First there is the sample method, printing a random integer value. Then there is the DogStatsD gauge method, naming the check as the first parameter and the random value (method) as the second parameter.
+6 - Here is the python file with the method for the random sample check. I defined the value variable before the check method and passed it as a parameter.
+
+7 - I cloned the postgres dashboard here.
+
+8 - Here are a few of the metrics I added to the cloned dashboard. 
+      - Random Sample Number Test as a timeseries graph
+      - Hello World Example check as a query value graph
+      - Average Serialization Status on a heat map
+
+9 - Sending a snapshot of the random sample number graph to my email with a box drawn around where the metric is above 0.90.
+
+
 
