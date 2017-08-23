@@ -1,18 +1,14 @@
 ## Questions
 
 ### Level 0 (optional) - Setup an Ubuntu VM
-
-* While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
+Ubuntu 12.04 is set up on Vagrant 1.9.7 on macOS 10.11.6
 
 ### Level 1 - Collecting your Data
 
-* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 * Bonus question: In your own words, what is the Agent?
 
-
-* Bonus question: In your own words, what is the Agent?
-
-The datadog agent is a typical daemon program.  It runs as a small program behind a target system called Integration/s.  The major purpose of the program is collectiong and sending system information to your datadog system in a cloud service which is hosted by Datadog.　　The strong differentiator is its extensibility.  You can define new metrics as you needed, and also using tags, you can get very various types of reports(called dashboard) for your daily operation.  Other merit is its easiness.  The steps to integrate other services is almost automated, or pre-defined.  You can install an agent with pre-defined manner to reduce opeartion cost.
+The datadog agent is a typical daemon program.  It runs as a small program behind a target system called Integration/s.  The major purpose of the program is collecting and sending system information to your datadog account in a cloud service which is hosted by Datadog.　　
+The 1st strong differentiator is its extensibility.  You can define new metrics as you needed. And also using tags makes you able to get very various types of reports(called dashboard) which makes your daily operation fun.  2nd merit is its easiness.  The steps to integrate other services is almost automated, or pre-defined.  You can install an agent with pre-defined manner to reduce opeartion cost.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -26,13 +22,21 @@ The datadog agent is a typical daemon program.  It runs as a small program behin
 
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
-from datadog import random
+/etc/dd-agent/checks.d/test.py
+```
+import random
 from checks import AgentCheck
 class TestSpprtRand(AgentCheck):
     def check(self, instance):
         self.gauge('test.support.random', random.random())
+```
+/etc/dd-agent/conf.d/test.yaml
+```
+init_config:
 
-
+instances:
+    [{}]
+```
 
 ### Level 2 - Visualizing your Data
 
