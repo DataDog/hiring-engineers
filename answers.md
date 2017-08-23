@@ -58,6 +58,7 @@ A timeboard is typical mash-up view.  It's good for portal.  The most important 
 
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.  
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+
 ```
 {
 	"name": "{{host.name}} 上で、test.support.random が 0.9以上",
@@ -83,7 +84,8 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 			"critical": 0.9
 		}
 	}
-}```
+}
+```
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
 <img width="1219" alt="2017-08-24 00 24 32" src="https://user-images.githubusercontent.com/7159697/29623871-ab7991d4-8862-11e7-8bdb-bd5a127eabfd.png">
 
