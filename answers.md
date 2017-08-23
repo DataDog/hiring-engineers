@@ -57,34 +57,44 @@ A timeboard is typical mash-up view.  It's good for portal.  The most important 
 
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.  
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+```
+{
+	"name": "{{host.name}} 上で、test.support.random が 0.9以上",
+	"type": "metric alert",
+	"query": "max(last_5m):avg:test.support.random{*} by {host} > 0.9",
+	"message": "{{host.name}} \n詳細は以下を確認。 \nhttps://app.datadoghq.com/dash/346429/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1503487579122&to_ts=1503501979122&tile_size=m\n\n\n @takashi117@gmail.com",
+	"tags": [
+		"*"
+	],
+	"options": {
+		"timeout_h": 0,
+		"notify_no_data": false,
+		"no_data_timeframe": 10,
+		"notify_audit": true,
+		"require_full_window": true,
+		"new_host_delay": 300,
+		"include_tags": false,
+		"escalation_message": "",
+		"locked": false,
+		"renotify_interval": "0",
+		"evaluation_delay": "",
+		"thresholds": {
+			"critical": 0.9
+		}
+	}
+}```
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
+<img width="1219" alt="2017-08-24 00 24 32" src="https://user-images.githubusercontent.com/7159697/29623871-ab7991d4-8862-11e7-8bdb-bd5a127eabfd.png">
+
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+<img width="1215" alt="2017-08-24 00 28 06" src="https://user-images.githubusercontent.com/7159697/29624048-217c49d0-8863-11e7-9bd1-4ae167deed90.png">
+
+
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+<img width="1090" alt="2017-08-24 00 31 39" src="https://user-images.githubusercontent.com/7159697/29624297-aae3646a-8863-11e7-8d26-ad3466c79d5d.png">
+
+
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+From [Monitors] - [Manage Downtime] , you can set up it.
+<img width="770" alt="2017-08-24 00 37 46" src="https://user-images.githubusercontent.com/7159697/29624622-85dcca48-8864-11e7-8e70-f84c1bceb3a2.png">
 
-## Instructions
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-1. Fork this repo.
-2. Answer the questions in `answers.md`
-3. Commit as much code as you need to support your answers.
-4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.  
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](http://docs.datadoghq.com/overview/)
-* [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
-* [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
-
-### Other questions:
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
