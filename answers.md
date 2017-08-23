@@ -6,7 +6,7 @@
 
 
 # IMAGES
-![](img/01&-&Adding&tags&to&configuration&file.png?raw=true)
+![](../img/01&-&Adding&tags&to&configuration&file.png?raw=true)
 1 - This screenshot shows where I added personalized tags to my agent in the Datadog configuration file.
 
 2 - My host (Macbook - local) with the customized tags in my Datadog dashboard.
