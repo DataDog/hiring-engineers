@@ -18,11 +18,13 @@ The 1st strong differentiator is its extensibility.  You can define new metrics 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 <img width="857" alt="2017-08-19 13 50 30_mysql_integration" src="https://user-images.githubusercontent.com/7159697/29519089-0613287e-86b7-11e7-98ec-17b1957b476f.png">
+
 <img width="1279" alt="2017-08-21 15 06 59" src="https://user-images.githubusercontent.com/7159697/29519113-211e07ba-86b7-11e7-8b6c-9214a320cc85.png">
 
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 /etc/dd-agent/checks.d/test.py
+
 ```
 import random
 from checks import AgentCheck
@@ -37,6 +39,7 @@ init_config:
 instances:
     [{}]
 ```
+
 <img width="883" alt="2017-08-23 23 20 30" src="https://user-images.githubusercontent.com/7159697/29620779-da2d59ec-8859-11e7-9a67-136bd7265013.png">
 
 
@@ -50,6 +53,7 @@ instances:
 A timeboard is typical mash-up view.  It's good for portal.  The most important feature is the time.  It shows any data in same timing.  Thus it provides easiness to compare each data as same event.  On the other hand, a screenboard has no such limitation. Even the layout, it's like iFrame. You can put any location as you like.  Thus the main pourpose of this is reporting and sharing the information you'd like to provide.
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
 <img width="574" alt="2017-08-24 00 01 30" src="https://user-images.githubusercontent.com/7159697/29622821-6ccf70aa-885f-11e7-8c55-5ba63c7a0077.png">
 
 
@@ -86,10 +90,13 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 	}
 }
 ```
+
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.  
+
 <img width="1219" alt="2017-08-24 00 24 32" src="https://user-images.githubusercontent.com/7159697/29623871-ab7991d4-8862-11e7-8bdb-bd5a127eabfd.png">
 
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+
 <img width="1215" alt="2017-08-24 00 28 06" src="https://user-images.githubusercontent.com/7159697/29624048-217c49d0-8863-11e7-9bd1-4ae167deed90.png">
 
 
@@ -98,6 +105,7 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
 From [Monitors] - [Manage Downtime] , you can set up it.
 <img width="770" alt="2017-08-24 00 37 46" src="https://user-images.githubusercontent.com/7159697/29624622-85dcca48-8864-11e7-8e70-f84c1bceb3a2.png">
 
