@@ -63,7 +63,7 @@
 
 ![Random Sample Number downtime notification email](img/14.png?raw=true)
 14 - Since it is after 7pm, my downtime won't go into affect until tomorrow at 7pm. In order to check for an email notification, I created a downtime at midnight since that's close to the time now. This shows where the scheduled downtime was activated.
-
+<br><br>
 
 
 # LINKS
