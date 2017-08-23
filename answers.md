@@ -37,12 +37,21 @@ init_config:
 instances:
     [{}]
 ```
+<img width="883" alt="2017-08-23 23 20 30" src="https://user-images.githubusercontent.com/7159697/29620779-da2d59ec-8859-11e7-9a67-136bd7265013.png">
+
 
 ### Level 2 - Visualizing your Data
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
+<img width="1017" alt="2017-08-23 23 30 06" src="https://user-images.githubusercontent.com/7159697/29621327-659c8a92-885b-11e7-95c3-3ca7bd07c755.png">
+
 * Bonus question: What is the difference between a timeboard and a screenboard?
+A timeboard is typical mash-up view.  It's good for portal.  The most important feature is the time.  It shows any data in same timing.  Thus it provides easiness to compare each data as same event.  On the other hand, a screenboard has no such limitation. Even the layout, it's like iFrame. You can put any location as you like.  Thus the main pourpose of this is reporting and sharing the information you'd like to provide.
+
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+<img width="574" alt="2017-08-24 00 01 30" src="https://user-images.githubusercontent.com/7159697/29622821-6ccf70aa-885f-11e7-8c55-5ba63c7a0077.png">
+
+
 
 ### Level 3 - Alerting on your Data
 
