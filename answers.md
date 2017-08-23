@@ -46,6 +46,7 @@ instances:
 <img width="1017" alt="2017-08-23 23 30 06" src="https://user-images.githubusercontent.com/7159697/29621327-659c8a92-885b-11e7-95c3-3ca7bd07c755.png">
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
+
 A timeboard is typical mash-up view.  It's good for portal.  The most important feature is the time.  It shows any data in same timing.  Thus it provides easiness to compare each data as same event.  On the other hand, a screenboard has no such limitation. Even the layout, it's like iFrame. You can put any location as you like.  Thus the main pourpose of this is reporting and sharing the information you'd like to provide.
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
