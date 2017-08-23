@@ -36,9 +36,9 @@
 
 ![Cloned postgres dashboard with added metrics](img/07.png?raw=true)
 8 - Here are a few of the metrics I added to the cloned dashboard. 
-      - Random Sample Number Test as a timeseries graph
-      - Hello World Example check as a query value graph
-      - Average Serialization Status on a heat map
+      - Random Sample Number Test as a timeseries graph \n
+      - Hello World Example check as a query value graph \n
+      - Average Serialization Status on a heat map \n
 <br><br>
 
 ![Snapshot with notification being sent to my email](img/09.png?raw=true)
@@ -46,11 +46,11 @@
 <br><br>
 
 ![Random Sample Number test above 0.9 monitor](img/10.png?raw=true)
-10 - Here is my monitor setup page for the random sample number test being above 0.90. I made the monitor a multi alert to prepare for an infrastructure growths. 
+10 - Here is my monitor setup page for the random sample number test being above 0.90. I made the monitor a multi alert to prepare for an infrastructure growth. 
 <br><br>
 
 ![Random Sample Number test above 0.9 monitor](img/11.png?raw=true)
-11 - A continuation of my monitor setup page. Here I added a descriptive message and title with a notification to my email. I also linked the full cloned dashboard for the team being notified to access easier. 
+11 - A continuation of my monitor setup page. Here I added a descriptive message and title with a notification to my email. I also added a link to the postgres cloned dashboard for the team being notified to access easier. 
 <br><br>
 
 ![Random Sample Number monitor notification email](img/12.png?raw=true)
