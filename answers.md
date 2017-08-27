@@ -43,14 +43,14 @@ This is a daemon that is executing tasks in the background such as:
 
 1. Random alert settings on all hosts (*Bonus*):
 
-![Random alert setting](./screenshots/dd-random-alert.png)
+![Random alert setting](./screenshots/dd-alert-setting.png)
 
 
 2. Received alert and email:
 
 ![Received alert](./screenshots/dd-event-alert.png)
 
-![Received email](./screenshots/dd-email-alert.png)
+![Received email](./screenshots/dd-emailing-alert.png)
 
 
 3. *Bonus:* Downtime settings
