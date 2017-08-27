@@ -24,7 +24,7 @@ This is a daemon that is executing tasks in the background such as:
 
 ![Random event](./screenshots/dd-random-event.png)
 
-======
+---
 
 ### Level 2 - Visualizing your Data
 
@@ -34,9 +34,10 @@ This is a daemon that is executing tasks in the background such as:
 
 
 2. *Bonus:* What is the difference between a TimeBoard and a ScreenBoard?
-- A timeboard is a real-time dashBoard - A ScreenBoard is intended to show metrics over a selected period of time.
+- A timeboard is a real-time dashBoard
+- A ScreenBoard is intended to show metrics over a selected period of time.
 
-======
+---
 
 ### Level 3 - Alerting on your Data
 
