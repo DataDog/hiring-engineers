@@ -34,8 +34,8 @@ This is a daemon that is executing tasks in the background such as:
 
 
 2. *Bonus:* What is the difference between a TimeBoard and a ScreenBoard?
-- A timeboard is a real-time dashBoard
-- A ScreenBoard is intended to show metrics over a selected period of time.
+- A timeboard is a real-time dashBoard intended to monitor internal infos, the formatting of those dashboard are limited.
+- A ScreenBoard is intended to show metrics that are intended to be shared within a larger public. There are also more formatting options.
 
 ---
 
