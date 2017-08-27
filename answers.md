@@ -45,6 +45,34 @@ This is a daemon that is executing tasks in the background such as:
 
 ![Random alert setting](./screenshots/dd-alert-setting.png)
 
+**Monitor export:**
+```
+{
+	"name": "test.support.random check is above 0.9",
+	"type": "metric alert",
+	"query": "max(last_5m):avg:test.support.random{*} by {host} > 0.9",
+	"message": "The random number is above 0.9 @ncls.mitchell@gmail.com",
+	"tags": [
+		"*"
+	],
+	"options": {
+		"timeout_h": 0,
+		"notify_no_data": false,
+		"no_data_timeframe": 10,
+		"notify_audit": true,
+		"require_full_window": true,
+		"new_host_delay": 300,
+		"include_tags": true,
+		"escalation_message": "",
+		"locked": false,
+		"renotify_interval": "0",
+		"evaluation_delay": "",
+		"thresholds": {
+			"critical": 0.9
+		}
+	}
+}
+```
 
 2. Received alert and email:
 
