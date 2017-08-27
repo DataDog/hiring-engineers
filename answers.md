@@ -15,7 +15,7 @@ This is a daemon that is executing tasks in the background such as:
 ![Host map](./screenshots/dd-host-map.png)
 
 
-4. MongoDB initialization:
+4. MongoDB integration:
 
 ![Mongo init](./screenshots/dd-mongo-init.png)
 
