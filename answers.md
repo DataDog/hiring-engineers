@@ -1,24 +1,36 @@
 ### Level 1 - Collecting your Data
 
-* ![Agent init](./screenshots/dd-agent-init.png)
+* Agent initialization
+
+![Agent init](./screenshots/dd-agent-init.png)
+
 
 * *Bonus:* What is the Agent?
 This is a daemon that is executing tasks in the background such as:
 -- collecting data
 -- sending data to the datadog cloud platform
 
-* ![Host map](./screenshots/dd-host-map.png)
+* Host map:
 
-* ![Mongo init](./screenshots/dd-mongo-init.png)
+![Host map](./screenshots/dd-host-map.png)
 
-* The Agent check code is located in the `check` repository
+
+* MongoDB initialization:
+
+![Mongo init](./screenshots/dd-mongo-init.png)
+
+
+* The Agent check code is located in the `check` repository:
 
 ![Random event](./screenshots/dd-random-event.png)
 
 
 ### Level 2 - Visualizing your Data
 
-* ![Cloned dashboard](./screenshots/dd-cloned-dashboard.png)
+* Cloned dashboard with `test.support.random` metrics:
+
+![Cloned dashboard](./screenshots/dd-cloned-dashboard.png)
+
 
 * *Bonus:* What is the difference between a TimeBoard and a ScreenBoard?
 -- A timeboard is a real-time dashBoard -- A ScreenBoard is intended to show metrics over a selected period of time.
@@ -30,11 +42,13 @@ This is a daemon that is executing tasks in the background such as:
 
 ![Random alert setting](./screenshots/dd-random-alert.png)
 
+
 * Received alert and email:
 
 ![Received alert](./screenshots/dd-event-alert.png)
 
-![Received email](./screenshots/dd-received-alert.png)
+![Received email](./screenshots/dd-email-alert.png)
+
 
 * *Bonus:* Downtime settings
 
