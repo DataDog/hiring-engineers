@@ -15,6 +15,24 @@ The Datadog Agent is a program running on the background of a host autonomously.
 His job is to collect informations about the host and to send them to the DataDog Cloud where they can be see with the web platform.
 
 
+-- Tag Addition --
+
+![New Tag](./screenshots/Tags.png)
+
+
+
+-- Database Installation --
+
+A Mysql base has been installed and the Datadog integration for it has been successfully configured.
+
+![MySQL Integration](./screenshots/Mysql-Integrate.png)
+
+![MySQL Metrics](./screenshots/Mysql-Metrics.png)
+
+
+
+
+
 
 
 
