@@ -30,7 +30,13 @@ A Mysql base has been installed and the Datadog integration for it has been succ
 ![MySQL Metrics](./screenshots/Mysql-Metrics.png)
 
 
+-- Random Agent Check --
 
+The files doing the check are in the directory code-files, and are named randomCheck.py and randomCheck.yaml
+
+Here are the checks visible on the platform.
+
+![Random Check](./screenshots/randomCheck.png)
 
 
 
