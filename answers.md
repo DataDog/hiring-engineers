@@ -67,7 +67,7 @@ On the screenshots below, we can see the snapshot being taken and then, the noti
 ![Snapshot](./screenshots/annotationGraph.png)
 
 
-![Notification](./screenshots/notifProblem)
+![Notification](./screenshots/notifProblem.png)
 
 
 
