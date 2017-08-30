@@ -70,6 +70,61 @@ On the screenshots below, we can see the snapshot being taken and then, the noti
 ![Notification](./screenshots/notifProblem.png)
 
 
+--== Level 3 - Alerting on your Data ==--
+
+
+-- Monitor Setup --
+
+A monitor has been created in order to notify me whenever the random metric goes above 0.90 in the past 5 minutes.
+
+[Create Monitor](./screenshots/monitorCreated.png)
+
+
+-- Multi-alert by host --
+
+By changing an option in the monitor's definition, we can make it a multi-alert monitor for each host.
+
+[Multi Alert](./screenshots/multiAlert.png)
+
+
+
+-- Email Notification --
+
+As seen in the screenshots below, the notification of an incident send an email automaticaly, another one is sent for the recovery of the issue (in this case, no metric above 0.90 in the last 5 minutes).
+
+[Monitor Alert](./screenshots/alertRandom.png)
+
+[Alert Email](./screenshots/emailAlerte.png)
+
+[Recovery Email](./screenshots/emailRecovered.png)
+
+
+
+-- Downtime --
+
+The downtime scheduling can be defined in order to stop the Email notifications outside the office hours.
+
+[Downtime notification](./screenshots/notifDowntime.png)
+
+As we can see, the downtime schedule has been configured to be repeated everyday.
+
+[Downtime Repeated](./screenshots/repeatDowntime.png)
+
+
+
+
+
+I thank your for the interest that you show for my application.
+ 
+
+
+
+
+
+
+
+
+
 
 
 
