@@ -78,4 +78,5 @@ In JSON Format
 
     Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ![screenshot downtime.png](/downtime.PNG) 
+![screenshot downtime_schedule.png](/downtime_schedule.PNG) 
 
