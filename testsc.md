@@ -1,1 +1,1 @@
-![sc](/Screenshot hostmap.PNG)
+![sc](/hostmap.PNG)
