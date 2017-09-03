@@ -27,6 +27,7 @@ class SimrandomCheck(AgentCheck):
 
     Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 ![screenshot DB-Dashboard.png](/DB-Dashboard.PNG)  
+https://app.datadoghq.com/dash/351945/mysql---test?live=true&page=0&is_auto=false&from_ts=1504440936426&to_ts=1504444536426&tile_size=m  
 
     Bonus question: What is the difference between a timeboard and a screenboard?
 A timeboard is used to have time-synchronized charts of metrics and events in one dashboard. The layout of the dashboard is fixed, has 3 columns and multiple lines. Good for troubleshooting as one can see the behavior of multiple metrics at a given timerange.  
@@ -34,6 +35,8 @@ A screenboard is used to show status boards and other relevant information, also
 
     Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification  
 ![screenshot SpikesGraph.png](/SpikesGraph.PNG)  
+https://app.datadoghq.com/notebook/13743/Random-Test-Data?cell=dncqcam6  
+
 
 # Level 3 - Alerting on your Data
 
