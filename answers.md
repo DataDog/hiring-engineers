@@ -4,7 +4,7 @@
 The agent is a piece of software, you can install on a host to gather events and performance metrics. The agent collects this data and sends it over to the Datadog server for reporting and analysis purposes.
 
     Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![screenshot hostmap.png]( hiring-engineers/ScreenShot hostmap.PNG )  
+![screenshot hostmap.png](/ScreenShot hostmap.PNG)  
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false
 
     Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
