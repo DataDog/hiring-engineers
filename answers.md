@@ -80,5 +80,5 @@ In JSON Format
 ![screenshot downtime.png](/downtime.PNG) 
 ![screenshot downtime_schedule.png](/downtime_schedule.PNG) 
 
-*** Thanks for providing such useful stuff. You were right - this is really fun! ***  
-*** Cheers, Siegi ***  
+***Thanks for providing such useful stuff. You were right - this is really fun!***  
+***Cheers, Siegi***  
