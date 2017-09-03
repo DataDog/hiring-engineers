@@ -1,7 +1,7 @@
 # Answers
 ___
 
-Solutions Engineer
+Support Engineer
 ___
 
 
@@ -301,6 +301,8 @@ To set up the scheduled downtime, I set up the settings as screenshot below.
 [Monitors]->[Manage Downtime]->[Schedule Downtime]
 
 <img src="https://raw.githubusercontent.com/yuki0808/Images/master/20170902/20170902_039.png" width="50%" height="50%" alt="alert07" title="alert07">
+
+<img src="https://raw.githubusercontent.com/yuki0808/Images/master/20170902/20170902_041.png" width="50%" height="50%" alt="alert08" title="alert08">
 
 The screenshot below is the  mail that I got from Datadog monitor on downtime.
 
