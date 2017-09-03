@@ -1,1 +1,0 @@
-![sc](/hostmap.PNG)
