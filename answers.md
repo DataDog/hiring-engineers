@@ -69,6 +69,7 @@ Edit the config file to add tags.
   <img src="https://raw.githubusercontent.com/yuki0808/Images/master/20170902/20170902_008_02.png" width="50%" height="50%" alt="conffile02" title="conffile02">
 
 Diff result of between the original file and edited file
+
   <img src="https://raw.githubusercontent.com/yuki0808/Images/master/20170902/20170902_008_03.png" width="50%" height="50%" alt="conffile03" title="conffile03">
 
 
