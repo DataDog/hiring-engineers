@@ -1,0 +1,25 @@
+version: '2'
+
+services: 
+  mysql:
+    build: mysql
+    ports:
+      - "3306:3306"
+    env_file:
+     - ./mysql/.env
+    environment:
+     - MYSQL_USER=datadog
+  datadog:
+    build: datadog
+    depends_on:
+     - mysql
+    links:
+     - mysql
+    env_file:
+     - ./datadog/.dontcommit.env # You've been warned
+    environment:
+     - TAGS="docker,datadog:alpine,mysql:debian"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
