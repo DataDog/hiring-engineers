@@ -1,0 +1,14 @@
+init_config:
+
+instances:
+  - server: mysql
+    user: datadog
+    pass:
+    tags:
+        - mysql_first_tag
+        - mysql_second_tag
+    options:
+        replication: 0
+        galera_cluster: 1
+
+
