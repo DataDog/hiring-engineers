@@ -1,4 +1,4 @@
-Intro
+# Intro
 This project is my demo of Datadog.  I used Docker (with compose) to set up my infrastructure.  My containers of choice were the offical Datadog agent (Alpine) container and the offical MySQL (Debian) container from dockerhub.  My repo contains everything needed to run the demo with the given pre-requisite that you will have Docker (with compose) installed already and run this on a Linux machine with bash, Ubuntu ideally.  I ran this on an Ubuntu 16.04.3 LTS VM (a.k.a worked on my machine).  A make file was written to simplify recreating the demo.  If you want to recreate it please do the following:
 
 1.  git pull my branch
@@ -8,9 +8,9 @@ This project is my demo of Datadog.  I used Docker (with compose) to set up my i
 The one make command will take your Datadog API key, set up new MySQL creds, build and then start the containers.  Enjoy!
 
 
-Level 1 - Collecting Data
+# Level 1 - Collecting Data
 
-What is an agent?
+### What is an agent?
 
 Agents are software programs that act on behalf of (and/or communicate with) another party, operating in a primarily autonomous manner in regards to a specific purpose or purposes. Agents are usually designed to be consume limited resources and ideally support extensible functionality.
 
@@ -20,13 +20,66 @@ All of these examples are programs that are expected to do specific things like 
 
 So agents are automated programs with specific purposes but having a specific purpose does not mean it can't be extensible too.  For example the Datadog agent provides several specific purposes including (but not limited to) sending your server metrics to Datadog's infrastructure.  You can write custom datadog checks and integrations to extend what you can monitor with the Datadog agent.  The agent's purpose is to monitor and report metrics but what you monitor and report on is the extensibility of the agent. Here is just some of the integrations offered by Datadog:
 
-INTEGRATIONS SCREENSHOT HERE 
 
-So that is what an agent is.  As a side note, a good agent should ideally be lightweight as well.  How lightweight is the Datadog agent?  Using the official Alpine datadog-agent container consumed about 78.98 MiB of RAM and less than 1% CPU at idle.  This is extremly small by today's computing standards.
-
-ALPINE DATADOG USAGE SCREENSOT HERE
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L1-integ-sample.png "Datadog Sample Integrations") 
 
 
-Level 2 - Visualizing your Data
+So that is what an agent is.  As a side note, a good agent should ideally be lightweight as well.  How lightweight is the Datadog agent?  Using the official Alpine datadog-agent container consumed about 78.98 MiB of RAM (as per the blue line in the graph below) and less than 1% CPU at idle.  This is extremly small by today's computing standards.
 
-Level 3 - Alerting on your Data
+
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L1-dd-alpine-agent-ram.png "Datadog Alpine RAM Usage")
+
+### Add tags in Agent config
+This screenshot shows how simple tagging resouces in Datadog is.  In the right-corner you will find the Tags section.  Adding tags to Datadog is a simple as a config update (or updating environmental variables which is even easier if you use the Datadog container).  You can use both simple tags as well as key value pairs.
+
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L1-host-tags.png "Datadog Agent Tags")
+
+### Install a Database
+
+For this demo the MySQL database engine was used.  The first screenshot in this document showing the multidtude of integrations shows the MySQL integration was installed and configured.  
+
+### Write a Custom Agent Function
+
+Link to custom agent function
+
+
+
+ 
+# Level 2 - Visualizing your Data
+
+### Link to a Custom Database Dashboard
+This is a sample dashboard created by cloning the stock MySQL database Dashboard.  Being able to do things like setting up custom formating rules was surprisngly easy.  
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L2-custom-db-dash.png
+ "Custom Database Dashboard")
+
+### What is the difference between a timeboard and a screenboard?
+The main differences between timeboards and screenboards is frame of reference.  Timeboards anchor all graphs to a specified time giving all graphs in a timeboard the same frame of reference.  If you change the scale (time)  all the boards in the timeboard will update to the new scale.  This is great for backtracking and seeing when issues occurred.   However for the current status of a system (such as a 30,000 foot view) screenboards offer a large range of customizations and graphs.  A screenboard would be great to use as a HUD (heads up display) whereas a timeboard is better suited for a troubleshooting or reviewing an incident in a  retrospective meeting.
+
+### The test.support.random @notification
+This is a notification from Datadog showing how easy it is to communicate with team mebers and stake holders.  The area of concern is tagged and a simple @username will send the user an e-mail with the graph and conversation
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L2-notification.png "Datadog User Notification")
+
+
+
+
+# Level 3 - Alerting on your Data
+
+### Alert when test.support.random is over 0.90 for 5 minutes
+An alert was set up to fire if the test.support.random went over 0.90 for 5 minutes.  The screenshot below shows the test.support.random value did not climb high enough when using the 5 minute window sadly.
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L3-alert-over-090.png
+ "Alert over 0.90")
+
+### Multi-Host Alert
+The alert was set up as a multi-host alert and by changing the alert to fire if the average was 0.90 over 5 minutes to simply fire if the test.support.random when above 0.90 once in 5 minutes did the trick.  Here are some of the e-mail notifications that were recieved from the alert.  You can see there were two seperate hosts that went into alert so that mutli-host alerting could be confirmed.
+
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L3-multihost-alert.png
+ "Multi-host Alert")
+ 
+ ### Mute the alarm
+ Once the alarm was confirmed a recurring mainteance window was set up to avoid having an alarm fire all night long.
+ 
+ 
+![alt text](https://github.com/flaresareawesome/hiring-engineers/blob/flaresareawesome-solutions-engineer/images/datadog-L3-maintenance-mode.png
+ "Mute the Alert")
+ 
+ 
