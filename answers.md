@@ -332,7 +332,7 @@ The following topology view from the Host Map dashboard shows the final result. 
 
 The dashboard sample below contains the cloned panels from the standard MySQL Overview. In this example there are two additional panels and we re-organized some of the most populous panels. Panel #1 shows the relationship between on-premise systems and those in the Cloud. Panel #2 showcases the values obtained from the Random Generator test. The entire dashboard works on a time-series that reflects the last hour by default.
 
-![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_028.png "Cloned dashboard from MySQL Overview")
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_028.PNG "Cloned dashboard from MySQL Overview")
    
 - Bonus question: What is the difference between a timeboard and a screenboard?
 
@@ -357,7 +357,7 @@ After waiting for the e-mail notification, I spent some time searching for a pos
 
 The following is a short version of the many different attempts to complete this step.
 
-![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_030.png "Events that reflect the dashboard capture")
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_030.PNG "Events that reflect the dashboard capture")
 
 My next recourse here would be to open a support ticket and request help. It should be noted, however, that the ```@notification``` does work as advertised with the monitor feature. With more time, and a little help, this should be resolved easily.
 
@@ -370,11 +370,14 @@ The monitor was set according to the requirements. One thing that I noticed righ
 
 - Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
-The time period in monitor was set to about 15 minutes. The main reason is that I feared alert flooding, so instead of receiving about twenty notifications per hour, I settled for about four per hour. That was a conscious choice on my part so I hope it is understood when you measure this exercise. 
+The time period in monitor was set to about 15 minutes. The main reason is that I feared alert flooding, so instead of receiving about twenty notifications per hour, I settled for about four per hour. That was a conscious choice on my part so I hope it is understood when you measure this exercise.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_031.png "Monitor for Random Generator above ninety percent")
 
 - Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
 In order to gain a better understanding of this topic, I set up another test environment using the Google Cloud Platform. In that system, I set up a Debian system with Apache. Then I set up the integration for the Google Cloud Platform and deployed the appropriate agent.
+
 
 >This additional work was an extremely good lesson in understanding the GCP API integration and the canonical differences in the Agent configuration. When working with a formal systems management structure, issuing commands, privileged access, and the location of configurations files falls under the expected tandem for that operating environment. For a simple comparison, when using the Debian '**apt**' the Agent inherits its configuration file location under ```/etc/rd.2```, ```/etc/dd``` and ```/opt/datadog-agent```. 
 
@@ -382,13 +385,36 @@ In order to gain a better understanding of this topic, I set up another test env
 
 When the multi-alert was set, the issue with tags manifested. At this point, I realized that there was no easy way to consolidate the Random Test metric without a unifying term. For that reason, I grouped the values by ```env``` (a custom tag created for this exercise) and ```region``` (a default tag for the GCP integration).
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_032.png "Create a multi-alert")
+
 The results showed a breakdown in the series data, where the values are grouped by the Random Test metric value, across env:* and region:*. This was not elegant so given the same challenge again, I would be more cautious of the logical grouping. 
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_033.png "Create a multi-alert")
+
+The monitor was able to break down the different set of results and showcase them in separate series for the datagram. Note the different shades as each reflect either the on-premise location (blue) or the GCP instance (purple).
 
 
 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
-
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_034.png "Create a multi-alert")
 
 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+The monitor sent an e-mail notification very quickly. The note read nicely from a mobile device and here is a sample.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_035.PNG "Notification")
+
 - Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+The setup for this notification suppression was quite straight forward. Here is a quick snapshot of the event.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_038.PNG "Suppression Notification")
+
+This is the notification received after 7PM EST regarding the event suppression.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_036.PNG "Suppression ON")
+
+And, this is the notification received every morning before the suppression request was lifted.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_037.PNG "Suppression OFF")
 
