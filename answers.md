@@ -316,6 +316,12 @@ To fix this, the file was written using the ```vi``` editor. It had been copied 
 
 ![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_026.png "Let's move along people.")
 
+**Results**
+
+The following topology view from the Host Map dashboard shows the final result. Note that at this point, the system was collecting MySQL metrics.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_027.png "MySQL Metrics")
+
 ## Level 2 - Visualizing Data
 
 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
@@ -326,9 +332,14 @@ To fix this, the file was written using the ```vi``` editor. It had been copied 
 
 The dashboard sample below contains the cloned panels from the standard MySQL Overview. In this example there are two additional panels and we re-organized some of the most populous panels. Panel #1 shows the relationship between on-premise systems and those in the Cloud. Panel #2 showcases the values obtained from the Random Generator test. The entire dashboard works on a time-series that reflects the last hour by default.
 
-![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_027.png "Cloned dashboard from MySQL Overview")
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_028.png "Cloned dashboard from MySQL Overview")
    
 - Bonus question: What is the difference between a timeboard and a screenboard?
+
+From my interpretation, a Timeboard is a time-series view of all relatable content in one dashboard. This permits the synchronization and correlation of events, and allows operators to compare results. A Screenboard offers the flexibility to explore data in different timeframes and to share with other users. A Screenboard can be authored with optional grid position for its panels.
+
+I believe the user would likely pick a Timeboard for general, operational tasks which require efficiency and quick response.
+A Screenboard may be used for exploration and discovery in order to determine scenarios that may be meaningful to the whole group.
 
 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
@@ -336,14 +347,20 @@ The dashboard sample below contains the cloned panels from the standard MySQL Ov
 
 **Total time: 45 minutes**
 
-From the panel describing the Random Generator test, the following snapshot was created. The comment in the snapshot mentioned ```@gilberto.castillo@rogers.com``` 
-for notification. However, the messages did not show.
+From the panel describing the Random Generator test, the following snapshot was created. 
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_029.png "Snapshot")
+
+The comment in the snapshot mentioned ```@gilberto.castillo@rogers.com``` for notification. However, the messages did not show.
 
 After waiting for the e-mail notification, I spent some time searching for a possible missing step in the setup. However, after reading the documentation and several blog posts, I was unable to find the need for an additional integration or Web-hook. I tried the basic procedure a few times and I was able to see the events in the Datadog portal, but they never arrived in my e-mail inbox.
 
 The following is a short version of the many different attempts to complete this step.
 
-My next recourse here would be to open a support ticket and request help. It should be noted, however, that the ```@notification``` does work as advertised with the monitor feature. With more time, and a little help, this should be resolved easily.  
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_030.png "Events that reflect the dashboard capture")
+
+My next recourse here would be to open a support ticket and request help. It should be noted, however, that the ```@notification``` does work as advertised with the monitor feature. With more time, and a little help, this should be resolved easily.
+
 
 ## Level 3 - Alerting on Data
 
