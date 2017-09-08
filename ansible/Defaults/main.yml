@@ -1,0 +1,8 @@
+---
+
+mysql_root_password: $DAQbvRsSDeX8!#? #MySQL root password
+
+mysql_datadog_user_password: Td802kjBZBVL6OnPIcqUnKYh 
+
+ubuntu_1604_mysql_pkgs:
+  - mysql-*

@@ -1,0 +1,7 @@
+from checks import AgentCheck
+import random
+
+class RandomCheck(AgentCheck):
+	def check(self, instance):
+		randNum = random.random()
+		self.gauge('test.support.random', randNum)

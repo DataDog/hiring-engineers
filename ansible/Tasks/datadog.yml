@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+
+    - name: Run dd-agent install script
+      raw: DD_API_KEY=7249fdd3b7b23b02d5c8f09aafc8981c bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+
+    - name: Copy the data dog conf file
+      template:
+        src: ../Templates/datadog.conf.j2
+        dest: /etc/dd-agent/datadog.conf
+        mode: 0640
+
+    - name: Copy the data dog mysql conf.d yaml file
+      template:
+        src: ../Templates/mysql.yaml.j2
+        dest: /etc/dd-agent/conf.d/mysql.yaml
+        mode: 0644
+
+    - name: Copy the sample random conf.d yaml file
+      template:
+        src: ../Templates/sample_random.yaml.j2
+        dest: /etc/dd-agent/conf.d/sample_random.yaml
+        mode: 0644
+
+    - name: Copy the sample random python script
+      template:
+        src: ../Templates/sample_random.py.j2
+        dest: /etc/dd-agent/checks.d/sample_random.py
+        mode: 0644
+
+    - name: Stop datadog agent
+      command: /etc/init.d/datadog-agent stop
+
+    - name: Start datadog agent
+      command: /etc/init.d/datadog-agent start
