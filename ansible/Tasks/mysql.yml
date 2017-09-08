@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+  - name: Load in vars
+    include_vars:
+      file: ../Defaults/main.yml
+
+  - name: Install python 2 for ubuntu 1604
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  - name: apt-get update on first boot
+    apt:
+       update_cache: yes
+
+  - name: Install MySql packages
+    apt:
+     name: "{{ item }}"
+     state: installed
+     update_cache: yes
+    with_items: "{{ ubuntu_1604_mysql_pkgs }}"
+
+  - name: Set MySql root password before installing
+    debconf: name='mysql-server' question='mysql-server/root_password' value='{{ mysql_root_password | quote }}' vtype='password'
+
+  - name: Confirm MySql root password before installing
+    debconf: name='mysql-server' question='mysql-server/root_password_again' value='{{ mysql_root_password | quote }}' vtype='password'
+
+  - name: Create datadog user in mysql db
+    command: mysql -e "create user 'datadog'@'localhost' identified by '{{ mysql_datadog_user_password | quote }}';"
+
+  - name: Grant replication rights to datadog user
+    command: mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+
+  - name: Grant full metrics to datadog user
+    command: mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
+
+  - name: Grant access to performance schema to datadog user
+    command: mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
