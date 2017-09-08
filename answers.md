@@ -1,4 +1,4 @@
-##Level 0 (optional) - Setup an Ubuntu VM##
+## Level 0 (optional) - Setup an Ubuntu VM
 
 - While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
 
@@ -39,18 +39,19 @@ The real value is the reduction of proof-of-concept work because the questions a
 > - Middleware: WebSphere, WebLogic, or native JAVA/JMX
 
 
-##Level 1 - Collecting Data##
+## Level 1 - Collecting Data
 
 - Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
-###Signing up for Datadog###
-**Total time: 2 minutes**
+### Signing up for Datadog
+
+**Total time: 2 minutes
 
 The profile used to reflect my preferred online picture (from Gravatar)
 Used the “Datadog Recruiting Candidate”
 
-###Installing the Datadog Agent for OSX###
-**Total time: 3 minutes**
+### Installing the Datadog Agent for OSX
+**Total time: 3 minutes
 
 The installation process on OSX was straight forward. After downloading the disk image file and mounting in the system, the wizard offered easy steps to configure the installation location and to complete the process.
 
@@ -188,8 +189,9 @@ In conclusion, the Agent is a software component to execute data collection proc
 
 In this exercise we added three (3) tags to the configured system: 
 
-###Adding tags to the configured system###
-**Total time: 15 minutes**
+### Adding tags to the configured system
+
+**Total time: 15 minutes
 
 -	env:test
 -	env:on-prem
@@ -207,8 +209,9 @@ From the exercise above, the agent was restarted for the changes to take effect.
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-###Installing a database###
-**Total time: 13 minutes**
+### Installing a database
+
+**Total time: 13 minutes
 
 Typically, I would install this database using the LAMP stack in either Amazon Web Services, Google Cloud Platform, or as a Docker Container. At this stage, I no longer rely on VMware Virtual Machines as I don’t want to own any resources and keep an inventory of virtual machines.
 
@@ -242,8 +245,9 @@ import random
 print(random.random())
 ```
 
-###Custom Agent Check###
-**Total time: 10 minutes**
+### Custom Agent Check
+
+**Total time: 10 minutes
 
 Yaml Configuration
 
@@ -253,11 +257,12 @@ Error Message
 
 
 
-##Level 2 - Visualizing Data##
+## Level 2 - Visualizing Data
 
 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-###Clone a custom dashboard###
+### Clone a custom dashboard
+
 **Total time: 10 minutes**
 
 The dashboard sample below contains the cloned panels from the standard MySQL Overview. In this example there are two additional panels and we re-organized some of the most populous panels. Panel #1 shows the relationship between on-premise systems and those in the Cloud. Panel #2 showcases the values obtained from the Random Generator test. The entire dashboard works on a time-series that reflects the last hour by default.
@@ -266,7 +271,7 @@ The dashboard sample below contains the cloned panels from the standard MySQL Ov
 
 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-###Create a snapshot###
+### Create a snapshot
 
 **Total time: 45 minutes**
 
@@ -279,7 +284,7 @@ The following is a short version of the many different attempts to complete this
 
 My next recourse here would be to open a support ticket and request help. It should be noted, however, that the ```@notification``` does work as advertised with the monitor feature. With more time, and a little help, this should be resolved easily.  
 
-##Level 3 - Alerting on Data##
+## Level 3 - Alerting on Data
 
 - Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
@@ -301,7 +306,6 @@ When the multi-alert was set, the issue with tags manifested. At this point, I r
 
 The results showed a breakdown in the series data, where the values are grouped by the Random Test metric value, across env:* and region:*. This was not elegant so given the same challenge again, I would be more cautious of the logical grouping. 
 
-For this exercise, I know how to remedy this logical situation: I manually entered tags for both of these systems for the Random Test custom Agent checks.  
 
 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
