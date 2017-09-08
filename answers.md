@@ -23,7 +23,12 @@ To get started in this exercise, I used a free desktop that runs OSX 10.11.6.
 | GCP | Debian | Apache, Random |
 | GCP | Debian | MySQL |
 
+Here is the final environment created for testing.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_000.png "All Systems")
+
 It is important to note here that one of the most common customer objections is to see the systems working in their environment. While a good product demonstration is often a good for a quick jumpstart, setting up an agile environment from scratch has proven a convincing metaphor for engagement. 
+
 I recommend that every systems engineer learns to deploy at least five (5) single stacks using a Cloud platform. In that manner, a “working” environment can be set up and automated within twenty minutes, and the customer can explore the Datadog value quickly.
  
 The real value is the reduction of proof-of-concept work because the questions about “how-to” are removed from the stack of burden.
@@ -45,15 +50,28 @@ The real value is the reduction of proof-of-concept work because the questions a
 
 ### Signing up for Datadog
 
-**Total time: 2 minutes
+**Total time: 2 minutes**
 
 The profile used to reflect my preferred online picture (from Gravatar)
+
 Used the “Datadog Recruiting Candidate”
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_001.png "Profile")
+
 ### Installing the Datadog Agent for OSX
-**Total time: 3 minutes
+**Total time: 3 minutes**
 
 The installation process on OSX was straight forward. After downloading the disk image file and mounting in the system, the wizard offered easy steps to configure the installation location and to complete the process.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_002.png "Agent Install on OSX")
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_003.png "Agent Install on OSX")
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_004.png "Agent Install on OSX")
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_005.png "Agent Install on OSX")
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_006.png "Agent Install on OSX")
 
 Notably at this stage was the need to obtain the system’s root password. This is not atypical for distributed software, but it is a source of pain for most software distribution processes inside of large organizations. 
 The typical questions from clients at this stage may include the following:
@@ -67,11 +85,19 @@ The typical questions from clients at this stage may include the following:
   - How do you transfer the metric data? Is it secure while in transit?
   - Is there any identifiable data while in transit?
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_007.png "Agent Install on OSX")
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_008.png "Agent Install on OSX")
+
 Once the Datadog agent installed, an installation check was done. Since there is only one user in the system, no sudo rights were used to run the commands. This procedure is vastly different from a more formal Linux or Windows environment where user privileges play a significant role in the process.
 
 I used the command line because it is the most comfortable working environment for me. Given a Windows environment, it will require some light training to deep-dive and understand the appropriate permissions necessary for the agent installation.
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_009.png "Environment Settings")
+
 At this point, the agent has not been started, and this was confirmed using the command line. Given the environment settings were enough to handle the executable, we can run this command from any path location.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_010.png "Agent status check")
 
 The Datadog Agent started and I checked its functional state. From the command line, we checked to see the required processes were running. In this case, we checked off the following local processes:
 
@@ -79,6 +105,8 @@ The Datadog Agent started and I checked its functional state. From the command l
 -	dogstatd
 -	ddagent, and 
 -	agent
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_011.png "Agent start-up")
 
 Lastly, we checked for the actual state of the agent and checked for potential errors. For efficiency, the following is a record of the output from the datadog-agent info command:
 
@@ -191,11 +219,13 @@ In this exercise we added three (3) tags to the configured system:
 
 ### Adding tags to the configured system
 
-**Total time: 15 minutes
+**Total time: 15 minutes**
 
 -	env:test
 -	env:on-prem
 -	os:osx
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_012.png "Tags")
 
 The following is a quick snapshot of the tags as configured in the system. 
 From this perspective, the inclusion of the tags was quite easy. From experience, however, it is important to note that the logical association of identifiers (in this case tags) should not be arbitrary. I consider this a logical exercise, where we assign a hierarchical basis for each Agent based on their functional purpose, location, ownership, security zone, etc.
@@ -206,35 +236,55 @@ In the past, I have dealt with organizations that deal with strict change contro
 
 From the exercise above, the agent was restarted for the changes to take effect. When we visited the Datadog front-end, we can see the representation of the monitored system as follows. Please pay attention to the tags as they reflect the changes made.
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_013.png "Host map")
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 ### Installing a database
 
-**Total time: 13 minutes
+**Total time: 13 minutes**
 
 Typically, I would install this database using the LAMP stack in either Amazon Web Services, Google Cloud Platform, or as a Docker Container. At this stage, I no longer rely on VMware Virtual Machines as I don’t want to own any resources and keep an inventory of virtual machines.
 
 For this process, the relational database of choice was MySQL. To install this, I downloaded the basic DMG version for the OSX system. After a quick installation, I also installed the MySQL Workbench and configured it to connect to the relational database.
 
 The following screenshot shows the details of the database, some basic configuration, and proof of successful installation.
- 
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_014.png "MySQL Workbench")
+
 Datadog Integration for MySQL
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_015.png "Datadog privileged user in MySQL")
+
+Validation:
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_016.PNG "Validation")
  
-Validation: 
- 
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_017.png "Damn you Yaml")
+
 Yaml Configuration
- 
-Error
- 
-The user privileges caused an error with the execution of the command. The MySQL instance is bound to root as the root user in the system. In that configuration, the local user, Bender, runs as an unprivileged root user and therefore did not have sufficient rights to contact execute the MySQL directives.
 
-The solution was to run the Agent as a privileged user. In this case, we used the following command to restart the agent. Notice the first command is a local user, whereas the second command invokes a privileged user. After this quick fix, the configuration no longer reported an error. With this quick solution, the Agent collected all available of the metric data correctly.
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_018.png "Permissions Error")
  
+**Error**
+ 
+The user privileges caused an error with the execution of the command. The MySQL instance requires privileged access in the system. In that configuration, the local user, Bender, runs as an unprivileged user and therefore did not have sufficient rights to contact execute the MySQL directives.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_019.png "Fix it, fix it, fix it... please")
+
+The solution was to run the Agent as a privileged user. In this case, we used the following command to restart the agent. Notice the first command is a local user, whereas the second command invokes a privileged user. 
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_021.png "MySQL Reporting")
+
+After this quick fix, the configuration no longer reported an error. With this quick solution, the Agent collected all available of the metric data correctly.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_020.png "Thank goodness for Google")
+
+
 Results
- 
 
-
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_022.png "Random Generator")
 
 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random
 
@@ -247,15 +297,24 @@ print(random.random())
 
 ### Custom Agent Check
 
-**Total time: 10 minutes
+**Total time: 10 minutes**
 
 Yaml Configuration
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_023.png "I am OK with Yaml now.")
+
+
 Python Snippet
 
-Error Message
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_024.png "Python Snippet")
 
+Error Message: There was an error message due to the carriage return and spacing in the Python code.
 
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_025.PNG "Nothing to see here!")
+
+To fix this, the file was written using the ```vi``` editor. It had been copied from a Atom and pasted onto a ```vi``` session.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_026.png "Let's move along people.")
 
 ## Level 2 - Visualizing Data
 
@@ -266,6 +325,8 @@ Error Message
 **Total time: 10 minutes**
 
 The dashboard sample below contains the cloned panels from the standard MySQL Overview. In this example there are two additional panels and we re-organized some of the most populous panels. Panel #1 shows the relationship between on-premise systems and those in the Cloud. Panel #2 showcases the values obtained from the Random Generator test. The entire dashboard works on a time-series that reflects the last hour by default.
+
+![alt text](https://github.com/gcastill0/hiring-engineers/blob/gcastill0-patch-1/screenshots/screenshot_027.png "Cloned dashboard from MySQL Overview")
    
 - Bonus question: What is the difference between a timeboard and a screenboard?
 
