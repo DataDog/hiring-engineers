@@ -301,3 +301,24 @@ Additionally I used notebook feature to add constant 0.90 line.
 [Link to the Notebook](https://app.datadoghq.com/notebook/15050/Yoriki%2019%20Sep%202017%2021%3A51)
 
 ![Snapshot](images/level2-3.png)
+
+### Level 3 - Alerting on your Data
+
+* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+
+I created a [monitor](https://app.datadoghq.com/monitors#2856163?group=all&live=4h) for detecting high metric value within `test.support.random.max`.
+
+![Monitor](images/level3-1.png)
+
+* Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+
+Defining metric `from` parameter `role:test` means **collect data from all hosts tagged with role:test**. When I scale out the infrastructure I need to tag new hosts as `role:test` in order to assign this monitor.
+
+![from](images/level3-2.png)
+
+* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+I received monitor alert email below.
+
+![Email](images/level3-2.png)
