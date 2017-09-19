@@ -321,4 +321,4 @@ Defining metric `from` parameter `role:test` means **collect data from all hosts
 
 I received monitor alert email below.
 
-![Email](images/level3-2.png)
+![Email](images/level3-3.png)
