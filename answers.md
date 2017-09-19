@@ -248,6 +248,20 @@ loop do
 end
 ```
 
+Run the script and confirm results on Host Map.
+
+```
+$ ruby random.rb
+0.7408150575386946
+0.20310512932428793
+0.8149465133771042
+0.26299169033404113
+0.47150568841674567
+0.9643894862551654
+0.7237233890096653
+...
+```
+
 ![Random metric](images/level1-4.png)
 
 Since `histogram` method of statsd is used, `avg`, `count`, `max`, `median` and `95percentile` are automatically calculated.
