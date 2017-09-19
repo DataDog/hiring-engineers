@@ -265,3 +265,39 @@ $ ruby random.rb
 ![Random metric](images/level1-4.png)
 
 Since `histogram` method of statsd is used, `avg`, `count`, `max`, `median` and `95percentile` are automatically calculated.
+
+### Level 2 - Visualizing your Data
+
+* Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
+
+At the first, clone MongoDB dashboard.
+
+![Clone MongoDB dashboard](images/level2-1.png)
+
+I added graph and value display for MongoDB insert ops count and random metric that I created in the last section.
+
+Then I issued some insert commands to my MongoDB repeatedly by my hand.
+
+```
+$ mongo --eval 'db.myCollection.insert([{value: 123}])' test
+```
+
+![Customized dashboard](images/level2-2.png)
+
+* Bonus question: What is the difference between a timeboard and a screenboard?
+
+I think that the biggest difference between a timeboard and a screenboard is freedom of customization.
+
+A timeboard mainly focus on graphs, so it is auto layouted, easy to create, good at monitoring each service components' metrics.
+
+A screenboard offeres more customizability such as free layout and more various items than timeboard. It is very good choice for creating dashboard visualizing entire service informations.
+
+* Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
+I added an comment on graph in Metrics Explorer.
+
+Additionally I used notebook feature to add constant 0.90 line.
+
+[Link to the Notebook](https://app.datadoghq.com/notebook/15050/Yoriki%2019%20Sep%202017%2021%3A51)
+
+![Snapshot](images/level2-3.png)
