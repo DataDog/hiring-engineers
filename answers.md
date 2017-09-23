@@ -33,7 +33,7 @@ import random
 from checks import AgentCheck
 class RandomCheck( AgentCheck ):
   def check( self, instance ):
-      self.gauge( 'test.support.random', random.random() )
+    self.gauge( 'test.support.random', random.random() )
 
 
 I cloned the MySQL dashboard and added metrics to it
