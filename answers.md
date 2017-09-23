@@ -44,17 +44,17 @@ I cloned the MySQL dashboard and added metrics to it
 
 https://app.datadoghq.com/dash/363587/custom-metrics---mysql-david?live=true&page=0&is_auto=false&from_ts=1506134855168&to_ts=1506138455168&tile_size=m
 
-Question: timeboard vs screenboard
+Question: TimeBoard vs ScreenBoard
 
-* Time board: a set of widgets that all have the same time range, to compare and juxtapose different metrics in the same time range.  The timeboard automatically synchronizes the time frames. Use this for troubleshooting.
-* Screen board: a set of widgets that can pull together any combination of data and time ranges, with different views (gauges, pie charts, status lights as well as time series).  Use this to provide a broader view, such as to watch the overall health of a system.
+* TimeBoard: a set of widgets that all have the same time range, to compare and juxtapose different metrics in the same time range.  The timeboard automatically synchronizes the time frames. Use this for troubleshooting.
+* ScreenBoard: a set of widgets that can pull together any combination of data and time ranges, with different views (gauges, pie charts, status lights as well as time series).  Use this to provide a broader view, such as to watch the overall health of a system.
 
 
 Level 3 Alerting
 
 I set up a monitor with these characteristics:
-* Critical alert (red) when average over last 5 minutes value > .90 
-* Warning (yellow) when average over last 5 minutes value > .75
+* Critical alert (red) when average value over last 5 minutes > .90 
+* Warning (yellow) when average value over last 5 minutes > .75
 * Use Multi-Alert on hosts
 * Downtime: 7a - 10p every day
 
