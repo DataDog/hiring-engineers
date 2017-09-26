@@ -18,7 +18,7 @@ Level 1 - Collecting your Data
 
     I installed PostgreSQL for database.
     Though I have a problem with postgres configuration. Reinstallation did not solve the problem.
-    I checked the user data and password I entered in the database to make sure to edit postgres.yaml file
+    I checked the user data and password in the table I entered in the database to make sure to edit postgres.yaml file
     with a generated password.
     
     vagrant@precise64:/etc/dd-agent/conf.d$ sudo cat /etc/dd-agent/conf.d/postgres.yaml
