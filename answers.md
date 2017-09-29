@@ -10,7 +10,7 @@
    * After choosing your machine, you will be redirected to a page that shows how to set up the Agent. In Ubuntu's case it was as simple as copying the call provided on the page into my local VM environment. 
     ![ubuntu_api](./datadog_pics/ubuntu_agent_install.png) 
 
-   ![api](./datadog_pics/agent_api.png) 
+   ![api](./datadog_pics/api.png) 
 
    * After running the call in your terminal, when it finishes you should see the following screens, the first in your terminal and the second on the datadog agent page itself. On the bottom of the Datadog page there will be an option to continue.
     ![agent success](./datadog_pics/agent_success.png) 
