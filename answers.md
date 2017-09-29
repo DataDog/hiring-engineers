@@ -14,6 +14,8 @@ Level 1 - Collecting your Data
     # Set the host's tags (optional)
     tags: mytag, env:prod, role:database
 
+![ScreenShot](https://user-images.githubusercontent.com/32184362/30998494-f53242ee-a509-11e7-8c80-a86ee74a3697.png)
+
   https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&filter=mytag&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&host=345947026
   
   Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
