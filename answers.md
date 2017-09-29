@@ -22,8 +22,8 @@
 
   **BONUS** What is The Agent? 
     
-    * The Agent is the software that collects data, events, and metrics and sends them to Datadog, so that we as the customer can use this data to better monitor the performance of one's applications, as well as use the information to find potential problematic areas in the codebase. There are three pieces to the Agent: 
-      1) The collector, which runs checks according to whatever integrations you have and captures system metrics.
-      2) Dogstatd, which is a backend server that you can send custom metrics to.
-      3) The forwarder, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
+  * The Agent is the software that collects data, events, and metrics and sends them to Datadog, so that we as the customer can use this data to better monitor the performance of one's applications, as well as use the information to find potential problematic areas in the codebase. There are three pieces to the Agent: 
+    1) The collector, which runs checks according to whatever integrations you have and captures system metrics.
+    2) Dogstatd, which is a backend server that you can send custom metrics to.
+    3) The forwarder, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
 
