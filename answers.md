@@ -1,11 +1,11 @@
 # Level 1
 
-##### Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+#### Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
-##### Bonus Question: In your own words, what is the Agent?
+#### Bonus Question: In your own words, what is the Agent?
 >The Agent is software that runs on hosts and is used to bring metrics and events to the Datadog application.
 
-##### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+#### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 >I had to dig around on the documentation to figure out which file I was specifically going to need to work with.  Once found, I searched for the section on tags and made the neccecary changes to add custom tags.  I then restarted the Datadog agent and made sure the tags were able to be seen and searched for on the Host Map.
 
 ![syntax for tags in config files](https://i.imgur.com/1WUfRdN.png "syntax for tags in config files")
@@ -14,7 +14,7 @@
 
 ![Host Map w/ Tags](https://i.imgur.com/vhHc73u.png "Host Map w/ Tags")
 
-##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+#### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 >I decided to use Mongodb which is an entirely new DB to me. I ran into a ton of issues however.  I used homebrew to intall Mongo but it did not have the proper permissios for me to actually create the directory that I needed to be able to use the shell.  I had to run the command shown below inorder to get the server running/create the directory/open the shell.
 
 ![Savior Command](https://i.imgur.com/GIwo5oq.png)
