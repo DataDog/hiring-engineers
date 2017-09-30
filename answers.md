@@ -16,3 +16,11 @@ Not sure if you can access my Datadog user, but added the links as well (just in
 
 ![Alt text](screenshots/Stigs-grouped-Hostmap.png?raw=true "Hostmap")
 [Stig's grouped Hostmap](https://app.datadoghq.com/infrastructure/map?mapid=3556&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=role%2Cenv&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false ".. hope it works!")
+
+And now to the custom check. I started off writing the hello.world check - just to check how things worked. Then I wrote the random_number check. Instead of writing a random number function or using something like randint, I chose to ask for it through a public API I have used in the past, which delivers the random number and additionally a fun fact about that number. Reason for it was that I wanted to test the events as well. To not clog the event list (although the aggregation string works well), I only send an event for numbers < 100.
+
+I used the documented <i>min_collection_interval</i> to set the collection interval to 45 seconds. It doesn't seem to be 100% accurate though, I see the metrics mostly in 1 minute intervals in the metric explorer. I didn't find another way to do it though.
+
+<b>Bonus question:</b> Is there another way to change the collection interval? I am really not sure, but my best guess is that it can changed globally in the agent configuration. It could probably be programmed as well (in the .py).
+
+Attached code+config is [random_number.py](src/random_number.py) and [random_number.yaml](src/random_number.yaml).
