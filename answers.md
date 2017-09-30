@@ -1,8 +1,6 @@
-Your answers to the questions go here.
-
 # Level 1
 
-#####Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+##### Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
 ##### Bonus Question: In your own words, what is the Agent?
 >The Agent is software that runs on hosts and is used to bring metrics and events to the Datadog application.
@@ -16,7 +14,7 @@ Your answers to the questions go here.
 
 ![Host Map w/ Tags](/Users/davis/Desktop/Host_map_with_tags.png "Host Map w/ Tags")
 
-#####Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 >I decided to use Mongodb which is an entirely new DB to me. I ran into a ton of issues however.  I used homebrew to intall Mongo but it did not have the proper permissios for me to actually create the directory that I needed to be able to use the shell.  I had to run the command shown below inorder to get the server running/create the directory/open the shell.
 
 ![Savior Command](/Users/davis/Desktop/mongo_savior_command.png)
