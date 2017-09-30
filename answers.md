@@ -24,3 +24,11 @@ I used the documented <i>min_collection_interval</i> to set the collection inter
 <b>Bonus question:</b> Is there another way to change the collection interval? I am really not sure, but my best guess is that it can changed globally in the agent configuration. It could probably be programmed as well (in the .py).
 
 Attached code+config is [random_number.py](src/random_number.py) and [random_number.yaml](src/random_number.yaml).
+
+And here are screenshots of the metric explorer and events:
+
+My Metric
+![Alt text](screenshots/Stigs-metric.png?raw=true "Metric")
+
+My event
+![Alt text](screenshots/Stigs-event.png?raw=true "Events")
