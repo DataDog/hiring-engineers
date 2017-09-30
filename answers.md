@@ -38,9 +38,8 @@ after configureation:
 
 ![verification that mongo is integrated](/Users/davis/Desktop/lvl 1/mongo/Screen Shot 2017-09-30 at 12.36.51 PM.png)
 
-![more verification on the Host Map](/Users/davis/Desktop/lvl 1/mongo/Screen Shot 2017-09-30 at 12.26.04 PM.png)
+![more verification on the Host Map](https://i.imgur.com/vhHc73u.png)
 
-<img src="/Users/davis/Desktop/lvl 1/mongo/Screen Shot 2017-09-30 at 12.26.04 PM.png">
 
 >This part was challenging because I have never worked with Mongo before so I had to learn how to set everything up and then learn how to integrate it with the Datadog agent.
 
