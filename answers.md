@@ -38,10 +38,10 @@ My event
 Here I actually experienced some problems using the API. First of all, I didn't get it working with Python. When running my script, it ended with the message that the datadog module can not be found. I'm sure it is my environment, and something isn't set correctly. But I didn't want to spend time troubleshooting, so I tried the Shell approach.
 The Shell API worked fine when adding my own metric in host-scope, but when I added the anomaly function I got an error:
 
-`Stigs-MacBook-Pro:Documents stigskilbred$ ./create_timeboard.sh {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:my_metric{host:Stigs-MacBook-Pro.local}, basic, 3): Rule 'scope_expr' didn't match at ', 3)' (line 1, column 61)."]}`
+`{"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:postgresql.max_connections{*}, basic, 6): Rule 'scope_expr' didn't match at ', 6)' (line 1, column 51)."]}`
 
 The rollup function works fine, so in the spirit of "quick and dirty", I just added the anomaly function manually in my timeboard.
-I have attached the [not_working](src/create_timeboard_not_working.py) and [working](src/create_timeboard.sh) script for reference.
+I have attached the [not_working](src/create_timeboard_not_working.sh) and [working](src/create_timeboard.sh) script for reference.
 
 Here are the screenshots I saved for this exercice.
 
