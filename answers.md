@@ -21,7 +21,8 @@ And now to the custom check. I started off writing the hello.world check - just 
 
 I used the documented <i>min_collection_interval</i> to set the collection interval to 45 seconds. It doesn't seem to be 100% accurate though, I see the metrics mostly in 1 minute intervals in the metric explorer. I didn't find another way to do it though.
 
-<b>Bonus question:</b> Is there another way to change the collection interval? I am really not sure, but my best guess is that it can changed globally in the agent configuration. It could probably be programmed as well (in the .py).
+<b>Bonus question:</b> Is there another way to change the collection interval? 
+I am really not sure, but my best guess is that it can changed globally in the agent configuration. It could probably be programmed as well (in the .py).
 
 Attached code+config is [random_number.py](src/random_number.py) and [random_number.yaml](src/random_number.yaml).
 
@@ -58,8 +59,32 @@ Snapshot in Event list
 
 I would have expected to receive an email with the snapshot (or a notification) as well, but so far I haven't received one.
 
-<b>Bonus question:</b>What is the Anomaly graph displaying? The anomaly graph helps us understand how my metric is behaving, compared to what is "normal". The normal can be calculated in different ways (based on the use case), but it typically has an historical component built into it. For example: understanding how the metric behaved the past few Fridays, helps us predict what we expect this, and future, Fridays. Vendors use different names for this kind of visualization, another commonly used term is Baseline or baselining.
+<b>Bonus question:</b> What is the Anomaly graph displaying? 
+The anomaly graph helps us understand how my metric is behaving, compared to what is "normal". The normal can be calculated in different ways (based on the use case), but it typically has an historical component built into it. For example: understanding how the metric behaved the past few Fridays, helps us predict what we expect this, and future, Fridays. Vendors use different names for this kind of visualization, another commonly used term is Baseline or baselining.
 The following screenshot shows how the anomaly algorithm learns normal behavior over time.
 
 ![Alt text](screenshots/Stigs-anomaly-graph.png?raw=true "Learning normal behavior")
 
+## Monitoring Data
+Here are the screenshots for this part of the exercice:
+
+Monitor definition (step 1 & 2)
+![Alt text](screenshots/Stigs-monitor-top.png?raw=true "Monitor definition")
+
+Monitor definition (step 3 & 4)
+![Alt text](screenshots/Stigs-monitor-bottom.png?raw=true "Monitor definition")
+
+Notification email - no data (during a break I closed my laptop :))
+![Alt text](screenshots/Stigs-notification-no-data.png?raw=true "Notification no data")
+
+Notification email - warning/alert
+![Alt text](screenshots/Stigs-notification-alert.png?raw=true "Alert email")
+
+<b>Bonus exercice:</b> Scheduled downtime.
+Since I started this exercice on a weekend and will end it on a weekend, I won't receive an email (until Monday morning). I've added the downtime definitions as screenshots - hope that serves "answer" as well :)
+
+Downtime Mo-Fr 7am-9am
+![Alt text](screenshots/Stigs-daily-silencer.png?raw=true "Downtime definition")
+
+Downtime weekend
+![Alt text](screenshots/Stigs-weekend-silencer.png?raw=true "Downtime definition")
