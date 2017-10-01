@@ -32,3 +32,34 @@ My Metric
 
 My event
 ![Alt text](screenshots/Stigs-event.png?raw=true "Events")
+
+## Visualizing Data
+Here I actually experienced some problems using the API. First of all, I didn't get it working with Python. When running my script, it ended with the message that the datadog module can not be found. I'm sure it is my environment, and something isn't set correctly. But I didn't want to spend time troubleshooting, so I tried the Shell approach.
+The Shell API worked fine when adding my own metric in host-scope, but when I added the anomaly function I got an error:
+
+`Stigs-MacBook-Pro:Documents stigskilbred$ ./create_timeboard.sh {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:my_metric{host:Stigs-MacBook-Pro.local}, basic, 3): Rule 'scope_expr' didn't match at ', 3)' (line 1, column 61)."]}`
+
+The rollup function works fine, so in the spirit of "quick and dirty", I just added the anomaly function manually in my timeboard.
+I have attached the [not_working](src/create_timeboard_not_working.py) and [working](src/create_timeboard.sh) script for reference.
+
+Here are the screenshots I saved for this exercice.
+
+My Timeboard (Past day)
+![Alt text](screenshots/Stigs-timeboard-1d.png?raw=true "Timeboard (Past day)")
+
+My Timeboard (5 minutes)
+![Alt text](screenshots/Stigs-timeboard-5m.png?raw=true "Timeboard (5 minutes)")
+
+Taking a snapshot
+![Alt text](screenshots/Stig-takes-snapshot.png?raw=true "Taking snapshot")
+
+Snapshot in Event list
+![Alt text](screenshots/Stigs-snapshot-eventlist.png?raw=true "Snapshot in Event list")
+
+I would have expected to receive an email with the snapshot (or a notification) as well, but so far I haven't received one.
+
+<b>Bonus question:</b>What is the Anomaly graph displaying? The anomaly graph helps us understand how my metric is behaving, compared to what is "normal". The normal can be calculated in different ways (based on the use case), but it typically has an historical component built into it. For example: understanding how the metric behaved the past few Fridays, helps us predict what we expect this, and future, Fridays. Vendors use different names for this kind of visualization, another commonly used term is Baseline or baselining.
+The following screenshot shows how the anomaly algorithm learns normal behavior over time.
+
+![Alt text](screenshots/Stigs-anomaly-graph.png?raw=true "Learning normal behavior")
+
