@@ -41,55 +41,60 @@ Level 2 - Visualizing your Data
 
   Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 
-Cloned Postgres overview with test.support.random
-![ScreenShot](https://user-images.githubusercontent.com/32184362/31056060-df5be4e4-a706-11e7-88ba-5913841fb178.png)
+	Cloned Postgres overview with test.support.random
+	![ScreenShot](https://user-images.githubusercontent.com/32184362/31056060-df5be4e4-a706-11e7-88ba-5913841fb178.png)
 
   Bonus question: What is the difference between a timeboard and a screenboard?
 
 
   Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
-Alert Setting.
-![ScreenShot](https://user-images.githubusercontent.com/32184362/31056692-c775f8a6-a710-11e7-9aaf-855c8df4bde0.png)
-
-Configuration Data by JSON
-{
-	"name": "Random value is very high (over 0.9) on test.support.random",
-	"type": "metric alert",
-	"query": "max(last_5m):avg:test.support.random{*} by {host} > 0.9",
-	"message": "Error Occurred!\nTo fix this, follow these steps\n   1.restart service.\n   2.check xxxx.\n\nCheck http://www.xxxxx.com for more information.\n\n@midori.taniguchi2@gmail.com",
-	"tags": [
-		"*"
-	],
-	"options": {
-		"timeout_h": 0,
-		"notify_no_data": false,
-		"no_data_timeframe": 10,
-		"notify_audit": false,
-		"require_full_window": true,
-		"new_host_delay": 300,
-		"include_tags": false,
-		"escalation_message": "",
-		"locked": false,
-		"renotify_interval": "0",
-		"evaluation_delay": "",
-		"thresholds": {
-			"critical": 0.9
-		}
-	}
-}
-
-The alert appears on event wall.
-![ScreenShot]()
-
-Tbe e-mail notification.
-![ScreenShot]()
+	![ScreenShot](https://user-images.githubusercontent.com/32184362/31057341-3c15c0c8-a71c-11e7-93a8-0635a5317124.png)
 
 Level 3 - Alerting on your Data
 
   Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
   Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+  
+	Alert Setting.
+	![ScreenShot](https://user-images.githubusercontent.com/32184362/31056692-c775f8a6-a710-11e7-9aaf-855c8df4bde0.png)
+
+	Configuration Data by JSON
+
+	{
+		"name": "Random value is very high (over 0.9) on test.support.random",
+		"type": "metric alert",
+		"query": "max(last_5m):avg:test.support.random{*} by {host} > 0.9",
+		"message": "Error Occurred!\nTo fix this, follow these steps\n   1.restart service.\n   2.check xxxx.\n\nCheck http://www.xxxxx.com for more information.\n\n@midori.taniguchi2@gmail.com",
+		"tags": [
+			"*"
+		],
+		"options": {
+			"timeout_h": 0,
+			"notify_no_data": false,
+			"no_data_timeframe": 10,
+			"notify_audit": false,
+			"require_full_window": true,
+			"new_host_delay": 300,
+			"include_tags": false,
+			"escalation_message": "",
+			"locked": false,
+			"renotify_interval": "0",
+			"evaluation_delay": "",
+			"thresholds": {
+				"critical": 0.9
+			}
+		}
+	}
+
+	The alert appears on event wall.
+	![ScreenShot](https://user-images.githubusercontent.com/32184362/31057343-423d5baa-a71c-11e7-89a6-02eb09066f50.png)
+
+	The e-mail notification received from datadog.
+	![ScreenShot](https://user-images.githubusercontent.com/32184362/31057342-3f0898e6-a71c-11e7-8a9c-4f0966bddbaf.png)
+
+  
   Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
 ![ScreenShot]()
