@@ -109,3 +109,7 @@ Level 3 - Alerting on your Data
 ![ScreenShot](https://user-images.githubusercontent.com/32184362/31057559-afc0137c-a71f-11e7-93e9-cf8101a0ed0f.png)
 
 Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+	Screenshot of downtime schedule.
+![ScreenShot](https://user-images.githubusercontent.com/32184362/31057753-bee0be08-a722-11e7-8b7a-76bb88c2ce43.png)
+	Waiting for e-mail to receive
