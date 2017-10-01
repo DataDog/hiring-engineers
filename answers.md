@@ -88,3 +88,22 @@ Downtime Mo-Fr 7am-9am
 
 Downtime weekend
 ![Alt text](screenshots/Stigs-weekend-silencer.png?raw=true "Downtime definition")
+
+## APM
+Now, this should be my parade discipline since I have some experience in this field - but APM is not APM. I am having trouble getting the ddtrace to report the traces and run into these 2 warnings (app starts up anyway):
+
+If I start the app with ddtrace-run I get the following error:
+`ERROR:ddtrace.writer:cannot send services: [Errno 61] Connection refused`
+
+If I just instrument the code (following the flask documentation) I get the following warning:
+` * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+No handlers could be found for logger "ddtrace.writer"`
+
+I have added the code (basically the code from the exercice + the tracer lines) here. Maybe I did something wrong, wouldn't be the first time ;) Anyway - this task was a fail for me!
+
+<b>Bonus Question:</b> What is the difference between a Service and a Resource?
+Without really knowing how Datadogs define these terms, my interpretation would be that a Service is the application (end-to-end) as a whole, and a Resource is a component (backend-DB, web-server, etc.) that is part of the Service.
+
+## The Final Question
+I have been thinking about this throughout the exercice, and in the end you can monitor just about anything if you have the right handles and interfaces for it :) That is pretty cool - the framework is flexible. 
+As a sales-driven technician, one neat use case could be to monitor the state of an opportunity in whatever opportunity tracking tool you are using. Let's face it - noone looks at that anyway ;) A Slack notification, and the whole team can tale part in celebrating progress and success.
