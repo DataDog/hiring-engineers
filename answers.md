@@ -1,6 +1,6 @@
 # Stig's answers
 
-Hey Datadogs - my name is Stig and I've had he pleasure of going through your hiring exercice. 
+Hey Datadogs - my name is Stig and I've had he pleasure of going through your hiring exercise. 
 These are my answers, screenshots and links - enjoy :)
 
 ## Pre-reqs
@@ -43,7 +43,7 @@ The Shell API worked fine when adding my own metric in host-scope, but when I ad
 The rollup function works fine, so in the spirit of "quick and dirty", I just added the anomaly function manually in my timeboard.
 I have attached the [not_working](src/create_timeboard_not_working.sh) and [working](src/create_timeboard.sh) script for reference.
 
-Here are the screenshots I saved for this exercice.
+Here are the screenshots I saved for this exercise.
 
 My Timeboard (Past day)
 ![Alt text](screenshots/Stigs-timeboard-1d.png?raw=true "Timeboard (Past day)")
@@ -66,7 +66,7 @@ The following screenshot shows how the anomaly algorithm learns normal behavior 
 ![Alt text](screenshots/Stigs-anomaly-graph.png?raw=true "Learning normal behavior")
 
 ## Monitoring Data
-Here are the screenshots for this part of the exercice:
+Here are the screenshots for this part of the exercise:
 
 Monitor definition (step 1 & 2)
 ![Alt text](screenshots/Stigs-monitor-top.png?raw=true "Monitor definition")
@@ -80,8 +80,8 @@ Notification email - no data (during a break I closed my laptop :))
 Notification email - warning
 ![Alt text](screenshots/Stigs-notification-warning.png?raw=true "Warning notification")
 
-<b>Bonus exercice:</b> Scheduled downtime.
-Since I started this exercice on a weekend and will end it on a weekend, I won't receive an email (until Monday morning). I've added the downtime definitions as screenshots - hope that serves "answer" as well :)
+<b>Bonus exercise:</b> Scheduled downtime.
+Since I started this exercise on a weekend and will end it on a weekend, I won't receive an email (until Monday morning). I've added the downtime definitions as screenshots - hope that serves "answer" as well :)
 
 Downtime Mo-Fr 7am-9am
 ![Alt text](screenshots/Stigs-daily-silencer.png?raw=true "Downtime definition")
@@ -99,11 +99,11 @@ If I just instrument the code (following the flask documentation) I get the foll
 ` * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 No handlers could be found for logger "ddtrace.writer"`
 
-I have added the code (basically the code from the exercice + the tracer lines) here. Maybe I did something wrong, wouldn't be the first time ;) Anyway - this task was a fail for me!
+I have added the code (basically the code from the exercise + the tracer lines) here. Maybe I did something wrong, wouldn't be the first time ;) Anyway - this task was a fail for me!
 
 <b>Bonus Question:</b> What is the difference between a Service and a Resource?
 Without really knowing how Datadogs define these terms, my interpretation would be that a Service is the application (end-to-end) as a whole, and a Resource is a component (backend-DB, web-server, etc.) that is part of the Service.
 
 ## The Final Question
-I have been thinking about this throughout the exercice, and in the end you can monitor just about anything if you have the right handles and interfaces for it :) That is pretty cool - the framework is flexible. 
+I have been thinking about this throughout the exercise, and in the end you can monitor just about anything if you have the right handles and interfaces for it :) That is pretty cool - the framework is flexible. 
 As a sales-driven technician, one neat use case could be to monitor the state of an opportunity in whatever opportunity tracking tool you are using. Let's face it - noone looks at that anyway ;) A Slack notification, and the whole team can tale part in celebrating progress and success.
