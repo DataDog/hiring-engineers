@@ -97,6 +97,8 @@ Level 3 - Alerting on your Data
   Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 	Setting a multi-alert on edit monitor view.
 	
+		Timeboard allows automatically collect time-syncronized metrics and event. Screenboard does not need to sync time. It enables layout whatever you like.
+	
 ![ScreenShot](https://user-images.githubusercontent.com/32184362/31057558-af94995e-a71f-11e7-8540-edf45d9a92d4.png)
 
   Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
@@ -112,4 +114,5 @@ Bonus: Since this monitor is going to alert pretty often, you don't want to be a
 
 	Screenshot of downtime schedule.
 ![ScreenShot](https://user-images.githubusercontent.com/32184362/31057753-bee0be08-a722-11e7-8b7a-76bb88c2ce43.png)
+		
 	Waiting for e-mail to receive
