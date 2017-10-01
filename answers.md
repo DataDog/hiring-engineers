@@ -95,15 +95,20 @@ Now, this should be my parade discipline since I have some experience in this fi
 If I start the app with ddtrace-run I get the following error:
 `ERROR:ddtrace.writer:cannot send services: [Errno 61] Connection refused`
 
-If I just instrument the code (following the flask documentation) I get the following warning:
+If I manually instrument the code (following the flask documentation) I get the following warning:
 ` * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 No handlers could be found for logger "ddtrace.writer"`
 
-I have added the code (basically the code from the exercise + the tracer lines) here. Maybe I did something wrong, wouldn't be the first time ;) Anyway - this task was a fail for me!
+I have added the code (basically the code from the exercise + the tracer lines) [here](src/stigs_app.py). Maybe I did something wrong, wouldn't be the first time ;) Anyway - this task was a fail for me!
 
 <b>Bonus Question:</b> What is the difference between a Service and a Resource?
-Without really knowing how Datadogs define these terms, my interpretation would be that a Service is the application (end-to-end) as a whole, and a Resource is a component (backend-DB, web-server, etc.) that is part of the Service.
+Without really knowing how Datadogs define these terms, my interpretation would be that a Service defines the application, end-to-end and as a whole. A Resource is a component (backend-DB, web-server, app-server) that is part of the Service, and fuels it with the "stuff" it needs to serve it's purpose.
 
 ## The Final Question
-I have been thinking about this throughout the exercise, and in the end you can monitor just about anything if you have the right handles and interfaces for it :) That is pretty cool - the framework is flexible. 
-As a sales-driven technician, one neat use case could be to monitor the state of an opportunity in whatever opportunity tracking tool you are using. Let's face it - noone looks at that anyway ;) A Slack notification, and the whole team can tale part in celebrating progress and success.
+I have been thinking about this throughout the exercise, and in the end you can monitor just about anything if you have the right apis and interfaces for it. An internal Datadog use case could be tied to weather. Everyone talks about the weather :) Wouldn't it be a suitable "new-hire" task (no matter if you are a technician or sales) to write a check that queries the weather (temperature, etc.) from a public API, provides a personal metric (possibly also events) that is displayed in a Datadog wide weather Dashboard?
+
+## Final word
+That conludes my "Hiring Exercise". Although I really got stuck on a some of the tasks, I had my fun :) If I'd had more time, I'd probably have played around more as well. I wish anyone who might read this a great week!
+
+Cheers,
+Stig
