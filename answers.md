@@ -77,8 +77,8 @@ Monitor definition (step 3 & 4)
 Notification email - no data (during a break I closed my laptop :))
 ![Alt text](screenshots/Stigs-notification-no-data.png?raw=true "Notification no data")
 
-Notification email - warning/alert
-![Alt text](screenshots/Stigs-notification-alert.png?raw=true "Alert email")
+Notification email - warning
+![Alt text](screenshots/Stigs-notification-warning.png?raw=true "Warning notification")
 
 <b>Bonus exercice:</b> Scheduled downtime.
 Since I started this exercice on a weekend and will end it on a weekend, I won't receive an email (until Monday morning). I've added the downtime definitions as screenshots - hope that serves "answer" as well :)
