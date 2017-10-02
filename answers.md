@@ -59,7 +59,8 @@ after configureation:
 >The code I used for the random check looked like this(```randomCheck.py```):
 
 
-```from random import random
+```
+from random import random
 from checks import AgentCheck
 class TestSupportRandom(AgentCheck):
     def check(self, instance):
@@ -69,7 +70,8 @@ class TestSupportRandom(AgentCheck):
 
 The code for the configuration file(```randomCheck.yaml```):
 
-```init_config:
+```
+init_config:
 
 instances:
     [{}]
