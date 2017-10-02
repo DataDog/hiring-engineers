@@ -54,7 +54,7 @@ after configureation:
 
 >Adding ```from random import random``` allowed me to use random and the check passed. 
 
-![Successful custom check passing](https://i.imgur.com/MbO1bmt.png =50%)
+![Successful custom check passing](https://i.imgur.com/MbO1bmt.png)
 
 >The code I used for the random check looked like this(```randomCheck.py```):
 
