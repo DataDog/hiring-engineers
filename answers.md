@@ -56,8 +56,7 @@ after configureation:
 
 ![Successful custom check passing](https://i.imgur.com/MbO1bmt.png =50%)
 
->The code I used for the random check looked like this:
-```randomCheck.py```
+>The code I used for the random check looked like this(```randomCheck.py```):
 
 
 ```from random import random
@@ -66,15 +65,5 @@ class TestSupportRandom(AgentCheck):
     def check(self, instance):
         self.gauge('test.support.random', random())```
 
->The configuration file:
-
-
-```randomCheck.yaml```
-
-
-	```init_config:
-
-instances:
-    [{}]```
 
 
