@@ -54,6 +54,21 @@ after configureation:
 
 >Adding ```from random import random``` allowed me to use random and the check passed. 
 
-![Successful custom check passing](https://i.imgur.com/MbO1bmt.png)g
+![Successful custom check passing](https://i.imgur.com/MbO1bmt.png =50%)
+
+>The code I used for the random check looked like this:
+```randomCheck.py```
+```from random import random
+from checks import AgentCheck
+class TestSupportRandom(AgentCheck):
+    def check(self, instance):
+        self.gauge('test.support.random', random())```
+
+>The configuration file:
+```randomCheck.yaml```
+```init_config:
+
+instances:
+    [{}]```
 
 
