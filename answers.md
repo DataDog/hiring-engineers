@@ -65,8 +65,9 @@ class TestSupportRandom(AgentCheck):
         self.gauge('test.support.random', random())```
 
 >The configuration file:
+
 ```randomCheck.yaml```
-```init_config:
+	```init_config:
 
 instances:
     [{}]```
