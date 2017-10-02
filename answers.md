@@ -68,7 +68,7 @@ class TestSupportRandom(AgentCheck):
 ```
 
 
-The code for the configuration file(```randomCheck.yaml```):
+>The code for the configuration file(```randomCheck.yaml```):
 
 ```
 init_config:
@@ -76,3 +76,15 @@ init_config:
 instances:
     [{}]
 ```
+
+>The test showed on the Host Map and on in the Metrics Summary page when searched for.
+
+![Test working on Host Map](https://i.imgur.com/4A1EZf4.png)
+
+![Test metric showing up when seached for in Metric Summary](https://i.imgur.com/Qc9FTWI.png)
+
+
+
+
+
+
