@@ -63,11 +63,14 @@ after configureation:
 from checks import AgentCheck
 class TestSupportRandom(AgentCheck):
     def check(self, instance):
-        self.gauge('test.support.random', random())```
+        self.gauge('test.support.random', random())
+```
 
 
->The code for the configuration file(```randomCheck.yaml```):
+The code for the configuration file(```randomCheck.yaml```):
+
 ```init_config:
 
 instances:
-    [{}]```
+    [{}]
+```
