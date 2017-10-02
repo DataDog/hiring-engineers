@@ -23,7 +23,21 @@
   **BONUS** What is The Agent? 
     
   * The Agent is the software that collects data, events, and metrics and sends them to Datadog, so that we as the customer can use this data to better monitor the performance of one's applications, as well as use the information to find potential problematic areas in the codebase. There are three pieces to the Agent: 
-    1) The collector, which runs checks according to whatever integrations you have and captures system metrics.
-    2) Dogstatd, which is a backend server that you can send custom metrics to.
-    3) The forwarder, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
+    1. The collector, which runs checks according to whatever integrations you have and captures system metrics.
+    2. Dogstatd, which is a backend server that you can send custom metrics to.
+    3. The forwarder, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
+
+2) Tags and the Host Map 
+  
+  * The first thing you should do is The first thing you should do is head to the Datadog Docs (which can be found with a quick Google search) and select "Getting Started With the Agent". The Datadog Docs page looks like this:
+    ![docs](./datadog_pics/datadog_docs.png)
+
+  * After selecting this, there is a scrollbar on the left where you can choose the type of system you are running on (For me it was Ubuntu). Select your OS and it will take you to a a page with more information about Agent usage for each specific OS. Under "Configuration" on this page, there will be a specific path that shows you exactly where your Agent Config file is being held.
+    ![agent_ubuntu](./datadog_pics/agent_usage_ubuntu.png)  
+    ![config](./datadog_pics/agent_config.png) 
+ 
+  * Now that we know where the file is, go back to the Datadog docs and select "Guide to Tagging" from the scrollbar on the left. This will take you to a page that looks like this:
+    ![tags](./datadog_pics/guide_to_tagging.png) 
+    On this page there is a section titled "Assigning tags using the configuration files", which explains how to correctly create tags in the file we located above.
+    ![assign_tags](./datadog_pics/assign_tags.png) 
 
