@@ -41,3 +41,14 @@
     On this page there is a section titled "Assigning tags using the configuration files", which explains how to correctly create tags in the file we located above.
     ![assign_tags](./datadog_pics/assign_tags.png) 
 
+  * Now, in your terminal go to the directory that your specific agent config file is located, open the file and simply add tags under the portion of the file that directs you to do so.
+     ![add_tags](./datadog_pics/add_tags.png) 
+     After adding your tags, you will need to restart the agent to update the config files using the necessary command.
+
+  * Now that our tags are set, we can go back to our datadog home page and click on this button to get to the HostMap:
+     ![host](./datadog_pics/host_map_button.png) 
+
+  * After getting to the HostMap page, simply click on the host (big green thing in the center), and the tags should show up on the right under "Tags" (specifically under the subheading "Datadog Agent")
+    ![agent_tags](./datadog_pics/agent_tags.png) 
+
+
