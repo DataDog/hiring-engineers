@@ -44,7 +44,7 @@ after configureation:
 >This part was challenging because I have never worked with Mongo before so I had to learn how to set everything up and then learn how to integrate it with the Datadog agent.
 
 
-####Write a custom Agent check that samples a random value. Call this new metric: ```test.support.random```
+#### Write a custom Agent check that samples a random value. Call this new metric: ```test.support.random```
 
 >Having never worked really worked with Python was a concern for me heading into this challenge but the documentation for building Custom Agent was very helpful along with some googling of course.  I mostly used [BUILDING A CUSTOM AGENT CHECK (HANDS ON INSTRUCTIONS)](https://datadog.github.io/summit-training-session/handson/customagentcheck/).  This gave me the methods and basic structure that the check would be in and I had to figure out what to use where.
 
@@ -54,6 +54,6 @@ after configureation:
 
 >Adding ```from random import random``` allowed me to use random and the check passed. 
 
-![Successful custom check passing](https://i.imgur.com/MbO1bmt.png)
+![Successful custom check passing](https://i.imgur.com/MbO1bmt.png)g
 
 
