@@ -7,7 +7,7 @@
 
 #### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 >I had to dig around on the documentation to figure out which file I was specifically going to need to work with.  Once found, I searched for the section on tags and made the neccecary changes to add custom tags.  I then restarted the Datadog agent and made sure the tags were able to be seen and searched for on the Host Map.
-![syntax for tags in config files](https://i.imgur.com/1WUfRdN.png "syntax for tags in config files")
+[syntax for tags in config files](https://docs.datadoghq.com/guides/tagging/ "syntax for tags in config files")
 ![Agent tag configurataion set up](https://i.imgur.com/nmjtp8Y.png "Agent tag configuration")
 ![Host Map w/ Tags](https://i.imgur.com/vhHc73u.png "Host Map w/ Tags")
 
@@ -102,19 +102,3 @@ instances:
 >Configuration for the ```test.support.random``` monitor downtime: ![monitor downtime config](https://i.imgur.com/Tt2Na5A.png)
 
 >Email from the scheduled monitor: ![scheudled downtime confirmation](https://i.imgur.com/K5Kpmia.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
