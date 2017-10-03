@@ -4,6 +4,7 @@ After reading through the references, I decided to complete the updated Readme s
 
 
 ##### In your own words, what is the Datadog Agent?
+
 The agent software acts as a messenger, relaying any updates on events and performance metrics from the host to Datadog's platform. The agent can collect these metrics from the any software on the host that is configured to integrate with the platform.
 
 
@@ -19,7 +20,7 @@ The agent immediately began collecting local runtime data to be featured on the 
 
 ## Collecting Metrics
 
-###1. Tags
+### 1. Tags
 
 In the datadog.conf file, I added these three tags: region:east, env:prod, role:test and restarted the agent.
 
@@ -27,7 +28,7 @@ As seen on [Screenshot_2](screenshots/Screenshot_2_tags.png), the tags are viewa
 
 ### 2. MongoDB
 
-With MongoDB already installed on my machine, I decided to integrate this database with my account. After initializing the database and toggling the administrator privileges to allow the authentication process, I successfully integrated MongoDB by following the directions featured [here] (https://app.datadoghq.com/account/settings#integrations/mongodb "here").
+With MongoDB already installed on my machine, I decided to integrate this database with my account. After initializing the database and toggling the administrator privileges to allow the authentication process, I successfully integrated MongoDB by following the directions featured here: https://app.datadoghq.com/account/settings#integrations/mongodb.
 
 [Screenshot_3](screenshots/Screenshot_3_mongo.png) & [Screenshot_4](screenshots/Screenshot_4_mongo.png) feature the respective windows showing that I ran the commands in the terminal shell, created and configured the mongo.yaml file, restarted the Agent, and verified if the integration check was successful.
 
@@ -74,7 +75,7 @@ instances:
 
 ```
 
-#####Can you change the collection interval without modifying the Python check file you created?
+#### Can you change the collection interval without modifying the Python check file you created?
 
 I learned from my search that I could change the interval by providing  min_collection_interval : (the number of seconds) as a key : value pair in the yaml file. I set the interval to 45 seconds.
 
@@ -85,12 +86,12 @@ Note: I learned that the Agent doesn't directly run the collection exactly at ea
 
 The following screenshots--[Screenshot 5](screenshots/Screenshot_5_metrics.png) & [Screenshot 6](screenshots/Screenshot_6_anomaly.png)--were taken to capture the Timeboard and the associated metrics that were requested. The custom metrics are placed on the the Timeboard featured on Screenshot_5, while the Integration metric with the anomaly function is on Screenshot_6. You can also see the snapshots taken using the @ notation.
 
-##### Bonus question: What is the difference between a timeboard and a screenboard?
+#### Bonus question: What is the difference between a timeboard and a screenboard?
 
 Since Timeboard capture metrics in a time synchronized fashion and present their graphs in a more established, grid-like layout, they're perfect for troubleshooting and noticing relationships between related metrics. The widget-like and customizable nature of Screenboards is better suited for presentations and more dynamic anaylsis of data, as they provide a change to look at a bigger picture. Additionally, screenboard can be share completely, where as Timeboards are shared individually.
 
 
-#####Bonus Question: What is the Anomaly graph displaying?
+#### Bonus Question: What is the Anomaly graph displaying?
 
 Anomaly graphs highlight any new behavior in metrics that is inconsistent from normal patterns. For instance, it can be used to highlight unusually high traffic volumes on a website or unusually high cpu usage on a given host. It works best with metrics that display consistent trends over time.
 
@@ -102,7 +103,7 @@ I created a metric monitor that was configured to trigger any warning or alerts 
 [Screenshot_7](screenshots/Screenshot_7_Monitor.png) displays the status tab of the Monitor, featuring the data history and the associated messages for each alert condition. [Screenshot_8](screenshots/Screenshot_8_Email.png) shows the email received when the alert threshold is reached.
 
 
-##### Bonus Question: Send screenshot of downtime email (Coming shortly!)
+#### Bonus Question: Send screenshot of downtime email (Coming shortly!)
 
 ## Collecting APM Data
 
@@ -149,8 +150,10 @@ To begin collecting application monitoring data, I ran the Trace Agent using the
 Link to the Dashboard: https://app.datadoghq.com/dash/371903/apm--infrastructure-metrics
 
 
-##### Bonus Question: What is the difference between a Service and a Resource?
+#### Bonus Question: What is the difference between a Service and a Resource?
 
 The relationship between a service and a resource is similar to that of an object and a method within that object, but more process oriented than object oriented. A resource is a piece of code, usually either a query in a database or a route in an application,
 
 ## Final Question
+
+##### Is there anything creative you would use Datadog for?
