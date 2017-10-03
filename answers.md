@@ -79,8 +79,13 @@ instances:
 
 #### Bonus question: What is the difference between a timeboard and a screenboard?
 >**Timeboards** have all the data scoped to the same time and appear in a grid-like fashion for easy troubleshooting/collaberation. Graphs from a Timeboard can all be shared individually.
+
 >**Sceenboards** are a lot more customizable and good for getting a high-level look at the system. Each widget can have a different time frame scoped and the board can be shared as a whole with live with a read-only entity unlike Timeboards which cannot. 
 
+#### Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
+
+>I found a tutorial in the docs for taking a snapshot and sending it to someone [here](https://www.datadoghq.com/blog/real-time-graph-annotations/)
+![Snapshot of test.support.random metric](https://i.imgur.com/f6fFwqk.png)
 
 
 
