@@ -85,7 +85,9 @@ instances:
 #### Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
 >I found a tutorial in the docs for taking a snapshot and sending it to someone [here](https://www.datadoghq.com/blog/real-time-graph-annotations/)
-![Snapshot of test.support.random metric](https://i.imgur.com/f6fFwqk.png)
+![Snapshot of test.support.random metric](https://i.imgur.com/Ekvr6g6.png)
+
+
 
 
 
