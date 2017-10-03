@@ -91,17 +91,17 @@ instances:
 
 #### Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes/Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up
 
->I went ahead and set up the multi-alert Monitor after doing just a single-alert. Here is the configuration for said Monitor: [multi-alert monitor configuration](https://i.imgur.com/oFEYlDt.png)
+>I went ahead and set up the multi-alert Monitor after doing just a single-alert. Here is the configuration for said Monitor: ![multi-alert monitor configuration](https://i.imgur.com/oFEYlDt.png)
 
 #### Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
->Here is the email that I recieved from the triggered Monitor: [triggered monitor alert email](https://i.imgur.com/4kVURyB.png)
+>Here is the email that I recieved from the triggered Monitor: ![triggered monitor alert email](https://i.imgur.com/4kVURyB.png)
 
 #### Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
->Configuration for the ```test.support.random``` monitor downtime: [monitor downtime config](https://i.imgur.com/Tt2Na5A.png)
+>Configuration for the ```test.support.random``` monitor downtime: ![monitor downtime config](https://i.imgur.com/Tt2Na5A.png)
 
->Email from the scheduled monitor: [scheudled downtime confirmation](https://i.imgur.com/K5Kpmia.png)
+>Email from the scheduled monitor: ![scheudled downtime confirmation](https://i.imgur.com/K5Kpmia.png)
 
 
 
