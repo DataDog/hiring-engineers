@@ -37,7 +37,7 @@ Here is a copy of the code in mongo.yaml
 init_config:
 
 instances:
-	-   server: 		mongodb://datadog:RhJuBT87QH08QK47XtSXxXMt@localhost:27017
+    -   server: 		mongodb://datadog:RhJuBT87QH08QK47XtSXxXMt@localhost:27017
           tags:
               - mytag1
               - mytag2
@@ -108,7 +108,7 @@ I created a metric monitor that was configured to trigger any warning or alerts 
 
 After downloading the Trace Agent, I downloaded Flask and the Blinker library. After importing the libraries into the flask application on the Readme, I exported the file (flaskapp.py) and ran the code using a virtualenv.
 
-```
+```python
 from flask import Flask
 import blinker as _
 
