@@ -97,5 +97,24 @@ instances:
 
 >Here is the email that I recieved from the triggered Monitor: [triggered monitor alert email](https://i.imgur.com/4kVURyB.png)
 
+#### Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+>Configuration for the ```test.support.random``` monitor downtime: [monitor downtime config](https://i.imgur.com/Tt2Na5A.png)
+
+>Email from the scheduled monitor: [scheudled downtime confirmation](https://i.imgur.com/K5Kpmia.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
