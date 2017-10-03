@@ -19,7 +19,7 @@
 ![Mongo configuration set up for the user created in the database](https://i.imgur.com/3TUUXkM.png)
 ![User I created in database](https://i.imgur.com/IKjmcAy.png)
 
-Before configuration:
+>Before configuration:
 ![the agent can see Mongo even though I hadn't configured it yet](https://i.imgur.com/qRDIfCO.png)
 
 
@@ -77,7 +77,9 @@ instances:
 >Screenshot of the cloned dashboard.  The ```test.support.random``` check is added as well as ```systme.cpu.user``` and ```system.net.bytes_sent```.
 ![Cloned dashboard with custom metrics added](https://i.imgur.com/E45BDqn.png "Cloned dashboard with custom check and other metrics added")
 
-
+#### Bonus question: What is the difference between a timeboard and a screenboard?
+>**Timeboards** have all the data scoped to the same time and appear in a grid-like fashion for easy troubleshooting/collaberation. Graphs from a Timeboard can all be shared individually.
+>**Sceenboards** are a lot more customizable and good for getting a high-level look at the system. Each widget can have a different time frame scoped and the board can be shared as a whole with live with a read-only entity unlike Timeboards which cannot. 
 
 
 
