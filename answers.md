@@ -87,5 +87,13 @@
   * After these files are created and saved, we must restart the agent for them to take effect. If everything runs smoothly, we can then run our agent info request (seen in the Guide to the Agent portion of the docs), and see if our check is running:
     ![check_success](./datadog_pics/agent_check_success.png)
 
+  * We can also check our custom checks by calling them through the Agent (custom checks cannot be directly called from Python). In ubuntu, this done with:
+    
+    sudo -u dd-agent dd-agent check <CHECK_NAME>
+  
+  which should bring up a status similar to this:
+    ![random_check](./datadog_pics/random_check.png)
+
+
 
 
