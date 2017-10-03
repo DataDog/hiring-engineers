@@ -158,4 +158,6 @@ In this case for instance, the service is a web application labeled "my-flask-ap
 
 #### Is there anything creative you would use Datadog for?
 
-I think the efficiency of Datadog's monitoring software and integrations can work incredibly with Drone applications. Since most high-level drones update data in realtime, Datadog provides an opportunity to overlay pictures and geolocation data taken with a drone in realtime with data that's helpful for a client (i.e. geolocation data or the "busyness" of a venue.)
+I think the efficiency of Datadog's monitoring software would work really well with a restaurant application. I'd imagine you could use the tool to create a restaurant management assistant that keeps track of typical restaurant upkeep, including the amount of customers in the restaurant at a given time, the order quantity for an item on the menu, the items on the menu that are still available, and the stage each customer is at in the meal (starter, entree, dessert).
+
+Additionally, the application would provide useful data for monitoring when the restaurant performs best and when each item is most likely to be chosen by a customer, allowing you to detect any anomalies, improve overall processes and alert the restaurant team if there are any emergencies. 
