@@ -10,7 +10,6 @@ The agent software acts as a messenger, relaying any updates on events and perfo
 ## Installation Notes
 
 I installed the Datadog Agent following the installation instructions for OSX featured here:
-
 https://app.datadoghq.com/account/settings#agent/mac
 
 I also edited the Datadog Configuration file datadog.conf to assign my local machine (Frederics-MacBook-Pro.local) as the hostname.
@@ -34,7 +33,7 @@ With MongoDB already installed on my machine, I decided to integrate this databa
 
 Here is a copy of the code in mongo.yaml
 
-```
+```yaml
 init_config:
 
 instances:
@@ -54,7 +53,7 @@ I also searched Datadog support and Github in order to find the proper syntax fo
 
 randomvalue.py
 
-```
+```python
 import random
 from checks import AgentCheck
 class RandomCheck(AgentCheck):
@@ -66,7 +65,7 @@ class RandomCheck(AgentCheck):
 
 randomvalue.yaml
 
-```
+```yaml
 init_config:
   min_collection_interval: 45
 
@@ -147,7 +146,7 @@ To begin collecting application monitoring data, I ran the Trace Agent using the
 [Screenshot_9](screenshots/Screenshot_9_APM-Infrastructure.png) shows a Dashboard that I created featuring APM and Integration Data.
 
 
-[Link to the Dashboard] (https://app.datadoghq.com/dash/371903/apm--infrastructure-metrics)
+Link to the Dashboard: https://app.datadoghq.com/dash/371903/apm--infrastructure-metrics
 
 
 ##### Bonus Question: What is the difference between a Service and a Resource?
