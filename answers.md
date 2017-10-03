@@ -85,10 +85,17 @@ instances:
 #### Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
 >I found a tutorial in the docs for taking a snapshot and sending it to someone [here](https://www.datadoghq.com/blog/real-time-graph-annotations/)
-![Snapshot of test.support.random metric](https://i.imgur.com/Ekvr6g6.png)
+![Snapshot of test.support.random metric](https://i.imgur.com/9dCFOhP.png)
 
+# Level 3
 
+#### Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes/Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up
 
+>I went ahead and set up the multi-alert Monitor after doing just a single-alert. Here is the configuration for said Monitor: [multi-alert monitor configuration](https://i.imgur.com/oFEYlDt.png)
+
+#### Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+
+>Here is the email that I recieved from the triggered Monitor: [triggered monitor alert email](https://i.imgur.com/4kVURyB.png)
 
 
 
