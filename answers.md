@@ -51,4 +51,20 @@
   * After getting to the HostMap page, simply click on the host (big green thing in the center), and the tags should show up on the right under "Tags" (specifically under the subheading "Datadog Agent")
     ![agent_tags](./datadog_pics/agent_tags.png) 
 
+3) Database Integration (with MySql)
+
+  * First, after deciding which database you would like to install (I chose MySQL), use the magic of Google to find an easy step-by-step process to install the database correctly. This will vary considerably depending on the OS in use.
+
+  * After this, on your metrics home screen go to the puzzle-piece button at the top and select "integrations".
+    ![integration_button](./datadog_pics/integration_button.png)
+
+  * This will take you to a page with a list of a bunch of potential integrations. Select the one that matches the database you installed, and follow the instructions. The instructions will look similar to this: 
+    ![instructions](./datadog_pics/integration_instructions.png)
+
+  * After following the instructions, restart your Agent and wait five minutes. Then, if successful, you should see something like this if you click on the integration again:
+    ![integration_success](./datadog_pics/integration_success.png)
+
+  * You can also run your OS versions of the Agent info command (check the agent guide in the docs), and it should return something like this:
+    ![info](./datadog_pics/info_check_success.png)
+
 
