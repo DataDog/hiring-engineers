@@ -67,6 +67,25 @@
   * You can also run your OS versions of the Agent info command (check the agent guide in the docs), and it should return something like this:
     ![info](./datadog_pics/my_success.png)
 
-4) Write a Custom Agent Check 
+4) Write a Custom Agent Check
+
+  * First, we will want to go back to the Datadog Docs and select the "Writing an Agent Check Option" on the left scrollbar, which will take us to step-by-step instructions of writing one's first check.
+    ![agent_check_doc](./datadog_pics/agent_check_doc.png)
+
+  * In order to run a a custom check correctly, we must create two separate files
+    1) a .yaml file in the etc/dd-agent/conf.d directory 
+    2) a .py file in the etc/dd-agent/checks.d directory 
+  
+  * These files names MUST MATCH (test.yaml, test.py for example) or the process will not work.
+
+  * For the yaml file and the purposes of this challenge, the config presented in the docs should be fine. In other situations the init will allow you to set config options that will run on every check of self.init_config.
+    ![yaml](./datadog_pics/yaml.png)
+
+  * For the py file, we need to first make sure that we are inheriting from the AgentCheck class, as well as importing the random module. Every check class should have a check method, inside of which we can use any of the built-in DogStatd methods (A list of the methods can be find on this Doc page, under "sending metrics"). For these purposes we want to use the gauge method, like so:
+    ![random](./datadog_pics/random.png)
+
+  * After these files are created and saved, we must restart the agent for them to take effect. If everything runs smoothly, we can then run our agent info request (seen in the Guide to the Agent portion of the docs), and see if our check is running:
+    ![check_success](./datadog_pics/agent_check_success.png)
+
 
 
