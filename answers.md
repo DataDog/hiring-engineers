@@ -65,6 +65,8 @@
     ![integration_success](./datadog_pics/integration_success.png)
 
   * You can also run your OS versions of the Agent info command (check the agent guide in the docs), and it should return something like this:
-    ![info](./datadog_pics/info_check_success.png)
+    ![info](./datadog_pics/info_my_success.png)
+
+4) Write a Custom Agent Check 
 
 
