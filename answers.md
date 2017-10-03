@@ -50,11 +50,11 @@ after configureation:
 
 >After much trial and error I was able to get the check to appear in ```datadog-agent info``` but it was telling me that random was not a defined and had to figure out what/how to import.
 
-!['random' not defined error](https://i.imgur.com/OpViY4e.png)
+!['random' not defined error](https://i.imgur.com/OpViY4e.png "random not defined error")
 
 >Adding ```from random import random``` allowed me to use random and the check passed. 
 
-![Successful custom check passing](https://i.imgur.com/MbO1bmt.png)
+![Successful custom check passing](https://i.imgur.com/MbO1bmt.png "Successful custom check passing")
 
 >The code I used for the random check looked like this(```randomCheck.py```):
 
@@ -79,9 +79,18 @@ instances:
 
 >The test showed on the Host Map and on in the Metrics Summary page when searched for.
 
-![Test working on Host Map](https://i.imgur.com/4A1EZf4.png)
+![Test working on Host Map](https://i.imgur.com/4A1EZf4.png "Test working on Host Map")
 
-![Test metric showing up when seached for in Metric Summary](https://i.imgur.com/Qc9FTWI.png)
+![Test metric showing up when seached for in Metric Summary](https://i.imgur.com/Qc9FTWI.png "Test metric showing up when seached for in Metric Summary")
+
+
+# Level 2
+
+#### Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+
+>Screenshot of the cloned dashboard.  The ```test.support.random``` check is added as well as ```systme.cpu.user``` and ```system.net.bytes_sent```.
+![Cloned dashboard with custom metrics added](https://i.imgur.com/E45BDqn.png "Cloned dashboard with custom check and other metrics added")
+
 
 
 
