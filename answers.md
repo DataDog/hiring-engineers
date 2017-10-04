@@ -130,7 +130,7 @@
     ![timeboard](./datadog_pics/timeboard.png)
 
 
-  * A *screenboard* are used primarily for status boards and sharing data. You can mix widgets and timeframes, and there is a customizable drag and drop layout
+  * A *screenboard* is used primarily for status boards and sharing data. You can mix widgets and timeframes, and there is a customizable drag and drop layout
     ![screenboard](./datadog_pics/screenboard.png)
 
 
