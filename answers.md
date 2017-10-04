@@ -133,6 +133,17 @@
   * A *screenboard* is used primarily for status boards and sharing data. You can mix widgets and timeframes, and there is a customizable drag and drop layout
     ![screenboard](./datadog_pics/screenboard.png)
 
+2) Snapshot of Test above .90 
+
+  * In order to complete this, we will want to return to our cloned database dashboard (see instructions above) and find our test.support.random graph that we had created in the previous step. On the display of this graph there is a camera button on the type right, that looks like this:
+    ![camera](./datadog_pics/snapshot_button.png)
+
+  * When you press this button, a dotted box will appear that you can edit to fit around what you are trying to snapshot. Edit the box so it fits around a part of the graph that goes above .90, and release the mouse. This will open up a comment box, where you can type @yourname (@steverector for example), or @emailadress. This notification should send and email to your the person's corresponding email.
+    ![notification](./datadog_pics/notification.png)
+
+  * The event should also be sent to your homepage, looking like this:
+    ![home_notification](./datadog_pics/home_notification.png)
+
 
 
 
