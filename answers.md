@@ -94,6 +94,47 @@
   which should bring up a status similar to this:
     ![random_check](./datadog_pics/random_check.png)
 
+### Level 2: Visualizing Your Data 
+
+1) Clone the Database Integration Dashboard and Add Metrics 
+
+  * Go back to your Datadog home page, and select the "dashboard list" option after clicking the Dashboard button, which looks like this:
+    ![dashboard_button](./datadog_pics/dashboard_button.png)
+
+  * On the page this leads you to, scroll down into "Integration Dashboards" and select the Database that you had decided to integrate previously (MySQL in my case).
+
+  * From here we are going to want to click on the settings button on the top right, and then select "Clone Dashboard"
+    ![clone](./datadog_pics/clone.png)
+
+  * This will bring up a small box where you can rename the new dashboard. Do what makes sense to you and simply click Confirm to create the cloned dashboard, which can now be found under "Custom Dashboards" in the dashboard list.
+
+ # Adding Metrics 
+
+  * The first thing we will want to do is find the Graphing Primer. If we go to the datadog docs and search "graphing" in the search bar on the top left, the graphing primer should pop up as the first option. Select the option and you should now be at this page:
+    ![primer](./datadog_pics/graphing_primer.png)
+
+  * You should have a specific metric that you are interested in mind. The [summary](https://app.datadoghq.com/metric/summary) is a good place to see some potential metrics to choose from.
+
+  * Using the primer as a guide, go back to your newly cloned dashboard and scroll down until you see an empty square that says "add a graph". Selecting this will bring up a set of graph options at the bottom to choose from. Choose whichever you think will be most helpful for you and drag your choice into the empty box. This should open up a page that looks like this:
+    ![new_metric](./datadog_pics/new_metric.png)
+
+  * From this page search for the metric you wish to track and select "Add Metric". You can also filter and aggregate hosts through this, but for the purpose of this excercise it is not necessary. When you have added your metric(s), simply select Save at the bottom right of the screen. After saving, your new metric graph should show up at the bottom of your dashboard, named with the title you gave it 
+    ![packet](./datadog_pics/packet.png)
+
+  * To add your custom check from the end of level 1, simply repeat the same process, and search for "test.support.random" as the desired metric. As long as the check was set up correctly previously, it should show up, and you can simply select the metric, name the graph, and viola:
+    ![custom](./datadog_pics/custom.png)
+
+  **BONUS** What is the difference between a timeboard and a screenboard?
+
+  * A *timeboard* is used primarily for troubleshooting and correlation representation. They show time synchronized events, and a good example would be the database integration dashboard that we have.
+    ![timeboard](./datadog_pics/timeboard.png)
+
+
+  * A *screenboard* are used primarily for status boards and sharing data. You can mix widgets and timeframes, and there is a customizable drag and drop layout
+    ![screenboard](./datadog_pics/screenboard.png)
+
+
+
 
 
 
