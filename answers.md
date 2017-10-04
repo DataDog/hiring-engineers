@@ -144,6 +144,50 @@
   * The event should also be sent to your homepage, looking like this:
     ![home_notification](./datadog_pics/home_notification.png)
 
+### Level 3: Alerting On Your Data 
+
+1) Set Up Monitor On Above .90
+
+  * The first thing you want to do is head back to the Datadog docs and select "Guide to Monitors" from the left scroll bar. This will provide a helpful guide to the monitor creation process. The page looks like this:
+    ![monitor_docs](./datadog_pics/monitor_docs.png)
+
+  * Following this guide, you will first want to click on the "Monitor button" at the top of your Datadog homepage, and then select the "New Monitor" option:
+    ![monitor_button](./datadog_pics/monitor_button.png)
+
+  * This will take you to the page below, Where for the purposes of this challenge you will want to select the "Metric" option
+    ![select_metric](./datadog_pics/select_metric.png)
+
+  * On the screen that follows, you can now begin to setup your monitor. There are four types of alerts (threshold, change, anomoly, and outlier), and for this monitor's purpose we will want to select the "Threshold" option because it triggers whenever a metric crosses a threshold (exactly what we want).
+    ![threshold](./datadog_pics/threshold.png)
+
+  * After selecting the type of metric we want, we will define the metric by searching for and selecting our test.support.random metric that we had created previously. Here we can also create the monitor as either a "simple alert", which will trigger a single alert for the metric, or a "multi alert", which will trigger a separate alert for each tagged host that reports your metric. as the **BONUS** question asks, we will set this to a multi alert:
+    ![threshold](./datadog_pics/threshold.png)
+
+  * Now, we move on setting alert conditions. Here we have options to alert when a metric is above, below, etc, as well as options for the frequency to trigger the alert and how often we want the alert to be checked. For the challenges purposes, we will trigger when the metric is above, at least once, every five minutes (see screenshot below). Under these options in the red "Alert threshold" box is where we will want to set our alert to 0.90. Because we are using the "at least once" option and our data is sparse, it is also a good idea to "Do Not Require" a full window of data for evalutation to avoid skipping metrics. There is also a warning threshold option, as well as a few other options that for our purposes we should not need to mess with:
+    ![alert_conditions](./datadog_pics/alert_conditions.png)
+
+  **BONUS** answered above (look for **BONUS**)
+
+2) Descriptive Monitor Name and Message, and Notification 
+
+  * We will now move on to part 4 on this page ("Say What's Happening") Where we can give our monitor a descriptive name and message to send out. Here, we will give our monitor a descriptive title, as well as a message. The message will typically have a step-by-step solution, but for our purposes something more simple should be fine. If you use @email_address in the message, it will notify any non-datadog users of the alert. It is also a good idea to link to your dashboard in these messages (the message section accepts markdown, so it is quite simple to do so). The message should look something like this after clicking on the preview icon (eyeball on top right):
+    ![message](./datadog_pics/message.png)
+
+  * On part 5 ("Notify your Team"), we can make sure that everyone we want to be notified is there. We can potentially add names in the first box, but for our case we will want to just make sure that our name is there. There are a couple other options underneath as well, that should not be necessary for us to change. After finishing this section, simply click "save" at the bottom right and our monitor should be set up and ready to go!
+    ![notify](./datadog_pics/notify.png)
+
+  * We can make sure our monitor is up by going back to our datadog home, where there should be a new event listed describing the monitor that we just created:
+    ![monitor_success](./datadog_pics/monitor_success.png)
+
+3) Email Alert 
+
+  * Below is a screenshot of the alert email that I recieved:
+    ![email](./datadog_pics/email.png)
+
+  **BONUS** Setup Downtime From 7pm to 9am Daily
+
+
+
 
 
 
