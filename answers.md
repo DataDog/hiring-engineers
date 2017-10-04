@@ -186,6 +186,25 @@
 
   **BONUS** Setup Downtime From 7pm to 9am Daily
 
+  * First, we will want to go back and select the monitors button again and this time select "Manage Downtime":
+    ![downtime](./datadog_pics/downtime.png)
+
+  * Now, we will want to click on the yellow "Schedule Downtime" button at the top right, which will bring up a page that looks like this:
+    ![downtime_setup](./datadog_pics/downtime_setup.png)
+
+  * On this page, under "Choose What to Silence" select and search for the monitor we wish to silence (in our case the test.support.random monitor). We will also scope the silence here, for our purposes we can select the "\*" (which stands for all), to setup the downtime on all monitors:
+    ![silence](./datadog_pics/silence.png)
+
+  * After this, under "Schedule", we will do a few things. The first is setting the Schedule as "Recurring", because we want this downtime to be a daily thing. Underneath this, we will want to set the start day as the current day, as well as make sure it is located in the correct timezone. Then, will set it to repeat every 1 day (aka daily), have the downtime begin at 7:00 PM, and last for 14 hours (so that it ends at 9 AM). The section should look something like this filled out:
+    ![alert_conditions](./datadog_pics/schedule.png)
+
+  * Finally, we will create a message under "Message" that will notify any team members of the downtime of the monitor. The Notifcation process works the same way as the message in the Set Up Monitor Section under Level 3 of this guide.
+  After finishing the message, click "Save" at the bottom right and the downtime should be set.
+    ![schedule](./datadog_pics/schedule.png)
+
+  * If done correctly, the schedule should now show up in in the "Manage Downtime" page like looking like this:
+    ![downtime_success](./datadog_pics/downtime_success.png) 
+
 
 
 
