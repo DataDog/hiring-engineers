@@ -158,7 +158,7 @@
     ![select_metric](./datadog_pics/select_metric.png)
 
   * On the screen that follows, you can now begin to setup your monitor. There are four types of alerts (threshold, change, anomoly, and outlier), and for this monitor's purpose we will want to select the "Threshold" option because it triggers whenever a metric crosses a threshold (exactly what we want).
-    ![threshold](./datadog_pics/threshold.png)
+    ![detection](./datadog_pics/detection.png)
 
   * After selecting the type of metric we want, we will define the metric by searching for and selecting our test.support.random metric that we had created previously. Here we can also create the monitor as either a "simple alert", which will trigger a single alert for the metric, or a "multi alert", which will trigger a separate alert for each tagged host that reports your metric. as the **BONUS** question asks, we will set this to a multi alert:
     ![threshold](./datadog_pics/threshold.png)
