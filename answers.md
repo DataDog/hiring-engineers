@@ -3,7 +3,7 @@
 * TASK: Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
   - [Link to Host Dashboard](https://app.datadoghq.com/dash/host/349301929?live=true&page=0&is_auto=false&from_ts=1507061300792&to_ts=1507064900792&tile_size=m)
   - This image shows initial metrics gathered from a virtual Linux system by the Datadog agent:
-  <br>  
+  <br><br>
   ![Initial Host Dashboard After Setup](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/initial_host_dashboard.JPG?raw=true)
 
 
