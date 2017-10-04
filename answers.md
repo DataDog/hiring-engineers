@@ -138,7 +138,7 @@
   * In order to complete this, we will want to return to our cloned database dashboard (see instructions above) and find our test.support.random graph that we had created in the previous step. On the display of this graph there is a camera button on the type right, that looks like this:
     ![camera](./datadog_pics/snapshot_button.png)
 
-  * When you press this button, a dotted box will appear that you can edit to fit around what you are trying to snapshot. Edit the box so it fits around a part of the graph that goes above .90, and release the mouse. This will open up a comment box, where you can type @yourname (@steverector for example), or @emailadress. This notification should send and email to your the person's corresponding email.
+  * When you press this button, a dotted box and comment box will appear. you can edit the box to fit around what you are trying to snapshot. Edit the box so it fits around a part of the graph that goes above .90, and release the mouse. In the comment box, type @yourname (@steverector for example), which should be connected to your email, or @emailaddress. This notification should send an email to your corresponding email.
     ![notification](./datadog_pics/notification.png)
 
   * The event should also be sent to your homepage, looking like this:
