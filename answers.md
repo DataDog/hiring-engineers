@@ -5,7 +5,7 @@ After reading through the references, I decided to complete the updated Readme s
 
 ##### In your own words, what is the Datadog Agent?
 
-The Datadog agent acts as a messenger, relaying any updates on events and performance metrics from your host computer to Datadog's platform. The agent can fetch these metrics from the any software on the host that is configured to integrate with the platform.
+The Datadog agent acts as a messenger, relaying any updates on events and performance metrics from a host (either a local computer or an online host) to Datadog's platform. The agent can fetch these metrics from the any software connected to the host that is configured to integrate with the platform.
 
 
 ## Installation Notes
