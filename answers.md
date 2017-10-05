@@ -56,7 +56,7 @@
   * Scroll down until we see the "Documentation" heading, then click on any of the topics located under the "Guides" subheading:
     ![find_docs](./datadog_pics/find_docs.png) 
 
-  * This will take us to the docs, and clicking "Guides" at the top or clicking the "Datadog Docs" title will give us a list of topics in the docs to search. The Datadog Docs home page should look something like this:
+  * This will take us to the docs, and clicking "Guides" at the top or clicking the "Datadog Docs" title will give us a list of topics in the docs to search. On the left scrollbar select "Getting Started With the Agent". The Datadog Docs home page should look something like this:
     ![docs](./datadog_pics/datadog_docs.png)
 
   * After selecting this, there is a scrollbar on the left where we can choose the type of system we are running on (For me it was Ubuntu). Select your OS and it will take us to a page with more information about Agent usage for each specific OS. Under "Configuration" on this page, there will be a specific path that shows us exactly where our Agent Config file is being held.
@@ -70,7 +70,7 @@
 
   * Now, in our terminal we will go to the directory in which our specific agent config file is located, open the file and simply add tags under the portion of the file that directs us to do so.
      ![add_tags](./datadog_pics/add_tags.png) 
-     After adding your tags, we will need to restart the agent to update the config files using the necessary command.
+     After adding your tags, we will need to restart the agent to update the config files using the necessary command (see your OS process in "Guide to The Agent" portion of docs).
 
   * Now that our tags are set, we can go back to our datadog home page and click on this button to get to the HostMap:
      ![host](./datadog_pics/host_map_button.png) 
@@ -80,7 +80,7 @@
 
 3) Database Integration (with MySql)
 
-  * First, after deciding which database we would like to install (I chose MySQL), use the magic of Google to find an easy step-by-step process to install the database correctly. This will vary considerably depending on the OS in use.
+  * First, after deciding which database we would like to install (I chose MySQL), use the magic of Google to find an easy step-by-step process to install the database correctly. This will vary considerably depending on the OS in use, I used this [Link](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04) for the Ubuntu process.
 
   * After this, on our metrics home screen we will go to the puzzle-piece button at the top and select "integrations".
     ![integration_button](./datadog_pics/integration_button.png)
@@ -114,7 +114,7 @@
   * After these files are created and saved, we must restart the agent for them to take effect. If everything runs smoothly, we can then run our agent info request (seen in the Guide to the Agent portion of the docs), and see if our check is running:
     ![check_success](./datadog_pics/agent_check_success.png)
 
-  * We can also check our custom checks by calling them through the Agent (custom checks cannot be directly called from Python). In ubuntu, this done with:
+  * We can also check our custom checks by calling them through the Agent (custom checks cannot be directly called from Python). In ubuntu, this can be done with:
     
         sudo -u dd-agent dd-agent check <CHECK_NAME>
   
@@ -130,7 +130,7 @@
 
   * On the page this leads us to, we will scroll down into "Integration Dashboards" and select the Database that we had decided to integrate previously (MySQL in my case).
 
-  * From here we are going to want to click on the settings button on the top right, and then select "Clone Dashboard"
+  * From here we are going to want to click on the settings button on the top right (the logo that looks like a cog), and then select "Clone Dashboard"
     ![clone](./datadog_pics/clone.png)
 
   * This will bring up a small box where we can rename the new dashboard. Do what makes sense to you and simply click Confirm to create the cloned dashboard, which can now be found under "Custom Dashboards" in the dashboard list.
@@ -145,7 +145,7 @@
   * Using the primer as a guide, we can go back to our newly cloned dashboard and scroll down until we see an empty square that says "add a graph". Selecting this will bring up a set of graph options at the bottom to choose from. Choose whichever you think will be most helpful for you and drag your choice into the empty box. This should open up a page that looks like this:
     ![new_metric](./datadog_pics/new_metric.png)
 
-  * From this page, we will search for the metric we wish to track and select "Add Metric". We can also filter and aggregate hosts through this, but for the purpose of this excercise it is not necessary. When we have added our metric(s), simply select "Save" at the bottom right of the screen. After saving, our new metric graph should show up at the bottom of our dashboard, named with the title you gave it: 
+  * From this page, we will search for the metric we wish to track and select "Add Metric". We can also filter and aggregate hosts through this, but for the purpose of this excercise this should not be necessary. When we have added our metric(s), simply select "Save" at the bottom right of the screen. After saving, our new metric graph should show up at the bottom of our dashboard, named with the title you gave it: 
     ![packet](./datadog_pics/packet.png)
 
   * To add our custom check from the end of level 1, simply repeat the same process, and search for "test.support.random" as the desired metric. As long as the check was set up correctly previously, it should show up, and we can simply select the metric, name the graph, and viola:
@@ -197,7 +197,7 @@
 
 2) Descriptive Monitor Name and Message, and Notification 
 
-  * We will now move on to part 4 on this page ("Say What's Happening") Where we can give our monitor a descriptive name and message to send out. Here, we will give our monitor a descriptive title, as well as a message. The message will typically have a step-by-step solution, but for our purposes something more simple should be fine. If you use @email_address in the message, it will notify any non-datadog users of the alert. It is also a good idea to link to your dashboard in these messages (the message section accepts markdown, so it is quite simple to do so). The message should look something like this after clicking on the preview icon (eyeball on top right):
+  * We will now move on to part 4 on this page ("Say What's Happening") Where we can give our monitor a descriptive name and message to send out. Here, we will give our monitor a descriptive title, as well as a message. The message will typically have a step-by-step solution, but for our purposes something more simple should be fine. If we use @email_address in the message, it will notify any non-datadog users of the alert. It is also a good idea to link to your dashboard in these messages (the message section accepts markdown, so it is quite simple to do so). The message should look something like this after clicking on the preview icon (eyeball on top right):
     ![message](./datadog_pics/message.png)
 
   * On part 5 ("Notify your Team"), we can make sure that everyone we want to be notified is there. We can potentially add names in the first box, but for our case we will want to just make sure that our name is there. There are a couple other options underneath as well, that should not be necessary for us to change. After finishing this section, simply click "save" at the bottom right and our monitor should be set up and ready to go!
