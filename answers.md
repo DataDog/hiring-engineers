@@ -17,7 +17,7 @@
 
 
 * **Task:** Add tags in the Agent config file and show a screenshot of host and its tags on the Host Map page in Datadog.
-  - Here is a screenshot of the Agent config file (datadog.conf), opened with the built in Nano editor, showing two custom tags added (on a line near the middle of the image):
+  - Here is a screenshot of the Agent config file (`datadog.conf`), opened with the built in Nano editor, showing two custom tags added (on a line near the middle of the image):
   <br><br>
   ![Custom tags in Agent config file.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/dd_agent_config_tags.JPG?raw=true)
 
@@ -37,9 +37,11 @@
   <br><br>
   ![Display of Posgres integration in Host Map.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/pg_host_map.JPG?raw=true)
   <br><br>
-  - Basic use of Postgres integration metric in a [custom dashboard]():
+  - Basic use of Postgres integration metric in a [custom dashboard](https://app.datadoghq.com/dash/373118/miket---support-engineer-applicant-assignment?live=true&page=0&is_auto=false&from_ts=1507149351527&to_ts=1507152951527&tile_size=m):
   <br><br>
   ![Posgres on custom dashboard](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/pg_on_dashboard.JPG?raw=true)
 
 
 * **Task:** Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
+  <br><br>
+  ![Configuration code in .yaml file for test.support.random custom Agent check]()
