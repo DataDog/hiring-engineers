@@ -225,6 +225,9 @@
   * If done correctly, the schedule should now show up in in the "Manage Downtime" page like looking like this:
     ![downtime_success](./datadog_pics/downtime_success.png) 
 
+  * Here is the email of the downtime notification:
+    ![downtime_email](./datadog_pics/downtime_email.png) 
+
 
 
 
