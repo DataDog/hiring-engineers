@@ -227,7 +227,7 @@
 
   * Finally, we will create a message under "Message" that will notify any team members of the downtime of the monitor. The Notifcation process works the same way as the message in the Set Up Monitor Section under Level 3 of this guide.
   After finishing the message, click "Save" at the bottom right and the downtime should be set.
-    ![schedule](./datadog_pics/schedule.png)
+    ![downtime_message](./datadog_pics/downtime_message.png)
 
   * If done correctly, the schedule should now show up in in the "Manage Downtime" page like looking like this:
     ![downtime_success](./datadog_pics/downtime_success.png) 
