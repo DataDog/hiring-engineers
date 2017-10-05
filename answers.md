@@ -4,6 +4,13 @@
 
 2) Link to [mySQL-clone-dashboard](https://app.datadoghq.com/dash/373135/mysql---clone?live=true&page=0&is_auto=false&from_ts=1507153698644&to_ts=1507157298644&tile_size=m)
 
+3) Link to [Host-Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false)
+
+4) Link to [Monitors](https://app.datadoghq.com/monitors/manage)
+
+5) Link to [Datadog-Docs](https://docs.datadoghq.com/)
+
+
 * Screenshots of dashboards show up repeatedly throughout guide.
 
 
@@ -34,9 +41,9 @@
   **BONUS** What is The Agent? 
     
   * The Agent is the software that collects data, events, and metrics and sends them to Datadog, so that we as the customer can use this data to better monitor the performance of one's applications, as well as use the information to find potential problematic areas in the codebase. There are three pieces to the Agent: 
-    1. The *collector*, which runs checks according to whatever integrations you have and captures system metrics.
-    2. *Dogstatd*, which is a backend server that you can send custom metrics to.
-    3. The *forwarder*, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
+    1. The **collector**, which runs checks according to whatever integrations you have and captures system metrics.
+    2. **Dogstatd**, which is a backend server that you can send custom metrics to.
+    3. The **forwarder**, which gets data from the two aforementioned components and queues it up to be sent to Datadog.
 
 2) Tags and the Host Map (And Finding the Docs) 
   
@@ -68,7 +75,7 @@
   * Now that our tags are set, we can go back to our datadog home page and click on this button to get to the HostMap:
      ![host](./datadog_pics/host_map_button.png) 
 
-  * After getting to the HostMap page, simply click on the host (big green thing in the center), and the tags should show up on the right under "Tags" (specifically under the subheading "Datadog Agent")
+  * After getting to the Host Map page, simply click on the host (big green thing in the center), and the tags should show up on the right under "Tags" (specifically under the subheading "Datadog Agent")
     ![agent_tags](./datadog_pics/agent_tags.png) 
 
 3) Database Integration (with MySql)
@@ -109,7 +116,7 @@
 
   * We can also check our custom checks by calling them through the Agent (custom checks cannot be directly called from Python). In ubuntu, this done with:
     
-    sudo -u dd-agent dd-agent check <CHECK_NAME>
+        sudo -u dd-agent dd-agent check <CHECK_NAME>
   
   which should bring up a status similar to this:
     ![random_check](./datadog_pics/random_check.png)
@@ -224,6 +231,9 @@
 
   * If done correctly, the schedule should now show up in in the "Manage Downtime" page like looking like this:
     ![downtime_success](./datadog_pics/downtime_success.png) 
+
+  * Here is the email of the downtime notification:
+    ![downtime_email](./datadog_pics/downtime_email.png) 
 
 
 
