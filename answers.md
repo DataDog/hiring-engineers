@@ -38,6 +38,7 @@
    * Finally, moving forward on the DataDog site will bring us to your Agent page and our first metrics, which look like this: 
     ![metrics](./datadog_pics/metrics_window.png) 
 
+  
   **BONUS** What is The Agent? 
     
   * The Agent is the software that collects data, events, and metrics and sends them to Datadog, so that we as the customer can use this data to better monitor the performance of one's applications, as well as use the information to find potential problematic areas in the codebase. There are three pieces to the Agent: 
