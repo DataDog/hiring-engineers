@@ -5,7 +5,7 @@ After reading through the references, I decided to complete the updated Readme s
 
 ##### In your own words, what is the Datadog Agent?
 
-The agent software acts as a messenger, relaying any updates on events and performance metrics from the host to Datadog's platform. The agent can collect these metrics from the any software on the host that is configured to integrate with the platform.
+The Datadog agent acts as a messenger, relaying any updates on events and performance metrics from your host computer to Datadog's platform. The agent can fetch these metrics from the any software on the host that is configured to integrate with the platform.
 
 
 ## Installation Notes
@@ -150,7 +150,7 @@ Link to the Dashboard: https://app.datadoghq.com/dash/371903/apm--infrastructure
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
-The relationship between a service and a resource is often expressed in software using analytics. A resource refers to a piece of code, usually either a query in a database or a route in an application, that can be experienced within a service. The service is the set of processes containing each individual resource.
+A resource refers to a piece of code, usually either a query in a database or a route in an application, that can be experienced within a service. The service is the set of processes usually containing different resources.
 
 In this case for instance, the service is a web application labeled "my-flask-app." Three designated resources in this application would be the three routes present in the script, in addition to any error routes (404) that may be traced.
 
