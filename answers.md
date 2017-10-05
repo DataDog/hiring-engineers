@@ -4,6 +4,8 @@
 
 2) Link to [mySQL-clone-dashboard](https://app.datadoghq.com/dash/373135/mysql---clone?live=true&page=0&is_auto=false&from_ts=1507153698644&to_ts=1507157298644&tile_size=m)
 
+3) Link to [Datadog Docs](https://docs.datadoghq.com/)
+
 * Screenshots of dashboards show up repeatedly throughout guide.
 
 
