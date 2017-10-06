@@ -86,11 +86,23 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
   <br><br>
   ![](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/multi_alert_monitor.JPG?raw=true)
 
+
 * **Task:** Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
- - 
+
+ - The message sent when this monitor is triggered handles dynamic insertion of the `host.name` variable and reminds the recipient of the conditions prompting the alert.
+ <br><br>
+ ![Monitor message settings, title, and body.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_message.JPG?raw=true)
 
 
 * **Bonus Task:** This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-
+  <br><br>
+  - Email notification of the monitor alert being triggered:
+  ![Email of monitor alert message.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_response_email.JPG?raw=true)
 
 * **Bonus Task:** Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  - A display of the scheduled downtime settings:
+  <br><br>
+  ![Downtime settings.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_silent_hours.JPG?raw=true)
+
+  - Email confirmation of downtime:
+  ![]
