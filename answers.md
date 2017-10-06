@@ -104,5 +104,6 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
   <br><br>
   ![Downtime settings.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_silent_hours.JPG?raw=true)
 
-  - Email confirmation of downtime:
-  ![]
+  - The following is an email confirmation of downtime (*Note*: The time interval in the message refers to 3:15pm to but that was only to force the email to be sent right away instead of waiting until 7pm to take a screenshot ):
+  <br><br>
+  ![](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_silence_conf_email.JPG?raw=true)
