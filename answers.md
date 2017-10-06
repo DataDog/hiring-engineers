@@ -10,19 +10,18 @@
 * **Bonus Question:** In your own words, what is the Agent?
   - The agent is software installed to run on a host and collect events and metrics about an application or overall infrastructure.
   - It is composed of three main parts each with different tasks.
-    - The collector captures system metrics like memory and CPU usage from the current machine and/or the host integrations.
-    - To send custom metrics from an application the agent uses a statsd backend server called Dogstatsd
-    - The forwarder interacts with the collector and Dogstatsd to retrieve data from both and queue it for transfer to Datadog.
-  - Click [here](https://docs.datadoghq.com/guides/basic_agent_usage/) for more information and a full description of the Datadog Agent.
+    - The "collector" captures system metrics like memory and CPU usage from the current machine and/or the host integrations.
+    - To send custom metrics from an application the agent uses a statsd backend server called "Dogstatsd"
+    - The "forwarder" interacts with the collector and Dogstatsd to retrieve data from both and queue it for transfer to Datadog.
 
 
-* **Task:** Add tags in the Agent config file and show a screenshot of host and its tags on the Host Map page in Datadog.
+* **Task:** Add tags in the Agent config file and show a screenshot of the host and its tags on the Host Map page in Datadog.
   - Here is a screenshot of the Agent config file (`datadog.conf`), opened with the built in Nano editor, showing two custom tags added (on a line near the middle of the image):
   <br><br>
   ![Custom tags in Agent config file.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/dd_agent_config_tags.JPG?raw=true)
 
   - *Note:* The `datadog.conf` file location was not specified directly in the [Guide to Tagging](https://docs.datadoghq.com/guides/tagging/) and the link provided in the first paragraph of the "Assigning tags using the configuration files" section led me back to my getting started section rather than an article guiding me toward the file. I was able to find the location from this [article](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-).
-  - This is an image of the Host Map page displaying the tags entered on the datadog.conf file:
+  - This is an image of the Host Map page displaying the tags entered on the datadog.conf file (click to expand and see tags on the right):
   <br><br>
   ![Host Map page screenshot with tags displayed.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/initial_host_map_tags.JPG?raw=true)
 
@@ -75,31 +74,30 @@
   - By contrast, a screenboard has a more customizable widget layout and can be shared as an entire single read-only live entity.
 
 
-### Level 3 - Alerting on Data
+### Level 3 - Alerting on Data  
 
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.  
+* **Task:** Set up a monitor on the `test.support.random` metric that alerts when it goes above 0.90 at least once during the last 5 minutes
 
-* **Task:** Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
-
-* **Bonus Task:**  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+* **Bonus Task:**  Make it a multi-alert by host to avoid recreating it if infrastructure scales up.
   - The following image demonstrates completion of the two tasks above, displaying a multi-alert monitor tracking two hosts starting at roughly 13:13.  Both hosts have the same `project:miket_interview_challenge` tag through which the grouping has been made, and they share the same custom check yielding a random value. The monitor is set to trigger when either of these hosts exceeds a threshold of 0.90.
   <br><br>
   ![](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/multi_alert_monitor.JPG?raw=true)
 
 
-* **Task:** Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+* **Task:** Give the monitor a descriptive name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 
- - The message sent when this monitor is triggered handles dynamic insertion of the `host.name` variable and reminds the recipient of the conditions prompting the alert.
+ - The message sent when this monitor is triggered handles dynamic insertion of the `host.name` variable, links to the dashboard from which the monitor was created, and reminds the recipient of the conditions prompting the alert.
  <br><br>
  ![Monitor message settings, title, and body.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_message.JPG?raw=true)
 
 
-* **Bonus Task:** This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-  <br><br>
+* **Bonus Task:** This monitor should within 15 minutes. So when it does, take a screenshot of the email that it sends.
   - Email notification of the monitor alert being triggered:
+  <br><br>
   ![Email of monitor alert message.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_response_email.JPG?raw=true)
+  
 
-* **Bonus Task:** Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+* **Bonus Task:** Since this monitor is going to alert pretty often, one doesn't want to be alerted while out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that the email is sent when you schedule the downtime and take a screenshot of that notification.
   - A display of the scheduled downtime settings:
   <br><br>
   ![Downtime settings.](https://github.com/MikeTarkington/hiring-engineers/blob/support-engineer/monitor_silent_hours.JPG?raw=true)
