@@ -30,4 +30,4 @@ After reconfigured `test.support.random` to output values within the desired ran
 
 ## Level 3 - Alerting Your Data
 
-Now, it was time to write a monitor on `test.support.random` to automatically email me when we would get a value that is [greater than 0.90](Screenshots/Create_monitor.png) at least once, within a 5 minute interval. It was really excited to receive the first email [notification](Screenshots/Email_notification.png)! After receiving a few more emails, I understood why [Downtime](Screenshots/Configure Downtime.png) was such an important [feature](Screenshots/Downtime_set.png).
+Now, it was time to write a monitor on `test.support.random` to automatically email me when we would get a value that is [greater than 0.90](Screenshots/Create_monitor.png) at least once, within a 5 minute interval. It was really excited to receive the first email [notification](Screenshots/Email_notification.png)! After receiving a few more emails, I understood why [Downtime](Screenshots/Configure_Downtime.png) was such an important [feature](Screenshots/Downtime_set.png).
