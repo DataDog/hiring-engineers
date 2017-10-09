@@ -9,4 +9,4 @@ At the risk of anthropomorphizing, the Agent is DataDog's local representative r
 
 #### Host Map with Tags:
 ![alt-text][tags]
-[tags]: /hotMapWithTags.png
+[tags]: /hostMapWithTags.png
