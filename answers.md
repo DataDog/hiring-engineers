@@ -7,7 +7,7 @@ To begin this challenge, I first initiated a Vagrant environment, as suggested, 
 ![Initiate Vagrant Environment](Screenshots/Initiating_vagrant_environment.png)
 
 I then followed the steps initiating an Agent.
-![Initate Agent](Screenshots/Initiate_Datadog_agent.png).
+![Initiate Agent](Screenshots/Initiate_Datadog_Agent.png)
 
 **BONUS QUESTION:** *In your own words, what is the Agent?*
 
