@@ -1,0 +1,1 @@
+/opt/datadog-agent/etc/checks.d
