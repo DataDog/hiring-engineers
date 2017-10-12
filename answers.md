@@ -1,3 +1,10 @@
+Host Map:https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&app=randomcheck&host=350540781
+
+Random Check: https://app.datadoghq.com/dash/integration/custom%3Arandomcheck?live=true&tpl_var_scope=host%3AMinas-Air&page=0&is_auto=false&from_ts=1507832536172&to_ts=1507836136172&tile_size=m
+
+Random Check Cloned:https://app.datadoghq.com/dash/378054/custom-metrics---randomcheck-cloned?live=true&page=0&is_auto=false&from_ts=1507832638706&to_ts=1507836238706&tile_size=m
+
+
 Bonus Question #1. In your own words, what is the Agent?
 
 The Agent is software that runs on your hosts, it collects events and metrics and sends them to Datadog. Datadog then allows you to easily observe and use your monitoring and performance data.
