@@ -1,12 +1,12 @@
-[Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&app=randomcheck&host=350540781)
+Check out my [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&app=randomcheck&host=350540781)
 
 <img src="Host map and tags.png">
 
-[Random Check Dashboard](https://app.datadoghq.com/dash/integration/custom%3Arandomcheck?live=true&tpl_var_scope=host%3AMinas-Air&page=0&is_auto=false&from_ts=1507832536172&to_ts=1507836136172&tile_size=m)
+Here's my [Random Check Dashboard](https://app.datadoghq.com/dash/integration/custom%3Arandomcheck?live=true&tpl_var_scope=host%3AMinas-Air&page=0&is_auto=false&from_ts=1507832536172&to_ts=1507836136172&tile_size=m)
 
 <img src="Graph showing data above 0.9.png">
 
-[Random Check Dashboard Cloned](https://app.datadoghq.com/dash/378054/custom-metrics---randomcheck-cloned?live=true&page=0&is_auto=false&from_ts=1507832638706&to_ts=1507836238706&tile_size=m)
+And another one! [Random Check Dashboard Cloned](https://app.datadoghq.com/dash/378054/custom-metrics---randomcheck-cloned?live=true&page=0&is_auto=false&from_ts=1507832638706&to_ts=1507836238706&tile_size=m)
 
 ### Monitor email for when graph hit above 09:
 <img src="Monitor email, graph hit above 0.9.png">
