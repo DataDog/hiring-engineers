@@ -12,3 +12,5 @@ Bonus Question #2. What is the difference between a timeboard and a screenboard?
 Timeboards or for troubleshooting, seeing correlations, and tirage investigations.  They help pinpoint what is happening across metrics and services at the same time.  All graphs are scoped to the same time, and will appear in a grid like fashion, these graphs can only be shared individually.
 
 Screenboards show you general status boards with the overall helath.  Screen are more flexible and customizebale than timeboards and useful for getting a high-level look into a system. These can be customized with widgets, graphs (with different time frames!), images, and visual cues to make your data presentable in any way you like. Screenboards can be shared with a public url as a read-only entity.
+
+Sidenote: my down time email was sent at a weird time for testing purposes becuase it was past 7pm, and it now set up to have the correct down time 7pm-9am.
