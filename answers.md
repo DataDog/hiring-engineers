@@ -31,6 +31,15 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?<h2/>
+
+<h4>The anomaly graph displays a separate line compared to historical behaviour and indicates where it has deviated from that past behaviour<h4/>
+
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Timeboard%20Options.PNG?raw=true" />
+<br/>
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Timeboard%20Snapshot.PNG?raw=true" />
+<br/>
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Timeboard%20graphs.PNG?raw=true" />
+<br/>
  
  
 
