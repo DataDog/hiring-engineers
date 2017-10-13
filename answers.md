@@ -42,4 +42,15 @@ Bonus Question: What is the Anomaly graph displaying?<h2/>
 <br/>
  
  
+<h2>Monitoring Data: When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:<h2/>
+<br/>
+
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Email%20Notification%20Monitor.PNG?raw=true" />
+<br/>
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Managed_Downtime.PNG?raw=true" />
+<br/>
+
+
 
