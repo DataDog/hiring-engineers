@@ -13,8 +13,11 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 <h4>Yes you can configure the interval in the yaml file for your custom check or the datadog config file as well.<h4/>
 
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/my_metric%20check%201.PNG?raw=true" />
+<br/>
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/my_metric_yaml.PNG?raw=true" />
+<br/>
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/my_metric_collection_interval.PNG?raw=true" />
+<br/>
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/my_metric_py.PNG?raw=true" />
  
  
