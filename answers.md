@@ -57,7 +57,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:<h2/>
 
-<h4>I was able to deploy the app and configure it for monitoring, but even after restarting the agent I kept running into connection issues that I was not able to resolve. Below are the 2 primary errors.<h4/>
+<h4>I was able to deploy the app and configure it for monitoring. However, after doing so I was was receiving the soccket error seen below then after restarting the agent I was able to resolve it, but then received a connection error I have not been able to resolve. <h4/>
 
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Socket%20Error.PNG?raw=true" />
 <br/>
