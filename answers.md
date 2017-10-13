@@ -72,4 +72,4 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 Is there anything creative you would use Datadog for?<h2/>
 
-<h4>I think an interesting application of datadog could be in the industrial space. Monitoring of manufacturing hardware and optimizing of interconnected machinery (a specific machine is overheating, or a specific plants output is less than anothers and being able to identify how and why) or perhaps in the utilities space. Being able to monitor water and power plants efficiencies and uptime and issues in real time to address root problems. <h4/>
+<h4>I think an interesting application of datadog could be in the industrial space. Monitoring of manufacturing hardware and optimization of interconnected machinery (a specific machine is overheating, or a specific plants output is less than anothers and being able to identify how and why) or perhaps in the utilities space. Being able to monitor water and power plants efficiencies and uptime and issues in real time to address root problems. <h4/>
