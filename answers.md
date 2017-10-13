@@ -63,3 +63,13 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 <br/>
 <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/APM%20Connection%20Error.PNG?raw=true" />
 <br/>
+
+<h2>Bonus Question: What is the difference between a Service and a Resource?<h2/>
+
+<h4>Services are typically a collection of processes that are interconnected to achieve a specific function. While a resource typically calls upon services to achieve a function.<h4/>
+
+<h2>Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?<h2/>
+
+<h4>I think an interesting application of datadog could be in the industrial space. Monitoring of manufacturing hardware and optimizing of interconnected machinery (a specific machine is overheating, or a specific plants output is less than anothers and being able to identify how and why) or perhaps in the utilities space. Being able to monitor water and power plants efficiencies and uptime and issues in real time to address root problems. <h4/>
