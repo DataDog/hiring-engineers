@@ -2,9 +2,9 @@
 
 <h4>I chose to use debian which I ran from Oracle Virtual Box<h4/>
   
-(Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog)
-  <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Agent_Tag_Config.PNG?raw=true" />
-  <img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Tags%20Host%20Map.PNG?raw=true" />
+<h2>Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog<h2/>
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Agent_Tag_Config.PNG?raw=true" />
+<img src="https://github.com/Pilotreborn/hiring-engineers/blob/master/Screenshots/Tags%20Host%20Map.PNG?raw=true" />
   
 <h2>Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
