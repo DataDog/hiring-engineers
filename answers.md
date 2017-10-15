@@ -22,7 +22,7 @@ Don't forget to read the **References**.
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
->Answer: Click integration-Agent in DataDog and follow the installation instructions for Mac OS X to install the Agent on my own machine.
+>Answer: Click _integration-Agent_ in DataDog and follow the installation instructions for Mac OS X to install the Agent on my own machine.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/Agent%20instalation%20and%20config.png" />
 
 * Bonus question: In your own words, what is the Agent?
@@ -31,10 +31,13 @@ Don't forget to read the **References**.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
->Answer: Change direction by type cd ~/.datadog-agent in terminal, then type emacs datadog.conf to open and edit the configuration file. (reference: https://docs.datadoghq.com/guides/tagging/)
+>Answer: Change direction by type _cd ~/.datadog-agent_ in terminal, then type _emacs datadog.conf_ to open and edit the configuration file. 
+reference: https://docs.datadoghq.com/guides/tagging/
+
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
 
-After a few minutes refresh the Datadog, go to Infrastructure - Host Map, the tags are now shown in there.
+After a few minutes refresh the Datadog, go to _Infrastructure - Host Map_, the tags are now shown in there.
+
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20host%20map.png" />
 
 
@@ -42,17 +45,17 @@ After a few minutes refresh the Datadog, go to Infrastructure - Host Map, the ta
 
 >Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
 
-find the PostgreSQL API under Integrations, follow the installation instructions
+find the PostgreSQL API under _Integrations_, follow the installation instructions
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgres_yaml.png" />
 
-Type datadog-agent info in Terminal to check states.
+Type _datadog-agent info_ in Terminal to check states.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
 >Answer:
 
-~/.datadog-agent/checks.d/randomcheck.py
+_~/.datadog-agent/checks.d/randomcheck.py_
 
 ```
 import random
@@ -62,7 +65,7 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-~/.datadog-agent/conf.d/randomcheck.yaml
+_~/.datadog-agent/conf.d/randomcheck.yaml_
 
 ```
 init_config:
@@ -83,10 +86,10 @@ print(random.random())
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
 
->Answer: Go to Dashboard-Dashboard List, select Postgres, then click on Clone Dashboard on the top right corner.
+>Answer: Go to _Dashboard-Dashboard List_, select _Postgres_, then click on _Clone Dashboard_ on the top right corner.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
 
-Click on add new graph and type test.support.random  in the Get then click Save.
+Click on add new graph and type _test.support.random_ in the Get then click Save.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/new%20graph%20test_%20support_random.png" />
 
 reference: https://docs.datadoghq.com/guides/templating/
@@ -108,7 +111,7 @@ reference: https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-di
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
->Answer: click on the setting icon - create Monitor on the top right of the graph
+>Answer: click on the _setting icon - create Monitor_ on the top right of the graph
 <img src="hhttps://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
@@ -117,7 +120,7 @@ reference: https://docs.datadoghq.com/guides/monitors/
 
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
->Answer: select Multi Alert under 2-Define the metric, has been done in the previous step.
+>Answer: select _Multi Alert_ under 2-Define the metric, has been done in the previous step.
 
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert2.png" />
@@ -129,8 +132,10 @@ reference: https://docs.datadoghq.com/guides/monitors/
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
->Answer: Monitors - Manage Downtime - Schedule Downtime
+>Answer: _Monitors - Manage Downtime - Schedule Downtime_
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/downtime.png" />
+
+
 
 ## Instructions
 If you have a question, create an issue in this repository.
