@@ -71,6 +71,17 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 ```
 from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -88,6 +99,8 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run()
 ```    
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
     
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
