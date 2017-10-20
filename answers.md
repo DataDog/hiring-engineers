@@ -1,14 +1,25 @@
 Your answers to the questions go here.
+# About Datadog
+Datadog is a data monitoring service for cloud-scale applications, bringing together data from servers, databases, tools, and services to present a unified view of an entire stack. These capabilities are provided on a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
 
-
-I am here to apply for the support engineer at [Datadog](http://datadog.com) Sydney.
+### Features
+* Observability - From infrastructure to apps, in any environment
+* Dashboards - Use instant, real-time boards or build your own
+* Infrastructure - From overview to deep details, fast
+* Analytics - Custom app metrics or business KPIs
+* Collaboration - Share data, discuss in context, solve issues quickly
+* Alerts - Avoid alert fatigue with smart, actionable alerts
+* API - Love infrastructure as code? You'll love Datadog's API
+* Machine Learning - Automatically detect outliers and temporal anomalies
+* APM - Monitor, optimize, and troubleshoot app performance
 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
-# The Challenge
+I am here to apply for the support engineer at [Datadog](http://datadog.com) Sydney.
 
-Don't forget to read the **References**.
+
+# The Challenge
 
 ## Questions
 
@@ -22,12 +33,19 @@ Don't forget to read the **References**.
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
 
->Answer: Click _integration-Agent_ in DataDog and follow the installation instructions for Mac OS X to install the Agent on my own machine.
+>Answer: [Sign up here](https://www.datadoghq.com/#), get a datadog account for free for 14 days.
+
+>Once log in, click on _integration-Agent_ in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
+
+> The datadog can be installed on OS X as easily as:
+```
+DD_API_KEY=63ab065b2982aed65fff538ba18a93ba bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
+```
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/Agent%20instalation%20and%20config.png" />
 
 * Bonus question: In your own words, what is the Agent?
 
->Answer: The Datadog agent is a full stack platform/software which brings data from different places via API to Datadog interface.
+>Answer: The Datadog agent is a full stack data monitoring platform/software which brings data from servers, databases, tools, and services to the Datadog web interface.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -45,11 +63,23 @@ After a few minutes refresh the Datadog, go to _Infrastructure - Host Map_, the 
 
 >Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
 
-find the PostgreSQL API under _Integrations_, follow the installation instructions
+>Find the PostgreSQL API under _Integrations-Integrations_, click _instal_, then click on _Configuration_ tab.
+
+>Create a read-only datadog user with proper access to your PostgreSQL Server.
+```
+create user datadog with password 'password_for_datadog';
+grant SELECT ON pg_stat_database to datadog;
+```
+>Configure the Agent to connect to the PostgreSQL server 
+>Edit _conf.d/postgres.yaml_
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgres_yaml.png" />
 
-Type _datadog-agent info_ in Terminal to check states.
+>Restart the Agent
+
+>Type _datadog-agent info_ in Terminal to check states.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
+
+>Can also go to _Dashboard-Dashboard List_ to check to see if it is working or not.
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
@@ -89,7 +119,7 @@ print(random.random())
 >Answer: Go to _Dashboard-Dashboard List_, select _Postgres_, then click on _Clone Dashboard_ on the top right corner.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
 
-Click on add new graph and type _test.support.random_ in the Get then click Save.
+>Click on add new graph and type _test.support.random_ in the Get then click Save.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/new%20graph%20test_%20support_random.png" />
 
 reference: https://docs.datadoghq.com/guides/templating/
@@ -163,3 +193,8 @@ To submit your answers:
 
 ### Other questions:
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+
+### About Me
+Mathematician, Computer Scientist, Barista, World Explorer
+
+[My Linkedin](https://www.linkedin.com/in/mei-jin/)
