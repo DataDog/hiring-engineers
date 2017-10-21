@@ -35,7 +35,7 @@ I am here to apply for the support engineer at [Datadog](http://datadog.com) Syd
 
 >Answer: [Sign up here](https://www.datadoghq.com/#), get a datadog account for free for 14 days.
 
->Once log in, click on _integration-Agent_ in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
+>login, click on _integration-Agent_ in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
 
 > The datadog can be installed on OS X as easily as:
 ```
@@ -63,7 +63,8 @@ After a few minutes refresh the Datadog, go to _Infrastructure - Host Map_, the 
 
 >Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
 
->Find the PostgreSQL API under _Integrations-Integrations_, click _instal_, then click on _Configuration_ tab.
+>Find the PostgreSQL API under _Integrations-Integrations_, click _install_, then click on _Configuration_ tab.
+<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/integration.png" />
 
 >Create a read-only datadog user with proper access to your PostgreSQL Server.
 ```
@@ -79,7 +80,7 @@ grant SELECT ON pg_stat_database to datadog;
 >Type _datadog-agent info_ in Terminal to check states.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
 
->Can also go to _Dashboard-Dashboard List_ to check to see if it is working or not.
+>Can also go to _Dashboard-Dashboard List_ to check whether it is working or not.
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
@@ -116,7 +117,7 @@ print(random.random())
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
 
->Answer: Go to _Dashboard-Dashboard List_, select _Postgres_, then click on _Clone Dashboard_ on the top right corner.
+>Answer: Go to _Dashboard-Dashboard List_, select _Postgres_ under _Integration Dashboards_, then click on _Clone Dashboard_ on the top right corner.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
 
 >Click on add new graph and type _test.support.random_ in the Get then click Save.
