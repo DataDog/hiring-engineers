@@ -50,7 +50,7 @@ DD_API_KEY=63ab065b2982aed65fff538ba18a93ba bash -c "$(curl -L https://raw.githu
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 >Answer: Change direction by type _cd ~/.datadog-agent_ in terminal, then type _emacs datadog.conf_ to open and edit the configuration file. 
-reference: https://docs.datadoghq.com/guides/tagging/
+[reference](https://docs.datadoghq.com/guides/tagging/)
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
 
@@ -105,7 +105,7 @@ instances:
     [{}]
 ```
 
-reference: https://docs.datadoghq.com/guides/agent_checks/
+[reference](https://docs.datadoghq.com/guides/agent_checks/)
 
 Here is a snippet that prints a random value in python:
 
@@ -124,13 +124,13 @@ print(random.random())
 >Click on add new graph and type _test.support.random_ in the Get then click Save.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/new%20graph%20test_%20support_random.png" />
 
-reference: https://docs.datadoghq.com/guides/templating/
+[reference](https://docs.datadoghq.com/guides/templating/)
 
 * Bonus question: What is the difference between a timeboard and a screenboard?
 
 >Answer: all graphs are always scoped to the same time in timeboard, but screenboard is flexible and more customisable, it can be created by drag and drop widgets.
 
-reference: https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-
+[reference](https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-)
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
@@ -148,7 +148,7 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
 
-reference: https://docs.datadoghq.com/guides/monitors/
+[reference](https://docs.datadoghq.com/guides/monitors/)
 
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
