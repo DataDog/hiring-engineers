@@ -54,7 +54,7 @@ reference: https://docs.datadoghq.com/guides/tagging/
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
 
-After a few minutes refresh the Datadog, go to [Infrastructure - Host Map_](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false), the tags are now shown in there.
+After a few minutes refresh the Datadog, go to [_Infrastructure - Host Map_](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false), the tags are now shown in there.
 
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20host%20map.png" />
