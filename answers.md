@@ -35,7 +35,7 @@ I am here to apply for the support engineer at [Datadog](http://datadog.com) Syd
 
 >Answer: [Sign up here](https://www.datadoghq.com/#), get a datadog account for free for 14 days.
 
->login, click on _integration-Agent_ in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
+>login, click on [_integration-Agent_](https://app.datadoghq.com/account/settings#agent/mac) in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
 
 > The datadog can be installed on OS X as easily as:
 ```
@@ -54,7 +54,8 @@ reference: https://docs.datadoghq.com/guides/tagging/
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
 
-After a few minutes refresh the Datadog, go to _Infrastructure - Host Map_, the tags are now shown in there.
+After a few minutes refresh the Datadog, go to [Infrastructure - Host Map_](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false), the tags are now shown in there.
+
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20host%20map.png" />
 
@@ -63,7 +64,7 @@ After a few minutes refresh the Datadog, go to _Infrastructure - Host Map_, the 
 
 >Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
 
->Find the PostgreSQL API under _Integrations-Integrations_, click _install_, then click on _Configuration_ tab.
+>Find the PostgreSQL API under [_Integrations-Integrations_](https://app.datadoghq.com/account/settings), click _install_, then click on _Configuration_ tab.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/integration.png" />
 
 >Create a read-only datadog user with proper access to your PostgreSQL Server.
@@ -80,7 +81,7 @@ grant SELECT ON pg_stat_database to datadog;
 >Type _datadog-agent info_ in Terminal to check states.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
 
->Can also go to _Dashboard-Dashboard List_ to check whether it is working or not.
+>Can also go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list) to check whether it is working or not.
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
@@ -117,7 +118,7 @@ print(random.random())
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
 
->Answer: Go to _Dashboard-Dashboard List_, select _Postgres_ under _Integration Dashboards_, then click on _Clone Dashboard_ on the top right corner.
+>Answer: Go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list), select [_Postgres_](https://app.datadoghq.com/dash/integration/postgresql?live=true&page=0&is_auto=false&from_ts=1508633477863&to_ts=1508637077863&tile_size=m) under _Integration Dashboards_, then click on _Clone Dashboard_ on the top right corner.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
 
 >Click on add new graph and type _test.support.random_ in the Get then click Save.
@@ -142,7 +143,7 @@ reference: https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-di
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
->Answer: click on the _setting icon - create Monitor_ on the top right of the graph
+>Answer: click on the [_setting icon - create Monitor_](https://app.datadoghq.com/monitors#create/metric?aggregator=avg&metric=test.support.random) on the top right of the graph
 <img src="hhttps://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
@@ -163,7 +164,7 @@ reference: https://docs.datadoghq.com/guides/monitors/
 
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
->Answer: _Monitors - Manage Downtime - Schedule Downtime_
+>Answer: [_Monitors - Manage Downtime - Schedule Downtime_](https://app.datadoghq.com/monitors#downtime)
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/downtime.png" />
 
 
