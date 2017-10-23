@@ -85,9 +85,8 @@ grant SELECT ON pg_stat_database to datadog;
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
 
->Answer:
-
-_~/.datadog-agent/checks.d/randomcheck.py_
+>Answer: Each check will have a configuration file that will be placed in the conf.d directory. Configuration is written using YAML. The file name should match the name of the check module (e.g. randomcheck.py and randomcheck.yaml).There are two places that you will need to add files for your check. 
+> The first is the checks.d folder, which lives in your Agent root. _~/.datadog-agent/checks.d/randomcheck.py_
 
 ```
 import random
@@ -97,7 +96,7 @@ class RandomCheck(AgentCheck):
         self.gauge('test.support.random', random.random())
 ```
 
-_~/.datadog-agent/conf.d/randomcheck.yaml_
+>The other folder is conf.d which lives in the Agent configuration root. _~/.datadog-agent/conf.d/randomcheck.yaml_
 
 ```
 init_config:
@@ -134,7 +133,7 @@ print(random.random())
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
->Answer: click on the camera icon on the top right of the graph and type @person
+>Answer: click on the camera icon on the top right of the graph will get you a screenshot of the current graph, draw a box on the graph and type mesage @your_email, then the screenshot will be sent to your email address.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/notification.png" />
 
 
@@ -144,7 +143,14 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 * Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
 
 >Answer: click on the [_setting icon - create Monitor_](https://app.datadoghq.com/monitors#create/metric?aggregator=avg&metric=test.support.random) on the top right of the graph
-<img src="hhttps://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
+
+<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
+
+>1.Choose the detection method
+
+>2.Select the metric and scope you want to monitor
+
+>3.Select the alert grouping
 
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
 
@@ -153,8 +159,13 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 * Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
 >Answer: select _Multi Alert_ under 2-Define the metric, has been done in the previous step.
+>A simple alert aggregates over all reporting sources,You will get one alert when the aggregated value meets the conditions set below. This works best to monitor a metric from a single host. A multi alert applies the alert to each source, according to your group parameters.
 
 * Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
+>Give the monitor a title. It is often useful to use a succinct explanation of the monitor so a notified team member can quickly understand what is going on.
+
+>Enter a message for the monitor. This field allows standard markdown formatting as well as @your_email_address.
+
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert2.png" />
 
 
@@ -165,6 +176,13 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 * Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 >Answer: [_Monitors - Manage Downtime - Schedule Downtime_](https://app.datadoghq.com/monitors#downtime)
+
+>1.Choose what to silence.
+
+>2.Set a schedule.
+
+>(optional)3-4.Add an optional message to notify your team
+
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/downtime.png" />
 
 
