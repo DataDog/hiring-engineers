@@ -69,7 +69,7 @@ In order for the Agent to recognize config changes, it needs to be restarted. To
 ```
 sudo /etc/init.d/datadog-agent restart
 ```
-I could see on the Events board that the host was renamed and contained my updated kitten tags 
+I could see on the [Events board]( https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&query=cooper%20priority%3Aall&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1506927600000&priority=normal&is_zoomed=false&to_ts=1508914799999&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&live=false&status=all&bucket_size=10800000) that the host was renamed and contained my updated kitten tags 
 ![Renamed host and kitten tags](http://farm5.staticflickr.com/4463/37677476846_b27a4d1636_b.jpg)
 
  
@@ -198,7 +198,7 @@ In order to do so, I opened the MySQL dashboard from the `Integration Dashboards
 
 ![Cloning a dashboard](http://farm5.staticflickr.com/4477/23874155308_d504cac937_b.jpg)
 
-The new dashboard is visible under `Your Custom Dashboards` of the Dashboard section.
+The new dashboard [MySQL - Overview (cloned)](https://app.datadoghq.com/dash/376395/mysql---overview-cloned?live=true&page=0&is_auto=false&from_ts=1508867609132&to_ts=1508871209132&tile_size=m) is visible under `Your Custom Dashboards` of the Dashboard section.
 
 ![Newly cloned dashboard](http://farm5.staticflickr.com/4494/37070133343_784649662c_b.jpg)
 
@@ -226,7 +226,7 @@ From the Dashboard page, I first zoomed into a timeframe, highlighted a snapshot
  
  
 
-The snapshot notification as shown on the Event page.
+The snapshot notification as shown on the [Event page]( https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&query=random%20priority%3Aall&aggregate_up=true&use_date_happened=false&display_timeline=true&from_ts=1506841200000&priority=normal&live=false&is_zoomed=false&status=all&to_ts=1508914799999&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=10800000).
 
 ![Event page snapshot](http://farm5.staticflickr.com/4474/23927792028_90cf72e7d1_b.jpg)
  
@@ -250,7 +250,7 @@ The email that I received including the alert notification and link to the dashb
  
 
 
-To schedule downtime, from the Monitors Manage Downtime page, I created a recurring period of downtime. For the purpose of this example the monitor is checking a non production, test environment so alerts regarding performance will be silenced outside of the typical production hours.
+To schedule downtime, from the [Monitors Manage Downtime]( https://app.datadoghq.com/monitors#/downtime) page, I created a recurring period of downtime. For the purpose of this example the monitor is checking a non production, test environment so alerts regarding performance will be silenced outside of the typical production hours.
 
 ![Scheduling downtime](http://farm5.staticflickr.com/4483/37768172691_8e073b8f4b_b.jpg)
  
@@ -260,4 +260,3 @@ Note: One important thing to take into account in regards to scheduling downtime
 The email notification for the scheduled downtime.
 
 ![Downtime alert](http://farm5.staticflickr.com/4458/37482951900_ba83ff11dc_b.jpg)
- 
