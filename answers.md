@@ -68,7 +68,9 @@ init_config:
 instances:
     [{}]
 ```
-This set my check to submit the metric once every 45 seconds.
+This set my check to submit the metric once every 45 seconds. After I restarted the agent, my custom check appeared as one of the agent's apps in the Infrastructure page:
+
+![random](https://dl.dropboxusercontent.com/s/boholra9x4k06cl/firefox_2017-10-26_20-36-14.png)
 
 ## Visualizing Data
 To use Datadog's API to create a timeboard, I first had to add an application key to my account:
@@ -132,12 +134,16 @@ This code creates a timeboard with three graphs:
 * An anomaly graph for the `percent_usage_connections` metric from the Postgres integration.
     * The anomaly graph displays when the metric's value is outside of where it's expected to be based on past behavior.
 
-After I created the timeboard, I accessed my dashboard online throught the Dashboard List, changed the rollup graph to display a single value, and adjusted the board to only display the last 5 minutes by dragging on one of the graphs:
+After I created the timeboard, I accessed my dashboard online through the Dashboard List in the 'Dashboards' menu, [changed the rollup graph to 'Query Value' to display a single value](https://dl.dropboxusercontent.com/s/aopo00mn0j0urug/firefox_2017-10-26_20-31-25.png), and adjusted the board to only display the last 5 minutes by dragging on one of the graphs:
 
 ![dashboard](https://dl.dropboxusercontent.com/s/cnj6vm5msjbym7a/firefox_2017-10-26_20-16-53.png)
 ![dashboard](https://dl.dropboxusercontent.com/s/uptdzqj2ygn17mh/firefox_2017-10-26_19-30-12.png)
 
-Next, I created a snapshot of one of the graphs and sent it to myself using the @ notation:
+Next, I created a snapshot of one of the graphs by clicking on the camera icon above the graph:
+
+![cam](https://dl.dropboxusercontent.com/s/wq6szp8tcw9bbwk/firefox_2017-10-26_20-33-20.png)
+
+and sent it to myself using the @ notation:
 
 ![snapshot](https://dl.dropboxusercontent.com/s/rn30nua5jeb0xc9/firefox_2017-10-26_19-32-11.png)
 
