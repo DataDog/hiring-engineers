@@ -152,7 +152,6 @@ Now check setting using ```datadog-agent info``` command. You can see ```postgre
 ```bash
 vagrant@precise64:~$ sudo /etc/init.d/datadog-agent info
 
-
 ...
 
 Checks
@@ -346,7 +345,7 @@ The graphs in "Timeboard" has same time range and you can grasp multiple metric 
   - trigger above the threshold at least once
   - during the last 5 minutes
   - set 0.9 at "Alert threshold"
-* Finally write message
+* Set message
 
 ```markdown
 {{#is_alert}} Over threshold.{{/is_alert}}
@@ -379,6 +378,15 @@ avg:system.disk.in_use{*} by {host}
 * Go to [Monitors] > [Manage Downtime]
 * Select [Schedule Downtime] button
 * Set down time from 7:00pm to 9:00am
+* Set message
+
+* Finally write message
+
+```markdown
+Set business hours 9:00am-7:00pm. The notification will be stopped without this range.
+
+@yuri.woof.ohno@gmail.com
+```
 
 ![lv3_3](img/lv3_3.png)
 
