@@ -134,3 +134,5 @@ https://github.com/anothervillage/hiring-engineers/blob/01e3f7fa6d55fbc14f66680b
 
 ## Final Question
 
+I think it would be interesting to use Datadog to monitor parking spots in dense urban areas. I could monitor when spots in certain areas become available, allowing people to make informed decisions about where to look for parking, or notifying them of opportunities to move their cars to better spots. By accounting for street-cleaning zones and other time-limited parking spots, Datadog could help prevent people from getting parking tickets by reminding them to move their cars and then helping them find new places to park. The statistics that the app collects could also be useful to urban planners when they are thinking about where to allocate new parking. 
+
