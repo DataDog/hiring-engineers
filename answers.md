@@ -16,13 +16,7 @@ https://github.com/anothervillage/hiring-engineers/blob/cecfe9008e2fea15ac6b1fbd
 
         postgres.yaml: 
 
-            init.config:
-
-            instances:
-              - host: localhost
-                port: 5432
-                username: datadog
-                password: a
+https://github.com/anothervillage/hiring-engineers/blob/e4e985f4e9d783a0cf0e6a3323394f8c38d80868/postgres.yaml#L1-L7
 
         Datadog integration:
 
