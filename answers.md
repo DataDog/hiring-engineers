@@ -15,7 +15,7 @@ https://github.com/anothervillage/hiring-engineers/blob/cecfe9008e2fea15ac6b1fbd
     2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
-
+                          
 https://github.com/anothervillage/hiring-engineers/blob/e4e985f4e9d783a0cf0e6a3323394f8c38d80868/postgres.yaml#L1-L7
 
         Datadog integration:
@@ -38,11 +38,7 @@ https://github.com/anothervillage/hiring-engineers/blob/38db42699dd59d824f6232bc
 
         conf.d/check.yaml:
 
-            init_config:
-                min_collection_interval: 45
-
-            instances:
-                [{}]
+https://github.com/anothervillage/hiring-engineers/blob/01e3f7fa6d55fbc14f66680bf8b3d8b7a1027c7e/check.yaml#L6-L10
 
 ## Visualizing Data
 
