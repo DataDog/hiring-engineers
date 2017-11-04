@@ -12,7 +12,7 @@
 
             <img width="1373" alt="screen shot 2017-11-02 at 10 06 22 pm" src="https://user-images.githubusercontent.com/22550176/32390708-df8aa4ce-c0a5-11e7-9d8d-8c105e2b7fe7.png">
 
-    2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration        for that database.
+    2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
 
@@ -49,7 +49,7 @@
             instances:
                 [{}]
 
-    4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can          you change the collection interval without modifying the Python check file you created?
+    4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
         conf.d/check.yaml:
 
@@ -95,11 +95,11 @@
 
         Bonus Question: What is the Anomaly Graph Displaying?
 
-        The Anomaly Graph highlights data that falls a specified number of standard deviations above or below the value               expected at a point in time, given the recent behavior of the data. In the case of my graph, data points inside the           gray locus fall within two standard deviations of the expected value at that time, while the red locus describes data         points that fall outside of that range. 
+        The Anomaly Graph highlights data that falls a specified number of standard deviations above or below the value expected at a point in time, given the recent behavior of the data. In the case of my graph, data points inside the gray locus fall within two standard deviations of the expected value at that time, while the red locus describes data points that fall outside of that range. 
 
 ## Monitoring Data
 
-    1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the        following values over the past 5 minutes:
+    1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the following values over the past 5 minutes:
         
         a. Warning threshold of 500
 
@@ -125,7 +125,7 @@
 
         <img width="814" alt="screen shot 2017-11-03 at 1 25 17 pm" src="https://user-images.githubusercontent.com/22550176/32401036-66268862-c0de-11e7-991a-9e88decee25d.png">
 
-    Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the       office. Set up two scheduled downtimes for this monitor:
+    Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
         a. One that silences it from 7pm to 9am daily on M-F 
 
@@ -149,7 +149,7 @@
 
     Bonus Question: What is the difference between a Service and a Resource?
 
-    A Service is a group of processes that work together to perform a specific function. A Resource is a query that calls upon     a Service in order to get something from it. 
+    A Service is a group of processes that work together to perform a specific function. A Resource is a query that calls upon a Service in order to get something from it. 
 
 ## Final Question
 

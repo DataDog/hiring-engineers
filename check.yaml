@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+    [{}]
+
+init_config:
+    min_collection_interval: 45
+
+instances:
+    [{}]
