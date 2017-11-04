@@ -9,10 +9,10 @@
             tags: region: east, env:prod, role:database, database:primary, name:practice
 
         Host Map page: 
+        
+        (images/1.png)
 
-            <img width="1373" alt="screen shot 2017-11-02 at 10 06 22 pm" src="https://user-images.githubusercontent.com/22550176/32390708-df8aa4ce-c0a5-11e7-9d8d-8c105e2b7fe7.png">
-
-    2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration        for that database.
+    2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
 
@@ -30,7 +30,7 @@
 
             <img width="1002" alt="screen shot 2017-11-03 at 11 47 49 am" src="https://user-images.githubusercontent.com/22550176/32400551-055beabe-c0d8-11e7-9628-a14fa2da2af7.png">
 
-    3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+    3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
        checks.d/check.py:
 
@@ -49,7 +49,7 @@
             instances:
                 [{}]
 
-    4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can          you change the collection interval without modifying the Python check file you created?
+    4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
         conf.d/check.yaml:
 
@@ -99,7 +99,7 @@
 
 ## Monitoring Data
 
-    1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the        following values over the past 5 minutes:
+    1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the following values over the past 5 minutes:
         
         a. Warning threshold of 500
 
