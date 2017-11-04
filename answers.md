@@ -28,6 +28,8 @@ https://github.com/anothervillage/hiring-engineers/blob/e4e985f4e9d783a0cf0e6a33
 
        checks.d/check.py:
 
+https://github.com/anothervillage/hiring-engineers/blob/60037133e55e31457dc45225785c14b86c100cdf/check.py#L1-L7
+
             from checks import AgentCheck
             import random
 
