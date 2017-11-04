@@ -10,7 +10,7 @@
 
         Host Map page: 
         
-        ![](<img src='images/1.png'>)
+        ![](1.png)
 
     2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
