@@ -10,12 +10,11 @@
 
         Host Map page: 
         
-<<<<<<< 
+<
             <img width="1373" alt="screen shot 2017-11-02 at 10 06 22 pm" src="https://user-images.githubusercontent.com/22550176/32390708-df8aa4ce-c0a5-11e7-9d8d-8c105e2b7fe7.png">
 
-=======
->>>>>>> 
-    
+ =
+ >
     2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
@@ -30,9 +29,15 @@
 
         Datadog integration:
 
-            ![](<img width="1073" alt="screen shot 2017-11-02 at 11 57 30 pm" src="https://user-images.githubusercontent.com/22550176/32400541-f6cbbd4e-c0d7-11e7-9475-89e6560c85fc.png">)
+<<<<<<<
+            <img width="1073" alt="screen shot 2017-11-02 at 11 57 30 pm" src="https://user-images.githubusercontent.com/22550176/32400541-f6cbbd4e-c0d7-11e7-9475-89e6560c85fc.png">
+=======
+>>>>>>>
 
+<<<<<<<
             <img width="1002" alt="screen shot 2017-11-03 at 11 47 49 am" src="https://user-images.githubusercontent.com/22550176/32400551-055beabe-c0d8-11e7-9628-a14fa2da2af7.png">
+=======
+>>>>>>>
 
     3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -68,31 +73,39 @@
     1. Utilize the Datadog API to create a Timeboard that contains:
 
         a. Your custom metric scoped over your host.
-
+<<<<<<<
         <img width="979" alt="screen shot 2017-11-03 at 12 01 01 pm" src="https://user-images.githubusercontent.com/22550176/32400664-7058002c-c0d9-11e7-998d-6bcd9f42538c.png">
+=======
+>>>>>>>
 
         b. Any metric from the Integration on your Database with the anomaly function applied.
-
+<<<<<<<
         <img width="979" alt="screen shot 2017-11-03 at 11 59 26 am" src="https://user-images.githubusercontent.com/22550176/32400673-91995f06-c0d9-11e7-9c15-98b286dc9301.png">
-
+=======
+>>>>>>>
         c. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
+<<<<<<<
         <img width="980" alt="screen shot 2017-11-03 at 11 54 10 am" src="https://user-images.githubusercontent.com/22550176/32400683-af7cfbd6-c0d9-11e7-8167-b9a7370ab402.png">
-
+=======
+>>>>>>>
         Timeboard:
-
+>>>>>>>
         <img width="1209" alt="screen shot 2017-11-03 at 12 02 30 pm" src="https://user-images.githubusercontent.com/22550176/32400711-044a6eaa-c0da-11e7-9bb7-38d7fdf90d42.png">
+=======
+>>>>>>>
 
     2. Once this is created, access the Dashboard from your Dashboard List in the UI:
 
         a. Set the Timeboard's timeframe to the past 5 minutes
-
+>>>>>>>
         <img width="1204" alt="screen shot 2017-11-03 at 12 26 22 pm" src="https://user-images.githubusercontent.com/22550176/32400733-47cb5554-c0da-11e7-917e-28406a89e921.png">
-
+=======
+>>>>>>>
         b. Take a snapshot of this graph and use the @ notation to send it to yourself.
-
+<<<<<<<
         <img width="571" alt="screen shot 2017-11-03 at 12 36 26 pm" src="https://user-images.githubusercontent.com/22550176/32400757-96166ba4-c0da-11e7-818b-c3af0892db85.png">
-
+=======
+>>>>>>>
         <img width="569" alt="screen shot 2017-11-03 at 12 34 52 pm" src="https://user-images.githubusercontent.com/22550176/32400762-9f3d0b2a-c0da-11e7-8ace-f34a67909c85.png">
 
         <img width="572" alt="screen shot 2017-11-03 at 12 35 58 pm" src="https://user-images.githubusercontent.com/22550176/32400765-a580560e-c0da-11e7-8333-9a642bbb501d.png">
