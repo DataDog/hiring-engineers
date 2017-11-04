@@ -28,7 +28,7 @@ https://github.com/anothervillage/hiring-engineers/blob/6054efb922fc43d142bf5bb3
 
        checks.d/check.py:
 
-https://github.com/anothervillage/hiring-engineers/blob/60037133e55e31457dc45225785c14b86c100cdf/check.py#L1-L7
+https://github.com/anothervillage/hiring-engineers/blob/33c2b24fc48a9612b7e057b81f945c577751120b/check.py#L1-L7
 
         conf.d/check.yaml:
         
