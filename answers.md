@@ -4,9 +4,7 @@
 
     1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-        datadog.conf:
-
-            tags: region: east, env:prod, role:database, database:primary, name:practice
+        https://github.com/anothervillage/hiring-engineers/blob/cecfe9008e2fea15ac6b1fbdc1c1f13ca8f4da7b/datadog.conf#L2
 
         Host Map page: 
         
