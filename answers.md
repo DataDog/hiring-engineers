@@ -124,7 +124,18 @@ https://github.com/anothervillage/hiring-engineers/blob/01e3f7fa6d55fbc14f66680b
 
     1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-    link: https://p.datadoghq.com/sb/949c6719c-85b88adf09 
+        Python app used to collect APM data (a modified version of the Datadog sample app found at  
+   https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py):
+    
+        app.py:
+    
+https://github.com/anothervillage/hiring-engineers/blob/fa197113a28c883762bbcddb9cc7e89fdc1942c7/app.py#L1-L90
+    
+        link to Dashboard: 
+    
+https://p.datadoghq.com/sb/949c6719c-85b88adf09
+    
+        screenshot of Dashboard:
     
 <img width="1210" alt="screen shot 2017-11-03 at 9 59 47 pm" src="https://user-images.githubusercontent.com/22550176/32401318-82f06450-c0e2-11e7-9f77-4b44990f4975.png">
 
