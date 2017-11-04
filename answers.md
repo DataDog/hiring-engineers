@@ -30,20 +30,9 @@ https://github.com/anothervillage/hiring-engineers/blob/e4e985f4e9d783a0cf0e6a33
 
 https://github.com/anothervillage/hiring-engineers/blob/60037133e55e31457dc45225785c14b86c100cdf/check.py#L1-L7
 
-            from checks import AgentCheck
-            import random
-
-            class RandomCheck(AgentCheck):
-                def check(self, instance):
-                    rand = random.randint(0, 1001)
-                    self.gauge('my_metric', rand)
-
         conf.d/check.yaml:
-
-            init_config:
-
-            instances:
-                [{}]
+        
+https://github.com/anothervillage/hiring-engineers/blob/38db42699dd59d824f6232bccfc31d4026b3d3b4/check.yaml#L1-L4
 
     4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
