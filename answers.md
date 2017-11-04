@@ -16,7 +16,7 @@ https://github.com/anothervillage/hiring-engineers/blob/6054efb922fc43d142bf5bb3
 
         postgres.yaml: 
                           
-https://github.com/anothervillage/hiring-engineers/blob/e4e985f4e9d783a0cf0e6a3323394f8c38d80868/postgres.yaml#L1-L7
+https://github.com/anothervillage/hiring-engineers/blob/6054efb922fc43d142bf5bb3835d5f85f74e3b81/postgres.yaml#L1-L7
 
         Datadog integration:
 
