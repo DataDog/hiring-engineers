@@ -10,13 +10,12 @@
 
         Host Map page: 
         
-        ![](1.png)
-
 <<<<<<< HEAD
             <img width="1373" alt="screen shot 2017-11-02 at 10 06 22 pm" src="https://user-images.githubusercontent.com/22550176/32390708-df8aa4ce-c0a5-11e7-9d8d-8c105e2b7fe7.png">
 
 =======
 >>>>>>> 505c6449c1b94c10ccc3ebc3d29d3694f943b0b1
+    
     2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
