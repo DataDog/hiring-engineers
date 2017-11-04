@@ -32,7 +32,7 @@ https://github.com/anothervillage/hiring-engineers/blob/33c2b24fc48a9612b7e057b8
 
         conf.d/check.yaml:
         
-https://github.com/anothervillage/hiring-engineers/blob/38db42699dd59d824f6232bccfc31d4026b3d3b4/check.yaml#L1-L4
+https://github.com/anothervillage/hiring-engineers/blob/6195d2cdda31f772ac54f908f39b41dc92220ccf/check.yaml#L1-L4
 
     4. Change your check's collection interval so that it only submits the metric once every 45 seconds./Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
