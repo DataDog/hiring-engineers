@@ -38,7 +38,7 @@ https://github.com/anothervillage/hiring-engineers/blob/6195d2cdda31f772ac54f908
 
         conf.d/check.yaml:
 
-https://github.com/anothervillage/hiring-engineers/blob/01e3f7fa6d55fbc14f66680bf8b3d8b7a1027c7e/check.yaml#L6-L10
+https://github.com/anothervillage/hiring-engineers/blob/b070b377c9e1fd91707494fc6a0f1c29539fceb6/check.yaml#L6-L10
 
 ## Visualizing Data
 
