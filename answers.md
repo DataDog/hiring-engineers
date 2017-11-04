@@ -9,9 +9,14 @@
             tags: region: east, env:prod, role:database, database:primary, name:practice
 
         Host Map page: 
+        
+        ![](1.png)
 
+<<<<<<< HEAD
             <img width="1373" alt="screen shot 2017-11-02 at 10 06 22 pm" src="https://user-images.githubusercontent.com/22550176/32390708-df8aa4ce-c0a5-11e7-9d8d-8c105e2b7fe7.png">
 
+=======
+>>>>>>> 505c6449c1b94c10ccc3ebc3d29d3694f943b0b1
     2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
         postgres.yaml: 
@@ -26,11 +31,11 @@
 
         Datadog integration:
 
-            <img width="1073" alt="screen shot 2017-11-02 at 11 57 30 pm" src="https://user-images.githubusercontent.com/22550176/32400541-f6cbbd4e-c0d7-11e7-9475-89e6560c85fc.png">
+            ![](<img width="1073" alt="screen shot 2017-11-02 at 11 57 30 pm" src="https://user-images.githubusercontent.com/22550176/32400541-f6cbbd4e-c0d7-11e7-9475-89e6560c85fc.png">)
 
             <img width="1002" alt="screen shot 2017-11-03 at 11 47 49 am" src="https://user-images.githubusercontent.com/22550176/32400551-055beabe-c0d8-11e7-9628-a14fa2da2af7.png">
 
-    3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+    3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
        checks.d/check.py:
 
