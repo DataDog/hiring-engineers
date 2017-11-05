@@ -57,8 +57,8 @@ https://github.com/anothervillage/hiring-engineers/blob/b070b377c9e1fd91707494fc
 <img width="980" alt="screen shot 2017-11-03 at 11 54 10 am" src="https://user-images.githubusercontent.com/22550176/32400683-af7cfbd6-c0d9-11e7-8167-b9a7370ab402.png">
 
         API Script:
-        
-https://github.com/anothervillage/hiring-engineers/blob/950d49e5e9f808423b9c984d4f2a828972a10e7d/query.py#L1-L45
+  
+https://github.com/anothervillage/hiring-engineers/blob/b1dbbf947da99e9563566d6e97ed96bb78561f9c/api_script.py#L1-L45
         
         Timeboard:
 
