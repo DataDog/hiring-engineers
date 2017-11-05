@@ -128,6 +128,17 @@ https://github.com/anothervillage/hiring-engineers/blob/b1dbbf947da99e9563566d6e
 
     1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+        NOTE: I used a Python app to collect APM data rather than the provided Flask app. When I tried to run the Flask app, I         received the error message: "DEBUG:ddtrace.writer:resetting queues. pids(old:None new:17759)
+        2017-11-04 20:25:56,081 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:17759)
+        DEBUG:ddtrace.writer:starting flush thread
+        2017-11-04 20:25:56,081 - ddtrace.writer - DEBUG - starting flush thread
+        INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+        2017-11-04 20:25:56,085 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+        DEBUG:ddtrace.api:reported 1 services
+        2017-11-04 20:25:56,124 - ddtrace.api - DEBUG - reported 1 services". No trace data was appearing in Datadog.
+        
+        I thought this error might be occuring because debug mode was on, so I entered the command                                     DATADOG_TRACE_DEBUG=false (in the Datadog trace client documentation it says that this flag defaults to false, and it         didn't really seem to address the problem, but I tried changing it anyway), and I was surprised to find that this             changed the output of the program, which then threw a syntax error for the Flask script. At this point I figured               that I would just use another script, as the exercise mentioned that using any app to collect APM traces would be             acceptable. However, when I ran the original Flask app just now (about 24 hours after first running it) in an attempt         to replicate the syntax error, it did not appear. This makes me think that I may have been premature in                       dismissing the code and may have just introduced a syntax error when I copied and pasted the script.
+        
         Python app used to collect APM data (a modified version of the Datadog sample app found at  
    https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py):
     
