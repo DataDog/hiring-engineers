@@ -2,7 +2,7 @@
 
 I installed the Datadog Agent using the Mac/OSX instructions here: https://app.datadoghq.com/account/settings#agent/mac
 
-![alt text][./screenshots/1.png]
+![alt text](screenshots/1.png)
 
 # Collecting Metrics
 
