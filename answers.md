@@ -23,7 +23,7 @@ Here is a copy of my YAML file.
 I created a custom Agent check for a random value between 0 and 1000. 
 ![alt text](screenshots/8.png)
 
-** Can you change the collection interval without modifying the Python check file you created?
+**Can you change the collection interval without modifying the Python check file you created?**
 
 Yes, after searching I found that if you add in min_collection_interval : # of seconds (key:value pair) in the YAML file, the PY file can be left untouched. 
 
@@ -35,7 +35,7 @@ I created a timeboard that shows the timeframe over the past 5 minutes and sent 
 ![alt text](screenshots/10.png)
 ![alt text](screenshots/11.png)
 
-*What is the Anomaly graph displaying?
+**What is the Anomaly graph displaying?**
 
 Anomaly graphs show any new behavior in a metric that is inconsistent from normal patterns. It can be used to highlight unusually high traffic volumes on a website or other unusual activity. It works best with metrics that display consistent trends over time.
 
@@ -62,7 +62,7 @@ Attempts to modify my GOROOT and GOPATH did not yeild the correct result. I trie
 
 I hope to be able to fix it, but the trial is almost up. 
 
-*What is the difference between a Service and a Resource?
+**What is the difference between a Service and a Resource?**
 
 A service in Datadog APM is defined as "a set of processes that work together to provide a feature set". In relation to your application this would normally be a web app or a database.Datadog will monitor the performance of each service individually and provice metrics such as requests, average latency, and error rate.
 
@@ -71,7 +71,7 @@ A resource in Datadog APM is defined as "a particular query to a service". The r
 
 # Final Question
 
-*Is there anything creative you would use Datadog for?
+**Is there anything creative you would use Datadog for?**
 
 As a beer nerd, I think Datadog would be really useful for a big brewery. The brewery could track to see how many customers come in at a given time, how much time they spend in the brewery, and how much beer they order. This could allow them to keep track of their inventory, prepare new kegs more quickly for when one might kick, and know their customers actions better. 
 
