@@ -251,4 +251,6 @@ Unfortunately, I do not seem to be getting email notifications, even though I ad
 
 ## Final Question
 
-Since Datadog can help with monitoring traffic, it would be great if one of my favorite stores, The Uncommons, could have their foot traffic be monitored.  If they had some sort of electronic register for cash, plus combine that with any credit card transactions, it would be good to know roughly, when they are at their busiest, so I could come by at a time when they aren't so busy.  It would also help them figure out why their influx of customers slow down and how to pick up business at those times.
+Since Datadog can help with monitoring traffic, it would be great if one of my favorite stores, The Uncommons, could have their foot traffic be monitored.  It's a fairly popular business and it can be fairly daunting to find a free table.  If the store had some sort of electronic register to monitor cash transactions, as well as monitor their credit card transactions, we could get a sense of their real-time foot traffic. Thus customers could work their timeframes to when they are more likely to find a table.  It would also help the store owners figure out why their influx of customers slow down and how to pick up business at those times.
+
+I know that Google does measure "Popular Times" for a business, but from my understanding, it is using Google Maps to determine a person's location.  Using Datadog's monitoring can be more accurate by monitoring actual transactions, not just people who might happen to be near the store.
