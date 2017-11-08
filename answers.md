@@ -250,7 +250,7 @@ Email Notification screenshot:
 
 ![ss32](/images/ss32.png)
 
-4. I also tried using the Middleware as stated here: http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
+4. I also tried using the Middleware, just in case that would work, as stated here: http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
 
 ![ss33](/images/ss33.png)
 
