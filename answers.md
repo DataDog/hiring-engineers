@@ -248,38 +248,7 @@ Email Notification screenshot:
 
 3. Here is the code that I used:
 
-`from flask import Flask
-import blinker as _
-from ddtrace import tracer
-from ddtrace.contrib.flask import TraceMiddleware
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messa$
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-traced_app = TraceMiddleware(app, tracer, service="salome-app")
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run() `
+![ss32](/images/ss32.png)
 
 
 4. **Bonus Question** The difference between a Service and a Resource is that while a Service is a group of processes that work together as an application, a Resource can be a query to a specific Service. (Refer to https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
