@@ -1,4 +1,4 @@
-## Solution Engineering Exercise
+## Solution Engineering Exercise - Ed Lee
 
 With the speed of digital offerings, modern application development paradigms, multiple languages / technologies, “dev” and “ops”, dynamic infrastructures (VMs and containers), a cloud scale monitoring tool is needed to keep up and close the gaps in applications and infrastructure monitoring.  Datadog is a cloud monitoring solution that is built to support these trends as it monitors dynamic applications and infrastructures in the cloud and many on-premise platforms.  It helps companies gain visibility into the performance of their applications, code and infrastructure; aggregates metrics and events across systems, apps and serves; provides real-time dashboards, analytics and insights that can help businesses improve agility and to help find issues and deal with them before they become bigger problems.
 
@@ -10,7 +10,7 @@ The activities and tasks related to the exercise will help illustrate some of th
 
 ### *Collecting Metrics*
 
-The first step for leveraging the power of Datadog is to collect metrics.  Datadog provides agents for numerous platforms to collect events and systems metrics.  The collection of metrics is configurable to a very granular (and frequent) level.
+The first step for leveraging the power of Datadog is to collect metrics and events.  Datadog provides agents for numerous platforms to collect events and systems metrics.  The collection of metrics is configurable to a very granular (and frequent) level.
 
 ![Agents](/eplee123/agents.png)
 
@@ -26,9 +26,9 @@ The metrics collected from the agent helps provide a full picture of what is hap
 
 - Ubuntu agent installed on Vagrant Ubuntu 12.04 VM guest host
 
-![Agent Installed](/eplee123/agent-installed.png)
+![Agent Installed](/eplee123/agent-installed.png "Datadog Agents")
 
-Tagging metrics makes it easier to subset and query in the dashboards and graphs.  Tags add dimensions to the metrics or, in other words, help categorize or slice the data, such that filters can be applied across a collection.  This helps in providing relevant views or provide the right visualization into the applications and infrastructure within your enterprise.  Tags can be added in the agent configuration file and would be reflected in the Datadog UI.  More information about Tags in this guide:  https://docs.datadoghq.com/guides/tagging/.
+Tagging metrics makes it easier to subset and query in the dashboards and graphs.  Tags add dimensions to the metrics or, in other words, help categorize to slice the data, such that filters can be applied across a collection.  This helps in providing relevant views or provide the right visualization into the applications and infrastructure within your enterprise.  Tags can be added in the agent configuration file and would be reflected in the Datadog UI.  More information about Tags in this guide:  https://docs.datadoghq.com/guides/tagging/.
 
 *Exercise: Add Tags*
 
@@ -54,9 +54,11 @@ Integrations allow for extension beyond the native metrics from the agent to mor
 
 ![MySQL Integration](/eplee123/mysql-integration1.png)
 
+ 
+
 ![MySQL Integration](/eplee123/mysql-integration2.png)
 
-- The Datadog dashboard for MySQL shows the metrics captured from the MySQL database
+- The Datadog dashboard for MySQL shows the metrics collected from the MySQL database
 
 ![MySQL Metrics](/eplee123/mysql-metrics-dash.png)
 
@@ -119,7 +121,7 @@ There are two types of dashboards:
 -	Screenboard: Mixing widgets and timeframes for status boards and sharing data
 The dashboards can be created using the Datadog UI.
 
-![Create Dashboard UI](dashboard-create.png)
+![Create Dashboard UI](/eplee123/dashboard-create.png)
 
 In addition, for those who prefer to script or code the creation and management of Timeboards and Screenboards can use the Datadog API.  This allows for the ability to automate through scripts.  In addition, there are features from the API that are not yet available in the UI.
 
@@ -153,8 +155,8 @@ from datadog import initialize, api
 
 # All requests to Datadog's API must be authenticated
 options = {
-    'api_key': '2b7508dc76022cde7c9031428ae62095',
-    'app_key': '0c8c11e306fc87af00fff23a2d6b19f281d07f9d'
+    'api_key': '2b7508d.......031428ae62095',
+    'app_key': '0c8c11e.......af00fff23a2d6b19f281d07f9d'
 }
 
 initialize(**options)
@@ -253,9 +255,15 @@ Define the message body; specify the problem.  Within message template variables
 
 ![Downtime - Weekday](/eplee123/monitor-downtime-weekday.png)
 
+
+
 ![Downtime - Weekend](/eplee123/monitor-downtime-weekend.png)
 
+
+
 ![Downtime Triggered](/eplee123/monitor-downtime-triggered.png)
+
+
 
 ### *Collecting APM Data*
 
@@ -272,9 +280,15 @@ Datadog APM includes:
 
 ![Flask Trace](/eplee123/APM1.png)
 
+
+
 ![Flask Trace](/eplee123/APM2.png)
+
+
 
 ![Flask Trace Metrics](/eplee123/APM3.png)
 
 - Bonus Question: A service in Datadog APM is a set of processes that work together that provide some functionality.  An application can be looked at as comprised of multiple services.  For example, an application can have a web app service, database service and cache service.  Datadog monitors each service for metrics such as requests, latency (average, max, p75, p95, p99), error rate, etc.  A resource is a particular query / request to a *service*.  For a web application service, a resource can be /api/apm or /api/trace.  Using a SQL database service as an example, a query (select * from users) is a resource.
 
+### *Final Question*
+The world is becoming connected and becoming "smart".  And so, there are many creative ways to monitoring.  IOT and smart devices are becoming mainstream and continuing to advance.  Examples: the connected home and connected car.  Potentially Datadog can be used to collect metrics, events and data in order to aggregate, correlate and analyze.  For example, a set of smart home devices, that may be independent on its own; can be related (high temperature, power usage) can lead to potential power outage.  So some warnings or alerts can be triggered to take some action, such as turning off appliances and/or electronics.  Another example is wine production where the fermentation and production processes are automated and controlled.  Aggregating and correlating metrics, events and data can provide some insightful analytics such that high quality of the wine produced is maintained.
