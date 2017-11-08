@@ -232,9 +232,11 @@
 
 ![ss28](/images/ss28.png)
 
-Unfortunately, I do not seem to be getting email notifications, even though I added myself to be notified.  I can always update this later if I can figure out what's going on.  However, I do have a screenshot from my main Events page:
-
 ![ss29](/images/ss29.png)
+
+Email Notification screenshot:
+
+![ss31](/images/ss31.png)
 
 
 ## Collecting APM Data
