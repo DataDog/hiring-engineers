@@ -227,11 +227,11 @@
 
 ![ss26](/images/ss26.png)
 
-![ss27](/images/ss27.png)
+![ss27a](/images/ss27a.png)
 
-![ss28](/images/ss28.png)
+![ss28a](/images/ss28a.png)
 
-![ss29](/images/ss29.png)
+![ss29a](/images/ss29a.png)
 
 Email Notification screenshot:
 
