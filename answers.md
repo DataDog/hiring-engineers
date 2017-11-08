@@ -203,7 +203,7 @@
 
 {{#is_no_data_recovery}}Data is now incoming from My_metric.{{/is_no_data_recovery}}
 
-3. I updated all the messages to also send the value and the host IP address because if I was the one receiving these messages, I would want to see the value of the metric on all of the messages.
+3. I updated all the messages to also send the value and the host IP address.
 
 {{#is_alert}} My_metric is above 800!  It is currently at {{value}} and the host IP is {{host.ip}}. {{/is_alert}}
 
