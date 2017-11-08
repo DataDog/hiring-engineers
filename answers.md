@@ -3,29 +3,29 @@
 #### Creating a Vagrant VM
 1. I installed Vagrant for Mac from https://www.vagrantup.com/downloads.html.
 2. Per the Vagrant instructions, I also installed VirtualBox from https://www.virtualbox.org/.
-3.	Then, using Terminal, I started up their example virtual machine, which was their standard 64-bit Ubuntu VM.
+3. Then, using Terminal, I started up their example virtual machine, which was their standard 64-bit Ubuntu VM.
 
 ![ss1](/images/ss1.png)
 
-4. I was able to ssh into it successfully.
+4. I was able to SSH into it successfully.
 
 ![ss2](/images/ss2.png)
 
 
 #### Installing Datadog agent
-1. Then, I signed up for Datadog.
+1. I signed up for Datadog.
 2. Next, I installed Docker for my VM while I was connected via SSH by following the instructions here: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#set-up-the-repository.
-   a.	I ran into an issue where “add-apt-repository” command was not found and did some research and I had to run **sudo apt-get install software-properties-common python-software-properties**
-3. Then I followed the instructions at https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce-1 to install the CE version of Docker.
-   a.	I ran into an issue: “Unable to locate package docker-ce” and after some research, it looks like Ubuntu 12.04 “precise” is no longer supported (https://github.com/moby/moby/issues/31940 )
-   b.	Thus, I destroyed the VM and created a new one – Ubuntu/trusty64 - and restarted the instructions and was able to run hello-world successfully
+   a.	I ran into an issue where “add-apt-repository” command was not found and I had to run **sudo apt-get install software-properties-common python-software-properties**
+3. I followed the instructions at https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce-1 to install the CE version of Docker.
+   a.	I ran into an issue where I received the error: “Unable to locate package docker-ce” and it looks like Ubuntu 12.04 “precise” version is no longer supported (https://github.com/moby/moby/issues/31940).
+   b.	Thus, I destroyed the VM and created a new one – Ubuntu/trusty64 - and restarted the instructions and was able to run hello-world successfully.
    c.	Then I used Datadog’s agent installation for Docker (https://app.datadoghq.com/signup/agent#docker), but ran into issue with permission denied.  However, using **sudo** resolved this.
-4. I tried adding tags in the agent configuration file only to find out that the file wasn’t in etc/dd-agent-datadog.conf and instead I was able to find it in three different locations:
+4. I tried adding tags in the agent configuration file only to find out that the file wasn’t in etc/dd-agent-datadog.conf and instead I found it in three different locations:
 
 ![ss3](/images/ss3.png)
 
-5. After some research, I decided to try again, not using Docker and using Ubuntu straight, thus I destroyed this VM using **vagrant destroy**, and started a new one.
-6. I changed the hostname of the VM using the command **sudo hostname your-new-name** and rebooted using the command **shutdown -r now** and after the reboot, I confirmed that the VM was seeing the new hostname.
+5. I decided to try again, not using Docker and using just the Ubuntu OS instead.  Thus I destroyed this VM using **vagrant destroy**, and started a new one.
+6. I changed the hostname of the VM using the command **sudo hostname your-new-name** and rebooted using the command **shutdown -r now**.  After the reboot, I confirmed that the VM was seeing the new hostname.
 7. Then I ran the one-step install for the agent for Ubuntu and it looked like it installed successfully.
 8.	I was then able to see this new host in the host map and infrastructure list, but the old one was there as well.  However, from my research, it should disappear within a few hours.
 
@@ -35,11 +35,11 @@
 ## Collecting Metrics:
 
 #### Adding tags
-1. I edited the file at etc/dd-agent/datadog.conf using **sudo nano datadog.conf** and added tags.
+1. I edited the file at etc/dd-agent/datadog.conf using **sudo nano datadog.conf** and added some tags.
 
 ![ss5](/images/ss5.png)
 
-2. Then I stopped and started the datadog agent using **sudo /etc/init.d/datadog-agent stop** and **sudo /etc/init.d/datadog-agent start**
+2. Then I stopped and started the datadog agent using **sudo /etc/init.d/datadog-agent stop** and **sudo /etc/init.d/datadog-agent start**.
 
 ![ss6](/images/ss6.png)
 
@@ -49,8 +49,8 @@
 
 
 #### Installing database & Datadog integration
-1. I then installed MySQL on Ubuntu by running **sudo apt-get install mysql-server**.
-2. Then I went to the **Integrations** link on the left sidebar on the Datadog web app and started following the installation intructions for the MySQL Integration.
+1. I installed MySQL on Ubuntu by running **sudo apt-get install mysql-server**.
+2. Then I went to the **Integrations** link on the left sidebar in the Datadog web app and started following the installation instructions for the MySQL Integration.
 
 ![ss8](/images/ss8.png)
 
@@ -58,15 +58,15 @@
 
 ![ss9](/images/ss9.png)
 
-4. I got into the mysql interface using **mysql -u root -p** and then input my root password, and followed through on the installation instructions within mysql successfully.
+4. I got into the mysql interface using **mysql -u root -p** and then input my root password, and followed through on the installation instructions within MySQL successfully.
 5.  At the end, I was able to verify that the integration check had passed by using **sudo /etc/init.d/datadog-agent info**:
 
 ![ss10](/images/ss10.png)
 
 
 #### Creating a custom agent
-1. To write an agent check, I followed the document at https://docs.datadoghq.com/guides/agent_checks/, created their example "hello" check, and stopped and started the agent.
-2. I then checked this was successfully by running the info command, **sudo /etc/init.d/datadog-agent info**:
+1. To write an agent check, I followed the documentation at https://docs.datadoghq.com/guides/agent_checks/, created their example "hello" check, and stopped and started the agent.
+2. I then checked this was successful by running the info command, **sudo /etc/init.d/datadog-agent info**:
 
 ![ss11](/images/ss11.png)
 
@@ -74,15 +74,15 @@
 
 ![ss12](/images/ss12.png)
 
-4. Then I created my own metric called "mymetric" by first creating and editing a file called mymetric.yaml in the dd-agent/conf.d folder.
+4. Then I created my own metric called "my_metric" by first creating and editing a file called mymetric.yaml in the dd-agent/conf.d folder.
 
 ![ss13](/images/ss13.png)
 
-5. Then, I created and edited a file called mymetric.py in the dd-agent/checks.d folder.
+5. I created and edited a file called mymetric.py in the dd-agent/checks.d folder.
 
 ![ss14](/images/ss14.png)
 
-6. Then stopped and restarted the agent and I was able to see the custom check in the info.
+6. I stopped and restarted the agent and I was able to see the custom check in the info.
 
 ![ss15](/images/ss15.png)
 
@@ -90,7 +90,7 @@
 
 ![ss16](/images/ss16.png)
 
-8. **Bonus Question:** I actually modified the yaml file, not the python file to change the collection interval, so yes.
+8. **Bonus Question:** I actually modified the yaml file, not thePython file to change the collection interval, so yes, I can change the interval without changing the Python file.
 
 
 ## Visualizing Data
@@ -98,7 +98,6 @@
 #### Creating a Timeboard
 1. To create a new timeboard, using the API, I first started by following the example in the documentation at https://docs.datadoghq.com/api/?lang=python#timeboards.
 2. I also had to generate an application key at https://app.datadoghq.com/account/settings#api to use in the example Timeboard Python file.
-
 3. I created a Python file and copied and pasted the example Python code into it and tried running it via **python timeboard.py**, but of course I got an error "ImportError: No module named datadog".
 4. Since I am not too familiar with Python, I did some research on how to install the module and first installed pip, a package manager for Python, using the command, **sudo apt-get install python-pip**.
 5. Then I installed the datadog package using **sudo pip install datadog** and then again tried running **python timeboard.py** and I was able to see the example Timeboard on my Datadog web app.
@@ -161,7 +160,7 @@
 
 #### Accessing the Dashboard
 1. I then set the Timeboard's timeframe to the past five minutes by using the mouse and dragging on the graph from the right to the left until I selected five minutes worth of data.
-2. Then, I took a snapshot of each graph by clicking on the camera icon on the top right of each graph.
+2. I took a snapshot of each graph by clicking on the camera icon on the top right of each graph.
 
 ![ss20](/images/ss20.png)
 
@@ -204,7 +203,7 @@
 
 {{#is_no_data_recovery}}Data is now incoming from My_metric.{{/is_no_data_recovery}}
 
-3. I also updated all the messages to also send the value and the host IP address because if I was receiving messages, I would want to see the value of the metric on all of the messages.
+3. I updated all the messages to also send the value and the host IP address because if I was the one receiving these messages, I would want to see the value of the metric on all of the messages.
 
 {{#is_alert}} My_metric is above 800!  It is currently at {{value}} and the host IP is {{host.ip}}. {{/is_alert}}
 
