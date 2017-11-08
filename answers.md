@@ -2,6 +2,8 @@
 
 With the speed of digital offerings, modern application development paradigms, multiple languages / technologies, “dev” and “ops”, dynamic infrastructures (VMs and containers), a cloud scale monitoring tool is needed to keep up and close the gaps in applications and infrastructure monitoring.  Datadog is a cloud monitoring solution that is built to support these trends as it monitors dynamic applications and infrastructures in the cloud and many on-premise platforms.  It helps companies gain visibility into the performance of their applications, code and infrastructure; aggregates metrics and events across systems, apps and serves; provides real-time dashboards, analytics and insights that can help businesses improve agility and to help find issues and deal with them before they become bigger problems.
 
+Datadog offers an intuitive, easy to use and reponsive UI to configure, manage and display application and infrastruture monitoring in your enterprise.  In addition, for the programmatic option, Datadog API provides a comprehensive set of capabilities to get data in and out of Datadog and includes the capabilities in the UI.  API Reference:  https://docs.datadoghq.com/api/
+
 The activities and tasks related to the exercise will help illustrate some of the features and capabilities of Datadog.
 
 *Exercise - Environment*
@@ -116,6 +118,7 @@ Datadog offers real-time interactive dashboards of high-resolution metrics and e
 -	Slice data by host, device or any other tag
 -	Apply arithmetic and  calculations functions (rates, ratios, averages, integrals, etc)
 -	Easily customize views, interactively or in code
+
 There are two types of dashboards:
 -	Timeboard: Time-synchronized metrics and event graphs.  Usage is more for troubleshotting and correlation
 -	Screenboard: Mixing widgets and timeframes for status boards and sharing data
@@ -123,7 +126,7 @@ The dashboards can be created using the Datadog UI.
 
 ![Create Dashboard UI](/eplee123/dashboard-create.png)
 
-In addition, for those who prefer to script or code the creation and management of Timeboards and Screenboards can use the Datadog API.  This allows for the ability to automate through scripts.  In addition, there are features from the API that are not yet available in the UI.
+In addition, for those who prefer to script or code the creation and management of Timeboards and Screenboards can use the Datadog API.  This allows for the ability to automate through scripts.  As a note, there are features from the API that are not yet available in the UI.  So there are instances that use of API would be needed over UI.
 
 *Exercise: Create Timeboard using Datadog API*
 
@@ -135,7 +138,11 @@ In addition, for those who prefer to script or code the creation and management 
 {“q”: “avg:my_metric{host:precise64}”,”type”: “line”}
 ```
 
-- Any metric from the Integration on your Database with the anomaly function applied; Average of a MySQL performance metric with anomaly function applied, using basic algorithm and a bounds (standard deviation) of 2; with line type
+- Any metric from the Integration on your Database with the anomaly function applied; Average of a MySQL performance metric with anomaly function applied, using basic algorithm and a bounds (standard deviation) of 2; with line type.  Note:  There are four different anomaly detection algorithms.  For more information, see the guide for anomoly detection:  https://docs.datadoghq.com/guides/anomalies/
+  - Basic: Used when there is no repeating pattern; uses a lagging rolling computation to determine the range of expected values
+  - Agile: Used for seasonal metrics patterns and need to adjust to level shifts in the metric
+  - Robust: Used for seasonal metrics patterns and when the metric is fairly stable; catch the slow level shifts
+  - Adaptive: Used for seasonal metrics patterns and can adjust more readily than agile or robust algorithms
 
 ```
 {“q”: “anomalies(avg:mysql.performance.bytes_sent{host:precise64},’basic’,2)”,”type”:”line”}
@@ -217,7 +224,7 @@ Monitors are automated notifications that can alert when a metric or check reach
 -	Enter the message
 -	Define the recipients
 
-More information about Monitors can be found in the guide:  https://docs.datadoghq.com/guides/monitors and the Monitoring Reference page:  https://docs.datadoghq.com/monitoring/
+Monitors can be managed either from the UI or programatically throught the Datadog API.  More information about Monitors can be found in the guide:  https://docs.datadoghq.com/guides/monitors and the Monitoring Reference page:  https://docs.datadoghq.com/monitoring/
 
 Within Monitor type of Metric
 
@@ -229,7 +236,7 @@ Detection Method
 -	Anomaly Detection: triggers alert whenever a metric deviates from an expected pattern
 -	Outlier Detection: triggers alert whenever one member in a group behaves differently from its peers
 
-Alert Conditions: set the thresholds for alert, warning, alert recovery, warning recovery
+Alert Conditions: set the thresholds for alert, warning, alert recovery, warning recovery and conditions
 
 Define the message body; specify the problem.  Within message template variables can be entered to define some conditional statements for the different messages
 
@@ -263,7 +270,7 @@ Define the message body; specify the problem.  Within message template variables
 
 ![Downtime Triggered](/eplee123/monitor-downtime-triggered.png)
 
-
+When monitors are triggered and notification are issued, then some action can be taken to resolve the triggered monitors.
 
 ### *Collecting APM Data*
 
