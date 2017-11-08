@@ -242,7 +242,7 @@ Email Notification screenshot:
 
 1. I followed the instructions here: https://app.datadoghq.com/apm/install, but got the error, "ImportError: cannot import name Flask".  I then installed Flask using the command, **sudo apt-get install python-flask** and then I was able to run the Python file, but the output I got stopped at "ddtrace.api - DEBUG - reported 1 services."  I am also seeing nothing in the APM section of my web app.  I also tried adding "apm_enabled: true" to datadog.conf file and restarting the agent, even though I believe that later versions of the agent do not need this added.  
 
-2.  I also tried out the example code here: https://github.com/DataDog/dd-trace-py/blob/master/ddtrace/contrib/flask/__init__.py and still getting the same issues on terminal as well as noting is showing up in the dashboard.
+2.  I also tried out the example code here: https://github.com/DataDog/dd-trace-py/blob/master/ddtrace/contrib/flask/__init__.py and still getting the same issues on terminal as well as nothing is showing up in the dashboard.
 
 ![ss30](/images/ss30.png)
 
