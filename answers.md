@@ -250,8 +250,11 @@ Email Notification screenshot:
 
 ![ss32](/images/ss32.png)
 
+4. I also tried using the Middleware as stated here: http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
 
-4. **Bonus Question** The difference between a Service and a Resource is that while a Service is a group of processes that work together as an application, a Resource can be a query to a specific Service. (Refer to https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+![ss33](/images/ss33.png)
+
+5. **Bonus Question** The difference between a Service and a Resource is that while a Service is a group of processes that work together as an application, a Resource can be a query to a specific Service. (Refer to https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
 
 ## Final Question
