@@ -28,7 +28,7 @@
 6. I changed the hostname of the VM using the command **sudo hostname your-new-name** and rebooted using the command **shutdown -r now**.  After the reboot, I confirmed that the VM was seeing the new hostname.
 7. Then I ran the one-step install for the agent for Ubuntu and it looked like it installed successfully.
 
-``DD_API_KEY=c3c402f9691974bbac1ca439edf8b16a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"``
+``DD_API_KEY=c3c402f9691974bbac1ca439edf8b16a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
 
 8.	I was then able to see this new host in the host map and infrastructure list, but the old one was there as well.  However, from my research, it should disappear within a few hours.
@@ -258,7 +258,17 @@ Email Notification screenshot:
 
 ![ss33](/images/ss33.png)
 
-5. **Bonus Question** The difference between a Service and a Resource is that while a Service is a group of processes that work together as an application, a Resource can be a query to a specific Service. (Refer to https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+5. I ended up creating a whole new Vagrant VM and running through the steps again just to see if something happened to my previous VM that caused an issue.  Unfortunately, I was still not able to see my traces at https://app.datadoghq.com/apm/install.
+
+6. Then, using my original VM, I tried going through DataDog's Github repository and found a trace sample at https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py.
+
+I used the sample code and created a new Python file and tried again and this time, I was successful!
+
+7. Dashboard screenshot:
+
+![ss34](/images/ss34.png)
+
+8. **Bonus Question** The difference between a Service and a Resource is that while a Service is a group of processes that work together as an application, a Resource can be a query to a specific Service. (Refer to https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
 
 ## Final Question
