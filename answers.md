@@ -27,6 +27,10 @@
 5. I decided to try again, not using Docker and using just the Ubuntu OS instead.  Thus I destroyed this VM using **vagrant destroy**, and started a new one.
 6. I changed the hostname of the VM using the command **sudo hostname your-new-name** and rebooted using the command **shutdown -r now**.  After the reboot, I confirmed that the VM was seeing the new hostname.
 7. Then I ran the one-step install for the agent for Ubuntu and it looked like it installed successfully.
+
+``DD_API_KEY=c3c402f9691974bbac1ca439edf8b16a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"``
+
+
 8.	I was then able to see this new host in the host map and infrastructure list, but the old one was there as well.  However, from my research, it should disappear within a few hours.
 
 ![ss4](/images/ss4.png)
