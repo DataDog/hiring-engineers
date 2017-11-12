@@ -4,8 +4,8 @@ Owen Cummings
 Q: Collecting Metrics
 
 Added tags in the Agent and recieved the tags from Host Map as below.
-![My image](https://github.com/owencummings/hiring-engineers/blob/Owen_Cummings_Solutions_Engineer/img/13.png?raw=true)
-![My image](https://github.com/owencummings/hiring-engineers/blob/Owen_Cummings_Solutions_Engineer/img/14.png)
+![My image](https://github.com/owencummings/hiring-engineers/tree/Owen_Cummings_Solutions_Engineer/img/13.png?raw=true)
+![My image](https://github.com/owencummings/hiring-engineers/tree/Owen_Cummings_Solutions_Engineer/img/14.png)
 
 
 MongoDB was already installed on my machine, so I ran this in the mongo shell to activate it on the host device. Notified of integration success the Datadog WebApp.
