@@ -4,7 +4,7 @@ Owen Cummings
 Q: Collecting Metrics
 
 Added tags in the Agent and recieved the tags from Host Map as below.
-![My image](/img/00.png)
+![My image](https://i.imgur.com/C5X5Lo0.png)
 ![My image](https://github.com/owencummings/hiring-engineers/tree/Owen_Cummings_Solutions_Engineer/img/14.png)
 
 
