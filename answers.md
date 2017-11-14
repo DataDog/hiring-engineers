@@ -22,7 +22,7 @@ Q: Visualizing Data
 
 I used the API .py file in this repository to generate the following dashboard. I could find no documentation on the anomaly function and I assume that it isn't working. I read something about using anomalies in monitors but decided not to pursue it since it seemed off-task. The MongoDB metric is there, it's just a low value. Here is the code I used to make the API request.
 
-'''
+```
 
 from datadog import initialize, api
 
@@ -58,7 +58,7 @@ read_only = True
 
 api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
 
-'''
+```
 
 ![My image](https://i.imgur.com/2Vjup6U.png)
 
@@ -90,7 +90,8 @@ But nothing was showing up as being traced in the DD web app. I discovered that 
 
 This error seemed pretty ambiguous to me, and I couldn't find any way to resolve it. I felt like the way I did everything was fine. It is sad that I couldn't manage to find the solution to this, but it seemed beyond the scope of the exercise. Here is the code I used, with commented middleware for the other approach.
 
-'''
+```
+
 from flask import Flask
 #import blinker as _
 import logging
@@ -126,7 +127,7 @@ if __name__ == '__main__':
     app.run()
 
 
-'''
+```
 
 Conventionally, services refer to 'actions' - allowing certain operations or functions on data. Resources refer to 'nouns' - allowing the accessing and defining of certain data types or configurations.
 
