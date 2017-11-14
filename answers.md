@@ -109,3 +109,10 @@ Made POST request to the Create Monitor Datadog API, `https://app.datadoghq.com/
       	"thresholds": {"critical": 800, "warning": 500}
       }
 }
+
+*BONUS* Scheduled Downtime
+Made a POST request to the Datadog API with the following query: `https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd5859e&application_key=2e01db942359226940704dc5ec70d3676af6a669&start=1510704000&end=1510754400&type=weeks&period=1&week_days=Mon,Tue,Wed,Thu,Fri&scope=region:us/eastern`
+
+This sets a downtime between 7pm and 9am on weekdays, repeating weekly.
+
+For a downtime all day Saturday and Sunday, I made a POST request with the following: `https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd5859e&application_key=2e01db942359226940704dc5ec70d3676af6a669&type=weeks&period=1&week_days=Sat,Sun&scope=region:us/eastern`
