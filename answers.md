@@ -115,4 +115,4 @@ Made a POST request to the Datadog API with the following query: `https://app.da
 
 This sets a downtime between 7pm and 9am on weekdays, repeating weekly.
 
-For a downtime all day Saturday and Sunday, I made a POST request with the following: `https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd5859e&application_key=2e01db942359226940704dc5ec70d3676af6a669&type=weeks&period=1&week_days=Sat,Sun&scope=region:us/eastern`
+For a downtime all day Saturday and Sunday, I made a POST request with the following: `https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd5859e&application_key=2e01db942359226940704dc5ec70d3676af6a669&start=1510894800&end=1510981200&type=weeks&period=1&week_days=Sat,Sun&scope=region:us/eastern&message=Scheduled%20weekend%20downtime%20@hello@fanny-jiang.com`
