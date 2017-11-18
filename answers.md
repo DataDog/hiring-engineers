@@ -99,8 +99,8 @@ In the payload of the Timeboard POST request, I made two graphs.
 The Anomaly algorithm and graph identifies when a metric is behaving differently than it has in the past and takes into account seasonal day-of-week and time-of-day trends. For example, if a metric is unusually high or low during a given time period. The data points that are unusually high or low are shaded a different color from the rest of data points. I used the "Basic" anomaly function, which has a simple computation to determine the expected ranges. I also set a bound of 2, which is like the standard deviation to determine the extent of the normal points.
 
 ![PostgreSQL Database with Anomalies Function Applied](/imgs/postgres_anomalies.png)
-* The top line is measuring the rows_returned metric, the yellow shaded portions represent the anomaly points and the purple portions represent the normal points.
-* The bottom line is measuring the rows_fetched metric, the pink portions represent the anomaly points, and the yellow portions represent the normal points.
+* The top line is measuring the `rows_returned` metric, the yellow shaded portions represent the anomaly points and the purple portions represent the normal points.
+* The bottom line is measuring the `rows_fetched` metric, the pink portions represent the anomaly points, and the yellow portions represent the normal points.
 
 
 ## Monitoring Data
@@ -136,3 +136,126 @@ https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd585
 For each Downtime request, I set a `start` and `end` time in UNIX timestamp notation, recurrence type, which days, the monitors' scopes, and a message containing a tag to notify me by email of the scheduled downtime.
 
 ![Scheduled Downtime](/imgs/downtime.png)
+
+## Collecting APM Data:
+
+While I haven't been able to successfully set up APM tracing, here are the steps that I took to instrument the Flask app to send trace data to Datadog APM:
+
+* Create a new file, `app.py` with the small Flask app
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+* Next, I followed the Flask installation instructions to get the app running:
+1. `$ sudo pip install virtualenv  // virtual environment to run python app`
+2. `$ . venv/bin/activate  // activate virtual env`
+3. `$ pip install Flask`
+4. `$ pip install ddtrace`
+
+* Since I run Mac OS X and the Datadog APM Tracing Agent doesn't come packaged in the Datadog agent, I downloaded Virtualbox and a Vagrant Ubuntu 12.04 Virtual Machine to run the Datadog agent and the built in tracing agent.
+
+* In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. (I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs).
+
+* I confirmed in the Datadog app that it was receiving data from the VM agent.
+[!VM Dashboard](/imgs/vm_dash.png)
+
+* Here was when I ran into some trouble. I first tried to run the Flask app inside the VM. I decided to go this route first because I thought I needed to run both the app and the Datadog Tracing agent in the same environment. I tried to install Flask and ddtrace in the VM environment, however I got the following errors:
+
+![VM pip install errors](/imgs/pip_install_errors.png)
+
+* To troubleshoot:
+1. Update the pip version. Currently on version 1.2.1
+2. Update Python version. Currently on version 2.7.6
+
+* I was still getting the same errors and since getting the Flask app to run in the VM wasn't working, I decided to keep the DD agent running on the VM and to run the app from my local environment.
+
+* To run the app, I entered the following commands:
+```
+$ . venv/bin/activate
+$ ddtrace-run python app.py
+```
+
+* I also instrumented the app to trace web requests:
+app.py
+```
+from ddtrace import tracer
+
+with tracer.trace("web.request", service="my_service") as span:
+  span.set_tag("mytag", "my_value")
+```
+
+* The app was able to run and I was able to navigate to it in the browser and reach the different routes, however I received the following error:
+
+![Connection Refused Error](/imgs/connection_refused.png)
+
+* After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer needs to be configured to the Trace Agent's hostname and port number. I added the following line to my code:
+/app.py
+```
+tracer.configure(hostname=8126)
+```
+* I got a NEW error (which was great!)
+![Encode_Error](/imgs/encode/error.png)
+
+* After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname*. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
+/app.py
+```
+tracer.configure(hostname="127.0.1.1", port=8126)
+```
+
+* Now that the tracer was pointing to the Datadog tracing agent, I was no longer getting any immediate errors, and GET requests to the different routes logged to the console. After a few seconds, I did end up getting a time out error:
+
+[!Connection Timeout Error](/imgs/connection_timeout.png)
+
+* I checked the Datadog Agent state information and the APM log, by running the following commands:
+```
+$ sudo /etc/init.d/datadog-agent info
+$ tail -f /var/log/datadog/trace-agent.log
+```
+
+* The Agent Status check looked normal, but it wasn't receiving any traces. The Trace Agent log was also showing that data was not being received.
+
+[!Agent Status and Trace Logs](/imgs/trace_logs.png)
+
+* I've also tried instrumenting the app with tracing middleware and running it with the `flask run` command and get the same errors as above
+
+*Running Flask app with Tracing Middleware*
+/app.py
+```
+from ddtrace.contrib.flask import TraceMiddleware
+
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+  ...
+```
+VM Terminal
+```
+$ export FLASK_APP=app.py
+$ flask run
+```
