@@ -13,7 +13,7 @@ Added the tags:
 ### Custom Agent Check
 ![Custom Agent Check](/imgs/my_metric.png)
 
-~/.datadog-agent/conf.d/my_metric.yaml
+*~/.datadog-agent/conf.d/my_metric.yaml*
 ```
 init_config:
   # submits metric once at most, every 45 seconds
@@ -23,7 +23,7 @@ instances:
     [{}]
 ```
 
-~/.datadog-agent/checks.d/my_metric.py
+*~/.datadog-agent/checks.d/my_metric.py*
 ```
 import random
 from checks import AgentCheck
@@ -38,7 +38,7 @@ This custom metric that returns a random value between 0 and 1000.
 **Bonus** -- How to change collection interval without modifying the Python check file:
 
 In the Agent Config file, configure the `collector_profile_interval` setting.
-~/.datadog-agent/datadog.conf
+*~/.datadog-agent/datadog.conf*
 ```
 collector_profile_interval: 45
 ```
@@ -97,7 +97,7 @@ In the payload of the Timeboard POST request, I made two graphs.
 
 ![5 Minute Snapshot of Timeboard](/imgs/5min_snapshot.png)
 
-**Bonus** What is the Anomaly graph displaying?
+**Bonus** -- What is the Anomaly graph displaying?
 
 The Anomaly algorithm and graph identifies when a metric is behaving differently than it has in the past and takes into account seasonal day-of-week and time-of-day trends. For example, if a metric is unusually high or low during a given time period. The data points that are unusually high or low are shaded a different color from the rest of data points. I used the "Basic" anomaly function, which has a simple computation to determine the expected ranges. I also set a bound of 2, which is like the standard deviation to determine the extent of the normal points.
 
@@ -123,11 +123,11 @@ Made POST request to the Create Monitor Datadog API, `https://app.datadoghq.com/
       }
 }
 ```
-* `"query"`, sets the alert on "my_metric" and a threshold value of greater than 800
-* `"message"`, uses sets a custom message for alerts and warnings and also emails me
-* `"thresholds"`, sets the threshold values for critical to > 800 and warning alerts > 500
+* `"query"` sets the alert on "my_metric" and a threshold value of greater than 800
+* `"message"` uses sets a custom message for alerts and warnings and also emails me
+* `"thresholds"` sets the threshold values for critical to > 800 and warning alerts > 500
 
-**Bonus** Scheduled Downtime
+**Bonus** -- Scheduled Downtime
 I made a POST request to the Datadog API with the following query:
 ```
 https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd5859e&application_key=2e01db942359226940704dc5ec70d3676af6a669&start=1510704000&end=1510754400&type=weeks&period=1&week_days=Mon,Tue,Wed,Thu,Fri&scope=host:Fannys-MacBook-Air.local&message=Scheduled%20weekdayß%20downtime%20@hello@fanny-jiang.com
@@ -148,7 +148,9 @@ For each Downtime request, I set a `start` and `end` time in UNIX timestamp nota
 
 While I haven't been able to successfully set up APM tracing, here are the steps that I took to instrument the Flask app to send trace data to Datadog APM:
 
-* Create a new file, `app.py` with the small Flask app
+Create a new file, `app.py` with the small Flask app
+
+*hiring-challenge/app.py*
 ```
 from flask import Flask
 import logging
@@ -180,7 +182,7 @@ if __name__ == '__main__':
     app.run()
 ```
 
-* Next, I followed the Flask installation instructions to get the app running:
+Next, I followed the Flask installation instructions to get the app running:
 ```
 $ sudo pip install virtualenv  // virtual environment to run python app
 $ . venv/bin/activate  // activate virtual env
@@ -188,18 +190,18 @@ $ pip install Flask
 $ pip install ddtrace
 ```
 
-* Since I run Mac OS X and the Datadog APM Tracing Agent doesn't come packaged in the Datadog agent, I downloaded Virtualbox and a Vagrant Ubuntu 12.04 Virtual Machine to run the Datadog agent and the built in tracing agent.
+Since I run Mac OS X and the Datadog APM Tracing Agent doesn't come packaged in the Datadog agent, I downloaded Virtualbox and a Vagrant Ubuntu 12.04 Virtual Machine to run the Datadog agent and the built in tracing agent.
 
-* In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. (I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs).
+In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. (I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs).
 
-* I confirmed in the Datadog app that it was receiving data from the VM agent.
+I confirmed in the Datadog app that it was receiving data from the VM agent.
 ![VM Dashboard](/imgs/vm_dash.png)
 
-* Here was when I ran into some trouble. I first tried to run the Flask app inside the VM. I decided to go this route first because I thought I needed to run both the app and the Datadog Tracing agent in the same environment. I tried to install Flask and ddtrace in the VM environment, however I got the following errors:
+Here was when I ran into some trouble. I first tried to run the Flask app inside the VM. I decided to go this route first because I thought I needed to run both the app and the Datadog Tracing agent in the same environment. I tried to install Flask and ddtrace in the VM environment, however I got the following errors:
 
 ![VM pip install errors](/imgs/pip_install_errors.png)
 
-* To troubleshoot:
+To troubleshoot:
 1. Update the pip version. Currently on version 1.2.1
 2. Update Python version. Currently on version 2.7.6
 
@@ -213,7 +215,7 @@ $ ddtrace-run python app.py
 
 I also instrumented the app to trace web requests:
 
-hiring-challenge/app.py
+*hiring-challenge/app.py*
 ```
 from ddtrace import tracer
 
@@ -227,22 +229,23 @@ The app was able to run and I was able to navigate to it in the browser and reac
 
 After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer needs to be configured to the Trace Agent's hostname and port number. I added the following line to my code:
 
-/app.py
+*hiring-challenge/app.py*
 ```
 tracer.configure(hostname=8126)
 ```
 I got a NEW error (which was great!)
-![Encode_Error](/imgs/encode/error.png)
+![Encode_Error](/imgs/encode_error.png)
 
 After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname*. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
-/hiring-challenge/app.py
+
+*/hiring-challenge/app.py*
 ```
 tracer.configure(hostname="127.0.1.1", port=8126)
 ```
 
 Now that the tracer was pointing to the Datadog tracing agent, I was no longer getting any immediate errors, and GET requests to the different routes logged to the console. After a few seconds, I did end up getting a time out error:
 
-[!Connection Timeout Error](/imgs/connection_timeout.png)
+![Connection Timeout Error](/imgs/connection_timeout.png)
 
 I checked the Datadog Agent state information and the APM log, by running the following commands:
 ```
@@ -254,20 +257,29 @@ The Agent Status check looked normal, but it wasn't receiving any traces. The Tr
 
 ![Agent Status and Trace Logs](/imgs/trace_logs.png)
 
-I've also tried instrumenting the app with tracing middleware and running it with the `flask run` command and get the same errors as above
+I've also tried instrumenting the app with tracing middleware and running it with the `flask run` command and get the same errors as above.
 
-*Running Flask app with Tracing Middleware*
+**Running Flask app with Tracing Middleware**
 
-/app.py
+*hiring-challenge/app.py*
 ```
 from ddtrace.contrib.flask import TraceMiddleware
 
 app = Flask(__name__)
-traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+traced_app = TraceMiddleware(app, tracer, service="my_service", distributed_tracing=False)
   ...
 ```
-VM Terminal
+*VM Terminal*
 ```
 $ export FLASK_APP=app.py
 $ flask run
 ```
+
+**Bonus** -- What is the difference between a Service and a Resource?
+
+A Service is a set of processes that do the same job. For example, the Flask web app is a service that has a few routes.
+
+A Resource is a query to a service, for example the unique urls in the api of a service. Resources are able to be tracked in the APM.
+
+## Final Question
+
