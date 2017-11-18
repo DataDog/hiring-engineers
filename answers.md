@@ -33,10 +33,12 @@ class myMetric(AgentCheck):
         self.gauge('my_metric', random.randint(0, 1001))
 ```
 
+This custom metric that returns a random value between 0 and 1000.
+
 **Bonus** -- How to change collection interval without modifying the Python check file:
 
 In the Agent Config file, configure the `collector_profile_interval` setting.
-
+~/.datadog-agent/datadog.conf
 ```
 collector_profile_interval: 45
 ```
@@ -90,12 +92,13 @@ Using the Datadog API guides, Postman, and the Postman API Collection, I made a 
 }
 ```
 In the payload of the Timeboard POST request, I made two graphs.
-1. My Custom Metric, with the rollup function, `.rollup(sum, 3600`), applied to sum up all the points for the past hour. To scope the metric over my host, I added a template variable from the UI. The Timeseries graph charts the sum at each over hour, over time.
+1. My Custom Metric, with the rollup function, `.rollup(sum, 3600)`, applied to sum up all the points for the past hour. To scope the metric over my host, I added a template variable from the UI. The Timeseries graph charts the sum at each over hour, over time.
 2. The Postgres Database with the anomaly function, `anomalies(avg:postgresql.rows_inserted{host:Fannys-MacBook-Air.local}, 'basic', 2)`, applied.
 
 ![5 Minute Snapshot of Timeboard](/imgs/5min_snapshot.png)
 
 **Bonus** What is the Anomaly graph displaying?
+
 The Anomaly algorithm and graph identifies when a metric is behaving differently than it has in the past and takes into account seasonal day-of-week and time-of-day trends. For example, if a metric is unusually high or low during a given time period. The data points that are unusually high or low are shaded a different color from the rest of data points. I used the "Basic" anomaly function, which has a simple computation to determine the expected ranges. I also set a bound of 2, which is like the standard deviation to determine the extent of the normal points.
 
 ![PostgreSQL Database with Anomalies Function Applied](/imgs/postgres_anomalies.png)
@@ -106,7 +109,7 @@ The Anomaly algorithm and graph identifies when a metric is behaving differently
 ## Monitoring Data
 
 Made POST request to the Create Monitor Datadog API, `https://app.datadoghq.com/api/v1/monitor?api_key={MY_API_KEY}&application_key={MY_APP_KEY}` with the following payload:
-
+```
 {
       "type": "metric alert",
       "query": "avg(last_5m):my_metric{host:Fannys-MacBook-Air.local} > 800",
@@ -119,6 +122,10 @@ Made POST request to the Create Monitor Datadog API, `https://app.datadoghq.com/
       	"thresholds": {"critical": 800, "warning": 500}
       }
 }
+```
+* `"query"`, sets the alert on "my_metric" and a threshold value of greater than 800
+* `"message"`, uses sets a custom message for alerts and warnings and also emails me
+* `"thresholds"`, sets the threshold values for critical to > 800 and warning alerts > 500
 
 **Bonus** Scheduled Downtime
 I made a POST request to the Datadog API with the following query:
@@ -174,17 +181,19 @@ if __name__ == '__main__':
 ```
 
 * Next, I followed the Flask installation instructions to get the app running:
-1. `$ sudo pip install virtualenv  // virtual environment to run python app`
-2. `$ . venv/bin/activate  // activate virtual env`
-3. `$ pip install Flask`
-4. `$ pip install ddtrace`
+```
+$ sudo pip install virtualenv  // virtual environment to run python app
+$ . venv/bin/activate  // activate virtual env
+$ pip install Flask
+$ pip install ddtrace
+```
 
 * Since I run Mac OS X and the Datadog APM Tracing Agent doesn't come packaged in the Datadog agent, I downloaded Virtualbox and a Vagrant Ubuntu 12.04 Virtual Machine to run the Datadog agent and the built in tracing agent.
 
 * In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. (I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs).
 
 * I confirmed in the Datadog app that it was receiving data from the VM agent.
-[!VM Dashboard](/imgs/vm_dash.png)
+![VM Dashboard](/imgs/vm_dash.png)
 
 * Here was when I ran into some trouble. I first tried to run the Flask app inside the VM. I decided to go this route first because I thought I needed to run both the app and the Datadog Tracing agent in the same environment. I tried to install Flask and ddtrace in the VM environment, however I got the following errors:
 
@@ -194,16 +203,17 @@ if __name__ == '__main__':
 1. Update the pip version. Currently on version 1.2.1
 2. Update Python version. Currently on version 2.7.6
 
-* I was still getting the same errors and since getting the Flask app to run in the VM wasn't working, I decided to keep the DD agent running on the VM and to run the app from my local environment.
+I was still getting the same errors and since getting the Flask app to run in the VM wasn't working, I decided to keep the DD agent running on the VM and to run the app from my local environment.
 
-* To run the app, I entered the following commands:
+To run the app, I ran the following commands:
 ```
 $ . venv/bin/activate
 $ ddtrace-run python app.py
 ```
 
-* I also instrumented the app to trace web requests:
-app.py
+I also instrumented the app to trace web requests:
+
+hiring-challenge/app.py
 ```
 from ddtrace import tracer
 
@@ -211,41 +221,43 @@ with tracer.trace("web.request", service="my_service") as span:
   span.set_tag("mytag", "my_value")
 ```
 
-* The app was able to run and I was able to navigate to it in the browser and reach the different routes, however I received the following error:
+The app was able to run and I was able to navigate to it in the browser and reach the different routes, however I received the following error:
 
 ![Connection Refused Error](/imgs/connection_refused.png)
 
-* After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer needs to be configured to the Trace Agent's hostname and port number. I added the following line to my code:
+After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer needs to be configured to the Trace Agent's hostname and port number. I added the following line to my code:
+
 /app.py
 ```
 tracer.configure(hostname=8126)
 ```
-* I got a NEW error (which was great!)
+I got a NEW error (which was great!)
 ![Encode_Error](/imgs/encode/error.png)
 
-* After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname*. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
-/app.py
+After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname*. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
+/hiring-challenge/app.py
 ```
 tracer.configure(hostname="127.0.1.1", port=8126)
 ```
 
-* Now that the tracer was pointing to the Datadog tracing agent, I was no longer getting any immediate errors, and GET requests to the different routes logged to the console. After a few seconds, I did end up getting a time out error:
+Now that the tracer was pointing to the Datadog tracing agent, I was no longer getting any immediate errors, and GET requests to the different routes logged to the console. After a few seconds, I did end up getting a time out error:
 
 [!Connection Timeout Error](/imgs/connection_timeout.png)
 
-* I checked the Datadog Agent state information and the APM log, by running the following commands:
+I checked the Datadog Agent state information and the APM log, by running the following commands:
 ```
 $ sudo /etc/init.d/datadog-agent info
 $ tail -f /var/log/datadog/trace-agent.log
 ```
 
-* The Agent Status check looked normal, but it wasn't receiving any traces. The Trace Agent log was also showing that data was not being received.
+The Agent Status check looked normal, but it wasn't receiving any traces. The Trace Agent log was also showing that data was not being received.
 
-[!Agent Status and Trace Logs](/imgs/trace_logs.png)
+![Agent Status and Trace Logs](/imgs/trace_logs.png)
 
-* I've also tried instrumenting the app with tracing middleware and running it with the `flask run` command and get the same errors as above
+I've also tried instrumenting the app with tracing middleware and running it with the `flask run` command and get the same errors as above
 
 *Running Flask app with Tracing Middleware*
+
 /app.py
 ```
 from ddtrace.contrib.flask import TraceMiddleware
