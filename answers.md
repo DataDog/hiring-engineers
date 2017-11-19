@@ -282,12 +282,12 @@ $ export FLASK_APP=app.py
 $ flask run
 ```
 
-**Another attempt at running the Flask app in the VM**
+### Another attempt at running the Flask app in the VM
 I went back to the resource above regarding updating pip, and I ran the update pip command again, `$ python get-pip.py`. I still got the same message about using an outdated location to update, but I noticed that it provided a link to an updated script. I had seen in some resources the `curl` command to download files directly. I tried the following command:
 ```
 curl https://bootstrap.pypa.io/get-pip.py | sudo python
 ```
-![pip Upgrade Success](/imgs/pip_upgrade_success)
+![pip Upgrade Success](/imgs/pip_upgrade_success.png)
 
 Next, I tried downloading Flask and ddtrace again:
 ```
@@ -296,7 +296,7 @@ $ sudo pip install ddtrace
 ```
 And no errors!
 
-Next, I made sure that `apm_enabled:yes` was configured on the VM agent config file. I created another /app.py in the VM environment and pasted the code for the Flask app.
+Next, I made sure that `apm_enabled:yes` was configured on the VM agent config file. I created another `/app.py` in the VM environment and pasted the code for the Flask app.
 
 ![Flask app.py](/imgs/flask_app.png)
 
@@ -309,7 +309,8 @@ $ flask run
 When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
 
 **Making Requests to the Flask App**
-![Flask App Requests](/imgs/flask_requests.png)
+![VM Traces](/imgs/vm_traces.png)
+![VM Requests](/imgs/vm_requests.png)
 
 **My Service on the Datadog Dashboard**
 ![My Service](/imgs/my_service.png)
