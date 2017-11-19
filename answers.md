@@ -1,4 +1,4 @@
-![My Datadog Dashboard](https://app.datadoghq.com/dash/397496/solutions-engineer)
+[My Datadog Dashboard](https://app.datadoghq.com/dash/397496/solutions-engineer)
 
 ## Collecting Metrics
 
