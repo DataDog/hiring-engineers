@@ -309,6 +309,9 @@ $ flask run
 **Note: ** When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
 
 **Making Requests to the Flask App**
+```
+$ curl http://127.0.0.1:5000/{route}
+```
 ![VM Requests](/imgs/vm_requests.png)
 ![VM Traces](/imgs/vm_traces.png)
 
