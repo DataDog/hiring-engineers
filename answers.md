@@ -285,8 +285,9 @@ $ flask run
 ### Another attempt at running the Flask app in the VM
 I went back to the resource above regarding updating pip, and I ran the update pip command again, `$ python get-pip.py`. I still got the same message about using an outdated location to update, but I noticed that it provided a link to an updated script. I had seen in some resources the `curl` command to download files directly. I tried the following command:
 ```
-curl https://bootstrap.pypa.io/get-pip.py | sudo python
+$ curl https://bootstrap.pypa.io/get-pip.py | sudo python
 ```
+**PIP Upgrade Success**
 ![pip Upgrade Success](/imgs/pip_upgrade_success.png)
 
 Next, I tried downloading Flask and ddtrace again:
@@ -309,14 +310,17 @@ $ flask run
 When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
 
 **Making Requests to the Flask App**
-![VM Traces](/imgs/vm_traces.png)
 ![VM Requests](/imgs/vm_requests.png)
+![VM Traces](/imgs/vm_traces.png)
 
 **My Service on the Datadog Dashboard**
 ![My Service](/imgs/my_service.png)
 
 **Recorded Traces**
 ![Recorded Traces](/imgs/recorded_traces.png)
+
+**Reflection**
+After my the attempts at instrumenting APM with the Flask app, I've learned a lot. It makes a lot of sense to me now why the Flask app needs to also run in the virtual environment, because it needs to have access to the Trace Agent host and port number that it is receiving traces on, which is running in the virtual environment. Similarly to how I cannot access an app running on my friend's localhost, a locally running app cannot send traces to a trace agent that is receiving traces in a virtual environment.
 
 **Bonus** -- What is the difference between a Service and a Resource?
 
