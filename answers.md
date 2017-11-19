@@ -40,6 +40,7 @@ This custom metric that returns a random value between 0 and 1000.
 **Bonus** -- How to change collection interval without modifying the Python check file:
 
 In the Agent Config file, configure the `collector_profile_interval` setting.
+
 *~/.datadog-agent/datadog.conf*
 ```
 collector_profile_interval: 45
@@ -94,7 +95,7 @@ Using the Datadog API guides, Postman, and the Postman API Collection, I made a 
 }
 ```
 In the payload of the Timeboard POST request, I made two graphs.
-1. My Custom Metric, with the rollup function, `.rollup(sum, 3600)`, applied to sum up all the points for the past hour. To scope the metric over my host, I added a template variable from the UI. The Timeseries graph charts the sum at each over hour, over time.
+1. My Custom Metric, with the rollup function, `.rollup(sum, 3600)`, applied to sum up all the points for the past hour. To scope the metric over my host, I added a template variable from the UI. The Timeseries graph charts the sum of all the points from the past hour, at each hour, over time.
 2. The Postgres Database with the anomaly function, `anomalies(avg:postgresql.rows_inserted{host:Fannys-MacBook-Air.local}, 'basic', 2)`, applied.
 
 ![5 Minute Snapshot of Timeboard](/imgs/5min_snapshot.png)
@@ -103,6 +104,7 @@ In the payload of the Timeboard POST request, I made two graphs.
 
 The Anomaly algorithm and graph identifies when a metric is behaving differently than it has in the past and takes into account seasonal day-of-week and time-of-day trends. For example, if a metric is unusually high or low during a given time period. The data points that are unusually high or low are shaded a different color from the rest of data points. I used the "Basic" anomaly function, which has a simple computation to determine the expected ranges. I also set a bound of 2, which is like the standard deviation to determine the extent of the normal points.
 
+**PostgreSQL Database Metrics with Anomalies Function**
 ![PostgreSQL Database with Anomalies Function Applied](/imgs/postgres_anomalies.png)
 * The top line is measuring the `rows_returned` metric, the yellow shaded portions represent the anomaly points and the purple portions represent the normal points.
 * The bottom line is measuring the `rows_fetched` metric, the pink portions represent the anomaly points, and the yellow portions represent the normal points.
@@ -126,7 +128,7 @@ Made POST request to the Create Monitor Datadog API, `https://app.datadoghq.com/
 }
 ```
 * `"query"` sets the alert on "my_metric" and a threshold value of greater than 800
-* `"message"` uses sets a custom message for alerts and warnings and also emails me
+* `"message"` uses template syntax and sets a custom message for alerts and warnings and also sends me an email with the alert
 * `"thresholds"` sets the threshold values for critical to > 800 and warning alerts > 500
 
 **Bonus** -- Scheduled Downtime
@@ -144,11 +146,10 @@ https://app.datadoghq.com/api/v1/downtime?api_key=3f28739dc9067d3da8817cf5efd585
 
 For each Downtime request, I set a `start` and `end` time in UNIX timestamp notation, recurrence type, which days, the monitors' scopes, and a message containing a tag to notify me by email of the scheduled downtime.
 
+**Downtime Alert Email**
 ![Scheduled Downtime](/imgs/downtime.png)
 
 ## Collecting APM Data:
-
-While I haven't been able to successfully set up APM tracing, here are the steps that I took to instrument the Flask app to send trace data to Datadog APM:
 
 Create a new file, `app.py` with the small Flask app
 
@@ -194,7 +195,7 @@ $ pip install ddtrace
 
 Since I run Mac OS X and the Datadog APM Tracing Agent doesn't come packaged in the Datadog agent, I downloaded Virtualbox and a Vagrant Ubuntu 12.04 Virtual Machine to run the Datadog agent and the built in tracing agent.
 
-In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. (I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs).
+In the `/etc/dd-agent/datadog.conf` config file, I set `apm_enabled: yes` to enable APM tracing. I also noticed the syntax within the Datadog docs varied between `apm_enabled: yes` and `apm_enabled: true`, so I tried restarting the DD agent with both configs.
 
 I confirmed in the Datadog app that it was receiving data from the VM agent.
 ![VM Dashboard](/imgs/vm_dash.png)
@@ -204,10 +205,14 @@ Here was when I ran into some trouble. I first tried to run the Flask app inside
 ![VM pip install errors](/imgs/pip_install_errors.png)
 
 To troubleshoot:
-1. Update the pip version. Currently on version 1.2.1
-2. Update Python version. Currently on version 2.7.6
+I found an online resource that had the same error as I was having:(https://stackoverflow.com/questions/21294997/pip-connection-failure-cannot-fetch-index-base-url-http-pypi-python-org-simpl) and it suggested upgrading the pip version.
 
-I was still getting the same errors and since getting the Flask app to run in the VM wasn't working, I decided to keep the DD agent running on the VM and to run the app from my local environment.
+```
+$ python get-pip.py
+```
+![pip install error](/imgs/pip_upgrade_error.png)
+
+I was still getting the same errors and since getting the Flask app to run in the VM wasn't working, I decided to keep the DD agent running on the VM and to run the app from my local environment. I thought this should work because the traces can be configured to be sent to the VM host and its port number.
 
 To run the app, I ran the following commands:
 ```
@@ -229,7 +234,7 @@ The app was able to run and I was able to navigate to it in the browser and reac
 
 ![Connection Refused Error](/imgs/connection_refused.png)
 
-After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer needs to be configured to the Trace Agent's hostname and port number. I added the following line to my code:
+After Googling what a "connection refused" error could mean, I found a resource that suggested that the tracer wasn't correctly configured to send to the Trace Agent's hostname and port number. I added the following line to my code:
 
 *hiring-challenge/app.py*
 ```
@@ -238,7 +243,7 @@ tracer.configure(hostname=8126)
 I got a NEW error (which was great!)
 ![Encode_Error](/imgs/encode_error.png)
 
-After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname*. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
+After reviewing the API docs more closely, I realized my mistake in configuring the tracer. The hostname takes an argument for the *hostname* and the key *port* should be configured to the port number. After figuring out the hostname for the VM where the Datadog agent was running from, I corrected the line:
 
 */hiring-challenge/app.py*
 ```
@@ -276,6 +281,41 @@ traced_app = TraceMiddleware(app, tracer, service="my_service", distributed_trac
 $ export FLASK_APP=app.py
 $ flask run
 ```
+
+**Another attempt at running the Flask app in the VM**
+I went back to the resource above regarding updating pip, and I ran the update pip command again, `$ python get-pip.py`. I still got the same message about using an outdated location to update, but I noticed that it provided a link to an updated script. I had seen in some resources the `curl` command to download files directly. I tried the following command:
+```
+curl https://bootstrap.pypa.io/get-pip.py | sudo python
+```
+![pip Upgrade Success](/imgs/pip_upgrade_success)
+
+Next, I tried downloading Flask and ddtrace again:
+```
+$ sudo pip install Flask
+$ sudo pip install ddtrace
+```
+And no errors!
+
+Next, I made sure that `apm_enabled:yes` was configured on the VM agent config file. I created another /app.py in the VM environment and pasted the code for the Flask app.
+
+![Flask app.py](/imgs/flask_app.png)
+
+To run the app:
+```
+$ export FLASK_APP=app.py
+$ flask run
+```
+**Notes**
+When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
+
+**Making Requests to the Flask App**
+![Flask App Requests](/imgs/flask_requests.png)
+
+**My Service on the Datadog Dashboard**
+![My Service](/imgs/my_service.png)
+
+**Recorded Traces**
+![Recorded Traces](/imgs/recorded_traces.png)
 
 **Bonus** -- What is the difference between a Service and a Resource?
 
