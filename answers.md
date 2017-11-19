@@ -1,3 +1,5 @@
+![My Datadog Dashboard](https://app.datadoghq.com/dash/397496/solutions-engineer)
+
 ## Collecting Metrics
 
 ### Tags
@@ -283,3 +285,4 @@ A Resource is a query to a service, for example the unique urls in the api of a 
 
 ## Final Question
 
+A cool use for Datadog would be for companies that use or advertise on Instagram. They could use Datadog to monitor over time the number of users or followers that are currently active on Instagram. When the number of active users is over a certain threshold, a metric alert can be sent to the Instagram account manager, indicating an optimal time to make a new post. The metrics can also be averaged over a period of a week and analyzed to decide which days and times are the most optimal to make new posts.
