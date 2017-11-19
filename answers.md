@@ -306,8 +306,7 @@ To run the app:
 $ export FLASK_APP=app.py
 $ flask run
 ```
-**Notes**
-When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
+**Note: ** When I ran the app with the command `ddtrace-run python app.py`, I got errors stating that modules ddtrace and flask were not found. So, I ran the app with the tracing middleware, and the `flask run` command.
 
 **Making Requests to the Flask App**
 ![VM Requests](/imgs/vm_requests.png)
