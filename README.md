@@ -4,7 +4,7 @@ Installed datadog agent on my local machine and tried to set up dashboard/metric
 
 While setting up a screenboard dashboard, I ran into a webpage display issue on Google Chrome:
 
-(https://lh3.googleusercontent.com/hFYIiBG_lZozja_FByjLCMu27KtVaplg776fZ1LVx-cvrnmQsY4KN7yhPgetGgh5Zi6CuaUX2G4HR1-LzmJYrcJCUFVaaV0-yxjAqP_SuT_jochklP_lJr1gMascNv_gxN6MG12p)
+[](https://lh3.googleusercontent.com/hFYIiBG_lZozja_FByjLCMu27KtVaplg776fZ1LVx-cvrnmQsY4KN7yhPgetGgh5Zi6CuaUX2G4HR1-LzmJYrcJCUFVaaV0-yxjAqP_SuT_jochklP_lJr1gMascNv_gxN6MG12p)
 
 While trying to add an event list, I found that the search query field was not intuitive to use, as I couldn’t get it to filter with the “Romans-Macbook-Air” string. I suspect there is a special escape character I need to use for dashes, but couldn’t see an obvious way to get to search query documentation (it really should be next to the search query field title). I tried the typical backslash as an escape character but was still unable to get desired search query results.
 
