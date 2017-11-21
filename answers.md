@@ -26,26 +26,24 @@ The linux agent one-line install was really nice and worked flawlessly on my Lig
 
 <img src="screenshots/lightsail-server.png" width="700">
 
-The mongodb integration was a little bit more involved. Copying and pasting the mongodb.yaml configuration didn’t work due to spacing issues (or so it seems). It was unfortunate that I had to restart the agent and scan the info command each time to see if the config file was correctly read. Afterwards I saw that I could use a YAML parser to check the config file for syntax issues, which would have been helpful during setup.
+The mongodb integration was a little bit more involved. Copying and pasting the mongodb.yaml configuration didn’t work off the bat - I suspect now it was due to spacing issues pasting into Lightsail's web console terminal. However after reviewing and updating the .yaml configuration, I was able to get the metrics successfully reporting to my datadog console.
 
 <img src="screenshots/mongodb.png" width="700">
 
 My previous experience with monitoring and metrics is from using Paessler PRTG and similar IT endpoint monitoring solutions, for monitoring basic high-level metrics (connectivity/latency via ping, disk space, CPU usage, memory usage, etc via WMI-like agents). So datadog's much more low-level capabilities took some getting used to.
 
 Despite this help article - https://help.datadoghq.com/hc/en-us/articles/206955236-Metric-types-in-Datadog - it was unclear when you would use gauge metrics vs counter metrics.
-After reading through custom agent checks, I got my_metric to report the random 0-1000 value.
+
+After reading through custom agent checks, I got my_metric to report the random 0-1000 value every 45 seconds. I got the 45 second interval in a hack-ish way that I don't particularly like, and preferred the method outside the python check file that I used for the bonus question. I was using the help article on agents - https://docs.datadoghq.com/guides/agent_checks/ - but a better way to set time intervals inside the python check file wasn't apparent.
 
 <img src="screenshots/my-metric.png" width="700">
 
-To change check's collection interval so that it only submits the metric once every 45 seconds I edited the .yaml configuration file and added the following line to init_config:
+### Bonus Question 
+
+Another way to change check's collection interval so that it only submits the metric once every 45 seconds is to edit the .yaml configuration file and added the following line to init_config:
 min_collection_interval: 45
 
 <img src="screenshots/45-second-interval.png" width="700">
-
-### Bonus Question 
-
-Can you change the collection interval without modifying the Python check file you created?
-*Maybe using dogstatsd, or manually keep track of time in the python file using time-based methods
 
 ## Visualizing Data <a name="visualizing"></a>
 
