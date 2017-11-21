@@ -9,6 +9,12 @@ This created the tags that can now be viewed in the Host Map, shown here:
 <img src="./images/tags_hostmap.png">
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+I already had PostgreSQL installed on my machine, so it was just a matter of installing the Datadog integration.  I followed the instructions to add datadog as a User and give it the appropriate properties.  I then adjusted the code as instructed on the Postgres yaml file.  After doing a quick system check
+<img src="./images/postgres_check.png">
+
+I saw that it was properly installed on my Dashboard:
+<img src="./images/postgres_installed.png">
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
