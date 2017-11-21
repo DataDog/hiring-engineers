@@ -15,9 +15,26 @@ I already had PostgreSQL installed on my machine, so it was just a matter of ins
 
 I saw that it was properly installed on my Dashboard:
 <img src="./images/postgres_installed.png">
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+I created 2 files in the .datadog-agent folder: randmetric.py and randmetric.yaml.  The yaml file is a config file, to be placed in the conf.d subfolder.  The python file contains the actual check, and thus goes in the checks.d subfolder.  Here is what the code looked like:
+<img src="./images/random_code.png">
+
+The python file inherits from AgentCheck, and to get the random value, I've inherited from random as well.  In the yaml config file, for now I am just doing the bare minimum to get the check running.  Once it's running, here's what the metrics dashboard looks like:
+<img src="./images/random_dashboard.png">
+
+As a default, it collects data every 20 seconds.
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+By changing the minimum collection interval to 45, data will now only be submitted no more than every 45 seconds.  It is still dependent upon when the agent collects, however.
+<img src="./images/45sec.png">
+
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+Yes - this can be done by changing the default collection interval for the entire agent.
 
 ## Visualizing Data:
 
