@@ -8,7 +8,7 @@ Screenshot of the tags : ![alt text](screenshots/tags.png "Tags")
 Screenshot of the host map : ![alt text](screenshots/host_map_sql.png "Host Map")
 
 3) Code of the configuration file : [YAML file](dd-agent/conf.d/my_check.yaml)
-Code of the check file [Python file](dd-agent/checks.d/my_check.py)
+Code of the check file : [Python file](dd-agent/checks.d/my_check.py)
 
 Screenshot of the metric informations : ![alt text](screenshots/my_metric_definition.png "my_metric")
 
