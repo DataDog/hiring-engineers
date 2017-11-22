@@ -44,11 +44,26 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+I created this all as one Timeboard using 3 different graphs in a single API call.  The code for this is here:
+<img src="./images/api_code.png">
+
+The graph for my_metric is straight forward and has no constraints.  The metric from the PSQL integration is also ported in with little alteration.  I couldn't quite get the syntax for adding an anomaly at the point of Timeboard creation, so I added this manually on the Dashboard view in the UI.  Finally, I used the rollup function to create another graph of my_metric, for the period of one hour.  All 3 graphs can be seen on the Timeboard here:
+<img src="./images/timeboard_graphs.png">
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+To get to a 5 minute timeframe, I manually selected a 5 minute subsection on the graph itself.  This adjusted the whole timeboard to a 5 minute interval.
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+After adjusting this to 5 minutes, I sent myself a snapshot.  This now appears in my events, as seen here:
+<img src="./images/snapshot.png">
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+It is basically highlighting deviations from the norm.  Based on past behavior, the algorithm expect the data to behave a certain way, within some bounds.  If it deviates too much from this, the graph is marked in red to indicate these periods of anomalies.  This will not show much for a small data sample, but over time seems to be an effective of highlighting significant deviations in one's data.
 
 ## Monitoring Data
 
