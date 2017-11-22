@@ -34,7 +34,7 @@ My previous experience with monitoring and metrics is from using Paessler PRTG a
 
 Despite this help article - https://help.datadoghq.com/hc/en-us/articles/206955236-Metric-types-in-Datadog - it was unclear when you would use gauge metrics vs counter metrics.
 
-After reading through custom agent checks, I got my_metric to report the random 0-1000 value every 45 seconds. I was able to do so by modifying the .yaml file and setting min_collection_interval, and also by using a temporary file on the filesystem to keep track of the last time the agent submitted a value for my custom metric.
+After reading through custom agent checks, I got my_metric to report the random 0-1000 value every 45 seconds. I was able to do so by modifying the .yaml file and setting min_collection_interval (my-metric.py + my-metric.yaml), and also by using a temporary file on the filesystem to keep track of the last time the agent submitted a value for my custom metric (my-metric-45-second.py).
 
 <img src="screenshots/my-metric.png" width="700">
 
