@@ -34,20 +34,20 @@ My previous experience with monitoring and metrics is from using Paessler PRTG a
 
 Despite this help article - https://help.datadoghq.com/hc/en-us/articles/206955236-Metric-types-in-Datadog - it was unclear when you would use gauge metrics vs counter metrics.
 
-After reading through custom agent checks, I got my_metric to report the random 0-1000 value every 45 seconds. I got the 45 second interval in a hack-ish way that I don't particularly like, and preferred the method outside the python check file that I used for the bonus question. I was using the help article on agents - https://docs.datadoghq.com/guides/agent_checks/ - but a better way to set time intervals inside the python check file wasn't apparent.
+After reading through custom agent checks, I got my_metric to report the random 0-1000 value every 45 seconds. I was able to do so by modifying the .yaml file and setting min_collection_interval, and also by using a temporary file on the filesystem to keep track of the last time the agent submitted a value for my custom metric.
 
 <img src="screenshots/my-metric.png" width="700">
 
 ### Bonus Question 
 
-Another way to change check's collection interval so that it only submits the metric once every 45 seconds is to edit the .yaml configuration file and added the following line to init_config:
+The way to change check's collection interval so that it only submits the metric once every 45 seconds, outside of the python check file,  is to edit the .yaml configuration file and add the following line to init_config:
 min_collection_interval: 45
 
 <img src="screenshots/45-second-interval.png" width="700">
 
 ## Visualizing Data <a name="visualizing"></a>
 
-Using the API reference and datadog python library, I was able to create python script to generate a timeboard my custom metric and database graphs. The examples in the API guide and the anomaly detection article were the most helpful resources.
+Using the API reference and datadog python library, I was able to create python script (api-exercise.py) to generate a timeboard my custom metric and database graphs. The examples in the API guide and the anomaly detection article were the most helpful resources.
 
 To set the timeboard's timeframe to the past 5 minutes, I used the cursor dragging function over a 5 minute period on one of the graphs. I then took a snapshot and sent it to myself by using the little camera icon and @s.roman@gmail.com notation.
 
@@ -59,15 +59,19 @@ The anomaly graph is displaying unexpected spikes and dips in the database resid
 
 ## Monitoring Data <a name="monitoring"></a>
 
+Monitors were very easy to set up, with both alert and warning thresholds. Here is the monitoring email I received when my custom metric hit >500.
+
 <img src="screenshots/monitor-email.png" width="700">
 
 ### Bonus Question
 
-I scheduled downtime as well for M-F 7p-9a and Sat-Sun.
+Downtime scheduling was very clearly located in the same section as monitoring. I scheduled downtime as well for M-F 7p-9a and Sat-Sun.
 
 <img src="screenshots/downtime-email.png" width="700">
 
 ## Collecting APM Metrics <a name="apm"></a>
+
+I was able to collect APM metrics via the APM quick setup in the datadog web console. By simply running the ddtrace command on the provided flask python app, and accessing a few of the URLs in the app, I was able to get metrics on access time and other attributes for the flask app.
 
 https://p.datadoghq.com/sb/aa5f65a0f-6c9a9e1a64
 
