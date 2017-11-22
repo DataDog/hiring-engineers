@@ -71,7 +71,7 @@ Downtime scheduling was very clearly located in the same section as monitoring. 
 
 ## Collecting APM Metrics <a name="apm"></a>
 
-I was able to collect APM metrics via the APM quick setup in the datadog web console. By simply running the ddtrace command on the provided flask python app, and accessing a few of the URLs in the app, I was able to get metrics on access time and other attributes for the flask app.
+I was able to collect APM metrics via the APM quick setup in the datadog web console. By simply running the ddtrace command on the provided flask python app, and accessing a few of the URLs in the app, I was able to get metrics on response time and other attributes for the flask app.
 
 https://p.datadoghq.com/sb/aa5f65a0f-6c9a9e1a64
 
