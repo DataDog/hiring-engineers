@@ -34,7 +34,7 @@ By changing the minimum collection interval to 45, data will now only be submitt
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes - this can be done by changing the default collection interval for the entire agent.
+Yes - this can be done by changing the default collection interval in the yaml file, as shown above.
 
 ## Visualizing Data:
 
@@ -63,7 +63,7 @@ After adjusting this to 5 minutes, I sent myself a snapshot.  This now appears i
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-It is basically highlighting deviations from the norm.  Based on past behavior, the algorithm expect the data to behave a certain way, within some bounds.  If it deviates too much from this, the graph is marked in red to indicate these periods of anomalies.  This will not show much for a small data sample, but over time seems to be an effective of highlighting significant deviations in one's data.
+It is basically highlighting deviations from the norm.  Based on past behavior, the algorithm expects the data to behave a certain way, within some bounds.  If it deviates too much from this, the graph is marked in red to indicate these periods of anomalies.  This will not show much for a small data sample, but over time seems to be an effective way of highlighting significant deviations in one's data.
 
 ## Monitoring Data
 
@@ -151,3 +151,5 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+Somewhat similar to the NYC subway monitor, you could potentially use Datadog for monitoring of driving conditions.  Pulling in data from sources like Google Maps, Apple Maps, and Waze, you might be able to create a heat map of traffic conditions.  This is sort of similar to what each service does individually, but aggregrating them together could potentially give you more accurate data.  As a real time feature, it's hard to say how useful this is, since future traffic is hard to predict, but it could be useful to pull on trends.  Say for instance you commute from the suburbs of NYC into the city everyday.  There are many routes to take, all with their share of problems and traffic jams.  However, if you could see if there are trends of traffic issues on certain roads on certain days, it might help you become a more efficient commuter.  I'm sure there are other 3rd party apps with user generated content, and integrating with more and more of these will just make the data more robust.
