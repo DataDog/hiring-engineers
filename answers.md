@@ -91,11 +91,17 @@ Using different variables in an if/else setup, I created messages that would be 
 And here is an email that was sent to me when the warning state was reached:
 <img src="./images/email.png">
 
+The IP does not appear to be displaying correctly, despite being templated exactly as stated in the templating dialogue box.
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
     * One that silences it from 7pm to 9am daily on M-F,
     * And one that silences it all day on Sat-Sun.
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+These both can be setup by going to the Manage Downtime tab in the Monitors dashboard.  Here are what the monitors will look like in setup:
+<img src="./images/downtime1.png">
+<img src="./images/downtime2.png">
 
 
 ## Collecting APM Data:
