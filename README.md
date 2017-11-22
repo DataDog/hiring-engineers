@@ -139,6 +139,9 @@ To submit your answers:
 * [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
 * [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
 
+### Vagrant
+ * https://www.vagrantup.com/intro/getting-started/
+
 ### Other questions:
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
