@@ -18,7 +18,13 @@
           "viz": "timeseries",
           "requests": [
             {
-               "q": "my_metric {host:precise64}"
+              "q": "my_metric {host:precise64}"
+            },
+            {
+              "q": "avg:my_metric{*}.rollup(sum, 3600)"
+            },
+            {
+              "q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)"
             }
           ]
         }
