@@ -5,7 +5,7 @@ If you want to apply as a solutions engineer at [Datadog](http://datadog.com) yo
 
 ## The Exercise
 
-Don’t forget to read the [References](#References)
+Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
 
 ## Questions
 
@@ -15,8 +15,8 @@ Please provide screenshots and code snippets for all steps.
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image
+* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu 12.04 VM.
+You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 * Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 ## Collecting Metrics:
@@ -98,10 +98,10 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run()
-```    
+```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
-    
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
@@ -138,6 +138,9 @@ To submit your answers:
 * [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
 * [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
 * [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
+
+### Vagrant
+ * [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
 
 ### Other questions:
 
