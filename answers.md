@@ -79,4 +79,4 @@ sudo docker ps
 
 ## Change Custom Agent Check Interval:
 - Changed via conf.d/my_metric.yaml<br/>
-![Screenshot](/screenshots/05_yaml_file.png?raw=true "yaml and py files")
+![Screenshot](/screenshots/05_yaml_file.png?raw=true "yaml file")
