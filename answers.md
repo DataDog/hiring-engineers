@@ -34,7 +34,7 @@
 
 * Data started to display on the dashboard:
 
-![alt text](https://i.imgur.com/R9W0QnL)
+![alt text](https://i.imgur.com/R9W0QnL.png)
 
 * Below is the code for my Custom Agent Check
 ```
@@ -76,8 +76,8 @@ The anomaly graph is displaying anomalies in the time series data, i.e identifyi
 ![alt text](https://i.imgur.com/Geqfvl4.png)
 ![alt text](https://i.imgur.com/2m8y6Xl.png)
 
-* Email Warning Email: ![alt text](https://i.imgur.com/w4HTtV4.png)
-* Email Alert Email: ![alt text](https://i.imgur.com/jORA11p.png)
+* Warning Email: ![alt text](https://i.imgur.com/w4HTtV4.png)
+* Alert Email: ![alt text](https://i.imgur.com/jORA11p.png)
 
 * **Bonus Question**: 
 
