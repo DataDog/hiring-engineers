@@ -27,21 +27,14 @@ vagrant ssh
 ```
 sudo apt-get install curl
 ```
-- Upgrade the system (When you see \<OK\> fields hit 'Enter')
-```
-curl -L https://gist.github.com/steakknife/9094991/raw/run_me_000__system_upgrade.sh | bash
-```
-- The box will disconnect, then restart it with:
-```
-vagrant ssh
-```
-- Install docker
+
+- Install docker with shell script
 ```
 curl -L https://gist.github.com/steakknife/9094991/raw/run_me_001__install_docker_and_fixes.sh | bash
 ```
 
 ### Datadog agent install
-- Use easy one-step install line at https://app.datadoghq.com/account/settings#agent/docker
+- Use the one-step install line at https://app.datadoghq.com/account/settings#agent/docker
 - Append ``sudo`` to the front
 
 ### Start the docker container with the Datadog agent
@@ -63,7 +56,7 @@ sudo docker ps
 
 ## Collecting Metrics:
 
-## 1st bullet:
+## Add Tags:
 - Tags added to the datadog.conf file
 ![Screenshot](/screenshots/02_datadog.conf.png?raw=true "datadog.conf")
 
