@@ -69,3 +69,10 @@ sudo docker ps
 
 - Postgres integration connected:<br/>
 ![Screenshot](/screenshots/03_postgres_integration.png?raw=true "Postgre integration")
+
+## Custom Agent Check:
+- conf.d/my_metric.yaml and checks.d/my\_metric.yaml:<br/>
+![Screenshot](/screenshots/04_yaml_py_files.png?raw=true "yaml and py files")
+
+- my_metric shown in the metric explorer:<br/>
+![Screenshot](/screenshots/04_metric_explorer.png?raw=true "yaml and py files")
