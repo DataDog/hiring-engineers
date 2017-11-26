@@ -57,9 +57,15 @@ sudo docker ps
 ## Collecting Metrics:
 
 ## Add Tags:
-- Tags added to the datadog.conf file
+- Tags added to the datadog.conf file:<br/>
 ![Screenshot](/screenshots/02_datadog.conf.png?raw=true "datadog.conf")
 
-- Host Map page in Datadog
+- Host Map page in Datadog:<br/>
 ![Screenshot](/screenshots/02_host_map_page.png?raw=true "Host Map page")
 
+## Install and link a database:
+- Postgres installed on VM:<br/>
+![Screenshot](/screenshots/03_postgres_installed.png?raw=true "Postgre installed")
+
+- Postgres integration connected:<br/>
+![Screenshot](/screenshots/03_postgres_integration.png?raw=true "Postgre integration")
