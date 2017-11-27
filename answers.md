@@ -21,7 +21,7 @@ I saw that it was properly installed on my Dashboard:
 I created 2 files in the .datadog-agent folder: randmetric.py and randmetric.yaml.  The yaml file is a config file, to be placed in the conf.d subfolder.  The python file contains the actual check, and thus goes in the checks.d subfolder.  Here is what the code looked like:
 <img src="./images/random_code.png">
 
-The python file inherits from AgentCheck, and to get the random value, I've inherited from random as well.  In the yaml config file, for now I am just doing the bare minimum to get the check running.  Once it's running, here's what the metrics dashboard looks like:
+The python file inherits from AgentCheck, and to get the random value, I've imported from random as well.  In the yaml config file, for now I am just doing the bare minimum to get the check running.  Once it's running, here's what the metrics dashboard looks like:
 <img src="./images/random_dashboard.png">
 
 As a default, it collects data every 20 seconds.
@@ -103,6 +103,9 @@ These both can be setup by going to the Manage Downtime tab in the Monitors dash
 <img src="./images/downtime1.png">
 <img src="./images/downtime2.png">
 
+And once the downtime occurred, I received this email:
+<img src="./images/downtime_email.png">
+
 
 ## Collecting APM Data:
 
@@ -142,6 +145,8 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
     
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+A service is essentially a term used to encompass the source of one's data.  It could be an app or a database, and is the actual thing running when data is being collected.  A resource is then a piece of that service, in the form of a query.  This could be a route, a db query, or other similar events.  A service can have many resources, while a resource is specifically connected to a single service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
