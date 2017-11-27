@@ -64,3 +64,26 @@ The host and its tag on the Host Map page is Datadog is shown here.
   ```
 - Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
 ![MySQL](./screenshots/MySQL_integration.png)
+
+- Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
+
+The MySQL metrics can be found from Metric Explorer.
+![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
+
+## Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
+- The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `Random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `Random.yaml` is
+```bash
+init_config:
+
+instance:
+    [{}]
+```
+- Next, the check file will be created in the directory `/etc/dd-agent/check.d`. The check file must have the same name as the configuration file. Therefore, the check file is named as `Random.py`. According to the [Documents](https://docs.datadoghq.com/guides/agent_checks/), the custom check inherits from the `AgentCheck` class. In addition, we need a random number generator to yield a random value. The code in `Random.py` is
+```python
+from checks import AgentCheck
+from random import random
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('test.support.random', random())
+```
+
