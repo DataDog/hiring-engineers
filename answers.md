@@ -47,5 +47,5 @@ Restart the Datadog agent:
 $sudo /etc/init.d/datadog-agent restart
 ```
 The host and its tag on the Host Map page is Datadog is shown here.
-![Host_Map](./screenshots/tag_host_map)
+![Host_Map](./screenshots/tag_host_map.png)
 
