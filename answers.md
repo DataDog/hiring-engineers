@@ -50,8 +50,15 @@ The host and its tag on the Host Map page is Datadog is shown here.
 ![Host_Map](./screenshots/tag_host_map.png)
 
 ## Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
--Download and install MySQL server:
+- Download and install MySQL server:
   ```bash
   $sudo apt-get install mysql-server
   ```
-
+- Test the status of MySQL Server:
+  ```bash
+  $service mysql status
+  ```
+  If MySQL Server is running, there will display `mysql start/running, process [PID]`. Otherwise, it can be manually started by: 
+  ```bash
+  $sudo service mysql start
+  ```
