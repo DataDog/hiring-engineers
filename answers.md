@@ -47,7 +47,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 I created this all as one Timeboard using 3 different graphs in a single API call.  The code for this is here:
 <img src="./images/api_code.png">
 
-The graph for my_metric is straight forward and has no constraints.  The metric from the PSQL integration is also ported in with little alteration.  I couldn't quite get the syntax for adding an anomaly at the point of Timeboard creation, so I added this manually on the Dashboard view in the UI.  Finally, I used the rollup function to create another graph of my_metric, for the period of one hour.  All 3 graphs can be seen on the Timeboard here:
+The graph for my_metric is straight forward and has no constraints.  The metric from the PSQL integration is also ported in with little alteration.  I couldn't quite get the syntax for adding an anomaly at the point of Timeboard creation, so I added this manually on the Dashboard view in the UI.  Finally, I used the rollup function to create another graph of my_metric, for the period of one hour.  All 3 graphs can be seen on the [Timeboard](https://app.datadoghq.com/dash/405237/my-timeboard?live=true&page=0&is_auto=false&from_ts=1511214044479&to_ts=1511818844479&tile_size=m) here:
 <img src="./images/timeboard_graphs.png">
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
