@@ -62,3 +62,5 @@ The host and its tag on the Host Map page is Datadog is shown here.
   ```bash
   $sudo service mysql start
   ```
+- Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
+![MySQL](./screenshots/MySQL_integration.png)
