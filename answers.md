@@ -22,7 +22,7 @@ $sudo \etc\init.d\datadog-agent info
 ## Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
 
-The configuration file is saved in `/etc/dd-agent`. And the Agent configuration file is named as `datadog.conf`.
+The configuration file is saved in `/etc/dd-agent`, and the Agent configuration file is named as `datadog.conf`.
 
 To add the tags in the Agent configuration file, we should firstly edit the configuration file:
 ```bash
@@ -33,7 +33,7 @@ Then find these lines:
 # Set the host's tags (optional)
 # tags: mytag, env:prod, role:database
 ```
-Uncomment the second line, and change the name of tags to `host:long-test`:
+Uncomment the second line, and name the tag as `host:long-test`:
 ```bash
 # Set the host's tags (optional)
 tags: long-test
@@ -48,4 +48,10 @@ $sudo /etc/init.d/datadog-agent restart
 ```
 The host and its tag on the Host Map page is Datadog is shown here.
 ![Host_Map](./screenshots/tag_host_map.png)
+
+## Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+-Download and install MySQL server:
+  ```bash
+  $sudo apt-get install mysql-server
+  ```
 
