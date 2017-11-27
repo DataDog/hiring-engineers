@@ -71,14 +71,14 @@ The MySQL metrics can be found from Metric Explorer.
 ![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
 ## Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
-- The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `Random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `Random.yaml` is
+- The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
 ```bash
 init_config:
 
 instance:
     [{}]
 ```
-- Next, the check file will be created in the directory `/etc/dd-agent/check.d`. The check file must have the same name as the configuration file. Therefore, the check file is named as `Random.py`. According to the [Documents](https://docs.datadoghq.com/guides/agent_checks/), the custom check inherits from the `AgentCheck` class. In addition, we need a random number generator to yield a random value. The code in `Random.py` is
+- Next, the check file will be created in the directory `/etc/dd-agent/check.d`. The check file must have the same name as the configuration file. Therefore, the check file is named as `random.py`. According to the [Documents](https://docs.datadoghq.com/guides/agent_checks/), the custom check inherits from the `AgentCheck` class. In addition, we need a random number generator to yield a random value. Therefore `random.py` is
 ```python
 from checks import AgentCheck
 from random import random
@@ -86,4 +86,12 @@ class HelloCheck(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random())
 ```
-
+- We need to restart the agent to sent the check to Datadog.
+```bash
+$sudo \etc\init.d\datadog-agent restart
+```
+- Then we can test the custom check
+```bash
+$sudo -u dd-agent dd-agent check random
+```
+![random_check](./screenshots/random_check)
