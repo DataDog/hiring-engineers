@@ -41,3 +41,11 @@ tags: long-test
 ![Agent tag](./screenshots/agent_tag.png)
 
 Press ctrl + o to save the file, and then exit it by pressing ctrl + x.
+
+Restart the Datadog agent:
+```bash
+$sudo /etc/init.d/datadog-agent restart
+```
+The host and its tag on the Host Map page is Datadog is shown here.
+![Host_Map](./screenshots/tag_host_map)
+
