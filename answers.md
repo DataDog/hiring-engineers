@@ -38,6 +38,6 @@ Uncomment the second line, and change the name of tags to `host:long-test`:
 # Set the host's tags (optional)
 tags: long-test
 ```
-[![Agent tag](https://github.com/longliuau/hiring-engineers/tree/support-engineer/agent_tag.png)]
+![Agent tag](./screenshots/agent_tag.png)
 
 Press ctrl + o to save the file, and then exit it by pressing ctrl + x.
