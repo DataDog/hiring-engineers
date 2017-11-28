@@ -1,5 +1,5 @@
 This is Long Liu's answer.
-# Level 0: Setup an Ubuntu VM.
+# Level 0 - Setup an Ubuntu VM.
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 # Level 1 - Collecting your Data
@@ -96,7 +96,7 @@ $sudo -u dd-agent dd-agent check random
 ```
 ![random_check](./screenshots/random_check)
 
-# Level 2: Visualizing your Data
+# Level 2 - Visualizing your Data
 ## Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
 ![MySQL_dashboard](./screenshots/mysql_db.png)
@@ -131,7 +131,17 @@ The recipient will have the email in a short time.
 In addition, the message will be shown in the Events list.
 ![event](./screenshots/event.png)
 
+# Level 3 - Alerting on your Data
+Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
+## Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
+**Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
+
+## Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+
+## Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+**Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
 
 
