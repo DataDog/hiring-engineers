@@ -1,5 +1,5 @@
 This is Long Liu's answer.
-# Step 0: Setup an Ubuntu VM.
+# Level 0: Setup an Ubuntu VM.
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 # Level 1 - Collecting your Data
@@ -95,3 +95,11 @@ $sudo \etc\init.d\datadog-agent restart
 $sudo -u dd-agent dd-agent check random
 ```
 ![random_check](./screenshots/random_check)
+
+# Level 2: Visualizing your Data
+## Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
+![MySQL_dashboard](./screenshots/mysql_db.png)
+The overview of MySQL is presented, where we can see that the MySQL database integration is reporting.
+![MYSQL_overview](./screenshots/mysql_ov.png)
+:gear：
