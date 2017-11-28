@@ -102,4 +102,37 @@ Firstly, select the MySQL database integration dashboard from `Dashboards -> Das
 ![MySQL_dashboard](./screenshots/mysql_db.png)
 The overview of MySQL is presented, where we can see that the MySQL database integration is reporting.
 ![MYSQL_overview](./screenshots/mysql_ov.png)
-:gear：
+Next, click the tools icon on the top right corner, and then click `Clone Dashboard` to clone the MySQL database integration dashboard. 
+![tools_icon](./screenshots/tools_icon.png)
+We name the copy of this dashboard as `MySQL - Overview (cloned)`.
+![clone](./screenshots/clone.png)
+Add a new graph to show an additional database metric by clicking the empty rectangular with text *add a graph*.
+![new_graph](./screenshots/new_graph.png)
+Then there will be different widgets to select for the new graph. In this case, we use *Timeseries* widget. The widget can be applied by dragging it on the dashboard.
+![widget](./screenshots/widget.png)
+The new metric we are interested in is the network connection of MySQL database. Therefore, we will get *mysql.net.connections* from *$scope*. The name of this figure is *MySQL net connections (connections/s)* save the configuration.
+![new_metric](./screenshots/new_metric.png)
+
+We follow the same step to add a new graph for the custom metric. The widget we will use is also *Timeseries*. The metric we should get is *test.random.support*. The figure is named as *Test random values*.
+![custom_metric](./screenshots/custom_metric.png)
+
+The two additional metrics are ready to shown in the dashboard.
+![new_dashboard](./screenshots/new_dashboard.png)
+
+**Bonus question: What is the difference between a timeboard and a screenboard?**
+
+## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
+Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
+![annotate](./screenshots/annotate.png)
+The draw a box that contains values over 0.9. In the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
+![notification](./screenshots/notification.png)
+The recipient will have the email in a short time.
+![email](./screenshots/email.png)
+In addition, the message will be shown in the Events list.
+![event](./screenshots/event.png)
+
+
+
+
+
+
