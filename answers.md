@@ -47,6 +47,7 @@ Restart the Datadog agent:
 $sudo /etc/init.d/datadog-agent restart
 ```
 The host and its tag on the Host Map page is Datadog is shown here.
+
 ![Host_Map](./screenshots/tag_host_map.png)
 
 ## Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -63,12 +64,14 @@ The host and its tag on the Host Map page is Datadog is shown here.
   $sudo service mysql start
   ```
 - Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
+
 ![MySQL](./screenshots/MySQL_integration.png)
 
 - Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
 
 The MySQL metrics can be found from Metric Explorer.
-.png![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
+
+![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
 ## Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 - The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
@@ -99,57 +102,73 @@ $sudo -u dd-agent dd-agent check random
 # Level 2 - Visualizing your Data
 ## Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
+
 ![MySQL_dashboard](./screenshots/mysql_db.png)
 
 The overview of MySQL is presented, where we can see that the MySQL database integration is reporting.
+
 ![MYSQL_overview](./screenshots/mysql_ov.png)
 
 Next, click the tools icon on the top right corner, and then click `Clone Dashboard` to clone the MySQL database integration dashboard. 
+
 ![tools_icon](./screenshots/tools_icon.png)
 
 We name the copy of this dashboard as `MySQL - Overview (cloned)`.
+
 ![clone](./screenshots/clone.png)
 
 Add a new graph to show an additional database metric by clicking the empty rectangular with text *add a graph*.
+
 ![new_graph](./screenshots/new_graph.png)
 
 Then there will be different widgets to select for the new graph. In this case, we use *Timeseries* widget. The widget can be applied by dragging it on the dashboard.
+
 ![widget](./screenshots/widget.png)
 
 The new metric we are interested in is the network connection of MySQL database. Therefore, we will get *mysql.net.connections* from *$scope*. The name of this figure is *MySQL net connections (connections/s)* save the configuration.
+
 ![new_metric](./screenshots/new_metric.png)
 
 We follow the same step to add a new graph for the custom metric. The widget we will use is also *Timeseries*. The metric we should get is *test.random.support*. The figure is named as *Test random values*.
+
 ![custom_metric](./screenshots/custom_metric.png)
 
 The two additional metrics are ready to shown in the dashboard.
+
 ![new_dashboard](./screenshots/new_dashboard.png)
 
 **Bonus question: What is the difference between a timeboard and a screenboard?**
 
 ## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
+
 ![annotate](./screenshots/annotate.png)
 
 The draw a box that contains values over 0.9. In the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
+
 ![notification](./screenshots/notification.png)
 
 The recipient will have the email in a short time.
+
 ![email](./screenshots/email.png)
 
 In addition, the message will be shown in the Events list.
+
 ![event](./screenshots/event.png)
 
 # Level 3 - Alerting on your Data
 Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
+
 ## Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
 A guide is provided [here](https://docs.datadoghq.com/guides/monitors/) for creating a new metric monitor. 
 
 Firstly, we will create a new monitor by hovering over *Monitors* in the main menu and clicking *New Monitor*.
+
 ![new_monitor](./screenshots/new_mn.png)
 
 There are many types of monitors to choose from. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
+
 ![monitor_metric](./screenshots/monitor_mtc.png)
 
 After selecting the monitor type, we are presented with the setting page of the monitor, where we will choose the detectio method, define the metric, and set alert conditions.
