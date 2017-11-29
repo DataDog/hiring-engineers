@@ -1,0 +1,12 @@
+init_config:
+
+instances:
+  - server: localhost
+    user: test
+    pass: test
+    tags:                  # Optional
+      - role:master
+
+    queries:               # Optional
+      query: select count(name) from users
+      metric: db.user_count
