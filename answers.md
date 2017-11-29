@@ -33,10 +33,10 @@ Then find these lines:
 # Set the host's tags (optional)
 # tags: mytag, env:prod, role:database
 ```
-Uncomment the second line, and name the tag as `host:long-test`:
+Uncomment the second line, and name the tag as `role:test`:
 ```bash
 # Set the host's tags (optional)
-tags: long-test
+tags: role:test
 ```
 ![Agent tag](./screenshots/agent_tag.png)
 
