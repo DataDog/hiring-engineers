@@ -68,7 +68,7 @@ The host and its tag on the Host Map page is Datadog is shown here.
 - Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
 
 The MySQL metrics can be found from Metric Explorer.
-![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
+.png![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
 ## Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 - The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
@@ -94,7 +94,7 @@ $sudo \etc\init.d\datadog-agent restart
 ```bash
 $sudo -u dd-agent dd-agent check random
 ```
-![random_check](./screenshots/random_check)
+![random_check](./screenshots/random_check.png)
 
 # Level 2 - Visualizing your Data
 ## Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
