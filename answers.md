@@ -191,13 +191,27 @@ Once the condition is setup, the threshold will be shown on the graph of the met
 
 ## Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
-In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email.
+In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figure. The link of dashboard that shows the custom metric (*test.support.random*) is included in the message. 
 
-![monitor_s3](./screenshots/monitor_4.png)
+![monitor_s4](./screenshots/monitor_4.png)
+
+The person who will be notified when alert is triggered will be assigned in section 5. In addition, we choose to **notify** recipient if there are modifications in the monitor in future.
+
+![monitor_s5](./screenshots/monitor_5.png)
+
 
 ## Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+We can successfully be notified when the alert is triggered. The email sent from Datadog is shown as
 
 ![alert](./screenshots/alert.png)
+
+The link in this message navigates me to the dashboard of *test.support.random* metric.
+
+![link_dash](./screenshots/link_dash.png)
+
+The alert will also be shown in the *Event* list:
+
+![alert_event](./screenshots/alert_event.png)
 
 **Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
