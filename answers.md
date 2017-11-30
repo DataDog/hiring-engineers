@@ -169,22 +169,38 @@ Firstly, we will create a new monitor by hovering over *Monitors* in the main me
 
 There are many types of monitors to choose from. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
 
-![monitor_metric](./screenshots/monitor_mtc.png height=20, width=30)
+![monitor_metric](./screenshots/monitor_mtc.png)
 
 After selecting the monitor type, we are presented with the setting page of the monitor, where we will choose the detection method, define the metric, and set alert conditions.
 
 We will use *Threshold Alert* as the detection method, because we have already had a specific level 0.9 as a threshold for values of the metric.
 
-Next, select the metric *test.support.random* as the monitoring object.
+Next, select the metric *test.support.random* from *role:test* as the monitoring object, where *role:test* is the tag of our agent. We select *simple alert* because we only monitor one metric of a single agent.
+
+Hence, the settings of the first two sections are shown as:
+![monitor_s1](./screenshots/monitor_1.png)
+
+The alert will be triggered when the test metric goes **over 0.90 at lease once** during the last **5 minutes**. We **do not require** the a full window of data for evaluation, because the alert will be triggered immidiately when the condition is met. In addition, we will **be notified** when the data during **the past 10 minutes** are missing. This event is **not allowed to be automatically resolved**. Besides, we want the monitoring to start **without delay**. Therefore, in the third section, we set the condition of the alert as:
+![monitor_s2](./screenshots/monitor_2.png)
+
+Once the condition is setup, the threshold will be shown on the graph of the metric.
+
+![monitor_s2_2](./screenshots/monitor_3.png)
 
 **Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
 
 ## Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
+In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email.
+
+![monitor_s3](./screenshots/monitor_4.png)
+
 ## Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
+![alert](./screenshots/alert.png)
 
 **Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
-
+![manage_down](./screenshots/manage_down.png)
 
 
