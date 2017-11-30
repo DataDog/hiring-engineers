@@ -81,7 +81,26 @@ Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq
 
 ![MySQL](./screenshots/MySQL_integration.png)
 
-Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
+Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/). We include tag `role:test` in the configuration. Therefore, MySQL configuration file in the Agent’s conf.d directory is 
+
+```bash
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: <YOUR_CHOSEN_PASSWORD> 
+    port: 3306
+    tags: role:test
+    options:
+        replication: 0
+        galera_cluster: 1
+        extra_status_metrics: true
+        extra_innodb_metrics: true
+        extra_performance_metrics: true
+        schema_size_metrics: false
+        disable_innodb_metrics: false
+```
 
 The MySQL metrics can be found from Metric Explorer.
 
@@ -159,30 +178,20 @@ The two additional metrics are ready to shown in the dashboard.
 
 ### - Bonus question: What is the difference between a timeboard and a screenboard?
 
- | Timeboard | Screenboard
+-|Timeboard|Screenboard
 -|-----------|------------ 
-Temporality | Graphs are in sync and scoped to the same time. | Graphs can have different time frame.
-Layout | Graphs in timeboard are aligned to grid. | Graphs is resizable and can be dragged and dropped at any preferred position.
-Method to share | Graphs can be shared individually. | Screenboard can be shared as a whole live. The access is read-only.
-Advantages | It is appropriate for troubleshooting and correlation. | An ideal board to show the status of metrics and share with others.
+Temporality|Graphs are in sync and scoped to the same time.|Graphs can have different time frame.
+Layout| Graphs in timeboard are aligned to grid.|Graphs is resizable and can be dragged and dropped at any preferred position.
+Method to share|Graphs can be shared individually.|Screenboard can be shared as a whole live. The access is read-only.
+Advantages|It is appropriate for troubleshooting and correlation.|An ideal board to show the status of metrics and share with others.
   
- - Timeboard:
-  *Temporality*: timeboard graphs are in sync and scoped to the same time.
-  *Layout*: graphs in timeboard are aligned to grid.
-  *Method to share*: graphs can be shared individually.
-  *Advantages*: it is appropriate for troubleshooting and correlation. 
-- Screenboard:
-  Temporality: screenboard graphs can have different time frame. 
-  Layout: graphs is resizable and can be dragged and dropped at any preferred position.
-  Method to share: screenboard can be shared as a whole live. The access is read-only.
-  Advantages: an ideal board to show the status of metrics and share with others.
-
 ## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
+
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
 
 ![annotate](./screenshots/annotate.png)
 
-The draw a box that contains values over 0.9. In the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
+Draw a box that contains values over 0.9. In the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
 
 ![notification](./screenshots/notification.png)
 
@@ -198,26 +207,26 @@ In addition, the message will be shown in the *Events* list.
 
 ## Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
-A guide is provided [here](https://docs.datadoghq.com/guides/monitors/) for creating a new metric monitor. 
-
-Firstly, we will create a new monitor by hovering over *Monitors* in the main menu and clicking *New Monitor*.
+A guide is provided [here](https://docs.datadoghq.com/guides/monitors/) for creating a new metric monitor. We will create a new monitor by hovering over *Monitors* in the main menu and clicking *New Monitor*.
 
 ![new_monitor](./screenshots/new_mn.png)
 
-There are many types of monitors to choose from. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
+There are many types of monitors to choose. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
 
 ![monitor_metric](./screenshots/monitor_mtc.png)
 
 After selecting the monitor type, we are presented with the setting page of the monitor, where we will choose the detection method, define the metric, and set alert conditions.
 
-We will use *Threshold Alert* as the detection method, because we have already had a specific level 0.9 as a threshold for values of the metric.
+We will use *Threshold Alert* as the detection method, because we have already had a specific level 0.9 as the threshold for values of the metric.
 
 Next, select the metric *test.support.random* from *role:test* as the monitoring object, where *role:test* is the tag of our agent. We select *simple alert* because we only monitor one metric of the single agent.
 
 Hence, the settings of the first two sections are shown as:
+
 ![monitor_s1](./screenshots/monitor_1.png)
 
 The alert will be triggered when the test metric goes **over 0.90 at lease once** during the last **5 minutes**. We **do not require** the a full window of data for evaluation, because the alert will be triggered immidiately when the condition is met. In addition, we will **be notified** when the data during **the past 10 minutes** are missing. This event is **not allowed to be automatically resolved**. Besides, we want the monitoring to start **without delay**. Therefore, in the third section, we set the condition of the alert as:
+
 ![monitor_s2](./screenshots/monitor_2.png)
 
 Once the condition is setup, the threshold will be shown on the graph of the metric.
@@ -226,7 +235,7 @@ Once the condition is setup, the threshold will be shown on the graph of the met
 
 ### - Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
-We can switch to multi-alert by resetting the second section. In this case, we only select the *test.support.random* metric to monitor, and leave the other cells blank. Next, the *Multi Alert* is chosen, and a separate alert can be triggered for each *host*. The detail is shown as:
+We can switch to multi-alert by resetting the second section. In this case, we only select the **test.support.random** metric to monitor, and leave the other cells blank. Next, the **Multi Alert** is chosen, and a separate alert can be triggered for each **host**. The detail is shown as:
 
 ![multi_alert_1](./screenshots/multi_alert_1.png)
 
@@ -235,6 +244,7 @@ We can also set the alert group by using raw text. The raw text field can be sho
 ![multi_alert_2](./screenshots/multi_alert_2.png)
 
 The quary for defining the multi-alert by host is
+
 ```bash
 avg:test.support.random{*} by {host}
 ```
@@ -251,6 +261,7 @@ The person who will be notified when alert is triggered will be assigned in sect
 
 
 ## Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+
 We can successfully be notified when the alert is triggered. The email sent from Datadog is shown as:
 
 ![alert](./screenshots/alert.png)
