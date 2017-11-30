@@ -1,4 +1,3 @@
-This is Long Liu's answer.
 # Level 0 - Setup an Ubuntu VM.
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
@@ -18,6 +17,8 @@ $sudo \etc\init.d\datadog-agent info
 ```
 
 ### - Bonus question: In your own words, what is the Agent?
+
+An agent is an autonomous software that interacts with users and helps users complete some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
 ## Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
@@ -138,7 +139,16 @@ The two additional metrics are ready to shown in the dashboard.
 ![new_dashboard](./screenshots/new_dashboard.png)
 
 ### - Bonus question: What is the difference between a timeboard and a screenboard?
-
+- Timeboard:
+Temporality: timeboard graphs are in sync and scoped to the same time.
+Layout: graphs in timeboard are aligned to grid.
+Method to share: graphs can be shared individually.
+Advantages: it is appropriate for troubleshooting and correlation. 
+- Screenboard:
+Temporality: screenboard graphs can have different time frame. 
+Layout: graphs is resizable and can be dragged and dropped at any preferred position.
+Method to share: screenboard can be shared as a whole live. The access is read-only.
+Advantages: an ideal board to show the status of metrics and share with others.
 ## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
 
