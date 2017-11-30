@@ -237,7 +237,7 @@ We can also add a message to describe this schedule, where the person or group c
 
 Once the configuration is completed, we save the schedule. In the *Manage Downtime* page, we can see the monitor, which is labeled as *SCHEDULED* and *RECURRING*.
 
-![manage_down_7](./screenshots/manage_down_7.png)
+![manage_down_7](./screenshots/manage_down_6.png)
 
 
 
