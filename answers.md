@@ -17,7 +17,7 @@ The information of the Agent can be checked by:
 $sudo \etc\init.d\datadog-agent info
 ```
 
-**Definition of Agent**
+### Bonus question: In your own words, what is the Agent?
 
 ## Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
@@ -137,7 +137,7 @@ The two additional metrics are ready to shown in the dashboard.
 
 ![new_dashboard](./screenshots/new_dashboard.png)
 
-**Bonus question: What is the difference between a timeboard and a screenboard?**
+### Bonus question: What is the difference between a timeboard and a screenboard?
 
 ## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
@@ -187,7 +187,7 @@ Once the condition is setup, the threshold will be shown on the graph of the met
 
 ![monitor_s2_2](./screenshots/monitor_3.png)
 
-**Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
+### Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
 ## Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
@@ -209,11 +209,11 @@ The link in this message navigates me to the dashboard of *test.support.random* 
 
 ![link_dash](./screenshots/link_dash.png)
 
-The alert will also be shown in the *Event* list:
+The alert will also be shown in the *Events* list:
 
 ![alert_event](./screenshots/alert_event.png)
 
-**Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+### Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ![manage_down_1](./screenshots/manage_down_1.png)
 
