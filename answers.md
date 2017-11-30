@@ -109,46 +109,23 @@ And once the downtime occurred, I received this email:
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-
-```
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-```    
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
     
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 A service is essentially a term used to encompass the source of one's data.  It could be an app or a database, and is the actual thing running when data is being collected.  A resource is then a piece of that service, in the form of a query.  This could be a route, a db query, or other similar events.  A service can have many resources, while a resource is specifically connected to a single service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Getting the APM setup and my app instrumented proved to be a bit difficult.  I decided to use the Flask app provided with these instructions.  After a very quick tutorial on Flask, I used the "flask run" command to get the app running.  This allowed me to access the app through http://127.0.0.1:5000 (aka localhost:5000).  The app worked fine, but I ran into trouble when trying to integrate the Datadog Tracer.
+
+The first thing I did was to add the code "apm_enabled: true" to my datadog.conf file.  There were 2 options then on how to integrate the tracer.  One was to install the ddtrace package and run the app through there in order to instrument it.  To do this I first installed the package, using 'pip install ddtrace'.  I then ran the command 'ddtrace-run python my_app.py'.  This allowed the app to run, but there seemed to be some sort of blockage, as I kept getting the error 'ddtrace.writer - ERROR - cannot send services: [Errno 61] Connection refused'.  Kevin thought this might be a port issue, but after checking my firewall settings, I saw that all my ports were open.
+
+I tried next to install the DD trace Middleware within the app, and then just run the app as normal.  I used the documentation [here]("http://pypi.datadoghq.com/trace/docs/#") to determine what to include to get the Middleware running.  Here's what the code looked like after implementing:
+<img src="./images/middleware.png">
+
+Unfortunately I got the same error regarding the connection being refused.  I tried adding some additional code recommended by the documentation [here]("https://docs.datadoghq.com/tracing/python/#example") but just got an additional error saying it was unable to send spans.  Thinking maybe it was the app, I tried cloning the Datadog Flask [example]("https://github.com/DataDog/trace-examples/tree/master/python/flask"), but just got the same errors again.
+
+In summary, my best guess is that there is something off in either my local settings or my DD account settings.  There is something blocking write access; it could be a privacy thing or could be a configuration setup issue, or something else completely.  If given the time, some additional workarounds could be to retry this process using Ruby or Go; trying the whole process with an app written in a different framework than Flask; or even clearing all Datadog Agent and tracer material off my local machine and starting from scratch.
 
 
 ## Final Question:
