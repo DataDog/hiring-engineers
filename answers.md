@@ -152,7 +152,7 @@ The recipient will have the email in a short time.
 
 ![email](./screenshots/email.png)
 
-In addition, the message will be shown in the Events list.
+In addition, the message will be shown in the *Events* list.
 
 ![event](./screenshots/event.png)
 
@@ -175,7 +175,7 @@ After selecting the monitor type, we are presented with the setting page of the 
 
 We will use *Threshold Alert* as the detection method, because we have already had a specific level 0.9 as a threshold for values of the metric.
 
-Next, select the metric *test.support.random* from *role:test* as the monitoring object, where *role:test* is the tag of our agent. We select *simple alert* because we only monitor one metric of a single agent.
+Next, select the metric *test.support.random* from *role:test* as the monitoring object, where *role:test* is the tag of our agent. We select *simple alert* because we only monitor one metric of the single agent.
 
 Hence, the settings of the first two sections are shown as:
 ![monitor_s1](./screenshots/monitor_1.png)
@@ -215,17 +215,27 @@ The alert will also be shown in the *Events* list:
 
 ### - Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+The *Manage Downtime* page is navigated by hovering over *Monitors* on the main menu and clicking *Manage Downtime*.
+
 ![manage_down_1](./screenshots/manage_down_1.png)
+
+Next, click the *Schedule Downtime* button on the top right corner of the page.
 
 ![manage_down_2](./screenshots/manage_down_2.png)
 
+We are presented with a page to select the monitor to silence. First, we select the *Test Random Value* monitor from our agent tagged as *role:test*.
+
 ![manage_down_3](./screenshots/manage_down_3.png)
+
+We will schedule the downtime from 7pm to 9am daily. Therefore, we choose the *Recurring* tab. The settings for this schedule is shown in the following figure. 
 
 ![manage_down_4](./screenshots/manage_down_4.png)
 
+We can also add a message to describe this schedule, where the person or group can be included to get notified.
+
 ![manage_down_5](./screenshots/manage_down_5.png)
 
-![manage_down_6](./screenshots/manage_down_6.png)
+Once the configuration is completed, we save the schedule. In the *Manage Downtime* page, we can see the monitor, which is labeled as *SCHEDULED* and *RECURRING*.
 
 ![manage_down_7](./screenshots/manage_down_7.png)
 
