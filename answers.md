@@ -3,6 +3,7 @@ Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/
 
 # Level 1 - Collecting your Data
 ## Step 1: Sign up for Datadog, get the Agent reporting metrics from your local machine.
+
 The local machine is a virtual machine in VirtualBox running Ubuntu 12.04 LTS 64-bit. 
 
 Follow the [instruction](https://app.datadoghq.com/account/settings#agent/ubuntu) to install Datadog Agent on local machine.
@@ -21,24 +22,31 @@ $sudo \etc\init.d\datadog-agent info
 An agent is an autonomous software that interacts with users and completes some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
 ## Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
 
 The configuration file is saved in `/etc/dd-agent`, and the Agent configuration file is named as `datadog.conf`.
 
 To add the tags in the Agent configuration file, we should firstly edit the configuration file:
+
 ```bash
 $sudo nano \etc\dd-agent\datadog.conf
 ```
+
 Then find these lines:
+
 ```bash
 # Set the host's tags (optional)
 # tags: mytag, env:prod, role:database
 ```
+
 Uncomment the second line, and name the tag as `role:test`:
+
 ```bash
 # Set the host's tags (optional)
 tags: role:test
 ```
+
 ![Agent tag](./screenshots/agent_tag.png)
 
 Press ctrl + o to save the file, and then exit it by pressing ctrl + x.
@@ -47,42 +55,51 @@ Restart the Datadog agent:
 ```bash
 $sudo /etc/init.d/datadog-agent restart
 ```
-The host and its tag on the Host Map page is Datadog is shown here.
+The host and its tag on the Host Map page are shown in the following figure.
 
 ![Host_Map](./screenshots/tag_host_map.png)
 
 ## Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-- Download and install MySQL server:
-  ```bash
-  $sudo apt-get install mysql-server
-  ```
-- Test the status of MySQL Server:
-  ```bash
-  $service mysql status
-  ```
-  If MySQL Server is running, there will display `mysql start/running, process [PID]`. Otherwise, it can be manually started by: 
-  ```bash
-  $sudo service mysql start
-  ```
-- Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
+
+Download and install MySQL server:
+
+```bash
+$sudo apt-get install mysql-server
+```
+
+Test the status of MySQL Server:
+```bash
+$service mysql status
+```
+
+If MySQL Server is running, there will display `mysql start/running, process [PID]`. Otherwise, it can be manually started by: 
+```bash
+$sudo service mysql start
+```
+
+Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
 
 ![MySQL](./screenshots/MySQL_integration.png)
 
-- Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
+Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/).
 
 The MySQL metrics can be found from Metric Explorer.
 
 ![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
 ## Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
-- The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
+
+The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
+
 ```bash
 init_config:
 
 instance:
     [{}]
 ```
-- Next, the check file will be created in the directory `/etc/dd-agent/check.d`. The check file must have the same name as the configuration file. Therefore, the check file is named as `random.py`. According to the [Documents](https://docs.datadoghq.com/guides/agent_checks/), the custom check inherits from the `AgentCheck` class. In addition, we need a random number generator to yield a random value. Therefore `random.py` is
+
+Next, the check file will be created in the directory `/etc/dd-agent/check.d`. The check file must have the same name as the configuration file. Therefore, the check file is named as `random.py`. According to the [Documents](https://docs.datadoghq.com/guides/agent_checks/), the custom check inherits from the `AgentCheck` class. In addition, we need a random number generator to yield a random value. Therefore `random.py` is
+
 ```python
 from checks import AgentCheck
 from random import random
@@ -90,11 +107,13 @@ class HelloCheck(AgentCheck):
   def check(self, instance):
     self.gauge('test.support.random', random())
 ```
-- We need to restart the agent to sent the check to Datadog.
+
+We need to restart the agent to sent the check to Datadog.
+
 ```bash
 $sudo \etc\init.d\datadog-agent restart
 ```
-- Then we can test the custom check
+Then we can test the custom check
 ```bash
 $sudo -u dd-agent dd-agent check random
 ```
@@ -114,7 +133,7 @@ Next, click the tools icon on the top right corner, and then click `Clone Dashbo
 
 ![tools_icon](./screenshots/tools_icon.png)
 
-We name the copy of this dashboard as `MySQL - Overview (cloned)`.
+Name the copy of this dashboard as `MySQL - Overview (cloned)`.
 
 ![clone](./screenshots/clone.png)
 
@@ -139,16 +158,24 @@ The two additional metrics are ready to shown in the dashboard.
 ![new_dashboard](./screenshots/new_dashboard.png)
 
 ### - Bonus question: What is the difference between a timeboard and a screenboard?
-- Timeboard:
-Temporality: timeboard graphs are in sync and scoped to the same time.
-Layout: graphs in timeboard are aligned to grid.
-Method to share: graphs can be shared individually.
-Advantages: it is appropriate for troubleshooting and correlation. 
+
+ | Timeboard | Screenboard
+  Temporality | Graphs are in sync and scoped to the same time. | Graphs can have different time frame.
+  Layout | Graphs in timeboard are aligned to grid. | Graphs is resizable and can be dragged and dropped at any preferred position.
+  Method to share | Graphs can be shared individually. | Screenboard can be shared as a whole live. The access is read-only.
+  Advantages | It is appropriate for troubleshooting and correlation. | An ideal board to show the status of metrics and share with others.
+  
+ - Timeboard:
+  *Temporality*: timeboard graphs are in sync and scoped to the same time.
+  *Layout*: graphs in timeboard are aligned to grid.
+  *Method to share*: graphs can be shared individually.
+  *Advantages*: it is appropriate for troubleshooting and correlation. 
 - Screenboard:
-Temporality: screenboard graphs can have different time frame. 
-Layout: graphs is resizable and can be dragged and dropped at any preferred position.
-Method to share: screenboard can be shared as a whole live. The access is read-only.
-Advantages: an ideal board to show the status of metrics and share with others.
+  Temporality: screenboard graphs can have different time frame. 
+  Layout: graphs is resizable and can be dragged and dropped at any preferred position.
+  Method to share: screenboard can be shared as a whole live. The access is read-only.
+  Advantages: an ideal board to show the status of metrics and share with others.
+
 ## Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
 
