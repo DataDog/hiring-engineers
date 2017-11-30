@@ -49,7 +49,7 @@ tags: role:test
 
 ![Agent tag](./screenshots/agent_tag.png)
 
-Press ctrl + o to save the file, and then exit it by pressing ctrl + x.
+Press `ctrl + o` to save the file, and then exit it by pressing `ctrl + x`.
 
 Restart the Datadog agent:
 ```bash
