@@ -169,9 +169,9 @@ Firstly, we will create a new monitor by hovering over *Monitors* in the main me
 
 There are many types of monitors to choose from. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
 
-![monitor_metric](./screenshots/monitor_mtc.png)
+![monitor_metric](./screenshots/monitor_mtc.png height=20, width=30)
 
-After selecting the monitor type, we are presented with the setting page of the monitor, where we will choose the detectio method, define the metric, and set alert conditions.
+After selecting the monitor type, we are presented with the setting page of the monitor, where we will choose the detection method, define the metric, and set alert conditions.
 
 We will use *Threshold Alert* as the detection method, because we have already had a specific level 0.9 as a threshold for values of the metric.
 
