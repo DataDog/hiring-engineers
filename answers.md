@@ -160,10 +160,11 @@ The two additional metrics are ready to shown in the dashboard.
 ### - Bonus question: What is the difference between a timeboard and a screenboard?
 
  | Timeboard | Screenboard
-  Temporality | Graphs are in sync and scoped to the same time. | Graphs can have different time frame.
-  Layout | Graphs in timeboard are aligned to grid. | Graphs is resizable and can be dragged and dropped at any preferred position.
-  Method to share | Graphs can be shared individually. | Screenboard can be shared as a whole live. The access is read-only.
-  Advantages | It is appropriate for troubleshooting and correlation. | An ideal board to show the status of metrics and share with others.
+-|-----------|------------ 
+Temporality | Graphs are in sync and scoped to the same time. | Graphs can have different time frame.
+Layout | Graphs in timeboard are aligned to grid. | Graphs is resizable and can be dragged and dropped at any preferred position.
+Method to share | Graphs can be shared individually. | Screenboard can be shared as a whole live. The access is read-only.
+Advantages | It is appropriate for troubleshooting and correlation. | An ideal board to show the status of metrics and share with others.
   
  - Timeboard:
   *Temporality*: timeboard graphs are in sync and scoped to the same time.
