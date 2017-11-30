@@ -311,7 +311,7 @@ In the *Manage Downtime* page, we can see the monitor, which is labeled as *ACTI
 
 And this event is shown in the *Events* list.
 
-![manage_down_9](./screenshots/manage_dow_9.png)
+![manage_down_9](./screenshots/manage_down_9.png)
 
 
 
