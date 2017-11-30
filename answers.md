@@ -215,6 +215,23 @@ The alert will also be shown in the *Event* list:
 
 **Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
-![manage_down](./screenshots/manage_down.png)
+![manage_down_1](./screenshots/manage_down_1.png)
+
+![manage_down_2](./screenshots/manage_down_2.png)
+
+![manage_down_3](./screenshots/manage_down_3.png)
+
+![manage_down_4](./screenshots/manage_down_4.png)
+
+![manage_down_5](./screenshots/manage_down_5.png)
+
+![manage_down_6](./screenshots/manage_down_6.png)
+
+![manage_down_7](./screenshots/manage_down_7.png)
+
+
+
+
+
 
 
