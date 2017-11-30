@@ -157,7 +157,6 @@ In addition, the message will be shown in the *Events* list.
 ![event](./screenshots/event.png)
 
 # Level 3 - Alerting on your Data
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again. So let's make life easier by creating a monitor.
 
 ## Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
@@ -189,6 +188,19 @@ Once the condition is setup, the threshold will be shown on the graph of the met
 
 ### - Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
 
+We can switch to multi-alert by resetting the second section. In this case, we only select the *test.support.random* metric to monitor, and leave the other cells blank. Next, the *Multi Alert* is chosen, and a separate alert can be triggered for each *host*. The detail is shown as:
+
+![multi_alert_1](./screenshots/multi_alert_1.png)
+
+We can also set the alert group by using raw text. The raw text field can be shown by clicking the icon shown in the following figure:
+
+![multi_alert_2](./screenshots/multi_alert_2.png)
+
+The quary for defining the multi-alert by host is
+```bash
+avg:test.support.random{*} by {host}
+```
+
 ## Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
 In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figure. The link of dashboard that shows the custom metric (*test.support.random*) is included in the message. 
@@ -201,7 +213,7 @@ The person who will be notified when alert is triggered will be assigned in sect
 
 
 ## Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-We can successfully be notified when the alert is triggered. The email sent from Datadog is shown as
+We can successfully be notified when the alert is triggered. The email sent from Datadog is shown as:
 
 ![alert](./screenshots/alert.png)
 
@@ -209,7 +221,7 @@ The link in this message navigates me to the dashboard of *test.support.random* 
 
 ![link_dash](./screenshots/link_dash.png)
 
-The alert will also be shown in the *Events* list:
+The alert will also be shown in the *Events* list.
 
 ![alert_event](./screenshots/alert_event.png)
 
@@ -237,8 +249,19 @@ We can also add a message to describe this schedule, where the person or group c
 
 Once the configuration is completed, we save the schedule. In the *Manage Downtime* page, we can see the monitor, which is labeled as *SCHEDULED* and *RECURRING*.
 
-![manage_down_7](./screenshots/manage_down_6.png)
+![manage_down_6](./screenshots/manage_down_6.png)
 
+**When the downtime starts**, we will be notified via email.
+
+![manage_down_7](./screenshots/manage_down_7.png)
+
+In the *Manage Downtime* page, we can see the monitor, which is labeled as *ACTIVE* and *RECURRING*.
+
+![manage_down_8](./screenshots/manage_down_8.png)
+
+And this event is shown in the *Events* list.
+
+![manage_down_9](./screenshots/manage_dow_9.png)
 
 
 
