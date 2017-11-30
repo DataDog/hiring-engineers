@@ -139,6 +139,7 @@ $sudo -u dd-agent dd-agent check random
 ![random_check](./screenshots/random_check.png)
 
 # Level 2 - Visualizing your Data
+
 ## Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
 
@@ -148,11 +149,11 @@ The overview of MySQL is presented, where we can see that the MySQL database int
 
 ![MYSQL_overview](./screenshots/mysql_ov.png)
 
-Next, click the tools icon on the top right corner, and then click `Clone Dashboard` to clone the MySQL database integration dashboard. 
+Next, click the tools icon on the top right corner, and then click *Clone Dashboard* to clone the MySQL database integration dashboard. 
 
 ![tools_icon](./screenshots/tools_icon.png)
 
-Name the copy of this dashboard as `MySQL - Overview (cloned)`.
+Name the copy of this dashboard as *MySQL - Overview (cloned)*.
 
 ![clone](./screenshots/clone.png)
 
