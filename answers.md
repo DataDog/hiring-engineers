@@ -18,7 +18,7 @@ $sudo \etc\init.d\datadog-agent info
 
 ### - Bonus question: In your own words, what is the Agent?
 
-An agent is an autonomous software that interacts with users and helps users complete some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
+An agent is an autonomous software that interacts with users and completes some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
 ## Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
