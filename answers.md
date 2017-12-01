@@ -16,6 +16,7 @@
    * [Step 2 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.](#step-3-2)
    * [Step 3 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3-3)
      + [Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.](#bonus-3-2)
+ - [Summary](#summary)
 ## Level 0 - Setup an Ubuntu VM
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
@@ -342,6 +343,7 @@ And this event is shown in the *Events* list.
 
 ![manage_down_9](./screenshots/manage_down_9.png)
 
+## Summary
 
 
 
