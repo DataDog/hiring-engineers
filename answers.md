@@ -3,15 +3,15 @@
  - [Level 1 - Collecting your Data](#level-1---collecting-your-data)
    * [Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1---sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
    * [Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2---add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
-   * [Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3--install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
-   * [Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4--write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
+   * [Step 3 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3---install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
+   * [Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4---write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
  - [Level 2 - Visualizing your Data](#level-2---visualizing-your-data)
-   * [Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.](#step-1--since-your-database-integration-is-reporting-now--clone-your-database-integration-dashboard-and-add-additional-database-metrics-to-it-as-well-as-your-testsupportrandom-metric-from-the-custom-agent-check)
-   * [Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.](#step-2--take-a-snapshot-of-your-testsupportrandom-graph-and-draw-a-box-around-a-section-that-shows-it-going-above-090-make-sure-this-snapshot-is-sent-to-your-email-by-using-the--notification)
+   * [Step 1 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.](#step-1---since-your-database-integration-is-reporting-now--clone-your-database-integration-dashboard-and-add-additional-database-metrics-to-it-as-well-as-your-testsupportrandom-metric-from-the-custom-agent-check)
+   * [Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.](#step-2---take-a-snapshot-of-your-testsupportrandom-graph-and-draw-a-box-around-a-section-that-shows-it-going-above-090-make-sure-this-snapshot-is-sent-to-your-email-by-using-the--notification)
  - [Level 3 - Alerting on your Data](#level-3---alerting-on-your-data)
-   * [Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.](#step-1--set-up-a-monitor-on-this-metric-that-alerts-you-when-it-goes-above-090-at-least-once-during-the-last-5-minutes)
-   * [Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.](#step-2--give-it-a-descriptive-monitor-name-and-message--it-might-be-worth-it-to-include-the-link-to-your-previously-created-dashboard-in-the-message--make-sure-that-the-monitor-will-notify-you-via-email)
-   * [Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3--this-monitor-should-alert-you-within-15-minutes-so-when-it-does--take-a-screenshot-of-the-email-that-it-sends-you)
+   * [Step 1 - Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.](#step-1---set-up-a-monitor-on-this-metric-that-alerts-you-when-it-goes-above-090-at-least-once-during-the-last-5-minutes)
+   * [Step 2 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.](#step-2---give-it-a-descriptive-monitor-name-and-message--it-might-be-worth-it-to-include-the-link-to-your-previously-created-dashboard-in-the-message--make-sure-that-the-monitor-will-notify-you-via-email)
+   * [Step 3 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3---this-monitor-should-alert-you-within-15-minutes-so-when-it-does--take-a-screenshot-of-the-email-that-it-sends-you)
 
 ## Level 0 - Setup an Ubuntu VM
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
@@ -74,7 +74,7 @@ The host and its tag on the Host Map page are shown in the following figure.
 
 ![Host_Map](./screenshots/tag_host_map.png)
 
-### Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+### Step 3 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Download and install MySQL server:
 
@@ -121,7 +121,7 @@ The MySQL metrics can be found from Metric Explorer.
 
 ![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
-### Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
+### Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 
 The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
 
@@ -155,7 +155,7 @@ $sudo -u dd-agent dd-agent check random
 
 ## Level 2 - Visualizing your Data
 
-### Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
+### Step 1 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
 
 ![MySQL_dashboard](./screenshots/mysql_db.png)
@@ -192,7 +192,7 @@ The two additional metrics are ready to shown in the dashboard.
 
 ![new_dashboard](./screenshots/new_dashboard.png)
 
-**Bonus question: What is the difference between a timeboard and a screenboard?**
+#### Bonus question: What is the difference between a timeboard and a screenboard?**
 
 -|Timeboard|Screenboard
 -|-----------|------------ 
@@ -201,7 +201,7 @@ Layout| Graphs in timeboard are aligned to grid.|Graphs is resizable and can be 
 Method to share|Graphs can be shared individually.|Screenboard can be shared as a whole live. The access is read-only.
 Advantages|It is appropriate for troubleshooting and correlation.|An ideal board to show the status of metrics and share with others.
   
-### Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
+### Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
 
@@ -221,7 +221,7 @@ In addition, the message will be shown in the *Events* list.
 
 ## Level 3 - Alerting on your Data
 
-### Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
+### Step 1 - Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.
 
 A guide is provided [here](https://docs.datadoghq.com/guides/monitors/) for creating a new metric monitor. We will create a new monitor by hovering over *Monitors* in the main menu and clicking *New Monitor*.
 
@@ -249,7 +249,7 @@ Once the condition is setup, the threshold will be shown on the graph of the met
 
 ![monitor_s2_2](./screenshots/monitor_3.png)
 
-**Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
+#### Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.**
 
 We can switch to multi-alert by resetting the second section. In this case, we only select the **test.support.random** metric to monitor, and leave the other cells blank. Next, the **Multi Alert** is chosen, and a separate alert can be triggered for each **host**. The detail is shown as:
 
@@ -265,7 +265,7 @@ The quary for defining the multi-alert by host is
 avg:test.support.random{*} by {host}
 ```
 
-### Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
+### Step 2 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
 In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figure. The link of dashboard that shows the custom metric (*test.support.random*) is included in the message. 
 
@@ -276,7 +276,7 @@ The person who will be notified when alert is triggered will be assigned in sect
 ![monitor_s5](./screenshots/monitor_5.png)
 
 
-### Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
+### Step 3 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 
 We can successfully be notified when the alert is triggered. The email sent from Datadog is shown as:
 
@@ -290,7 +290,7 @@ The alert will also be shown in the *Events* list.
 
 ![alert_event](./screenshots/alert_event.png)
 
-**Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+#### Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
 The *Manage Downtime* page is navigated by hovering over *Monitors* on the main menu and clicking *Manage Downtime*.
 
