@@ -1,8 +1,8 @@
 ## Table of contents
  - [Level 0 - Setup an Ubuntu VM.](#level-0---setup-an-ubuntu-vm)
  - [Level 1 - Collecting your Data](#level-1---collecting-your-data)
-   * [Step 1: Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1--sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
-   * [Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2--add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
+   * [Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1---sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
+   * [Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2---add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
    * [Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3--install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
    * [Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4--write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
  - [Level 2 - Visualizing your Data](#level-2---visualizing-your-data)
@@ -17,7 +17,7 @@
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 ## Level 1 - Collecting your Data
-### Step 1: Sign up for Datadog, get the Agent reporting metrics from your local machine.
+### Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.
 
 The local machine is a virtual machine in VirtualBox running Ubuntu 12.04 LTS 64-bit. 
 
@@ -36,7 +36,7 @@ $sudo \etc\init.d\datadog-agent info
 
 An agent is an autonomous software that interacts with users and completes some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
-### Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
 
