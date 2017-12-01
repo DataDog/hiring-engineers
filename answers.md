@@ -2,7 +2,7 @@
  - [Level 0 - Setup an Ubuntu VM.](#level-0---setup-an-ubuntu-vm)
  - [Level 1 - Collecting your Data](#level-1---collecting-your-data)
    * [Step 1: Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1--sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
-   - [Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2--add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
+   * [Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2--add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
    * [Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3--install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
    * [Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4--write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
  - [Level 2 - Visualizing your Data](#level-2---visualizing-your-data)
