@@ -1,12 +1,12 @@
 ## Table of contents
  - [Level 0 - Setup an Ubuntu VM.](#level-0---setup-an-ubuntu-vm)
  - [Level 1 - Collecting your Data](#level-1---collecting-your-data)
-   * [Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1---sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
-   * [Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2---add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
-   * [Step 3 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3---install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
-   * [Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4---write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
+   * [Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1-1)
+   * [Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-1-2)
+   * [Step 3 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-1-3)
+   * [Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-1-4)
  - [Level 2 - Visualizing your Data](#level-2---visualizing-your-data)
-   * [Step 1 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.](#step-1---since-your-database-integration-is-reporting-now--clone-your-database-integration-dashboard-and-add-additional-database-metrics-to-it-as-well-as-your-testsupportrandom-metric-from-the-custom-agent-check)
+   * [Step 1 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.](#step-2-1)
    * [Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.](#step-2---take-a-snapshot-of-your-testsupportrandom-graph-and-draw-a-box-around-a-section-that-shows-it-going-above-090-make-sure-this-snapshot-is-sent-to-your-email-by-using-the--notification)
  - [Level 3 - Alerting on your Data](#level-3---alerting-on-your-data)
    * [Step 1 - Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.](#step-1---set-up-a-monitor-on-this-metric-that-alerts-you-when-it-goes-above-090-at-least-once-during-the-last-5-minutes)
@@ -16,7 +16,9 @@
 ## Level 0 - Setup an Ubuntu VM
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
+<a name="step-1-1"></a>
 ## Level 1 - Collecting your Data
+
 ### Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.
 
 The local machine is a virtual machine in VirtualBox running Ubuntu 12.04 LTS 64-bit. 
@@ -36,6 +38,7 @@ $sudo \etc\init.d\datadog-agent info
 
 An agent is an autonomous software that interacts with users and completes some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
+<a name="step-1-2"></a>
 ### Step 2 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 [Tags](https://docs.datadoghq.com/guides/tagging/) are very useful to group machines and metrics for monitoring. Assigning tags using the Agent configuration file will define the tag for the overall agent.
@@ -74,6 +77,7 @@ The host and its tag on the Host Map page are shown in the following figure.
 
 ![Host_Map](./screenshots/tag_host_map.png)
 
+<a name="step-1-3"></a>
 ### Step 3 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Download and install MySQL server:
@@ -121,6 +125,7 @@ The MySQL metrics can be found from Metric Explorer.
 
 ![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
+<a name="step-1-4"></a>
 ### Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
 
 The custom Agent check will simply sample a random value for the metric `test.support.random`. Therefore, in the configuration file, we do not need to put any information. Hence, we create a configuration file named as `random.yaml` in the directory `/etc/dd-agent/conf.d`. The content in `random.yaml` is
@@ -155,6 +160,7 @@ $sudo -u dd-agent dd-agent check random
 
 ## Level 2 - Visualizing your Data
 
+<a name="step-2-1"></a>
 ### Step 1 - Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
 Firstly, select the MySQL database integration dashboard from `Dashboards -> Dashboards List`.
 
