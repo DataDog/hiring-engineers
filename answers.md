@@ -1,6 +1,18 @@
-# Table of contents
-0. [Setup an Ubuntu VM](#Level_0)
-<a name="Level_0"></a>
+- [Table of contents](#table-of-contents)
+  * [Level 0 - Setup an Ubuntu VM.](#level-0---setup-an-ubuntu-vm)
+  * [Level 1 - Collecting your Data](#level-1---collecting-your-data)
+    + [Step 1: Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1--sign-up-for-datadog--get-the-agent-reporting-metrics-from-your-local-machine)
+    + [Step 2: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.](#step-2--add-tags-in-the-agent-config-file-and-show-us-a-screenshot-of-your-host-and-its-tags-on-the-host-map-page-in-datadog)
+    + [Step 3: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.](#step-3--install-a-database-on-your-machine--mongodb--mysql--or-postgresql--and-then-install-the-respective-datadog-integration-for-that-database)
+    + [Step 4: Write a custom Agent check that samples a random value. Call this new metric: test.support.random.](#step-4--write-a-custom-agent-check-that-samples-a-random-value-call-this-new-metric--testsupportrandom)
+  * [Level 2 - Visualizing your Data](#level-2---visualizing-your-data)
+    + [Step 1: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.](#step-1--since-your-database-integration-is-reporting-now--clone-your-database-integration-dashboard-and-add-additional-database-metrics-to-it-as-well-as-your-testsupportrandom-metric-from-the-custom-agent-check)
+    + [Step 2: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.](#step-2--take-a-snapshot-of-your-testsupportrandom-graph-and-draw-a-box-around-a-section-that-shows-it-going-above-090-make-sure-this-snapshot-is-sent-to-your-email-by-using-the--notification)
+  * [Level 3 - Alerting on your Data](#level-3---alerting-on-your-data)
+    + [Step 1: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes.](#step-1--set-up-a-monitor-on-this-metric-that-alerts-you-when-it-goes-above-090-at-least-once-during-the-last-5-minutes)
+    + [Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.](#step-2--give-it-a-descriptive-monitor-name-and-message--it-might-be-worth-it-to-include-the-link-to-your-previously-created-dashboard-in-the-message--make-sure-that-the-monitor-will-notify-you-via-email)
+    + [Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3--this-monitor-should-alert-you-within-15-minutes-so-when-it-does--take-a-screenshot-of-the-email-that-it-sends-you)
+
 ## Level 0 - Setup an Ubuntu VM. 
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
@@ -20,7 +32,7 @@ The information of the Agent can be checked by:
 $sudo \etc\init.d\datadog-agent info
 ```
 
-**Bonus question: In your own words, what is the Agent?**
+#### Bonus question: In your own words, what is the Agent?
 
 An agent is an autonomous software that interacts with users and completes some jobs on behalf of the users. For example, the Datadog agent collects events and metrics on behalf of users. Besides, users can configure the agent and customize metrics for collection. The collected data are sent to Datadog for monitoring and analysis. Therefore, the Datadog agent contains three main parts: 1) a collector that captures system metrics by running checks; 2) a server that receive custormized metrics from applications; 3) a forwarder that send data from the collector and the server to Datadog.
 
