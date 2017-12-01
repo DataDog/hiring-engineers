@@ -345,7 +345,7 @@ And this event is shown in the *Events* list.
 
 ## Summary
 
-
+This technical test provides me a chance to familiarize the Datadog agent, including the role of agent, customized agent check, integrations for Datadog, dashboards, monitors and alert. During 
 
 
 
