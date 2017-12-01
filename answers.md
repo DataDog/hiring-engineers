@@ -1,6 +1,7 @@
 # Table of contents
 0. [Setup an Ubuntu VM](#Level_0)
-## Level 0 - Setup an Ubuntu VM. <a name="Level_0"></a>
+<a name="Level_0"></a>
+## Level 0 - Setup an Ubuntu VM. 
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 ## Level 1 - Collecting your Data
