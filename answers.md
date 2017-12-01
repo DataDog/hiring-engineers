@@ -13,7 +13,7 @@
    * [Step 2: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.](#step-2--give-it-a-descriptive-monitor-name-and-message--it-might-be-worth-it-to-include-the-link-to-your-previously-created-dashboard-in-the-message--make-sure-that-the-monitor-will-notify-you-via-email)
    * [Step 3: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3--this-monitor-should-alert-you-within-15-minutes-so-when-it-does--take-a-screenshot-of-the-email-that-it-sends-you)
 
-## Level 0 - Setup an Ubuntu VM. 
+## Level 0 - Setup an Ubuntu VM
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 ## Level 1 - Collecting your Data
