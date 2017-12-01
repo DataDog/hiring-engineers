@@ -240,7 +240,7 @@ A guide is provided [here](https://docs.datadoghq.com/guides/monitors/) for crea
 
 ![new_monitor](./screenshots/new_mn.png)
 
-There are many types of monitors to choose. In this case, we use the type of *Metric* to compare the values of a metric with the threshold we are going to define.
+There are many types of monitors to choose. In this case, we use *Metric* to compare the values of a metric with the threshold we are going to define.
 
 ![monitor_metric](./screenshots/monitor_mtc.png)
 
