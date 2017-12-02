@@ -42,3 +42,11 @@ Weekly Downtime :
 
 Week-end Downtime:
 ![alt text](screenshots/weekend_downtime.png "warning notification")
+
+## Collecting APM Data
+[Link to my Dashboard](https://p.datadoghq.com/sb/b1131d66e-41a43718b5)
+Screenshot of my dashboard :
+![alt text](screenshots/apm_infra_board.png "warning notification")
+
+BONUS) Following the python doc (http://pypi.datadoghq.com/trace/docs/), a "service" is "the name of a set of processes that do the same job", for example, the name of your app.
+A ressource is "a particular query to a service". For example, an endpoint or a sql query.
