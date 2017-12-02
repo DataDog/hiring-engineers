@@ -54,7 +54,7 @@ sudo docker ps
 ```
 ![Screenshot](/screenshots/01_dd-agent_installed.png?raw=true "Install Verification")
 
-## Collecting Metrics:
+## COLLECTING METRICS:
 
 ## Add Tags:
 - Tags added to the datadog.conf file:<br/>
@@ -83,3 +83,21 @@ sudo docker ps
 
 - my_metric shown in the metric explorer:<br/>
 ![Screenshot](/screenshots/05_metric_explorer.png?raw=true "yaml and py files")
+
+## VISUALIZING DATA:
+
+## Create a Timeboard:
+![Screenshot](/screenshots/06_TimeBoard.png?raw=true "TimeBoard")
+
+## Timeboard over 5 minutes:
+- Timeboard<br/>
+![Screenshot](/screenshots/07_TimeBoard.png?raw=true "TimeBoard")
+
+- Taking a snapshot of a graph on the TimeBoard<br/>
+![Screenshot](/screenshots/07_TakeSnapshot.png?raw=true "Snapshot")
+
+- Snapshot received<br/>
+![Screenshot](/screenshots/07_SnapshotReceived.png?raw=true "Snapshot")
+
+- Bonus Question<br/>
+The anomaly graph is displaying a shaded gray area which represents the area the metric is expected to be in.  The blue line represents the actual metric.  The red points indicate outliers.
