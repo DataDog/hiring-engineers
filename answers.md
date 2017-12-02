@@ -27,3 +27,18 @@ My timeboard big : ![alt text](screenshots/my_timeboard_big.png "my timeboard bi
 
 BONUS) The Anomaly Graph displays a line (or other visualization) which can take 2 colors, blue or red. If the color goes to red for a part of the graph, it means that the value went below or higher the "usual" trend calculated by the anomaly algorithm. https://docs.datadoghq.com/guides/anomalies/ 
 
+## Monitoring Data
+Screenshot of the e-mail when I received a "Warning" notification :
+![alt text](screenshots/email_my_monitor.png "warning notification")
+
+Here is my configuration for my monitor :
+![alt text](screenshots/my_monitor_conf.png "warning notification")
+
+BONUS) Again, I did not receive an e-mail when I set the downtimes, which is weird.
+Here is the view of both in the downtime pannel.
+
+Weekly Downtime :
+![alt text](screenshots/weekly_downtime.png "warning notification")
+
+Week-end Downtime:
+![alt text](screenshots/weekend_downtime.png "warning notification")
