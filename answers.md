@@ -199,7 +199,7 @@ We follow the same step to add a new graph for the custom metric. The widget we 
 
 ![custom_metric](./screenshots/custom_metric.png)
 
-The two additional metrics are ready to shown in the dashboard.
+The two additional metrics are ready to be shown in the dashboard.
 
 ![new_dashboard](./screenshots/new_dashboard.png)
 
