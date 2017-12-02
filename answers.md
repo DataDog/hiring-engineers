@@ -17,6 +17,7 @@
    * [Step 3 - This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.](#step-3-3)
      + [Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.](#bonus-3-2)
  - [Summary](#summary)
+
 ## Level 0 - Setup an Ubuntu VM
 Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
@@ -281,7 +282,7 @@ avg:test.support.random{*} by {host}
 <a name="step-3-2"></a>
 ### Step 2 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
-In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figure. The link of dashboard that shows the custom metric (*test.support.random*) is included in the message. 
+In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figures. The link of dashboard that shows the custom metric (*test.support.random*) is included in the message. 
 
 ![monitor_s4](./screenshots/monitor_4.png)
 
@@ -345,7 +346,9 @@ And this event is shown in the *Events* list.
 
 ## Summary
 
-This technical test provides me a chance to familiarize the Datadog agent, including the role of agent, customized agent check, integrations for Datadog, dashboards, monitors and alert. During 
+This technical test provides a guide to familiarize the Datadog agent. By completing this test, I have learned the role of Datadog agent, the customized agent check, integrations for Datadog, dashboards and monitors. From my experience， I think Datadog is a user friendly tool that aggregates a large variety of metrics for a wide range of integrations. Additionally, this open source tool gives users access to customizing their metrics. The timeboard and screenboard provide outstanding visualization for user's data. Furthermore, monitors allow users to observe and check the performance of infrastructures and systems in one place. Moreover, event sharing and notification enable more efficient monitoring and information exchange.
+
+I have also met some problems during this test, such as network issues and software compatibility issues. Owing to troubleshooting, I have further learned to configure the agent and integrations and check the log files. There is an unsolved problem that the agent installation keeps failing if I use my home broadband network. I will continue to investigate this issue and report it to Datadog staff.
 
 
 
