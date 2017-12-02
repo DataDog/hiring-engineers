@@ -1,22 +1,7 @@
-{
-  "width": 1024,
-  "height": 768,
-  "board_title": "my dashboard",
-  "widgets": [
-      {
-        "type": "timeseries",
-        "title": true,
-        "title_size": 16,
-        "title_align": "left",
-        "title_text": "My Metric (m/s)",
-        "height": 50,
-        "width": 100,
-        "y": 0,
-        "x": 0,
-        "timeframe": "1d",
-        "tile_def": {
-          "viz": "timeseries",
-          "requests": [
+[{
+    "definition": {
+        "events": [],
+        "requests": [
             {
               "q": "my_metric {host:precise64}"
             },
@@ -26,8 +11,44 @@
             {
               "q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)"
             }
-          ]
-        }
-      }
-    ]
-}
+        ],
+    "viz": "timeseries"
+    },
+    "title": "All Metrics"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {
+              "q": "my_metric {host:precise64}"
+            }
+        ],
+    "viz": "timeseries"
+    },
+    "title": "My Metric"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {
+              "q": "avg:my_metric{*}.rollup(sum, 3600)"
+            }
+        ],
+    "viz": "timeseries"
+    },
+    "title": "My Metric Rollup"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {
+              "q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)"
+            }
+        ],
+    "viz": "timeseries"
+    },
+    "title": "SQL connections anomalies"
+}]
