@@ -101,3 +101,25 @@ sudo docker ps
 
 - Bonus Question<br/>
 The anomaly graph is displaying a shaded gray area which represents the area the metric is expected to be in.  The blue line represents the actual metric.  The red points indicate outliers.
+
+## MONITORING DATA:
+
+## Create a Monitor:
+- Define the metric<br/>
+![Screenshot](/screenshots/08_DefineMetric.png?raw=true "Define Metric")
+
+- Set alert conditions<br/>
+![Screenshot](/screenshots/08_SetAlertConditions.png?raw=true "Set alert conditions")
+
+- Monitor message<br/>
+![Screenshot](/screenshots/08_MonitorMessage.png?raw=true "Monitor message")
+
+- Email notification<br/>
+![Screenshot](/screenshots/08_EmailNotification.png?raw=true "Email notification")
+
+## Downtime:
+- Downtime on week nights from 7pm to 9am<br/>
+![Screenshot](/screenshots/09_DowntimeNights.png?raw=true "Downtime")
+
+- Downtime on Weekends<br/>
+![Screenshot](/screenshots/09_DowntimeWeekends.png?raw=true "Downtime")
