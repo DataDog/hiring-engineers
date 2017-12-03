@@ -132,3 +132,9 @@ The anomaly graph is displaying a shaded gray area which represents the area the
 ![Screenshot](/screenshots/10_APMDashboard.png?raw=true "APM Dashboard")
 
 - A service is a set of processes that work together to serve up an application.  A resource is a particular query to a service. - Reference: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+
+## FINAL QUESTION:
+
+## Use for Datadog
+
+- I'm not sure if this is a 'Creative' use of datadog, but I wish I could of used it when I worked for EY.  I ran a project that used servers to run a program called Captiva.  Captiva performed OCR (optical character recognition) to read data from PDF tax return files.  My project was heavily used close to the tax return deadline and I had to manually monitor the servers and services to make sure nothing went offline.
