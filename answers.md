@@ -124,6 +124,9 @@ The anomaly graph is displaying a shaded gray area which represents the area the
 - Downtime on Weekends<br/>
 ![Screenshot](/screenshots/09_DowntimeWeekends.png?raw=true "Downtime")
 
+- Notification<br/>
+![Screenshot](/screenshots/09_Notification.png?raw=true "Downtime")
+
 ## COLLECTING APM DATA:
 
 - Link to Dashboard: https://app.datadoghq.com/dash/411155/apm-dashboard
