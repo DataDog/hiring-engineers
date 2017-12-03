@@ -50,3 +50,9 @@ Screenshot of my dashboard :
 
 BONUS) Following the python doc (http://pypi.datadoghq.com/trace/docs/), a "service" is "the name of a set of processes that do the same job", for example, the name of your app.
 A ressource is "a particular query to a service". For example, an endpoint or a sql query.
+
+## Final Question
+Following the idea of monitoring NYC Subway System, I would like to monitor the Paris "Velib" System (Bike Service).
+Each of the "hub" would be viewed as a Host and we could couple this with a map of Paris. We could monitor the number of bikes in each Hub and set up alerts when there is none, or when the hub is full.
+By doing this, we could identify which hubs tend to be more often empty and add extra bikes. We could also identify the peak hours and so on.
+I know that the city of Paris is already exposing some datas but could be nice to implement the dd agent on each hub.
