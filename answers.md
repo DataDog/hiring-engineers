@@ -91,6 +91,7 @@ sudo docker ps
 
 ## Timeboard over 5 minutes:
 - Timeboard<br/>
+[app.datadoghq.com/dash/411121/ruths-timeboard](https://app.datadoghq.com/dash/411121/ruths-timeboard?live=false&page=0&is_auto=false&from_ts=1512233707227&to_ts=1512234037438&tile_size=m)<br/>
 ![Screenshot](/screenshots/07_TimeBoard.png?raw=true "TimeBoard")
 
 - Taking a snapshot of a graph on the TimeBoard<br/>
@@ -129,12 +130,12 @@ The anomaly graph is displaying a shaded gray area which represents the area the
 
 ## COLLECTING APM DATA:
 
-- Link to Dashboard: https://app.datadoghq.com/dash/411155/apm-dashboard
+- Link to Dashboard: [app.datadoghq.com/dash/411155/apm-dashboard](https://app.datadoghq.com/dash/411155/apm-dashboard?live=false&page=0&is_auto=false&from_ts=1512239292320&to_ts=1512260564420&tile_size=m)
 
 - Screenshot of Dashboard<br/>
 ![Screenshot](/screenshots/10_APMDashboard.png?raw=true "APM Dashboard")
 
-- A service is a set of processes that work together to serve up an application.  A resource is a particular query to a service. - Reference: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+- A service is a set of processes that work together to serve up an application.  A resource is a particular query to a service. - [Reference Link](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
 ## FINAL QUESTION:
 
