@@ -2,8 +2,6 @@ import argparse
 import json
 from datadog import initialize, api
 
-id = 249100
-
 def check_board_presence(id):
   result = api.Timeboard.get(id)
   if ("errors" in result):
