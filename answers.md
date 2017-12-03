@@ -123,3 +123,12 @@ The anomaly graph is displaying a shaded gray area which represents the area the
 
 - Downtime on Weekends<br/>
 ![Screenshot](/screenshots/09_DowntimeWeekends.png?raw=true "Downtime")
+
+## COLLECTING APM DATA:
+
+- Link to Dashboard: https://app.datadoghq.com/dash/411155/apm-dashboard
+
+- Screenshot of Dashboard<br/>
+![Screenshot](/screenshots/10_APMDashboard.png?raw=true "APM Dashboard")
+
+- A service is a set of processes that work together to serve up an application.  A resource is a particular query to a service. - Reference: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
