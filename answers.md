@@ -267,7 +267,7 @@ Layout| Graphs in timeboard are aligned to grid.|Graphs is resizable and can be 
 Method to share|Graphs can be shared individually.|Screenboard can be shared as a whole live. The access is read-only.
 Advantages|It is appropriate for troubleshooting and correlation.|An ideal board to show the status of metrics and to share with others.
 
-<a name="step-2-1"></a>
+<a name="step-2-2"></a>
 ### Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
 Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
