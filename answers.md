@@ -265,7 +265,7 @@ The two additional metrics are ready to be shown in the dashboard.
 Temporality|Graphs are in sync and scoped to the same time.|Graphs can have different time frame.
 Layout| Graphs in timeboard are aligned to grid.|Graphs is resizable and can be dragged and dropped at any preferred position.
 Method to share|Graphs can be shared individually.|Screenboard can be shared as a whole live. The access is read-only.
-Advantages|It is appropriate for troubleshooting and correlation.|An ideal board to show the status of metrics and share with others.
+Advantages|It is appropriate for troubleshooting and correlation.|An ideal board to show the status of metrics and to share with others.
 
 <a name="step-2-1"></a>
 ### Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
