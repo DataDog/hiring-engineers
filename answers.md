@@ -274,7 +274,7 @@ Enlarge the graphs and annotate the **test.support.random** graph by clicking th
 
 ![annotate](./screenshots/annotate.png)
 
-Draw a box that contains values over 0.9. In the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
+Draw a box that contains values over 0.9. In the message box. Then, in the message box, use `@longmisc@gmail.com` to email the figure with drawing and the notes to the email address `longmisc@gmail.com`.
 
 ![notification](./screenshots/notification.png)
 
