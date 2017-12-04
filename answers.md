@@ -76,7 +76,8 @@ I started the flask code with "ddtrace-run python flask_app.py &" on my vagrant 
 To make sure it works and to generate APM metrics, I have done some curls to query the different endpoints.<br>
 
 The metrics appeared as expected on the APM page of the datadog website and I could used them on my dashboard.<br>
-[Link to my Dashboard](https://p.datadoghq.com/sb/b1131d66e-41a43718b5)
+I decided to show the CPU and the Mem used by my host to correlate with the latency shown by the APM metrics.<br>
+[Link to my Dashboard](https://p.datadoghq.com/sb/b1131d66e-41a43718b5)<br>
 Screenshot of my dashboard :
 ![alt text](screenshots/apm_infra_board.png "warning notification")
 
