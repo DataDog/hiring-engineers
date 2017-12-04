@@ -35,13 +35,13 @@ Here is the JSON file used for the board : [board.json](./board.json) where we c
 - my metric scoped over my host : my_metric {host:precise64}<br>
 - my metric with the rollup function : avg:my_metric{*}.rollup(sum, 3600)<br>
 - the number of connections on my mysql DB with anomalies function : anomalies(avg:mysql.net.connections{*}, 'basic', 2)<br>
-<br>
+
 I also added 3 more pannels to have each metric on its own pannel to check if everything is working.
 <br>
 Here is the screenshot of the Timeboard:
-![alt text](screenshots/my_timeboard_big.png "my timeboard big")<br>
+![alt text](screenshots/my_timeboard_big.png "my timeboard big")
 I didn't receive an email after my annotation. I tried several times and I even changed my email adress. No success. I screenshoted the event in the event list to show that the event happened anyway <br>
-Here is a screenshot of my Timeboard : ![alt text](screenshots/my_timeboard.png "my timeboard")
+![alt text](screenshots/my_timeboard.png "my timeboard")
 
 * **Bonus Question: What is the Anomaly graph displaying?**<br>
 The Anomaly Graph displays a line (or other visualization) which can take 2 colors, blue or red. If the color goes to red for a part of the graph, it means that the value went below or higher the "usual" trend calculated by the anomaly algorithm. https://docs.datadoghq.com/guides/anomalies/ 
