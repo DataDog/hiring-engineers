@@ -33,6 +33,7 @@ Follow the [instruction](https://app.datadoghq.com/account/settings#agent/ubuntu
 ```bash
 DD_API_KEY=<Your_API_Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 ```
+User's API Keys can be found [here](https://app.datadoghq.com/account/settings#api)
 
 Once the installation is completed, the status of the Agent can be checked by:
 ```bash
