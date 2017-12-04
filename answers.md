@@ -41,7 +41,7 @@ I also added 3 more pannels to have each metric on its own pannel to check if ev
 Here is the screenshot of the Timeboard:
 ![alt text](screenshots/my_timeboard_big.png "my timeboard big")
 
-* **Snapshot and annotation**
+* **Snapshot and annotation**<br>
 I didn't receive an email after my annotation. I tried several times and I even changed my email adress. No success. I screenshoted the event in the event list to show that the event happened anyway <br>
 
 ![alt text](screenshots/my_timeboard.png "my timeboard")
@@ -50,20 +50,24 @@ I didn't receive an email after my annotation. I tried several times and I even 
 The Anomaly Graph displays a line (or other visualization) which can take 2 colors, blue or red. If the color goes to red for a part of the graph, it means that the value went below or higher the "usual" trend calculated by the anomaly algorithm. https://docs.datadoghq.com/guides/anomalies/ 
 
 ## Monitoring Data
-Screenshot of the e-mail when I received a "Warning" notification :
+* **Metric Monitor set up**<br>
+Here are screenshots of my monitor edit tab to show how I configured it:
+![alt text](screenshots/my_monitor_edit1.png "warning notification")
+![alt text](screenshots/my_monitor_edit2.png "warning notification")
+
+I received the expected e-mail for a "Warning" notification:
 ![alt text](screenshots/email_my_monitor.png "warning notification")
 
-Here is my configuration for my monitor :
-![alt text](screenshots/my_monitor_conf.png "warning notification")
-
-BONUS) Again, I did not receive an e-mail when I set the downtimes, which is weird.
-Here is the view of both in the downtime pannel.
+* **BONUS QUESTION: Downtime set up** <br>
+I set up both downtimes and here is the view of both in the downtime pannel.
 
 Weekly Downtime :
-![alt text](screenshots/weekly_downtime.png "warning notification")
+![alt text](screenshots/weekly_downtime.png "weekly downtime")
 
 Week-end Downtime:
-![alt text](screenshots/weekend_downtime.png "warning notification")
+![alt text](screenshots/weekend_downtime.png "week-end downtime")<br>
+
+I wasn't notified when I scheduled the downtimes (same issue as the notification e-mail maybe) but I received an e-mail later when the downtime started.
 
 ## Collecting APM Data
 [Link to my Dashboard](https://p.datadoghq.com/sb/b1131d66e-41a43718b5)
