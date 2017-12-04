@@ -70,14 +70,22 @@ Week-end Downtime:
 I wasn't notified when I scheduled the downtimes (same issue as the notification e-mail maybe) but I received an e-mail later when the downtime started.
 
 ## Collecting APM Data
+* **APM Metric set up**<br>
+To gather APM metrics, I installed ddtrace on my vragrant VM with a "pip install" command and I also installed Flask in order to run the code provided.<br>
+I started the flask code with "ddtrace-run python flask_app.py &" on my vagrant VM.<br>
+To make sure it works and to generate APM metrics, I have done some curls to query the different endpoints.<br>
+
+The metrics appeared as expected on the APM page of the datadog website and I could used them on my dashboard.<br>
 [Link to my Dashboard](https://p.datadoghq.com/sb/b1131d66e-41a43718b5)
 Screenshot of my dashboard :
 ![alt text](screenshots/apm_infra_board.png "warning notification")
 
-BONUS) Following the python doc (http://pypi.datadoghq.com/trace/docs/), a "service" is "the name of a set of processes that do the same job", for example, the name of your app.
+* **Bonus Question: What is the difference between a Service and a Resource?**<br>
+Following the python doc (http://pypi.datadoghq.com/trace/docs/), a "service" is "the name of a set of processes that do the same job", for example, the name of your app.
 A ressource is "a particular query to a service". For example, an endpoint or a sql query.
 
 ## Final Question
+* **Is there anything creative you would use Datadog for?**<br>
 Following the idea of monitoring NYC Subway System, I would like to monitor the Paris "Velib" System (Bike Service).
 Each of the "hub" would be viewed as a Host and we could couple this with a map of Paris. We could monitor the number of bikes in each Hub and set up alerts when there is none, or when the hub is full.
 By doing this, we could identify which hubs tend to be more often empty and add extra bikes. We could also identify the peak hours and so on.
