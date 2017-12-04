@@ -237,7 +237,7 @@ Name the copy of this dashboard as `MySQL - Overview (cloned)`.
 
 ![clone](./screenshots/clone.png)
 
-Add a new graph to show an additional database metric by clicking the empty rectangular with text **add a graph**.
+Add a new graph to show an additional database metric by clicking the empty rectangular with text *add a graph*.
 
 ![new_graph](./screenshots/new_graph.png)
 
