@@ -101,11 +101,61 @@ If MySQL Server is running, there will display `mysql start/running, process [PI
 $sudo service mysql start
 ```
 
-Find the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
+Find and install the Datadog integration for MySQL from [Integrations](https://app.datadoghq.com/account/settings).
 
 ![MySQL](./screenshots/MySQL_integration.png)
 
-Create a database user for the Datadog Agent by following the [instruction](https://docs.datadoghq.com/integrations/mysql/). We include tag `role:test` in the configuration. Therefore, MySQL configuration file in the Agent’s conf.d directory is 
+Next, We will setup MySQL integration by following the [instruction](https://docs.datadoghq.com/integrations/mysql/). 
+ 
+ 1. Log in MySQL as the root user with the password we have set previously,
+ ```bash
+ $mysql -u root -p;
+ Enter password:
+ ```
+ 
+ 2. Create a database user for the Datadog Agent,
+ ```bash
+ mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
+ Query OK, 0 rows affected (0.00 sec)
+ ```
+ where `<UNIQUEPASSWORD>` is the password for user `datadog`. In this case we set the password as `datadog123`.
+ 
+ 3. Verify the user is installed successfully by using the following code:
+ ```bash
+ $mysql -u datadog --password=datadog123 -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+ ```
+ and
+ ```bash
+$mysql -u datadog --password=datadog123 -e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+```
+ The outputs are shown in the following figures.
+
+ ![mysql_test_1](./screenshots/mysql_test_1.png)
+ ![mysql_test_2](./screenshots/mysql_test_2.png)
+
+ 4. The Agent needs a few privileges to collect metrics. Grant its user ONLY the following privileges:
+```bash
+mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+```
+
+ ![mysql_grant](./screenshots/mysql_grant.png)
+
+ 5. Check the existance of `performance_schema` database,
+```bash
+mysql> show databases like 'performance_schema';
+```
+ It is shown that `performance_schema` database exists as we have the output as:
+
+![mysql_grant_2](./screenshots/mysql_grant_2.png)
+
+ Therefore, we need one more `grant` to collect metrics from `performance_schema` database by using code
+
+```bash
+mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
+```
+
+ 6. Create a basic `mysql.yaml` in `/etc/dd-agent/conf.d` directory to connect it to the MySQL server. We include tag `role:test` in the configuration. The code is
 
 ```bash
 init_config:
@@ -125,10 +175,13 @@ instances:
         schema_size_metrics: false
         disable_innodb_metrics: false
 ```
+ 7. Restart Datadog agent (`sudo /etc/init.d/datadog-agent restart`). Then, run `$sudo /etc/init.d/datadog-agent info` to validate MySQL check under `Checks` section:
 
-The MySQL metrics can be found from Metric Explorer.
+![mysql_check](./screenshots/mysql_check.png)
 
-![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
+ The MySQL metrics can be found from Metric Explorer. Therefore, we confirm that the integration has been successfully installed.
+
+ ![MySQL_Metrics](./screenshots/MySQL_Metrics.png)
 
 <a name="step-1-4"></a>
 ### Step 4 - Write a custom Agent check that samples a random value. Call this new metric: test.support.random.
