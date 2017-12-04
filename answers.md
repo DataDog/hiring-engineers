@@ -28,7 +28,7 @@ I changed the [configuration](dd-agent/conf.d/my_check.yaml) of the check by add
 I didn't modify the python script to do so, I modified the config in the YAML file as explained in the question before. This is the only way I know, for now.
 
 ## Visualizing Data
-* **Timeboard creation with the API**
+* **Timeboard creation with the API**<br>
 I decided to use a python script to create/update a board via the API.<br>
 Here is my script : [update_board.py](./update_board.py), It takes several argument like the name of the board, its id, the JSON describing the board and the keys needed for the API.<br>
 Here is the JSON file used for the board : [board.json](./board.json) where we can see the different metrics used :<br>
