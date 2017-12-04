@@ -40,7 +40,10 @@ I also added 3 more pannels to have each metric on its own pannel to check if ev
 <br>
 Here is the screenshot of the Timeboard:
 ![alt text](screenshots/my_timeboard_big.png "my timeboard big")
+
+* **Snapshot and annotation**
 I didn't receive an email after my annotation. I tried several times and I even changed my email adress. No success. I screenshoted the event in the event list to show that the event happened anyway <br>
+
 ![alt text](screenshots/my_timeboard.png "my timeboard")
 
 * **Bonus Question: What is the Anomaly graph displaying?**<br>
