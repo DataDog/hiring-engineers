@@ -324,7 +324,7 @@ We can switch to multi-alert by resetting the second section. In this case, we o
 
 ![multi_alert_1](./screenshots/multi_alert_1.png)
 
-We can also set the alert group by using raw text. The raw text field can be shown by clicking the icon shown in the following figure:
+We can also indicate the alert group by using raw text. The raw text field can be shown by clicking the icon shown in the following figure:
 
 ![multi_alert_2](./screenshots/multi_alert_2.png)
 
@@ -336,7 +336,7 @@ avg:test.support.random{*} by {host}
 <a name="step-3-2"></a>
 ### Step 2 - Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
 
-In section 4 and 5 of the Monitor setting page, we can describe the monitor name and message, and select the person or group to notify the events via email. The monitor name and message are shown in the following figures. The link of dashboard that shows the custom metric (**test.support.random**) is included in the message. 
+In section 4 and 5 of the Monitor setting page, we can describe the monitor's name and message. Additionally, we can select the person or group to notify the events via email. The monitor name and message are shown in the following figures. The link of dashboard that shows the custom metric (**test.support.random**) is included in the message. 
 
 ![monitor_s4](./screenshots/monitor_4.png)
 
@@ -374,7 +374,7 @@ We are presented with a page to select the monitor to silence. First, we select 
 
 ![manage_down_3](./screenshots/manage_down_3.png)
 
-We will schedule the downtime from 7pm to 9am daily. Therefore, we choose the **Recurring** tab. The settings for this schedule is shown in the following figure. 
+We will schedule the downtime from 7pm to 9am (Australian Eastern Time) daily. Therefore, we choose the **Recurring** tab. The settings for this schedule is shown in the following figure. 
 
 ![manage_down_4](./screenshots/manage_down_4.png)
 
@@ -402,7 +402,7 @@ And this event is shown in the **Events** list.
 
 This technical test provides a guide to familiarize the Datadog agent. By completing this test, I have learned the role of Datadog agent, the customized agent check, integrations for Datadog, dashboards and monitors. From my experience， I think Datadog is a user friendly tool that aggregates a large variety of metrics for a wide range of integrations. Additionally, this open source tool gives users access to customizing their metrics. The timeboard and screenboard provide outstanding visualization for user's data. Monitors allow users to observe and check the performance of infrastructures and systems in one place. Furthermore, event sharing and notification enable more efficient monitoring and information exchange.
 
-I have also met some problems during this test, such as network issues and software compatibility issues. Owing to troubleshooting, I have further learned to configure the agent and integrations and to identifying issues by checking the log files. There is still an unsolved problem that the agent installation keeps failing if I use my home broadband network. I think it is related to the Internet service provider, maybe they has disabled some services. I will continue to investigate this issue and report it to Datadog staff.
+I have also met some problems during this test, such as network issues and software compatibility issues. Owing to troubleshooting, I have further learned to configure the agent and integrations and to identify issues by checking the log files. There is still an unsolved problem that the agent installation keeps failing if I use my home broadband network. I think it is related to the Internet service provider, maybe they has disabled some services which stop the data forwarding. I will continue to investigate this issue and report it to Datadog staff.
 
 
 
