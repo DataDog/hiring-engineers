@@ -28,12 +28,17 @@ Set up a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro
 
 The local machine is a virtual machine in VirtualBox running Ubuntu 12.04 LTS 64-bit. 
 
-Follow the [instruction](https://app.datadoghq.com/account/settings#agent/ubuntu) to install Datadog Agent on local machine.
+Follow the [instruction](https://app.datadoghq.com/account/settings#agent/ubuntu) to install Datadog Agent on local machine. We use the easy one-step installation:
+
+```bash
+DD_API_KEY=<Your_API_Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```
 
 Once the installation is completed, the status of the Agent can be checked by:
 ```bash
 $sudo \etc\init.d\datadog-agent status
 ```
+
 The information of the Agent can be checked by:
 ```bash
 $sudo \etc\init.d\datadog-agent info
