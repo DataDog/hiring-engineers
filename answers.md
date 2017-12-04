@@ -1,5 +1,5 @@
 ## Setup the Environment
-I decided to start a Vagrant VM (ubuntu 12.04) on my linux machine to not mess with environment.<br>
+I decided to start a Vagrant VM (ubuntu 12.04) on my linux machine to not mess with my environment.<br>
 I used the simplest Vagrant file to begin as quickly as possible.
 
 ## Collecting Metrics
