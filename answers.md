@@ -1,36 +1,29 @@
 ## Setup the Environment
-I decided to start a Vagrant VM (ubuntu 12.04) on my linux machine to not mess with environment.
-
+I decided to start a Vagrant VM (ubuntu 12.04) on my linux machine to not mess with environment.<br>
 I used the simplest Vagrant file to begin as quickly as possible.
 
 ## Collecting Metrics
 
-* **Tags set up in the Agent config**
+* **Tags set up in the Agent config**<br>
 Here is the configuration of my agent : [datadog.conf](dd-agent/datadog.conf)<br>
-I added one tag to describe the environment (env:) and one to set the role (role:).
-
+I added one tag to describe the environment (env:) and one to set the role (role:).<br>
 My tags are well shown on the host map as expected: ![alt text](screenshots/tags.png "Tags")
 
 * **Database installation and integration set up**
-I chose to install a MySQL DB.
-
+I chose to install a MySQL DB.<br>
 The integration has been done and the "mysql" app can be seen on the host map for my host : ![alt text](screenshots/host_map_sql.png "Host Map")
 
 * **Custom Agent check**
-Creating a custom agent check means adding two new files to the host.
-
-The first one is a YAML which describes the configuration of the custom check : [YAML file](dd-agent/conf.d/my_check.yaml)
-
-The second one is a Python script which defines what the check sends : [Python file](dd-agent/checks.d/my_check.py)
-
+Creating a custom agent check means adding two new files to the host.<br>
+The first one is a YAML which describes the configuration of the custom check : [YAML file](dd-agent/conf.d/my_check.yaml)<br>
+The second one is a Python script which defines what the check sends : [Python file](dd-agent/checks.d/my_check.py)<br>
 After the integration, we can see that the new metric is well sent by the Agent in the "all metrics" pannel : ![alt text](screenshots/my_metric_definition.png "my_metric")
 
-* **Check collection interval change**
+* **Check collection interval change**<br>
 I changed the [configuration](dd-agent/conf.d/my_check.yaml) of the check by adding :
 "min_collection_interval: 45" to the "init_config" part.
 
-* **BONUS QUESTION : Can you change the collection interval without modifying the Python check file you created?**
-
+* **BONUS QUESTION : Can you change the collection interval without modifying the Python check file you created?**<br>
 I didn't modify the python script to do so, I modified the config in the YAML file. This is the only way I know, for now.
 
 ## Visualizing Data
