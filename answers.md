@@ -1,20 +1,32 @@
+## Setup the Environment
+I decided to start a Vagrant VM (ubuntu 12.04) on my linux machine to not mess with environment.
+I used the simplest Vagrant possible to begin as quickly as possible.
+
 ## Collecting Metrics
-1) Config of the agent : [datadog.conf](dd-agent/datadog.conf)
 
-Screenshot of the tags : ![alt text](screenshots/tags.png "Tags")
+#Tags set up in the Agent config
+Here is the configuration of my agent : [datadog.conf](dd-agent/datadog.conf)
+I added on tag to describe the environment (env:) and one to set the role (role:).
 
-2) MySQL Integration has been chosen and done.
+My tags are well shown on the host map as expected: ![alt text](screenshots/tags.png "Tags")
 
-Screenshot of the host map : ![alt text](screenshots/host_map_sql.png "Host Map")
+#Database installation and integration set up
+I chose to install a MySQL DB. 
+The integration has been done and the "mysql" app can be seen on the host map for my host : ![alt text](screenshots/host_map_sql.png "Host Map")
 
-3) Code of the configuration file : [YAML file](dd-agent/conf.d/my_check.yaml)
-Code of the check file : [Python file](dd-agent/checks.d/my_check.py)
+#Custom Agent check
+Creating a custom agent check means adding two new files to the host.
+The first one is a YAML which describes the configuration of the custom check : [YAML file](dd-agent/conf.d/my_check.yaml)
+The second one is a Python script which defines what the check sends : [Python file](dd-agent/checks.d/my_check.py)
 
-Screenshot of the metric informations : ![alt text](screenshots/my_metric_definition.png "my_metric")
+After the integration, we can see that the new metric is well sent by the Agent in the "all metrics" pannel : ![alt text](screenshots/my_metric_definition.png "my_metric")
 
-4) I changed the [configuration](dd-agent/conf.d/my_check.yaml) of the check
+#Check collection interval change
+I changed the [configuration](dd-agent/conf.d/my_check.yaml) of the check by adding :
+"min_collection_interval: 45" to the "init_config" part.
 
-BONUS) I didn't modify the python script to do so, I modified the config in the YAML file. This is the only way I know, for now.
+#BONUS QUESTION : Can you change the collection interval without modifying the Python check file you created?
+I didn't modify the python script to do so, I modified the config in the YAML file. This is the only way I know, for now.
 
 ## Visualizing Data
 Python script to create/update a board : [update_board.py](./update_board.py)
