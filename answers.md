@@ -1,5 +1,5 @@
 ## Table of contents
- - [Level 0 - Setup an Ubuntu VM.](#level-0---setup-an-ubuntu-vm)
+ - [Level 0 - Set up an Ubuntu VM.](#level-0---set-up-an-ubuntu-vm)
  - [Level 1 - Collecting your Data](#level-1---collecting-your-data)
    * [Step 1 - Sign up for Datadog, get the Agent reporting metrics from your local machine.](#step-1-1)
      + [Bonus question: In your own words, what is the Agent?](#bonus-1-1)
@@ -18,8 +18,8 @@
      + [Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.](#bonus-3-2)
  - [Summary](#summary)
 
-## Level 0 - Setup an Ubuntu VM
-Setup a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
+## Level 0 - Set up an Ubuntu VM
+Set up a virtual machine by utilizing [Vargrant](https://www.vagrantup.com/intro/getting-started/index.html).
 
 <a name="step-1-1"></a>
 ## Level 1 - Collecting your Data
@@ -105,7 +105,7 @@ Find and install the Datadog integration for MySQL from [Integrations](https://a
 
 ![MySQL](./screenshots/MySQL_integration.png)
 
-Next, We will setup MySQL integration by following the [instruction](https://docs.datadoghq.com/integrations/mysql/). 
+Next, We will set up MySQL integration by following the [instruction](https://docs.datadoghq.com/integrations/mysql/). 
  
  1. Log in MySQL as the root user with the password we have set previously,
  ```bash
@@ -313,7 +313,7 @@ The alert will be triggered when the test metric goes **over 0.90 at lease once*
 
 ![monitor_s2](./screenshots/monitor_2.png)
 
-Once the condition is setup, the threshold will be shown on the graph of the metric.
+Once the condition is set up, the threshold will be shown on the graph of the metric.
 
 ![monitor_s2_2](./screenshots/monitor_3.png)
 
