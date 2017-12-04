@@ -270,7 +270,7 @@ Advantages|It is appropriate for troubleshooting and correlation.|An ideal board
 <a name="step-2-2"></a>
 ### Step 2 - Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification.
 
-Enlarge the graphs and annotate the test.support.random graph by clicking the icon on the top right corner.
+Enlarge the graphs and annotate the **test.support.random** graph by clicking the icon on the top right corner.
 
 ![annotate](./screenshots/annotate.png)
 
