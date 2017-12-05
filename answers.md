@@ -16,3 +16,7 @@ Depending on the Operarting system you are using, click on the operating system 
   
 Press CLT + ALT + T to pull up the terminal. Copy the key and paste it into the terminal and press enter.
 ![alt text](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2021-30-01.png)
+
+The installation should be successful if you see the screen below.
+
+![alt text](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2022-20-42.png)
