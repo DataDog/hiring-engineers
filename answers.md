@@ -3,7 +3,7 @@
   
   
   
- <h2>1. Installing Datadog Agent<h>
+ <h2>1. Installing Datadog Agent</h2>
   
 Begin by signing up the Datadog website and filling out all required credentials and information.
    ![Logo](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/debdbde804f263ec43926b810dc206986dd7639d/Screenshot%20from%202017-12-05%2021-19-32.png)
