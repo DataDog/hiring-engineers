@@ -1,6 +1,8 @@
 # ANSWERS
 
 ## Prerequisites - Setup the environment
+I had issues with installing docker on Ubuntu 12.04.  It was confusing because there is an apt-get package called docker which isn't the docker container program you want.  The apt-get install you want is docker.io but it cannot be installed automatically on 12.04.  I had to run a custom shell script to achieve the install.
+
 Here are the steps I took to install docker and the Datadog agent on Ubuntu 12.04 VM:
 
 [Per Getting Started with Vagrant](https://www.vagrantup.com/intro/getting-started/index.html)
@@ -57,6 +59,8 @@ sudo docker ps
 ## COLLECTING METRICS:
 
 ## Add Tags:
+- The best way to accomplish this task is to enter the docker container via the command ``sudo docker exec -it 2580f30e96db bash`` - where 2580f30e96db is the id of the container.
+
 - Tags added to the datadog.conf file:<br/>
 ![Screenshot](/screenshots/02_datadog.conf.png?raw=true "datadog.conf")
 
@@ -64,6 +68,18 @@ sudo docker ps
 ![Screenshot](/screenshots/02_host_map_page.png?raw=true "Host Map page")
 
 ## Install and link a database:
+Here are the steps I took to get postgres to work with the datadog agent inside a docker container:
+
+- Install postgres on the Ubuntu VM ``sudo apt-get install postgresql postgresql-contrib``
+
+- Follow the [datadog configuration instructions](https://app.datadoghq.com/account/settings#integrations/postgres) to create the datadog user and install the integretion. Except on step 2, use the IP address of the Ubuntu machine instead of localhost.
+
+- Follow the steps on the [ubuntu website](https://help.ubuntu.com/community/PostgreSQL) to edit the ``pg_hba.conf`` and ``postgresql.conf`` files.
+
+- While the docker container is stopped, restart postgres ``sudo /etc/init.d/postgresql restart``
+
+- Restart the docker container ``sudo docker start dd-agent``
+
 - Postgres installed on VM:<br/>
 ![Screenshot](/screenshots/03_postgres_installed.png?raw=true "Postgre installed")
 
@@ -73,6 +89,8 @@ sudo docker ps
 ## Custom Agent Check:
 - conf.d/my_metric.yaml and checks.d/my\_metric.yaml:<br/>
 ![Screenshot](/screenshots/04_yaml_py_files.png?raw=true "yaml and py files")
+
+- After editing the files, restart the docker container ``sudo docker restart dd-agent``
 
 - my_metric shown in the metric explorer:<br/>
 ![Screenshot](/screenshots/04_metric_explorer.png?raw=true "yaml and py files")
@@ -129,6 +147,61 @@ The anomaly graph is displaying a shaded gray area which represents the area the
 ![Screenshot](/screenshots/09_Notification.png?raw=true "Downtime")
 
 ## COLLECTING APM DATA:
+Here are the steps I took to get APM working with the datadog agent inside a docker container:
+
+- Enter the container and edit ``datadog.conf`` by adding ``apm_enabled = true`` under [Main]
+
+- Install python with ``apt-get install python-pip``
+
+- I had SSL issues getting ddtrace to install.  This command worked for me:  ``sudo pip install ddtrace --index-url=https://pypi.python.org/simple/``
+
+- Create (``touch flask_app.py``) and add the following script to a python file:
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+- Run the python file ``python flask_app.py``
+
+- In a separate terminal tab, install w3, set the TERM variable, and navigate to the site:
+```
+apt-get install w3m
+export TERM=xterm
+w3m http://127.0.0.1:5000/
+```
+
+- Data will now be available on under APM in datadog
 
 - Link to Dashboard: [app.datadoghq.com/dash/411155/apm-dashboard](https://app.datadoghq.com/dash/411155/apm-dashboard?live=false&page=0&is_auto=false&from_ts=1512239292320&to_ts=1512260564420&tile_size=m)
 
