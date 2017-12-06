@@ -1,6 +1,6 @@
 <h1>Table of Content</h1>
   1. Installing DataDog Agent
-  
+  2. Collecting Metrics
   
   
  <h2>1. Installing Datadog Agent</h2>
@@ -20,3 +20,10 @@ Press CLT + ALT + T to pull up the terminal. Copy the key and paste it into the 
 The installation should be successful if you see the screen below.
 
 ![alt text](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2022-20-42.png)
+
+<h2>2. Collecting Metrics</h2>
+To show that your machine is currently being monitored, it has to tagged to be shown on the Host Map. We will set it up to show the storage capacity of the monitored machine.
+
+Hover over Metrics and Click on Explorer
+
+Under graph, select the option "System.disk.free", Under over, select your machine & select "device" under one graph per:
