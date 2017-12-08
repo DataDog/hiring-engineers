@@ -1,6 +1,7 @@
 <h1>Table of Content</h1>
-  1. Installing DataDog Agent
-  2. Collecting Metrics
+1. Installing DataDog Agent
+
+2. Collecting Metrics
   
   
  <h2>1. Installing Datadog Agent</h2>
