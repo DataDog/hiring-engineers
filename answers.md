@@ -31,8 +31,7 @@ Type in `sudoedit /etc/dd-agent/datadog.conf`
 
 Press `CRTL + V` until you see the line below.
 
-# Set the host's tags (optional)<br>
-tags: country:au, state:nsw, role:database
+#tags: country:au, state:nsw, role:database
 
 Remove the "#" and add the tag of your choice, in my case it looks like above.
 
