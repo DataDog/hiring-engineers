@@ -38,7 +38,7 @@ class MyMetricCheck(AgentCheck):
 
 ***Change your check's collection interval so that it only submits the metric once every 45 seconds.***
 
-See answer to the bonus question
+We can modify the associate yaml file in the check and set a min_colleciton_interval to 45.
 
 ***Bonus: Question Can you change the collection interval without modifying the Python check file you created?***
 
