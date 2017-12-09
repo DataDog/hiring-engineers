@@ -33,11 +33,12 @@ class MyMetricCheck(AgentCheck):
 ```
 
 ***Change your check's collection interval so that it only submits the metric once every 45 seconds.***
+
 See answer to the bonus question
 
 ***Bonus: Question Can you change the collection interval without modifying the Python check file you created?***
 
-Yes, we can modify the my_metric.yaml file that in /etc/dd-agent/conf.d
+Yes, we can modify the my_metric.yaml file in /etc/dd-agent/conf.d
 
 ```
 init_config:
