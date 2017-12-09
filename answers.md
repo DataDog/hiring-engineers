@@ -62,6 +62,31 @@ https://docs.datadoghq.com/integrations/mysql/
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlsuccess.PNG)
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlverification.PNG)
 
+<h2>Custom Metrics</h2>
+ 
+ The basic creation of a random number generator being returned as a metric on Datadog dashboard is made by following this link
+ 
+ https://docs.datadoghq.com/guides/agent_checks/
+ 
+Create two files using the commands below<br>
 
+`sudo touch /etc/dd-agent/conf.d/my_metric.yaml`<br>
+`sudo touch /etc/dd-agent/checks.d/my_metric.py`
 
+Edit the my_metric.py with the code below
+```python
+import random
+from checks import AgentCheck
+
+class randomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000))
+```
+Edit the configuration my_metric.yaml file with the code below
+```yaml
+init_config:
+ min_collection_interval: 45
+instances:
+    [{}]
+```
 
