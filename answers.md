@@ -1,7 +1,6 @@
 <h1>Table of Content</h1>
 1. Installing DataDog Agent
-
-2. Creating Tag in Local Agent
+2. Create Tags on Agent
 3. Configuring Database
 4. Creating Custom Metric
 5. Create Timeboard with Datadog API
@@ -24,7 +23,7 @@ The installation should be successful if you see the screen below.
 
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2022-20-42.png)
 
-<h2>2. Collecting Metrics</h2>
+<h2>2. Create Tags on Agent</h2>
 To show that your machine is currently being monitored, it has to tagged to be shown on the Host Map. 
 
 In your command prompt with in `vagrant ssh`
@@ -98,4 +97,48 @@ Reset the agent and view the custom metric in your host map or the metric summar
 
 <h2>5. Create Timeboard with Datadog API</h2>
 
+Following the reference in the link below will make a timeboard with our custom metric, mysql
 
+https://docs.datadoghq.com/api/#timeboards
+
+Used https://docs.datadoghq.com/guides/anomalies/ to run anomalies function
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '464daaaa341acb70c56129d4fd61f596',
+    'app_key': '7aba6c5ccc74a43ab870f1e82d4aa8bc1cf4fcc1'
+}
+
+initialize(**options)
+
+title = "Custom Metric and MYSQL"
+description = "An informative timeboard."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*} by {precise64}"},
+	    {"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)"},
+            {"q": "my_metric{*} by {precise64}.rollup(sum, 3600)"}
+	
+        ],
+    "viz": "timeseries"
+    },
+    "title": "My Custom Metric for Host"
+}
+]
+
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = False
+
+api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
+
+```
