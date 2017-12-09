@@ -1,8 +1,9 @@
 <h1>Table of Content</h1>
 1. Installing DataDog Agent
 
-2. Collecting Metrics
-  
+2. Creating Tag in Local Agent
+3. Configuring Database
+4. Creating Custom Metric
   
  <h2>1. Installing Datadog Agent</h2>
   
@@ -41,7 +42,7 @@ Press CTRL + X , Press Y then Enter to save the changes.
  
 [Go to your Host Map by clicking here](https://app.datadoghq.com/infrastructure/map)
 
-<h2> Configuring Database </h2>
+<h2>3. Configuring Database</h2>
 
 Install my SQL with the commands below
 
@@ -62,7 +63,7 @@ https://docs.datadoghq.com/integrations/mysql/
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlsuccess.PNG)
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlverification.PNG)
 
-<h2>Custom Metrics</h2>
+<h2>4. Creating Custom Metric</h2>
  
  The basic creation of a random number generator being returned as a metric on Datadog dashboard is made by following this link
  
@@ -89,4 +90,8 @@ init_config:
 instances:
     [{}]
 ```
+
+Reset the agent and view the custom metric in your host map or the metric summary page
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/customMetric.PNG)
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/customMetricCollect.PNG)
 
