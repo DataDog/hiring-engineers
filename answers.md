@@ -38,6 +38,30 @@ Remove the "#" and add the tag of your choice, in my case it looks like above.
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/sudoeditagent.PNG)
 
 Press CTRL + X , Press Y then Enter to save the changes.
+ 
+[Go to your Host Map by clicking here](https://app.datadoghq.com/infrastructure/map)
+
+<h2> Configuring Database </h2>
+
+Install my SQL with the commands below
+
+`sudo apt-get update`<br>
+`sudo apt-get install mysql-server`<br>
+`/usr/bin/mysql_secure_installation`<br>
+
+Access MySQL by using `/usr/bin/mysql -u root -p`
+
+Following the configuration steps in the link below. This will be for MYSQL integation.
+
+https://app.datadoghq.com/account/settings#integrations/mysql 
+
+This didn't work for me, so I followed the steps in the knowledge base.
+
+https://docs.datadoghq.com/integrations/mysql/
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlsuccess.PNG)
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlverification.PNG)
+
 
 
 
