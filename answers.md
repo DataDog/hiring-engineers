@@ -193,9 +193,12 @@ Following the solution below, we're going to create a monitoring that sends a wa
 [Guide to Monitoring](https://docs.datadoghq.com/guides/monitors/) 
 
 Go to the link below to create a monitor for your custom metric
+
 [Link to create monitor for metric](https://app.datadoghq.com/monitors#create/metric)
 
 We're going to select our custom my_metric ,set Alert threshold: 800 & Warning threshold: 500, and send a notification if no data has been generated in the last 10 minutes
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/monitor1.PNG)
 
 To create multiple responses markdown is supported so we could send a different response depending what was breached.
 The example of the email is below.
@@ -218,4 +221,4 @@ https://app.datadoghq.com/dash/host/382070538?live=true&page=0&from_ts=151286355
 Kind Regards,
 Thai Nguyen 
 ```
-
+[Click on the link to view monitor settings](https://app.datadoghq.com/monitors#3537821?group=all&live=4h)
