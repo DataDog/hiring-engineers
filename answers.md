@@ -6,6 +6,7 @@
 1. Creating Custom Metric
 1. Create Timeboard with Datadog API
 1. Monitoring Data
+1. Collecting APM Data
   
  <h2>1. Installing Datadog Agent</h2>
   
@@ -186,7 +187,7 @@ Notation can be added by holding shift and clicking on a point of the graph.
 
 Anomaly graph displays the unusual changes in metric taking in account to all past trends, time of day, time of week etc. This allows monitoring and alerts to be set up. I would use this to find out if somebody is using more network capacity then usual on their machine.
 
-<h2>Monitoring Data</h2>
+<h2>6. Monitoring Data</h2>
 
 Following the solution below, we're going to create a monitoring that sends a warning at 500 value and an alert at 800 value.
 
@@ -230,6 +231,23 @@ The email has been sent to my email with the alert, the value and the ip address
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/monitoremailnew.PNG)
 
 Problem I encountered here was I received an email after the value has reached below 500 as a resolution email. Could not find the setting to remove this.
+
+<h3>Bonus Question</h3>
+Click the link below to manage downtime. Downtime is needed as you will frequently receive alerts on your monitored metrics.
+
+[Set up Downtime](https://app.datadoghq.com/monitors#downtime)
+
+This is the setting for the weekday downtime and the message.
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekday.PNG)
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekmessage.PNG)
+
+This is  the setting for the weekend downtime and the message.
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekend.PNG)
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekendmessage.PNG)
+
+<h2>7. Collecting APM Data</h2>
+
+
 
 
 
