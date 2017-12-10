@@ -5,6 +5,7 @@
 1. Configuring Database
 1. Creating Custom Metric
 1. Create Timeboard with Datadog API
+1. Monitoring Data
   
  <h2>1. Installing Datadog Agent</h2>
   
@@ -98,7 +99,6 @@ Reset the agent and view the custom metric in your host map or the metric summar
 
 <h2>5. Create Timeboard with Datadog API</h2>
 
-
 https://docs.datadoghq.com/api/#timeboards Used as an reference to create a basic timeboard and editted 
 
 Used https://docs.datadoghq.com/guides/anomalies/ to run anomalies function
@@ -174,8 +174,48 @@ If this script ran correctly, it should look something like the image below [or 
 
 Using the UI in the Timeframe, we're going to set the timeline to 5 minutes and add notation on the graph.
 
+Setting the timeline to 5 minutes using the keyboard hotkeys `alt + [ / alt + ] : zoom out/in timeframe`
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/5minute.PNG)
+
 Notation can be added by holding shift and clicking on a point of the graph.
 
 ![screenboard](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/notation.PNG)
 
+<h3>Bonus Question: What is the Anomaly graph displaying?</h3>
+
+Anomaly graph displays the unusual changes in metric taking in account to all past trends, time of day, time of week etc. This allows monitoring and alerts to be set up. I would use this to find out if somebody is using more network capacity then usual on their machine.
+
+<h2>Monitoring Data</h2>
+
+Following the solution below, we're going to create a monitoring that sends a warning at 500 value and an alert at 800 value.
+
+[Guide to Monitoring](https://docs.datadoghq.com/guides/monitors/) 
+
+Go to the link below to create a monitor for your custom metric
+[Link to create monitor for metric](https://app.datadoghq.com/monitors#create/metric)
+
+We're going to select our custom my_metric ,set Alert threshold: 800 & Warning threshold: 500, and send a notification if no data has been generated in the last 10 minutes
+
+To create multiple responses markdown is supported so we could send a different response depending what was breached.
+The example of the email is below.
+
+```html
+Hi User,
+
+Please note that you are receiving this email for the following:
+
+{{#is_warning}} my_metric has reached above 500. {{/is_warning}}
+
+{{#is_alert}} my_metric has reached above 800. {{/is_alert}}
+
+{{#is_no_data}} my_metric has not received any data in 10 minutes {{/is_no_data}} 
+
+Please review your data in the link below.
+
+https://app.datadoghq.com/dash/host/382070538?live=true&page=0&from_ts=1512863554339&to_ts=1512877954339&is_auto=false&tile_size=m
+
+Kind Regards,
+Thai Nguyen 
+```
 
