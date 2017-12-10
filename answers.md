@@ -6,7 +6,7 @@
 tags: region:east, app:codingchallenge
 ```
 
-![image](./screenshots/host_tags.png)
+![host](./screenshots/host_tags.png)
 
 ***Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.***
 
@@ -51,3 +51,7 @@ init_config:
 instances:
     [{}]
 ```
+
+
+
+![timeboard](./screenshots/create_timeboard.png)
