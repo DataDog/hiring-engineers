@@ -1,4 +1,5 @@
 <h1>Table of Content</h1>
+
 1. Installing DataDog Agent
 1. Create Tags on Agent
 1. Configuring Database
@@ -166,3 +167,15 @@ read_only = False
 api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
 
 ```
+
+If this script ran correctly, it should look something like the image below [or click here](https://app.datadoghq.com/dash/417964/custom-metric-and-mysql?live=true&page=0&is_auto=false&from_ts=1512863051946&to_ts=1512866651946&tile_size=m&tpl_var_host1=*)
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/customTimeboard.PNG)
+
+Using the UI in the Timeframe, we're going to set the timeline to 5 minutes and add notation on the graph.
+
+Notation can be added by holding shift and clicking on a point of the graph.
+
+![screenboard](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/notation.PNG)
+
+
