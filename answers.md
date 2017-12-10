@@ -91,6 +91,8 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+![email](./screenshots/email.png)
+
 ***Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:***
 
 - One that silences it from 7pm to 9am daily on M-F,
