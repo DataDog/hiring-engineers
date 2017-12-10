@@ -140,10 +140,10 @@ To give some background, Simcity 4 is one of the hardest city building video gam
 We can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
 
 - When the city's monthly revenue is close or below the expenses of the city, trigger a warning; when it is dire, trigger an alert
-- When a power plant's condition depreciates to 70%, trigger an alert to replace the power plant. (Very important for nuclear power plants)
-- When a water pump's condition depreciates to 70%, trigger an alert to replace the water pump
+- When a power plant's condition depreciates below 70%, trigger an alert to replace the power plant. (Very important for nuclear power plants)
+- When a water pump's condition depreciates below 70%, trigger an alert to replace the water pump.
 - When garbage buildup is above the capacity of garbage disposal, trigger an alert to suggest more landfill, enable recycling ordinances, etc.
-- When tax policy is high and is deterring city growth, trigger an alert; vice-versa for a low tax policy
+- When tax policy is high and is deterring city growth, trigger an alert; vice-versa for a low tax policy.
 - When a particular street/highway/subway/bus stop exceeds it's capacity, trigger an alert.
 - When air or water pollution is high in a residential or a commercial zone, trigger an alert.
 - When a hospital or a school is under budget or about to strike, trigger an alert.
