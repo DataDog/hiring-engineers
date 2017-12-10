@@ -222,7 +222,6 @@ https://app.datadoghq.com/dash/host/382070538?live=true&page=0&from_ts=151286355
 Kind Regards,
 
 Thai Nguyen 
-@th.paul.nguyen@gmail.com 
 ```
 [Click on the link to view monitor settings](https://app.datadoghq.com/monitors#3537821?group=all&live=4h)
 
@@ -247,6 +246,9 @@ This is  the setting for the weekend downtime and the message.
 
 <h2>7. Collecting APM Data</h2>
 
+Following the solution and guide in the link below, will work with Flask to collect APM Data
+
+[Guide for Flask](http://flask.pocoo.org/docs/0.12/quickstart/)
 
 
 
