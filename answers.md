@@ -1,32 +1,16 @@
 <h1>Table of Content</h1>
-
-1. Installing DataDog Agent
+1. Intalling Datadog Agent
 1. Create Tags on Agent
 1. Configuring Database
 1. Creating Custom Metric
 1. Create Timeboard with Datadog API
 1. Monitoring Data
 1. Collecting APM Data
+1. Final Thoughts About the Task
   
- <h2>1. Installing Datadog Agent</h2>
+<h2>Installing Datadog Agent</h2>
   
-Begin by signing up the Datadog website and filling out all required credentials and information.
-![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/debdbde804f263ec43926b810dc206986dd7639d/Screenshot%20from%202017-12-05%2021-19-32.png)
-   
-Reach this screen by clicking the link below.
-![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2021-22-40.png)
- <br>https://app.datadoghq.com/signup/agent
-  
-Depending on the Operarting system you are using, click on the operating system on the left bar and click on it. In this case since we are using Ubuntu, click on Ubuntu.
-  
-Press CTRL + ALT + T to pull up the terminal. Copy the key and paste it into the terminal and press enter.
-![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2021-30-01.png)
-
-The installation should be successful if you see the screen below.
-
-![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/Screenshot%20from%202017-12-05%2022-20-42.png)
-
-<h2>2. Create Tags on Agent</h2>
+<h2>Create Tags on Agent</h2>
 To show that your machine is currently being monitored, it has to tagged to be shown on the Host Map. 
 
 In your command prompt with in `vagrant ssh`
@@ -45,7 +29,7 @@ Press CTRL + X , Press Y then Enter to save the changes.
  
 [Go to your Host Map by clicking here](https://app.datadoghq.com/infrastructure/map)
 
-<h2>3. Configuring Database</h2>
+<h2>Configuring Database</h2>
 
 Install my SQL with the commands below
 
@@ -66,7 +50,7 @@ https://docs.datadoghq.com/integrations/mysql/
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlsuccess.PNG)
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/mysqlverification.PNG)
 
-<h2>4. Creating Custom Metric</h2>
+<h2>Creating Custom Metric</h2>
  
  The basic creation of a random number generator being returned as a metric on Datadog dashboard is made by following this link
  
@@ -187,7 +171,7 @@ Notation can be added by holding shift and clicking on a point of the graph.
 
 Anomaly graph displays the unusual changes in metric taking in account to all past trends, time of day, time of week etc. This allows monitoring and alerts to be set up. I would use this to find out if somebody is using more network capacity then usual on their machine.
 
-<h2>6. Monitoring Data</h2>
+<h2>Monitoring Data</h2>
 
 Following the solution below, we're going to create a monitoring that sends a warning at 500 value and an alert at 800 value.
 
@@ -244,12 +228,72 @@ This is  the setting for the weekend downtime and the message.
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekend.PNG)
 ![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/weekendmessage.PNG)
 
-<h2>7. Collecting APM Data</h2>
+<h2>Collecting APM Data</h2>
 
 Following the solution and guide in the link below, will work with Flask to collect APM Data
-
 [Guide for Flask](http://flask.pocoo.org/docs/0.12/quickstart/)
 
+We used the python code below:
 
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+Following [this link](https://app.datadoghq.com/apm/docs), we used python to run the script
+
+Run the following commands in the terminal
+
+Run `pip install ddtrace`
+
+Run`ddtrace-run python apmdata.py`
+
+In another terminal we've installed Lynx (text based brower) to connect to our local host 127.0.0.1:5000
+
+Install Lynx `sudo apt-get install lynx`
+
+Connect to localhost `lynx http://127.0.0.1:5000/`
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/apmTerminal.PNG)
+
+I was only able to generate more data by exiting lynx and re-entering it.
+
+If all was completed, you should see this in your APM page
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/APMMetric.PNG)
+
+Link to APM & Infrastructure Dashboard - [Click Here](https://app.datadoghq.com/dash/418005/apm--infrastructure-metrics?live=true&page=0&is_auto=false&from_ts=1512896666359&to_ts=1512900266359&tile_size=l)
+
+<h3>Bonus Question: What is the difference between a Service and a Resource?</h3>
+A service is a set of processes that are used to overall provide a feature for an application.
+A resource is query within a service.
+
+<h3>Final Thoughts About the Task</h3>
 
 
