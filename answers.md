@@ -111,6 +111,60 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 
 # Collecting APM Data:
 
+Currently, I am getting this error `ERROR - cannot send spans: [Errno 61] Connection refused` when implementing the python code below.
+
+```Python
+from flask import Flask
+import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+import logging
+import sys
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+I also attempted to collect APM data in my rails project and received this error
+```
+ERROR -- ddtrace: [ddtrace] (/Users/qyc/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/ddtrace-0.10.0/lib/ddtrace/transport.rb:100:in `rescue in post') Failed to open TCP connection to localhost:8126 (Connection refused - connect(2) for "localhost" port 8126)
+```
+
+```Ruby
+Rails.configuration.datadog_trace = {
+  enabled: true,
+  auto_instrument: true,
+  auto_instrument_redis: true,
+  default_service: 'my-rails-app'
+}
+```
+
 ***Bonus Question: What is the difference between a Service and a Resource?***
 
 A Service is the name of a set of processes that work together to provide a feature set. For example, my capstone project at App Academy http://www.safehavn.site/#/ has a webapp service (Ruby on Rails) and a database service (PostgreSQL).
