@@ -13,7 +13,7 @@ I chosed to use a former configuration in Vagrant. My global setup is
 # Collecting Metrics:
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-I installed the ddaent following the instructions. Then I added 1 line in `/etc/dd-agent/datadog.conf` and restarted the agent.
+I installed the dd-agent following the instructions. Then I added 1 line in `/etc/dd-agent/datadog.conf` and restarted the agent.
 
 ```
 [...]
@@ -22,7 +22,7 @@ tags: datatog-exercise, role:main
 ```
 
 ### Result
-We can see the host showing up in the Host Map
+We can see the host showing up in the Host Map.
 
 ![alt text](screenshots/1.png)
 
@@ -59,7 +59,7 @@ vagrant@precise64:~$ sudo dd-agent info
 [...]
 ```
 
-Nice! Let's see how it look like on the WebApp with the default MuSQL integration dashboard.
+Nice! Let's see how it look like on the WebApp with the default MySQL integration dashboard.
 
 ![alt text](screenshots/3.png)
 
@@ -123,7 +123,7 @@ It will ensure the agent to be called as often as every 45 seconds.
 
 > **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-According to the question, collection interval can be changed by modifying the python file. It's seems a non easy way since it would imply to deal with timestamp directly. 
+According to the question, collection interval can be changed by modifying the python file. It's seems to be a non easy way since it would imply to deal with timestamp directly. 
 
 # Visualizing data
 
@@ -245,7 +245,7 @@ To set up the timeframe to the past 5 minutes, I just selected this frame on a g
 
 >**Bonus Question:** What is the Anomaly graph displaying?
 
-Anomaly graph display warn when a data is going outisde a usual range. It calcul automatically what is the regular range by a powerfull algorithm. We can change the algorithm to be able to display a range thats fit more or less with the reality.
+Anomaly graph display a warning when a data is going outisde an usual range. It calcul automatically what is the regular range by a powerfull algorithm. We can change the algorithm to be able to display a range that fits more or less with the reality.
 
 # Monitoring data
 
@@ -417,7 +417,7 @@ Electricity is a very interesting energy since it can't be stored easily. Of cou
 Having the right electric supply according to the demand is challenging since the electric supply are heterogeneous :
 - Nuclear power is very powerfull, cheap, but has alot of inertia (we cannot start a power plant in 2min, not even in 2 days) and have pollution concern
 - Renewable energy are clean but unpredictable (what can we do if we need electricity and there is no wind and no sun?)
-- Coal, oil, gaz plant are not clean power, expensive, but fast to deploy
+- Coal, oil, gas plant are not clean power, expensive, but fast to deploy
 - Hydro energy is fast, clean and can [store energy in potential energy form](https://en.wikipedia.org/wiki/Pumped-storage_hydroelectricity). But are scarce.
 
 To understand better the issue bring by the lack of electricity storage, we can use Datadog to graph the real time production of electricity in France by type.
@@ -510,12 +510,12 @@ I created two dashboards :
 
 - Metric units
 
-I didn't manage to deal properly with the units since I take the information directly in MW. Having multiple thousands (k) of MW diplayed are not making the readability of the graphics easy. I should start again with correct metric sent and see what I can do with the old one since I didn't find any way to change them.
+I didn't manage to deal properly with the units since I take the information directly in MW. Having multiple thousands (k) of MW diplayed are not making the readability of the graphics easy. I should start again with correct metric sent and see what I can do with old metrics since I didn't find any way to change them.
 
 - Metric multiplication
 
 Once we have those metrics, we can try to correlate them with metrics regarding price/quantity of MW exchanged from the European energy exchange market or other metrics not linked like the average temperature of the country.
-We can as well try to catch some more precise metrics. Some metrics about production in area in France or production in other country are available too.
+We can as well try to catch more precise metrics : some metrics about production in area in France or production in other country are available too.
 
 ## Conclusion
 
