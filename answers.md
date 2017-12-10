@@ -110,45 +110,10 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 
 # Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+***Bonus Question: What is the difference between a Service and a Resource?***
 
-```Python
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-
-```
-
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-Bonus Question: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+A Service is the name of a set of processes that work together to provide a feature set.
+A Resource is a particular query to a service. A Resource is connected to a Service by the Service Name and the Name of the top-level span of the trace.
 
 # Final Question:
 
