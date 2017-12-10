@@ -61,3 +61,9 @@ Utilize the Datadog API to create a Timeboard that contains:
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 ![timeboard](./screenshots/create_timeboard.png)
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+- Set the Timeboard's timeframe to the past 5 minutes
+- Take a snapshot of this graph and use the @ notation to send it to yourself.
+- Bonus Question: What is the Anomaly graph displaying?
