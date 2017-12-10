@@ -208,9 +208,9 @@ Hi User,
 
 Please note that you are receiving this email for the following:
 
-{{#is_warning}} my_metric has reached above 500. {{/is_warning}}
+{{#is_warning}} my_metric has reached above 500. The value of the breach was: {{value}} on the IP address: {{host.ip}}. {{/is_warning}}
 
-{{#is_alert}} my_metric has reached above 800. {{/is_alert}}
+{{#is_alert}} my_metric has reached above 800. The value of the breach was: {{value}} on the IP address: {{host.ip}}. {{/is_alert}}
 
 {{#is_no_data}} my_metric has not received any data in 10 minutes {{/is_no_data}} 
 
@@ -219,6 +219,17 @@ Please review your data in the link below.
 https://app.datadoghq.com/dash/host/382070538?live=true&page=0&from_ts=1512863554339&to_ts=1512877954339&is_auto=false&tile_size=m
 
 Kind Regards,
+
 Thai Nguyen 
+@th.paul.nguyen@gmail.com 
 ```
 [Click on the link to view monitor settings](https://app.datadoghq.com/monitors#3537821?group=all&live=4h)
+
+The email has been sent to my email with the alert, the value and the ip address (Removed my email address for obvious reasons)
+
+![screenshot](https://raw.githubusercontent.com/FantasyStarr/hiring-engineers/master/monitoremailnew.PNG)
+
+Problem I encountered here was I received an email after the value has reached below 500 as a resolution email. Could not find the setting to remove this.
+
+
+
