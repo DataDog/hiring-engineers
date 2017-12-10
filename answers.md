@@ -66,6 +66,7 @@ We can change ```collector_profile_interval: 20``` in the agent file to the amou
 
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
+![snapshot_interval](./screenshots/snapshot_interval.png)
 
 ![view_timeboard](./screenshots/timeboard_view.png)
 
