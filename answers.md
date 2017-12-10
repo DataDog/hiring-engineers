@@ -67,3 +67,5 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 - Bonus Question: What is the Anomaly graph displaying?
+
+![view_timeboard](./screenshots/create_timeboard.png)
