@@ -120,18 +120,37 @@ initialize(**options)
 
 title = "Custom Metric and MYSQL"
 description = "An informative timeboard."
-graphs = [{
+graphs = [
+{
     "definition": {
         "events": [],
         "requests": [
-            {"q": "avg:my_metric{*} by {precise64}"},
-	    {"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)"},
-            {"q": "my_metric{*} by {precise64}.rollup(sum, 3600)"}
+            {"q": "avg:my_metric{*} by {precise64}"}
 	
         ],
     "viz": "timeseries"
     },
     "title": "My Custom Metric for Host"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+	    {"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)"}
+        ],
+    "viz": "timeseries"
+    },
+    "title": "MySQL CPU Perfomance with Anomaly Detection"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{*} by {precise64}.rollup(sum, 3600)"}
+        ],
+    "viz": "timeseries"
+    },
+    "title": "Sum of Custom Metric within past hour"
 }
 ]
 
