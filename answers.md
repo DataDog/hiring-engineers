@@ -106,3 +106,4 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ![downtime_email](./screenshots/downtime_email.png)
+![downtime_email2](./screenshots/downtime_email2.png)
