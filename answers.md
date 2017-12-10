@@ -2,11 +2,11 @@
 # Seting up the environnement
 ## Vagrant
 
-I chosed to use a former configuration in Vagrant. My global setup is
+I chose to use a former configuration in Vagrant. My global setup is :
 - Vagrant on MacOS 10.13 with VirtualBox
 - VM on Ubuntu 12.04
 - iTerm2
-- Cup of coffee
+- A cup of coffee
 - A rainy sunday and some free hours ahead
 
 
@@ -30,7 +30,7 @@ We can see the host showing up in the Host Map.
 ## Installing database:
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I chosed MySQL after having some trouble with the MongoDB integration.
+I chose MySQL after having some trouble with the MongoDB integration.
 
 ```
 vagrant@precise64:~$ sudo apt-get install -y mysql-server
@@ -59,7 +59,7 @@ vagrant@precise64:~$ sudo dd-agent info
 [...]
 ```
 
-Nice! Let's see how it look like on the WebApp with the default MySQL integration dashboard.
+Nice! Let's see how it looks like on the WebApp with the default MySQL integration dashboard.
 
 ![alt text](screenshots/3.png)
 
@@ -67,7 +67,7 @@ Nice! Let's see how it look like on the WebApp with the default MySQL integratio
 
 >Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-My check will be called randomNumberCheck. I need to create two files named exactly the same :
+My Check will be called randomNumberCheck. I need to create two files named exactly the same :
 
 `/etc/dd-agent/conf.d/randomNumberCheck.yaml`
 ```yaml
@@ -109,7 +109,7 @@ class RandomNumberCheck(AgentCheck):
         self.gauge('my_metric', self.theChosenOne)
 ```
 
-To avoid changing the python file in the futur, I decided to make min and max values as variable in my YAML file.
+In order to avoid changing the Python file in the future, I decided to make mininimum and maximum values as variable in my YAML file.
 
 ## Check collection interval
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -123,7 +123,7 @@ It will ensure the agent to be called as often as every 45 seconds.
 
 > **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-According to the question, collection interval can be changed by modifying the python file. It's seems to be a non easy way since it would imply to deal with timestamp directly. 
+According to the question, collection interval can be changed by modifying the python file. It seems to be not easy way since it would imply to deal with timestamp directly. 
 
 # Visualizing data
 
@@ -164,7 +164,7 @@ Let's see every dashboard we have to create one by one :
 
 >Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-I decided to graph this with "bars" more than "lines" to really make it feel like bucket.
+I decided to graph this with "bars" more than "lines" to make it clearly feel like a bucket.
 
 ```
 {
@@ -224,17 +224,17 @@ curl  -X POST -H "Content-type: application/json" \
 
 ```
 
-Everything seems to work fine except the creation of the anomaly dashboard.
-I get an error that I couldn't fix after troubleshooting :
+Everything seemed to work fine except the creation of the anomaly dashboard.
+I got an error that I could not fix after troubleshooting :
 ```
 vagrant@precise64:/vagrant$ bash create-dashboard.sh
 {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:mysql.performance.cpu_time{*}, robust, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 52)."]}
 ```
-I decided to go ahead and create this part by adding it to the dashboard created by the API with the UI.
+I decided to go ahead and create the anomaly dashboard with the UI.
 
 > Set the Timeboard's timeframe to the past 5 minutes.
 
-To set up the timeframe to the past 5 minutes, I just selected this frame on a graph, it automatically updated all the other. Anyhow we can be more precise with the selector at the top of the window.
+In order to set up the timeframe to the past 5 minutes, I just selected this frame on a graph, it automatically updated all the other ones. Anyhow we can be more precise with the selector at the top of the window.
 
 ![alt text](screenshots/4.png)
 
@@ -245,7 +245,7 @@ To set up the timeframe to the past 5 minutes, I just selected this frame on a g
 
 >**Bonus Question:** What is the Anomaly graph displaying?
 
-Anomaly graph display a warning when a data is going outisde an usual range. It calcul automatically what is the regular range by a powerfull algorithm. We can change the algorithm to be able to display a range that fits more or less with the reality.
+Anomaly graph displays a warning when a data is going outside of an usual range. It calculates automatically what the regular range is supposed to be by an algorithm. We can change the algorithm to be able to display a range that fits more or less with the reality.
 
 # Monitoring data
 
@@ -264,7 +264,7 @@ With the UI, it's straightforward. First we need to go to `Monitors` in the left
 >- Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 >- When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-The panel for editing message is well done, it become easy to create a message according to every situation.
+The message edition is well done, it becomes easy to create a message according to every situation.
 
 ![alt text](screenshots/7.png)
 
@@ -272,7 +272,7 @@ The panel for editing message is well done, it become easy to create a message a
 
 ![alt text](screenshots/8.png)
 
-We can see that the host IP is not known, since my host is a Vagrant machine, I don't think it's really relevant to have this information anyway.
+We can see that the host IP is unknown. I don't think it's relevant to have this information anyway since my host is a Vagrant machine.
 
 ## Bonus Question 
 >Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -288,15 +288,15 @@ We can see that the host IP is not known, since my host is a Vagrant machine, I 
 
 ![alt text](screenshots/10.png)
 
-The tricky part here is on Monday morning between 00:00 and 9:00 am. Instead of creating a third downtime, making the second one starting at 9am solve the potential problem of being unwittingly woke up on a monday morning.
+The tricky part is to prevent the monitor to send alerts on Monday morning between 00:00 and 9:00 am. Instead of creating a third downtime, making the second one starting at 9am solves the potential problem of being unwittingly woken up on a Monday morning.
 
-Since the downtime is set up for MON-FRI at 7pm and I'm doing this exercice on a Sunday, I created a downtime to be able to received the asked email.
+Since the downtime is set up for MON-FRI at 7pm and I'm doing this exercice on Sunday, I created a downtime to be able to receive the asked email.
 
 ![alt text](screenshots/11.png)
 
 # Collecting APM Data
 
-Since we are on a VM, I decided to stick with the flash app provided. I chose to do APM with the ddtrace-run method.
+Since we are on a VM, I decided to stick with the provided flash app. I chose to do APM with the ddtrace-run method.
 
 In one terminal, I started the flash APP with ddtrace-run.
 ```
@@ -412,24 +412,24 @@ As far as I understood :
 
 >Is there anything creative you would use Datadog for?
 
-Electricity is a very interesting energy since it can't be stored easily. Of course battery exist, but there is no solution viable [yet](https://techcrunch.com/2017/11/23/tesla-completes-the-worlds-largest-battery-for-australian-wind-farm/) for a macro size like a country. A direct consequence to this is that at any moment, any time, the production of electricity has to exactly fit the consumption. If not, the whole electricty grid can be instable and collapse.
+Electricity is a very interesting energy since it can't be stored easily. Of course batteries exist, but there is no viable solution [yet](https://techcrunch.com/2017/11/23/tesla-completes-the-worlds-largest-battery-for-australian-wind-farm/) for a macro size like a country. Hence a direct consequence is that the production of electricity has to exactly fit the consumption any moment and any time. If not, the whole electricty grid can be instable and collapse.
 
-Having the right electric supply according to the demand is challenging since the electric supply are heterogeneous :
-- Nuclear power is very powerfull, cheap, but has alot of inertia (we cannot start a power plant in 2min, not even in 2 days) and have pollution concern
-- Renewable energy are clean but unpredictable (what can we do if we need electricity and there is no wind and no sun?)
-- Coal, oil, gas plant are not clean power, expensive, but fast to deploy
-- Hydro energy is fast, clean and can [store energy in potential energy form](https://en.wikipedia.org/wiki/Pumped-storage_hydroelectricity). But are scarce.
+Having the right electric supply according to the demand is a challenge since the electric supply are heterogeneous :
+- Nuclear power is very powerfull and cheap, but has a lot of inertia (we cannot start a power plant in 2min, not even in 2 days)
+- Renewable energy is clean but unpredictable (what can we do if we need electricity and there is no wind and no sun?)
+- Coal, oil, gas plant are fast to deploy, but expensive and create pollutions.
+- Hydro energy is fast, clean and [able to store energy in potential energy form](https://en.wikipedia.org/wiki/Pumped-storage_hydroelectricity). But hydroelectric plants are scarce.
 
-To understand better the issue bring by the lack of electricity storage, we can use Datadog to graph the real time production of electricity in France by type.
+To understand better the issue brings by the lack of electricity storage, we can use Datadog to graph real time production of electricity in France by type.
 
 ## Machine
 
-Since a vagrant VM on my Macbook stop sending data when my computer is on sleeping mode, I decided to continue this exercice with a VM set up on AWS.
+Since the vagrant VM on my Macbook stops sending data when my computer is on sleeping mode, I decided to continue this exercice with a VM set up on AWS.
 
 ## Data source
 
-I help myself with [this project](https://github.com/tmrowco/electricitymap) to get data.
-I created therefore an agent check elec-france :
+I helped myself with [this project](https://github.com/tmrowco/electricitymap) to get data.
+Therefore I created an Agent Check elec-france :
 '/etc/dd-agent/conf.d/elec-france.yaml'
 ```
 init_config:
@@ -497,29 +497,31 @@ class Elecfrance(AgentCheck):
 ## Dashboards
 
 I created two dashboards :
-- One for having a global overview
+- One with a global overview
 ![alt text](screenshots/16.png)
 [Public link to the dashboard](https://p.datadoghq.com/sb/fac52a38d-2a4679219a).
 
-- One focussing on the production part, with details
+- Another one focussing on the production part with details
 ![alt text](screenshots/15.png)
 [Public link to the dashboard](https://p.datadoghq.com/sb/fac52a38d-3084f320d9).
 
 
 ## Impovements
 
-- Metric units
+### Metric units
 
-I didn't manage to deal properly with the units since I take the information directly in MW. Having multiple thousands (k) of MW diplayed are not making the readability of the graphics easy. I should start again with correct metric sent and see what I can do with old metrics since I didn't find any way to change them.
+I didn't manage to deal properly with the units since I'm taking the information directly in MW. In the time Graphics, diplaying multiple thousands (k) of MW is not making the readability easy. I should start over again by sending correct metrics and see what I can do with old metrics since I didn't find any way to change them.
 
-- Metric multiplication
+### Metric multiplication
 
-Once we have those metrics, we can try to correlate them with metrics regarding price/quantity of MW exchanged from the European energy exchange market or other metrics not linked like the average temperature of the country.
-We can as well try to catch more precise metrics : some metrics about production in area in France or production in other country are available too.
+Once we have those metrics, we can try to correlate them with other metrics. Here are some ideas :
+- Exchanged price/quantity of MW from the European energy exchange market 
+- Irrelevant metrics (i.e. the average temperature of the country)
+- More precise metrics : some metrics coming from smaller area than France or from other countries are available too.
 
-## Conclusion
+## Conclusion of final question
 
-First of all, we can notify how big the nuclear production is in France global production system. Moreover this is not the only source used : for all the little peaks of the day, fast deployment energy source like gas are used. In case of high demand (like a sunday at 7pm in the screenshots), storage resources can be used in order to satisfy the demand until another source is available (gas for instance).
+First of all, we can notify how big the nuclear production is in France global production system. Moreover this is not the only source being used : for all the little peaks of the day, fast deployment energy source like gas are being used. In case of high demand (i.e. on sunday at 7pm in the screenshots), storage resources can be used in order to satisfy the demand until another source is available (i.e. gas).
 
 
 
