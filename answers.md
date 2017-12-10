@@ -96,5 +96,11 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 ***Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:***
 
 - One that silences it from 7pm to 9am daily on M-F,
+
+![weekday_downtime](./screenshots/weekday.png)
+
 - And one that silences it all day on Sat-Sun.
+
+![weekend_downtime](./screenshots/weekend.png)
+
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
