@@ -1,9 +1,9 @@
 <h1>Table of Content</h1>
 1. Installing DataDog Agent
-2. Create Tags on Agent
-3. Configuring Database
-4. Creating Custom Metric
-5. Create Timeboard with Datadog API
+1. Create Tags on Agent
+1. Configuring Database
+1. Creating Custom Metric
+1. Create Timeboard with Datadog API
   
  <h2>1. Installing Datadog Agent</h2>
   
@@ -97,18 +97,23 @@ Reset the agent and view the custom metric in your host map or the metric summar
 
 <h2>5. Create Timeboard with Datadog API</h2>
 
-Following the reference in the link below will make a timeboard with our custom metric, mysql
 
-https://docs.datadoghq.com/api/#timeboards
+https://docs.datadoghq.com/api/#timeboards Used as an reference to create a basic timeboard and editted 
 
 Used https://docs.datadoghq.com/guides/anomalies/ to run anomalies function
+
+Following the reference in the link below will make a timeboard with our custom metric, any MySQL Metric with the anomaly function, and a sum of of custom metrics within the last hour.
+
+Ran into a problem with Python, but updating it fixed the issue. I've received SNIMissingWarning & InsecurePlatformWarning while running the script, but it appeared to have not affected the overall script as the dashboard was generated.
+
+The script below was ran using the `python ./[filename]` command
 
 ```python
 from datadog import initialize, api
 
 options = {
-    'api_key': '464daaaa341acb70c56129d4fd61f596',
-    'app_key': '7aba6c5ccc74a43ab870f1e82d4aa8bc1cf4fcc1'
+    'api_key': '[api]',
+    'app_key': '[app]'
 }
 
 initialize(**options)
