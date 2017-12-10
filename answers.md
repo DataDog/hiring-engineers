@@ -1,6 +1,5 @@
 <h1>Table of Content</h1>
 
-1. Intalling Datadog Agent
 1. Create Tags on Agent
 1. Configuring Database
 1. Creating Custom Metric
@@ -8,8 +7,7 @@
 1. Monitoring Data
 1. Collecting APM Data
 1. Final Thoughts About the Task
-  
-<h2>Installing Datadog Agent</h2>
+
   
 <h2>Create Tags on Agent</h2>
 To show that your machine is currently being monitored, it has to tagged to be shown on the Host Map. 
@@ -87,7 +85,7 @@ Reset the agent and view the custom metric in your host map or the metric summar
 
 You can change ` collector_profile_interval: 20` in the agent file to the amount of seconds you want.
 
-<h2>5. Create Timeboard with Datadog API</h2>
+<h2>Create Timeboard with Datadog API</h2>
 
 https://docs.datadoghq.com/api/#timeboards Used as an reference to create a basic timeboard and editted 
 
@@ -301,7 +299,7 @@ Link to APM & Infrastructure Dashboard - [Click Here](https://app.datadoghq.com/
 A service is a set of processes that are used to overall provide a feature for an application.
 A resource is query within a service.
 
-<h3>Final Thoughts About the Task</h3>
+<h2>Final Thoughts About the Task</h2>
 This was challenging as I've had a background in Java. I wanted to challenge myself and do this entire task though python to prove myself and to the recruiters that I am capable to learning fast and willing to put the time & resources on a given task.
 There were many obstacles that were in the way of this task and many resources on the datadog documents and the internet helped massively.
 
