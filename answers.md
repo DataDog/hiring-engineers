@@ -299,6 +299,9 @@ Link to APM & Infrastructure Dashboard - [Click Here](https://app.datadoghq.com/
 A service is a set of processes that are used to overall provide a feature for an application.
 A resource is query within a service.
 
+<h2>Final Question</h2>
+I would use datadog in an office environment to track and monitor the health of each system. Checking to see if CPU usage is higher then usual, if the disk capacity is almost full, if more memory is required etc. This can also be used to track how much data each machine is using in the network.
+
 <h2>Final Thoughts About the Task</h2>
 This was challenging as I've had a background in Java. I wanted to challenge myself and do this entire task though python to prove myself and to the recruiters that I am capable to learning fast and willing to put the time & resources on a given task.
 There were many obstacles that were in the way of this task and many resources on the datadog documents and the internet helped massively.
