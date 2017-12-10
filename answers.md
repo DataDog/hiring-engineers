@@ -116,6 +116,36 @@ A Service is the name of a set of processes that work together to provide a feat
 
 A Resource is a particular query to a service; resource is also known as a route in MVC frameworks such as Ruby on Rails. A Resource is connected to a Service by the Service Name and the Name of the top-level span of the trace.
 
+Sample resources:
+```
+qins-air:SafeHavn qyc$ be rake routes
+           Prefix Verb   URI Pattern                      Controller#Action
+             root GET    /                                static_pages#root
+        api_users POST   /api/users(.:format)             api/users#create {:format=>:json}
+         api_user PATCH  /api/users/:id(.:format)         api/users#update {:format=>:json}
+                  PUT    /api/users/:id(.:format)         api/users#update {:format=>:json}
+      api_session POST   /api/session(.:format)           api/sessions#create {:format=>:json}
+                  DELETE /api/session(.:format)           api/sessions#destroy {:format=>:json}
+        api_homes GET    /api/homes(.:format)             api/homes#index {:format=>:json}
+                  POST   /api/homes(.:format)             api/homes#create {:format=>:json}
+     new_api_home GET    /api/homes/new(.:format)         api/homes#new {:format=>:json}
+    edit_api_home GET    /api/homes/:id/edit(.:format)    api/homes#edit {:format=>:json}
+         api_home GET    /api/homes/:id(.:format)         api/homes#show {:format=>:json}
+                  PATCH  /api/homes/:id(.:format)         api/homes#update {:format=>:json}
+                  PUT    /api/homes/:id(.:format)         api/homes#update {:format=>:json}
+                  DELETE /api/homes/:id(.:format)         api/homes#destroy {:format=>:json}
+        api_trips GET    /api/trips(.:format)             api/trips#index {:format=>:json}
+                  POST   /api/trips(.:format)             api/trips#create {:format=>:json}
+         api_trip GET    /api/trips/:id(.:format)         api/trips#show {:format=>:json}
+                  DELETE /api/trips/:id(.:format)         api/trips#destroy {:format=>:json}
+      api_reviews GET    /api/reviews(.:format)           api/reviews#index {:format=>:json}
+                  POST   /api/reviews(.:format)           api/reviews#create {:format=>:json}
+       api_review GET    /api/reviews/:id(.:format)       api/reviews#show {:format=>:json}
+api_confirmations POST   /api/confirmations(.:format)     api/confirmations#create {:format=>:json}
+ api_confirmation GET    /api/confirmations/:id(.:format) api/confirmations#show {:format=>:json}
+                  DELETE /api/confirmations/:id(.:format) api/confirmations#destroy {:format=>:json}
+```
+
 # Final Question:
 
 ***Is there anything creative you would use Datadog for?***
