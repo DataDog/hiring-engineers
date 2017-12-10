@@ -40,17 +40,17 @@ class MetricCheck(AgentCheck):
 
 We can modify the associated yaml file and set the min_collection_interval to 45.
 
-***Bonus: Question Can you change the collection interval without modifying the Python check file you created?***
-
-Yes, we can modify the my_metric.yaml file in /etc/dd-agent/conf.d
-
 ```
 init_config:
-    min_collection_interval: 45
+min_collection_interval: 45
 
 instances:
-    [{}]
+[{}]
+
 ```
+***Bonus: Question Can you change the collection interval without modifying the Python check file you created?***
+
+We can change ```collector_profile_interval: 20``` in the agent file to the amount of seconds desired.
 
 # Visualizing Data:
 
