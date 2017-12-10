@@ -31,14 +31,14 @@ instances:
 ```Python
 from checks import AgentCheck
 from random import randint
-class MyMetricCheck(AgentCheck):
+class MetricCheck(AgentCheck):
   def check(self, instance):
-      self.gauge('my_metric', randint(0,1000))
+      self.gauge('metric.datadog', randint(0,1000))
 ```
 
 ***Change your check's collection interval so that it only submits the metric once every 45 seconds.***
 
-We can modify the associated yaml file and set the min_colleciton_interval to 45.
+We can modify the associated yaml file and set the min_collection_interval to 45.
 
 ***Bonus: Question Can you change the collection interval without modifying the Python check file you created?***
 
