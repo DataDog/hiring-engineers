@@ -112,9 +112,39 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 
 ***Bonus Question: What is the difference between a Service and a Resource?***
 
-A Service is the name of a set of processes that work together to provide a feature set.
-A Resource is a particular query to a service. A Resource is connected to a Service by the Service Name and the Name of the top-level span of the trace.
+A Service is the name of a set of processes that work together to provide a feature set. For example, my capstone project at App Academy http://www.safehavn.site/#/ has a webapp service (Ruby on Rails) and a database service (PostgreSQL).
+
+A Resource is a particular query to a service; resource is also known as a route in MVC frameworks such as Ruby on Rails. A Resource is connected to a Service by the Service Name and the Name of the top-level span of the trace.
 
 # Final Question:
 
 ***Is there anything creative you would use Datadog for?***
+
+I would use Datadog to monitor cities in [Simcity 4](https://en.wikipedia.org/wiki/SimCity_4).
+
+To give some background, Simcity 4 is one of the hardest city building video games ever made. Without proper budget balancing, mayors can be removed from their seat when the city's wallet is at a $100k deficit. There are countless ways that mayors can be in a financial deficit. A few examples below:
+
+- power outages
+- water outages
+- improper sanitation system
+- nuclear catastrophe
+- a punitive tax policy
+- a loose tax policy
+- traffic congestion
+- air pollution
+- water pollution
+- poor healthcare
+- poor education
+- high crime
+
+We can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
+
+- When the city's monthly revenue is close or below the expenses of the city, trigger a warning; when it is dire, trigger an alert
+- When a power plant's condition depreciates to 70%, trigger an alert to replace the power plant. (Very important for nuclear power plants)
+- When a water pump's condition depreciates to 70%, trigger an alert to replace the water pump
+- When garbage buildup is above the capacity of garbage disposal, trigger an alert to suggest more landfill, enable recycling ordinances, etc.
+- When tax policy is high and is deterring city growth, trigger an alert; vice-versa for a low tax policy
+- When a particular street/highway/subway/bus stop exceeds it's capacity, trigger an alert.
+- When air or water pollution is high in a residential or a commercial zone, trigger an alert.
+- When a hospital or a school is under budget or about to strike, trigger an alert.
+- When crime is too high at a certain area or there are not enough prisons, trigger an alert.
