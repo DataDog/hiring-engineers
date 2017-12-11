@@ -114,15 +114,12 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 In the `datadog.conf` file, I added `apm_enabled = true`
 
 I did this via the middleware way.
-
 ```
 sudo pip install ddtrace --index-url=https://pypi.python.org/simple/
 ```
-
 ```
 sudo pip install flask --index-url=https://pypi.python.org/simple/
 ```
-
 ```
 sudo pip install blinker --index-url=https://pypi.python.org/simple/
 ```
@@ -169,29 +166,20 @@ I ran my flask app inside the VM, and then installed w3m
 ```
 apt-get install w3m
 ```
-
 ```
 export TERM=xterm
 ```
-
 ```
 w3m http://127.0.0.1:5000/
 ```
-
 ![flaskapp](./screenshots/myflaskapp.png)
-
 ![apm](./screenshots/apm.png)
-
-
-### A Few Challenges When Integrating APM into my non-VM laptop:
-Hooking up the APM posed quite a challenge. I attempted to run the flask app in my physical OS and install an agent in my laptop. However, I encountered this error.
-`ERROR - cannot send spans: [Errno 61] Connection refused`
-
-I tried another direction, and attempted to hook up the APM in my personal Rails capstone project, and encountered this error.
+### A Few Challenges When Integrating APM Into OS:
+Hooking up the APM posed quite a challenge. I attempted to run the flask app in my physical OS and install an agent in my laptop, but encountered this error.
 ```
-ERROR -- ddtrace: [ddtrace] (/Users/qyc/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/ddtrace-0.10.0/lib/ddtrace/transport.rb:100:in `rescue in post') Failed to open TCP connection to localhost:8126 (Connection refused - connect(2) for "localhost" port 8126)
-````
-
+ERROR - cannot send spans: [Errno 61] Connection refused
+```
+I tried another direction, and attempted to hook up the APM in my personal Rails project.
 In my datadog-tracer.rb file, I added this:
 ```ruby
 Rails.configuration.datadog_trace = {
@@ -201,8 +189,10 @@ Rails.configuration.datadog_trace = {
   default_service: 'my-rails-app'
 }
 ```
-
-
+I encountered this error:
+```
+ERROR -- ddtrace: [ddtrace] (/Users/qyc/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/ddtrace-0.10.0/lib/ddtrace/transport.rb:100:in `rescue in post') Failed to open TCP connection to localhost:8126 (Connection refused - connect(2) for "localhost" port 8126)
+````
 ***Bonus Question: What is the difference between a Service and a Resource?***
 
 A Service is the name of a set of processes that work together to provide a feature set. For example, my capstone project at App Academy http://www.safehavn.site/#/ has a webapp service (Ruby on Rails) and a database service (PostgreSQL).
