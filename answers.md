@@ -235,7 +235,9 @@ api_confirmations POST   /api/confirmations(.:format)     api/confirmations#crea
 
 I would use Datadog to monitor cities in [Simcity](https://github.com/SimHacker/micropolis).
 
-To give some background, Simcity is one of the very first city building video games ever made in 1989. The source code of the game was released under the free software GPL 3 license. Without proper budget balancing, mayors can be removed from their seat when the city's wallet is at a $100k deficit. There are countless ways that mayors can be in a financial deficit. A few examples below:
+Published in 1989, Simcity is one of the [very first city building video games](https://en.wikipedia.org/wiki/SimCity_(1989_video_game)#Development) ever made. In 2008, the source code of the game was released under the free software GPL 3 license. The game was coded in C, and was also rewritten in C++/Python.
+
+The game is very difficult as mayors can be removed from their seat when the city's wallet is at a $100k deficit. Without proper budget balancing, there are countless ways that mayors can be in a financial deficit. A few examples below:
 
 - power outages
 - water outages
@@ -250,7 +252,7 @@ To give some background, Simcity is one of the very first city building video ga
 - poor education
 - high crime
 
-One difficult part that I foresee is figuring out how to read the metrics that the game internally tracks. After hooking up all the metrics, we can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
+One foreseeable difficulty is to figure out how to read the metrics that the game internally tracks. After hooking up all the metrics, we can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
 
 - When the city's monthly revenue is close or below the expenses of the city, trigger a warning; when it is dire, trigger an alert
 - When a power plant's condition depreciates below 70%, trigger an alert to replace the power plant. (Very important for nuclear power plants)
