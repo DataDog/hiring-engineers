@@ -178,6 +178,8 @@ export TERM=xterm
 w3m http://127.0.0.1:5000/
 ```
 
+![flaskapp](./screenshots/myflaskapp.png)
+
 ![apm](./screenshots/apm.png)
 
 
