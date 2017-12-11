@@ -8,15 +8,15 @@ as a Datadog Solutions Engineer.
 - [Getting started - setting up a test environment](#getting-started---setting-up-a-test-environment)
   - [Gather and Install the Prerequisites](#gather-and-install-the-prerequisites)
   - [Boot up the test environment virtual machine](#boot-up-the-test-environment-virtual-machine)
-- [Collecting Metrics:](#collecting-metrics)
+- [Collecting Metrics](#collecting-metrics)
   - [Tagging](#tagging)
   - [Integrations](#integrations)
   - [Custom Agent Checks](#custom-agent-checks)
   - [Metric Intervals](#metric-intervals)
-- [Visualizing Data:](#visualizing-data)
+- [Visualizing Data](#visualizing-data)
 - [Monitoring Data](#monitoring-data)
-- [Collecting APM Data:](#collecting-apm-data)
-  - [Getting Creative](#getting-creative)
+- [Collecting APM Data](#collecting-apm-data)
+- [Getting Creative](#getting-creative)
 
 # What is Datadog?
 
@@ -314,7 +314,7 @@ like this:
 ![i-apm-dash](img/apm-dash.png)
 
 
-## Getting Creative
+# Getting Creative
 
 Datadog has been used in a lot of creative ways in the past. Datadog has written some blogs
 about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom
