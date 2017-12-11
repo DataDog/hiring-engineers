@@ -233,9 +233,9 @@ api_confirmations POST   /api/confirmations(.:format)     api/confirmations#crea
 
 ***Is there anything creative you would use Datadog for?***
 
-I would use Datadog to monitor cities in [Simcity 4](https://en.wikipedia.org/wiki/SimCity_4).
+I would use Datadog to monitor cities in [Simcity](https://github.com/SimHacker/micropolis).
 
-To give some background, Simcity 4 is one of the hardest city building video games ever made. Without proper budget balancing, mayors can be removed from their seat when the city's wallet is at a $100k deficit. There are countless ways that mayors can be in a financial deficit. A few examples below:
+To give some background, Simcity is one of the very first city building video games ever made in 1989. The source code of the game was released under the free software GPL 3 license. Without proper budget balancing, mayors can be removed from their seat when the city's wallet is at a $100k deficit. There are countless ways that mayors can be in a financial deficit. A few examples below:
 
 - power outages
 - water outages
