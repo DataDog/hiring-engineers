@@ -250,7 +250,7 @@ To give some background, Simcity is one of the very first city building video ga
 - poor education
 - high crime
 
-We can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
+One difficult part that I foresee is figuring out how to read the metrics that the game internally tracks. After hooking up all the metrics, we can use Datadog to monitor all these scenarios in a dashboard and trigger alerts.
 
 - When the city's monthly revenue is close or below the expenses of the city, trigger a warning; when it is dire, trigger an alert
 - When a power plant's condition depreciates below 70%, trigger an alert to replace the power plant. (Very important for nuclear power plants)
