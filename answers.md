@@ -5,7 +5,7 @@ some of the features of Datadog in line with the Tech Exercise for being hired
 as a Datadog Solutions Engineer.
 
 - [What is Datadog?](#what-is-datadog)
-- [Getting started - setting up a test environment](#getting-started---setting-up-a-test-environment)
+- [Getting started](#getting-started)
   - [Gathering and Installing the Prerequisites](#gathering-and-installing-the-prerequisites)
   - [Booting up the test environment virtual machine](#booting-up-the-test-environment)
 - [Collecting Metrics](#collecting-metrics)
@@ -24,7 +24,7 @@ Datadog is a suite of products focused around metrics.  It includes a robust
 metric collection and visualization web platform, as well as alerting, application
 performance management, and a host of other features.
 
-# Getting started - setting up a test environment
+# Getting started
 
 Datadog operates on a variety of hosts and platforms, including Windows, Linux,
 and Mac OSX.  For this demonstration, we will utilize a Ubuntu Linux Virtual
@@ -168,13 +168,15 @@ init_config:
 
 # Visualizing Data
 
-Dashboards, also known as timeboards, are one of the several ways to visualize the
-metrics we're now collecting.  You can set them up through Datadog's web UI or
-through Datadog's API.  An example of setting up a timeboard via the API can be
-located in `create_timeboard.py`.  Datadog's API is easy to use with good [documentation](https://docs.datadoghq.com/api/)
+Dashboards are one of the several ways to visualize the metrics we're now collecting.
+There are two types of dashboards in Datadog: timeboards and screenboards.  The differences between
+these can be read about [here](https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-).
+Datadog's API is easy to use with good [documentation](https://docs.datadoghq.com/api/)
 that can allow you to programatically set up any of Datadog's features.
 
-`create_timeboard.py` uses the API key and app key set in the `.env` file
+For the purposes of exploring Datadog's features, we will set up a time board using the API.
+This has already been done when we provisioned our test environment.  The code used can be
+found in `create_timeboard.py`.  `create_timeboard.py` uses the API key and app key set in the `.env` file
 to create a basic dashboard with the following things on it:
 
 * A basic system stat collected by the agent, in this case average free memory
@@ -279,7 +281,8 @@ be done from within code, or for python applications you can also use Datadog's 
 More specific information on APM Tracing can be found in the docs [here](https://docs.datadoghq.com/tracing/).
 
 Our test environment is running a simple Flask app.  It has beenb instrumented using the framework-specific
-middleware.  You can see the full code in `flaskapp.py`.  Here is a shortened example of middleware injection:
+middleware.  You can see the full code in `flaskapp.py`.  Here is a shortened example of middleware injection
+in the Flask framework:
 ```
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
@@ -299,10 +302,10 @@ You can see the Flask application listed as a service in the [APM UI](https://ap
 
 ![i-apm-services](img/apm-services.png)
 
-If you drill in, you can see there are 3 resources underneath our Flask service.  It might
-take a bit to get used to the [terminology](https://docs.datadoghq.com/tracing/terminology/)
-used, but for our purposes here, a service is a set of processes that do the same job.  In
-our instance, that is our Flask webapp.  A resource is a particular query to a service.
+If you drill in, you can see there are 3 resources underneath our Flask service.  It is a good idea
+to review the [terminology](https://docs.datadoghq.com/tracing/terminology/) used.
+For our purposes here, a service is a set of processes that do the same job.  In
+our example, that is our Flask web application.  A resource is a particular query to a service.
 In our case, that's one of the 3 available routes defined in `flaskapp.py`.
 
 You can also include APM metrics on Dashboards right alongside infrastructure metrics.
@@ -323,4 +326,4 @@ availability!
 If you can find a way to get data in, you can use it in all kinds of interesting ways. You could
 even track the availability of your favorite ice creams at the convenient store down the street
 so you wouldn't have to walk there and find they are out!  Now to figure out how to automatically
-count ice creams from a web cam mounted in the store...
+count ice creams from a web cam mounted in the store.
