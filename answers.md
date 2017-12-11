@@ -4,7 +4,19 @@ This document should provide a follow-along wiki-style article for showing off
 some of the features of Datadog in line with the Tech Exercise for being hired
 as a Datadog Solutions Engineer.
 
-## Table of Contents
+- [What is Datadog?](#what-is-datadog)
+- [Getting started - setting up a test environment](#getting-started---setting-up-a-test-environment)
+  - [Gather and Install the Prerequisites](#gather-and-install-the-prerequisites)
+  - [Boot up the test environment virtual machine](#boot-up-the-test-environment-virtual-machine)
+- [Collecting Metrics:](#collecting-metrics)
+  - [Tagging](#tagging)
+  - [Integrations](#integrations)
+  - [Custom Agent Checks](#custom-agent-checks)
+  - [Metric Intervals](#metric-intervals)
+- [Visualizing Data:](#visualizing-data)
+- [Monitoring Data](#monitoring-data)
+- [Collecting APM Data:](#collecting-apm-data)
+  - [Getting Creative](#getting-creative)
 
 # What is Datadog?
 
