@@ -114,9 +114,18 @@ Anomaly graph looks for strange behavior in a given metric based on the metric's
 In the `datadog.conf` file, I added `apm_enabled = true`
 
 I did this via the middleware way.
-``sudo pip install ddtrace --index-url=https://pypi.python.org/simple/``
-``sudo pip install flask --index-url=https://pypi.python.org/simple/``
-``sudo pip install blinker --index-url=https://pypi.python.org/simple/``
+
+```
+sudo pip install ddtrace --index-url=https://pypi.python.org/simple/
+```
+
+```
+sudo pip install flask --index-url=https://pypi.python.org/simple/
+```
+
+```
+sudo pip install blinker --index-url=https://pypi.python.org/simple/
+```
 
 ```Python
 from flask import Flask
@@ -157,9 +166,17 @@ if __name__ == '__main__':
   ```
 
 I ran my flask app inside the VM, and then installed w3m
-`apt-get install w3m`
-`export TERM=xterm`
-`w3m http://127.0.0.1:5000/`
+```
+apt-get install w3m
+```
+
+```
+export TERM=xterm
+```
+
+```
+w3m http://127.0.0.1:5000/
+```
 
 ![apm](./screenshots/apm.png)
 
