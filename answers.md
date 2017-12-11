@@ -41,13 +41,14 @@ the fun stuff!
 
 We need to get things set up for our test environment.
 
-1. Install Virtualbox from [here](https://www.virtualbox.org/wiki/Downloads).
-2. Install Vagrant from [here](https://www.vagrantup.com/docs/installation/).
-3. Clone [this](https://github.com/asiegman/hiring-engineers) repository to a folder on your machine.
+1. Install Virtualbox from [here](https://www.virtualbox.org/wiki/Downloads)
+2. Install Vagrant from [here](https://www.vagrantup.com/docs/installation/)
+3. Clone [this](https://github.com/asiegman/hiring-engineers) repository to a folder on your machine:
+`git clone git@github.com:asiegman/hiring-engineers.git`
 4. Check out the `alex` branch: `git checkout alex`
-5. Login to Datadog and get your API key from [here](https://app.datadoghq.com/account/settings#api).
-Of note, Datadog has a 14 day free trial if you don't already have an account.
-6. Create an app key while you are there, give it a name, and save it for the next step.
+5. Login to Datadog and get your API key from [here](https://app.datadoghq.com/account/settings#api)
+Of note, Datadog has a 14 day free trial if you don't already have an account
+6. Create an app key while you are there, give it a name, and save it for the next step
 7. Place your API key, app key and some tags in a `.env` file:
 ```
 echo "API_KEY=0123456789abcdef" > .env
@@ -55,11 +56,18 @@ echo "APP_KEY=abcdef0123456789" >> .env
 echo "TAGS=\"alex, env:dev, role:se\"" >> .env
 ```
 
+The resulting `.env` file should look as follows:
+```
+API_KEY=0123456789abcdef
+APP_KEY=abcdef0123456789
+TAGS="alex, env:dev, role:se"
+```
+
 The `.env` file is just a convention for the automated setup.  These values will
 actually end up in the Datadog agent configuration on our test host.  The API key allows
 us to identify our Datadog account to the agents, and when combined with the app
 key gives us access to the programattic API.  You may wish to use a separate app
-key for any given application that uses the API, so you can easily revoke them if needed.
+key for any given application that uses the API, so you can easily revoke by use case if needed.
 
 ## Booting up the test environment
 
