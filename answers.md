@@ -237,7 +237,6 @@ Lets also make the alert message useful by having it:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 Datadog has conditionals that you can use, as well as some variables available to customize your messages.
 To achieve my goals, I had to do the following:
@@ -247,13 +246,15 @@ To achieve my goals, I had to do the following:
 Markdown is also supported, so it's quite easy to link to a wiki article for your alert if needed.
 I also included this in my example.
 
-After a while, you should start receiving emails.  That might get a bit annoying when alerts are
-expected.  Luckily, Datadog provides a facility to mitigate the alerts when we want.
-Lets use the scheduled downtimes for this alert to do a few things:
+After a while, you should start receiving emails.  Here is an example of one such email:
+
+![i-alert-email](img/alert-email.png)
+
+Alerts can get a bit annoying when they are expected.  Luckily, Datadog provides a facility to
+mitigate the alerts when we want.  Lets use the scheduled downtimes for this alert to do a few things:
 
     * One that silences it from 7pm to 9am daily on M-F,
     * And one that silences it all day on Sat-Sun.
-    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 You can go to [Manage Downtime](https://app.datadoghq.com/monitors#/downtime) in the Datadog UI to
 get started.  Setting things up is pretty self-explanatory.  Here's an example of setting up the
