@@ -64,7 +64,7 @@ key for any given app that uses the API, so you can easily revoke them if needed
 ## Boot up the test environment virtual machine
 
 From the root of the repository, run `vagrant up`.  This should take the following
-steps:
+steps automatically for you:
 
 1. Download the Ubuntu Xenial Vagrant box (base virtual machine image) if you
 don't have it.
@@ -76,7 +76,9 @@ don't have it.
 7. Starts the datadog agent
 8. Creates a Datadog Timeboard that we can use later
 
-# Collecting Metrics:
+# Collecting Metrics
+
+Lets get to the heart of Datadog: metrics!
 
 ## Tagging
 
