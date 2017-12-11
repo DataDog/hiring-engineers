@@ -164,7 +164,7 @@ init_config:
   min_collection_interval: 45
 ```
 
-# Visualizing Data:
+# Visualizing Data
 
 Timeboards, also known as dashboards, are one of the several ways visualize the
 metrics we're now collecting.  You can set them up through Datadog's web UI or
@@ -271,7 +271,7 @@ and filtered by tags as well.
 
 ![i-manage-downtime](img/manage-downtime.png)
 
-# Collecting APM Data:
+# Collecting APM Data
 
 Datadog has the ability to collect APM Trace data from a variety of frameworks and languages.
 Below, we have a simple Flask application that's instrumented within code.  For python applications,
