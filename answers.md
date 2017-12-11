@@ -160,7 +160,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
   app.run()
-  ```
+```
 
 I ran my flask app inside the VM, and then installed w3m
 ```
