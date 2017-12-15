@@ -9,10 +9,10 @@ Datadog is the leading cloud based platform for instrumenting, monitoring, visua
 This exercise is intended to help you get up and running with datadog and walk through some of the key features and capabilities including:
 - [Getting started and installing](#getting-started)
 - [Collecting "out of the box" and custom metrics, integrations, tagging](#collecting-metrics)
-- [Visualizing your data](#Timeboards-and-the-api)
-- [Monitoring and alarming](#Monitoring-and-alerting-on-our-Metrics)
+- [Visualizing your data](#timeboards-and-the-api)
+- [Monitoring and alarming](#monitoring-and-alerting-on-our-metrics)
 - [A closer look at application performance monitoring](#using-the-apm-to-instrument-your-application-performance)
-- [Other ways to use datadog](#Other-use-cases-for-datadog)
+- [Other ways to use datadog](#other-use-cases-for-datadog)
 
 #### Assumptions and pre-requisites
 In an attempt to keep the focus on datadog and its features - the below pre-requisite steps will not be documented as part of this exercise.
