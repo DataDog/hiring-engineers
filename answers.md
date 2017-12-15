@@ -1,3 +1,4 @@
+
 ## Overview
 
 Welcome to a whirlwind tour of datadog!  
@@ -6,12 +7,12 @@ Datadog is the leading cloud based platform for instrumenting, monitoring, visua
 
 
 This exercise is intended to help you get up and running with datadog and walk through some of the key features and capabilities including:
-- Getting started and installing
-- Collecting "out of the box" and custom metrics
-- Visualizing your data
-- Monitoring and alarming
-- A closer look at application performance monitoring
-- Other ways to use datadog
+- [Getting started and installing](#getting-started)
+- [Collecting "out of the box" and custom metrics, integrations, tagging](#collecting-metrics)
+- [Visualizing your data](#Timeboards-and-the-api)
+- [Monitoring and alarming](#Monitoring-and-alerting-on-our-Metrics)
+- [A closer look at application performance monitoring](#Using-the-APM-to-instrument-your-application-performance)
+- [Other ways to use datadog](#Other-use-cases-for-datadog)
 
 #### Assumptions and pre-requisites
 In an attempt to keep the focus on datadog and its features - the below pre-requisite steps will not be documented as part of this exercise.
@@ -220,7 +221,7 @@ If we want to change the minimum collection interval to a different value, such 
 This should be done from the yaml file - no need to update the python script itself
 
 
-#### Timeboards and the api
+### Timeboards and the api
 
 We can setup some example time series Dashboards using the API invoked from a bash script.
 The simple bash script will add time boards to our console that will show:
@@ -296,7 +297,7 @@ We can make a few adjustments - zoom into the last 5 minutes and send ourselves 
 ![](Snapshot.png)
 
 
-#### Monitoring and alerting on our Metrics
+### Monitoring and alerting on our Metrics
 For datadog to be useful in a production environment - we can create monitors off of our data.
 
 The following shows a monitor that will:
@@ -311,7 +312,7 @@ The following shows a monitor that will:
 ![](AlertEmail.png)
 
 
-##### Setting downtime for a monitor
+#### Setting downtime for a monitor
 Lets say we don't want this monitor to be checking the thresholds due to planned maintenance or just periods of time that the application is not required to be available.
 
 We can schedule a "Downtime for the monitor".
@@ -324,7 +325,7 @@ Notify appropriate parties when a downtime is scheduled:
 
 ![](DowntimeEmail.png)
 
-#### Using the APM to instrument your application performance
+### Using the APM to instrument your application performance
 
 Using a simple python flask web app - we can show datadogs ability to monitor code traces.
 
@@ -357,18 +358,18 @@ See the metrics in the datadog APM console
 
 ![](APM.png)
 
-##### Putting it all together
+#### Putting it all together
 We can display performance data for our infrastructure (agent based metrics) and application (apm)
 
 ![](Combined.png)
 
-##### Services and resources in the APM
+#### Services and resources in the APM
 *Services:* I like to think of a service as a particular function or process that is servicing a request, such as a web server or a database server.
 
 *Resources:* A resource would be the underlying request thats being past down to the service, for example a web service would have different requests for content etc as different resources that can be queried to provide metric data.
 
 
-#### Other use cases for datadog
+### Other use cases for datadog
 
 An interesting use case that would apply to the everyday lives of thousands of consumers might be to capture fitness tracker data and metrics into datadog.
 
