@@ -11,7 +11,7 @@ This exercise is intended to help you get up and running with datadog and walk t
 - Visualizing your data
 - Monitoring and alarming
 - A closer look at application performance monitoring
-- Other ways to use datadog and upcoming features
+- Other ways to use datadog
 
 #### Assumptions and pre-requisites
 In an attempt to keep the focus on datadog and its features - the below pre-requisite steps will not be documented as part of this exercise.
@@ -35,7 +35,7 @@ Login to your datadog account and follow the steps below to start collecting met
 
 From the datadog web console, navigate to "Integrations -> Agent" and we can find instructions for our specific host type.
 Choose Ubuntu and the one line command can be found in step 1 under "Use our easy one-step install"
-(AgentInstall.png)
+![](AgentInstall.png)
 
 From our Ubuntu instance cli paste the command to fetch and run the install script with some expected output shown below:
 ```bash
@@ -70,9 +70,9 @@ Once the agent is installed  - we can return to the Datadog web console and veri
 
 You will see that the agent shows a Status of up and is reporting metrics.  Clicking the hostname link will show details on server resource utilization metrics.
 
-(InfrastructureList.png)
+![](InfrastructureList.png)
 
-(ServerMetrics.png)
+![](ServerMetrics.png)
 
 
 ### Collecting metrics
@@ -159,7 +159,7 @@ From the datadog web console:
 
 We can view data for a few different mongodb related metrics by searching mongodb in the Graph field.
 
-(MongoMetrics.png)
+![](MongoMetrics.png)
 
 #### Custom checks
 Datadog also allows developers and ops team members to write custom checks.
@@ -209,12 +209,12 @@ exercise (custom)
 
 We can now check the console - metrics explorer for my_metric to view the metrics being sent:
 
-(CustomCheck.png)
+![](CustomCheck.png)
 
 *Updating the collection interval*
 If we want to change the minimum collection interval to a different value, such as 45, we can simply change ```min_collection_interval``` param in the /etc/dd-agent/conf.d/exercise.yaml to the desired number of seconds and restart the agent.
 
-(CustomCheck45.png)
+![](CustomCheck45.png)
 
 *Bonus - do we need to modify the python script to change the interval?*
 This should be done from the yaml file - no need to update the python script itself
@@ -288,12 +288,12 @@ curl  -X POST -H "Content-type: application/json" \
 
 Now we have a nice dashboard:
 
-(Dashboard.png)
+![](Dashboard.png)
 
 
 We can make a few adjustments - zoom into the last 5 minutes and send ourselves a snapshot of the graph:
 
-(Snapshot.png)
+![](Snapshot.png)
 
 
 #### Monitoring and alerting on our Metrics
@@ -304,11 +304,11 @@ The following shows a monitor that will:
 - Also alert on missing data (that way we know if the check itself stops reporting metrics)
 - Define how the alert text will look and who to notify. Including the hostname and IP if its an alert
 
-(Monitor1.png)
+![](Monitor1.png)
 
-(Monitor2.png)
+![](Monitor2.png)
 
-(AlertEmail.png)
+![](AlertEmail.png)
 
 
 ##### Setting downtime for a monitor
@@ -317,11 +317,12 @@ Lets say we don't want this monitor to be checking the thresholds due to planned
 We can schedule a "Downtime for the monitor".
 In the console Monitors -> Manage Downtime -> Schedule Downtime
 A few examples of scheduling downtime on a recurring basis:
-(Downtime1.png)
-(Downtime2.png)
+![](Downtime1.png)
+![](Downtime2.png)
+
 Notify appropriate parties when a downtime is scheduled:
 
-(DowntimeEmail.png)
+![](DowntimeEmail.png)
 
 #### Using the APM to instrument your application performance
 
@@ -354,11 +355,12 @@ $ curl http://127.0.0.1:5000/api/apm
 
 See the metrics in the datadog APM console
 
-(APM.png)
+![](APM.png)
 
 ##### Putting it all together
 We can display performance data for our infrastructure (agent based metrics) and application (apm)
-(Combined.png)
+
+![](Combined.png)
 
 ##### Services and resources in the APM
 *Services:* I like to think of a service as a particular function or process that is servicing a request, such as a web server or a database server.
