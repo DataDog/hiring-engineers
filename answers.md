@@ -11,7 +11,7 @@ This exercise is intended to help you get up and running with datadog and walk t
 - [Collecting "out of the box" and custom metrics, integrations, tagging](#collecting-metrics)
 - [Visualizing your data](#Timeboards-and-the-api)
 - [Monitoring and alarming](#Monitoring-and-alerting-on-our-Metrics)
-- [A closer look at application performance monitoring](#Using-the-APM-to-instrument-your-application-performance)
+- [A closer look at application performance monitoring](#using-the-apm-to-instrument-your-application-performance)
 - [Other ways to use datadog](#Other-use-cases-for-datadog)
 
 #### Assumptions and pre-requisites
