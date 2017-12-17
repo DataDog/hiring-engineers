@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-This file needs to be read with the folder Screens containing screenshots of the Datadog web application.
+This file needs to be read along with the folder Screens containing screenshots of the Datadog web application.
 
 ## Collecting Metrics:
 
@@ -17,8 +17,8 @@ Validation of the PostgreSQL installation : See Screens/Answer2.png and Screens/
  
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 To create a custom Agent check, two files have been created. Both have the same name but two different extension py (application code) and yaml (configuration of the application) : 
--A Python file, containing the code that will run the application, located in /etc/dd-agent/checks.d
--A Yaml file, containing the configuration of the application, located in /etc/dd-agent/conf.d
+-A Python file: personal_check.py, containing the code that will run the application, located in /etc/dd-agent/checks.d/
+-A Yaml file: personal_check.yaml, containing the configuration of the application, located in /etc/dd-agent/conf.d/
 
 Here is the code for personal_check.py: 
 from random import randint
@@ -216,6 +216,5 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Datadog has been created to monitor IT Infrastructure. Datadog has the potential to diversify targetted customer. There is an opportunity in high  level sport field.
-Datadog can also be used to monitor connected object and in particular to help athletes to monitor and imporve their performances. The dedicated metrics have to be create with the help of specialists of this field.
-
+Datadog has been created to monitor IT Infrastructures. Datadog has the potential to diversify monitored field. There is an opportunity in top performance sport field.
+Datadog can also be used to monitor data from connected objects in order to help athletes to monitor and imporve their performances. The dedicated metrics can be created with the help of specialists of this field.
