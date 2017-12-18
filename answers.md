@@ -1,4 +1,13 @@
-Your answers to the questions go here.
+This documentation will describe how to get started with Datadog Agent. 
+This documentation will cover the following subjects : 
+
+1. How to install Datadog Agent
+1. Collecting Metrics
+1. Visualizing Data
+1. Monitoring Data
+1. Collecting APM Data
+1. A bonus chapter
+
 
 ## How to install Datadog Agent: 
 
