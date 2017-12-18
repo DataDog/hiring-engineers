@@ -1,6 +1,33 @@
 Your answers to the questions go here.
 
-This file needs to be read along with the folder Screens containing screenshots of the Datadog web application.
+## How to install Datadog Agent: 
+
+
+Datadog Agent is a software that will gather and provide information and metrics about a host machine.
+Datadog Agent has to be installed on the machine that will be monitored.
+Here, the monitored machine will run with **Linux Ubuntu 16.04.3**.
+
+To install the Datadog Agent, the following command has to be run : 
+```bash
+DD_API_KEY=586e6a2a113d9c586e4b72fcb6f738d6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+```
+
+Once the command has finished, the following command has to be run to know whether or not Datadog Agent is running : 
+```bash
+sudo /etc/init.d/datadog-agent status
+```
+The result should be displayed as follows : 
+![DatadogAgentStatus](/Screens/DatadogAgentStatus.png)
+
+The following command provides information about metrics, checks, paths:
+```bash
+sudo /etc/init.d/datadog-agent info -v
+```
+The result should be displayed as follows :
+![DatadogStatusInfo1](/Screens/DatadogStatusInfo1.png)
+![DatadogStatusInfo2](/Screens/DatadogStatusInfo2.png)
+
+Once, Datadog Agent is running and delivering metrics. The next chapter will describe how to create a custom check and how to make it communicate with the Datadog Host.
 
 ## Collecting Metrics:
 
@@ -14,14 +41,24 @@ tags: personal_tag_by_marcquero, env:prod, role:database
 ![Datadog Host installation ](/Screens/Answer1.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+For this installation, the database used will be **PostgreSQL**. 
+In this documentation, it will be assumed that PostgreSQL has been installed and a database called datadog has been installed. Otherwise, please follow this [procedure](https://doc.ubuntu-fr.org/postgresql).
+In order, to intergrate PostgreSQL to Datadog, please refer to the following [procedure](https://app.datadoghq.com/account/settings#integrations/postgres).
+
 Validation of the PostgreSQL installation :
 ![Datadog PostgreSQL integration](/Screens/Answer2.png) 
 ![Datadog PostgreSQL integration_2](/Screens/Answer3.png)
  
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-To create a custom Agent check, two files have been created. Both have the same name but two different extension py (application code) and yaml (configuration of the application) : 
--A Python file: ```personal_check.py```, containing the code that will run the application, located in ```/etc/dd-agent/checks.d/```
--A Yaml file: ```personal_check.yaml```, containing the configuration of the application, located in ```/etc/dd-agent/conf.d/```
+
+Datadog Agent will scan two directories in order to summarize all custom checks : 
+* ```/etc/dd-agent/checks.d/``` : containing the code that will run the application, only python files.
+* ```/etc/dd-agent/conf.d/``` : containing the configuration of the application, only yaml files.
+
+To create a custom Agent check, two files have been created : 
+* A Python file: ```personal_check.py```, located in ```/etc/dd-agent/checks.d/```
+* A Yaml file: ```personal_check.yaml```, located in ```/etc/dd-agent/conf.d/```
 
 Here is the code for ```personal_check.py```: 
 ```python
@@ -40,8 +77,17 @@ instances:
     [{}]
 ```
 
+To check if personal_check has been installed and run correctly, the following command needs to be perform : 
+```bash
+sudo -u dd-agent dd-agent check personal_check
+```
+The result should be displayed as follows:
+![Validate_check_metrics](/Screens/Validate_personal_check_metric.png)
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Here is the code for personal_check.py, submitting metrics every 45 seconds: 
+
+For each custom check, there is a field called ```min_collection_interval```. This field defines the submitting interval for metrics. The value is defined in seconds. 
+Here is the code for ```personal_check.py```, submitting metrics every 45 seconds: 
 ```python
 from random import randint
 from checks import AgentCheck
@@ -52,14 +98,18 @@ class PersonalCheck(AgentCheck):
 		self.gauge('my_metric', randint(0,1000))
 ```
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-It is possible by adding the field 'min_collection_interval' to personal_check.yaml file.
-Here is the code :
+
+It is possible by adding the line ```min_collection_interval: 45``` to ```personal_check.yaml``` file.
+
+As follows:
 ```yaml
 init_config:
     min_collection_interval: 45
 instances:
     [{}]
 ```
+A custom check and a custom metric have been set, the next step is to visualize them in real-time.
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -67,7 +117,23 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Here is the code which create a Timeboard using Datadog API:
+
+Datadog interface provides some features to visualize data. These are called Dashboard. They can be found [here](https://app.datadoghq.com/dash/list).
+There is two ways to create dashboard : 
+* A graphical interface
+* By using Datadog API
+
+The following procedure will focus on the Datadog API's using.
+
+First of all, to use Datadog API. It is necessary to understand HTTP methods (GET, POST, etc..). Here is [an introduction](http://www.geeksforgeeks.org/get-post-requests-using-python/) to that matter. 
+
+To use Datadog API, it is important to use Datadog API key and Datadog App key.
+They are located in the following page : [Datadog Settings API](https://app.datadoghq.com/account/settings#api)
+![DatadogAPI](/Screens/DatadogAPI.png)
+
+The following [template](https://docs.datadoghq.com/api/?lang=python#dashboards-post) can be used as a base to create a timeboard.
+
+Here is the code which create a Timeboard using Datadog API :
 ```python
 from datadog import initialize, api
 
@@ -129,16 +195,25 @@ read_only = True
 
 api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
 ```
+
+To see whether or not the timeboard has been created, a check in the [Dashboard list](https://app.datadoghq.com/dash/list) has to be done.
 ![Timeboard manually created](/Screens/Answer4.png)
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
 * Set the Timeboard's timeframe to the past 5 minutes
+
+To set the Timeboard's timeframe to the last 5 minutes, a focus need to be done with the mouse. By selecting the timeframe desired.
+As follows :
 ![Timeframe_To_5_Miutes](/Screens/Answer5.png)
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Once, the timeframe is selected, beyond the timeboard, there is a field. Just start write with the character `@`.
 ![Use of @ notation](/Screens/Answer6.png)
 * **Bonus Question**: What is the Anomaly graph displaying?
-Anamoly graph is based on an algorithm that used usual data. When the data seem to be odd compared the usual value, a alert is raised. It has to be used for metrics that can not be monitored with threshold.
+
+Anamoly graph is based on an algorithm that used usual data. When the data seem to be odd compared the usual value, a alert is raised. It has to be used for metrics that can not be monitored with threshold. For more [information](https://docs.datadoghq.com/guides/anomalies/).
+
+The metrics have been created and vizualized. 
+One of the benefit of Datadog is that data can be monitored and some user can be notify e-mails. The next chapter will describe how to deal with that.
 
 ## Monitoring Data
 
@@ -149,6 +224,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+All monitors are displayed and described in that [dedicated page](https://app.datadoghq.com/monitors/manage).
+To create, a metric monitor. 
+Go the [New monitor creation page](https://app.datadoghq.com/monitors#/create)
 ![Warning, Alert threshold](/Screens/Answer7.png)
 
 Please configure the monitor’s message so that it will:
@@ -156,21 +235,36 @@ Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+In the following screenshot, there is the way to define a template for  notification mails. 
+How to use metric's variables and host.
 ![Mail send by alert monitor](/Screens/Answer8.png)
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Below, a mail received after noification.
 ![Mail_send_part1](/Screens/Answer9.png) 
 ![Mail_send_part2](/Screens/Answer10.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-    * One that silences it from 7pm to 9am daily on M-F,
+Datadog allows to configure Downtime which represents slot times during when no notification mails are send.
+They can be configured through this [panel](https://app.datadoghq.com/monitors#/downtime).
+
+
+    * One that silences it from 7pm to 9am daily on M-F
+    
+The following screenshot describes how to set it as requested : from 7pm to 9am daily on M-F
 ![Downtime1](/Screens/Answer11.png)
 
     * And one that silences it all day on Sat-Sun.
+    
+The following screenshot describes how to set it as requested : all day on Sat-Sun
 ![Downtime2](/Screens/Answer12.png)
  
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+    
+Since, downtimes have been configured. The following screeshot displays the downtime notification.
 ![Downtime3](/Screens/Answer13.png)
 
 
