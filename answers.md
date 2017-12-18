@@ -27,11 +27,11 @@ The result should be displayed as follows :
 ![DatadogStatusInfo1](/Screens/DatadogStatusInfo1.png)
 ![DatadogStatusInfo2](/Screens/DatadogStatusInfo2.png)
 
-Once, Datadog Agent is running and delivering metrics. The next chapter will describe how to create a custom check and how to make it communicate with the Datadog Host.
+Datadog Agent is running and delivering metrics. The next chapter will describe how to create a custom check and how to make it communicate with the Datadog Host.
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog. 
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the [Host Map page](https://app.datadoghq.com/infrastructure/map) in Datadog. 
 
 The Agent config file is located in ```/etc/dd-agent/datadog.conf```
 The following line needs to be add at the end of ```datadog.conf``` file.
@@ -43,7 +43,7 @@ tags: personal_tag_by_marcquero, env:prod, role:database
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 For this installation, the database used will be **PostgreSQL**. 
-In this documentation, it will be assumed that PostgreSQL has been installed and a database called datadog has been installed. Otherwise, please follow this [procedure](https://doc.ubuntu-fr.org/postgresql).
+In this documentation, it will be assumed that PostgreSQL has been installed and a database called datadog has been installed. Otherwise, please follow this [procedure](https://doc.ubuntu-fr.org/postgresql) (in French).
 In order, to intergrate PostgreSQL to Datadog, please refer to the following [procedure](https://app.datadoghq.com/account/settings#integrations/postgres).
 
 Validation of the PostgreSQL installation :
@@ -242,7 +242,7 @@ How to use metric's variables and host.
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Below, a mail received after noification.
+Below, a mail received after notification.
 ![Mail_send_part1](/Screens/Answer9.png) 
 ![Mail_send_part2](/Screens/Answer10.png)
 
@@ -304,13 +304,36 @@ if __name__ == '__main__':
 ```    
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
+
+**How to install APM tool**
+
+First of all, APM tool is a technology which allows separation between infrastructure and application performance monitoring. The relation between application code and the underlying infrastructure.
+
+APM has to be configured in the ```datadog.conf``` file. 
+The following field's value has to be ```true```: ```apm_enabled```
+Once, it is done. 
+These [steps](https://app.datadoghq.com/apm/docs) have to be played (click on python).
+For the last step, the given code above will be used in the a python file called ```my_app.py```.
+The following command has to be run: 
+```bash
+ddtrace-run python my_app.py
+```
+The terminal response should be like:
+![APM_Launching](/Screens/APM_Launching.png)
+Once it is done, the [page](https://app.datadoghq.com/apm/docs) should change and appears as follows:
+![APM_Traces_coming](/Screens/APM_Traces_coming.png)
+
+Now that APM traces are working, a dashboard containing new metrics can be created. The [graphical way](https://app.datadoghq.com/dash/list) will be used to create the new Dashboard.
+It has been deciced to monitor the number of HTTP requests for the new metrics provided by APM and some other metrics
+Below, the new dashboard.
+![APM and Infrasture Metrics](/Screens/Answer14.png)
+
     
 * **Bonus Question**: What is the difference between a Service and a Resource?
 * A service : A service reprensents a set of processes which performing the same tasks.
 * A ressource : A ressource is a particular query belonging to a service.
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-![APM and Infrasture Metrics](/Screens/Answer14.png)
+For more [information](https://docs.datadoghq.com/tracing/terminology/).
 
 ## Final Question:
 
