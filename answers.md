@@ -3,7 +3,7 @@
 This tutorial will go through Datadog main features in order for you to discover and test the software various features in a structured way. Don’t be scared, it will be fun and as documented as possible! We will also provide you with some extra links throughout the tutorial in case you are interested in knowing more about a particular topic.
 
 Summary
-* Getting Started
+* [Getting Started](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#prerequisites---setup-the-environment)
 * Collecting Metrics
 * Visualizing Data
 * Monitoring Data
@@ -383,7 +383,7 @@ __Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Setting a timeboard’s timeframe to 5 minutes for instance can be done easily with the UI by directly selecting the timeframe of interest on the graph.
 
-![Timeframe Change](/screenshots/time_frame.png)
+![Timeframe Change](/screenshots/timeframe_change.png)
 
 * __Take a snapshot of this graph and use the @ notation to send it to yourself.__
 
@@ -644,4 +644,4 @@ If you are one of these animal nerds (no offense, I’m part of this team) for i
 
 With the adapted sensors implementation, you could also help shops, public organizations, etc. monitor their waiting lines and why not have them send you an alert when one of the counter or cash desk is available.
 
-There’s as many Datadog use cases as you can think of it, so let’s get creative! 
+There are as many Datadog use cases as you can think of it, so let’s get creative! 
