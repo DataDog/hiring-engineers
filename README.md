@@ -16,8 +16,9 @@ Please provide screenshots and code snippets for all steps.
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu 12.04 VM.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-* Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+
+Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 ## Collecting Metrics:
 
@@ -34,6 +35,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -100,12 +103,13 @@ if __name__ == '__main__':
     app.run()
 ```    
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
-    
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+Please include your fully instrumented app in your submission, as well. 
 
 ## Final Question:
 
@@ -137,6 +141,10 @@ To submit your answers:
 * [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
 * [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
 * [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
+* [Datadog API](https://docs.datadoghq.com/api/)
+
+### APM
+* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
 * [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
 
 ### Vagrant
