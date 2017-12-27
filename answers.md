@@ -3,9 +3,19 @@
 This tutorial will go through Datadog main features in order for you to discover and test the software various features in a structured way. Don’t be scared, it will be fun and as documented as possible! We will also provide you with some extra links throughout the tutorial in case you are interested in knowing more about a particular topic.
 
 * [Getting Started](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#prerequisites---setup-the-environment)
+    * [Set Up the Environment](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#set-up-the-environment)
+    * [Datadog Agent](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#datadog-agent)
 * [Collecting Metrics](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-metrics)
+    * [Tagging](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#tagging)
+    * [Database Integration](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#database-integration)
+    * [Custom Agent Check](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#custom-agent-check)
+    * [Check's Collection Interval](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#checks-collection-interval)
 * [Visualizing Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#visualizing-data)
+    * [Timeboard Through API](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#timeboard-through-api)
+    * [Timeboard Through UI](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#timeboard-through-ui)
 * [Monitoring Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#monitoring-data)
+    * [Set Up Alerts](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#set-up-alerts)
+    * [Schedule Downtimes](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#schedule-downtimes)
 * [Collecting APM Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-apm-data)
 * [Getting Creative](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#getting-creative)
 
