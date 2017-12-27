@@ -2,7 +2,6 @@
 
 This tutorial will go through Datadog main features in order for you to discover and test the software various features in a structured way. Don’t be scared, it will be fun and as documented as possible! We will also provide you with some extra links throughout the tutorial in case you are interested in knowing more about a particular topic.
 
-Summary
 * [Getting Started](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#prerequisites---setup-the-environment)
 * [Collecting Metrics](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-metrics)
 * [Visualizing Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#visualizing-data)
@@ -20,24 +19,14 @@ __You can utilize any OS/host that you would like to complete this exercise. How
 
 * __You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM. You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.__
 
-For the environment, we decided to use Mac OS X. However, the best way to setup your environment and to avoid any OS and/or dependency issues, is to go with a combination of VirtualBox and Vagrant Ubuntu 12.04VM. 
-
-To do so:
--	Download VirtualBox from here: https://www.virtualbox.org/wiki/Downloads
--	Download Vagrant from here: https://www.vagrantup.com/downloads.html
--	Get started with Vagrant here: https://www.vagrantup.com/intro/getting-started/
+For the environment, we decided to use Mac OS X. However, the best way to setup your environment and to avoid any OS and/or dependency issues, is to go with a combination of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant Ubuntu 12.04VM](https://www.vagrantup.com/downloads.html). 
 
 * __Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.__
 
-Once your environment is all done, you can move on to Datadog setup!
-
-1.	First, go to Datadog website, and hit the sign-up button.
-2.	Enter a few information about yourself, and most importantly, about your stack.
-3.	Then, pick the right OS (in this example: Mac OS X) and start following the different steps.
+Once your environment is all done, you can move on to Datadog setup! 
+First, go to Datadog website, and hit the sign-up button. Enter a few information about yourself, and most importantly, about your stack. Then, pick the right OS and start following the different steps.
 
 ![Installation Instructions for Mac OS X](/screenshots/install_instructions.jpg)
-
-In the case of a Mac OS X…
 
 1.	First download the DMG package and install it by adding your API key to `/opt/datadog-agent/etc/datadog.conf`. 
 
@@ -148,7 +137,7 @@ https://help.datadoghq.com/hc/en-us/articles/204312749-Getting-started-with-tags
 
 > Our next step is about database integration. Integration is one of the main ways Datadog connects to your stack to collect metrics for you to monitor. Datadog has over 200 built-in integrations that allow you to see pretty much across all your systems, apps and services.
 
-To integrate a database, first pick the one you’re the most comfortable working with, install it, and visit the corresponding Datadog integration page to learn how to integrate/proceed to the integration:
+To integrate a database, first pick the one you’re the most comfortable working with, install it, and visit the corresponding Datadog integration page to learn how to proceed to the integration:
 * PostgreSQL: https://docs.datadoghq.com/integrations/postgres/
 * MongoDB: https://docs.datadoghq.com/integrations/mongo/
 * MySQL: https://docs.datadoghq.com/integrations/mysql/
@@ -231,9 +220,6 @@ class HelloCheck(AgentCheck):
 ```
 
 Make absolutely sure that the name of your two files match, otherwise your custom check will not work.
-
- GIF
-Sad, careful
 
 After that, we restarted the Datadog Agent and executed the `datadog-agent info` command line to make sure the check had successfully been implemented.
 
