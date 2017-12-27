@@ -19,12 +19,12 @@ This tutorial will go through Datadog main features in order for you to discover
 * [Collecting APM Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-apm-data)
 * [Getting Creative](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#getting-creative)
 
-More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
-
 <p align="center">
 <img src="https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif"/>
+<figcaption>Up to you now!</figcaption>
 </p>
 
+More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
 
 ## Getting Started
 
