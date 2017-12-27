@@ -21,7 +21,10 @@ This tutorial will go through Datadog main features in order for you to discover
 
 More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
 
-![Let's Go!](https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif)
+<p align="center">
+<img src="https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif"/>
+</p>
+
 
 ## Getting Started
 
@@ -648,12 +651,6 @@ __Is there anything creative you would use Datadog for?__
 From the moment on you manage to collect the data, you can barely monitor whatever you want to monitor and there’s a ton of possible use cases.
 
 If you are one of these animal nerds (no offense, I’m part of this team) for instance, you could totally decide to track your pet using a bit of electronics and Datadog. By adding some kind of Raspberry Pi to its collar and using sound analysis you could monitor if it is barking or not when you are away: here goes your brand-new home alarm system!
-
-<p align="center">
-  <img />
-</p>
-<div style="text-align:center"><img src ="https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif"/></div>
-![Smart Dog](https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif)
 
 <p align="center">
  <img src="https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif"/>
