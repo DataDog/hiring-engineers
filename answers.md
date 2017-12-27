@@ -1,4 +1,4 @@
-#Datadog Self-Guided Tour - Solution Engineer Technical Exercise
+# Datadog Self-Guided Tour - Solution Engineer Technical Exercise
 
 This tutorial will go through Datadog main features in order for you to discover and test the software various features in a structured way. Don’t be scared, it will be fun and as documented as possible! We will also provide you with some extra links throughout the tutorial in case you are interested in knowing more about a particular topic.
 
@@ -15,7 +15,7 @@ More information about Datadog overview: https://docs.datadoghq.com/guides/overv
  GIF 
 Let’s go or similar
 
-##Prerequisites - Setup the environment
+## Prerequisites - Setup the environment
 
 __You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:__
 
@@ -36,7 +36,7 @@ Once your environment is all done, you can move on to Datadog setup!
 2.	Enter a few information about yourself, and most importantly, about your stack.
 3.	Then, pick the right OS (in this example: Mac OS X) and start following the different steps.
 
-![Installation Instructions for Mac OS X](/screenshots/install_instructions.png)
+![Installation Instructions for Mac OS X](/screenshots/install_instructions.jpg)
 
 In the case of a Mac OS X…
 
@@ -87,7 +87,7 @@ sudo launchctl load -w /Library/LaunchDaemons/com.datadoghq.agent.plist
 
 More information about how to get started with the agent depending on your platform: https://docs.datadoghq.com/guides/basic_agent_usage/.
 
-##Collecting Metrics: 
+## Collecting Metrics: 
 
 * __Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.__
 
@@ -274,7 +274,7 @@ https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequ
 
 The collection interval was therefore changed in the yaml file (and not the Python one).
 
-##Visualizing Data:
+## Visualizing Data:
 
 __Utilize the Datadog API to create a Timeboard that contains:__
 * __Your custom metric scoped over your host.__
@@ -291,7 +291,7 @@ To start using Datadog API, you first need to install Datadog. Therefore, go to 
 
 You then need to look for your API key and to create your application key. To do so, just go to Datadog application, go to the “Integrations” section in the side bar menu, and pick the APIs tab. Just hit the button “Create Application Key” and there you go, your brand-new application key!
 
-![Application Key Creation](/screenshots/appkeycreation.png)
+![Application Key Creation](/screenshots/appkeycreation.jpg)
 
 You then need to adapt a code snippet from here: https://docs.datadoghq.com/api/#timeboards. 
 Here is what ours looked like :
@@ -409,7 +409,7 @@ It is not obvious in the previous graph as it displayed a constant figure (maxim
 
 ![Anomaly Function Applied to my_metric](/screenshots/anomaly_graph.png)
 
-##Monitoring Data
+## Monitoring Data
 
 __Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.__
 __Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:__
@@ -488,7 +488,7 @@ People notified in downtime messages should also receive an email notification w
 More information about downtime scheduling:
 https://docs.datadoghq.com/guides/monitors/#scheduling-downtime
 
-##Collecting APM Data:
+## Collecting APM Data:
 
 __Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:__
 
@@ -632,7 +632,7 @@ More information about Datadog tracing terminology:
 https://docs.datadoghq.com/tracing/terminology/
 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 
-##Getting Creative: 
+## Getting Creative: 
 
 __Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!__
 
