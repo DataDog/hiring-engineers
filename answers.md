@@ -1,14 +1,14 @@
-# Datadog Self-Guided Tour - Solution Engineer Technical Exercise
+# Datadog Self-Guided Tour - Solutions Engineer Technical Exercise
 
 This tutorial will go through Datadog main features in order for you to discover and test the software various features in a structured way. Don’t be scared, it will be fun and as documented as possible! We will also provide you with some extra links throughout the tutorial in case you are interested in knowing more about a particular topic.
 
 Summary
 * [Getting Started](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#prerequisites---setup-the-environment)
-* Collecting Metrics
-* Visualizing Data
-* Monitoring Data
-* Collecting APM Data
-* Getting Creative
+* [Collecting Metrics](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-metrics)
+* [Visualizing Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#visualizing-data)
+* [Monitoring Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#monitoring-data)
+* [Collecting APM Data](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#collecting-apm-data)
+* [Getting Creative](https://github.com/MargotLepizzera/hiring-engineers/blob/solutions-engineer/answers.md#getting-creative)
 
 More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
 
@@ -356,7 +356,7 @@ If you solely need to do small modifications on your timeboard, you can simply c
 It is also worth noting that you can very easily create dashboards using drag and drop in the UI and immediately get the corresponding JSON file.
 
  GIF 
-http://g.recordit.co/55jadBYi6q.gif
+![](http://g.recordit.co/55jadBYi6q.gif)
  SCREENSHOT
 ![Creating Timeboard Through UI & Getting the Corresponding JSON File](/screenshots/timeboard_UI.png)
 ![Creating Timeboard Through UI & Getting the Corresponding JSON File](/screenshots/timeboard_JSON.png)
