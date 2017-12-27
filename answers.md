@@ -12,8 +12,7 @@ Summary
 
 More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
 
- GIF 
-Let’s go or similar
+![Let's Go!](https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif)
 
 ## Prerequisites - Setup the environment
 
@@ -75,7 +74,8 @@ You could also copy paste this command line on your terminal:
 DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
 ```
 
-2.	You should then be able to use the command line datadog-agent in your terminal. Here is a list of some basic command lines that can be used to manage the agent on OS X: https://docs.datadoghq.com/guides/basic_agent_usage/osx/. 
+2.	You should then be able to use the command line datadog-agent in your terminal. 
+Here is a list of some basic command lines that can be used to manage the agent on OS X: https://docs.datadoghq.com/guides/basic_agent_usage/osx/. 
 You can also use the Datadog Agent app using your system tray.
 
 3.	If you want to, you can set up the agent so it automatically runs at login. To do so, you just need to execute these two command lines displayed on the configuration tab:
@@ -85,7 +85,8 @@ sudo cp '/opt/datadog-agent/etc/com.datadoghq.agent.plist' /Library/LaunchDaemon
 sudo launchctl load -w /Library/LaunchDaemons/com.datadoghq.agent.plist
 ```
 
-More information about how to get started with the agent depending on your platform: https://docs.datadoghq.com/guides/basic_agent_usage/.
+More information about how to get started with the agent depending on your platform: 
+https://docs.datadoghq.com/guides/basic_agent_usage/.
 
 ## Collecting Metrics: 
 
@@ -137,9 +138,7 @@ In the following example, 4 tags were implemented:
 
 You can also easily assign tags to hosts using the API or the UI. This, however, is not an available feature for integrations.
 
- GIF 
-Moi en train d’ajouter un tag via UI
-Host Tagging Through UI
+![Host Tagging Through UI](http://g.recordit.co/CnfucjLf2t.gif)
 
 More information on the tagging topic: 
 https://docs.datadoghq.com/guides/tagging/
@@ -178,7 +177,7 @@ psql -h localhost -U datadog postgres -c \
 And entered our ‘<PASSWORD>’.
 ```
 
-3.	Then, we edited the conf.d/postgres.yaml file (using this https://github.com/DataDog/integrations-core/blob/master/postgres/conf.yaml.example) and added a few tags to configure the agent and to connect it to our PostgreSQL server. 
+3.	Then, we edited the conf.d/postgres.yaml file (using [this](https://github.com/DataDog/integrations-core/blob/master/postgres/conf.yaml.example) and added a few tags to configure the agent and to connect it to our PostgreSQL server. 
 
 ```yaml
 init_config:
@@ -244,7 +243,8 @@ To make sure your custom agent check was implemented, you can also go to “Dash
 
 ![Custom Agent Check Validation (UI)](/screenshots/mymetric_workingui.png)
 
-More information about custom agent check: https://docs.datadoghq.com/guides/agent_checks/
+More information about custom agent check: 
+https://docs.datadoghq.com/guides/agent_checks/
 
 * __Change your check's collection interval so that it only submits the metric once every 45 seconds.__
 
@@ -355,12 +355,7 @@ If you solely need to do small modifications on your timeboard, you can simply c
 
 It is also worth noting that you can very easily create dashboards using drag and drop in the UI and immediately get the corresponding JSON file.
 
- GIF 
-![](http://g.recordit.co/55jadBYi6q.gif)
- SCREENSHOT
-![Creating Timeboard Through UI & Getting the Corresponding JSON File](/screenshots/timeboard_UI.png)
-![Creating Timeboard Through UI & Getting the Corresponding JSON File](/screenshots/timeboard_JSON.png)
-
+![Creating Timeboard Through UI & Getting the Corresponding JSON File](http://g.recordit.co/55jadBYi6q.gif)
 
 More information about dashboards:
 https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-
