@@ -70,7 +70,6 @@ dd_url: https://app.datadoghq.com
 # This can be a comma-separated list of api keys.
 # (default: None, the agent doesn't start without it)
 api_key: <YOUR_API_KEY>
-
 ```
 
 You could also copy paste this command line on your terminal:	
