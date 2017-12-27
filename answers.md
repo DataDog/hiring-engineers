@@ -21,7 +21,6 @@ This tutorial will go through Datadog main features in order for you to discover
 
 <p align="center">
 <img src="https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif"/>
-<figcaption>Up to you now!</figcaption>
 </p>
 
 More information about Datadog overview: https://docs.datadoghq.com/guides/overview/
@@ -280,6 +279,21 @@ https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequ
 * __Bonus Question: Can you change the collection interval without modifying the Python check file you created?__
 
 The collection interval was therefore changed in the yaml file (and not the Python one).
+
+Another way to change the collection interval, without modifying the yaml file could be to directly change the AgentCheck class that manages every custom agent check file. Therefore, go to `/opt/datadog-agent/agent/checks/__init__.py` and change the `DEFAULT_MIN_COLLECTION_INTERVAL` value from 0 to 45.
+
+```python
+class AgentCheck(object):
+    OK, WARNING, CRITICAL, UNKNOWN = (0, 1, 2, 3)
+
+    SOURCE_TYPE_NAME = None
+
+    DEFAULT_EXPIRY_SECONDS = 300
+
+    DEFAULT_MIN_COLLECTION_INTERVAL = 45
+```
+
+Careful though, this will impact all of the custom agent checks you've come up with from now.
 
 ## Visualizing Data:
 
