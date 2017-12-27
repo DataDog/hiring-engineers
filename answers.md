@@ -649,8 +649,7 @@ From the moment on you manage to collect the data, you can barely monitor whatev
 
 If you are one of these animal nerds (no offense, I’m part of this team) for instance, you could totally decide to track your pet using a bit of electronics and Datadog. By adding some kind of Raspberry Pi to its collar and using sound analysis you could monitor if it is barking or not when you are away: here goes your brand-new home alarm system!
 
-![Smart Dog](https://media.giphy.com/media/yQDV1AVpcXEKQ/giphy.gif)
-![Let's Go!](https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif)
+![Smart Dog](https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif)
 
 With the adapted sensors implementation, you could also help shops, public organizations, etc. monitor their waiting lines and why not have them send you an alert when one of the counter or cash desk is available.
 
