@@ -13,13 +13,17 @@ More information about Datadog overview: https://docs.datadoghq.com/guides/overv
 
 ![Let's Go!](https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif)
 
-## Prerequisites - Setup the environment
+## Getting Started
+
+### Set Up the Environement
 
 __You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:__
 
 * __You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu 12.04 VM. You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.__
 
 For the environment, we decided to use Mac OS X. However, the best way to setup your environment and to avoid any OS and/or dependency issues, is to go with a combination of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant Ubuntu 12.04VM](https://www.vagrantup.com/downloads.html). 
+
+### Datadog Agent
 
 * __Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.__
 
@@ -79,6 +83,8 @@ https://docs.datadoghq.com/guides/basic_agent_usage/.
 
 ## Collecting Metrics: 
 
+### Tagging
+
 * __Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.__
 
 >Tags are a good way for you to add an extra dimension to your metrics in order to conduct in-depth analysis by filtering and grouping them.
@@ -108,7 +114,7 @@ dd_url: https://app.datadoghq.com
 # https://app.datadoghq.com/account/settings
 # This can be a comma-separated list of api keys.
 # (default: None, the agent doesn't start without it)
-api_key: f7adb89b942119d34edbb691009cec0d
+api_key: <YOUR_API_KEY>
 
 # Force the hostname to whatever you want. (default: auto-detected)
 # hostname: mymachine.mydomain
@@ -117,11 +123,7 @@ api_key: f7adb89b942119d34edbb691009cec0d
 tags: laptop:margot,project:test,env:dev,platform:macosx
 ```
 
-In the following example, 4 tags were implemented:
-* A first tag related to our development environment.
-* A second tag related to the owner of the device, here it is Margot’s laptop.
-* A third tag related to the platform type, here it is Mac OS X.
-* A fourth tag related to the project’s type, here: test.
+In the following example, 4 tags were implemented: a tag related to the environment (dev), a tag related to the owner of the device (margot), a tag related to the platform type (maxosx) and a tag related to the type of project (test).
 
 ![Host Tagging Through Agent Config File](/screenshots/host.png)
 
@@ -132,6 +134,8 @@ You can also easily assign tags to hosts using the API or the UI. This, however,
 More information on the tagging topic: 
 https://docs.datadoghq.com/guides/tagging/
 https://help.datadoghq.com/hc/en-us/articles/204312749-Getting-started-with-tags
+
+### Database Integration
 
 * __Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.__
 
@@ -147,7 +151,7 @@ Detailed information about your integration is also to be found when you hit the
 ![Postgres Integration](/screenshots/postgres_inte_1.png)
 ![Postgres Integration](/screenshots/postgres_inte_2.png)
 
-In our case, we decided to go with PostgreSQL (that can be downloaded from here - https://postgresapp.com/). We consequently …
+In our case, we decided to go with PostgreSQL (that can be downloaded from [here](https://postgresapp.com/)). We consequently…
 
 1.	Created a read-only Datadog user using the following command line:
 
@@ -188,9 +192,11 @@ datadog-agent stop
 datadog-agent start
 ```
 
-5.	We ran the `datadog-agent info` command line to make sure the PostgreSQL integration has been successfully completed.
+5.	We ran the `datadog-agent info` command line to make sure the PostgreSQL integration had been successfully completed.
 
 ![Postgres Integration Validation](/screenshots/postgres_working.png)
+
+### Custom Agent Check
 
 * __Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.__
 
@@ -232,6 +238,8 @@ To make sure your custom agent check was implemented, you can also go to “Dash
 More information about custom agent check: 
 https://docs.datadoghq.com/guides/agent_checks/
 
+### Check's Collection Interval
+
 * __Change your check's collection interval so that it only submits the metric once every 45 seconds.__
 
 > As you can tell by its name, the check’s collection interval corresponds to which the frequency the check is run.
@@ -262,6 +270,8 @@ The collection interval was therefore changed in the yaml file (and not the Pyth
 
 ## Visualizing Data:
 
+### Timeboard Through API
+
 __Utilize the Datadog API to create a Timeboard that contains:__
 * __Your custom metric scoped over your host.__
 * __Any metric from the Integration on your Database with the anomaly function applied.__
@@ -279,7 +289,7 @@ You then need to look for your API key and to create your application key. To do
 
 ![Application Key Creation](/screenshots/appkeycreation.jpg)
 
-You then need to adapt a code snippet from here: https://docs.datadoghq.com/api/#timeboards. 
+You then need to adapt a code snippet from [here](https://docs.datadoghq.com/api/#timeboards). 
 Here is what ours looked like :
 
 ```python
@@ -357,6 +367,8 @@ https://docs.datadoghq.com/graphing/
 https://help.datadoghq.com/hc/en-us/articles/204820019-Graphing-with-Datadog-from-the-query-to-the-graph
 https://help.datadoghq.com/hc/en-us/articles/204526615-What-is-the-rollup-function-
 
+### Timeboard Through UI
+
 __Once this is created, access the Dashboard from your Dashboard List in the UI:__
 * __Set the Timeboard's timeframe to the past 5 minutes.__
 
@@ -391,6 +403,8 @@ It is not obvious in the previous graph as it displayed a constant figure (maxim
 ![Anomaly Function Applied to my_metric](/screenshots/anomaly_graph.png)
 
 ## Monitoring Data
+
+### Set Up Alerts
 
 __Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.__
 __Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:__
@@ -432,6 +446,8 @@ Following the setup of our monitor, we received a first warning email:
 ![Warning Email](/screenshots/warn_mail.png)
 
 Other emails should follow such as alert, no data, and recovery emails.
+
+### Schedule Downtimes
 
 * __Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:__
 	* __One that silences it from 7pm to 9am daily on M-F,__
@@ -622,6 +638,8 @@ __Is there anything creative you would use Datadog for?__
 From the moment on you manage to collect the data, you can barely monitor whatever you want to monitor and there’s a ton of possible use cases.
 
 If you are one of these animal nerds (no offense, I’m part of this team) for instance, you could totally decide to track your pet using a bit of electronics and Datadog. By adding some kind of Raspberry Pi to its collar and using sound analysis you could monitor if it is barking or not when you are away: here goes your brand-new home alarm system!
+
+[Smart Dog](https://media.giphy.com/media/yQDV1AVpcXEKQ/giphy.gif)
 
 With the adapted sensors implementation, you could also help shops, public organizations, etc. monitor their waiting lines and why not have them send you an alert when one of the counter or cash desk is available.
 
