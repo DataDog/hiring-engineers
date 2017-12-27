@@ -655,6 +655,10 @@ If you are one of these animal nerds (no offense, I’m part of this team) for i
 <div style="text-align:center"><img src ="https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif"/></div>
 ![Smart Dog](https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif)
 
+<p align="center">
+ <img src="https://media.giphy.com/media/D6TojYiEAMwGk/giphy.gif"/>
+ </p>
+
 With the adapted sensors implementation, you could also help shops, public organizations, etc. monitor their waiting lines and why not have them send you an alert when one of the counter or cash desk is available.
 
 There are as many Datadog use cases as you can think of it, so let’s get creative! 
