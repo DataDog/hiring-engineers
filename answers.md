@@ -11,7 +11,7 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so.
+  I researched https://docs.datadoghq.com/agent/agent_checks/ in order to complete this section.  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so.  The code used is in checkvalue.py
 
 Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
