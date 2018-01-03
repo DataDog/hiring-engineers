@@ -53,14 +53,14 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-  Attached screenshot of email called email.jpg
+  Attached screenshot of email called email in order to show the email.  I also attached two other pictures, monitorsetup and markdownscript.
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-  Completed and attached email as notification.jpg
+  Completed and attached email as downtime.
 
 Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
