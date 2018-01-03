@@ -11,7 +11,7 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-  I researched https://docs.datadoghq.com/agent/agent_checks/ in order to complete this section.  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so.  The code used is in checkvalue.py
+  I researched https://docs.datadoghq.com/agent/agent_checks/ in order to complete this section.  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so.  The code used is in checkvalue.py and checkvalue.yaml
 
 Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
@@ -34,7 +34,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
-  Attached timeboard screenshot as graph1.jpg, graph2.jpg, and dashboard.jpg
+  Attached timeboard screenshot as graph1, graph2, and dashboard
 
 Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
