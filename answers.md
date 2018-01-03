@@ -77,7 +77,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
   I am unsure what is considered an APM metric and an infrastructure metric.  I tried looking through the documentation, but was unable to determine it. I attached a picture of two metrics that I assume are APM and Infrastructure as "APM and Infrastructure"
 
 Please include your fully instrumented app in your submission, as well.
-  Attached as myproject.py
+  Attached as myproject.py.  In order to complete this, I installed blinker and flask, and used python 2.
   
 Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
