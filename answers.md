@@ -66,15 +66,18 @@ Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-  I inserted the middleware to the flask app provided.  I added the code as flaskproject.py
+  I inserted the middleware to the flask app provided.  I added the code as flaskproject
   
 Bonus Question: What is the difference between a Service and a Resource?
+  I looked online to look for this answer.  Luckily, I found a datadog document! https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+  A "Service" is defined by the user when implementing an application.  These services are one or more processes that work together to provide a feature set.  Some examples of services are database and webapp.  These help distinguish what process each service provides
+  A "Resource" is a query for a service. An example of a resource is a URL request to get a particular service.  In order to observe the resources, you must first visit the particular service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-  I am unsure what is considered an APM metric and an infrastructure metric.  I tried looking through the documentation, but was unable to determine it. I attached a picture of two metrics that I assume are APM and Infrastructure as APM.jpg
+  I am unsure what is considered an APM metric and an infrastructure metric.  I tried looking through the documentation, but was unable to determine it. I attached a picture of two metrics that I assume are APM and Infrastructure as "APM and Infrastructure"
 
 Please include your fully instrumented app in your submission, as well.
-  Attached as flaskproject.py
+  Attached as myproject.py
   
 Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
