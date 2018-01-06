@@ -1,18 +1,40 @@
 Your answers to the questions go here.
 
-Collecting Metrics:
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-  I attached the picture as hosttags.png
+# Prerequisites - Setup the environment
+In order to set up my environment I used [Oracle VM VirtualBox](https://www.virtualbox.org/), [Ubuntu Server 16.04.3](https://www.ubuntu.com/download/server), and [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04) on my Lenovo laptop.  I actually ran into a complication, which was that my VM would not install a 64-bit Ubuntu server, which prevented me from obtaining Docker.  My laptop runs 64-bit Windows, so I figured there had to be some setting preventing me from installing the 64-bit Ubuntu server.  After some research, I figured out that the [Intel Virtualization Technology](http://www.fixedbyvonnie.com/2014/11/virtualbox-showing-32-bit-guest-versions-64-bit-host-os/#.WlEbyt-nGUk) was disabled.  After going into the bios and enabling the feature, I was able to install all the prerequisites needed for this challenge.
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-  I installed MongoDB
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+# Collecting Metrics:
 
-  I researched https://docs.datadoghq.com/agent/agent_checks/ in order to complete this section.  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so.  The code used is in checkvalue.py and checkvalue.yaml
+### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+I achieved this through the datadog portal.  I reviewed the [tagging](https://docs.datadoghq.com/agent/tagging/) documentation in DataDog and followed the instructions to add the tags in the UI. I attached the picture as hosttags.png:
 
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/2f2b5fb699e83f58c390a6c1eaccd74d9347457c/hosttags.png "Host with 2 tags")
+
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+I installed [MongoDB](https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-16.04/).  I followed the [integrations guide](https://docs.datadoghq.com/integrations/mongo/) to complete the integration.  I verified that the check file was not providing any errors
+
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+#### * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#### * Bonus Question Can you change the collection interval without modifying the Python check file you created?
+I researched https://docs.datadoghq.com/agent/agent_checks/ in order to complete this section.  I attached the code accordingly for the check and the python code.  I was not able to modify the collection interval without modifying the check file.  I tried to see how to write in python to submit the metric every 45 seconds, but I was unable to do so and added the interval time in the yaml file accordingly.  The code used is in checkvalue.py and checkvalue.yaml
+
+checkvalue.py:
+```python
+import random
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric'), random.randint(1,1000))
+```
+
+checkvalue.yaml:
+```
+init_config:
+
+instance:
+  [{min_collection_interval: 45}]
+```
 Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
