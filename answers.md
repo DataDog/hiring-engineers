@@ -35,74 +35,171 @@ init_config:
 instance:
   [{min_collection_interval: 45}]
 ```
-Visualizing Data:
+# Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-  Was able to do, attached the JSON i submitted via CURL called API
+### Your custom metric scoped over your host.
+I used postman in order to complete the CURL command to create the custom metric chart.  To see what was needed for the chart, I first looked up the documentation to look up [how to chart in the UI](https://docs.datadoghq.com/graphing/).  Seeing that a JSON is presented, I used the JSON template from the chart I created to create a [timeboard using the API](https://docs.datadoghq.com/api/?lang=python#timeboards):
+```JSON
+{"title": "Sum of My_Metric",
+       "definition": {
+       	"events": [],
+       	"requests": [
+     {
+       "q": "sum:my_metric{*}.rollup(sum, 60)",
+       "type": null,
+       "style": {
+         "palette": "dog_classic",
+         "type": "solid",
+         "width": "normal"
+       },
+       "conditional_formats": [],
+       "aggregator": "sum"
+     }
+```
 
-Any metric from the Integration on your Database with the anomaly function applied.
-  Was not able to do.  I was investigating why the mongoDB was not providing data.  When viewing the checks, I noticed that I was getting an error because I was notusing -replset.  Looking up the error led me to a mongoDB page that was providing instruction on how to create a replica set:
-https://docs.mongodb.com/manual/tutorial/deploy-replica-set/
-I added my localhost accordingly, but was not able to get this done accordingly.  I am still trying to get this work, but I am submitting without this metric at this time.  I am also not sure what the "anomaly function" is.
-
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
-  Attached the script and screenshot of each chart accordingly.
+The request used washttps://app.datadoghq.com/api/v1/dash?api_key={api_key}$application_key={app_key}.  The JSON is in the third part of this section as I put all charts on the same timeboard.  Below is a picture of the graph in the timeboard:
+  
+  ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Graph%201.png)
 
 
+### Any metric from the Integration on your Database with the anomaly function applied.
+  I am not currently able to do this section.  I restarted my laptop and noticed there was an error checking the MongoDB integration.  When viewing the checks, I noticed that I was getting an error because I was notusing -replset.  Looking up the error led me to a mongoDB page that was providing instruction on how to create a [replica set](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/). I added my localhost accordingly based on the document, mongoDB will no longer run.  I am still trying to get this work, but I am submitting without this metric at this time.  I am also not sure what the "anomaly function" is.
+
+### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+  Repeating the steps as in the first chart, I was able to use the JSON below to create the graph and the timeboard:
+  ```JSON
+ {
+       "graphs" : [{
+           "title": "My Metric Over Host",
+           "definition": {
+               "events": [],
+               "requests": [
+                   {"q": "avg:my_metric{host:dd}"}
+               ]
+           },
+           "viz": "timeseries"
+       },
+       {"title": "Sum of My_Metric",
+       "definition": {
+       	"events": [],
+       	"requests": [
+     {
+       "q": "sum:my_metric{*}.rollup(sum, 60)",
+       "type": null,
+       "style": {
+         "palette": "dog_classic",
+         "type": "solid",
+         "width": "normal"
+       },
+       "conditional_formats": [],
+       "aggregator": "sum"
+     }
+   ],
+   "viz": "query_value",
+   "autoscale": true
+ }
+       }],
+       "title" : "API Dashboard Multiple Charts",
+       "description" : "A dashboard made via API.",
+       "read_only": "False"
+     }
+ ```
+This was the dashboard after creation:
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Dashboard.png)
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
-  Attached timeboard screenshot as graph1, graph2, and dashboard
+### Set the Timeboard's timeframe to the past 5 minutes.  Take a snapshot of this graph and use the @ notation to send it to yourself.
+ This is the graph that shows the value.  The number is small because I capture it within the 5 minute interval:
+ ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Graph%202.png)
 
-Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+### Bonus Question: What is the Anomaly graph displaying?
+ Since I was not able to display the anomaly graph, I was not able to attempt this bonus question.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+# Monitoring Data
 
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Please configure the monitor’s message so that it will:
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-Send you an email whenever the monitor triggers.
+#### * Warning threshold of 500
+#### * Alerting threshold of 800
+#### * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+### Please configure the monitor’s message so that it will:
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+#### * Send you an email whenever the monitor triggers.
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+#### * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-  Attached screenshot of email called email in order to show the email.  I also attached two other pictures, monitorsetup and markdownscript.
+### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+Being from Catchpoint, this was the easiest section for me to accomplish.  By playing around with the UI, I went directly to monitors in order to create the alert.  Below is the screenshot of the warning and alert thresholds:
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/6a7e86e6dcf807039e9d0fef80b3128dfb3dfa95/monitorsetup.png)
 
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-  Completed and attached email as downtime.
+In order to create different messages, I reviewed the [notifications](https://docs.datadoghq.com/monitors/notifications/) document.  I was able to create the following that provided my IP address of the VM and the value:
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/6a7e86e6dcf807039e9d0fef80b3128dfb3dfa95/markdownscript.png)
 
-Collecting APM Data:
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+It did not take long to get an email with the alert triggered:
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/6a7e86e6dcf807039e9d0fef80b3128dfb3dfa95/email.png)
 
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-  I inserted the middleware to the flask app provided.  I added the code as flaskproject
-  
-Bonus Question: What is the difference between a Service and a Resource?
-  I looked online to look for this answer.  Luckily, I found a datadog document! https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
-  A "Service" is defined by the user when implementing an application.  These services are one or more processes that work together to provide a feature set.  Some examples of services are database and webapp.  These help distinguish what process each service provides
-  A "Resource" is a query for a service. An example of a resource is a URL request to get a particular service.  In order to observe the resources, you must first visit the particular service.
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-  I am unsure what is considered an APM metric and an infrastructure metric.  I tried looking through the documentation, but was unable to determine it. I attached a picture of two metrics that I assume are APM and Infrastructure as "APM and Infrastructure"
+#### * One that silences it from 7pm to 9am daily on M-F,
+#### * And one that silences it all day on Sat-Sun.
+### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+When creating the monitor, I noticed a section for downtime.  I clicked on manage downtime, and started playing around in the area.  After creating the downtime schedules, I checked the following night and confirmed I received the email:
 
-Please include your fully instrumented app in your submission, as well.
-  Attached as myproject.py.  In order to complete this, I installed blinker and flask, and used python 2.
-  
-Final Question:
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/6a7e86e6dcf807039e9d0fef80b3128dfb3dfa95/downtime.png)
 
-Is there anything creative you would use Datadog for?
-  As mentioned, DataDog has beatend me to the blog post about Pokemon Go when it went down.  DataDog allows companies to measure performance of their applications.  Being a gamer myself, it would be interesting seeing how MOBA/online games use DataDog.  An interesting way would be with League of Legends and their matchmaking.  Not long ago, League of Legends updated their infrastructure to have all players go directly from their internet ISP to their services.  They were frustrated with ISP's they could not control, and wanted to make sure that if there was a problem, they could fix it.  With this change, I would also assume that a lot of their backend code has changed.  DataDog could measure the performance of the backend to see the improvement and if their servers are able to handle all the direct bandwidth.
+# Collecting APM Data:
+### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution
+#### Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+Being unfamiliar with python and class, I first took the class in [CodeAcademy](https://www.codecademy.com/learn/learn-python) in order to understand the basics of the language.  After that was done, I researched [how to run a flask app onto Ubuntu] Server(https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04).  Using the code provided in the challenge, I applied the middleware using the method above to create the flask app.  Below is the code for the app:
+```python
+from flask import Flask
+import logging
+import sys
+import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return '<h1>Entrypoint to the Application</h1>'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+```
+### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Having experience with expressJS, I tested these routes accordingly in order to get data in the UI.  I had difficulty finding what is an APM metric vs what is an Infrastructure Metric.  I did see APM metrics and used the number of hits:
+
+![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/ded04116e233f997413aa03306e40d93c6e6c760/APM%20and%20Infrastructure.png)
+
+### Bonus Question: What is the difference between a Service and a Resource?
+ I looked online to look for this answer.  Luckily, I found a [datadog document](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)! A "Service" is defined by the user when implementing an application.  These services are one or more processes that work together to provide a feature set.  Some examples of services are database and webapp.  These help distinguish what process each service provides.  A "Resource" is a query for a service. An example of a resource is a URL request to get a particular service.  In order to observe the resources, you must first visit the particular service.
+
+# Final Question:
+### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+As mentioned, DataDog has beatend me to the blog post about Pokemon Go when it went down.  DataDog allows companies to measure performance of their applications.  Being a gamer myself, it would be interesting seeing how MOBA/online games use DataDog.  An interesting way would be with League of Legends and their matchmaking.  Not long ago, League of Legends updated their infrastructure to have all players go directly from their internet ISP to their services.  They were frustrated with ISP's they could not control, and wanted to make sure that if there was a problem, they could fix it.  With this change, I would also assume that a lot of their backend code has changed.  DataDog could measure the performance of the backend to see the improvement and if their servers are able to handle all the direct bandwidth.
+
+A lot of companies are now concerned about Markdown and Spectre since this can decrease performance by 30%.  Datadog can help monitor and make sure apps are not effected by these bugs.
