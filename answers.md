@@ -131,7 +131,7 @@ instances:
     [{}]
 ```
 
-The python check is defined in: `_checks.d/my_metric.py_`:
+The python check is defined in: `checks.d/my_metric.py`:
 
 ```py
 from random import random
