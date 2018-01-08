@@ -174,6 +174,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Create a Timeboard by executing the included `scripts/create_timeboard.py` script:
 `docker exec -it datadog_flask python /tmp/create_timeboard.py` which yields a link that we will open in our browser:
+
 `Your timeboard 'My Timeboard' was created: https://app.datadoghq.com/dash/449266/my-timeboard`
 
 ![Timeboard](images/timeboard.png)
@@ -254,7 +255,7 @@ This will send us an e-mail notification when the monitor triggers:
     
 # Collecting APM Data
 
-A Flask app is running in our container __datadog__flask.
+A Flask app is running in our container __datadog__flask__.
 This app is instrumented to trace APM data and the application tracer is modified to report its findings to the Datadog agent running on our __datadog_agent__ container (through DogStatD on port 8126).
 
 The source of the Flask App can be found in `app/main.py`:
@@ -321,4 +322,9 @@ A resource in Datadog APM is "is a particular query to a service", this is typic
 
 
 # Final Question
-Is there anything creative you would use Datadog for?
+* __Is there anything creative you would use Datadog for?__
+
+If you can forward your data to Datadog, there is a plethora of use cases for Datadog. 
+
+I would personally use it for my own project, [a stock news aggregator](https://www.pulsr.se), where I would feed Datadog with relevant data (such as tags being: ticker and other relevant information that applies to a stock), but also metrics that are of value (such as stock quotes). This does not only give me a visual and granular repreentation of my data, but I can also benefit from metric alerting with webhooks that can forward results of interest and value back to my application.
+                                                                                                                                                                                                                                                                     
