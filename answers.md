@@ -46,10 +46,9 @@ The setup should be a breeze for you as the above is available for you in a git 
 
 1. Install Docker from [here](https://docs.docker.com/engine/installation/)
 2. Git clone this repository:
-`git clone git@github.com:mpajor/hiring-engineers.git`
-3. Checkout the _my-submission_ branch:
-`git checkout my-submission`
-`cd docker`
+`git clone https://github.com/mpajor/hiring-engineers.git`
+3. Checkout the _mpajor-submission_ branch:
+`cd hiring-engineers && git checkout mpajor-submission`
 4. Login to Datadog and get your API and APP key from [here](https://app.datadoghq.com/account/settings#api) and save it
 5. Add your API and APP key and set some tags:
 ```
@@ -58,7 +57,7 @@ sed -i 's/APP_KEY=.*/APP_KEY=<your app key>/g' .env
 sed -i 's/TAGS=env:lab,role:agent/g' .env
 ```
 6. Run your Docker containers:
-` docker-compose up -d `
+`cd docker && docker-compose up -d`
 8. Finally, validate that your docker containers are running:
 `docker ps`
 ``` sh
