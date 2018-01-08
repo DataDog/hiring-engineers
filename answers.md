@@ -1,5 +1,3 @@
-This document should provide you with nimble steps to help demonstrate the capabilities of the Datadog monitoring suite, using Docker, but also act as a submission for the Tech Excercise.
-
 - [Introduction](#introduction)
 - [Getting started](#getting-started)
     - [Installing the Prerequisites](#installing-the-prerequisites)
@@ -16,7 +14,7 @@ This document should provide you with nimble steps to help demonstrate the capab
 
 # Introduction
 
-This tutorial will lead you through the steps of starting Docker containers to quickly boot up three separate containers that runs the [Datadog agent](https://github.com/DataDog/dd-agent), a Python Flask App and a MySQL server.
+This document should provide you with nimble steps to help demonstrate the capabilities of the Datadog monitoring suite, using Docker for the test environment. The contents of this document is a submission for the Tech Excercise.
 
 Note that this tutorial does not cover the basics of installing and using Docker, but references will be see in-line to ease the workflow for you.
 
