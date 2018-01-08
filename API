@@ -1,0 +1,35 @@
+{
+      "graphs" : [{
+          "title": "My Metric Over Host",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{host:dd}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+      {"title": "Sum of My_Metric",
+      "definition": {
+      	"events": [],
+      	"requests": [
+    {
+      "q": "sum:my_metric{*}.rollup(sum, 60)",
+      "type": null,
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "sum"
+    }
+  ],
+  "viz": "query_value",
+  "autoscale": true
+}
+      }],
+      "title" : "API Dashboard Multiple Charts",
+      "description" : "A dashboard made via API.",
+      "read_only": "False"
+    }
