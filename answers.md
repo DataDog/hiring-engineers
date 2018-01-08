@@ -65,7 +65,7 @@ sed -i 's/TAGS=env:lab,role:agent/g' .env
 CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS                            PORTS                                                                                          NAMES
 86087dba5e14        docker_flask                     "python3 main.py"        2 minutes ago       Up 2 minutes                      0.0.0.0:5000->5000/tcp                                                                         datadog_flask
 60833bf06a7d        mysql:5.7                        "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes                      0.0.0.0:32836->3306/tcp                                                                        datadog_mysql
-aee50e7ef51a        datadog/docker-dd-agent:latest   "/entrypoint.sh supe…"   2 minutes ago       Up 2 minutes (health: starting)   8125/udp, 8126/tcp, 0.0.0.0:32833->8126/udp                                                    datadog_agent                                                  ddtest_agent_1
+aee50e7ef51a        datadog/docker-dd-agent:latest   "/entrypoint.sh supe…"   2 minutes ago       Up 2 minutes (health: starting)   8125/udp, 8126/tcp, 0.0.0.0:32833->8126/udp                                                    datadog_agent
 ```
 
 
