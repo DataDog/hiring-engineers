@@ -34,7 +34,7 @@ Before you begin, you will need to first:
 
 The first step is creating your Datadog account [here](https://datadoghq.com)
 
-## Setup up your Docker environment
+## Setup your Docker environment
 
 For our test environment we will be deploying three containers using Docker:
 
