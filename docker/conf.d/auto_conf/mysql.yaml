@@ -1,0 +1,13 @@
+docker_images:
+  - mysql
+
+init_config:
+
+instances:
+  - server: "%%host%%"
+    user: datadog
+    pass: somepass
+    port: "%%port%%"
+    options:
+        replication: 0
+        galera_cluster: 0

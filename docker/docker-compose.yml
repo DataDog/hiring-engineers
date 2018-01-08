@@ -1,0 +1,49 @@
+version: '2'
+services:
+  flask:
+    container_name: datadog_flask
+    env_file: .env
+    build: .
+    labels:
+    - container.description"flask application"
+    - container.role="app"
+    ports:
+      - 5000:5000
+    depends_on:
+      - agent
+
+  mysql:
+    container_name: datadog_mysql
+    image: mysql:5.7
+    env_file: .env
+    labels:
+      - container.description="mysql server"
+      - container.role="database"
+    volumes:
+      - ./seed-data.sh:/docker-entrypoint-initdb.d/seed-data.sh
+    ports:
+      - 3306
+    depends_on:
+      - agent
+
+  agent:
+    container_name: datadog_agent
+    image: datadog/docker-dd-agent:latest
+    env_file: .env
+    labels:
+      - container.description="datadog agent"
+      - container.role="agent"
+    environment:
+      - SD_BACKEND=docker
+      - DD_APM_ENABLED=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - ./conf.d:/conf.d
+      - ./checks.d:/checks.d
+    ports:
+      - 8126/udp
+    privileged: true
+    labels:
+      - agent.state=lab
