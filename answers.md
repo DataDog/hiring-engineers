@@ -19,12 +19,13 @@ init_config:
 instances:
   - server: mongodb://datadog:{password}:27017/admin
 ```
-I researched [replset on mongodb](https://docs.mongodb.com/v3.2/tutorial/deploy-replica-set/) and decided to run rs.initiate in mongo.  The first error code I got was 76.  Looking up this error in [stack overflow](https://stackoverflow.com/questions/32952653/replica-set-error-code-76), I realized I needed to set a replset name in my /etc/mongod.conf file.  I added the following code into my mongod.conf file:
+I researched [replset on mongodb](https://docs.mongodb.com/v3.2/tutorial/deploy-replica-set/) and first tried to bind the IP.  However, I made a typo and could not revert the changes.  This prevented me from using MongoDb on host DD.  I decided to create a new DD agent with host mongointegration.  After reading more carefully, I decided to run rs.initiate in mongo with the new host.  The first error code I got was 76.  Looking up this error in [stack overflow](https://stackoverflow.com/questions/32952653/replica-set-error-code-76), I realized I needed to create a replset name in my /etc/mongod.conf file.  I added the following code into my mongod.conf file:
 ```python
 replication:
   replSetName:"greg1"
 ```
 After creating the replSetName, I restarted MongoDB and tried rs.initiate() again.  However, I got another error code, 93.  I also looked up this error in [stack overflow](https://stackoverflow.com/questions/28843496/cant-initiate-replica-set-in-ubuntu) and found out that sometimes when MongoDB is installed, they have the wrong IP address for the host name.  I looked at /etc/hosts and noticed that the file had the ip 127.0.1.1 for my host (I commented it out with # below).  I changed the IP to 127.0.0.1, restarted mongo again, and rs.initiate ran as expected!  I restarted the DD agent and the check came out OK!  I installed the MongoDB integration and noticed metrics were coming in!
+![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/mongo%20host.png?raw=true)
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 #### * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -47,26 +48,23 @@ init_config:
 instance:
   [{min_collection_interval: 45}]
 ```
+If I had to guess, it is possible to use the rollup function and average the value every 45 seconds.  However, the agent is still producing the metric and the standard rate.  Charting would provide the results every 45 seconds.
+
 # Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
 ### Your custom metric scoped over your host.
 I used postman in order to complete the CURL command to create the custom metric chart.  To see what was needed for the chart, I first looked up the documentation to look up [how to chart in the UI](https://docs.datadoghq.com/graphing/).  Seeing that a JSON is presented, I used the JSON template from the chart I created to create a [timeboard using the API](https://docs.datadoghq.com/api/?lang=python#timeboards):
 ```JSON
-{"title": "Sum of My_Metric",
-       "definition": {
-       	"events": [],
-       	"requests": [
-     {
-       "q": "sum:my_metric{*}.rollup(sum, 60)",
-       "type": null,
-       "style": {
-         "palette": "dog_classic",
-         "type": "solid",
-         "width": "normal"
-       },
-       "conditional_formats": [],
-       "aggregator": "sum"
+{
+         "title": "My Metric Over Host",
+         "definition": {
+             "events": [],
+             "requests": [
+                 {"q": "avg:my_metric{host:dd}"}
+             ]
+         },
+         "viz": "timeseries"
      }
 ```
 
@@ -76,7 +74,9 @@ The request used was https://app.datadoghq.com/api/v1/dash?api_key={api_key}$app
 
 
 ### Any metric from the Integration on your Database with the anomaly function applied.
+I used mongodb.uptime as my metric with the anomally function.  I provided the entire API call to add not only separate graphs for each metric, but also the graph that provided all 3 metrics:
 
+![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/mongo%20metric.png?raw=true)
 
 ### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
   Repeating the steps as in the first chart, I was able to use the JSON below to create the graph and the timeboard:
@@ -173,16 +173,22 @@ The request used was https://app.datadoghq.com/api/v1/dash?api_key={api_key}$app
      "read_only": "False"
    }
  ```
-This was the dashboard after creation:
-![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Dashboard.png)
+ This created all 4 charts shown below.  I made the timeline 4 hours in order to see the line chart of the rollup function, since every point is a total of one hour:
+ ![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/master%20dash.png?raw=true)
+ 
+This was my dashboard after using "alt + ]" to create 5 minute intervals:
+![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/5%20min%20dashboard.png?raw=true)
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ### Set the Timeboard's timeframe to the past 5 minutes.  Take a snapshot of this graph and use the @ notation to send it to yourself.
- This is the graph that shows the value.  The number is small because I capture it within the 5 minute interval:
- ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Graph%202.png)
+I wanted to make sure I had a datapoint for the hour rollup function.  However, whenever I take a picture, the point does not appear on the graph.  However, in my dashboard, I can highlight and see the point accordingly:
+When I email myself:
+![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/all%20metrics%205%20min.png?raw=true)
+When I highlight the point:
+![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/5minhighlight.png?raw=true)
 
 ### Bonus Question: What is the Anomaly graph displaying?
- Since I was not able to display the anomaly graph, I was not able to attempt this bonus question.
+I researched the anomaly detection in [DataDog Documents](https://docs.datadoghq.com/monitors/monitor_types/anomaly/).  It appears the anomally function is used to detect aif the metric is not behaving as expected.  It appears to be some sort of historical comparison, as it is comparing previous data to state if the metric is behaving abnormal in current time.  The example given in the document is the number of users, but I would also use it for other things like number of connections.  A user would like to know if there is an abnormal amount (higher or lower) of connections to their app, as it could greatly effect performance.
 
 # Monitoring Data
 
