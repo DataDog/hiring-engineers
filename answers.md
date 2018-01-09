@@ -12,7 +12,19 @@ I achieved this through the datadog portal.  I reviewed the [tagging](https://do
 ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/2f2b5fb699e83f58c390a6c1eaccd74d9347457c/hosttags.png "Host with 2 tags")
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-I installed [MongoDB](https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-16.04/).  I followed the [integrations guide](https://docs.datadoghq.com/integrations/mongo/) to complete the integration.  I verified that the check file was not providing any errors
+I installed [MongoDB](https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-16.04/).  This part took me a while to complete.  While following the integrations guide in the UI, I was getting a connection failure to port 27016.  I decided to look at [Datadog Documentation](https://docs.datadoghq.com/integrations/mongo/) and noticed that only one port was used, 27017.  Once I updated my mongo.yaml file, I was getting an error that I was not using a replSet.  Below is the mongo.yaml file I created:
+```python
+init_config:
+
+instances:
+  - server: mongodb://datadog:{password}:27017/admin
+```
+I researched [replset on mongodb](https://docs.mongodb.com/v3.2/tutorial/deploy-replica-set/) and decided to run rs.initiate in mongo.  The first error code I got was 76.  Looking up this error in [stack overflow](https://stackoverflow.com/questions/32952653/replica-set-error-code-76), I realized I needed to set a replset name in my /etc/mongod.conf file.  I added the following code into my mongod.conf file:
+```python
+replication:
+  replSetName:"greg1"
+```
+After creating the replSetName, I restarted MongoDB and tried rs.initiate() again.  However, I got another error code, 93.  I also looked up this error in [stack overflow](https://stackoverflow.com/questions/28843496/cant-initiate-replica-set-in-ubuntu) and found out that sometimes when MongoDB is installed, they have the wrong IP address for the host name.  I looked at /etc/hosts and noticed that the file had the ip 127.0.1.1 for my host (I commented it out with # below).  I changed the IP to 127.0.0.1, restarted mongo again, and rs.initiate ran as expected!  I restarted the DD agent and the check came out OK!  I installed the MongoDB integration and noticed metrics were coming in!
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 #### * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -58,52 +70,72 @@ I used postman in order to complete the CURL command to create the custom metric
      }
 ```
 
-The request used washttps://app.datadoghq.com/api/v1/dash?api_key={api_key}$application_key={app_key}.  The JSON is in the third part of this section as I put all charts on the same timeboard.  Below is a picture of the graph in the timeboard:
+The request used was https://app.datadoghq.com/api/v1/dash?api_key={api_key}$application_key={app_key}.  The JSON is in the third part of this section as I put all charts on the same timeboard.  Below is a picture of the graph in the timeboard:
   
   ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Graph%201.png)
 
 
 ### Any metric from the Integration on your Database with the anomaly function applied.
-  I am not currently able to do this section.  I restarted my laptop and noticed there was an error checking the MongoDB integration.  When viewing the checks, I noticed that I was getting an error because I was notusing -replset.  Looking up the error led me to a mongoDB page that was providing instruction on how to create a [replica set](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/). I added my localhost accordingly based on the document, mongoDB will no longer run.  I am still trying to get this work, but I am submitting without this metric at this time.  I am also not sure what the "anomaly function" is.
+
 
 ### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
   Repeating the steps as in the first chart, I was able to use the JSON below to create the graph and the timeboard:
   ```JSON
  {
-       "graphs" : [{
-           "title": "My Metric Over Host",
-           "definition": {
-               "events": [],
-               "requests": [
-                   {"q": "avg:my_metric{host:dd}"}
-               ]
-           },
-           "viz": "timeseries"
-       },
-       {"title": "Sum of My_Metric",
-       "definition": {
-       	"events": [],
-       	"requests": [
-     {
-       "q": "sum:my_metric{*}.rollup(sum, 60)",
-       "type": null,
-       "style": {
-         "palette": "dog_classic",
-         "type": "solid",
-         "width": "normal"
-       },
-       "conditional_formats": [],
-       "aggregator": "sum"
-     }
-   ],
-   "viz": "query_value",
-   "autoscale": true
- }
-       }],
-       "title" : "API Dashboard Multiple Charts",
-       "description" : "A dashboard made via API.",
-       "read_only": "False"
-     }
+     "graphs" : [{
+         "title": "My Metric Over Host",
+         "definition": {
+             "events": [],
+             "requests": [
+                 {"q": "avg:my_metric{host:dd}"}
+             ]
+         },
+         "viz": "timeseries"
+     },
+          {"title": "Sum of My_Metric",
+     "definition": {
+     	"events": [],
+     	"requests": [
+   {
+      "q": "sum:my_metric{host:dd}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true
+}
+     },
+     {"title": "MongoDB with anomaly function",
+     	"definition": {
+     		"events": [],
+     		"requests": [
+    {
+      "q": "anomalies(sum:mongodb.uptime{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true
+     	}
+     }],
+     "title" : "API Dashboard Visual Challenge Charts",
+     "description" : "A dashboard made via API.",
+     "read_only": "False"
+   }
  ```
 This was the dashboard after creation:
 ![alt-text](https://raw.githubusercontent.com/DataDog/hiring-engineers/f50388e55df917616b7095250863b9fcaa9bfd9e/Dashboard.png)
