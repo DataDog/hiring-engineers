@@ -184,6 +184,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 I wanted to make sure I had a datapoint for the hour rollup function.  However, whenever I take a picture, the point does not appear on the graph.  However, in my dashboard, I can highlight and see the point accordingly:
 When I email myself:
 ![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/all%20metrics%205%20min.png?raw=true)
+
 When I highlight the point:
 ![alt-text](https://github.com/grubin86/hiring-engineers/blob/grubin86-patch-1/5minhighlight.png?raw=true)
 
