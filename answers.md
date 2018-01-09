@@ -80,8 +80,8 @@ The request used was https://app.datadoghq.com/api/v1/dash?api_key={api_key}$app
 
 ### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
   Repeating the steps as in the first chart, I was able to use the JSON below to create the graph and the timeboard:
-  ```JSON
- {
+  ```json
+{
      "graphs" : [{
          "title": "My Metric Over Host",
          "definition": {
@@ -131,8 +131,44 @@ The request used was https://app.datadoghq.com/api/v1/dash?api_key={api_key}$app
   "viz": "timeseries",
   "autoscale": true
      	}
-     }],
-     "title" : "API Dashboard Visual Challenge Charts",
+     },
+     {"title": "Sum of all metrics",
+     	"definition": {
+     		"events": [],
+     		"requests": [
+    {
+      "q": "avg:my_metric{host:dd}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    },
+    {
+      "q": "anomalies(avg:mongodb.mem.bits{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    },
+    {
+      "q": "sum:my_metric{*}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true
+}}],
+     "title" : "API Dashboard Visual Challenge Charts Final",
      "description" : "A dashboard made via API.",
      "read_only": "False"
    }
