@@ -3,21 +3,21 @@
 ## Prerequisites - Setup the environment
 
 I set up a Vagrant Ubuntu 12.04 VM, I signed up for Datadog as Guillaume Raimbault and I installed the Datadog Agent.
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/Vagrant_ubuntu_with_datadog.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/Vagrant_ubuntu_with_datadog.jpg">
 
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/datadogAgentReporting.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/datadogAgentReporting.jpg" >
 
 ## Collecting Metrics:
 
 * I added tags #region:europe, #town:sannois, #special_tag in etc/dd-agent/datadog.conf
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/tagInDatadogConf.jpg" width="500">
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/tagsInDatadogMap.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/tagInDatadogConf.jpg">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/tagsInDatadogMap.jpg">
 
 * I installed MySQL and the respective integration.
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlInstalled.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlInstalled.jpg">
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegrationWorking.jpg" width="500">
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegration.png" width="200">
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlDashboard.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlDashboard.jpg">
 
 * I created a custom Agent check by creating /etc/dd-agent/checks.d/my_metric.py and /etc/dd-agent/conf.d/my_metric.yaml. The corresponding files are in folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>.
 * I changed the collection interval in my_metric.yaml .
@@ -33,7 +33,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * The minimum Timeboard's timeframe in the UI seems to be the past hour.
 * Snapshot of the graph with the @ notation to sent it to myself:
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/graphSnapshot.jpg" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/graphSnapshot.jpg" >
 
 * **Bonus Question**: The anomaly graph compare expected values to observed values in order to highlight anomalies.
 
@@ -57,9 +57,16 @@ I created the corresponding metric monitor for my_metric:
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-    * One that silences it from 7pm to 9am daily on M-F,
-    * And one that silences it all day on Sat-Sun.
-    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+    * Downtime that silences it from 7pm to 9am daily on M-F,
+    <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/weekDowntime.jpg" >
+    
+    * Downtime that silences it all day on Sat-Sun.
+    <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/weekEndDowntime.jpg" >
+    
+    * Email notifications screenshots: 
+    <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/monitorWeekDowntime.jpg" >
+    <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/monitorWeekEndDowntime.jpg" >
+    
 
 
 ## Collecting APM Data:
