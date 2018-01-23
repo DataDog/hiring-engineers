@@ -16,9 +16,9 @@ I set up a Vagrant Ubuntu 12.04 VM, I signed up for Datadog as Guillaume Raimbau
 * I installed MySQL and the respective integration.
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlInstalled.jpg" width="500">
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegrationWorking.jpg" width="500">
-<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegration.png" width="500">
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegration.png" width="200">
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlDashboard.jpg" width="500">
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
