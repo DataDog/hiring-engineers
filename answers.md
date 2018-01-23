@@ -19,9 +19,10 @@ I set up a Vagrant Ubuntu 12.04 VM, I signed up for Datadog as Guillaume Raimbau
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlIntegration.png" width="200">
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/mysqlDashboard.jpg" width="500">
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+* I created a custom Agent check by creating /etc/dd-agent/checks.d/my_metric.py and /etc/dd-agent/conf.d/my_metric.yaml. The corresponding files are in folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>.
+* I changed the collection interval in my_metric.yaml .
+
+* **Bonus Question** The only solution I found to modify the collection interval is by modifying the yaml files.
 
 ## Visualizing Data:
 
