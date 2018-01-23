@@ -55,8 +55,7 @@ I created the corresponding metric monitor for my_metric:
 * Email the monitor sent me:
 <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/monitorTriggered.jpg" >
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
+* **Bonus Question**: 
     * Downtime that silences it from 7pm to 9am daily on M-F,
     <img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/weekDowntime.jpg" >
     
