@@ -26,19 +26,15 @@ I set up a Vagrant Ubuntu 12.04 VM, I signed up for Datadog as Guillaume Raimbau
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
-
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+* I created the script timeboardCreation.py (in folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>) to create the corresponding Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+* The minimum Timeboard's timeframe in the UI seems to be the past hour.
+* Snapshot of the graph with the @ notation to sent it to myself:
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/graphSnapshot.jpg" width="500">
+
+* **Bonus Question**: The anomaly graph compare expected values to observed values in order to highlight anomalies.
 
 ## Monitoring Data
 
@@ -113,39 +109,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-## Instructions
 
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-* [Datadog overview](http://docs.datadoghq.com/overview/)
-* [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
- * [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
