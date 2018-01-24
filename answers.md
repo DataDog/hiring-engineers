@@ -29,6 +29,8 @@ I set up a Vagrant Ubuntu 12.04 VM, I signed up for Datadog as Guillaume Raimbau
 * I created the script timeboardCreation.py (in folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>) to create the corresponding Timeboard.
 <a href="https://app.datadoghq.com/dash/506051/my-timeboard-raimbault2?live=true&page=0&is_auto=false&from_ts=1516743656614&to_ts=1516747256614&tile_size=m">Dashboard link</a>
 
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/timeboardVisualizingData.jpg">
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * The minimum Timeboard's timeframe in the UI seems to be the past hour.
