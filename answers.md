@@ -70,18 +70,17 @@ I created the corresponding metric monitor for my_metric:
 
 ## Collecting APM Data:
 
-I instrumented the Flask app given with Datadog's APM solution. The corresponding code is in the folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>.
+I instrumented the Flask app given with Datadog's APM solution. The corresponding code my_app.py is in the folder <a href="https://github.com/gRaimbault/hiring-engineers/tree/solutions-engineer/code">code</a>.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well. 
+<a href="https://app.datadoghq.com/dash/510818/apm--infrastructure?live=true&page=0&is_auto=false&from_ts=1516801159319&to_ts=1516804759319&tile_size=m">APM and Infrastructure Metrics Dashboard link</a> and screenshot:
+<img src="https://github.com/gRaimbault/hiring-engineers/blob/solutions-engineer/images/apmInfrastructureDashboard.jpg" >
+ 
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
 Is there anything creative you would use Datadog for?
+It could be possible to use Datadog to monitor traffic jam in Paris, or to monitor air pollution in different locations, or to monitor parking places around some location.
 
 
