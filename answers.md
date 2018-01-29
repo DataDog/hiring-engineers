@@ -1,15 +1,25 @@
 ## Prerequisites - Setup the environment
 
-Using Vagrant on Windows 10.
+**Using Vagrant on Windows 10.**
 
+Setting up Vagrant
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(1).png?raw=true">
+
+Datadog agent installed
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(2).png?raw=true">
+
+Trace in the Datadog interface
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(3).png?raw=true">
 
 ## Collecting Metrics:
 
+Changing tags
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(4).png?raw=true">
+
+Setting up the MySQL integration and retrieving the metrics
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(5).png?raw=true">
+
+Random script init
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(6).png?raw=true">
 
 My random check script:
@@ -28,28 +38,52 @@ Yes, by changing a specific setting in the config file:
 
 ## Visualizing Data:
 
+Setting up the MySQL anomalies timeseries widget
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(8).png?raw=true">
-<img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(9).png?raw=true">
+
+Setting up the custom metric timeseries widget
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(10).png?raw=true">
+
+Custom metric + MySQL anomalies dashboard
+<img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(9).png?raw=true">
+
+Changing the rollup value in the custom metric JSON 
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(11).png?raw=true">
+
+New dashboard after change
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(12).png?raw=true">
 
-**Bonus Question*: What is the Anomaly graph displaying?**
+**Bonus Question: What is the Anomaly graph displaying?**
 
 The graph is showing the given metric, and highlighting the outstanding values
 
 ## Monitoring Data
 
+Setting up the monitor and its message
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(13).png?raw=true">
+
+Warning email
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(14).png?raw=true">
-<img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(15).png?raw=true">
+
+Alert email
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(16).png?raw=true">
+
+Schedule downtimes daily
+<img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(15).png?raw=true">
+
+Schedule weekend downtime
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(17).png?raw=true">
+
+Downtimes setup notification emails
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(18).png?raw=true">
+
 
 ## Collecting APM Data:
 
+Final dashboard with infrastructure metrics
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(19).png?raw=true">
+
+Flask script setup
 <img src="https://github.com/timothe/hiring-engineers/blob/solutions-engineer/Screenshot%20(20).png?raw=true">
 
 My Flask app:
