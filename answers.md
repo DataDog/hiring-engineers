@@ -19,6 +19,8 @@ Environment Details
 I chose to filter the host by the tag I created in the host file.
 ![alt text](https://s3-us-west-1.amazonaws.com/redmansimages/hostmap.png "Hostmap")
 
+![alt text](https://s3-us-west-1.amazonaws.com/redmansimages/hostmap_tags.png "Hostmap tags")
+
 **Ask:** Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 **Answer:** I ran into an error when initially configuring the MySQL integration. I was able to figure it out pretty quickly by running ```sudo /etc/init.d/datadog-agent info```, this produced the error message in the screenshot. This message had just the right information for me to solve the problem. Turned out to be an extra space in the yaml.
