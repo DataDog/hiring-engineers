@@ -1,0 +1,51 @@
+{"dash": {"read_only": false, 
+"description": "created by michaelbredman@me.com", 
+"created": "2018-01-28T18:04:09.056479+00:00", 
+"title": "Michael's TimeBoard 28 Jan 2018 10:04", 
+"modified": "2018-01-28T19:20:32.807477+00:00", 
+"created_by": {
+"handle": "michaelbredman@me.com", "name": "Michael Redman", "access_role": "adm",
+"verified": true, "disabled": false, "is_admin": true, "role": null, "email": "michaelbredman@me.com",
+"icon": "https://secure.gravatar.com/avatar/70f55a76f671ba2cfc34e99c06cdacf1?s=48&d=retro"}, 
+
+
+
+"graphs": [{
+	"definition": { 
+	"viz": "timeseries", 
+	"status": "done", 
+	"requests": [{
+		"q": "avg:my_metric{host:i-02dd61a0045470207}", 
+		"aggregator": "avg", 
+		"style": {
+			"width": "normal", 
+			"palette": "dog_classic", 
+			"type": "solid"
+		}, 
+		"type": "line", 
+		"conditional_formats": []},
+ 		{"q": "anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)", 
+ 		"style": {
+	 	"width": "normal", 
+	 	"palette": "dog_classic", 
+	 	"type": "solid"
+	 }, 
+ 	"type": "line"}], 
+ 	"autoscale": true}, 
+ 	"title": "my_metric, mysql.net.max_connections"}, 
+ 	{
+ 	"definition": {
+ 	"viz": "query_value", 
+ 	"requests": [{
+ 		"q": "avg:my_metric{*}", 
+ 		"aggregator": "sum", 
+ 		"style": {
+ 			"width": "normal", 
+ 			"palette": "dog_classic", 
+ 			"type": "solid"
+ 		}, 
+ 		"type": null, 
+ 		"conditional_formats": []}], 
+ 		"autoscale": true}, 
+ 		"title": "Avg of my_metric over *"}],
+ 		 "id": 516072}, "url": "/dash/516072/michaels-timeboard-28-jan-2018-1004", "resource": "/api/v1/dash/516072"}

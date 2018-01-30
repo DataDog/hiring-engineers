@@ -1,0 +1,548 @@
+2018/01/29 22:54:52 INFO  - jmeter.util.JMeterUtils: Setting Locale to en_US 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Loading user properties from: /Users/michael.redman/Dropbox/AppDynamics/Development/JMeter/apache-jmeter-2.13JP1.3.1WD/bin/user.properties 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Loading system properties from: /Users/michael.redman/Dropbox/AppDynamics/Development/JMeter/apache-jmeter-2.13JP1.3.1WD/bin/system.properties 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Copyright (c) 1998-2015 The Apache Software Foundation 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Version 2.13 r1665067 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: java.version=1.8.0_131 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: os.name=Mac OS X 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: os.arch=x86_64 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: os.version=10.13.2 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: file.encoding=UTF-8 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Default Locale=English (United States) 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: JMeter  Locale=English (United States) 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: JMeterHome=/Users/michael.redman/Dropbox/AppDynamics/Development/JMeter/apache-jmeter-2.13JP1.3.1WD 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: user.dir  =/Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: PWD       =/Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: IP: 192.168.1.176 Name: osxltmredman.hsd1.ca.comcast.net FullName: osxltmredman.hsd1.ca.comcast.net 
+2018/01/29 22:54:52 INFO  - jmeter.services.FileServer: Default base='/Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers' 
+2018/01/29 22:54:52 INFO  - jmeter.services.FileServer: Set new base='/Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers' 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: Using SaveService properties file encoding UTF-8 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: Using SaveService properties file version 1656252 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: Using SaveService properties version 2.8 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: All converter versions present and correct 
+2018/01/29 22:54:52 INFO  - jmeter.save.SaveService: Loading file: /Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers/load.jmx 
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Cannot find .className property for htmlParser, using default 
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/html is  
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xhtml+xml is  
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xml is  
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/xml is  
+2018/01/29 22:54:52 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Creating summariser <summary> 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: Listeners will be started after enabling running version 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: To revert to the earlier behaviour, define jmeterengine.startlistenerslater=false 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: Running the test! 
+2018/01/29 22:54:52 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
+2018/01/29 22:54:52 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
+2018/01/29 22:54:52 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must contain the string: '.functions.' 
+2018/01/29 22:54:52 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must not contain the string: '.gui.' 
+2018/01/29 22:54:52 WARN  - jmeter.reporters.ResultCollector: Unexpected EOF trying to find XML end marker in /Users/michael.redman/Dropbox/AppDynamics/Labs/DataDog/hiring-engineers/jmeter-results.jtl 
+2018/01/29 22:54:52 INFO  - jmeter.JMeter: Running test (1517295292630) 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: Starting ThreadGroup: 1 : jp@gc - Ultimate Thread Group 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: Starting 150 threads for group jp@gc - Ultimate Thread Group. 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: Thread will continue on error 
+2018/01/29 22:54:52 INFO  - kg.apc.jmeter.threads.AbstractSimpleThreadGroup: Starting thread group number 1 threads 150 
+2018/01/29 22:54:52 INFO  - jmeter.threads.JMeterThread: jmeterthread.startearlier=true (see jmeter.properties) 
+2018/01/29 22:54:52 INFO  - jmeter.threads.JMeterThread: Running PostProcessors in forward order 
+2018/01/29 22:54:52 INFO  - kg.apc.jmeter.threads.AbstractSimpleThreadGroup: Started thread group number 1 
+2018/01/29 22:54:52 INFO  - jmeter.engine.StandardJMeterEngine: All thread groups have been started 
+2018/01/29 22:54:54 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-150 
+2018/01/29 22:54:54 INFO  - jmeter.protocol.http.sampler.HTTPHCAbstractImpl: Local host = osxltmredman.hsd1.ca.comcast.net 
+2018/01/29 22:54:54 INFO  - jmeter.protocol.http.sampler.HTTPHC4Impl: HTTP request retry count = 0 
+2018/01/29 22:54:54 INFO  - jmeter.protocol.http.sampler.HTTPHC4Impl: Setting up HTTPS TrustAll scheme 
+2018/01/29 22:54:54 INFO  - jmeter.util.JsseSSLManager: Using default SSL protocol: TLS 
+2018/01/29 22:54:54 INFO  - jmeter.util.JsseSSLManager: SSL session context: per-thread 
+2018/01/29 22:54:54 INFO  - jmeter.samplers.SampleResult: Note: Sample TimeStamps are START times 
+2018/01/29 22:54:54 INFO  - jmeter.samplers.SampleResult: sampleresult.default.encoding is set to ISO-8859-1 
+2018/01/29 22:54:54 INFO  - jmeter.samplers.SampleResult: sampleresult.useNanoTime=true 
+2018/01/29 22:54:54 INFO  - jmeter.samplers.SampleResult: sampleresult.nanoThreadSleep=5000 
+2018/01/29 22:54:56 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-50 
+2018/01/29 22:54:56 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-149 
+2018/01/29 22:54:58 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-148 
+2018/01/29 22:54:59 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-49 
+2018/01/29 22:54:59 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-147 
+2018/01/29 22:55:01 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-146 
+2018/01/29 22:55:01 INFO  - jmeter.reporters.Summariser: summary +     11 in   9.1s =    1.2/s Avg:  1010 Min:    41 Max:  4484 Err:     0 (0.00%) Active: 7 Started: 7 Finished: 0 
+2018/01/29 22:55:03 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-145 
+2018/01/29 22:55:03 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-48 
+2018/01/29 22:55:05 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-144 
+2018/01/29 22:55:07 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-143 
+2018/01/29 22:55:07 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-47 
+2018/01/29 22:55:08 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-142 
+2018/01/29 22:55:10 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-46 
+2018/01/29 22:55:10 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-141 
+2018/01/29 22:55:12 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-140 
+2018/01/29 22:55:14 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-45 
+2018/01/29 22:55:14 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-139 
+2018/01/29 22:55:16 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-138 
+2018/01/29 22:55:17 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-44 
+2018/01/29 22:55:17 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-137 
+2018/01/29 22:55:19 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-136 
+2018/01/29 22:55:21 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-43 
+2018/01/29 22:55:21 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-135 
+2018/01/29 22:55:23 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-134 
+2018/01/29 22:55:25 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-133 
+2018/01/29 22:55:25 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-42 
+2018/01/29 22:55:26 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-132 
+2018/01/29 22:55:28 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-41 
+2018/01/29 22:55:28 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-131 
+2018/01/29 22:55:30 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-130 
+2018/01/29 22:55:30 INFO  - jmeter.reporters.Summariser: summary +     72 in    29s =    2.5/s Avg:  5073 Min:    39 Max:  9005 Err:     0 (0.00%) Active: 31 Started: 31 Finished: 0 
+2018/01/29 22:55:30 INFO  - jmeter.reporters.Summariser: summary =     83 in  38.1s =    2.2/s Avg:  4535 Min:    39 Max:  9005 Err:     0 (0.00%) 
+2018/01/29 22:55:32 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-40 
+2018/01/29 22:55:32 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-129 
+2018/01/29 22:55:34 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-128 
+2018/01/29 22:55:35 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-127 
+2018/01/29 22:55:35 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-39 
+2018/01/29 22:55:37 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-126 
+2018/01/29 22:55:39 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-125 
+2018/01/29 22:55:39 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-38 
+2018/01/29 22:55:41 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-124 
+2018/01/29 22:55:43 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-37 
+2018/01/29 22:55:43 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-123 
+2018/01/29 22:55:44 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-122 
+2018/01/29 22:55:46 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-121 
+2018/01/29 22:55:46 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-36 
+2018/01/29 22:55:48 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-120 
+2018/01/29 22:55:50 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-35 
+2018/01/29 22:55:50 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-119 
+2018/01/29 22:55:52 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-118 
+2018/01/29 22:55:53 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-117 
+2018/01/29 22:55:53 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-34 
+2018/01/29 22:55:55 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-116 
+2018/01/29 22:55:57 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-115 
+2018/01/29 22:55:57 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-33 
+2018/01/29 22:55:59 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-114 
+2018/01/29 22:56:01 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-113 
+2018/01/29 22:56:01 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-32 
+2018/01/29 22:56:01 INFO  - jmeter.reporters.Summariser: summary +     61 in  31.1s =    2.0/s Avg: 15588 Min: 11031 Max: 22292 Err:     0 (0.00%) Active: 57 Started: 57 Finished: 0 
+2018/01/29 22:56:01 INFO  - jmeter.reporters.Summariser: summary =    144 in  69.2s =    2.1/s Avg:  9217 Min:    39 Max: 22292 Err:     0 (0.00%) 
+2018/01/29 22:56:02 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-112 
+2018/01/29 22:56:04 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-31 
+2018/01/29 22:56:04 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-111 
+2018/01/29 22:56:06 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-110 
+2018/01/29 22:56:08 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-109 
+2018/01/29 22:56:08 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-30 
+2018/01/29 22:56:10 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-108 
+2018/01/29 22:56:11 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-29 
+2018/01/29 22:56:11 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-107 
+2018/01/29 22:56:13 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-106 
+2018/01/29 22:56:15 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-105 
+2018/01/29 22:56:15 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-28 
+2018/01/29 22:56:17 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-104 
+2018/01/29 22:56:19 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-103 
+2018/01/29 22:56:19 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-27 
+2018/01/29 22:56:20 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-102 
+2018/01/29 22:56:22 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-101 
+2018/01/29 22:56:22 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-26 
+2018/01/29 22:56:24 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-100 
+2018/01/29 22:56:26 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-99 
+2018/01/29 22:56:26 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-25 
+2018/01/29 22:56:28 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-98 
+2018/01/29 22:56:29 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-24 
+2018/01/29 22:56:29 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-97 
+2018/01/29 22:56:30 INFO  - jmeter.reporters.Summariser: summary +     75 in  29.2s =    2.6/s Avg: 18387 Min: 12918 Max: 24524 Err:     0 (0.00%) Active: 81 Started: 81 Finished: 0 
+2018/01/29 22:56:30 INFO  - jmeter.reporters.Summariser: summary =    219 in  98.4s =    2.2/s Avg: 12357 Min:    39 Max: 24524 Err:     0 (0.00%) 
+2018/01/29 22:56:31 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-96 
+2018/01/29 22:56:33 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-95 
+2018/01/29 22:56:33 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-23 
+2018/01/29 22:56:35 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-94 
+2018/01/29 22:56:37 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-93 
+2018/01/29 22:56:37 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-22 
+2018/01/29 22:56:38 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-92 
+2018/01/29 22:56:40 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-21 
+2018/01/29 22:56:40 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-91 
+2018/01/29 22:56:42 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-90 
+2018/01/29 22:56:44 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-89 
+2018/01/29 22:56:44 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-20 
+2018/01/29 22:56:46 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-88 
+2018/01/29 22:56:47 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-19 
+2018/01/29 22:56:47 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-87 
+2018/01/29 22:56:49 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-86 
+2018/01/29 22:56:51 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-85 
+2018/01/29 22:56:51 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-18 
+2018/01/29 22:56:53 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-84 
+2018/01/29 22:56:55 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-83 
+2018/01/29 22:56:55 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-17 
+2018/01/29 22:56:56 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-82 
+2018/01/29 22:56:58 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-16 
+2018/01/29 22:56:58 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-81 
+2018/01/29 22:57:00 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-80 
+2018/01/29 22:57:02 INFO  - jmeter.reporters.Summariser: summary +     63 in  31.1s =    2.0/s Avg: 36860 Min: 26674 Max: 42275 Err:     0 (0.00%) Active: 106 Started: 106 Finished: 0 
+2018/01/29 22:57:02 INFO  - jmeter.reporters.Summariser: summary =    282 in   129s =    2.2/s Avg: 17831 Min:    39 Max: 42275 Err:     0 (0.00%) 
+2018/01/29 22:57:02 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-15 
+2018/01/29 22:57:02 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-79 
+2018/01/29 22:57:04 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-78 
+2018/01/29 22:57:05 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-14 
+2018/01/29 22:57:05 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-77 
+2018/01/29 22:57:07 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-76 
+2018/01/29 22:57:09 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-13 
+2018/01/29 22:57:09 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-75 
+2018/01/29 22:57:11 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-74 
+2018/01/29 22:57:13 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-12 
+2018/01/29 22:57:13 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-73 
+2018/01/29 22:57:14 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-72 
+2018/01/29 22:57:16 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-71 
+2018/01/29 22:57:16 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-11 
+2018/01/29 22:57:18 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-70 
+2018/01/29 22:57:20 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-10 
+2018/01/29 22:57:20 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-69 
+2018/01/29 22:57:22 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-68 
+2018/01/29 22:57:23 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-67 
+2018/01/29 22:57:23 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-9 
+2018/01/29 22:57:25 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-66 
+2018/01/29 22:57:27 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-8 
+2018/01/29 22:57:27 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-65 
+2018/01/29 22:57:29 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-64 
+2018/01/29 22:57:30 INFO  - jmeter.reporters.Summariser: summary +     62 in    29s =    2.1/s Avg: 38761 Min: 34794 Max: 44429 Err:     0 (0.00%) Active: 130 Started: 130 Finished: 0 
+2018/01/29 22:57:30 INFO  - jmeter.reporters.Summariser: summary =    344 in   158s =    2.2/s Avg: 21604 Min:    39 Max: 44429 Err:     0 (0.00%) 
+2018/01/29 22:57:31 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-63 
+2018/01/29 22:57:31 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-7 
+2018/01/29 22:57:32 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-62 
+2018/01/29 22:57:34 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-6 
+2018/01/29 22:57:34 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-61 
+2018/01/29 22:57:36 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-60 
+2018/01/29 22:57:38 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-59 
+2018/01/29 22:57:38 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-5 
+2018/01/29 22:57:40 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-58 
+2018/01/29 22:57:41 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-57 
+2018/01/29 22:57:41 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-4 
+2018/01/29 22:57:43 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-56 
+2018/01/29 22:57:45 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-3 
+2018/01/29 22:57:45 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-55 
+2018/01/29 22:57:47 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-54 
+2018/01/29 22:57:49 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-53 
+2018/01/29 22:57:49 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-2 
+2018/01/29 22:57:50 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-52 
+2018/01/29 22:57:52 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-51 
+2018/01/29 22:57:52 INFO  - jmeter.threads.JMeterThread: Thread started: jp@gc - Ultimate Thread Group 1-1 
+2018/01/29 22:58:00 INFO  - jmeter.reporters.Summariser: summary +     49 in    29s =    1.7/s Avg: 46495 Min: 22148 Max: 60173 Err:     6 (12.24%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 22:58:00 INFO  - jmeter.reporters.Summariser: summary =    393 in   187s =    2.1/s Avg: 24707 Min:    39 Max: 60173 Err:     6 (1.53%) 
+2018/01/29 22:58:30 INFO  - jmeter.reporters.Summariser: summary +    135 in  30.2s =    4.5/s Avg: 45389 Min: 22067 Max: 57947 Err:    24 (17.78%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 22:58:30 INFO  - jmeter.reporters.Summariser: summary =    528 in   218s =    2.4/s Avg: 29995 Min:    39 Max: 60173 Err:    30 (5.68%) 
+2018/01/29 22:59:00 INFO  - jmeter.reporters.Summariser: summary +     70 in    30s =    2.3/s Avg: 36817 Min: 22068 Max: 55612 Err:    28 (40.00%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 22:59:00 INFO  - jmeter.reporters.Summariser: summary =    598 in   247s =    2.4/s Avg: 30794 Min:    39 Max: 60173 Err:    58 (9.70%) 
+2018/01/29 22:59:31 INFO  - jmeter.reporters.Summariser: summary +     71 in  31.4s =    2.3/s Avg: 49275 Min: 22030 Max: 80164 Err:    27 (38.03%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 22:59:31 INFO  - jmeter.reporters.Summariser: summary =    669 in   279s =    2.4/s Avg: 32755 Min:    39 Max: 80164 Err:    85 (12.71%) 
+2018/01/29 23:00:00 INFO  - jmeter.reporters.Summariser: summary +     79 in    29s =    2.7/s Avg: 66576 Min:  9692 Max: 88983 Err:    21 (26.58%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:00:00 INFO  - jmeter.reporters.Summariser: summary =    748 in   308s =    2.4/s Avg: 36327 Min:    39 Max: 88983 Err:   106 (14.17%) 
+2018/01/29 23:00:30 INFO  - jmeter.reporters.Summariser: summary +     54 in  30.2s =    1.8/s Avg: 53194 Min: 22045 Max: 98252 Err:    28 (51.85%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:00:30 INFO  - jmeter.reporters.Summariser: summary =    802 in   338s =    2.4/s Avg: 37463 Min:    39 Max: 98252 Err:   134 (16.71%) 
+2018/01/29 23:01:00 INFO  - jmeter.reporters.Summariser: summary +     60 in    30s =    2.0/s Avg: 69397 Min: 21962 Max: 100629 Err:    21 (35.00%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:01:00 INFO  - jmeter.reporters.Summariser: summary =    862 in   368s =    2.3/s Avg: 39686 Min:    39 Max: 100629 Err:   155 (17.98%) 
+2018/01/29 23:01:31 INFO  - jmeter.reporters.Summariser: summary +     74 in    31s =    2.4/s Avg: 69919 Min:  9622 Max: 111492 Err:    28 (37.84%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:01:31 INFO  - jmeter.reporters.Summariser: summary =    936 in   399s =    2.3/s Avg: 42076 Min:    39 Max: 111492 Err:   183 (19.55%) 
+2018/01/29 23:02:00 INFO  - jmeter.reporters.Summariser: summary +     88 in    29s =    3.0/s Avg: 73968 Min: 21945 Max: 119489 Err:    24 (27.27%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:02:00 INFO  - jmeter.reporters.Summariser: summary =   1024 in   427s =    2.4/s Avg: 44817 Min:    39 Max: 119489 Err:   207 (20.21%) 
+2018/01/29 23:02:32 INFO  - jmeter.reporters.Summariser: summary +     79 in    32s =    2.5/s Avg: 54722 Min: 22107 Max: 97385 Err:    27 (34.18%) Active: 150 Started: 150 Finished: 0 
+2018/01/29 23:02:32 INFO  - jmeter.reporters.Summariser: summary =   1103 in   459s =    2.4/s Avg: 45526 Min:    39 Max: 119489 Err:   234 (21.21%) 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-147 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-147 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-146 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-146 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-118 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-118 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-47 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-56 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-47 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-56 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-14 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-14 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-76 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-76 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-72 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-57 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-72 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-57 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-98 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-31 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-98 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-41 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-31 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-41 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-81 
+2018/01/29 23:02:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-81 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-17 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-66 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-17 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-66 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-104 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-104 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-121 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-121 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-40 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-40 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-75 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-75 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-48 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-6 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-48 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-6 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-13 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-94 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-13 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-94 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-79 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-79 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-51 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-51 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-74 
+2018/01/29 23:02:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-74 
+2018/01/29 23:02:58 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-73 
+2018/01/29 23:02:58 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-18 
+2018/01/29 23:02:58 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-18 
+2018/01/29 23:02:58 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-73 
+2018/01/29 23:02:59 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-123 
+2018/01/29 23:02:59 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-123 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-112 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-112 
+2018/01/29 23:03:01 INFO  - jmeter.reporters.Summariser: summary +     99 in  29.1s =    3.4/s Avg: 54510 Min: 22121 Max: 80296 Err:    22 (22.22%) Active: 121 Started: 150 Finished: 29 
+2018/01/29 23:03:01 INFO  - jmeter.reporters.Summariser: summary =   1202 in   489s =    2.5/s Avg: 46266 Min:    39 Max: 119489 Err:   256 (21.30%) 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-137 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-137 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-116 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-10 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-116 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-10 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-120 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-120 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-19 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-19 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-54 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-54 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-68 
+2018/01/29 23:03:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-68 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-36 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-49 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-36 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-49 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-70 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-70 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-93 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-93 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-22 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-22 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-142 
+2018/01/29 23:03:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-142 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-92 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-105 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-92 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-105 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-139 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-139 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-12 
+2018/01/29 23:03:05 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-12 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-91 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-91 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-136 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-136 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-38 
+2018/01/29 23:03:07 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-38 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-126 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-140 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-140 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-126 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-25 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-25 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-3 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-3 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-58 
+2018/01/29 23:03:10 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-58 
+2018/01/29 23:03:12 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-24 
+2018/01/29 23:03:12 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-24 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-23 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-23 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-90 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-90 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-52 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-52 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-131 
+2018/01/29 23:03:14 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-131 
+2018/01/29 23:03:16 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-11 
+2018/01/29 23:03:16 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-11 
+2018/01/29 23:03:16 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-9 
+2018/01/29 23:03:16 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-9 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-82 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-82 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-89 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-89 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-69 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-69 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-5 
+2018/01/29 23:03:18 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-5 
+2018/01/29 23:03:21 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-108 
+2018/01/29 23:03:21 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-108 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-135 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-135 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-87 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-87 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-59 
+2018/01/29 23:03:23 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-59 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-149 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-149 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-95 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-95 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-134 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-65 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-134 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-65 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-20 
+2018/01/29 23:03:25 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-20 
+2018/01/29 23:03:27 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-29 
+2018/01/29 23:03:27 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-29 
+2018/01/29 23:03:30 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-64 
+2018/01/29 23:03:30 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-64 
+2018/01/29 23:03:30 INFO  - jmeter.reporters.Summariser: summary +     47 in    29s =    1.6/s Avg: 61568 Min: 54812 Max: 76502 Err:     0 (0.00%) Active: 74 Started: 150 Finished: 76 
+2018/01/29 23:03:30 INFO  - jmeter.reporters.Summariser: summary =   1249 in   517s =    2.4/s Avg: 46842 Min:    39 Max: 119489 Err:   256 (20.50%) 
+2018/01/29 23:03:30 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-144 
+2018/01/29 23:03:30 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-144 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-128 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-96 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-128 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-96 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-21 
+2018/01/29 23:03:32 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-21 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-107 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-107 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-113 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-145 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-113 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-145 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-127 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-127 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-124 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-124 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-148 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-148 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-85 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-67 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-103 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-67 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-85 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-103 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-61 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-45 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-61 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-45 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-37 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-37 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-77 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-77 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-100 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-100 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-109 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-109 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-84 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-84 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-1 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-125 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-1 
+2018/01/29 23:03:34 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-125 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-44 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-44 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-33 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-115 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-33 
+2018/01/29 23:03:36 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-115 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-60 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-88 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-60 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-88 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-4 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-55 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-4 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-55 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-80 
+2018/01/29 23:03:38 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-80 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-2 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-28 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-2 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-28 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-32 
+2018/01/29 23:03:41 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-32 
+2018/01/29 23:03:43 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-43 
+2018/01/29 23:03:43 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-43 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-111 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-27 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-27 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-111 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-97 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-97 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-16 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-16 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-122 
+2018/01/29 23:03:45 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-122 
+2018/01/29 23:03:47 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-63 
+2018/01/29 23:03:47 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-63 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-42 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-86 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-86 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-42 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-133 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-143 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-133 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-143 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-62 
+2018/01/29 23:03:50 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-62 
+2018/01/29 23:03:52 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-101 
+2018/01/29 23:03:52 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-101 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-102 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-39 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-102 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-39 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-141 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-141 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-110 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-110 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-15 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-15 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-138 
+2018/01/29 23:03:54 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-138 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-26 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-26 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-8 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-8 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-150 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-150 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-129 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-129 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-34 
+2018/01/29 23:03:56 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-34 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-99 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-99 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-130 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-130 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-106 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-106 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-132 
+2018/01/29 23:03:59 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-132 
+2018/01/29 23:04:01 INFO  - jmeter.reporters.Summariser: summary +     62 in  31.3s =    2.0/s Avg: 63501 Min: 55687 Max: 75792 Err:     0 (0.00%) Active: 12 Started: 150 Finished: 138 
+2018/01/29 23:04:01 INFO  - jmeter.reporters.Summariser: summary =   1311 in   549s =    2.4/s Avg: 47630 Min:    39 Max: 119489 Err:   256 (19.53%) 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-83 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-83 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-114 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-114 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-30 
+2018/01/29 23:04:01 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-30 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-46 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-119 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-46 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-119 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-53 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-53 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-7 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-7 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-35 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-35 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-78 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-78 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-117 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-117 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-50 
+2018/01/29 23:04:03 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-50 
+2018/01/29 23:04:05 INFO  - jmeter.threads.JMeterThread: Stopping because end time detected by thread: jp@gc - Ultimate Thread Group 1-71 
+2018/01/29 23:04:05 INFO  - jmeter.threads.JMeterThread: Thread finished: jp@gc - Ultimate Thread Group 1-71 
+2018/01/29 23:04:05 INFO  - jmeter.engine.StandardJMeterEngine: Notifying test listeners of end of test 
+2018/01/29 23:04:05 INFO  - jmeter.reporters.Summariser: summary +     11 in     5s =    2.4/s Avg: 77231 Min: 70328 Max: 87354 Err:     0 (0.00%) Active: 0 Started: 150 Finished: 150 
+2018/01/29 23:04:05 INFO  - jmeter.reporters.Summariser: summary =   1322 in   553s =    2.4/s Avg: 47876 Min:    39 Max: 119489 Err:   256 (19.36%) 
