@@ -64,7 +64,7 @@ for a in artists:
 
 	data = json.loads(r.content)
 
-	if data is not None:
+	if data is not None and 'artist' in data:
 
 		# get artist's name
 		artist_name = data['artist']['name']
