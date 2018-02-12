@@ -1,5 +1,8 @@
 # The Exercise
 
+Please find the answers below.
+
+
 ## Prerequisites - Setup the environment
 
 I used a Vagrantfile to spin up a really simple Ubuntu 12.04 VM on my Mac. No further configuration, just the VM.
