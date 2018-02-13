@@ -351,7 +351,7 @@ Curious? Follow instructions [here](http://pypi.datadoghq.com/trace/docs/#module
 to instrument a Flask application with trace middleware.
 
 Given a sample Flask app, here's the end result with trace middleware 
-instrumentation added (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)):
+instrumentation added:
 
 ```python
 from flask import Flask
@@ -389,6 +389,11 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run()
 ```
+> sample Flask app "end result" GitHub [link](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)
+<br>
+> sample Flask app "original" GitHub [link](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp_original.py)
+
+
 
 The ["testFlaskApp Dashboard"](https://app.datadoghq.com/dash/563672/testflaskapp-dashboard?live=false&page=0&is_auto=false&from_ts=1518132562248&to_ts=1518133561609&tile_size=m&tv_mode=true) 
 includes both APM and Infrastructure metrics:
@@ -430,7 +435,7 @@ $ crontab -l
 $
 ```
 
-Here's the code (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/artistPopularityMetricLastFM.py)):
+Here's the code (GitHub [link](https://github.com/henrydoan/hiring-engineers/blob/master/artistPopularityMetricLastFM.py)):
 
 ```python
 import json 
@@ -532,7 +537,7 @@ for a in artists:
 		print ("Warning: data object is empty, not sending metrics to Datadog")
 ```
 
-I was then able to create a [TimeBoard](https://app.datadoghq.com/dash/564940/lastfm-artist-popularity-dashboard?live=true&page=0&is_auto=false&from_ts=1518453184243&to_ts=1518467584243&tile_size=m&tv_mode=true)
+I was then able to create a TimeBoard [("last.fm Artist Popularity Dashboard")](https://app.datadoghq.com/dash/564940/lastfm-artist-popularity-dashboard?live=true&page=0&is_auto=false&from_ts=1518453184243&to_ts=1518467584243&tile_size=m&tv_mode=true)
 that shows each artists' current popularity data as well as change over 
 time: 
 
