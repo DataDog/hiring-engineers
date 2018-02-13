@@ -122,6 +122,8 @@ To generate this timeboard using the Datadog API, update `./Scripts/demoTimeboar
 
 The Timeboard's timeframe can be set to 5 minutes by selecting a range from the end of any graph on a time period within 5 minutes or less. This will select the minimum timerange which is 5 minutes. If you selected a 5 minute range but it does not end at the present time, you can use the shift forward button to shift the time range until it ends at the current time.
 
+![hostmapview](./Screenshots/SendingSnapshot.gif)
+
 The anomaly graph is displaying the average rate of mysql connections to the server. In blue are the net connections that fall within the trending value based on a basic algorithm. In red are any of the net connections that fall outside of the expected trend based on the basic algorithm thus are detected as an anolmaly. In this demonstration we have set the bounds to 1 which is the narrowest tollerance making small variations trigger as anomalies.
 
 ## Monitoring Data
