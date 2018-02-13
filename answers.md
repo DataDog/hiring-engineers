@@ -396,7 +396,7 @@ if __name__ == '__main__':
 ### Visualizing APM metrics
 
 The ["testFlaskApp Dashboard"](https://app.datadoghq.com/dash/563672/testflaskapp-dashboard?live=false&page=0&is_auto=false&from_ts=1518132562248&to_ts=1518133561609&tile_size=m&tv_mode=true) 
-includes both APM and Infrastructure metrics:
+includes both APM and Infrastructure metrics.  Notice the two graphs with scope over `service:testflaskapp`:
 
 ![testFlaskApp_dashboard](images/testFlaskApp_dashboard.png)
 
