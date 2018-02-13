@@ -390,7 +390,7 @@ if __name__ == '__main__':
     app.run()
 ```
 > sample Flask app "end result" GitHub [link](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)
-<br>
+
 > sample Flask app "original" GitHub [link](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp_original.py)
 
 
