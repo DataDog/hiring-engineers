@@ -1,0 +1,57 @@
+---
+- hosts: datadog-demo
+  roles:
+    - { role: Datadog.datadog, become: yes }
+  remote_user: root
+  become: yes
+  vars:
+    datadog_api_key: "<DD_API_KEY>" # change api key to point at your environment
+    datadog_agent_version: "1:5.21.2-1" # for apt-based platforms, use a `5.12.3-1` format on yum-based platforms
+    datadog_config:
+      tags: "role:datadog-demo, department:soloutions-engineering"
+      log_level: INFO
+      apm_enabled: "true"
+      log_enabled: true
+
+  pre_tasks:
+  - name: Debian Stretch requires dirmngr package to be installed in order to use apt_key
+    become: yes
+    apt:
+      name: dirmngr
+      state: present
+  tasks:
+
+  # Install mysql and create a database
+  - name: Install mysql-server
+    apt: name=mysql-server state=latest
+  - name: Install mysql-python # allows us to use ansible mysql_db module
+    apt: name=python-mysqldb state=latest
+  - name: Create a new database with name 'datadogmysql'
+    mysql_db:
+      name: datadogmysql
+      state: present
+  - name: Create datadog mysql user with privledges
+    mysql_user:
+      name: datadog
+      password: datadogdemo
+      priv: '*.*:REPLICATION CLIENT/*.*:PROCESS'
+      state: present
+
+  # custom datadog agent check
+  - name: Add the custom datadog check
+    copy:
+      src: ./CustomCheck/randomcheck.py
+      dest: /etc/dd-agent/checks.d/randomcheck.py
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+    notify: restart datadog-agent
+
+  - name: Add the custom datadog check conf file
+    copy:
+      src: ./CustomCheck/randomcheck.yaml
+      dest: /etc/dd-agent/conf.d/randomcheck.yaml
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+    notify: restart datadog-agent
