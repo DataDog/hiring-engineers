@@ -33,8 +33,6 @@ To change the hostname with the VM:
 - Run `sudo hostname <new_hostname>`.  
 - Change hostname values found in `/etc/hosts/` and `/etc/hostname`
 
-# Collecting Data
-
 ### Installing the Datadog Agent
 
 From the Datadog UI, navigate to Integrations > Agent 
@@ -45,6 +43,9 @@ From the Datadog UI, navigate to Integrations > Agent
 Select your operating system and Agent installation instructions will be provided:
 
 ![ubuntu_agent_install_instructions](images/ubuntu_agent_install_instructions.png)
+
+
+# Collecting Data
 
 ### Adding Tags for a Host
 
@@ -303,8 +304,8 @@ Here's an email notification from the metric monitor:
 be alerted when you are out of the office. Set up two scheduled 
 downtimes for this monitor. 
 
-- One that silences it from 7pm to 9am daily on M-F:
-- And one that silences it all day on Sat-Sun.
+>- One that silences it from 7pm to 9am daily on M-F
+>- One that silences it all day on Sat-Sun
 
 To create new downtime schedules, navigate to Monitors > Manage Downtime:
 - or go here: https://app.datadoghq.com/monitors#/downtime
@@ -316,15 +317,15 @@ Click "Schedule Downtime", then configure downtime as desired:
 ![schedule_downtime](images/schedule_downtime.png)
 
 
-Downtime schedule #1:
+*Downtime schedule #1:*
 
 ![downtime_schedule_1](images/downtime_schedule_1.png)
 
-Downtime schedule #2:
+*Downtime schedule #2:*
 
 ![downtime_schedule_2](images/downtime_schedule_2.png)
 
-- Make sure that your email is notified when you schedule the downtime 
+>- Make sure that your email is notified when you schedule the downtime 
 and take a screenshot of that notification. 
 
 Downtime schedule email notifications:
@@ -343,7 +344,7 @@ relationship between application code and the underlying infrastructure.
 Curious? Follow instructions [here](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask)
 to instrument a Flask application with trace middleware.
 
-Here's the end result, in a sample Flask app:
+Here's the end result, in a sample Flask app (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)):
 
 ```python
 from flask import Flask
@@ -382,7 +383,8 @@ if __name__ == '__main__':
     app.run()
 ```
 
-Here's a dashboard with both APM and Infrastructure metrics (link [here](https://app.datadoghq.com/dash/563672/testflaskapp-dashboard?live=false&page=0&is_auto=false&from_ts=1518132562248&to_ts=1518133561609&tile_size=m&tv_mode=true)):
+The ["testFlaskApp Dashboard"](https://app.datadoghq.com/dash/563672/testflaskapp-dashboard?live=false&page=0&is_auto=false&from_ts=1518132562248&to_ts=1518133561609&tile_size=m&tv_mode=true) 
+includes both APM and Infrastructure metrics:
 
 ![testFlaskApp_dashboard](images/testFlaskApp_dashboard.png)
 
@@ -413,7 +415,7 @@ my favorite artists' global popularity. Using the web API from
 [last.fm](https://www.last.fm/api), I retreive each artist's "listeners" 
 and "playcount" data, sending them in as custom metrics.
 
-The script executes from a cron job that runs every 5 minutes:
+My `artistPopularityMetricLastFM.py` script executes from a cron job that runs every 5 minutes:
 
 ```
 $ crontab -l
@@ -421,7 +423,7 @@ $ crontab -l
 $
 ```
 
-Here's the code (see [artistPopularityMetricLastFM.py](https://github.com/henrydoan/hiring-engineers/blob/master/artistPopularityMetricLastFM.py)):
+Here's the code (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/artistPopularityMetricLastFM.py)):
 
 ```python
 import json 
@@ -523,20 +525,39 @@ for a in artists:
 		print ("Warning: data object is empty, not sending metrics to Datadog")
 ```
 
-I was then able to create a TimeBoard that shows each artists' 
-current popularity data as well as change over time (link [here](https://app.datadoghq.com/dash/564940/lastfm-artist-popularity-dashboard?live=true&page=0&is_auto=false&from_ts=1518453184243&to_ts=1518467584243&tile_size=m&tv_mode=true)):
+I was then able to create a [TimeBoard](https://app.datadoghq.com/dash/564940/lastfm-artist-popularity-dashboard?live=true&page=0&is_auto=false&from_ts=1518453184243&to_ts=1518467584243&tile_size=m&tv_mode=true)
+that shows each artists' current popularity data as well as change over 
+time: 
 
 ![lastfm_timeboard](images/lastfm_timeboard.png)
 
 
 Highlights of this project specific to Datadog features include:
-- Utilizing Datadog API instead of custom Agent check to send metrics to 
-Datadog (https://docs.datadoghq.com/api/?lang=python#post-time-series-points)
+- Sending metrics via Datadog API instead of custom Agent check (https://docs.datadoghq.com/api/?lang=python#post-time-series-points)
 - Utilizing a Top List visualization
-- Allowing Datadog to automatically set tag names for tag values that include 
-spaces (i.e. artist name) 
-- Using Timeshift function in combination with metric formula to graph 
-the difference in popularity metric values over time.   
+- Defining new custom metrics (`hvd.listeners` and `hvd.playcount`)
+- Allowing Datadog to automatically handle tag values that include 
+spaces (artist names) 
+- Using Timeshift function in combination with metric formula 
+functionality (calculate the delta in popularity metrics over 
+time). 
 
 ![metric_formula](images/metric_formula.png)
+  
+>Note: I was under the impression that last.fm popularity data would 
+change frequently, thus generate "exciting" graphs. Unfortunately, I 
+discovered over the course of this short project that last.fm only 
+refreshes data semi-weekly. Thus the data is fairly static over many 
+days. 
+
+
+
+
+
+
+
+
+
  
+
+
