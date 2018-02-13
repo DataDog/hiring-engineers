@@ -141,7 +141,7 @@ init_config:
 displays: 
 - `hvd.my_metric` custom metric scoped over the host it's configured on
 - `hvd.my_metric` with the rollup function applied
-- MySQL Performance Queries metric (anomaly function applied)
+- `mysql.performance.queries` metric with anomalies function applied
 
 ![specialty_timeboard](images/specialty_timeboard.png)
 
@@ -257,9 +257,15 @@ Here's the email notification the user would receive:
 
 > What is the Anomaly graph displaying?
 
-> **Answer:** The current metric value with the highlighted area 
-indicating "normal" range. Outside of the grey area would be considered 
-an anomaly. 
+> **Answer:** The metric value over time with a highlighted area 
+indicating expected value range. Values outside of the "bounds" would 
+be considered an anomaly. 
+
+*with anomalies function applied:*
+![with_anomalies_function](images/with_anomalies_function.png)
+
+*without anomalies function:*
+![without_anomalies_function](images/without_anomalies_function.png)
 
 
 # Monitoring Data
@@ -328,7 +334,7 @@ Click "Schedule Downtime", then configure downtime as desired:
 >- Make sure that your email is notified when you schedule the downtime 
 and take a screenshot of that notification. 
 
-Downtime schedule email notifications:
+*Downtime schedule email notifications:*
 
 ![downtime_schedule_email_1](images/downtime_schedule_email_1.png)
 ![downtime_schedule_email_2](images/downtime_schedule_email_2.png)
@@ -344,7 +350,8 @@ relationship between application code and the underlying infrastructure.
 Curious? Follow instructions [here](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask)
 to instrument a Flask application with trace middleware.
 
-Here's the end result, in a sample Flask app (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)):
+Given a sample Flask app, here's the end result with trace middleware 
+instrumentation added (GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/testFlaskApp.py)):
 
 ```python
 from flask import Flask
