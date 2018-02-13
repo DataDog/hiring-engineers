@@ -13,8 +13,7 @@ This environment is setup using Vagrant running debian/stretch 64. Ansible and t
 3. install ansible http://docs.ansible.com/ansible/latest/intro_installation.html
 4. download the Datadog Ansible role `ansible-galaxy install Datadog.datadog`
 5. from this directory, run the Vagrantfile to start your vm, `vagrant up` this may take some time initially as the debian stretch vagrant box will need to be downloaded
-6. replace `<DD_API_KEY>` with your datadog api key in ./AnsibleFiles/demo-playbook.yml
-7. from this directory, run the ansible playbook on your newly provisioned vm `ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key --limit datadog-demo ./AnsibleFiles/demo-playbook.yml  -i ./AnsibleFiles/host`
+6. from this directory, run the ansible playbook on your newly provisioned vm `ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key --limit datadog-demo ./AnsibleFiles/demo-playbook.yml  -i ./AnsibleFiles/host`
 
 
 ## Collecting Metrics:
@@ -25,7 +24,7 @@ Tags were added as datadog_config varaiables in the ansible playbook.
  
 ```
 vars:
-    datadog_api_key: "<DD_API_KEY>" # replace with your datadog api key
+    datadog_api_key: "<DD_API_KEY>" # change api key to use your Datadog account
     datadog_agent_version: "1:5.21.2-1" # for apt-based platforms, use a `5.12.3-1` format on yum-based platforms
     datadog_config:
       tags: "role:datadog-demo, department:soloutions-engineering"
@@ -114,11 +113,16 @@ By adding `min_collection_interval: 45` to the randomcheck config file, we can e
 
 > Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
 
-> Once this is created, access the Dashboard from your Dashboard List in the UI:
+To generate this timeboard using the Datadog API, update `./Scripts/demoTimeboard.py` with your Datadog API key and Application key. Running the script will create a timeboard titled "Datadog Demo Timeboard" and will have the three graphs desribed above. 
 
+> Once this is created, access the Dashboard from your Dashboard List in the UI:
 > * Set the Timeboard's timeframe to the past 5 minutes
 > * Take a snapshot of this graph and use the @ notation to send it to yourself.
 > * **Bonus Question**: What is the Anomaly graph displaying?
+
+The Timeboard's timeframe can be set to 5 minutes by selecting a range from the end of any graph on a time period within 5 minutes or less. This will select the minimum timerange which is 5 minutes. If you selected a 5 minute range but it does not end at the present time, you can use the shift forward button to shift the time range until it ends at the current time.
+
+The anomaly graph is displaying the average rate of mysql connections to the server. In blue are the net connections that fall within the trending value based on a basic algorithm. In red are any of the net connections that fall outside of the expected trend based on the basic algorithm thus are detected as an anolmaly. In this demonstration we have set the bounds to 1 which is the narrowest tollerance making small variations trigger as anomalies.
 
 ## Monitoring Data
 
