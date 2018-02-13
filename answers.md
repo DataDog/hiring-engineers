@@ -89,7 +89,8 @@ for "mysql" to see newly available metrics:
 Follow instructions [here](https://docs.datadoghq.com/agent/agent_checks/) 
 to create a custom Agent check.
 
-Here's an example of a custom Agent check (`/etc/dd-agent/checks.d/my_check.py`)
+Here's an example of a custom Agent check (`/etc/dd-agent/checks.d/my_check.py`, 
+GitHub link [here](https://github.com/henrydoan/hiring-engineers/blob/master/my_check.py))
 that submits a metric named `hvd.my_metric` with a random value between 
 0 and 1000:
 
@@ -107,7 +108,8 @@ if __name__ == '__main__':
     check.check(instance)
     print 'Metrics: %s' % (check.get_metrics())
 ```
-Here's the corresponding yaml file (`/etc/dd-agent/conf.d/my_check.yaml`):
+Here's the corresponding yaml file (`/etc/dd-agent/conf.d/my_check.yaml`, GitHub
+link [here](https://github.com/henrydoan/hiring-engineers/blob/master/my_check.yaml)):
 
 ```yaml
 init_config:
@@ -115,7 +117,6 @@ init_config:
 instances:
       [{}]
 ```
-
 
 ### Bonus Question
 
@@ -133,21 +134,99 @@ init_config:
 
 # Visualizing Data
 
-### TimeBoards
+### TimeBoards 
 
-Here's a TimeBoard that displays the custom metric from above scoped 
-over the host it's configured on, that metric with the rollup function 
-applied, and the MySQL Performance Queries metric (anomaly function 
-applied): 
-
-
-Link [here](https://app.datadoghq.com/dash/560047/specialty-dashboard?live=true&page=0&is_auto=false&from_ts=1518372516895&to_ts=1518386916895&tile_size=m)
-
-Screenshot:
+["Henry's Specialty Timeboard"](https://app.datadoghq.com/dash/563327/henrys-specialty-timeboard?live=false&page=0&is_auto=false&from_ts=1518450156022&to_ts=1518474891505&tile_size=m&tv_mode=true)
+displays: 
+- `hvd.my_metric` custom metric scoped over the host it's configured on
+- `hvd.my_metric` with the rollup function applied
+- MySQL Performance Queries metric (anomaly function applied)
 
 ![specialty_timeboard](images/specialty_timeboard.png)
 
-### On-Demand Time Range Selection and Snapshots/Annotations
+### Customize Views in Code
+
+The TimeBoard above was created via a [custom script](https://github.com/henrydoan/hiring-engineers/blob/master/hvdTimeboard.py)
+leveraging the Datadog API (more details [here](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)). 
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': 'd81b4c03c052be98c0b368cf8606ba68',
+    'app_key': '67f28e01e42e14f2273b8cfaca23ea88921574d5'
+}
+
+initialize(**options)
+
+title = "Henry's Specialty Timeboard"
+description = "Timeboard for Henry Doan's recruiting candidate exercise"
+graphs = [{
+	"definition": {
+		"viz": "timeseries",
+		"requests": [
+       		  {
+               		"q": "avg:hvd.my_metric{host:precise64}",
+               		"type": "line",
+               		"style": {
+                       		"palette": "dog_classic",
+                       		"type": "solid",
+                       		"width": "normal"
+               		},
+               		"conditional_formats": [],
+               		"aggregator": "avg"
+       		  }
+        	],
+   	},
+    	"title": "hvd.my_metric Value (Random Number 1-1000)"
+},
+{
+   	"definition": {
+  		"viz": "timeseries",
+  		"requests": [
+    		  {
+      			"q": "avg:hvd.my_metric{host:precise64}.rollup(sum, 3600)",
+      			"type": "line",
+      			"style": {
+        			"palette": "dog_classic",
+        			"type": "solid",
+        		"width": "normal"
+      		  	},
+      		"conditional_formats": [],
+      		"aggregator": "avg"
+    		  }
+  		],
+	},
+	"title": "Sum of hvd.my_metric Over 1 Hour"
+},
+{
+        "definition": {
+                "viz": "timeseries",
+                "requests": [
+                  {
+			"q": "anomalies(avg:mysql.performance.queries{host:precise64}, 'adaptive', 2)",
+                        "type": "line",
+                        "style": {
+                                "palette": "dog_classic",
+                                "type": "solid",
+                        	"width": "normal"
+                        },
+                "conditional_formats": [],
+                "aggregator": "avg"
+                  }
+                ],
+        },
+        "title": "MySQL Performance Queries (with Anomalies Detection)"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     read_only=read_only)
+```
+
+### On-Demand Time Range Selection
 
 To specify a time range you're interested in, simply click-and-drag
 that section of the graph:
@@ -158,6 +237,8 @@ The TimeBoard's time range will automatically update with the custom
 time range:  
 
 ![click_n_drag_2](images/click_n_drag_2.png)
+
+### Snapshots & Annotations
 
 To create an annotation, click the "Snapshot" icon...
 
@@ -185,7 +266,7 @@ an anomaly.
 ### Metric Monitor
 
 In this example, we create a new Metric Monitor that watches the average 
-of the custom metric `hvd.my_metric` that will alert if it's above the 
+of the custom metric `hvd.my_metric` and will alert if it's above the 
 following values over the past 5 minutes: 
 
 - Warning threshold of 500
