@@ -54,7 +54,6 @@
       group: dd-agent
       mode: 0644
     notify: restart datadog-agent
-
   - name: Add the custom datadog check conf file
     copy:
       src: ./CustomCheck/randomcheck.yaml
@@ -63,3 +62,17 @@
       group: dd-agent
       mode: 0644
     notify: restart datadog-agent
+
+  # ddtrace for flask app
+  - name: install ddtrace for python
+    pip: name=ddtrace 
+
+
+
+
+
+
+
+
+
+
