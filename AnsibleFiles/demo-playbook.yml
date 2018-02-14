@@ -12,6 +12,14 @@
       log_level: INFO
       apm_enabled: "true"
       log_enabled: true
+    datadog_checks:
+      mysql:
+        init_config:
+        instances:
+          - server: localhost
+            user: datadog
+            pass: datadogdemo
+            port: 3306
 
   pre_tasks:
   - name: Debian Stretch requires dirmngr package to be installed in order to use apt_key
