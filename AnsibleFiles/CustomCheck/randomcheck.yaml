@@ -1,0 +1,13 @@
+# A minimal config file as random check does not need much for configuration.
+
+init_config:
+        # Override the default collection interval. Note that this value will 
+        # not set the collection interval and instead sets the minimum interval
+        # of which the check will run.
+        #
+        # i.e. If your agent runs every 20 seconds by default, and this values is
+        # set to 45, the check will run every 60 seconds. 
+        min_collection_interval: 45
+
+instances:
+        [{}]
