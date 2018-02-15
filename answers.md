@@ -2,25 +2,24 @@
 ### Troy Axthelm
 
 ## Environment
-This environment is setup using Vagrant running debian/stretch 64. Ansible and the Datadog Ansible role have been used for instance configuration. Configuration files as they were produced by ansible can be found in the Ansible directory where you will also find manually generated files with additional comments for ease of use.
-
-#### Note, this Ansible playbook is setup with the Datadog API key for my test account. If you wish to send metrics to a different datadog account, please change the API 
+This environment is setup using Vagrant running debian/stretch 64. Ansible and the Datadog Ansible role have been used for instance configuration. Configuration files as they were produced using Ansible can be found in the Ansible directory. 
 
 ### Environment Setup:
 
 1. clone or download this repo to the sytem you wish to run on
 2. install vagrant https://www.vagrantup.com/docs/installation/
-3. install ansible http://docs.ansible.com/ansible/latest/intro_installation.html
-4. download the Datadog Ansible role `ansible-galaxy install Datadog.datadog`
+3. install Ansible http://docs.Ansible.com/Ansible/latest/intro_installation.html
+4. download the Datadog Ansible role `Ansible-galaxy install Datadog.datadog`
 5. from this directory, run the Vagrantfile to start your vm, `vagrant up` this may take some time initially as the debian stretch vagrant box will need to be downloaded
-6. from this directory, run the ansible playbook on your newly provisioned vm `ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key --limit datadog-demo ./AnsibleFiles/demo-playbook.yml  -i ./AnsibleFiles/host`
+6. replace the datadog API key in `./Ansible/demo-playbook.yml with your API key
+7. from this directory, run the Ansible playbook on your newly provisioned vm `Ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key --limit datadog-demo ./AnsibleFiles/demo-playbook.yml  -i ./AnsibleFiles/host`
 
 
 ## Collecting Metrics:
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Tags were added as datadog_config varaiables in the ansible playbook.
+Tags were added as datadog_config varaiables in the Ansible playbook.
  
 ```
 vars:
@@ -38,17 +37,13 @@ Once the tags are added to the playbook, and applied with an Ansible run, the ta
 
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-MySQL is installed and configured with the following tasks in the ansible playbook. We also include the mysql-python library which allows configuration of the database through ansible. We configure mysql with a mysql user "datadog". This user has REPLICATION CLIENT and PROCESS priviledges which is all the datadog mysql check will need.
+MySQL is installed and configured with the following tasks in the Ansible playbook. We also include the mysql-python library which allows configuration of the database through Ansible. We configure mysql with a mysql user "datadog". This user has REPLICATION CLIENT and PROCESS priviledges which is all the datadog mysql check will need.
 
 ```
   - name: Install mysql-server
     apt: name=mysql-server state=latest
-  - name: Install mysql-python # allows us to use ansible mysql_db module
+  - name: Install mysql-python # allows us to use Ansible mysql_db module
     apt: name=python-mysqldb state=latest
-  - name: Create a new database with name 'datadogmysql'
-    mysql_db:
-      name: datadogmysql
-      state: present
   - name: Create datadog mysql user with privledges
     mysql_user:
       name: datadog
@@ -57,7 +52,7 @@ MySQL is installed and configured with the following tasks in the ansible playbo
       state: present
 ```
 
-In the variables section of the playbook, a `datadog_checks` block is added. This is where you can add conifguration options for checks that will be created using the ansible datadog ansible role. In our case, the mysql check is added. This configuration file includes a single mysql instance running on localhost and will access the database as the datadog user we setup in the previous ansible run.
+In the variables section of the playbook, a `datadog_checks` block is added. This is where you can add conifguration options for checks that will be created using the Ansible Datadog Ansible role. In our case, the mysql check is added. This configuration file includes a single mysql instance running on localhost and will access the database as the datadog user we setup in the previous Ansible run.
 
 ```   
    datadog_checks:
@@ -70,7 +65,7 @@ In the variables section of the playbook, a `datadog_checks` block is added. Thi
             port: 3306
 ```
 
-Once the playbook is run with the new configuration, MySQL metrics will be sent to datadog. Below is the default MySQL dashboard, you can see this in you dashboard list by installing the MySQL datadog integration.
+Once the playbook is run with the new configuration, MySQL metrics will be sent to Datadog. Below is the default MySQL dashboard, you can see this in you dashboard list by installing the MySQL Datadog integration.
 
 ![hostmapview](./Screenshots/MySQLDash.png)
 
@@ -84,11 +79,11 @@ from random import randint
 
 class RandomCheck(AgentCheck):
 	def check(self, instance):
-		# get a random number and send it as a guaged metric to datadog
+		# get a random number and send it as a guaged metric to Datadog
 		randnum=randint(0, 1000)
 		self.gauge('agent.random.num', randnum)
 ```
-It is also important to create a simple config file so the datadog agent knows to run this check.
+It is also important to create a simple config file so the Datadog agent knows to run this check.
 
 ```
 init_config:
@@ -128,70 +123,83 @@ The anomaly graph is displaying the average rate of mysql connections to the ser
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+>Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+>Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+>* Warning threshold of 500
+>* Alerting threshold of 800
+>* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Please configure the monitor’s message so that it will:
+>Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+>* Send you an email whenever the monitor triggers.
+>* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+>* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+>* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+This monitor was created using the GUI. You can see the metric and alert conditions set in the following screenshot.
 
-    * One that silences it from 7pm to 9am daily on M-F,
-    * And one that silences it all day on Sat-Sun.
-    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+![hostmapview](./Screenshots/monitorCreate.png)
+
+Conditional variables allow us to create a custom notification dependint on the triggerent event type. The use of template and tag variables provide detailed information in the notification to assist any responders that may be trying to resolve issues related to the monitor. 
+
+In the demonstration monitor, outside of all of the conditional variables, is an email address that will recieve the notification any time the monitor is triggered. You can also add the alert recipeints to individual condidtional variables if you do not want them to receive messages for every event type. Below is an example plaintext mardown that will control what messages get sent when an alert, warning or no data threshold is reached. 
+
+```
+{{#is_alert}}
+**Description:** A random number was generated on {{host.name}} with a value of {{value}} which is above {{threshold}}!
+**Host:** {{host.name}}, **IP:** {{host.ip}}
+{{/is_alert}} 
+{{#is_warning}}
+**Description:** A random number was generated on {{host.name}} with a value of {{value}} which is above {{warn_threshold}}! Just want to give you a heads up that is is getting high. If this value exceeds {{threshold}} and alert will be triggered.
+**Host:** {{host.name}}, **IP:** {{host.ip}}
+{{/is_warning}}
+{{#is_no_data}}
+**Description:** We have not received any random number metrics from {{host.name}} in the past 10 minutes. Please investigate.
+**Host:** {{host.name}}, **IP:** {{host.ip}}
+{{/is_no_data}} @datadog.demo@gmail.com
+```
+When this monitor is triggered, the recipient will get an email notification.
+
+![hostmapview](./Screenshots/alertEmail.png)
+
+>* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+>    * One that silences it from 7pm to 9am daily on M-F,
+>    * And one that silences it all day on Sat-Sun.
+>    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Scheduling downtime can be done through the web UI. Below is an example of scheduling downtime for every weekday between 7pm until 9am.
+
+![hostmapview](./Screenshots/scheduleDowntime.png)
+
+Once downtime is scheduled, you will get email notifications that inform you when the downtime will begin and end.
+
+![hostmapview](./Screenshots/downtimeWeekday.png)
+
+![hostmapview](./Screenshots/downtimeWeekend.png)
 
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+> Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: 
 
-```
-from flask import Flask
-import logging
-import sys
+>* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+By installing the ddtrace python client we are able to instrument this flask application using `ddtrace-run`. This block in Ansible will setup the ddtrace pyhton client and run the flask application `flaskdemo.py` with traces instrumented.
 
-app = Flask(__name__)
+>* **Bonus Question**: What is the difference between a Service and a Resource?
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+>Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
+>Please include your fully instrumented app in your submission, as well. 
 
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
+This demo flask app can be found in `./Scripts/flaskDemo.py`. To run it, ssh to your Vagrant in and run `ddtrace-run python flaskDemo.py`. Once it is up, you can send requests to the port on the local instance. You can see some sytem metrics as well as the flask apm on the following dashboard: https://p.datadoghq.com/sb/7ddde11c8-afb0b78f66d65e45ef742831b29d06da 
 
-if __name__ == '__main__':
-    app.run()
-```    
+Here is a screenshot of that same dashboard.
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-* **Bonus Question**: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well. 
+![hostmapview](./Screenshots/flaskAPMDash.png)
 
 ## Final Question:
 

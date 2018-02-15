@@ -4,6 +4,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do | config |
     # https://app.vagrantup.com/debian/boxes/stretch64
     config.vm.box = "debian/stretch64"
 
+    config.ssh.guest_port = 2222
 
     # fix some time and timezone info to make sure it is correct for anyone who travels
     require 'time'

@@ -8,5 +8,6 @@ init_config:
         # i.e. If your agent runs every 20 seconds by default, and this values is
         # set to 45, the check will run every 60 seconds. 
         min_collection_interval: 45
+
 instances:
         [{}]

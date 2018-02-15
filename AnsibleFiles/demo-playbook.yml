@@ -5,7 +5,7 @@
   remote_user: root
   become: yes
   vars:
-    datadog_api_key: "<DD_API_KEY>" # change api key to point at your environment
+    datadog_api_key: "<DATADOG_API_KEY>" # change api key to point at your environment
     datadog_agent_version: "1:5.21.2-1" # for apt-based platforms, use a `5.12.3-1` format on yum-based platforms
     datadog_config:
       tags: "role:datadog-demo, department:soloutions-engineering"
@@ -34,10 +34,6 @@
     apt: name=mysql-server state=latest
   - name: Install mysql-python # allows us to use ansible mysql_db module
     apt: name=python-mysqldb state=latest
-  - name: Create a new database with name 'datadogmysql'
-    mysql_db:
-      name: datadogmysql
-      state: present
   - name: Create datadog mysql user with privledges
     mysql_user:
       name: datadog
@@ -63,10 +59,23 @@
       mode: 0644
     notify: restart datadog-agent
 
+  # ensure pip is installed for ddtrace
+  - name: install pip
+    apt: name=python-pip state=present
   # ddtrace for flask app
   - name: install ddtrace for python
     pip: name=ddtrace 
 
+  # copy the flask app
+  - name: install flask
+    pip: name=flask
+  - name: Add the flask app
+    copy:
+      src: ../Scripts/flaskDemo.py
+      dest: /home/vagrant/flaskDemo.py
+      owner: vagrant
+      group: vagrant
+      mode: 0774
 
 
 
