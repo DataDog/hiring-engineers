@@ -193,6 +193,10 @@ By installing the ddtrace python client we are able to instrument this flask app
 
 >* **Bonus Question**: What is the difference between a Service and a Resource?
 
+A service is a process that runs as a component of an application. In this demo, the flask app is the service. If we had a more complex app that interacted with the database created earlier, we would also see a MySQL service in our traces. Resources are specific interactions with a service. In our app resources are each time a certain route is called in the flask app. In MySQL, resources would be the queries being run. 
+
+In more simple terms, services are components of an application and resources are calls within those components.
+
 >Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 >Please include your fully instrumented app in your submission, as well. 
@@ -205,6 +209,10 @@ Here is a screenshot of that same dashboard.
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+> Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+> Is there anything creative you would use Datadog for?
+
+Around Golden, Colorado mountain biking is a very popular sport. With the popularity of the sport, the county has installed counters that trip whenever a person uses the trail. I think it would be interesting to use datadog to monitor the trailhead usage. You could use weather site APIs to plot temperature, cloud cover, etc. to see which days/times and weather conditions correspond to busier trails. I think these graphs could be a powerful tool for all users of the multi-use trails and would provide better information when it comes time for the county to make decisions related to the trails. In addition to this, I would be interested in figuring out what the optimal time/trailhead/weather is to go on a ride and avioid the crowds.
+
+To expand on this idea, it would be fun to use the Strava API and to get more detailed information on people using the trails.
