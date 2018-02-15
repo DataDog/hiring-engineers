@@ -7,11 +7,11 @@ This environment is setup using Vagrant running debian/stretch 64. Ansible and t
 ### Environment Setup:
 
 1. clone or download this repo to the sytem you wish to run on
-2. install vagrant https://www.vagrantup.com/docs/installation/
-3. install Ansible http://docs.Ansible.com/Ansible/latest/intro_installation.html
-4. download the Datadog Ansible role `Ansible-galaxy install Datadog.datadog`
+2. install vagrant, see the [vagrnat installation guide](https://www.vagrantup.com/docs/installation/) for help
+3. install Ansible, see the [ansible instalation guide](http://docs.Ansible.com/Ansible/latest/intro_installation.html) for help
+4. install the Datadog Ansible role `Ansible-galaxy install Datadog.datadog`
 5. from this directory, run the Vagrantfile to start your vm, `vagrant up` this may take some time initially as the debian stretch vagrant box will need to be downloaded
-6. replace the datadog API key in `./Ansible/demo-playbook.yml with your API key
+6. replace the Datadog API key placeholder in `./Ansible/demo-playbook.yml with your Datadog API key
 7. from this directory, run the Ansible playbook on your newly provisioned vm `Ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key --limit datadog-demo ./AnsibleFiles/demo-playbook.yml  -i ./AnsibleFiles/host`
 
 
@@ -19,7 +19,7 @@ This environment is setup using Vagrant running debian/stretch 64. Ansible and t
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Tags were added as datadog_config varaiables in the Ansible playbook.
+Tags were added as datadog_config varaiables in the Ansible playbook. Ansible will use these values in datadog.conf and the agent will be restarted to start with the correct configuration options if any changes are made.
  
 ```
 vars:
@@ -37,7 +37,7 @@ Once the tags are added to the playbook, and applied with an Ansible run, the ta
 
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-MySQL is installed and configured with the following tasks in the Ansible playbook. We also include the mysql-python library which allows configuration of the database through Ansible. We configure mysql with a mysql user "datadog". This user has REPLICATION CLIENT and PROCESS priviledges which is all the datadog mysql check will need.
+MySQL is installed and configured with the following tasks in the Ansible playbook. We also include the mysql-python library which allows configuration of the database through Ansible. We configure mysql with a MySQL user "datadog". This user has REPLICATION CLIENT and PROCESS priviledges which is all the datadog MySQL check will need.
 
 ```
   - name: Install mysql-server
@@ -52,7 +52,7 @@ MySQL is installed and configured with the following tasks in the Ansible playbo
       state: present
 ```
 
-In the variables section of the playbook, a `datadog_checks` block is added. This is where you can add conifguration options for checks that will be created using the Ansible Datadog Ansible role. In our case, the mysql check is added. This configuration file includes a single mysql instance running on localhost and will access the database as the datadog user we setup in the previous Ansible run.
+In the variables section of the playbook, a `datadog_checks` section is added. This is where you can add conifguration options for checks that will be added using the Ansible Datadog Ansible role. In our case, the MySQL check is added. This configuration file includes a single MySQL instance running on localhost and will access the database as the datadog user we setup in the previous Ansible run.
 
 ```   
    datadog_checks:
@@ -65,7 +65,7 @@ In the variables section of the playbook, a `datadog_checks` block is added. Thi
             port: 3306
 ```
 
-Once the playbook is run with the new configuration, MySQL metrics will be sent to Datadog. Below is the default MySQL dashboard, you can see this in you dashboard list by installing the MySQL Datadog integration.
+Once the playbook is run with the new configuration, MySQL metrics will start being sent to Datadog. Below is a screen shot of the default MySQL dashboard. You can see this in you dashboard list after installing the MySQL Datadog integration.
 
 ![hostmapview](./Screenshots/MySQLDash.png)
 
@@ -83,7 +83,8 @@ class RandomCheck(AgentCheck):
 		randnum=randint(0, 1000)
 		self.gauge('agent.random.num', randnum)
 ```
-It is also important to create a simple config file so the Datadog agent knows to run this check.
+
+It is also important to create a simple config file so the Datadog agent knows to run this check. In our case, there is no special configuration.
 
 ```
 init_config:
@@ -93,10 +94,9 @@ instances:
 
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-By adding `min_collection_interval: 45` to the randomcheck config file, we can ensure that this check will only submit one metric within a 45 second interval. It is good to note that this sets a minimum interval and does not mean the check will run every 45 seconds.
-
 > **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-<TODO> explore other ways to modify the collection interval.
+
+By adding `min_collection_interval: 45` under the `init_config:` section of the randomcheck configuration file, we can ensure that this check will only submit one metric within a 45 second interval. It is good to note that this sets a minimum interval and does not mean the check is guarenteed run every 45 seconds.
 
 ## Visualizing Data:
 
@@ -117,9 +117,11 @@ To generate this timeboard using the Datadog API, update `./Scripts/demoTimeboar
 
 The Timeboard's timeframe can be set to 5 minutes by selecting a range from the end of any graph on a time period within 5 minutes or less. This will select the minimum timerange which is 5 minutes. If you selected a 5 minute range but it does not end at the present time, you can use the shift forward button to shift the time range until it ends at the current time.
 
+Sending snapshots of a graph can be done by hovering over the graph area, and clicking the "Annotate this graph" button (camera icon). You can write a comment and send the graph to someone using the @ notation.
+
 ![hostmapview](./Screenshots/SendingSnapshot.gif)
 
-The anomaly graph is displaying the average rate of mysql connections to the server. In blue are the net connections that fall within the trending value based on a basic algorithm. In red are any of the net connections that fall outside of the expected trend based on the basic algorithm thus are detected as an anolmaly. In this demonstration we have set the bounds to 1 which is the narrowest tollerance making small variations trigger as anomalies.
+The anomaly graph in this demo is displaying the average rate of MySQL connections to the server. In blue are the net connections that fall within the trending value based on a basic algorithm. In red are any of the net connections that fall outside of the expected trend based on the basic algorithm thus are detected as an anolmaly. In this demonstration we have set the bounds to 1 which is the narrowest tollerance making small variations trigger as anomalies.
 
 ## Monitoring Data
 
@@ -142,9 +144,9 @@ This monitor was created using the GUI. You can see the metric and alert conditi
 
 ![hostmapview](./Screenshots/monitorCreate.png)
 
-Conditional variables allow us to create a custom notification dependint on the triggerent event type. The use of template and tag variables provide detailed information in the notification to assist any responders that may be trying to resolve issues related to the monitor. 
+Conditional variables allow us to create a custom notifications corresponding to triggerent event type. The use of template and tag variables provide detailed information in the notification to assist any responders that may be trying to resolve issues related to the monitor. 
 
-In the demonstration monitor, outside of all of the conditional variables, is an email address that will recieve the notification any time the monitor is triggered. You can also add the alert recipeints to individual condidtional variables if you do not want them to receive messages for every event type. Below is an example plaintext mardown that will control what messages get sent when an alert, warning or no data threshold is reached. 
+In this demonstration monitor, outside of all of the conditional variables, is an email address that will recieve the notification any time the monitor is triggered, regardless of event type. You could also add the alert recipeints to individual condidtional variables if you do not want them to receive messages for every event type. Below is an example that will send notifications when an alert, warning, or no data threshold is reached. 
 
 ```
 {{#is_alert}}
@@ -158,9 +160,9 @@ In the demonstration monitor, outside of all of the conditional variables, is an
 {{#is_no_data}}
 **Description:** We have not received any random number metrics from {{host.name}} in the past 10 minutes. Please investigate.
 **Host:** {{host.name}}, **IP:** {{host.ip}}
-{{/is_no_data}} @datadog.demo@gmail.com
+{{/is_no_data}} @troy.axthelm@gmail.com
 ```
-When this monitor is triggered, the recipient will get an email notification.
+When this monitor is triggered, the recipient specified using the @ notation will get an email notification.
 
 ![hostmapview](./Screenshots/alertEmail.png)
 
@@ -174,7 +176,7 @@ Scheduling downtime can be done through the web UI. Below is an example of sched
 
 ![hostmapview](./Screenshots/scheduleDowntime.png)
 
-Once downtime is scheduled, you will get email notifications that inform you when the downtime will begin and end.
+Once downtime is scheduled, you will get email notifications that inform you when the scheduled downtime will begin and end.
 
 ![hostmapview](./Screenshots/downtimeWeekday.png)
 
