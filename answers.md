@@ -1,7 +1,7 @@
 ## Environment
 
-Laptop: macOS High Sierra
-VM: Vagrant Ubuntu 12.04
+* Laptop: macOS High Sierra
+* VM: Vagrant Ubuntu 12.04
 
 ## Collecting Metrics
 
