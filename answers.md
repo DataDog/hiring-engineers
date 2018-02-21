@@ -5,13 +5,13 @@
 
 ## Collecting Metrics
 
-* Screenshot of your host and its tags on the Host Map page in Datadog
+~~Screenshot of your host and its tags on the Host Map page in Datadog~~
+~~Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%201%20-%20host.png" title="Datadog Host Map page">
 <img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%201%20-%20host.png" width="500" height="332" alt="datadog_host_map_page"></a>
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+~~Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.~~
 
 *dd-agent/checks.d/my_first_metrics.py*
 
@@ -24,8 +24,8 @@ class MyFirstMetricsCheck(AgentCheck):
         self.gauge('my_first_metrics.my_metric', random.randint(0, 1000))
 ```
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* Bonus Question - Can you change the collection interval without modifying the Python check file you created?
+~~Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Bonus Question - Can you change the collection interval without modifying the Python check file you created?~~
 
 *dd-agent/conf.d/my_first_metrics.yaml*
 
