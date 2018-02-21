@@ -1,11 +1,14 @@
 ## Environment
 
-* Laptop: macOS High Sierra
-* VM: Vagrant Ubuntu 12.04
+* +Laptop:+ macOS High Sierra
+* +VM:+ Vagrant Ubuntu 12.04
 
 ## Collecting Metrics
 
-screenshot of your host and its tags on the Host Map page in Datadog.
+* Screenshot of your host and its tags on the Host Map page in Datadog
+
+<a href="https://drive.google.com/open?id=1pHBc6Cy6_89RATjBmiSUwRvLixuN8W7N" title="Datadog Host Map page">
+<img src="https://drive.google.com/file/d/1pHBc6Cy6_89RATjBmiSUwRvLixuN8W7N/view" width="500" height="332" alt="datadog_host_map_page"></a>
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
