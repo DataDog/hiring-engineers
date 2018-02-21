@@ -39,19 +39,68 @@ instances:
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+~~Utilize the Datadog API to create a Timeboard that contains:
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket~~
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%202%20-%20timeboard.png" title="Datadog Host Map page">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%202%20-%20timeboard.png" width="500" height="332" alt="datadog_snapshot"></a>
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+~~Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.~~
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+```
+require 'rubygems'
+require 'dogapi'
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+dog = Dogapi::Client.new(ENV['DATADOG_API_KEY'], ENV['DATADOG_APP_KEY'])
+
+title = 'My First Timeboard (Ruby API)'
+description = 'Woop woop.'
+graphs = [
+{
+    "definition" => {
+        "events" => [],
+        "requests" => [{
+            "q" => "sum:my_first_metrics.my_metric{host:karnoult.datadog}"
+        }],
+        "viz" => "timeseries"
+    },
+    "title" => "Graph - my first metric"
+},
+{
+    "definition" => {
+        "events" => [],
+        "requests" => [{
+            "q" => "anomalies(sum:postgresql.rows_returned{host:karnoult.datadog}, 'basic', 2)"
+        }],
+        "viz" => "timeseries"
+    },
+    "title" => "Graph - postgres connections"
+},
+{
+    "definition" => {
+        "events" => [],
+        "requests" => [{
+            "q" => "sum:my_first_metrics.my_metric{host:karnoult.datadog}.rollup(sum,3600)"
+        }],
+        "viz" => "timeseries"
+    },
+    "title" => "Graph - my first metric (rollup)"
+}
+]
+
+dog.create_dashboard(title, description, graphs)
+```
+
+~~Once this is created, access the Dashboard from your Dashboard List in the UI:
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.~~
+
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%203%20-%20snapshot.png" title="Datadog Host Map page">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%203%20-%20snapshot.png" width="500" height="332" alt="datadog_snapshot"></a>
+
+**Bonus Question: What is the Anomaly graph displaying?**
 
 ## Monitoring Data
 
