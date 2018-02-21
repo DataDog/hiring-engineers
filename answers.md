@@ -37,7 +37,7 @@ instances:
     [{}]
 ```
 
-- [ ] TODO: metric is submitting every 60 seconds as default check interval is 20 seconds
+- [ ] TODO: fix check interval - metric is submitting every 60 seconds as default check interval is 20 seconds
 
 ## Visualizing Data:
 
@@ -104,15 +104,15 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.~~
 
 Link to the dashboard: [here](https://app.datadoghq.com/dash/589005/my-first-timeboard-ruby-api)
 
-**Bonus Question: What is the Anomaly graph displaying?**
+- [ ] TODO: Bonus Question: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+~~Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 Warning threshold of 500
 Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
+And also ensure that it will notify you if there is No Data for this query over the past 10m.~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%204%20-%20monitoring.png" title="Datadog Monitoring">
 <img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%204%20-%20monitoring.png" width="500" alt="datadog_monitoring"></a>
@@ -144,11 +144,11 @@ And also ensure that it will notify you if there is No Data for this query over 
 }
 ```
 
-Please configure the monitor’s message so that it will:
+~~Please configure the monitor’s message so that it will:
 Send you an email whenever the monitor triggers.
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20emails.png" title="Datadog Monitoring - emails">
 <img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20emails.png" width="500" alt="datadog_monitoring_emails"></a>
@@ -156,12 +156,15 @@ When this monitor sends you an email notification, take a screenshot of the emai
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%206%20-%20alert.png" title="Datadog Monitoring - alert">
 <img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%206%20-%20alert.png" width="500" alt="datadog_monitoring_alert"></a>
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+~~Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.~~
 
-    * One that silences it from 7pm to 9am daily on M-F,
-    * And one that silences it all day on Sat-Sun.
-    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime.png" title="Datadog Downtime">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime.png" width="500" alt="datadog_downtime"></a>
 
+---
 
 ## Collecting APM Data:
 
