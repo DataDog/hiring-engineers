@@ -164,6 +164,14 @@ Make sure that your email is notified when you schedule the downtime and take a 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime.png" title="Datadog Downtime">
 <img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime.png" width="500" alt="datadog_downtime"></a>
 
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime_1.png" title="Datadog Downtime 1">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime_1.png" width="500" alt="datadog_downtime_1"></a>
+
+*(I've moved it sooner in order to test it)*
+
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime_2.png" title="Datadog Downtime 2">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%207%20-%20downtime_2.png" width="500" alt="datadog_downtime_2"></a>
+
 ---
 
 ## Collecting APM Data:
