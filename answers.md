@@ -12,8 +12,30 @@
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+*dd-agent/checks.d/my_first_metrics.py*
+
+```
+import random
+
+from checks import AgentCheck
+class MyFirstMetricsCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_first_metrics.my_metric', random.randint(0, 1000))
+```
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+* Bonus Question - Can you change the collection interval without modifying the Python check file you created?
+
+*dd-agent/conf.d/my_first_metrics.yaml*
+
+```
+init_config:
+    min_collection_interval: 45
+
+instances:
+    [{}]
+```
 
 ## Visualizing Data:
 
