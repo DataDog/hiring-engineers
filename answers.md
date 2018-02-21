@@ -150,8 +150,11 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20email.png" title="Datadog Monitoring - email">
-<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20email.png" width="500" alt="datadog_monitoring_email"></a>
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20emails.png" title="Datadog Monitoring - emails">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%205%20-%20emails.png" width="500" alt="datadog_monitoring_emails"></a>
+
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%206%20-%20alert.png" title="Datadog Monitoring - alert">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%206%20-%20alert.png" width="500" alt="datadog_monitoring_alert"></a>
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
