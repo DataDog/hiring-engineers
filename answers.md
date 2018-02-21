@@ -39,7 +39,7 @@ instances:
 
 - [ ] TODO: fix check interval - metric is submitting every 60 seconds as default check interval is 20 seconds
 
-## Visualizing Data:
+## Visualizing Data
 
 ~~Utilize the Datadog API to create a Timeboard that contains:
 Your custom metric scoped over your host.
