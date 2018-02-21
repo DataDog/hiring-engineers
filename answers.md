@@ -9,7 +9,7 @@
 ~~Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%201%20-%20host.png" title="Datadog Host Map page">
-<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%201%20-%20host.png" width="500" height="332" alt="datadog_host_map_page"></a>
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%201%20-%20host.png" width="500" alt="datadog_host_map_page"></a>
 
 ~~Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.~~
 
@@ -37,6 +37,8 @@ instances:
     [{}]
 ```
 
+- [] TODO: metric is submitting every 60 seconds as default check interval is 20 seconds
+
 ## Visualizing Data:
 
 ~~Utilize the Datadog API to create a Timeboard that contains:
@@ -45,7 +47,7 @@ Any metric from the Integration on your Database with the anomaly function appli
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%202%20-%20timeboard.png" title="Datadog Host Map page">
-<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%202%20-%20timeboard.png" width="500" height="332" alt="datadog_snapshot"></a>
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%202%20-%20timeboard.png" width="500" alt="datadog_snapshot"></a>
 
 ~~Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.~~
 
@@ -98,7 +100,9 @@ Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.~~
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%203%20-%20snapshot.png" title="Datadog Host Map page">
-<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%203%20-%20snapshot.png" width="500" height="332" alt="datadog_snapshot"></a>
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%203%20-%20snapshot.png" width="500" alt="datadog_snapshot"></a>
+
+[link](https://app.datadoghq.com/dash/589005/my-first-timeboard-ruby-api)
 
 **Bonus Question: What is the Anomaly graph displaying?**
 
@@ -174,40 +178,3 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-* [Datadog overview](http://docs.datadoghq.com/overview/)
-* [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
- * [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
