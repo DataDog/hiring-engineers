@@ -37,7 +37,7 @@ instances:
     [{}]
 ```
 
-- [] TODO: metric is submitting every 60 seconds as default check interval is 20 seconds
+- [ ] TODO: metric is submitting every 60 seconds as default check interval is 20 seconds
 
 ## Visualizing Data:
 
