@@ -37,7 +37,7 @@ instances:
     [{}]
 ```
 
-- [ ] TODO: fix check interval - metric is submitting every 60 seconds as default check interval is 20 seconds
+*note: collection of my metric is actually done every 60 seconds as the collector seems to run every 20 seconds.*
 
 ## Visualizing Data
 
@@ -218,6 +218,7 @@ Resources are the use of these services  (ex: the queries to that bilobaba db)
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+~~Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?~~
 
-Is there anything creative you would use Datadog for?
+I would check with companies like Bayes Impact, cause I'm pretty sure social-oriented initiatives could benefit from such monitoring tools (especially with predictive capabilities)
