@@ -104,7 +104,13 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.~~
 
 Link to the dashboard: [here](https://app.datadoghq.com/dash/589005/my-first-timeboard-ruby-api)
 
-- [ ] TODO: Bonus Question: What is the Anomaly graph displaying?
+~~Bonus Question: What is the Anomaly graph displaying?~~
+
+Anomaly detection shows behaviors that the datadog agent doesn't feel right.
+In my case, there's not enough data (no real trend) for the anomaly detection to work:
+
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%210%20-%20anomaly.png" title="Datadog Anomaly">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%210%20-%20anomaly.png" width="500" alt="datadog_anomaly"></a>
 
 ## Monitoring Data
 
@@ -176,46 +182,39 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+~~Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:~~
+~~Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.~~
+
+https://app.datadoghq.com/screen/291623/apm-and-infrastructure-screenboard
+
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%208%20-%20screenboard.png" title="Datadog Screenboard">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%208%20-%20screenboard.png" width="500" alt="datadog_screenboard"></a>
+
+~~Please include your fully instrumented app in your submission, as well.~~
 
 ```
-from flask import Flask
-import logging
-import sys
+#/vagrant/bilobaba/config/initializers/datadog-tracer.rb
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+Rails.configuration.datadog_trace = {
+  auto_instrument: true,
+  auto_instrument_redis: true,
+  default_service: 'my-rails-app'
+}
+```
 
-app = Flask(__name__)
+```
+#/vagrant/bilobaba/Gemfile
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+gem 'ddtrace
+```
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
+~~Bonus Question: What is the difference between a Service and a Resource?~~
 
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
+Services are the components of the app (ex: the postgres db in my bilobaba app)
+Resources are the use of these services  (ex: the queries to that bilobaba db)
 
-if __name__ == '__main__':
-    app.run()
-```    
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-* **Bonus Question**: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well. 
+<a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%209%20-%20apm.png" title="Datadog APM">
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%209%20-%20apm.png" width="500" alt="datadog_apm"></a>
 
 ## Final Question:
 
