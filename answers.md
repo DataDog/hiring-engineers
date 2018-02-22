@@ -221,4 +221,4 @@ Resources are the use of these services  (ex: the queries to that bilobaba db)
 ~~Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 Is there anything creative you would use Datadog for?~~
 
-I would check with companies like Bayes Impact, cause I'm pretty sure social-oriented initiatives could benefit from such monitoring tools (especially with predictive capabilities)
+I would check with companies like [Bayes Impact](https://www.bayesimpact.org/), cause I'm pretty sure social-oriented initiatives could benefit from such monitoring tools (especially with predictive capabilities)
