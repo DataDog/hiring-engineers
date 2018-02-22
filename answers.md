@@ -4,3 +4,8 @@ Your answers to the questions go here.
 ## Prerequisites - Setup the environment
 
 I used a Vagrantfile to persist a simple Ubuntu 12.04 VM on my local machine.
+<img src="./img/0-environment-setup.png" alt="environment setup"/>
+
+## Collecting Metrics
+
+1. Agent Tags (added via config) - <img src="./img/1-agent-tags.png" alt="agent tags"/>
