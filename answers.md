@@ -211,6 +211,7 @@ gem 'ddtrace
 ~~Bonus Question: What is the difference between a Service and a Resource?~~
 
 Services are the components of the app (ex: the postgres db in my bilobaba app)
+
 Resources are the use of these services  (ex: the queries to that bilobaba db)
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%209%20-%20apm.png" title="Datadog APM">
