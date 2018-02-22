@@ -110,7 +110,7 @@ Anomaly detection shows behaviors that the datadog agent doesn't feel right.
 In my case, there's not enough data (no real trend) for the anomaly detection to work:
 
 <a href="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%2010%20-%20anomaly.png" title="Datadog Anomaly">
-<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%210%20-%20anomaly.png" width="500" alt="datadog_anomaly"></a>
+<img src="https://github.com/karnoult/hiring-engineers/blob/master/Datadog%20-%2010%20-%20anomaly.png" width="500" alt="datadog_anomaly"></a>
 
 ## Monitoring Data
 
