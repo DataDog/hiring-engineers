@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 If you want to apply as an engineer at [Datadog](http://datadog.com) you are in the right spot. 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
 <img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
@@ -7,9 +5,6 @@ If you want to apply as an engineer at [Datadog](http://datadog.com) you are in 
 # Why work at Datadog?
 
 We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
-=======
-=======
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
 If you want to apply as a solutions engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
@@ -17,12 +12,11 @@ If you want to apply as a solutions engineer at [Datadog](http://datadog.com) yo
 
 ## The Exercise
 
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
+Don't forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
 
 ## Questions
 
 Please provide screenshots and code snippets for all steps.
-<<<<<<< HEAD
 
 ## Prerequisites - Setup the environment
 
@@ -63,8 +57,6 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-=======
-
 ## Prerequisites - Setup the environment
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -104,7 +96,6 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
@@ -183,10 +174,6 @@ To submit your answers:
 * Commit as much code as you need to support your answers.
 * Submit a pull request.
 * Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-<<<<<<< HEAD
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
-=======
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
 
 Do you want to make a difference? Are you exceptional at your job, and intrinsically motivated by it? Do you eat hard problems for breakfast and find them beautifully simple solutions by lunchtime? Do you ever wish you were there in the early days of these startups everyone is talking about?
 
@@ -211,9 +198,6 @@ If so, we want to hear from you.
 
 # Questions?
 File an issue in this repository.
-=======
-=======
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
 ### How to get started with Datadog
 * [Datadog overview](http://docs.datadoghq.com/overview/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
@@ -236,7 +220,3 @@ File an issue in this repository.
 ### Other questions:
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
-<<<<<<< HEAD
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
-=======
->>>>>>> 61335f2ef293eee6d724d06f8f93ed32ef643d7d
