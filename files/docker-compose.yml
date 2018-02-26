@@ -1,0 +1,66 @@
+version: "3.4"
+
+volumes:
+    mysqldata:
+
+networks:
+    frontend: 
+    backend:
+
+services:
+  dd:
+    image: "datadog/docker-dd-agent:latest"
+    expose:
+    - 8126
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /proc/:/host/proc/:ro
+    - /cgroup/:/host/sys/fs/cgroup:ro
+    - ./dd-agent/conf.d:/conf.d
+    - ./dd-agent/checks.d:/checks.d
+    networks:
+      backend:
+        aliases:
+          - dd
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "nc", "-vvv", "localhost", "8126"]
+      interval: 30s
+      timeout: 5s
+      retries: 2
+      start_period: 20s
+    env_file:
+    - env/dd.env
+
+  mysql:
+    image: "mysql"
+    expose:
+    - 3306
+    volumes:
+    - mysqldata:/data
+    - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      backend:
+        aliases:
+        - mysql
+    restart: on-failure
+    depends_on:
+    - dd
+    env_file:
+    - env/mysql.env
+
+  flask:
+    build:
+      context: flask-app/
+    ports:
+    - 80:5000
+    networks:
+      frontend:
+      backend:
+        aliases:
+        - flask
+    restart: on-failure
+    depends_on:
+    - dd
+    env_file:
+    - env/flask.env
