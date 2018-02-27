@@ -1,8 +1,8 @@
 init_config:
-        - name: my_metric
-        - type: gauge
-        - active: yes
-        - min_collection_interval: 45
+ name: my_metric
+ type: gauge
+ active: yes
+ min_collection_interval: 45
 
 instances:
     [{}]

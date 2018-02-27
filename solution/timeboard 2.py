@@ -42,7 +42,7 @@ graphs = [{
  	"definition": {
         "events" : [],
         "requests" : [{
-            "q": "avg:my_metric{*}.rollup(sum,3600)"
+	     "q": "avg:my_metric{*}.rollup(sum,3600)"
 	}],
 	"viz" : "timeseries"
     },
