@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+    terraform:
+        image: "hashicorp/terraform:light"
+        env_file: .env
+    volumes:
+      - $PWD:/code/infrastructure
