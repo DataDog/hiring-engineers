@@ -256,7 +256,7 @@ api.Monitor.create(
 ```
 2. By the UI :
 
-I decided to implements two metrics, the first one average to my_metric, the second one for monitoring UDP.
+I decided to implement two metrics, the first one average to my_metric, the second one for monitoring UDP.
 
 Choose the detection method :
 ![tag image](screenshots/create_my_metric_monitor_1.png)
