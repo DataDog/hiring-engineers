@@ -27,3 +27,21 @@ Next go to the project setup page.  <https://www.vagrantup.com/intro/getting-sta
 
 Lets now head over to the Boxes page.
 <https://www.vagrantup.com/intro/getting-started/boxes.html>
+Follow the instructions to create a Ubuntu 12.04 LTS 64-bit box by using the command in your terminal or command-line:
+```
+$ vagrant box add hashicorp/precise64
+```
+In the terminal please choose VirtualBox for the choices of providers.  
+#{show terminal_creating_box}
+You should see a similar terminal indicating the creation was successful.
+#{show successful_box_creation}
+
+Now open up the vagrantfile in your project.
+#{show project_config}  
+Follow the instructions to set the box you just created as the base box you will be working with.
+
+Good job on creating your own virtual machine!  Go through the instructions on this page to get comfortable with the virtual machine and the commands.
+<https://www.vagrantup.com/intro/getting-started/up.html>
+
+### Signing up for Datadog
+--------------------------
