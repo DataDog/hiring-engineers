@@ -5,10 +5,4 @@ variable "aws_region" {
 
 variable "instance_type" {
   type        = "string"
-  description = "AWS instance type"
-}
-
-variable "vpc_security_group_ids" {
-  type        = "string"
-  description = "Target VPC security group where resources will be defined within."
 }

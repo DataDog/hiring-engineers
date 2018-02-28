@@ -14,8 +14,13 @@ curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compos
 chmod +x /usr/local/bin/docker-compose
 logger -p user.notice "BOOTSTRAP: Installing Docker Compose - $!"
 
+# Starting Docker
+/etc/init.d/docker start
+logger -p user.notice "BOOTSTRAP: Starting Docker Daemon - $1"
+
 # Writing docker-compose.yml
-echo > /tmp/datadog/docker-compose.yml <<EOF
+mkdir -p /tmp/datadog
+cat > /tmp/datadog/docker-compose.yml <<EOF1
 version: "3.4"
 
 volumes:
@@ -82,7 +87,7 @@ services:
     - dd
     env_file:
     - env/flask.env
-EOF
+EOF1
 
 logger -p user.notice "BOOTSTRAP: Writing docker-compose.yml - $!"
 
@@ -91,7 +96,7 @@ mkdir -p /tmp/datadog/flask-app
 logger -p user.notice "BOOTSTRAP: making flask-app dir - $!"
 
 # Writing the flask-app Dockerfile
-echo > /tmp/datadog/flask-app/Dockerfile <<EOF
+cat > /tmp/datadog/flask-app/Dockerfile <<EOF2
 FROM python:alpine
 ARG FLASK_APP
 LABEL maintainer="tim.noeding@gmail.com"
@@ -104,12 +109,12 @@ COPY flask-example.py /code/flask-example.py
 WORKDIR /code
 
 CMD nc -z dd 8126; sleep 10; python -m flask run --host=0.0.0.0
-EOF
+EOF2
 
 logger -p user.notice "BOOTSTRAP: Writing flask-app Dockerfile - $!"
 
 # Writing flask-app application code
-echo > /tmp/datadog/flask-app/flask-example.py <<EOF
+cat > /tmp/datadog/flask-app/flask-example.py <<EOF3
 from flask import Flask
 import logging
 import sys
@@ -148,32 +153,32 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run()
-EOF
+EOF3
 
 logger -p user.notice "BOOTSTRAP: wrote flask-example.py - $!"
 
 # Writing env directory and files
 mkdir -p /tmp/datadog/env
-echo > /tmp/datadog/env/dd.env <<EOF
+cat > /tmp/datadog/env/dd.env <<EOF4
 API_KEY=<datadog_api_key>
 SD_BACKEND=docker
 DD_APM_ENABLED=true
 DD_PROCESS_AGENT_ENABLED=true
 TAGS=test_tag_1,test-key-1:test-value-1
-EOF
+EOF4
 
-echo > /tmp/datadog/env/flask.env <<EOF
+cat > /tmp/datadog/env/flask.env <<EOF5
 FLASK_APP=flask-example.py
-EOF
+EOF5
 
-echo > /tmp/datadog/env/mysql.env <<EOF
+cat > /tmp/datadog/env/mysql.env <<EOF6
 MYSQL_ROOT_PASSWORD=<db_root_password>
 MYSQL_DATABASE=<db_name>
-EOF
+EOF6
 
 # Writing mysql directory and files
 mkdir -p /tmp/datadog/mysql/docker-entrypoint-initdb.d
-echo > /tmp/datadog/mysql/docker-entrypoint-initdb.d/perms.sql <<EOF
+cat > /tmp/datadog/mysql/docker-entrypoint-initdb.d/perms.sql <<EOF7
 use mysql;
 CREATE USER '<db_user>'@'%' IDENTIFIED BY '<db_pass>';
 GRANT REPLICATION CLIENT ON *.* TO '<db_user>'@'%' WITH MAX_USER_CONNECTIONS 5;
@@ -181,7 +186,7 @@ GRANT PROCESS on *.* TO '<db_user>'@'%';
 use performance_schema;
 GRANT SELECT ON performance_schema.* TO '<db_user>'@'%';
 flush privileges;
-EOF
+EOF7
 
 logger -p user.notice "BOOTSTRAP: Application env and mysql configured - $!"
 
