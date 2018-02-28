@@ -33,11 +33,13 @@ $ vagrant box add hashicorp/precise64
 ```
 In the terminal please choose VirtualBox for the choices of providers.  
 #{show terminal_creating_box}
+
 You should see a similar terminal indicating the creation was successful.
 #{show successful_box_creation}
 
 Now open up the vagrantfile in your project.
 #{show project_config}  
+
 Follow the instructions to set the box you just created as the base box you will be working with.
 
 Good job on creating your own virtual machine!  Go through the instructions on this page to get comfortable with the virtual machine and the commands.
@@ -45,3 +47,18 @@ Good job on creating your own virtual machine!  Go through the instructions on t
 
 ### Signing up for Datadog
 --------------------------
+
+Head over to Datadog's website <https://www.datadoghq.com/> and click on 'GET STARTED FREE'.  Fill out the appropriate fields to set up your account.
+#{show datadog_signup}
+
+On the Agent Setup page download the appropriate agent for the platform your local machine uses then follow the installation instructions.
+#{show agent_setup}
+
+After the agent is done installing run it in the command line using this command:
+```
+$ datadog-agent start
+```
+
+If it started successfully the agent setup page will tell you so and you can go on to the next step!
+
+To learn more about what the Agent does and how to better us it you can look through the documentation here <https://docs.datadoghq.com/agent/>.
