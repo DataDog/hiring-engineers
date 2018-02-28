@@ -29,6 +29,7 @@ By default the agent does checks every 15 seconds. By adding ```min_collection_i
 
 The scripts used to create and destroy the timeboard can be found [here](files/scripts/)
 
+This screenshot shows the 5 minute snapshot mention to myself.
 ![Timeboard mention with anomaly](https://raw.githubusercontent.com/tnoeding/hiring-engineers/solutions-engineer/files/screenshots/timeboard_snapshot_email.png)
 
 #### Bonus Question:
