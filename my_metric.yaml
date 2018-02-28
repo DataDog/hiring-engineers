@@ -1,0 +1,13 @@
+init_config:
+    default_timeout: 5
+    min_collection_interval: 45
+
+instances:
+    -   url: https://google.com
+
+    -   url: http://127.0.0.1:5000/
+
+    -   url: http://httpbin.org/delay/10
+        timeout: 8
+
+    -   url: http://httpbin.org/status/400
