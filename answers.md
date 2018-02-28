@@ -5,10 +5,10 @@
 The environment used for the technical exercise consisted of an AWS EC2 instance running the amazon linux AMI. The required agent, database, and example application were generated using docker and docker-compose.
 
 ### Recreating the technical exercise
-To create the required environment in an AWS account, please use the terraform docker-compose script found [here](files/terraform/README.md)
+To create the required environment in an AWS account, please use the terraform docker-compose script found [here](files/terraform/)
 
 To see the individual components check out the 
-[docker-compose info](files/README.md)
+[docker-compose info](files/)
 
 ![AWS Console - Instance](https://raw.githubusercontent.com/tnoeding/hiring-engineers/solutions-engineer/files/screenshots/aws_console_ddinstance.png)
 
@@ -27,7 +27,7 @@ By default the agent does checks every 15 seconds. By adding ```min_collection_i
 
 ## Visualizing Data:
 
-The scripts used to create and destroy the timeboard can be found [here](files/scripts/README.md)
+The scripts used to create and destroy the timeboard can be found [here](files/scripts/)
 
 ![Timeboard mention with anomaly](https://raw.githubusercontent.com/tnoeding/hiring-engineers/solutions-engineer/files/screenshots/timeboard_snapshot_email.png)
 
@@ -51,7 +51,7 @@ This is the downtime notification sent to let me know that alerting would be sus
 
 ![Dashboard Screenshot of APM and Infrastructure Metrics](https://raw.githubusercontent.com/tnoeding/hiring-engineers/solutions-engineer/files/screenshots/apm_infra_screenshot.png)
 
-The application and dockerfile can be found [here](files/flask-app/README.md)
+The application and dockerfile can be found [here](files/flask-app/)
 
 
 #### Bonus Question:
