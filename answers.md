@@ -65,7 +65,7 @@ To learn more about what the Agent does and how to better us it you can look thr
 ## Collecting Metrics
 ---------------------
 
-Read through the documentation for learning at tags. <https://docs.datadoghq.com/getting_started/tagging/>
+Read through the documentation for learning about tags. <https://docs.datadoghq.com/getting_started/tagging/>
 
 Lets start by adding tags to our config file by going into our console and typing the command:
 ```
@@ -74,4 +74,23 @@ $ open /opt/datadog-agent/etc/datadog.yaml
 Scroll down until you find the "Set the hosts tags" section.  Remove the hashes to uncomment the area and add any tags you want using the key value format.  
 #{show assigning_tags_config}
 
-#{SHOW host_map_tags}
+#{IMPORTANT! SHOW host_map_tags}
+
+Next we will install PostgreSQL to use as our server.  We will install it using homebrew and the command line.  You can follow the instructions from here to install homebrew and PostgreSQL: <https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb>
+
+Now create a database on the command line:
+```
+$ createdb [your database name here]
+```
+
+Next we need to integrate PostgreSQL with Datadog using Datadog's provided integration.  We'll start by first adding a postgres.yaml file in the agent's conf.d directory.  To do so follow these commands in the command-line:
+```
+$ open ~/.datadog-agent/conf.d/
+touch postgres.yaml
+```
+
+You can read about this step and more regarding integrations here: <https://docs.datadoghq.com/integrations/postgres/>
+
+Now lets go to
+<https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration. 
+#{show postgres_integration}
