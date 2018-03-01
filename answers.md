@@ -23,7 +23,7 @@ It also displays the MySQL integration that was added, which can be found [here]
 The custom agent check named my_metric can be found [here](files/dd-agent/checks.d/my_metric.py) and the configuration can be found [here](files/dd-agent/conf.d/my_metric.yaml)
 
 #### Bonus Question:
-By default the agent does checks every 15 seconds. By adding ```min_collection_interval``` to the init config, I was able to change the collection interval to 45 seconds. I was unable to find any way of changing the interval outside of editing the config and restarting the agent.
+By default, the agent performs its checks every 15 seconds. By adding ```min_collection_interval``` to the init config, I was able to change the collection interval to 45 seconds. I was unable to find any way of changing the interval outside of editing the config and restarting the agent.
 
 ## Visualizing Data:
 
@@ -56,10 +56,10 @@ The application and dockerfile can be found [here](files/flask-app/)
 
 
 #### Bonus Question:
-**Resource** - specific query to a service example: a URL or sql query
+**Resource** - a specific query to a service; e.g. a URL or SQL query
 
-**Service** - the name of processes that provide a feature set example: my-custom-application
+**Service** - the name of process(es) that provide a feature set; e.g. my-custom-application
 
 ## Final Question:
 
-Cryptocurrency mining has become popular recently, and I would enjoy using datadog to provide a much better window into the efficiency of the different miners. This could be used to show everything from blocks of work solved to frequency of hardware errors.
+Cryptocurrency mining has become popular recently and I would enjoy using DataDog to provide a much better window into the efficiency of the different miners. This could be used to show everything from blocks of work solved to frequency of hardware errors.
