@@ -16,6 +16,7 @@ Make sure that your computer allows VirtualBox to install.  You can look to see 
 ### Installing Vagrant
 Vagrant is a tool for building and managing virtual machine environments.  Click on the link below and click on the OS X version to begin downloading.
 <https://www.vagrantup.com/downloads.html>
+
 #{show vagrant_download_page screen shot}
 
 After downloading the appropriate version follow the instructions for installation on your local computer.  Like VirtualBox make sure your computer allows for installation.
@@ -23,6 +24,7 @@ After downloading the appropriate version follow the instructions for installati
 Once finished installing head over to the getting started page for Vagrant here: <https://www.vagrantup.com/intro/getting-started/>.  Since you've already installed vagrant you only need to verify that the installation was successful.  Follow the instructions on verifying the installation was successful.
 
 Next go to the project setup page.  <https://www.vagrantup.com/intro/getting-started/project_setup.html> You have the option of either creating a new directory or incorporating Vagrant in a pre-existing directory.  Please choose the appropriate option for your needs and then follow the instructions on the page.
+
 #{show vagrant_project_setup}
 
 Lets now head over to the Boxes page.
@@ -32,12 +34,15 @@ Follow the instructions to create a Ubuntu 12.04 LTS 64-bit box by using the com
 $ vagrant box add hashicorp/precise64
 ```
 In the terminal please choose VirtualBox for the choices of providers.  
+
 #{show terminal_creating_box}
 
 You should see a similar terminal indicating the creation was successful.
+
 #{show successful_box_creation}
 
 Now open up the vagrantfile in your project.
+
 #{show project_config}  
 
 Follow the instructions to set the box you just created as the base box you will be working with.
@@ -48,9 +53,11 @@ Resources:
 ### Signing up for Datadog
 
 Head over to Datadog's website <https://www.datadoghq.com/> and click on 'GET STARTED FREE'.  Fill out the appropriate fields to set up your account.
+
 #{show datadog_signup}
 
 On the Agent Setup page download the OS X agent for your local machine then follow the installation instructions.
+
 #{show agent_setup}
 
 Next we will get the agent up and running:
@@ -90,7 +97,10 @@ $ open /opt/datadog-agent/etc/datadog.yaml
 
 ```
 Scroll down until you find the "Set the hosts tags" section.  Remove the hashes to uncomment the area and add any tags you want using the key value format.  
+
 #{show assigning_tags_config}
+
+You can then see your host and new tags in the host map tab for Datadog.
 
 #{IMPORTANT! SHOW host_map_tags}
 
@@ -104,21 +114,27 @@ $ createdb [your database name here]
 
 Next we need to integrate PostgreSQL with Datadog using Datadog's provided integration.  We'll start by first adding a postgres.yaml file in the agent's conf.d directory.  To do so follow these commands in the command-line:
 ```
-$ open ~/.datadog-agent/conf.d/
+$ cd ~/.datadog-agent/conf.d/
 $ touch postgres.yaml
 ```
 
 You can read about this step and more regarding integrations here: <https://docs.datadoghq.com/integrations/postgres/>
 
-Now lets go to
-<https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration.
+Now lets go to <https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration.
+
 #{show postgres_integration}
 
 #### Creating a custom agent check
 Lets check out the documentation for creating a custom check:
 <https://docs.datadoghq.com/agent/agent_checks/#directory-structure>
 
-Follow the instructions below: (just change the metric name in python file to my_metric instead of 'hello.world' and change the value to 500):
+Follow the instructions below: (just change the metric name in python file to my_metric instead of 'hello.world' and change the value to 500).
+
+- Create a my_check.yaml file in the conf.d folder located at /opt/datadog-agent/etc/conf.d
+
+- Create a my_check.py file in the checks.d folder located at
+/opt/datadog-agent/etc/checks.d
+
 #{show creating_check}
 
 Stop the agent then restart it in the console.  Then go to the metric summary board in Datadog.
@@ -131,3 +147,9 @@ $ datadog-agent check my_check
 
 Under the Running Checks section you should see something similar to the below image.
 #{show agent_check}
+
+#### Change your checks collection interval
+
+To change the collection interval of your check you can add a method in the init config for your <your check name>.yaml file.
+
+#{show init_config}
