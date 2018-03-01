@@ -42,7 +42,7 @@ Now open up the vagrantfile in your project.
 
 Follow the instructions to set the box you just created as the base box you will be working with.
 
-Good job on creating your own virtual machine!  Go through the instructions on this page to get comfortable with the virtual machine and its commands.
+Resources:
 <https://www.vagrantup.com/intro/getting-started/up.html>
 
 ### Signing up for Datadog
@@ -53,32 +53,51 @@ Head over to Datadog's website <https://www.datadoghq.com/> and click on 'GET ST
 On the Agent Setup page download the OS X agent for your local machine then follow the installation instructions.
 #{show agent_setup}
 
-After the agent is done installing run it in the command line using this command:
+Next we will get the agent up and running:
+
 ```
 $ datadog-agent start
 ```
 
 If it started successfully the agent setup page will tell you so and you can go on to the next step!
 
+After the agent is done installing go into the terminal to get your virtual machine up and running:
+
+```
+$ vagrant up
+```
+
+Then move into the machine by running this command:
+```
+$ vagrant ssh
+```
+
+You are now running a linux OS using a virtual machine!
+
 To learn more about what the Agent does and how to better us it you can look through the documentation here <https://docs.datadoghq.com/agent/>.
 
 ## Collecting Metrics
 ---------------------
 
+NOTE: Due to running into errors while using the virtual machine I decided to continue this tutorial using my Mac OS X operating system.
+
+#### Adding tags
 Read through the documentation for learning about tags. <https://docs.datadoghq.com/getting_started/tagging/>
 
 Lets start by adding tags to our config file by going into our console and typing the command:
 ```
 $ open /opt/datadog-agent/etc/datadog.yaml
+
 ```
 Scroll down until you find the "Set the hosts tags" section.  Remove the hashes to uncomment the area and add any tags you want using the key value format.  
 #{show assigning_tags_config}
 
 #{IMPORTANT! SHOW host_map_tags}
 
-Next we will install PostgreSQL to use as our server.  We will install it using homebrew and the command line.  You can follow the instructions from here to install homebrew and PostgreSQL: <https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb>
+#### Installing a database
+Next we will install PostgreSQL to use as our server.  If you don't have PostgreSQL installed already you can follow the instructions from here to install PostgreSQL using homebrew: <https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb>
 
-Now create a database on the command line:
+Once PostgreSQL is installed create a database on the command line:
 ```
 $ createdb [your database name here]
 ```
@@ -86,11 +105,29 @@ $ createdb [your database name here]
 Next we need to integrate PostgreSQL with Datadog using Datadog's provided integration.  We'll start by first adding a postgres.yaml file in the agent's conf.d directory.  To do so follow these commands in the command-line:
 ```
 $ open ~/.datadog-agent/conf.d/
-touch postgres.yaml
+$ touch postgres.yaml
 ```
 
 You can read about this step and more regarding integrations here: <https://docs.datadoghq.com/integrations/postgres/>
 
 Now lets go to
-<https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration. 
+<https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration.
 #{show postgres_integration}
+
+#### Creating a custom agent check
+Lets check out the documentation for creating a custom check:
+<https://docs.datadoghq.com/agent/agent_checks/#directory-structure>
+
+Follow the instructions below: (just change the metric name in python file to my_metric instead of 'hello.world' and change the value to 500):
+#{show creating_check}
+
+Stop the agent then restart it in the console.  Then go to the metric summary board in Datadog.
+#{show metrics_summary_page}
+
+You should see the new metric 'my_metric' in the summary.  Additionally, you can run this command in the console:
+```
+$ datadog-agent check my_check
+```
+
+Under the Running Checks section you should see something similar to the below image.
+#{show agent_check}
