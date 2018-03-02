@@ -153,3 +153,32 @@ Under the Running Checks section you should see something similar to the below i
 To change the collection interval of your check you can add a method in the init config for your <your check name>.yaml file.
 
 #{show init_config}
+
+#### Bonus question for collection interval
+WORK ON THIS ONE!
+
+## Visualizing Data
+-------------------
+
+#### Utilizing the Datadog API to create a Timeboard
+
+Lets again check out the documentation to learn about the Datadog API here:
+<https://docs.datadoghq.com/api/?lang=ruby#timeboards>
+#{show api_reference}
+
+We will use Ruby for our API request.  Create <your file name>.rb file in your project directory.
+
+Copy and paste the example request in your new script file and change out the api key and app key for your own.  You can find your keys here:
+<https://app.datadoghq.com/account/settings#api>
+Lets make sure that we are getting a response by printing out the last line of code by adding 'p' in front of it like so:
+#{show print_api_response}
+
+Next open up your console and run:
+```
+$ ruby <your file name>.rb
+```
+
+You should see a response similar to the response on the documentation page.
+If you go to <https://app.datadoghq.com/dashboard/lists> you should now see the dashboard you created!
+
+#### Adding your custom metric to the timeboard
