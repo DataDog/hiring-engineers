@@ -102,4 +102,8 @@ api.Timeboard.create(title=title,
   i) <img src="./img/15-ddtrace-running.png" alt="ddtrace running 1"/>
   ii) <img src="./img/16-ddtrace-running.png" alt="ddtrace running 2"/>
 
-## I look forward to discussing the issue that arose in attempting over the course of a week to employ the APM. I look forward to sharing my experience with Datadog team and perhaps providing a robust and full fledged solution to this issue for future developers to reference. 
+## I look forward to discussing the issue that arose in attempting over the course of a week to employ the APM. I look forward to sharing my experience with Datadog team and perhaps providing a robust and full fledged solution to this issue for future developers to reference.
+
+## Final Question:
+
+"A lover of all things music, I would love to work with a platform such as Soundcloud in perhaps providing artists will greater feedback regarding users interactions with their tracks. For instance: A timestamp at which point a song was paused to isolate portions of a song that could be improved upon (provided there is a highly concentrated portion)."
