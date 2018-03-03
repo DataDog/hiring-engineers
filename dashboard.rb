@@ -13,17 +13,38 @@ description = 'And it is amazing!'
 graphs = [{
     "definition" => {
         "events" => [],
-        "requests" => [{
-            "q" => "avg:my_metric{$host}"
-        }],
+        "requests" => [
+        {
+            "q" => "my_metric{host:Peters-MacBook-Pro.local}"
+        }
+      ],
         "viz" => "timeseries"
     },
-    "title" => "Metric details"
-}]
-template_variables = [{
-    "name" => "host1",
-    "prefix" => "host",
-    "default" => "host:my-host"
+    "title" => "My Custom Metric"
+  },
+  {
+    "definition" => {
+        "events" => [],
+        "requests" => [
+        {
+            "q" => "anomalies(avg:postgresql.percent_usage_connections{host:Peters-MacBook-Pro.local}, 'basic', 2)"
+        }
+      ],
+        "viz" => "timeseries"
+    },
+    "title" => "CPU Anomalies"
+  },
+  {
+    "definition" => {
+        "events" => [],
+        "requests" => [
+        {
+            "q" => "my_metric{*}.rollup(sum,60)"
+        }
+      ],
+        "viz" => "timeseries"
+    },
+    "title" => "My Custom Metric with rollup function"
 }]
 
-dog.create_dashboard(title, description, graphs, template_variables)
+p dog.create_dashboard(title, description, graphs)

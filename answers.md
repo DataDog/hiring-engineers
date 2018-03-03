@@ -179,6 +179,11 @@ $ ruby <your file name>.rb
 ```
 
 You should see a response similar to the response on the documentation page.
-If you go to <https://app.datadoghq.com/dashboard/lists> you should now see the dashboard you created!
 
 #### Adding your custom metric to the timeboard
+Lets look at more documentation for making certain requests from the API,  specifically adding metrics.  <https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/>
+
+We'll start by adding our custom metric scoped to our host.  In our new script file lets replace the default query for our own metric that is scoped over our host.  It should look like "q" => "<your_metric_name>{$host}"
+#{show custom_metric_query}
+
+Feel free to change the description and titles in your script file to whatever you like.
