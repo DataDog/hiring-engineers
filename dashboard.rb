@@ -16,6 +16,12 @@ graphs = [{
         "requests" => [
         {
             "q" => "my_metric{host:Peters-MacBook-Pro.local}"
+        },
+        {
+            "q" => "anomalies(avg:postgresql.commits{host:Peters-MacBook-Pro.local}, 'basic', 2)"
+        },
+        {
+            "q" => "my_metric{*}.rollup(sum,3600)"
         }
       ],
         "viz" => "timeseries"
@@ -27,7 +33,7 @@ graphs = [{
         "events" => [],
         "requests" => [
         {
-            "q" => "anomalies(avg:postgresql.percent_usage_connections{host:Peters-MacBook-Pro.local}, 'basic', 2)"
+            "q" => "anomalies(avg:postgresql.commits{host:Peters-MacBook-Pro.local}, 'basic', 2)"
         }
       ],
         "viz" => "timeseries"
@@ -39,7 +45,7 @@ graphs = [{
         "events" => [],
         "requests" => [
         {
-            "q" => "my_metric{*}.rollup(sum,60)"
+            "q" => "my_metric{*}.rollup(sum,3600)"
         }
       ],
         "viz" => "timeseries"

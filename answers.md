@@ -187,3 +187,18 @@ We'll start by adding our custom metric scoped to our host.  In our new script f
 #{show custom_metric_query}
 
 Feel free to change the description and titles in your script file to whatever you like.
+
+#### Adding a metric with the anomaly function applied and adding the rollup function to our custom metric
+You can read about how functions and the anomalies function work here:
+<https://docs.datadoghq.com/graphing/miscellaneous/functions/>
+<https://docs.datadoghq.com/monitors/monitor_types/anomaly/>
+
+Go back into your script file and lets change some things in the graphs requests.  We will make two more requests like so:
+#{show metrics_request}
+
+Now go back into your console and re run:
+```
+$ ruby <your file name>.rb
+```
+
+Next go into your Datadog dashboard list.  You should see your newly created Timeboard!  Go check it out.
