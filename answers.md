@@ -202,3 +202,18 @@ $ ruby <your file name>.rb
 ```
 
 Next go into your Datadog dashboard list.  You should see your newly created Timeboard!  Go check it out.
+
+#### Set the timeboard's timeframe to 5 minutes and send to yourself using the annotation feature
+
+You can hold down your mouse and scroll over the timeframe you want to select.  Scroll over the past 5 minutes then click on the camera icon to send a snapshot.  Use the @ symbol to send it to yourself.  
+
+#### Bonus question: What is the anomaly graph showing
+
+The anomaly function works by calculating the data of the past and predicting what it should be in the future.  Check out this great article on how it works in detail:
+<https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/>
+
+The anomaly graph that is showing for me is indicating spikes in the number of commit transactions being submitted to PostgreSQL.
+
+## Monitoring Data
+
+#### Creating a new Metric Monitor
