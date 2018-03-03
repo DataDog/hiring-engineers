@@ -137,6 +137,9 @@ Follow the instructions below: (just change the metric name in python file to my
 
 #{show creating_check}
 
+We want to return a random value to the metric in the my_check.py file.  You will need to import randint from random then call the function in the gauge like so:
+#{show custom_check}
+
 Stop the agent then restart it in the console.  Then go to the metric summary board in Datadog.
 #{show metrics_summary_page}
 
@@ -205,7 +208,8 @@ Next go into your Datadog dashboard list.  You should see your newly created Tim
 
 #### Set the timeboard's timeframe to 5 minutes and send to yourself using the annotation feature
 
-You can hold down your mouse and scroll over the timeframe you want to select.  Scroll over the past 5 minutes then click on the camera icon to send a snapshot.  Use the @ symbol to send it to yourself.  
+You can hold down your mouse and scroll over the timeframe you want to select.  Scroll over the past 5 minutes then click on the camera icon to send a snapshot.  Use the @ symbol to send it to yourself.
+#{show annotation}
 
 #### Bonus question: What is the anomaly graph showing
 
@@ -217,3 +221,51 @@ The anomaly graph that is showing for me is indicating spikes in the number of c
 ## Monitoring Data
 
 #### Creating a new Metric Monitor
+
+Click on the "New Monitor" tab located in the monitors section of your Datadog navigation bar.
+#{show new_monitor_page}
+
+Choose the Metric option then we will begin creating our custom metric.  Also check out these documentation pages on monitors to better understand how they work:
+<https://docs.datadoghq.com/monitors/monitor_types/>
+<https://docs.datadoghq.com/monitors/>
+
+Lets walk through these steps to set up our Monitor:
+1. For our monitor we will use the Threshold Alert option.
+  #{show threshold_alert_option}
+
+2. Choose my_metric and leave the other options as is.
+  #{show define_metric}
+
+3. Choose to trigger the metric when it is above the average threshold during the last 5 minutes.  You should have an Alert threshold of 500 and a Warning threshold of 800.  Lets also change the option to notify us if data is missing for more than 10 minutes.
+  #{show alert_conditions}
+
+4. Lastly lets set up our monitor message that we will receive when any thresholds are met.  You can also look at this documentation to see all of the notification options:
+  <https://docs.datadoghq.com/monitors/notifications/>
+
+Lets set up our Monitor Message to give specific messages based on what thresholds are being triggered.  We will also add the value and Host IP to the message if the Alert threshold is met.  Lastly tag yourself in order to receive an alert email.
+  #{show monitor_message}
+
+
+#### Bonus question: Scheduling downtimes
+
+Here you can find how to setup downtime:
+<https://docs.datadoghq.com/monitors/downtimes/>
+
+Under the Monitors tab click on the Manage Downtime option then click on the Schedule Downtime button.
+#{show schedule_downtime}
+We are going to schedule 2 downtimes.
+
+For the first we'll:
+- Select the Monitor we just created and whichever host/hosts you'd like to apply the downtime to.
+- Click the Recurring option and choose Repeat Every 1 weeks for Monday - Friday, beginning at 7:00 p.m. until 9:00 a.m.
+- Add any message you'd like to notify anyone of the downtime.
+- Click Save
+#{show downtime_options_1}
+
+For the second:
+- Select the same options for the Monitor and hosts
+- Click the Recurring option and choose Repeat Every 1 weeks for Saturday and Sunday, beginning at 12:00 a.m. until 12:00 a.m.
+- Click Save
+#{show downtime_options_2}
+
+## Collecting APM Data
