@@ -23,11 +23,45 @@ Now all of the basic tool have been installed. Before continuing I recommend wat
 The basis of Datadog's functionality comes from the metrics it collects from your hosts. In order to send metrics to Datadog, we have to install the agent on our system. After that we will configure some applications to send their metrics.
 
 ### Install Datadog agent
-When you first log in to Datadog you will see instructions on how to install the Datadog agent. For our Vagrant setup, we will be copying the [Ubuntu installation commands](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) into a bootstrap shell script which will be triggered when we run `vagrant up`.
+When you first log in to Datadog you will see instructions on how to install the Datadog agent. For our Vagrant setup, we will be copying the [Ubuntu installation commands](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) into a bootstrap shell script which will be triggered when we run `vagrant up`. This is what the file looks like right now:
 
-In order to keep my Datadog API key secret, I have a .env file which is excluded from git tracking. The file is uploaded to the ubuntu image on startup, then accessed by the bootstrap script. This method seemed to me to be the easiest to implement and most extendible for future updates that may need more secrets available.
+```bash
+#!/usr/bin/env bash
 
-Now that bootstrap.sh is written, the key has been added to .env, and the Vagrantfile is calling both, we are ready to run `vagrant up`. The process should take a few minutes, but at the end we should see something like:
+echo "bootstrap.sh 1: allow apt to install through https"
+sudo apt-get update
+sudo apt-get install apt-transport-https
+
+echo "bootstrap.sh 2: set up the Datadog deb repo on system and import Datadog's apt key"
+sudo sh -c "echo 'deb https://apt.datadoghq.com/ stable 6' > /etc/apt/sources.list.d/datadog.list"
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 382E94DE
+
+echo "bootstrap.sh 3: install the Agent"
+sudo apt-get update
+sudo apt-get install datadog-agent
+
+echo "bootstrap.sh 4: copy the example config and plug in API key from .env"
+source .env
+echo "api key: $DATADOG_API_KEY"
+sudo sh -c "sed 's/api_key:.*/api_key: $DATADOG_API_KEY/' /etc/datadog-agent/datadog.yaml.example > /etc/datadog-agent/datadog.yaml"
+
+echo "boostrap.sh 5: start the datadog agent"
+sudo initctl start datadog-agent
+```
+And the Vagrant file:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+  
+  config.vm.provision :file, source: ".env", destination: ".env"
+  config.vm.provision :shell, path: "bootstrap.sh"
+end
+```
+
+In order to keep my Datadog API key secret, I have added a .env file which is excluded from git tracking. The file is uploaded to the ubuntu image on startup, then accessed by the bootstrap script. This method seemed to me to be the easiest to implement and most extendible for future updates that may need more secrets available.
+
+Now that [bootstrap.sh](bootstrap.sh) is written, the key has been added to [.env](.env), and the [Vagrantfile](Vagrantfile) is calling both, we are ready to run `vagrant up`. The process should take a few minutes, but at the end we should see something like:
 
 ```
 default: boostrap.sh 5: start the datadog agent
