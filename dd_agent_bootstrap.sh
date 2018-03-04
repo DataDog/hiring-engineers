@@ -17,5 +17,11 @@ source .env
 echo "api key: $DATADOG_API_KEY"
 sudo sh -c "sed 's/api_key:.*/api_key: $DATADOG_API_KEY/' /etc/datadog-agent/datadog.yaml.example > /etc/datadog-agent/datadog.yaml"
 
-echo "boostrap.sh 5: start the datadog agent"
+echo "bootstrap.sh 5: give agent tags"
+# this could be probably be abstracted out
+# have the tags come from a file so different instances don't need individual agent_bootstraps
+sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/datadog.yaml
+
+echo "boostrap.sh 6: start the datadog agent"
 sudo initctl start datadog-agent
+
