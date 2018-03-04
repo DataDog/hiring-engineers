@@ -35,7 +35,7 @@ default: datadog-agent start/running, process 1313
 ```
 I can now go to the Datadog website, and see that my image is sending data. I ran a couple commands to throttle the CPU (check out [stress](https://www.hecticgeek.com/2012/11/stress-test-your-ubuntu-computer-with-stress/), just to see how the graphs would react, and I seemed to get the exact output I would expect from throttling 1, then 2 CPUs.
 
-[stress test on ubuntu image](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/initial_dashboard.png)
+![stress test on ubuntu image](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/initial_dashboard.png)
 
 #TODO
 
