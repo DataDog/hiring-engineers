@@ -1,21 +1,20 @@
-- [Datadog Introduction](#datadog-introduction)
-    - [Prerequisites - Setup the environment](#prerequisites---setup-the-environment)
-        - [Install VirtualBox](#install-virtualbox)
-        - [Install Vagrant](#install-vagrant)
-    - [Collecting Metrics](#collecting-metrics)
-        - [Install Datadog agent](#install-datadog-agent)
-- [TODO](#todo)
-    - [Visualizing Data](#visualizing-data)
-    - [Monitoring Data](#monitoring-data)
-    - [Collecting APM Data](#collecting-apm-data)
-    - [Final Question](#final-question)
 
 # Datadog Introduction Guide
-## Prerequisites - Setup the environment
 Datadog is a monitoring service for applications at scale. I will show the setup from first installing the agent to customizing a dashboard and setting up email alerts.
 
 This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant. The host operating system is a Debian laptop.
 
+- [Prerequisites - Setup the environment](#prerequisites---setup-the-environment)
+    - [Install VirtualBox](#install-virtualbox)
+    - [Install Vagrant](#install-vagrant)
+- [Collecting Metrics](#collecting-metrics)
+    - [Install Datadog agent](#install-datadog-agent)
+- [Visualizing Data](#visualizing-data)
+- [Monitoring Data](#monitoring-data)
+- [Collecting APM Data](#collecting-apm-data)
+- [Final Question](#final-question)
+
+## Prerequisites - Setup the environment
 ### Install VirtualBox
 [Available here](https://www.virtualbox.org/wiki/Linux_Downloads), I followed the instructions that added it to my apt-get library to make it easier to update in the future, my current version is VirtualBox 5.2.
 
@@ -82,7 +81,7 @@ I can now go to the Datadog website, and see that my image is sending data. I ra
 
 ![stress test on ubuntu image](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/initial_dashboard.png)
 
-# TODO
+**TODO**
 
 * Install Mongo
 * update vagrant provisioner to include a script that sends random data
