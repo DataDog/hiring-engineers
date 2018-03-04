@@ -1,6 +1,17 @@
+- [Datadog Introduction](#datadog-introduction)
+    - [Prerequisites - Setup the environment](#prerequisites---setup-the-environment)
+        - [Install VirtualBox](#install-virtualbox)
+        - [Install Vagrant](#install-vagrant)
+    - [Collecting Metrics](#collecting-metrics)
+        - [Install Datadog agent](#install-datadog-agent)
+- [TODO](#todo)
+    - [Visualizing Data](#visualizing-data)
+    - [Monitoring Data](#monitoring-data)
+    - [Collecting APM Data](#collecting-apm-data)
+    - [Final Question](#final-question)
 
-
-## Prerequisites * Setup the environment
+# Datadog Introduction Guide
+## Prerequisites - Setup the environment
 Datadog is a monitoring service for applications at scale. I will show the setup from first installing the agent to customizing a dashboard and setting up email alerts.
 
 This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant. The host operating system is a Debian laptop.
@@ -48,7 +59,7 @@ sudo sh -c "sed 's/api_key:.*/api_key: $DATADOG_API_KEY/' /etc/datadog-agent/dat
 echo "boostrap.sh 5: start the datadog agent"
 sudo initctl start datadog-agent
 ```
-And the Vagrant file:
+And the Vagrantfile:
 
 ```ruby
 Vagrant.configure("2") do |config|
