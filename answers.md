@@ -18,7 +18,7 @@ You will need to download and install VirtualBox.  Click on the link below to be
 Vagrant is a tool for building and managing virtual machine environments.  Click on the link below. On the pop-up screen, click on the appropriate OS version to begin downloading.
 <https://www.vagrantup.com/downloads.html>
 
-#{show vagrant_download_page screen shot}
+[Imgur](https://i.imgur.com/n1dGDJQ.png)
 
 After downloading the appropriate version for your computer, follow the instructions for installation on your local computer.
 
@@ -26,7 +26,7 @@ Once you are finished installing the software, navigate to the “getting starte
 
 Next, go to the project setup page.  <https://www.vagrantup.com/intro/getting-started/project_setup.html> You have the option of either creating a new directory or incorporating Vagrant in a pre-existing directory.  Please choose the appropriate option for your needs and then follow the instructions.
 
-#{show vagrant_project_setup}
+[Imgur](https://i.imgur.com/63Kilfx.png)
 
 Now head over to the Boxes page.
 <https://www.vagrantup.com/intro/getting-started/boxes.html>
@@ -37,14 +37,17 @@ $ vagrant box add hashicorp/precise64
 ```
 In the terminal, please choose VirtualBox from the list of providers.  
 
+[Imgur](https://i.imgur.com/PCwhK1H.png)
 #{show terminal_creating_box}
 
 You should see a similar terminal indicating that the creation was successful.
 
+[Imgur](https://i.imgur.com/yJAHHnF.png)
 #{show successful_box_creation}
 
 Now, open up the vagrantfile in your project.
 
+[Imgur](https://i.imgur.com/cjEG58S.png)
 #{show project_config}  
 
 Follow the instructions to set the box you just created as the base box that you will be working with.
@@ -70,10 +73,12 @@ Resources:
 
 Head over to Datadog's website <https://www.datadoghq.com/> and click on 'GET STARTED FREE'.  Fill out the appropriate fields to set up your account.
 
+[Imgur](https://i.imgur.com/odUjhnw.png)
 #{show datadog_signup}
 
 On the Agent Setup page, download the appropriate version 6 agent for your local machine and follow the installation instructions.
 
+[Imgur](https://i.imgur.com/OWLy246.png)
 #{show agent_setup}
 
 Next, you will get the agent up and running in the terminal:
@@ -83,8 +88,6 @@ $ datadog-agent start
 ```
 
 If started successfully, the agent setup page will tell you so and will prompt you to the next step!
-
- 
 
 To learn more about what the Agent does, you may view the documentation here <https://docs.datadoghq.com/agent/>.
 
@@ -102,10 +105,12 @@ $ open /opt/datadog-agent/etc/datadog.yaml
 ```
 Scroll down until you find the "Set the hosts tags" section.  Remove the hashes to uncomment the area and add any tags that you desire using the key value format.  
 
+[Imgur](https://i.imgur.com/7BPkr5v.png)
 #{show assigning_tags_config}
 
 You should be able to see your host and new tags in the host map tab for Datadog.
 
+[Imgur](https://i.imgur.com/vOzKhNe.png)
 #{IMPORTANT! SHOW host_map_tags}
 
 #### Installing a database
@@ -128,6 +133,7 @@ You can read more about this step and using the PostgreSQL integration here: <ht
 
 Now, go to <https://app.datadoghq.com/account/settings#integrations/postgres> to create the integration. Follow the instructions to install the integration.
 
+[Imgur](https://i.imgur.com/6lhlIrZ.png)
 #{show postgres_integration}
 
 #### Creating a custom agent check
@@ -140,14 +146,17 @@ Change the value to 500
 -  Create a my_check.yaml file in the conf.d folder located at /opt/datadog-agent/etc/conf.d
 -  Create a my_check.py file in the checks.d folder located at /opt/datadog-agent/etc/checks.d
 
+[Imgur](https://i.imgur.com/IMfWldW.png)
 #{show creating_check}
 
 You will want to return a random value to the metric in the my_check.py file.  To do so, you will need to import randint from random then call the function in the gauge like so:
 
+[Imgur](https://i.imgur.com/XiO1wWs.png)
 #{show custom_check}
 
 Stop the agent then restart it in the console.  Then, go to the metric summary board in Datadog.
 
+[Imgur](https://i.imgur.com/g9MvPmu.png)
 #{show metrics_summary_page}
 
 You should see the new metric 'my_metric' in the summary.  Additionally, you can run this command in the console to see details regarding your metric:
@@ -158,12 +167,14 @@ $ datadog-agent check my_check
 
 Under the Running Checks section, you should see something similar to the image below.
 
+[Imgur](https://i.imgur.com/vPaisa1.png)
 #{show agent_check}
 
 #### Change your checks collection interval
 
 To change the collection interval of your check, you may add a method in the init config for your <your check name>.yaml file.
 
+[Imgur](https://i.imgur.com/Na1SYNR.png)
 #{show init_config}
 
 ## Visualizing Data
@@ -174,6 +185,7 @@ To change the collection interval of your check, you may add a method in the ini
 Let’s look at the documentation again to learn more about the Datadog API here:
 <https://docs.datadoghq.com/api/?lang=ruby#timeboards>
 
+[Imgur](https://i.imgur.com/XXJMCIz.png)
 #{show api_reference}
 
 You will use Ruby for your API request.  Create <your file name>.rb file in your project directory.
@@ -182,6 +194,7 @@ Copy and paste the example request in your new script file and change out the ap
 <https://app.datadoghq.com/account/settings#api>
 Ensure that you are getting a response by printing out the last line of code by adding a 'p' in front of it like so:
 
+[Imgur](https://i.imgur.com/4tNKBGp.png)
 #{show print_api_response}
 
 Next, open up your console and run:
@@ -198,6 +211,7 @@ Let’s look at more documentation for making certain requests from the API,  sp
 You will start by adding your custom metric scoped to your host.  In your new script file replace the default query for your own metric that is scoped over our host.  It should look like:
  "q" => “<your_metric_name>{$host}”
 
+[Imgur](https://i.imgur.com/4g2Uogi.png)
 #{show custom_metric_query}
 
 Feel free to change the description and titles in your script file to whatever you like.
@@ -210,6 +224,7 @@ You can also read about how the anomaly function works here:
 
 Go back into your script file and make the following changes to the graphs requests:
 
+[Imgur](https://i.imgur.com/KSCwYnb.png)
 #{show metrics_request}
 
 Now, go back into your console and re-run: 
@@ -223,7 +238,10 @@ Next, go into your Datadog dashboard list.  You should see your newly created Ti
 
 You can hold down your mouse and scroll over the timeframe that you want to select.  Scroll over the past 5 minutes then click on the camera icon to send a snapshot.  Use the @ symbol to send it to yourself.
 
+[Imgur](https://i.imgur.com/cvJXmDs.png)
 #{show annotation}
+
+[Imgur](https://i.imgur.com/w8G1yHN.png)
 
 #### Bonus question: What is the anomaly graph showing
 
@@ -238,6 +256,7 @@ Note: The anomaly graph that is showing for me is indicating spikes in the numbe
 
 Click on the "New Monitor" tab located in the monitors section of your Datadog navigation bar.
 
+[Imgur](https://i.imgur.com/H4RvX1Z.png)
 #{show new_monitor_page}
 
 Choose the “Metric” option to begin creating your custom metric.  Also, check out these documentation pages on monitors to better understand how they work:
@@ -247,14 +266,17 @@ Choose the “Metric” option to begin creating your custom metric.  Also, chec
 Lets walk through these steps to set up your Monitor:
 For your monitor you will use the Threshold Alert option.
 
+[Imgur](https://i.imgur.com/qALF0y0.png)
   #{show threshold_alert_option}
 
 2. Choose my_metric and leave the other options as is.
 
+[Imgur](https://i.imgur.com/MupBcVk.png)
   #{show define_metric}
 
 3. Choose to trigger the metric when it is above the average threshold during the last 5 minutes.  You should have an Alert threshold of 500 and a Warning threshold of 800. Also change the option to notify yourself if data is missing for more than 10 minutes.
 
+[Imgur](https://i.imgur.com/3AQir4R.png)
   #{show alert_conditions}
 
 4. Lastly, set up your monitor message that you will receive when any thresholds are met.  You can also look at this documentation to see all of the notification options:
@@ -262,8 +284,8 @@ For your monitor you will use the Threshold Alert option.
 
 Let’s set up your Monitor Message to give specific messages based on what thresholds are being triggered.  You will also add the value and Host IP to the message if the Alert threshold is met.  Lastly, tag yourself in order to receive an alert email.
 
- #{show monitor_message}
-
+[Imgur](https://i.imgur.com/Wrn6vox.png)
+#{show monitor_message}
 
 #### Bonus question: Scheduling downtimes
 
@@ -271,7 +293,10 @@ Here you can find how to setup downtimes:
 <https://docs.datadoghq.com/monitors/downtimes/>
 
 Under the Monitors tab click on the “Manage Downtime” option then click on the Schedule Downtime button.
+
+[Imgur](https://i.imgur.com/02Y2aF4.png)
 #{show schedule_downtime}
+
 You are going to schedule 2 downtimes.
 
 For the first schedule:
@@ -280,6 +305,7 @@ For the first schedule:
 - Add any message you'd like to notify anyone of the downtime.
 Click Save
 
+[Imgur](https://i.imgur.com/Wbq71cs.png)
 #{show downtime_options_1}
 
 For the second schedule:
@@ -287,6 +313,7 @@ For the second schedule:
 - Click the Recurring option and choose Repeat Every 1 weeks for Saturday and Sunday, beginning at 12:00 a.m. until 12:00 a.m.
 Click Save
 
+[Imgur](https://i.imgur.com/VeDl2iv.png)
 #{show downtime_options_2}
 
 ## Collecting APM Data
@@ -303,10 +330,12 @@ $ rails new datadog_apm -T -d postgresql --skip-turbolinks
 
 Next, go onto Datadog and navigate to the APM option. Click “Get Started”.  Choose Ruby then the Rails option.
 
+[Imgur](https://i.imgur.com/5H3ArNV.png)
 #{show apm_install_page}
 
 Install the Ruby client by adding it in your Gemfile.
 
+[Imgur](https://i.imgur.com/rzidNxO.png)
 #{show add_ruby_gem}
 
 Then run:
@@ -317,6 +346,7 @@ $ bundle install
 
 Add the initializer file and code in your config folder.
 
+[Imgur](https://i.imgur.com/Qum1tHO.png)
 #{show add_initializer_file}
 
 Next, you will get the Datadog APM agent running.  <https://github.com/DataDog/datadog-trace-agent#run-on-osx>
@@ -351,17 +381,21 @@ Open up a new browser and navigate to localhost:3000.  You should see some activ
 
 Lets make a new Dashboard called APM and Infrastructure Metrics.  Pick the “Timeseries” widget and drag it down to make a new graph.
 
+[Imgur](https://i.imgur.com/gM3Hnk2.png)
 #{show widget_options}
 
 Now pick any Infrastructure metric and APM metric you'd like.
 
+[Imgur](https://i.imgur.com/sAwuUUG.png)
 #{show apm_metrics}
 
+[Imgur](https://i.imgur.com/xWq9jvY.png)
 #{show apm_dashboard}
 
 #### Bonus question: Difference between a Service and a Resource
 <https://docs.datadoghq.com/tracing/terminology/>
 
+[Imgur](https://i.imgur.com/kpiHXcr.png)
 #{show resources_services}
 
 ##What would I use Datadog for?
