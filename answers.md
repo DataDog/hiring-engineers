@@ -285,3 +285,11 @@ A few ideas that come to my mind are:
 2. Gather how many times the metro in DC has been delayed and gather statistics on the cost of commute that the delay represents
 3. Compare number 2 with the cost of the HOV / EZ Pass lanes are, to validate if its worth it driving vs metroing
 4. Get at regular intervals the traffic of a given distance (for commuting purposes) to know what is are the best times in different days.
+
+## Helpful Resources
+1. [Notifications](https://docs.datadoghq.com/monitors/notifications/)
+2. [API](https://docs.datadoghq.com/api/)
+3. [Graphing](https://docs.datadoghq.com/graphing/)
+4. [How the DD Agent works](https://docs.datadoghq.com/agent/)
+5. [Custom Checks](https://docs.datadoghq.com/agent/agent_checks/)
+
