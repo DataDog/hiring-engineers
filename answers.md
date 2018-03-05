@@ -16,14 +16,14 @@ This demonstration will monitor several applications running in an Ubuntu image 
 
 ## Prerequisites - Setup the environment
 ### Install VirtualBox
-[Available here](https://www.virtualbox.org/wiki/Linux_Downloads), I followed the instructions that added it to my apt-get library to make it easier to update in the future, my current version is VirtualBox 5.2.
+[Available here](https://www.virtualbox.org/wiki/Linux_Downloads), I followed the instructions that added it to my apt-get library to make it easier to update in the future. My current version is VirtualBox 5.2.
 
 Make sure [virtualization technology is enabled](http://hackaholic.info/enable-hardware-virtualization-vt-x-amd-v-for-virtualbox) in your BIOS. Many Debian systems have this disabled by default.
 
 ### Install Vagrant
 [Vagrant](https://www.vagrantup.com/intro/index.html) is available through `apt-get install vagrant`. 
 
-As of writing this document, I encountered an issue with this. Downloading through apt-get gives me Vagrant 1.9. This version [doesn't seem to be compatible with VirtualBox 5.2](https://github.com/geerlingguy/drupal-vm/issues/1587). I uninstalled Vagrant then reinstalled the latest Vagrant 2.0.2, which resolved my issue. [Find instructions on how to do that here](https://github.com/openebs/openebs/issues/32).
+As of writing this document, I encountered an issue with downloading vagrant through apt-get. Downloading through apt-get gives me Vagrant 1.9. This version [doesn't seem to be compatible with VirtualBox 5.2](https://github.com/geerlingguy/drupal-vm/issues/1587). I uninstalled Vagrant then reinstalled the latest Vagrant 2.0.2, which resolved my issue. Find instructions [here](https://github.com/openebs/openebs/issues/32).
 
 ---
 
@@ -71,20 +71,60 @@ end
 
 In order to keep my Datadog API key secret, I have added a .env file which is excluded from git tracking. The file is uploaded to the ubuntu image on startup, then accessed by the bootstrap script. This method seemed to me to be the easiest to implement and most extendible for future updates that may need more secrets available.
 
-Now that [bootstrap.sh](bootstrap.sh) is written, the key has been added to [.env](.env), and the [Vagrantfile](Vagrantfile) is calling both, we are ready to run `vagrant up`. The process should take a few minutes, but at the end we should see something like:
+Now that [bootstrap.sh](dd_agent_bootstrap.sh) is written, the key has been added to [.env](.env), and the [Vagrantfile](Vagrantfile) is calling both, we are ready to run `vagrant up`. The process should take a few minutes, but at the end we should see something like:
 
 ```
 default: boostrap.sh 5: start the datadog agent
 default: datadog-agent start/running, process 1313
 ```
+
 I can now go to the Datadog website, and see that my image is sending data. I ran a couple commands to throttle the CPU (check out [stress](https://www.hecticgeek.com/2012/11/stress-test-your-ubuntu-computer-with-stress/)), just to see how the graphs would react, and I seemed to get the exact output I would expect from throttling 1, then 2 CPUs.
 
 ![stress test on ubuntu image](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/initial_dashboard.png)
 
-**TODO**
+### Add tags to Agent
+One of the most important configurations to set up is tagging. Datadog is meant to monitor large quantities of hosts, and without a way to organize them, important patterns and information could be lost in the noise. Tags allow you to organize your metrics and create more usable visualizations and alerts.
 
-* Install Mongo
-* update vagrant provisioner to include a script that sends random data
+Tags can be set in the datadog.yaml file, the same config file that we set the API key. You can also set them manually in your host map view, but something like this should really be automated. This can be done in a couple ways, but the simplest for this demo was to add a line in the agent bootstrap file:
+
+```bash
+sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/datadog.yaml
+```
+
+Now when we look at this VM, the tags `role:database` and `region:us` are listed.
+
+![ubuntu host tags](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/host_tagging.png)
+
+### Install Postgres and Integrate with Datadog
+Now that the Datadog agent is on the image we can set up integrations with any applications running. Integrations are available for [hundreds of applications](https://docs.datadoghq.com/integrations/). We will be setting up a [PostgreSQL service](https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant#Vagrant). The default Vagrant setup files listed in the Postgres wiki worked fine for me, so I will just merge both Vagrantfiles, and import the relevant files into my repo.
+
+Our new Vagrantfile looks like this:
+
+```ruby
+$script = <<SCRIPT
+  echo I am provisioning...
+  date > /etc/vagrant_provisioned_at
+SCRIPT
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'ubuntu/trusty64'
+
+  config.vm.provision 'shell', inline: $script
+  config.vm.provision :shell, path: 'postgres_bootstrap.sh'
+  config.vm.network 'forwarded_port', guest: 5432, host: 15_432
+
+  config.vm.provision :file, source: '.env', destination: '.env'
+  config.vm.provision :shell, path: 'dd_agent_bootstrap.sh'
+end
+```
+
+I got most of the [postgres_bootstrap.sh](postgres_bootstrap.sh) from the wiki, but added a few lines to create a table and connect the datadog user to it. This is only for demonstration purposes, most databases would have a more stable user provisioning system than a shell script hardcoding SQL into a vagrant vm. It would probably be easier in most DBs to add the datadog user to be honest.
+
+After reloading vagrant to take our new provisioning into effect we are rewarded with seeing postgres metrics listed in our host map:
+
+![postgres metrics](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/postgres_integration.png)
+
+### update vagrant provisioner to include a script that sends random data
 * update interval, probably in python script that sends checks
 * bonus: update interval outside of script, probably in some config file or through datadog site
 
