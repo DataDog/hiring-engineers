@@ -4,21 +4,20 @@ Datadog is a monitoring service for applications at scale. I will show the setup
 
 This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant. The host operating system is a Debian laptop.
 
-
-- [Prerequisites - Setup the environment](#prerequisites---setup-the-environment)
-    - [Install VirtualBox](#install-virtualbox)
-    - [Install Vagrant](#install-vagrant)
+- [Setup the environment](#setup-the-environment)
+  - [Install VirtualBox](#install-virtualbox)
+  - [Install Vagrant](#install-vagrant)
 - [Collecting Metrics](#collecting-metrics)
-    - [Install Datadog agent](#install-datadog-agent)
-    - [Add tags to Agent](#add-tags-to-agent)
-    - [Install Postgres and Integrate with Datadog](#install-postgres-and-integrate-with-datadog)
-    - [update vagrant provisioner to include a script that sends random data](#update-vagrant-provisioner-to-include-a-script-that-sends-random-data)
+  - [Install Datadog agent](#install-datadog-agent)
+  - [Add tags to Agent](#add-tags-to-agent)
+  - [Install Postgres and Integrate with Datadog](#install-postgres-and-integrate-with-datadog)
+  - [Writing an Agent Check](#writing-an-agent-check)
 - [Visualizing Data](#visualizing-data)
 - [Monitoring Data](#monitoring-data)
 - [Collecting APM Data](#collecting-apm-data)
 - [Final Question](#final-question)
 
-## Prerequisites - Setup the environment
+## Setup the environment
 ### Install VirtualBox
 [Available here](https://www.virtualbox.org/wiki/Linux_Downloads), I followed the instructions that added it to my apt-get library to make it easier to update in the future. My current version is VirtualBox 5.2.
 
@@ -160,7 +159,7 @@ The boilerplate config becomes more useful when we have more complex setting we 
 init_config:
   min_collection_interval: 45
 instances:
-  [{
+  [{}]
 ```
 
 This doesn't mean the the data is sent every 45 seonds though. The Datadog agent is configured to collect and send data every 15 seconds, adding this 45 makes it so that this metric will be skipped until 45 seconds has passed. So after 15 seconds the agent will skip this file, then 30 seconds it will skip again, and after 45 seconds the metric will be sent.
@@ -169,7 +168,7 @@ This doesn't mean the the data is sent every 45 seonds though. The Datadog agent
 
 The collection interval can be set through the `min_collection_interval` value under `init_config` in the yaml file, as shown above. It could also be modified by increasing the interval of the agent itself using the datadog.yaml file, since if the agent only collects data every 60 seconds, then by defalt the agent check will also.
 
-Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to update in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance.
+Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to reflect in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance. (or have a typo)
 
 ## Visualizing Data
 
