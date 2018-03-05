@@ -18,12 +18,11 @@ echo "api key: $DATADOG_API_KEY"
 sudo sh -c "sed 's/api_key:.*/api_key: $DATADOG_API_KEY/' /etc/datadog-agent/datadog.yaml.example > /etc/datadog-agent/datadog.yaml"
 
 echo "bootstrap.sh 5: give agent tags"
-# this could be probably be abstracted out
-# have the tags come from a file so different instances don't need individual agent_bootstraps
+# insert tags into already existing datadog.yaml
 sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/datadog.yaml
 
 echo "bootstrap.sh 6: create postgres.yaml integration file"
-#hardcoding file info into script to show alternate method of setting up config files
+#create config file inline instead of copying from example file
 sudo cat > /etc/datadog-agent/conf.d/postgres.yaml <<EOF
 init_config:
 
@@ -37,6 +36,12 @@ instances:
             - optional_tag2
 EOF
 
-echo "boostrap.sh 7: start the datadog agent"
+echo "bootstrap.sh 7: copy agent check files"
+#create config file by copying from file stored in repo
+#I think this method is the cleanest and easiest to track
+sudo mv random_value.yaml /etc/datadog-agent/conf.d/random_value.yaml
+sudo mv random_value.py /etc/datadog-agent/checks.d/random_value.py
+
+echo "bootstrap.sh 8: start the datadog agent"
 sudo initctl start datadog-agent
 
