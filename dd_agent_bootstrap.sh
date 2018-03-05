@@ -22,6 +22,21 @@ echo "bootstrap.sh 5: give agent tags"
 # have the tags come from a file so different instances don't need individual agent_bootstraps
 sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/datadog.yaml
 
-echo "boostrap.sh 6: start the datadog agent"
+echo "bootstrap.sh 6: create postgres.yaml integration file"
+#hardcoding file info into script to show alternate method of setting up config files
+sudo cat > /etc/datadog-agent/conf.d/postgres.yaml <<EOF
+init_config:
+
+instances:
+   -   host: localhost
+       port: 5432
+       username: datadog
+       password: dbpass
+       tags:
+            - optional_tag1
+            - optional_tag2
+EOF 
+
+echo "boostrap.sh 7: start the datadog agent"
 sudo initctl start datadog-agent
 
