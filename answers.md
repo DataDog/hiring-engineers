@@ -122,7 +122,7 @@ Vagrant.configure('2') do |config|
 end
 ```
 
-I got most of the [postgres_bootstrap.sh](postgres_bootstrap.sh) from the wiki, but added a few lines to create a table and connect the datadog user to it. This is only for demonstration purposes, most databases would have a more stable user provisioning system than a shell script hardcoding SQL into a vagrant vm. It would probably be easier in most DBs to add the datadog user to be honest.
+I got most of the [postgres_bootstrap.sh](postgres_bootstrap.sh) from the wiki, but added a few lines to create a table and connect a `datadog` user to it. This user I created is what the Datadog agent will use to monitor the db and send metrics. Adding a user this way is only for demonstration purposes, most databases would have a more stable user provisioning system than a shell script hardcoding SQL into a vagrant vm. Well, they should at least.
 
 After reloading vagrant to take our new provisioning into effect we are rewarded with seeing postgres metrics listed in our host map:
 
