@@ -104,6 +104,8 @@ api.Timeboard.create(title=title,
 
 ## I look forward to discussing the issue that arose in attempting over the course of a week to employ the APM. I look forward to sharing my experience with Datadog team and perhaps providing a robust and full fledged solution to this issue for future developers to reference.
 
+3. Bonus Question: A service implies an orchestrated effort designed to accomplish a specific goal, wherein a resource might be used to aide in this goal or other efforts. By nature, a resource an is much more ancillary in nature while a service aims to provide a suite of resources with a targeted application.
+
 ## Final Question:
 
 "A lover of all things music, I would love to work with a platform such as Soundcloud in perhaps providing artists will greater feedback regarding users interactions with their tracks. For instance: A timestamp at which point a song was paused to isolate portions of a song that could be improved upon (provided there is a highly concentrated portion)."
