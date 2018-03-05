@@ -128,9 +128,48 @@ After reloading vagrant to take our new provisioning into effect we are rewarded
 
 ![postgres metrics](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/postgres_integration.png)
 
-### update vagrant provisioner to include a script that sends random data
-* update interval, probably in python script that sends checks
-* bonus: update interval outside of script, probably in some config file or through datadog site
+### Writing an Agent Check
+If you cannot find an integration available for your software and still want to collect metrics on it, then you have [multiple options](https://docs.datadoghq.com/developers/metrics/) available to you: the API, DogStatsD, and agent checks. We will quickly implement an agent check here.
+
+In order to create an agent chekc we need to have a configuration file and then a python script which inherits from AgentCheck. We will have send a random number between 0 and 1000 as a metric.
+
+[random_value.py](bootstrap_scripts/random_value.py)
+```python
+from checks import AgentCheck
+import random
+
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('random.number', random.randint(0, 1000))
+```
+
+[random_value.config](bootstrap_scripts/random_value.yaml)
+```yaml
+init_config:
+
+instances:
+  [{}]
+```
+This is all that's needed to see our metric in a timeboard:
+
+![random number agent check](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/random_agent_check.png)
+
+The boilerplate config becomes more useful when we have more complex setting we wish to use. For example we can change the update interval from the default 20 seconds, to instead only send data every 45 seconds.
+
+```yaml
+init_config:
+  min_collection_interval: 45
+instances:
+  [{
+```
+
+This doesn't mean the the data is sent every 45 seonds though. The Datadog agent is configured to collect and send data every 15 seconds, adding this 45 makes it so that this metric will be skipped until 45 seconds has passed. So after 15 seconds the agent will skip this file, then 30 seconds it will skip again, and after 45 seconds the metric will be sent.
+
+> **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+The collection interval can be set through the `min_collection_interval` value under `init_config` in the yaml file, as shown above. It could also be modified by increasing the interval of the agent itself using the datadog.yaml file, since if the agent only collects data every 60 seconds, then by defalt the agent check will also.
+
+Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to update in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance.
 
 ## Visualizing Data
 
