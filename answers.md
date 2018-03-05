@@ -373,4 +373,4 @@ Now pick any Infrastructure metric and APM metric you'd like.
 
 The first thing that came to my mind when I thought of using Datadog would be to monitor river systems and weather.  As an owner of a small fly fishing company in Yosemite, I'm constantly looking at water levels and weather for the dozens of rivers and streams within the area.  
 
-Often times, the websites I use are inaccurate or off-line.  They also have lackluster visualizations to show their data.  Showing consistent and reliable weather forecasts is also a huge pain in the butt!  I would love to use Datadog to combine these into an easy to use and visualize app.
+Often times, the websites I use are inaccurate or off-line.  They also have lackluster visualizations to show their data.  Showing consistent and reliable weather forecasts is also a huge pain in the butt!  I would love to use Datadog to combine these into an easy to use, accurate, and visually pleasing app.
