@@ -239,8 +239,11 @@ Passed the threshold of: {{threshold}}
 > - One that silences it from 7pm to 9am daily on M-F,
 > - And one that silences it all day on Sat-Sun.
 > - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Here we can see the daily downtimes
 ![daily_downtime](/images/daily_downtime.png)
 ![daily_downtime2](/images/daily_downtime.png)
+
+And here we can see the weekend downtimes
 ![weekend_downtime](/images/weekend_downtime2.png)
 ![weekend_downtime2](/images/weekend_downtime2.png)
 
