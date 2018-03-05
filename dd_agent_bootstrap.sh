@@ -35,7 +35,7 @@ instances:
        tags:
             - optional_tag1
             - optional_tag2
-EOF 
+EOF
 
 echo "boostrap.sh 7: start the datadog agent"
 sudo initctl start datadog-agent
