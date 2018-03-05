@@ -4,11 +4,15 @@ Datadog is a monitoring service for applications at scale. I will show the setup
 
 This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant. The host operating system is a Debian laptop.
 
+
 - [Prerequisites - Setup the environment](#prerequisites---setup-the-environment)
     - [Install VirtualBox](#install-virtualbox)
     - [Install Vagrant](#install-vagrant)
 - [Collecting Metrics](#collecting-metrics)
     - [Install Datadog agent](#install-datadog-agent)
+    - [Add tags to Agent](#add-tags-to-agent)
+    - [Install Postgres and Integrate with Datadog](#install-postgres-and-integrate-with-datadog)
+    - [update vagrant provisioner to include a script that sends random data](#update-vagrant-provisioner-to-include-a-script-that-sends-random-data)
 - [Visualizing Data](#visualizing-data)
 - [Monitoring Data](#monitoring-data)
 - [Collecting APM Data](#collecting-apm-data)
@@ -96,7 +100,7 @@ Now when we look at this VM, the tags `role:database` and `region:us` are listed
 ![ubuntu host tags](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/host_tagging.png)
 
 ### Install Postgres and Integrate with Datadog
-Now that the Datadog agent is on the image we can set up integrations with any applications running. Integrations are available for [hundreds of applications](https://docs.datadoghq.com/integrations/). We will be setting up a [PostgreSQL service](https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant#Vagrant). The default Vagrant setup files listed in the Postgres wiki worked fine for me, so I will just merge both Vagrantfiles, and import the relevant files into my repo.
+The Datadog agent is now on the image, so we can set up integrations with any applications running. Integrations are available for [hundreds of applications](https://docs.datadoghq.com/integrations/). We will be setting up a [PostgreSQL DB system](https://www.postgresql.org/about/). The default Vagrant setup files listed in the [Postgres wiki](https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant#Vagrant) worked fine for me, so I will just merge both Vagrantfiles, and import the relevant files into my repo.
 
 Our new Vagrantfile looks like this:
 
