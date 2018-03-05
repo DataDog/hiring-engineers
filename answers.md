@@ -209,7 +209,7 @@ Next go into your Datadog dashboard list.  You should see your newly created Tim
 #### Set the timeboard's timeframe to 5 minutes and send to yourself using the annotation feature
 
 You can hold down your mouse and scroll over the timeframe you want to select.  Scroll over the past 5 minutes then click on the camera icon to send a snapshot.  Use the @ symbol to send it to yourself.
-#{show annotation}
+#{show dashboard_with_metrics}
 
 #### Bonus question: What is the anomaly graph showing
 
@@ -269,3 +269,69 @@ For the second:
 #{show downtime_options_2}
 
 ## Collecting APM Data
+
+We are going to create a Ruby on Rails app and integrate Datadog's APM solution.  This part of the tutorial will assume you have Ruby and Rails installed on your local machine.  If you do not follow the instructions in the Ruby and Rails documentation:
+Ruby install: <https://www.ruby-lang.org/en/documentation/installation/>
+Ruby on Rails install: <http://installrails.com/>
+
+Once you have everything installed lets start up a Rails app in the command line:
+```
+$ rails new datadog_apm -T -d postgresql --skip-turbolinks
+```
+
+Next go onto Datadog on go to the APM option and click Get Started.  Choose Ruby then the Rails option.  
+#{show apm_install_page}
+
+Install the Ruby client by adding it in your Gemfile.
+#{show add_ruby_gem}
+
+Then run:
+```
+$ bundle install
+```
+
+Then add the initializer file and code in your config folder.
+#{show add_initializer_file}
+
+Next we will get the Datadog APM agent running.  <https://github.com/DataDog/datadog-trace-agent#run-on-osx>
+Since we already have the OSX Datadog agent we just need to download the latest OSX Trace Agent.  Since we are using version 6 of the agent our datadog.conf file is named datadog.yaml.  Run this command in the terminal:
+```
+./trace-agent-osx -config /opt/datadog-agent/etc/datadog.yaml
+```
+
+If you receive an error similar to this:
+```
+you must specify an API Key, either via a configuration file or the DD_API_KEY env var
+```
+
+You can add this to the command you ran to specify your API key:
+```
+$ DD_API_KEY=<your API key here without quotes> ./trace-agent-osx -config /opt/datadog-agent/etc/datadog.yaml
+```
+
+Lastly create whatever controllers, routes and views you'd like in you Rails app and then run:
+```
+rails s
+```
+
+Open up a new browser and navigate to localhost:3000.  You should see some activity in the trace-agent-osx logs.
+
+#### Make a new Dashboard with both APM and Infrastructure Metrics
+
+Lets make a new Dashboard called APM and Infrastructure Metrics.  Pick the Timeseries widget and drag it down to make a new graph.  
+#{show widget_options}
+
+Now pick any Infrastructure metric and APM metric you'd like.
+#{show apm_metrics}
+
+#{show apm_dashboard}
+
+#### Bonus question: Difference between a Service and a Resource
+<https://docs.datadoghq.com/tracing/terminology/>
+#{show resources_services}
+
+##What would I use Datadog for?
+
+The first thing that came to my mind when I thought of using Datadog would be to monitor river systems and weather.  As an owner of a small fly fishing company in Yosemite, CA I'm constantly looking at water levels and weather for the dozens of rivers and streams within Yosemite.  
+
+Often times the websites I use have inaccurate data and horrible graphs to show their data.  Showing consistent and reliable weather forecasts is also a huge pain in the butt!  I would love to research how to combine these two variables into one easy to use and visualize Timeboard.
