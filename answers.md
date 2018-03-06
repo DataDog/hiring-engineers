@@ -171,10 +171,23 @@ The collection interval can be set through the `min_collection_interval` value u
 Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to reflect in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance. (or have a typo)
 
 ## Visualizing Data
+We have already seen/ created a few timeboards in the Datadog app, but we can also create them using the[ Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards), along with basically any other task we'd want to on the site. In this case the docs are so comprehensive, that there is basically no work to do besides fill in the details. An easy way to generate the data is to go to the app and create a dashboard and use the UI there, then copy from the JSON tab. 
 
-* create timeboard using a script
-* mess around with timeboard inthe dashboard
-* bonus: answer what the anomoly grpah does
+![time gui json](screenshots/timeboard_api_gui_json.png)
+
+It may seem counterintuitive to basically be doing this twice, but the goal of the API, isn't really to make a single quick dashboard. Some reasons to use the API to create timeboards are to backup your definitions as code and allow version control of the dashboards.
+
+My implementation of the dashboard is visible in [timeboard.py](timeboard.py). I added the following metrics:
+
+* **random.number**: this is the metric coming in from the custom agent we installed. 
+* **random.number - rollup sum**: this overlays another metric in the same timeboard. It takes the random number metric and for each interval sums all data in the interval to a single point. I set it to rollup over a 5 minute interval. So the sums are hovering around 10K.
+* **postregressql.db.count - anomolies**: this metric is on a seperate board, otherwise it would not be visible at all compared to the scale random.number is at. This metric checks how many databases there are in the postgres server, and the anomaly function highlights any sudden changes in red.
+
+![timeboards](screenshots/timeboards.png)
+
+> **Bonus Question**: What is the Anomaly graph displaying?
+
+The [anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) is an algorithm that detects unusual changes based on previous metrics history. This can be used for very complex trends taking into account several variables, but for our situation it just colored the graph when I created a spike in number of databases from 1 to 5.
 
 ## Monitoring Data
 * create metric monitor
