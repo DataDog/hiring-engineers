@@ -1,14 +1,33 @@
-Your answers to the questions go here.
+# Sean Clarke for Datadog :dog: :file_folder: - Solutions Engineer Technical Exercise
 
-# The Exercise
-## Prerequisites - Setup the environment
+## Prerequisites - Setting Up the Environment
 
-I used a Vagrantfile to persist a simple Ubuntu 12.04 VM on my local machine.
+I created a Ubuntu 12.04 VM using [Vagrant](https://www.vagrantup.com/downloads.html) with [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you've downloaded both of these onto your local system, you can follow the instructions: [here](https://www.vagrantup.com/intro/getting-started/) to get started.
+
 <img src="./img/0-environment-setup.png" alt="environment setup"/>
+
+### For reference, my setup flow:
+
+  - Create clean Vagrant VM: `vagrant init hashicorp/precise64`
+
+  - Start and Enter the VirtualBox: `vagrant up` & `vagrant ssh` respectively.
+
+  - (*If necessary*) Resolve Guest Additions Mismatch: `vagrant plugin install vagrant-vbguest`
+
+  - To Avoid Dependency Issues, Update & Upgrade All Local Packages: `sudo apt-get update apt-get upgrade`
+
+  - Install Curl: sudo `apt-get install curl`
+
+  - Install Datadog Agent: `DD_API_KEY=YOUR_API_HERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
 ## Collecting Metrics
 
-1. Agent Tags (added via config) - <img src="./img/1-agent-tags.png" alt="agent tags"/>
+1. In order to modify the agent tags we need to access the config file. On Ubuntu this is found at:
+`/etc/datadog-agent/datadog.yaml`.
+
+*To find the spefic location for your system please refer to this [guide](https://docs.datadoghq.com/agent/basic_agent_usage/)*.
+
+So we can simply run: `sudo nano /etc/datadog-agent/datadog.yaml` and modify the file as you see here: <img src="./img/1-agent-tags.png" alt="agent tags"/>
 
 2. Database Install / Integration (Postgres) - <img src="./img/2-database.png" alt="database install and integration"/>
 
@@ -96,13 +115,17 @@ api.Timeboard.create(title=title,
 
 ## Collecting APM Data
 
+# In order to collect APM data, I proceeded through the steps above and then included the provided flask application as my_app.py in my root directory, and in another attempt my vagrant/ directory. Prior to this step I ran into a variety of issues with Pip, most expressly that the version of pip that comes installed on the VM is 1.0 (absolutely archaic). Because of this, Pip is unable to install much of anything, let alone update itself as PyPi has disabled non HTTPS access. The only manner that allowed me to work around this was to specify the target url in the install command itself and specify https as so:
+`pip install -U pip -i https://pypi.python.org/simple/`
+# Not only would this uninstall the old version of pip but it allowed me to install pip 9.0.1. I personally feel the community at large could benefit greatly from official documentation from Vagrant and VM regarding this- such a necessary solution shouldn't merely be limited to a lucky google search.
+
+# Having solved this, I come to the point you see in the screenshot below, where-in my flask application is running but there is no response from the the Datadog application. To the best of my understanding, with port forwarding the host machine should be aware / have access to the processes of the VirtualMachine and yet such is not the case.
+
 1. APM Enabled - <img src="./img/14-apm-enabled.png" alt="APM Enabled"/>
 
 2. DDtrace Running (No APM):
   i) <img src="./img/15-ddtrace-running.png" alt="ddtrace running 1"/>
   ii) <img src="./img/16-ddtrace-running.png" alt="ddtrace running 2"/>
-
-## I look forward to discussing the issue that arose in attempting over the course of a week to employ the APM. I look forward to sharing my experience with Datadog team and perhaps providing a robust and full fledged solution to this issue for future developers to reference.
 
 3. Bonus Question: A service implies an orchestrated effort designed to accomplish a specific goal, wherein a resource might be used to aide in this goal or other efforts. By nature, a resource an is much more ancillary in nature while a service aims to provide a suite of resources with a targeted application.
 
