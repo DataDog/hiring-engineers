@@ -83,7 +83,7 @@ default: datadog-agent start/running, process 1313
 
 I can now go to the Datadog website, and see that my image is sending data. I ran a couple commands to throttle the CPU (check out [stress](https://www.hecticgeek.com/2012/11/stress-test-your-ubuntu-computer-with-stress/)), just to see how the graphs would react, and I seemed to get the exact output I would expect from throttling 1, then 2 CPUs.
 
-![stress test on ubuntu image](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/initial_dashboard.png)
+![stress test on ubuntu image](screenshots/initial_dashboard.png)
 
 ### Add tags to Agent
 One of the most important configurations to set up is tagging. Datadog is meant to monitor large quantities of hosts, and without a way to organize them, important patterns and information could be lost in the noise. Tags allow you to organize your metrics and create more usable visualizations and alerts.
@@ -96,7 +96,7 @@ sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/dat
 
 Now when we look at this VM, the tags `role:database` and `region:us` are listed.
 
-![ubuntu host tags](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/host_tagging.png)
+![ubuntu host tags](screenshots/host_tagging.png)
 
 ### Install Postgres and Integrate with Datadog
 The Datadog agent is now on the image, so we can set up integrations with any applications running. Integrations are available for [hundreds of applications](https://docs.datadoghq.com/integrations/). We will be setting up a [PostgreSQL DB system](https://www.postgresql.org/about/). The default Vagrant setup files listed in the [Postgres wiki](https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant#Vagrant) worked fine for me, so I will just merge both Vagrantfiles, and import the relevant files into my repo.
@@ -125,7 +125,7 @@ I got most of the [postgres_bootstrap.sh](postgres_bootstrap.sh) from the wiki, 
 
 After reloading vagrant to take our new provisioning into effect we are rewarded with seeing postgres metrics listed in our host map:
 
-![postgres metrics](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/postgres_integration.png)
+![postgres metrics](screenshots/postgres_integration.png)
 
 ### Writing an Agent Check
 If you cannot find an integration available for your software and still want to collect metrics on it, then you have [multiple options](https://docs.datadoghq.com/developers/metrics/) available to you: the API, DogStatsD, and agent checks. We will quickly implement an agent check here.
@@ -151,7 +151,7 @@ instances:
 ```
 This is all that's needed to see our metric in a timeboard:
 
-![random number agent check](https://github.com/draav/hiring-engineers/raw/solutions-engineer/screenshots/random_agent_check.png)
+![random number agent check](screenshots/random_agent_check.png)
 
 The boilerplate config becomes more useful when we have more complex setting we wish to use. For example we can change the update interval from the default 20 seconds, to instead only send data every 45 seconds.
 
