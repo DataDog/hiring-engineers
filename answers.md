@@ -2,7 +2,7 @@
 
 ## Prerequisites - Setting Up the Environment
 
-I created a Ubuntu 12.04 VM using [Vagrant](https://www.vagrantup.com/downloads.html) with [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you've downloaded both of these onto your local system, you can follow the instructions: [here](https://www.vagrantup.com/intro/getting-started/) to get started.
+I created a Ubuntu 12.04 VM using [Vagrant](https://www.vagrantup.com/downloads.html) with [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you've downloaded both of these onto your local system, you can follow the instructions [here](https://www.vagrantup.com/intro/getting-started/) to get started.
 
 <img src="./img/0-environment-setup.png" alt="environment setup"/>
 
@@ -16,7 +16,7 @@ I created a Ubuntu 12.04 VM using [Vagrant](https://www.vagrantup.com/downloads.
 
   - To Avoid Dependency Issues, Update & Upgrade All Local Packages: `sudo apt-get update apt-get upgrade`
 
-  - Install Curl: sudo `apt-get install curl`
+  - Install Curl: `sudo apt-get install curl`
 
   - Install Datadog Agent: `DD_API_KEY=YOUR_API_HERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
@@ -27,7 +27,7 @@ I created a Ubuntu 12.04 VM using [Vagrant](https://www.vagrantup.com/downloads.
 
 *To find the spefic location for your system please refer to this [guide](https://docs.datadoghq.com/agent/basic_agent_usage/)*.
 
-So we can simply run: `sudo nano /etc/datadog-agent/datadog.yaml` and modify the file as you see here: <img src="./img/1-agent-tags.png" alt="agent tags"/>
+So we can simply run: `sudo nano /etc/datadog-agent/datadog.yaml`(agent v6) or `/etc/dd-agent/datadog.conf`(agent v5) and modify the file as you see here: <img src="./img/1-agent-tags.png" alt="agent tags"/>
 
 2. Database Install / Integration (Postgres) - <img src="./img/2-database.png" alt="database install and integration"/>
 
