@@ -208,14 +208,28 @@ Once again these tools don't need to be created with the GUI, the API has endpoi
 
 ## Collecting APM Data
 * link agent to flask api
-* bonus: What is the difference between a Service and a Resource?
+> **Bonus Question**: What is the difference between a Service and a Resource?
 
 ## Final Question
-Is there anything creative you would use Datadog for? 
+> Is there anything creative you would use Datadog for? 
 
-Abstract out what the primary purposes of Datadog are
-* tracking live activities that update often
-* things that have triggers that you want to know baout but not watch constantly
-* difficult to see all objects in system (contrained by time, quantity, etc)
+I always thought that creativity requires a bit of structure. Before I think of an interesting use, I want to figure out what things Datadog excels at, abstracted out beyond infrastructure and applications, that might give me some better ideas.
 
-grocery stores/shopping lists, resources in libraries, meeting rooms in office
+* monitoring live events
+* sending out alerts for anomolies and threshholds
+* simplifying complex systems into human parseable visualizations
+* overlaying data from disparate sources in order to establish patterns
+
+So I would want to be alerted when a some kind of threshhold is exceeded, and the data is coming from a complex source. 
+
+My immediate thought is groceries. I would want to somehow feed grocery data into Datadog, all of my staple food items would have a timeboard showing each brands' current/future price. If a gallon milk goes below $4, I want to be notified so that I can pick it up on the way home. This seems pretty useful to me since I could overlay several brands from several stores. Accurate data collection might be difficult though.  Creating all the timeboards and linking the various brands for every common food type could also be more trouble than it's worth. It seems like something that might be automatable through AI, if a decent API doesn't already exist though. 
+
+## Final Thoughts
+
+This is my first time working with a lot of this technology. At every chance where I could choose the technologies I chose something I was less familiar with. Postgres over MySql, Vagrant over Docker, etc. I thought these exercises would be a good opportunity to increase my knowledge of these tools, which is great for me, but may impact the quality of the explanations. If there are any inaccuracies or silly mistakes I made when using these tools I would appreciate correction.
+
+Another new tool I learned was [bfg](https://rtyley.github.io/bfg-repo-cleaner/), at some point in the process I accidentally uploaded an api key to GitHub. This is just a trial account and I immediately updated my keys through the website, but I thought it would be cool to use bfg to also scrape my history clean. [Here](https://github.com/draav/hiring-engineers/commit/fbd9edf19f5322a20783b7a14786fc4d88450f3e#diff-e4e349f3dcefcaa939b79b899a041181) is an example of a file that had it's text replaced.
+
+My final new tool I'll talk about is the laptop I'm developing on. I just got a used laptop a week or two back to code on (My main desktop is just a time sink of Reddit and Steam games). I installed Debian, since I've never used Linux outside of a VM. Writing this guide has given me a great chance to flesh out my development environment and figure out what tools I like best. It also let me tackle some interesting challenges like getting virtualization working in order to use Vagrant. 
+
+If you've made it this far, thanks for reading.
