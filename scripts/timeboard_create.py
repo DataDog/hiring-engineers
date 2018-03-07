@@ -1,8 +1,8 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '04bc19c387c40c38952ccf650807ced2',
-    'app_key': '81fb25b5736dd9c01c1a7c6e434cce868d9fbefe'
+    'api_key': 'API_KEY',
+    'app_key': 'APP_KEY'
 }
 
 initialize(**options)
@@ -37,4 +37,3 @@ api.Timeboard.create(title=title,
                    description=description,
                    graphs=graphs,
                    read_only=read_only)
-
