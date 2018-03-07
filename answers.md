@@ -12,10 +12,19 @@ This demonstration will monitor several applications running in an Ubuntu image 
   - [Add tags to Agent](#add-tags-to-agent)
   - [Install Postgres and Integrate with Datadog](#install-postgres-and-integrate-with-datadog)
   - [Writing an Agent Check](#writing-an-agent-check)
+  - [Agent Check](#agent-check)
+  - [Collection Interval](#collection-interval)
+  - [Bonus Questoin: Collection Interval](#bonus-questoin-collection-interval)
 - [Visualizing Data](#visualizing-data)
+  - [Timeboards](#timeboards)
+  - [Bonus Question: Anomoly function](#bonus-question-anomoly-function)
 - [Monitoring Data](#monitoring-data)
+  - [Alerts](#alerts)
+  - [Scheduling Downtime](#scheduling-downtime)
+  - [Using cURL API](#using-curl-api)
 - [Collecting APM Data](#collecting-apm-data)
 - [Final Question](#final-question)
+- [Final Thoughts](#final-thoughts)
 
 ## Setup the environment
 ### Install VirtualBox
@@ -128,6 +137,7 @@ After reloading vagrant to take our new provisioning into effect we are rewarded
 ![postgres metrics](screenshots/postgres_integration.png)
 
 ### Writing an Agent Check
+### Agent Check
 If you cannot find an integration available for your software and still want to collect metrics on it, then you have [multiple options](https://docs.datadoghq.com/developers/metrics/) available to you: the API, DogStatsD, and agent checks. We will quickly implement an agent check here.
 
 In order to create an agent chekc we need to have a configuration file and then a python script which inherits from AgentCheck. We will have send a random number between 0 and 1000 as a metric.
@@ -153,6 +163,7 @@ This is all that's needed to see our metric in a timeboard:
 
 ![random number agent check](screenshots/random_agent_check.png)
 
+### Collection Interval
 The boilerplate config becomes more useful when we have more complex setting we wish to use. For example we can change the update interval from the default 20 seconds, to instead only send data every 45 seconds.
 
 ```yaml
@@ -164,6 +175,7 @@ instances:
 
 This doesn't mean the the data is sent every 45 seonds though. The Datadog agent is configured to collect and send data every 15 seconds, adding this 45 makes it so that this metric will be skipped until 45 seconds has passed. So after 15 seconds the agent will skip this file, then 30 seconds it will skip again, and after 45 seconds the metric will be sent.
 
+### Bonus Questoin: Collection Interval
 > **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 The collection interval can be set through the `min_collection_interval` value under `init_config` in the yaml file, as shown above. It could also be modified by increasing the interval of the agent itself using the datadog.yaml file, since if the agent only collects data every 60 seconds, then by defalt the agent check will also.
@@ -171,6 +183,7 @@ The collection interval can be set through the `min_collection_interval` value u
 Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to reflect in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance. (or have a typo)
 
 ## Visualizing Data
+### Timeboards
 We have already seen/ created a few timeboards in the Datadog app, but we can also create them using the[ Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards), along with basically any other task we'd want to on the site. In this case the docs are so comprehensive, that there is basically no work to do besides fill in the details. An easy way to generate the data is to go to the app and create a dashboard and use the UI there, then copy from the JSON tab. 
 
 ![time gui json](screenshots/timeboard_api_gui_json.png)
@@ -185,11 +198,13 @@ My implementation of the dashboard is visible in [timeboard.py](timeboard.py). I
 
 ![timeboards](screenshots/timeboards.png)
 
+### Bonus Question: Anomoly function
 > **Bonus Question**: What is the Anomaly graph displaying?
 
 The [anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) is an algorithm that detects unusual changes based on previous metrics history. This can be used for very complex trends, taking into account several variables, but for our situation it just colored the graph when I created a spike in number of databases from 1 to 5.
 
 ## Monitoring Data
+### Alerts 
 We have our graph, but what happens when something goes wrong? What if those random numbers ever get really high? I'll certainly want to konw if that random number goes over say 800, that could be important. But I don't want to sit and watch it all day. To solve this problem we can use monitors. 
 
 From either the timeboard gear icon, or the monitor section in the sidebar, I can choose to create a new monitor for the metric random.number. Then we just fill out the form. 
@@ -200,10 +215,12 @@ The alert will trigger every 5 minutes, emailing me if that random number is in 
 
 ![Email alert](screenshots/alert_email.png)
 
+### Scheduling Downtime
 As important as this alert is, we only care about it during work hours. After work emails should be limited to only the most important. Luckily we can schedule downtime. The page is accessible through the submenu of monitoring. I created two schedules, on for weekdays from 7pm to 9am the next day, and another for weekends. When scheduling I made sure to include a description and tagged myself so that I got an email.
 
 ![schedule downtime email](screenshots/disable_monitoring.png)
 
+### Using cURL API
 Once again these tools don't need to be created with the GUI, the API has endpoints for all these alerts and monitoring tools. Instead of Python, this time I have created a small shell script making a cURL request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh). One of the benefits of cURL over Python, is that the Python API doesn't have all functionality yet, while cURL can use every endpoint.
 
 ## Collecting APM Data
