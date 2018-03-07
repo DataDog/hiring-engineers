@@ -204,7 +204,7 @@ As important as this alert is, we only care about it during work hours. After wo
 
 ![schedule downtime email](screenshots/disable_monitoring.png)
 
-Once again these tools don't need to be created with the GUI, the API has endpoints for all these alerts and monitoring tools. I have created a small shell script making a curl request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh)
+Once again these tools don't need to be created with the GUI, the API has endpoints for all these alerts and monitoring tools. Instead of Python, this time I have created a small shell script making a cURL request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh). One of the benefits of cURL over Python, is that the Python API doesn't have all functionality yet, while cURL can use every endpoint.
 
 ## Collecting APM Data
 * link agent to flask api
