@@ -147,7 +147,7 @@ api.Timeboard.create(title=title,
 
 1. By Navigating to the Monitor Section in the Datadog App, we can create custom Metric Threshold Alerts. Let's set an monitor for a Warning at 500, Alert at 800, and No Data Notice after 10 minutes without data. Configuration for this looks like the following: <img src="./img/8-create-monitor.png" alt="Create Monitor"/>
 
-In order to have emails sent to us (in the event we're not constant staring at our Datadog monitor drooling in awe of that gorgeous UI :heart_eyes:) we can do the following: <img src="./img/12-create-monitor-alert.png" alt="Warning Threshold Email Setup"/>
+In order to have emails sent to us (in the event we're not constant staring at our Datadog monitor drooling in awe of that gorgeous UI :heart_eyes:) we can do the following: <img src="./img/12-create-monitor-alerts.png" alt="Warning Threshold Email Setup"/>
 
 2. Warning Threshold (500) - <img src="./img/9-warning.png" alt="Warning Threshold Email"/>
 
@@ -157,7 +157,7 @@ In order to have emails sent to us (in the event we're not constant staring at o
 
 ### We can also go ahead and set downtimes for the weekend and in between the workday during the week.
 
-5. BONUS QUESTION: We can schedule the downtime like so: <img src="./img/13-schedule-downtime.png" alt="Schedule Downtime Email"/> With this completed we can expect to see emails like so: 
+5. BONUS QUESTION: We can schedule the downtime like so: <img src="./img/13-schedule-downtime.png" alt="Schedule Downtime Email"/> With this completed we can expect to see emails like so:
 
   * Weekday Downtime Email - <img src="./img/14-downtime-weekday.png" alt="Weekday Downtime Email"/>
 
