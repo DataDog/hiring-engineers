@@ -187,13 +187,24 @@ My implementation of the dashboard is visible in [timeboard.py](timeboard.py). I
 
 > **Bonus Question**: What is the Anomaly graph displaying?
 
-The [anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) is an algorithm that detects unusual changes based on previous metrics history. This can be used for very complex trends taking into account several variables, but for our situation it just colored the graph when I created a spike in number of databases from 1 to 5.
+The [anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) is an algorithm that detects unusual changes based on previous metrics history. This can be used for very complex trends, taking into account several variables, but for our situation it just colored the graph when I created a spike in number of databases from 1 to 5.
 
 ## Monitoring Data
-* create metric monitor
-* make it send a dynamic email
-    * screenshot of email
-* bonus: limit emails to work hours
+We have our graph, but what happens when something goes wrong? What if those random numbers ever get really high? I'll certainly want to konw if that random number goes over say 800, that could be important. But I don't want to sit and watch it all day. To solve this problem we can use monitors. 
+
+From either the timeboard gear icon, or the monitor section in the sidebar, I can choose to create a new monitor for the metric random.number. Then we just fill out the form. 
+
+One of the issues that gave me trouble was that in order to use the host.name variable in my message, I had to make sure the alert was a multi alert, triggered separately per host. Without this feature enabled the Datadog alert wouldn't know what host it's coming from, in order to included it in the message.
+
+The alert will trigger every 5 minutes, emailing me if that random number is in any ineresting zones.
+
+![Email alert](screenshots/alert_email.png)
+
+As important as this alert is, we only care about it during work hours. After work emails should be limited to only the most important. Luckily we can schedule downtime. The page is accessible through the submenu of monitoring. I created two schedules, on for weekdays from 7pm to 9am the next day, and another for weekends. When scheduling I made sure to include a description and tagged myself so that I got an email.
+
+![schedule downtime email](screenshots/disable_monitoring.png)
+
+Once again these tools don't need to be created with the GUI, the API has endpoints for all these alerts and monitoring tools. I have created a small shell script making a curl request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh)
 
 ## Collecting APM Data
 * link agent to flask api
