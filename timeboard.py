@@ -25,15 +25,6 @@ graphs = [{
                 "aggregator": "avg"
             },
             {
-                "q": "anomalies(avg:postgresql.connections{*}, 'basic', 2)",
-                "type": "line",
-                "style": {
-                    "palette": "dog_classic",
-                    "type": "solid",
-                    "width": "normal"
-                }
-            },
-            {
                 "q": "avg:random.number{*}.rollup(sum, 300)",
                 "type": "line",
                 "style": {
