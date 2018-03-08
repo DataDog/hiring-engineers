@@ -20,6 +20,8 @@ sudo sh -c "sed 's/api_key:.*/api_key: $DATADOG_API_KEY/' /etc/datadog-agent/dat
 echo "bootstrap.sh 5: give agent tags"
 # insert tags into already existing datadog.yaml
 sudo sed -i 's/# tags:.*/tags: role:database, region:us/' /etc/datadog-agent/datadog.yaml
+# change datadog default port from 5000 since python flask uses it
+sudo sed -i 's/# expvar_port:.*/expvar_port: 5002/' /etc/datadog-agent/datadog.yaml
 
 echo "bootstrap.sh 6: create postgres.yaml integration file"
 #create config file inline instead of copying from example file
