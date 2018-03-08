@@ -34,6 +34,10 @@ instances:
     [{}]
 ```
 
+**Bonus - Can I change collection interval without updating Python?**
+Yes! You can change the collection interval in the .yaml file by adding a min_collection
+interval to the init_config.
+
 # Vizualizing Data
 
 **Create Timeboard Script**
@@ -90,7 +94,7 @@ https://app.datadoghq.com/dash/639317/hiring-exercise-timeboard?live=true&page=0
 **Snapshot sent with @ notation**
 ![snapshot](snapshot.png?raw=true "snapshot")
 
-**What is the Anomaly graph displaying**
+**Bonus - What is the Anomaly graph displaying**
 There is a grey box around it showing where it has dropped or increased. There is also a spike at the end of a graph predicting an increase where it has yet to increase.
 
 # Monitoring Data
@@ -102,13 +106,6 @@ There is a grey box around it showing where it has dropped or increased. There i
 
 **No Data Notification**
 ![nodata](nodata.png?raw=true "nodata")
-
-**Silenced Notifications**
-![silenced](silenced.png?raw=true "silenced")
-![silenced2](silenced2.png?raw=true "silenced2")
-
-**Downtime Link**
-https://app.datadoghq.com/monitors#downtime?id=296173286
 
 **Create Monitor Script**
 ```python
@@ -142,8 +139,19 @@ api.Monitor.create(
 )
 ```
 
+**Bonus**
+**Silenced Notifications**
+![silenced](silenced.png?raw=true "silenced")
+![silenced2](silenced2.png?raw=true "silenced2")
+
+**Downtime Link**
+https://app.datadoghq.com/monitors#downtime?id=296173286
+
 # Collecting APM Data
 
 
+**Bonus - What is the difference between a Service and a Resource**
+
+
 # Final Question
-I would use DataDog to 
+I would use DataDog to monitor activity on applications like OpenTable or Resy to see what reservation trends are like seasonally and weather permitting.
