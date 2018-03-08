@@ -1,8 +1,9 @@
 
 # Datadog Introduction Guide
-Datadog is a monitoring service for applications at scale. I will show the setup from first installing the agent to customizing a dashboard and setting up email alerts.
 
-This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant. The host operating system is a Debian laptop.
+Datadog is a monitoring service for applications at scale. I will show the setup from first installing the agent and integrating it with several applications to customizing a dashboard and setting up email alerts.
+
+This demonstration will monitor several applications running in an Ubuntu image managed by Vagrant.
 
 - [Setup the environment](#setup-the-environment)
   - [Install VirtualBox](#install-virtualbox)
@@ -22,17 +23,21 @@ This demonstration will monitor several applications running in an Ubuntu image 
   - [Alerts](#alerts)
   - [Scheduling Downtime](#scheduling-downtime)
   - [Using cURL API](#using-curl-api)
-- [Collecting APM Data](#collecting-apm-data)
+- [Collecting Data with APM (Tracing)](#collecting-data-with-apm-tracing)
+- [Bonus Question: Service vs Resouce](#bonus-question-service-vs-resouce)
 - [Final Question](#final-question)
 - [Final Thoughts](#final-thoughts)
 
 ## Setup the environment
+
 ### Install VirtualBox
+
 [Available here](https://www.virtualbox.org/wiki/Linux_Downloads), I followed the instructions that added it to my apt-get library to make it easier to update in the future. My current version is VirtualBox 5.2.
 
 Make sure [virtualization technology is enabled](http://hackaholic.info/enable-hardware-virtualization-vt-x-amd-v-for-virtualbox) in your BIOS. Many Debian systems have this disabled by default.
 
 ### Install Vagrant
+
 [Vagrant](https://www.vagrantup.com/intro/index.html) is available through `apt-get install vagrant`. 
 
 As of writing this document, I encountered an issue with downloading vagrant through apt-get. Downloading through apt-get gives me Vagrant 1.9. This version [doesn't seem to be compatible with VirtualBox 5.2](https://github.com/geerlingguy/drupal-vm/issues/1587). I uninstalled Vagrant then reinstalled the latest Vagrant 2.0.2, which resolved my issue. Find instructions [here](https://github.com/openebs/openebs/issues/32).
@@ -42,9 +47,11 @@ As of writing this document, I encountered an issue with downloading vagrant thr
 Now all of the basic tool have been installed. Before continuing I recommend watching the [DataDog 101 course](https://www.youtube.com/watch?v=uI3YN_cnahk&list=PLdh-RwQzDsaOoFo0D8xSEHO0XXOKi1-5J) and skimming through [the docs](https://docs.datadoghq.com/getting_started/).
 
 ## Collecting Metrics
+
 The basis of Datadog's functionality comes from the metrics it collects from your hosts. In order to send metrics to Datadog, we have to install the agent on our system. After that we will configure some applications to send their metrics.
 
 ### Install Datadog agent
+
 When you first log in to Datadog you will see instructions on how to install the Datadog agent. For our Vagrant setup, we will be copying the [Ubuntu installation commands](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) into a bootstrap shell script which will be triggered when we run `vagrant up`. This is what the file looks like right now:
 
 ```bash
@@ -95,6 +102,7 @@ I can now go to the Datadog website, and see that my image is sending data. I ra
 ![stress test on ubuntu image](screenshots/initial_dashboard.png)
 
 ### Add tags to Agent
+
 One of the most important configurations to set up is tagging. Datadog is meant to monitor large quantities of hosts, and without a way to organize them, important patterns and information could be lost in the noise. Tags allow you to organize your metrics and create more usable visualizations and alerts.
 
 Tags can be set in the datadog.yaml file, the same config file that we set the API key. You can also set them manually in your host map view, but something like this should really be automated. This can be done in a couple ways, but the simplest for this demo was to add a line in the agent bootstrap file:
@@ -108,6 +116,7 @@ Now when we look at this VM, the tags `role:database` and `region:us` are listed
 ![ubuntu host tags](screenshots/host_tagging.png)
 
 ### Install Postgres and Integrate with Datadog
+
 The Datadog agent is now on the image, so we can set up integrations with any applications running. Integrations are available for [hundreds of applications](https://docs.datadoghq.com/integrations/). We will be setting up a [PostgreSQL DB system](https://www.postgresql.org/about/). The default Vagrant setup files listed in the [Postgres wiki](https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant#Vagrant) worked fine for me, so I will just merge both Vagrantfiles, and import the relevant files into my repo.
 
 Our new Vagrantfile looks like this:
@@ -137,7 +146,9 @@ After reloading vagrant to take our new provisioning into effect we are rewarded
 ![postgres metrics](screenshots/postgres_integration.png)
 
 ### Writing an Agent Check
+
 ### Agent Check
+
 If you cannot find an integration available for your software and still want to collect metrics on it, then you have [multiple options](https://docs.datadoghq.com/developers/metrics/) available to you: the API, DogStatsD, and agent checks. We will quickly implement an agent check here.
 
 In order to create an agent chekc we need to have a configuration file and then a python script which inherits from AgentCheck. We will have send a random number between 0 and 1000 as a metric.
@@ -164,6 +175,7 @@ This is all that's needed to see our metric in a timeboard:
 ![random number agent check](screenshots/random_agent_check.png)
 
 ### Collection Interval
+
 The boilerplate config becomes more useful when we have more complex setting we wish to use. For example we can change the update interval from the default 20 seconds, to instead only send data every 45 seconds.
 
 ```yaml
@@ -176,6 +188,7 @@ instances:
 This doesn't mean the the data is sent every 45 seonds though. The Datadog agent is configured to collect and send data every 15 seconds, adding this 45 makes it so that this metric will be skipped until 45 seconds has passed. So after 15 seconds the agent will skip this file, then 30 seconds it will skip again, and after 45 seconds the metric will be sent.
 
 ### Bonus Questoin: Collection Interval
+
 > **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 The collection interval can be set through the `min_collection_interval` value under `init_config` in the yaml file, as shown above. It could also be modified by increasing the interval of the agent itself using the datadog.yaml file, since if the agent only collects data every 60 seconds, then by defalt the agent check will also.
@@ -183,7 +196,9 @@ The collection interval can be set through the `min_collection_interval` value u
 Judging by how this bonus question mentions modifying the Python file though, I assume it can also be done by editing the AgentCheck instance variable directly in the Python check file e.g. `self.min_collection_interval = 60`, however when I tried this it didn't seem to reflect in the dashboard, and I wasn't able to find any documentation showing how to edit the value through the constructor. It would seem to be accessible based on the source code I see [here](https://github.com/DataDog/dd-agent/blob/master/checks/__init__.py#L337), but I may be misunderstanding the Agent lifecycle, or Python object inheritance. (or have a typo)
 
 ## Visualizing Data
+
 ### Timeboards
+
 We have already seen/ created a few timeboards in the Datadog app, but we can also create them using the[ Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards), along with basically any other task we'd want to on the site. In this case the docs are so comprehensive, that there is basically no work to do besides fill in the details. An easy way to generate the data is to go to the app and create a dashboard and use the UI there, then copy from the JSON tab. 
 
 ![time gui json](screenshots/timeboard_api_gui_json.png)
@@ -199,12 +214,15 @@ My implementation of the dashboard is visible in [timeboard.py](timeboard.py). I
 ![timeboards](screenshots/timeboards.png)
 
 ### Bonus Question: Anomoly function
+
 > **Bonus Question**: What is the Anomaly graph displaying?
 
 The [anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) is an algorithm that detects unusual changes based on previous metrics history. This can be used for very complex trends, taking into account several variables, but for our situation it just colored the graph when I created a spike in number of databases from 1 to 5.
 
 ## Monitoring Data
+
 ### Alerts 
+
 We have our graph, but what happens when something goes wrong? What if those random numbers ever get really high? I'll certainly want to konw if that random number goes over say 800, that could be important. But I don't want to sit and watch it all day. To solve this problem we can use monitors. 
 
 From either the timeboard gear icon, or the monitor section in the sidebar, I can choose to create a new monitor for the metric random.number. Then we just fill out the form. 
@@ -216,18 +234,43 @@ The alert will trigger every 5 minutes, emailing me if that random number is in 
 ![Email alert](screenshots/alert_email.png)
 
 ### Scheduling Downtime
+
 As important as this alert is, we only care about it during work hours. After work emails should be limited to only the most important. Luckily we can schedule downtime. The page is accessible through the submenu of monitoring. I created two schedules, on for weekdays from 7pm to 9am the next day, and another for weekends. When scheduling I made sure to include a description and tagged myself so that I got an email.
 
 ![schedule downtime email](screenshots/disable_monitoring.png)
 
 ### Using cURL API
+
 Once again these tools don't need to be created with the GUI, the API has endpoints for all these alerts and monitoring tools. Instead of Python, this time I have created a small shell script making a cURL request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh). One of the benefits of cURL over Python, is that the Python API doesn't have all functionality yet, while cURL can use every endpoint.
 
-## Collecting APM Data
-* link agent to flask api
+## Collecting Data with APM (Tracing)
+
+[Tracing](https://docs.datadoghq.com/tracing/) is a more integrated form of monitoring. It is instumented directly into your code so that you can see much more detailed metrics and track down the bottlenecks not just in your infrastructure but the code itself.
+
+I've added a small [Python Flask API](flask-app.py) to the repo, and instrumented it with the ddtrace package. APM is enabled by default past version 5.13, and we are using Agent v6, so no config changes should be necessary. 
+
+Or so I thought until I started Vagrant and kept hitting port errors. It turns out both Python Flask and Datadog default to using port 5000, so I added an extra line to the dd_agent_boostrap shell script to change the default port to 5002.
+
+```bash
+sudo sed -i 's/# expvar_port:.*/expvar_port: 5002/' /etc/datadog-agent/datadog.yaml
+```
+
+After making that change, the trace metrics are visible in my host map, so I curled the endpoints I opened a couple dozen times to get that warm fuzzy feeling you get when graphs move in a way you expect them to.
+
+![python flask trace metrics](screenshots/python_flask_trace.png)
+
+## Bonus Question: Service vs Resouce
+
 > **Bonus Question**: What is the difference between a Service and a Resource?
 
+A service is a set of processes that do the same job. For example, in my app I would say I have 3 services: the Flask web app I just created, the Postgres database, and the random number generator. Most small websites would be similar, a front end API with business logic, a backend database, some non-public-facing utilities. Larger organizaitons might have multiple database that serve vastly different purposes.
+
+A resource is a request to that service, an API endpoint, a database query, etc. I have 3 possible resources for my Flask app, and only one table in my database. However since there are multiple operations possilbe for the DB, perhaps it would be better to organize resource by select, insert, delete requests, instead of by all operations to a given table. How to group them seems to be up to the designer.
+
+[Official definitions of Service vs Resource](https://docs.datadoghq.com/tracing/terminology/#service)
+
 ## Final Question
+
 > Is there anything creative you would use Datadog for? 
 
 I always thought that creativity requires a bit of structure. Before I think of an interesting use, I want to figure out what things Datadog excels at, abstracted out beyond infrastructure and applications, that might give me some better ideas.
@@ -243,10 +286,12 @@ My immediate thought is groceries. I would want to somehow feed grocery data int
 
 ## Final Thoughts
 
-This is my first time working with a lot of this technology. At every chance where I could choose the technologies I chose something I was less familiar with. Postgres over MySql, Vagrant over Docker, etc. I thought these exercises would be a good opportunity to increase my knowledge of these tools, which is great for me, but may impact the quality of the explanations. If there are any inaccuracies or silly mistakes I made when using these tools I would appreciate correction.
+This is my first time working with a lot of this technology. At every chance where I could choose the technologies I chose something I was less familiar with. Postgres over MySql, Vagrant over Docker, etc. I thought these exercises would be a good opportunity to increase my knowledge of these tools, which is great for me, but may impact the quality of the explanations. If there are any inaccuracies or silly mistakes I made when using these tools I would appreciate correction. 
 
-Another new tool I learned was [bfg](https://rtyley.github.io/bfg-repo-cleaner/), at some point in the process I accidentally uploaded an api key to GitHub. This is just a trial account and I immediately updated my keys through the website, but I thought it would be cool to use bfg to also scrape my history clean. [Here](https://github.com/draav/hiring-engineers/commit/fbd9edf19f5322a20783b7a14786fc4d88450f3e#diff-e4e349f3dcefcaa939b79b899a041181) is an example of a file that had it's text replaced.
+Also I wouldn't recommend anyone follow the project structure in this repo. As I installed more thing onto the vagrant image, I kept trying out different styling of writing scripts, I left them all in as examples. I think the best method is where I would just keep copying of all the config files and then copy them to their apppriate directories with the Vagrantfile, doing inline script and using sed and copying from the example files seems unstable and difficult to read to me, but they are options.
 
-My final new tool I'll talk about is the laptop I'm developing on. I just got a used laptop a week or two back to code on (My main desktop is just a time sink of Reddit and Steam games). I installed Debian, since I've never used Linux outside of a VM. Writing this guide has given me a great chance to flesh out my development environment and figure out what tools I like best. It also let me tackle some interesting challenges like getting virtualization working in order to use Vagrant. 
+A new tool I learned was [bfg](https://rtyley.github.io/bfg-repo-cleaner/), at some point in the process I accidentally uploaded an api key to GitHub. This is just a trial account and I immediately updated my keys through the website, but I thought it would be cool to use bfg to also scrape my history clean. [Here](https://github.com/draav/hiring-engineers/commit/fbd9edf19f5322a20783b7a14786fc4d88450f3e#diff-e4e349f3dcefcaa939b79b899a041181) is an example of a file that had it's text replaced.
+
+My final thing I'll talk about is the laptop I'm developing on. I just got a used laptop a week or two back to code on (My main desktop is just a time sink of Reddit and Steam games). I installed Debian, since I've never used Linux outside of a VM. Writing this guide has given me a great chance to flesh out my development environment and figure out what tools I like best. It also let me tackle some interesting challenges like getting virtualization working in order to use Vagrant, since that is disabled by default with most installations. 
 
 If you've made it this far, thanks for reading.
