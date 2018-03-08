@@ -5,6 +5,9 @@
 
 ![tags](tags2.png?raw=true "Tags")
 
+**Hostmap Link**
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false&node_type=host
+
 **PostgreSQL Integration**
 ![PSQL](postgres.png?raw=true "PSQL")
 
@@ -81,6 +84,9 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
+**Timeboard Link**
+https://app.datadoghq.com/dash/639317/hiring-exercise-timeboard?live=true&page=0&is_auto=false&from_ts=1520460638441&to_ts=1520464238441&tile_size=xl
+
 **Snapshot sent with @ notation**
 ![snapshot](snapshot.png?raw=true "snapshot")
 
@@ -97,8 +103,12 @@ There is a grey box around it showing where it has dropped or increased. There i
 **No Data Notification**
 
 
-**Silenced Notification**
+**Silenced Notifications**
 ![silenced](silenced.png?raw=true "silenced")
+![silenced2](silenced2.png?raw=true "silenced2")
+
+**Downtime Link**
+https://app.datadoghq.com/monitors#downtime?id=296173286
 
 **Create Monitor Script**
 ```python
@@ -130,5 +140,10 @@ api.Monitor.create(
     message="WARNING: my_metric is over 500! Alert is at 800.",
     options=options
 )
-'''
+```
 
+# Collecting APM Data
+
+
+# Final Question
+I would use DataDog to 
