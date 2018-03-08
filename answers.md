@@ -151,7 +151,10 @@ https://app.datadoghq.com/monitors#downtime?id=296173286
 
 
 **Bonus - What is the difference between a Service and a Resource**
-
+A Service is a set of processes that work together to provide a feature set. For example,
+an application may have two services: **webapp** and **database**. A Resource is a
+particular query to a Service. For a SQL database, the resource would be the SQL query
+of itself.
 
 # Final Question
 I would use DataDog to monitor activity on applications like OpenTable or Resy to see what reservation trends are like seasonally and weather permitting.
