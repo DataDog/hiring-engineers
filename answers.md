@@ -101,7 +101,7 @@ There is a grey box around it showing where it has dropped or increased. There i
 **Alert Notification**
 
 **No Data Notification**
-
+![nodata](nodata.png?raw=true "nodata")
 
 **Silenced Notifications**
 ![silenced](silenced.png?raw=true "silenced")
