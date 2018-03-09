@@ -1,5 +1,5 @@
 # Introduction
-DataDog is a modern monitoring and analytics service that can be used with any app, containing any stack, at any scale. Below, I will demonstrate how to use the DataDog Agent to monitor data, customize your dashboard and send email notifications to alert the user of changes.
+DataDog is a modern monitoring and analytics service that can be used with any app, containing any stack, at any scale. Below I will demonstrate how to use the DataDog Agent to monitor data, customize your dashboard and send email notifications to alert the user of changes.
 
 # Setting up the DataDog Agent
 I ran the DataDog Agent on OSX and Ubuntu. Installing the DataDog agent is very simple for both operating systems.
@@ -8,7 +8,7 @@ I ran the DataDog Agent on OSX and Ubuntu. Installing the DataDog agent is very 
 The Agent for Mac can be installed as easily as running `DD_API_KEY={API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"` in your terminal. The DataDog project can then be found at `/opt/datadog-agent/`.
 
 **Ubuntu**
-The Agent is just as easy to install on an Ubunut environment by running `DD_API_KEY={API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"` in ths Ubuntu terminal. To access the project here, you first have to `cd /vagrant` and then the DataDog project can be found again at `/opt/datadog-agent/`.
+The Agent is just as easy to install on an Ubunut environment by running `DD_API_KEY={API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"` in this Ubuntu terminal. To access the project here, you first have to `cd /vagrant` and then the DataDog project can be found again at `/opt/datadog-agent/`.
 
 # Getting Started
 Before getting started using DataDog, I recommend taking a look through the [DataDog docs](https://docs.datadoghq.com/getting_started/). There are useful [Videos](https://docs.datadoghq.com/videos/) and [API Documentation](https://docs.datadoghq.com/api/). There is also a great video tour on the homepage of the [DataDog Website](https://www.datadoghq.com/).
@@ -17,6 +17,7 @@ Before getting started using DataDog, I recommend taking a look through the [Dat
 
 **Tags**
 The backbone of DataDog's service is the metrics that it collects from your hosts. It is important to add tags to organize your metrics across a large spectrum of hosts. Tags can be added in the yaml file located at `/opt/datadog-agent/etc/datadog.yaml` simply by adding a line like `tags: region:eastus, purpose:hiring_exercise`. The recommended format is `key:value` like `region:eastus`. You can see here that the keys, region and purpose, are listed at the top of the screen and their values, eastus and hiring_exercise, are surrounding your host.
+
 ![tags](tags.png?raw=true "Tags")
 
 ![tags](tags2.png?raw=true "Tags")
@@ -26,7 +27,7 @@ https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=
 
 
 **PostgreSQL Integration**
-Now that we have applied our tags to our host we can start setting up integrations for any applications we use. I use the [PostgreSQL DB](https://www.postgresql.org/about/) primarily so I set up an integration for Postgres. First, create a `postgres.yaml` file in the Agent's `conf.d` directory. The steps for finishing this setup are located in the [DataDog Integrations Docs](https://docs.datadoghq.com/integrations/postgres/). After all is done, your configuration should look something like:
+Now that we have applied our tags to our host we can start setting up integrations for any applications we use. I use the [PostgreSQL DB](https://www.postgresql.org/about/) primarily so I set up an integration for Postgres. First, create a `postgres.yaml` file in the Agent's `conf.d` directory. The steps for finishing this setup are located in the [DataDog Integrations Docs](https://docs.datadoghq.com/integrations/postgres/). After this is done, your configuration should look something like:
 ```yaml
 init_config:
 
@@ -40,6 +41,7 @@ instances:
     	-optional_tag_2
 ```
 Once successfully configured, you will see and message like the following in your Events Stream in the UI and `postgresql` will appear in your host map.
+
 ![PSQL](postgres.png?raw=true "PSQL")
 ![PSQL Host Map](psql_hostmap.png?raw=true "PSQL Host Map")
 
@@ -67,9 +69,11 @@ instances:
     [{}]
 ```
 
+![Agent Check](check.png?raw=true "Agent Check")
+
 **Bonus - Can I change collection interval without updating Python?**
 Yes! You can change the collection interval in the .yaml file by adding a min_collection
-interval to the init_config. This, however, doesn't mean that data is sent every 45 seconds. The DataDog Agent collects data every 20 seconds by default. This changes that for my_metric alone so data is only collected after 45 seconds has passed. Since the DataDog Agent collects data every 20 seconds, it will skip my_metric after 20 seconds, skip it again after 40 seconds, and then collect it upon reaching 60 seconds.
+interval to the init_config. This, however, doesn't mean that data is sent every 45 seconds. The DataDog Agent collects data every 20 seconds by default. This changes that collection interval for my_metric only so data is only collected after 45 seconds has passed. Since the DataDog Agent collects data every 20 seconds, it will skip my_metric after 20 seconds, skip it again after 40 seconds, and then collect it upon reaching 60 seconds.
 
 # Vizualizing Data
 **Timeboards**
@@ -179,9 +183,11 @@ api.Monitor.create(
 ```
 
 **Warning Notification**
+
 ![warning](warning.png?raw=true "warning")
 
 **No Data Notification**
+
 ![nodata](nodata.png?raw=true "nodata")
 
 **Bonus**
