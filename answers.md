@@ -186,6 +186,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 - A resource is a query to a service.  Looking at routes in an application, queries are made from the user to the controllers.  The query would tell the controller which view to display based on what the user has queried.
 
 # Final Question:
+
 1. Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 - I am very much so into professional sports and I was thinking if was could take metrics on which seats are consistently not being filed at games would be interesting.  There are always specific sections of stadiums that are not filled, and thought there could be a way to take the statics of which seats are consistently not being filled, which may cause them to be sold for cheaper at resale.
 - Another idea that is similar to my sporting event idea would be relating this to parking spaces around major cities.  There are always areas of cities that have hidden parking spaces or spaces that are always available.  Wanted to look at the metrics of how often spaces are filled and if there are ones that are more time free than others in a given area.
