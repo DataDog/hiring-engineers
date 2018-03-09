@@ -155,10 +155,7 @@ To troubleshoot, I tried taking ownership of the file and running the source cod
 This points pip to the https address for pypiy ddtrace. Next, I had to install Flask. The virtualenv installed easily but pip 1.0 wouldn't install Flask for the same issues. I tried the workaround I worked out before and I was getting similar errors. Without Flask installed I couldn't ddtrace the Flask application. If I had a little more time I think I  could have gotten this up and running. I noticed that the VM I was using was running Ubuntu 12.4 which was very out of date - probably why it would only support pip 1.0. In the future, I would try to run it on a more up to date version of Ubuntu.
 
 **Bonus - What is the difference between a Service and a Resource**
-A Service is a set of processes that work together to provide a feature set. For example,
-an application may have two services: **webapp** and **database**. A Resource is a
-particular query to a Service. For a SQL database, the resource would be the SQL query
-of itself.
+A Service is a set of processes that work together to provide a feature set. For example, an application may have two services: **webapp** and **database**. A Resource is a particular query to a Service. For a SQL database, the resource would be the SQL query of itself.
 
 # Final Question
 I would use DataDog to monitor activity on applications like OpenTable or Resy to see what reservation trends are like seasonally and weather permitting. It would be cool to have concrete data on how dining trends are changing during different seasons in different parts of the country.
