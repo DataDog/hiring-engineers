@@ -21,18 +21,21 @@ Change your check's collection interval so that it only submits the metric once 
 
 - Looked through documentation for creating a custom agent check.  Utilized the gauge check.  Created a yaml file called my_metric.yaml in the config.d directory.  Within the my_metric.yaml file, created an init_config and and instance.
 
+````
 init_config:
-
 instances:
     [{}]
+````
 
 Created a my_metric.py file in the checks.d directory. In this file, I inherited the AgentCheck class from the checks method.  I created a new class called MyMetric which inherited all the methods from the AgentCheck class.  Then created a new check method that takes in the arguments of self and an instance.  Then used the gauge metric and called self on it passing in the name and a random integer method from the python docs.  I needed to import in the random method, which I added to the top of the method , then I set the random integer values to be between 0 and 1000.
 
+````
 import random
 from checks import AgentCheck
 class MyMetric(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
+````
 
 ![alt text](/images/custom_agent_check.png)
 ![alt text](/images/my_metric.png)
@@ -49,6 +52,7 @@ class MyMetric(AgentCheck):
     * Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
 
 - Created a new timeboard in the dashboard section.  Chose my_metric as a time series scoped over my local host.  Added my mongodb metric with the anomaly function applied.  Then added my_metric graph with the rollover function set to 3600 seconds.  I then utilized the dog-watcher utility to be able to create logs of any changes to my Datadog agent and upload them as a backup to my GitHub repo.
+````
 {
 	  "dash": {
 	    "read_only": false,
@@ -131,6 +135,8 @@ class MyMetric(AgentCheck):
 	  "url": "/dash/637673/shauns-timeboard-6-mar-2018-1935",
 	  "resource": "/api/v1/dash/637673"
 	}
+````
+
 2. Once this is created, access the Dashboard from your Dashboard List in the UI:
     * Set the Timeboard's timeframe to the past 5 minutes
     * Take a snapshot of this graph and use the @ notation to send it to yourself.
