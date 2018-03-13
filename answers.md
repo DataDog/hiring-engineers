@@ -25,7 +25,7 @@ This demonstration will monitor several applications running in an Ubuntu image 
   - [Schedule Downtime](#schedule-downtime)
   - [cURL API](#curl-api)
 - [Collecting Data with APM (Tracing)](#collecting-data-with-apm-tracing)
-  - [Python Flask App](#python-flask-app)
+  - [Python Flask App](#python-flask-app)
   - [Bonus Question: Service vs. Resource](#bonus-question-service-vs-resource)
 - [Final Question](#final-question)
 - [Final Thoughts](#final-thoughts)
