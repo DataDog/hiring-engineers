@@ -24,9 +24,9 @@ This demonstration will monitor several applications running in an Ubuntu image 
   - [Alerts](#alerts)
   - [Schedule Downtime](#schedule-downtime)
   - [cURL API](#curl-api)
-  - [Collecting Data with APM (Tracing)](#collecting-data-with-apm-tracing)
-- [Python Flask App](#python-flask-app)
-- [Bonus Question: Service vs. Resource](#bonus-question-service-vs-resource)
+- [Collecting Data with APM (Tracing)](#collecting-data-with-apm-tracing)
+  - [Python Flask App](#python-flask-app)
+  - [Bonus Question: Service vs. Resource](#bonus-question-service-vs-resource)
 - [Final Question](#final-question)
 - [Final Thoughts](#final-thoughts)
 
@@ -251,9 +251,9 @@ As important as this alert is, we only care about it during work hours. After wo
 
 Once again, these tools don't need to be created with the GUI; the API has endpoints for all these alerts and monitoring tools. Instead of Python, this time I have created a small shell script making a cURL request to Datadog that will generate the exact same monitors and schedules. Check it out [here](curl_monitor.sh). One of the benefits of cURL over Python, is that the Python API doesn't have all functionality yet, while cURL can use every endpoint.
 
-### Collecting Data with APM (Tracing)
+## Collecting Data with APM (Tracing)
 
-## Python Flask App
+### Python Flask App
 
 [Tracing](https://docs.datadoghq.com/tracing/) is a more integrated form of monitoring. It is instumented directly into your code so that you can see much more detailed metrics and track down the bottlenecks not just in your infrastructure, but the code itself.
 
@@ -269,7 +269,7 @@ After making that change, the trace metrics are visible in my host map, so I cUR
 
 ![python flask trace metrics](screenshots/python_flask_trace.png)
 
-## Bonus Question: Service vs. Resource
+### Bonus Question: Service vs. Resource
 
 > **Bonus Question**: What is the difference between a Service and a Resource?
 
