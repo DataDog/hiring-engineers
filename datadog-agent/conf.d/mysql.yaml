@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+  - server: mysql
+    user: root
+    pass: password
+    options:
+        replication: 0
+        galera_cluster: 1

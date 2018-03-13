@@ -10,8 +10,26 @@ services:
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
       - ./datadog-agent/run:/opt/datadog-agent/run:rw
+      - ./datadog-agent/conf.d:/conf.d:ro
+      - ./datadog-agent/checks.d:/checks.d:ro
     environment:
       - DD_API_KEY
       - DD_APM_ENABLED=true
       - DD_LOGS_ENABLED=true
       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+      - DD_TAGS
+
+  mysql:
+    image: "mysql"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/data
+    depends_on:
+      - datadog
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=hiring-engineers
+
+volumes:
+  mysqldata:
