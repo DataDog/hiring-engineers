@@ -5,6 +5,7 @@ services:
     image: "datadog/docker-dd-agent:latest"
     ports:
       - "8125:8125"
+      - "8126:8126"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /proc/:/host/proc/:ro
@@ -30,6 +31,16 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE=hiring-engineers
+
+  flask:
+    build:
+      context: flask-apm/
+    ports:
+      - "8080:5000"
+    depends_on:
+      - datadog
+    environment:
+      - FLASK_APP=flask-apm.py
 
 volumes:
   mysqldata:

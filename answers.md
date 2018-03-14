@@ -118,14 +118,21 @@ source ./hiring-engineers.sh
 ![Timeboard ID example](./images/timeboard_id.png)
 
 
-
-
-
 ### Application Performance Monitoring
 
+https://app.datadoghq.com/dash/670038
 
+![Timeboard ID example](./images/apm_timeboard.png)
 
+A service is a set of processes that do the same job.
+For instance, a simple web application may consist of two services:
 
+ - A single webapp service and a single database service.
+
+ A Resource is particular action for a service.
+
+- For a web application: some examples might be a canonical URL, such as ``/user/home` or a handler function like web.user.home (often referred to as “routes” in MVC frameworks).
+- For a SQL database: a resource is be the query itself, such as `SELECT * FROM users WHERE id = ?``.<sup id="a9">[9](#f9)</sup>
 
 ## Citations
 
@@ -142,3 +149,5 @@ source ./hiring-engineers.sh
 <sup id="a6">[6](#f6)</sup> https://docs.datadoghq.com/agent/agent_checks/#configuration [↩](#a6)
 
 <sup id="a7">[7](#f7)</sup> https://docs.datadoghq.com/graphing/dashboards/ [↩](#a7)
+
+<sup id="a9">[9](#f9)</sup> https://docs.datadoghq.com/tracing/visualization/ [↩](#a9)
