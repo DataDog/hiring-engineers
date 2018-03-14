@@ -83,6 +83,10 @@ Delivering the notification can happen through multiple channels. Here is an exa
 
 ![Notification Setup](./images/monitor_alert.png)
 
+Here you can see that the alert is now in Warning state, and what the current value is:
+
+![Downtime Weekend](./images/monitor_warning.png)
+
 Its also possible to schedule one-off or repeating downtime for an alert, for instance for planned maintenance, or a weekend:
 
 ![Downtime Weeknight](./images/monitor_dt_weeknight.png)
@@ -93,16 +97,22 @@ Its also possible to schedule one-off or repeating downtime for an alert, for in
 
 Dashboards in Datadog allow you to display graphs, event streams and other data in a customizable format. There are two kinds, TimeBoards, which are grids of graphs that all share the same time scope, and ScreenBoards, which allow more layout flexibility and allow you to customize the time scope on a per-graph basis.<sup id="a7">[7](#f7)</sup>
 
+The easy to use user interface is [well documented](https://docs.datadoghq.com/graphing/dashboards/), allowing you to create dynamic dashboards to monitor your infrastructure.
+
+![Timeboard ID example](./images/timeboard_ui.png)
+
+Once created, you can also take "Snapshots" of individual graphs by hovering over them and clicking the camera icon. To send the graph to a team member, just add them to the snapshot comment using standard @mention syntax.
+
 ![Timeboard ID example](./images/timeboard_snapshot.png)
 
 
 ### API integration
 
-Datadog has a complete REST API that makes it easy to get data in and out of Datadog.
+In addition to the UI, you can use Datadog's complete REST API that makes it easy to get data in and out of Datadog.
 
 All requests to Datadog’s API must be authenticated. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key.
 
-Your API key you've already created at the beginning of this tutorial. Lets get an Application Key, and use it to backup the dashboard we created in the previous step, so we can check it into source control.
+Your API key you've already created at the beginning of this tutorial. Lets get an Application Key, and use it to import a dashboard.
 
 1. Go to the [API tab](https://app.datadoghq.com/account/settings#api) of your Account Settings
 
@@ -114,25 +124,35 @@ Your API key you've already created at the beginning of this tutorial. Lets get 
 echo 'export DD_APP_KEY="0123456789abcdef"' >> ./hiring-engineers.sh
 source ./hiring-engineers.sh
 ```
-4. Use the scripts in [timeboard_utilities](./timeboard_utilities) to export the timeboard. The `export.sh` script takes two parameters, a filename and a dashboard id. You can find the dashboard id in the URL of the display page:
-![Timeboard ID example](./images/timeboard_id.png)
+4. Use the scripts in [timeboard_utilities](./timeboard_utilities) to import the timeboard that ships with this exercise.
+```
+source ./hiring-engineers.sh
+cd timeboard_utilities
+./import.sh dash.json
+```
 
+You can also backup dashboards you create, so you can check it into source control. There's also a  `export.sh` script takes two parameters, a filename and a dashboard id. To update an existing dashboard with edited json, pass a dashboard id as the 2nd parameter to the `import.sh` script.
+
+You can find the dashboard id in the URL of the display page:
+![Timeboard ID example](./images/timeboard_id.png)
 
 ### Application Performance Monitoring
 
-https://app.datadoghq.com/dash/670038
+Datadog APM provides you with deep insight into your application’s performance - from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests - side by side with your logs and infrastructure monitoring.<sup id="a8">[8](#f8)</sup>
+
+Datadog APM currently supports applications written in Go, Java, Ruby and Python. Included in the docker-compose.yaml file is a [fully instrumented Python application](./flask-apm) that run alongside the agent and MySQL server.
+
+[Here is a timeboard](https://app.datadoghq.com/dash/670038) that shows infrasturcture metrics along with an APM trace showing traffic to the Python app:
 
 ![Timeboard ID example](./images/apm_timeboard.png)
 
-A service is a set of processes that do the same job.
-For instance, a simple web application may consist of two services:
+When tracing, you can tag the traces in complex ways:
+* A service is a set of processes that do the same job.
+For instance, a simple web application may consist of two services, a single webapp service and a single database service.
 
- - A single webapp service and a single database service.
-
- A Resource is particular action for a service.
-
-- For a web application: some examples might be a canonical URL, such as ``/user/home` or a handler function like web.user.home (often referred to as “routes” in MVC frameworks).
-- For a SQL database: a resource is be the query itself, such as `SELECT * FROM users WHERE id = ?``.<sup id="a9">[9](#f9)</sup>
+* A Resource is particular action for a service.
+ * For a web application: some examples might be a canonical URL, such as `/user/home` or a handler function like web.user.home (often referred to as “routes” in MVC frameworks).
+ * For a SQL database: a resource is be the query itself, such as `SELECT * FROM users WHERE id = ?'`.<sup id="a9">[9](#f9)</sup>
 
 ## Citations
 
@@ -149,5 +169,7 @@ For instance, a simple web application may consist of two services:
 <sup id="a6">[6](#f6)</sup> https://docs.datadoghq.com/agent/agent_checks/#configuration [↩](#a6)
 
 <sup id="a7">[7](#f7)</sup> https://docs.datadoghq.com/graphing/dashboards/ [↩](#a7)
+
+<sup id="a8">[8](#f8)</sup> https://docs.datadoghq.com/tracing/ [↩](#a8)
 
 <sup id="a9">[9](#f9)</sup> https://docs.datadoghq.com/tracing/visualization/ [↩](#a9)
