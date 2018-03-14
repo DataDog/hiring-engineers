@@ -89,6 +89,40 @@ Its also possible to schedule one-off or repeating downtime for an alert, for in
 
 ![Downtime Weekend](./images/monitor_dt_weekend.png)
 
+### Visualizing Data
+
+Dashboards in Datadog allow you to display graphs, event streams and other data in a customizable format. There are two kinds, TimeBoards, which are grids of graphs that all share the same time scope, and ScreenBoards, which allow more layout flexibility and allow you to customize the time scope on a per-graph basis.<sup id="a7">[7](#f7)</sup>
+
+![Timeboard ID example](./images/timeboard_snapshot.png)
+
+
+### API integration
+
+Datadog has a complete REST API that makes it easy to get data in and out of Datadog.
+
+All requests to Datadog’s API must be authenticated. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key.
+
+Your API key you've already created at the beginning of this tutorial. Lets get an Application Key, and use it to backup the dashboard we created in the previous step, so we can check it into source control.
+
+1. Go to the [API tab](https://app.datadoghq.com/account/settings#api) of your Account Settings
+
+2. Give the new Application Key a name and click "Create Application Key"
+![Application Key generation](./images/app_key.png)
+
+3. Add the Application Key to the credentials file and execute it so we can use it as an environment variable
+```
+echo 'export DD_APP_KEY="0123456789abcdef"' >> ./hiring-engineers.sh
+source ./hiring-engineers.sh
+```
+4. Use the scripts in [timeboard_utilities](./timeboard_utilities) to export the timeboard. The `export.sh` script takes two parameters, a filename and a dashboard id. You can find the dashboard id in the URL of the display page:
+![Timeboard ID example](./images/timeboard_id.png)
+
+
+
+
+
+### Application Performance Monitoring
+
 
 
 
@@ -106,3 +140,5 @@ Its also possible to schedule one-off or repeating downtime for an alert, for in
 <sup id="a5">[5](#f5)</sup> https://docs.datadoghq.com/agent/agent_checks/ [↩](#a5)
 
 <sup id="a6">[6](#f6)</sup> https://docs.datadoghq.com/agent/agent_checks/#configuration [↩](#a6)
+
+<sup id="a7">[7](#f7)</sup> https://docs.datadoghq.com/graphing/dashboards/ [↩](#a7)
