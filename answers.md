@@ -159,16 +159,20 @@ For instance, a simple web application may consist of two services, a single web
 An interesting direction to explore for future integrations could be "traffic generation" sources. This would allow you to match up spikes in latency or bandwidth with either intentional or organic metrics or event streams. Ideas include:
 
 - Twitter - Organic social conversations
-Configure an integration on keywords, links or retweets, to provide volume statistics on conversations - https://developer.twitter.com/en/docs/tweets/filter-realtime/overview
+
+  Configure an integration on keywords, links or retweets, to provide volume statistics on conversations - https://developer.twitter.com/en/docs/tweets/filter-realtime/overview
 
 - Google Doubleclick - Paid advertising
-Use the API to integrate events for the start and end of campaigns, metrics of impressions delivered - https://developers.google.com/doubleclick-advertisers/v3.0/
+
+  Use the API to integrate events for the start and end of campaigns, metrics of impressions delivered - https://developers.google.com/doubleclick-advertisers/v3.0/
 
 - TV Guide (XMLTV) - Offline Promotion
-Consume XMLTV info, allowing correlation with first run and re-run of TV content that references your sites - https://www.mythtv.org/wiki/XMLTV
+
+  Consume XMLTV info, allowing correlation with first run and re-run of TV content that references your sites - https://www.mythtv.org/wiki/XMLTV
 
 - Chartbeat - Newsroom management
-Chartbeat is a complete newsroom statistical management platform used by many large publishers - http://support.chartbeat.com/docs/api.html
+
+  Chartbeat is a complete newsroom statistical management platform used by many large publishers - http://support.chartbeat.com/docs/api.html
 
 ## Citations
 
