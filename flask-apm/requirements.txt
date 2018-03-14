@@ -1,0 +1,3 @@
+Flask==0.12.2
+ddtrace==0.11.0
+Blinker==1.4
