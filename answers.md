@@ -75,10 +75,25 @@ Custom checks of this type are kept in a folder [checks.d](./datadog-agent/check
 
 While the configuration file is usually specific to your check, there is a global option  `min_collection_interval` setting can be added to the init_config section to help define how often the check should be run.<sup id="a6">[6](#f6)</sup> This allows you to change the collection interval without modifying the Python check file. Here it is set to 45 seconds.
 
+To be alerted when your custom metric exceeds certain thresholds, you can [set up a Monitor on the metric](https://app.datadoghq.com/monitors#create/metric). Standard monitoring options such as static warning and error thresholds as well as the "No Data" condition are all supported, along with analytics such as absolute or percentage change, [advanced anomaly detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and [outlier detection](https://docs.datadoghq.com/monitors/monitor_types/outlier/). Alerting is covered extensively in the [documentation](https://docs.datadoghq.com/monitors/).
+
+![Monitor Setup](./images/monitor_setup.png)
+
+Delivering the notification can happen through multiple channels. Here is an example of a simple e-mail, but integrations with chat systems like [Slack](https://docs.datadoghq.com/integrations/slack/) or incident management systems such as [PagerDuty](https://www.pagerduty.com/docs/guides/datadog-integration-guide/) are also available. Alerts follow standard markdown syntax, extended with [variables and other conditional formatting](https://docs.datadoghq.com/monitors/notifications/).
+
+![Notification Setup](./images/monitor_alert.png)
+
+Its also possible to schedule one-off or repeating downtime for an alert, for instance for planned maintenance, or a weekend:
+
+![Downtime Weeknight](./images/monitor_dt_weeknight.png)
+
+![Downtime Weekend](./images/monitor_dt_weekend.png)
 
 
 
-## Footnotes
+
+
+## Citations
 
 <sup id="a1">[1](#f1)</sup> https://www.docker.com/what-container [↩](#a1)
 
