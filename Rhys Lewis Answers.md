@@ -29,12 +29,16 @@ This simple, 'it just works', technology will get you up and running with full s
 Before we get stuck in here are links to some great resources to help you on your way to becoming a data dog expert.
 
 -- A great resource that you will return to time and again in the exercise
-https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/ 
+https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu
 
-Getting Started: https://docs.datadoghq.com/getting_started/
-Graphing in Datadog: https://docs.datadoghq.com/graphing/
-Monitoring in Datadog: https://docs.datadoghq.com/monitors/monitor_types/
-Writing an Agent check:https://docs.datadoghq.com/agent/agent_checks/
+Getting Started: https://docs.datadoghq.com/getting_started
+
+Graphing in Datadog: https://docs.datadoghq.com/graphing
+
+Monitoring in Datadog: https://docs.datadoghq.com/monitors/monitor_types
+
+Writing an Agent check:https://docs.datadoghq.com/agent/agent_checks
+
 Datadog API: https://docs.datadoghq.com/api/
 
 
@@ -46,8 +50,7 @@ The approach detailed here is to spin up a fresh linux VM via Vagrant Ubuntu 12.
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
 
-[Updeade.txt] 
-[Upgrade Meme Image]
+[Upgrade.txt] 
 
 *******
 
@@ -227,8 +230,9 @@ Stepping out of character.....Regrettably i had a number of issues in trying to 
  [dd_flask.py]
   
  Here is a link to the screenboard crated with APM and infrastructure data
- https://p.datadoghq.com/sb/2c2bb12bb-edd32f3e18a067cca05a171f630e4c98
- [ScreenShot] 
+ https://p.datadoghq.com/sb/2c2bb12bb-6071e5f03f9f159c521316ec02dc3362
+ 
+ [apm infra ScreenShot] 
   
 **************
  BONUS - What is the difference between a Service and a Resource
