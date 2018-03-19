@@ -86,7 +86,8 @@ https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-14.04/
 
 https://docs.mongodb.com/getting-started/shell/insert/ Here is a link for you to insert some test data into the database.
 
-Here is a screenshot of what the integration should look like
+Here is a screenshot of what the integration should look like when connected successfully
+
 ![Screenshot](mongointegrationscreenshot.PNG)
 
 ***************************************************************************************************************
@@ -102,24 +103,12 @@ DataDog Agent Checks are made up of 2 files, <project_name>.py and <project_name
 
 The first file we’ll create is /etc/datadog-agent/conf.d/my_metric.yaml. Agent config files have 2 sections: init_config and instances. The instances section defines one or more instances to check. Here is the config code to enter.
 
-******
-init_config:
-  metric_prefix: my_metric
-  min_collection_interval: 45
-
-instances:
-    [{}]
-******
+![CodeLink](my_metric.yaml)
 
 Now we’ll create the actual agent file in /etc/datadog-agent/checks.d/my_metric.py. The file extension already tells you this is a Python module.
 
-*******************
-from checks import AgentCheck
-from random import randint
-class my_metric(AgentCheck):
-    def check(self, instance):
-         self.gauge('My.Metric', randint(0,1000)) #gauge function is used to push the metrics to DataDog
-*******************
+![CodeLink](my_metric.py)
+
 
 Here is a screenshot of the My_Metric Dashboard in action!!
 ![Screenshot](mymetricdash1.PNG)
@@ -146,7 +135,7 @@ Important! Note down your API and APP keys from the main console. Head to https:
 
 To get up you to speed here is a link to the timeboard .py code I created with the custom metric, an anomaly based metric for the MongoDB, with anomaly applied and SUM function.
 
-![CodeLink](timeboard.py)
+![CodeLink](TimeboardAPI.py)
  
 Remember that great tool i mentioned to upload the python files to the ubuntu server. https://mobaxterm.mobatek.net/  here is a handy little demo video to get you going. https://mobaxterm.mobatek.net/demo.html
 
