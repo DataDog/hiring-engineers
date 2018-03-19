@@ -50,7 +50,7 @@ The approach detailed here is to spin up a fresh linux VM via Vagrant Ubuntu 12.
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
 
-![UpgradeDpc](upgrade.txt)
+![UpgradeDoc](upgrade.txt)
 
 *******
 
@@ -87,7 +87,7 @@ https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-14.04/
 https://docs.mongodb.com/getting-started/shell/insert/ Here is a link for you to insert some test data into the database.
 
 Here is a screenshot of what the integration should look like
-[mongointegrationscreenshot]
+![Screenshot](mongointegrationscreenshot.PNG)
 
 ***************************************************************************************************************
   Collecting Metrics - Custom Agent Check 
@@ -122,7 +122,7 @@ class my_metric(AgentCheck):
 *******************
 
 Here is a screenshot of the My_Metric Dashboard in action!!
-[MyMetricDash1]
+![Screenshot](mymetricdash1.PNG)
 
 Bonus Question: We added the interval into the YAML file
 
@@ -146,7 +146,7 @@ Important! Note down your API and APP keys from the main console. Head to https:
 
 To get up you to speed here is a link to the timeboard .py code I created with the custom metric, an anomaly based metric for the MongoDB, with anomaly applied and SUM function.
 
-[timeboard.py]
+![CodeLink](timeboard.py)
  
 Remember that great tool i mentioned to upload the python files to the ubuntu server. https://mobaxterm.mobatek.net/  here is a handy little demo video to get you going. https://mobaxterm.mobatek.net/demo.html
 
@@ -159,14 +159,14 @@ Postman is a powerful HTTP client for testing web services. Postman makes it eas
 
 Here is an amazing resource to speed up your understanding of how you can interact with the API through postman. https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
-[postmanscreen]
+![Screenshot](postmanscreen.PNG)
 
 Next we need to Set the Timeboard's timeframe to the past 5 minutes. Simply open the timeboard in the GUI and click and drag over the 5 minute period.
 
 Click the camera icon on the dashboard to take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Here is an image of what i received when doing this
-[emailtimeboard5minimage]
+![Screenshot](Email5Mintimeboard.PNG)
 
 **************
  BONUS - What is the anomaly graph displaying?
@@ -192,18 +192,15 @@ Send you an email whenever the monitor triggers.
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-Here it is a view of my setup..
-[monconfig]
 
 Here is a screenshot of the email sent out.
-[ddwarnmon]
+![Screenshot](Warnmon.PNG)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Here is an image of the notifying when you schedule the downtime.
  
-[Mondowntime]
+![Screenshot](mondowntime.PNG)
  
 ****************************************************************************************************************
    Collecting APM Data: 
@@ -228,12 +225,12 @@ with tracer.trace("web.request", service="my_service") as span:
 ***** 
  
 Stepping out of character.....Regrettably i had a number of issues in trying to set up the APM part of this excersise. Please see below the flask app code i was attempting to use and the created screenboard with the combined APM and infrastructure data.
- [dd_flask.py]
+![CodeLink](dd_flask.py)
   
  Here is a link to the screenboard crated with APM and infrastructure data
  https://p.datadoghq.com/sb/2c2bb12bb-6071e5f03f9f159c521316ec02dc3362
  
- [apm infra ScreenShot] 
+![Screenshot](APMnfra screen.PNG)
   
 **************
  BONUS - What is the difference between a Service and a Resource
