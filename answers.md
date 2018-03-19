@@ -23,6 +23,7 @@ min_collection_interval: 45
 instances:
         [{}]
 ```
+![mymetric](images/mymetric.png)
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 Utilize the Datadog API to create a Timeboard that contains:
