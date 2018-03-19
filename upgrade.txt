@@ -1,0 +1,25 @@
+Before the upgrade, we need to make sure that the software already installed is up-to-date. Updating our installed software now makes the release upgrade less of a leap forward for many packages, which will reduce the likelihood of errors.
+
+We'll use apt to update our local package index, then upgrade the software that is currently installed:
+
+sudo apt-get update
+sudo apt-get upgrade
+
+We're going to use update-manager-core to manage the release upgrade. This package is installed by default in most Ubuntu 12.04 installations, but we can verify whether or not it is installed on the server by using apt-cache:
+
+apt-cache policy update-manager-core
+
+If the command does not return an installed version number (i.e. if it shows Installed: (none)), then use apt to download the update manager from Ubuntu's software repositories:
+
+sudo apt-get install update-manager-core
+
+Once we have confirmed that the update manager is installed, we are ready to begin the upgrade process.
+
+Upgrading to 14.04
+We can now run the do-release-upgrade command with root privileges. This is an automated script that will pull the newest release software from Ubuntu's repositories and apply the various upgrades to your server. This upgrade can take several minutes and will be prompting you from time to time, so keep an eye on your SSH session while the upgrade is in progress.
+
+sudo do-release-upgrade
+
+While the update manager will handle most of the details involved in moving to the next LTS release, we will still need to make a few decisions as prompts come up. Most of these prompts will ask about overwriting existing configuration files. The default action is to keep the configuration that already exists, and that's generally the best option to ensure stability. However, be sure to read each prompt carefully before choosing an option, and don't be afraid to look up the package in question to be sure that you make the appropriate choice.
+
+Near the end of the upgrade process, you will be prompted to reboot your server. Confirm with "y" to initiate the reboot.
