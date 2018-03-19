@@ -160,7 +160,7 @@ Here is an image of what i received when doing this
 **************
  BONUS - What is the anomaly graph displaying?
 **************
-The gray band represents the region where the metric is expected to be based on past behavior. The blue and red line is the actual observed value of the metric; the line is blue when within the expected range and red when it is outside of the expected range.
+The grey band represents the region where the metric is expected to be based on past behavior. The blue and red line is the actual observed value of the metric; the line is blue when within the expected range and red when it is outside of the expected range.
   
  
 ***************************************************************************************************************
