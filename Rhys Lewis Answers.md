@@ -52,7 +52,7 @@ Please review the getting started guide that located here https://www.vagrantup.
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
 
-![UpgradeDoc](upgrade.txt)
+[UpgradeDoc](upgrade.txt)
 
 *******
 
