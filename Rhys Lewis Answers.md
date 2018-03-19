@@ -203,7 +203,7 @@ Here is a screenshot of the email sent out after i configured mine. Check out th
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Here is an image of the notifying when you schedule the downtime.
+One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Here is an image of the notification when you schedule the downtime.
  
 ![Screenshot](mondowntime.PNG)
  
