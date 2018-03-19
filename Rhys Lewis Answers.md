@@ -45,7 +45,9 @@ Datadog API: https://docs.datadoghq.com/api/
 ***************************************************************************************************************
   Prerequisites - Setup the environment
 ***************************************************************************************************************
-The approach detailed here is to spin up a fresh linux VM via Vagrant Ubuntu 12.04 VM, accessed via VirtualBox. Please review the getting started guide that located here https://www.vagrantup.com/intro/getting-started/
+The approach detailed here is to spin up a fresh linux VM via Vagrant Ubuntu 12.04 VM, accessed via VirtualBox. 
+
+Please review the getting started guide that located here https://www.vagrantup.com/intro/getting-started/
 
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
@@ -57,7 +59,9 @@ IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions 
 Install the agent: Login to your datadog console and access the agent for Ubuntu and run the one-step command in your console.
 https://app.datadoghq.com/account/settings#agent/ubuntu
 
-There is a great tool for interacting with your ubuntu server to perform install activities and upload your python files. https://mobaxterm.mobatek.net/  here is a handy little demo video to get you going. https://mobaxterm.mobatek.net/demo.html
+There is a great tool for interacting with your ubuntu server to perform install activities and upload your python files.
+
+https://mobaxterm.mobatek.net here is a handy little demo video to get you going. https://mobaxterm.mobatek.net/demo.html
 
 Now the fun can really begin! Let’s collect some metrics!
 
@@ -67,13 +71,17 @@ Now the fun can really begin! Let’s collect some metrics!
 Firstly, we need to add tags in the Agent config file - Tags are a great way of adding dimensions to metrics, so they can be sliced, diced, aggregated, and compared on the front end.
 
 Open up the datadog configuration file - located here../etc/datadog-agent/datadog.yaml 
+
 (Did you bookmark that commands page i mentioned earlier??)
 
-Uncomment the Tags section to create your new tags. There is a specific format for follow, further detail can be found here. https://docs.datadoghq.com/getting_started/tagging/
+Uncomment the Tags section to create your new tags. There is a specific format for follow, further detail can be found here. 
+
+https://docs.datadoghq.com/getting_started/tagging/
 
 Here are a couple of screenshots that show the command console tag updates and the tags on the Host Map page in Datadog.
 
 ![Screenshot](tagsconsole.png)
+
 ![Screenshot](TagsHostMap.png)
 
 ***************************************************************************************************************
@@ -127,6 +135,7 @@ We are now going to step through the process of creating a timeboard that contai
  3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 But wait - what are timeboards? - If you missed it - here is a link! https://docs.datadoghq.com/graphing/dashboards/timeboard/ 
+
 As i mentioned we are going to look at the API so here’s how you get started! https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
  
 *******
@@ -152,7 +161,7 @@ Here is an amazing resource to speed up your understanding of how you can intera
 
 Next we need to Set the Timeboard's timeframe to the past 5 minutes. Simply open the timeboard in the GUI and click and drag over the 5 minute period.
 
-Click the camera icon on the dashboard to take a snapshot of this graph and use the @ notation to send it to yourself.
+Click the snapshot icon on the dashboard to take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Here is an image of what i received when doing this
 ![Screenshot](Email5Mintimeboard.PNG)
@@ -168,7 +177,9 @@ The grey band represents the region where the metric is expected to be based on 
 ***************************************************************************************************************
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes: This is an incredibly simple process and further information relating to setup can be found here. https://docs.datadoghq.com/monitors/ and here https://docs.datadoghq.com/monitors/monitor_types/
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes: This is an incredibly simple process and further information relating to setup can be found here. 
+
+https://docs.datadoghq.com/monitors/ and here https://docs.datadoghq.com/monitors/monitor_types/
 
 Set a monitor to the following settings....
 Warning threshold of 500
@@ -178,11 +189,13 @@ And also ensure that it will notify you if there is No Data for this query over 
 
 Please also configure the monitor’s message so that it will:
 Send you an email whenever the monitor triggers.
+
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 
-Here is a screenshot of the email sent out.
+Here is a screenshot of the email sent out after i configured mine.
 ![Screenshot](Warnmon.PNG)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -194,7 +207,9 @@ One that silences it from 7pm to 9am daily on M-F, And one that silences it all 
 ****************************************************************************************************************
    Collecting APM Data: 
 ****************************************************************************************************************
-Datadog APM provides deep insight into application’s performance - from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests - side by side with your logs and infrastructure monitoring.  Lets now step through how we configure the capability. Here are the initial set up steps that need to be followed: https://docs.datadoghq.com/tracing/setup/
+Datadog APM provides deep insight into application’s performance - from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests - side by side with your logs and infrastructure monitoring. 
+
+Lets now step through how we configure the capability. Here are the initial set up steps that need to be followed: https://docs.datadoghq.com/tracing/setup/
  
 Here we are going to make a lot of use out of the mobaxterm app to open multiple sessions to run the flask app and send commands to it.
 
@@ -219,7 +234,7 @@ Stepping out of character.....Regrettably i had a number of issues in trying to 
  Here is a link to the screenboard crated with APM and infrastructure data
  https://p.datadoghq.com/sb/2c2bb12bb-6071e5f03f9f159c521316ec02dc3362
  
-![Screenshot](APMnfra screen.PNG)
+![Screenshot](APMinfrascreen.PNG)
   
 **************
  BONUS - What is the difference between a Service and a Resource
