@@ -253,7 +253,7 @@ Stepping out of character.....Regrettably i had a number of issues in trying to 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!  Is there anything creative you would use Datadog for?
 
 I have a couple of thoughts here.....
-The Racetrack - Build a scaletrics track and fix arduino sensors to the track and cars to feed back on track state, temperature, lap speed. Get playing and show the performance metrics on the screen. Great for customer events, worldwide competitions 
+The Racetrack - Build a scalextric track and fix arduino sensors to the track and cars to feed back on track state, temperature, lap speed. Get playing and show the performance metrics on the screen. Great for customer events and an internal worldwide competition! 
 
 The WeWork Beer Pump  - Monitor the performance, consumption level & supply level of the local WeWork beer pump - Although i've just read this has been done before it still would be great!
 
