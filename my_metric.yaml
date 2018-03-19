@@ -1,0 +1,6 @@
+init_config:
+  metric_prefix: my_metric
+  min_collection_interval: 45
+
+instances:
+    [{}]
