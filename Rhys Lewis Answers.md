@@ -3,7 +3,7 @@
 ***************************************************************************************************************
 An experienced team member with a passion for technology, building relationships and adopting new concepts to better myself, my company and my customers experience. I’m motivated by working at the edge of technological innovation where I can influence and advise customers on strategic investments, driven to continually improve, to do something I haven’t done before, innovate wherever I see relevance to team growth and constantly focus on building customer champions. 
 
-I love a challenge, not least the challenge of being a proud Welshman in a home with a French wife and fighting the continuous battle to convince our 5-year-old daughter which is the best country in the world to support on Rugby day...WALES obviously...Love to spend time in the mountains, preferably on a pair of skis and I enjoy actively taking part in other sports. ***Coughs*** Maybe more from a watching perspective 
+I love a challenge, not least the challenge of being a proud Welshman in a home with a French wife and fighting the continuous battle to convince our 5-year-old daughter which is the best country in the world to support on Rugby day...WALES obviously...Love to spend time in the mountains, preferably on a pair of skis and I enjoy actively taking part in other sports. ***Coughs*** Maybe more from a watching perspective these days.
  
 www.linkedin.com/in/rhyshlewis
 
