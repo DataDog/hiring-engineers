@@ -80,9 +80,9 @@ https://docs.datadoghq.com/getting_started/tagging/
 
 Here are a couple of screenshots that show the command console tag updates and the tags on the Host Map page in Datadog.
 
-![Screenshot](tagsconsole.png)
+![Screenshot Tag Console](tagsconsole.png)
 
-![Screenshot](TagsHostMap.png)
+![Screenshot Tag Host Map](TagsHostMap.png)
 
 ***************************************************************************************************************
   Collecting Metrics - Installing MongoDB
