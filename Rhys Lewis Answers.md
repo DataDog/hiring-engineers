@@ -52,7 +52,7 @@ Please review the getting started guide that located here https://www.vagrantup.
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
 
-[UpgradeDoc](upgrade.txt)
+[Upgrade Document](upgrade.txt)
 
 *******
 
@@ -111,11 +111,11 @@ DataDog Agent Checks are made up of 2 files, <project_name>.py and <project_name
 
 The first file we’ll create is /etc/datadog-agent/conf.d/my_metric.yaml. Agent config files have 2 sections: init_config and instances. The instances section defines one or more instances to check. Here is the config code to enter.
 
-![CodeLink](my_metric.yaml)
+[YAML Code Link](my_metric.yaml)
 
 Now we’ll create the actual agent file in /etc/datadog-agent/checks.d/my_metric.py. The file extension already tells you this is a Python module.
 
-![CodeLink](my_metric.py)
+[Python Code Link](my_metric.py)
 
 
 Here is a screenshot of the My_Metric Dashboard in action!!
@@ -144,7 +144,7 @@ Important! Note down your API and APP keys from the main console. Head to https:
 
 To get up you to speed here is a link to the timeboard .py code I created with the custom metric, an anomaly based metric for the MongoDB, with anomaly applied and SUM function.
 
-![CodeLink](TimeboardAPI.py)
+[Timeboard Code Link](TimeboardAPI.py)
  
 Remember that great tool i mentioned to upload the python files to the ubuntu server. https://mobaxterm.mobatek.net/  here is a handy little demo video to get you going. https://mobaxterm.mobatek.net/demo.html
 
@@ -229,7 +229,7 @@ with tracer.trace("web.request", service="my_service") as span:
 ***** 
  
 Stepping out of character.....Regrettably i had a number of issues in trying to set up the APM part of this excersise. Please see below the flask app code i was attempting to use and the created screenboard with the combined APM and infrastructure data.
-![CodeLink](dd_flask.py)
+[Flask Code Link](dd_flask.py)
   
  Here is a link to the screenboard crated with APM and infrastructure data
  https://p.datadoghq.com/sb/2c2bb12bb-6071e5f03f9f159c521316ec02dc3362
