@@ -50,7 +50,7 @@ The approach detailed here is to spin up a fresh linux VM via Vagrant Ubuntu 12.
 *******
 IMPORTANT: Make sure your upgrade the ubuntu version to 14.04. The instructions can be found here....
 
-![Screenshot](upgrade.txt)
+![UpgradeDpc](upgrade.txt)
 
 *******
 
@@ -72,8 +72,9 @@ Open up the datadog configuration file - located here../etc/datadog-agent/datado
 Uncomment the Tags section to create your new tags. There is a specific format for follow, further detail can be found here. https://docs.datadoghq.com/getting_started/tagging/
 
 Here are a couple of screenshots that show the command console tag updates and the tags on the Host Map page in Datadog.
+
 ![Screenshot](tagsconsole.png)
-![Screenshot](TagsHostMan.png)
+![Screenshot](TagsHostMap.png)
 
 ***************************************************************************************************************
   Collecting Metrics - Installing MongoDB
