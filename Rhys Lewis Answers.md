@@ -13,7 +13,8 @@ My approach was to create an introduction to Datadog with a how-to tutorial for 
 
 You've probably read through a ton of these answers by now so I wanted to change it up a bit...Reading can get a little boring, right? If you agree with that last statement then please sit back relax, grab a little popcorn, click the following link, and enjoy my executive video overview of the task in support of the answers below.
 
-Vimeo Video Link:
+Vimeo Video Link:https://vimeo.com/260755278
+
 Password [rhys@datadog]
 
 ***************************************************************************************************************
