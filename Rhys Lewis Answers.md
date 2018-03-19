@@ -198,7 +198,7 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 
-Here is a screenshot of the email sent out after i configured mine.
+Here is a screenshot of the email sent out after i configured mine. Check out the intro video video for a more detailed overview of the process.
 ![Screenshot](Warnmon.PNG)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
