@@ -74,5 +74,5 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 APM and Infrastructure Dashboard
 https://p.datadoghq.com/sb/4390b2bac-be2fbb83e1cd423d85444eede1c25c7b 
-[apm_infra_dash](images/Apm_infra_dash.png)
+![apm_infra_dash](images/Apm_infra_dash.png)
 
