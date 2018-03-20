@@ -66,5 +66,7 @@ When this monitor sends you an email notification, take a screenshot of the emai
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
+[Nightly_maint](images/Nightly_maintenance.png)
 And one that silences it all day on Sat-Sun.
+[Wknd_maint](images/Wknd_maintenance.png)
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
