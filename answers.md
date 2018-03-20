@@ -36,12 +36,14 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
+
 +The smallest time increment available for the timeboard is 1 hour so I was unable to set it to 5 minutes.
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![timeboard](images/timeboard.png)
 
 Bonus Question: What is the Anomaly graph displaying?
+
 +This algortihm shows when a metric is behaving out of the norm based on what it has done in the past.
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
