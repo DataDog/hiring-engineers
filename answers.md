@@ -46,9 +46,9 @@ cat mysql.yaml
           extra_innodb_metrics: true
           extra_performance_metrics: true
           schema_size_metrics: false
-          disable_innodb_metrics: false
- 
-  
+          disable_innodb_metrics: false
+```
+
 - restarted agent
 
 - ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_withmysql_agent.png "No tricks up my sleeve, Mysql Agent")
