@@ -69,4 +69,5 @@ init_config:
 instances:
     [{}]
 ```
+
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_mymetric_explorer.png, "my_metric explored")
