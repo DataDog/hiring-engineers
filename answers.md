@@ -24,9 +24,45 @@
 
  ![alt text](https://github.com/stackparty/hiring-engineers/blob/master/dd_agent_config.png "Tags in Agent Config")
  
-- Restarted service (not sure if necessary) : sudo service datadog-agent restart
+- Restarted service : sudo service datadog-agent restart
 
 ![alt text](https://github.com/stackparty/hiring-engineers/blob/master/dd_hostmap.png "Host map in Datadog")
 
-- Installed
+- Installed mysql : sudo apt-get install mysql
+- Followed mysql agent install steps from here: [https://docs.datadoghq.com/integrations/mysql/]
+```cat mysql.yaml
+  init_config:
 
+  instances:
+    - server: 127.0.0.1
+      user: datadog
+      pass: datadog
+      port: 3306
+      options:
+          replication: 0
+          galera_cluster: 1
+          extra_status_metrics: true
+          extra_innodb_metrics: true
+          extra_performance_metrics: true
+          schema_size_metrics: false
+          disable_innodb_metrics: false
+  ```
+- restarted agent
+
+- ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_withmysql_agent.png, "No tricks up my sleeve, Mysql Agent")
+
+- Custom Agent check : [https://docs.datadoghq.com/agent/agent_checks/]
+- in /etc/datadog-agent/checks.d/mymetric.py
+```import random
+from checks import AgentCheck
+class MyMetric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(1,1001))
+```
+- in /etc/datadog-agent/conf.d/mymetric.yaml
+```init_config:
+  min_collection_interval: 45
+
+instances:
+    [{}]
+```
