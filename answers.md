@@ -30,7 +30,8 @@
 
 - Installed mysql : sudo apt-get install mysql
 - Followed mysql agent install steps from here: [https://docs.datadoghq.com/integrations/mysql/]
-```cat mysql.yaml
+```
+cat mysql.yaml
   init_config:
 
   instances:
@@ -53,14 +54,16 @@
 
 - Custom Agent check : [https://docs.datadoghq.com/agent/agent_checks/]
 - in /etc/datadog-agent/checks.d/mymetric.py
-```import random
+```
+import random
 from checks import AgentCheck
 class MyMetric(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(1,1001))
 ```
 - in /etc/datadog-agent/conf.d/mymetric.yaml
-```init_config:
+```
+init_config:
   min_collection_interval: 45
 
 instances:
