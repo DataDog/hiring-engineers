@@ -50,7 +50,7 @@ cat mysql.yaml
   ```
 - restarted agent
 
-- ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_withmysql_agent.png, "No tricks up my sleeve, Mysql Agent")
+- ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_withmysql_agent.png "No tricks up my sleeve, Mysql Agent")
 
 - Custom Agent check : [https://docs.datadoghq.com/agent/agent_checks/]
 - in /etc/datadog-agent/checks.d/mymetric.py
@@ -70,4 +70,4 @@ instances:
     [{}]
 ```
 
-![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_mymetric_explorer.png, "my_metric explored")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_mymetric_explorer.png "my_metric explored")
