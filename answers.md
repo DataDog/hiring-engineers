@@ -12,6 +12,7 @@ Your answers to the questions go here.
 [My MySQL Config file with tags set](conf.yaml.mysql)
 
 [My my_metric python source](my_metric.py)
+
 [My my_metric Config file](my_metric.yaml)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
@@ -19,6 +20,12 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 
 
 ## Visualising Data
+
+[My my_metric Config file](my_metric.yaml)
+
+Here is a screenshot showing a mixuture of my timeboard:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/W4J89F" title="InfraandAPM"><img src="https://farm5.staticflickr.com/4782/27097852958_3e4ff2a8ca_z.jpg" width="640" height="297" alt="InfraandAPM"></a>
 
 5 minute "My_Metric" timeboard - sent via email using the @ tag:
 
