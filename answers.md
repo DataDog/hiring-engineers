@@ -3,78 +3,74 @@ Please check out the [Live Demo](http://datadog.alexarnesen.com) of an instrumen
 ## Collecting Metrics:
 
 ### The Agent
-<img src="screens/1.png" width="100%" height="auto" />
+<img src="screens/1.png" width="auto" height="auto" />
 <hr>
-<img src="screens/2.png" width="100%" height="auto" />
+<img src="screens/2.png" width="auto" height="auto" />
 <hr>
-<img src="screens/3.png" width="100%" height="auto" />
-<img src="screens/4.png" width="100%" height="auto" />
+<img src="screens/3.png" width="auto" height="auto" />
+<img src="screens/4.png" width="auto" height="auto" />
 
 ### Postgres 
-<img src="screens/5.png" width="100%" height="auto" />
+<img src="screens/5.png" width="auto" height="auto" />
 <hr>
-<img src="screens/6.png" width="100%" height="auto" />
+<img src="screens/6.png" width="auto" height="auto" />
 <hr>
-<img src="screens/7.png" width="100%" height="auto" />
+<img src="screens/7.png" width="auto" height="auto" />
 
 ### Nginx
-<img src="screens/8.png" width="100%" height="auto" />
+<img src="screens/8.png" width="auto" height="auto" />
 <hr>
-<img src="screens/9.png" width="100%" height="auto" />
+<img src="screens/9.png" width="auto" height="auto" />
 
 ### Custom Agent Check
-<img src="screens/a.png" width="100%" height="auto" />
+<img src="screens/a.png" width="auto" height="auto" />
 <hr>
-<img src="screens/b.png" width="100%" height="auto" />
+<img src="screens/b.png" width="auto" height="auto" />
 <hr>
-<img src="screens/c.png" width="100%" height="auto" />
+<img src="screens/c.png" width="auto" height="auto" />
 <hr>
-<img src="screens/d.png" width="100%" height="auto" />
+<img src="screens/d.png" width="auto" height="auto" />
 
 ## Visualizing Data:
 
-<img src="screens/e.png" width="100%" height="auto" />
+<img src="screens/e.png" width="auto" height="auto" />
 <hr>
 <img src="screens/e_1.png" width="auto" height="auto" />
 <hr>
-<img src="screens/f.png" width="100%" height="auto" />
+<img src="screens/f.png" width="auto" height="auto" />
 <hr>
-<img src="screens/10.png" width="100%" height="auto" />
+<img src="screens/10.png" width="auto" height="auto" />
 <hr>
-<img src="screens/11.png" width="100%" height="auto" />
+<img src="screens/11.png" width="auto" height="auto" />
 <hr>
-<img src="screens/11_1.png" width="100%" height="auto" />
-<hr>
-<img src="screens/12.png" width="100%" height="auto" />
-<hr>
+<img src="screens/11_1.png" width="auto" height="auto" />
+<img src="screens/12.png" width="auto" height="auto" />
 
 ## Monitoring Data
 
-<img src="screens/13.png" width="100%" height="auto" />
+<img src="screens/13.png" width="auto" height="auto" />
 <hr>
-<img src="screens/14.png" width="100%" height="auto" />
+<img src="screens/14.png" width="auto" height="auto" />
 <hr>
-<img src="screens/15.png" width="100%" height="auto" />
+<img src="screens/15.png" width="auto" height="auto" />
 <hr>
 <img src="screens/16.png" width="auto" height="auto" />
 <hr>
-<img src="screens/17.png" width="100%" height="auto" />
-<hr>
+<img src="screens/17.png" width="auto" height="auto" />
 
 ## Collecting APM Data:
 
-<img src="screens/18.png" width="100%" height="auto" />
+<img src="screens/18.png" width="auto" height="auto" />
 <hr>
-<img src="screens/19.png" width="100%" height="auto" />
+<img src="screens/19.png" width="auto" height="auto" />
 <hr>
-<img src="screens/1a.png" width="100%" height="auto" />
+<img src="screens/1a.png" width="auto" height="auto" />
 <hr>
-<img src="screens/1b.png" width="100%" height="auto" />
+<img src="screens/1b.png" width="auto" height="auto" />
 <hr>
-<img src="screens/1c.png" width="100%" height="auto" />
+<img src="screens/1c.png" width="auto" height="auto" />
 <hr>
-<img src="screens/1d.png" width="100%" height="auto" />
-<hr>
+<img src="screens/1d.png" width="auto" height="auto" />
 
 ## Final Question:
 
