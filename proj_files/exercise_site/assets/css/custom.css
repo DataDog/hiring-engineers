@@ -1,0 +1,40 @@
+/* */
+
+#postgres_check_output {
+    max-height: 300px;
+    scroll-behavior: auto;
+    overflow-y: scroll;
+    font-family: monospace;
+    font-style: normal;
+}
+
+.buffer-top {
+    margin-top: 0.7em;
+}
+
+.indented-output {
+    white-space: pre-wrap;
+}
+
+.large-image {
+    width: 100%;
+}
+
+.dynamic-graph-frame {
+    width: 1200px;
+    height: 310px;
+    overflow: hidden;
+}
+
+.features li.bullet_li {
+    width: calc(90% - 1em);
+}
+
+#apm_click_results {
+    display: inline;
+    margin-left: 0.7em;
+}
+
+#apm_and_infrastructure {
+    margin-top: 1em;
+}
