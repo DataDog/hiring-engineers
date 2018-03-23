@@ -8,8 +8,8 @@
 - vagrant up
 - vagrant ssh
 - sudo apt-get install curl
-- created DataDog account as andy@apr-ltd.com
-- installed datadog-agent : DD_API_KEY=8f81d670622eca859c920ec9e9514ecf bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+- created DataDog account 
+- installed datadog-agent : DD_API_KEY=xxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ### So What, Who Cares ?
 
