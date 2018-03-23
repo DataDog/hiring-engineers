@@ -72,3 +72,29 @@ instances:
 ```
 
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_mymetric_explorer.png "my_metric explored")
+
+Metric Collection time is adjusted in configuration yaml instead of python code. 
+
+## Timeboards
+
+To simplify and speed up creation of timeboard script, I first created a dashboard to see what the end result would look like. The timeboard creation gives the code in JSON format and I realised I could simply paste this in to the script given in the timeboard API guide. The intial steps were to create the app key and grab the API key for the top of the script. These have been removed from the uploaded script for security. 
+
+The anomoly function attempts to spot trends that are anti-pattern. A load trend may be up and down during the day for example, but an anomoly would be, for example, load suddenly decreasing during a usually busy period. For this time series captured, as I adjusted the graph to the last 5 minutes, the agent had stopped on my vagrant box so agent had to be restarted. In this case it shows little of actual interest. A metric monitor would have helped here!
+
+[https://github.com/stackparty/hiring-engineers/blob/master/create_dashboard.py]
+
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/datadog%20timeseries.png "my timeseries through api snapshot")
+
+## Monitoring Data
+
+created the monitor, configured the alerts and used the flexible conditions to match the specification requested. 
+
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_monitor_setup.png "monitor setup")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_monitor_alert.png "email alert")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_1.png "weekday downtime")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_2.png "weekend downtime")
+
+
+
+
+
