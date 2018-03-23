@@ -2,18 +2,18 @@ Your answers to the questions go here.
 
 ## Collecting Metrics
 
-[My datadog.yaml file with tags set](datadog.yaml)
+[datadog.yaml file with tags set](datadog.yaml)
 
 
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/195rm1" title="Host Map Screen showing tags"><img src="https://farm1.staticflickr.com/795/39158435810_f96b2bf0ef_b.jpg" width="656" height="593" alt="Wyatt-DD-01"></a>
 
 
-[My MySQL Config file with tags set](conf.yaml.mysql)
+[MySQL Config file with tags set](conf.yaml.mysql)
 
-[My my_metric python source](my_metric.py)
+[my_metric python source](my_metric.py)
 
-[My my_metric Config file](my_metric.yaml)
+[my_metric Config file](my_metric.yaml)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
   I added the parameter min_collection_interval: 45  to the init section of my my_metric.yaml file.  So I would say yes.
@@ -21,9 +21,9 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 
 ## Visualising Data
 
-[My my_metric Config file](my_metric.yaml)
+[timeboard creation script](timeboard2.py)
 
-Here is a screenshot showing a mixuture of my timeboard:
+Here is a screenshot showing the timeboard resulting from this script (modified as per later in the exercise to include my APM graph)
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/W4J89F" title="InfraandAPM"><img src="https://farm5.staticflickr.com/4782/27097852958_3e4ff2a8ca_z.jpg" width="640" height="297" alt="InfraandAPM"></a>
 
@@ -44,6 +44,15 @@ The parts of this CPU graph coloured RED are showing that for this basic anomaly
 Alert Conditions as defined in the exercise:
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/Xqik83" title="alert_conditions"><img src="https://farm1.staticflickr.com/786/26096620287_50d27f78dc_z.jpg" width="640" height="333" alt="alert_conditions"></a>
+
+Alert Message Configuration:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/PZ0Qv4" title="Alert-Email-Config"><img src="https://farm1.staticflickr.com/810/40078163785_80ace841ac_z.jpg" width="640" height="297" alt="Alert-Email-Config"></a>
+
+
+and an email that has resulted from the configuration:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/V688i6" title="AlertingEmail"><img src="https://farm1.staticflickr.com/808/39162932020_a14a2fc673_z.jpg" width="640" height="548" alt="AlertingEmail"></a>
 
 
 Bonus Question:  Set Monitoring Schedule Downtime
