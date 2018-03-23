@@ -79,6 +79,8 @@ of the midweek downtime.
 
 ## Collecting APM Data
 
+[instrumented flask file](myflask.py)
+
 Bonus Question: What is the difference between a Service and a Resource?
 A service is a collection of processes that contribute to the same application.  For example a dynamic website may have UI (web html) and data (database) services.
 
