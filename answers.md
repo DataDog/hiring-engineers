@@ -11,6 +11,11 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 
 ## Visualising Data
 
+5 minute "My_Metric" timeboard - sent via email using the @ tag:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/610501" title="My_Metric_5min_timeboard"><img src="https://farm1.staticflickr.com/813/39159109980_055eb8335a_z.jpg" width="640" height="570" alt="My_Metric_5min_timeboard"></a>
+
+
 Bonus Question: What is the Anomaly graph displaying?
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/Lm6b90" title="Anomaly-Graph"><img src="https://farm1.staticflickr.com/813/40258707614_a5d9d91ff6_z.jpg" width="609" height="210" alt="Anomaly-Graph"></a>
@@ -19,6 +24,11 @@ The parts of this CPU graph coloured RED are showing that for this basic anomaly
 
 
 ## Monitoring Data
+
+Alert Conditions as defined in the exercise:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/Xqik83" title="alert_conditions"><img src="https://farm1.staticflickr.com/786/26096620287_50d27f78dc_z.jpg" width="640" height="333" alt="alert_conditions"></a>
+
 
 Bonus Question:  Set Monitoring Schedule Downtime
 
@@ -42,4 +52,13 @@ and end:
 of the midweek downtime.
 
 
+## Collecting APM Data
 
+Bonus Question: What is the difference between a Service and a Resource?
+A service is a collection of processes that contribute to the same application.  For example a dynamic website may have UI (web html) and data (database) services.
+
+Resources on the other hand represent actions on those services.  Extending the example above the web UI service will have resource actions performed on it that are represented by URLs or handlers through the client side app.  Data service resources will include things like queries.
+
+Here is a screenshot showing a mixuture of Infrastructure and APM Data:
+
+<a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/W4J89F" title="InfraandAPM"><img src="https://farm5.staticflickr.com/4782/27097852958_3e4ff2a8ca_z.jpg" width="640" height="297" alt="InfraandAPM"></a>
