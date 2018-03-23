@@ -95,7 +95,7 @@ Here is a screenshot showing a mixuture of Infrastructure and APM Data:
 A few ideas spring to mind:
 - as a parent I actually insist on my kids sharing their location with me at all times from their mobile phone.  I made it a condition of my paying their bill and it is purely a safety thing.  To get to see where they are I need to log in to my iphone and enquire the appropriate app, but a more generic way would be to use Google Maps.
 
-Using Datadog it would be possible to raise an alert if they are not where they should be (e.g. at school) at a particular time.  Furthermore it would also be possible to raise an alert if for whatever reason their location was not being shared.
+  Using Datadog it would be possible to raise an alert if they are not where they should be (e.g. at school) at a particular time.  Furthermore it would also be possible to raise an alert if for whatever reason their location was not being shared.
 
 - another idea is to try and elimate some of those wasted trips to the local retail park later in the evening.  I could write a simple website that you could search for your local retail park to return a list of retailers with shops there.  In turn then it would trawl those retailers websites to find the opening and closing times of those stores at that location and return a traffic light status by retailer as to when the stores are still open - Green for open, Red for closed and Amber for closing within the hour.
 -  we could extend this idea to use the APIs for travel websites to check the RAG status for the local roads to see if the trip to the retail park is going to be smooth or not, or similarly local train, bus and tram services
