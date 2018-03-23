@@ -1,4 +1,4 @@
-Please check out the [Live Demo](http://datadog.alexarnesen.com) of an instrumented server. All answers here are screen caps from the live site. The site contains live Datadog dashboards and graphs. I have added and embedded screenshots of the site in this answers file for convenience.
+Please check out the [Live Demo](http://datadog.alexarnesen.com) of an instrumented server. All answers here are screen caps from the live site. The site contains live Datadog dashboards and graphs. I have embedded screenshots of the site in this answers file for convenience.
 
 ## Collecting Metrics:
 
@@ -78,7 +78,7 @@ Please check out the [Live Demo](http://datadog.alexarnesen.com) of an instrumen
 
 ## Final Question:
 
-I would like to point Datadog at the billing and utilization API's of a large cloud provider, and use Datadog to understand cloud service costs.
+I would like to point Datadog at the billing and utilization API's of a public utility cloud provider running a very large (and expensive) application. I would use Datadog as a tool to understand cloud service costs and how to minimize them.
 
 ## Live Dashboard Links
 
