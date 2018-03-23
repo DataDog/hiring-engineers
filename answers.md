@@ -12,7 +12,7 @@ Your answers to the questions go here.
 [My MySQL Config file with tags set](conf.yaml.mysql)
 
 [My my_metric python source](my_metric.py)
-[My my_metric Config file]](my_metric.yaml)
+[My my_metric Config file](my_metric.yaml)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
   I added the parameter min_collection_interval: 45  to the init section of my my_metric.yaml file.  So I would say yes.
