@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Datadog Solutions Engineer Exercise</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<!--<header id="header" class="alt">-->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/dd_v_logo.png" alt="" /></span>
+						<h1>Solutions Engineer Exercise</h1>
+						<p>by Alex Arnesen</p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#intro" class="active">Introduction</a></li>
+							<li><a href="#collecting">Collect</a></li>
+							<li><a href="#visualizing">Visualize</a></li>
+							<li><a href="#monitoring">Monitor</a></li>
+							<li><a href="#apm">APM</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+				<!-- intro -->
+					<section id="intro" class="main">
+						<div class="spotlight">
+							<div class="content">
+								<header class="major">
+									<h2>Welcome!</h2>
+								</header>
+								<p>This site is a live demo of the solutions engineer technical exercise and an introduction to Datadog.<br>
+									This site is hosted on an instrumented Ubuntu Server virtual machine at <a href="/" class="link">datadog.alexarnesen.com</a>
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="collecting" class="main">
+						<!-- Agent -->
+						<div class="content">
+							<header class="major">
+								<h2>The Datadog Agent</h2>
+							</header>
+
+							<h3>Install the Agent on any machine or container you want to instrument</h3>
+							<p>The agent acts as a data aggregator at the host level. Data is sent to the agent from all collection sources on the host; the agent packages and periodically forwards this to Datadog.</p>
+							<ul class="features">
+								<li>
+									<h3>Install and configure</h3>
+									<p>A one-liner can be obtained <a href="https://app.datadoghq.com/account/settings#agent/">from Datadog</a> for many popular environments.</p>
+									<p>It's easy to get up and running with minimal configuration. Host configuration is done in datadog.yaml; here I added a couple tags to track the machine fully-qualified domain name, and post a greeting.</p>
+									<p>Restart the agent when you have configured the file. In an Ubuntu installation:</p>
+									<code>systemctl restart datadog-agent</code>
+								</li>
+								<li>
+									<h3>datadog.yaml</h3>
+									<span class="image"><img src="images/edit_tags.png" alt="" /></span>
+									<p>Edit the datadog configuration file, and define the tags dictionary. On Ubuntu, this is located at <br>/etc/datadog-agent/datadog.yaml</p>
+								</li>
+							</ul>
+							<hr/>
+							<div class="content">
+								<h3>Once your agent is running, you should see an update to your Host Map in the Datadog web interface:</h3>
+								<image class="image large-image" src="images/dd_hostmap_tags.png"></image>
+							</div>
+							<hr/>
+							<div class="content">
+								<h3>The agent automatically collects metrics on your host</h3>
+								<iframe id="host_metrics" scrolling="no" title="Host" width="100%" height="600px"></iframe>
+								<p>Above is a live view of a few metrics for this host for the past week, along with a record of recent agent activity.</p>
+								<p>In the view above, Graphs are used to visualize time-series data in the first three panes.
+									The Agent Activity is a visualization of Events, which are a different type of object that is tracked within Datadog.</p>
+								<p>Visualizations can be combined into customized dashboards to give you different views into your instrumented systems. This type of dashboard is called a ScreenBoard.</p>
+								<p>Any ScreenBoard can be shared via a public url. Here it is embedded as an iFrame; this is one of many ways you can integrate Datadog into your own applications and environments.</p>
+							</div>
+							<hr/>
+						</div>
+						<!-- SQL -->
+						<div class="content">
+							<header class="major">
+								<h2>A PostgreSQL Integration</h2>
+							</header>
+
+							<h3>Integrations are a very convenient means of instrumenting popular applications</h3>
+							<p>Datadog works out of the box for a wide array of industry standard products.</p>
+							<ul class="features">
+								<li>
+									<h3>Install the Integration</h3>
+									<p>Begin by choosing an Integration in the Datadog web interface.
+										In this example, a configuration is automatically generated by the Postgres integration tool.
+										Follow instructions to first grant the datadog user access, then edit the configuration file so the agent connects to the Postgres server.
+										You may need to restart your agent. After this the agent will begin automatically gathering a useful set of metrics on the Postgres installation.</p>
+									<p>Note: The integration tool may be giving out-dated advice. 
+										If you are running version 6+ of the agent, you should no longer load configuration files directly from /conf.d/.
+										Instead, use the appropriate subdirectory, in this case /conf.d/postgres.d/</p>
+								</li>
+								<li>
+									<h3>postgres.yaml</h3>
+									<span class="image"><img src="images/edit_postgres_yaml.png" alt="" /></span>
+									<p>Edit the postgres agent configuration file. In an Ubuntu installation, any number of configurations may be loaded from /etc/datadog-agent/conf.d/postgres.d/</p>
+								</li>
+							</ul>
+							<hr/>
+							<div class="content">
+								<h3>Here's a live Graph showing Postgres activity over the past 4 hours:</h3>
+								<iframe id="used_connections" scrolling="no" title="Disk Read" width="100%" height="500px"></iframe>
+							</div>
+							<hr/>
+							<div class="content">
+								<h3>You can run an agent check for your Integrations from the command line:</h3>
+								<code>datadog-agent check postgres</code>
+								<div>
+									<h3 class="buffer-top">Click to get a live view of the Postgres agent check output on this host:</h3>
+									<ul class="actions">
+										<li><button id="get_postgres_check_output" class="button">Get Output</button></li>
+										<li><button id="hide_postgres_check_output" class="button">Hide Output</button></li>
+									</ul>
+									<blockquote class="indented-output" id="postgres_check_output"></blockquote>
+								</div>
+							</div>
+						</div>
+						<hr/>
+						<!-- Nginx -->
+						<div class="content">
+							<header class="major">
+								<h2>An Nginx Integration</h2>
+							</header>
+
+							<h3>Install the Integration</h3>
+							<ul class="features">
+								<li>
+									<p>Edit nginx.yaml. The only required content is the nginx_status_url.</p>
+									<p>Restart the Agent when you are done configuring.</p>
+									<p>Note: You may need to <a href="http://nginx.org/en/docs/http/ngx_http_stub_status_module.html">enable the nginx_stub module.</a></p>
+								</li>
+								<li>
+									<h3>nginx.yaml</h3>
+									<span class="image"><img src="images/nginx_yaml.png" alt="" /></span>
+									<p>Edit the nginx agent configuration file. In an Ubuntu installation, any number of configurations may be loaded from <br>/etc/datadog-agent/conf.d/nginx.d/</p>
+								</li>
+							</ul>
+							<hr/>
+							<div class="content">
+								<h3>Here's a live ScreenBoard showing Nginx metrics for this host over the past 10 minutes:</h3>
+								<iframe id="nginx_metrics" scrolling="no" title="Nginx Overview" width="100%" height="550px"></iframe>
+							</div>
+						<hr/>
+						<!-- AgentCheck -->
+						<div class="content">
+							<header class="major">
+								<h2>Custom Agent Checks</h2>
+							</header>
+
+							<h3>A flexible alternative to Integrations</h3>
+							<p>Custom Agent Checks allow you to create and report your own metrics.</p>
+							<ul class="features">
+								<li>
+									<h3>Create the custom check configuration</h3>
+									<p>This example uses Python to generate random numbers and report them to Datadog.</p>
+									<p>To create a custom check, place a configuration file in the conf.d directory. The file name must correspond to the agent check file (see next section.)</p>
+								</li>
+								<li>
+									<h3>my_metric.yaml</h3>
+									<span class="image"><img src="images/my_metric_yaml.png" alt="" /></span>
+									<p>Edit the custom agent check configuration file. In this case, I have chosen to place the configuration in a new directory called /conf.d/custom_checks.d/</p>
+								</li>
+							</ul>
+							<hr/>
+							<ul class="features">
+								<li>
+									<h3>Create the custom check script</h3>
+									<p>Place your custom check file in the checks.d directory.</p>
+									<p>This example uses the gauge method to submit the custom metric.</p>
+									<p>Datadog has a <a href="https://docs.datadoghq.com/agent/agent_checks/#sending-metrics">rich reporting API</a> so you can gather exactly what you need.</p>
+								</li>
+								<li>
+									<h3>my_metric.py</h3>
+									<span class="image"><img src="images/my_metric_python.png" alt="" /></span>
+									<p>In Python, custom agent checks inherit from the AgentCheck class. Implement the check method and call Datadog's reporting API.</p>
+								</li>
+							</ul>
+							<hr/>
+							<div class="content">
+								<h3>Here's a live Graph of the new custom metric:</h3>
+								<iframe id="custom_metric" scrolling="no" title="Database" width="100%" height="500px"></iframe>
+							</div>
+							<hr/>
+							<ul class="features">
+								<li>
+									<h3>Changing the collection interval</h3>
+									<p>By default, custom agent checks are run once per agent collection interval.</p>
+									<p>Customize this by editing the agent check configuration file.</p>
+								</li>
+								<li>
+									<h3>my_metric.yaml</h3>
+									<span class="image"><img src="images/my_metric_yaml_edit.png" alt="" /></span>
+									<p>Edit the custom agent check configuration file and set min_collection_interval. In this case, I have chosen a collection interval of 45 seconds, so the metric will be collected less frequently.</p>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section id="visualizing" class="main">
+						<!-- API -->
+						<div class="content">
+							<header class="major">
+								<h2>Creating a TimeBoard with the Datadog API</h2>
+							</header>
+
+							<div class="content">
+								<h3>TimeBoards are used for correlation across different measurements.</h3>
+								<p>You can use the Datadog API for TimeBoards to create them. Installation of the Python datadog library is easy:</p>
+								<code>pip install datadog</code>
+								<h3 class="buffer-top">The following python script creates a timeboard with three graphs:</h3>
+								<span class="image"><img src="images/api_code.png" alt="" /></span>
+								<p>In the code above, we can see some boilerplate and the following points of interest:</p>
+								<ul>
+									<li>API and App keys obtained from Datadog</li>
+									<li>A simple average over the custom my_metric, scoped to this host.</li>
+									<li>The same metric, with the rollup function applied to sum up all the points for the past hour into one bucket.</li>
+									<li>An anomaly detection function applied to postgresql.percent_usage_connections.</li>
+								</ul>
+								<p>TimeBoards cannot be shared publicly. The following is a screenshot of the TimeBoard from the Datadog web interface:</p>
+								<span class="image"><img class="large-image" src="images/api_timeboard.png" alt="" /></span>
+							</div>
+							<hr>
+							<div class="content">
+								<h3>Create a snapshot</h3>
+								<p>An anomaly was detected in the postgres metric. I selected the region for review, created a snapshot, and used the @ notation to send myself a copy. I received the following in my inbox:</p>
+								<span class="image"><img src="images/anomaly_snapshot.png" alt="" /></span>
+								<p>You can share live views of graphs. Here are the graphs created by the script:</p>
+								<iframe id="tb_one" class="dynamic-graph-frame" crolling="no"></iframe>
+								<iframe id="tb_two" class="dynamic-graph-frame" scrolling="no"></iframe>
+								<iframe id="tb_three" class="dynamic-graph-frame" scrolling="no"></iframe>
+								<p>This last graph uses Datadog's Anomaly function, which can be applied to time-series data. It detects any data points that fall outside of a configurable variance threshold; when graphed, unusual events are highlighted. The second parameter to the anomaly function (see Python code above) indicates the anomaly plot is using the "basic" setting, which is good for metrics that have no repeating seasonal pattern. <a href="https://docs.datadoghq.com/monitors/monitor_types/anomaly/">Other available presets</a> include Agile, Robust and Adaptive.</p>
+							</div>
+						</div>
+					</section>
+					<section id="monitoring" class="main">
+						<!-- Agent -->
+						<div class="content">
+							<header class="major">
+								<h2>Monitor Applications and Infrastructure</h2>
+							</header>
+
+							<h3>Get notifications from across your stack</h3>
+							<p>You can easily create monitors through the Datadog web interface.</p>
+							<ul class="features">
+								<li>
+									<h3>Create a simple metric monitor</h3>
+									<p>This simple example will monitor the random number generator created earlier, scoped to this host.</p>
+									<p>The monitor will observe the metric's average over the past five minutes with these conditions on alerts:</p>
+									<ul>
+										<li class="bullet_li">Warn if above 500</li>
+										<li class="bullet_li">Alert if above 800</li>
+										<li class="bullet_li">Alert if no data for 10 minutes</li>
+									</ul>
+								</li>
+								<li>
+									<span class="image"><img class="large-image" src="images/mon_define_metric.png" alt="" /></span>
+									<span class="image"><img class="large-image" src="images/mon_define_threshold.png" alt="" /></span>
+								</li>
+							</ul>
+							<hr/>
+						</div>
+						<div class="content">
+							<h3>Here's a live ScreenBoard showing this monitor's behavior:</h3>
+							<iframe id="monitor_dash" scrolling="no" title="Monitor Overview" width="100%" height="550px"></iframe>
+						</div>
+						<hr/>
+						<div class="content">
+							<h3>Configure alerting</h3>
+							<p>Use <a href="https://docs.datadoghq.com/monitors/notifications/#message-template-variables">template variables</a> to conditionally display exactly what you need. Use the @ syntax to alert specific team members.</p>
+							<span class="image"><img class="large-image" src="images/configure_alert.png" alt="" /></span>
+							<p>I created the template above, and received this in my inbox:</p>
+							<span class="image"><img class="large-image" src="images/alert_email.png" alt="" /></span>
+						</div>
+						<hr/>
+						<div class="content">
+							<h3>Configure down time</h3>
+							<ul class="features">
+								<li>
+									<p>Here I used the Datadog web interface to schedule a weekend downtime.</p>
+									<span class="image"><img class="large-image" src="images/mon_weekend_downtime.png" alt="" /></span>
+								</li>
+								<li>
+									<span class="image"><img class="large-image" src="images/monitor_notice.png" alt="" /></span>
+									<p>Datadog notifies you of changes to monitoring. I received this in my inbox when I scheduled the downtime.</p>
+								</li>
+							</ul>
+							<hr/>
+						</div>
+					</section>
+					<section id="apm" class="main">
+						<!-- Agent -->
+						<div class="content">
+							<header class="major">
+								<h2>APM</h2>
+							</header>
+
+							<h3>Create traces with just a few lines of code</h3>
+							<ul class="features">
+								<li>
+									<p>Datadog's APM libraries make instrumentation painless. This example creates a trace on requests to a Go REST endpoint running on this host. On each request, the endpoint:</p>
+									<ul>
+										<li class="bullet_li">inserts the IP address of the request into a database in the local Postgres installation</li>
+										<li class="bullet_li">does a select and a join to obtain the new maximum auto-incrementing record id</li>
+										<li class="bullet_li">encodes the query result as JSON and writes that to the response.</li>
+									</ul>
+								</li>
+								<li>
+									<span class="image"><img class="large-image" src="images/import_lib_apm.png" alt="" /></span>
+									<p>Import Datadog's library for your language.</p>
+									<span class="image"><img class="large-image" src="images/enter_function_apm.png" alt="" /></span>
+									<p>Create a new root span at the function's entry point. Here it is scoped to a service called datadog_demo. This resource is being called log_visitor.</p>
+									<span class="image"><img class="large-image" src="images/set_meta_apm.png" alt="" /></span>
+									<p>Set any metadata for the trace you need. Here the request's IP address is added.</p>
+								</li>
+							</ul>
+						</div>
+						<hr/>
+						<div class="content">
+							<h3>Click the button a few times to send some requests to the endpoint</h3>
+							<p>
+								The ScreenBoard below contains the trace information, along with an infrastructure metric and a Postgres metric, for the past ten minutes.
+								From this view you can get a holistic sense of how the server is handling the load.
+								You should see the results of the traffic you created in a few moments.
+							</p>
+							<button id="log_visitor_btn" class="button">Click Me!</button>
+							<p id="apm_click_results"></p>
+							<iframe id="apm_and_infrastructure" scrolling="no" title="APM and Infrastructure" width="100%" height="710px"></iframe>
+						</div>
+						<hr/>
+						<div class="content">
+							<h3>Services and Resources</h3>
+							<p>When capturing the trace, the "datadog_demo" tag was used for the service argument, while the "log_visitor" tag was used for the resource argument.</p>
+							<h3>A Service is a set of processes that do the same job.</h3>
+							<p>The ScreenBoard below contains an overview of information derived automatically from the datadog_demo service APM instrumentation.</p>
+							<iframe id="apm_service_overview" scrolling="no" title="APM and Infrastructure" width="100%" height="685px"></iframe>
+							<h3>A Resource is a particular action for a service.</h3>
+							<p>In this case, the log_visitor endpoint is the resource being instrumented. Other endpoints in the same REST service would be different resources, scoped to the same service. Resource summaries and traces can be explored from within the Datadog web interface.
+						</div>
+					</section>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/datadog.js"></script>
+
+	</body>
+</html>
