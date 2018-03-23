@@ -27,6 +27,9 @@ Here is a screenshot showing the timeboard resulting from this script (modified 
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/W4J89F" title="InfraandAPM"><img src="https://farm5.staticflickr.com/4782/27097852958_3e4ff2a8ca_z.jpg" width="640" height="297" alt="InfraandAPM"></a>
 
+[and here's a link to this dashboard](https://app.datadoghq.com/dash/724714/wyatt-timeboard?live=true&page=0&is_auto=false&from_ts=1521818587988&to_ts=1521822187988&tile_size=m)
+
+
 5 minute "My_Metric" timeboard - sent via email using the @ tag:
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/610501" title="My_Metric_5min_timeboard"><img src="https://farm1.staticflickr.com/813/39159109980_055eb8335a_z.jpg" width="640" height="570" alt="My_Metric_5min_timeboard"></a>
@@ -89,6 +92,9 @@ Resources on the other hand represent actions on those services.  Extending the 
 Here is a screenshot showing a mixuture of Infrastructure and APM Data:
 
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/W4J89F" title="InfraandAPM"><img src="https://farm5.staticflickr.com/4782/27097852958_3e4ff2a8ca_z.jpg" width="640" height="297" alt="InfraandAPM"></a>
+
+[and here's a link to this dashboard inside of Datadog](https://app.datadoghq.com/apm/services?start=1521217521053&end=1521822321053&paused=false)
+
 
 ## Imaginative Ways of Using DataDog?
 
