@@ -1,5 +1,10 @@
 Your answers to the questions go here.
 
+## Collecting Metrics
+
+<a title="Wyatt: Datadog Host Screen Showing Tags">
+<img src="https://www.flickr.com/photos/157063551@N05/with/40925502772/"></a>
+
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
   I added the parameter min_collection_interval: 45  to the init section of my my_metric.yaml file.  So I would say yes.
   
