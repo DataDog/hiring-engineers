@@ -9,6 +9,10 @@ Your answers to the questions go here.
 <a data-flickr-embed="true" data-header="true"  href="https://www.flickr.com/gp/157063551@N05/195rm1" title="Host Map Screen showing tags"><img src="https://farm1.staticflickr.com/795/39158435810_f96b2bf0ef_b.jpg" width="656" height="593" alt="Wyatt-DD-01"></a>
 
 
+[My MySQL Config file with tags set](conf.yaml.mysql)
+
+[My my_metric Config file](my_metric.yaml)
+
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
   I added the parameter min_collection_interval: 45  to the init section of my my_metric.yaml file.  So I would say yes.
 
