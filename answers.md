@@ -134,7 +134,7 @@ This is my DogOps team building their latest Rails application to defeat the cat
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dogops.jpg "dog ops")
 
 Final advice. Do not attempt to cut off the top of your finger with a carving knife while doing your DataDog Hiring Exercise
-![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/badmotorfinger.jpg "ooops")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/badmotorfinger.JPG "ooops")
 
 
 
