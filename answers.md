@@ -79,7 +79,7 @@ Metric Collection time is adjusted in configuration yaml instead of python code.
 
 To simplify and speed up creation of timeboard script, I first created a dashboard to see what the end result would look like. The timeboard creation gives the code in JSON format and I realised I could simply paste this in to the script given in the timeboard API guide. The intial steps were to create the app key and grab the API key for the top of the script. These have been removed from the uploaded script for security. 
 
-The anomoly function attempts to spot trends that are anti-pattern. A load trend may be up and down during the day for example, but an anomoly would be, for example, load suddenly decreasing during a usually busy period. For this time series captured, as I adjusted the graph to the last 5 minutes, the agent had stopped on my vagrant box so agent had to be restarted. In this case it shows little of actual interest. A metric monitor would have helped here!
+The anomoly function attempts to spot trends that are anti-pattern. A load trend may be up and down during the day for example, but an anomoly could load suddenly decreasing during a usually busy period. For this time series captured, as I adjusted the graph to the last 5 minutes, the agent had stopped on my vagrant box so agent had to be restarted. In this case it shows little of actual interest. A metric monitor would have helped here!
 
 [https://github.com/stackparty/hiring-engineers/blob/master/create_dashboard.py]
 
@@ -106,7 +106,15 @@ App [https://github.com/stackparty/hiring-engineers/blob/master/flaskapp.py]
 Dashboard 
 
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_1.png "app trace dashboard config")
-![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_1.png "app trace graph")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_2.png "app trace graph")
+
+A service is a high level concept that is defined by the service name and may refer to a database, web app etc that make up a whole application. A resource is something that is served up by or used within that application such as a URL, SQL query. 
+
+## Final Question
+
+This is my DogOps team building their latest Rails application to defeat the cat. I would take the sound level from the camera we use to watch them, pass that in to DataDog, building alerts and monitors for them barking. Long term trends ( i.e. the postman, the dog walker ) could then be identified vs unexpected cases of barking.
+
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dogops.png "dog ops")
 
 
 
