@@ -94,7 +94,19 @@ created the monitor, configured the alerts and used the flexible conditions to m
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_1.png "weekday downtime")
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_2.png "weekend downtime")
 
+## Collecting APM data
 
+Read the APM notes and then copied over the sample code. A few minor changes were made to make it run: changing host port and IPs. 
+Initially I had assumed nothing was happening when I ran the app and made calls to it with wget. I saw nothing in the UI. 
+Eventually I realised I had a tag of env:test and that was obscuring my view of what was going on.
+
+I built a dashboard that included CPU userspace usage and sum of web requests and froze it.
+
+App [https://github.com/stackparty/hiring-engineers/blob/master/flaskapp.py]
+Dashboard 
+
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_1.png "app trace dashboard config")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_1.png "app trace graph")
 
 
 
