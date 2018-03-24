@@ -2,14 +2,14 @@
 
 ## Prerequesites
 
-- upgraded VirtualBox on MacOSX
-- download & install of Vagrant
+- upgraded VirtualBox on my Mac
+- downloaded & installed Vagrant
 - vagrant init hashicorp/precise64
 - vagrant up
 - vagrant ssh
 - sudo apt-get install curl
 - created DataDog account 
-- installed datadog-agent : DD_API_KEY=xxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+- installed datadog-agent, cut and paste : DD_API_KEY=xxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ### So What, Who Cares ?
 
@@ -75,6 +75,11 @@ instances:
 
 Metric Collection time is adjusted in configuration yaml instead of python code. 
 
+### So What, Who Cares ?
+
+- Wide range of pre-built agents available for most common tools available with no extra download
+- Simple to automate configuration of agents with automation tooling and easy to build custom monitors
+
 ## Timeboards
 
 To simplify and speed up creation of timeboard script, I first created a dashboard to see what the end result would look like. The timeboard creation gives the code in JSON format and I realised I could simply paste this in to the script given in the timeboard API guide. The intial steps were to create the app key and grab the API key for the top of the script. These have been removed from the uploaded script for security. 
@@ -85,6 +90,13 @@ The anomoly function attempts to spot trends that are anti-pattern. A load trend
 
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/datadog%20timeseries.png "my timeseries through api snapshot")
 
+### So What, Who Cares ?
+
+- API access allows quick deployment and useful for service providers or enterprises performing common tasks between BUs/Customers
+- Massive range of mathematical functions and features to be able to analyse data however someone wants
+- Complex features such as anomaly detection to spotting patterns and trends in data, to improve apps & deployments
+- Snaphots allow running commentary of particular events and for them to be captured
+
 ## Monitoring Data
 
 created the monitor, configured the alerts and used the flexible conditions to match the specification requested. 
@@ -93,6 +105,12 @@ created the monitor, configured the alerts and used the flexible conditions to m
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_monitor_alert.png "email alert")
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_1.png "weekday downtime")
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_metric_snooze_2.png "weekend downtime")
+
+### So What, Who Cares?
+
+- Plenty of flexibility in creating alerts, such that important events can be filtered and trapped
+- 
+
 
 ## Collecting APM data
 
@@ -103,7 +121,6 @@ Eventually I realised I had a tag of env:test and that was obscuring my view of 
 I built a dashboard that included CPU userspace usage and sum of web requests and froze it.
 
 App [https://github.com/stackparty/hiring-engineers/blob/master/flaskapp.py]
-Dashboard 
 
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_1.png "app trace dashboard config")
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dd_apptrace_2.png "app trace graph")
@@ -115,6 +132,10 @@ A service is a high level concept that is defined by the service name and may re
 This is my DogOps team building their latest Rails application to defeat the cat. I would take the sound level from the camera we use to watch them, pass that in to DataDog, building alerts and monitors for them barking. Long term trends ( i.e. the postman, the dog walker ) could then be identified vs unexpected cases of barking.
 
 ![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dogops.jpg "dog ops")
+
+Final advice. Do not attempt to cut off the top of your finger with a carving knife while doing your DataDog Hiring Exercise
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/badmotorfinger.jpg "ooops")
+
 
 
 
