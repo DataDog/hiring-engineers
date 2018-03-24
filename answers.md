@@ -114,7 +114,7 @@ A service is a high level concept that is defined by the service name and may re
 
 This is my DogOps team building their latest Rails application to defeat the cat. I would take the sound level from the camera we use to watch them, pass that in to DataDog, building alerts and monitors for them barking. Long term trends ( i.e. the postman, the dog walker ) could then be identified vs unexpected cases of barking.
 
-![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dogops.png "dog ops")
+![alt_text](https://github.com/stackparty/hiring-engineers/blob/master/dogops.jpg "dog ops")
 
 
 
