@@ -5,7 +5,7 @@
 *Download and install vagrant with ubuntu image
 
 *Download and install Datadog Ubuntu agent
-[1_prereq_1.png]
+![alt text](screenshots/1_prereq_1.png)
 [1_prereq_2.png]
 
 ## Collecting Metrics:
