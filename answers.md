@@ -13,7 +13,9 @@
 *Modify the agent config file to add your own tag mytag:bbdemo
 
 *Go to the host Map page in data dog. Filter by the tag created
+
 ![alt text](screenshots/2_Collect_1.png)
+
 ![alt text](screenshots/2_Collect_2.png)
 
 *Install Mongodb on your machine with "sudo apt-get -y mongodb-org
@@ -22,6 +24,7 @@
 *Create a new user for Datadog in Mongo using db.createUser 
 ![alt text](screenshots/2_Collect_4.png)
 *Validate user with db.auth command
+
 ![alt text](screenshots/2_Collect_5.png)
 
 *create a mongo.yaml config file in conf.d directory
@@ -30,6 +33,7 @@
 *restart the agent
 
 *You should now see mongodb on the hostmap
+
 ![alt text](screenshots/2_Collect_7.png)
 
 
@@ -37,6 +41,7 @@
 ![alt text](screenshots/2_Collect_8.png)
 
 *Create check config yaml file in conf.d directory. **Bonus Answer** You can specify collection interval here without needing to modify the python script
+
 ![alt text](screenshots/2_Collect_9.png)
 
 
