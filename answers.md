@@ -124,7 +124,7 @@ Install and run Flask via venv. Using the provided endpoint Flask app, instrumen
 
 Now you are able to add APM traces to the dashboard you created  earlier. In this case the measurement is number of hits to the app resource endpoints
 
-![alt text](screenshots/5_APM_2.png)
+![alt text](screenshots/5_APM_2.PNG)
 
 
 Lastly, create a screenboard using the same graphs from the timeboard and create a shareable link. This lets you publicize your beautiful graphs across teams!
