@@ -1,4 +1,4 @@
-# The Beginner's Guide to Datadog
+# The Beginner's Guide to Datadog (by Brandon)
 
 Learning datadog for the first time? Building a demo environment? Planning an evaluation guide for a client? Completing the datadog hiring exercise?
 
