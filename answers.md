@@ -112,5 +112,30 @@ You will receive an email notification of the scheduled downtime:
 
 ![alt text](screenshots/4_Monitor_6.png)
 
+## Collecting APM Data
+
+This section focuses on collecting trace data from an application. This helps you trace transactions flowing through an app as well as see latency and other metrics. 
+
+Install and run Flask via venv. Using the provided endpoint Flask app, instrument the app by inserting Middleware to capture traces. See highlighted inserts below. (see ddflaskdemo.py)
+
+![alt text](screenshots/5_APM_1.png)
+
+**Bonus Tip** Datadog looks at both services and resources for an app. A **service** is a set of processes that do the same job. IE: database service, admin service, query service, etc. A **resource** is a specific action for the service. These are usual endpoints or queries
+
+Now you are able to add APM traces to the dashboard you created  earlier. In this case the measurement is number of hits to the app resource endpoints
+
+![alt text](screenshots/5_APM_2.png)
 
 
+Lastly, create a screenboard using the same graphs from the timeboard and create a shareable link. This lets you publicize your beautiful graphs across teams!
+
+https://p.datadoghq.com/sb/01d5134f0-573da2d6049667df5919f79d4df4b86d
+
+
+
+## Final Thoughts
+
+As you can see, datadog at its core is a data graphing platform. Its primary value for companies is to pull in metric data from infrastructure, apps, and logs. However, with custom metrics, any data can be collected and sent to Datadog for graphing.
+I believe a very useful application of Datadog would be to help monitor and analyze big data for Smart Cities across the globe. Cities are beginning to leverage data to make smart decisions on growth and allocation of public resources. Monitoring traffic flow could help stoplight managment run smoothly, monitoring parking space usage could help determine peak demand and create variable pricing, and monitoring rideshare or smart bike usage could help cities determine where the public transit investments should go.
+
+Those are just a few examples of how Datadog can add value in a BIG way! The sky is the limit.
