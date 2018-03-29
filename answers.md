@@ -22,6 +22,10 @@ Modify the agent config file to add your own tag mytag:bbdemo
 
 Go to the host Map page in data dog. Filter by the tag created
 
+![alt text](screenshots/2_Collect_2-1.png)
+
+You should also be able to see data coming in from your host
+
 ![alt text](screenshots/2_Collect_2.png)
 
 Install Mongodb on your machine with "sudo apt-get -y mongodb-org
