@@ -80,7 +80,7 @@ Below is a screenshot of the script (see createtimeboards.py) **Hint** For the g
 
 ![alt text](screenshots/3_Visualize_4.png)
 
-Once the script runs you should now see the timeboard in datadog:
+Once you run the script, you will see a newly-created timeboard in datadog:
 
 ![alt text](screenshots/3_Visualize_5.PNG)
 
