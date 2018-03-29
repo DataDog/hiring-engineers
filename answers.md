@@ -60,7 +60,7 @@ This section focuses on taking that data and visualizing it in a useful way.
 
 First, validate that datadog is receiving the metric by checking the metric explorer.
 
-![alt text](screenshots/2_Visualize_1.png)
+![alt text](screenshots/3_Visualize_1.png)
 
 Next, manually create a timeboard that shows my_metric scoped over the host, mongodb.network.bytesinps metric from mongo, and a rollup sum of my_metric over the last hour
 
@@ -68,20 +68,21 @@ To automate the timeboard creation for simply future deployment, use the datadog
 
 You will first need an api key and app key which can be created in Datadog
 
-![alt text](screenshots/2_Visualize_2.png)
+![alt text](screenshots/3_Visualize_2.png)
 
 Below is a screenshot of the script (see createtimeboards.py) **Hint** For the graph array JSON objects: copy the JSON from the timeboard graph setting screen that you made earlier
 
-![alt text](screenshots/2_Visualize_3.png)
+![alt text](screenshots/3_Visualize_3.png)
 
-![alt text](screenshots/2_Visualize_4.png)
+![alt text](screenshots/3_Visualize_4.png)
 
 Once the script runs you should now see the timeboard in datadog:
-![alt text](screenshots/2_Visualize_5.png)
+
+![alt text](screenshots/3_Visualize_5.png)
 
 Change the timeboard to only show last 5 minutes then create an annotated snapshot and inform yourself.
 
-![alt text](screenshots/2_Visualize_7.png)
+![alt text](screenshots/3_Visualize_7.png)
 
 **Bonus Tip** The anomaly graph for the mongodb metric is showing where Datadog expects the behavior of the metric to be based on past performance. This is useful for letting you know when your metrics are performing out of the ordinary.
 
