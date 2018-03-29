@@ -74,7 +74,7 @@ You will first need an api key and app key which can be created in Datadog
 
 ![alt text](screenshots/3_Visualize_2.png)
 
-Below is a screenshot of the script (see createtimeboards.py) **Hint** For the graph array JSON objects: copy the JSON from the timeboard graph setting screen that you made earlier
+Below is a screenshot of the script (see createtimeboards.py) **Hint** For the graph array of definition JSON objects: copy the JSON from the timeboard graph setting screen for each graph that you made earlier
 
 ![alt text](screenshots/3_Visualize_3.png)
 
