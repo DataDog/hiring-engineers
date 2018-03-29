@@ -86,3 +86,31 @@ Change the timeboard to only show last 5 minutes then create an annotated snapsh
 
 **Bonus Tip** The anomaly graph for the mongodb metric is showing where Datadog expects the behavior of the metric to be based on past performance. This is useful for letting you know when your metrics are performing out of the ordinary.
 
+## Monitoring Data
+
+This section focuses on setting alerts for the data so that you don't have to continually watch the graphs and can be informed immediately when there is an issue.
+
+Set a Warning, Alerting and No Data Threshold for my_metric
+
+![alt text](screenshots/4_Monitor_1.png)
+
+Configure this to send you a different email message for each threshold type.
+
+![alt text](screenshots/4_Monitor_2.png)
+
+You should receive an email like this:
+
+![alt text](screenshots/4_Monitor_3.png)
+
+**Bonus Tip** It's important to set schedule downtimes for alerts which effectively will mute the alerts when you don't want to receive emails (IE: non-working hours & weekend)
+
+![alt text](screenshots/4_Monitor_4.png)
+
+![alt text](screenshots/4_Monitor_5.png)
+
+You will receive an email notification of the scheduled downtime:
+
+![alt text](screenshots/4_Monitor_6.png)
+
+
+
