@@ -6,9 +6,9 @@ If you answered 'yes' to any of those questions then you've come to the right pl
 
 ## Prerequisites - Setting up the environment
 
-*Download and install vagrant with ubuntu image
+Download and install vagrant with ubuntu image
 
-*Download and install Datadog Ubuntu agent using bash command provided
+Download and install Datadog Ubuntu agent using bash command provided
 ![alt text](screenshots/1_Prereq_1.png)
 ![alt text](screenshots/1_Prereq_2.png)
 
@@ -16,37 +16,37 @@ If you answered 'yes' to any of those questions then you've come to the right pl
 
 This section focuses on collecting infrastructure metrics from your host
 
-*Modify the agent config file to add your own tag mytag:bbdemo
+Modify the agent config file to add your own tag mytag:bbdemo
 
 ![alt text](screenshots/2_Collect_1.png)
 
-*Go to the host Map page in data dog. Filter by the tag created
+Go to the host Map page in data dog. Filter by the tag created
 
 ![alt text](screenshots/2_Collect_2.png)
 
-*Install Mongodb on your machine with "sudo apt-get -y mongodb-org
+Install Mongodb on your machine with "sudo apt-get -y mongodb-org
 ![alt text](screenshots/2_Collect_3.png)
 
-*Create a new user for Datadog in Mongo using db.createUser 
+Create a new user for Datadog in Mongo using db.createUser 
 ![alt text](screenshots/2_Collect_4.png)
-*Validate user with db.auth command
+Validate user with db.auth command
 
 ![alt text](screenshots/2_Collect_5.png)
 
-*create a mongo.yaml config file in conf.d directory
+create a mongo.yaml config file in conf.d directory
 ![alt text](screenshots/2_Collect_6.png)
 
-*restart the agent
+restart the agent
 
-*You should now see mongodb on the hostmap
+You should now see mongodb on the hostmap
 
 ![alt text](screenshots/2_Collect_7.png)
 
 
-*Create a custom agent check my_metric that submits random value between 0 and 1000 via python script in checks.d. Implement the AgentCheck interface and "random" library. Use randint function as 2nd param in self.gauge call
+Create a custom agent check my_metric that submits random value between 0 and 1000 via python script in checks.d. Implement the AgentCheck interface and "random" library. Use randint function as 2nd param in self.gauge call
 ![alt text](screenshots/2_Collect_8.png)
 
-*Create check config yaml file in conf.d directory. **Bonus Tip** You can specify collection interval here without needing to modify the python script
+Create check config yaml file in conf.d directory. **Bonus Tip** You can specify collection interval here without needing to modify the python script
 
 ![alt text](screenshots/2_Collect_9.png)
 
@@ -116,13 +116,13 @@ You will receive an email notification of the scheduled downtime:
 
 This section focuses on collecting trace data from an application. This helps you trace transactions flowing through an app as well as see latency and other metrics. 
 
-Install and run Flask via venv. Using the provided endpoint Flask app, instrument the app by inserting Middleware to capture traces. See highlighted inserts below. (see ddflaskdemo.py)
+Install and run Flask via venv. Using the provided endpoint Flask app, instrument the app by inserting Middleware to capture traces. See highlighted inserts below.(see ddflaskdemo.py) Run the app using the following Flask command: FLASK_APP=ddflaskdemo.py python -m flask run --host 127.0.0.1:7000
 
 ![alt text](screenshots/5_APM_1.png)
 
 **Bonus Tip** Datadog looks at both services and resources for an app. A **service** is a set of processes that do the same job. IE: database service, admin service, query service, etc. A **resource** is a specific action for the service. These are usual endpoints or queries
 
-Now you are able to add APM traces to the dashboard you created  earlier. In this case the measurement is number of hits to the app resource endpoints
+Now you are able to add APM traces to the dashboard you created  earlier. In this case the measurement is number of hits to the app resource endpoints. Leverage curl command on your vagrant box to hit 127.0.0.1:7000/api/apm to push hit metrics through
 
 ![alt text](screenshots/5_APM_2.PNG)
 
