@@ -78,11 +78,11 @@ Below is a screenshot of the script (see createtimeboards.py) **Hint** For the g
 
 Once the script runs you should now see the timeboard in datadog:
 
-![alt text](screenshots/3_Visualize_5.png)
+![alt text](screenshots/3_Visualize_5.PNG)
 
 Change the timeboard to only show last 5 minutes then create an annotated snapshot and inform yourself.
 
-![alt text](screenshots/3_Visualize_7.png)
+![alt text](screenshots/3_Visualize_7.PNG)
 
 **Bonus Tip** The anomaly graph for the mongodb metric is showing where Datadog expects the behavior of the metric to be based on past performance. This is useful for letting you know when your metrics are performing out of the ordinary.
 
