@@ -109,17 +109,18 @@ Dashboards can be created from the main User Interface or through the Datadog AP
 
  * Custom metric: my_metric scoped over the host.
  * Rows Fetched from the Integration on PostgreSQL with the anomaly function applied.
- * Custom metric:my_metric with the rollup function applied to sum up all the points for the past hour into one bucket
+ * Custom metric: my_metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 ![Timeboard created using Datadog API](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.30.05%20AM.png)
 
+To get more granular information, click & drag on a graph to zoom-in on a particular time-frame.  Here you'll see the Visualizing Data Timeboard's timeframe set to the past 5 minutes. By zooming in to the last 5 minutes you can see that the number of rows fetched from PostgreSQL was abnormal and the anomaly above norm was marked in red. 
+![Visualizing Data past 5 minutes](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.31.47%20AM.png)
 
+Timely and effective communication is critical when business-critical metrics shift in your infrastructure.  The ability to capture snapshots of meaningful metrics across your infrastructure and notify team members quickly of the problem is so important in today's business climate. 
+![Visualizer Snapshot Email](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.33.07%20AM.png)
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
+###### Bonus Question: What is the Anomaly graph displaying?
+The gray band represents the region where the metric is expected to be based on past behavior. The blue and red line is the actual observed value of the metric; the line is blue when within the expected range and red when it is outside of the expected range.
 
 # Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
