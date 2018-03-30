@@ -132,18 +132,18 @@ Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.04%20AM.png)
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.39%20AM.png)
 
 
 Please configure the monitor’s message so that it will:
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
 
-Send you an email whenever the monitor triggers.
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.35.56%20AM.png)
+Send you an email whenever the monitor triggers including the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%205.36.19%20PM.png)
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
@@ -152,6 +152,9 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.17%20AM.png
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.26%20AM.png
 
 # Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
@@ -191,6 +194,12 @@ Bonus Question: What is the difference between a Service and a Resource?
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
+
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.01%20AM.png
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.13%20AM.png
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.22%20AM.png
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.35%20AM.png
+https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.46%20AM.png
 
 # Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
