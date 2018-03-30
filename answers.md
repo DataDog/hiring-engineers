@@ -1,7 +1,7 @@
 In this exercise, I'll cover:
 - setting up a VM with Vagrant
 - installing and configuring the Datadog Agent
-- setting up the MySQL Intergration
+- setting up the MySQL Integration
 - adding custom Datadog checks
 - creating visualizations with the Datadog API
 - setting up and managing Monitors
@@ -14,7 +14,7 @@ Let's get started!
 
 ### Create a Vagrant VM and Install Datadog
 
-To set up a Vagrant VM, follow their [getting started guide](https://www.vagrantup.com/intro/getting-started/). I suggest using one of their standard Ubuntu boxes like `hashicorp/precise64` or `ubuntu/trusty64`. Once your VM is up, log in to the VM and add the Datadog Agent with teh following commands.
+To set up a Vagrant VM, follow their [getting started guide](https://www.vagrantup.com/intro/getting-started/). I suggest using one of their standard Ubuntu boxes like `hashicorp/precise64` or `ubuntu/trusty64`. Once your VM is up, log in to the VM and add the Datadog Agent with the following commands.
 
 ```
 vagrant ssh
@@ -52,7 +52,7 @@ To set up the MySQL integration, install MySQL on your machine. The commands bel
 apt-get install mysql-server 
 # create a root password when prompted
 mysql_secure_installation
-#no need to change your passord, but answer yes to all other options
+#no need to change your password, but answer yes to all other options
 mysql -u root -p
 ```
 
@@ -64,7 +64,7 @@ mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CO
 mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 # to check that the performance_schema table exists
 mysql> show databases like 'performance_schema';
-#to grant priviledges on the performance schema table
+#to grant privileges on the performance schema table
 mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost'; 
 ```
 
@@ -168,7 +168,7 @@ Datadog's anomaly algorithms use historical data from your metrics to determine 
 ![anomaly](https://user-images.githubusercontent.com/8127456/38001594-87d632c6-31e2-11e8-9853-d1428fadc9c7.png)
 
 **Note**
-This script uses a rollup to display the sum of `my_metric` each houe as bars on a timeseries graph. If I were to do this over, I would display it without a rollup and as a query value. The alternate code for that section would look like:
+This script uses a rollup to display the sum of `my_metric` each hour as bars on a timeseries graph. If I were to do this over, I would display it without a rollup and as a query value. The alternate code for that section would look like:
 
 ```
 {
@@ -194,7 +194,7 @@ Below is a sample configuration for a monitor on `my_metric`:
 ![monitor](https://user-images.githubusercontent.com/8127456/38002552-d0d75df6-31e7-11e8-95ca-c9fe14b75c29.png)
 
 When the monitor is triggered, it sends a message like the one below to the relevant teams/team members mentioned in the custom message.
-![montior email](https://user-images.githubusercontent.com/8127456/38003047-852ad466-31ea-11e8-9a11-258595407906.png)
+![monitor email](https://user-images.githubusercontent.com/8127456/38003047-852ad466-31ea-11e8-9a11-258595407906.png)
 
 **Bonus Answer:**
 Monitors are great, but sometimes they can send noise that isn't useful or actionable. To control for this, you can configure scheduled downtimes for your monitors under the "Manage Downtime" tab.
