@@ -143,10 +143,12 @@ Send you an email whenever the monitor triggers including the metric value that 
 ###### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 Silence alerts from 7pm to 9am daily on M-F
-![silence alerts 7p-9a](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.17%20AM.png)
+![silence alert config 7p-9a](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%206.38.24%20PM.png)
+![silence email 7p-9a](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.17%20AM.png)
 
 Silence alerts all day on Sat-Sun
-![silence alerts all day](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.26%20AM.png)
+![silence alert config all day](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%206.38.24%20PM.png)
+![silence email all day](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.26%20AM.png)
 
 
 # Collecting APM Data:
