@@ -60,19 +60,48 @@ sudo datadog-agent status
 ```
 ![agent info](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%203.39.04%20PM.png)
 
+Complete the Integration installation and view the PostgreSQL database metrics from the Postgres Metrics Dashboard 
 ![postgres metrics](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.26.41%20AM.png)
 
+### Create a custom Agent Check
+###### What is an Agent Check?
+An Agent Check collects metrics from custom applications or unique systems.  To create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 2 files need to be created, a check file and configuration file.
 
+The check file that is placed in the checks.d directory.
+/etc/datadog-agent.checks.d/[mycheck.py](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.py)
+```
+from checks import AgentCheck
+from random import *
 
-Execute the info command and verify that the integration check has passed. The output of the command should contain a section similar to the following:
-
-
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+class MyAgentCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('se-exercise.my_metric', randint(0, 1000))
+```
+The configuration file  is placed in the conf.d directory.
+etc/datadog-agent/conf.d/[mycheck.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.yaml)
+```
+init_config:
+instances:
+    [{}]
+```
+To change the check's collection interval so that it only submits the metric once every 45 seconds.  
+etc/datadog-agent/conf.d/[mycheck.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.yaml)
+```
+init_config:
+    min_collection_interval: 45
+instances:
+    [{}]
+```
+###### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Yes, min_collection_interval can be added to the init_config section to help define how often the check should be run. 
 
 # Visualizing Data:
+### What is Graphing?
+Graphs are the window onto your monitored systems. Most of the times that you visit Datadog, you look at dashboards made up of graphs. Graphs are at the heart of monitoring and observability
+
+###### What are Screenboards & Timeboards?
+Graphs on Timeboards will always appear in a grid-like fashion making them generally better for troubleshooting and correlation whereas Screenboards are flexible, far more customizable and are great for getting a high-level look into a system.
+
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
