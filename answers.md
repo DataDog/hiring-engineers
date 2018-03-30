@@ -130,9 +130,16 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.04%20AM.png)
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.39%20AM.png)
+
+
 Please configure the monitor’s message so that it will:
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
 
 Send you an email whenever the monitor triggers.
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.35.56%20AM.png)
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
