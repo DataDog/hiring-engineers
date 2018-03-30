@@ -1,6 +1,6 @@
 # Datadog Overview
 
-
+Add Conent for Datadog Overview
 
 # Prerequisites - Setup the environment
 
@@ -116,78 +116,41 @@ Dashboards can be created from the main User Interface or through the Datadog AP
 To get more granular information, click & drag on a graph to zoom-in on a particular time-frame.  Here you'll see the Visualizing Data Timeboard's timeframe set to the past 5 minutes. By zooming in to the last 5 minutes you can see that the number of rows fetched from PostgreSQL was abnormal and the anomaly above norm was marked in red. 
 ![Visualizing Data past 5 minutes](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.31.47%20AM.png)
 
-Timely and effective communication is critical when business-critical metrics shift in your infrastructure.  The ability to capture snapshots of meaningful metrics across your infrastructure and notify team members quickly of the problem is so important in today's business climate. 
+Timely and effective communication is critical when business-critical metrics shift in your infrastructure.  The ability to capture snapshots of meaningful metrics across your infrastructure and notify team members quickly of the problem is so important in the reduction and avoidance of downtime in today's business climate. 
 ![Visualizer Snapshot Email](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.33.07%20AM.png)
 
 ###### Bonus Question: What is the Anomaly graph displaying?
 The gray band represents the region where the metric is expected to be based on past behavior. The blue and red line is the actual observed value of the metric; the line is blue when within the expected range and red when it is outside of the expected range.
 
-# Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+# Monitoring Data and Alerting
+Monitoring all of your infrastructure in one place wouldn’t be complete without the ability to know when critical changes are occurring. Datadog gives you the ability to create monitors that actively check metrics, integration availability, network endpoints, and more.  Notifications are a key component of any monitor. You want to make sure the right people get notified so the problem can be resolved as soon as possible.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+The following example will demonstrate how to create a new Metric Monitor that watches the average of the custom metric: my_metric, will alert if it’s above the following values over the past 5 minutes:
 
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
+ * Warning threshold of 500
+ * Alerting threshold of 800
+ * Notify you if there is No Data for this query over the past 10m
 
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.04%20AM.png)
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.39%20AM.png)
+![configure alert](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.04%20AM.png)
+![configure alert](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.39%20AM.png)
 
-
-Please configure the monitor’s message so that it will:
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
+and use different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+![different messages](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
 
 Send you an email whenever the monitor triggers including the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%205.36.19%20PM.png)
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%206.00.50%20PM.png)
 
+###### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
+Silence alerts from 7pm to 9am daily on M-F
+![silence alerts 7p-9a](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.17%20AM.png)
 
+Silence alerts all day on Sat-Sun
+![silence alerts all day](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.26%20AM.png)
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.17%20AM.png
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.36.26%20AM.png
 
 # Collecting APM Data:
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
 
@@ -195,11 +158,16 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.01%20AM.png
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.13%20AM.png
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.22%20AM.png
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.35%20AM.png
-https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.46%20AM.png
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.01%20AM.png)
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.13%20AM.png)
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.22%20AM.png)
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.35%20AM.png)
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.46%20AM.png)
 
 # Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
