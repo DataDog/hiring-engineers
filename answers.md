@@ -30,24 +30,97 @@ Edit /etc/datadog-agent/datadog.yaml to set tags on the host
 The view the tags defined on the host navigate to host from the Infrastructure-->Host Map from the Menu Bar
 ![Host Map](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.19.25%20AM.png)
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+### Integrations
+Describe Integrations
+
+### Monitor PostgreSQL
+###### Install PostgreSQL if not already present
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+To capture PostgreSQL metrics you need to install the Datadog Agent on your PostgreSQL server.
+
+Create a read-only datadog user with proper access to your PostgreSQL Server. Start psql on your PostgreSQL database and run
+```
+create user datadog with password 'password';
+grant SELECT ON pg_stat_database to datadog;
+psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"  
+ && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ ||  
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+```
+###### Configure the Agent to connect to the PostgreSQL server 
+
+Edit etc/datadog-agent/conf.d/[postgres.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/postgres.yaml) to include the PostgreSQL configuration details. 
+
+Restart the Agent
+
+Execute the info command and verify that the integration check has passed. 
+```
+sudo datadog-agent status
+```
+![agent info](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%203.39.04%20PM.png)
+
+Complete the Integration installation and view the PostgreSQL database metrics from the Postgres Metrics Dashboard 
+![postgres metrics](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.26.41%20AM.png)
+
+### Create a custom Agent Check
+###### What is an Agent Check?
+An Agent Check collects metrics from custom applications or unique systems.  To create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 2 files need to be created, a check file and configuration file.
+
+The check file that is placed in the checks.d directory.
+/etc/datadog-agent.checks.d/[mycheck.py](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.py)
+```
+from checks import AgentCheck
+from random import *
+
+class MyAgentCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('se-exercise.my_metric', randint(0, 1000))
+```
+The configuration file  is placed in the conf.d directory.
+etc/datadog-agent/conf.d/[mycheck.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.yaml)
+```
+init_config:
+instances:
+    [{}]
+```
+To verify the health of the Agent Check navigate to Monitors-->Check Summary from the Menu Bar
+![custom my_metric check](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.27.36%20AM.png)
+
+To change the check's collection interval so that it only submits the metric once every 45 seconds.  
+etc/datadog-agent/conf.d/[mycheck.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.yaml)
+```
+init_config:
+    min_collection_interval: 45
+instances:
+    [{}]
+```
+###### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Yes, min_collection_interval can be added to the init_config section to help define how often the check should be run. 
 
 # Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
+### What is Graphing?
+Graphs are the window onto your monitored systems. Most of the times that you visit Datadog, you look at dashboards made up of graphs. Graphs are at the heart of monitoring and observability
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+###### What are Screenboards & Timeboards?
+Graphs on Timeboards will always appear in a grid-like fashion making them generally better for troubleshooting and correlation whereas Screenboards are flexible, far more customizable and are great for getting a high-level look into a system.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Dashboards can be created from the main User Interface or through the Datadog API.  The following [script](https://github.com/bschoppa/hiring-engineers/blob/blake/code/TimeBoard.sh) uses the Datadog APIs to create a Timeboard with the following graphs: 
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
+ * Custom metric: my_metric scoped over the host.
+ * Rows Fetched from the Integration on PostgreSQL with the anomaly function applied.
+ * Custom metric: my_metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+![Timeboard created using Datadog API](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.30.05%20AM.png)
+
+To get more granular information, click & drag on a graph to zoom-in on a particular time-frame.  Here you'll see the Visualizing Data Timeboard's timeframe set to the past 5 minutes. By zooming in to the last 5 minutes you can see that the number of rows fetched from PostgreSQL was abnormal and the anomaly above norm was marked in red. 
+![Visualizing Data past 5 minutes](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.31.47%20AM.png)
+
+Timely and effective communication is critical when business-critical metrics shift in your infrastructure.  The ability to capture snapshots of meaningful metrics across your infrastructure and notify team members quickly of the problem is so important in today's business climate. 
+![Visualizer Snapshot Email](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.33.07%20AM.png)
+
+###### Bonus Question: What is the Anomaly graph displaying?
+The gray band represents the region where the metric is expected to be based on past behavior. The blue and red line is the actual observed value of the metric; the line is blue when within the expected range and red when it is outside of the expected range.
 
 # Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
@@ -57,9 +130,16 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.04%20AM.png)
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.39%20AM.png)
+
+
 Please configure the monitor’s message so that it will:
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
 
 Send you an email whenever the monitor triggers.
+![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.35.56%20AM.png)
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
