@@ -105,14 +105,15 @@ Graphs are the window onto your monitored systems. Most of the times that you vi
 ###### What are Screenboards & Timeboards?
 Graphs on Timeboards will always appear in a grid-like fashion making them generally better for troubleshooting and correlation whereas Screenboards are flexible, far more customizable and are great for getting a high-level look into a system.
 
-Dashboards can be created from the main User Interface or through the Datadog API.  The following [script](https://github.com/bschoppa/hiring-engineers/blob/blake/code/TimeBoard.sh) illustrates how to create a Timeboard using the Datadog APIs
+Dashboards can be created from the main User Interface or through the Datadog API.  The following [script](https://github.com/bschoppa/hiring-engineers/blob/blake/code/TimeBoard.sh) uses the Datadog APIs to create a Timeboard with the following graphs: 
 
-![]()
+ * Custom metric: my_metric scoped over the host.
+ * Rows Fetched from the Integration on PostgreSQL with the anomaly function applied.
+ * Custom metric:my_metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+![Timeboard created using Datadog API](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.30.05%20AM.png)
+
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
