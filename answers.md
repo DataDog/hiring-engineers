@@ -148,7 +148,7 @@ Here are two metrics that use the same python function in their `.py` file, but 
 
 Datadog has an [easy to use API](https://docs.datadoghq.com/api/) for doing all kinds of tasks that developers and devops engineers need to automate. Creating timeboards is a task that could become time consuming with you had to do it by hand every time your team makes changes to your infrastructure. Fortunately, creating timeboards is a straight forward task that you can easily template with the Datadog API.
 
-This example script creates a timeboard that contains graphs with:
+[This example script](https://github.com/mellybess/hiring-engineers/blob/solutions-engineer/board.py) creates a timeboard that contains graphs with:
 - The custom metric from the last section scoped over a single host.
 - Connections to the MySQL database from the last section, with the anomaly function applied.
 - The custom metric from above with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -213,7 +213,7 @@ Datadog allows you to view [metrics on applications](https://docs.datadoghq.com/
 ![APM](https://user-images.githubusercontent.com/8127456/38146126-7302cfa0-3401-11e8-8fcc-4691741a1efd.png)
 
 
-To set up Datadog's APM solution, make sure APM is enabled in the `datadog.yaml` on your host. Next, install the `ddtrace` library. For python you can simply `pip install ddtrace`. Finally instrument your application with a few lines of code, which you can see in this example Flask app.
+To set up Datadog's APM solution, make sure APM is enabled in the `datadog.yaml` on your host. Next, install the `ddtrace` library. For python you can simply `pip install ddtrace`. Finally instrument your application with a few lines of code, which you can see in [this example Flask app](https://github.com/mellybess/hiring-engineers/blob/solutions-engineer/flask_app.py).
 
 To check out your APM metrics on their own, head to the APM section of Datadog and navigate to the "Services" or "Traces" pages. 
 
