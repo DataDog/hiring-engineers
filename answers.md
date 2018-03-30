@@ -30,6 +30,43 @@ Edit /etc/datadog-agent/datadog.yaml to set tags on the host
 The view the tags defined on the host navigate to host from the Infrastructure-->Host Map from the Menu Bar
 ![Host Map](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.19.25%20AM.png)
 
+### Integrations
+Describe Integrations
+
+### Monitor PostgreSQL
+###### Install PostgreSQL if not already present
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+To capture PostgreSQL metrics you need to install the Datadog Agent on your PostgreSQL server.
+
+Create a read-only datadog user with proper access to your PostgreSQL Server. Start psql on your PostgreSQL database and run
+```
+create user datadog with password 'password';
+grant SELECT ON pg_stat_database to datadog;
+psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"  
+ && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ ||  
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+```
+###### Configure the Agent to connect to the PostgreSQL server 
+
+Edit etc/datadog-agent/conf.d/[postgres.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/postgres.yaml) to include the PostgreSQL configuration details. 
+
+Restart the Agent
+
+Execute the info command and verify that the integration check has passed. 
+```
+sudo datadog-agent status
+```
+![agent info](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%203.39.04%20PM.png)
+
+![postgres metrics](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.26.41%20AM.png)
+
+
+
+Execute the info command and verify that the integration check has passed. The output of the command should contain a section similar to the following:
+
+
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
