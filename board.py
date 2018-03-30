@@ -6,7 +6,7 @@ options = {'api_key': '14c9f5ec062ac10cc3b51e6e09cf6dd5',
 initialize(**options)
 
 
-title = "My Timeoard"
+title = "My Timeboard"
 description = "An informative timeboard."
 graphs = [{
     "definition": {
