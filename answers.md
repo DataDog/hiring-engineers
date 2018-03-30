@@ -84,6 +84,9 @@ init_config:
 instances:
     [{}]
 ```
+To verify the health of the Agent Check navigate to Monitors-->Check Summary from the Menu Bar
+![custom my_metric check](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.27.36%20AM.png)
+
 To change the check's collection interval so that it only submits the metric once every 45 seconds.  
 etc/datadog-agent/conf.d/[mycheck.yaml](https://github.com/bschoppa/hiring-engineers/blob/blake/code/mycheck.yaml)
 ```
@@ -102,7 +105,9 @@ Graphs are the window onto your monitored systems. Most of the times that you vi
 ###### What are Screenboards & Timeboards?
 Graphs on Timeboards will always appear in a grid-like fashion making them generally better for troubleshooting and correlation whereas Screenboards are flexible, far more customizable and are great for getting a high-level look into a system.
 
-Utilize the Datadog API to create a Timeboard that contains:
+Dashboards can be created from the main User Interface or through the Datadog API.  The following [script](https://github.com/bschoppa/hiring-engineers/blob/blake/code/TimeBoard.sh) illustrates how to create a Timeboard using the Datadog APIs
+
+![]()
 
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
