@@ -179,8 +179,10 @@ Drilling down to the details of a resource (typically an individual endpoint or 
 A service is a set of processes that do the same job - for example a web framework or database.  A resource is a particular action for a given service (typically an individual endpoint or query). In other words, a sevice would be considered the tiers of a n-tier application wheresas the resources are the entrypoints (path based url, api, or sql statement) into/through those tiers.  
 
 # Final Question:
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!  Is there anything creative you would use Datadog for?
 
-Is there anything creative you would use Datadog for?
+From keeping airplanes on schedule to making sure your financial transactions are processed every customer brings with them unique challenges and complexity.  Given the opportunity I would love to work with new and existing customers solving their complex problems in creative ways with Datadog.  
+
+
 
 
