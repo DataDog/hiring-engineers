@@ -1,6 +1,6 @@
 # Datadog Overview
 
-Add Conent for Datadog Overview
+Datadog is a monitoring and analytics platform for cloud-scale application infrastructure. Combining metrics from servers, databases, and applications, Datadog delivers sophisticated, actionable alerts, and provides real-time visibility of your entire infrastructure.
 
 # Prerequisites - Setup the environment
 
@@ -17,7 +17,7 @@ To view a list of hosts currently being monitored by Datadog navigate to Infrast
 ![Host Registered and Reporting Data](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%202.20.31%20PM.png)
 
 # Collecting Metrics:
-### Describe what Metrics are and the importance of monitoring
+Metrics capture a value pertaining to your systems at a specific point in time.  
 
 ### Tags
 ###### What are Tags?
@@ -31,7 +31,7 @@ The view the tags defined on the host navigate to host from the Infrastructure--
 ![Host Map](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.19.25%20AM.png)
 
 ### Integrations
-Describe Integrations
+Datadog has an extensible architecture that allows you to gather information across all your systems, applications, and services.  Quickly enable and configure any of the 200+ out-of-the-box integrations to start the metrics flowing to Datadog’s backend 
 
 ### Monitor PostgreSQL
 ###### Install PostgreSQL if not already present
@@ -137,8 +137,8 @@ The following example will demonstrate how to create a new Metric Monitor that w
 and use different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ![different messages](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.34.52%20AM.png)
 
-Send you an email whenever the monitor triggers including the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%206.00.50%20PM.png)
+When the Monitor triggers an Alert an email containing the value of the custom metric and host ip of affected system is generated.
+![alert sent](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%206.00.50%20PM.png)
 
 ###### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -152,13 +152,12 @@ Silence alerts all day on Sat-Sun
 
 
 # Collecting APM Data:
+Datadog APM provides you with deep insight into your application’s performance—from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests—side by side with your logs and infrastructure monitoring.
 
+Datadog Tracing can automatically instrument many widely used Python libraries and frameworks.  The following application[source code](https://github.com/bschoppa/hiring-engineers/blob/blake/code/__init__.py) is instrumented with Datadog's Trace Client.  
 
-Bonus Question: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
+Bringing Application and Infrastructure monitoring together alleviates the blind spots and provides you with a cohesive view into the health of your environment.  a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+![Dashboard](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%207.11.29%20PM.png)
 
 
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.01%20AM.png)
@@ -170,6 +169,8 @@ Please include your fully instrumented app in your submission, as well.
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.35%20AM.png)
 
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.46%20AM.png)
+
+###### Bonus Question: What is the difference between a Service and a Resource?
 
 # Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
