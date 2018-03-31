@@ -17,7 +17,7 @@ To view a list of hosts currently being monitored by Datadog navigate to Infrast
 ![Host Registered and Reporting Data](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%202.20.31%20PM.png)
 
 # Collecting Metrics:
-Metrics capture a value pertaining to your systems at a specific point in time.  
+Metrics capture a value pertaining to your systems at a specific point in time. It's from these data points that you are able to build intelligence and awareness around the health and performance of your infrastructure and applications.  If you can't monitor it, you can't manage it.  
 
 ### Tags
 ###### What are Tags?
