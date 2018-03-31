@@ -154,23 +154,29 @@ Silence alerts all day on Sat-Sun
 # Collecting APM Data:
 Datadog APM provides you with deep insight into your application’s performance—from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests—side by side with your logs and infrastructure monitoring.
 
-Datadog Tracing can automatically instrument many widely used Python libraries and frameworks.  The following application[source code](https://github.com/bschoppa/hiring-engineers/blob/blake/code/__init__.py) is instrumented with Datadog's Trace Client.  
+Datadog Tracing can automatically instrument many widely used Python libraries and frameworks.  The following application [source code](https://github.com/bschoppa/hiring-engineers/blob/blake/code/__init__.py) is instrumented with Datadog's Trace Client.  
 
 Bringing Application and Infrastructure monitoring together alleviates the blind spots and provides you with a cohesive view into the health of your environment.  a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ![Dashboard](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%207.11.29%20PM.png)
 
 
+After you have instrumented your application, your reporting services appear on the APM services page. The services list is a bird’s eye view of all services reporting from your infrastructure.
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.01%20AM.png)
 
+Selecting a service on the services page leads you to the detailed service page. A service is a set of processes that do the same job - for example a web framework or database
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.13%20AM.png)
-
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.22%20AM.png)
 
+Drilling down to the details of a resource (typically an individual endpoint or query) is a click away from the services page.  For each resource, APM automatically generates a dashboard page covering:
+ * Key health metrics
+ * Monitor status for all monitors associated with this service
+ * List and metrics for all resources associated with this service
+ 
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.35%20AM.png)
-
 ![](https://github.com/bschoppa/hiring-engineers/blob/blake/images/Screen%20Shot%202018-03-30%20at%2010.37.46%20AM.png)
 
 ###### Bonus Question: What is the difference between a Service and a Resource?
+A service is a set of processes that do the same job - for example a web framework or database.  A resource is a particular action for a given service (typically an individual endpoint or query). In other words, a sevice would be considered the tiers of a n-tier application wheresas the resources are the entrypoints (path based url, api, or sql statement) into/through those tiers.  
 
 # Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
