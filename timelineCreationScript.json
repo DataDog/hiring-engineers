@@ -1,0 +1,26 @@
+{
+  "requests": [
+    {
+      "q": "avg:my_metric{host:michaels-air.home}.rollup(sum, 60)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "anomalies(avg:postgresql.connections{host:michaels-air.home}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true
+}
