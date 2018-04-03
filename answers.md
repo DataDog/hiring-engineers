@@ -3,12 +3,15 @@
   ```
   tags: name:vagrant_ubuntu_1, env:dev, role:host
   ```
-  Link to my host with tags: 
-  image 1
+  My host with tags: 
+  <img src="https://s18.postimg.org/y5pf4kah5/image.png">
 * Setting up a database integration:  I set up a MongoDB database on my vagrant box and integrated it with my agent.
-  * The new datadog user: image db_user
-  * The code added to conf.d/mongo.yaml: image mongo yaml
-  * Link to the MongoDB integration dashboard: https://app.datadoghq.com/screen/integration/13/mongodb
+  * The new datadog user:
+  
+    <img src="https://s18.postimg.org/fddk10w3d/db_user.png">
+  * The code added to conf.d/mongo.yaml:
+    <img src="https://s18.postimg.org/jz9o98k5l/mongo_yaml.png">
+  * Link to the MongoDB integration dashboard: https://app.datadoghq.com/screen/integration/13/mongodb
 * Custom Agent Check at 45 second intervals:  To add my custom agent I used the following python script and yaml:
   * checks.d/metric_check.py:
     ```
@@ -118,30 +121,31 @@
                          graphs=graphs,
                          read_only=read_only)
     ```
-  * Created Dashboard: https://app.datadoghq.com/dash/749843/my-api-created-timeboard?live=true&page=0&is_auto=false&from_ts=1522714434954&to_ts=1522718034954&tile_size=m
-    API timeboard image
+  * Created Dashboard: https://app.datadoghq.com/dash/755892/my-api-created-timeboard?live=false&page=0&is_auto=false&from_ts=1522713358275&to_ts=1522716958275&tile_size=m
+    <img src="https://s18.postimg.org/dpeelu021/API_Timeboard.png">
 * Snapshot of a 5 min interval on the anomaly graph:
-  anomaly snapshot
-* curl used to power the app: curl 127.0.0.1:5000/api/trace
+  <img src="https://s18.postimg.org/n647svrqx/anomaly_snapshot.png">
 * Bonus Question: The anomaly graph is highlighting any data points outside of the expected bounds.  The bounds are relative to the actual data observed and can be manipulated with a multiplier (in this case 2).
 
 ## Monitoring Data:
 * Create a monitor on my_metric:
-  * Link to my created monitor: https://app.datadoghq.com/monitors#4549553?group=all&live=4h
+  * Link to my created monitor: 
+    https://app.datadoghq.com/monitors#4549553?group=all&live=4h
   * No Data Email:
-    image 6
+    <img src="https://s18.postimg.org/nivlz2hqh/image.png">
   * Warning Email (metric over 500):
-    image 7
+    <img src="https://s18.postimg.org/4dscpbii1/image.png">
   * Monitor message text:
-    monitor text image
+    <img src="https://s18.postimg.org/bv1k495dl/monitor_text.png">
   * **Bonus Question:**
     * M-F Scheduled downtime link: https://app.datadoghq.com/monitors#downtime?id=304580441
     * Weekend downtime link: https://app.datadoghq.com/monitors#downtime?id=305135624
-    * Email snapshot: image 9
+    * Email snapshot: 
+      <img src="https://s18.postimg.org/q07d6c9cp/image.png">
 
 ## Collecting APM Data:
 * Dashboard with APM and Infrastructure Metrics: https://app.datadoghq.com/dash/749235/connors-timeboard-30-mar-2018-1655?live=false&page=0&is_auto=false&from_ts=1522709101868&to_ts=1522716335512&tile_size=m
-  image 11
+  <img src="https://s18.postimg.org/410yj45d5/image.png">
 * Fully instrumented Flask app:
   ```
   from flask import Flask
@@ -179,6 +183,7 @@
   if __name__ == '__main__':
       app.run()
   ```
+* curl used to power the app: curl 127.0.0.1:5000/api/trace
 * **Bonus Question:** A service is a set of processes that are designed to carry out a specific task (like a python script).  A resource is an action performed by a service like a function or query.
 
 ## Final Question:
