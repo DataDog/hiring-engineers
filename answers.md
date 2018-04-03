@@ -189,3 +189,42 @@ instances:
   - host: <host_ip>
 ```
 This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. Depending on how often the agent runs (which depends on how many integrations are enabled), a given interval could be a little longer (on the order of seconds).
+
+## Section 2: Visualizing Data
+#### Utilize the Datadog API to create a Timeboard that contains:
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+4. Include the script that you've used to create this Timemboard.
+
+Because [we've read the API docs](https://docs.datadoghq.com/api/?lang=python#timeboards), we can easily craft our own API call to create a Timeboard:
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '<my_api_key>',
+    'app_key': '<my_app_key>'
+}
+
+initialize(**options)
+
+title = "My Awesome Timeboard"
+description = "The seed of something great."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{name:dd-assessment-centos-docker}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric over time"
+}]
+
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs)
+```
+
+
+#### Once this is created, access the Dashboard from your Dashboard List in the UI, set the Timeboard's timeframe to the past 5 minutes, & take a snapshot of this graph and use the @ notation to send it to yourself. Bonus Question: What is the Anomaly graph displaying?
