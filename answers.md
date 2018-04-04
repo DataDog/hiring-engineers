@@ -173,22 +173,16 @@ Navigate to Metrics > Explorer, search for my_metric, and voila:
 ![my_metric](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my-metric.png)
 
 #### 1d. Change your check's collection interval so that it only submits the metric once every 45 seconds.
-```
-Note: I haven't gotten this working after trying to follow the docs. I also tried manually
-editing the my_metric metadata to set the value to 45 but the graph is still showing
-data points every 20 seconds.
-```
 
 To change our new custom metric's collection interval, we'll want to update our my_metric.yaml config as follows:
 
 ```
 init_config:
-    min_collection_interval: 45
-
 instances:
   - host: <host_ip>
+    min_collection_interval: 45
 ```
-This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. Depending on how often the agent runs (which depends on how many integrations are enabled), a given interval could be a little longer (on the order of seconds).
+This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. The agent runs every 15 seconds and this parameter makes the agent not collect new instance data unless data was collected for the same instance more than min_collection_interval seconds ago. This only works for values > 15, it's not possible to have the agent collect data more frequently this way. (See more details from [this answer from Datadog support](https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequency-of-an-agent-check-))
 
 ## Section 2: Visualizing Data
 #### Utilize the Datadog API to create a Timeboard that contains:
