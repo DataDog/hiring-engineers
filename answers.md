@@ -37,7 +37,7 @@ docker run -d --name dd-agent \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
   -e DD_API_KEY=<my_api_key> \
-  -e DD_TAGS=tier:database,env:test,region:us-east-2,name:dd-assessment-centos,role:database \
+  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos role:database" \
   datadog/agent:latest
 ```
 Within moments, our host tags appear in the Datadog console:
@@ -120,7 +120,7 @@ docker run -d --name dd-agent \
   -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
   -v /opt/dd-agent-conf.d:/conf.d:ro \
   -e DD_API_KEY=<your_api_key> \
-  -e DD_TAGS=tier:database,env:test,region:us-east-2,name:dd-assessment-centos-docker,role:database \
+  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
   datadog/agent:latest
 ```
 
@@ -164,7 +164,7 @@ docker run -d --name dd-agent \
   -v /opt/dd-agent-conf.d:/conf.d:ro \
   -v /opt/dd-agent-checks.d:/checks.d:ro \
   -e DD_API_KEY=<my_api_key> \
-  -e DD_TAGS=tier:database,env:test,region:us-east-2,name:dd-assessment-centos-docker,role:database \
+  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
   datadog/agent:latest
 ```
 
@@ -197,7 +197,7 @@ This sets the _minimum_ collection interval for this check to 45 seconds, but do
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 4. Include the script that you've used to create this Timemboard.
 
-Because [we've read the API docs](https://docs.datadoghq.com/api/?lang=python#timeboards), we can easily craft our own API call to create a Timeboard:
+Because [we've read the API docs on Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards), we can easily craft our own API call to create a Timeboard (see create_timeboard.py):
 ```
 from datadog import initialize, api
 
@@ -210,7 +210,8 @@ initialize(**options)
 
 title = "My Awesome Timeboard"
 description = "The seed of something great."
-graphs = [{
+graphs = [
+  {
     "definition": {
         "events": [],
         "requests": [
@@ -219,7 +220,18 @@ graphs = [{
         "viz": "timeseries"
     },
     "title": "my_metric over time"
-}]
+  },
+  {
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:postgresql.max_connections{name:dd-assessment-centos-docker}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "postgresql.max_connection anomalies"
+  }
+]
 
 api.Timeboard.create(title=title,
                      description=description,
