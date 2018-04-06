@@ -172,7 +172,7 @@ Navigate to Metrics > Explorer, search for my_metric, and voila:
 
 ![my_metric](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my-metric.png)
 
-#### 1d. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#### 1d. Change your check's collection interval so that it only submits the metric once every 45 seconds. Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 To change our new custom metric's collection interval, we'll want to update our my_metric.yaml config as follows:
 
@@ -184,53 +184,61 @@ instances:
 ```
 This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. The agent runs every 15 seconds and this parameter makes the agent not collect new instance data unless data was collected for the same instance more than min_collection_interval seconds ago. This only works for values > 15, it's not possible to have the agent collect data more frequently this way. (See more details from [this answer from Datadog support](https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequency-of-an-agent-check-))
 
+Since we changed the collection interval using the custom check's configuration file, we didn't have to modify the Python file to make this change.
+
 ## Section 2: Visualizing Data
-#### Utilize the Datadog API to create a Timeboard that contains:
+#### 2a. Utilize the Datadog API to create a Timeboard that contains:
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 4. Include the script that you've used to create this Timemboard.
 
-Because [we've read the API docs on Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards), we can easily craft our own API call to create a Timeboard (see create_timeboard.py):
+Because [we've read the API docs on Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards), we can easily craft our own API call to create a Timeboard, see create_timeboard.py for the full script.
+
+Instructions for running create_timeboard, from the project directory:
 ```
-from datadog import initialize, api
-
-options = {
-    'api_key': '<my_api_key>',
-    'app_key': '<my_app_key>'
-}
-
-initialize(**options)
-
-title = "My Awesome Timeboard"
-description = "The seed of something great."
-graphs = [
-  {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:my_metric{name:dd-assessment-centos-docker}.rollup(sum,3600)"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "my_metric over time"
-  },
-  {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "anomalies(avg:postgresql.max_connections{name:dd-assessment-centos-docker}, 'basic', 2)"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "postgresql.max_connection anomalies"
-  }
-]
-
-api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs)
+python3 -m venv create_timeboard
+source create_timeboard/bin/activate
+pip install datadog #if not already installed
+# Navigate to the same directory as create_timeboard.py and put the required secrets in a dd_secrets.py directory
+python create_timeboard.py
 ```
+(We do it this way to avoid having to put the credentials into create_timeboard.py and to utilize best practices when managing our Python dependencies)
 
+#### 2b. "Once this is created, access the Dashboard from your Dashboard List in the UI, set the Timeboard's timeframe to the past 5 minutes, & take a snapshot of this graph and use the @ notation to send it to yourself.
 
-#### Once this is created, access the Dashboard from your Dashboard List in the UI, set the Timeboard's timeframe to the past 5 minutes, & take a snapshot of this graph and use the @ notation to send it to yourself. Bonus Question: What is the Anomaly graph displaying?
+The result is our Timeboard with two graphs - one graphing `my_metric` scoped over the `dd-assessment-centos-docker` EC2 instance, with values rolled up into an hourly sum; and another graphing postgresql.percent_usage_connections on the PostgreSQL instance we setup earlier on the same host, with the anomaly function applied. Here are 5-minute and 1-hour views:
+
+![5-minute dashboard](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/5-minute-dashboard.png)
+
+![1-hour dashboard](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/1-hour-dashboard.png)
+
+I used the same `pgbench` tool earlier to simulate 90 connections over a 3-minute period, which you can see on the postgresql.percent_usage_connections graph.
+
+You can share snapshots of your views by hovering your mouse over the graph and clicking the camera icon to bring up a comment dialog, where you can @ tag your teammates and write your message. This will appear in the [Event Stream](https://docs.datadoghq.com/graphing/event_stream/).
+
+#### 2-bonus. What is the Anomaly graph displaying?"
+The anomaly function is a feature that helps users visualize when a metric is behaving differently than in the past or is in outlier territory. You'll note the red portion of the postgresql.percent_usage_connections graphs that show the number of connections at .91, which is much higher than the historical average of near zero. Datadog offers four anomaly detection algorithms: basic, agile, robust, and adaptive, see the [docs on Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more details.
+
+## Section 3: Monitoring Data
+To demonstrate setting up a metric monitor, we can easily use the Datadog console, or [we could do it programmatically using the API](https://docs.datadoghq.com/api/?lang=python#monitors). In this example, we'll use the console to setup a monitor with a warning threshold of 500 and an alerting threshold of 800. We've also configured the monitor to notify if there has been no data for 10m.
+
+![my_metric-monitor-thresholds](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-monitor-thresholds.png)
+
+So that we can get meaningful messages when we're notified, we can use the templating features to dynamically generate the message sent to us, such that the email notification will send a different message depending on whether the monitor is an Alert, Warning, or No Data state, and include the host ip and the metric value that caused the monitor to trigger:
+
+![my_metric-monitor-message](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-monitor-message.png)
+
+Here is what a Warn email notification might look like:
+
+![my_metric-notification-1](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-1.png)
+![my_metric-notification-2](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-2.png)
+
+Finally, since this metric is just a test and we want to minimize the noise coming from this alert, we'll setup two scheduled downtimes for this monitor: one that silences it from 7pm to 9am daily on M-F, and one that silences it all day on Sat-Sun.
+
+![maintenance-weekday](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekdays.png)
+![maintenance-weekend](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekend.png)
+
+Datadog will send an email notification when the downtime starts:
+
+![maintenance-email]()
