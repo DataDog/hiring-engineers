@@ -277,8 +277,9 @@ Datadog will send an email notification when the downtime starts:
 <a name="collect-apm"/>
 
 ## Section 4: Collecting APM Data
+Previously, we enabled infrastructure monitoring on the host, which we can [view in our Datadog console](https://app.datadoghq.com/dash/host/447713820?live=true&from_ts=1523223815042&to_ts=1523227415042&page=0&is_auto=false&tile_size=m)
 
-Let's setup APM on a test application by restarting our Agent container with new options, spinning up a basic application to instrument, then instrumenting it. In the Datadog console, navigate to APM to find additional setup details and the relevant docs for your application.
+In this section we'll setup Application Performance Monitoring (APM) on a test application by restarting our Agent container with new options, spinning up a basic application to instrument, then instrumenting it. In the Datadog console, navigate to APM to find additional setup details and the relevant docs for your application.
 
 #### Restarting our containerized Agent with new options
 First we restart our Agent container with some new options:
@@ -323,7 +324,7 @@ We also configure the tracker by defining:
 - Our agent's DNS name (`datadog-agent`) within our user-defined bridge network (`dd-assessment`) and
 - The port on which the Agent is listening for tracing data.
 
-We'll request the `/api/apm` and `/api/trace` resources from our web browser a few times to generate tracing data. After a minute or so, the APM Console should show tracing data from our application:
+We'll request the `/api/apm` and `/api/trace` resources from our web browser a few times to generate tracing data. After a minute or so, [the APM Console should show tracing data from our application](https://app.datadoghq.com/apm/service/my-flask-app/flask.request?start=1523054716645&end=1523227516645&env=test&paused=false):
 
 ![apm-tracing-data](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/apm-tracing-data.png)
 
