@@ -27,6 +27,7 @@ Once we give the agent a moment (typically less than one minute) to register wit
 (be sure to clear any filters being applied)
 
 ===
+
 ## Section 1: Collecting Metrics
 
 #### 1a. "Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
@@ -190,6 +191,8 @@ This sets the _minimum_ collection interval for this check to 45 seconds, but do
 
 Since we changed the collection interval using the custom check's configuration file, we didn't have to modify the Python file to make this change.
 
+===
+
 ## Section 2: Visualizing Data
 #### 2a. Utilize the Datadog API to create a Timeboard that contains:
 1. Your custom metric scoped over your host.
@@ -224,6 +227,8 @@ You can share snapshots of your views by hovering your mouse over the graph and 
 #### 2-bonus. What is the Anomaly graph displaying?"
 The anomaly function is a feature that helps users visualize when a metric's value is an outlier to historical results. You'll note the red portion of the postgresql.percent_usage_connections graphs that show the number of connections at .91, which is much higher than the historical average of near zero. Datadog offers four anomaly detection algorithms: basic, agile, robust, and adaptive, see the [docs on Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more details.
 
+===
+
 ## Section 3: Monitoring Data
 To demonstrate setting up a metric monitor, we can easily use the Datadog console, or [we could do it programmatically using the API](https://docs.datadoghq.com/api/?lang=python#monitors). In this example, we'll use the console to setup a monitor with a warning threshold of 500 and an alerting threshold of 800. We've also configured the monitor to notify if there has been no data for 10m.
 
@@ -249,6 +254,8 @@ We'll setup another downtime for all day on Sat-Sun:
 Datadog will send an email notification when the downtime starts:
 
 ![maintenance-email](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-downtime-notification.png)
+
+===
 
 ## Section 4: Collecting APM Data
 
@@ -300,4 +307,13 @@ We'll hit the `/api/apm` and `/api/trace` endpoints in our web browser a number 
 
 ![apm-tracing-data](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/apm-tracing-data.png)
 
+
+===
+
 ## Final Question: Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+
+I've been working on a system to track my habit data and visualize my progress by leveraging the usage data from a habit tracking mobile app (I write about it in more detail on [Medium](https://medium.com/@kahdojay)).
+
+Currently I aggregate historical data and view a top down view of my current performance stats in a spreadsheet. Once data collection is properly automated, I'd turn my attention to visualizing the data and allowing it to be queried more effectively, which would be a great use case for Datadog.
+
+Once the overall system is mature, I'd then work on making something others could use. Perhaps there'd be a templated Screenboard or Timeboard that the user could spin up that's pre-configured to show the proper tags. I'd also provide an API for habit data upload, that would also support the top habit tracking apps, that can tag all the data automatically.
