@@ -84,20 +84,21 @@ systemctl start postgresql-10
 #Configure postgres to start automatically on OS boot
 systemctl enable postgresql-10
 ```
-You should now be able to become the `postgres` linux user (assuming you have privileged access) and access your postgres instance with the command `psql`.
+We then become the `postgres` linux user and access postgres with the `psql` command.
 
-Next, let's configure postgres to be reachable by our dd-agent container by creating a datadog postgres user and configuring postgres network settings. In the Datadog web console, navigate on the left to Integrations > Integrations and install the PostgreSQL integration and navigate to the Configuration tab. Follow the steps to create a read-only datadog postgres user:
+Next, we configure postgres to be reachable by our dd-agent container by creating a datadog postgres user and configuring postgres network settings. In the Datadog web console, navigate on the left to Integrations > Integrations and install the PostgreSQL integration and navigate to the Configuration tab. Follow the steps to create a read-only datadog postgres user:
 
 ```
 create user datadog with password '<machine_generated_password>';
 grant SELECT ON pg_stat_database to datadog;
 ```
 
-However, the check provided (`psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"`) won't work since our agent is running within a container, so we'll need to update postgres' host-based authentication configuration in ~postgres/10/data/pg_hba.conf. Because our dd-agent container could be provisioned with a range of private IP's, we'll need to allow that range to access our postgres instance by adding this line to the bottom of the file:
+However, the check provided (`psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);"`) won't work since our agent is running within a container, so we'll need to update postgres' host-based authentication configuration in `~postgres/10/data/pg_hba.conf`. Because our dd-agent container could be provisioned with a range of private IP's, we'll need to allow that range to access our postgres instance by adding these lines to the bottom of the file:
 
 ```
 # Connections from dd-agent containers
 host    all             datadog         172.17.0.0/16           md5
+host    all             datadog         ::1/128                 md5
 ```
 This allows inbound postgres connections from the 172.17.0.0/16 space (the subnet Docker uses by default) connecting as the datadog user authenticating with user/pass credentials.
 
@@ -299,6 +300,7 @@ docker run -d --name datadog-agent \
               -e DD_APM_ENABLED=true \
               datadog/agent:latest
 ```
+(Note that we'll have to update our postgresql configuration to allow inbound connections from datadog from a new IP range since the Agent container will no longer use the default network).
 
 #### Spinning up a basic application (with Docker)
 Next we stand up and run a minimal Flask app with uWGI and Nginx (see Dockerfile for details), starting it as follows:
