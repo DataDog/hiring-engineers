@@ -255,9 +255,10 @@ Datadog will send an email notification when the downtime starts:
 Let's setup APM on a test application by restarting our Agent container with new options, spinning up a basic application to instrument, then instrumenting it. In the Datadog console, navigate to APM to find additional setup details and the relevant docs for your application.
 
 #### Restarting our containerized Agent with new options
+First we restart our Agent container with some new options:
 - `DD_APM_ENABLED=true`
 - a user-defined bridge network `dd-assessment` for our container (to allow the agent to send tracing data by DNS name), and
-- setting the Agent's hostname to `datadog-agent`:
+- setting the Agent's hostname to `datadog-agent`\
 
 ```
 docker run -d --name datadog-agent \
@@ -275,7 +276,7 @@ docker run -d --name datadog-agent \
 ```
 
 #### Spinning up a basic application (with Docker)
-In this example, running a minimal Flask app with uWGI and Nginx (see Dockerfile for details), starting it (on the same host where the Agent container is running) as follows:
+Next we stand up and run a minimal Flask app with uWGI and Nginx (see Dockerfile for details), starting it as follows:
 
 ```
 docker build -t flaskapp .
@@ -285,11 +286,18 @@ docker run -d --name flaskapp \
               flaskapp
 ```
 
-We can now use the EC2 instance's public link to confirm the application is running: ec2-18-219-253-145.us-east-2.compute.amazonaws.com
+Note that we're also running this container on the `dd-assessment` network.
+
+We can now use the EC2 instance's public link to confirm the application is running. Here's mine: ec2-18-219-253-145.us-east-2.compute.amazonaws.com
 
 #### Instrumenting our application
-By providing to the tracer (a) our agent's DNS name (`datadog-agent`) within our user-defined bridge network (`dd-assessment`) and (b) the port it is listening for tracing data (see app/main.py). We'll visit the `/api/apm` and `/api/trace` endpoints a number of times to generate tracing data.
+Finally we'll instrument our new Flask app by manually inserting `TraceMiddleware` in main.py.
+We also configure the tracker by defining:
+- Our agent's DNS name (`datadog-agent`) within our user-defined bridge network (`dd-assessment`) and
+- The port on which the Agent is listening for tracing data.
 
-After a minute or so, the APM Console should now show tracing data from our application:
+We'll hit the `/api/apm` and `/api/trace` endpoints in our web browser a number of times to generate tracing data. After a minute or so, the APM Console should now show tracing data from our application:
 
 ![apm-tracing-data](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/apm-tracing-data.png)
+
+## Final Question: Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
