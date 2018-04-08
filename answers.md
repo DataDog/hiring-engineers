@@ -9,10 +9,10 @@ https://docs.docker.com/install/linux/docker-ce/centos/
 We using the docker-dd-agent docker image to build and run our container image on our EC2 host using the API key for our newly created Datadog account. The New Agent workflow in Datadog gives us the easy one-step install command required for Docker to work:
 ```
 docker run -d --name dd-agent \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -e DD_API_KEY=<my_api_key> \
-    datadog/agent:latest
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -e DD_API_KEY=<my_api_key> \
+                datadog/agent:latest
 ```
 In short, we've pulled down the latest image from the Docker Hub registry, then ran it while bind mounting three locations on the EC2 host as read-only volumes on the container that are required by the Datadog Agent to collect and process system data. You can learn more about Docker volumes and those special Linux locations here:
 - [Docker Volumes documentation](https://docs.docker.com/storage/volumes/)
@@ -34,11 +34,11 @@ Once we give the agent a moment (typically less than one minute) to register wit
 There are a number of ways to tag a host in Datadog, and in this case, we want to update the Agent config file. However, instead of logging into the container and manually changing datadog.conf, we can effect these settings by setting environment variables as part of our Docker Run command:
 ```
 docker run -d --name dd-agent \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -e DD_API_KEY=<my_api_key> \
-  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos role:database" \
-  datadog/agent:latest
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -e DD_API_KEY=<my_api_key> \
+              -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos role:database" \
+              datadog/agent:latest
 ```
 Within moments, our host tags appear in the Datadog console:
 ![Host Tags](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/host-tags.png)
@@ -115,13 +115,13 @@ We can now kill and remove our existing container (`docker kill`, `docker rm`) a
 
 ```
 docker run -d --name dd-agent \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -v /proc/:/host/proc/:ro \
-  -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -v /opt/dd-agent-conf.d:/conf.d:ro \
-  -e DD_API_KEY=<your_api_key> \
-  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
-  datadog/agent:latest
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -v /opt/dd-agent-conf.d:/conf.d:ro \
+              -e DD_API_KEY=<your_api_key> \
+              -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
+              datadog/agent:latest
 ```
 
 ![PostgreSQL data!](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/dashboard-postgres.png)
@@ -162,14 +162,14 @@ class MyMetricCheck(AgentCheck):
 After killing and removing our dd-agent container, we can perform `docker run` with our updated command to make our custom checks available to the new agent:
 ```
 docker run -d --name dd-agent \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -v /proc/:/host/proc/:ro \
-  -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -v /opt/dd-agent-conf.d:/conf.d:ro \
-  -v /opt/dd-agent-checks.d:/checks.d:ro \
-  -e DD_API_KEY=<my_api_key> \
-  -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
-  datadog/agent:latest
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -v /opt/dd-agent-conf.d:/conf.d:ro \
+              -v /opt/dd-agent-checks.d:/checks.d:ro \
+              -e DD_API_KEY=<my_api_key> \
+              -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
+              datadog/agent:latest
 ```
 
 Navigate to Metrics > Explorer, search for my_metric, and voila:
@@ -249,3 +249,47 @@ We'll setup another downtime for all day on Sat-Sun:
 Datadog will send an email notification when the downtime starts:
 
 ![maintenance-email](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-downtime-notification.png)
+
+## Section 4: Collecting APM Data
+
+Let's setup APM on a test application by restarting our Agent container with new options, spinning up a basic application to instrument, then instrumenting it. In the Datadog console, navigate to APM to find additional setup details and the relevant docs for your application.
+
+#### Restarting our containerized Agent with new options
+- `DD_APM_ENABLED=true`
+- a user-defined bridge network `dd-assessment` for our container (to allow the agent to send tracing data by DNS name), and
+- setting the Agent's hostname to `datadog-agent`:
+
+```
+docker run -d --name datadog-agent \
+              -h datadog-agent \
+              --network="dd-assessment" \
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -v /opt/dd-agent-conf.d:/conf.d:ro \
+              -v /opt/dd-agent-checks.d:/checks.d:ro \
+              -e DD_API_KEY=<my_api_key> \
+              -e DD_TAGS="tier:database env:test region:us-east-2 name:dd-assessment-centos-docker role:database" \
+              -e DD_APM_ENABLED=true \
+              datadog/agent:latest
+```
+
+#### Spinning up a basic application (with Docker)
+In this example, running a minimal Flask app with uWGI and Nginx (see Dockerfile for details), starting it (on the same host where the Agent container is running) as follows:
+
+```
+docker build -t flaskapp .
+docker run -d --name flaskapp \
+              --network="dd-assessment" \
+              -p 80:80 \
+              flaskapp
+```
+
+We can now use the EC2 instance's public link to confirm the application is running: ec2-18-219-253-145.us-east-2.compute.amazonaws.com
+
+#### Instrumenting our application
+By providing to the tracer (a) our agent's DNS name (`datadog-agent`) within our user-defined bridge network (`dd-assessment`) and (b) the port it is listening for tracing data (see app/main.py). We'll visit the `/api/apm` and `/api/trace` endpoints a number of times to generate tracing data.
+
+After a minute or so, the APM Console should now show tracing data from our application:
+
+![apm-tracing-data](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/apm-tracing-data.png)
