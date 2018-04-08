@@ -173,7 +173,7 @@ class MyMetricCheck(AgentCheck):
         self.gauge('my_metric', randint(0,1000))
 ```
 
-After killing and removing our dd-agent container, we can perform `docker run` with our updated command to make our custom checks available to the new agent:
+After killing and removing our dd-agent container, we can perform `docker run` with our updated command to make our custom checks available to the new agent by mounting it to /checks.d/:
 ```
 docker run -d --name dd-agent \
               -v /var/run/docker.sock:/var/run/docker.sock:ro \
@@ -200,7 +200,7 @@ instances:
   - host: <host_ip>
     min_collection_interval: 45
 ```
-This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. The agent runs every 15 seconds and this parameter makes the agent not collect new instance data unless data was collected for the same instance more than min_collection_interval seconds ago. This only works for values > 15, it's not possible to have the agent collect data more frequently this way. (See more details from [this answer from Datadog support](https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequency-of-an-agent-check-))
+This sets the _minimum_ collection interval for this check to 45 seconds, but doesn't guarantee that it will be exactly 45s each time. The agent runs every 15 seconds and this parameter makes the agent not collect new instance data unless data was collected for the same instance more than min_collection_interval seconds ago. This only works for values > 15 (see more details from the [Datadog support page](https://help.datadoghq.com/hc/en-us/articles/203557899-How-do-I-change-the-frequency-of-an-agent-check-))
 
 Since we changed the collection interval using the custom check's configuration file, we didn't have to modify the Python file to make this change.
 
@@ -260,11 +260,11 @@ Here is what a Warn email notification might look like:
 ![my_metric-notification-1](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-1.png)
 ![my_metric-notification-2](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-2.png)
 
-Finally, since this metric is just a test and we want to minimize the noise coming from this alert, we'll setup two scheduled downtimes for this monitor: one that silences it from 7pm to 9am daily on M-F:
+Finally, since this metric is just a test and we want to minimize the noise coming from this alert, we'll setup two scheduled downtimes for this monitor. The first will silences it from 7pm to 9am daily on M-F:
 
 ![maintenance-weekday](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekdays.png)
 
-We'll setup another downtime for all day on Sat-Sun:
+The second downtime will cover all weekend Sat-Sun:
 
 ![maintenance-weekend](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekend.png)
 
@@ -300,7 +300,7 @@ docker run -d --name datadog-agent \
               -e DD_APM_ENABLED=true \
               datadog/agent:latest
 ```
-(Note that we'll have to update our postgresql configuration to allow inbound connections from datadog from a new IP range since the Agent container will no longer use the default network).
+(Note that we'll have to update our postgresql configuration from before to allow inbound connections from datadog from a new IP range since the Agent container will no longer use the default network).
 
 #### Spinning up a basic application (with Docker)
 Next we stand up and run a minimal Flask app with uWGI and Nginx (see Dockerfile for details), starting it as follows:
@@ -318,12 +318,12 @@ Note that we're also running this container on the `dd-assessment` network.
 We can now use the EC2 instance's public link to confirm the application is running. Here's mine: ec2-18-219-253-145.us-east-2.compute.amazonaws.com
 
 #### Instrumenting our application
-Finally we'll instrument our new Flask app by manually inserting `TraceMiddleware` in main.py.
+Finally we'll instrument our new Flask app by manually inserting `TraceMiddleware` in `main.py`.
 We also configure the tracker by defining:
 - Our agent's DNS name (`datadog-agent`) within our user-defined bridge network (`dd-assessment`) and
 - The port on which the Agent is listening for tracing data.
 
-We'll hit the `/api/apm` and `/api/trace` endpoints in our web browser a number of times to generate tracing data. After a minute or so, the APM Console should now show tracing data from our application:
+We'll request the `/api/apm` and `/api/trace` resources from our web browser a few times to generate tracing data. After a minute or so, the APM Console should show tracing data from our application:
 
 ![apm-tracing-data](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/apm-tracing-data.png)
 
@@ -338,10 +338,10 @@ See the [Datadog docs on this topic](https://help.datadoghq.com/hc/en-us/article
 
 <a name="get-creative"/>
 
-## Final Question: Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+## Final Question: Datadog has been used in a lot of creative ways in the past... Is there anything creative you would use Datadog for?
 
-I've been working on a system to track my habit data and visualize my progress by leveraging the usage data from a habit tracking mobile app (I write about it in more detail on [Medium](https://medium.com/@kahdojay/collect-measure-and-analyze-your-habit-data-aea81c69630c)).
+I've been working on a system to track my habit data and visualize my progress by leveraging the usage data from a habit tracking mobile app ([I wrote about it in detail on my Medium page](https://medium.com/@kahdojay/collect-measure-and-analyze-your-habit-data-aea81c69630c)).
 
-Currently I aggregate historical data which allows me to see a top down view of my current performance stats in a spreadsheet. Once data collection is properly automated, I'd turn my attention to visualizing the data and allowing it to be queried more effectively, which would be a great use case for Datadog.
+Currently, I aggregate historical data which allows me to see a top down view of my current performance stats in a spreadsheet. Once data collection is properly automated, I'd turn my attention to visualizing the data and allowing it to be queried more effectively, which would be a great use case for Datadog.
 
 Once the overall system is mature, I'd then work on making something others could use. Perhaps there'd be a templated Screenboard or Timeboard that the user could spin up that's pre-configured to show the proper tags. I'd also provide an API for more seamless habit data upload, that would also support the top habit tracking apps, that can tag all the data automatically.
