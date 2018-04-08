@@ -8,7 +8,7 @@ options = {
 
 initialize(**options)
 
-title = "My Awesome Timeboard2"
+title = "My Awesome Timeboard"
 description = "The seed of something great."
 graphs = [
   {
