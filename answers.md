@@ -124,9 +124,13 @@ docker run -d --name dd-agent \
   datadog/agent:latest
 ```
 
-Phew! Go grab a drink and break for a few minutes. When you're back, you should be able to see PostgreSQL data by checking out one of the Postgres dashboards in Dashboards > Dashboard List. (You can generate load on your postgres like I did by using the [pgbench utility](https://www.postgresql.org/docs/10/static/pgbench.html), ex: `/usr/pgsql-10/bin/pgbench -c 50 -P 3 -T 300`):
-
 ![PostgreSQL data!](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/dashboard-postgres.png)
+
+_(Here I ran into some issues getting the containerized agent to reach postgres running on the
+container host in order to get the integration to work completely. I was able to graph_ `postgresql.max_connection` _—see Timeboard creation below—but the provided PostgreSQL dashboards wouldn't show any data except max connections in use %. I did find the postgres error in the agent logs, but
+after spending some time reading documentation and doing some online research I opted to
+continue on so I could finish within a reasonable time.)_
+
 
 #### 1c. "Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000."
 In this section we're going to create a custom Agent Check to demonstrate how we might collect metrics from our custom applications. We can simply follow the [documentation on Writing an Agent Check](https://docs.datadoghq.com/agent/agent_checks/):
@@ -218,7 +222,7 @@ I used the same `pgbench` tool earlier to simulate 90 connections over a 3-minut
 You can share snapshots of your views by hovering your mouse over the graph and clicking the camera icon to bring up a comment dialog, where you can @ tag your teammates and write your message. This will appear in the [Event Stream](https://docs.datadoghq.com/graphing/event_stream/).
 
 #### 2-bonus. What is the Anomaly graph displaying?"
-The anomaly function is a feature that helps users visualize when a metric is behaving differently than in the past or is in outlier territory. You'll note the red portion of the postgresql.percent_usage_connections graphs that show the number of connections at .91, which is much higher than the historical average of near zero. Datadog offers four anomaly detection algorithms: basic, agile, robust, and adaptive, see the [docs on Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more details.
+The anomaly function is a feature that helps users visualize when a metric's value is an outlier to historical results. You'll note the red portion of the postgresql.percent_usage_connections graphs that show the number of connections at .91, which is much higher than the historical average of near zero. Datadog offers four anomaly detection algorithms: basic, agile, robust, and adaptive, see the [docs on Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more details.
 
 ## Section 3: Monitoring Data
 To demonstrate setting up a metric monitor, we can easily use the Datadog console, or [we could do it programmatically using the API](https://docs.datadoghq.com/api/?lang=python#monitors). In this example, we'll use the console to setup a monitor with a warning threshold of 500 and an alerting threshold of 800. We've also configured the monitor to notify if there has been no data for 10m.
@@ -234,11 +238,14 @@ Here is what a Warn email notification might look like:
 ![my_metric-notification-1](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-1.png)
 ![my_metric-notification-2](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-notification-2.png)
 
-Finally, since this metric is just a test and we want to minimize the noise coming from this alert, we'll setup two scheduled downtimes for this monitor: one that silences it from 7pm to 9am daily on M-F, and one that silences it all day on Sat-Sun.
+Finally, since this metric is just a test and we want to minimize the noise coming from this alert, we'll setup two scheduled downtimes for this monitor: one that silences it from 7pm to 9am daily on M-F:
 
 ![maintenance-weekday](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekdays.png)
+
+We'll setup another downtime for all day on Sat-Sun:
+
 ![maintenance-weekend](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/downtime-weekend.png)
 
 Datadog will send an email notification when the downtime starts:
 
-![maintenance-email]()
+![maintenance-email](https://s3.us-east-2.amazonaws.com/dd-assessment-djkahn/my_metric-downtime-notification.png)
