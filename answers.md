@@ -1,3 +1,6 @@
+Mike Laning
+Sales Engineer - Hiring Exercise
+
 ## Collecting Metrics:
 * To add tags, I added the following tagsto my /etc/datadog-agent/datadog.yaml file in my Vagrant Ubuntu
     ```
