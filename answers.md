@@ -253,6 +253,7 @@ https://app.datadoghq.com/infrastructure/map?host=452467528&fillby=avg%3Acpuutil
 
     Here is a view of a dashboard containing APM and Infrastructure metrics:
     <img src="https://s7.postimg.cc/6x98bs5uz/Screen_Shot_2018-04-15_at_9.42.29_PM.png">
+     https://app.datadoghq.com/dash/786381/my-timeboard?live=true&page=0&is_auto=false&from_ts=1523847950461&to_ts=1523851550461&tile_size=m
 
 
 * **Bonus Question**: Services act as a set of processes that make up the necessary components to fulfill specific tasks. Resources are the particular actions that are used within the services, such as a query or function.
