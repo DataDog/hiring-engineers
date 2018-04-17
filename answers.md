@@ -621,6 +621,17 @@ That's the resulting dashboard
 
 ![](assets/markdown-img-paste-20180415225819580.png)
 
+```
+<iframe src="https://app.datadoghq.com/graph/embed?token=544d1a20ac48f58222f4c228698b3d29bdf03a100d52df97bb483c952f1d3dc1&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+```
+
+```
+<iframe src="https://app.datadoghq.com/graph/embed?token=1f229e7949b11bcdbcb33c6b000eb3bf786316d31f1a8c25f1ba0023e7edd2b3&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+```
+```
+<iframe src="https://app.datadoghq.com/graph/embed?token=e406f2a770e4bc6d018976a5361559d8f4bbfa4a46c57606813662f0568c7e76&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+```
+
 ##### Bonus Question: What is the difference between a Service and a Resource?
 
 - A process running provide a Service, i.e. a webserver or a Database
