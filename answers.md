@@ -4,7 +4,7 @@ https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md
 
 # Environment Setup
 
-To complete this challenge I'm using a laptop with running on Mac OS 10.12 Sierra.
+To complete this challenge I'm using a laptop running on Mac OS 10.12 Sierra.
 
 We need to:
 - Install *Virtualbox* (to manage Virtual Machines),
@@ -44,7 +44,9 @@ THe solution is simple then (and it's even explained in the following line) Let'
 
 Run it again now:
 
-`vagrant@precise64:~$ DD_API_KEY=ff3c5f106b1e280f6be82c1e535a5dea bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
+```
+vagrant@precise64:~$ DD_API_KEY=ff3c5f106b1e280f6be82c1e535a5dea bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
 
 
 wait for the installation to finish and for the agent to connect to the DataDog server.
@@ -116,7 +118,7 @@ Follow the instructions in the config page:
 
 ![](assets/markdown-img-paste-20180414172157890.png)
 
-I had to make some small modification to the script to run the it as the DB user root ( `-uroot`) and ask for password (`-p`)
+I had to make some small modification to the script to run as the DB user root ( `-uroot`) and ask for password (`-p`)
 
 ```
 vagrant@precise64:~$ sudo mysql -uroot -p -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '6NdoTrXndcwJUlR5g[KOjUQj';"
@@ -145,7 +147,7 @@ Now we need to install the mysql agent:
 From the instruction on the next DataDog page:
 ![](assets/markdown-img-paste-20180414172821600.png)
 
-Let's first copy the conf.yaml.example file into the conf.d folder (and rename it=)
+Let's first copy the conf.yaml.example file into the conf.d folder (and rename it)
 
 ```
 vagrant@precise64:~$ sudo cp /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example /etc/datadog-agent/conf.d/mysql.yaml
@@ -159,6 +161,8 @@ After
 
 ![](assets/markdown-img-paste-20180414173217438.png)
 
+
+that's the code:
 
 ```
 init_config:
@@ -223,7 +227,7 @@ instances:
    ```
 
 
-And then the custom check code(make sure to use the same name):
+And then the custom check code(make sure to use the same file name):
 `/etc/datadog-agent/checks.d/mycheck.py`
 
  ![](assets/markdown-img-paste-20180414210937130.png)
@@ -471,7 +475,7 @@ From the Datadog GUI go into Monitor and then create new metric:
 - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-  - To show the host name and ip you need to select the host in the `from` field
+  - To show the host name and ip you need to select the host the `from` field
   ![](assets/markdown-img-paste-20180417114632354.png)
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
