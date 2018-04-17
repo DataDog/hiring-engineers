@@ -382,6 +382,8 @@ You’ll find your trace data available in the APM section and as metrics for da
 You’re now set up to create rich, insightful dashboards to monitor both your applications and infrastructure.  Here’s a sample dashboard which pulls together metrics from each component configured in this guide (Ubuntu systems, MongoDB instances, and a Flask application):
 <img src="https://i.imgur.com/IRkcXrC.png">
 
+https://app.datadoghq.com/dash/749235/connors-timeboard-30-mar-2018-1655?live=false&page=0&is_auto=false&from_ts=1522709101000&to_ts=1522716335000&tile_size=m
+
 ## 5. Conclusion
 I hope that by completing this guide you are feeling much more comfortable with the Datadog product.  We’ve only just scratched the surface of Datadog’s offerings, so please continue to explore the vast amount of integrations available and reach out if you have any questions or issues.  I look forward to speaking with you soon.
 
