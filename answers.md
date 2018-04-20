@@ -44,6 +44,7 @@ After restarting the Datadog agent, the tags will show up in the GUI.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Host%20map%20with%20tags.png)
 
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
 
 To install MySQL, execute the following command:
@@ -84,6 +85,7 @@ Once the file has been modified and saved, restart the Datadog agent. To verify 
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/MySQL%20integration%20check.png)
 
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
 To create a custom Agent check, create and edit a mycheck.yaml file in the /etc/datadog-agent/conf.d/ folder.
@@ -106,4 +108,10 @@ To verify that the custom check is working, issue the following command:
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Custom%20agent%20check.png)
 
+In a few minutes the new custom check will start appearing in the Metrics Explorer page of the Datadog GUI.
 
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Metrics%20Explorer%20showing%20test%20metric.png)
+
+
+
+* Change your check's collection interval so that it only submits the metric once every 45 seconds
