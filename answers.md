@@ -69,7 +69,7 @@ To verify that the grants were successfully completed, follow the instructions o
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Check%20MySQL%20Permissions.png)
 
-When the grant verification process has been completed, we are now ready to continue configuring the Datadog MySQL integration. The next step is to edit the mysql.yaml file. An example file can be found at /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example. We will copy this file into a new directory and edit it.
+When the grant verification process has been completed, you are ready to continue configuring the Datadog MySQL integration. The next step is to edit the mysql.yaml file. An example file can be found at /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example. Copy this file into a new directory and edit it.
 
 `sudo cp /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example /etc/datadog-agent/conf.d/mysql.yaml`
 `sudo nano /etc/datadog-agent/conf.d/mysql.yaml`
@@ -83,5 +83,27 @@ Once the file has been modified and saved, restart the Datadog agent. To verify 
 `Sudo datadog-agent status`
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/MySQL%20integration%20check.png)
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+
+To create a custom Agent check, create and edit a mycheck.yaml file in the /etc/datadog-agent/conf.d/ folder.
+
+`sudo touch /etc/datadog-agent/conf.d/mycheck.yaml`
+`sudo nano /etc/datadog-agent/conf.d/mycheck.yaml`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Edit%20mycheck%20yaml%20file.png)
+
+Next create and edit mycheck.py file in the /etc/datadog-agent/checks.d/ folder.
+
+`sudo touch /etc/datadog-agent/checks.d/mycheck.py`
+`sudo nano /etc/datadog-agent/checks.d/mycheck.py`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Edit%20mycheck%20py%20file.png)
+
+To verify that the custom check is working, issue the following command:
+
+`sudo datatog-agent check mycheck`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Custom%20agent%20check.png)
 
 
