@@ -115,3 +115,11 @@ In a few minutes the new custom check will start appearing in the Metrics Explor
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds
+
+To make this change, the mycheck.yaml file will need to be updated. The min_collection_interval will need to change from 15 to 45.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Change%20mycheck%20yaml%20collection%20time.png)
+
+
+* Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+
