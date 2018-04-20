@@ -7,7 +7,8 @@ https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md
 Items used to complete this exercise:
 - Macbook Pro
 - *Vagrant*
-- *Virtualenv*
-- Ubuntu 
+- *Virtualbox*
+- *Ubuntu Trusty 64*
+- *Various Linux utilities*
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Vagrant%20install%20Ubuntu.png)
