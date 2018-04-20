@@ -11,5 +11,4 @@ We need to:
 - Install *vagrant* (a tool to quickly install a virtual machines)
 - Install Ubuntu with vagrant (see below)
 
-![Screenshot](hiring engineers/Vagrant install Ubuntu.png)
-
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Vagrant%20install%20Ubuntu.png)
