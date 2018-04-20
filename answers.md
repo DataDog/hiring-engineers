@@ -43,3 +43,24 @@ After restarting the Datadog agent, the tags will show up in the GUI.
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Restart%20dd%20agent%20after%20tags%20inserted.png)
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Host%20map%20with%20tags.png)
+
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
+
+To install MySQL, execute the following command:
+
+`sudo apt-get install mysql-server`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20MySQL.png)
+
+Once MySQL has been installed, a Datadog user account, password and permissions must be created. 
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/DD%20MySQL%20Integration%20Commands.png)
+
+Be sure to include the -p flag when running the commands shown on the Integration page, or you will get an error stating "Access denied for user 'root'@'localhost' (using password: No)".
+
+`sudo mysql -p -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'dYDtGrBz8Dmx/BbXrFctnkV2';"`
+`sudo mysql -p -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"`
+`sudo mysql -p -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"`
+`sudo mysql -p -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20MySQL%20Integration.png)
