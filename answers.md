@@ -45,7 +45,7 @@ After restarting the Datadog agent, the tags will show up in the GUI.
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Host%20map%20with%20tags.png)
 
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
+### * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
 
 To install MySQL, execute the following command:
 
@@ -86,7 +86,7 @@ Once the file has been modified and saved, restart the Datadog agent. To verify 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/MySQL%20integration%20check.png)
 
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+### * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
 To create a custom Agent check, create and edit a mycheck.yaml file in the /etc/datadog-agent/conf.d/ folder.
 
@@ -114,12 +114,12 @@ In a few minutes the new custom check will start appearing in the Metrics Explor
 
 
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds
+### * Change your check's collection interval so that it only submits the metric once every 45 seconds
 
 To make this change, the mycheck.yaml file will need to be updated. The min_collection_interval will need to change from 15 to 45.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Change%20mycheck%20yaml%20collection%20time.png)
 
 
-* Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+### * Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
