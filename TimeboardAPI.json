@@ -1,0 +1,61 @@
+{
+      "graphs" : [{
+          "title": "Average Random Number",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:random_number{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+      {
+          "title": "Anomaly Detection for Random Number",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:random_number{host:Tre-PC}, 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+          {
+          "title": "Anomaly Detection for Postgres BGwriter",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}.as_count(), 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+          {
+          "title": "Rollup of Random Number over last hour",
+          "definition": {
+              "events": [],
+              "requests": [
+				    {
+				      "q": "avg:random_number{*}.rollup(sum, 3600)",
+				      "type": null,
+				      "style": {
+				        "palette": "dog_classic",
+				        "type": "solid",
+				        "width": "normal"
+				      },
+				      "conditional_formats": [],
+				      "aggregator": "sum"
+				    }
+              ],
+              "viz": "query_value"
+          }
+          
+      }],
+      "title" : "Sellari API Timeboard",
+      "description" : "A timeboard created using the API",
+      "template_variables": [{
+          "name": "hosst",
+          "prefix": "host",
+          "default": "host:Tre-PC"
+      }],
+      "read_only": "True"
+    }
