@@ -1,14 +1,13 @@
 # Datadog Solutions Engineer Exercise
-This document will run through the DataDog hiring challenge described here:
+The responses to all questions in this exercise are based off of the original document:
 https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md
 
-# Environment Setup
+# Prerequisites - Setup the environment
 
-To complete this challenge I'm using a laptop running on Mac OS 10.12 Sierra.
-
-We need to:
-- Install *Virtualbox* (to manage Virtual Machines),
-- Install *vagrant* (a tool to quickly install a virtual machines)
-- Install Ubuntu with vagrant (see below)
+Items used to complete this exercise:
+- Macbook Pro
+- *Vagrant*
+- *Virtualenv*
+- Ubuntu 
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Vagrant%20install%20Ubuntu.png)
