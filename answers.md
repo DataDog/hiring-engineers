@@ -1,3 +1,6 @@
+<b> For full answers, thoughts, screenshots from exercise please see Answers.docx</b>
+
+
 <b>Changing collection interval and Bonus Question:</b>
 The bonus question asked if there was a way to change the collection interval without modifying the Python check file. Which according to the latest documentation, https://docs.datadoghq.com/agent/agent_checks/, you are supposed to change the yaml file by adding in the min_collection_interval under the instance.
 
