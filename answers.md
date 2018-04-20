@@ -38,3 +38,8 @@ Look for the section in the file that starts with “Set the host’s tags (opti
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Edit%20datadog.yaml%20to%20input%20tags.png)
 
+After restarting the Datadog agent, the tags will show up in the GUI.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Restart%20dd%20agent%20after%20tags%20inserted.png)
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Host%20map%20with%20tags.png)
