@@ -64,3 +64,24 @@ Be sure to include the -p flag when running the commands shown on the Integratio
 `sudo mysql -p -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"`
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20MySQL%20Integration.png)
+
+To verify that the grants were successfully completed, follow the instructions on the Integration page.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Check%20MySQL%20Permissions.png)
+
+When the grant verification process has been completed, we are now ready to continue configuring the Datadog MySQL integration. The next step is to edit the mysql.yaml file. An example file can be found at /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example. We will copy this file into a new directory and edit it.
+
+`sudo cp /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example /etc/datadog-agent/conf.d/mysql.yaml`
+`sudo nano /etc/datadog-agent/conf.d/mysql.yaml`
+
+Scroll down to the entry below and remove the comment marks from the following lines. You will need to include the password provided from the MySQL integration page.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Edited%20mysql.yaml%20file.png)
+
+Once the file has been modified and saved, restart the Datadog agent. To verify that that the MySQL check is running, issue the following command and look for the heading "mysql":
+
+`Sudo datadog-agent status`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/MySQL%20integration%20check.png)
+
+
