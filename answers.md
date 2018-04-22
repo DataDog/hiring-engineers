@@ -261,3 +261,28 @@ Below are two examples of emails that were generated because of events that trig
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Email%20notification%20for%20no%20data.png)
 
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* One that silences it from 7pm to 9am daily on M-F
+* And one that silences it all day on Sat-Sun
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
+
+Two separate downtime events were created by going to Monitors -> Manage Downtime -> Schedule Downtime
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Manage%20downtime%20dashboard.png)
+
+The first downtime event is to suppress notifications Monday through Friday, 7pm to 9am.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20M-F.png)
+
+The email notification of the scheduled down time for Monday through Friday, 7pm to 9am is below.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20M-F%20Email%20notification.png)
+
+The second downtime event is to suppress notifications all day on Saturday and Sunday.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20Sat-Sun.png)
+
+The email notification of the scheduled down on Saturday and Sunday is below.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20Sat-Sun%20Email%20notification.png)
+
