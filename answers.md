@@ -123,3 +123,16 @@ To make this change, the mycheck.yaml file will need to be updated. The min_coll
 
 ### * Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
+Yes, in this instance it it can be accomplished by modifying the mycheck.yaml file. Adding a section to the file entitled "min_collection_interval" will allow you to modify the default frequency of the check. 15 seconds is the minimum supported interval check by the agent.
+
+
+# Visualizing Data:
+
+Utilize the Datadog API to create a Timeboard that contains:
+
+### * Your custom metric scoped over your host
+
+Before you can create a custom metric using the Datadog API, you need to retrieve a couple of API keys. These can by obtained by going to the Integrations -> API section of the Datadog GUI. 
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/API%20Keys.png)
+
