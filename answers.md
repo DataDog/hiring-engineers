@@ -387,7 +387,7 @@ Now that the flask app is ready to be run, the Datadog API agent needs to be ins
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20DD%20APM%20agent.png)
 
-Once the APM agent has been installed, the Flask application can be run by running the following command:
+Once the APM agent has been installed, the Flask application can be run by issuing the following command:
 
 `sudo ddtrace-run python flaskapp.py`
 
@@ -407,7 +407,21 @@ The two screenshots below show the application being hit by the above curl comma
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Flask%20app%20being%20hit.png)
 
+The instrumented flask application can now be seen in the APM portion of the Datadog GUI. To see the collected APM metrics, click on APM -> Services -> "Name of Application".
 
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/APM%20Flask%20Dashboard.png)
+
+Individual traces can be viewed by clicking on APM -> Traces and the selecting the trace of interest.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/APM%20Traces%20Dashboard.png)
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/APM%20Trace%20View.png)
 
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
+
+Only ScreenBoards allow for the generation of an externally reachable URL. Below is the public URL for my custom ScreenBoard as well as the screenshot of the dashboard.
+
+https://p.datadoghq.com/sb/77d85e511-c126ef2a6d01f5dd7be328dcdd2b0902
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Final%20Screenboard.png)
 
