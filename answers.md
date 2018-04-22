@@ -139,11 +139,11 @@ Yes, in this instance it it can be accomplished by modifying the mycheck.yaml fi
 
 # Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+### Utilize the Datadog API to create a Timeboard that contains:
 
-### Your custom metric scoped over your host
-### Any metric from the Integration on your Database with the anomaly function applied
-### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+* Your custom metric scoped over your host
+* Any metric from the Integration on your Database with the anomaly function applied
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 Before you can create a custom metric using the Datadog API, you need to retrieve a couple of API keys. These can by obtained by going to the Integrations -> API section of the Datadog GUI. 
 
@@ -435,6 +435,10 @@ Only ScreenBoards allow for the generation of an externally reachable URL. Below
 https://p.datadoghq.com/sb/77d85e511-c126ef2a6d01f5dd7be328dcdd2b0902
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Final%20Screenboard.png)
+
+### Bonus Question: What is the difference between a Service and a Resource?
+
+A service is a group of processes that work together to create a custom or unique feature. For example, an application service can be made up of other services, like servers, network devices and storage arrays. A resource can be a user, a list of users, a customer, a file or any entity of the application. A URL locates where the resource is located in a server.
 
 # Final Question:
 
