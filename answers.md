@@ -8,7 +8,7 @@ Items used to complete this exercise:
 - Macbook Pro
 - *Vagrant*
 - *Virtualbox*
-- *Ubuntu Trusty 64*
+- *Ubuntu Trusty 64 virtual machine image*
 - *Various Linux utilities*
 - Datadog trial account
 
