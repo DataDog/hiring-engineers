@@ -327,14 +327,14 @@ To prepare for instrumentation of the flask app, several utilties need to be ins
 
 ```
 sudo apt-get update
-“sudo apt-get install python-virtualenv"
+sudo apt-get install python-virtualenv
 mkdir /my_flask_app
 cd /my_flask_app
-“sudo virtualenv env"
-"source env/bin/activate"
+sudo virtualenv env
+source env/bin/activate
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 sudo python get-pip.py
-“sudo apt-get install python-flask"
+sudo apt-get install python-flask"
 ```
 
 The next step is to create a python file and add the modified flask application code.
@@ -378,6 +378,34 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(port=5002)
 ```
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Edited%20flaskapp%20config%20file.png)
+
+Now that the flask app is ready to be run, the Datadog API agent needs to be installed. This can be done by running the following command:
+
+`sudo pip install ddtrace`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20DD%20APM%20agent.png)
+
+Once the APM agent has been installed, the Flask application can be run by running the following command:
+
+`sudo ddtrace-run python flaskapp.py`
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Flask%20app%20started.png)
+
+To generate traffic, in a separate terminal session do the following:
+
+```
+cd /Temp/work
+vagrant ssh
+while true; do curl 127.0.0.1:5002 ; sleep 5; done
+```
+
+The two screenshots below show the application being hit by the above curl command.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Generate%20traffic.png)
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Flask%20app%20being%20hit.png)
 
 
 
