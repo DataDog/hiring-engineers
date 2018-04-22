@@ -149,9 +149,9 @@ Before you can create a custom metric using the Datadog API, you need to retriev
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/API%20Keys.png)
 
-An API key is automatically created when the Datadog user account is activated. An application key must also be created in order to make full use of the Datadog API. Copy both the API key and the Application key as they both will be needed to create a Timeboard via the Datadog REST API.
+An API key is automatically created when the Datadog user account is activated. An application key must also be created in order to make full use of the Datadog API. Copy both the API key and the Application key, as they both will be needed to create a Timeboard via the Datadog REST API.
 
-If you are unsure of the correct syntax to create a Timeboard with the custom metric or the database metric with the anomaly function applied, you can get it from the Datadog GUI by doing the following: 
+If you are unsure of the correct syntax to create a Timeboard, with the custom metric or the database metric with the anomaly function applied, you can get it from the Datadog GUI by doing the following: 
 * Open the dashboard that was previously created which has both the custom metric and database with anomay function
 * Click the pencil icon on either graph. (In this case it is the anomalous database traffic graph)
 * Click on the JSON tab and you will see the relevant information to include in the POST
