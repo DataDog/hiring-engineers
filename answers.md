@@ -431,3 +431,10 @@ https://p.datadoghq.com/sb/77d85e511-c126ef2a6d01f5dd7be328dcdd2b0902
 
 ### Is there anything creative you would use Datadog for?
 
+Being a lover of good Thai food (in direct comparison to not good or so-so Thai food), I can think of many ways to use the Datadog platform to help me find a restaurant that is close by, has great reviews and doesn't have too long of a wait.
+
+![Settings Window](https://images.fineartamerica.com/images-medium-large/1-delicious-thai-food-rakratchada-torsap.jpg)
+
+- Parse through the list of Thai food restaurants in Google maps that are within a 15 mile radius of where I live
+- Graph social media sentiment (positive or negative) for each restaurant from sites like Yelp, TripAdvisor or OpenTable
+- Instrument the Point of Sale application in each restaurant to monitor the number of orders that are going into the kitchen during the past 30 minutes to determine how backed up the kitchen might be at that time.
