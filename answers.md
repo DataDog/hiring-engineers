@@ -437,4 +437,6 @@ Being a lover of good Thai food (in direct comparison to not good or so-so Thai 
 
 - Parse through the list of Thai food restaurants in Google maps that are within a 15 mile radius of where I live
 - Graph social media sentiment (positive or negative) for each restaurant from sites like Yelp, TripAdvisor or OpenTable
-- Instrument the Point of Sale application in each restaurant to monitor the number of orders that are going into the kitchen during the past 30 minutes to determine how backed up the kitchen might be at that time.
+- Instrument the Point of Sale application in each restaurant to monitor the number of orders that are going into the kitchen during the past 30 minutes to determine how backed up the kitchen might be at that time
+- Create a publicly available ScreenBoard displaying each of these metrics so I can easily view the dashboard any time from my phone, tablet or laptop and see which restaurant will be our next choice for a delicious dinner of Tom Kha Gai, Pad See Ew, Pad Thai or Khao Soi on date night with my wife
+
