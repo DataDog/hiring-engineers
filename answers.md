@@ -241,7 +241,7 @@ To set up a new metric monitor, click on Monitors -> New Monitor in the Datadog 
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Metric%20monitor.png)
 
-In order to receive message 
+In order to receive a message when one of the three events has been triggered, the syntax below can be used. Instead of creating three separate monitors (Alert, Warning and No Data), I combined all three in the  
 
 ```
 {{#is_alert}} The alert threshold value has been breached. Current value is {{value}}. {{/is_alert}} 
