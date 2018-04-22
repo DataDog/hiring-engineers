@@ -202,6 +202,6 @@ I can see my new dashboard by going to Dashboards in the Datadog GUI and then lo
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/List%20of%20Dashboards.png)
 
-Clicking on the entry for Dave's Timeboard will display the newly created timeboard via API call.
+Clicking on the entry for Dave's Timeboard will display the timeboard that was created via API call.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/New%20API%20Timeboard.png)
