@@ -205,7 +205,7 @@ Below is the code that will be included in the body of the POST
 }
 ```
 
-Using Postman (or any REST client) a POST method can be used to create the desired dashboard using the API. The screenshot below shows the URL, body of the POST (included above) and the successfully returned response.
+Using Postman (or any REST client) a POST method can be used to create the desired dashboard via the Datadog API. The screenshot below shows the URL, body of the POST (included above) and the successful response code (200).
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Postman%20API%20Post.png)
 
