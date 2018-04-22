@@ -266,7 +266,7 @@ Below are two examples of emails that were generated because of events that trig
 * And one that silences it all day on Sat-Sun
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
 
-Two separate downtime events were created by going to Monitors -> Manage Downtime -> Schedule Downtime
+Two separate downtime events were created by selecting Monitors -> Manage Downtime -> Schedule Downtime in the GUI.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Manage%20downtime%20dashboard.png)
 
@@ -274,7 +274,7 @@ The first downtime event is to suppress notifications Monday through Friday, 7pm
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20M-F.png)
 
-The email notification of the scheduled down time for Monday through Friday, 7pm to 9am is below.
+The email notification for the scheduled down time on Monday through Friday, 7pm to 9am is below.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20M-F%20Email%20notification.png)
 
@@ -282,7 +282,45 @@ The second downtime event is to suppress notifications all day on Saturday and S
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20Sat-Sun.png)
 
-The email notification of the scheduled down on Saturday and Sunday is below.
+The email notification for the scheduled down time on Saturday and Sunday is below.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Scheduled%20downtime%20Sat-Sun%20Email%20notification.png)
+
+# Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+* Please include your fully instrumented app in your submission, as well
 
