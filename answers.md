@@ -45,7 +45,7 @@ After restarting the Datadog agent, the tags will show up in the GUI.
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Host%20map%20with%20tags.png)
 
 
-### * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database
 
 To install MySQL, execute the following command:
 
@@ -86,7 +86,7 @@ Once the file has been modified and saved, restart the Datadog agent. To verify 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/MySQL%20integration%20check.png)
 
 
-### * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
 To create a custom Agent check, create and edit a mycheck.yaml file in the /etc/datadog-agent/conf.d/ folder.
 
@@ -114,14 +114,14 @@ In a few minutes the new custom check will start appearing in the Metrics Explor
 
 
 
-### * Change your check's collection interval so that it only submits the metric once every 45 seconds
+### Change your check's collection interval so that it only submits the metric once every 45 seconds
 
 To make this change, the mycheck.yaml file will need to be updated. The min_collection_interval will need to change from 15 to 45.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Change%20mycheck%20yaml%20collection%20time.png)
 
 
-### * Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 Yes, in this instance it it can be accomplished by modifying the mycheck.yaml file. Adding a section to the file entitled "min_collection_interval" will allow you to modify the default frequency of the check. 15 seconds is the minimum supported interval check by the agent.
 
@@ -130,9 +130,9 @@ Yes, in this instance it it can be accomplished by modifying the mycheck.yaml fi
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-### * Your custom metric scoped over your host
-### * Any metric from the Integration on your Database with the anomaly function applied
-### * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+### Your custom metric scoped over your host
+### Any metric from the Integration on your Database with the anomaly function applied
+### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 Before you can create a custom metric using the Datadog API, you need to retrieve a couple of API keys. These can by obtained by going to the Integrations -> API section of the Datadog GUI. 
 
@@ -207,8 +207,8 @@ Clicking on the entry for Dave's Timeboard will display the timeboard that was c
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/New%20API%20Timeboard.png)
 
 
-### * Set the Timeboard's timeframe to the past 5 minutes
-### * Take a snapshot of this graph and use the @ notation to send it to yourself
+### Set the Timeboard's timeframe to the past 5 minutes
+### Take a snapshot of this graph and use the @ notation to send it to yourself
 
 By clicking and dragging on the end of the trend line, the current time view is changed to a 5 minute view. Hovering over the top right portion of the graph will will display a camera icon. Clicking on the camera icon allows you to create a real-time annotation. In this case I am sending an email to myself with a comment requesting a review of the past 5 minutes. In addition to email, the annotation could also have been sent to Slack, Hipchat or Pagerduty (if the Datadog integration has been created).
 
@@ -219,16 +219,37 @@ Below is a copy of the email that I received with the request for review of the 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Email%20of%20snapshot%20from%20timeboard.png)
 
 
-### * Bonus Question: What is the Anomaly graph displaying?
+### Bonus Question: What is the Anomaly graph displaying?
 
 The purple line is showing the amount of time MySQL is spending in user space. The gray band surrounding the purple line is showing the predicted performance range, based on historically collected data. The red line (outside the gray band) is anomalous activity, because it is outside the predicted range.
 
 
 # Monitoring Data:
 
-### * Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m
+* Send you an email whenever the monitor triggers
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+To set up a new metric monitor, click on Monitors -> New Monitor in the Datadog GUI. Select the metric of interest (test.my_metric) and then define the threshold values for both alert and warning. In this case the alert threshold is 800 and the warning threshold is 500. Click the dropdown box next to "if data is missing..." and select notify. Define the number of minutes to wait before a data missing alert is created. For this exercise, waiting for 10 minutes is sufficient.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Metric%20monitor.png)
+
+In order to receive message 
+
+```
+{{#is_alert}} The alert threshold value has been breached. Current value is {{value}}. {{/is_alert}} 
+
+{{#is_warning}} The warning threshold value has been breached. Current value is {{value}}. {{/is_warning}} 
+
+{{#is_no_data}} No metric data has been collected for this host in the past 10 minutes. {{/is_no_data}} 
+
+@davidhwest14@gmail.com
+```
 
