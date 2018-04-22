@@ -62,10 +62,12 @@ Once MySQL has been installed, a Datadog user account, password and permissions 
 
 Be sure to include the -p flag when running the commands shown on the Integration page, or you will get an error stating "Access denied for user 'root'@'localhost' (using password: No)".
 
-`sudo mysql -p -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'dYDtGrBz8Dmx/BbXrFctnkV2';"`
-`sudo mysql -p -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"`
-`sudo mysql -p -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"`
-`sudo mysql -p -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"`
+```
+sudo mysql -p -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'dYDtGrBz8Dmx/BbXrFctnkV2';"
+sudo mysql -p -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+sudo mysql -p -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
+sudo mysql -p -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+```
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Install%20MySQL%20Integration.png)
 
