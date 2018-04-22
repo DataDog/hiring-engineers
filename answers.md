@@ -218,8 +218,8 @@ Clicking on the entry for Dave's Timeboard will display the timeboard that was c
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/New%20API%20Timeboard.png)
 
 
-### Set the Timeboard's timeframe to the past 5 minutes
-### Take a snapshot of this graph and use the @ notation to send it to yourself
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself
 
 By clicking and dragging on the end of the trend line, the current time view is changed to a 5 minute view. Hovering over the top right portion of the graph will will display a camera icon. Clicking on the camera icon allows you to create a real-time annotation. In this case I am sending an email to myself with a comment requesting a review of the past 5 minutes. In addition to email, the annotation could also have been sent to Slack, Hipchat or Pagerduty (if the Datadog integration has been created).
 
