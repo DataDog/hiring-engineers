@@ -149,11 +149,9 @@ If you are unsure of the correct syntax to create a Timeboard with the custom me
 
 In addition to needing the code to insert into the body of the POST, a correcly formed URL will also need to be created using both the API key and the Application key. In this case, the URL will be the following:
 
-`https://api.datadoghq.com/api/v1/dash?api_key=76919a606a574952a97b6faf68987b49&application_key=1f6afbaffe7d1208708084d70a1b9fde8023514d
+`https://api.datadoghq.com/api/v1/dash?api_key=76919a606a574952a97b6faf68987b49&application_key=1f6afbaffe7d1208708084d70a1b9fde8023514d`
 
 Below is the code that will be included in the body of the POST
-
-
 
 ```
 {
@@ -195,3 +193,15 @@ Below is the code that will be included in the body of the POST
         "read_only": "True"
 }
 ```
+
+By using Postman, I create use the POST method to create the desired dashboard using the API. The screenshot below shows the URL, body of the POST and the successfully returned response.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Postman%20API%20Post.png)
+
+I can see my new dashboard by going to Dashboards in the Datadog GUI and then looking for the dashboard with the name Dave's Timeboard.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/List%20of%20Dashboards.png)
+
+Clicking on the entry for Dave's Timeboard will display the newly created timeboard via API call.
+
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/New%20API%20Timeboard.png)
