@@ -145,4 +145,4 @@ If you are unsure of the correct syntax to create a Timeboard with the custom me
 * Click the pencil icon on either graph. (In this case it is the anomalous database traffic graph)
 * Click on the JSON tab and you will see the relevant information to include in the POST
 
-![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/JSON%20Code%20for%20Anomaly%20Metric.png(
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/JSON%20Code%20for%20Anomaly%20Metric.png)
