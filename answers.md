@@ -146,3 +146,43 @@ If you are unsure of the correct syntax to create a Timeboard with the custom me
 * Click on the JSON tab and you will see the relevant information to include in the POST
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/JSON%20Code%20for%20Anomaly%20Metric.png)
+
+
+`{
+        "graphs": [{
+                        "title": "My Metric Graph",
+                        "definition": {
+                                "events": [],
+                                "requests": [{
+                                        "q": "avg:test.my_metric{*}.rollup(sum,1000)"
+                                }]
+                        },
+                        "viz": "timeseries"
+                },
+                {
+                        "title": "Database Anomalies Graph",
+                        "definition": {
+                                "events": [],
+                                "requests": [{
+                                        "q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)",
+                                        "type": "line",
+                                        "style": {
+                                                "palette": "dog_classic",
+                                                "type": "solid",
+                                                "width": "normal"
+                                        },
+          "conditional_formats": []
+                                }]
+                        },
+                        "viz": "timeseries"
+                }
+        ],
+        "title": "Dave's Timeboard",
+        "description": "My test timeboard",
+        "template_variables": [{
+                "name": "host1",
+                "prefix": "host",
+                "default": "host:vagrant-ubuntu-trusty-64"
+        }],
+        "read_only": "True"
+`}
