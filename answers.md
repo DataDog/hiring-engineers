@@ -219,5 +219,12 @@ Below is a copy of the email that I received with the request for review of the 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Email%20of%20snapshot%20from%20timeboard.png)
 
 
+### * Bonus Question: What is the Anomaly graph displaying?
+
+The purple line is showing the amount of time MySQL is spending in user space. The gray band surrounding the purple line is showing the predicted performance range, based on historically collected data. The red line (outside the gray band) is anomalous activity, because it is outside the predicted range.
+
+
+# Monitoring Data:
+
 
 
