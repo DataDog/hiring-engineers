@@ -241,7 +241,7 @@ To set up a new metric monitor, click on Monitors -> New Monitor in the Datadog 
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Metric%20monitor.png)
 
-In order to receive a message when one of the three events has been triggered, the syntax below can be used. Instead of creating three separate monitors (Alert, Warning and No Data), I combined all three in the *Say what's happening* section of the metric monitor configuration page. If any one of these events are triggered, an email will be sent to me.
+In order to receive a message when one of the three events has been triggered, the syntax below can be used.
 
 ```
 {{#is_alert}} The alert threshold value has been breached. Current value is {{value}}. {{/is_alert}} 
@@ -252,6 +252,8 @@ In order to receive a message when one of the three events has been triggered, t
 
 @davidhwest14@gmail.com
 ```
+
+Instead of creating three separate monitors (Alert, Warning and No Data), I combined all three in the *Say what's happening* section of the metric monitor configuration page. If any one of these events are triggered, an email will be sent to me.
 
 Below are two examples of emails that were generated because of events that triggered a notification to be sent. Using the variables {{host.name}} and ({{host.ip}} will insert the name of the host and the host IP into the subject line or body of the monitor. The first notification (warning) only has the affected hostname in the subject line. The second email (no data) includes both the affected hostname and its IP address.
 
