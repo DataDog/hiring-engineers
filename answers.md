@@ -194,7 +194,7 @@ Below is the code that will be included in the body of the POST
 }
 ```
 
-By using Postman, I create use the POST method to create the desired dashboard using the API. The screenshot below shows the URL, body of the POST and the successfully returned response.
+Using Postman (or any REST client) a POST method can be used to create the desired dashboard using the API. The screenshot below shows the URL, body of the POST (included above) and the successfully returned response.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Postman%20API%20Post.png)
 
@@ -205,3 +205,5 @@ I can see my new dashboard by going to Dashboards in the Datadog GUI and then lo
 Clicking on the entry for Dave's Timeboard will display the timeboard that was created via API call.
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/New%20API%20Timeboard.png)
+
+
