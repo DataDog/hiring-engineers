@@ -147,6 +147,12 @@ If you are unsure of the correct syntax to create a Timeboard with the custom me
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/JSON%20Code%20for%20Anomaly%20Metric.png)
 
+In addition to needing the code to insert into the body of the POST, a correcly formed URL will also need to be created using both the API key and the Application key. In this case, the URL will be the following:
+
+`https://api.datadoghq.com/api/v1/dash?api_key=76919a606a574952a97b6faf68987b49&application_key=1f6afbaffe7d1208708084d70a1b9fde8023514d
+
+Below is the code that will be included in the body of the POST
+
 
 
 ```
