@@ -136,3 +136,4 @@ Before you can create a custom metric using the Datadog API, you need to retriev
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/API%20Keys.png)
 
+An API key is automatically created when the Datadog user account is activated. An application key must also be created in order to make full use of the Datadog API. 
