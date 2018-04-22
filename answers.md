@@ -321,6 +321,65 @@ if __name__ == '__main__':
     app.run()
 ```
 
-* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-* Please include your fully instrumented app in your submission, as well
+### Please include your fully instrumented app in your submission
+
+To prepare for instrumentation of the flask app, several utilties need to be installed on a clean version of Ubuntu. The commands below were used to prepare the virtual machine:
+
+```
+sudo apt-get update
+“sudo apt-get install python-virtualenv"
+mkdir /my_flask_app
+cd /my_flask_app
+“sudo virtualenv env"
+"source env/bin/activate"
+curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+sudo python get-pip.py
+“sudo apt-get install python-flask"
+```
+
+The next step is to create a python file and add the modified flask application code.
+
+`touch ./flaskapp.py`
+`sudo nano ./flaskapp.py`
+
+Below is the modified version of the flask application that I used to work with the ddtrace APM agent.
+
+```
+from flask import Flask
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(‘flaskapp')
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app")
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(port=5002)
+```
+
+
+
+### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
 
