@@ -253,9 +253,9 @@ In order to receive a message when one of the three events has been triggered, t
 @davidhwest14@gmail.com
 ```
 
-Below are two examples of emails that were generated because of events that triggered a notification to be sent.
+Below are two examples of emails that were generated because of events that triggered a notification to be sent. Using the variables {{host.name}} and ({{host.ip}} will insert the name of the host and the host IP into the subject line or body of the monitor. The first notification (warning) only has the affected hostname in the subject line. The second email (no data) includes both the affected hostname and its IP address.
 
-
+![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Email%20notification%20for%20metric%20alert.png)
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/Email%20notification%20for%20no%20data.png)
 
