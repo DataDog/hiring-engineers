@@ -149,40 +149,40 @@ If you are unsure of the correct syntax to create a Timeboard with the custom me
 
 
 `{
-        "graphs": [{
-                        "title": "My Metric Graph",
-                        "definition": {
-                                "events": [],
-                                "requests": [{
-                                        "q": "avg:test.my_metric{*}.rollup(sum,1000)"
-                                }]
-                        },
-                        "viz": "timeseries"
-                },
-                {
-                        "title": "Database Anomalies Graph",
-                        "definition": {
-                                "events": [],
-                                "requests": [{
-                                        "q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)",
-                                        "type": "line",
-                                        "style": {
-                                                "palette": "dog_classic",
-                                                "type": "solid",
-                                                "width": "normal"
-                                        },
-          "conditional_formats": []
-                                }]
-                        },
-                        "viz": "timeseries"
-                }
-        ],
-        "title": "Dave's Timeboard",
-        "description": "My test timeboard",
-        "template_variables": [{
-                "name": "host1",
-                "prefix": "host",
-                "default": "host:vagrant-ubuntu-trusty-64"
-        }],
-        "read_only": "True"
+`        "graphs": [{
+`                        "title": "My Metric Graph",
+`                        "definition": {
+`                                "events": [],
+`                                "requests": [{
+`                                        "q": "avg:test.my_metric{*}.rollup(sum,1000)"
+`                                }]
+`                        },
+`                        "viz": "timeseries"
+`                },
+`                {
+`                        "title": "Database Anomalies Graph",
+`                        "definition": {`
+`                                "events": [],
+`                                "requests": [{
+`                                        "q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)",
+`                                        "type": "line",
+`                                        "style": {
+`                                                "palette": "dog_classic",
+`                                                "type": "solid",
+`                                                "width": "normal"
+`                                        },
+`          "conditional_formats": []
+`                                }]
+`                        },
+`                        "viz": "timeseries"
+`                }
+`        ],
+`        "title": "Dave's Timeboard",
+`        "description": "My test timeboard",
+`        "template_variables": [{
+`                "name": "host1",
+`                "prefix": "host",
+`                "default": "host:vagrant-ubuntu-trusty-64"
+`        }],
+`        "read_only": "True"
 `}
