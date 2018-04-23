@@ -221,7 +221,7 @@ Clicking on the entry for Dave's Timeboard will display the timeboard that was c
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself
 
-By clicking and dragging on the end of the trend line, the current time view is changed to a 5 minute view. Hovering over the top right portion of the graph will will display a camera icon. Clicking on the camera icon allows you to create a snapsht, which includes a real-time annotation. In this case, I am sending an email to myself with a comment requesting a review of the past 5 minutes for this metric. In addition to email, the annotation could also have been sent to Slack, Hipchat or Pagerduty (if the Datadog integration has been configured).
+By clicking and dragging on the end of the trend line, the current time view is changed to a 5 minute view. Hovering over the top right portion of the graph will will display a camera icon. Clicking on the camera icon allows you to create a snapshot, which includes a real-time annotation. In this case, I am sending an email to myself with a comment requesting a review of the past 5 minutes for this metric. In addition to email, the annotation could also have been sent to Slack, Hipchat or Pagerduty (if the Datadog integration has been configured).
 
 ![Settings Window](https://github.com/dhwest14/hiring-engineers/blob/master/5%20minute%20graph%20on%20timeboard.png)
 
@@ -232,7 +232,7 @@ Below is a copy of the email that I received with the request for review of the 
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
-The purple line is showing the amount of time MySQL is spending in user space. The gray band surrounding the purple line is showing the predicted performance range, based on historically collected data. The red line (outside the gray band) is anomalous activity, because it is outside the predicted range.
+The blue line is showing the amount of time MySQL is spending in user space. The gray band surrounding the purple line is showing the predicted performance range, based on historically collected data. The red line (outside the gray band) is anomalous activity, because it is outside the predicted range.
 
 
 # Monitoring Data:
@@ -452,6 +452,7 @@ Being a lover of good Thai food (in direct comparison to not good or so-so Thai 
 
 - Parse through the list of Thai food restaurants in Google maps that are within a 15 mile radius of where I live
 - Graph social media sentiment (positive or negative) for each restaurant from sites like Yelp, TripAdvisor or OpenTable
-- Instrument the Point of Sale application in each restaurant to monitor the number of orders that are going into the kitchen during the past 30 minutes to determine how backed up the kitchen might be at that time
+- Instrument the Point of Sale application in each restaurant to monitor the number of orders that are going into the kitchen during the past hour to determine how backed up the kitchen might be at that time
+- Instrument the vibrating pager coaster system to see the number of coasters waiting and their average time before activation in the last hour
 - Create a publicly available ScreenBoard displaying each of these metrics so I can easily view the dashboard any time from my phone, tablet or laptop and see which restaurant will be our next choice for a delicious dinner of Tom Kha Gai, Pad See Ew, Pad Thai or Khao Soi on date night with my wife
 
