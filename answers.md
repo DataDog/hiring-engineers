@@ -1,7 +1,16 @@
----------------------------------------------------
-Datadog test - Solutions Engineer
-Candidat: Charlie Boutier
-April 26 2018
----------------------------------------------------
+# Introduction
+Welcome on board, here is my answer for the Solutions Engineering test.
 
-Here we go
+# 1 - Collectings Metrics
+Test
+
+# 2 - Vizualizing Data
+Test
+
+# 3 - Monitoring Data
+Test
+
+# 4 - Collecting APM Data
+Test
+
+# 5 - Final Question
