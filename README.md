@@ -132,15 +132,15 @@ To submit your answers:
 ## References
 
 ### How to get started with Datadog
-* [Datadog overview](http://docs.datadoghq.com/overview/)
+* [Datadog getting started](https://docs.datadoghq.com/getting_started/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
+* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
 
 ### The Datadog Agent and Metrics
 
-* [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
+* [Guide to the Agent](http://docs.datadoghq.com/agent/)
 * [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
+* [Writing an Agent check](https://docs.datadoghq.com/agent/agent_checks/)
 * [Datadog API](https://docs.datadoghq.com/api/)
 
 ### APM
