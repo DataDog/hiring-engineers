@@ -200,8 +200,11 @@ if __name__ == '__main__':
     app.run()
 ```    
   * Please find the source of the instrumented app there : [collectapm.py](src/collectapm.py)
+  
   I only added two rest call to Datadog API to return some Json ie. more data in order to get some network traffic to analyse in dashboard later.
+  
   * Runned as Flask application or usual Python obviously give the same result: 
+  
       `export FLASK_APP=/vagrant/collectapm.py`
       
       `ddtrace-run python -m flask run --host=0.0.0.0 --port=10000`
@@ -237,6 +240,9 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+  * Quickly I can think on monitoring the availability of Vélib in different stations within Paris (or whatever the city who propose bikes) as they expose open data for this .
+  * Any domotized building could be monitored using datadog.
 
 ## Instructions
 
