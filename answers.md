@@ -276,7 +276,7 @@ Here are the differents mails received respectively for alert, warning and no da
 
 <img src="Screenshots/warning.png">
 
-<img src="Screenshots/nodata">
+<img src="Screenshots/nodata.png">
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -288,17 +288,17 @@ Configuration for the two schedules downtimes for this monitor:
 
 <img src="Screenshots/Downtime.png">
 
-<img src="Screenshots/Downtime.png2">
+<img src="Screenshots/Downtime2.png">
 
-<img src="Screenshots/Downtime.png4">
+<img src="Screenshots/Downtime4.png">
 
-<img src="Screenshots/Downtime.png5">
+<img src="Screenshots/Downtime5.png">
 
 Mails received for these two downtimes:
 
-<img src="Screenshots/Downtime.png3">
+<img src="Screenshots/Downtime3.png">
 
-<img src="Screenshots/Downtime.png6">
+<img src="Screenshots/Downtime6.png">
 
 
 ## Collecting APM Data:
