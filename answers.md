@@ -10,8 +10,6 @@ Anyway, the instructions said that I could set up any OS/host environment that I
 
 I generally like to spin up an EC2 box unless there's a good reason not to, so I spun up a basic Ubuntu 16.04 box. By force of habit I gave it an elastic ip and made an ssh shortcut in my local .bash_profile.
 
-[more commentary on the .ssh license]
-
 I signed up for a free trial account. Using the "Datadog Recruiting Candidate" in the company field is a nice touch.
 
 ## Collecting Metrics
@@ -83,7 +81,7 @@ The only way I could figure out how to get a 5-minute window was to use the shor
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-I'm not sure what "this graph" is. It does not seem possible to take a snapshot of an entire timeboard, so I took a snapshot of the anomaly graph.
+I wasn't sure what "this graph" was referencing. It does not seem possible to take a snapshot of an entire timeboard, so I took a snapshot of the anomaly graph.
 
 <img src = "https://s3.amazonaws.com/tomgsmith99-datadog/snapshot.png">
 
@@ -155,9 +153,9 @@ You can see my live screenboard by clicking <a href = "https://p.datadoghq.com/s
 
 You can hit my Flask server at the following URLs:
 
-* <a href = "http://18.208.98.40:5678/quick">http://18.208.98.40:5678/quick</a>
-* <a href = "http://18.208.98.40:5678/short">http://18.208.98.40:5678/short</a>
-* <a href = "http://18.208.98.40:5678/long">http://18.208.98.40:5678/long</a>
+* <a href = "http://18.208.98.40:5678/quick" target = "_blank">http://18.208.98.40:5678/quick</a>
+* <a href = "http://18.208.98.40:5678/short" target = "_blank">http://18.208.98.40:5678/short</a>
+* <a href = "http://18.208.98.40:5678/long" target = "_blank">http://18.208.98.40:5678/long</a>
 
 The /short and /long urls are traced by datadog and my screenboard will update with the average duration for the /long endpoint.
 
