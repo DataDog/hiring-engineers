@@ -1,11 +1,7 @@
 # Answers
 
-## Overview
-For each part of the technical project, I will provide a commentary section, which explains how I approached the topic and any issues I ran into, and (if needed) a results section, which shows the results that I got.
-
 ## Prerequisites - Setup the environment
 
-### Commentary
 I am using my personal MacBook Air to complete the exercise. I will mention other tools that I used in each exercise.
 
 I first went to the github repo and read the instructions. I really like to start by getting my hands dirty, so I thought that the first instruction would be something like "go to datadog.com and sign up for a tenant". My assumption going in was that I would set up a basic connection between DataDog and a SAAS offering like Okta or Salesforce, just to see how it worked. More on that later.
@@ -155,13 +151,13 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 <img src = "https://s3.amazonaws.com/tomgsmith99-datadog/screenboard.png">
 
-You can see my screenboard by clicking <a href "https://p.datadoghq.com/sb/644887716-32c62012ebacad31743b4bbd6f111ae2">here</a>.
+You can see my live screenboard by clicking <a href = "https://p.datadoghq.com/sb/644887716-32c62012ebacad31743b4bbd6f111ae2">here</a>.
 
 You can hit my Flask server at the following URLs:
 
-<a href = "http://18.208.98.40:5678/quick">http://18.208.98.40:5678/quick</a>
-<a href = "http://18.208.98.40:5678/short">http://18.208.98.40:5678/short</a>
-<a href = "http://18.208.98.40:5678/long">http://18.208.98.40:5678/long</a>
+* <a href = "http://18.208.98.40:5678/quick">http://18.208.98.40:5678/quick</a>
+* <a href = "http://18.208.98.40:5678/short">http://18.208.98.40:5678/short</a>
+* <a href = "http://18.208.98.40:5678/long">http://18.208.98.40:5678/long</a>
 
 The /short and /long urls are traced by datadog and my screenboard will update with the average duration for the /long endpoint.
 
