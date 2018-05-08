@@ -36,3 +36,7 @@ Screenshot of vm’s with TAG=datadogtestvm
 ![image](https://user-images.githubusercontent.com/38929107/39771559-7caeb9dc-52a7-11e8-9c77-23656e1fd5fa.png)
 
 Created a custom Agent check that submits a metric named my_metric with a random value between 0-1000.
+![image](https://user-images.githubusercontent.com/38929107/39772716-d11fe81c-52aa-11e8-9b0a-f43cf43819d9.png)
+
+Change your check's collection interval so that it only submits the metric once every 45 seconds.
+![image](https://user-images.githubusercontent.com/38929107/39772802-06ebc2cc-52ab-11e8-9374-fd9febf8e789.png)
