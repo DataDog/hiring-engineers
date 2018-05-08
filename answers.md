@@ -35,3 +35,4 @@ Linux vm with TAG
 Screenshot of vm’s with TAG=datadogtestvm
 ![image](https://user-images.githubusercontent.com/38929107/39771559-7caeb9dc-52a7-11e8-9c77-23656e1fd5fa.png)
 
+Created a custom Agent check that submits a metric named my_metric with a random value between 0-1000.
