@@ -40,3 +40,10 @@ Created a custom Agent check that submits a metric named my_metric with a random
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ![image](https://user-images.githubusercontent.com/38929107/39772802-06ebc2cc-52ab-11e8-9374-fd9febf8e789.png)
+
+Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+I think with the proliferation of all the IOT devices (home automation, automobile, etc.) it would be awesome to have a single interface that could interact with all the different manufacturerers of devices, one portal for all you devices essentially.
