@@ -182,9 +182,9 @@ instances:
 
 ## Visualizing Data - Datadog Dashboards
 
-For a quick introduction to graphing and Datadog dashboards, visit the Datadog documentation [here](https://docs.datadoghq.com/graphing/dashboards/timeboard/)
+For a quick introduction to graphing and Datadog dashboards, visit the Datadog documentation [here](https://docs.datadoghq.com/graphing/dashboards/timeboard/).
 
-For building a dashboard, its important to know the primary differences between a [Timeboard](https://docs.datadoghq.com/graphing/dashboards/timeboard/) and [Screenboard](https://docs.datadoghq.com/graphing/dashboards/screenboard/)
+For building a dashboard, its important to know the primary differences between a [Timeboard](https://docs.datadoghq.com/graphing/dashboards/timeboard/) and [Screenboard](https://docs.datadoghq.com/graphing/dashboards/screenboard/).
 
 |          |      Timeboards      |  Screenboards |
 |:---------|:-------------:|:------:|
@@ -307,7 +307,7 @@ One of the important tools in the Timeboard is the ability to take Snapshots and
 
 To select a team member to send the notifcation too, use the `@` notation, followed by the users name or email.
 
-![Anomaly Detection Snapshot](images/AnomalyScreenshot.png)
+![Anomaly Detection Snapshot](images/AnomalySnapshot.png)
 
 After selecting yourself as the recipient, verify that you've received an email similar the screenshot below.
 
