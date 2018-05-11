@@ -33,7 +33,7 @@ The Datadog Agent is lightweight piece of software that runs on your hosts. Its 
 
 The agent is composed of 4 parts:
 * Collector
-  * The collector runs checks on the current machine for whatever integrations you have, it captures system metrics like memory and CPU.
+  * The collector runs checks on the current machine for whatever integrations you have and it captures system metrics like memory and CPU.
 * Dogstatsd
   * This is a StatsD backend server, it's responsible for aggregating local metrics sent from your code.
 * Forwarder
@@ -165,6 +165,7 @@ instances:
 Since there is no specified reporting interval for the custom check, the agent defaults to a 15 second reporting interval.
 
 **Bonus Question**: Can you change the collection interval without modifying the Python check file you created?
+
 **Bonus Answer**:
   Yes. In order to modify the collection interval, edit the corresponding .yaml file for the Python check file.  The yaml file includes an `instances` group and a `min_collection_time` variable that can be modified to any collection interval, (in seconds).
 
@@ -195,7 +196,7 @@ For building a dashboard, its important to know the primary differences between 
 
 ### Create a Timeboard with the Datadog API
 
-The best starting place to learn about the API is, (of course), the [documentation](https://docs.datadoghq.com/api/?lang=python#timeboards).
+The best starting place to learn about the API is, of course, the [documentation](https://docs.datadoghq.com/api/?lang=python#timeboards).
 
 
 The script below, (copied from [gen_timeboard.py](code/gen_timeboard.py)), can be used to generate a Timeboard with three charts via the API.  The charts will display the following:
@@ -322,14 +323,14 @@ The Anomaly graph is displaying two things:
      * Red = value is outside expected range
 1. The gray zone represents where the region of expected values based on the historical values observed by the Datadog agent.
 
-It's important to note that the gray region is representative of the historical data, although it isn't currently displayed in the timeseries chart
+It's important to note that the gray region is representative of the historical data, although it isn't currently displayed in the timeseries chart.
 
 ## Monitoring Data
 
 ### Configure monitors
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So, let’s make life easier by creating a monitor.
 
-Let's create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Start by creating a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
@@ -356,7 +357,7 @@ Follow these steps to configure your monitor alert:
 
     ![Step 3](images/Step_3.png) 
 
-1. Say whats happening in the form of an email notification
+1. Say what's happening in the form of an email notification
 
     ![Step 4](images/Step_4.png) 
 
@@ -426,7 +427,7 @@ The screenshots below show two downtime schedules.  The first for Monday-Thursda
 
 ![Weekday Downtime](./images/Downtime.png "Weekday Downtime")
 
-The second downtime is for 7 PM Friday to 9 AM Monday, (repeating weekly).
+The second downtime is set for 7 PM Friday to 9 AM Monday, (repeating weekly).
 
 ![Weekend Downtime](./images/WeekendDowntime.png "Weekday Downtime")
 
