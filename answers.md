@@ -136,13 +136,13 @@ In my case it has been configured at the instance level without having to change
 > script that you've used to create this Timemboard.
 
 **[Pejman]**: 
-The workflow is as follow:
+The workflow is as follows:
 
  1. ***First off***, we need to set the app key first in order to use the Datadog API.
 This can be set at the following address:
 [API & App keys](https://app.datadoghq.com/account/settings#api)
- 2. ***Then*** we need to create a timeboard through the API. I started using the example given the API ref guide showing how to produce a timeboard. [Create a timeboard through the DG API](https://docs.datadoghq.com/api/?lang=bash#timeboards)
- 3. ***Now*** we need to add multiple graph in the list:
+ 2. ***Then*** we need to create a timeboard through the API. I started using the example given in the API ref guide showing how to produce a timeboard. [Create a timeboard through the DG API](https://docs.datadoghq.com/api/?lang=bash#timeboards)
+ 3. ***Now*** we need to add multiple graphs in the list:
 we will use the **graphs** data structure that is a list of objects. Each individual object being a graph
 
 ```python
@@ -242,7 +242,7 @@ Below each of the widget definitions. The dashboard creation wizard has been use
 
 I've also included additional graphs related to CPU & network utilization.
 
-The result is as follow:
+The result is as follows:
 
 ![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Timeboard%202.png)
 
