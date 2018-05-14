@@ -17,34 +17,83 @@ That said one can always use Vagrant with VMware, but in that case a specific pr
 
 ***Agent installation steps:***
 
-<Lien 1>
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Agent%20Install%201.png)
 
-<Lien 2>
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Agent%20Install%202.png)
 
+The agent is now up and running:
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Agent%20running.png)
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Datadog%20agent%20status.png)
 
 
 ## Collecting Metrics:
 
 > * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-**[Pejman]**: Adding tag can be done by updatding the agent config file:
+**[Pejman]**: Adding tag can be done by updatding the agent config file datadog.yaml
 
-
-<Lien tag>
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Tag%20configuration.png)
+ 
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Tags.png)
 
 
 > * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-**[Pejman]**: I actually chose to install a PostgreSQL database.  This DB is used along with a complete Web application based on a JEE implementation (Tomcat Struts/Spring MVC, JPA/Hibernate, PostgreSQL). 
+**[Pejman]**: I actually chose to install a PostgreSQL database.  This DB is used along with a Web application based on a JEE implementation based on the following stack: Struts/Spring MVC on Tomcat, JPA/Hibernate, PostgreSQL. 
+
+As per the PostgreSQL integration documentation:
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Postgres%20Integration.png)
+
+Here the PostgreSQL configuration file:
+
+![postgres.yaml](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/config/postgres.yaml)
+
 
 > * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+As per the documentation, let's create an agent check that will report the requested value. 
+As per the documentation: https://docs.datadoghq.com/agent/agent_checks/#your-first-check
+I can create the custom agent check.
+
+
+Here are the basic components used to create the agent check:
+
+ 1. ***Create*** a directory **pejcustomcheck.d** under /etc/datadog-agent/conf.d
+ 2. ***Create*** a configuration file named **pejcustomcheck.yaml** containing the default structure
+
+```python
+init_config:
+
+instances:
+    [{}]
+```
+
+ 3. ***Create*** the following python script placed under /etc/datadog-agent/checks.d - ![pejcustomcheck.py](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/scripts/pejcustomcheck.py)
+
+```python
+import random
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000))
+```
+
+All seems to be working as expected
+![check status](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Check%20status.png)
+
+After a couple of minutes we can observe the metric with the expected behavior (variations between 0 and 1000).
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/my_metric%201.png)
 
 The custom metric can be 
-<Lien dashboard custom metric>
 
 
 > * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+The collection interval
 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -174,7 +223,6 @@ To submit your answers:
 ### Other questions:
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
-
 
 
 
