@@ -12,8 +12,7 @@
 > “Company” field), get the Agent reporting metrics from your local
 > machine.
 
-**[Pejman]**: The chosen environnement is a Ubuntu 16.04 VM running on top of VMWare Fusion. Given some driver conflicts on my Mac between VirtualBox and VMWare, I couldn't actually use Vagrant. 
-That said one can always use Vagrant with VMware, but in that case a specific provider needs to be used.  
+**[Pejman]**: The chosen environnement is a Ubuntu 16.04 VM running on top of VMWare Fusion. 
 
 ***Agent installation steps:***
 
