@@ -420,9 +420,14 @@ Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+> Datadog has been used in a lot of creative ways in the past. We’ve
+> written some blog posts about using Datadog to monitor the NYC Subway
+> System, Pokemon Go, and even office restroom availability!
+> 
+> Is there anything creative you would use Datadog for?
 
-Is there anything creative you would use Datadog for?
+**[Pejman]** Datadog could be used along with a connected device: A plant sensor that reports moisture, light, soil humidity. We could therefore manage alerting when plant needs water!
+
 
 ## Instructions
 
