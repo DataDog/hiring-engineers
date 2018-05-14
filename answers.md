@@ -51,18 +51,18 @@ Here the PostgreSQL configuration file:
 
 [postgres.yaml](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/config/postgres.yaml)
 
-
 > * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-As per the documentation, let's create an agent check that will report the requested value. 
-As per the documentation: https://docs.datadoghq.com/agent/agent_checks/#your-first-check
-I can create the custom agent check.
+**[Pejman]**: As per the documentation, let's create an agent check that will report the requested value: 
 
+https://docs.datadoghq.com/agent/agent_checks/#your-first-check
+
+I can create the custom agent check.
 
 Here are the basic components used to create the agent check:
 
- 1. ***Create*** a directory **pejcustomcheck.d** under /etc/datadog-agent/conf.d
- 2. ***Create*** a configuration file named **pejcustomcheck.yaml** containing the default structure
+ 1. ***Create*** a directory **pejcustomcheck.d** under `/etc/datadog-agent/conf.d`
+ 2. ***Create*** a configuration file named **pejcustomcheck.yaml** placed in the directory we've just created. This file contains the default structure below. We will not change anything for now.
 
 ```python
 init_config:
@@ -71,7 +71,9 @@ instances:
     [{}]
 ```
 
- 3. ***Create*** the following python script placed under /etc/datadog-agent/checks.d - ![pejcustomcheck.py](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/scripts/pejcustomcheck.py)
+ 3. ***Create*** the following python script placed under `/etc/datadog-agent/checks.d` - [pejcustomcheck.py](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/scripts/pejcustomcheck.py)
+
+***Remark***: Please note that these are different directories! `checks.d` vs  `conf.d`...
 
 ```python
 import random
@@ -82,37 +84,193 @@ class HelloCheck(AgentCheck):
 ```
 
 All seems to be working as expected
+
 ![check status](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Check%20status.png)
 
 After a couple of minutes we can observe the metric with the expected behavior (variations between 0 and 1000).
 
 ![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/my_metric%201.png)
 
-The custom metric can be 
-
 
 > * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-The collection interval
+The collection interval can be further changed by modifying the configuration file using the `min_collection_interval` property.
 
+Now the custom agent check config looks like this
+
+```python
+init_config:
+
+instances:
+    - min_collection_interval: 45
+```
+
+***Resolution before config change***:
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Before%20config%20change.png) 
+
+Here the interval (time) between two datapoints is **15s**   
+
+***Resolution after config change:***
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/After%20config%20change.png)
+
+Now the interval is **45s** 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+**[Pejman]** Yes. As per the documentation ([Collection interval configuration](https://docs.datadoghq.com/agent/agent_checks/#configuration)), the collection interval can be controlled either globally (in the init_config section) or at the instance level (instances section). 
+In my case it has been configured at the instance level without having to change the python script.   
+
+
+
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+> Utilize the Datadog API to create a Timeboard that contains:
+> 
+> * Your custom metric scoped over your host.
+> * Any metric from the Integration on your Database with the anomaly function applied.
+> * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+> 
+> Please be sure, when submitting your hiring challenge, to include the
+> script that you've used to create this Timemboard.
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+**[Pejman]**: 
+The workflow is as follow:
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+ 1. ***First off***, we need to set the app key first in order to use the Datadog API.
+This can be set at the following address:
+[API & App keys](https://app.datadoghq.com/account/settings#api)
+ 2. ***Then*** we need to create a timeboard through the API. I started using the example given the API ref guide showing how to produce a timeboard. [Create a timeboard through the DG API](https://docs.datadoghq.com/api/?lang=bash#timeboards)
+ 3. ***Now*** we need to add multiple graph in the list:
+we will use the **graphs** data structure that is a list of objects. Each individual object being a graph
+
+```python
+"graphs" : [{graph1},{graph2}, ...]
+```
+
+***Ex:***
+```python
+"graphs" : [{
+          "title": "Network Bytes Sent",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:system.net.bytes_sent{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "Average CPU User",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:system.cpu.user{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+```
+
+ 4. I'm using curl along with Postman to perform these operations. But it can simply be written in Python, Java or any other language.
+  
+Below each of the widget definitions. The dashboard creation wizard has been used to generate the corresponding JSON.
+  
+***Custom metric scoped over my host***:
+```json
+{
+          "title": "Custom metric scoped on pej",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{host:pej}"}
+              ]
+          },
+          "viz": "timeseries"
+}
+```
+***Any metric from the Integration on your Database with the anomaly function applied***
+
+```json
+{
+    "definition": {
+        "events": [],
+  "requests": [
+    {
+      "q": "anomalies(sum:postgresql.locks{host:pej}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries"
+},
+"title": "Anomalies for PostgreSQL locks"
+}
+```
+
+***Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket***
+
+```json
+{
+          "title": "Custom Metric rolled up",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {
+                   "q": "sum:my_metric{host:pej}.rollup(sum, 3600)",
+                   "type": "bars",
+                   "style": {
+                       "palette": "dog_classic",
+                       "type": "solid",
+                       "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+              ]
+          },
+          "viz": "timeseries"
+}
+```
+
+
+I've also included additional graphs related to CPU & network utilization.
+
+The result is as follow:
+
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Timeboard%202.png)
+
+
+
+The final curl command is available here:
+
+[curl](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/scripts/curl)
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+> * Set the Timeboard's timeframe to the past 5 minutes
+> * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+***Snapshot creation***
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/past%205%20min%20with%20annot.png)
+
+***Email received***
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/email%20with%20anomaly%20within%205%20min.png)
+
+
+> * **Bonus Question**: What is the Anomaly graph displaying?
+
+The purpose of the anomaly function is to determine the normal range of values a given metric should be in. It helps understanding if there are deviations and if so it may be used to alert in case the values are out of the range.  
+In the image below, we see that a little before 15h57 the avg number of locks is slightly higher (3) than what is expected under normal conditions (2,2).
+For production systems, it is highly recommended to let the system collect information on a longer period (hours, days, weeks) to have more accurate data.
+
 
 ## Monitoring Data
 
