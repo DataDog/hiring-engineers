@@ -49,7 +49,7 @@ As per the PostgreSQL integration documentation:
 
 Here the PostgreSQL configuration file:
 
-![postgres.yaml](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/config/postgres.yaml)
+[postgres.yaml](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/config/postgres.yaml)
 
 
 > * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
