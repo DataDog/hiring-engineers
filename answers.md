@@ -408,11 +408,13 @@ A resource is a particular action for a service
 > Provide a link and a screenshot of a Dashboard with both APM and
 > Infrastructure Metrics.
 
-Link
+
+***Link***
 [APM & Infra metrics](https://app.datadoghq.com/dash/810574/pejmans-timeboard-14-may-2018-1848?live=true&page=0&is_auto=false&from_ts=1526313868198&to_ts=1526317468198&tile_size=m)
 
-Screenshot
-![]()
+***Screenshot***
+![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/APM%201.png)
+
 
 Please include your fully instrumented app in your submission, as well. 
 
