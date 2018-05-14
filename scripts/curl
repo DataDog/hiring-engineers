@@ -1,0 +1,103 @@
+curl -X POST \
+  'https://api.datadoghq.com/api/v1/dash?api_key=dbb84369c0f034ad11ea5b3d42b3d353&application_key=c78b994c51e49ad4f541af54781427c732ec5630' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-type: application/json' \
+  -H 'Postman-Token: 565951eb-a9e1-f4a7-53c3-0475179135b6' \
+  -d '{
+      "graphs" : [{
+          "title": "Network Bytes Sent",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:system.net.bytes_sent{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "Average CPU User",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:system.cpu.user{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "Custom Metric rolled up",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {
+                   "q": "sum:my_metric{host:pej}.rollup(sum, 3600)",
+                   "type": "bars",
+                   "style": {
+                       "palette": "dog_classic",
+                       "type": "solid",
+                       "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+              ]
+          },
+          "viz": "timeseries"
+      },
+      {
+    "definition": {
+        "events": [],
+  "requests": [
+    {
+      "q": "anomalies(sum:system.net.bytes_rcvd{$host}, '\''basic'\'', 2)",
+      "type": "area",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries"
+},
+"title": "Anomalies for Network Bytes received"
+},
+{
+    "definition": {
+        "events": [],
+  "requests": [
+    {
+      "q": "anomalies(sum:postgresql.locks{host:pej}, '\''basic'\'', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries"
+},
+"title": "Anomalies for PostgreSQL locks"
+},{
+          "title": "Custom metric scoped on pej",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{host:pej}"}
+              ]
+          },
+          "viz": "timeseries"
+      }
+],
+      "title" : "CPU, Network & SQL Locks",
+      "description" : "An API generated timeboard",
+      "template_variables": [{
+          "name": "host",
+          "prefix": "host",
+          "default": "host:pej"
+      }],
+      "read_only": "True"
+}'
