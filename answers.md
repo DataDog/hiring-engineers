@@ -329,13 +329,16 @@ my_metric ranging between 500 et 799
 
 **[Pejman]** In order to exclude alerts over a specific time window, we will set up two scheduled downtimes for this monitor:
 
-*One that silences it from 7pm to 9am daily on M-F*
+***One that silences it from 7pm to 9am daily on M-F***
+
 ![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Downtime%20on%20weekdays.png)
 
-*And one that silences it all day on Sat-Sun.*
+***And one that silences it all day on Sat-Sun.***
+
 ![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Downtime%20on%20sundays.png)
 
-*Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification*
+***Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification***
+
 ![](https://github.com/ptabasso2/hiring-engineers/blob/solutions-engineer/images/Downtime%20on%20weekdays%20notification.png)
 
 
@@ -374,11 +377,39 @@ if __name__ == '__main__':
     app.run()
 ```    
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+> * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the
+> other.
+> 
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+**[Pejman]** 
+The above application has been used to perform some basic tests using Datadog APM.  
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+The following steps have been taken:
+
+*1. Install flask: pip install flask ddtrace
+2. save the above python code in /opt/apps/my_flaskapp.py 
+3. export FLASK_APP=/opt/apps/my_flaskapp.py
+4. ddtrace-run python -m flask run --port=9090
+5. generating some load on /, /api/trace, /api/apm*
+
+> * **Bonus Question**: What is the difference between a Service and a Resource?
+
+**[Pejman]** 
+
+***Service***
+A  component or a process that perform a set of tasks which can be categorized by type of content. Ex Web server, App Server or DB server. This 3 services may be used to service user requests through a web application.
+
+***Resource***
+A resource is a particular action for a service
+  ***For a web application***: some examples might be a canonical URL, such as  `/user/home`  or a handler function like  `web.user.home`  (often referred to as “routes” in MVC frameworks).
+ ***For a SQL database***: a resource is the query itself, such as  `SELECT * FROM users WHERE id = ?`.
+ 
+
+> Provide a link and a screenshot of a Dashboard with both APM and
+> Infrastructure Metrics.
+
+[APM & Infra metrics](https://app.datadoghq.com/dash/810574/pejmans-timeboard-14-may-2018-1848?live=true&page=0&is_auto=false&from_ts=1526313868198&to_ts=1526317468198&tile_size=m)
+
 
 Please include your fully instrumented app in your submission, as well. 
 
@@ -424,6 +455,8 @@ To submit your answers:
 ### Other questions:
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+
+
 
 
 
