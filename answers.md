@@ -7,4 +7,4 @@ Virtual Box does not play nicely with High Sierra, so I chose to install the age
 
 I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
-[Tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/master/Agent%20Config%20File%20Tags.png)
+![Tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/master/Agent%20Config%20File%20Tags.png)
