@@ -386,7 +386,7 @@ The above application has been used to perform some basic tests using Datadog AP
 
 The following steps have been taken:
 
-*1. Install flask: pip install flask ddtrace
+1. Install flask: pip install flask ddtrace
 2. save the above python code in /opt/apps/my_flaskapp.py 
 3. export FLASK_APP=/opt/apps/my_flaskapp.py
 4. ddtrace-run python -m flask run --port=9090
