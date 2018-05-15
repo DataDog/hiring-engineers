@@ -36,7 +36,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well. 
+Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
