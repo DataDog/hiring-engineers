@@ -136,12 +136,15 @@ The anomaly graph for the postgreSQL integration commits helps identity when the
 Here are emails for an Alert, Warning, and No Data state:
 
 Alert Email
+
 ![Imgur](https://i.imgur.com/hzopakM.png)
 
 Warning Email
+
 ![Imgur](https://i.imgur.com/hzopakM.png)
 
 No Data Email
+
 ![Imgur](https://i.imgur.com/1FD4WUm.png)
 
 <h4>Bonus Question: </h4>
