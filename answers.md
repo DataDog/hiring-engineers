@@ -31,10 +31,12 @@ It's always delicious to see when things work. If everything goes according to p
 - tag1:value1
 - tag2:value2
 - tag3:value3
+
 ![datadog.yaml updated tags](https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent_addedtags.png)
 
 And this is what rendered in the UI:
-![datadog hostmap](https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent_addedtags.png)
+
+![datadog hostmap](https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_tags.png)
 
 However, it took me a little time to figure out that I had to restart the agent for the tags to happen. Whoops. And also... that I totally overlooked the whole "You see both forms in the yaml configuration files, but for the `datadog.yaml` init file only the first form is valid." (referring to the format below):
 
@@ -48,3 +50,13 @@ heh... so I updated the file to the correct format...
 And here's what it looked like in the UI.
 ![datadog hostmap correct](https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_tags_correct.png)
 ![datadog charts](https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_charts.png)
+
+Kewl.
+
+Since PostgreSQL is pretty much the only database we learned at GA, I installed this by running the following commands in my root directory:
+```
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install postgresql postgresql-contrib
+```
+
+I ran into a little speed bump here as I was receiving an authentication error, and needed to alter the authentication config file... so I did! I ran `$ sudo nano /etc/postgresql/9.1/main/pg_hba.conf` and wrote `local all postgres peer`, which...according to [this handy site](https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/), this is an authentication rule that "simply tells Postgres that for local connections established to all databases for the user postgres, authenticate using the peer protocol." Then I ran `sudo -u postgres psql` and was in!
