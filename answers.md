@@ -12,14 +12,21 @@ $ vagrant up
 $ vagrant ssh
 ```
 You should now see `vagrant@precise64:~$` in your terminal.
-3. Create a Datadog account and all that jazz by clicking on the "Get Started Free" button at the top right of the data dog site. A form should come up that looks like this:
-![alt text](https://s3.amazonaws.com/juliewongbandue-ddhiring/create_account_form.png "Form")
+3. Create a Datadog account and all that jazz by clicking on the "Get Started Free" button at the top right of the data dog site. A form should come up.
+<details>
+  <summary>It should look like this</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/create_account_form.png></img>
+</details>
+
 4. Now install curl by running `sudo apt-get install curl` and then run the sweet, sweet command on the DataDog docs:
 ```
 DD_API_KEY=3840599a1d800170269b6a93c2471c73 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 It's always delicious to see when things work. If everything goes according to plan, you'll see this message in your terminal:
-![confirmation message](https://s3.amazonaws.com/juliewongbandue-ddhiring/DDAgent_confirmation.png "Installation Confirmation")
+<details>
+  <summary>Installation Confirmation Image</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/DDAgent_confirmation.png></img>
+</details>
 
 ## Collecting Metrics
 + Adding some tags using the configuration files!
@@ -27,8 +34,8 @@ It's always delicious to see when things work. If everything goes according to p
 ⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after running `sudo apt-get install vim`, of course).
 
 <details>
-<summary>See image here</summary>
-<img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png </img>
+  <summary>See image here</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png></img>
 </details>
 
 ⋅⋅⋅Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
@@ -38,9 +45,10 @@ It's always delicious to see when things work. If everything goes according to p
 - tag2:value2
 - tag3:value3
 ```
-
-![datadog.yaml updated tags](https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent_addedtags.png)
-
+<details>
+  <summary>Updated tags in .yaml file</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent_addedtags.png></img>
+</details>
 And this is what rendered in the UI:
 
 ![datadog hostmap](https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_tags.png)
