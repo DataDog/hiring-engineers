@@ -69,7 +69,7 @@ Here is an example:
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE5.png)
 
 - **Key Value Point**
-  - **oo** With Datadog you will be able to see metrics from all aspects of the application. From UI, infrastructure, and down to the database. This is important because creating a high quality application with a valuable experience is not just dependent on the UI. All levels of the applications must be functioning correctly.
+  -  With Datadog you will be able to see metrics from all aspects of the application. From UI, infrastructure, and down to the database. This is important because creating a high quality application with a valuable experience is not just dependent on the UI. All levels of the applications must be functioning correctly.
 
 **Day 2**
 
@@ -88,8 +88,8 @@ For example, here you can see information from the database, with the query call
 
 
 - Once dashboards have been created you have multiple ways to share this valuable information
-  - **oo** Via a shareable link - [https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv\_mode=false](https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv_mode=false)
-  - **oo** Creating a snapshot and sharing it internally in Datadog by referencing someone with @
+  -  Via a shareable link - [https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv\_mode=false](https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv_mode=false)
+  -  Creating a snapshot and sharing it internally in Datadog by referencing someone with @
 
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE7.png)
 
@@ -98,54 +98,54 @@ This allows for collaboration inside and out of Datadog. You can also integratio
 
 
 - With metrics in a dashboard, we can now use Datadog to identify anomalies.
-  - **oo** Here is a Timeboard where two of the graphs are using anomaly detection:
+  -  Here is a Timeboard where two of the graphs are using anomaly detection:
 
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE8.png)
 
 You can see in the graph &quot;Anomaly Detection for Random Number&quot; that there are times with the values are following outside of the expected range. This is indicated by the red parts of the line graph.
 
 - Key Value Point
-  - **oo** Identifying potential issues in the application will provide greater value than just looking and waiting for the application to break or go down. Being able to isolate anomalies will help XYZ find and prepare for issues. Don&#39;t fall into the &quot;if it ain&#39;t broke, don&#39;t fix it!&quot; mindset. You application might not be broken, but it could still be functioning at a poor quality, which will drive away revenue, productivity, and success.
+  -  Identifying potential issues in the application will provide greater value than just looking and waiting for the application to break or go down. Being able to isolate anomalies will help XYZ find and prepare for issues. Don&#39;t fall into the &quot;if it ain&#39;t broke, don&#39;t fix it!&quot; mindset. You application might not be broken, but it could still be functioning at a poor quality, which will drive away revenue, productivity, and success.
 
 
 **Extending the Data in Dashboards to Monitoring and Alerting**
 
-- **oo** Now that metrics are collected and useable in Datadog setting up monitors and alerts will give XYZ the ability to take action, when issues arise, in a timely and cost savings manor.
+-  Now that metrics are collected and useable in Datadog setting up monitors and alerts will give XYZ the ability to take action, when issues arise, in a timely and cost savings manor.
 
-- **oo** In Datadog XYZ can create custom monitors that alert the appropriate parties, so action can be taken
-  - **oo** Here is an example of a created monitor
+-  In Datadog XYZ can create custom monitors that alert the appropriate parties, so action can be taken
+  -  Here is an example of a created monitor
 
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE9.png)
 
 
 
-  - **oo** When the monitor is triggered or modified an email alert can be sent out
+  -  When the monitor is triggered or modified an email alert can be sent out
 
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE10.png)
 
 
 
-  - **oo** Monitors can also be setup with scheduled downtime
+  -  Monitors can also be setup with scheduled downtime
     - Here you can see that our monitor will be down,
 Monday – Friday from 7am – 9pm
 
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE11.png)
 
 
-- **oo** Key Value Point for Monitoring and Alerting
-  - **oo**&quot;without knowledge action is useless and knowledge without action is futile&quot; – Abu Bakr
+-  Key Value Point for Monitoring and Alerting
+  - &quot;without knowledge action is useless and knowledge without action is futile&quot; – Abu Bakr
 
-  - **oo** Collecting data is great, but without detection, monitoring, alerts, notifications for someone to get on the issue, then why are we collecting metrics. Action must be taken, and it must be taking timely and effectively.
+  -  Collecting data is great, but without detection, monitoring, alerts, notifications for someone to get on the issue, then why are we collecting metrics. Action must be taken, and it must be taking timely and effectively.
 
-  - **oo** Combining Datadog&#39;s metric collection, anomaly detection, scoping, and correlations, monitoring, and alerting you can resolve issues in efficiently. To break it down a little more…. Time is money! The more time we let issues linger, the more the &quot;cost&quot;.
+  -  Combining Datadog&#39;s metric collection, anomaly detection, scoping, and correlations, monitoring, and alerting you can resolve issues in efficiently. To break it down a little more…. Time is money! The more time we let issues linger, the more the &quot;cost&quot;.
 
 
 
 **Day 3**
 
 - Application Performance Monitoring Setup
-  - **oo** Python
-  - **oo** Java
+  -  Python
+  -  Java
 
 
 **Setup of Python APM**
