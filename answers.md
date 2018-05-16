@@ -1,7 +1,7 @@
 <b>XYZ POV Report
 Datadog</b>
 
-<b>Dates:<b/> 5/9/2018 - 5/11/2018
+<b>Dates:</b> 5/9/2018 - 5/11/2018
 	
 <b>Datadog Contacts:</b>
 Tre’ Sellari – Sales Engineer
@@ -27,11 +27,12 @@ Using metrics collected from the hosts, databases, and applications a Timeboard 
 
 
 
-Day 1
-•	Agent Installation on Hosts
+<b>Day </b>
+	•Agent Installation on Hosts
 
-•	Database integration
-Agent Installation on Hosts
+	•Database integration
+	
+<ul>Agent Installation on Hosts</ul>
 •	From the Integrations tab in Datadog, simply select the appropriate Agent and follow instructions. Here is an example of the Windows installation page:
 
 
