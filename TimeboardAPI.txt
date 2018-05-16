@@ -1,0 +1,67 @@
+POST /api/v1/dash?api_key=e748028d5a95c54ca49e63ef536085a6&amp;application_key=0af2b678d845e1161f97fcb177c68d157c4b1b5b HTTP/1.1
+Host: app.datadoghq.com
+Content-Type: application/json
+Cache-Control: no-cache
+Postman-Token: 11a1e1ba-2f84-4efe-9ed5-6e5b3d60e075
+
+{
+      "graphs" : [{
+          "title": "Average Random Number",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:random_number{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+      {
+          "title": "Anomaly Detection for Random Number",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:random_number{host:Tre-PC}, 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+          {
+          "title": "Anomaly Detection for Postgres BGwriter",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}.as_count(), 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+          {
+          "title": "Rollup of Random Number over last hour",
+          "definition": {
+              "events": [],
+              "requests": [
+				    {
+				      "q": "avg:random_number{*}.rollup(sum, 3600)",
+				      "type": null,
+				      "style": {
+				        "palette": "dog_classic",
+				        "type": "solid",
+				        "width": "normal"
+				      },
+				      "conditional_formats": [],
+				      "aggregator": "sum"
+				    }
+              ],
+              "viz": "query_value"
+          }
+          
+      }],
+      "title" : "Sellari API Timeboard",
+      "description" : "A timeboard created using the API",
+      "template_variables": [{
+          "name": "hosst",
+          "prefix": "host",
+          "default": "host:Tre-PC"
+      }],
+      "read_only": "True"
+    }
