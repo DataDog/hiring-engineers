@@ -41,11 +41,11 @@ Using metrics collected from the hosts, databases, and applications a Timeboard 
 **Agent Installation on Hosts**
 
 - From the Integrations tab in Datadog, simply select the appropriate Agent and follow instructions. Here is an example of the Windows installation page:
-![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE1.png)
+![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/Image1.png)
 
 
 - Once the Agent has been installed, it will automatically begin to report metric data. You will see information about the host in the Infrastructure tab:
-![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE2.png)
+![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/Image2.png)
 
 
 
