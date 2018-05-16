@@ -26,7 +26,11 @@ It's always delicious to see when things work. If everything goes according to p
 
 ⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after running `sudo apt-get install vim`, of course).
 
+<details open>
+<summary>See image here</summary>
+<br>
 ![datdog.yaml](https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png)
+<details>
 
 ⋅⋅⋅Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
@@ -42,7 +46,7 @@ And this is what rendered in the UI:
 
 ![datadog hostmap](https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_tags.png)
 
-However, it took me a little time to figure out that I had to restart the agent for the tags to happen. Whoops. And also... that I totally overlooked the whole "You see both forms in the yaml configuration files, but for the `datadog.yaml` init file only the first form is valid." (referring to the format below):
+However, it took me a little time to figure out that I had to restart the agent for the tags to happen. Whoops. And also... that I totally overlooked the whole "You see both forms in the `yaml` configuration files, but for the `datadog.yaml` init file only the first form is valid." (referring to the format below):
 
 ```
 tags: key_first_tag:value_1, key_second_tag:value_2, key_third_tag:value_3
@@ -94,4 +98,34 @@ And the UI:
 ![postgres install](https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+install.png)
 
 + Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-⋅⋅⋅As per the [Datadog docs](https://docs.datadoghq.com/agent/agent_checks/), I `cd`d into `/etc/datadog-agent/checks.d` and created a `my_metric.yaml` and `my_metric.py` file.
+⋅⋅⋅As per the [Datadog docs](https://docs.datadoghq.com/agent/agent_checks/), I `cd`d into `/etc/datadog-agent/conf.d` and created a `my_metric.yaml` file, and a `my_metric.py` file in the `etc/datadog-agent/checks.d`. To start, I simply used the example in the docs. Then, after some googling what the syntax should be for Javascript's "math.random()" in Python, I declared a global variable (`random`) and called the python method `randomint(0,1000)`.
+
+in `my_metric.yaml`:
+```
+init_config:
+
+instances:
+    [{}]
+```
+
+and in `my_metric.py`:
+```
+import random
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric',random.randint(0,1000))
+```
+
+And here's what the UI looks like:
+![my_metric UI](https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_UI.png)
+
++ Change your check's collection interval so that it only submits the metric once every 45 seconds.
+⋅⋅⋅As per your docs, I edited the `my_metric.yaml` file under `init_config`:
+![my_metric 45](https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+45+sec.png)
+
+Annnddd... UI:
+![my_metric 45 UI](https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+46+sec_UI.png)
+
+__Bonus__ Can you change the collection interval without modifying the Python check file you created?
+Now I'm fairly certain I did this wrong, as I ONLY updated the `yaml` file. hm. I'll revisit later.
