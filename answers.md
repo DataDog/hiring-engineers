@@ -13,7 +13,7 @@ Dustin Lawler – VP of App
 
 **Summary**
 
-        For the XYZ POV we selected three different hosts to monitor. A Windows 7 laptop, a Linux host running Docker, and a Windows 10 desktop. Agents were installed on each host, a PostgreSQL database and Application Performance Monitoring (APM) data was collected from a python application and a Java application.
+For the XYZ POV we selected three different hosts to monitor. A Windows 7 laptop, a Linux host running Docker, and a Windows 10 desktop. Agents were installed on each host, a PostgreSQL database and Application Performance Monitoring (APM) data was collected from a python application and a Java application.
 
 Using metrics collected from the hosts, databases, and applications a Timeboard was created using the Datadog API. With this data centralized into Datadog, XYZ will now be able to monitor data from the front in to the backend of their applications. This will allow XYZ to have insight into potential issues, anomalies, and improve overall quality and performance of their applications. Which in the end will help drive customer satisfaction and increase revenue potential.
 
@@ -159,7 +159,7 @@ You will also notice that high level overview data, requests, and single sql que
 
 **Summary**
 
-        A 3 day POV was fully completed by Datadog at XYZ. All expectations were from XYZ were met and proved by Datadog.
+A 3 day POV was fully completed by Datadog at XYZ. All expectations were from XYZ were met and proved by Datadog.
 
 On the first day the Datadog instance was initialized for XY, accounts created, and Host Agents were installed and configured, and a database integration was setup.
 
