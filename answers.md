@@ -28,10 +28,6 @@ Using metrics collected from the hosts, databases, and applications a Timeboard 
 
 
 
-
-
-
-
 **Day 1**
 
 - Agent Installation on Hosts
@@ -41,16 +37,20 @@ Using metrics collected from the hosts, databases, and applications a Timeboard 
 **Agent Installation on Hosts**
 
 - From the Integrations tab in Datadog, simply select the appropriate Agent and follow instructions. Here is an example of the Windows installation page:
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/Image1.png)
 
 
 - Once the Agent has been installed, it will automatically begin to report metric data. You will see information about the host in the Infrastructure tab:
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/Image2.png)
 
 
 
 - With Datadog&#39;s ability to use tags, you can make life easier by giving hosts tags in the agent config file.
-Here is an example:![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE3.png)
+Here is an example:
+
+![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE3.png)
 
 **Database integrations Setup**
 
@@ -83,12 +83,14 @@ Here is an example:![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-e
 
 - In Datadog XYZ has the ability to create dashboards that have metrics from all levels of the application and infrastructure.
 For example, here you can see information from the database, with the query calls, information about the number of requests, and also the latency in the application:
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE6.png)
 
 
 - Once dashboards have been created you have multiple ways to share this valuable information
   - **oo** Via a shareable link - [https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv\_mode=false](https://p.datadoghq.com/sb/bd421a7ea-cf8af2ebc0f98f2b6ad45bea2bae99fa?tv_mode=false)
   - **oo** Creating a snapshot and sharing it internally in Datadog by referencing someone with @
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE7.png)
 
 This allows for collaboration inside and out of Datadog. You can also integration with chatops solutions, such as slack, HipChat, and others to drive collaboration.
@@ -97,6 +99,7 @@ This allows for collaboration inside and out of Datadog. You can also integratio
 
 - With metrics in a dashboard, we can now use Datadog to identify anomalies.
   - **oo** Here is a Timeboard where two of the graphs are using anomaly detection:
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE8.png)
 
 You can see in the graph &quot;Anomaly Detection for Random Number&quot; that there are times with the values are following outside of the expected range. This is indicated by the red parts of the line graph.
@@ -111,11 +114,13 @@ You can see in the graph &quot;Anomaly Detection for Random Number&quot; that th
 
 - **oo** In Datadog XYZ can create custom monitors that alert the appropriate parties, so action can be taken
   - **oo** Here is an example of a created monitor
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE9.png)
 
 
 
   - **oo** When the monitor is triggered or modified an email alert can be sent out
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE10.png)
 
 
@@ -123,6 +128,7 @@ You can see in the graph &quot;Anomaly Detection for Random Number&quot; that th
   - **oo** Monitors can also be setup with scheduled downtime
     - Here you can see that our monitor will be down,
 Monday – Friday from 7am – 9pm
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE11.png)
 
 
@@ -144,15 +150,17 @@ Monday – Friday from 7am – 9pm
 
 **Setup of Python APM**
 
-        The selected application was a random guessing game Python application, provided by XYZ.
+The selected application was a random guessing game Python application, provided by XYZ.
 
 Integrations were imbedded into the application and data was pulled into Datadog. A dashboard was then created to view the data and gather valuable metrics and insight.
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE12.png)
 
 The second application used as part of the APM portion was a Java Swing and with a backend database. Using the Java APM jar, which was quickly downloaded from Datadog and added to a local IDE, APM data was immediately pulled into Datadog when running the application.
 A quote from the developer was, &quot;that was surprising and satisfyingly easy&quot;
 
 Here is a screenshot of the APM data pulled in within 30 mins of the application running:
+
 ![IMAGE](https://raw.githubusercontent.com/sellarit9/hiring-engineers/master/IMAGE13.png)
 
 You will also notice that high level overview data, requests, and single sql queries are all now accessible in a single interface.
