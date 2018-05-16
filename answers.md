@@ -26,11 +26,10 @@ It's always delicious to see when things work. If everything goes according to p
 
 ⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after running `sudo apt-get install vim`, of course).
 
-<details open>
-<summary>See image here</summary>
-<br>
-![datdog.yaml](https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png)
 <details>
+<summary>See image here</summary>
+</details>
+<img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png </img>
 
 ⋅⋅⋅Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
@@ -128,4 +127,4 @@ Annnddd... UI:
 ![my_metric 45 UI](https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+46+sec_UI.png)
 
 __Bonus__ Can you change the collection interval without modifying the Python check file you created?
-Now I'm fairly certain I did this wrong, as I ONLY updated the `yaml` file. hm. I'll revisit later.
+Now I'm fairly certain I did this wrong, as I ONLY updated the `yaml` file.
