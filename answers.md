@@ -28,8 +28,8 @@ It's always delicious to see when things work. If everything goes according to p
 
 <details>
 <summary>See image here</summary>
-</details>
 <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png </img>
+</details>
 
 ⋅⋅⋅Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
