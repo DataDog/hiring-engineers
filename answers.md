@@ -45,7 +45,7 @@ IMAGE1
 
 
 - Once the Agent has been installed, it will automatically begin to report metric data. You will see information about the host in the Infrastructure tab:
-![Image](hiring-engineers/Image1.png)
+![Image](https://raw.githubusercontent.com/sellarit9/hiring-engineers/Image1.png)
 
 
 
