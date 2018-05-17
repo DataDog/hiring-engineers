@@ -32,7 +32,8 @@ Downtime Schedules can be created to suppress alerts during known change windows
 ![](DataDog_CustomMonitor.png)
 ![](Datadog_WarnAlert.png)
 ![](DataDog_AlertHigh.png)
-
+![](DataDog_ScheduledDowntime1.png)
+![](DataDog_ScheduledDowntime2.png)
 
 
 Collecting APM
