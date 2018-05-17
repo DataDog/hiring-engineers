@@ -45,6 +45,7 @@ Collecting APM
 Collecting APM data is extremely useful for businesses to track the overall performance of their mission critical applications.  DataDog offers a unique and simple Trace agent which provides  instrumentation to trace web requests from various sources such as Python, Java, Ruby, and Go languages.  For a simple demonstration we can leverage a Flask Webapp for monitoring and investigate the performance of the requests, avg latency and error rates. For APM monitoring, Services are a set of processes that perform the same type of job. Resources are the actions for the services.  An example of the resource is a query or URL 
 
 ![](DataDog_FlaskTraces.png)
+![](Infrastructure+APM.PNG)
 
 Snippet of Code used to run Flask  
 from flask import Flask
