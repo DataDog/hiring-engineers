@@ -10,6 +10,19 @@ From the agent dashboard, download the agent files for your operating system or 
 ![](DataDog_SQLServerUser.png)
 ![](DataDog_SQLServerDashboard.png)
 
+Snippet of code used for custom metric:
+Code used:
+init_config:
+
+instances:
+  [{}]
+
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', 1)
+
+
 
 Once DataDog agents are collecting data, tags can be applied to provide context to hosts in the infrastructure. Tagging provides a simple way of organizing systems, applications, or services for visualization.  
 
@@ -52,7 +65,6 @@ from flask import Flask
 import logging
 import sys
 
-# Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
 c = logging.StreamHandler(sys.stdout)
