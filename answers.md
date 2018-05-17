@@ -29,9 +29,16 @@ Once the agents are configured and collecting data, operators of DataDog are abl
 
 Downtime Schedules can be created to suppress alerts during known change windows.  The UI offers flexibility to setup one time or recurring blackout windows.
 
+![](DataDog_AlertHigh.png)
+![](Datadog_WarnAlert.png)
+![](DataDog_CustomMonitor.png)
+
+
 Collecting APM
 
 Collecting APM data is extremely useful for businesses to track the overall performance of their mission critical applications.  DataDog offers a unique and simple Trace agent which provides  instrumentation to trace web requests from various sources such as Python, Java, Ruby, and Go languages.  For a simple demonstration we can leverage a Flask Webapp for monitoring and investigate the performance of the requests, avg latency and error rates. Additional languages will be supported at a future date. 
+
+![](DataDog_FlaskTraces.png)
 
 Final Question:
 
