@@ -29,9 +29,10 @@ Once the agents are configured and collecting data, operators of DataDog are abl
 
 Downtime Schedules can be created to suppress alerts during known change windows.  The UI offers flexibility to setup one time or recurring blackout windows.
 
-![](DataDog_AlertHigh.png)
-![](Datadog_WarnAlert.png)
 ![](DataDog_CustomMonitor.png)
+![](Datadog_WarnAlert.png)
+![](DataDog_AlertHigh.png)
+
 
 
 Collecting APM
