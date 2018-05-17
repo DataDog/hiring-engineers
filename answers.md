@@ -10,20 +10,6 @@ From the agent dashboard, download the agent files for your operating system or 
 ![](DataDog_SQLServerUser.png)
 ![](DataDog_SQLServerDashboard.png)
 
-Snippet of code used for custom metric:
-Code used:
-init_config:
-
-instances:
-  [{}]
-
-from checks import AgentCheck
-class HelloCheck(AgentCheck):
-  def check(self, instance):
-    self.gauge('my_metric', 1)
-
-
-
 Once DataDog agents are collecting data, tags can be applied to provide context to hosts in the infrastructure. Tagging provides a simple way of organizing systems, applications, or services for visualization.  
 
 ![](DataDog_HostwithTagging.png)
