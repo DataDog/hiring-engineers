@@ -12,7 +12,8 @@ From the agent dashboard, download the agent files for your operating system or 
 
 Once DataDog agents are collecting data, tags can be applied to provide context to hosts in the infrastructure. Tagging provides a simple way of organizing systems, applications, or services for visualization.  
 
-![](DataDog_HostwithTagging.png)
+![](DataDogAgent_Tagging.png)
+![](DataDog_Tagging.PNG)
 
 On top of providing out of the box metrics, DataDog provides the ability to add your own custom metrics.  This feature provides organizations the flexibility to add metrics and KPI’s that are important to their environment.  As an example, we create a custom metric called my_metric that reports in every 45 seconds.  The collection interval is configurable in the instance level and requires editing the init_config section.
 
