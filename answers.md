@@ -31,7 +31,7 @@ It's always delicious to see when things work. If everything goes according to p
 ## Collecting Metrics
 + Adding some tags using the configuration files!
 
-⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after running `sudo apt-get install vim`, of course).
+⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
 
 <details>
   <summary>See image here</summary>
@@ -94,15 +94,10 @@ sudo apt-get install postgresql postgresql-contrib
 ```
 create user datadog with password '<PASSWORD>';
 grant SELECT ON pg_stat_database to datadog;
+CREATE DATABASE pg_stat_database;
 ```
 
-Man I love when things just work out:
-<details>
-  <summary>_Creating role and granting access_</summary>
-  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+create.png></img>
-</details>
-
-Then, I ran the permissions:
+⋅⋅⋅Then, I ran the permissions:
 ```
 psql -h localhost -U datadog postgres -c \
 "select * from pg_stat_database LIMIT(1);"
@@ -110,14 +105,41 @@ psql -h localhost -U datadog postgres -c \
 || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-After I entered the password...
+⋅⋅⋅After I entered the password...
 <details>
-  <summary>_Here's what my terminal looked like!_</summary>
+  <summary>Here's what my terminal looked like</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+password.png></img>
 </details>
+
+⋅⋅⋅Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
+```
+init_config:
+
+instances:
+  - host: localhost
+    port: 5432
+    username: datadog
+    password: YBFne6UGENk9tpoqyQ84hMSJ
+    dbname: pg_stat_database
+#    ssl: False
+#    use_psycopg2: False # Force using psycogp2 instead of pg8000 to connect. WARNING: psycopg2 doesn't support ssl mode.
+    tags:
+       - optional_tag1
+       - optional_tag2
+```
+
+⋅⋅⋅I restarted the agent.
+
+⋅⋅⋅Man I love when things just work out:
 <details>
-  <summary>_And UI_</summary>
+  <summary>Postgres Status</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+status.png></img>
+</details>
+
+<details>
+  <summary>.</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+install.png></img>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+hostmap.png></img>
 </details>
 
 + Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -146,7 +168,7 @@ class HelloCheck(AgentCheck):
 </details>
 
 + Change your check's collection interval so that it only submits the metric once every 45 seconds.
-⋅⋅⋅As per your docs, I edited the `my_metric.yaml` file under `init_config`:
+⋅⋅⋅As per your docs, I edited the `my_metric.yaml` file under `init_config` by including `min_collection_interval: 45`:
 <details>
   <summary>`my_metric.yaml`</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+45+sec.png></img>
@@ -157,7 +179,7 @@ class HelloCheck(AgentCheck):
 </details>
 
 __Bonus__ Can you change the collection interval without modifying the Python check file you created?
-Now I'm fairly certain I did this wrong, as I ONLY updated the `yaml` file... hm. Will revisit.
+Hm, because this is a bonus question, I'm fairly certain I could have done this wrong, as I _ONLY_ updated the `yaml` file.
 
 ## Visualizing Data
 
@@ -166,9 +188,23 @@ Utilize the Datadog API to create a Timeboard that contains:
 + Any metric from the integration on your Database with the anomaly function applied.
 + Your custom metric with the rollup function applied to sum up all points for the past hour into one bucket.
 ⋅⋅⋅ This one seemed like a lot, here are the steps I took:
-1. Click on the "A new timeboard" button in the dashboard and chose "my_metric" in the dropdown:
+1. Read the [docs](https://docs.datadoghq.com/api/?lang=python#timeboards).
+2. Since it looks like we'll need an `APP KEY`, I had to generate one of those in my dashboard when I go to Integrations--APIs.
 <details>
-  <summary>Image here</summary>
-  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/new+timeboard.png></img>
+  <summary>Here's where to look</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/app+keys.png></img>
 </details>
-2.
+3. I used Postman to help with this as per this [tutorial][https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs]. I was able to add a couple of graphs via Postman.
+<details>
+  <summary>Here's what my postman interface looked like</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postman.png></img>
+</details>
+<details>
+  <summary>And my dashboard showed that I had added a new timeboard</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/dashboard_custom+timeboard.png></img>
+</details>
+<details>
+  <summary>And the actual timeboard graphs</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/custom+timeboard_graphs.png></img>
+</details>
+4.
