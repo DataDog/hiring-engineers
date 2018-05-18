@@ -7,7 +7,7 @@ I spent far too many hours trying to get VirtualBox to work on High Sierra (it d
 
 ### Collecting Metrics
 
- ## Add tags in the agent config file
+## Add tags in the agent config file
 
 I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
@@ -20,11 +20,11 @@ I uncommented the following tags in the datadog.yaml file
 ```
 ![Tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/master/ConfigFileTags.png)
 
- ## Install database and Datadog configuration
+### Install database and Datadog configuration
 
  ![MySQLIntegration]() 
 
-## Create custom Agent Check
+### Create custom Agent Check
 
 I created two files 
 
@@ -51,7 +51,7 @@ class HelloCheck(AgentCheck):
         self.gauge( 'mymetric',  random_number )
 ```
 
-## Change collection interval to 45 seconds
+### Change collection interval to 45 seconds
 
 I changed the mycheck.yaml file to the following
 
@@ -63,20 +63,20 @@ instances:
     - min_collection_interval: 45
 ```
 
-## Bonus Question
+### Bonus Question
 
 I didn't make any changes to the mycheck.py file, my change was the mycheck.yaml file. I think this satisifes the requiremes of the question? 
 
-### Visualizing Data
+## Visualizing Data
 
-## Timeboard
+### Timeboard
 
 Here is the picture of the three metrics on separate timeboards over a four hour timeframe. I thought this picture would be helpful to visualize though it is not in the instructions to include it
 
 ![AllTimeboardsSeparated]()
 
 
-## Timeboard Script 
+### Timeboard Script 
 
 JSON object for the board
 ```
@@ -127,10 +127,10 @@ JSON object for the board
 ```
 
 
-## Timeboard Snapshot
+### Timeboard Snapshot
 
 ![MyTimeboardEmail]()
 
-## Bonus Question: What is the Anomaly graph displaing?
+### Bonus Question: What is the Anomaly graph displaing?
 
 It displays the bounds of the line. Bounds are what is considered normal in terms of deviations in the documentation. I think these deviations refer to standard deviation.
