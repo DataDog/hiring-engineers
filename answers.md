@@ -138,4 +138,23 @@ It displays the bounds of the line. Bounds are what is considered normal in term
 
 ## Monitoring Data
 
-### 
+I have copied my message template below. I was not able to figure out how to include the metric value in this alert.
+
+```
+What does the scouter say about his power level? at IP {{host.ip}}
+
+{{#is_alert}} 
+It's over 800!!!
+{{/is_alert}} @me@amoghk.com  
+
+{{#is_warning}} 
+It's over 500!!!
+{{/is_warning}} @me@amoghk.com  
+
+{{#is_no_data}} 
+Power level cannot be found at {{host.ip}}
+{{/is_no_data}} @me@amoghk.com
+```
+
+![Monitor Email Screenshot]()
+
