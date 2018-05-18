@@ -3,9 +3,9 @@
 I spent far too many hours trying to get VirtualBox to work on High Sierra (it did not work), so I chose to install the agent directly on OS X
 
 
-### Collecting Metrics
+## Collecting Metrics
 
-## Add tags in the agent config file
+### Add tags in the agent config file
 
 I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
