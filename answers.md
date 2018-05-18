@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-
 ### Setup
 
 I spent far too many hours trying to get VirtualBox to work on High Sierra (it did not work), so I chose to install the agent directly on OS X
@@ -13,7 +11,8 @@ I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one wi
 
 I uncommented the following tags in the datadog.yaml file
 
-```tags:
+```
+tags:
   - mytag
   - env:prod
   - role:database
@@ -33,7 +32,6 @@ mycheck.yaml
 ```
 init_config:
   
-
 instances:
     [{}]
 ```
@@ -58,7 +56,6 @@ I changed the mycheck.yaml file to the following
 ```
 init_config:
   
-
 instances:
     - min_collection_interval: 45
 ```
@@ -137,6 +134,9 @@ It displays the bounds of the line. Bounds are what is considered normal in term
 
 
 ## Monitoring Data
+
+![Monitor Alert Conditions]()
+
 
 I have copied my message template below. I was not able to figure out how to include the metric value in this alert.
 
