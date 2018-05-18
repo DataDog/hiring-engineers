@@ -9,7 +9,7 @@ I spent far too many hours trying to get VirtualBox to work on High Sierra (it d
 
 I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
-I uncommented the following tags in the datadog.yaml file
+I un-commented the following tags in the datadog.yaml file
 
 ```
 tags:
@@ -42,7 +42,6 @@ mycheck.py
 from checks import AgentCheck
 from random import randint
 
-
 class HelloCheck(AgentCheck):
     def check(self, instance):
         random_number = randint(0, 1000)
@@ -62,20 +61,19 @@ instances:
 
 ### Bonus Question
 
-I didn't make any changes to the mycheck.py file, my change was the mycheck.yaml file. I think this satisifes the requiremes of the question? 
+I didn't make any changes to the mycheck.py file, my change was the mycheck.yaml file. I think this satisfies the requirements of the question? 
 
 ## Visualizing Data
 
 ### Timeboard
 
-Here is the picture of the three metrics on separate timeboards over a four hour timeframe. I thought this picture would be helpful to visualize though it is not in the instructions to include it
+Here is the picture of the three metrics on separate timeboards over a four hour time frame. I thought this picture would be helpful to visualize though it is not in the instructions to include it
 
 ![AllTimeboardsSeparated](https://raw.githubusercontent.com/akambale/hiring-engineers/master/AllTimeboardsSeparated.png)
 
 
-### Timeboard Script 
+### JSON Timeboard Script 
 
-JSON object for the board
 ```
 {
   "status": "done",
@@ -128,14 +126,14 @@ JSON object for the board
 
 ![MyTimeboardEmail](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MyTimeboardEmail.png)
 
-### Bonus Question: What is the Anomaly graph displaing?
+### Bonus Question: What is the Anomaly graph displaying?
 
-It displays the bounds of the line. Bounds are what is considered normal in terms of deviations in the documentation. I think these deviations refer to standard deviation.
+It displays the bounds of the line. Bounds are what is considered normal in terms of deviations in the documentation. I think these deviations refer to standard deviation. 
 
 
 ## Monitoring Data
 
-![Monitor Alert Conditions]()
+![Monitor Alert Conditions](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MonitorAlertConditions.png)
 
 
 I have copied my message template below. I was not able to figure out how to include the metric value in this alert.
