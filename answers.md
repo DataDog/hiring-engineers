@@ -22,7 +22,7 @@ I uncommented the following tags in the datadog.yaml file
 
 ### Install database and Datadog configuration
 
- ![MySQLIntegration]() 
+ ![MySQLIntegration](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MySQLIntegration.png)
 
 ### Create custom Agent Check
 
@@ -73,7 +73,7 @@ I didn't make any changes to the mycheck.py file, my change was the mycheck.yaml
 
 Here is the picture of the three metrics on separate timeboards over a four hour timeframe. I thought this picture would be helpful to visualize though it is not in the instructions to include it
 
-![AllTimeboardsSeparated]()
+![AllTimeboardsSeparated](https://raw.githubusercontent.com/akambale/hiring-engineers/master/AllTimeboardsSeparated.png)
 
 
 ### Timeboard Script 
@@ -129,8 +129,13 @@ JSON object for the board
 
 ### Timeboard Snapshot
 
-![MyTimeboardEmail]()
+![MyTimeboardEmail](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MyTimeboardEmail.png)
 
 ### Bonus Question: What is the Anomaly graph displaing?
 
 It displays the bounds of the line. Bounds are what is considered normal in terms of deviations in the documentation. I think these deviations refer to standard deviation.
+
+
+## Monitoring Data
+
+### 
