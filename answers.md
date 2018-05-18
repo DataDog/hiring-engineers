@@ -31,14 +31,14 @@ It's always delicious to see when things work. If everything goes according to p
 ## Collecting Metrics
 + Adding some tags using the configuration files!
 
-⋅⋅⋅So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
+⋅⋅⋅ So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
 
 <details>
   <summary>See image here</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png></img>
 </details>
 
-⋅⋅⋅Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
+⋅⋅⋅ Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
 ```
 - tag1:value1
@@ -130,14 +130,14 @@ instances:
 
 ⋅⋅⋅ I restarted the agent.
 
-⋅⋅⋅Man I love when things just work out:
+⋅⋅⋅ Man I love when things just work out:
 <details>
-  <summary>Postgres Status</summary>
+  <summary>Postgres Status in terminal after running `sudo datadog-agent status`</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+status.png></img>
 </details>
 
 <details>
-  <summary>.</summary>
+  <summary>Postgres in UI</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+install.png></img>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+hostmap.png></img>
 </details>
@@ -199,8 +199,46 @@ Utilize the Datadog API to create a Timeboard that contains:
   <summary>Here's what my postman interface looked like</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postman.png></img>
 </details>
+And the request script:
+
+```
+{
+      "graphs" : [{
+          "title": "Custom Timeboard: Metric over Host",
+          "definition": {
+              "requests": [
+                  {"q": "avg:my_metric{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "PSQL with Anomaly",
+          "definition": {
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.commits{*}, 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+         "title": "Rollup",
+         "definition": {
+             "requests": [{"q": "avg:my_metric{*}.rollup(sum, 3600)"}]
+         },
+          "viz": "timeseries"
+      }],
+      "title" : "Custom Timeboard: Hiring Exercise",
+      "description" : "Timeboard",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+    }
+```
+
 <details>
-  <summary>And my dashboard showed that I had added a new timeboard</summary>
+  <summary>Here's the dashboard showed that I had added a new timeboard</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/dashboard_custom+timeboard.png></img>
 </details>
 <details>
@@ -209,3 +247,109 @@ Utilize the Datadog API to create a Timeboard that contains:
 </details>
 
 I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies), and [Rollup function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup).
+
++ Set the Timeboard's timeframe to the past 5 minutes
+This wasn't quite as intuitive for me, but I figured it out. I had to click on the graph and drag to zoom in on a 5 minute timeframe.
+![timeframes](https://s3.amazonaws.com/juliewongbandue-ddhiring/5+minutes.png)
+
++ Take a snapshot of this graph and use @notation to send it to yourself
+I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotations/) to create this notation.
+1. Click on the graph, and select _Annotate this graph_
+  <details>
+    <summary>Image</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/annotate+this+graph.png></img>
+  </details>
+2. Send email using @notation in the comments:
+  <details>
+    <summary>Comments section</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/%40notation.png></img>
+  </details>
+  <details>
+    <summary>Email received in inbox!</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/email.png></img>
+  </details>
++ **Bonus:** What is the Anomaly graph displaying?
+Okay, according to your docs, the anomaly detection is the "algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past." The literal "grey area" on the graph are its bounds, set to two-- and the red parts of the line indicate when the values are outside of that range...I believe.
+
+Phew. Next!
+
+## Monitoring Data
++ Create a new metric monitor that watches the average of `my_metric` and will alert if it's above 800 and warn above the threshold of 500. Also notify you if there's No Data in the query over the past 10 minutes.
+1. Go to Monitors-- New Monitor in the dashboard nav. Here's the form with the filled out fields:
+<details>
+  <summary>Image</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/threshold+form.png></img>
+</details>
+2. Receive that email!
+<details>
+  <summary>Image</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/email2.png></img>
+</details>
+**Bonus**
++ Scheduling downtime for 7p-9a daily on M-F
++ Downtime all day Sat-Sun
+1. Go to _Manage Downtime_ on the top nav.
+  <details>
+    <summary>See here</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_menu.png></img>
+  <details>
+2. Fill out fields as needed on form.
+  <details>
+    <summary>See here</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_form.png></img>
+  <details>
+3. Get those email alerts!
+  <details>
+    <summary>Downtime for M-F</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime+email+alert+1.png></img>
+  <details>
+  <details>
+    <summary>Downtime for Sat-Sun</summary>
+    <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime+email+alert+2.png></img>
+  <details>
+
+## Collecting APM Data
+Annnddd.... time to read the [Datadog docs for APM Data](https://docs.datadoghq.com/tracing/setup/)...
+1. Follow the [Flask docs](http://flask.pocoo.org/docs/1.0/installation/#python-version) to create your virtualenv environment.
+2. In my `datadog.yaml` config file (which can be found in the `etc/datadog-agent` directory), I enabled the `apm_config:` key to be set to `true`.
+```
+apm_config:
+  enabled: true
+```
+3. After activating the environment by running `$ . venv/bin/activate`, I ran `pip install ddtrace` and `ddtrace-run python apmapp.py` (`apmapp.py` is the file I created for the Flask app below)
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+Here's where I've run into a hiccup and got this error:
+<details>
+  <summary>Error image</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error.png></img>
+</details>
+Now, after some digging.
