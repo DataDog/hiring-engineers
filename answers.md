@@ -88,16 +88,16 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install postgresql postgresql-contrib
 ```
 
-⋅⋅⋅I ran into a little speed bump here as I was receiving an authentication error, and needed to alter the authentication config file... so I did! I ran `$ sudo nano /etc/postgresql/9.1/main/pg_hba.conf` and wrote `local all postgres peer`, which...according to [this handy site](https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/), this is an authentication rule that "simply tells Postgres that for local connections established to all databases for the user postgres, authenticate using the peer protocol." Then I ran `sudo -u postgres psql` and was in!
+⋅⋅⋅ I ran into a little speed bump here as I was receiving an authentication error, and needed to alter the authentication config file... so I did! I ran `$ sudo nano /etc/postgresql/9.1/main/pg_hba.conf` and wrote `local all postgres peer`, which...according to [this handy site](https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/), this is an authentication rule that "simply tells Postgres that for local connections established to all databases for the user postgres, authenticate using the peer protocol." Then I ran `sudo -u postgres psql` and was in!
 
-⋅⋅⋅Aaannnddd back to the docs. So I created a user with proper access to my PostgreSQL server by running the commands
+⋅⋅⋅ Aaannnddd back to the docs. So I created a user with proper access to my PostgreSQL server by running the commands
 ```
 create user datadog with password '<PASSWORD>';
 grant SELECT ON pg_stat_database to datadog;
 CREATE DATABASE pg_stat_database;
 ```
 
-⋅⋅⋅Then, I ran the permissions:
+⋅⋅⋅ Then, I ran the permissions:
 ```
 psql -h localhost -U datadog postgres -c \
 "select * from pg_stat_database LIMIT(1);"
@@ -105,13 +105,13 @@ psql -h localhost -U datadog postgres -c \
 || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-⋅⋅⋅After I entered the password...
+⋅⋅⋅ After I entered the password...
 <details>
   <summary>Here's what my terminal looked like</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+password.png></img>
 </details>
 
-⋅⋅⋅Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
+⋅⋅⋅ Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
 ```
 init_config:
 
@@ -128,7 +128,7 @@ instances:
        - optional_tag2
 ```
 
-⋅⋅⋅I restarted the agent.
+⋅⋅⋅ I restarted the agent.
 
 ⋅⋅⋅Man I love when things just work out:
 <details>
@@ -208,6 +208,4 @@ Utilize the Datadog API to create a Timeboard that contains:
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/custom+timeboard_graphs.png></img>
 </details>
 
-I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies), and [Rollup function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup). 
-
-4.
+I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies), and [Rollup function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup).
