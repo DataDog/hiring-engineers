@@ -156,5 +156,5 @@ Power level cannot be found at {{host.ip}}
 {{/is_no_data}} @me@amoghk.com
 ```
 
-![Monitor Email Screenshot]()
+![Monitor Email Screenshot](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MonitorEmailMessage.png)
 
