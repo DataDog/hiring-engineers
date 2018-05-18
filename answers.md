@@ -207,4 +207,7 @@ Utilize the Datadog API to create a Timeboard that contains:
   <summary>And the actual timeboard graphs</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/custom+timeboard_graphs.png></img>
 </details>
+
+I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies), and [Rollup function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup). 
+
 4.
