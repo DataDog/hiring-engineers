@@ -160,4 +160,4 @@ Power level cannot be found at {{host.ip}}
 
 ## Bonus Question: Downtimes
 
-![DowntimesEmail]()
+![DowntimesEmail](https://raw.githubusercontent.com/akambale/hiring-engineers/master/DowntimesEmail.png)
