@@ -158,6 +158,6 @@ Power level cannot be found at {{host.ip}}
 
 ![Monitor Email Screenshot](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MonitorEmailMessage.png)
 
-## Bonus Question: Downtimes
+### Bonus Question: Downtimes
 
 ![DowntimesEmail](https://raw.githubusercontent.com/akambale/hiring-engineers/master/DowntimesEmail.png)
