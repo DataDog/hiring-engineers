@@ -1,5 +1,4 @@
-# Answers from Ben Sunderland 
-# May 18th 2017
+# Answers from Ben Sunderland  -  May 18th 2017
 ====================================
 
 ## Part 1: Collecting Metrics
