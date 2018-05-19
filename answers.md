@@ -45,14 +45,8 @@ Per the exercise instructions I created a custom agent check to submit a metric 
     class RandomCheck(AgentCheck):
      def check(self, instance):
       self.gauge('my_metric', random.randint(0,1000))  
-
-
-    self.init_config:
-
-    instances:
-      - name: colbyrandom
-        min_collection_interval: 45  
-
+ 
+ 
 
 
 Q: Can you change the collection interval without modifying the Python check file you created?
