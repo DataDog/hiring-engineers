@@ -31,14 +31,14 @@ It's always delicious to see when things work. If everything goes according to p
 ## Collecting Metrics
 + Adding some tags using the configuration files!
 
-⋅⋅⋅ So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
+So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
 
 <details>
   <summary>See image here</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png></img>
 </details>
 
-⋅⋅⋅ Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
+Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
 ```
 - tag1:value1
@@ -81,23 +81,23 @@ Kewl. Next!
 
 + Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-⋅⋅⋅Since PostgreSQL is the only database we learned at GA, I installed this by running the following commands in my root directory:
+Since PostgreSQL is the only database we learned at GA, I installed this by running the following commands in my root directory:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install postgresql postgresql-contrib
 ```
 
-⋅⋅⋅ I ran into a little speed bump here as I was receiving an authentication error, and needed to alter the authentication config file... so I did! I ran `$ sudo nano /etc/postgresql/9.1/main/pg_hba.conf` and wrote `local all postgres peer`, which...according to [this handy site](https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/), this is an authentication rule that "simply tells Postgres that for local connections established to all databases for the user postgres, authenticate using the peer protocol." Then I ran `sudo -u postgres psql` and was in!
+I ran into a little speed bump here as I was receiving an authentication error, and needed to alter the authentication config file... so I did! I ran `$ sudo nano /etc/postgresql/9.1/main/pg_hba.conf` and wrote `local all postgres peer`, which...according to [this handy site](https://chartio.com/resources/tutorials/how-to-set-the-default-user-password-in-postgresql/), this is an authentication rule that "simply tells Postgres that for local connections established to all databases for the user postgres, authenticate using the peer protocol." Then I ran `sudo -u postgres psql` and was in!
 
-⋅⋅⋅ Aaannnddd back to the docs. So I created a user with proper access to my PostgreSQL server by running the commands
+Aaannnddd back to the docs. So I created a user with proper access to my PostgreSQL server by running the commands
 ```
 create user datadog with password '<PASSWORD>';
 grant SELECT ON pg_stat_database to datadog;
 CREATE DATABASE pg_stat_database;
 ```
 
-⋅⋅⋅ Then, I ran the permissions:
+Then, I ran the permissions:
 ```
 psql -h localhost -U datadog postgres -c \
 "select * from pg_stat_database LIMIT(1);"
@@ -105,13 +105,13 @@ psql -h localhost -U datadog postgres -c \
 || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-⋅⋅⋅ After I entered the password...
+After I entered the password...
 <details>
   <summary>Here's what my terminal looked like</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+password.png></img>
 </details>
 
-⋅⋅⋅ Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
+Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
 ```
 init_config:
 
@@ -128,14 +128,13 @@ instances:
        - optional_tag2
 ```
 
-⋅⋅⋅ I restarted the agent.
+I restarted the agent.
 
-⋅⋅⋅ Man I love when things just work out:
+Man I love when things just work out:
 <details>
   <summary>Postgres Status in terminal after running `sudo datadog-agent status`</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+status.png></img>
 </details>
-
 <details>
   <summary>Postgres in UI</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+install.png></img>
@@ -143,9 +142,9 @@ instances:
 </details>
 
 + Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-⋅⋅⋅As per the [Datadog docs](https://docs.datadoghq.com/agent/agent_checks/), I `cd`d into `/etc/datadog-agent/conf.d` and created a `my_metric.yaml` file, and a `my_metric.py` file in the `etc/datadog-agent/checks.d`. To start, I simply used the example in the docs. Then, after some googling what the syntax should be for Javascript's "math.random()" in Python, I declared a global variable (`random`) and called the python method `randomint(0,1000)`.
+As per the [Datadog docs](https://docs.datadoghq.com/agent/agent_checks/), I `cd`d into `/etc/datadog-agent/conf.d` and created a `my_metric.yaml` file, and a `my_metric.py` file in the `etc/datadog-agent/checks.d`. To start, I simply used the example in the docs. Then, after some googling what the syntax should be for Javascript's "math.random()" in Python, I declared a global variable (`random`) and called the python method `randomint(0,1000)`.
 
-in `my_metric.yaml`:
+In `my_metric.yaml`:
 ```
 init_config:
 
@@ -153,7 +152,7 @@ instances:
     [{}]
 ```
 
-and in `my_metric.py`:
+And in `my_metric.py`:
 ```
 import random
 from checks import AgentCheck
@@ -167,10 +166,10 @@ class HelloCheck(AgentCheck):
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_UI.png></img>
 </details>
 
-+ Change your check's collection interval so that it only submits the metric once every 45 seconds.
-⋅⋅⋅As per your docs, I edited the `my_metric.yaml` file under `init_config` by including `min_collection_interval: 45`:
+Change your check's collection interval so that it only submits the metric once every 45 seconds.
+As per your docs, I edited the `my_metric.yaml` file under `init_config` by including `min_collection_interval: 45`:
 <details>
-  <summary>`my_metric.yaml`</summary>
+  <summary>my_metric.yaml</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+45+sec.png></img>
 </details>
 <details>
@@ -187,13 +186,17 @@ Utilize the Datadog API to create a Timeboard that contains:
 + Your custom metric scoped over your host.
 + Any metric from the integration on your Database with the anomaly function applied.
 + Your custom metric with the rollup function applied to sum up all points for the past hour into one bucket.
-⋅⋅⋅ This one seemed like a lot, here are the steps I took:
+
+This one seemed like a lot, here are the steps I took:
+
 1. Read the [docs](https://docs.datadoghq.com/api/?lang=python#timeboards).
+
 2. Since it looks like we'll need an `APP KEY`, I had to generate one of those in my dashboard when I go to Integrations--APIs.
 <details>
   <summary>Here's where to look</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/app+keys.png></img>
 </details>
+
 3. I used Postman to help with this as per this [tutorial][https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs]. I was able to add a couple of graphs via Postman.
 <details>
   <summary>Here's what my postman interface looked like</summary>
@@ -254,11 +257,13 @@ This wasn't quite as intuitive for me, but I figured it out. I had to click on t
 
 + Take a snapshot of this graph and use @notation to send it to yourself
 I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotations/) to create this notation.
+
 1. Click on the graph, and select _Annotate this graph_
   <details>
     <summary>Image</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/annotate+this+graph.png></img>
   </details>
+
 2. Send email using @notation in the comments:
   <details>
     <summary>Comments section</summary>
@@ -268,36 +273,43 @@ I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotati
     <summary>Email received in inbox!</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/email.png></img>
   </details>
-+ **Bonus:** What is the Anomaly graph displaying?
+
+**Bonus:** What is the Anomaly graph displaying?
 Okay, according to your docs, the anomaly detection is the "algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past." The literal "grey area" on the graph are its bounds, set to two-- and the red parts of the line indicate when the values are outside of that range...I believe.
 
 Phew. Next!
 
 ## Monitoring Data
-+ Create a new metric monitor that watches the average of `my_metric` and will alert if it's above 800 and warn above the threshold of 500. Also notify you if there's No Data in the query over the past 10 minutes.
+Create a new metric monitor that watches the average of `my_metric` and will alert if it's above 800 and warn above the threshold of 500. Also notify you if there's No Data in the query over the past 10 minutes.
+
 1. Go to Monitors-- New Monitor in the dashboard nav. Here's the form with the filled out fields:
 <details>
   <summary>Image</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/threshold+form.png></img>
 </details>
+
 2. Receive that email!
 <details>
   <summary>Image</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/email2.png></img>
 </details>
+
 **Bonus**
 + Scheduling downtime for 7p-9a daily on M-F
 + Downtime all day Sat-Sun
+
 1. Go to _Manage Downtime_ on the top nav.
   <details>
     <summary>See here</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_menu.png></img>
   <details>
+
 2. Fill out fields as needed on form.
   <details>
     <summary>See here</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_form.png></img>
   <details>
+
 3. Get those email alerts!
   <details>
     <summary>Downtime for M-F</summary>
@@ -310,12 +322,15 @@ Phew. Next!
 
 ## Collecting APM Data
 Annnddd.... time to read the [Datadog docs for APM Data](https://docs.datadoghq.com/tracing/setup/)...
+
 1. Follow the [Flask docs](http://flask.pocoo.org/docs/1.0/installation/#python-version) to create your virtualenv environment.
+
 2. In my `datadog.yaml` config file (which can be found in the `etc/datadog-agent` directory), I enabled the `apm_config:` key to be set to `true`.
 ```
 apm_config:
   enabled: true
 ```
+
 3. After activating the environment by running `$ . venv/bin/activate`, I ran `pip install ddtrace` and `ddtrace-run python apmapp.py` (`apmapp.py` is the file I created for the Flask app below)
 ```
 from flask import Flask
@@ -362,3 +377,4 @@ if __name__ == '__main__':
   <summary>Now, I tried running the `ddtrace-run` command again, I got this crazy thing happening</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error2.png></img>
 </details>
+To me, it looks like a connection is still refused from localhost 8126..
