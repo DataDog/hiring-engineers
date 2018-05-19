@@ -17,7 +17,7 @@ Once DataDog agents are collecting data, tags can be applied to provide context 
 
 On top of providing out of the box metrics, DataDog provides the ability to add your own custom metrics.  This feature provides organizations the flexibility to add metrics and KPI’s that are important to their environment.  As an example, we create a custom metric called my_metric that reports in every 45 seconds.  The collection interval is configurable in the instance level and requires editing the init_config section.
 
-![](DataDog_mymetrics.png)
+![](JC_metric_random_number.png)
 
 Visualization Data:
 
