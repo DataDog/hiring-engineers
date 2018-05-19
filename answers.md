@@ -31,7 +31,7 @@ DataDog includes prebuilt dashboards that are out of the box and flexible for us
 
 Monitoring Data:
 
-Once the agents are configured and collecting data, operators of DataDog are able to create custom monitors to set alerts for metrics and hosts that trigger off of a warning or critical severity. There are numerous ways to setup the logic behind the alerting and to notify the responsible parties for remediation. 
+Once the agents are configured and collecting data, operators of DataDog are able to create custom monitors to set alerts for metrics and hosts that trigger off of a warning or critical severity. There are numerous ways to setup the logic behind the alerting and to notify the responsible parties for remediation. Below, you see example an of the alert when JC_metric and my_metric reached above 500 and 800 respectively.  
 
 Downtime Schedules can be created to suppress alerts during known change windows.  The UI offers flexibility to setup one time or recurring blackout windows.
 
