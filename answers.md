@@ -40,7 +40,7 @@ So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_sta
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/vim_datadog.agent.png></img>
 </details>
 
-Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
+<br>Because the file is a readme (that I didn't have the permissions to update and save the file, I ran `sudo vim datadog.yaml` and added some tags:
 
 ```
 - tag1:value1
@@ -56,7 +56,7 @@ Because the file is a readme (that I didn't have the permissions to update and s
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_tags.png></img>
 </details>
 
-However, it took me a little time to figure out that I had to restart the agent for the tags to happen. Whoops. And also... that I totally overlooked the whole "You see both forms in the `yaml` configuration files, but for the `datadog.yaml` init file only the first form is valid." (referring to the format below):
+<br>However, it took me a little time to figure out that I had to restart the agent for the tags to happen. Whoops. And also... that I totally overlooked the whole "You see both forms in the `yaml` configuration files, but for the `datadog.yaml` init file only the first form is valid." (referring to the format below):
 
 ```
 tags: key_first_tag:value_1, key_second_tag:value_2, key_third_tag:value_3
@@ -79,7 +79,7 @@ And here's what it looked like in the UI.
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/datadog_hostmap_charts.png></img>
 </details>
 
-Kewl. Next!
+<br>Kewl. Next!
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
@@ -113,7 +113,7 @@ After I entered the password...
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+password.png></img>
 </details>
 
-Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
+<br>Then edited the `conf.yaml` file in the `/etc/datadog-agent/conf.d/postgres.d` directory:
 ```
 init_config:
 
@@ -134,16 +134,16 @@ I restarted the agent.
 
 Man I love when things just work out:
 <details>
-  <summary>Postgres Status in terminal after running `sudo datadog-agent status`</summary>
+  <summary>Image of postgres Status in terminal after running `sudo datadog-agent status`</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+status.png></img>
 </details>
 <details>
-  <summary>Postgres in UI</summary>
+  <summary>Image of postgres in UI</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+install.png></img>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postgres+hostmap.png></img>
 </details>
 
-+ Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 As per the [Datadog docs](https://docs.datadoghq.com/agent/agent_checks/), I `cd`d into `/etc/datadog-agent/conf.d` and created a `my_metric.yaml` file, and a `my_metric.py` file in the `etc/datadog-agent/checks.d`. To start, I simply used the example in the docs. Then, after some googling what the syntax should be for Javascript's "math.random()" in Python, I declared a global variable (`random`) and called the python method `randomint(0,1000)`.
 
 In `my_metric.yaml`:
@@ -373,7 +373,7 @@ Here's where I've run into a hiccup and got this error:
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error.png></img>
 </details>
 
-Now, after going down some rabbit holes and some digging around on the interweb, creating a new Flask app in a different directory just to make sure I wasn't missing any steps, I tried again and got the same errors. I figured it had something to do with how the ports were set up. So, aftermore digging and [research on Flask apps](https://www.tutorialspoint.com/flask/flask_application.htm) and the `.run()` method, I figured I could try setting the port in my `.py` file with the following:
+<br>Now, after going down some rabbit holes and some digging around on the interweb, creating a new Flask app in a different directory just to make sure I wasn't missing any steps, I tried again and got the same errors. I figured it had something to do with how the ports were set up. So, aftermore digging and [research on Flask apps](https://www.tutorialspoint.com/flask/flask_application.htm) and the `.run()` method, I figured I could try setting the port in my `.py` file with the following:
 ```
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8126)
@@ -382,4 +382,9 @@ if __name__ == '__main__':
   <summary>Now, I tried running the `ddtrace-run` command again, I got this crazy thing happening</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error2.png></img>
 </details>
-To me, it looks like a connection is still refused from localhost 8126..
+
+<br>To me, it looks like a connection is still refused from localhost 8126, tried to call the endpoint, but recieved a `404` error instead. I also saw that the error might have been lookign for the blinker middlewear. So, I installed the Blinker middlewear, edited my `apmFlask.py` file, and ran `python apmFlask.py`. This removed the middlewear error, but still no connection.
+<details>
+  <summary>See Error here</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error3.png></img>
+</details>
