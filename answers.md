@@ -6,7 +6,7 @@ As a testament to the the clarity of the effectiveness of the online Datadog doc
 
 I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
 
-**Collecting Metrics"  
+**Collecting Metrics**    
 
 I configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
 
