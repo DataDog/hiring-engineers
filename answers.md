@@ -20,12 +20,12 @@ placing the statment in the mongo.yaml referencing the password for the datadog 
       
 The collector section datadog-agent status report confirmed that the agent was successfully collecting data from the MongoDB
    mongo
-    -----
-      Total Runs: 29444
-      Metrics: 113, Total Metrics: over 1M
-      Events: 0, Total Events: 0
-      Service Checks: 1, Total Service Checks: 29444
-      Average Execution Time : 21ms
+    -----  
+      Total Runs: 29444  
+      Metrics: 113, Total Metrics: over 1M  
+      Events: 0, Total Events: 0  
+      Service Checks: 1, Total Service Checks: 29444  
+      Average Execution Time : 21ms  
 
 
 
