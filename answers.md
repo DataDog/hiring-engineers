@@ -302,23 +302,23 @@ Create a new metric monitor that watches the average of `my_metric` and will ale
   <details>
     <summary>See here</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_menu.png></img>
-  <details>
+  </details>
 
 2. Fill out fields as needed on form.
   <details>
     <summary>See here</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime_form.png></img>
-  <details>
+  </details>
 
 3. Get those email alerts!
   <details>
     <summary>Downtime for M-F</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime+email+alert+1.png></img>
-  <details>
+  </details>
   <details>
     <summary>Downtime for Sat-Sun</summary>
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/downtime+email+alert+2.png></img>
-  <details>
+  </details>
 
 ## Collecting APM Data
 Annnddd.... time to read the [Datadog docs for APM Data](https://docs.datadoghq.com/tracing/setup/)...
