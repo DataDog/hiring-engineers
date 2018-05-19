@@ -2,6 +2,8 @@ As an introduction, I am an Enterprise SE with extensive experience evangalizing
 
 I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the agent for Centos and verified it was operational see agent_status_before_MongoDB.txt in this branch
 
+I next installed a single node MongoD and installed and configured Datadog integration for MongoDB.
+
 
 
 Q: Can you change the collection interval without modifying the Python check file you created?
