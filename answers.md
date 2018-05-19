@@ -6,11 +6,12 @@ I created the environment for this exercise by spinning up a Centos 7 VM in a vi
 
 I also configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
 
-**api_key: 584df05c35575f36e17d3543d00c341d**
+**api_key: 584df05c35575f36e17d3543d00c341d**  
 
-confirmed via API Keys status
-  ===============
-    https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid
+API Keys status
+===============
+
+    "https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid"
 
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB.
