@@ -5,6 +5,7 @@ Your answers to the questions go here.
 I am working on an early 2015 MacBook Pro on macOS High Sierra (10.13.4), and spun up a virtual machine using Virtual Box and the Vagrant Ubuntu environment. I simply followed the installation instructions on the docs, but here's the TLDR:
 
 1. Download and install [Virtual Box](https://download.virtualbox.org/virtualbox/5.2.10/VirtualBox-5.2.10-122088-OSX.dmg "Download VirtualBox for macOS")  and [Vagrant](https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.dmg "Download Vagrant for macOS").
+
 2. Make a directory where you'd like to do your work in (mine is called `datadog_vagrant`), `$cd` into this directory, and run:
 ```
 $ vagrant init hashicorp/precise64
@@ -12,6 +13,7 @@ $ vagrant up
 $ vagrant ssh
 ```
 You should now see `vagrant@precise64:~$` in your terminal.
+
 3. Create a Datadog account and all that jazz by clicking on the "Get Started Free" button at the top right of the data dog site. A form should come up.
 <details>
   <summary>It should look like this...</summary>
@@ -29,7 +31,7 @@ It's always delicious to see when things work. If everything goes according to p
 </details>
 
 ## Collecting Metrics
-+ Adding some tags using the configuration files!
+**Adding some tags using the configuration files!**
 
 So, as per your Datadog's [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/), I found the yaml file by `$cd`-ing into the `/etc/datadog-agent/conf.d` directory and opening up the `datadog.yaml` using vim (after installing vim with `sudo apt-get install vim`).
 
@@ -79,7 +81,7 @@ And here's what it looked like in the UI.
 
 Kewl. Next!
 
-+ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+**Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 Since PostgreSQL is the only database we learned at GA, I installed this by running the following commands in my root directory:
 
@@ -182,10 +184,10 @@ Hm, because this is a bonus question, I'm fairly certain I could have done this 
 
 ## Visualizing Data
 
-Utilize the Datadog API to create a Timeboard that contains:
-+ Your custom metric scoped over your host.
-+ Any metric from the integration on your Database with the anomaly function applied.
-+ Your custom metric with the rollup function applied to sum up all points for the past hour into one bucket.
+**Utilize the Datadog API to create a Timeboard that contains:**
++ **Your custom metric scoped over your host.**
++ **Any metric from the integration on your Database with the anomaly function applied.**
++ **Your custom metric with the rollup function applied to sum up all points for the past hour into one bucket.**
 
 This one seemed like a lot, here are the steps I took:
 
@@ -251,14 +253,14 @@ And the request script:
 
 I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies), and [Rollup function here](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup).
 
-+ Set the Timeboard's timeframe to the past 5 minutes
+**Set the Timeboard's timeframe to the past 5 minutes**
 This wasn't quite as intuitive for me, but I figured it out. I had to click on the graph and drag to zoom in on a 5 minute timeframe.
 <details>
   <summary>Image</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/5+minutes.png></img>
 </details>
 
-+ Take a snapshot of this graph and use @notation to send it to yourself
+**Take a snapshot of this graph and use @notation to send it to yourself**
 I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotations/) to create this notation.
 
 1. Click on the graph, and select _Annotate this graph_
@@ -277,7 +279,7 @@ I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotati
     <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/email.png></img>
   </details>
 
-**Bonus:** What is the Anomaly graph displaying?
+**Bonus: What is the Anomaly graph displaying?**
 Okay, according to your docs, the anomaly detection is the "algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past." The literal "grey area" on the graph are its bounds, set to two-- and the red parts of the line indicate when the values are outside of that range...I believe.
 
 Phew. Next!
@@ -298,8 +300,8 @@ Create a new metric monitor that watches the average of `my_metric` and will ale
 </details>
 
 **Bonus**
-+ Scheduling downtime for 7p-9a daily on M-F
-+ Downtime all day Sat-Sun
+**Scheduling downtime for 7p-9a daily on M-F**
+**Downtime all day Sat-Sun**
 
 1. Go to _Manage Downtime_ on the top nav.
   <details>
