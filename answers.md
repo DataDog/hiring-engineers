@@ -197,7 +197,7 @@ This one seemed like a lot, here are the steps I took:
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/app+keys.png></img>
 </details>
 
-3. I used Postman to help with this as per this [tutorial][https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs]. I was able to add a couple of graphs via Postman.
+3. I used Postman to help with this as per this [tutorial](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs). I was able to add a couple of graphs via Postman.
 <details>
   <summary>Here's what my postman interface looked like</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/postman.png></img>
