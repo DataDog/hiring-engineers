@@ -253,7 +253,10 @@ I found the [Anomaly function here](https://docs.datadoghq.com/graphing/miscella
 
 + Set the Timeboard's timeframe to the past 5 minutes
 This wasn't quite as intuitive for me, but I figured it out. I had to click on the graph and drag to zoom in on a 5 minute timeframe.
-![timeframes](https://s3.amazonaws.com/juliewongbandue-ddhiring/5+minutes.png)
+<details>
+  <summary>Image</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/5+minutes.png></img>
+</details>
 
 + Take a snapshot of this graph and use @notation to send it to yourself
 I referenced [this post](https://www.datadoghq.com/blog/real-time-graph-annotations/) to create this notation.
