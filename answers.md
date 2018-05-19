@@ -352,4 +352,13 @@ Here's where I've run into a hiccup and got this error:
   <summary>Error image</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error.png></img>
 </details>
-Now, after some digging.
+
+Now, after going down some rabbit holes and some digging around on the interweb, creating a new Flask app in a different directory just to make sure I wasn't missing any steps, I tried again and got the same errors. I figured it had something to do with how the ports were set up. So, aftermore digging and [research on Flask apps](https://www.tutorialspoint.com/flask/flask_application.htm) and the `.run()` method, I figured I could try setting the port in my `.py` file with the following:
+```
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8126)
+```
+<details>
+  <summary>Now, I tried running the `ddtrace-run` command again, I got this crazy thing happening</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error2.png></img>
+</details>
