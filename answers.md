@@ -14,7 +14,9 @@ Confirmed by 'datadog-agent status'
   'https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid'  
 
 
-I next installed a single node MongoD and installed and configured Datadog integration for MongoDB.
+I next installed a single node MongoD and installed and configured Datadog integration for MongoDB
+placing the statment in the mongo.yaml referencing the password for the datadog user I created in Mongo. 
+      '-   server: mongodb://datadog:kgVXlTnEFbTNSaKAdA7VYDf0@localhost:27017'
 
 
 
