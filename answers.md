@@ -38,9 +38,14 @@ The collector section datadog-agent status report confirmed that the agent was s
       Service Checks: 1, Total Service Checks: 29444  
       Average Execution Time : 21ms  
 
+Per the exercise instructions I created a custom agent check submit a metric (named "my_metric") to submit a random value between 0 and 1000.  
 
-
-
+    import random
+    from checks import AgentCheck
+    class RandomCheck(AgentCheck):
+     def check(self, instance):
+      self.gauge('my_metric', random.randint(0,1000))  
+   
 
 
 
