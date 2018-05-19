@@ -4,7 +4,7 @@ As a testament to the the clarity of the effectiveness of the online Datadog doc
 
 I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
 
-I also configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
+I configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
 
     api_key: 584df05c35575f36e17d3543d00c341d  
 
@@ -14,6 +14,11 @@ Confirmed by "datadog-agent status"
     ==============    
     https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid  
     
+And added tags in the agent config file:
+
+    tags:
+        - role:database:mongodb
+
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB
 placing the statment in the mongo.yaml referencing the password for the datadog user I created in Mongo. 
