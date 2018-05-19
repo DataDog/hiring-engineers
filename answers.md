@@ -1,6 +1,10 @@
 As an introduction, I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguring exercise. In my career I have been a consumer of monitoring and analytics, not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
 
-I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the agent for Centos and verified it was operational see agent_status_before_MongoDB.txt in this branch
+I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the agent for Centos and verified it was operational see agent_status_before_MongoDB.txt in this branch. 
+
+I also configured my default API key, listed at https://app.datadoghq.com/account/settings#api in datadog.yaml, the yaml file for the Datadog agent.  
+
+api_key: 584df05c35575f36e17d3543d00c341d
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB.
 
