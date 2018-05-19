@@ -1,4 +1,5 @@
 import random
+
 from checks import AgentCheck
 class RandomCheck(AgentCheck):
  def check(self, instance):
