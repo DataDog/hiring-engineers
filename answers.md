@@ -1,4 +1,6 @@
-Your answers to the questions go here.
+As an introduction, I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguring exercise. In my career I have been a consumer of monitoring and analytics, not exposed to the dev/ops underpinnings that enable them.  
+
+
 Q: Can you change the collection interval without modifying the Python check file you created?
 Y: The collection interval is changed in the yaml file for the python check, no in the python check file itself.  Also collection interval for the agent itself, via the metadata providers interval, can be changed.
 
