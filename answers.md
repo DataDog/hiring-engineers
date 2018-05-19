@@ -1,5 +1,7 @@
 As an introduction, I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing exercise. In my career I have been a consumer of monitoring and analytics, not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
 
+As a testament to the the clarity of the effectiveness of the online Datadog documnentation installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions, which even a non-dev ops SME can do :-) 
+
 I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the agent for Centos and verified it was operational see agent_status_before_MongoDB.txt in this branch. 
 
 I also configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
