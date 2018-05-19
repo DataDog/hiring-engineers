@@ -38,7 +38,7 @@ The collector section datadog-agent status report confirmed that the agent was s
       Service Checks: 1, Total Service Checks: 29444  
       Average Execution Time : 21ms  
 
-Per the exercise instructions I created a custom agent check submit a metric (named "my_metric") to submit a random value between 0 and 1000.  I decided to make the random "value" betweeen 0 and 1000 be an integer between 0 and 1000.
+Per the exercise instructions I created a custom agent check to submit a metric (named "my_metric") that is a random value between 0 and 1000.  I decided to make the random "value" betweeen 0 and 1000 be an integer between 0 and 1000.
 
     import random
     from checks import AgentCheck
@@ -46,6 +46,11 @@ Per the exercise instructions I created a custom agent check submit a metric (na
      def check(self, instance):
       self.gauge('my_metric', random.randint(0,1000))  
    
+    self.init_config:
+
+    instances:
+      - name: colbyrandom
+        min_collection_interval: 45  
 
 
 
