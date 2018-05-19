@@ -1,4 +1,4 @@
-self.init_config:
+init_config:
 
 instances:
 min_collection_interval: 45
