@@ -23,7 +23,7 @@ Visualization Data:
 
 DataDog includes prebuilt dashboards that are out of the box and flexible for users to interpret the data.  Additional options include time series graphs which add additional logic like anomalies to help in detecting normal versus abnormal behaviors.  DataDog also offers additional visualization capabilities such as heatmaps, stacked graphs, toplists as well as others. These dashboards can be created quickly and leveraged without days of development time. 
 
-![](DataDog_CustomMetric_ScopedoverHost.png)
+![](JC_metric_timeboard.PNG)
 ![](DataDog_MyMetricwithRoll_up.png)
 ![](DataDog_5minutesdashboard.png)
 ![](Emailed_Chart.png)
