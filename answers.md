@@ -19,10 +19,11 @@ Confirmed by "datadog-agent status"
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB
 placing the statment in the mongo.yaml referencing the password for the datadog user I created in Mongo. 
-      '-   server: mongodb://datadog:kgVXlTnEFbTNSaKAdA7VYDf0@localhost:27017'
+     -   server: mongodb://datadog:kgVXlTnEFbTNSaKAdA7VYDf0@localhost:27017  
       
 The collector section datadog-agent status report confirmed that the agent was successfully collecting data from the MongoDB
-   mongo
+
+    mongo
     -----  
       Total Runs: 29444  
       Metrics: 113, Total Metrics: over 1M  
