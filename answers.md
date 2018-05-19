@@ -8,11 +8,9 @@ I also configured my default API key, listed at https://app.datadoghq.com/accoun
 
 **api_key: 584df05c35575f36e17d3543d00c341d**  
 
-'API Key Status'
-
-'=============='
-
-  'https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid'
+'API Key Status'  
+'=============='  
+  'https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid'  
 
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB.
