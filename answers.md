@@ -49,34 +49,6 @@ Collecting APM data is extremely useful for businesses to track the overall perf
 ![](DataDog_FlaskTraces.png)
 ![](Infrastructure+APM.PNG)
 
-Snippet of Code used to run Flask  
-from flask import Flask
-import logging
-import sys
-
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(port=8080)
 
 
 Final Question:
