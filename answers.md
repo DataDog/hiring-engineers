@@ -18,7 +18,7 @@ Confirmed by "datadog-agent status"
     ==============    
     https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid  
     
-And added tags in the agent config file, and I also configured agent yaml to report a specified host name 
+And added tags in the agent config file, and I also configured the agent yaml to report a specified host name 
 
     tags:
         - role:database:mongodb
