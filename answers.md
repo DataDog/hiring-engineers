@@ -114,7 +114,7 @@ I've always been fascinated by the similarity of animation/SFX rending workflows
 manufacturing machines, human labor, robots, warehouses, labor, varioius methods of inventory management.
 racks and racks of farms of "render machines," storage "farms" (usually some form of NAS), distriubted systems populated with cached data, human labor in the form of visual artists creating raw graphic elements on high performance graphics workstations equipped with large color calibrated high gamut LCD monitors, some kind of system/process for managing metadata reference for all the digital "objects" and "elements" used in rendering frames of iinterim and completed
 
-There are vary places in the process that can be chokepoints, bottlenecks or critical failure points.  Animation/SFS rendering pipeline success is measured in amount of rendered content completed over time (hourly, daily, weekly) resulting in delivered final content at scheduled completion time for scheduled release dates.  Missing those final deadlines is not an option. 
+There are various places in the process that can be chokepoints, bottlenecks or critical failure points and need to measured and monitored. Animation/SFS rendering pipeline success is measured in amount of rendered content completed over time (hourly, daily, weekly) resulting in delivered final content at scheduled completion time for scheduled release dates.  Missing those final deadlines is not an option. 
 
 meet required turnaround times on renders without adversely affecting the artist workstations that require access to the same datasets.”
 
@@ -124,6 +124,7 @@ render farm 24x7 at 95 percent utilization.
 
 minimize latency, requests coming into the render farm. 
 
+As an example, from personal exeperience with another Aimation/SFX render customer. 
  
 
 
