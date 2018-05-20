@@ -1,1 +1,0 @@
-web: ddtrace-run gunicorn calendarproject.wsgi:application
