@@ -28,7 +28,7 @@ placing the statment in the mongo.yaml referencing the password for the datadog 
 
     -   server: mongodb://datadog:kgVXlTnEFbTNSaKAdA7VYDf0@localhost:27017  
       
-The collector section datadog-agent status report confirmed that the agent was successfully collecting data from the MongoDB
+The collector section datadog-agent status report confirmed that the agent was successfully collecting data from the MongoDB instance
 
     mongo
     -----  
