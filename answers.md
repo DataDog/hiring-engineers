@@ -94,6 +94,8 @@ I first created a working example Timeboard, via the GUI, and used the API to is
   
     dog timeboard pull 810959 testtimeboard
 
+After i deciphered the json i used curl, vi a shell script to post the API to Datadog SAAS to create a new Timeboard. 
+
 
 
 
