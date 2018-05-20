@@ -72,6 +72,7 @@ MySQL_Anomaly
 ![MySQL_Anomaly](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/31_Create_Anomaly_Monitor_MySQL_User_Perf.PNG)
 
 MySQL_Anomaly Details
+
 ![MySQL_Anomaly Details](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/32_Create_Anomaly_Monitor_MySQL_User_Perf_completed.PNG)
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -109,18 +110,15 @@ I see this being particularly compelling when looking at a large pool resources/
 
 ## Monitoring Data
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert based on (500/800) values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+My Metric Monitor Configuration
 
-Please configure the monitor’s message so that it will:
+![Config_Metric](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/34.2_Monitoring_Alert_Email_template.PNG)
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+My Metric Email Alert
+
+![My_Metric Email](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/34.3_Monitoring_Alert_Email_Sent.PNG)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -128,12 +126,20 @@ Please configure the monitor’s message so that it will:
     * And one that silences it all day on Sat-Sun.
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+Downtime Schedule Configuration:
+
+![My_Metric Email](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/34.5_Monitoring_Schedule_Set.PNG)
+
+Notification Screen Shot:
+
+Waiting for the timeframe to hit
+
 
 ## Collecting APM Data:
 
 Using provided Flask app, instrument this using Datadog’s APM solution:
 
-![Matt Flask App Python File Instrumented with DD](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/C.Matt_Flask_1.py)
+
 
 * **Bonus Question**: What is the difference between a Service and a Resource
 
@@ -150,7 +156,9 @@ The metrics of said individual resources will make up the overall service's perf
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well. 
+Please include your fully instrumented app: Flask.py with code to instrument:
+
+![Matt Flask App Python File Instrumented with DD](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/C.Matt_Flask_1.py)
 
 ## Final Question:
 
@@ -165,8 +173,8 @@ If you have a question, create an issue in this repository.
 To submit your answers:
 
 * Fork this repo. ## DONE
-* Answer the questions in answers.md ## IN PROGRESS
-* Commit as much code as you need to support your answers. ## IN PROGRESS
-* Submit a pull request. ## IN PROGRESS
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers. ## IN PROGRESS
+* Answer the questions in answers.md ** IN PROGRESS
+* Commit as much code as you need to support your answers. ** DONE
+* Submit a pull request. ## NOT COMPLETED
+* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers. ** IN PROGRESS
 
