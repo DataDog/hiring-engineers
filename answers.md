@@ -112,7 +112,19 @@ In full disclosure, another one of my ex-customers, Dreamworks Feature Animation
 I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory manufacturing things (widgets, cars, toasters, etc).  The similarity is that in both employ a process pipeline of parts and raw materials come in on one side of the pipeline and some kind of finished product comes out at the other end.  In the case of animation/sfx the raw materials are millions/tens of millions/hundreds of millions (etc) of graphic elements, geometry and texture files, color tables, and lines of code for scheduling software, "render engine" software and various kinds of process software. On the other end the finished product is fully rendered animated feature movies and various images and rendered content used for marketing/promotion.  
 
 manufacturing machines, human labor, robots, warehouses, labor, varioius methods of inventory management.
-racks and racks of farms of "render machines," storage "farms" (usually some form of NAS), distriubted systems populated with cached data  
+racks and racks of farms of "render machines," storage "farms" (usually some form of NAS), distriubted systems populated with cached data, human labor in the form of visual artists creating raw graphic elements on high performance graphics workstations equipped with large color calibrated high gamut LCD monitors, some kind of system/process for managing metadata reference for all the digital "objects" and "elements" used in rendering frames of iinterim and completed
+
+There are vary places in the process that can be chokepoints, bottlenecks or critical failure points.  Animation/SFS rendering pipeline success is measured in amount of rendered content completed over time (hourly, daily, weekly) resulting in delivered final content at scheduled completion time for scheduled release dates.  Missing those final deadlines is not an option. 
+
+meet required turnaround times on renders without adversely affecting the artist workstations that require access to the same datasets.”
+
+multiple pipelines.  Dreamworks has at times been working on pipelines of 3-5 movies in parallel
+
+render farm 24x7 at 95 percent utilization.
+
+minimize latency, keeping it less than five milliseconds to all requests coming into the render farm. “Five milliseconds is actually a high-water mark,” comments Bali. “Our real goal is to stay between one and two milliseconds. 
+
+ 
 
 
 
