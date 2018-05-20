@@ -27,12 +27,12 @@ And added tags in the agent config file, and I also configured agent yaml to rep
 
 
 
-
-Hostnames
-=========
-  hostname: colby-exercise-machine.localdomain
-  socket-fqdn: localhost
- socket-hostname: localhost.localdomain  
+From agent status report:
+    Hostnames
+    =========
+      hostname: colby-exercise-machine.localdomain
+      socket-fqdn: localhost
+      socket-hostname: localhost.localdomain  
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB
 placing the statment in the mongo.yaml referencing the password for the datadog user I created in Mongo. 
