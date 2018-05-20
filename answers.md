@@ -18,18 +18,21 @@ Confirmed by "datadog-agent status"
     ==============    
     https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid  
     
-And added tags in the agent config file, and I aslo 
+And added tags in the agent config file, and I also configured agent yaml to report a specified host name 
 
     tags:
         - role:database:mongodb
     hostname: colby-exercise-machine.localdomain  
 
 
-    Hostnames
-    =========
-      hostname: colby-exercise-machine.localdomain
-      socket-fqdn: localhost
-      socket-hostname: localhost.localdomain  
+
+
+
+Hostnames
+=========
+  hostname: colby-exercise-machine.localdomain
+  socket-fqdn: localhost
+ socket-hostname: localhost.localdomain  
 
 I next installed a single node MongoD and installed and configured Datadog integration for MongoDB
 placing the statment in the mongo.yaml referencing the password for the datadog user I created in Mongo. 
