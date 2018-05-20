@@ -27,7 +27,8 @@ And added tags in the agent config file, and I also configured agent yaml to rep
 
 
 
-From agent status report:
+From agent status report:  
+
     Hostnames
     =========
       hostname: colby-exercise-machine.localdomain
