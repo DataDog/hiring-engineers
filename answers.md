@@ -87,7 +87,7 @@ Not having coded structured json before (in a prior role I sometimes had to revi
 
 I first created a working example Timeboard, via the GUI, and used the API to issue a query to show a list of all my timeboards with  their ID numbers.  I then used the *timeboard_id* of the example timeboard to issue an API pull to download downloaded the json definition of that timeboard.  I utilized *dogshell* to issue these API queries.  In this endeavor *dogshell* was my friend.  
 
-    [root@localhost tmp]# dog timeboard show_all
+    dog timeboard show_all
     810959	/api/v1/dash/810959	Michael's Visualization Reference Timeboard	created by mcolby@netzero.com
     809847	/api/v1/dash/809847	My_Metric	created by mcolby@netzero.com
     809827	/api/v1/dash/809827	Random Check	created by mcolby@netzero.com
