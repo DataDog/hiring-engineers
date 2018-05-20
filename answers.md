@@ -2,6 +2,10 @@
 
 I spent far too many hours trying to get VirtualBox to work on High Sierra (it did not work), so I chose to install the agent directly on OS X
 
+Once I reached the APM part of the assignment however, I was not able to install the trace. The current [documentation](https://github.com/DataDog/datadog-trace-agent) is for V5 and I was not able to successfully modify the command to get the trace working.
+
+At that point, I started up a hosted ubuntu instance and tried installing the agent and trace with linux. The host was recognized by datadog and showed up in my infrastructure list. However, I eventually ran into an issue where there was an issue with the datadog.yaml file. I could not fix the issue, but with what I could determine, there was an issue with spacing in the code.
+
 
 ## Collecting Metrics
 
@@ -159,3 +163,16 @@ Power level cannot be found at {{host.ip}}
 ### Bonus Question: Downtimes
 
 ![DowntimesEmail](https://raw.githubusercontent.com/akambale/hiring-engineers/master/DowntimesEmail.png)
+
+## Collecting APM Data:
+
+I was unable to complete this portion of the challenge. Here is the outline of all the steps I took.
+
+1. Attempted to install the tracer on OSX. I was unsuccessful in launching it (see my explanation at the top).
+2. Started up a hosted instance of ubuntu and installed the agent and tracer. I was not able to set tags or send a check to the datadog infrastructure list. I determined this was an issue with the datadog.yaml file.
+3. In spite of that, I tried to run the flask app from both my OSX and Linux. In both set-ups I ran into "socket.error: [Errno 48] Address already in use." I tried troubleshooting this, but was unsuccessful. I am not very familiar with Python.
+4. I attempted to use [hot-shots](https://github.com/brightcove/hot-shots) to monitor one of my NodeJS apps. As far as I know, there were no issues here. As it is, the documentation for this NPM package is lacking examples. But since my agent configuration was not working, I don't think it could successfully send metrics.
+
+## Final Question:
+
+
