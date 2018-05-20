@@ -105,7 +105,9 @@ After I deciphered the json i used curl, via a shell script to post the json for
 ### Monitoring Data  
 ### Monitoring Data  
 ### Final Question  
-I don't know if its creative but as a prior SE for a storage vendor who had several Animation/Special Effects (SFX) Rendering customers I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory.  The simi
+I don't know if its creative but as a prior SE for a storage vendor I had several Animation/Special Effects (SFX) Rendering customers.  One of which would not let my employer replace me with another SE over the course of several years as sales reps transitioned in and out of the account.   In full disclosure, one of my ex-customers, Dreamworks Feature Animation, is a Datadog customer and I visit semi-annually with their long time operational and technology strategy architect, to ruminate and chat about the state of the world of storage and compute technologies. When I began disucssions with folks at Data Dog I asked my friend if they use Datadog. I didn't ask how they use it, just for his thoughts on Datadog. His answer back was its their "go to" for telemetry, monitoring and dashboards. When I noted what appears to be the flexibility and power of open sourced agents with native support for a large number of stacks and ecosystem and API integration extendability with reporting delivered via SAAS his reply was "exactly;  we're a happy customer."
+
+I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory.  
 
 
 
