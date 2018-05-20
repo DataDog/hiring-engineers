@@ -26,7 +26,7 @@ DataDog includes prebuilt dashboards that are out of the box and flexible for us
 ![](JC_metric_timeboard.PNG)
 ![](DataDog_MyMetricwithRoll_up.png)
 ![](3metricsoverAPITimeBoard.PNG)
-![](snapshot_datadog.png)
+![](snapshot_datadog.PNG)
 
 
 Monitoring Data:
