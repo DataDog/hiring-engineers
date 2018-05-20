@@ -92,10 +92,10 @@ I first created a working example Timeboard, via the GUI, and used the API to is
     809847	/api/v1/dash/809847	My_Metric	created by mcolby@netzero.com
     809827	/api/v1/dash/809827	Random Check	created by mcolby@netzero.com
   
-    dog timeboard pull 810959 testtimeboard
+    dog timeboard pull 810959 testtimeboard  
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;
+  
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
