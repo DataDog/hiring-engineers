@@ -103,7 +103,7 @@ After I deciphered the json i used curl, via a shell script, to post the json fo
 
 
 ### Monitoring Data  
-### Monitoring Data  
+### Collecting APM Data  
 ### Final Question  
 I don't know if this a creative use case,  but as a prior SE for a storage vendor for several years I had several Animation/Special Effects (SFX) Rendering customers.  One of which trusted me so strongly they would not let my employer replace me with another SE over the course of several years as sales reps transitioned in and out of the account.   
 
