@@ -48,7 +48,7 @@ Per the exercise instructions I created a custom agent check to submit a metric 
      def check(self, instance):
       self.gauge('my_metric', random.randint(0,1000))  
  
- **colbyycheck.yaml**
+ **colbycheck.yaml**
  
     self.init_config:
 
