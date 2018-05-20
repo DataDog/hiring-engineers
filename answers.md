@@ -80,11 +80,8 @@ To confirm the agent check and MongoDB integration are reporting to Datadog SAAS
 
 ![](hostmap.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
   
-![](my_metric-random-integer-dashboard.jpg)  
+![](my_metric-random-integer-dashboard.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
-
-
-xxx
 
 
 
