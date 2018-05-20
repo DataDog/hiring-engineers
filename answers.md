@@ -23,4 +23,5 @@ tags:
 
 # Install a database on your machine 
 
-<img width="1190" alt="infrastructure_list___datadog" src="https://user-images.githubusercontent.com/2524766/40284368-a574df5c-5cd1-11e8-940e-0f954c8bccf4.png">
+<img width="1371" alt="mysql_-_overview___datadog" src="https://user-images.githubusercontent.com/2524766/40284386-d879ea1e-5cd1-11e8-8c0d-eca87724a476.png">
+
