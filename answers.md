@@ -102,6 +102,11 @@ I first created a working example Timeboard, via the GUI, and used the API to is
 After I deciphered the json i used curl, via a shell script to post the json for a new Timeboard.  
 
 
+### Monitoring Data  
+### Monitoring Data  
+### Final Question  
+I don't know if its creative but as a prior SE for a storage vendor who had several Animation/Special Effects (SFX) Rendering customers I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory.  The simi
+
 
 
 
