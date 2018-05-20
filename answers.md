@@ -5,6 +5,8 @@ Your answers to the questions go here.
 
 2) Host Tags
 ![host_tags](host_tags.png)
+![tags_ui](host_tags_ui.png)
+
 
 3) Database integration
 ![mongodb](mongodb.png)
