@@ -16,7 +16,8 @@ Your answers to the questions go here.
 5) Bonus: I can modify my_metric.yaml 
 ![min_interval](min_interval.png)
 
-6) Timeboard (timeboard.py): https://app.datadoghq.com/dash/815645/my-timeboard?live=true&page=0&is_auto=false&from_ts=1526840882490&to_ts=1526844482490&tile_size=m
+6) Timeboard: [Script](timeboard.py) 
+https://app.datadoghq.com/dash/815645/my-timeboard?live=true&page=0&is_auto=false&from_ts=1526840882490&to_ts=1526844482490&tile_size=m
 ![timeboard](timeboard.png)
 
 
