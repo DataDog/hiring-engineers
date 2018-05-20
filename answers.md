@@ -97,6 +97,9 @@ I first created a working example Timeboard, via the GUI, and used the API to is
 After i deciphered the json i used curl, vi a shell script to post the API to Datadog SAAS to create a new Timeboard. 
 
 
+![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
+
+
 
 
 
