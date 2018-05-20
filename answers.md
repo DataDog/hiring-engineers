@@ -61,7 +61,7 @@ I added a minimum collection configuration parameter for 45 seconds in the yaml 
 To be clear, however, the actual collection interval is a bit of a dance between the interval time per instance for this custom agent check and the interval time for Data Dog Agent collector (who's collection frequency is every 15-20 seconds dependent on how many integrations are enabled).  The result, per the documentation, is that this does not mean the metric is collected **every** 45 seconds but rather it **could** be collected **as often as** every 45 seconds.  
 
 
-**Q: Can you change the collection interval without modifying the Python check file you created?**
+**Q: Can you change the collection interval without modifying the Python check file you created?**  
 **A:** The collection interval is changed in the yaml file for the custom agent check, not in the python check file itself. 
 
 
