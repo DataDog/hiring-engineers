@@ -99,13 +99,15 @@ I first created a working example Timeboard, via the GUI, and used the API to is
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
-After I deciphered the json i used curl, via a shell script to post the json for a new Timeboard.  
+After I deciphered the json i used curl, via a shell script, to post the json for a new Timeboard.  
 
 
 ### Monitoring Data  
 ### Monitoring Data  
 ### Final Question  
-I don't know if its creative but as a prior SE for a storage vendor I had several Animation/Special Effects (SFX) Rendering customers.  One of which would not let my employer replace me with another SE over the course of several years as sales reps transitioned in and out of the account.   In full disclosure, one of my ex-customers, Dreamworks Feature Animation, is a Datadog customer and I visit semi-annually with their long time operational and technology strategy architect, to ruminate and chat about the state of the world of storage and compute technologies. When I began disucssions with folks at Data Dog I asked my friend if they use Datadog. I didn't ask how they use it, just for his thoughts on Datadog. His answer back was its their "go to" for telemetry, monitoring and dashboards. When I noted what appears to be the flexibility and power of open sourced agents with native support for a large number of stacks and ecosystem and API integration extendability with reporting delivered via SAAS his reply was "exactly;  we're a happy customer."
+I don't know if this a creative use case,  but as a prior SE for a storage vendor I had several Animation/Special Effects (SFX) Rendering customers.  One of which trused me so strongly they would not let my employer replace me with another SE over the course of several years as sales reps transitioned in and out of the account.   
+
+In full disclosure, another one of my ex-customers, Dreamworks Feature Animation, is a Datadog customer and I visit semi-annually with their long time operational and technology strategy architect to ruminate and chat about the state of the world of storage and compute technologies. When I began discussions with folks at Data Dog I asked my friend if they use Datadog. I didn't ask how they use it, just for his thoughts on Datadog. His answer back was its their "go to" for telemetry, monitoring and dashboards. When I noted what appears to be the flexibility and power of open sourced agents with native support for a large number of stacks and ecosystems and API integration extensability - with reporting delivered via SAAS his reply was "exactly;  we're a happy customer."
 
 I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory.  
 
