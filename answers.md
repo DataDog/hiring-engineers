@@ -33,7 +33,7 @@ Your answers to the questions go here.
 
 11) Bonus: Downtimes (downtime.py/downtime_2.py)
 
-12) Custom Python app instrumentation (/apm/calendar/calendarproject/settings.py)
+12) Custom Python app instrumentation: [instrumentation](/apm/calendar/settings.py)
 
 13) Bonus: A "Service" is the name of a set of processes that work together to provide a feature set. A "Resource" is a particular query to a service.
 
@@ -42,6 +42,6 @@ Your answers to the questions go here.
 
 
 
-15) Fully instrumented app (/apm/calendar)
+15) Fully instrumented app: [app_script](/apm/calendar/views.py)
 
 16) Final question: I would monitor robots at automated warehouses/factories.
