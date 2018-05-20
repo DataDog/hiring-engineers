@@ -76,7 +76,7 @@ To be clear, however, the actual collection interval is a bit of a dance between
 **Q: Can you change the collection interval without modifying the Python check file you created?**  
 **A:** The collection interval is changed in the yaml file for the custom agent check, not in the python check file itself. 
 
-The 
+To confirm the agent check and MongoDB integration are reporting to Datadog SAAS I reviewed the hostmap for exercise host and created a timeboard via the GUI   
 
 ![](hostmap.jpg)
 
