@@ -11,7 +11,7 @@ Your answers to the questions go here.
 3) Database integration
 ![mongodb](mongodb.png)
 
-4) Custom agent check: [agent_check](my_metric.py)
+4) Custom agent check: [my_metric script](my_metric.py)
 
 5) Bonus: I can modify my_metric.yaml 
 ![min_interval](min_interval.png)
@@ -25,7 +25,7 @@ Your answers to the questions go here.
 
 8) Bonus: It's displaying a metric's expected behavior based on historical data.
 
-9) my_metric Monitor: [Monitor](monitor.py)
+9) my_metric Monitor: [Monitor script](monitor.py)
 
 10) Monitor notification
 ![alert](alert.png)
@@ -42,6 +42,6 @@ Your answers to the questions go here.
 
 
 
-15) Fully instrumented app: [Pytho script](/apm/calendar/views.py)
+15) Fully instrumented app: [Python_app_script](/apm/calendar/views.py)
 
 16) Final question: I would monitor robots at automated warehouses/factories.
