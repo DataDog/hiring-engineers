@@ -1,0 +1,14 @@
+{
+  "name": "Calendar 365",
+  "description": "A Python calendar app.",
+  "image": "heroku/python",
+  "repository": "https://github.com/heroku/whispering-tor-17777",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
+  }
+}
