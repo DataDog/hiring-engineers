@@ -5,20 +5,26 @@
 Environments Utilized:
 * MS Windows 8.1
 * Ubuntu 12 / MySQL 
-![Vagrant Init](https://github.com/MrEastling/hiring-engineers/edit/solutions-engineer/8_Test_Vagrant_VM_Init.PNG) 
-* Ubuntu 16 
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-* Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field) ## DONE
+![Vagrant Init](https://github.com/MrEastling/hiring-engineers/edit/solutions-engineer/8_Test_Vagrant_VM_Init.PNG), 
+![Vagrant up]( https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/15_Install_Vagrant_Download_and_Init_VirtualBoxVM_ERROR_4-GuestKey-cannot_reconcile.PNG),
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog. 
+![Tag Added](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/24_DD_Add_Tag.PNG)
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. 
+![Install MySql](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/25_Install_my_sql.PNG)
+![SQL Installed Sucess](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/29.1_Install_DD_mysql_integration_completed_and_checked.PNG)
+![Datadog MySQL Integration Installed](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/29.2_Install_DD_mysql_integration_completed_and_checked_DD_UI.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+![My_Mtric.py](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/A.my_metric.py)
+![My Metric Added](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/30.1_My_Metric_completed_and_checked_DD_Agent_Status.PNG)
+![y_Metric on DD Dashboard](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/30.2_My_metric_01_random%2B1to1000_timeboard_completed_and_checked_DD_UI.PNG)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+![My_Metric.yaml](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/30.3_My_metric_yaml_45sec.PNG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
@@ -30,19 +36,28 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 
 * Any metric from the Integration on your Database with the anomaly function applied.
+![MySQL_Anomaly](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/31_Create_Anomaly_Monitor_MySQL_User_Perf.PNG)
+![MySQL_Anomaly Details](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/32_Create_Anomaly_Monitor_MySQL_User_Perf_completed.PNG)
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+![My_Metric Rollup JSON](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/33_Create_Rollup_My_Metric_completed-edit_JSON.PNG)
+![My_Metric Rollup Dash_Details](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/33.2_Create_Rollup_My_Metric_completed-edit_DD_Dash_Properties.PNG)
 
 * Script used to create this Timemboard:
+![Create Timeboard via API Script](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/B.Matt_timeboard_api_7.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+![My_Metric Sent via Comment](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/34_Send_Snapshot_Via_Comment_My_Metric_Graph.PNG)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
+Anomaly graphs show any tracked variable in a metric that is inconsistent from what are defined as 'normal' patterns. It can be used to highlight unusually high CPU usage, traffic volumes on a website or other unusual activity. It works best with metrics that display consistent trends over time and that the one who configures it having a sense of the metrics 'normal' patterns. 
 
+I see this being particularly compelling when looking at a large pool of data, understanding the norms, and applying the Anomaly graphs to the greater pool of resources to see which of them are not performing with prescribed parameters. 
 
 ## Monitoring Data
 
@@ -68,42 +83,13 @@ Please configure the monitor’s message so that it will:
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+Using provided Flask app, instrument this using Datadog’s APM solution:
+![Matt Flask App Python File Instrumented with DD](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/C.Matt_Flask_1.py)
 
-```
-from flask import Flask
-import logging
-import sys
+* **Bonus Question**: What is the difference between a Service and a Resource
+A service in Datadog APM is defined as "a set of processes that work together to provide a feature set". In relation to one's managed applications such as a web server or a database. Datadog has the capability to monitor the performance of each service individually and provice metrics such as CPU usage, number of requests, average latency, and number of errors and their frequency.  .
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-```    
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-* **Bonus Question**: What is the difference between a Service and a Resource?
+A resource in Datadog APM is defined as "a particular query to a service". The resources are the individual calls and traces that make up a service. For a web app service, resources will be entry points into the application such as specific URLs that users are hitting (ie. /api/apm or /user/home). For a database, a resource will be an individual SQL query (ie. select * from users). The metrics of individual resources will make up the overall service's performance metrics.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
