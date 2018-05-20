@@ -78,6 +78,9 @@ To be clear, however, the actual collection interval is a bit of a dance between
 
 The 
 
+![](hostmap.jp)
+
+
 
 
 
