@@ -4,7 +4,8 @@
 
 Environments Utilized:
 * MS Windows 8.1
-* Ubuntu 12 / MySQL
+* Ubuntu 12 / MySQL 
+![Vagrant Init](https://github.com/MrEastling/hiring-engineers/edit/solutions-engineer/8_Test_Vagrant_VM_Init.PNG) 
 * Ubuntu 16 
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 * Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field) ## DONE
