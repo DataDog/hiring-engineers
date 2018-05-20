@@ -122,7 +122,7 @@ multiple pipelines.  Dreamworks has at times been working on pipelines of 3-5 mo
 
 render farm 24x7 at 95 percent utilization.
 
-minimize latency, keeping it less than five milliseconds to all requests coming into the render farm. “Five milliseconds is actually a high-water mark,” comments Bali. “Our real goal is to stay between one and two milliseconds. 
+minimize latency, requests coming into the render farm. 
 
  
 
