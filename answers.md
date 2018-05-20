@@ -99,7 +99,7 @@ I first created a working example Timeboard, via the GUI, and used the API to is
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
-After I deciphered the json i used curl, vi a shell script to post the json for a new Timeboard.  
+After I deciphered the json i used curl, via a shell script to post the json for a new Timeboard.  
 
 
 
