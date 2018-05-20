@@ -156,6 +156,13 @@ The metrics of said individual resources will make up the overall service's perf
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+Screen Shot of APM Dashboard:
+![APM_Sample_App](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/72_APM_Dashboard.PNG)
+
+Link to APM Dashboard:
+
+https://app.datadoghq.com/apm/service/sample-app/request?start=1526856287119&end=1526859887119&env=none&paused=false
+
 Please include your fully instrumented app: Flask.py with code to instrument:
 
 ![Matt Flask App Python File Instrumented with DD](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/C.Matt_Flask_1.py)
