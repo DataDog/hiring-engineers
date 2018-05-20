@@ -95,11 +95,11 @@ I first created a working example Timeboard, via the GUI, and used the API to is
     dog timeboard pull 810959 testtimeboard  
 
 
-  
+ Important to note that the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
-After i deciphered the json i used curl, vi a shell script to post the API to Datadog SAAS to create a new Timeboard. 
+After I deciphered the json i used curl, vi a shell script to post the json for a new Timeboard.  
 
 
 
