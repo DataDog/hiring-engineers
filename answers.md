@@ -79,8 +79,13 @@ To be clear, however, the actual collection interval is a bit of a dance between
 To confirm the agent check and MongoDB integration are reporting to Datadog SAAS I reviewed the hostmap for exercise host and created a timeboard via the GUI   
 
 ![](hostmap.jpg)  
-
+  
+  
 ![](my_metric-random-integer-dashboard.jpg)  
+
+
+
+xxx
 
 
 
