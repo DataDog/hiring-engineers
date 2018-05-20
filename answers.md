@@ -135,7 +135,7 @@ Here is the picture of the three metrics on separate timeboards over a four hour
 It displays the bounds of the line. Bounds are what is considered normal in terms of deviations in the documentation. I think these deviations refer to standard deviation. 
 
 
-## Monitoring Data
+## Monitoring Data 
 
 ![Monitor Alert Conditions](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MonitorAlertConditions.png)
 
