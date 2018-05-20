@@ -175,4 +175,4 @@ I was unable to complete this portion of the challenge. Here is the outline of a
 
 ## Final Question: What would I use datadog for
 
-Like many people in SF, I too often took Uber/Lyft to work, especially on Fridays when there wasn't a specific time I had to be in the office. I would set up an app that would send requests to the Uber and Lyft APIs every 30 seconds and receive prices. Using a check in the APM, I would then send prices to Datadog and create an alert that would notify me if prices dipped below a certain threshold so I could request a ride.
+Like many people in SF, I took Uber/Lyft to work far too often, especially on Fridays when there wasn't a specific time I had to be in the office. I would set up an app that would send requests to the Uber and Lyft APIs every 30 seconds and receive prices. Using a check in the APM, I would then send prices to Datadog and create an alert that would notify me if prices dipped below a certain threshold so I could request a ride for the best price possible.
