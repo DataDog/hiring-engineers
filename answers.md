@@ -64,6 +64,10 @@ To be clear, however, the actual collection interval is a bit of a dance between
 **Q: Can you change the collection interval without modifying the Python check file you created?**  
 **A:** The collection interval is changed in the yaml file for the custom agent check, not in the python check file itself. 
 
+To confirm the
+
+
+
 
 
 
