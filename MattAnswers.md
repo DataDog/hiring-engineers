@@ -40,7 +40,8 @@ Tags in Datadog UI
 
 Host Map
 
-https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/hostmap.PNG
+![Hostmap](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/hostmap.PNG)
+
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
