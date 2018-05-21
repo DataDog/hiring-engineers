@@ -386,3 +386,8 @@ if __name__ == '__main__':
   <summary>See Error here</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error3.png></img>
 </details>
+
+## Final Question
+**Is there anything creative you'd use datadog for?**
+In January, [Strava accidentally exposed secret military bootcamps based on their activity hot spots](https://www.theguardian.com/world/2018/jan/28/fitness-tracking-app-gives-away-location-of-secret-us-army-bases)... I found this incredibly interesting, and I would love to take this a step further into a cultural realm.
+I am pretty passionate about living a balanced, healthy lifestyle. Having an apple watch and being a part of a fairly modern gym with its own tracking app keeps me accountable. I know this might seem like a stretch, or maybe even something that already exists, I would love to see an integration to help monitor not only motion and fitness, but activity on social media accounts, location checkins (foursquare, instagram), seamless orders, grocery orders, spending/budgeting, and sleep-- honestly, something along the lines of [gyrosco.pe](https://gyrosco.pe/). But--the information would be shared in the similar way that Strava shares its hot-spotting activity. I think there's a lot we can learn about ourselves and our values if we see the amount of time spent on different things based on region.
