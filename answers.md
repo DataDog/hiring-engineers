@@ -15,10 +15,9 @@ tags:
   - env:dev1
   - role:docker_host1
 ```
+Shown here is the host map view showing the custom tags : 
 
-
-
-![host tags1](https://user-images.githubusercontent.com/2524766/40223179-832494e6-5ac5-11e8-86ee-a2ee4d472456.png)
+<img width="923" alt="host_map___datadog" src="https://user-images.githubusercontent.com/2524766/40302853-e0d357ce-5d33-11e8-89c0-52d8ef48f8b5.png">
 
 
 # Install a database on your machine 
