@@ -112,27 +112,24 @@ In full disclosure, another one of my ex-customers, Dreamworks Feature Animation
 
 I've always been fascinated by the similarity of animation/SFX rending workflows to an industrial factory manufacturing things (widgets, cars, toasters, etc).  The similarity is that both employ a *process* pipeline in components and raw materials come in on one side of the pipeline and some kind of finished product comes out at the other end.  In the case of animation/sfx the raw materials are millions/tens of millions/hundreds of millions (etc) of graphic elements, geometry and texture files, color tables, and lines of code for scheduling software, "render engine" software and various kinds of process software. On the other end the finished product is fully rendered animated feature movies and various images and rendered content used for marketing/promotion.  
 
-Manufacturing plant utilizes machines, human labor, manufacturing robots, pysical warehouses, and various methods of inventory management of the contents of those warehouses. In comparison the purveyors of that digital pipeline employ:
+A manufacturing plant utilizes machines, human labor, manufacturing robots, pysical warehouses, and various methods of inventory management of the contents of those warehouses. 
 
+In comparison the purveyors of that digital pipeline employ:
 * racks "render machines" "farms"  
 * storage "farms" (usually some form of NAS)
 * distributed systems populated with cached data
 * human labor in the form of visual artists creating raw graphic elements on high performance graphics workstations
 * some kind of system/process for managing metadata reference for all the digital "objects" and "elements" used in rendering image frames 
 
-
+At any time an animation rendering facility usually has a pipeline of 3-5 separate movies with closely spaced releases dates. Each movie  To meet these often tightly scheduled timelines the compute and storage resources operate 24x7. The goal for a rnder farm is usally as clsose to 24x7 at 95% utilization.  Anything that slows down, or stops rendering is a potential bottleneck that threatens delivering these multiyear projects on time.   These issues and events can include exceeding avaialble compute resources, network i/o bottlnecks, storage i/o bottlenecks, machine failures and storage hardware failures. Small increases in latency anywhere in the process can result in days or weeks of schedule impact.  Pipeline success is measured in the amount of rendered content completed over time (hourly, daily, weekly).  
 
 There are various places in the process that can be chokepoints, bottlenecks or critical failure points and need to measured and monitored. Animation/SFS rendering pipeline success is measured in amount of rendered content completed over time (hourly, daily, weekly) resulting in delivered final content at scheduled completion time for scheduled release dates.  Missing those final deadlines is not an option. 
 
-meet required turnaround times on renders without adversely affecting the artist workstations that require access to the same datasets.”
+Instrument and measure, Data Center environmentals, operational status and heath of physical machines, Network I/O, storage I/O (aggregate and per storage system), corequest latency for sampled data objects, 
 
-multiple pipelines.  Dreamworks has at times been working on pipelines of 3-5 movies in parallel
+As an example, from my personal exeperience with another Animation/SFX render customer, they complained to me that after adding expanding their storage farm with several of our latest generation NAS storage systems that they were experiencing higher than expected rate of disk failures.  If their operation was well instrumented using Data Dog they would have been able to focus on Problems instead of symptoms.  They would have known, was their rendering pipeline impacted and to what extent.  Instead all they knew was the *perceived* symptom. 
 
-render farm 24x7 at 95 percent utilization.
-
-minimize latency, requests coming into the render farm. 
-
-As an example, from personal exeperience with another Aimation/SFX render customer. 
+In my experience they frequently complained about *perceived" symtoms that inevitaby did not correspond to empirical data.  That said, I told them i 
  
 
 
