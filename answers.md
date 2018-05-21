@@ -105,6 +105,14 @@ After I deciphered the json i used curl, via a shell script, to post the json fo
 
 ### Monitoring Data
 
+Per the exercise specificationsI crreated a new metric monitor for my_metric that alerts if it the metric is above the following values over the past 5 minutes:   
+* Warning Threshold of 500  
+* Alerting Threshold of 800
+* receive a notificatoin if there is no data for this queried metric over the past 10 minutes  
+
+
+![](define-threshold-alert.jpg)&nbsp;&nbsp;
+
     {{#is_alert}}  
     **Alert Threshold Exceeded**    
     {{value}} {{comparator}} {{threshold}}  
