@@ -1,4 +1,4 @@
-This will be a bit of a streaming conciousness.
+This will be a bit of a streaming consciousness.
 
 ## Prerequisites
 Got account setup for trial period quite easily. Rather than install the agent
@@ -64,8 +64,8 @@ configs:
 1. Lots of tags come out of the box with the agent. I can sort via hosts with
 Docker running, one's that detect redis, etc. What I was unable to do was use
 the container environment variables to properly set host tags. I tried a few
-different formats and google searchs to no avail. I eventually set them in the
-UI. I saw where I caould set these in the datadog agent file but that doesn't
+different formats and google searches to no avail. I eventually set them in the
+UI. I saw where I could set these in the datadog agent file but that doesn't
 feel right considering the intended design principles. The above compose file
 details my final attempt at setting an ENV VAR for `DD_TAGS`
 2. I added a redis stack to my docker swarm for this section. The agent that was
@@ -90,7 +90,7 @@ went ahead and added in the `min_collection_interval` to the yaml for the bonus.
 I had a fair share of smart troubleshooting steps along the way. Below is an 
 example
 ![loading_error](https://image.ibb.co/eW8XQo/Screen_Shot_2018_05_20_at_11_26_21_PM.png "loading error")
-![marchaling_error](https://image.ibb.co/fjGVBT/Screen_Shot_2018_05_20_at_11_28_40_PM.png "marshalling error")
+![marchaling_error](https://image.ibb.co/fjGVBT/Screen_Shot_2018_05_20_at_11_28_40_PM.png "marshaling error")
 ```python
 from checks import AgentCheck
 import random
@@ -110,14 +110,14 @@ instances:
 4. Bonus. I made the change initially using the yaml file versus using the
 Pyhton file directly, presumably using a sleep method?
 
-## Vizualizing Data
-1. Here is screencap of the dashboard that I made programatically using the
+## Visualizing Data
+1. Here is screencap of the dashboard that I made programmatically using the
 Python SDK for Datadog. I found it was easier to build the dashboards
-temporarially in the UI and then copy the JSON out into the script.
+temporarily in the UI and then copy the JSON out into the script.
 ![prog_dash](https://preview.ibb.co/nQyP5o/Screen_Shot_2018_05_20_at_10_03_34_PM.png "Programatic Dashboard")
 
 And here is the code. It is currently set to update vs create since I was
-itterating on this over time. It also took me a moment to realize I needed to
+iterating on this over time. It also took me a moment to realize I needed to
 create a APP key. Once I realized that was required things were cooking.
 ```python
 from datadog import initialize, api
@@ -187,7 +187,7 @@ graphs = [{"definition": {
   ],
   "autoscale": "true"
 },
-    "title": "Redis Latency Anomolies"
+    "title": "Redis Latency Anomalies"
 }]
 
 read_only = True
@@ -204,13 +204,13 @@ notation to send something. I spent about 15 minutes searching through the docs
 with no such luck and moved on. I would love to find out more about this at a
 later date. Below is a manual screen cap of the 5min interval.
 ![5_min_int](https://preview.ibb.co/h2uiWT/Screen_Shot_2018_05_20_at_10_09_20_PM.png "5min Interval Screen Cap")
-4. Bonus. The default anamoly setting is basic which I kept as there was not
+4. Bonus. The default anomaly setting is basic which I kept as there was not
 enough data to use either of the two other settings. The basic setting appears
-to try and predeict a range of values it believes is the ever adjusting norm.
-I notice that as values have a smaller range of values the anomoly area shrinks
+to try and predict a range of values it believes is the ever adjusting norm.
+I notice that as values have a smaller range of values the anomaly area shrinks
 and even relatively small variances in values become an outlier. I would expect
-to use this agressively with cyclical and predicable workloads to identify
-unusual decreases/increses in values.
+to use this aggressively with cyclical and predicable workloads to identify
+unusual decreases/increases in values.
 
 ## Monitoring
 1. I created the monitor for my hello world metric using the UI. Below is the
@@ -243,7 +243,7 @@ export of the monitor I created:
 ```
 2. The UI was simple to use and create. The inline help for the markdown syntax
 and variables was very help, Perhaps one of the more intuitive parts of this
-product so far. Below is a screen shot of the email I recieved from this monitor
+product so far. Below is a screen shot of the email I received from this monitor
 ![alert](https://preview.ibb.co/cvMGJ8/Screen_Shot_2018_05_20_at_11_13_51_PM.png "Warning Email Alert")
 3. Below are my email notifications of silencing at night and on the weekends
 ![night_silence](https://preview.ibb.co/c8nZ5o/Screen_Shot_2018_05_20_at_11_09_52_PM.png "Silence 14 hours through the night")
@@ -256,7 +256,7 @@ having to have a special exec command. I decided to wrap this up with a
 container and run it on the swarm. Below are screen shots of the APM dashboard.
 ![](https://preview.ibb.co/bBrB1T/Screen_Shot_2018_05_21_at_12_38_58_AM.png)
 ![](https://preview.ibb.co/i1XR1T/Screen_Shot_2018_05_21_at_12_43_41_AM.png)
-2. A service appears to be an independant web app, where a resource is a
+2. A service appears to be an independent web app, where a resource is a
 method run from an endpoint. Resources also include 404's
 ```python
 from flask import Flask
@@ -317,14 +317,14 @@ blinker
 
 ## Final Question
 I see a lot of different ways to leverage Datadog. Even in my current world
-of on prem infrastructure I see an opprotunity to leverage the DD Agent to
+of on prem infrastructure I see an opportunity to leverage the DD Agent to
 natively talk my product line metrics and logs. I think a real interesting
 use case in the enterprise would be to leverage the range of capabilities
 in retail IOT deployments. Not just from an operation stand point (health, etc)
 but also from a analytic viewpoint of the data being gathered at retail
 locations.
 
-Thank you for the opprotunity to go through this exercise. I would be happy
+Thank you for the opportunity to go through this exercise. I would be happy
 to answer any questions you may have!
 
 Thanks
