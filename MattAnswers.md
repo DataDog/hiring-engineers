@@ -1,5 +1,13 @@
 ## Datadog Hiring Exercise **Matt Eastling** Questions and Answers
 
+Thank you very much for the opportunity to move forward with the hiring proecss at Datadog. Through each component of the process I have been able to obtain quite a bit of insight about your organization. I particularly liked the hiring exercise as it really inspired me and allowed me to get to know Datadog from a technical point of view.
+
+Below, please find my answers to each of the questions/activties defined in the technical exercise for the position of Solution Engineer.
+
+I look forward to your review and please let me know if there are any questions regarding my submission.
+
+-Matt Eastling
+
 ## Prerequisites - Setup the environment
 
 Environments Utilized:
