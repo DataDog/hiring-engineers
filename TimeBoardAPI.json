@@ -1,0 +1,22 @@
+{
+      "graphs" : [{
+          "title": "Several Metrics",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:JC_Metric{*}"},
+				  {"q": "anomalies(avg:sqlserver.stats.connections{host:Solarwinds-04}, 'basic', 2)"},
+				  {"q": "avg:JC_Metric{host:DESKTOP-9F0886G}.rollup(sum, 3600)"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "Jeffrey's First DataDogAPI Timeboard",
+      "description" : "A dashboard with memory info.",
+      "template_variables": [{
+          "name": "Desktop-9F0886G",
+          "prefix": "host",
+          "default": "host:Desktop-9F0886G"
+      }],
+      "read_only": "True"
+    }
