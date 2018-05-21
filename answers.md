@@ -1,4 +1,5 @@
-## answers.md aka "My week with Datadog in my spare time"  ![](datadogging-the-computer.gif)
+## answers.md aka "My week with Datadog in my spare time"  
+![](datadogging-the-computer.gif)
 
 As an introduction, I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing (and occasionally humbling) exercise. In my career I have been a consumer of monitoring and analytics, not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
 
