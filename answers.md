@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-
 ## Prerequisites - Setting up!
 
 I am working on an early 2015 MacBook Pro on macOS High Sierra (10.13.4), and spun up a virtual machine using Virtual Box and the Vagrant Ubuntu environment. I simply followed the installation instructions on the docs, but here's the TLDR:
@@ -16,7 +14,7 @@ You should now see `vagrant@precise64:~$` in your terminal.
 
 3. Create a Datadog account and all that jazz by clicking on the "Get Started Free" button at the top right of the data dog site. A form should come up.
 <details>
-  <summary>It should look like this...</summary>
+  &nbsp;&nbsp;&nbsp;&nbsp;<summary>It should look like this...</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/create_account_form.png></img>
 </details>
 
@@ -179,7 +177,7 @@ As per your docs, I edited the `my_metric.yaml` file under `init_config` by incl
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/my_metric_yaml+46+sec_UI.png></img>
 </details>
 
-__Bonus__ Can you change the collection interval without modifying the Python check file you created?
+**Bonus: Can you change the collection interval without modifying the Python check file you created?**
 Hm, because this is a bonus question, I'm fairly certain I could have done this wrong, as I _ONLY_ updated the `yaml` file.
 
 ## Visualizing Data
