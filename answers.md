@@ -92,6 +92,17 @@ Here is the resultant timeboard :
 
 <img width="1395" alt="bens_timeboard_v2___datadog" src="https://user-images.githubusercontent.com/2524766/40302138-8b93027a-5d31-11e8-84e4-37166ce48755.png">
 
+Here is the @message of the MySQL graph with Anomalies :
+
+<img width="522" alt="events___datadog" src="https://user-images.githubusercontent.com/2524766/40302424-66adeac8-5d32-11e8-8627-8392aaa2ef83.png">
+
+Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+
+In this example we are looking at mysql.performance.user_time metric and the gray envelope shows the range + or - 2 std deviations from a calcualted normal. In this case we are using the 'basic' modifier which:
+"... uses a simple lagging rolling quantile computation to determine the range of expected values, but it uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends."
+
+
+
 
 
 
