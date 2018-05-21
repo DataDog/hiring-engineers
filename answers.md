@@ -106,7 +106,7 @@ After I deciphered the json i used curl, via a shell script, to post the json fo
 ### Monitoring Data
 ![](warning-threshold-exceeded-757.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;  
 
-![](alert-threshold-exceeded-862)  &nbsp;&nbsp;&nbsp;&nbsp;  
+![](alert-threshold-exceeded-862.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;  
 
 
 ### Collecting APM Data  
