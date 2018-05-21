@@ -136,8 +136,10 @@ A bit anecdoatal observation:  I may have been suffering from *watched pot never
     
     @mcolby999@gmail.com
 
-#Email Alert for exceeded warning threshold#
+**Email Alert for exceeded warning threshold**  
 ![](warning-threshold-exceeded-757.jpg)&nbsp;&nbsp;
+
+**Email Alert for exceeded alert threshold**  
 ![](alert-threshold-exceeded-862.jpg)&nbsp;&nbsp;&nbsp;&nbsp;  
 
 
