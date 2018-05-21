@@ -61,7 +61,7 @@ Datadog MySQL Integration Installed
 
 My_Metric.py
 
-![My_Metric.py](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/A.my_metric.py)
+https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/A.my_metric.py
 
 My Metric Added
 
@@ -75,7 +75,7 @@ My_Metric on DD Dashboard
 
 My_Metric.yaml
 
-![My_Metric.yaml](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/30.3_My_metric_yaml_45sec.PNG)
+https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/30.3_My_metric_yaml_45sec.PNG
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
@@ -110,7 +110,7 @@ My_Metric Rollup Dash_Details
 
 Create Timeboard via API Script
 
-![Create Timeboard via API Script](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/B.Matt_timeboard_api_7.py)
+https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/B.Matt_timeboard_api_7.py
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
