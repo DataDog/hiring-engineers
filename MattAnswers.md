@@ -4,7 +4,7 @@ Reviewer(s),
 
 Thank you very much for the opportunity to move forward with the hiring proecss at Datadog. Through each aspect of the process I have been able to obtain quite a bit of insight about the Datadog platform and configuration. I particularly enjoyed the hiring exercise experience as it really inspired me to get under the hood and accomplish a tangible amount of learning about Datadog technology overall.
 
-Pease find my answers below to each of the questions/activties defined in the technical exercise for the position of Solution Engineer.
+I have completed the Technical Exercise activities and provided detailed answers, supporting documentation and screenshots for review below.
 
 I look forward to your review and please let me know if there are any questions regarding my submission.
 
@@ -15,7 +15,7 @@ I look forward to your review and please let me know if there are any questions 
 
 Environments Utilized:
 * MS Windows 8.1
-* Ubuntu 12 / MySQL 
+* Ubuntu 12 / MySQL
 
 Ubuntu:
 
@@ -42,7 +42,7 @@ Host Map
 
 https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/hostmap.PNG
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. 
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Install MySQL
 
@@ -123,9 +123,9 @@ My_Metric Sent via Comment
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-Anomaly graphs show any tracked variable of a metric that is inconsistent from what are defined as 'normal' parameters. It can be used to highlight unusually high CPU usage, traffic volumes on a website, or other important activity that may cause performance issues. 
+Anomaly graphs show any tracked variable of a metric that is inconsistent from what are defined as 'normal' parameters. It can be used to highlight unusually high CPU usage, traffic volumes on a website, or other important activity that may cause performance issues.
 
-Anomalies work well for metrics that display consistent trends over time and that the one who configures it having a sense of the metrics 'normal' patterns. 
+Anomalies work well for metrics that display consistent trends over time and that the one who configures it having a sense of the metrics 'normal' patterns.
 
 I see this being particularly compelling when looking at a large pool of resources/services. By providing vast metric data of similar services/resources and applying the vetted Anomaly graphs configuration to the greater pool of resources to see which of them are not performing with prescribed parameters. Overall a deployment managing anomalies provids actional insights and valuable real time alerts for the managed resources.
 
@@ -169,12 +169,12 @@ Instrumented Flask App:
 I have completed the integration of Datadog into the provided Flask app, but was unable to get the app to send data to Datadog. I kept getting the follwing (different) connection errors from both the Ubuntu and Windows 8 environments I worked with. I did however get an app to collect metrics:
 
 Ubuntu 12: Issue with SSL
-I had a lot of issues with this environment using and installing PIP, curl, Datadog Agent, DDTrace (manual install), yet in the end was able to the point of having the components to work, but not get an app to send data. The final issue that stalled me was connecting via SSL (or any port) with the Flask App. I tried many different approaches, mainly with explicit local TCP/IP and various port parameters (5000, 5050, 80, 447) when running the Flask app. 
+I had a lot of issues with this environment using and installing PIP, curl, Datadog Agent, DDTrace (manual install), yet in the end was able to the point of having the components to work, but not get an app to send data. The final issue that stalled me was connecting via SSL (or any port) with the Flask App. I tried many different approaches, mainly with explicit local TCP/IP and various port parameters (5000, 5050, 80, 447) when running the Flask app.
 
 After working for a solid amount of time on Ubuntu 12, I then tried a different version of Linux (Ubuntu 16 / Xenial) and still had envrionment setup challenges to overcome, which ultimately ended in connection errors for the Flask app. I attemtped serveral fixes/commands/test scripts within this second environment to no avail. I then moved to Windows, which also had issues, and I finally had a win in the end outlined below.
 
 Windows 8.1: Issue with Sockets
-With the Windows 8.1 environment, I was able to get everyone set up and working well (DD Agent, My_Metric, API based Timeboards). I account for this success in that the Datadog Agent UI, Datadog APM, PERL PIP, Flask/Blinker, went more smoothly in terms of configuration and straight forward installers. That said, I unfortunately wasn't able to get the flask app to actually connect to Datadog, althought it did appear to run, just with continuous Socket errors. I tried adjusting the setting in Windows Firewall, Properties of the App to run and Administrator, TCP/IP and Port parameters in the Flask run command, again all effort to no avail.  
+With the Windows 8.1 environment, I was able to get everyone set up and working well (DD Agent, My_Metric, API based Timeboards). I account for this success in that the Datadog Agent UI, Datadog APM, PERL PIP, Flask/Blinker, went more smoothly in terms of configuration and straight forward installers. That said, I unfortunately wasn't able to get the flask app to actually connect to Datadog, althought it did appear to run, just with continuous Socket errors. I tried adjusting the setting in Windows Firewall, Properties of the App to run and Administrator, TCP/IP and Port parameters in the Flask run command, again all effort to no avail.
 
 That said, I was able to get the Datadog sample-app configured and working to send APM trace data to Datadog successfully. I used the PERL sample-app.py located here https://github.com/DataDog/trace-examples/tree/master/python/flask/.
 
@@ -191,13 +191,13 @@ https://app.datadoghq.com/apm/service/sample-app/request?start=1526856287119&end
 
 * **Bonus Question**: What is the difference between a Service and a Resource
 
-A service in Datadog APM is defined as "A service is a set of processes that do the same job" in relation to one's managed applications such as a web server or a database. 
+A service in Datadog APM is defined as "A service is a set of processes that do the same job" in relation to one's managed applications such as a web server or a database.
 
 Datadog has the capability to monitor the performance of each service individually and provice metrics such as CPU usage, number of requests, average latency, and number of errors and their frequency.  .
 
-A resource in Datadog APM is defined as "a particular action for a service.". The resources are the individual calls and traces that make up a service. 
+A resource in Datadog APM is defined as "a particular action for a service.". The resources are the individual calls and traces that make up a service.
 
-For a web app service, resources will be web based entry points into the application such as specific URLs that users are hitting (ex. Endpoint: /home, /api). For a database, a resource will be an individual SQL call (ex. Query: select * from datadog). 
+For a web app service, resources will be web based entry points into the application such as specific URLs that users are hitting (ex. Endpoint: /home, /api). For a database, a resource will be an individual SQL call (ex. Query: select * from datadog).
 
 The metrics of said individual resources will make up the overall service's performance metrics and can be grouped together accordingly.
 
@@ -208,7 +208,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-First of all, given the clear focus on quality instrumentation, extensibility, and scalability, I see so many use cases for Datadog comprehensive monitoring.  It can and will allow so many industries to focus on their monitoring configuration instead building their own. Once the data is sent, stored, and analyzed by companies, governments, and individuals the ability to understand the data and set rules.configurations themselves is limitless.  This is in stark contrast to the time and expense required to have a 'home grown' solution. 
+First of all, given the clear focus on quality instrumentation, extensibility, and scalability, I see so many use cases for Datadog comprehensive monitoring.  It can and will allow so many industries to focus on their monitoring configuration instead building their own. Once the data is sent, stored, and analyzed by companies, governments, and individuals the ability to understand the data and set rules.configurations themselves is limitless.  This is in stark contrast to the time and expense required to have a 'home grown' solution.
 
 Specifically one technology sector/market that I could see having a significant opportunity for leveraging Datadog is within the 'Internet of Things' (IoT) / 'Industrial Internet of Things' (IIoT). As IoT/IIoT grows into becoming a staple in almost every merging of complex mechanical and digital components, the shear volume of IoT/IIot data is certainly going to be monitored and managed. IoT/IIoT consists of all the web-enabled devices that collect, send and act on data they acquire from their surrounding environments using embedded sensors, processors and communication hardware. This data is ripe to be sent to purpose built platforms for analysis allowing one to act on the information that is provided. I was able to find several existing IoT integrations with AWS and Azure and would like to see some compelling case studies from a large scale Datadog implemtation based IoT data collection effort.
 
