@@ -15,7 +15,8 @@ With the correct version operating, I quickly began to see my hosts appear in
 the Datadog UI and a series of host and container metrics.
 
 Here is my deployment compose file. More on the configs later:
-```yaml version: '3.4'
+```yaml
+version: '3.4'
 
 services:
   dd-agent:
@@ -106,7 +107,7 @@ Pyhton file directly, presumably using a sleep method?
 1. Here is screencap of the dashboard that I made programatically using the
 Python SDK for Datadog. I found it was easier to build the dashboards
 temporarially in the UI and then copy the JSON out into the script.
-![prog_dash](https://ibb.co/eSahrT "Programatic Dashboard")
+![prog_dash](https://preview.ibb.co/nQyP5o/Screen_Shot_2018_05_20_at_10_03_34_PM.png "Programatic Dashboard")
 And here is the code. It is currently set to update vs create since I was
 itterating on this over time. It also took me a moment to realize I needed to
 create a APP key. Once I realized that was required things were cooking.
