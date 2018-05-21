@@ -14,6 +14,8 @@ that I had started up the 5.x version of the agent rather than  the 6.x version.
 With the correct version operating, I quickly began to see my hosts appear in
 the Datadog UI and a series of host and container metrics.
 
+![swarm_services](https://preview.ibb.co/eE0qBT/Screen_Shot_2018_05_20_at_11_23_36_PM.png "swarm services")
+
 Here is my deployment compose file. More on the configs later:
 ```yaml
 version: '3.4'
@@ -84,6 +86,10 @@ some time to discover that an instance key/value mapping can be read into the
 check script. I decided to use the random number max as a test of what I learned
 Below are the two files that make up my hello.world random number metric. I
 went ahead and added in the `min_collection_interval` to the yaml for the bonus.
+I had a fair share of smart troubleshooting steps along the way. Below is an 
+example
+![loading_error](https://image.ibb.co/eW8XQo/Screen_Shot_2018_05_20_at_11_26_21_PM.png "loading error")
+![marchaling_error](https://image.ibb.co/fjGVBT/Screen_Shot_2018_05_20_at_11_28_40_PM.png "marshalling error")
 ```python
 from checks import AgentCheck
 import random
