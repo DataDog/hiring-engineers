@@ -129,8 +129,7 @@ Instrument and measure, Data Center environmentals, operational status and heath
 
 As an example, from my personal exeperience with another Animation/SFX render customer, they complained to me that after adding expanding their storage farm with several of our latest generation NAS storage systems that they were experiencing higher than expected rate of disk failures.  If their operation was well instrumented using Data Dog they would have been able to focus on Problems instead of symptoms.  They would have known, was their rendering pipeline impacted and to what extent.  Instead all they knew was the *perceived* symptom. 
 
-In my experience they frequently complained about *perceived" symtoms that inevitaby did not correspond to empirical data.  That said, I told them i 
- 
+In my experience they frequently complained about *perceived" symtoms that inevitaby did not correspond to empirical data.  That said, I offered to conduct empirical analys to confirm or 
 
 
 
