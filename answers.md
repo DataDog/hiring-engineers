@@ -102,4 +102,96 @@ instances:
 4. Bonus. I made the change initially using the yaml file versus using the
 Pyhton file directly, presumably using a sleep method?
 
+## Vizualizing Data
+1. Here is screencap of the dashboard that I made programatically using the
+Python SDK for Datadog. I found it was easier to build the dashboards
+temporarially in the UI and then copy the JSON out into the script.
+![prog_dash](https://ibb.co/eSahrT "Programatic Dashboard")
+And here is the code. It is currently set to update vs create since I was
+itterating on this over time. It also took me a moment to realize I needed to
+create a APP key. Once I realized that was required things were cooking.
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<removed>',
+    'app_key': '<removed>'
+}
+
+initialize(**options)
+
+title = "My Programatic Timeboard"
+description = "Where the important stuff is managed"
+graphs = [{"definition": {
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "sum:hello.world{*}.rollup(sum, 3600)",
+      "type": "bars",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": "true"
+},
+  "title": "Hourly Rollup of Hello World Metric"
+},
+{"definition": {
+  "requests": [
+    {
+      "q": "sum:hello.world{host:swarm-master}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": "true"
+},
+"title": "Custom Metric"
+},
+{"definition": {
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "anomalies(sum:redis.info.latency_ms{host:swarm-master}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "purple",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": "true"
+},
+    "title": "Redis Latency Anomolies"
+}]
+
+read_only = True
+print api.Timeboard.update(816029, title=title,
+                     description=description,
+                     graphs=graphs,
+                     read_only=read_only)
+```
+2. To grab the last 5 minutes I found I had to drag the cursor over a graph. I
+had expected to be able to select a custom time range, however that appeared
+to only allow me to select dates with no time selection.
+3. I was unable to find any documentation of a "snapshot" and using the @
+notation to send something. I spent about 15 minutes searching through the docs
+with no such luck and moved on. I would love to find out more about this at a
+later date. Below is a manual screen cap of the 5min interval.
 
