@@ -151,11 +151,7 @@ For the **Bonus Question** i created 2 scheduled downtimes.  1 for a 1 hour *lun
 ![](scheduled_nap_alert_downtime.jpg)&nbsp;&nbsp;  
 
 ***lunch* Alert Downtime Confirmation**
-![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp
-
-
-
-
+![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp;  
 
 ### Collecting APM Data  
 ### Final Question  
