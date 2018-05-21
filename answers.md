@@ -142,6 +142,20 @@ A bit anecdoatal observation:  I may have been suffering from *watched pot never
 **Email Alert for exceeded alert threshold**  
 ![](alert-threshold-exceeded-862.jpg)&nbsp;&nbsp;&nbsp;&nbsp;  
 
+For the **Bonus Question** i created 2 scheduled downtimes.  1 for a 1 hour *lunch Time* downtime and another for a 2 hour *Power Nap*.  I decided that creating a third one for a brea mid-afternoon milk and grahan crackers nap would be superflous overkill. But was tempted.
+
+**Configuration of *lunch Alert* Downtime**
+![](scheduled_lunch_alert_downtime.jpg)&nbsp;&nbsp;  
+
+**Configuration of *Nap Alert* Downtime**
+![](scheduled_nap_alert_downtime.jpg)&nbsp;&nbsp;  
+
+***lunch* Alert Downtime Confirmation**
+![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp
+
+
+
+
 
 ### Collecting APM Data  
 ### Final Question  
