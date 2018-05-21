@@ -110,6 +110,8 @@ Per the exercise specificationsI crreated a new metric monitor for my_metric tha
 * Alerting Threshold of 800
 * receive a notificatoin if there is no data for this queried metric over the past 10 minutes  
 
+I configured the monitor's messaging so an email is sent each time the monitor is triggered and utilized variables create different email messages based on what trigger the monitor:  Alert, Warning or No Data state.  I inlcuded in teh message the value that caused the trigger and what threshold value it exceeded and the host name and IP address of the source machine. 
+
 
 ![](define-threshold-alert.jpg)&nbsp;&nbsp;
 
