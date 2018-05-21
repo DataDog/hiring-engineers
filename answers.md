@@ -30,3 +30,67 @@ tags:
 <img width="1364" alt="metric_explorer___datadog" src="https://user-images.githubusercontent.com/2524766/40287597-aafa9abe-5cf1-11e8-9025-891e5c8476be.png">
 
 (you can change the interval via the check config "min_collection_interval: 20" )
+
+## Part 2: Visualizing Data
+-------------------------------
+Here is my script with the 3 graphs in the Timeboard : 
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'c18b36aebb7ed23a8fb3c53aad91c38e',
+    'app_key': '3de69df6bb0d2662d12d543d8f8eecdf615cd269'
+}
+
+initialize(**options)
+
+title = "Bens Timeboard v2"
+description = "DD Timeboard."
+graphs = [
+{
+          "title": "Bens check scoped",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:hello.world{host:osboxes}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+
+      {
+          "title": "Bens Check roll up",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "hello.world{host:osboxes}.rollup(sum,3600)"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+
+      {
+          "title": "mysql anomaly",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)" }
+              ]
+          },
+          "viz": "timeseries"
+      }
+
+]
+
+read_only = True 
+api.Timeboard.create(title=title,description=description,graphs=graphs,read_only=read_only)
+
+
+```
+
+
+
+
+
+
