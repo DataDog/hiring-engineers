@@ -205,4 +205,37 @@ and even relatively small variances in values become an outlier. I would expect
 to use this agressively with cyclical and predicable workloads to identify
 unusual decreases/increses in values.
 
-
+## Monitoring
+1. I created the monitor for my hello world metric using the UI. Below is the
+export of the monitor I created:
+```json
+{
+	"name": "Hello World is out of control",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:hello.world{host:swarm-master} > 800",
+	"message": "{{#is_warning}}\nThe hello world value is {{value}} on {{host.name}} at {{host.ip}}\n{{/is_warning}}\n\n{{#is_alert}}\nHello World is {{value}} on {{host.name}} at {{host.ip}}\n{{/is_alert}} \n\n{{#is_no_data}}\nWe are lacking data on {{host.name}} at {{host.ip}}\n{{/is_no_data}}  @nctiggy@gmail.com",
+	"tags": [],
+	"options": {
+		"timeout_h": 0,
+		"notify_no_data": true,
+		"no_data_timeframe": 10,
+		"notify_audit": false,
+		"require_full_window": true,
+		"new_host_delay": 300,
+		"include_tags": false,
+		"escalation_message": "",
+		"locked": false,
+		"renotify_interval": "0",
+		"evaluation_delay": "",
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+2. The UI was simple to use and create. The inline help for the markdown syntax
+and variables was very help, Perhaps one of the more intuitive parts of this
+product so far. Below is a screen shot of the email I recieved from this monitor
+![alert](https://preview.ibb.co/cvMGJ8/Screen_Shot_2018_05_20_at_11_13_51_PM.png "Warning Email Alert")
+3. 
