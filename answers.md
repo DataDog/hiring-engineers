@@ -88,7 +88,9 @@ api.Timeboard.create(title=title,description=description,graphs=graphs,read_only
 
 
 ```
+Here is the resultant timeboard : 
 
+<img width="1395" alt="bens_timeboard_v2___datadog" src="https://user-images.githubusercontent.com/2524766/40302138-8b93027a-5d31-11e8-84e4-37166ce48755.png">
 
 
 
