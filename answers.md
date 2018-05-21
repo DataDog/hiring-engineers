@@ -238,4 +238,7 @@ export of the monitor I created:
 and variables was very help, Perhaps one of the more intuitive parts of this
 product so far. Below is a screen shot of the email I recieved from this monitor
 ![alert](https://preview.ibb.co/cvMGJ8/Screen_Shot_2018_05_20_at_11_13_51_PM.png "Warning Email Alert")
-3. 
+3. Below are my email notifications of silencing at night and on the weekends
+![night_silence](https://preview.ibb.co/c8nZ5o/Screen_Shot_2018_05_20_at_11_09_52_PM.png "Silence 14 hours through the night")
+
+![weekend_silence](https://preview.ibb.co/muZWko/Screen_Shot_2018_05_20_at_11_09_59_PM.png "Silence on the weekends")
