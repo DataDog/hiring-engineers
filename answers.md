@@ -28,3 +28,5 @@ tags:
 # Create a custom Agent check ....
 
 <img width="1364" alt="metric_explorer___datadog" src="https://user-images.githubusercontent.com/2524766/40287597-aafa9abe-5cf1-11e8-9025-891e5c8476be.png">
+
+(you can change the interval via the check config "min_collection_interval: 20" )
