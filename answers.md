@@ -108,6 +108,7 @@ Pyhton file directly, presumably using a sleep method?
 Python SDK for Datadog. I found it was easier to build the dashboards
 temporarially in the UI and then copy the JSON out into the script.
 ![prog_dash](https://preview.ibb.co/nQyP5o/Screen_Shot_2018_05_20_at_10_03_34_PM.png "Programatic Dashboard")
+
 And here is the code. It is currently set to update vs create since I was
 itterating on this over time. It also took me a moment to realize I needed to
 create a APP key. Once I realized that was required things were cooking.
@@ -195,4 +196,4 @@ to only allow me to select dates with no time selection.
 notation to send something. I spent about 15 minutes searching through the docs
 with no such luck and moved on. I would love to find out more about this at a
 later date. Below is a manual screen cap of the 5min interval.
-
+![5_min_int](https://preview.ibb.co/h2uiWT/Screen_Shot_2018_05_20_at_10_09_20_PM.png "5min Interval Screen Cap")
