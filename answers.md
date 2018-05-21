@@ -103,7 +103,12 @@ I first created a working example Timeboard, via the GUI, and used the API to is
 After I deciphered the json i used curl, via a shell script, to post the json for a new Timeboard.  
 
 
-### Monitoring Data  
+### Monitoring Data
+![](warning-threshold-exceeded-757.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;  
+
+![](alert-threshold-exceeded-862)  &nbsp;&nbsp;&nbsp;&nbsp;  
+
+
 ### Collecting APM Data  
 ### Final Question  
 I don't know if this a creative use case,  but as a prior SE for a storage vendor for several years I had several Animation/Special Effects (SFX) Rendering customers.  One of which trusted me so strongly they would not let my employer replace me with another SE over the course of several years as sales reps transitioned in and out of the account.   
@@ -129,7 +134,7 @@ Instrument and measure, Data Center environmentals, operational status and heath
 
 As an example, from my personal exeperience with another Animation/SFX render customer, they complained to me that after adding expanding their storage farm with several of our latest generation NAS storage systems that they were experiencing higher than expected rate of disk failures.  If their operation was well instrumented using Data Dog they would have been able to focus on Problems instead of symptoms.  They would have known, was their rendering pipeline impacted and to what extent.  Instead all they knew was the *perceived* symptom. 
 
-In my experience they frequently complained about *perceived" symtoms that inevitaby did not correspond to empirical data.  That said, I offered to conduct empirical analysis to confirm or disprove the conclusions of their perception.  I created a spreadsheet based comparison of number of disks failed (and subsequent i/o reducing RAID rebuids) per month over a period of several years compared to a  predicted failure rate based on published MTBF times x the number of drives in currently deployed systems each month.  When graphed it exposed that they were, in fact, experiencing a higher than predicted  disk failure ratess on our newest systems most recently sold to them. It turned out that I had stumbled on a known issue that our support organization was already aware of, but which hadn't yet been shared with the field and impacted custmers:  a specific generation of a specific vendors drives in our newest systems were experiencing high "ifant mortality" rates. 
+In my experience they frequently complained about *perceived* symptoms that inevitaby did not correspond to empirical data.  That said, I offered to conduct empirical analysis to confirm or disprove the conclusions of their perception.  I created a spreadsheet based comparison of number of disks failed (and subsequent i/o reducing RAID rebuids) per month over a period of several years compared to a  predicted failure rate based on published MTBF times x the number of drives in currently deployed systems each month.  When graphed it exposed that they were, in fact, experiencing a higher than predicted  disk failure ratess on our newest systems most recently sold to them. It turned out that I had stumbled on a known issue that our support organization was already aware of, but which hadn't yet been shared with the field and impacted custmers:  a specific generation of a specific vendors drives in our newest systems were experiencing high "ifant mortality" rates. 
 
 While my analsyis uncovered validated their perception the process was delvier that analsys was slow and tedious.  Using Datadog the the whole pipeline and the systems used to enable it could have been instrumented.  In this casee the whole analyis could ahve been automated.  A timeboard of disk failures graphed against a calculated predicted failure rates automatically based on metrics of # of disks in operation would have exposed the issue right away.  And additinal instrumentatoin could have triggered alerts that theshholds of operational metrics (render rate, render latency, a disk failure threshold per NAS system) were exceeded. 
 
