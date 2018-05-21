@@ -105,12 +105,14 @@ After I deciphered the json i used curl, via a shell script, to post the json fo
 
 ### Monitoring Data
 
-Per the exercise specificationsI crreated a new metric monitor for my_metric that alerts if it the metric is above the following values over the past 5 minutes:   
+Per the exercise specificationsI crreated a new metric monitor for *my_metric* that alerts if it the metric is above the following values over the past 5 minutes:   
 * Warning Threshold of 500  
 * Alerting Threshold of 800
-* receive a notificatoin if there is no data for this queried metric over the past 10 minutes  
+* no data for this queried metric over the past 10 minutes  
 
-I configured the monitor's messaging so an email is sent each time the monitor is triggered and utilized variables create different email messages based on what trigger the monitor:  Alert, Warning or No Data state.  I inlcuded in teh message the value that caused the trigger and what threshold value it exceeded and the host name and IP address of the source machine. 
+I configured the monitor's messaging so an email is sent each time the monitor is triggered and utilized variables in the messaging  configuration to create different email messages based on what triggers the monitor:  Alert, Warning or No Data state.  I inlcuded in the message the value that caused the trigger, the measured average value what threshold it exceeded, and the host name and IP address of the source machine. 
+
+A bit anecdoatal observation:  I may have been suffering from *watched pot never boils syndrome*, but As I was editing and testing the configuration of the alert messaging it seemed to me that although the alerting was working and was generating events that could be viewed on the events page in the Datadog GUI I was not receiving emails. In a bit of sanity checking I changed the warning theshold to *1* and the alert threshold to *2* to force a flow of alerts.  I also added 2 other email addressed to be notiifed.  I don't know if it was just impatience, or magic or *"things happens"* but after a bit of time alert emails started flowing to the 3 email addresses. After which I deconfigured 2 of the email destination from the messaging and reverted the threshold back to warning above 500 and alert above 800.  
 
 
 ![](define-threshold-alert.jpg)&nbsp;&nbsp;
