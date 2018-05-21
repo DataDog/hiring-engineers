@@ -197,3 +197,12 @@ notation to send something. I spent about 15 minutes searching through the docs
 with no such luck and moved on. I would love to find out more about this at a
 later date. Below is a manual screen cap of the 5min interval.
 ![5_min_int](https://preview.ibb.co/h2uiWT/Screen_Shot_2018_05_20_at_10_09_20_PM.png "5min Interval Screen Cap")
+4. Bonus. The default anamoly setting is basic which I kept as there was not
+enough data to use either of the two other settings. The basic setting appears
+to try and predeict a range of values it believes is the ever adjusting norm.
+I notice that as values have a smaller range of values the anomoly area shrinks
+and even relatively small variances in values become an outlier. I would expect
+to use this agressively with cyclical and predicable workloads to identify
+unusual decreases/increses in values.
+
+
