@@ -1,18 +1,21 @@
 ## Datadog Hiring Exercise **Matt Eastling** Questions and Answers
 
-Thank you very much for the opportunity to move forward with the hiring proecss at Datadog. Through each component of the process I have been able to obtain quite a bit of insight about your organization. I particularly liked the hiring exercise as it really inspired me and allowed me to get to know Datadog from a technical point of view.
+Thank you very much for the opportunity to move forward with the hiring proecss at Datadog. Through each component of the process I have been able to obtain quite a bit of insight about the Datadog platform and configuration. I particularly liked the hiring exercise experience as it really inspired me to get under the hood and accomplish a tangible amount of learning about Datadog technology overall.
 
-Below, please find my answers to each of the questions/activties defined in the technical exercise for the position of Solution Engineer.
+Pease find my answers below to each of the questions/activties defined in the technical exercise for the position of Solution Engineer.
 
 I look forward to your review and please let me know if there are any questions regarding my submission.
 
 -Matt Eastling
+
 
 ## Prerequisites - Setup the environment
 
 Environments Utilized:
 * MS Windows 8.1
 * Ubuntu 12 / MySQL 
+
+Ubuntu:
 
 Vagrant Init
 
@@ -35,6 +38,7 @@ Tags in Datadog UI
 
 Host Map
 
+https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/hostmap.PNG
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. 
 
