@@ -238,9 +238,9 @@ If you have a question, create an issue in this repository.
 
 To submit your answers:
 
-* Fork this repo. ## DONE
-* Answer the questions in answers.md ** IN PROGRESS
+* Fork this repo. ** DONE
+* Answer the questions in answers.md ** DONE
 * Commit as much code as you need to support your answers. ** DONE
-* Submit a pull request. ## NOT COMPLETED
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers. ** IN PROGRESS
+* Submit a pull request. ** TBD
+* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers. ** DONE
 
