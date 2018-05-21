@@ -42,6 +42,7 @@ services:
       - NON_LOCAL_TRAFFIC=false
       - DD_API_KEY=4f9fba62b97d2f64d1ca92a68847075c
       - DD_TAGS="az:us-home-1"
+      - DD_APM_ENABLED=true
     deploy:
       mode: global
       restart_policy:
@@ -247,3 +248,85 @@ product so far. Below is a screen shot of the email I recieved from this monitor
 3. Below are my email notifications of silencing at night and on the weekends
 ![night_silence](https://preview.ibb.co/c8nZ5o/Screen_Shot_2018_05_20_at_11_09_52_PM.png "Silence 14 hours through the night")
 ![weekend_silence](https://preview.ibb.co/muZWko/Screen_Shot_2018_05_20_at_11_09_59_PM.png "Silence on the weekends")
+
+## APM Data
+1. I decided to try out both methods. They both work as expected. Injecting the
+middleware into the code allows for PaaS offerings to run the code as is without
+having to have a special exec command. I decided to wrap this up with a
+container and run it on the swarm. Below are screen shots of the APM dashboard.
+![](https://preview.ibb.co/bBrB1T/Screen_Shot_2018_05_21_at_12_38_58_AM.png)
+![](https://preview.ibb.co/i1XR1T/Screen_Shot_2018_05_21_at_12_43_41_AM.png)
+2. A service appears to be an independant web app, where a resource is a
+method run from an endpoint. Resources also include 404's
+```python
+from flask import Flask
+import blinker as _
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+tracer.configure(hostname="192.168.0.233", port=8126)
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+```
+Dockerfile
+```
+FROM python:2.7.15-jessie
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./apm-example.py ./
+EXPOSE 5000
+CMD [ "python", "./apm-example.py" ]
+
+```
+Requirements.txt
+```
+Flask
+ddtrace
+blinker
+```
+
+## Final Question
+I see a lot of different ways to leverage Datadog. Even in my current world
+of on prem infrastructure I see an opprotunity to leverage the DD Agent to
+natively talk my product line metrics and logs. I think a real interesting
+use case in the enterprise would be to leverage the range of capabilities
+in retail IOT deployments. Not just from an operation stand point (health, etc)
+but also from a analytic viewpoint of the data being gathered at retail
+locations.
+
+Thank you for the opprotunity to go through this exercise. I would be happy
+to answer any questions you may have!
+
+Thanks
+
+-Craig J Smith
