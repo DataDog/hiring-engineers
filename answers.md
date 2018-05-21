@@ -104,6 +104,27 @@ After I deciphered the json i used curl, via a shell script, to post the json fo
 
 
 ### Monitoring Data
+
+    {{#is_alert}}  
+    **Alert Threshold Exceeded**    
+    {{value}} {{comparator}} {{threshold}}  
+    on Host **{{host.name}}**   IP Address **{{host.ip}}**  
+    {{/is_alert}}  
+    
+    {{#is_warning}}  
+    **Warning Threshold Exceeded**    
+    {{value}} {{comparator}} {{warn_threshold}}  
+    on Host **{{host.name}}**   IP Address **{{host.ip}}**  
+    {{/is_warning}}  
+    
+    {{#is_no_data}}  
+    **Warning Warning Warning - No Data Received 10 Minutes - Please Check!**  
+    From Host **{{host.name}}**  IP Address **{{host.ip}}**  
+    {{/is_no_data}}  
+    
+    @mcolby999@gmail.com
+
+
 ![](warning-threshold-exceeded-757.jpg)&nbsp;&nbsp;
 ![](alert-threshold-exceeded-862.jpg)&nbsp;&nbsp;&nbsp;&nbsp;  
 
