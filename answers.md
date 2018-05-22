@@ -336,6 +336,8 @@ For the **Bonus Question** i created 2 scheduled downtimes.  1 for a 1 hour *lun
 ***lunch* Alert Downtime Confirmation**
 ![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp;  
 
+#![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp;  
+
 ### Collecting APM Data  
 Although the the tracing APM setup documentation (https://docs.datadoghq.com/tracing/setup/) states  "The APM Agent is enabled by default on Linux," that appers to be untrue. On the Centos 7 machines on which I installed the Datadog agent the APM *enabled: true* config option was commented out, as were all the other options, including the *receiver port* option.  
 
