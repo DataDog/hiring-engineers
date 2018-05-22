@@ -209,6 +209,7 @@ I reviewed the json of the Reference Timeboard and then used that as the basis f
 I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
 
     ./createtimeboard2elementsworking.sh 
+
     {"dash":{"read_only":true,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{host:colby-exercise-        machine.localdomain}"}],"events":[]},"title":"Avg of my_metric over host:colby-exercise-machine.localdomain"},{"definition":{"requests":    [{"q":"avg:my_metric{*} by {role}.rollup(sum, 3600)","aggregator":"avg}"}],"events":[]},"title":"my_metric with 3600 second rollup"}],"template_variables":[{"default":"host:my-host","prefix":"host","name":"host1"}],"description":"coding json for fun and entertainment","title":"Visualization Exercise Timeboard aka Fun with JSON","created":"2018-05-22T08:21:13.876489+00:00","id":817223,"created_by":{"disabled":false,"handle":"mcolby@netzero.com","name":"Michael Colby","is_admin":true,"role":"Datadog Recruiting Candidate","access_role":"adm","verified":true,"email":"mcolby@netzero.com","icon":"https://secure.gravatar.com/avatar/462e6a0ee1582516b52e571cf207bc36?s=48&d=retro"},"modified":"2018-05-22T08:21:13.889349+00:00"},"url":"/dash/817223/visualization-exercise-timeboard-aka-fun-with-json","resource":"/api/v1/dash/817223"}  
 
 
