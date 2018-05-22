@@ -367,10 +367,12 @@ I uncommmented *apm_config*, *enabled: true* and *receiver_port: 8126*
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
 
-I installed *dd-trace* via *PIP*, installed *flask*, installed virtualenv.  There's probably a good chance I don't need to isolate flask in the virtual environment since exercise is hosted on a relatively minimal Centos machine that being used for nothing elese. I also installed *blinkerware* when a debug warning on an initial test indicated blinker had to be installed:  
+I installed *dd-trace* via *PIP*, installed *flask*, installed virtualenv.  There's probably a good chance I don't need to isolate flask in the virtual environment since exercise is hosted on a relatively minimal Centos machine that being used for nothing elese. I also installed *blinker1* when a debug warning on an initial test indicated blinker had to be installed:  
 
     DEBUG:ddtrace.contrib.flask.middleware:please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
 &nbsp;  
+
+All that said, the app errors out with a *socket.error* *address already in use*.  This appears to be a common issue when running flask apps.  I'm not an experience application developer or experienced with flask. I'm going to continue debugging but dont want to hold up submitting the rest of this exerccise.  I'm issuing a pull request of this repository with my answers.md while I continue to work on sorting this out. 
 
 	(venv) [root@datadog-testing ddtraceproject]# ddtrace-run python apmtest.py
 	 * Serving Flask app "apmtest" (lazy loading)
@@ -399,6 +401,7 @@ I installed *dd-trace* via *PIP*, installed *flask*, installed virtualenv.  Ther
 		self.socket.bind(self.server_address)
 	  File "/usr/lib64/python2.7/socket.py", line 224, in meth
 		return getattr(self._sock,name)(*args)
+         socket.error: [Errno 98] Address already in use
 
 **Bonus Question**
 The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  
