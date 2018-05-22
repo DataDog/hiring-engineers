@@ -325,17 +325,17 @@ A bit anecdoatal observation:  I may have been suffering from *watched pot never
 **Email Alert for exceeded alert threshold**  
 ![](alert-threshold-exceeded-862.jpg)&nbsp;&nbsp;&nbsp;&nbsp;  
 
-For the **Bonus Question** i created 2 scheduled downtimes.  1 for a 1 hour *lunch Time* downtime and another for a 2 hour *Power Nap*.  I decided that creating a third one for a mid-afternoon milk and grahan crackers nap would be superflous overkill. But was tempted.
+For the **Bonus Question** i created the 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to 9am and the other for all day Saturday and Sunday.  Note, my intepretation of *all day* is 12am to the following 12am. 
 
-**Configuration of *lunch Alert* Downtime**
-![](scheduled_lunch_alert_downtime.jpg)&nbsp;&nbsp;  
+**Configuration of *Daily* Downtime**
+![](downtimedaily.jpg)&nbsp;&nbsp;  
 
-**Configuration of *Nap Alert* Downtime**
-![](scheduled_nap_alert_downtime.jpg)&nbsp;&nbsp;  
+**Configuration of *All Day Saturday and Sunday* Downtime**
+![](downtimeweekend.jpg)&nbsp;&nbsp;  
 
-***lunch* Alert Downtime Confirmation**
+**Daily* Downtime* email notification**
 ![](lunch-downtime-8-minutes-into-snooze.jpg)&nbsp;&nbsp;  
-***lunch* Alert Downtime email**
+**Weekend* Downtime* email notification**
 #![](lunchbreaknotification.jpg)&nbsp;&nbsp;  
 
 ### Collecting APM Data  
