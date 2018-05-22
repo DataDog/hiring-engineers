@@ -15,7 +15,8 @@ I look forward to your review and please let me know if there are any questions 
 
 Environments Utilized:
 * MS Windows 8.1
-* Ubuntu 12 / MySQL
+* Ubuntu 12 precise64 & / MySQL
+* Ubuntu 16 xenial 
 
 Ubuntu:
 
@@ -116,6 +117,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
+To get the graph to show a previous 5 minute timeframe: I edited the graph via the DD UI. I was able to adjust the whole timeboard to a per minute interval showing the previous hour (two params). This allowed to select the graph itself, highlight the previous 5 minutes and dispaly just the past 5 minutes only.
+
+My_Metric 5 min Graph:
+![My_Metric 5 min Graph](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/74_5_Min_graph.PNG)
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
@@ -154,7 +159,7 @@ Downtime Schedule Configuration:
 
 Notification Screen Shot:
 
-Waiting for the timeframe to hit
+![Notification Screen Shot](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/73_Scheduled_Downtime_Email.PNG)
 
 
 ## Collecting APM Data:
@@ -170,16 +175,30 @@ Instrumented Flask App:
 I have completed the integration of Datadog into the provided Flask app, but was unable to get the app to send data to Datadog. I kept getting the follwing (different) connection errors from both the Ubuntu and Windows 8 environments I worked with. I did however get an app to collect metrics:
 
 Ubuntu 12: Issue with SSL
-I had a lot of issues with this environment using and installing PIP, curl, Datadog Agent, DDTrace (manual install), yet in the end was able to the point of having the components to work, but not get an app to send data. The final issue that stalled me was connecting via SSL (or any port) with the Flask App. I tried many different approaches, mainly with explicit local TCP/IP and various port parameters (5000, 5050, 80, 447) when running the Flask app.
+I had a lot of issues with this environment using and installing PIP, curl, Datadog Agent, DDTrace (manual install), yet in the end was able to the point of having each of aforementioned components to work, but not get an app to send data. The final issue that stalled me was connecting via SSL (or any port) with the Flask App. I tried many different approaches, mainly with explicit local TCP/IP and various port parameters (5000, 5050, 80, 447) when running the Flask app, getting the following SSL Error. 
 
-After working for a solid amount of time on Ubuntu 12, I then tried a different version of Linux (Ubuntu 16 / Xenial) and still had envrionment setup challenges to overcome, which ultimately ended in connection errors for the Flask app. I attemtped serveral fixes/commands/test scripts within this second environment to no avail. I then moved to Windows, which also had issues, and I finally had a win in the end outlined below.
+Ubuntu 12 precise64 SSL Error:
+
+![Ubuntu SSL Errr](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/47_Test_Connection_via_DD_API_via_ip4-add_-v_Client_Hello_Successful_ERROR-17-Unknown.PNG)
+
+The datadog API test failed as well with an SSL error with the command: curl -ipv4 "https://api/datadoghq.com/api/v1/validate?api-key=MY_API_KEY"
+
+![Ubuntu precise 64 SSL Errr](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/46_Test_Connection_via_DD_API_via_ip4_ERROR-17-Unknown.PNG)
+
+After working for a solid amount of time on Ubuntu 12, the reserached SSL fix was to bascially update everything in Ubuntu (all the way down to the BIOS and BOOT record). I thought this would only wreak havok on the Ubuntu instance leaving my environemnt at an unknown state, but I went for it and didn't get much further. So I worked to try another environment. I then setup a different version of Linux (Ubuntu 16 / Xenial). I still had envrionment setup challenges to overcome, which ultimately ended in connection errors for the Flask app as well.
 
 Windows 8.1: Issue with Sockets
-With the Windows 8.1 environment, I was able to get everyone set up and working well (DD Agent, My_Metric, API based Timeboards). I account for this success in that the Datadog Agent UI, Datadog APM, PERL PIP, Flask/Blinker, went more smoothly in terms of configuration and straight forward installers. That said, I unfortunately wasn't able to get the flask app to actually connect to Datadog, althought it did appear to run, just with continuous Socket errors. I tried adjusting the setting in Windows Firewall, Properties of the App to run and Administrator, TCP/IP and Port parameters in the Flask run command, again all effort to no avail.
+I then moved to Windows, which also had issues, but I can say I finally had a win in the end outlined below. With the Windows 8.1 environment, I was able to get everyone set up and working well (DD Agent, My_Metric, via API configured Timeboards, ddtrace). I account for this success in that the Datadog Agent UI, Datadog APM, PERL PIP, Flask/Blinker, went more smoothly in terms of configuration and straight forward installers (minimal errors). 
 
-That said, I was able to get the Datadog sample-app configured and working to send APM trace data to Datadog successfully. I used the PERL sample-app.py located here https://github.com/DataDog/trace-examples/tree/master/python/flask/.
+That said, I unfortunately wasn't able to get the flask app to actually connect to Datadog, althought it did appear to run, just with continuous errors. I attempted serveral fixes/commands/test scripts within this Windows environment to no avail. Here is the last command I tried where the app was running, the ip/port params seemingly working (after several iteration), ddtrace does intiate, but I was getting 'werkzeug' errors that when looked into gave some suggestions: I tried adjusting the setting in Windows Firewall, Properties of the App to run and Administrator, TCP/IP and Port parameters in the Flask run command, again all effort to no avail:
 
-This make me believe that there is something blocking the point-to-point connection via the Port or perhaps some sort of Windows security setting that I was unable to track down. In time I am confident I would be able to sort it out as I get to know Flask a bit better in terms of how it is posting data.  In my screenshot, you will see the APM Dashboard screenshot and Dashboard link for the Datadog sample-app. Above is the Flask app (code) that I was able to run, but as I mentioned, it didn't send data to Datadog from either Linux nor Windows.
+Final command line attempt with errors:
+
+![Windows werkzeug Errr](https://github.com/MrEastling/hiring-engineers/blob/solutions-engineer/71_flask_run--host%3D0.0.0.0--port%3D443-ERRORS-20.PNG)
+
+But wait! That said, I was able to get the Datadog sample-app configured and working to send APM trace data to Datadog successfully. I used the PERL sample-app.py located here https://github.com/DataDog/trace-examples/tree/master/python/flask/.
+
+This make me believe that there is something blocking the point-to-point connection via the Port coming from the Flask server or perhaps some sort of Windows security setting that I was unable to track down doing thesame. In time I am confident I would be able to sort it out as I get to know Flask a bit better in terms of how it is posting data and reviewing more detailed debugging logs.  In my screenshot, you will see the APM Dashboard screenshot and Dashboard link for the Datadog sample-app. Above is the Flask app (code) that I was able to run, but as I mentioned, it didn't send data to Datadog from either Linux nor Windows.
 
 Screen Shot of APM Dashboard:
 
@@ -192,16 +211,9 @@ https://app.datadoghq.com/apm/service/sample-app/request?start=1526856287119&end
 
 * **Bonus Question**: What is the difference between a Service and a Resource
 
-A service in Datadog APM is defined as "A service is a set of processes that do the same job" in relation to one's managed applications such as a web server or a database.
+A service in Datadog APM is defined as "A service is a set of processes that do the same job" in relation to one's managed applications such as a web server or a database. Datadog has the capability to monitor the performance of each service individually and provice metrics such as CPU usage, number of requests, average latency, and number of errors and their frequency.  .
 
-Datadog has the capability to monitor the performance of each service individually and provice metrics such as CPU usage, number of requests, average latency, and number of errors and their frequency.  .
-
-A resource in Datadog APM is defined as "a particular action for a service.". The resources are the individual calls and traces that make up a service.
-
-For a web app service, resources will be web based entry points into the application such as specific URLs that users are hitting (ex. Endpoint: /home, /api). For a database, a resource will be an individual SQL call (ex. Query: select * from datadog).
-
-The metrics of said individual resources will make up the overall service's performance metrics and can be grouped together accordingly.
-
+A resource in Datadog APM is defined as "a particular action for a service.". The resources are the individual calls and traces that make up a service. For a web app service, resources will be web based entry points into the application such as specific URLs that users are hitting (ex. Endpoint: /home, /api). For a database, a resource will be an individual SQL call (ex. Query: select * from datadog). The metrics of said individual resources will make up the overall service's performance metrics and can be grouped together accordingly.
 
 ## Final Question:
 
@@ -209,9 +221,9 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-First of all, given the clear focus on quality instrumentation, extensibility, and scalability, I see so many use cases for Datadog comprehensive monitoring.  It can and will allow so many industries to focus on their monitoring configuration instead building their own. Once the data is sent, stored, and analyzed by companies, governments, and individuals the ability to understand the data and set rules.configurations themselves is limitless.  This is in stark contrast to the time and expense required to have a 'home grown' solution.
+First of all, given the clear focus on platform quality instrumentation, extensibility, and scalability, I see so many use cases for Datadog comprehensive monitoring.  It can and will allow so many industries to focus on their monitoring configuration instead building their own solutions. Once the data is sent, stored, and analyzed by companies, governments, and individuals the ability to understand the data and set rules/configurations themselves is limitless. This is in stark contrast to the time and expense required to have a 'home grown' solution.
 
-Specifically one technology sector/market that I could see having a significant opportunity for leveraging Datadog is within the 'Internet of Things' (IoT) / 'Industrial Internet of Things' (IIoT). As IoT/IIoT grows into becoming a staple in almost every merging of complex mechanical and digital components, the shear volume of IoT/IIot data is certainly going to be monitored and managed. IoT/IIoT consists of all the web-enabled devices that collect, send and act on data they acquire from their surrounding environments using embedded sensors, processors and communication hardware. This data is ripe to be sent to purpose built platforms for analysis allowing one to act on the information that is provided. I was able to find several existing IoT integrations with AWS and Azure and would like to see some compelling case studies from a large scale Datadog implemtation based IoT data collection effort.
+Specifically one technology sector/market that I could see having a significant opportunity for leveraging Datadog is within the 'Internet of Things' (IoT) / 'Industrial Internet of Things' (IIoT). As IoT/IIoT grows into becoming a staple in almost every merging of complex mechanical and digital components, the shear volume of IoT/IIot data is certainly going to be monitored and managed. IoT/IIoT consists of all the web-enabled devices that collect, send and act on data they acquire from their surrounding environments using embedded sensors, processors and communication hardware. This data is ripe to be sent to and stored on purpose built platforms for analysis allowing one to act on the vast information that is provided. I was able to find several existing IoT integrations with AWS and Azure and would like to see some compelling case studies from a large scale Datadog implemtation based IoT data collection effort.
 
 In thinking how to creatively use Datadog, I imagine a highway where cars are able to safely navigate to their destinations without a driver because of realtime anomaly metrics of hundreds of cars within proximity and the busiest intersection of the worlds largest cities. I imagine a home where an elderly patient’s health is closely monitored by her hospital physician, with details dashboards and alerts. I imagine a city that significantly reduces waste through sensor-embedded water pipes, buildings, parking meters and more, all with precision and analytics to enable efficiency and resources.
 
@@ -221,19 +233,19 @@ Some large scale enterprise examples I see as an opporuntity for Datadog to prov
 
 Energy - Optimization of business operations by understanding and affecting the minimization of unplanned downtime and the sheer maximization of operational efficiency
 
-Healthcare - Patient-centered medical home care data from devices like an ultrasound monitor activity in the home, to detect falls and trigger automatic ambulatory services. Improved health equipment efficientcy in hospitals, clinics, and homes that eliminating could for examample, evaluate multiple device logins and perhaps adjusts user settings to help reduce risk, eliminate errors and provides a much better patient experience overall
+Healthcare - Patient-centered medical home care data from devices like an ultrasound monitor activity in the home, to detect falls and trigger automatic ambulatory services. Improved health equipment efficiency in hospitals, clinics, and homes that could for example, evaluate multiple device logins and perhaps adjusts user settings to help reduce risk, eliminate errors and provides a much better patient experience overall
 
 Manufacturing - Factories having interlinked devices in the millions will need data analysis to ensure that everything runs as planned across the entire value chain. Changes in one part of the chain, automatically trigger adjustments on the factory floor.
 
 Mining - Robotics, vehicle (remote & autonomous) monitoring & tracking. Remote conditions monitoring. Plant & machine data analytics and machine learning
 
-Retail - Predictive equipment maintenance (store refrigeration, power efficiencies, transportation equipment etc.) will come from pooled data on any supply chain/inventory systems. Warehouse automation applications with inventory control and temperature monitoring. Supply chain optimization, including route tracking and improvement, and automated pricing adjustments. Smart stores: analyzing traffic patterns, using video analytics applications to extract actionable insights
+Retail - Predictive equipment maintenance (store refrigeration, power efficiencies, transportation equipment etc.) will come from pooled data on any supply chain/inventory systems. Warehouse automation applications with inventory control and temperature monitoring. Supply chain optimization, including route tracking and improvement, and automated pricing adjustments.
 
 Smart Cities - Sensor-embedded water pipes, sanitation services, traffic patterns, parking meters and more, that monitor and flag capacity issues and automatically make adjustments in traffic flow, pickup schedules and more. Improved public safety through more effective and strategic usage of policing resources for crime prevention and emergency responsiveness
 
-Transportation - Create transportation system applications colecting IoT data that can sense and respond to changes in real time. Increase operational efficiencies & public safety, reduce fleet down time and enable preventive maintenance of faulty and soon-to-fail parts by analyzing and reacting to data created by jet engines and sensors monitoring the surrounding environment (temperature, humidity, air pressure, etc.). Identify more efficient routes and improve fuel efficiency, through capacity analytics.
+Transportation - Create transportation system applications collecting IoT data that can sense and respond to changes in real time. Increase operational efficiencies & public safety, reduce fleet down time and enable preventive maintenance of faulty and soon-to-fail parts by analyzing and reacting to data created by jet engines and sensors monitoring the surrounding environment (temperature, humidity, air pressure, etc.). Identify more efficient routes and improve fuel efficiency, through capacity analytics.
 
-In conclusion. IoT is going to grow and those in the market would be happy to focus on configuration versus development of the real focus of their solutions - data monitoring turned into insights and ultimately value for their customers.
+In conclusion. IoT application market is growing fast and those in the market would be happy to focus on configuration versus development of the real focus of their solutions - data monitoring turned into insights and ultimately significant value for their customers.
 
 ## Instructions
 
