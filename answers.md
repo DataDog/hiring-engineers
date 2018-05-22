@@ -127,19 +127,26 @@ Email notification received based on the monitor scheduled downtime:
 A service is a set of processes that do the same job.
 A Resource is a particular action for a service.
 
-
+APM1
 <img width="1300" alt="apm1" src="https://user-images.githubusercontent.com/2524766/40357179-ac9f3bb4-5dfe-11e8-92f5-508a020a8686.png">
 
+APM2
 <img width="1319" alt="apm2" src="https://user-images.githubusercontent.com/2524766/40357194-b4299ea6-5dfe-11e8-90dc-c6de7e8edeb3.png">
 
+APM3
 <img width="1232" alt="apm3" src="https://user-images.githubusercontent.com/2524766/40357200-bc71f270-5dfe-11e8-8a67-bf9349611734.png">
+
+Dashboard of APM together with server infra metrics:
 
 <img width="1308" alt="apm and infra" src="https://user-images.githubusercontent.com/2524766/40357208-c42f7442-5dfe-11e8-9939-c277884c8e6e.png">
 
 
 Here is my instrumented Python code : 
 
-'''
+```
+
+
+
 from flask import Flask
 import blinker as _
 
@@ -148,8 +155,6 @@ import sys
 
 #import the datadog tracer
 from ddtrace import tracer
-#---from ddtrace.contrib.flask import TraceMiddleware
-
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -159,15 +164,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 
-
 app = Flask(__name__)
-# create a TraceMiddleware object
-# ---traced_app = TraceMiddleware(app, tracer, service="myflaskapp", distributed_tracing=False)
-
-#with tracer.trace("web.request", service="my_service") as span:
-#  span.set_tag("my_tag", "my_value")
-
-
 
 @app.route('/')
 @tracer.wrap(name='request', service='myflaskapp', resource='api_entry')
@@ -175,21 +172,19 @@ app = Flask(__name__)
 def api_entry():
     return 'Entrypoint to the Application'
 
-
 @app.route('/api/apm')
 @tracer.wrap(name='request', service='myflaskapp', resource='apm_endpoint')
-#@tracer.wrap(name='/api/apm')
 def apm_endpoint():
     return 'Getting APM Started'
 
 @app.route('/api/trace')
 @tracer.wrap(name='request', service='myflaskapp', resource='trace_endpoint')
-#@tracer.wrap(name='/api/trace')
 def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
           app.run(host='0.0.0.0', port=8080)
-'''
+
+```
 
 
