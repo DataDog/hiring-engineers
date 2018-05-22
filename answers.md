@@ -105,11 +105,23 @@ In this example we are looking at mysql.performance.user_time metric and the gra
 
 Here is the configuration for the notification for my monitor: 
 
-<img width="1272" alt="monitor_status__my_metric_is_over_the_threshold___datadog" src="https://user-images.githubusercontent.com/2524766/40343854-502e46b4-5dd5-11e8-9797-ebc48fb3b801.png">
+<img width="606" alt="monitor config" src="https://user-images.githubusercontent.com/2524766/40344281-6e97b35e-5dd7-11e8-84d4-9f08279ece3f.png">
 
-Here is the alert on the warning state : 
 
-<img width="707" alt="_monitor_alert__warn__my_metric_is_over_the_threshold_-_ben_sunderland22_gmail_com_-_gmail" src="https://user-images.githubusercontent.com/2524766/40343741-b97b3df8-5dd4-11e8-81b4-8586e67df24d.png">
+Email alert received based on the monitor rule violation:
+
+
+Here are the configurations for downtime: 
+
+![downtime1](https://user-images.githubusercontent.com/2524766/40345587-24a68daa-5ddd-11e8-8b69-b56973bc0101.png)
+
+![downtime2](https://user-images.githubusercontent.com/2524766/40345589-2958e8ac-5ddd-11e8-81e5-9cf64b21ed89.png)
+
+
+Email notification received based on the monitor scheduled downtime: 
+
+<img width="1028" alt="_datadog__ben_sunderland_scheduled_downtime_on_my_metric_is_over_the_threshold_-_ben_sunderland22_gmail_com_-_gmail" src="https://user-images.githubusercontent.com/2524766/40345539-eb3c5b94-5ddc-11e8-861a-709500abea87.png">
+
 
 
 
