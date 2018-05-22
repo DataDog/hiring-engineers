@@ -366,7 +366,7 @@ I uncommmented *enabled: true* and *receiver_port: 8126*
 	#   all entries must be surrounded by double quotes and separated by commas
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
-
+I installed *dd-trace* via PIP
 
 
 
