@@ -204,9 +204,17 @@ Important to note,  the GUI also provides a "point and click" means to view the 
 In answer to the **Bonus** question, I chose to graph *mongodb.mem.resident*, amount of memory currently used by the database process.  It appears that each time I populated MongodB with additional documents the metric value increases.  The *basic* anaomoly detection algorithm appears to detecte each step change in Mongo memory use as an anomoly. Not surprising since i intententionally didn't add documents in a consistent pattern, running the my data population script in sporadic intervals and pouplating varying amounts of additional documents each time.  
 
 
-After I deciphered the json I used curl, via a shell script, to post the json for a new Timeboard.  
+I reviewed the json of the Reference Timeboard and then used that as the basis for the json for the API created timeboard.  
 
 I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
+
+    ./createtimeboard2elementsworking.sh 
+    {"dash":{"read_only":true,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{host:colby-exercise-        machine.localdomain}"}],"events":[]},"title":"Avg of my_metric over host:colby-exercise-machine.localdomain"},{"definition":{"requests":    [{"q":"avg:my_metric{*} by {role}.rollup(sum, 3600)","aggregator":"avg}"}],"events":[]},"title":"my_metric with 3600 second rollup"}],"template_variables":[{"default":"host:my-host","prefix":"host","name":"host1"}],"description":"coding json for fun and entertainment","title":"Visualization Exercise Timeboard aka Fun with JSON","created":"2018-05-22T08:21:13.876489+00:00","id":817223,"created_by":{"disabled":false,"handle":"mcolby@netzero.com","name":"Michael Colby","is_admin":true,"role":"Datadog Recruiting Candidate","access_role":"adm","verified":true,"email":"mcolby@netzero.com","icon":"https://secure.gravatar.com/avatar/462e6a0ee1582516b52e571cf207bc36?s=48&d=retro"},"modified":"2018-05-22T08:21:13.889349+00:00"},"url":"/dash/817223/visualization-exercise-timeboard-aka-fun-with-json","resource":"/api/v1/dash/817223"}  
+
+
+So far so good. 
+
+
 
 
 ### Monitoring Data
