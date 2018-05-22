@@ -5,9 +5,9 @@ Thank you for the opportunity to complete this exercise. It has been a powerful 
 
 I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing, learning, and occasionally humbling exercise. In my career I have been a consumer of monitoring and analytics, but not necessarily involved in the dev/ops underpinnings that enable them other than providing feedback or feature requests.  While working on creating a timeboard via the API I am sure I began dreaming of json in my sleep.
 
-As a testament to the the clarity of the effectiveness of the online Datadog documnentation installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions, which even a non-dev ops SME can do :smiley:
+As a testament to the the clarity of the effectiveness of the online Datadog documnentation, installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions; which even a non-dev ops SME can do :smiley:
 
-I created the environment for this exercise by spinning up a Centos 7 VM in a virutal machine on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
+I created the environment for this exercise by spinning up a Centos 7 VMs on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
 
 ### Collecting Metrics    
 
@@ -73,10 +73,10 @@ I added a minimum collection configuration parameter for 45 seconds in the yaml 
 To be clear, however, according to the documentation the actual collection interval is a bit of a dance between the interval time per instance for this custom agent check and the interval time for Data Dog Agent collector (who's collection frequency is every 15-20 seconds dependent on how many integrations are enabled).  The result, per the documentation, is that this does not mean the metric is collected **every** 45 seconds but rather it **could** be collected **as often as** every 45 seconds.  
 
 
-**Q: Can you change the collection interval without modifying the Python check file you created?**  
-**A:** The collection interval is changed in the yaml file for the custom agent check, not in the python check file itself. 
+**Bonus Question: Can you change the collection interval without modifying the Python check file you created?**  
+The collection interval is changed in the yaml file for the custom agent check, not in the python check file itself. 
 
-To confirm the agent check and MongoDB integration are reporting to Datadog SAAS I reviewed the hostmap for exercise host and created a timeboard via the GUI   
+To confirm the agent check and MongoDB integration are sending metrics to Datadog I reviewed the hostmap for the exercise host and created a timeboard via the GUI   
 
 ![](hostmap.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
   
@@ -202,7 +202,7 @@ Important to note, the GUI also provides a "point and click" means to view the j
 
 I reviewed the json of the Reference Timeboard and then used that as the basis for the json for the API created timeboard.  
 
-I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
+I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that worked, I spun off another version of the script and added the json for creating the 2nd graph.   
 So far so good. 
 
     ./createtimeboard2elementsworking.sh 
@@ -272,7 +272,7 @@ It is at this point things got wonky. I can create a timeboard via the API that 
 
 I tried in multiple iterations to create a query that for this metric (or any metric) with anomaly detection enabled, wthout success.  
 
-At this point, however,  I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
+At this point, however,  I have demonstrated successfully creating a timeboard via the API. For the purpose of expedience I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and from here demonstrate the requested changes  to the timeboard UI using my Reference version of the Timeboard created in the GUI
 
 I set the timeboard's timeframe to 5 minutes, easy to do by grabbing along the graph and selecting the time range.  For this exericse I selected the most recent last 5 minutes, but I could have selected any 5 minute period to display. Because this is a *timeboard* versus a *screenboard* the selected time interval applies to all of the graphs in the timeboard simultaneously.  
 
@@ -287,7 +287,7 @@ I chose to graph *mongodb.mem.resident*, amount of memory currently used by the 
 
 ### Monitoring Data
 
-Per the exercise specificationsI created a new metric monitor for *my_metric* that alerts if the metric is above the following values over the past 5 minutes:   
+Per the exercise specifications I created a new metric monitor for *my_metric* that alerts if the metric is above the following values over the past 5 minutes:   
 * Warning Threshold of 500  
 * Alerting Threshold of 800
 * no data for this queried metric over the past 10 minutes  
