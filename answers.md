@@ -274,6 +274,10 @@ It is at this point things get wonky. I can create a timeboard via the API that 
 	"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
 At this point I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
+
+I set the timeboard's timeframe to 5 minutes, easy to do by grabbing along the graph and selecting the time range.  For this exericse I selected the most recent last 5 minutes, but I could have selected any 5 minute period to display. Because this is a *timeboard* versus a *screenboard* the selected time interval applies to all of the graphs in the timeboard simultaneously.  
+
+ ![](snapshotmongodbmetricanomaly5min.jpg)&nbsp;&nbsp;
  
 
 
