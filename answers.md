@@ -276,7 +276,7 @@ At this point, however,  I have demonstrated successfully creating a timeboard v
 
 I set the timeboard's timeframe to 5 minutes, easy to do by grabbing along the graph and selecting the time range.  For this exericse I selected the most recent last 5 minutes, but I could have selected any 5 minute period to display. Because this is a *timeboard* versus a *screenboard* the selected time interval applies to all of the graphs in the timeboard simultaneously.  
 
-After setting the timeboard's timeframe to the most recent past 5 minutes I took a snapshot of this graph and used @ notation in the comments to email it to my email address.  I probaby should have added some pithy commentary about graph in the comments.  Instead, I'll let mey answer to this section's bonus question suffice for that pithiness.
+After setting the timeboard's timeframe to the most recent past 5 minutes I took a snapshot of this graph and used @ notation in the comments to email it to my email address.  I probaby should have added some pithy commentary about graph in the comments.  Instead, I'll let my answer to this section's bonus question suffice for that pithiness.
 
  ![](snapshotmongodbmetricanomaly5min.jpg)&nbsp;&nbsp;
  
