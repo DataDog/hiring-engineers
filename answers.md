@@ -214,7 +214,7 @@ Successfully creating the Timeboard via API results in response confirming the j
 
  ![](2elementapitimeboard.jpg)&nbsp;&nbsp;
 
-It is at this point things get wonky. I can create a timeboard via the API that includes json for the first 2 graphs (that query *my_metric*) but with addition of json for the 3rd graph, which queries a MongoDB metric, *mongodb.mem.resident* it fails with a query parser error:  *Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)*.
+It is at this point things got wonky. I can create a timeboard via the API that includes json for the first 2 graphs (that query *my_metric*) but with addition of json for the 3rd graph, which queries a MongoDB metric, *mongodb.mem.resident* it fails with a query parser error:  *Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)*.
 
     ./createtimeboard3elements.sh 
     {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:mongodb.mem.resident{host:colby-exercise- machine.localdomain}, basic, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)."]}  
@@ -270,7 +270,9 @@ It is at this point things get wonky. I can create a timeboard via the API that 
 		}' \
 	"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
-At this point I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
+I tried in multiple iterations to create a query that for this metric (or any metric) with anomaly detection enabled, wthout success.  
+
+At this point, however,  I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
 
 I set the timeboard's timeframe to 5 minutes, easy to do by grabbing along the graph and selecting the time range.  For this exericse I selected the most recent last 5 minutes, but I could have selected any 5 minute period to display. Because this is a *timeboard* versus a *screenboard* the selected time interval applies to all of the graphs in the timeboard simultaneously.  
 
@@ -292,7 +294,7 @@ Per the exercise specificationsI created a new metric monitor for *my_metric* th
 
 I configured the monitor's messaging so an email is sent each time the monitor is triggered and utilized variables in the messaging  configuration to create different email messages based on what triggers the monitor:  Alert, Warning or No Data state.  I inlcluded in the message the value that caused the trigger, the measured average value what threshold it exceeded, and the host name and IP address of the source machine. 
 
-A bit anecdoatal observation:  I may have been suffering from *watched pot never boils syndrome*, but, as I was editing and testing the configuration of the alert messaging it seemed to me that although the alerting was working and was generating events that could be viewed on the events page in the Datadog GUI I was not receiving emails. In a bit of sanity checking I changed the warning theshold to *1* and the alert threshold to *2* to force a flow of alerts.  I also added 2 other email addresses to be notiifed.  I don't know if it was just impatience, or magic or *"things happen"* but after a bit of time alert emails started flowing to the 3 email addresses. After which I deconfigured 2 of the email destination from the messaging and reverted the threshold back to warning above 500 and alert above 800.  
+A bit of anecdoatal observation:  I may have been suffering from *watched pot never boils syndrome*, but, as I was editing and testing the configuration of the alert messaging it seemed to me that although the alerting was working and was generating events that could be viewed on the events page in the Datadog GUI I was not receiving emails. In a bit of sanity checking I changed the warning theshold to *1* and the alert threshold to *2* to force a flow of alerts.  I also added 2 other email addresses to be notiifed.  I don't know if it was just impatience, or magic or *"things happen"* but after a bit of time alert emails started flowing to the 3 email addresses. After which I deconfigured 2 of the email destination from the messaging and reverted the threshold back to warning above 500 and alert above 800.  
 
 
 ![](define-threshold-alert.jpg)&nbsp;&nbsp;
@@ -322,7 +324,8 @@ A bit anecdoatal observation:  I may have been suffering from *watched pot never
 **Email Alert for exceeded alert threshold**  
 ![](alert-threshold-exceeded-862.jpg)&nbsp;&nbsp;&nbsp;&nbsp;  
 
-For the **Bonus Question** i created the 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to 9am and the other for all day Saturday and Sunday.  Note, my intepretation of *all day* is 12am to the following 12am. 
+**Bonus Question** 
+I created 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to 9am and the other for all day Saturday and Sunday.  Note, my intepretation of *all day* is 12am to the following 12am. 
 
 **Configuration of *Daily* Downtime**
 ![](downtimedaily.jpg)&nbsp;&nbsp;  
@@ -365,9 +368,13 @@ I uncommmented *enabled: true* and *receiver_port: 8126*
 	#   ignore_resources: []
 
 
+
+
 **Bonus Question**
-The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  A ***resource*** is a specific query to a service.  
-This is explained Datadog help documenation for APM at:  
+The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  
+A ***resource*** is a specific query to a service.  
+
+This is explained in Datadog help documenation for APM at:  
 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 and in the *Getting Started* APM documentation: 
 https://docs.datadoghq.com/tracing/visualization/
