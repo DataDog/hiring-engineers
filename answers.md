@@ -92,11 +92,9 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
     810959	/api/v1/dash/810959	Michael's Visualization Reference Timeboard	created by mcolby@netzero.com
     809847	/api/v1/dash/809847	My_Metric	created by mcolby@netzero.com
     809827	/api/v1/dash/809827	Random Check	created by mcolby@netzero.com
- 
-&nbsp;  
+ &nbsp;  
 
     dog timeboard pull 810959 testtimeboard  
-
 
 Important to note that the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
 
