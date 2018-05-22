@@ -102,6 +102,8 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
 **json of Reference Timeboard**  
+
+
 	{
 	  "read_only": false,
 	  "description": "created by Michael Colby in the GUI",
