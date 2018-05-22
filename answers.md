@@ -201,6 +201,8 @@ Important to note,  the GUI also provides a "point and click" means to view the 
 
 ![](visualization-reference-timeboard-1day.jpg)&nbsp;&nbsp;  
 
+In answer to the **Bonus** question, I chose to graph *mongodb.mem.resident*, amount of memory currently used by the database process.  It appears that each time I populated MongodB with additional documents the metric value increases.  The *basic* anaomoly detection algorithm appears to detecte each step change in Mongo memory use as an anomoly. Not surprising since i intententionally didn't add documents in a consistent pattern, running the my data population script in sporadic intervals and pouplating varying amounts of additional documents each time.  
+
 
 After I deciphered the json I used curl, via a shell script, to post the json for a new Timeboard.  
 
