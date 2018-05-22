@@ -197,7 +197,8 @@ Important to note,  the GUI also provides a "point and click" means to view the 
 	  ],
 	  "id": 810959
 &nbsp;
-**Reference Version of visualizing data timeboard, created in the GUI*
+**Reference Version of visualizing data timeboard, created in the GUI**
+
 ![](visualization-reference-timeboard-1day.jpg)&nbsp;&nbsp;  
 
 
