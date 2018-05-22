@@ -341,7 +341,7 @@ I created 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to
 ### Collecting APM Data  
 Although the the tracing APM setup documentation (https://docs.datadoghq.com/tracing/setup/) states  "The APM Agent is enabled by default on Linux," that appers to be untrue. On the Centos 7 machines on which I installed the Datadog agent the APM *enabled: true* config option was commented out, as were all the other options, including the *receiver port* option.  
 
-I uncommmented *enabled: true* and *receiver_port: 8126*
+I uncommmented *apm_config*, *enabled: true* and *receiver_port: 8126*
 
 	# apm_config:
 	#   Whether or not the APM Agent should run
@@ -366,10 +366,39 @@ I uncommmented *enabled: true* and *receiver_port: 8126*
 	#   all entries must be surrounded by double quotes and separated by commas
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
-I installed *dd-trace* via PIP
-installed virtualenv
-installed flask
 
+I installed *dd-trace* via *PIP*, installed *flask*, installed virtualenv.  There's probably a good chance I don't need to isolate flask in the virtual environment since exercise is hosted on a relatively minimal Centos machine that being used for nothing elese. I also installed *blinkerware* when a debug warning on an initial test indicated blinker had to be installed:  
+
+    DEBUG:ddtrace.contrib.flask.middleware:please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
+&nbsp;  
+
+	(venv) [root@datadog-testing ddtraceproject]# ddtrace-run python apmtest.py
+	 * Serving Flask app "apmtest" (lazy loading)
+	 * Environment: production
+	   WARNING: Do not use the development server in a production environment.
+	   Use a production WSGI server instead.
+	 * Debug mode: off
+	Traceback (most recent call last):
+	  File "apmtest.py", line 28, in <module>
+		app.run()
+	  File "/ddtraceproject/venv/lib/python2.7/site-packages/flask/app.py", line 943, in run
+		run_simple(host, port, self, **options)
+	  File "/ddtraceproject/venv/lib/python2.7/site-packages/werkzeug/serving.py", line 814, in run_simple
+		inner()
+	  File "/ddtraceproject/venv/lib/python2.7/site-packages/werkzeug/serving.py", line 774, in inner
+		fd=fd)
+	  File "/ddtraceproject/venv/lib/python2.7/site-packages/werkzeug/serving.py", line 660, in make_server
+		passthrough_errors, ssl_context, fd=fd)
+	  File "/ddtraceproject/venv/lib/python2.7/site-packages/werkzeug/serving.py", line 577, in __init__
+		self.address_family), handler)
+	  File "/usr/lib64/python2.7/SocketServer.py", line 419, in __init__
+		self.server_bind()
+	  File "/usr/lib64/python2.7/BaseHTTPServer.py", line 108, in server_bind
+		SocketServer.TCPServer.server_bind(self)
+	  File "/usr/lib64/python2.7/SocketServer.py", line 430, in server_bind
+		self.socket.bind(self.server_address)
+	  File "/usr/lib64/python2.7/socket.py", line 224, in meth
+		return getattr(self._sock,name)(*args)
 
 **Bonus Question**
 The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  
