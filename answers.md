@@ -210,6 +210,7 @@ So far so good.
 Successfully creating the Timeboard via API results in response confirming the json pushed up to *api.datadoghq.com*  
 
  ![](output2elementapijson.jpg)&nbsp;&nbsp;
+&nbsp;
 **API Created Dashboard with 2 graphs using my custom metric**
 
  ![](2elementapitimeboard.jpg)&nbsp;&nbsp;
