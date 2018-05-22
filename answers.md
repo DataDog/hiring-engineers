@@ -220,11 +220,10 @@ Successfully creating the Timeboard via API results in response confirming the j
 
  ![](2elementapitimeboard.jpg)&nbsp;&nbsp;
 
-It is at this point things get wonky. I can create a timeboard via the API that includes json for the first 2 graphs (that query *my_metric*) but with addition of json for the 3rd graph, which queries a MongoDB metric, *mongodb.mem.resident* it fails with a query parser error:  Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83).
+It is at this point things get wonky. I can create a timeboard via the API that includes json for the first 2 graphs (that query *my_metric*) but with addition of json for the 3rd graph, which queries a MongoDB metric, *mongodb.mem.resident* it fails with a query parser error:  *Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)*.
 
     ./createtimeboard3elements.sh 
     {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:mongodb.mem.resident{host:colby-exercise- machine.localdomain}, basic, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)."]}  
-    
     
 &nbsp;
 
