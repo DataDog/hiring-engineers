@@ -207,13 +207,63 @@ In answer to the **Bonus** question, I chose to graph *mongodb.mem.resident*, am
 I reviewed the json of the Reference Timeboard and then used that as the basis for the json for the API created timeboard.  
 
 I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
+So far so good. 
 
     ./createtimeboard2elementsworking.sh 
 
+Successfully creating the Timeboard via API results in response confirming the json pushed up to the SAAS 
  ![](output2elementapijson.jpg)&nbsp;&nbsp;
 
+It is at this point things get wonky. 
 
-So far so good. 
+	api_key=584df05c35575f36e17d3543d00c341d
+	app_key=4f8e48cb7882de1fced12344f6e42de7fad9ad49
+
+	curl  -X POST -H "Content-type: application/json" \
+	-d '{
+		  "graphs" : [{
+			  "title": "Avg of my_metric over host:colby-exercise-machine.localdomain",
+			  "definition": {
+				  "events": [],
+				  "requests": [
+					  {"q": "avg:my_metric{host:colby-exercise-machine.localdomain}"}
+				  ]
+			  },
+			  "viz": "timeseries"
+		  },
+		  {
+		  "title": "my_metric with 3600 second rollup",
+			  "definition": {
+				  "events": [],
+				  "requests": [
+					  {"q": "avg:my_metric{*} by {role}.rollup(sum, 3600)",
+									"aggregator": "avg}"}
+				  ]
+			  },
+			  "viz": "timeseries"
+			  },
+		  {
+		  "title": "Avg of mongodb.mem.resident over host:colby-exercise-machine.localdomain",
+			  "definition": {
+				  "events": [],
+				  "requests": [
+					  {"q": "anomalies(avg:mongodb.mem.resident{host:colby-exercise-machine.localdomain}, 'basic', 2)"
+				  ]
+			  },
+			  "viz": "timeseries"
+
+
+		  }],
+		  "title" : "Visualization Exercise Timeboard aka Fun with JSON",
+		  "description" : "coding json for fun and entertainment",
+		  "template_variables": [{
+			  "name": "host1",
+			  "prefix": "host",
+			  "default": "host:my-host"
+		  }],
+		  "read_only": "True"
+		}' \
+	"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
 
 
