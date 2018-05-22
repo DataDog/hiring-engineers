@@ -334,7 +334,7 @@ For the **Bonus Question** i created the 2 recurring scheduled downtimes.  One d
 ![](downtimeweekend.jpg)&nbsp;&nbsp;  
 
 ***Daily*** **Downtime email notification**
-![](downtimeweekdayemailnotification.jpg)&nbsp;&nbsp;  
+![](downtimeweekdayemailnotificationv2.jpg)&nbsp;&nbsp;  
 ***Weekend*** **Downtime email notification**
 #![](downtimeweekendemailnotification.jpg)&nbsp;&nbsp;  
 
