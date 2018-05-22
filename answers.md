@@ -97,7 +97,7 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
     dog timeboard pull 810959 testtimeboard  
 
 
- Important to note that the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
+Important to note that the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -126,8 +126,8 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 		  "definition": {
 			"viz": "timeseries",
 			"requests": [
-			  **{
-				"q": "avg:my_metric{host:colby-exercise-machine.localdomain}"**,
+			  {
+				"q": "avg:my_metric{host:colby-exercise-machine.localdomain}",
 				"style": {
 				  "width": "normal",
 				  "palette": "dog_classic",
@@ -138,7 +138,7 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 			  }
 			],
 			"autoscale": true
-		  **},**
+		  },
 		  "title": "Avg of my_metric over host:colby-exercise-machine.localdomain"
 		},
 		{
@@ -200,7 +200,7 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 	  "id": 810959
 
 
-After I deciphered the json i used curl, via a shell script, to post the json for a new Timeboard.  
+After I deciphered the json I used curl, via a shell script, to post the json for a new Timeboard.  
 
 
 ### Monitoring Data
