@@ -276,6 +276,8 @@ It is at this point things get wonky. I can create a timeboard via the API that 
 		}' \
 	"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
+At this point I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
+
 
 
 
