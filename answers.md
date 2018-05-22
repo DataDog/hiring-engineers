@@ -277,9 +277,10 @@ At this point I have demonstrated successfully creating a timeboard via the API.
 
 I set the timeboard's timeframe to 5 minutes, easy to do by grabbing along the graph and selecting the time range.  For this exericse I selected the most recent last 5 minutes, but I could have selected any 5 minute period to display. Because this is a *timeboard* versus a *screenboard* the selected time interval applies to all of the graphs in the timeboard simultaneously.  
 
+After setting the timeboard's timeframe to the most recent past 5 minutes I took a snapshot of this graph and used @ notation in the comments to email it to my email address.  I probaby should have added some pithy commentary about graph in the comments.  Instead, I'll let mey answer to this section's bonus question suffice for that pithiness.
+
  ![](snapshotmongodbmetricanomaly5min.jpg)&nbsp;&nbsp;
  
-
 
 **Bonus question** 
 I chose to graph *mongodb.mem.resident*, amount of memory currently used by the database process.  It appears that each time I populated MongoDB with additional documents the metric value increases.  The *basic* anaomoly detection algorithm appears to detecte each step change in Mongo memory usef as an anomoly. Not surprising since i intententionally didn't add documents in a consistent pattern, running the my data population script in sporadic intervals and pouplating varying amounts of additional documents each time.  During this interval i added 5,000 and 10,0000 1K documents.  
