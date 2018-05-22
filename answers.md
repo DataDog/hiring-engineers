@@ -214,6 +214,8 @@ So far so good.
 Successfully creating the Timeboard via API results in response confirming the json pushed up to the SAAS 
  ![](output2elementapijson.jpg)&nbsp;&nbsp;
 
+ ![](2elementapitimeboard.jpg)&nbsp;&nbsp;
+
 It is at this point things get wonky. 
 
 	api_key=584df05c35575f36e17d3543d00c341d
