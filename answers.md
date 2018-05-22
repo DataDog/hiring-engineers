@@ -126,8 +126,8 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 		  "definition": {
 			"viz": "timeseries",
 			"requests": [
-			  {
-				"q": "avg:my_metric{host:colby-exercise-machine.localdomain}",
+			  **{
+				"q": "avg:my_metric{host:colby-exercise-machine.localdomain}"**,
 				"style": {
 				  "width": "normal",
 				  "palette": "dog_classic",
@@ -138,7 +138,7 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
 			  }
 			],
 			"autoscale": true
-		  },
+		  **},**
 		  "title": "Avg of my_metric over host:colby-exercise-machine.localdomain"
 		},
 		{
