@@ -7,7 +7,7 @@ I am an Enterprise SE with extensive experience evangalizing Networking, Storage
 
 As a testament to the the clarity of the effectiveness of the online Datadog documnentation, installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions; which even a non-dev ops SME can do :smiley:
 
-I created the environment for this exercise by spinning up a Centos 7 VMs on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
+I created the environment for this exercise by spinning up Centos 7 VMs on a local hypervisor. I installed the Datadog agent for Centos and verified it was operational (see agent_status_before_MongoDB.txt in this branch). 
 
 ### Collecting Metrics    
 
