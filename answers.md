@@ -1,7 +1,9 @@
 ## answers.md aka "My week with Datadog in my spare time"    
 ![Alt Text](https://m.popkey.co/818090/ObDJL.gif)
 
-As an introduction, I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing, learning,  (and occasionally humbling) exercise. In my career I have been a consumer of monitoring and analytics, but not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
+Thank you for the opportunity to complete this exercise. It has been a powerful learning experience and introduction to Datadog. 
+
+I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing, learning,  (and occasionally humbling) exercise. In my career I have been a consumer of monitoring and analytics, but not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
 
 As a testament to the the clarity of the effectiveness of the online Datadog documnentation installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions, which even a non-dev ops SME can do :smiley:
 
@@ -218,7 +220,10 @@ Successfully creating the Timeboard via API results in response confirming the j
 
  ![](2elementapitimeboard.jpg)&nbsp;&nbsp;
 
-It is at this point things get wonky. 
+It is at this point things get wonky. I can create a timeboard via the API that includes json for the first 2 graphs (that query *my_metric*) but with addition of json for the 3rd graph, which queries a MongoDB metric, *mongodb.mem.resident* it fails with a query parser error:
+
+    ./createtimeboard3elements.sh 
+    {"errors": ["Error(s) found in query:\nError parsing query: \n unable to parse anomalies(avg:mongodb.mem.resident{host:colby-exercise- machine.localdomain}, basic, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 83)."]}[root@localhost tmp]# ./createtimeboard3elements.sh 
 
 	api_key=584df05c35575f36e17d3543d00c341d
 	app_key=4f8e48cb7882de1fced12344f6e42de7fad9ad49
