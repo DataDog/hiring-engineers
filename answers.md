@@ -386,6 +386,22 @@ if __name__ == '__main__':
   <summary>See Error here</summary>
   <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error3.png></img>
 </details>
+<details>
+  <summary>And code here</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/apmFlask_py_edit.png></img>
+</details>
+
+<br/>*Debug steps:*
+After stepping away for a little, I had restarted my VM, reset my virtualenv, and commented out the `reciever port` in my `datadog.yaml` file (as it looked like all of the ports that are setup [here](https://docs.datadoghq.com/agent/network/#open-ports) default to the appropriate ports in the first place, and there would be no need to manually set them), and still got the following error message.
+<details>Error Message</summary>
+  <img src=https://s3.amazonaws.com/juliewongbandue-ddhiring/error4.png></img>
+</details>
+I [researched](https://www.codesd.com/item/access-to-dogstatsd-datadog-pod-from-adjacent-kubernetes-pods.html) this a bit, and it still looked like a port wasn't available..However, it also looked like that the datadog `Name or service not known`. So to check, I deactivated my virtualenv, and ran `sudo service datadog-agent restart` and got
+```
+stop: Unknown instance:
+datadog-agent start/running, process 3286
+```
+With then led me down the (unix/linux)[https://unix.stackexchange.com/questions/140667/what-is-meant-by-unknown-instance-when-restarting-a-service] `Unknown Instance:` rabbithole that I'm afraid I cannot get out of. From what I understand, there is not a datadog instance in my `etc/init.d` directory, which might have gotten removed somehow?
 
 ## Final Question
 **Is there anything creative you'd use datadog for?**
