@@ -197,6 +197,8 @@ Important to note,  the GUI also provides a "point and click" means to view the 
 	  ],
 	  "id": 810959
 
+![](visualization-reference-timeboard-1day.jpg)&nbsp;&nbsp;  
+
 
 After I deciphered the json I used curl, via a shell script, to post the json for a new Timeboard.  
 
