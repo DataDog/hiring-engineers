@@ -100,6 +100,19 @@ Anomaly detection is an algorithmic feature that allows you to identify when a m
 In this example we are looking at mysql.performance.user_time metric and the gray envelope shows the range + or - 2 std deviations from a calcualted normal. In this case we are using the 'basic' modifier which:
 "... uses a simple lagging rolling quantile computation to determine the range of expected values, but it uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends."
 
+# Part 3 - Monitoring
+=========================
+
+Here is the configuration for the notification for my monitor: 
+
+<img width="1272" alt="monitor_status__my_metric_is_over_the_threshold___datadog" src="https://user-images.githubusercontent.com/2524766/40343854-502e46b4-5dd5-11e8-9797-ebc48fb3b801.png">
+
+Here is the alert on the warning state : 
+
+<img width="707" alt="_monitor_alert__warn__my_metric_is_over_the_threshold_-_ben_sunderland22_gmail_com_-_gmail" src="https://user-images.githubusercontent.com/2524766/40343741-b97b3df8-5dd4-11e8-81b4-8586e67df24d.png">
+
+
+
 
 
 
