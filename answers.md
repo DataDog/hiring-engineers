@@ -52,7 +52,7 @@ graphs = [
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "avg:hello.world{host:osboxes}"}
+                  {"q": "avg:my_metric{host:osboxes}"}
               ]
           },
           "viz": "timeseries"
@@ -63,7 +63,7 @@ graphs = [
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "hello.world{host:osboxes}.rollup(sum,3600)"}
+                  {"q": "my_metric{host:osboxes}.rollup(sum,3600)"}
               ]
           },
           "viz": "timeseries"
@@ -89,7 +89,7 @@ api.Timeboard.create(title=title,description=description,graphs=graphs,read_only
 ```
 Here is the resultant timeboard : 
 
-<img width="1395" alt="bens_timeboard_v2___datadog" src="https://user-images.githubusercontent.com/2524766/40302138-8b93027a-5d31-11e8-84e4-37166ce48755.png">
+<img width="1326" alt="timeboard v3" src="https://user-images.githubusercontent.com/2524766/40341495-e73495e8-5dc8-11e8-8da5-80aa5e6407dc.png">
 
 Here is the @message of the MySQL graph with Anomalies :
 
