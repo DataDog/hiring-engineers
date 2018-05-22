@@ -203,9 +203,6 @@ Important to note,  the GUI also provides a "point and click" means to view the 
 
 ![](visualization-reference-timeboard-1day.jpg)&nbsp;&nbsp;  
 
-In answer to the **Bonus** question, I chose to graph *mongodb.mem.resident*, amount of memory currently used by the database process.  It appears that each time I populated MongodB with additional documents the metric value increases.  The *basic* anaomoly detection algorithm appears to detecte each step change in Mongo memory use as an anomoly. Not surprising since i intententionally didn't add documents in a consistent pattern, running the my data population script in sporadic intervals and pouplating varying amounts of additional documents each time.  
-
-
 I reviewed the json of the Reference Timeboard and then used that as the basis for the json for the API created timeboard.  
 
 I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
@@ -277,8 +274,11 @@ It is at this point things get wonky. I can create a timeboard via the API that 
 	"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
 At this point I have demonstrated successfully creating a timeboard via the API. To be expedient I will continue to debug and pursue resolution of rejection of this 3rd graph's query pushed up as json and demonstrate the requested changes via to the timeboard via the UI using my Reference version of the Timeboard created in the GUI
+ 
 
 
+**Bonus question** 
+I chose to graph *mongodb.mem.resident*, amount of memory currently used by the database process.  It appears that each time I populated MongoDB with additional documents the metric value increases.  The *basic* anaomoly detection algorithm appears to detecte each step change in Mongo memory usef as an anomoly. Not surprising since i intententionally didn't add documents in a consistent pattern, running the my data population script in sporadic intervals and pouplating varying amounts of additional documents each time.  During this interval i added 5,000 and 10,0000 1K documents.  
 
 
 ### Monitoring Data
