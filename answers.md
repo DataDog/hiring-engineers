@@ -335,7 +335,7 @@ For the **Bonus Question** i created the 2 recurring scheduled downtimes.  One d
 
 ***Daily*** **Downtime email notification**
 ![](downtimeweekdayemailnotification.jpg)&nbsp;&nbsp;  
-***Weekend*** **Downtime* email notification**
+***Weekend*** **Downtime email notification**
 #![](downtimeweekendemailnotification.jpg)&nbsp;&nbsp;  
 
 ### Collecting APM Data  
