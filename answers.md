@@ -11,7 +11,7 @@ I created the environment for this exercise by spinning up Centos 7 VMs on a loc
 
 ### Collecting Metrics    
 
-I configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  
+I configured my default API key, listed at https://app.datadoghq.com/account/settings#api in **datadog.yaml**, the yaml file for the Datadog agent.  *(because the first time I installed the agent I did it manually instead of using the easy one step install from the Agent install page)*.
 
     api_key: 584df05c35575f36e17d3543d00c341d  
 
