@@ -2,7 +2,6 @@
 ====================================
 
 ## Part 1: Collecting Metrics
--------------------------------
 
 After the agent installs on my Ubuntu VM, I added Tags as follows : 
 
@@ -31,7 +30,7 @@ Shown here is the host map view showing the custom tags :
 (you can change the interval via the check config "min_collection_interval: 45" )
 
 ## Part 2: Visualizing Data
--------------------------------
+
 Here is my script with the 3 graphs in the Timeboard : 
 
 ```
@@ -101,7 +100,6 @@ In this example we are looking at mysql.performance.user_time metric and the gra
 "... uses a simple lagging rolling quantile computation to determine the range of expected values, but it uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends."
 
 # Part 3 - Monitoring
-=========================
 
 Here is the configuration for the notification for my monitor: 
 
@@ -110,6 +108,7 @@ Here is the configuration for the notification for my monitor:
 
 Email alert received based on the monitor rule violation:
 
+<img width="644" alt="alert" src="https://user-images.githubusercontent.com/2524766/40349547-46c7590c-5dea-11e8-9c8e-51ba33c1a1a0.png">
 
 Here are the configurations for downtime: 
 
@@ -123,7 +122,7 @@ Email notification received based on the monitor scheduled downtime:
 <img width="1028" alt="_datadog__ben_sunderland_scheduled_downtime_on_my_metric_is_over_the_threshold_-_ben_sunderland22_gmail_com_-_gmail" src="https://user-images.githubusercontent.com/2524766/40345539-eb3c5b94-5ddc-11e8-861a-709500abea87.png">
 
 
-
+# Part 4 - Tracing
 
 
 
