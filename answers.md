@@ -210,7 +210,7 @@ I utilized an iterative process, starting with script to create a timeboard with
 
     ./createtimeboard2elementsworking.sh 
 
- 
+ ![](output2elementapijson.jpg)&nbsp;&nbsp;
 
 
 So far so good. 
