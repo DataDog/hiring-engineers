@@ -367,7 +367,8 @@ I uncommmented *enabled: true* and *receiver_port: 8126*
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
 I installed *dd-trace* via PIP
-
+installed virtualenv
+installed flask
 
 
 **Bonus Question**
