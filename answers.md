@@ -92,11 +92,10 @@ I first created a working example "reference" Timeboard, via the GUI, and used t
     810959	/api/v1/dash/810959	Michael's Visualization Reference Timeboard	created by mcolby@netzero.com
     809847	/api/v1/dash/809847	My_Metric	created by mcolby@netzero.com
     809827	/api/v1/dash/809827	Random Check	created by mcolby@netzero.com
- 
- &nbsp;      
+     
     dog timeboard pull 810959 testtimeboard  
 
-Important to note that the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
+Important to note,  the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -200,6 +199,8 @@ Important to note that the GUI also provides a "point and click" means to view t
 
 
 After I deciphered the json I used curl, via a shell script, to post the json for a new Timeboard.  
+
+I utilized an iterative process, starting with script to create a timeboard with just one of the 3 graphs.  Once that proved to work, I spun off another version of the script and added the json for creating the 2nd graph.   
 
 
 ### Monitoring Data
