@@ -1,9 +1,9 @@
 ## answers.md aka "My week with Datadog in my spare time"    
 ![Alt Text](https://m.popkey.co/818090/ObDJL.gif)
 
-Thank you for the opportunity to complete this exercise. It has been a powerful learning experience and introduction to Datadog. 
+Thank you for the opportunity to complete this exercise. It has been a powerful learning experience and meaningful introduction to Datadog. 
 
-I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing, learning,  (and occasionally humbling) exercise. In my career I have been a consumer of monitoring and analytics, but not necessarily involved in the  dev/ops underpinnings that enable them other than providing feedback or feature requests.
+I am an Enterprise SE with extensive experience evangalizing Networking, Storage and Data Protection solutions.  This has been an intriguing, learning, and occasionally humbling exercise. In my career I have been a consumer of monitoring and analytics, but not necessarily involved in the dev/ops underpinnings that enable them other than providing feedback or feature requests.  While working on creating a timeboard via the API I am sure I began dreaming of json in my sleep.
 
 As a testament to the the clarity of the effectiveness of the online Datadog documnentation installing and enabling the Datadog agent and specific stack integration was mostly a mattter of following the instructions, which even a non-dev ops SME can do :smiley:
 
@@ -26,9 +26,6 @@ And added tags in the agent config file, and I also configured the agent yaml to
     tags:
         - role:database:mongodb
     hostname: colby-exercise-machine.localdomain  
-
-
-
 
 From agent status report:  
 
@@ -73,7 +70,7 @@ Per the exercise instructions I created a custom agent check to submit a metric 
 
 I added a minimum collection configuration parameter for 45 seconds in the yaml file.  The exercise instructions specify changing my check's collection interval so it only submits the metric every 45 seconds. 
 
-To be clear, however, the actual collection interval is a bit of a dance between the interval time per instance for this custom agent check and the interval time for Data Dog Agent collector (who's collection frequency is every 15-20 seconds dependent on how many integrations are enabled).  The result, per the documentation, is that this does not mean the metric is collected **every** 45 seconds but rather it **could** be collected **as often as** every 45 seconds.  
+To be clear, however, according to the documentation the actual collection interval is a bit of a dance between the interval time per instance for this custom agent check and the interval time for Data Dog Agent collector (who's collection frequency is every 15-20 seconds dependent on how many integrations are enabled).  The result, per the documentation, is that this does not mean the metric is collected **every** 45 seconds but rather it **could** be collected **as often as** every 45 seconds.  
 
 
 **Q: Can you change the collection interval without modifying the Python check file you created?**  
@@ -97,7 +94,7 @@ I first created a working example "reference" Timeboard, via the GUI and used th
      
     dog timeboard pull 810959 testtimeboard  
 
-Important to note,  the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
+Important to note, the GUI also provides a "point and click" means to view the json for any graph in a Timeboard.  The net result is multiple means to explore and analyze the json of a Timeboard for the json uninitiated.  
 
 ![](gui_showing_json.jpg)  &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -341,6 +338,7 @@ For the **Bonus Question** i created the 2 recurring scheduled downtimes.  One d
 ### Collecting APM Data  
 Although the the tracing APM setup documentation (https://docs.datadoghq.com/tracing/setup/) states  "The APM Agent is enabled by default on Linux," that appers to be untrue. On the Centos 7 machines on which I installed the Datadog agent the APM *enabled: true* config option was commented out, as were all the other options, including the *receiver port* option.  
 
+I uncommmented *enabled: true* and *receiver_port: 8126*
 
 	# apm_config:
 	#   Whether or not the APM Agent should run
@@ -365,6 +363,17 @@ Although the the tracing APM setup documentation (https://docs.datadoghq.com/tra
 	#   all entries must be surrounded by double quotes and separated by commas
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
+
+
+**Bonus Question**
+The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  A ***resource*** is a specific query to a service.  
+This is explained Datadog help documenation for APM at:  
+https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+and in the *Getting Started* APM documentation: 
+https://docs.datadoghq.com/tracing/visualization/
+
+
+
 
 
 ### Final Question  
