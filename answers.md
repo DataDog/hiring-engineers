@@ -516,7 +516,7 @@ Netstat now indicates that python is using TCP port 4999
 	tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1023/sshd           
 	tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2184/master  
 	
-**With Debug Enabled** (and using ethernet IP address and port 80, host and port 
+**With Debug Enabled** (and using ethernet IP address and port 80, host and port) 
 
 	DATADOG_TRACE_DEBUG=true ddtrace-run python apmtest.py
 	DEBUG:ddtrace.commands.ddtrace_run:sys.argv: ['/usr/bin/ddtrace-run', 'python', 'apmtest.py']
