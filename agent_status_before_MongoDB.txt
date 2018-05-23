@@ -1,0 +1,172 @@
+[root@localhost tmp]# datadog-agent status
+Getting the status from the agent.
+
+==============
+Agent (v6.2.0)
+==============
+
+  Status date: 2018-05-19 11:11:43.120798 UTC
+  Pid: 38747
+  Python Version: 2.7.5
+  Logs: 
+  Check Runners: 1
+  Log Level: info
+
+  Paths
+  =====
+    Config File: /etc/datadog-agent/datadog.yaml
+    conf.d: /etc/datadog-agent/conf.d
+    checks.d: /etc/datadog-agent/checks.d
+
+  Clocks
+  ======
+    NTP offset: -0.004491761 s
+    System UTC time: 2018-05-19 11:11:43.120798 UTC
+
+  Host Info
+  =========
+    bootTime: 2018-05-17 11:13:29.000000 UTC
+    kernelVersion: 3.10.0-693.el7.x86_64
+    os: linux
+    platform: centos
+    platformFamily: rhel
+    platformVersion: 7.4.1708
+    procs: 162
+    uptime: 9762
+
+  Hostnames
+  =========
+    hostname: localhost.localdomain
+    socket-fqdn: localhost
+    socket-hostname: localhost.localdomain
+
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    cpu
+    ---
+      Total Runs: 10862
+      Metrics: 6, Total Metrics: 65166
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+      
+  
+    disk
+    ----
+      Total Runs: 10862
+      Metrics: 74, Total Metrics: over 100K
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 8ms
+      
+  
+    file_handle
+    -----------
+      Total Runs: 10862
+      Metrics: 1, Total Metrics: 10862
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+      
+  
+    io
+    --
+      Total Runs: 10862
+      Metrics: 65, Total Metrics: over 100K
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 20ms
+      
+  
+    load
+    ----
+      Total Runs: 10862
+      Metrics: 6, Total Metrics: 65172
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+      
+  
+    memory
+    ------
+      Total Runs: 10862
+      Metrics: 16, Total Metrics: over 100K
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+      
+  
+    network
+    -------
+      Total Runs: 10862
+      Metrics: 20, Total Metrics: over 100K
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 1ms
+      
+  
+    ntp
+    ---
+      Total Runs: 10862
+      Metrics: 1, Total Metrics: 10436
+      Events: 0, Total Events: 0
+      Service Checks: 1, Total Service Checks: 10862
+      Average Execution Time : 91ms
+      
+  
+    uptime
+    ------
+      Total Runs: 10862
+      Metrics: 1, Total Metrics: 10862
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+      
+  
+========
+JMXFetch
+========
+
+  Initialized checks
+  ==================
+    no checks
+    
+  Failed checks
+  =============
+    no checks
+    
+=========
+Forwarder
+=========
+
+  CheckRunsV1: 10862
+  IntakeV1: 827
+  RetryQueueSize: 0
+  Success: 22551
+  TimeseriesV1: 10862
+
+  API Keys status
+  ===============
+    https://6-2-0-app.agent.datadoghq.com,*************************c341d: API Key valid
+
+==========
+Logs Agent
+==========
+
+  Logs Agent is not running
+
+=========
+DogStatsD
+=========
+
+  Checks Metric Sample: 2.258818e&#43;06
+  Event: 1
+  Events Flushed: 1
+  Number Of Flushes: 10862
+  Series Flushed: 1.813261e&#43;06
+  Service Check: 108620
+  Service Checks Flushed: 119472
