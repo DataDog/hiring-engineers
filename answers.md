@@ -418,7 +418,7 @@ All that said, the app errors out with a *socket.error* *address already in use*
          socket.error: [Errno 98] Address already in use
 
 **UPDATE**  
-I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause(s).  Doing some homework on flask indicated that hen the app is invoked with app.run() it by default uses TCP port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* shows that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
+I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause(s).  Doing some homework on flask indicated that hen the app is invoked with app.run() it by default uses TCP port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* options shows that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
 
     Active Internet connections (only servers)
     Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
@@ -502,7 +502,16 @@ These 2 lines of information appear to indicate that ddtrace has identified a se
 	DEBUG:ddtrace.api:reported 1 services
 	2018-05-22 23:46:19,174 - ddtrace.api - DEBUG - reported 1 services
 
+Netstat now indicates that python is using TCP port 4999
 
+	Active Internet connections (only servers)
+	Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+	tcp        0      0 127.0.0.1:8126          0.0.0.0:*               LISTEN      101444/trace-agent  
+	tcp        0      0 127.0.0.1:4999          0.0.0.0:*               LISTEN      111315/python       
+	tcp        0      0 127.0.0.1:5000          0.0.0.0:*               LISTEN      101443/agent        
+	tcp        0      0 127.0.0.1:5001          0.0.0.0:*               LISTEN      101443/agent        
+	tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1023/sshd           
+	tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2184/master  
 
 
 
