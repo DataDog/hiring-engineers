@@ -569,12 +569,49 @@ Netstat now indicates that python is using TCP port 4999
 
 
 ***Workaround to Generate APM traces***
-I generated traces for APMvi 
+I generated traces for APM by creating a shell script that generated traces using the Dataoog API and making it run every few seconds
+
+    watch -n 5 ./test-trace.sh
+&nbsp;  
+	#!/bin/bash
+
+	# Create IDs.
+	TRACE_ID=($RANDOM % 1000000)
+	SPAN_ID=($RANDOM % 1000000)
+
+	# Start a timer.
+	START=$(date +%s%N)
+
+	# Do things...
+	sleep 2
+
+	# Stop the timer.
+	DURATION=$(($(date +%s%N) - $START))
+
+	# Send the traces.
+	curl -X PUT -H "Content-type: application/json" \
+	  -d "[[{
+		\"trace_id\": $TRACE_ID,
+		\"span_id\": $SPAN_ID,
+		\"name\": \"span_name\",
+		\"resource\": \"/home\",
+		\"service\": \"service_foo\",
+		\"type\": \"web\",
+		\"start\": $START,
+		\"duration\": $DURATION
+	}]]" \
+	  http://localhost:8126/v0.3/traces
+
+
 
 
 ![](Dashboardwithapmandinfrastucture.jpg)&nbsp;&nbsp;  
 
+![](apmscreen2.jpg)&nbsp;&nbsp;  
+
 ![](apmscreen.jpg)&nbsp;&nbsp;  
+
+
 
 
 
