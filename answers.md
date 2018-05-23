@@ -131,14 +131,15 @@ A Resource is a particular action for a service. Its the next level down in gran
 
 
 
-APM1
+APM Service Dashboard - Out of the box APM Dashboard showing a summary of the service:
+
 <img width="1300" alt="apm1" src="https://user-images.githubusercontent.com/2524766/40357179-ac9f3bb4-5dfe-11e8-92f5-508a020a8686.png">
 
-APM2
+APM Resource Dashboard - Out of the box APM Dashboard showing a summary of the resources contained within the service above:
+
 <img width="1319" alt="apm2" src="https://user-images.githubusercontent.com/2524766/40357194-b4299ea6-5dfe-11e8-90dc-c6de7e8edeb3.png">
 
-APM3
-<img width="1232" alt="apm3" src="https://user-images.githubusercontent.com/2524766/40357200-bc71f270-5dfe-11e8-8a67-bf9349611734.png">
+
 
 Dashboard of APM together with server infra metrics:
 
@@ -148,7 +149,6 @@ Dashboard of APM together with server infra metrics:
 Here is my instrumented Python code : 
 
 ```
-
 
 
 from flask import Flask
