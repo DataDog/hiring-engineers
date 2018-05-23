@@ -1,20 +1,10 @@
 ## Introduction
-Hi, I'm Jordan Storms. For this challenge I used Linux Mint 18.3 (an Ubuntu derivative) and docker. I followed these instructions for setting up my environment: 
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-
+Hi, I'm Jordan Storms. For this challenge I used Linux Mint 18.3.
 
 ## Collecting Metrics
 
 #### Adding a tag
-In order to add a tag we need to customize the datadog.yaml file. Since we are using docker and version 6 of the Datadog Agent in this example, the file will be located at etc/datadog-agent/datadog.yaml inside the docker container.
-
-To get into the docker container:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;```docker exec -it name-of-your-container bash```
-
-Open up the datadog.yaml file with an editor:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;```nano /etc/datadog-agent/datadog.yaml```<br/>
-
-Once the file is open, add a tag as shown in the screenshot below:
+In order to add a tag we need to customize the datadog.yaml file, located at etc/datadog-agent/datadog.yaml. Open the file with your editor of choice and add a tag as shown in the screenshot below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/40499437960/in/dateposted/" title="Tags-text-editor"><img src="https://farm1.staticflickr.com/970/40499437960_2a79383464_z.jpg" width="640" height="351" alt="Tags-text-editor"></a>
 
