@@ -573,6 +573,7 @@ I generated traces for APM by creating a shell script that generated traces usin
 
     watch -n 5 ./test-trace.sh
 &nbsp;  
+
 	#!/bin/bash
 
 	# Create IDs.
@@ -604,11 +605,13 @@ I generated traces for APM by creating a shell script that generated traces usin
 
 
 
-
+**Dashboard with both APM and Infrastructure Metrics**
 ![](Dashboardwithapmandinfrastucture.jpg)&nbsp;&nbsp;  
 
+**APM Screen Showing 2 Services**
 ![](apmscreen2.jpg)&nbsp;&nbsp;  
 
+**APM Screen for Summary of One of the Services**
 ![](apmscreen.jpg)&nbsp;&nbsp;  
 
 
