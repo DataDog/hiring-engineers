@@ -525,6 +525,7 @@ A ***resource*** is a specific query to a service.
 This is explained in Datadog help documenation for APM at:  
 
 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+
 and in the *Getting Started* APM documentation: 
 
 https://docs.datadoghq.com/tracing/visualization/
