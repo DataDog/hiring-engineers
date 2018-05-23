@@ -328,20 +328,23 @@ A bit of anecdoatal observation:  I may have been suffering from *watched pot ne
 **Bonus Question** 
 I created 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to 9am and the other for all day Saturday and Sunday.  Note, my intepretation of *all day* is 12am to the following 12am. 
 
-**Configuration of *Daily* Downtime**
+***I just realized there's an alternate way to configure a schedule of 7Pm to 9am.  Instead of configuring daily 7pm for 14 hours, instead schedule weekly M,T,W,T,F 7PM for 14 hours.  I've added a screen shot of this example below.***  
+
+
+**Configuration of *Daily* Downtime**  
 ![](downtimedaily.jpg)&nbsp;&nbsp;  
 
-***Altnernate way to schedule Daily Downtime***
+***Altnernate way to schedule Daily Downtime***  
 ![](alternatedailydowntimeschedule.jpg)&nbsp;&nbsp;
 
-**Configuration of *All Day Saturday and Sunday* Downtime**
+**Configuration of *All Day Saturday and Sunday* Downtime**  
 ![](downtimeweekend.jpg)&nbsp;&nbsp;  
 
-***Daily*** **Downtime email creation notification**
+***Daily*** **Downtime email creation notification**  
 ![](downtimeweekdayemailnotificationv2.jpg)&nbsp;&nbsp;  
-***Weekend*** **Downtime email creation notification**
+***Weekend*** **Downtime email creation notification**  
 #![](downtimeweekendemailnotification.jpg)&nbsp;&nbsp;  
-***Daily*** **Downtime email notification**
+***Daily*** **Downtime email notification**  
 #![](dscheduled7pm.jpg)&nbsp;&nbsp;  
 
 ### Collecting APM Data  
