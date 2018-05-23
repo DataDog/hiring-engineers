@@ -473,54 +473,7 @@ So I modified my flask app to set the TCP port number to 4999 (a bit of humor: l
 	if __name__ == '__main__':
 		app.run(host=None, port=4999)
 		
-**With Debug Invoked**
 
-	DATADOG_TRACE_DEBUG=true ddtrace-run python apmtest.py
-	DEBUG:ddtrace.commands.ddtrace_run:sys.argv: ['/usr/bin/ddtrace-run', 'python', 'apmtest.py']
-	DEBUG:ddtrace.commands.ddtrace_run:ddtrace root: /usr/lib/python2.7/site-packages/ddtrace
-	DEBUG:ddtrace.commands.ddtrace_run:ddtrace bootstrap: /usr/lib/python2.7/site-packages/ddtrace/bootstrap
-	DEBUG:ddtrace.commands.ddtrace_run:PYTHONPATH: /usr/lib/python2.7/site-packages/ddtrace/bootstrap
-	DEBUG:ddtrace.commands.ddtrace_run:sys.path: ['/usr/bin', '/usr/lib64/python27.zip', '/usr/lib64/python2.7', '/usr/lib64/python2.7/plat-linux2', '/usr/lib64/python2.7/lib-tk', '/usr/lib64/python2.7/lib-old', '/usr/lib64/python2.7/lib-dynload', '/usr/lib64/python2.7/site-packages', '/usr/lib/python2.7/site-packages']
-	DEBUG:ddtrace.commands.ddtrace_run:program executable: /usr/bin/python
-	DEBUG:sitecustomize:skipping malformed patch instruction
-	DEBUG:ddtrace.monkey:failed to patch pyramid: module not installed
-	DEBUG:ddtrace.monkey:failed to patch aiopg: module not installed
-	DEBUG:ddtrace.monkey:failed to patch pymysql: module not installed
-	DEBUG:ddtrace.monkey:failed to patch mysqldb: module not installed
-	DEBUG:ddtrace.monkey:failed to patch mysql: module not installed
-	DEBUG:ddtrace.monkey:failed to patch botocore: module not installed
-	DEBUG:ddtrace.monkey:failed to patch cassandra: module not installed
-	DEBUG:ddtrace.monkey:failed to patch redis: module not installed
-	DEBUG:ddtrace.monkey:failed to patch celery: module not installed
-	DEBUG:ddtrace.monkey:failed to patch pylibmc: module not installed
-	DEBUG:ddtrace.monkey:failed to patch pymongo: module not installed
-	DEBUG:ddtrace.monkey:failed to patch pylons: module not installed
-	DEBUG:ddtrace.monkey:failed to patch aiohttp: module not installed
-	DEBUG:ddtrace.monkey:failed to patch mongoengine: module not installed
-	DEBUG:ddtrace.monkey:failed to patch falcon: module not installed
-	DEBUG:ddtrace.monkey:failed to patch psycopg: module not installed
-	DEBUG:ddtrace.monkey:failed to patch boto: module not installed
-	DEBUG:ddtrace.monkey:failed to patch django: module not installed
-	DEBUG:ddtrace.monkey:failed to patch elasticsearch: module not installed
-	DEBUG:ddtrace.monkey:failed to patch bottle: module not installed
-	INFO:ddtrace.monkey:patched 2/22 modules (flask,sqlite3)
-	DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
-	2018-05-23 14:51:57,317 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
-	DEBUG:ddtrace.tracer:set_service_info: service:flask app:flask type:web
-	2018-05-23 14:51:57,317 - ddtrace.tracer - DEBUG - set_service_info: service:flask app:flask type:web
-	DEBUG:ddtrace.writer:resetting queues. pids(old:None new:53445)
-	2018-05-23 14:51:57,318 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:53445)
-	DEBUG:ddtrace.writer:starting flush thread
-	2018-05-23 14:51:57,318 - ddtrace.writer - DEBUG - starting flush thread
-	 * Serving Flask app "apmtest" (lazy loading)
-	 * Environment: production
-	   WARNING: Do not use the development server in a production environment.
-	   Use a production WSGI server instead.
-	 * Debug mode: off
-	INFO:werkzeug: * Running on http://127.0.0.1:80/ (Press CTRL+C to quit)
-	2018-05-23 14:51:57,322 - werkzeug - INFO -  * Running on http://127.0.0.1:80/ (Press CTRL+C to quit)
-	DEBUG:ddtrace.api:reported 1 services
-	2018-05-23 14:51:58,323 - ddtrace.api - DEBUG - reported 1 services
 
 
 I am still not out of the woods yet.  No collectd APM data has shown up in the Datadog GUI yet.  I'm going to do some more debugging.
@@ -562,6 +515,58 @@ Netstat now indicates that python is using TCP port 4999
 	tcp        0      0 127.0.0.1:5001          0.0.0.0:*               LISTEN      101443/agent        
 	tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1023/sshd           
 	tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2184/master  
+	
+**With Debug Enabled** (and using ethernet IP address and port 80, host and port 
+
+	DATADOG_TRACE_DEBUG=true ddtrace-run python apmtest.py
+	DEBUG:ddtrace.commands.ddtrace_run:sys.argv: ['/usr/bin/ddtrace-run', 'python', 'apmtest.py']
+	DEBUG:ddtrace.commands.ddtrace_run:ddtrace root: /usr/lib/python2.7/site-packages/ddtrace
+	DEBUG:ddtrace.commands.ddtrace_run:ddtrace bootstrap: /usr/lib/python2.7/site-packages/ddtrace/bootstrap
+	DEBUG:ddtrace.commands.ddtrace_run:PYTHONPATH: /usr/lib/python2.7/site-packages/ddtrace/bootstrap
+	DEBUG:ddtrace.commands.ddtrace_run:sys.path: ['/usr/bin', '/usr/lib64/python27.zip', '/usr/lib64/python2.7', '/usr/lib64/python2.7/plat-linux2', '/usr/lib64/python2.7/lib-tk', '/usr/lib64/python2.7/lib-old', '/usr/lib64/python2.7/lib-dynload', '/usr/lib64/python2.7/site-packages', '/usr/lib/python2.7/site-packages']
+	DEBUG:ddtrace.commands.ddtrace_run:program executable: /usr/bin/python
+	DEBUG:sitecustomize:skipping malformed patch instruction
+	DEBUG:ddtrace.monkey:failed to patch pyramid: module not installed
+	DEBUG:ddtrace.monkey:failed to patch aiopg: module not installed
+	DEBUG:ddtrace.monkey:failed to patch pymysql: module not installed
+	DEBUG:ddtrace.monkey:failed to patch mysqldb: module not installed
+	DEBUG:ddtrace.monkey:failed to patch mysql: module not installed
+	DEBUG:ddtrace.monkey:failed to patch botocore: module not installed
+	DEBUG:ddtrace.monkey:failed to patch cassandra: module not installed
+	DEBUG:ddtrace.monkey:failed to patch redis: module not installed
+	DEBUG:ddtrace.monkey:failed to patch celery: module not installed
+	DEBUG:ddtrace.monkey:failed to patch pylibmc: module not installed
+	DEBUG:ddtrace.monkey:failed to patch pymongo: module not installed
+	DEBUG:ddtrace.monkey:failed to patch pylons: module not installed
+	DEBUG:ddtrace.monkey:failed to patch aiohttp: module not installed
+	DEBUG:ddtrace.monkey:failed to patch mongoengine: module not installed
+	DEBUG:ddtrace.monkey:failed to patch falcon: module not installed
+	DEBUG:ddtrace.monkey:failed to patch psycopg: module not installed
+	DEBUG:ddtrace.monkey:failed to patch boto: module not installed
+	DEBUG:ddtrace.monkey:failed to patch django: module not installed
+	DEBUG:ddtrace.monkey:failed to patch elasticsearch: module not installed
+	DEBUG:ddtrace.monkey:failed to patch bottle: module not installed
+	INFO:ddtrace.monkey:patched 2/22 modules (flask,sqlite3)
+	DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
+	2018-05-23 15:02:52,617 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
+	DEBUG:ddtrace.tracer:set_service_info: service:flask app:flask type:web
+	2018-05-23 15:02:52,617 - ddtrace.tracer - DEBUG - set_service_info: service:flask app:flask type:web
+	DEBUG:ddtrace.writer:resetting queues. pids(old:None new:55895)
+	2018-05-23 15:02:52,617 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:55895)
+	DEBUG:ddtrace.writer:starting flush thread
+	2018-05-23 15:02:52,617 - ddtrace.writer - DEBUG - starting flush thread
+	 * Serving Flask app "apmtest" (lazy loading)
+	 * Environment: production
+	   WARNING: Do not use the development server in a production environment.
+	   Use a production WSGI server instead.
+	 * Debug mode: off
+	INFO:werkzeug: * Running on http://192.168.1.129:80/ (Press CTRL+C to quit)
+	2018-05-23 15:02:52,623 - werkzeug - INFO -  * Running on http://192.168.1.129:80/ (Press CTRL+C to quit)
+	DEBUG:ddtrace.api:reported 1 services
+	2018-05-23 15:02:53,622 - ddtrace.api - DEBUG - reported 1 services
+
+
+
 
 ***Still No collectd APM data has shown up in the Datadog GUI yet.  Still debugging.***
 
