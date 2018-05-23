@@ -518,7 +518,7 @@ Netstat now indicates that python is using TCP port 4999
 
 
 
-**Bonus Question**
+**Bonus Question**  
 The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  
 A ***resource*** is a specific query to a service.  
 
