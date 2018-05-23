@@ -331,13 +331,18 @@ I created 2 recurring scheduled downtimes.  One daily for the 14 hours of 7pm to
 **Configuration of *Daily* Downtime**
 ![](downtimedaily.jpg)&nbsp;&nbsp;  
 
+***Altnernate way to schedule Daily Downtime***
+![](alternatedailydowntimeschedule.jpg)&nbsp;&nbsp;
+
 **Configuration of *All Day Saturday and Sunday* Downtime**
 ![](downtimeweekend.jpg)&nbsp;&nbsp;  
 
-***Daily*** **Downtime email notification**
+***Daily*** **Downtime email creation notification**
 ![](downtimeweekdayemailnotificationv2.jpg)&nbsp;&nbsp;  
-***Weekend*** **Downtime email notification**
+***Weekend*** **Downtime email creation notification**
 #![](downtimeweekendemailnotification.jpg)&nbsp;&nbsp;  
+***Daily*** **Downtime email notification**
+#![](dscheduled7pm.jpg)&nbsp;&nbsp;  
 
 ### Collecting APM Data  
 Although the the tracing APM setup documentation (https://docs.datadoghq.com/tracing/setup/) states  "The APM Agent is enabled by default on Linux," that appears to be untrue. On the Centos 7 machines on which I installed the Datadog agent the APM *enabled: true* config option was commented out, as were all the other options, including the *receiver port* option.  
