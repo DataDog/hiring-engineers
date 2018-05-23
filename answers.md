@@ -11,4 +11,4 @@ In order to add a tag we need to customize the datadog.yaml file. Since we are u
 To open and edit the file with gedit:
 ```sudo gedit /etc/datadog-agent/datadog.yaml```
 
-(https://www.flickr.com/photos/158412660@N04/edit/with/42257171442/)
+[tags](https://www.flickr.com/gp/158412660@N04/86kFxw)
