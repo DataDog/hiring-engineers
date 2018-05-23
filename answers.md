@@ -417,7 +417,7 @@ All that said, the app errors out with a *socket.error* *address already in use*
 		return getattr(self._sock,name)(*args)
          socket.error: [Errno 98] Address already in use
 
-**UPDATE**  
+  **UPDATE**  
 I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause(s).  Doing some homework on flask indicated that hen the app is invoked with app.run() it by default uses TCP port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* options shows that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
 
     Active Internet connections (only servers)
@@ -480,7 +480,7 @@ I am still not out of the woods yet.  No collectd APM data has shown up in the D
 
 More to come......  
 
-**UPDATE - This just in - UPDATE**
+  **UPDATE - This just in - UPDATE**
 deactivating the python virtual environment, which I had previously activated, appears to have made a difference.  
 
 These 2 lines of information appear to indicate that ddtrace has identified a service:
@@ -568,7 +568,7 @@ Netstat now indicates that python is using TCP port 4999
 
 
 
-***Workaround to Generate APM traces***  
+**Workaround to Generate APM traces**  
 
 I generated traces for APM by creating a shell script that generated traces using the Dataoog API and making it run every few seconds
 
