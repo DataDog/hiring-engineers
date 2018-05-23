@@ -381,7 +381,7 @@ I uncommmented *apm_config*, *enabled: true* and *receiver_port: 8126*
 	#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
 	#   ignore_resources: []
 
-I installed *dd-trace* via *PIP*, installed *flask*, installed virtualenv.  There's probably a good chance I don't need to isolate flask in the virtual environment since exercise is hosted on a relatively minimal Centos machine that being used for nothing elese. I also installed *blinker1* when a debug warning on an initial test indicated blinker had to be installed:  
+I installed *dd-trace* via *PIP*,  *flask*, and virtualenv.  There's probably a good chance I don't need to isolate flask in a virtual environment since exercise is hosted on a relatively minimal Centos machine that is used for nothing elese. I also installed *blinker* after a debug warning on an initial test indicated blinker had to be installed:  
 
     DEBUG:ddtrace.contrib.flask.middleware:please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
 &nbsp;  
