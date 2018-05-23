@@ -568,7 +568,14 @@ Netstat now indicates that python is using TCP port 4999
 
 
 
-***Still No collectd APM data has shown up in the Datadog GUI yet.  Still debugging.***
+***Workaround to Generate APM traces***
+I generated traces for APMvi 
+
+
+![](Dashboardwithapmandinfrastucture.jpg)&nbsp;&nbsp;  
+
+![](apmscreen.jpg)&nbsp;&nbsp;  
+
 
 
 
