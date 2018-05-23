@@ -476,7 +476,30 @@ So I modified my flask app to set the TCP port number to 4999 (a bit of humor: l
 I am still not out of the woods yet.  No collectd APM data has shown up in the Datadog GUI yet.  I'm going to do some more debugging.
 
 More to come......
+**UPDATE - This just in - UPDATE**
+deactivating the python virtual environment, which I had previously activated, appears to have made a differece.  
 
+These 2 lines of information appear to indicate that ddtrace has identified a service:
+
+*DEBUG:ddtrace.api:reported 1 services
+2018-05-22 23:46:19,174 - ddtrace.api - DEBUG - reported 1 services*
+
+	[root@datadog-testing ddtraceproject]# ddtrace-run python apmtest.py
+	DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
+	2018-05-22 23:46:18,091 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
+	DEBUG:ddtrace.writer:resetting queues. pids(old:None new:111315)
+	2018-05-22 23:46:18,092 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:111315)
+	DEBUG:ddtrace.writer:starting flush thread
+	2018-05-22 23:46:18,092 - ddtrace.writer - DEBUG - starting flush thread
+	 * Serving Flask app "apmtest" (lazy loading)
+	 * Environment: production
+	   WARNING: Do not use the development server in a production environment.
+	   Use a production WSGI server instead.
+	 * Debug mode: off
+	INFO:werkzeug: * Running on http://127.0.0.1:4999/ (Press CTRL+C to quit)
+	2018-05-22 23:46:18,098 - werkzeug - INFO -  * Running on http://127.0.0.1:4999/ (Press CTRL+C to quit)
+	DEBUG:ddtrace.api:reported 1 services
+	2018-05-22 23:46:19,174 - ddtrace.api - DEBUG - reported 1 services
 
 
 
