@@ -418,7 +418,7 @@ All that said, the app errors out with a *socket.error* *address already in use*
          socket.error: [Errno 98] Address already in use
 
 **UPDATE**  
-I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause.  Doing some homework on flask indicated that by default when the app is invoked with app.run() it by default uses tcp port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* options  it appears that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
+I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause(s).  Doing some homework on flask indicated that hen the app is invoked with app.run() it by default uses TCP port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* shows that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
 
     Active Internet connections (only servers)
     Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
@@ -473,7 +473,9 @@ So I modified my flask app to set the TCP port number to 4999 (a bit of humor: l
 	if __name__ == '__main__':
 		app.run(host=None, port=4999)
 
+I am still not out of the woods yet.  No collectd APM data has shown up in the Datadog GUI yet.  I'm going to do some more debugging.
 
+More to come......
 
 
 
