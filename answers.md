@@ -124,8 +124,12 @@ Email notification received based on the monitor scheduled downtime:
 
 # Part 4 - Tracing
 
-A service is a set of processes that do the same job.
-A Resource is a particular action for a service.
+Bonus Question : 
+A service is a set of processes that do the same job. For example an application might have multiple components or services, such as web service and a data layer service. These are automatically discovered with our APM monitoring.
+
+A Resource is a particular action for a service. Its the next level down in granularity from the service. For example, if the service is a web service, the resource is a route or url. For a DB it could be a specific query. 
+
+
 
 APM1
 <img width="1300" alt="apm1" src="https://user-images.githubusercontent.com/2524766/40357179-ac9f3bb4-5dfe-11e8-92f5-508a020a8686.png">
