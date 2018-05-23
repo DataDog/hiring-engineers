@@ -417,6 +417,72 @@ All that said, the app errors out with a *socket.error* *address already in use*
 		return getattr(self._sock,name)(*args)
          socket.error: [Errno 98] Address already in use
 
+**UPDATE**
+I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause.  Doing some homework on flask indicated that by default when the app is invoked with app.run() it by default uses tcp port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* options  it appears that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
+
+    Active Internet connections (only servers)
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+    tcp        0      0 127.0.0.1:8126          0.0.0.0:*               LISTEN      1025/trace-agent    
+    tcp        0      0 127.0.0.1:5000          0.0.0.0:*               LISTEN      1024/agent          
+    tcp        0      0 127.0.0.1:5001          0.0.0.0:*               LISTEN      1024/agent          
+    tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1023/sshd           
+    tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2184/master   
+    
+Further homework on flask indicates that it is possible to explicitly set the host ip address and port number used by app.run()
+  
+So I modified my flask app to set the TCP port number to 4999 (a bit of humor: long ago automobile body shop pitchman Earl Scheib used to promise to "paint any car for $49.99).  The result is the that my flask app (apmtest.py) appears to be running successfully invoked with dd-trace.
+
+
+	(venv) [root@datadog-testing ddtraceproject]# vi apmtest.py
+	(venv) [root@datadog-testing ddtraceproject]# ddtrace-run python apmtest.py
+	 * Serving Flask app "apmtest" (lazy loading)
+	 * Environment: production
+	   WARNING: Do not use the development server in a production environment.
+	   Use a production WSGI server instead.
+	 * Debug mode: off
+	2018-05-22 23:10:56,231 - werkzeug - INFO -  * Running on http://127.0.0.1:4999/ (Press CTRL+C to quit)
+
+&nbsp;  
+
+	from flask import Flask
+	import logging
+	import sys
+
+	# Have flask use stdout as the logger
+	main_logger = logging.getLogger()
+	main_logger.setLevel(logging.DEBUG)
+	c = logging.StreamHandler(sys.stdout)
+	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	c.setFormatter(formatter)
+	main_logger.addHandler(c)
+
+	app = Flask(__name__)
+
+	@app.route('/')
+	def api_entry():
+		return 'Entrypoint to the Application'
+
+	@app.route('/api/apm')
+	def apm_endpoint():
+		return 'Getting APM Started'
+
+	@app.route('/api/trace')
+	def trace_endpoint():
+		return 'Posting Traces'
+
+	if __name__ == '__main__':
+		app.run(host=None, port=4999)
+
+
+
+
+
+
+
+
+
+
+
 **Bonus Question**
 The difference between a service and a resource is that a ***service*** is a set of processes that together deliver a feature set.  
 A ***resource*** is a specific query to a service.  
