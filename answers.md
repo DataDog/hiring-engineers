@@ -475,9 +475,10 @@ So I modified my flask app to set the TCP port number to 4999 (a bit of humor: l
 
 I am still not out of the woods yet.  No collectd APM data has shown up in the Datadog GUI yet.  I'm going to do some more debugging.
 
-More to come......
+More to come......  
+
 **UPDATE - This just in - UPDATE**
-deactivating the python virtual environment, which I had previously activated, appears to have made a differece.  
+deactivating the python virtual environment, which I had previously activated, appears to have made a difference.  
 
 These 2 lines of information appear to indicate that ddtrace has identified a service:
 
