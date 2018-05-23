@@ -417,7 +417,7 @@ All that said, the app errors out with a *socket.error* *address already in use*
 		return getattr(self._sock,name)(*args)
          socket.error: [Errno 98] Address already in use
 
-**UPDATE**
+**UPDATE**  
 I am not a facile programmer, but I do have a process for identifying symptoms and determining root cause.  Doing some homework on flask indicated that by default when the app is invoked with app.run() it by default uses tcp port 5000.  Checking what TCP ports processes are using, by issuing  *netstat* with  *-p -l -n -tcp* options  it appears that the Datadog agent binds and listens to TCP ports 5000 and 5001, which would conflict with my flask app if it is also trying to use TCP port 5000.  
 
     Active Internet connections (only servers)
