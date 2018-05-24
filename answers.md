@@ -131,6 +131,64 @@ A Resource is a particular action for a service. Its the next level down in gran
 
 
 
+
+For the APM tracing I chose the Python App.
+Note I tested instrumenting using both approaches. First I used the ddtrace-run command, where I didnt need to change the python code at all to get the service and resources with traces. 
+
+For the second method, I used the middleware objects and ran the python code as usual - also I got the same visibility of service / resources.
+
+Here is my instrumented Python code : 
+
+```
+
+from flask import Flask
+import blinker as _
+
+import logging
+import sys
+
+#import the datadog tracer
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+
+app = Flask(__name__)
+# create a TraceMiddleware object
+traced_app = TraceMiddleware(app, tracer, service="myflaskapp", distributed_tracing=False)
+
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+          app.run(host='0.0.0.0', port=8080)
+
+
+
+
+
+```
+
+
 APM Service Dashboard - Out of the box APM Dashboard showing a summary of the service:
 
 <img width="1300" alt="apm1" src="https://user-images.githubusercontent.com/2524766/40357179-ac9f3bb4-5dfe-11e8-92f5-508a020a8686.png">
@@ -146,49 +204,26 @@ Dashboard of APM together with server infra metrics:
 <img width="1308" alt="apm and infra" src="https://user-images.githubusercontent.com/2524766/40357208-c42f7442-5dfe-11e8-9939-c277884c8e6e.png">
 
 
-Here is my instrumented Python code : 
-
-```
+# Part 5 - Final Question
 
 
-from flask import Flask
-import blinker as _
+I had two ideas for using DD in interesting ways.
 
-import logging
-import sys
+1) DD company business monitoring 
+The concept would be to monitor the health of the DD business across a range of metrics and then to understand the correlation to other drivers - for example, you would track total company revenue and then split by geography , by monitored tech , and then correlate with things like marketing spend and headcount and other cost of sale.
 
-#import the datadog tracer
-from ddtrace import tracer
+e.g. you could then dashboard the current quarter revenue vs target and slice that by all customers using APM vs Log vs Infra , and then by those with cloud hosts (AWS vs Azure etc). 
+Then you could look for changes in revenue post marketing initiatives / events.
+This would be interesting to correlate business KPIs across regions and to use trend data to make forecasts - e.g. when we increased the field sales headcount in EMEA by x% we saw an increase in average deal size by y% etc etc. 
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+2) World Cup 2018 insights
+On a lighter note, this idea is to pull metrics from the web on world cup data and use to forecast the winner and then take this to the book makers. 
+E.g. you could look at correlation and patters between team and individual form (published on world cup sites) and then correlate that with team results in real time. Then based on that you could use our forecasting to predict teams most likley to progress - and use to make bets.
+:D
 
-app = Flask(__name__)
 
-@app.route('/')
-@tracer.wrap(name='request', service='myflaskapp', resource='api_entry')
-#@tracer.wrap(name='/')
-def api_entry():
-    return 'Entrypoint to the Application'
 
-@app.route('/api/apm')
-@tracer.wrap(name='request', service='myflaskapp', resource='apm_endpoint')
-def apm_endpoint():
-    return 'Getting APM Started'
 
-@app.route('/api/trace')
-@tracer.wrap(name='request', service='myflaskapp', resource='trace_endpoint')
-def trace_endpoint():
-    return 'Posting Traces'
 
-if __name__ == '__main__':
-          app.run(host='0.0.0.0', port=8080)
-
-```
 
 
