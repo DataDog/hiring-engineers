@@ -31,7 +31,9 @@ Shown here is the host map view showing the custom tags :
 
 ## Part 2: Visualizing Data
 
-Here is my script with the 3 graphs in the Timeboard : 
+Here is my Python script with the 3 graphs in the Timeboard:
+
+(Note: I tried the same graph definitions with the bash script approach and got parsing errors - the same graph definitions worked in Python)
 
 ```
 from datadog import initialize, api
