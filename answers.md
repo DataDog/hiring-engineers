@@ -11,4 +11,8 @@
   - Run api key command in terminal
     `DD_API_KEY=4XXXXXXXXXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"`
 
-    # <img src="/images/collecting_metrics1.png" height=300>
+<p align="center"> <img src="/images/prereq-1.png" height=300> </p>
+
+### Collecting Metrics
+
+1. Add tags in Agent config file
