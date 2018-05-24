@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant_data":{"guestpath":"/vagrant_data","hostpath":"/Users/botilko/DD/hiring-engineers/src/vm_files","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/botilko/DD/hiring-engineers/vm","disabled":false,"__vagrantfile":true}}}
