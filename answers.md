@@ -1,5 +1,6 @@
-# Answers from Ben Sunderland  -  May 18th 2017
-====================================
+# Datadog SE exercise 
+# Ben Sunderland  -  May 18th 2017
+
 
 ## Part 1: Collecting Metrics
 
@@ -25,6 +26,18 @@ Shown here is the host map view showing the custom tags :
 
 # Create a custom Agent check ....
 
+Here is my code for the custom check: 
+
+```
+from random import *
+
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        x = randint(1, 1000)    # Pick a random number between 1 and 100.
+        self.gauge('my_metric', x)
+
+```
 <img width="1300" alt="my_metric" src="https://user-images.githubusercontent.com/2524766/40341720-0ee59906-5dca-11e8-8253-6d1c0e17999e.png">
 
 (you can change the interval via the check config "min_collection_interval: 45" )
