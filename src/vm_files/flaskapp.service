@@ -1,0 +1,13 @@
+[Unit]
+Description=Run a flaskapp service
+After=syslog.target network.target datadog-agent-trace.service
+
+[Service]
+SyslogIdentifier=flask_app
+User=flaskapp
+Group=flaskapp
+ExecStart=/bin/bash -c "cd /usr/local/flaskapp && FLASK_ENV=development FLASK_APP=flask_app.py flask run --port 8080"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
