@@ -609,6 +609,10 @@ I generated traces for APM by creating a shell script that generated traces usin
 **Dashboard with both APM and Infrastructure Metrics**
 ![](Dashboardwithapmandinfrastucture.jpg)&nbsp;&nbsp;  
 
+The *save to timeboard* feature in the APM screen makes it easy to add an APM metric to an existing timeboard.
+
+![](savetotimeboard.jpg)&nbsp;&nbsp;  
+
 **APM Screen Showing 2 Services**
 ![](apmscreen2.jpg)&nbsp;&nbsp;  
 
@@ -630,6 +634,8 @@ This is explained in Datadog help documenation for APM at:
 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 
 and in the *Getting Started* APM documentation: 
+
+http://www.magcloud.com/browse/issue/1460520
 
 https://docs.datadoghq.com/tracing/visualization/
 
