@@ -18,6 +18,19 @@ I chose to integrate MongoDB with my Datadog agent.
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/mongo.png "MongoDB")
 
 
+```sh
+# MongoDB 3.x
+db.createUser({
+  "user":"datadog",
+  "pwd": "admin",
+  "roles" : [
+    {role: 'read', db: 'admin' },
+    {role: 'clusterMonitor', db: 'admin'},
+    {role: 'read', db: 'local' }
+  ]
+})
+```
+
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
