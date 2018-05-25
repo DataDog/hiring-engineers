@@ -88,5 +88,16 @@ Once these are set an email notification will be sent:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41443611025/in/dateposted/" title="downtime-email"><img src="https://farm2.staticflickr.com/1733/41443611025_6142441023.jpg" width="500" height="322" alt="downtime-email"></a>
 
+## Collecting APM Data:
+The flask app that I modified can be found in this repositories code file. Rather than using the ddtrace-run, I manually inserted the Middleware into the application. In a separate terminal I ran the following commands to start the flask server:
 
+&nbsp;&nbsp;&nbsp;&nbsp; ```export FLASK_APP=apm_flask.py```
+&nbsp;&nbsp;&nbsp;&nbsp; ```flask run```
 
+Within a few moments, the Dashboard UI updated the APM tab to show the traces.
+
+<a href="https://www.flickr.com/photos/158412660@N04/28473998728/in/dateposted/" title="my_service"><img src="https://farm2.staticflickr.com/1730/28473998728_c7b6583349.jpg" width="500" height="414" alt="my_service"></a>
+
+I then added this to my dashboard I created earlier using the UI:
+
+<a href="https://www.flickr.com/photos/158412660@N04/41445051175/in/dateposted/" title="timeboard-with-apm"><img src="https://farm1.staticflickr.com/886/41445051175_422fb29b3c.jpg" width="500" height="414" alt="timeboard-with-apm"></a>
