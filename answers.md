@@ -56,7 +56,7 @@ Finally annotate as shown below:
 <a href="https://www.flickr.com/photos/158412660@N04/28459451308/in/dateposted/" title="tag-timeboard"><img src="https://farm1.staticflickr.com/971/28459451308_85390d7a3d.jpg" width="481" height="304" alt="tag-timeboard"></a>
 
 #### Bonus Question
-The anomoly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a defined window of time. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available connections of my metric are steady.
+The anomaly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a defined window of time. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available connections of my metric are steady.
 
 
 ## Monitoring Data
@@ -89,7 +89,7 @@ Once these are set an email notification will be sent:
 <a href="https://www.flickr.com/photos/158412660@N04/41443611025/in/dateposted/" title="downtime-email"><img src="https://farm2.staticflickr.com/1733/41443611025_6142441023.jpg" width="500" height="322" alt="downtime-email"></a>
 
 ## Collecting APM Data:
-The flask app that I modified can be found in this repositories code file. Rather than using the ddtrace-run, I manually inserted the Middleware into the application. In a separate terminal I ran the following commands to start the flask server:
+The flask app that I modified can be found in this repositories code folder. Rather than using the ddtrace-run approach, I manually inserted the Middleware into the application. In a separate terminal I ran the following commands to start the flask server:
 
 &nbsp;&nbsp;&nbsp;&nbsp; ```export FLASK_APP=apm_flask.py```
 &nbsp;&nbsp;&nbsp;&nbsp; ```flask run```
@@ -98,6 +98,20 @@ Within a few moments, the Dashboard UI updated the APM tab to show the traces.
 
 <a href="https://www.flickr.com/photos/158412660@N04/28473998728/in/dateposted/" title="my_service"><img src="https://farm2.staticflickr.com/1730/28473998728_c7b6583349.jpg" width="500" height="414" alt="my_service"></a>
 
-I then added this to my dashboard I created earlier using the UI:
+I then added to my dashboard I created earlier using the UI:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41445051175/in/dateposted/" title="timeboard-with-apm"><img src="https://farm1.staticflickr.com/886/41445051175_422fb29b3c.jpg" width="500" height="414" alt="timeboard-with-apm"></a>
+
+#### Bonus Question
+A service is a part of the whole application. A Ruby on Rails api contains many processes and components, and would be considered a service. When setting up my middleware, I set my service by: ```service='my_service'```.
+
+A resource can best be explained using Ruby on Rails routes. A resource is simply a query to a single route.
+
+
+## Final Question
+First, this was a great challenge for a client facing position. It provided perspective of how a client would interact with Datadog's robust service.
+
+As for a creative way to use datadog... I would definitely like to see it used on timing traffic lights and how it affects traffic. Out here in NJ some highways have lights that are timed horribly that waste gas and creates excess emissions. It would also be interesting to be able to monitor public transportation in correlation with the traffic light timing.
+
+
+
