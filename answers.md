@@ -6,6 +6,7 @@
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 datadog-agent/checks.d/my_metric.py
 ``` python
 #import dd AgentCheck
@@ -19,6 +20,7 @@ class myCheck(AgentCheck):
         x = randint(0, 1000)
         self.gauge('my_metric', x)
 ```
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 datadog-agent/conf.d/my_metric.yaml
 ``` yaml
 init_config:
