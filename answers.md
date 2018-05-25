@@ -70,3 +70,23 @@ A new monitor can be created by going to the manage monitor page and clicking on
 The resulting notification I received via email is:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41443611395/in/dateposted/" title="warning"><img src="https://farm2.staticflickr.com/1746/41443611395_8ba4be95ce.jpg" width="491" height="500" alt="warning"></a>
+
+####Bonus Question
+Muting the monitor over night or weekend is accomplished in the manage downtime tab: 
+
+<a href="https://www.flickr.com/photos/158412660@N04/41443611115/in/dateposted/" title="downtime-dash"><img src="https://farm1.staticflickr.com/874/41443611115_6701bb3324.jpg" width="500" height="166" alt="downtime-dash"></a>
+
+Simply fill in the appropriate information for a daily mute from 7PM to 9AM:
+
+<a href="https://www.flickr.com/photos/158412660@N04/42345773911/in/dateposted/" title="daily-mute"><img src="https://farm1.staticflickr.com/897/42345773911_02f529f865.jpg" width="456" height="500" alt="daily-mute"></a>
+
+And for muting over the weekend:
+
+<a href="https://www.flickr.com/photos/158412660@N04/42345774061/in/dateposted/" title="weekend-muting"><img src="https://farm2.staticflickr.com/1756/42345774061_1bfe8b30c8.jpg" width="456" height="500" alt="weekend-muting"></a>
+
+Once these are set an email notification will be sent:
+
+<a href="https://www.flickr.com/photos/158412660@N04/41443611025/in/dateposted/" title="downtime-email"><img src="https://farm2.staticflickr.com/1733/41443611025_6142441023.jpg" width="500" height="322" alt="downtime-email"></a>
+
+
+
