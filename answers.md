@@ -15,6 +15,9 @@ tags: mytag:newhost, env:prod, role:database
 
 I chose to integrate MongoDB with my Datadog agent.
 
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/mongo.png "MongoDB")
+
+
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
