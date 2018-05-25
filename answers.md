@@ -93,7 +93,7 @@ The flask app that I modified can be found in this repositories code folder. Rat
 
 In a separate terminal run the following commands to start the flask server:
 
-&nbsp;&nbsp;&nbsp;&nbsp; ```export FLASK_APP=apm_flask.py```
+&nbsp;&nbsp;&nbsp;&nbsp; ```export FLASK_APP=apm_flask.py```</br>
 &nbsp;&nbsp;&nbsp;&nbsp; ```flask run```
 
 Within a few moments, the Dashboard UI will update the APM tab to show the traces.
@@ -113,7 +113,7 @@ A resource can best be explained using Ruby on Rails routes. A resource is simpl
 ## Final Question
 First, this was a great challenge for a client facing position. It provided perspective of how a client would interact with Datadog's robust service.
 
-As for a creative way to use datadog... I would definitely like to see it used on timing traffic lights and how it affects traffic. Out here in NJ some highways have lights that are timed horribly that waste gas and creates excess emissions. It would also be interesting to be able to monitor public transportation in correlation with the traffic light timing.
+As for a creative way to use datadog... I would definitely like to see it used on timing traffic lights and how it affects traffic. Out here in NJ some highways have horribly timed lights that waste gas and create excess emissions. It would also be interesting to monitor public transportation fuel efficiency in cunjunction with the traffic light timing.
 
 
 
