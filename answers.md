@@ -59,3 +59,14 @@ Finally annotate as shown below:
 The anomoly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a defined window of time. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available connections of my metric are steady.
 
 
+## Monitoring Data
+Since I used the api to create a timeboard, I wanted to use the UI to create the monitor.
+
+A new monitor can be created by going to the manage monitor page and clicking on New Monitor. You can then fill in the approriate information to create your monitor as shown below and the monitor can be found [here](https://app.datadoghq.com/monitors/5040024)
+
+<a href="https://www.flickr.com/photos/158412660@N04/42345774181/in/dateposted/" title="monitor1"><img src="https://farm2.staticflickr.com/1721/42345774181_1087485bd4.jpg" width="456" height="500" alt="monitor1"></a>
+<a href="https://www.flickr.com/photos/158412660@N04/41443611265/in/photostream/" title="monitor2"><img src="https://farm1.staticflickr.com/882/41443611265_4ab20cf7a0.jpg" width="456" height="500" alt="monitor2"></a>
+
+The resulting notification I received via email is:
+
+<a href="https://www.flickr.com/photos/158412660@N04/41443611395/in/dateposted/" title="warning"><img src="https://farm2.staticflickr.com/1746/41443611395_8ba4be95ce.jpg" width="491" height="500" alt="warning"></a>
