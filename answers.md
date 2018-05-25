@@ -17,7 +17,7 @@ I chose to integrate MongoDB with my Datadog agent.
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/mongo.png "MongoDB")
 
-
+mongo shell
 ```sh
 # MongoDB 3.x
 db.createUser({
@@ -30,7 +30,17 @@ db.createUser({
   ]
 })
 ```
-
+datadog-agent/conf.d/mongo.d/mongo.yaml
+``` yaml
+init_config:
+  instances:
+    - server: mongodb://datadog:<UNIQUEPASSWORD>@localhost:27017/admin
+      additional_metrics:
+        - collection       # collect metrics for each collection
+        - metrics.commands
+        - tcmalloc
+        - top
+```
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
