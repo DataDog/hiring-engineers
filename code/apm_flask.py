@@ -1,11 +1,11 @@
-import blinker as _
 import logging
 import sys
+import blinker as _
 
 from flask import Flask
-
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
+
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
@@ -14,9 +14,8 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 
-#Tracer configuration
-tracer.configure(hostname='datadog')
-app = Flask('API')
+tracer.configure()
+app = Flask(__name__)
 traced_app = TraceMiddleware(app, tracer, service='my_service')
 
 @app.route('/')
