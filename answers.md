@@ -5,6 +5,11 @@
 ![alt text](https://github.com/mjmanney/hiring-engineers/blob/solutions-engineer/images/vbox.PNG "Virtual Box")
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+datadog-agent/datadog.yaml
+``` yaml
+# Set the host's tags (optional)
+tags: mytag:newhost, env:prod, role:database
+```
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 datadog-agent/checks.d/my_metric.py
