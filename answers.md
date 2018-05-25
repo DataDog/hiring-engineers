@@ -10,6 +10,7 @@ datadog-agent/datadog.yaml
 # Set the host's tags (optional)
 tags: mytag:newhost, env:prod, role:database
 ```
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -41,8 +42,6 @@ init_config:
         - tcmalloc
         - top
 ```
-
-![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
