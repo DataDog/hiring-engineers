@@ -6,7 +6,7 @@
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-my_metric.py
+datadog-agent/checks.d/my_metric.py
 ``` python
 #import dd AgentCheck
 from checks import AgentCheck
@@ -18,4 +18,13 @@ class myCheck(AgentCheck):
     def check(self, instance):
         x = randint(0, 1000)
         self.gauge('my_metric', x)
+```
+datadog-agent/conf.d/my_metric.yaml
+``` yaml
+init_config:
+
+instances:
+    -    host: localhost
+         min_collection_interval: 45
+         name: my_metric
 ```
