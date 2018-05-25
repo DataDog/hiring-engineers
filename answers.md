@@ -34,7 +34,7 @@ datadog-agent/conf.d/mongo.d/mongo.yaml
 ``` yaml
 init_config:
   instances:
-    - server: mongodb://datadog:<UNIQUEPASSWORD>@localhost:27017/admin
+    - server: mongodb://datadog:admin@localhost:27017/admin
       additional_metrics:
         - collection       # collect metrics for each collection
         - metrics.commands
