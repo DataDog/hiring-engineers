@@ -10,8 +10,16 @@ datadog-agent/datadog.yaml
 # Set the host's tags (optional)
 tags: mytag:newhost, env:prod, role:database
 ```
+
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+I chose to integrate MongoDB with my Datadog agent.
+
+
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
+
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
 datadog-agent/checks.d/my_metric.py
 ``` python
 #import dd AgentCheck
@@ -25,7 +33,9 @@ class myCheck(AgentCheck):
         x = randint(0, 1000)
         self.gauge('my_metric', x)
 ```
+
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
 datadog-agent/conf.d/my_metric.yaml
 ``` yaml
 init_config:
