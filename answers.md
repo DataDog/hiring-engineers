@@ -1,10 +1,10 @@
 ### Setup
 
-I spent far too many hours trying to get VirtualBox to work on High Sierra (it did not work), so I chose to install the agent directly on OS X
+I spent far too many hours trying to get VirtualBox to work on High Sierra (it did not work), so I chose to install the agent directly on OSX.
 
 Once I reached the APM part of the assignment however, I was not able to install the trace. The current [documentation](https://github.com/DataDog/datadog-trace-agent) is for V5 and I was not able to successfully modify the bash command to get the trace working.
 
-At that point, I started up a hosted ubuntu instance and tried installing the agent and trace with linux. The host was recognized by datadog and showed up in my infrastructure list. However, I eventually ran into an issue where there was an issue with the datadog.yaml file. I could not fix the issue, but I could determine there was an issue with spacing in the code.
+At that point, I started up a hosted ubuntu instance and tried installing the agent and trace with linux. I also added tags and an agent check. I essentially did the collecting metrics part of the challenge twice. In those places, I have included double screenshots.
 
 
 ## Collecting Metrics
@@ -23,13 +23,15 @@ tags:
 ```
 ![Tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/master/ConfigFileTags.png)
 
+![linux tags picture]()
+
 ### Install database and Datadog configuration
 
  ![MySQLIntegration](https://raw.githubusercontent.com/akambale/hiring-engineers/master/MySQLIntegration.png)
 
 ### Create custom Agent Check
 
-I created two files 
+For the osx check
 
 mycheck.yaml
 
@@ -50,6 +52,28 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         random_number = randint(0, 1000)
         self.gauge( 'mymetric',  random_number )
+```
+
+For the linux check
+
+linuxcheck.yaml 
+
+```
+init_config:
+
+instances:
+    - min_collection_interval: 5
+```
+linuxcheck.py
+
+```
+from checks import AgentCheck
+from random import randint
+
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    random_number = randint(0, 1000)
+    self.gauge('linuxcheck', random_number)
 ```
 
 ### Change collection interval to 45 seconds
@@ -166,13 +190,59 @@ Power level cannot be found at {{host.ip}}
 
 ## Collecting APM Data:
 
-I was unable to complete this portion of the challenge. Here is the outline of all the steps I took.
+I ran into a number of issues with the Flask app. This project is my first experience with python. I spent a significant amount of time trying to troubleshoot a socket error, but I had no luck. I instead chose to use a I attempted to use [hot-shots](https://github.com/brightcove/hot-shots) on my linux host to monitor one of my NodeJS apps. I successfully sent a metric called "metricAPM" which sent a random number between 1 and 1000 every 10 seconds to datadog as long as the server was running.
 
-1. Attempted to install the tracer on OSX. I was unsuccessful in launching it (see my explanation at the top).
-2. Started up a hosted instance of ubuntu and installed the agent and tracer. I was not able to set tags or send a check to the datadog infrastructure list. I determined this was an issue with the datadog.yaml file.
-3. In spite of that, I tried to run the flask app from both my OSX and Linux. In both set-ups I ran into "socket.error: [Errno 48] Address already in use." I tried troubleshooting this, but was unsuccessful. I am not very familiar with Python.
-4. I attempted to use [hot-shots](https://github.com/brightcove/hot-shots) to monitor one of my NodeJS apps. As far as I know, there were no issues here. As it is, the documentation for this NPM package is lacking examples. But since my agent configuration was not working, I don't think it could successfully send metrics.
+The repo for the app I used can be found [here](https://github.com/akambale/marketunity). And the specific file I edited in the app to include APM can be found [here](https://github.com/akambale/marketunity/blob/master/server/server.js).
+
+I didn't push my APM agents to the repo. The code that makes up the core of the app and APM check is copied below:
+
+```
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const helpers = require('../data/db/helpers.js');
+const User = require('../data/db/models/newUser.js');
+const searchHelper = require('./searchHelpers/searchHelper.js');
+const connection = require('../data/db/connection.js');
+const jwt = require('jsonwebtoken');
+const path = require('path');
+const StatsD = require('hot-shots');
+
+const client = new StatsD();
+
+client.socket.on('error', function(error) {
+  console.error("Error in socket: ", error);
+});
+
+setInterval(() => {
+  let num = Math.ceil(Math.random() * 1000);
+  client.gauge('metricAPM', num);
+}, 10000);
+
+/***********************************************************************/
+/*********** Establishing Server and Listening on Port *****************/
+/***********************************************************************/
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.listen(1337, function () {
+  console.log('App listening on port 1337');
+});
+```
+
+### Bonus Question: Difference Between Service and Resource?
+
+
+
 
 ## Final Question: What would I use datadog for
 
 Like many people in SF, I took Uber/Lyft to work far too often, especially on Fridays when there wasn't a specific time I had to be in the office. I would set up an app that would send requests to the Uber and Lyft APIs every 30 seconds and receive prices. Using a check in the APM, I would then send prices to Datadog and create an alert that would notify me if prices dipped below a certain threshold so I could request a ride for the best price possible.
+
+user and user subscribtions service
+videos service
+ad type/length service
+analytics service
