@@ -11,7 +11,7 @@ At that point, I started up a hosted ubuntu instance and tried installing the ag
 
 ### Add tags in the agent config file
 
-I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
+For OSX I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
 I un-commented the following tags in the datadog.yaml file
 
@@ -234,18 +234,13 @@ app.listen(1337, function () {
 ```
 
 Dashboard with both APM and infrastructure metrics:
-![]()
+![infraApmMetrics](https://raw.githubusercontent.com/akambale/hiring-engineers/Amogh-SE/InfraAPM.png)
 
 ### Bonus Question: Difference Between Service and Resource?
 
-A service is part of an application, whereas a resource is like service query, be that to a database, a client, a server or more.
+A service is part of an application, whereas a resource is like service query, be that to a database, a client, a server or more. 
 
 
 ## Final Question: What would I use datadog for
 
 Like many people in SF, I took Uber/Lyft to work far too often, especially on Fridays when there wasn't a specific time I had to be in the office. I would set up an app that would send requests to the Uber and Lyft APIs every 30 seconds and receive prices. Using a check in the APM, I would then send prices to Datadog and create an alert that would notify me if prices dipped below a certain threshold so I could request a ride for the best price possible.
-
-user and user subscribtions service
-videos service
-ad type/length service
-analytics service
