@@ -4,16 +4,15 @@ I spent far too many hours trying to get VirtualBox to work on High Sierra (it d
 
 Once I reached the APM part of the assignment however, I was not able to install the trace. The current [documentation](https://github.com/DataDog/datadog-trace-agent) is for V5 and I was not able to successfully modify the bash command to get the trace working.
 
-At that point, I started up a hosted ubuntu instance and tried installing the agent and trace with linux. I also added tags and an agent check. I essentially did the collecting metrics part of the challenge twice. In those places, I have included double screenshots.
+At that point, I started up a hosted ubuntu instance and tried installing the agent and trace with linux. I also added tags and an agent check. I essentially did the collecting metrics part of the challenge twice. In those places, I have included two screenshots and multiple scripts.
 
 
 ## Collecting Metrics
 
 ### Add tags in the agent config file
 
-For OSX I couldn't find a datadog.yaml file within datadog-agent/, but I did fine one within datadog-agent/etc/. I assume this is the correct file seeing as how the tags were shown on the UI
 
-I un-commented the following tags in the datadog.yaml file
+I un-commented the following tags in the datadog.yaml file on OSX. For linux I edited te tags slightly.
 
 ```
 tags:
@@ -190,7 +189,7 @@ Power level cannot be found at {{host.ip}}
 
 ## Collecting APM Data:
 
-I ran into a number of issues with the Flask app. This project is my first experience with python. I spent a significant amount of time trying to troubleshoot a socket error, but I had no luck. I instead chose to use a I attempted to use [hot-shots](https://github.com/brightcove/hot-shots) on my linux host to monitor one of my NodeJS apps. I successfully sent a metric called "metricAPM" which sent a random number between 1 and 1000 every 10 seconds to datadog as long as the server was running.
+I ran into a number of issues with the Flask app. This project is my first experience with python. I spent a significant amount of time trying to troubleshoot a socket error, but I had no luck. Instead, I attempted to use [hot-shots](https://github.com/brightcove/hot-shots) on my linux host to monitor one of my NodeJS apps. I successfully sent a metric called "metricAPM" which sent a random number between 1 and 1000 every 10 seconds to datadog as long as the server was running.
 
 The repo for the app I used can be found [here](https://github.com/akambale/marketunity). And the specific file I edited in the app to include APM can be found [here](https://github.com/akambale/marketunity/blob/master/server/server.js).
 
@@ -238,7 +237,7 @@ Dashboard with both APM and infrastructure metrics:
 
 ### Bonus Question: Difference Between Service and Resource?
 
-A service is part of an application, whereas a resource is like service query, be that to a database, a client, a server or more. 
+A service is part of an application, whereas a resource is a service query or function execution, be that to a database, a client, a server or other components. 
 
 
 ## Final Question: What would I use datadog for
