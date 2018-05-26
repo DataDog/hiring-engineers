@@ -100,7 +100,7 @@ Here is the picture of the three metrics on separate timeboards over a four hour
 
 Note: I made this iframe a week after I originally took the screenshot, so the data is not the same, though the timeboard is.
 
-<iframe src="https://app.datadoghq.com/graph/embed?token=28cc5dc8fc38df2c01a67df7f90634290913bd6333718575f09d33c94641872f&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+[Link to dashboard](https://app.datadoghq.com/graph/embed?token=28cc5dc8fc38df2c01a67df7f90634290913bd6333718575f09d33c94641872f&height=300&width=600&legend=true)
 
 ### JSON Timeboard Script 
 
@@ -237,6 +237,8 @@ app.listen(1337, function () {
 
 Dashboard with both APM and infrastructure metrics:
 ![infraApmMetrics](https://raw.githubusercontent.com/akambale/hiring-engineers/Amogh-SE/InfraAPM.png)
+
+[Link to dashboard](https://app.datadoghq.com/graph/embed?token=a52391e54c385ce501480d9256c559229aa11344ef2950e4a7612c1dc54b2c29&height=300&width=600&legend=true)
 
 ### Bonus Question: Difference Between Service and Resource?
 
