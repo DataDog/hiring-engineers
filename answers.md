@@ -193,7 +193,7 @@ I ran into a number of issues with the Flask app. This project is my first exper
 
 The repo for the app I used can be found [here](https://github.com/akambale/marketunity). And the specific file I edited in the app to include APM can be found [here](https://github.com/akambale/marketunity/blob/master/server/server.js).
 
-I didn't push my APM agents to the repo. The code that makes up the core of the app and APM check is copied below:
+I didn't push my APM edits to the github repo. The code that makes up the core of the app and APM check is copied below:
 
 ```
 const express = require('express');
