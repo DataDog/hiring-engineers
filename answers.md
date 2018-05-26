@@ -23,7 +23,7 @@ tags:
 ```
 ![Tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/master/ConfigFileTags.png)
 
-![linux tags picture]()
+![linux tags picture](https://raw.githubusercontent.com/akambale/hiring-engineers/Amogh-SE/linuxtagpicture.png)
 
 ### Install database and Datadog configuration
 
@@ -233,9 +233,12 @@ app.listen(1337, function () {
 });
 ```
 
+Dashboard with both APM and infrastructure metrics:
+![]()
+
 ### Bonus Question: Difference Between Service and Resource?
 
-
+A service is part of an application, whereas a resource is like service query, be that to a database, a client, a server or more.
 
 
 ## Final Question: What would I use datadog for
