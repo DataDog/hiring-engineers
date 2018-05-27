@@ -66,18 +66,18 @@ db.createUser({
 })
 ```
 
-Verify the user you created with: 
+Verifying the datadog user I just created created with: 
 
 ```sh
 echo "db.auth('datadog', '<PASSWORD>')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
 echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 ```
 
-If everything works properly the terminal will echo the message `datadog user - OK`
+If the datadog user passes authentication to the mongodb instance, the terminal will echo `datadog user - OK`
 
-Lastly, configure the Datadog Agent to connect to connect to the mongodb instance. 
+Lastly, I configured Datadog Agent to connect to connect to the mongodb instance. 
 
-Edit the config file at datadog-agent/conf.d/mongo.d/mongo.yaml (Agent v6)
+Edit the config file at datadog-agent/conf.d/mongo.d/mongo.yaml (Agent v6).
 I also added some custom tags.
 
 ``` yaml
@@ -120,7 +120,7 @@ datadog-agent/checks.d/my_metric.py
 #import dd AgentCheck
 from checks import AgentCheck
 
-#import randit
+#import randint
 from random import randint
 
 class myCheck(AgentCheck):
@@ -142,3 +142,126 @@ instances:
          min_collection_interval: 45
          name: my_metric
 ```
+
+## Visualizing Data
+
+Timeboard does not support anamoly detection.  Therefore I created a timeboard for my custom metric and a monitor for the database anamoly, which I added to my [screenboard](https://p.datadoghq.com/sb/7af5f9814-243e179005f19f7df668a6d7dad75b3c).
+
+I used Datadog's official Python api library, [datadogpy](https://github.com/DataDog/datadogpy).
+
+To install:
+
+```sh
+pip install datadog
+```
+
+Accessing Datadog's API requires both an api and app key.  Generate an app key and view the existing api key at <https://app.datadoghq.com/account/settings#api>.
+
+For the skeleton of the code I refered to Datadog's (Timeboard API)(https://docs.datadoghq.com/api/?lang=python#timeboards) docs.
+
+It took a few back and forth readings between the API docs, Graphing, and Monitor guides before I figured out the query syntax.  In some cases where I was stuck, I found it helpful to create the object via the UI and then examine the JSON structure for comparison.
+
+The code below makes two graphs utilizing the datadogpy package.  The first is a timeseries of `my_metric` tagged by my host.  The second is a query value which uses the rollup function to add together the values of `my_metric` from the last hour.
+
+
+This code can be found in tboard.py at the root directory of my repository.
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<MY_API_KEY>',
+    'app_key': '<MY_APP_KEY>'
+}
+
+initialize(**options)
+
+title = "Michael's Timeboard"
+description = "Final Timeboard"
+graphs = [
+{    # Graph of my_metric
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{host:ubuntuyhivi}"},
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric"
+}, 
+{   # Query value of sum of my_metric past 1 hr
+    "definition": {
+        "events": [],
+        "requests": [
+            {
+                "q": "sum:my_metric{*}.rollup(sum, 3600)",
+                "type": None,
+                "style": {
+                  "palette": "dog_classic",
+                  "type": "solid",
+                  "width": "normal"
+                },
+                "conditional_formats": [],
+                "aggregator": "sum"
+            }
+        ],
+        "viz": "query_value",
+        "autoscale": True
+    },
+    "title": "Rollup - Sum of my_metric past hr"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     read_only=read_only)
+
+```
+
+Next, to utilize the anamoly monitor I used the API to create a new monitor by reffering to the [create a monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) API and [anamoly monitor](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) documentation.
+
+Creating a monitor is similar to creating a timeboard.
+
+I used the amount of free bytes in the MongoDB thread cache as my metric to monitor.
+
+This code can be found in anomalyMonitor.py at the root directory of my repository.
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<MY_API_KEY>',
+    'app_key': '<MY_APP_KEY>'
+}
+
+initialize(**options)
+
+# Create a new monitor
+options = {
+    "notify_no_data": True,
+    "no_data_timeframe": 20
+}
+tags = ["db:mongodb", "myTag:anomaly"]
+api.Monitor.create(
+    type="metric alert",
+    query="avg(last_4h):anomalies(avg:mongodb.tcmalloc.tcmalloc.thread_cache_free_bytes{*}, 'agile', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1",
+    name="Mongo Thread Cache Free Bytes",
+    message="Anomaly detected!!!!!",
+    tags=tags,
+    options=options
+)
+
+```
+
+Here is a snapshot of me talking to myself about the metric I created.
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/my_metric_snap.png "my_metric 5min")
+
+Here is a snapshot of the anomaly monitor in my monitor dashboard, and the anamoly graph can be visited on my [public screen board here.](https://p.datadoghq.com/sb/7af5f9814-243e179005f19f7df668a6d7dad75b3c)
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/anomaly_monitor.png "anomaly dash")
+
+### What is the Anomaly graph displaying?
+The anomaly graph is the gray area imposed over the current graph.  This represents the range of "normal" values based the algorithims interpretation of past data and future expectations.  If the graph goes above or below this threshold an alert is created.
+
