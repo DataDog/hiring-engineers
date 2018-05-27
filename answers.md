@@ -63,7 +63,7 @@ Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 1. Your custom metric scoped over your host.
 
-I created a timeboard which collects data of the custom metric: my_metric we just created in the previous step by submitted the Python code below and confirmed the timeboard works well in the UI as expected. Please refer to the two screenshots below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
+I created a timeboard which collects data of the custom metric: my_metric we just created in the previous step by submitted the Python code below and confirmed the timeboard works as expected. Please refer to the two screenshots below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
 
 Screenshot 1: Python code
 
