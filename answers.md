@@ -43,9 +43,9 @@ Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-I used time.sleep function to making the 45 seconds time delay for the mycheck.py to changing the data collection interval. Please refer to the screenshot below.
+I used time.sleep function in mycheck.py to making the 45 seconds time delay for changing the data collection interval. Please refer to the screenshot below.
 
-Screenshot: Added time function into the /etc/datadog-agent/checks.d/mycheck.py
+Screenshot: Added time delay function into the /etc/datadog-agent/checks.d/mycheck.py
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_3.PNG)
 
