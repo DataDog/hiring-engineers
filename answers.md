@@ -19,32 +19,45 @@ Next, I installed CURL by opening a terminal and entering the command:
 ```sh
 sudo apt-get install curl
 ```
-and finally installing the Datadog agent with:
+which allowed to install the Datadog agent with:
 
 ```sh
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-datadog-agent/datadog.yaml
+
+At the datadog agent root directory edit the config file datadog.yaml.  Note that the Datadog docs recommend to use the yaml list syntax as below:
+
 ``` yaml
 # Set the host's tags (optional)
 tags: mytag:newhost, env:prod, role:database
 ```
+
+My custom newhost tag appears in the Hostmap, alongside the automatically generated tags.
+
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/hostmap.PNG "Host Map with custom tags")
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I chose to integrate MongoDB with my Datadog agent.
+I chose to integrate MongoDB with my Datadog agent.  [Instructions can be found on mongodb's documentation.](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/solutions-engineer/images/mongo.png "MongoDB")
 
-mongo shell
+After mongodb was installed on the machine I began the integration with datadog.
+
+In terminal run the command `mongo` to access the mongo shell.
+
+Once inside the mongo shell create a read-only user adminstrator for data dog:
 ```sh
 # MongoDB 3.x
+
+# use the admin db
+use admin
+
 db.createUser({
   "user":"datadog",
-  "pwd": "admin",
+  "pwd": "<CREATE-MY-PASSWORD>",
   "roles" : [
     {role: 'read', db: 'admin' },
     {role: 'clusterMonitor', db: 'admin'},
@@ -52,21 +65,57 @@ db.createUser({
   ]
 })
 ```
-datadog-agent/conf.d/mongo.d/mongo.yaml
+
+Verify the user you created with: 
+
+```sh
+echo "db.auth('datadog', '<PASSWORD>')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
+echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
+```
+
+If everything works properly the terminal will echo the message `datadog user - OK`
+
+Lastly, configure the Datadog Agent to connect to connect to the mongodb instance. 
+
+Edit the config file at datadog-agent/conf.d/mongo.d/mongo.yaml (Agent v6)
+I also added some custom tags.
+
 ``` yaml
 init_config:
+
   instances:
-    - server: mongodb://datadog:admin@localhost:27017/admin
+    - server: mongodb://datadog:<PASSWORD>@localhost:27017/admin
       additional_metrics:
         - collection       # collect metrics for each collection
         - metrics.commands
         - tcmalloc
         - top
+      tags:
+        - myMongoDB
+        - metricsDB
 ```
+
+Restart the datadog agent with:
+
+```sh
+sudo service datadog-agent restart
+```
+
+and get the status of the integration with (Agent v6):
+
+```sh
+sudo datadog-agent status
+```
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/dd_status_mongo-metric.png "Mongo integration status")
+
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Custom checks should be placed in the checks.d directory at the datadog-agent root.
+
 datadog-agent/checks.d/my_metric.py
+
 ``` python
 #import dd AgentCheck
 from checks import AgentCheck
