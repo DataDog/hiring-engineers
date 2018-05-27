@@ -2,6 +2,7 @@ Questions
 
 Please provide screenshots and code snippets for all steps.
 
+
 Collecting Metrics:
 
 1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -58,6 +59,7 @@ Screenshot: Added min_collection_interval into the /etc/datadog-agent/conf.d/myc
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_4.PNG)
 
 
+
 Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -77,6 +79,7 @@ Screenshot 2: My_metric in the timeboard just crated
 
 I randomly picked mysql.net.connections up as the metric we apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/) to it.
 Unfortunately, I could not find the way to add the mysql.net.connections metric into the timeboard I just created. It seems the anomaly function only could applies to the monitor so I created a monitor instead timeboard in this step. Please refer to the two screenshots below. 
+
 If I missed something, please point me and let me know. Thank you.
 
 Screenshot 1: Python code
@@ -122,6 +125,7 @@ Screenshot: Anomaly graph
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_8.PNG)
  
  
+ 
 Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
@@ -136,7 +140,7 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Please refer to the screenshot below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
+Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
 
 Screenshot 1: Creating the monitor
 
@@ -163,6 +167,7 @@ Screenshot 1: Downtime from 7pm to 9am daily on M-F
 Screenshot 2: Downtime all day on Sat-Sun
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_2.PNG)
+
 
 
 Collecting APM Data:
@@ -214,6 +219,7 @@ Please include your fully instrumented app in your submission, as well.
 I only used the Python sample code (Flask app) above to create the APM.  
  
  
+ 
 Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -221,7 +227,7 @@ Is there anything creative you would use Datadog for?
 
 I’m very interested in IoT and have developed a few Raspberry Pi based autonomous home projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home by myself and truly enjoying these projects as it could bring an easier life to my family and improve my technical skills.
 
-During developing these projects, I found a few pain points and I think Datadog could help me to resolve it.
+During developing these projects, I found a few pain points and I think Datadog could help me to resolve/improve it.
 
 1. Analizy issues
 
@@ -231,5 +237,5 @@ Now, I could create a dashboard in Datadog which include Infrastructure Metrics 
 2. Integrate separate data into a single smart home system monitor
 
 There are few smart home projects I’m running at home and different project generates their own data in different UI. For example, I have to check the room temperature by ssh to the Raspberry Pi remotely every time and use VNC to access the Raspberry Pi if I need to check the security camera video. 
-I believe that I can send these data to Datadog and integrate them into a single smart home system dashboard which includes all data I need to improve system visibility and make my life even easier.
-Unfortunately, I cannot provide a demo and show the possibility of Datadog could bring to me as the project need time to complete but I will find some time to achieve it and share it with you.
+I believe that I can send these data to Datadog and integrate them into a single smart home system dashboard which includes all data I need to improve system visibility and make my life easier.
+Unfortunately, I cannot provide a demo and show the possibility of Datadog could bring to me as it need time to complete but I will find some time to achieve it and share it with you.
