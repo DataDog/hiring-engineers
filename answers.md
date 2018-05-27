@@ -157,7 +157,7 @@ pip install datadog
 
 Accessing Datadog's API requires both an api and app key.  Generate an app key and view the existing api key at <https://app.datadoghq.com/account/settings#api>.
 
-For the skeleton of the code I refered to Datadog's (Timeboard API)(https://docs.datadoghq.com/api/?lang=python#timeboards) docs.
+For the skeleton of the code I refered to Datadog's [Timeboard API](https://docs.datadoghq.com/api/?lang=python#timeboards) docs.
 
 It took a few back and forth readings between the API docs, Graphing, and Monitor guides before I figured out the query syntax.  In some cases where I was stuck, I found it helpful to create the object via the UI and then examine the JSON structure for comparison.
 
@@ -263,5 +263,5 @@ Here is a snapshot of the anomaly monitor in my monitor dashboard, and the anamo
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/anomaly_monitor.png "anomaly dash")
 
 ### What is the Anomaly graph displaying?
-The anomaly graph is the gray area imposed over the current graph.  This represents the range of "normal" values based the algorithims interpretation of past data and future expectations.  If the graph goes above or below this threshold an alert is created.
+The anomaly graph is the gray area overlaying over the current graph.  This represents the range of "normal" values based the algorithims interpretation of past data and future expectations.  If the graph goes above or below this threshold an alert is created.
 
