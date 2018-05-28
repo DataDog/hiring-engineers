@@ -307,4 +307,10 @@ The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+By clicking on the `Create Monitor` tab of the `my_metric` graph, I was able to set the alert conditions as shown below.
+
 <p align="center"> <img src="/images/metric_conditions.png" height=300> </p>
+
+I then configured the monitor's message so that a more descriptive notification of the problem would be emailed.
+
+<p align="center"> <img src="/images/alerts_mymetric.png" height=300> </p>
