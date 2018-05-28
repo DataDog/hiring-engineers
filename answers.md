@@ -198,3 +198,16 @@ instances:
   [{}]
 
 ```
+
+Then, I created a `randomevalue.py` file in `/etc/checks.d` and added the following code:
+
+```
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0, 1000))
+
+```
+
+I restarted the Agent and got the new metric to show up successfully in the Metric Summary.
