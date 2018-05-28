@@ -25,7 +25,7 @@
 2. Used [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
 
 
-I ran into a lot of errors when trying to connect to mongoDB 
+I ran into a lot of errors when trying to connect to mongoDB
 
 ```
 ==============
@@ -183,3 +183,18 @@ Logs Agent
 .............................
 
   ```
+
+
+3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+I successfully created a custom Agent check called `my_metric` using the instructions from [Datadog Submit](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+
+First, I created a `randomevalue.yaml` file in the `conf.d` directory and added the following code inside:
+
+```
+init_config:
+
+instances:
+  [{}]
+
+```
