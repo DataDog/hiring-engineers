@@ -314,3 +314,33 @@ By clicking on the `Create Monitor` tab of the `my_metric` graph, I was able to 
 I then configured the monitor's message so that a more descriptive notification of the problem would be emailed.
 
 <p align="center"> <img src="/images/alerts_mymetric.png" height=300> </p>
+
+### Email from Datadog about status
+
+<p align="center"> <img src="/images/email_warning.png" height=300> </p>
+
+Within a minute, I received another email notifying me that the status has been **recovered**.
+
+<p align="center"> <img src="/images/email_recovered.png" height=300> </p>
+
+
+
+> Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office.
+
+I configured the notifications of the monitor to be silenced from **7:00pm to 9:00am Monday - Friday**
+
+<p align="center"> <img src="/images/schedule_downtime.png" height=300> </p>
+
+After configuration, I received an email about the change.
+
+<p align="center"> <img src="/images/email_downtimeMF.png" height=300> </p>
+
+I then configured the notifcations of the monitor to be silenced from **12:00AM Saturday to 12:00AM**
+
+<p align="center"> <img src="/images/schedule_downtime2.png" height=300> </p>
+
+<p align="center"> <img src="/images/email_downtimeSS.png" height=300> </p>
+
+
+
+## Collecting APM Data
