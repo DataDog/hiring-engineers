@@ -53,7 +53,9 @@ I then checked my check in the Datadog GUI:
 
 *personal note: the challenging part for me here was understanding how to write the mycheck.py having not written Python before. I based my code on the Datadog Docs example, then modified based on googling of random number generators*
 
-4.
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+
 
 ## Visualising Data:
 
