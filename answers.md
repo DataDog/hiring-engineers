@@ -19,7 +19,7 @@ Next, I installed CURL by opening a terminal and entering the command:
 ```sh
 sudo apt-get install curl
 ```
-which allowed to install the Datadog agent with:
+which allowed me to install the Datadog agent with:
 
 ```sh
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -265,3 +265,59 @@ Here is a snapshot of the anomaly monitor in my monitor dashboard, and the anamo
 ### What is the Anomaly graph displaying?
 The anomaly graph is the gray area overlaying over the current graph.  This represents the range of "normal" values based the algorithims interpretation of past data and future expectations.  If the graph goes above or below this threshold an alert is created.
 
+## Monitoring Data
+
+To create a new monitor navigate to <https://app.datadoghq.com/monitors/manage> and then click on New Monitor on the top right.
+
+Select the type of monitor to metric since we are monitoring `my_metric`.
+
+Step 1 - set the detection method as `Threshold Alert`.
+Step 2 - select `my_metric` as the metric to monitor.  Make sure to select a host or else the host variable markup won't work in step 4.
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/alert_step12.png "Step 1 & 2")
+
+Step 3 - Set the alert to trigger the metric if it is `above` the threshhold `on average` during the last `5 minutes`.  The Alert threshold is set to 800 and the Warning threshold at 500.  Lastly, be sure to send a notification of data is missing for more than 5 minutes.
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/alert_step3.png "Step 3")
+
+Step 4 - configure the alert message based on whether the monitor is an Alert, Warning or is not sending any data using the message template variable syntax.  The following markdown reports whether `my_metric` is nearing or exceed the threshold or if it is not reporting any data.  It also included the host information as well as the value reported and sends a notification to my email.
+
+```
+{{#is_alert}}
+  ALERT! My_metric avg has exceeded {{threshold}}.  Avg past 5 min is {{value}}.
+  HOST: {{host.name}} with IP {{host.ip}}.
+{{/is_alert}}
+
+{{#is_warning}}
+  WARNING! My_metric avg is nearing {{threshold}}.  Avg past 5 min is {{value}}.
+  HOST: {{host.name}} with IP {{host.ip}}.
+{{/is_warning}}
+
+{{#is_no_data}}
+  ALERT! My_metric has not recieved any data in the past 5 min.
+  HOST: {{host.name}} with IP {{host.ip}}.
+{{/is_no_data}}
+
+@michaelmanney@yahoo.com 
+```
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/alert_step45.png "Step 4")
+
+
+Here is a screenshot of the alert in action!
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/alert_email.png "alert email")
+
+
+
+### Bonus - Monitor Downtime
+
+Naivate to <https://app.datadoghq.com/monitors#/downtime> and click on Schedule Downtime to create a silence period.
+
+The first schedule sets a daily downtime between 7:00p - 9:00a.  It is OK that it runs on the weekends as we are going to create a second schedule that schedules downtime all of Sat & Sun.
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/downtime_MF.png "weekday downtime")
+
+And the weekend down time...
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/downtime_SS.png "weekend downtime")
