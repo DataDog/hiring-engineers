@@ -10,10 +10,10 @@ I then used [Datadog Docs - tagging] (https://docs.datadoghq.com/getting_started
 I then edited the datadog.yaml file by uncommenting the "tags" line and added the tag "localhost:alishaw"
 
 Screenshot 1: editing the datadog.yaml
-https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png
+![datadog.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png)
 
 Screenshot 2: Host Map with new tag
-https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png
+![hostmap](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png)
 
 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then installed the respective Datadog integration for that database.
 
