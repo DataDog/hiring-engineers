@@ -211,3 +211,5 @@ class RandomCheck(AgentCheck):
 ```
 
 I restarted the Agent and got the new metric to show up successfully in the Metric Summary.
+
+<p align="center"> <img src="/images/my-metric.png" height=300> </p>
