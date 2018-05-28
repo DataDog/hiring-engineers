@@ -3,10 +3,11 @@
 ### Prerequisites - Setting up the environment
 
 1. Set up [Vagrant Ubuntu 12.04 VM](https://www.vagrantup.com/intro/getting-started/)
-  - Downloaded the [proper package](https://www.vagrantup.com/downloads.html) for operating system
-  - Run these commands in terminal to have fully a running virtual machine:
+  - I downloaded the [proper package](https://www.vagrantup.com/downloads.html) for operating system
+  - I ran the following commands in terminal to have fully a running virtual machine:
     `$ vagrant init hashicorp/precise64`
     `$ vagrant up`
+
 2. Signed up for Datadog
   - Installed Datadog Agent for OSX
   - Run api key command in terminal
@@ -16,13 +17,17 @@
 
 ### Collecting Metrics
 
-1. Added tags in Agent config file
+>> Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+I added the following tags in Agent config file:
   - #region:west-coast
   - #role:database-mongodb
 
 <p align="center"> <img src="/images/collecting-metrics-2.png" height=300> </p>
 
-2. Used [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
+>> Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+ I used MongoDB and the [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
 
 
 I ran into a lot of errors when trying to connect to mongoDB
@@ -185,11 +190,13 @@ Logs Agent
   ```
 
 
-3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+>> Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I successfully created a custom Agent check called `my_metric` using the instructions from [Datadog Submit](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
 
-First, I created a `randomevalue.yaml` file in the `conf.d` directory and added the following code inside:
+Since the names of the configuration and check files must match, I named the files `randomvalue.yaml` and `randomvalue.py`.
+
+First, I created a `randomvalue.yaml` file in the `conf.d` directory and added the following code inside:
 
 ```
 init_config:
@@ -213,3 +220,33 @@ class RandomCheck(AgentCheck):
 I restarted the Agent and got the new metric to show up successfully in the Metric Summary.
 
 <p align="center"> <img src="/images/my-metric.png" height=300> </p>
+
+
+>> Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+In the `randomvalue.yaml` file, I added the following snippet of code to change the default check of every 15 seconds to 45 seconds:
+
+```
+init_config:
+  min_collection_interval: 45
+
+instances:
+  [{}]
+```
+
+>> Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+Yes, the respective `.yaml` file can be modified and the python check file can be left untouched.
+
+### Visualizing Data:
+
+>> Utilize the Datadog API to create a Timeboard that contains:
+
+>>  Your custom metric scoped over your host.
+>>  Any metric from the Integration on your Database with the anomaly function applied.
+>>  Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+To utilize the Datadog API, I ran `brew upgrade coreutils` since it was already installed in my computer.
+I then created a new Timeseries dashboard by simply inputting the Metric name, host name, rollup sum, and time interval. The json tab creates the requests desired.
+
+<p align="center"> <img src="/images/timeboard.png" height=300> </p>
