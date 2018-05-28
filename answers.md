@@ -238,7 +238,7 @@ instances:
 
 Yes, the respective `.yaml` file can be modified and the python check file can be left untouched.
 
-## Visualizing Data:
+## Visualizing Data
 
 > Utilize the Datadog API to create a Timeboard that contains:
 
@@ -297,3 +297,14 @@ Last 5 minutes screenshot emailed using `@` notation:
 
 **Bonus Question:**
 The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) detects any unusual activity by analyzing the metrics's history behavior and by following the trends in some timeseries.
+
+
+## Monitoring Data
+
+>Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+>Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+<p align="center"> <img src="/images/metric_conditions.png" height=300> </p>
