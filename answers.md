@@ -1,6 +1,6 @@
 # Solutions Engineer Challenge for Datadog
 
-### Prerequisites - Setting up the environment
+## Prerequisites - Setting up the environment
 
 1. Set up [Vagrant Ubuntu 12.04 VM](https://www.vagrantup.com/intro/getting-started/)
   - I downloaded the [proper package](https://www.vagrantup.com/downloads.html) for operating system
@@ -15,9 +15,9 @@
 
 <p align="center"> <img src="/images/prereq-1.png" height=300> </p>
 
-### Collecting Metrics
+## Collecting Metrics
 
->> Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+> Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 I added the following tags in Agent config file:
   - #region:west-coast
@@ -190,7 +190,7 @@ Logs Agent
   ```
 
 
->> Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+> Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I successfully created a custom Agent check called `my_metric` using the instructions from [Datadog Submit](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
 
@@ -222,7 +222,7 @@ I restarted the Agent and got the new metric to show up successfully in the Metr
 <p align="center"> <img src="/images/my-metric.png" height=300> </p>
 
 
->> Change your check's collection interval so that it only submits the metric once every 45 seconds.
+> Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 In the `randomvalue.yaml` file, I added the following snippet of code to change the default check of every 15 seconds to 45 seconds:
 
@@ -234,19 +234,66 @@ instances:
   [{}]
 ```
 
->> Bonus Question Can you change the collection interval without modifying the Python check file you created?
+> Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 Yes, the respective `.yaml` file can be modified and the python check file can be left untouched.
 
-### Visualizing Data:
+## Visualizing Data:
 
->> Utilize the Datadog API to create a Timeboard that contains:
+> Utilize the Datadog API to create a Timeboard that contains:
 
->>  Your custom metric scoped over your host.
->>  Any metric from the Integration on your Database with the anomaly function applied.
->>  Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+>  Your custom metric scoped over your host.
+>  Any metric from the Integration on your Database with the anomaly function applied.
+>  Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 To utilize the Datadog API, I ran `brew upgrade coreutils` since it was already installed in my computer.
 I then created a new Timeseries dashboard by simply inputting the Metric name, host name, rollup sum, and time interval. The json tab creates the requests desired.
 
+
+JSON created:
+```
+{
+  "requests": [
+    {
+      "q": "avg:my_metric{host:StacyStacesMBP.lan}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "per_hour(avg:my_metric{host:StacyStacesMBP.lan})",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true,
+  "status": "done"
+}
+
+```
 <p align="center"> <img src="/images/timeboard.png" height=300> </p>
+
+
+> Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+> Set the Timeboard's timeframe to the past 5 minutes
+ Take a snapshot of this graph and use the @ notation to send it to yourself.
+ Bonus Question: What is the Anomaly graph displaying?
+
+
+Last 5 minutes screenshot emailed using `@` notation:
+
+<p align="center"> <img src="/images/metric_5mins.png" height=300> </p>
+
+**Bonus Question:**
+The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) detects any unusual activity by analyzing the metrics's history behavior and by following the trends in some timeseries.
