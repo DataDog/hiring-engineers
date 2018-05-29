@@ -27,10 +27,39 @@ I added the following tags in Agent config file:
 
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
- I used MongoDB and the [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
+I used MongoDB and the [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
+
+In the mongo shell, I was able to create a read-only user for the Datadog Agent in the admin database.
+I edited the `mongo.d/conf.yaml` file to include the following snippet and then restarted the agent:
+
+```
+init_config:
+ instances:
+   - server: mongodb://datadog:<UNIQUEPASSWORD>@localhost:27017/admin
+     additional_metrics:
+       - collection       # collect metrics for each collection
+       - metrics.commands
+       - tcmalloc
+       - top
+
+```     
+```
+logs:
+- type: file
+path: /var/log/mongodb/mongodb.log
+service: mongo
+source: mongodb
+```
+
+In the `datadog.yaml` file, I uncommented the following and then restarted the agent:
+
+```  
+logs_enabled: true
+```
 
 
-After several attempts and research, I was not able to connect to MongoDB successfully.  
+After several attempts and research, I was not able to connect to MongoDB successfully, and received the error, such  as `Status: Error: File /var/log/mongodb/mongodb.log does not exist`.
+
 
 ```
 ==============
@@ -291,6 +320,14 @@ I installed blinker `pip install blinker`
 Error I received:
 
 <p align="center"> <img src="/images/apm_error.png" height=300> </p>
+
+Another unsuccessful attempt when changing the port:
+```
+2018-05-28 19:16:49,149 - ddtrace.writer - DEBUG - failed_to_send traces to Agent: HTTP error status 404, reason NOT FOUND, message Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.12.2 Python/3.6.3
+Date: Tue, 29 May 2018 02:16:49 GMT
+```
 
 
 >Bonus Question: What is the difference between a Service and a Resource?
