@@ -10,7 +10,7 @@ For the [Ubuntu installation](https://docs.datadoghq.com/agent/basic_agent_usage
 Your API key can either be found at `https://app.datadoghq.com/account/settings#api` or using the "Install an Agent" step of the Datadog GUI "Get Started" wizard.
 
 ## Collecting Metrics:
-1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
+#####1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
 Tags provide the ability to easier query and correlate machines and metrics in Datadog. These can be configured automatically through Integrations, or manually though the Configuration file/GUI.
 
@@ -33,7 +33,7 @@ Screenshot 2: Host Map with new tag
 
 ![hostmap](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png)
 
-2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then installed the respective Datadog integration for that database.
+#####2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then installed the respective Datadog integration for that database.
 
 For this exercise I installed MongoDB on my machine.
 
@@ -51,7 +51,7 @@ Screenshot 3: MongoDB integration yaml edited
 
 ![MongoDB yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoYAML.png)
 
-3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+#####3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
 To create a custom Agent check I followed the guide at [Datadog Docs - Agent Checks](https://docs.datadoghq.com/developers/agent_checks/)
 
@@ -69,7 +69,7 @@ I then checked my check in the Datadog GUI:
 
 *personal note: the challenging part for me here was understanding how to write the mycheck.py having not written Python before. I based my code on the Datadog Docs example, then modified based on googling of random number generators*
 
-4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#####4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 
 
