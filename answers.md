@@ -137,6 +137,8 @@ class myCheck(AgentCheck):
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+Unfortunately I could not determine how to do this within the Python code, even after thoroughly checking Datadog's documentation.
+
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
 This can be done by altering
 datadog-agent/conf.d/my_metric.yaml
