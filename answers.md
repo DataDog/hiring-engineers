@@ -81,7 +81,7 @@ echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog 
 
 If the datadog user passes authentication to the mongodb instance, the terminal will echo `datadog user - OK`
 
-Lastly, I configured Datadog Agent to connect to connect to the mongodb instance. 
+Lastly, I configured the Datadog Agent to connect to the mongodb instance. 
 
 Edit the config file at datadog-agent/conf.d/mongo.d/mongo.yaml (Agent v6).
 I also added some custom tags.
