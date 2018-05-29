@@ -342,4 +342,6 @@ A **resource** is an action that is called with whatever the service provide - s
 >Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 Is there anything creative you would use Datadog for?
 
-As a tennis player, I would love to use Datadog to check out any open public courts and see if they are in use. This would save time and disappointment of getting ready and traveling to the courts only to find that they are taken by other tennis players. With the help of Datadog and the integration of the Raspberry Pi to sensor movement, this would save tennis players time.
+As a tennis player, I would love to use Datadog to check out any open public courts and see if they are in use. This would save time and disappointment of getting ready and traveling to the courts only to find that they are taken by other tennis players. With the help of Datadog and the integration of the Raspberry Pi to sensor movement, this would save tennis players time and perhaps their racket from being thrown to the ground. 
+
+![](https://media.giphy.com/media/De4qpY1j2EcgM/giphy.gif)
