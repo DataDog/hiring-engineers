@@ -344,3 +344,12 @@ I then configured the notifcations of the monitor to be silenced from **12:00AM 
 
 
 ## Collecting APM Data
+
+First, I installed the Python client in the terminal:
+`pip install ddtrace`
+
+I ran into a few errors and had to run `pip install blinker` to clear one of the errors in the console.
+
+I installed blinker `pip install blinker`
+
+<p align="center"> <img src="/images/apm_error.png" height=300> </p>
