@@ -366,7 +366,7 @@ The service & traces & [public screenboard](https://p.datadoghq.com/sb/7af5f9814
 
 In a nutshell services are used to to serve resources. 
 
-In the context of this excersise the service would be the flask app.  The resource would be some data, such as some information that the user has stored on a database that the flask app interacts with.
+In the context of this exercise the web service would be the flask app.  The resource would be some data, such as some information that the user has stored on a database that the flask app fetches and serves the user.
 
 ## Final Question - Is there anything creative you would use Datadog for?
 
