@@ -5,8 +5,8 @@
 1. Set up [Vagrant Ubuntu 12.04 VM](https://www.vagrantup.com/intro/getting-started/)
   - I downloaded the [proper package](https://www.vagrantup.com/downloads.html) for operating system
   - I ran the following commands in terminal to have fully a running virtual machine:
-    `$ vagrant init hashicorp/precise64`
-    `$ vagrant up`
+    - `$ vagrant init hashicorp/precise64`
+    - `$ vagrant up`
 
 2. Signed up for Datadog
   - Installed Datadog Agent for OSX
@@ -25,12 +25,12 @@ I added the following tags in Agent config file:
 
 <p align="center"> <img src="/images/collecting-metrics-2.png" height=300> </p>
 
->> Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+> Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
  I used MongoDB and the [Datadog integration of MongoDB](https://docs.datadoghq.com/integrations/mongo/)
 
 
-I ran into a lot of errors when trying to connect to mongoDB
+After several attempts and research, I was not able to connect to MongoDB successfully.  
 
 ```
 ==============
@@ -189,7 +189,6 @@ Logs Agent
 
   ```
 
-
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I successfully created a custom Agent check called `my_metric` using the instructions from [Datadog Submit](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
@@ -295,7 +294,8 @@ Last 5 minutes screenshot emailed using `@` notation:
 
 <p align="center"> <img src="/images/metric_5mins.png" height=300> </p>
 
-**Bonus Question:**
+>Bonus Question: What is the Anomaly graph displaying?
+
 The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) detects any unusual activity by analyzing the metrics's history behavior and by following the trends in some timeseries.
 
 
@@ -315,11 +315,13 @@ I then configured the monitor's message so that a more descriptive notification 
 
 <p align="center"> <img src="/images/alerts_mymetric.png" height=300> </p>
 
-### Email from Datadog about status
+
+Email received from Datadog about status:
 
 <p align="center"> <img src="/images/email_warning.png" height=300> </p>
 
 Within a minute, I received another email notifying me that the status has been **recovered**.
+(And then several after that)
 
 <p align="center"> <img src="/images/email_recovered.png" height=300> </p>
 
@@ -329,7 +331,7 @@ Within a minute, I received another email notifying me that the status has been 
 
 I configured the notifications of the monitor to be silenced from **7:00pm to 9:00am Monday - Friday**
 
-<p align="center"> <img src="/images/schedule_downtime.png" height=300> </p>
+<p align="center"> <img src="/images/schedule_downtime.png" height=400> </p>
 
 After configuration, I received an email about the change.
 
@@ -337,7 +339,7 @@ After configuration, I received an email about the change.
 
 I then configured the notifcations of the monitor to be silenced from **12:00AM Saturday to 12:00AM**
 
-<p align="center"> <img src="/images/schedule_downtime2.png" height=300> </p>
+<p align="center"> <img src="/images/schedule_downtime2.png" height=400> </p>
 
 <p align="center"> <img src="/images/email_downtimeSS.png" height=300> </p>
 
@@ -352,4 +354,21 @@ I ran into a few errors and had to run `pip install blinker` to clear one of the
 
 I installed blinker `pip install blinker`
 
+Error I received:
+
 <p align="center"> <img src="/images/apm_error.png" height=300> </p>
+
+
+>Bonus Question: What is the difference between a Service and a Resource?
+
+A **service** is a set of processes that do the same job and work together to provide a feature set. This may entail a database, a web-application, queries, etc. A web application may have several services, depending on the complexity of the application.
+
+A **resource** is an action that is called with whatever the service provide - such as an endpoint or query. For example: `/user/home`.
+
+
+## Final Question
+
+>Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?
+
+As a tennis player, I would love to use Datadog to check out any open public courts and see if they are in use. This would save time and disappointment of getting ready and traveling to the courts only to find that they are taken by other tennis players. With the help of Datadog and the integration of the Raspberry Pi to sensor movement, this would save tennis players time.
