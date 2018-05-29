@@ -27,7 +27,7 @@ Screenshot 1: editing the datadog.yaml
 
 ![datadog.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png)
 
-1.3 Save your edits to the configuration file and confirm them in the Datadog GUI.
+1.3 Save your edits to the configuration file and confirm them in the Datadog GUI by selecting your host in `https://app.datadoghq.com/infrastructure/map`
 
 Screenshot 2: Host Map with new tag
 
