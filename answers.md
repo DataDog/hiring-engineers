@@ -105,31 +105,6 @@ Agent (v6.2.0)
       Python Check Loader:
         No module named apm
 
-========
-JMXFetch
-========
-
-  Initialized checks
-  ==================
-    no checks
-
-  Failed checks
-  =============
-    no checks
-
-=========
-Forwarder
-=========
-
-  CheckRunsV1: 29
-  IntakeV1: 2
-  RetryQueueSize: 0
-  Success: 60
-  TimeseriesV1: 29
-
-  API Keys status
-  ===============
-    https://6-2-0-app.agent.datadoghq.com,*************************39bad: API Key valid
 
 ==========
 Logs Agent
