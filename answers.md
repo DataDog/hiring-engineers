@@ -347,6 +347,8 @@ I then configured the notifcations of the monitor to be silenced from **12:00AM 
 
 ## Collecting APM Data
 
+I ran into errors in collecting APM data, as shown in the image below.
+
 First, I installed the Python client in the terminal:
 `pip install ddtrace`
 
