@@ -1,17 +1,33 @@
-To carry out this exercise I used a laptop running Ubuntu 16.04.
+The below documentation is a guide to my first steps with Datadog and covers a how to of collecting, visualising & monitoring data.
+
+The below is based on an Ubuntu 16.04 local machine.
+The pre-requisite is to install the Datadog agent on the local machine to allow reporting to your Datadog account, the install process is documented at [Datadog Docs - Agent](https://docs.datadoghq.com/agent/) to select your platform of choice. 
+
+For the [Ubuntu installation](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) the Datadog Docs provides the single line of code for installation:
+
+` DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)`
+
+Your API key can either be found at `https://app.datadoghq.com/account/settings#api` or using the "Install an Agent" step of the Datadog GUI "Get Started" wizard.
 
 ## Collecting Metrics:
 1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
-To add tags in the Agent config file I first located the .yaml config file by finding it using [Datadog Docs - agent usage](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu)
+Tags provide the ability to easier query and correlate machines and metrics in Datadog. These can be configured automatically through Integrations, or manually though the Configuration file/GUI.
 
-I then used [Datadog Docs- tagging](https://docs.datadoghq.com/getting_started/tagging/assigning_tags) to understand how to assign tags using the configuration files
+1.1 To add tags manually in the Agent config file, you first locate the .yaml config file for your platform [Datadog Docs - agent usage](https://docs.datadoghq.com/agent/basic_agent_usage/)
 
-I then edited the datadog.yaml file by uncommenting the "tags" line and added the tag "localhost:alishaw"
+For Ubuntu, it is located at: `/etc/datadog-agent/datadog.yaml`. 
+**Note: datadog.yaml requires sudo privileges to edit**
+
+1.2 Follow [Datadog Docs- Assigning Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags) to understand how to assign tags using the configuration files. It is recommended to follow [tagging best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices)
+
+Edit the datadog.yaml file by uncommenting the "tags" line and add your chosen tag; i.e "localhost:alishaw"
 
 Screenshot 1: editing the datadog.yaml
 
 ![datadog.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png)
+
+1.3 Save your edits to the configuration file and confirm them in the Datadog GUI.
 
 Screenshot 2: Host Map with new tag
 
