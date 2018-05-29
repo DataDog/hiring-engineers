@@ -3,7 +3,7 @@
 ## Prerequisites - Setting up the environment
 
 1. Set up [Vagrant Ubuntu 12.04 VM](https://www.vagrantup.com/intro/getting-started/)
-  - I downloaded the [proper package](https://www.vagrantup.com/downloads.html) for operating system
+  - I downloaded the [proper package](https://www.vagrantup.com/downloads.html) for the operating system
   - I ran the following commands in terminal to have fully a running virtual machine:
     - `$ vagrant init hashicorp/precise64`
     - `$ vagrant up`
