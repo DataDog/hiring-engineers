@@ -8,7 +8,7 @@ I wanted to use an an official Datadog library, however after being unable to pr
 
 Ultimately I suspected the problem might be due to the older version of Ubuntu and decided to try a more recent version.
 
-As JavaScript is the language I am most comfortable with I referneced a few articles to [realign myself with the basics of Python](https://dev.to/underdogio/python-for-javascript-developers).
+As JavaScript is the language I am most comfortable with I referenced a few articles to [realign myself with the basics of Python](https://dev.to/underdogio/python-for-javascript-developers).
 
 ***
 
