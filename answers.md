@@ -8,6 +8,10 @@ I wanted to use an an official Datadog library, however after being unable to pr
 
 Ultimately I suspected the problem might be due to the older version of Ubuntu and decided to try a more recent version.
 
+As JavaScript is the language I am most comfortable with I referneced a few articles to [realign myself with the basics of Python](https://dev.to/underdogio/python-for-javascript-developers).
+
+***
+
 [I chose Ubuntu 16.04 LTS as my host running on VM Virtual Box](https://p.datadoghq.com/sb/7af5f9814-243e179005f19f7df668a6d7dad75b3c)
 
 I already had Virtual Box with Ubuntu instlled my local machine.  There are many [tutorials online](https://linus.nci.nih.gov/bdge/installUbuntu.html) on how to get this up and running.
@@ -24,6 +28,8 @@ which allowed me to install the Datadog agent with:
 ```sh
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+
+## Collecting Metrics 
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
