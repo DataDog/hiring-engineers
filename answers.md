@@ -33,21 +33,35 @@ Screenshot 2: Host Map with new tag
 
 ![hostmap](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png)
 
-###### 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then installed the respective Datadog integration for that database.
+###### 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-For this exercise I installed MongoDB on my machine.
+Datadog provides more than 200 built-in integrations for monitoring across systems, apps & services. 
 
-I then used the 'Integrations' section of the Datadog GUI to install the MongoDB integration.
+2.1 To enable an Integration, navigate to `https://app.datadoghq.com/account/settings#integrations` to view the available Integrations and select the one to configure. For example, the MongoDB Integration.
 
-Screenshot 1: Integrations tab - MongoDB installed
+Clicking on an Integration will display an Overview description, Configuration steps & Metrics that are tracked.
+
+2.2 Under the Configuration tab you will find the setup required for the MongoDB Integration. 
+
+First, you need to create a read-only user in MongoDB for the Datadog Agent, these commands are run from the Mongo shell
+
+![mongoDB integration step 1](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoDB_Integration_1.png)
+
+Second, you then edit the Integration config file at `/etc/datadog-agent/conf.d/mongo.d/mongo.yaml`
+
+![mongoDB integration step 2](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoDB_Integration_2.png)
+
+Finally, restart the Datadog agent using `sudo service datadog-agent restart` and run a Check to confirm the Integration was successfully created.
+
+Screenshot 3: Integrations tab - MongoDB succesfully installed
 
 ![mongoDB integrations](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/Integrations_tab_MongoDB.png)
 
-Screenshot 2: MongoDB installation created
+Screenshot 4: MongoDB installation created event on Dashboard
 
 ![MongoDB on dashboard](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoDB_installed.png)
 
-Screenshot 3: MongoDB integration yaml edited
+Screenshot 5: MongoDB integration yaml edited
 
 ![MongoDB yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoYAML.png)
 
