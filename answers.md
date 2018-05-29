@@ -234,6 +234,7 @@ Creating a monitor is similar to creating a timeboard.
 I used the amount of free bytes in the MongoDB thread cache as my metric to monitor.
 
 This code can be found in anomalyMonitor.py at the root directory of my repository.
+![](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/anamoly_chart.png)
 
 ```python
 from datadog import initialize, api
