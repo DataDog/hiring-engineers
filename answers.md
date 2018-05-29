@@ -53,25 +53,6 @@ Agent (v6.2.0)
 .............................
 .............................
 
-=========
-Collector
-=========
-
-  Running Checks
-  ==============
-    cpu
-    ---
-      Total Runs: 10
-      Metrics: 6, Total Metrics: 54
-      Events: 0, Total Events: 0
-      Service Checks: 0, Total Service Checks: 0
-      Average Execution Time : 0ms
-
-
- .............................
- .............................
-
-
     mongo
     -----
       Total Runs: 10
@@ -101,32 +82,8 @@ Collector
           self._error_message(selector))
       ServerSelectionTimeoutError: localhost:27016: [Errno 61] Connection refused
 
-    network
-    -------
-      Total Runs: 10
-      Metrics: 30, Total Metrics: 300
-      Events: 0, Total Events: 0
-      Service Checks: 0, Total Service Checks: 0
-      Average Execution Time : 10122ms
-
-
-    ntp
-    ---
-      Total Runs: 10
-      Metrics: 1, Total Metrics: 10
-      Events: 0, Total Events: 0
-      Service Checks: 1, Total Service Checks: 10
-      Average Execution Time : 84ms
-
-
-    uptime
-    ------
-      Total Runs: 10
-      Metrics: 1, Total Metrics: 10
-      Events: 0, Total Events: 0
-      Service Checks: 0, Total Service Checks: 0
-      Average Execution Time : 0ms
-
+.............................
+.............................
 
   Config Errors
   ==============
