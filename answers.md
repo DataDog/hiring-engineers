@@ -321,3 +321,46 @@ The first schedule sets a daily downtime between 7:00p - 9:00a.  It is OK that i
 And the weekend down time...
 
 ![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/downtime_SS.png "weekend downtime")
+
+## APM Monitoring 
+
+Install the Datadog python APM tracer with 
+
+```sh
+pip install ddtrace
+```
+
+I copied the flask code from the instructions into a file named webapp.py, which can be found at the root directory of my repository.
+
+
+First download the Flask framework with: 
+
+```sh
+pip install flask
+```
+
+then run the app with 
+
+```sh
+ddtrace-run python webapp.py
+```
+
+and my web app is running on my localhost on port 8080!
+
+The service & traces & [public screenboard](https://p.datadoghq.com/sb/7af5f9814-243e179005f19f7df668a6d7dad75b3c):
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/flask_service.png "flask service")
+
+![alt text](https://raw.githubusercontent.com/mjmanney/hiring-engineers/Michael-Manney_Solutions-Engineer/images/flask_trace.png "flask trace")
+
+## Bonus - What is the difference between a Service and a Resource?
+
+In a nutshell services are used to to serve resources. 
+
+In the context of this excersise the service would be the flask app.  The resource would be some data, such as some information that the user has stored on a database that the flask app interacts with.
+
+## Final Question - Is there anything creative you would use Datadog for?
+
+Existing within it's current use case - I think it would be interesting to see the Datadog agent utilized on the Raspberry Pi.  I am aware there is an existing integration [here](https://docs.datadoghq.com/developers/faq/deploying-the-agent-on-raspberrypi/).  Pi's are getting more and more powerful but still have somewhat limited resources which is where the Datadog agent would shine.  Given the portability of the Pi + the wide range of sensors components (motion, weather, RFID, GPS, biometric) I think the possibilites for innovation are endless. Maybe one example could be to connect a [fingerprint sensor](https://tutorials-raspberrypi.com/how-to-use-raspberry-pi-fingerprint-sensor-authentication/) to a Pi, integrate it with a custom application, and monitor through DD APM for tracking authentication in the physical world.
+
+On another note, it is my understanding that the DD agent is currently used for Web application performance monitoring and I am wondering if it could also be useful for mobile applications (as well as a mobile app view for accessing your DD account).
