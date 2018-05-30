@@ -6,53 +6,53 @@ Please provide screenshots and code snippets for all steps.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-- To add tags, I found "Assigning tags using the configuration files" in the Docs page (https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) and configured datadog.yaml to added the region: nsw tag. Please refer to the two screenshots below.
+*To add tags, I found "Assigning tags using the configuration files" in the Docs page (https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) and configured datadog.yaml to added the region: nsw tag. Please refer to the two screenshots below.*
 
-- Screenshot 1: datadog.yaml
+*Screenshot 1: datadog.yaml*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_datadog_yaml.PNG)
 
-- Screenshot 2: Host Map (Added the "region:nsw" tag)
+*Screenshot 2: Host Map (Added the "region:nsw" tag)*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-- I've installed MySQL into my Ubuntu (16.04.4) and I followed the MySQL integration page (https://docs.datadoghq.com/integrations/mysql/) to configure the MySQL and the agent. After the configuration, confirmed the dashboard is receiving data from MySQL. Please refer to the two screenshots below.
+*I've installed MySQL into my Ubuntu (16.04.4) and I followed the MySQL integration page (https://docs.datadoghq.com/integrations/mysql/) to configure the MySQL and the agent. After the configuration, confirmed the dashboard is receiving data from MySQL. Please refer to the two screenshots below.*
 
-- Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+*Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql_conf.PNG)
 
-- Screenshot 2: MySQL dashboard
+*Screenshot 2: MySQL dashboard*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- To create a custom Agent check, I followed the docs (https://docs.datadoghq.com/developers/agent_checks/) and created mycheck.yaml and mycheck.py then configured the two files accordingly. Please refer to the two screenshots below. 
+*To create a custom Agent check, I followed the docs page (https://docs.datadoghq.com/developers/agent_checks/) and created mycheck.yaml and mycheck.py then configured the two files accordingly. Please refer to the two screenshots below.* 
 
-- Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
+*Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_1.PNG)
 
-- Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
+*Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-- I used time.sleep function in mycheck.py to making the 45 seconds time delay for changing the data collection interval. Please refer to the screenshot below.
+*I used time.sleep function in mycheck.py to making the 45 seconds time delay for changing the data collection interval. Please refer to the screenshot below.*
 
-- Screenshot: Added time delay function into the /etc/datadog-agent/checks.d/mycheck.py
+*Screenshot: Added time delay function into the /etc/datadog-agent/checks.d/mycheck.py*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_3.PNG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-- We also could change the data collection interval by configuring min_collection_interval in the mycheck.yaml file. Please refer to the screenshot below.
+*We also could change the data collection interval by configuring min_collection_interval in the mycheck.yaml file. Please refer to the screenshot below.*
 
-- Screenshot: Added min_collection_interval into the /etc/datadog-agent/conf.d/mycheck.yaml
+*Screenshot: Added min_collection_interval into the /etc/datadog-agent/conf.d/mycheck.yaml*
 
 ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_4.PNG)
 
