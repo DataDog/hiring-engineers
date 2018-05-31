@@ -42,15 +42,17 @@ Utilize the Datadog API to create a Timeboard that contains:
 -Any metric from the Integration on your Database with the anomaly function applied.
 -Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-Github Gist Containing Script:
-https://gist.github.com/MichaelRomani/110808ad74a4ac2ef96faf64fe066e5a
+Timeboard (API: code located in - timeboard.py)
+
+Github Gist Containing Code Snippet:
+(https://gist.github.com/MichaelRomani/110808ad74a4ac2ef96faf64fe066e5a)
 
 Timeboard Screenshot:
 
 ![Alt text](https://user-images.githubusercontent.com/29218846/40798527-3be3e348-64d9-11e8-97ec-418743e8a1a4.png)
 
 Link to Timeboard:
-https://app.datadoghq.com/dash/824782/timeboardmymetricrollupanomalies?live=true&page=0&is_auto=false&from_ts=1527772243107&to_ts=1527786643107&tile_size=m
+(https://app.datadoghq.com/dash/824782/timeboardmymetricrollupanomalies?live=true&page=0&is_auto=false&from_ts=1527772243107&to_ts=1527786643107&tile_size=m)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 -Set the Timeboard's timeframe to the past 5 minutes
@@ -103,4 +105,12 @@ APM Screenshots:
 
 ![Alt text](https://user-images.githubusercontent.com/29218846/40798799-e6281202-64d9-11e8-82bf-bbd39fcb3531.png)
 
+-Bonus Question: What is the difference between a Service and a Resource?
 
+
+-Please include your fully instrumented app in your submission, as well.
+
+my_app.py - included in this pr
+
+Also - Github Gist Containing Flask App Code (also included in this pr "my_app.py":
+(https://gist.github.com/MichaelRomani/2bc033b52b678770083c0a8c387e9f5c)
