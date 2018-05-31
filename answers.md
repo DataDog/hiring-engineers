@@ -75,7 +75,7 @@ Bonus Question Can you change the collection interval without modifying the Pyth
                 [{}]
 ---------------------
     As you can see from the screenshot, this gave an interval of approximately 20 seconds. By simply changing the configuration file to the following, I was able to change the collection interval to 45 seconds. Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
-#+html:    <p align="center"><img src="my_metric.png" width="500" ></img></p>
+   <p align="center"><img src="my_metric.png" width="500" ></img></p>
 
 ---------------------
           init_config:
