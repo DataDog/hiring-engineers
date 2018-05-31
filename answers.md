@@ -6,7 +6,9 @@ Prerequisites - Setup the environment
       One lesson I learned was read the Datadog documentation VERY CAREFULLY. The instructions explicitly state "We strongly recommend using minimum v. 16.04 to avoid dependency issues." Huge mistake on my part... However, by beating my head against the wall, I think I have a better understanding of Datadog because I was forced to look for things that I may have not looked into otherwise.
 
       Having said this, the Datadog documentation is technically accurate in all the cases that I have referenced. However, there are instances where simply reformatting or adding a few additional cautionary comments would greatly increase the likelihood of success on the first try of an example. For instance, In "Writing an Agent check" https://docs.datadoghq.com/developers/agent_checks/ at about the middle of the page in the section "Your first check", the example explicitly states the file and location, however a simple formatting change, like I reference below, I think, will increase the likeliness of success on the first try.
-
+      <p align="center">
+      <img src="my_metric.png" width="500" ></img>
+      </p>
       Your first check
 
             The names of the configuration and check files must match. If your check is called mycheck.py your configuration file must be named mycheck.yaml.
