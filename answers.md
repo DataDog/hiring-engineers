@@ -3,7 +3,7 @@ Collecting Metrics:
 -Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Host Map Link:
-(https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&app=postgresql)
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&app=postgresql
 
 datadog.yaml:
 
@@ -42,7 +42,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 -Any metric from the Integration on your Database with the anomaly function applied.
 -Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-Timeboard (API: code located in - timeboard.py)
+Timeboard (API: code located in file "timeboard.py" included in this pr)
 
 Github Gist Containing Code Snippet:
 (https://gist.github.com/MichaelRomani/110808ad74a4ac2ef96faf64fe066e5a)
@@ -52,7 +52,7 @@ Timeboard Screenshot:
 ![Alt text](https://user-images.githubusercontent.com/29218846/40798527-3be3e348-64d9-11e8-97ec-418743e8a1a4.png)
 
 Link to Timeboard:
-(https://app.datadoghq.com/dash/824782/timeboardmymetricrollupanomalies?live=true&page=0&is_auto=false&from_ts=1527772243107&to_ts=1527786643107&tile_size=m)
+https://app.datadoghq.com/dash/824782/timeboardmymetricrollupanomalies?live=true&page=0&is_auto=false&from_ts=1527772243107&to_ts=1527786643107&tile_size=m
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 -Set the Timeboard's timeframe to the past 5 minutes
@@ -62,10 +62,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 -Bonus Question: What is the Anomaly graph displaying?
 
-There are two anomaly graphs being display, one for  row insertion into a table within the mydb database, the other for postgres percent usage connections.  These graphs were created using the ‘basic’ anomaly algorithm and uses a color system to differentiate between normal behavior (blue) and abnormal behavior (orange).
-In the case of row insertion, normal behavior is when no rows are being inserted into the database.  When rows are being inserted, the behavior is out of bounds (floor and ceiling value constituting the ‘norm’) of what is considered normal behavior and therefore these occurrences appear in orange.
+There are two anomaly graphs being display, one for  row insertion into a table within the mydb database, the other for postgres percent usage connections.  These graphs were created using the ‘basic’ anomaly algorithm and use a color system to differentiate between normal behavior (blue) and abnormal behavior (orange).
+In the case of row insertion, normal behavior is when no rows are being inserted into the database.  When rows are being inserted, the behavior is out of bounds (floor and ceiling value constituting the ‘norm’) for what is considered 'normal behavior' and therefore these occurrences appear in orange.
 
-Normal behavior is dynamically defined and will change overtime as behavior changes.  This can be seen in the second graph.  The grey area surrounding the line within the graph constitutes the bounds of normal behavior.  As you can see, at the beginning of the chart normal behavior is for the percentage to be at or around 0.  When a user or users connect to the database, the line jumps, rising above the defined bounds and is therefor colored orange.    However, after the user or users have been connected to the database for sometime the boundaries for normal behavior are redefined (grey area shifts) and the line color goes back to being blue.
+Normal behavior is dynamically defined and will change overtime as behavior changes.  This can be seen in the second graph.  The grey area surrounding the line within the graph constitutes the bounds of normal behavior.  As you can see, at the beginning of the chart normal behavior is for the usage percentage to be at or around 0.  When a user or users connect to the database, the line jumps, rising above the 'normal bounds' and is therefor displayed in orange.  However, after the user or users have been connected to the database for sometime the boundaries for 'normal behavior' are redefined, the grey area on the chart shifts, and the line color goes back to blue.
 
 Monitoring Data:
 
@@ -107,10 +107,11 @@ APM Screenshots:
 
 -Bonus Question: What is the difference between a Service and a Resource?
 
+A service is a set of processes (ie, single webapp or db) and a resource is a particular action for a service (ie. a SQL query or a canonical URL).
 
 -Please include your fully instrumented app in your submission, as well.
 
 my_app.py - included in this pr
 
 Also - Github Gist Containing Flask App Code (also included in this pr "my_app.py":
-(https://gist.github.com/MichaelRomani/2bc033b52b678770083c0a8c387e9f5c)
+https://gist.github.com/MichaelRomani/2bc033b52b678770083c0a8c387e9f5c

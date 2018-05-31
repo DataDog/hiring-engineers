@@ -30,5 +30,4 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
-    statsd.increment('web.page_views')
     app.run(port=9000)
