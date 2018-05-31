@@ -68,8 +68,6 @@ Utilize the Datadog API to create a Timeboard that contains:
 
   *Python code: /code/Create_timeboard.py*
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_1.PNG)
-
 ```
 from datadog import initialize, api
 
@@ -98,13 +96,6 @@ graphs = [{
             "conditional_formats": [],
             "aggregator": "avg"
             },
-            {"q": "sum:my_metric{host:deep-learning-virtual-machine}.rollup(sum, 3600)",
-            "type": "line",
-            "style": {
-                "palette": "orange",
-                "type": "solid",
-                "width": "normal"}
-            }
         ],
     },
     "title": "My Metric (custom metric)"
@@ -131,12 +122,9 @@ api.Timeboard.create(title=title,
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-  *I randomly picked mysql.net.connections up as the metric we apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/) to it.
-Unfortunately, I could not find the way to add the mysql.net.connections metric into the timeboard I just created. It seems the anomaly function only could applies to the monitor so I created a monitor instead timeboard in this step. Please refer to the two screenshots below. If I missed something, please point me and let me know. Thank you.*
+  *I randomly picked mysql.net.connections up as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I could not find the way to add the mysql.net.connections metric into the timeboard I just created in last step. It seems the anomaly function only could applies to the monitor so I created a monitor instead timeboard in this step. Please refer to the two screenshots below. If I missed something, please point me and let me know. Thank you.*
 
   *Python code: /code/Create_monitor_with_anomaly_function.py*
-
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_3.PNG)
 
 ```
 from datadog import initialize, api
@@ -251,7 +239,7 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 * **Bonus Question** What is the Anomaly graph displaying?
 
-  *We use Anomaly detection to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. From the graph below we can see the algorithm is monitoring historical data to calculating the metric’s expected normal range of behaviour.* 
+  *We use Anomaly Detection to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. From the graph below we can see the algorithm is monitoring historical data to calculating the metric’s expected normal range of behaviour.* 
 
   *Screenshot: Anomaly graph*
 
@@ -291,7 +279,7 @@ Please configure the monitor’s message so that it will:
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-  *Followed this page in Docs https://docs.datadoghq.com/monitors/downtimes/ to created the downtimes. Please refer to the two screenshots below.*
+  *I followed this page in Docs https://docs.datadoghq.com/monitors/downtimes/ and created the two downtimes. Please refer to the two screenshots below.*
 
   *Screenshot 1: Downtime from 7pm to 9am daily on M-F*
 
@@ -344,12 +332,12 @@ if __name__ == '__main__':
   
   *Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home. For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.*
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+  Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
   *Please refer to the link below:* 
   *https://p.datadoghq.com/sb/1d199b067-1878f66f0cbee4b76c9a3de718a749bd?tv_mode=true*
 
-Please include your fully instrumented app in your submission, as well.
+  Please include your fully instrumented app in your submission, as well.
 
   *I used the Python sample code (Flask app) above to create the APM.*  
  
