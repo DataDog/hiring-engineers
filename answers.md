@@ -6,9 +6,7 @@ Prerequisites - Setup the environment
       One lesson I learned was read the Datadog documentation VERY CAREFULLY. The instructions explicitly state "We strongly recommend using minimum v. 16.04 to avoid dependency issues." Huge mistake on my part... However, by beating my head against the wall, I think I have a better understanding of Datadog because I was forced to look for things that I may have not looked into otherwise.
 
       Having said this, the Datadog documentation is technically accurate in all the cases that I have referenced. However, there are instances where simply reformatting or adding a few additional cautionary comments would greatly increase the likelihood of success on the first try of an example. For instance, In "Writing an Agent check" https://docs.datadoghq.com/developers/agent_checks/ at about the middle of the page in the section "Your first check", the example explicitly states the file and location, however a simple formatting change, like I reference below, I think, will increase the likeliness of success on the first try.
-      <p align="center">
-      <img src="my_metric.png" width="500" ></img>
-      </p>
+
       Your first check
 
             The names of the configuration and check files must match. If your check is called mycheck.py your configuration file must be named mycheck.yaml.
@@ -77,10 +75,8 @@ Bonus Question Can you change the collection interval without modifying the Pyth
                 [{}]
 ---------------------
     As you can see from the screenshot, this gave an interval of approximately 20 seconds. By simply changing the configuration file to the following, I was able to change the collection interval to 45 seconds. Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
-    <p align="center">
-    <img src="my_metric.png" width="500" ></img>
-    </p>
-    ![Alt text](my_metric.png?raw=true "Title")
+#+html:    <p align="center"><img src="my_metric.png" width="500" ></img></p>
+
 ---------------------
           init_config:
 
