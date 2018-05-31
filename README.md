@@ -1,26 +1,6 @@
-If you want to apply as a solutions engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
+## Solutions Engineer Challenge at [Datadog](http://datadog.com).
 
-<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
-
-## The Exercise
-
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
-
-## Questions
-
-Please provide screenshots and code snippets for all steps.
-
-## Prerequisites - Setup the environment
-
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
-
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
-
-## Collecting Metrics:
+## 1. Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -28,7 +8,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-## Visualizing Data:
+## 2. Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -44,7 +24,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-## Monitoring Data
+## 3. Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -68,7 +48,7 @@ Please configure the monitor’s message so that it will:
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 
-## Collecting APM Data:
+## 4. Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -111,7 +91,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well. 
 
-## Final Question:
+## 5. Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
