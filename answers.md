@@ -249,18 +249,18 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* **Warning threshold of 500**
+* **Alerting threshold of 800**
+* **And also ensure that it will notify you if there is No Data for this query over the past 10m.**
 
-Please configure the monitor’s message so that it will:
+**Please configure the monitor’s message so that it will:**
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+* **Send you an email whenever the monitor triggers.**
+* **Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.**
+* **Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.**
+* **When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
 
   Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created. Followed this Docs page https://docs.datadoghq.com/monitors/notifications/ to created the monitor.
 
@@ -272,11 +272,11 @@ Please configure the monitor’s message so that it will:
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_1.PNG)
 
-* **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
 
-* One that silences it from 7pm to 9am daily on M-F,
-* And one that silences it all day on Sat-Sun.
-* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+* **One that silences it from 7pm to 9am daily on M-F,**
+* **And one that silences it all day on Sat-Sun.**
+* **Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
   I followed this page in Docs https://docs.datadoghq.com/monitors/downtimes/ and created the two downtimes. Please refer to the two screenshots below.
 
@@ -324,8 +324,8 @@ if __name__ == '__main__':
     app.run()
 ```
 
-* **Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-* Bonus Question**: What is the difference between a Service and a Resource?**
+* **Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.**
+* **Bonus Question: What is the difference between a Service and a Resource?**
 
   Service is a set of processes that do the same job. For instance, a simple web application may consist of two services: a single webapp service and a single database service.
   
@@ -347,9 +347,9 @@ if __name__ == '__main__':
  
 ## Final Question:
 
-**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!**
 
-Is there anything creative you would use Datadog for?**
+**Is there anything creative you would use Datadog for?**
 
  I’m very interested in IoT and I have developed a few Raspberry Pi based home automation projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home by myself as it could make life easier for my family and improve my technical skills.
 
