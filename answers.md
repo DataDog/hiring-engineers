@@ -49,7 +49,7 @@ I installed MySql database and the agent onto the image. Configuration of the ag
             sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
             sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
 
-Running the following commands validated the the configuration was successful. See Screen Shot. Both commands display "MySQL user - OK"
+Running the following commands validated the the configuration was successful. AS you can see from the screen shot, both commands display "MySQL user - OK"
 
             mysql -u datadog --password='p_KOOye63XjZjSBRMwr2s2c8' -e "show status" | \
             grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
@@ -60,30 +60,27 @@ Running the following commands validated the the configuration was successful. S
             echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
             echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 
-
+<p align="center"><img src="integration_validation.png" width="500" ></img></p>
 -------
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-    My intial configuation file for the agent was the following
-            conf.d/my_metric.yaml:
----------------------
-            init_config:
 
-            instances:
-                [{}]
+As you can see from the two screenshots, the original configuration gave an interval of approximately 20 seconds.
+
+<p align="center"><img src="my_metric1.png" width="500" ></img></p>
+By simply changing the configuration file to the following, I was able to change the collection interval to 45 seconds.
+<p align="center"><img src="my_metric2.png" width="500" ></img></p>
+My intial configuation file for the agent was the following
+        conf.d/my_metric.yaml:
 ---------------------
-As you can see from the screenshot, this gave an interval of approximately 20 seconds. By simply changing the configuration file to the following, I was able to change the collection interval to 45 seconds. Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
-<p align="center"><img src="my_metric.png" width="500" ></img></p>
+        init_config:
+
+        instances:
 
 ---------------------
-          init_config:
 
-          instances:
-                - server: localhost
-                  min_collection_interval: 45
----------------------
 
             checks.d/my_metric.py:
 ---------------------
@@ -93,5 +90,16 @@ As you can see from the screenshot, this gave an interval of approximately 20 se
                 def check(self, instance):
                     self.gauge('my_jon_metric', random.randint(0,1001))
 
+
+      conf.d/my_metric.yaml:  Version 2 - 45 second intervals
+---------------------
+        init_config:
+
+          instances:
+                - server: localhost
+                  min_collection_interval: 45
+---------------------
+
+Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
 
 Monitoring Data
