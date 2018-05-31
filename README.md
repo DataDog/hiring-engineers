@@ -1,6 +1,4 @@
-Solutions Engineer at [Datadog](http://datadog.com).
-
-## The Exercise
+## Solutions Engineer Challenge at [Datadog](http://datadog.com).
 
 ## Collecting Metrics:
 
