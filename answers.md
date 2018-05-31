@@ -67,7 +67,7 @@ Change your check's collection interval so that it only submits the metric once 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 
-As you can see from the two screenshots, the original configuration gave an interval of approximately 20 seconds.
+As you can see from the two screenshots, the original configuration gave an interval of approximately 20 seconds. Where the 2 time stamps in each of the images show the consecutive time intervals as being approximately 45 (40) seconds.
 
 <p align="center"><img src="my_metric1.png" width="500" ></img></p>
 By simply changing the configuration file to the following, I was able to change the collection interval to 45 seconds.
