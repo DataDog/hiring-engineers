@@ -121,7 +121,7 @@ api.Timeboard.create(title=title,
 
 * **Any metric from the Integration on your Database with the anomaly function applied.**
 
-  I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the two screenshots below. If I missed something, please point me to the right direction and let me know. Thank you.
+  I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the Python code and the screenshot below. If I missed something, please point me to the right direction and let me know. Thank you.
 
   Python code: /code/Create_monitor_with_anomaly_function.py
 
@@ -262,7 +262,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 * **Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.**
 * **When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
 
-  Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created. Followed this Docs page https://docs.datadoghq.com/monitors/notifications/ to created the monitor.
+  Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created. I followed this Docs page (https://docs.datadoghq.com/monitors/notifications/) to created the monitor.
 
   Screenshot 1: Creating the monitor
 
@@ -333,10 +333,11 @@ if __name__ == '__main__':
 
   **Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
 
-  Please refer to the link and the screenshot below: 
+  Please refer to the link and the screenshot below:
+  
   https://p.datadoghq.com/sb/1d199b067-1878f66f0cbee4b76c9a3de718a749bd?tv_mode=true
   
-  Screenshot: APM and Infrastructure Metrics:
+  Screenshot: APM and Infrastructure Metrics
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_APM_1.PNG)
   
 
