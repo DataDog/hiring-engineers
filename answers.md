@@ -101,6 +101,8 @@ Collecting APM Data:
 
 APM Screenshots:
 
+![Alt text](https://user-images.githubusercontent.com/29218846/40812685-14e93d7a-6505-11e8-90e7-452f0daf66cb.png)
+
 ![Alt text](https://user-images.githubusercontent.com/29218846/40798782-dda5f518-64d9-11e8-9848-75a33da5a4d9.png)
 
 ![Alt text](https://user-images.githubusercontent.com/29218846/40798799-e6281202-64d9-11e8-82bf-bbd39fcb3531.png)
