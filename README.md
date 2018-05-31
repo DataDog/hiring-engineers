@@ -1,6 +1,6 @@
 ## Solutions Engineer Challenge at [Datadog](http://datadog.com).
 
-## Collecting Metrics:
+## 1. Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -8,7 +8,7 @@
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-## Visualizing Data:
+## 2. Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -24,7 +24,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-## Monitoring Data
+## 3. Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -48,7 +48,7 @@ Please configure the monitor’s message so that it will:
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 
-## Collecting APM Data:
+## 4. Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -91,7 +91,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well. 
 
-## Final Question:
+## 5. Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
