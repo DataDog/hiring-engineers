@@ -100,7 +100,7 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5050')
 ```    
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well. 
+Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
