@@ -10,7 +10,7 @@ Collecting Metrics:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 I added a tag in the /etc/datadog-agent/datadog.yaml file.
             tags: my_datadog_yaml_tag:jon
-<p align="center"><img src="host_map_tags.png.png" width="500" ></img></p>
+<p align="center"><img src="host_map_tags.png" width="500" ></img></p>
 In order for these tags to be active, the process_config: element must be enabled by also placing the following statement in the  /etc/datadog-agent/datadog.yaml file.
 
             process_config:
