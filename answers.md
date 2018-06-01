@@ -62,11 +62,11 @@ conf.d/my_metric.yaml:
 
 checks.d/my_metric.py:
 ---------------------
-            import random
-            from checks import AgentCheck
-            class MyMetric(AgentCheck):
-                def check(self, instance):
-                    self.gauge('my_jon_metric', random.randint(0,1001))
+        import random
+        from checks import AgentCheck
+        class MyMetric(AgentCheck):
+            def check(self, instance):
+                self.gauge('my_jon_metric', random.randint(0,1001))
 
 
 conf.d/my_metric.yaml:  Version 2 - 45 second intervals
@@ -81,3 +81,25 @@ conf.d/my_metric.yaml:  Version 2 - 45 second intervals
 Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
 
 Monitoring Data
+
+I created a Metric Monitor that watches the average of my custom metric (my_jon_metric) and will alert if it’s above the following values over the past 5 minutes: (code from above is included here for convenient reference)
+---------------------
+          import random
+          from checks import AgentCheck
+          class HelloCheck(AgentCheck):
+              def check(self, instance):
+                  self.gauge('my_jon_metric', random.randint(0,1001))
+---------------------
+Here are the emails that were generated for Aler, Warning and No Data.
+
+<p align="center"><img src="Alert_monitor.png" width="500" ></img></p>
+<p align="center"><img src="Warning_monitor.png" width="500" ></img></p>
+<p align="center"><img src="NoData_monitor.png" width="500" ></img></p>
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+
+Here are the screenshots of the configuration in the Datadog Web Site.
+<p align="center"><img src="weekdaydowntime.png" width="500" ></img></p>
+<p align="center"><img src="weekenddowntime.png" width="500" ></img></p>
