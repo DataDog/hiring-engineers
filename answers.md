@@ -18,7 +18,9 @@ If it is up and working properly you should see something like this:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41615765295/in/dateposted/" title="status"><img src="https://farm2.staticflickr.com/1744/41615765295_391eea376d.jpg" width="500" height="186" alt="status"></a>
 
-If you head back to the datadog website, you should now see your machine on the [insfrastructure list](https://app.datadoghq.com/infrastructure).
+If you head back to the datadog website, you should now see your machine on the [insfrastructure list](https://app.datadoghq.com/infrastructure) as shown below:
+
+<a href="https://www.flickr.com/photos/158412660@N04/28648671978/in/dateposted/" title="infrastructure-tab"><img src="https://farm2.staticflickr.com/1750/28648671978_a4d8b39553.jpg" width="500" height="208" alt="infrastructure-tab"></a>
 
 ## Collecting Metrics
 
