@@ -1,8 +1,16 @@
 ## Introduction
-Hi, I'm Jordan Storms. For this challenge I used [Linux Mint 18.3](https://linuxmint.com/) which is a derivative of Ubuntu. The 18.3 version is built on Ubuntu 16.04 Xenial and uses the same Ubuntu packages.
+Hi, I'm Jordan Storms. For this challenge I used [Linux Mint 18.3](https://linuxmint.com/) which is a derivative of Ubuntu. The 18.3 version is built on Ubuntu 16.04 Xenial and uses the same Ubuntu packages. The reason I chose to use Linux Mint was due to issues with docker. Although the docker container showed up on my dashboard, I was unable to see tags updating. Once I realized that docker had not installed properly, I decided to start over and use Mint with the Ubuntu integration and all my issues were resolved immediately.
 
 ## Installing the Datadog Client
-Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint.
+To get started with datadog, head over to the [website](https://www.datadoghq.com/) and begin a free trial. After you sign up, it is time to install the Datadog Client on your machine. 
+
+Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint. If after you logged in and are not directed to the getting started tutorial, directions for installing the client can be found [here](https://app.datadoghq.com/account/settings#agent/ubuntu). **Note:** you must be logged in to your datadog account to for this link or you can login once you get there! There are options provided for easy one-step install or a step-by-step installation available. For this tutorial we will use the easy install method.
+
+Open up a terminal and copy and paste the following code in its entirety:
+
+```DD_API_KEY=1c49036ff30b19fd22f02185eff55bd0 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```
+
+Once you are prompted, enter your password and you are all set. If you head back to the datadog website, you should now see your machine located on the 
 
 ## Collecting Metrics
 
