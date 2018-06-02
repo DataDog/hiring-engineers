@@ -23,13 +23,29 @@ If you head back to the datadog website, you should now see your machine on the 
 ## Collecting Metrics
 
 #### Adding a tag
-In order to add a tag we need to customize the datadog.yaml file, located at etc/datadog-agent/datadog.yaml. Open the file with your editor of choice and add a tag as shown in the screenshot below:
+First we should discuss what tags are. Tags are a way to narrow down scope on metrics and aggregate data. Imagine if a company had had multiple servers on the east and west coast. Adding a tag for east_servers and west_servers to the appropriate hosts would provide the ability to narrow down scope and only look at or monitor the servers on the east coast. They could further narrow down scope to regions with tags like north_east_servers and south_east_servers. Tags can also be added to alerts as well which we will cover in more detail later. They are great and flexible way to provide more options and control over what you are monitoring. To learn more about tags and the four primary ways to assign them, please click [here](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/). For this tutorial we will add a tag to our host by altering the datadog.yaml configuration file that was created during the installation of the client in etc/datadog-agent/.
+
+In Linux Mint there are two approaches for accessing the file.
+
+1. Use the GUI file explorer to navigate to the /etc folder. However, when you navigate to the /etc folder, make sure that you right click the folder and select open as root, or you will not be able to edit the datadog.yaml file!
+
+2. Use the terminal, which is what I use in this example and will explain below.
+
+Open the file with your editor of choice. I'm using gedit and entered the following command into the terminal and entered my password when prompted: 
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo gedit /etc/datadog-agent/datadog.yaml```
+
+When the file was created during installation, many of the available configuration options are commented out, so we have to find where the tags argument is located. In my editor I found the tag argument at line 34.
+
+Once I located the argument, I uncommented it and added my own unique tag. You can see the changes I implemented below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/42261444992/in/dateposted/" title="Gedit-tag"><img src="https://farm1.staticflickr.com/954/42261444992_7322386909_z.jpg" width="640" height="498" alt="Gedit-tag"></a>
 
-Once this is saved, restart the datadog agent for the changes to update: ```sudo service datadog-agent restart```
+Make sure to save all changes and close the text editor.
 
-After a few moments, the datadog dashboard will display your newly added tags in infrastructure -> host as shown below:
+To make the changes take effect, you must restart the datadog agent. The following command will restart the service: 
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent restart```
+
+After a few moments, navigate to your datadog dashboard in the browser. It might take a minute or two before your newly added tags are shown in the infrastructure list or host map. I have provided a screenshot to show my results:
 
 <a href="https://www.flickr.com/photos/158412660@N04/42261445672/in/dateposted/" title="Infrastructure-Tag"><img src="https://farm1.staticflickr.com/977/42261445672_f95721ea22_z.jpg" width="640" height="529" alt="Infrastructure-Tag"></a>
 
