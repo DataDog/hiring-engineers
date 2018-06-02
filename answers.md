@@ -12,7 +12,7 @@ Open up a terminal and copy and paste the following code in its entirety:
 
 Once you are prompted, enter your password and the agent will automatically start. You are all set to monitor some metrics for your machine. You can also check that the service has started by entering the following command in a terminal:
 
-```sudo service datadog-agent status```
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent status```
 
 If it is up and working properly you should see something like this:
 
@@ -42,7 +42,8 @@ Once I located the argument, I uncommented it and added my own unique tag. You c
 
 Make sure to save all changes and close the text editor.
 
-To make the changes take effect, you must restart the datadog agent. The following command will restart the service: 
+To make the changes take effect, you must restart the datadog agent. The following command will restart the service:
+
 &nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent restart```
 
 After a few moments, navigate to your datadog dashboard in the browser. It might take a minute or two before your newly added tags are shown in the infrastructure list or host map. I have provided a screenshot to show my results:
