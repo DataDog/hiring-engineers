@@ -1,5 +1,8 @@
 ## Introduction
-Hi, I'm Jordan Storms. For this challenge I used Linux Mint 18.3.
+Hi, I'm Jordan Storms. For this challenge I used [Linux Mint 18.3](https://linuxmint.com/) which is a derivative of Ubuntu. The 18.3 version is built on Ubuntu 16.04 Xenial and uses the same Ubuntu packages.
+
+## Installing the Datadog Client
+Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint.
 
 ## Collecting Metrics
 
