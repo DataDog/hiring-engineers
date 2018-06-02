@@ -74,6 +74,7 @@ For more information, follow the guide at [Datadog Docs - Agent Checks](https://
 Custom Agent Checks are made up of 2 files:
 - A configuration .yaml file that goes in to `/etc/datadog-agent/conf.d`
 - A python script .py file that goes in to `/etc/datadog-agent/checks.d`
+
 **Important: the naming convention for both files must match**
 
 3.1 Create the 'mymetric.yaml' configuration file in `/etc/datadog-agent/conf.d` with the simple configuration below. This contains no real information other than the instruction to initialise the configuration and run it for an undefined number of instances:
@@ -96,7 +97,11 @@ Custom Agent Checks are made up of 2 files:
 
 #### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+To change the collection interval of a Custom Agent Check, you must edit the .yaml configuration file to include `min_collection_interval` as per below:
 
+![collection interval change](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mymetric_collectioninterval.png)
+
+**bonus question**: Using the method above, I did not need to edit my Python check file.
 
 ## Visualising Data:
 
