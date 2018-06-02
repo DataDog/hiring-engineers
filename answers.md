@@ -23,13 +23,9 @@ For Ubuntu, it is located at: `/etc/datadog-agent/datadog.yaml`.
 
 Edit the datadog.yaml file by uncommenting the "tags" line and add your chosen tag; i.e "localhost:alishaw"
 
-Screenshot 1: editing the datadog.yaml
-
 ![datadog.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png)
 
 1.3 Save your edits to the configuration file and confirm them in the Datadog GUI by selecting your host in `https://app.datadoghq.com/infrastructure/map`
-
-Screenshot 2: Host Map with new tag
 
 ![hostmap](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png)
 
@@ -53,15 +49,11 @@ Second, you then edit the Integration config file at `/etc/datadog-agent/conf.d/
 
 Finally, restart the Datadog agent using `sudo service datadog-agent restart` and run a Check to confirm the Integration was successfully created.
 
-Screenshot 3: Integrations tab - MongoDB succesfully installed
+The Integration will show as successful in the Datadog portal by marking the Integration as "Installed", as well as creating an event on the main Dashboard:
 
 ![mongoDB integrations](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/Integrations_tab_MongoDB.png)
 
-Screenshot 4: MongoDB installation created event on Dashboard
-
 ![MongoDB on dashboard](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoDB_installed.png)
-
-Screenshot 5: MongoDB integration yaml edited
 
 ![MongoDB yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/MongoYAML.png)
 
@@ -101,7 +93,7 @@ To change the collection interval of a Custom Agent Check, you must edit the .ya
 
 ![collection interval change](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mymetric_collectioninterval.png)
 
-**bonus question**: Using the method above, I did not need to edit my Python check file.
+**Bonus question**: Using the method above, I did not need to edit my Python check file.
 
 ## Visualising Data:
 
