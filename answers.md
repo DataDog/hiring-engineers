@@ -53,7 +53,28 @@ After a few moments, navigate to your datadog dashboard in the browser. It might
 [A link to my dashboard host map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=485640810)
 
 #### Linking with MongoDB
-With MongoDB installed on the machine, adding the datadog integration is outlined [here](https://docs.datadoghq.com/integrations/mongo/). **Note:** *while following these instructions you may need to create the conf.yaml file in /etc/datadog-agent/conf.d/mongo.d.* The file should look like this once completed: 
+Datadog offers many database integrations into the client. For this tutorial I chose to use MongoDB. To install MongoDB, I followed the instructions for Ubuntu outlined [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/):
+
+1. Add the public key to Mints authentication keys with:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5```
+
+2. Create the list file for MongoDB:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list```
+
+3. Update package database and Install:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo apt-get update && sudo apt-get install -y mongodb-org```
+
+4. Start MongoDB:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo service mongod start```
+
+Now that we have MongoDB installed and running, we need to set up the Datadog Agent's MongoDB integration. The directions for adding the datadog integration are outlined [here](https://docs.datadoghq.com/integrations/mongo/). 
+
+
+**Note:** *while following these instructions you may need to create the conf.yaml file in /etc/datadog-agent/conf.d/mongo.d.* The file should look like this once completed: 
 
 <a href="https://www.flickr.com/photos/158412660@N04/40505072750/in/dateposted/" title="mongo-conf"><img src="https://farm1.staticflickr.com/962/40505072750_b42b888a6d_z.jpg" width="640" height="498" alt="mongo-conf"></a>
 
