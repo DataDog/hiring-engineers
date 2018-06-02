@@ -5,30 +5,42 @@ Your answers to the questions go here.
 1) Install VirtualBox and Vagrant (this was already preinstalled on my laptop).
 2) Create an folder for your VirtualBox machine. In my case ****mkdir dd****.
 3) Change in the folder ****cd dd**** and create Vagrantfile ****vagrant init****. For more detailes see here - https://www.vagrantup.com/intro/getting-started/ 
-4) I used Ubuntu 16.04.3 LTS and therefore you need to modify *Vagrantfile* file with appropriate vm.box (screenshot) 
+4) I used Ubuntu 16.04.3 LTS and therefore you need to modify *Vagrantfile* file with appropriate vm.box.
+
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/VagrantBox.png)
 5) Now you need to start the VM and ssh to it
     + a) *vagrant up*
     + b) *vagrant ssh*
 6) As a next step you need to install the Datadog software (agent) on your Ubuntu VM.
     + a) Got to Datadog's website at www.datadoghq.com and click the "GET STARTED FOR FREE" button. Fill out the form and sign up.
-    + b) After submission, select your operating system and install the Datadog agent. In my case *Ubuntu*. (three sceenshots) Hint: API Key hidden
-    + c) The installation process may look like this at the end.
-+![Imgur](URL)
-    + d) Upon completion, go back to the Datadog installation page and there will be a notification that the Datadog agent is now collecting metrics. 
-7) In Datadog UI go to *Dashboard* tab and select dashboard *System Overview* to get the metrics collected by the agent. (screenshot)
+    + b) After submission, select your operating system and install the Datadog agent. In my case *Ubuntu*. 
+        
+        ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/InstallDDAgent.png)
 
+        ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/InstallDDAgentonOS.png)
+    Hint: API Key hidden
+    + c) The installation process may look like this at the end.
+
+        ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/InstallDDAgentFinal.png)
+    + d) Upon completion, go back to the Datadog installation page and there will be a notification that the Datadog agent is now collecting metrics. 
+7) In Datadog UI go to *Dashboard* tab and select dashboard *System Overview* to get the metrics collected by the agent.
+
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Dashbaord-Systemoverview.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Dashbaord-Systemoverview2.png)
 <h2> Technical Challenge - Collecting Metrics </h2>
 
 ***Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.***
 
-1) Open the agent configuration file: */etc/datadog-agent/datadog.yaml* with a text editor like *vim*, scroll down to *Set host's tag optional' and add the tag. In my case *os:ubuntu*. The configuration file for the agent tagging documentantion and  can be found here https://docs.datadoghq.com/agent/basic_agent_usage/#configuration-file and here
+1) Open the agent configuration file: */etc/datadog-agent/datadog.yaml* with a text editor like *vim*, scroll down to *Set host's tag optional' and add the tag. In my case *os:ubuntu*.
+The configuration file for the agent tagging documentantion and  can be found here https://docs.datadoghq.com/agent/basic_agent_usage/#configuration-file and here
 https://docs.datadoghq.com/getting_started/tagging/.
 
-(screenshot)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/hosttag.png)
 
 2) To see the tag in the UI go to the Infrastructure tab, click on Host Map and then on your host. The specified tag will appier unter Tags, like depicted below.
 
-(screenshot)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Infrastructure-Tag.png)
 
 ***Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.***
 
@@ -36,32 +48,32 @@ https://docs.datadoghq.com/getting_started/tagging/.
 
 2) Once completed, install the integration for MySQL. To do this, go to the Integrations Tab on the navigation bar and search for MySQL. Click on it and follow instructions provided in this wizzard. Here is an example:
 
-(MySQLIntegration)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/MySQLIntegration.png)
 
-**Hint**: In case you get an "Access denied for user 'root@localhost' (using password: NO)" mysql comman error - add a *-p* switch to the command and privide the password.  
+**Hint**: In case you get an "Access denied for user 'root@localhost' (using password: NO)" mysql command error - add a *-p* switch to the command and provide the password.  
 
 3) Create *mysql.yaml* file inside */etc/datadog-agent/conf.d* folder. 
     + a) Create a copy from the example file and it *mysql.yaml*: *cp /etc/datadog-agent/conf.d/mysql.d/conf.yaml.example /etc/datadog-agent/conf.d/mysql.yaml*
     + b) Add configuration info as descibed in the instruction.
 
-(mysqlyaml)
+        ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/mysqlyaml.png)
     + c) Once completed go to the Dashboard Tab on the navigation bar and select MySQL Overview dashboard. It will show you MySQL metric like here:
 
-(MySQLDashboard)
+        ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/MySQLDashboard.png)
 
 ***Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.***
 
 1) First you need to create a YAML file, in my case *my_metric.yaml*, in agent's directory at */etc/datadog-agent/conf.d*. The agent check documentation for reference: https://docs.datadoghq.com/agent/agent_checks/. Here my example:
 
-(my_metricyaml)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/my_metricyaml.png)
 
 2) Second you need to create the check itself. Create a separate file in */etc/datadog-agent/checks.d* directory with exactly the same name as the configuration file. In my case  *my_metric.py*. Add the code (see below), saved it and restart the agent *sudo service datadog-agent restart*. For more details see - https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/.
 
-(my_metricpy)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/my_metricpy.png)
 
 3) Go to the *Metrics* Tab on the navigation bar, click on *Exploerer* and search for *my_metric*.
 
-(my_metricoverview)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/my_metricoverview.png)
 
 ***Change your check's collection interval so that it only submits the metric once every 45 seconds.***
 
@@ -82,16 +94,13 @@ Yes. You can change thie collection interval in the corresponding configuration 
 +   ***Any metric from the Integration on your Database with the anomaly function applied.***
 +   ***Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket***
 
-
-https://docs.datadoghq.com/api/?lang=bash#create-a-timeboard.
-
 1) I found this article and followed the steps https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs. 
     + a) Generated an application key.
     + b) Replaced *api_key* and *application_key* infos with my own keys.
     + b) Imported the datadog collection
     + c) In Collections under Timeboards create a Timeboard file and click *Send*. See my example below (API and Application Keys hidden):
 
-(Timaboard)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Timaboard.png)
 
 References: 
 https://docs.datadoghq.com/api/?lang=bash#create-a-timeboard
@@ -146,15 +155,17 @@ https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
 
 1) Once the timeboard is created, go to the *Dashboard* Tab on the navigation bar, click on *Navigation List* and select the new TimeBoard *"Andreas's TimeBoard"* . Zoom into one of the graphs to get a 5 minute timeframe. Here my example:
 
-(AndreasTimeboard)
-(AndreasTimeboard2)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/AndreasTimeboard.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/AndreasTimeboard2.png)
 
 **Note**: Rollup graph shows no data because it is summed over one hour but the praph is zoomed into five minutes.  
 
 2) Click on each graph (snapshot icon) and commente the email address in each one. Here my examples (Email address hidden):
 
-(DashboardComment)
-(DashboardComment1)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/DashboardComment.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/DashboardComment1.png)
 
 ***BONUS QUESTION: What is the Anomaly graph displaying?***
 
@@ -175,16 +186,17 @@ The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection
 
 1) Go to the monitor tab in the navigation bar and click on New Monitor. Click on metric and fill out the form as needed. Examples are below:
 
-(Monitor)
-(Monitor2)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Monitor.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Monitor2.png)
 
-Here are emails for an Alert, Warning, and No Data state:
+    Here are emails for an Alert, Warning, and No Data state:
 
-Alert Email
-Warning Email
-No Data Email
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/AlertWarning.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Alertnodata.png)
 
-***Hint:*** During the tech challenge my_metric wasn't above the alert threshold of 800, therefore there is no email notification for this alert.
+***Hint:*** During the tech challenge my_metric wasn't above the alert threshold of 800, therefore there is no alert email notification for this alert.
 
 ***Bonus Question:***
 ***Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:***
@@ -195,9 +207,11 @@ No Data Email
 1) Gt to the monitor tab in the navigation bar and click on Manage Downtime. Click the yellow *Schedule Downtime* buttnn and fill out the fields for when notifications should be turned off.
 Here the screenshot examples:
 
-(DowntimeWorkday)
-(DowntimeWeekend)
-(EmailWorkdayDowntime)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/DowntimeWorkday.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/DowntimeWeekend.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/EmailWorkdayDowntime.png)
 
 ***Hint:*** The tech challenge was taken during the workdays, therefore there is no email notification for weekend downtime.
 
@@ -262,25 +276,25 @@ if __name__ == '__main__':
 
 4) Open */etc/datadog-agent/datadog.yaml* and set *apm config: enabled true* as seen below:
 
-(apmconfig)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/apmconfig.png)
 
 5) In the directory where your Flask file is located, run *ddtrace-run python my_app.py*.
 
-**Hint**: Add PortForwarding *8080* to the network configuration of your virtualbox VM.
+    **Hint**: Add PortForwarding *8080* to the network configuration of your virtualbox VM.
 
-(PortForwarding)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/PortForwarding.png)
 
 6) Start a browser and enter http://localhost:8080 and http://localhost:8080/api/apm.
 
-(FlaskApp)
-
-(FlaskApp2)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/FlaskApp.png)
+    
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/FlaskApp2.png)
 
 7) Go to to the APM tab in the navigation bar and your service's metrics will soon be visible. Click on the Services sub-tab wthin APM tab and select flask. On each graph click on the *Export to Timeboard* button and choose your Timeboard. Once completed, got to Dashboard tab in the navigation click on *Dashboard List* and select the Timeboard. In my case "Andreas's TimeBoard.
 
-(FlaskinTimeBoard)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/FlaskinTimeBoard2.png)
 
-(FlaskinTimeBoard)
+    ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/FlaskinTimeBoard.png)
 
 ***Bonus Question: What's the difference between a Service and a Resource?***
 
