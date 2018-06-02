@@ -3,8 +3,8 @@ Your answers to the questions go here.
 <h2>Prerequisites - Setup the environment</h2>
 
 1) Install VirtualBox and Vagrant (this was already preinstalled on my laptop).
-2) Create an folder for your VirtualBox machine. In my case ****mkdir dd****.
-3) Change in the folder ****cd dd**** and create Vagrantfile ****vagrant init****. For more detailes see here - https://www.vagrantup.com/intro/getting-started/ 
+2) Create an folder for your VirtualBox machine. In my case *mkdir dd*.
+3) Change in the folder *cd dd* and create Vagrantfile *vagrant init*. For more detailes see here - https://www.vagrantup.com/intro/getting-started/ 
 4) I used Ubuntu 16.04.3 LTS and therefore you need to modify *Vagrantfile* file with appropriate vm.box.
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/VagrantBox.png)
@@ -23,7 +23,7 @@ Your answers to the questions go here.
 
         ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/InstallDDAgentFinal.png)
     + d) Upon completion, go back to the Datadog installation page and there will be a notification that the Datadog agent is now collecting metrics. 
-7) In Datadog UI go to *Dashboard* tab and select dashboard *System Overview* to get the metrics collected by the agent.
+7) In Datadog UI navigation bar go to *Dashboard* tab and select dashboard *System Overview* to get the metrics collected by the agent.
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Dashbaord-Systemoverview.png)
     
@@ -38,7 +38,7 @@ https://docs.datadoghq.com/getting_started/tagging/.
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/hosttag.png)
 
-2) To see the tag in the UI go to the Infrastructure tab, click on Host Map and then on your host. The specified tag will appier unter Tags, like depicted below.
+2) To see the tag in the Datadog UI go to the Infrastructure tab, click on Host Map and then on your host. The specified tag will appier unter Tags, like depicted below.
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Infrastructure-Tag.png)
 
@@ -95,9 +95,9 @@ Yes. You can change thie collection interval in the corresponding configuration 
 +   ***Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket***
 
 1) I found this article and followed the steps https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs. 
-    + a) Generated an application key.
-    + b) Replaced *api_key* and *application_key* infos with my own keys.
-    + b) Imported the datadog collection
+    + a) Generate an application key.
+    + b) Replace *api_key* and *application_key* infos with your own keys.
+    + b) Importe the datadog collection
     + c) In Collections under Timeboards create a Timeboard file and click *Send*. See my example below (API and Application Keys hidden):
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Timaboard.png)
@@ -153,7 +153,7 @@ https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
 ***Set the Timeboard's timeframe to the past 5 minutes***
 ***Take a snapshot of this graph and use the @ notation to send it to yourself.***
 
-1) Once the timeboard is created, go to the *Dashboard* Tab on the navigation bar, click on *Navigation List* and select the new TimeBoard *"Andreas's TimeBoard"* . Zoom into one of the graphs to get a 5 minute timeframe. Here my example:
+1) Once the timeboard is created, go to the *Dashboard* Tab on the navigation bar, click on *Navigation List* and select the new TimeBoard, e.g. *"Andreas's TimeBoard"* . Zoom into one of the graphs to get a 5 minute timeframe. Here my example:
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/AndreasTimeboard.png)
     
@@ -161,7 +161,7 @@ https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
 
 **Note**: Rollup graph shows no data because it is summed over one hour but the praph is zoomed into five minutes.  
 
-2) Click on each graph (snapshot icon) and commente the email address in each one. Here my examples (Email address hidden):
+2) Click on each graph (snapshot icon) and comment the email address in each one. Here my examples (Email address hidden):
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/DashboardComment.png)
     
@@ -184,13 +184,13 @@ The [Anomaly graph](https://www.datadoghq.com/blog/introducing-anomaly-detection
 +   ***Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.***
 +   ***When this monitor sends you an email notification, take a screenshot of the email that it sends you.***
 
-1) Go to the monitor tab in the navigation bar and click on New Monitor. Click on metric and fill out the form as needed. Examples are below:
+1) Go to the monitor tab in the navigation bar and click on New Monitor. Click on metric and fill out the form as needed. Examples are below (Email hidden):
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Monitor.png)
     
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/Monitor2.png)
 
-    Here are emails for an Alert, Warning, and No Data state:
+    Here are emails for an Alert, Warning, and No Data state (Email hidden):
 
     ![Alt Text](https://raw.github.com/AndyL77/hiring-engineers/solutions-engineer/img/AlertWarning.png)
     
