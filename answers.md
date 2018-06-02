@@ -8,7 +8,7 @@ Since we are using a derivative of Ubuntu we can simply install the Datadog Clie
 
 Open up a terminal and copy and paste the following code in its entirety:
 
-```DD_API_KEY=1c49036ff30b19fd22f02185eff55bd0 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```
+```DD_API_KEY=<Your API Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```
 
 Once you are prompted, enter your password and you are all set. If you head back to the datadog website, you should now see your machine located on the 
 
