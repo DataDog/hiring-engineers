@@ -4,7 +4,7 @@ Hi, I'm Jordan Storms. For this challenge I used [Linux Mint 18.3](https://linux
 ## Installing the Datadog Client
 To get started with datadog, head over to the [website](https://www.datadoghq.com/) and begin a free trial. After you sign up, it is time to install the Datadog Client on your machine. 
 
-Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint. If you are not directed to the quick start guide or 'getting started' after logging in to your account, directions for installing the client can be found [here](https://app.datadoghq.com/account/settings#agent/ubuntu). **Note:** you must be logged in to your datadog account to for this link or you can login once you get there! There are options for easy one-step install or a step-by-step installation available. For this tutorial we will use the easy install method.
+Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint. If you are not directed to the quick start guide or 'getting started' after logging in to your account, directions for installing the client can be found [here](https://app.datadoghq.com/account/settings#agent/ubuntu). **Note:** *you must be logged in to your datadog account for this link to take you to the right spot or you can login once you get there!* There are options for easy one-step install or a step-by-step installation available. For this tutorial we will use the easy install method.
 
 Open up a terminal and copy and paste the following code in its entirety:
 
@@ -18,7 +18,7 @@ If it is up and working properly you should see something like this:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41615765295/in/dateposted/" title="status"><img src="https://farm2.staticflickr.com/1744/41615765295_391eea376d.jpg" width="500" height="186" alt="status"></a>
 
-If you head back to the datadog website, you should now see your machine located on the [insfrastructure list](https://app.datadoghq.com/infrastructure).
+If you head back to the datadog website, you should now see your machine on the [insfrastructure list](https://app.datadoghq.com/infrastructure).
 
 ## Collecting Metrics
 
