@@ -46,7 +46,7 @@ To make the changes take effect, you must restart the datadog agent. The followi
 
 &nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent restart```
 
-After a few moments, navigate to your datadog dashboard in the browser. It might take a minute or two before your newly added tags are shown in the infrastructure list or host map. I have provided a screenshot to show my results:
+After a few moments, navigate to your datadog dashboard in the browser. It might take a minute or two before your newly added tags are visible in the infrastructure list or host map. I have provided a screenshot of my host map to show the results:
 
 <a href="https://www.flickr.com/photos/158412660@N04/42261445672/in/dateposted/" title="Infrastructure-Tag"><img src="https://farm1.staticflickr.com/977/42261445672_f95721ea22_z.jpg" width="640" height="529" alt="Infrastructure-Tag"></a>
 
@@ -71,14 +71,55 @@ Datadog offers many database integrations into the client. For this tutorial I c
 
 &nbsp;&nbsp;&nbsp;&nbsp;```sudo service mongod start```
 
-Now that we have MongoDB installed and running, we need to set up the Datadog Agent's MongoDB integration. The directions for adding the datadog integration are outlined [here](https://docs.datadoghq.com/integrations/mongo/). 
+Now that we have MongoDB installed and running, we need to set up the Datadog Agent's MongoDB integration. The directions for adding the datadog integration are outlined [here](https://docs.datadoghq.com/integrations/mongo/), or you can follow along below.
 
+First we need to open up a terminal and start a mongo shell by entering the following command:
 
-**Note:** *while following these instructions you may need to create the conf.yaml file in /etc/datadog-agent/conf.d/mongo.d.* The file should look like this once completed: 
+&nbsp;&nbsp;&nbsp;&nbsp;```mongo```
+
+Next we need to set up the integration in mongo's admin database with: 
+
+&nbsp;&nbsp;&nbsp;&nbsp;```use admin```
+
+Since we have a fresh install of MongoDB and have not set up an administrative account, we do not need to worry about authenticating as the admin user, as outlined in the directions I linked to in the beginning. However, we do need to create a new user. Since we installed the latest version of MongoDB, we add a new user as follows:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```db.createUser({
+  "user":"datadog",
+  "pwd": "<UNIQUEPASSWORD>",
+  "roles" : [
+    {role: 'read', db: 'admin' },
+    {role: 'clusterMonitor', db: 'admin'},
+    {role: 'read', db: 'local' }
+  ]
+})```
+
+**Note:** *if you are using MongoDB 2.x enter this instead: ```db.addUser("datadog", "<UNIQUEPASSWORD>", true)```*
+
+You can now exit the mongo shell by entering ```exit```
+
+The last thing that we need to do is configure the client to collect metrics from our MongoDB database. As we did previously, we will need to make some changes inside /etc/datadog-agent/ folder, except this time we will be looking one folder further in /etc/datadog-agent/conf.d. The conf.d folder contains subfolders for all the different integrations available in the Datadog Agent. We need to locate the mongo.d folder since we have chosen to integrate a MongoDB database. Unlike when we added tags, the configuration file was not created during the Agent's installation and we will need to create the configuration file from scratch as outlined below:
+
+1. Open a terminal and create the file by entering the following line:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo touch /etc/datadog-agent/conf.d/mongo.d/mongodb.yaml```
+
+2. Open the file:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo gedit /etc/datadog-agent/conf.d/mongo.d/mongodb.yaml```
+
+3. Copy and paste this basic configuration block found [here](https://docs.datadoghq.com/integrations/mongo/#metric-collection). Or type in the same code as what is shown in the finished file below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/40505072750/in/dateposted/" title="mongo-conf"><img src="https://farm1.staticflickr.com/962/40505072750_b42b888a6d_z.jpg" width="640" height="498" alt="mongo-conf"></a>
 
-Once this file is saved, restart the datadog-agent again: ```sudo service datadog-agent restart```. Like before, after a few minutes the dashboard should refresh and your MongoDB metrics should be viewable: 
+4. Once this file is saved, restart the datadog-agent again: 
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent restart```
+
+If you navigate back to your host map, you should see mongo integrated inside your hosts hexagon. Or, you can double click the host's hexagon and mongodb should be listed as one of the apps in the bottom left of the panel that pops up.  Below is a screenshot of my host map with MongoDB integration:
+
+<a href="https://www.flickr.com/photos/158412660@N04/27651403137/in/dateposted/" title="mongo-integration"><img src="https://farm2.staticflickr.com/1723/27651403137_7e1de52523.jpg" width="500" height="495" alt="mongo-integration"></a>
+
+Notice the listed apps on the bottom-left of the panel that pops up after double clicking the hexagon. If you click mongodb you can see the metrics for that integration. Alternatively, you can click the blue dashboard link to get an overview of the host. Below I have a few metrics from my MongoDB integration:
 
 <a href="https://www.flickr.com/photos/158412660@N04/40505109150/in/dateposted/" title="mongo-dash"><img src="https://farm1.staticflickr.com/957/40505109150_33a10bd436_z.jpg" width="640" height="454" alt="mongo-dash"></a>
 
