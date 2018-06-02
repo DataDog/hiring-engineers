@@ -67,21 +67,32 @@ Screenshot 5: MongoDB integration yaml edited
 
 #### 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
-To create a custom Agent check I followed the guide at [Datadog Docs - Agent Checks](https://docs.datadoghq.com/developers/agent_checks/)
+Custom Agent checks are a way to collect metrics from custom applications or systems where a Datadog Integration does not already exist. They are run in the main Datadog Agent check run loop which, by default, is set to every 15 seconds.
 
-First - I created my mycheck.yaml in /etc/datadog-agent/conf.d:
+For more information, follow the guide at [Datadog Docs - Agent Checks](https://docs.datadoghq.com/developers/agent_checks/)
+
+Custom Agent Checks are made up of 2 files:
+- A configuration .yaml file that goes in to `/etc/datadog-agent/conf.d`
+- A python script .py file that goes in to `/etc/datadog-agent/checks.d`
+**Important: the naming convention for both files must match**
+
+3.1 Create the 'mymetric.yaml' configuration file in `/etc/datadog-agent/conf.d` with the simple configuration below. This contains no real information other than the instruction to initialise the configuration and run it for an undefined number of instances:
 
 ![mycheck.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_yaml.png)
 
-Second - I then wrote my mycheck.py in /etc/datadog-agent/checks.d:
+3.2 Create the 'mymetric.py' python file in `/etc/datadog-agent/checks.d` with the below to execute the code to Import the Random Module in Python, then Import the Datadog AgentCheck to inherit from, then define your check & randomly generate a number between 1 - 1000.
 
 ![mycheck.py](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_py.png)
 
-I then checked my check in the Datadog GUI:
+3.3 Once both files are created you can restart the Datadog Agent with `sudo service datadog-agent restart` then test your check by running:
 
-![mycheck in GUI](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_in_gui.png)
+`sudo -u dd-agent -- datadog-agent check mymetric` to test it runs without errors.
 
-*personal note: the challenging part for me here was understanding how to write the mycheck.py having not written Python before. I based my code on the Datadog Docs example, then modified based on googling of random number generators*
+3.4 The metric can now be visualised in the Datadog portal by navigating to `https://app.datadoghq.com/metric/explorer` and filtering by "my_metric" under "Graph":
+
+![mycheck in GUI](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_GUI.png)
+
+*personal note: this part of the challenge was the most complicated for me having not written Python before. I based my code on the Datadog Docs example, then modified based on googling of the Python Random Module however didn't have the code in the correct order to execute in the right steps*
 
 #### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
