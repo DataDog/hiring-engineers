@@ -4,13 +4,21 @@ Hi, I'm Jordan Storms. For this challenge I used [Linux Mint 18.3](https://linux
 ## Installing the Datadog Client
 To get started with datadog, head over to the [website](https://www.datadoghq.com/) and begin a free trial. After you sign up, it is time to install the Datadog Client on your machine. 
 
-Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint. If after you logged in and are not directed to the getting started tutorial, directions for installing the client can be found [here](https://app.datadoghq.com/account/settings#agent/ubuntu). **Note:** you must be logged in to your datadog account to for this link or you can login once you get there! There are options provided for easy one-step install or a step-by-step installation available. For this tutorial we will use the easy install method.
+Since we are using a derivative of Ubuntu we can simply install the Datadog Client for Ubuntu in Linux Mint. If you are not directed to the quick start guide or 'getting started' after logging in to your account, directions for installing the client can be found [here](https://app.datadoghq.com/account/settings#agent/ubuntu). **Note:** you must be logged in to your datadog account to for this link or you can login once you get there! There are options for easy one-step install or a step-by-step installation available. For this tutorial we will use the easy install method.
 
 Open up a terminal and copy and paste the following code in its entirety:
 
 ```DD_API_KEY=<Your API Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```
 
-Once you are prompted, enter your password and you are all set. If you head back to the datadog website, you should now see your machine located on the 
+Once you are prompted, enter your password and the agent will automatically start. You are all set to monitor some metrics for your machine. You can also check that the service has started by entering the following command in a terminal:
+
+```sudo service datadog-agent status```
+
+If it is up and working properly you should see something like this:
+
+<a href="https://www.flickr.com/photos/158412660@N04/41615765295/in/dateposted/" title="status"><img src="https://farm2.staticflickr.com/1744/41615765295_391eea376d.jpg" width="500" height="186" alt="status"></a>
+
+If you head back to the datadog website, you should now see your machine located on the [insfrastructure list](https://app.datadoghq.com/infrastructure).
 
 ## Collecting Metrics
 
@@ -28,7 +36,7 @@ After a few moments, the datadog dashboard will display your newly added tags in
 [A link to my dashboard host map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=485640810)
 
 #### Linking with MongoDB
-With MongoDB installed on the machine, adding the datadog integration is outlined [here](https://docs.datadoghq.com/integrations/mongo/). *Note: while following these instructions you may need to create the conf.yaml file in /etc/datadog-agent/conf.d/mongo.d*. The file should look like this once completed: 
+With MongoDB installed on the machine, adding the datadog integration is outlined [here](https://docs.datadoghq.com/integrations/mongo/). **Note:** *while following these instructions you may need to create the conf.yaml file in /etc/datadog-agent/conf.d/mongo.d.* The file should look like this once completed: 
 
 <a href="https://www.flickr.com/photos/158412660@N04/40505072750/in/dateposted/" title="mongo-conf"><img src="https://farm1.staticflickr.com/962/40505072750_b42b888a6d_z.jpg" width="640" height="498" alt="mongo-conf"></a>
 
