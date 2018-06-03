@@ -97,6 +97,33 @@ To change the collection interval of a Custom Agent Check, you must edit the .ya
 
 ## Visualising Data:
 
+The Datadog HTTP API allows a way to easily get data in and out of Datadog. The Datadog API uses resource-oriented URLs as well as status codes to indicate the success or failure of requests. It can be wrapped using multiple client libraries - either Phyton, Ruby or Curl. A reference guide can be found at [Datadog Docs - API Reference Guide](https://docs.datadoghq.com/api/). The below explanations are using Curl as the prefered language.
+
+To visualise data in Datadog, users can create Dashboards to collate multiple metric feeds across systems and applications in to one single pane of glass.
+
+There are 2 types of Dashboard:
+1. Timeboard - All graphs visualised share a same time scope and is designed for troubleshooting and correlation of metrics & events.
+2. Screenboard - All graphs visualised have individual time scopes and is designed for status boards and sharing data
+For a full list of differences and further reading: [Datadog Docs - Dashboards](https://docs.datadoghq.com/graphing/dashboards/)
+
+#### 5. Utilize the Datadog API to create a Timeboard
+
+The Datadog API for interacting with Dashboards (creation, updating, deleting, getting information) is `https://api.datadoghq.com/api/v1/dash`
+
+Before interacting with the Datadog API, you will need to locate 2 keys:
+
+- api_key = unique to your organisation and is required by the Datadog Agent to submit metrics and events to Datadog
+- app_key = used in conjunction with your api_key, give you full access to Datadog's programmatic API. They are associated with the user account that created them and are used to log all requests to the API.
+
+You can find and generate these keys at: `https://app.datadoghq.com/account/settings#api`
+
+Once you have located these keys, follow the instructions at [Datadog Docs - API Reference for Timeboards] (https://docs.datadoghq.com/api/?lang=bash#timeboards) to understand the argument structure for making API calls.
+
+To create a Timeboard using the Datadog API using Bash:
+`curl  -X POST -H "Content-type: application/json" \
+-d`
+Followed by the API call:
+
 ## Monitoring Data:
 
 ## Collecting APM Data:
