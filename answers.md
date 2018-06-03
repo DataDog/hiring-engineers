@@ -45,7 +45,7 @@ You will find below all the three graphs based on my_metric.
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 Concerning the script used I took screenshots of the differents json configuration of my graphs :
 	- my_metric 
-	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.PNG)
+	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
 	- anomaly of my_metric 
 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
 	- sum_my_metric 
@@ -65,9 +65,9 @@ The anomaly graph is displaying the trend of the metric, hightlighning when the 
 # Monitoring Data
 
 On the screenshot, you will find the configuration of the monitor :  
-	- the alert threshold,
-	- the warning threshold,
-	- the notification in case there is some missing data for more than 10 minutes
+	- the alert threshold,  
+	- the warning threshold,  
+	- the notification in case there is some missing data for more than 10 minutes  
 
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
