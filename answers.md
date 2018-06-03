@@ -17,7 +17,7 @@ I choiced to use PostgreSQL because it is the database i am the most familiar wi
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-Here is the code for my customagent.py
+Here is the code for my customagent.py  
 {
 	from checks import AgentCheck
 	import random
@@ -54,7 +54,7 @@ Concerning the script used I took screenshots of the differents json configurati
 ## Set the Timeboard's timeframe to the past 5 minutes
 ## Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-On the picture, you will see the timeboard showing the value of my_metric for the last 5 minutes and my snapshot. 
+On the picture, you will see the timeboard showing the value of my_metric for the last 5 minutes and my snapshot.  
 
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot4.PNG)
 
@@ -64,14 +64,14 @@ The anomaly graph is displaying the trend of the metric, hightlighning when the 
 
 # Monitoring Data
 
-On the screenshot, you will find the configuration of the monitor : 
+On the screenshot, you will find the configuration of the monitor :  
 	- the alert threshold,
 	- the warning threshold,
 	- the notification in case there is some missing data for more than 10 minutes
 
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
-Below you will find my monitor's message:
+Below you will find my monitor's message:  
 {
 	{{#is_alert}} This is an alert made by a {{value}} value from {{host.ip}} {{/is_alert}} 
 
@@ -95,9 +95,9 @@ The is the mail that I received for the weekend downtime, and the configuration 
 
 # Collecting APM Data:
 
-I used the default app for this part as I am not used to the Flask package
+I used the default app for this part as I am not used to the Flask package  
 
-my_app.py:
+my_app.py:  
 {
 	from flask import Flask
 import logging
