@@ -105,29 +105,29 @@ import logging
 import sys
 
 ### Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+main_logger = logging.getLogger()  
+main_logger.setLevel(logging.DEBUG)  
+c = logging.StreamHandler(sys.stdout)  
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
+c.setFormatter(formatter)  
+main_logger.addHandler(c)  
 
-app = Flask(__name__)
+app = Flask(__name__)  
 
-@app.route('/')
-def api_entry():
-&nbsp;    return 'Entrypoint to the Application'
+@app.route('/')  
+def api_entry():  
+&nbsp;    return 'Entrypoint to the Application'  
 
-@app.route('/api/apm')
-def apm_endpoint():
-&nbsp;    return 'Getting APM Started'
+@app.route('/api/apm')  
+def apm_endpoint():  
+&nbsp;    return 'Getting APM Started'  
 
-@app.route('/api/trace')
-def trace_endpoint():
-&nbsp;    return 'Posting Traces'
+@app.route('/api/trace')  
+def trace_endpoint():  
+&nbsp;    return 'Posting Traces'  
 
-if __name__ == '__main__':
-&nbsp;    app.run(host='0.0.0.0', port='5050')
+if __name__ == '__main__':  
+&nbsp;    app.run(host='0.0.0.0', port='5050')  
 }  
 
 
