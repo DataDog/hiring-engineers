@@ -8,7 +8,7 @@ I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machi
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-In order to add tags I added them in the /etc/datadog-agent/datadog.yaml as you can see in the (screenshot1.png)
+In order to add tags I added them in the /etc/datadog-agent/datadog.yaml as you can see in the ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot1.PNG)
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
