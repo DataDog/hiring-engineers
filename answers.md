@@ -72,7 +72,7 @@ On the screenshot, you will find the configuration of the monitor :
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
 Below you will find my monitor's message:  
-{
+{  
 	{{#is_alert}} This is an alert made by a {{value}} value from {{host.ip}} {{/is_alert}} 
 
 	{{#is_no_data}}There is no data since 10 min{{/is_no_data}} 
@@ -80,8 +80,9 @@ Below you will find my monitor's message:
 	{{#is_warning}}This is a warning{{/is_warning}} 
 
 	@alexandrecorre.1995@gmail.com
-}
-the ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot6.PNG) is the screenshot of the alerting mail that I received.
+}  
+this is the screenshot of the alerting mail that I received.  
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot6.PNG)
 
 ## Bonus Question:
 
@@ -98,7 +99,7 @@ The is the mail that I received for the weekend downtime, and the configuration 
 I used the default app for this part as I am not used to the Flask package  
 
 my_app.py:  
-{
+{  
 	from flask import Flask
 import logging
 import sys
@@ -127,7 +128,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-}
+}  
 
 
 Bonus Question: What is the difference between a Service and a Resource?
