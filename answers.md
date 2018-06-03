@@ -1,20 +1,20 @@
-#My answers 
+# My answers 
 
-#Setup the environment
+# Setup the environment
 
 I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machine
 
-#Collecting Metrics:
+# Collecting Metrics:
 
-##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 In order to add tags I added them in the /etc/datadog-agent/datadog.yaml as you can see in the (screenshot1.png)
 
-##Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 I choiced to use PostgreSQL because it is the database i am the most familiar with.
 
-##Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Here is the code for my customagent.py
 {
@@ -25,36 +25,36 @@ Here is the code for my customagent.py
 			self.gauge('my_metric',random.randint(0,1000))
 }
 
-##Change your check's collection interval so that it only submits the metric once every 45 seconds.
-##Bonus Question Can you change the collection interval without modifying the Python check file you created?
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+## Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 In order to modify the collection interval without modifying the Python check file you have to change the yaml file of the check locate in : /etc/datadog-agent/conf.d/your_check/your_check.yaml
 
-you can see the (screenshot2.png) the Python check file, the yaml file and the check graph which show a new data each 45 sec.
+You can see in the (screenshot2.png) the Python check file, the yaml file and the check graph which show a new data each 45 sec.
 
 
-#Visualizing Data:
+# Visualizing Data:
 
-##Your custom metric scoped over your host.
-##Any metric from the Integration on your Database with the anomaly function applied.
-##Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+## Your custom metric scoped over your host.
+## Any metric from the Integration on your Database with the anomaly function applied.
+## Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 You will find in the (screenshot3.png) all the three graphs based on my_metric.
-concerning the script used I took screenshots of the differents json configuration of my graphs :
+Concerning the script used I took screenshots of the differents json configuration of my graphs :
 	- my_metric (my_metric_config.png)
 	- anomaly of my_metric (anomaly_config.png)
 	- sum_my_metric (my_metric_sum_config.png)
 
-##Set the Timeboard's timeframe to the past 5 minutes
-##Take a snapshot of this graph and use the @ notation to send it to yourself.
+## Set the Timeboard's timeframe to the past 5 minutes
+## Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 On the (screenshot4.png), you will see the timeboard showing the value of my_metric for the last 5 minutes and my snapshot. 
 
-##Bonus Question: What is the Anomaly graph displaying?
+## Bonus Question: What is the Anomaly graph displaying?
 
 The anomaly graph is displaying the trend of the metric, hightlighning when the value doesn't match the trend
 
-#Monitoring Data
+# Monitoring Data
 
 On the (screenshot5.png), you will find the configuration of the monitor : 
 	- the alert threshold,
@@ -73,13 +73,13 @@ Below you will find my monitor's message:
 }
 the (screenshot6.png) is the screenshot of the alerting mail that I received.
 
-##Bonus Question:
+## Bonus Question:
 
 The (screenshot7.png) is the mail that I received for the week downtime, and the (screenshot7_1.png) is the configuration of the downtime.
 
 The (screenshot8.png) is the mail that I received for the weekend downtime, and the (screenshot8_1.png) is the configuration of the downtime.
 
-#Collecting APM Data:
+# Collecting APM Data:
 
 I used the default app for this part as I am not used to the Flask package
 
@@ -124,14 +124,14 @@ However, a resource refer to some data so it is defined by a noun, for exemple :
 The link to my dashboard is : https://p.datadoghq.com/sb/49ba87d1e-6327d00df9ae6d489a2fbbea92483705 .
 However, as my virtual machine isn't working all the time, I think my (screenshot9.png) will show you the data when the VM was up.
 
-#Final Question:
+# Final Question:
 
-##Is there anything creative you would use Datadog for?
+## Is there anything creative you would use Datadog for?
 
 When I see all the differents features of the Datadog agent, I think it can be used nearly everywhere to improve some old architecture system but that's not really creative.
 A more creative way to use Datadog would be to gather data on online Games and help improve there resiliency.
 Even better, using some iot technologies it could be possible to collect data from camera in museum to have to watchtime of each piece of art to know for example which one is the most watch and then help positionning the masterpiece all over the museum.
 
-#I wanted to thanks you for your time reading me, I really enjoyed this exercice and especialy working with the Datadog technologies.
-#Have a nice day.
-#Thanks
+# I wanted to thanks you for your time reading me, I really enjoyed this exercice and especialy working with the Datadog technologies.
+# Have a nice day.
+# Thanks
