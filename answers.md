@@ -144,8 +144,8 @@ However, as my virtual machine isn't working all the time, I think this screensh
 
 ## Is there anything creative you would use Datadog for?
 
-When I see all the differents features of the Datadog agent, I think it can be used nearly everywhere to improve some old architecture system but that's not really creative.
-A more creative way to use Datadog would be to gather data on online Games and help improve there resiliency.
+When I see all the differents features of the Datadog agent, I think it can be used nearly everywhere to improve some old architecture system but that's not really creative.  
+A more creative way to use Datadog would be to gather data on online Games and help improve there resiliency.  
 Even better, using some iot technologies it could be possible to collect data from camera in museum to have to watchtime of each piece of art to know for example which one is the most watch and then help positionning the masterpiece all over the museum.
 
 # I wanted to thanks you for your time reading me, I really enjoyed this exercice and especialy working with the Datadog technologies.
