@@ -32,7 +32,7 @@ Here is the code for my customagent.py
 In order to modify the collection interval without modifying the Python check file you have to change the yaml file of the check locate in : /etc/datadog-agent/conf.d/your_check/your_check.yaml
 
 You can see below the Python check file, the yaml file and the check graph which show a new data each 45 sec.
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot2.png)
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot2.PNG)
 
 
 # Visualizing Data:
@@ -41,21 +41,22 @@ You can see below the Python check file, the yaml file and the check graph which
 ## Any metric from the Integration on your Database with the anomaly function applied.
 ## Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-You will find in the ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.png) all the three graphs based on my_metric.
+You will find below all the three graphs based on my_metric.
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 Concerning the script used I took screenshots of the differents json configuration of my graphs :
 	- my_metric 
-	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
+	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.PNG)
 	- anomaly of my_metric 
-	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.png)
+	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
 	- sum_my_metric 
-	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.png)
+	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.PNG)
 
 ## Set the Timeboard's timeframe to the past 5 minutes
 ## Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 On the picture, you will see the timeboard showing the value of my_metric for the last 5 minutes and my snapshot. 
 
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot4.png)
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot4.PNG)
 
 ## Bonus Question: What is the Anomaly graph displaying?
 
@@ -68,7 +69,7 @@ On the screenshot, you will find the configuration of the monitor :
 	- the warning threshold,
 	- the notification in case there is some missing data for more than 10 minutes
 
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.png)
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
 Below you will find my monitor's message:
 {
@@ -80,17 +81,17 @@ Below you will find my monitor's message:
 
 	@alexandrecorre.1995@gmail.com
 }
-the ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot6.png) is the screenshot of the alerting mail that I received.
+the ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot6.PNG) is the screenshot of the alerting mail that I received.
 
 ## Bonus Question:
 
 Below is the mail that I received for the week downtime, and the configuration of the downtime.
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot7.png) 
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot7_1.png)
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot7.PNG) 
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot7_1.PNG)
 
 The is the mail that I received for the weekend downtime, and the configuration of the downtime.
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot8.png)  
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot8_1.png) 
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot8.PNG)  
+![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot8_1.PNG) 
 
 # Collecting APM Data:
 
