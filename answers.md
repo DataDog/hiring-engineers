@@ -22,8 +22,8 @@ Here is the code for my customagent.py
 	from checks import AgentCheck  
 	import random  
 	class HelloCheck(AgentCheck):  
-		def check(self, instance):  
-			self.gauge('my_metric',random.randint(0,1000))  
+	&nbsp;	def check(self, instance):  
+	&nbsp;&nbsp;		self.gauge('my_metric',random.randint(0,1000))  
 }
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
