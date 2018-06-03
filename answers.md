@@ -100,11 +100,11 @@ I used the default app for this part as I am not used to the Flask package
 
 my_app.py:  
 {  
-	from flask import Flask
+from flask import Flask
 import logging
 import sys
 
-# Have flask use stdout as the logger
+### Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
 c = logging.StreamHandler(sys.stdout)
@@ -116,18 +116,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def api_entry():
-    return 'Entrypoint to the Application'
+&nbsp;    return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
 def apm_endpoint():
-    return 'Getting APM Started'
+&nbsp;    return 'Getting APM Started'
 
 @app.route('/api/trace')
 def trace_endpoint():
-    return 'Posting Traces'
+&nbsp;    return 'Posting Traces'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
+&nbsp;    app.run(host='0.0.0.0', port='5050')
 }  
 
 
