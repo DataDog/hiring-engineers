@@ -104,6 +104,7 @@ To visualise data in Datadog, users can create Dashboards to collate multiple me
 There are 2 types of Dashboard:
 1. Timeboard - All graphs visualised share a same time scope and is designed for troubleshooting and correlation of metrics & events.
 2. Screenboard - All graphs visualised have individual time scopes and is designed for status boards and sharing data
+
 For a full list of differences and further reading: [Datadog Docs - Dashboards](https://docs.datadoghq.com/graphing/dashboards/)
 
 #### 5. Utilize the Datadog API to create a Timeboard
@@ -117,20 +118,85 @@ Before interacting with the Datadog API, you will need to locate 2 keys:
 
 You can find and generate these keys at: `https://app.datadoghq.com/account/settings#api`
 
-Once you have located these keys, follow the instructions at [Datadog Docs - API Reference for Timeboards] (https://docs.datadoghq.com/api/?lang=bash#timeboards) to understand the argument structure for making API calls.
+Once you have located these keys, follow the instructions at [Datadog Docs - API Reference for Timeboards](https://docs.datadoghq.com/api/?lang=bash#timeboards) to understand the argument structure for making API calls.
 
-To create a Timeboard using the Datadog API using Bash:
-`curl  -X POST -H "Content-type: application/json" \
--d`
+5.1 To create a Timeboard using the Datadog API using Bash:
+`curl  -X POST -H "Content-type: application/json" \ -d`
+
 Followed by the API call:
+
+```json
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+  "graphs" : [{
+     "title": "My Metric Over Host",
+     "definition": {
+         "requests": [
+			  {"q": "avg:my_metric{host:alishaw}"}
+		  ]
+     },
+     "viz": "timeseries"
+ },
+ {
+     "title": "MongoDB with anomalies",
+     "definition": {
+         "requests": [
+             {"q": "anomalies(avg:mongodb.connections.available{host:alishaw}, 'basic', 2)"}
+	     ]
+	 },
+     "viz": "timeseries"
+ },
+ {
+     "title": "My Metric Rollup Sum",
+     "definition": {
+         "requests": [
+             {"q": "avg:my_metric{host:alishaw}.rollup(sum, 3600)"}
+		 ]
+	 },
+     "viz": "timeseries"
+ }      
+ ],
+ "title" : "Alis Challenge Timeboard v2",
+ "description" : "A timeboard to visualise my challenge",
+ "template_variables": [{
+     "name": "host1",
+     "prefix": "host",
+     "default": "host:my-host"
+ }],
+ "read_only": "True"
+ }' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+```
+
+The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at `https://app.datadoghq.com/dashboard/lists`:
+
+![Dashboard list](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/dashboard_list.png)
+
+The script is made of 2 main components:
+
+- `"graphs" [{}]` : Here you can define a number of graphs by giving them a title, definition and the request using `{"q": "YOUR_PARAMETERS"}
+- After the graphs, the Timeboard is given a title & description
+
+5.2 Once you have created a Timeboard you can interact with is via the GUI:
+
+5.2.1 Set the timeframe to the past 5 minutes:
+
+The default time ranges for a Timeboard are found in the "show" dropdown above your graphs. To set the timeframe to a shorter period than the default Past Hour, hover your cursor over a graph and select a timeframe:
+
+![Dashboard 5mins](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/timeboard_5mins.png)
+
+5.2.2 Take a snapshot of the graph and use the @ notation to send it to yourself:
+
+Datadog has a built in feature to screenshot specific graphs, annotate with comments and share them with individuals or teams. Simply hover over the graph, click the camera icon and write your comment using "@USERNAME" to send it to an individual.
+
+![dashboard screenshot](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/timeboard_screenshot.png)
+
+The user is then notified on their main dashboard:
+
+![event screenshot](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/screenshot_event.png)
 
 ## Monitoring Data:
 
 ## Collecting APM Data:
 
 ## Final Question:
-
-## Personal notes:
-1. datadog.yaml requires sudo priviledges to edit
-
-
