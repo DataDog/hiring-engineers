@@ -56,7 +56,7 @@ dd_url: https://app.datadoghq.com
 # The Datadog api key to associate your Agent's data with your organization.
 # Can be found here:
 # https://app.datadoghq.com/account/settings
-api_key: dc32e242694d198af81287e6ee9461b6
+api_key: REMOVED
 
 # If you need a proxy to connect to the Internet, provide it here (default:
 # disabled). You can use the 'no_proxy' list to specify hosts that should bypass the
@@ -165,8 +165,8 @@ Once this was completed and working appropriately, I used to the [API timeboard 
 from datadog import initialize, api
 
 options = {
-    'api_key': 'dc32e242694d198af81287e6ee9461b6',
-    'app_key': '9ae728793d0bddbb5effc3768fd58ed459a96a33'
+    'api_key': 'REMOVED',
+    'app_key': 'REMOVED'
 }
 
 initialize(**options)
@@ -178,8 +178,8 @@ Then I used a python script to pull a specific timeboard via the ID I got.
 from datadog import initialize, api
 
 options = {
-    'api_key': 'dc32e242694d198af81287e6ee9461b6',
-    'app_key': '9ae728793d0bddbb5effc3768fd58ed459a96a33'
+    'api_key': 'REMOVED',
+    'app_key': 'REMOVED'
 }
 
 initialize(**options)
@@ -193,8 +193,8 @@ I used that information as a guide to creating a python script to leverage the c
 from datadog import initialize, api
 
 options = {
-    'api_key': 'dc32e242694d198af81287e6ee9461b6',
-    'app_key': '9ae728793d0bddbb5effc3768fd58ed459a96a33'
+    'api_key': 'REMOVED',
+    'app_key': 'REMOVED'
 }
 
 initialize(**options)
