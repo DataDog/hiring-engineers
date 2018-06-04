@@ -2,10 +2,9 @@ from flask import Flask
 import logging
 import sys
 from ddtrace import tracer
-from datadog import statsd
 
-with tracer.trace("web.request", service="my_service") as span:
-  span.set_tag("my_tag", "my_value")
+with tracer.trace("web.request", service="my_app") as span:
+  span.set_tag("my_app", "tag_1")
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()

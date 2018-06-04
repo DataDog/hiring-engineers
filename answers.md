@@ -63,6 +63,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 -Bonus Question: What is the Anomaly graph displaying?
 
 There are two anomaly graphs being display, one for  row insertion into a table within the mydb database, the other for postgres percent usage connections.  These graphs were created using the ‘basic’ anomaly algorithm and use a color system to differentiate between normal behavior (blue) and abnormal behavior (orange).
+
 In the case of row insertion, normal behavior is when no rows are being inserted into the database.  When rows are being inserted, the behavior is out of bounds (floor and ceiling value constituting the ‘norm’) for what is considered 'normal behavior' and therefore these occurrences appear in orange.
 
 Normal behavior is dynamically defined and will change overtime as behavior changes.  This can be seen in the second graph.  The grey area surrounding the line within the graph constitutes the bounds of normal behavior.  As you can see, at the beginning of the chart normal behavior is for the usage percentage to be at or around 0.  When a user or users connect to the database, the line jumps, rising above the 'normal bounds' and is therefor displayed in orange.  However, after the user or users have been connected to the database for sometime the boundaries for 'normal behavior' are redefined, the grey area on the chart shifts, and the line color goes back to blue.
@@ -117,3 +118,13 @@ my_app.py - included in this pr
 
 Also - Github Gist Containing Flask App Code (also included in this pr "my_app.py":
 https://gist.github.com/MichaelRomani/2bc033b52b678770083c0a8c387e9f5c
+
+Final Question:
+
+Gathering accurate weather information can be vital for some businesses.  For example, a company that specializes in painting the exterior of residential homes or in commercial window washing, their operations can be effected and at times halted for days or weeks due to unfavorable weather conditions.
+
+Companies in these areas that have expansive / national reach could use Datadog to centralize the tracking of weather conditions for the areas they operate.  This enable them to get a sense of which areas may have limited operations due to weather conditions, predicting costs incurred or loss of potential earnings due to down time.
+
+Instead of waiting for each satellite office to report to central what the weather conditions are, they could utilize a weather API to gather relavent weather information and then utilize a custome agent check to send metrics to their Datadog account.  This could be used to create a chart displaying the percentage of service areas that may be effected by poor weather, or could be used to set up alerts if certain areas and or a certain percentage of areas are effected.
+
+
