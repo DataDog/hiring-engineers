@@ -173,6 +173,8 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
 
+*personal note: whilst I picked up the Datadog structure for the JSON file relatively quickly, the first few times I executed it my code failed. After some troubleshooting (Googling) I noticed errors in my code structure (mainly tabs/spacing) that would break my command.*
+
 The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at [https://app.datadoghq.com/dashboard/lists](https://app.datadoghq.com/dashboard/lists) :
 
 ![Dashboard list](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/dashboard_list.png)
