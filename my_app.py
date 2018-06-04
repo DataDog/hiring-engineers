@@ -26,6 +26,8 @@ def apm_endpoint():
 
 @app.route('/api/trace')
 def trace_endpoint():
+    with tracer.trace("web.request", service="m_app") as span:
+     span.set_tag("trace", "end_point")
     return 'Posting Traces'
 
 if __name__ == '__main__':
