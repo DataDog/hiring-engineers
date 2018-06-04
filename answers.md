@@ -36,7 +36,6 @@ Running the following commands validated the the configuration was successful. A
             echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 
 <p align="center"><img src="integration_validation.png" width="500" ></img></p>
--------
 
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
