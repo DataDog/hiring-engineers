@@ -170,7 +170,7 @@ After some time the changes will take effect. Head back to the host map in the b
 Clicking on the ((no-namespace) dashboard) link brings you [here](https://app.datadoghq.com/dash/integration/custom?live=true&tpl_var_scope=host%3Ajordans-pc&page=0&is_auto=false&from_ts=1527185954883&to_ts=1527189554883&tile_size=m):
 <a href="https://www.flickr.com/photos/158412660@N04/40521357180/in/dateposted/" title="my_metric"><img src="https://farm1.staticflickr.com/968/40521357180_72b63db753_z.jpg" width="640" height="323" alt="my_metric"></a>
 
-**Issue for this part** I was not able to determine why my metric was showing up as *no-namespace*. Before creating my own metric, I followed [this](https://docs.datadoghq.com/developers/agent_checks/#your-first-check. WHen I created the hello world metric, it showed up properly on my host map as 'Hello'. When I created my own metric it did not. I assume it is a result of how I set up the instances section in my configuration file.
+**Issue for this part** I was not able to determine why my metric was showing up as *no-namespace*. Before creating my own metric, I followed the [your first check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check) example. WHen I created the hello world metric, it showed up properly on my host map as 'Hello'. When I created my own metric it did not. I assume it is a result of how I set up the instances section in my configuration file, but was unable to resolve it.
 
 **Bonus Question**
 To only send the metric at an interval of 45 seconds without altering the python file, simply add: ```min_collection_interval: 45``` to the instances section of the config file as shown above.
@@ -179,7 +179,10 @@ In this example I used mycheck.py and mycheck.yaml which is included in the code
 
 ## Visualizing Data
 
-Before moving forward, I had to request an app api key for access to datadog api  and install the datadog python package. The python script I created can be found in the code folder of this branch. The resulting timeboard is shown below and can be found [here](https://app.datadoghq.com/dash/820253/jordans-timeboard?live=false&page=0&is_auto=false&from_ts=1527200945943&to_ts=1527201245943&tile_size=m&fullscreen=false).
+Before moving forward, we need to request an application api key for access to datadog api and install the datadog python package to utilize the api. If you click [here](https://app.datadoghq.com/account/settings#api) you can request an application key by entering your application's name and clicking 'Create Application Key'.
+
+
+The python script I created can be found in the code folder of this branch. The resulting timeboard is shown below and can be found [here](https://app.datadoghq.com/dash/820253/jordans-timeboard?live=false&page=0&is_auto=false&from_ts=1527200945943&to_ts=1527201245943&tile_size=m&fullscreen=false).
 
 <a href="https://www.flickr.com/photos/158412660@N04/28459451498/in/dateposted/" title="my-timeboard"><img src="https://farm1.staticflickr.com/966/28459451498_5900a3d672_z.jpg" width="614" height="640" alt="my-timeboard"></a>
 
