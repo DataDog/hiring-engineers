@@ -12,7 +12,7 @@ The API key required for installation can be found via the menu at [Integration-
 
 *Solution:*<br> Add the tag 'HantingPC' in the configuration file (for Windows 10, the file can be found at C:\ProgramData\Datadog\datadog.yaml) under the option 'tags'.
 <br>
-The configuration file is also attached in the pull request **ADD DATADOG.YAML**
+The configuration file is also attached in the pull request [datadog.yaml](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/datadog.yaml)
 <br>
 Screenshot : <br>
 [SCREENSHOT 1](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/1.agentTag.PNG)
@@ -25,7 +25,8 @@ Screenshot : <br>
 2.Install integration for PostgreSql by following the configuration instruction on the Integration Tab <br>
 	-Create user 'datadog' who has the right to query the database stats <br>
 	-Create a configuration file at C:\ProgramData\Datadog\conf.d\postgres.d\postgres.yaml stating the database ip, username, password and tags <br>
-	**ADD POSTGRES.YAML** <br>
+
+   The postgres configuration file is attached at	[postgres.yaml](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/postgres.yaml) <br>
 3.Restart the datadog agent<br>
 4.We can now see the database metrics via the dashboard tab. <br> 
 Screenshot: [SCREENSHOT 3](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/3.postgreSql_dashBoard.PNG) 
@@ -34,9 +35,8 @@ Screenshot: [SCREENSHOT 3](https://github.com/HantingZHANG/hiring-engineers/blob
 
 *Soulution:*<br>
 In order to configure a custom metric, we need to put 2 files in datadog folders (C:\ProgramData\Datadog\checks.d for the check and C:\ProgramData\Datadog\conf.d for its configuration) <br>
-**ADD the yaml and PY file** <br>
-1.The .yaml configuration file *mycheck.yaml* <br>
-2.The class file *mycheck.py* <br> 
+1.The .yaml configuration file [*mycheck.yaml*](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/mycheck.yaml) <br>
+2.The class file [*mycheck.py*](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/mycheck.py) <br> 
 The are both included in the pull request
 
 After the 2 files are added, restart the datadog agent, we can see the check in the tab 'Metrics'. By click on 'explore' and search for 'mycheck'. Screenshot: [SCREENSHOT 4](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/4.myMertric.PNG)
@@ -173,20 +173,32 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-*Solution:* <br>
-I had trouble running the python app via `ddtrace-run` command because it looks for a folder with a space in its name, so I added the middleware in the application instead. The source code is added in the pull request **ADD my_app.py** <br>
-
-After running the flask app, the button 'traces' became available in the APM tab of the Datadog UI. Click on it, we can now see the traces of our application.
-
-
-* **Bonus Question**: What is the difference between a Service and a Resource?
-
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
+
+*Solution:* <br>
+I had trouble running the python app via `ddtrace-run` command because it looks for a folder with a space in its name, so I added the middleware in the application instead. The source code is added in the pull request [my_app.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/my_app.py) <br>
+
+After running the flask app, the button 'traces' became available in the APM tab of the Datadog UI. Click on it, we can now see the traces of our application: 
+<br>
+[Screenshot 16](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/16.APM_Trace.PNG) <br>
+[Screenshot 17](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/17.APM_Trace2.PNG)
+
+I created a dashboard combining the check 'mymetric' and python app we just created [Screenshot 18](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/18.CustomedDashBoard.PNG). Then I made it public using the options button on the top right corner, [ScreenShot 19](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/19.GeneratePublicURL.PNG). <br> 
+The link to the dashboard is [here](https://p.datadoghq.com/sb/bc0f6093b-7b584e455cb564b634c85f1d4e90804b). 
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+*Solution:* <br>
+A "Service" is the name of a set of processes that work together to provide a feature set. Such as a fonctional module of a web site <br> 
+A 'Resource' is a particular query to a service. For a web application, for examples a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks).
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+*Solution:* <br>
+One thing I see Datadog would fit into is the credit card manufacturing system. Inspired by my previous internship at a credit card personalization solution company, I believe that if we install Datadog in the host machine that sends credit card manufacturing order to the card printers, we can collect multiple kinds of interesting data such as number of cards manufactured within a given period of time, system malfunction logs, origins of orders, etc.
