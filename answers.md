@@ -4,7 +4,7 @@ I set up the originally set up a vagrant environment blindly using the defaults 
 
 I then stopped using vagrant all together and used my Ubuntu 16.04 image that already had MySQL installed and installed the Datadog agent on that. Installation of the agent was super easy. I was able to download the prerequisites for Collecting APM Data Section. However, I was not able to get the given Flask application to execute properly. I was however able to run some test trigger successfully.
 
-Collecting Metrics:
+<h1>Collecting Metrics:</h1>
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 I added a tag in the /etc/datadog-agent/datadog.yaml file.
@@ -83,7 +83,7 @@ Changing the collection interval is also possible by using the python API, howev
 
 
 
-Visualizing Data:
+<h1>Visualizing Data:</h1>
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -158,7 +158,7 @@ Here are the screenshot to the Timeboard set to 5 minutes and the associate emai
 
 
 
-<b>Monitoring Data</b>
+<h1>Monitoring Data</h1>
 
 I created a Metric Monitor that watches the average of my custom metric (my_jon_metric) and will alert if it’s above the following values over the past 5 minutes: (code from above is included here for convenient reference)
 ---------------------
@@ -204,7 +204,7 @@ my code for the sample tracer
               span.set_tag("my_adm_tracer_tag", "my_adm_tracer_value")
 ---------------------
 
-Final Question:
+<h1>Final Question:</h1>
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
 I see an enormous amount of uses for Datadog. Here are just a few.
