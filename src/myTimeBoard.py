@@ -1,8 +1,8 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '01f50e7f7f522a300abcf6b851bcc1ef',
-    'app_key': '3aee7aee5a1669c0fd007c6e3a16535ac3bc2c21'
+    'api_key': '',
+    'app_key': ''
 }
 initialize(**options)
 title = "Hanting ZHANG's Timeboard"
