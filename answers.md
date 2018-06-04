@@ -399,7 +399,7 @@ Within a few moments, the Dashboard UI will update the APM tab to show the trace
 
 <a href="https://www.flickr.com/photos/158412660@N04/28473998728/in/dateposted/" title="my_service"><img src="https://farm2.staticflickr.com/1730/28473998728_c7b6583349.jpg" width="500" height="414" alt="my_service"></a>
 
-Then add to the dashboard created earlier using the UI:
+Then add to the dashboard created earlier using the UI by dragging in a timeboard widget and selecting an APM metric:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41445051175/in/dateposted/" title="timeboard-with-apm"><img src="https://farm1.staticflickr.com/886/41445051175_422fb29b3c.jpg" width="500" height="414" alt="timeboard-with-apm"></a>
 
