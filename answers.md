@@ -143,7 +143,7 @@ In order to do this properly, we will need to create two separate files. The fir
 
 3. add the code as shown below, save, and exit the editor:
 
-<a href="https://www.flickr.com/photos/158412660@N04/42561523641/in/dateposted/" title="python-check"><img src="https://farm2.staticflickr.com/1739/42561523641_0acb1c19fc.jpg" width="500" height="385" alt="python-check">
+<a href="https://www.flickr.com/photos/158412660@N04/42561523641/in/dateposted/" title="python-check"><img src="https://farm2.staticflickr.com/1739/42561523641_0acb1c19fc.jpg" width="500" height="385" alt="python-check"></a>
 
 Next we need to make the configuration file in /etc/datadog-agent/conf.d:
 
