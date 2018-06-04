@@ -36,7 +36,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -63,16 +63,15 @@ Please configure the monitor’s message so that it will:
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-    * One that silences it from 7pm to 9am daily on M-F,
-    * And one that silences it all day on Sat-Sun.
-    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ## Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-```
+```python
 from flask import Flask
 import logging
 import sys
@@ -101,7 +100,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-```    
+```
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
@@ -132,6 +131,7 @@ To submit your answers:
 ## References
 
 ### How to get started with Datadog
+
 * [Datadog overview](http://docs.datadoghq.com/overview/)
 * [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
 * [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
@@ -144,11 +144,13 @@ To submit your answers:
 * [Datadog API](https://docs.datadoghq.com/api/)
 
 ### APM
+
 * [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
 * [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
 
 ### Vagrant
- * [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
+
+* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
 
 ### Other questions:
 
