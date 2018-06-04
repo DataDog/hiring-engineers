@@ -121,18 +121,50 @@ If you navigate back to your host map, you should see mongo integrated inside yo
 
 <a href="https://www.flickr.com/photos/158412660@N04/27651403137/in/dateposted/" title="mongo-integration"><img src="https://farm2.staticflickr.com/1723/27651403137_7e1de52523.jpg" width="500" height="495" alt="mongo-integration"></a>
 
-Notice the listed apps on the bottom-left of the panel that pops up after double clicking the hexagon. If you click mongodb you can see the metrics for that integration. Alternatively, you can click the blue dashboard link to get an overview of the host. Below I have a few metrics from my MongoDB integration:
+Notice the listed apps on the bottom-left of the panel that popped up after double clicking the hexagon. If you click mongodb, you can see the metrics for that integration. Alternatively, you can click the blue dashboard link to get an overview of the host. Below I have a few metrics from my MongoDB integration:
 
 <a href="https://www.flickr.com/photos/158412660@N04/40505109150/in/dateposted/" title="mongo-dash"><img src="https://farm1.staticflickr.com/957/40505109150_33a10bd436_z.jpg" width="640" height="454" alt="mongo-dash"></a>
 
 My dashboard with MongoDB metrics can be found [here](https://app.datadoghq.com/dash/host/485640810?live=true&page=0&from_ts=1527109051020&to_ts=1527123451020&is_auto=false&tile_size=m)
 
 #### Creating a custom check
-To create a custom check we need to add a python script in /etc/datadog/checks.d and a config (yaml) file in /etc/datadog/conf.d. In this example I used mycheck.py and mycheck.yaml which is included in the code folder in this branch. 
 
-<a href="https://www.flickr.com/photos/158412660@N04/40521358110/in/photostream/" title="mycheck"><img src="https://farm1.staticflickr.com/962/40521358110_31b3113fbe_z.jpg" width="640" height="199" alt="mycheck"></a>
+Next we want to create a custom metric and send those with a check. The metric is what we are monitoring and the check is how we are sending the metric data back to datadog. There are many different ways to send metrics in a check, which can be found [here](https://docs.datadoghq.com/developers/agent_checks/#sending-metrics), but in this example we will use a gauge. Gauges simply track the change of a particular metric over time.
+
+In order to do this properly, we will need to create two separate files. The first will be a python script describing our metric and check. The second file will be the configuration file associated to our check. The Datadog Agent allows us to add custom checks in /etc/datadog-agent/checks.d. Let's start with the python file.
+
+1. open a terminal and create a python file named 'mycheck' in the appropriate folder:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo touch /etc/datadog/checks.d/mycheck.py```
+
+2. open the file with a text editor of your choice:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo gedit /etc/datadog/checks.d/mycheck.py```
+
+3. add the code as shown below, save, and exit the editor:
+
+<a href="https://www.flickr.com/photos/158412660@N04/42561523641/in/dateposted/" title="python-check"><img src="https://farm2.staticflickr.com/1739/42561523641_0acb1c19fc.jpg" width="500" height="385" alt="python-check">
+
+Next we need to make the configuration file in /etc/datadog-agent/conf.d:
+
+1. open a terminal and create the configuration file. The file must have the same name as the metric:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo touch /etc/datadog/conf.d/mycheck.yaml```
+
+2. open the file with a text editor of your choice:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo gedit /etc/datadog/conf.d/mycheck.py```
+
+3. add the code as shown below, save, and exit the editor:
+
+<a href="https://www.flickr.com/photos/158412660@N04/42561524491/in/dateposted/" title="mycheck-config"><img src="https://farm2.staticflickr.com/1759/42561524491_32455f84af.jpg" width="500" height="385" alt="mycheck-config"></a>
+
 
 To only send the metric at an interval of 45 seconds without altering the python file, simply add: ```min_collection_interval: 45``` to the instances section of the config file as shown above (**bonus question**).
+
+In this example I used mycheck.py and mycheck.yaml which is included in the code folder in https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=hothis branch. 
+
+<a href="https://www.flickr.com/photos/158412660@N04/40521358110/in/photostream/" title="mycheck"><img src="https://farm1.staticflickr.com/962/40521358110_31b3113fbe_z.jpg" width="640" height="199" alt="mycheck"></a>
 
 After some time the changes will show in the dashboard and the metric can be viewed by going to infrastructure -> host as shown here:
 
