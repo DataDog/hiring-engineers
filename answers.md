@@ -274,10 +274,9 @@ graphs = [
 ]
 ```
 
-4. The last thing we need to do is run the file, since the initialization and api is integrated into the script already!
+4. The last thing we need to do is run the file, since the initialization and api is integrated into the script already! Open a terminal and enter the following command:
 
 &nbsp;&nbsp;&nbsp;&nbsp;```python ~/Development/hiring-engineers/mytimeboard.py```
-
 
 The resulting timeboard is shown below and can be found [here](https://app.datadoghq.com/dash/820253/jordans-timeboard?live=false&page=0&is_auto=false&from_ts=1527200945943&to_ts=1527201245943&tile_size=m&fullscreen=false).
 
@@ -285,11 +284,32 @@ The resulting timeboard is shown below and can be found [here](https://app.datad
 
 To take a snap shot click the camera icon as shown below:
 
-<a href="https://www.flickr.com/photos/158412660@N04/28459451498/in/dateposted/" title="my-timeboard"><img src="https://farm1.staticflickr.com/966/28459451498_5900a3d672_z.jpg" width="614" height="640" alt="my-timeboard"></a>
+<a href="https://www.flickr.com/photos/158412660@N04/28459452618/in/dateposted/" title="annotate-timeboard"><img src="https://farm1.staticflickr.com/957/28459452618_f0399ec6c5.jpg" width="479" height="500" alt="annotate-timeboard"></a>
 
 Finally annotate as shown below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/28459451308/in/dateposted/" title="tag-timeboard"><img src="https://farm1.staticflickr.com/971/28459451308_85390d7a3d.jpg" width="481" height="304" alt="tag-timeboard"></a>
+
+**Important Advice** One thing that really helped me create the timeboard was using the UI in the browser as outlined below:
+
+1. Navigate to the dashboard tab
+2. Select New Dashboard
+3. Select Timeboard
+
+<a href="https://www.flickr.com/photos/158412660@N04/42512785742/in/dateposted/" title="Timeboard-UI"><img src="https://farm2.staticflickr.com/1753/42512785742_ea6f2dfdfb.jpg" width="500" height="358" alt="Timeboard-UI"></a>
+
+4. Drag a timeseries widget into the finish editing box.
+5. Edit the form based on what metric you want.
+6. Click the + sign to add other functions and use the search bar to find them by name:
+
+<a href="https://www.flickr.com/photos/158412660@N04/28691113748/in/dateposted/" title="how-to-timeboard"><img src="https://farm2.staticflickr.com/1748/28691113748_2597fb32dd.jpg" width="456" height="500" alt="how-to-timeboard"></a>
+
+7. Select the JSON tab to copy and paste the code for a graph into your python file:
+
+<a href="https://www.flickr.com/photos/158412660@N04/41663546095/in/dateposted/" title="json-timeboard"><img src="https://farm2.staticflickr.com/1736/41663546095_50a7349567.jpg" width="456" height="500" alt="json-timeboard"></a>
+
+This approach will save you a lot of times and headaches until you get comfortable with creating your own graphs and timeboards.
+
 
 #### Bonus Question
 The anomaly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a specific time window. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available connections of my metric are steady.
