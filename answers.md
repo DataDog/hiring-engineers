@@ -197,6 +197,57 @@ The user is then notified on their main dashboard:
 
 ## Monitoring Data:
 
+Datadog Monitors allow you to actively check key events/metrics across your infrastructure, systems and applications. Once a monitor is created, it can be configured to alert individuals or teams when conditions are met. It can also be integrated to 3rd party tools such as Slack via Webhooks. [Datadog Docs - Monitors](https://docs.datadoghq.com/monitors/)
+
+To create a new Monitor, go to `https://app.datadoghq.com/monitors#/create`. Here you can chose from different Monitor types depending on what you want to monitor, [Datadog Docs - Monitor Types](https://docs.datadoghq.com/monitors/monitor_types/)
+
+To create a Metric Monitor:
+1. Choose the detection method - specify what event you are watching on your metric
+
+2. Define the metric - specify the variables of your metric, host and other factors
+
+3. Set alert conditions - specify the conditions that, if met, create an alert. See below for configuration of my alert
+
+4. Say what's happening - specify individual messages based on which condition has been met. This section supports markdown for custmosing the message with relevant information about the metric value
+
+5. Notify your team - specify who is alerted when the Monitor is triggered
+
+![alert 1](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/alert_1.png)
+
+![alert 2](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/alert_2.png)
+
+When the Monitor is triggered, the users specified will receive an event notification on their Datadog main dashboard, as well as an email notification:
+
+![alert 3](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/alert_3.png)
+
+![alert 4](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/alert_4.png)
+
+To avoid disruption of a Monitor during certain periods, you can schedule downtime for individual Monitors at `https://app.datadoghq.com/monitors#downtime` 
+
+Create a new downtime schedule:
+1. Choose which Monitors to silence
+
+2. Define the schedule - either one time or recurring and specify dates/times
+
+3. Add a message to notify team members - markdown is supported for detail
+
+4. Select who to notify
+
+Below are 2 examples of a weekday & weekend downtime schedule:
+
+![downtime 1](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_1.png)
+
+![downtime 2](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_2.png)
+
+![downtime 3](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_3.png)
+
+![downtime 4](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_4.png)
+
+![downtime 5](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_5.png)
+
+![downtime 6](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_6.png)
+
+
 ## Collecting APM Data:
 
 ## Final Question:
