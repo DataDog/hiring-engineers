@@ -105,4 +105,4 @@ Here are the screenshots of the configuration in the Datadog Web Site.
 
 Here are the screenshots of the emails I received cinfirming the schedule the downtime.
 <p align="center"><img src="weekenddowntimeemail1.png" width="500" ></img></p>
-<p align="center"><img src="weekenddowntime2.png" width="500" ></img></p>
+<p align="center"><img src="weekenddowntimeemail2.png" width="500" ></img></p>
