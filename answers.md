@@ -179,10 +179,107 @@ In this example I used mycheck.py and mycheck.yaml which is included in the code
 
 ## Visualizing Data
 
-Before moving forward, we need to request an application api key for access to datadog api and install the datadog python package to utilize the api. If you click [here](https://app.datadoghq.com/account/settings#api) you can request an application key by entering your application's name and clicking 'Create Application Key'.
+Before moving forward, we need to request an application api key for access to datadog api and install the datadog python package to utilize the api. If you click [here](https://app.datadoghq.com/account/settings#api) you can request an application key by entering your application's name and clicking 'Create Application Key'. Now you are ready to create a custom timeboard!
+
+You can store your python script for creating the timeboard in any folder you would like. I used ```~/Development/hiring-engineers``` to keep my Datadog API scripts in one place. Once we are done, we will run the script in the terminal and our timeboard will be created.
+
+Now we need to install datadog's Python integration. Instructions can be found [here](https://docs.datadoghq.com/integrations/python/) or follow along below:
+
+1. Install the client in an open terminal.
+
+&nbsp;&nbsp;&nbsp;&nbsp;```pip install datadog```
+
+2. Once we create a file in our desired folder we can create the code, but we need to have our api and application key. Below is a snippet of my complete python file which can be found in the code directory. It has only one graph of the 'my_metric' metric which I created previously in the tutorial. 
+
+```from datadog import initialize, api
+
+options = {
+    'api_key':'<DATADOG_API_KEY>',
+    'app_key':'<DATADOG_APP_KEY>'
+}
+
+initialize(**options)
+
+title = "Jordans Timeboard"
+description = "A simple example"
+graphs = [
+  {
+  "title": "My_metric avg",
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "avg:my_metric{host:jordans-pc}",
+        "type": "line",
+        "style": {
+          "width": "thin",
+          "palette": "cool",
+          "type": "solid"
+        }
+    }]}
+  }
+ ]
+ 
+api.Timeboard.create(title=title, description=description, graphs=graphs)
+```
+
+3. Before running this script, we want to add two more graphs. We want to add an anomaly function and a rollup function. Adding multiple plots is accomplished by creating multiple objects insided the graph array, separated by a comma as shown below:
+```
+graphs = [
+  {
+  "title": "My_metric avg",
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "avg:my_metric{host:jordans-pc}",
+        "type": "line",
+        "style": {
+          "width": "thin",
+          "palette": "cool",
+          "type": "solid"
+        }
+    }]}
+  },
+  {
+  "title": "Mongo connection anomalies",
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "anomalies(avg:mongodb.connections.available{host:jordans-pc}, 'basic', 2)",
+        "type": "line",
+        "style": {
+          "palette": "warm",
+          "type": "solid",
+          "width": "normal"
+        }
+    }]}
+  },
+  {
+  "title": "My_metric rollup",
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "avg:my_metric{host:jordans-pc}.rollup(sum, 3600)",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        }
+    }]}
+  }
+]
+```
+
+4. The last thing we need to do is run the file, since the initialization and api is integrated into the script already!
+
+&nbsp;&nbsp;&nbsp;&nbsp;```python ~/Development/hiring-engineers/mytimeboard.py```
 
 
-The python script I created can be found in the code folder of this branch. The resulting timeboard is shown below and can be found [here](https://app.datadoghq.com/dash/820253/jordans-timeboard?live=false&page=0&is_auto=false&from_ts=1527200945943&to_ts=1527201245943&tile_size=m&fullscreen=false).
+The resulting timeboard is shown below and can be found [here](https://app.datadoghq.com/dash/820253/jordans-timeboard?live=false&page=0&is_auto=false&from_ts=1527200945943&to_ts=1527201245943&tile_size=m&fullscreen=false).
 
 <a href="https://www.flickr.com/photos/158412660@N04/28459451498/in/dateposted/" title="my-timeboard"><img src="https://farm1.staticflickr.com/966/28459451498_5900a3d672_z.jpg" width="614" height="640" alt="my-timeboard"></a>
 
