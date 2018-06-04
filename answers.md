@@ -158,9 +158,9 @@ Based on this section from the datadog docs section, I changed the collection in
 To complete this section, I took the approach detailed below.  I'm not sure if it's 'cheating', but given my lack of development background this was the only path I saw to getting this done.
 
 I created a dashboard in my environment via the UI ([link](https://app.datadoghq.com/dash/822625/ui-created-timeboard?live=true&page=0&is_auto=false&from_ts=1528137594823&to_ts=1528141194823&tile_size=m)) with all the elements called for, plus a few others just to familiarize myself with the functionality.
-![alt text]()
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_UI.png)
 
-Once this was completed and working appropriately, I used to the [API timeboard docs](https://docs.datadoghq.com/api/?lang=python#timeboards) to get sample requests/responses.  I also got the API and APP keys from the API section in the datadog trial account environment.  I created a python script to get all timeboards in order to get the definition I needed.  It didn't bring back all the definitions, but did give me the ID.
+Once this was completed and working appropriately, I used to the [API timeboard docs](https://docs.datadoghq.com/api/?lang=python#timeboards) to get sample requests/responses.  I also got the API and APP keys from the API section in the datadog trial account environment.  I created a python script to get all timeboards in order to get the definition I needed.  It didn't bring back all the definitions, but it did give me the ID.
 ```python
 from datadog import initialize, api
 
@@ -173,7 +173,7 @@ initialize(**options)
 
 print api.Timeboard.get_all()
 ```
-Then I used a python script to pull a specific timeboard an entired the ID I got.
+Then I used a python script to pull a specific timeboard via the ID I got.
 ```python
 from datadog import initialize, api
 
@@ -186,7 +186,7 @@ initialize(**options)
 
 print api.Timeboard.get(822625)
 ```
-I received the [following output]() which contained all of the definitions of the graphs I successfully created in the UI.
+I received the [following output](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/Timeboard%20API%20Pull.rtf) which contained all of the definitions of the graphs I successfully created in the UI.
 
 I used that information as a guide to creating a python script to leverage the create a timeboard API.  I used the sample request and made adjustments specific to the exercise requirements and changed titles so it was clear that the dashboard was created via the API.
 ```python
@@ -280,13 +280,13 @@ api.Timeboard.create(title=title,
 ```
 
 This script successfully created the following timeboard.
-![alt text]()
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_API.png)
 
 Using the keyboard shortcut, I changed the API created timeboard to display the past 5 minutes.
-![alt text]()
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_API_5.png)
 
 I used the camera icon on my MongoDB graph to take a snapshot and send the notification to myself via @mention.
-![alt text]()
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/snapshotsend.png)
 
 ### Bonus Question
 The graph with anomaly applied is displaying when any metric is out of range of what's expected based on historical values.  My particular graph is set to show anomalies outside of 3 deviations from norm.  This could potentially help determine if/when there is something wrong as the algorithm accounts for seasonality and historical trends.
