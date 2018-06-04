@@ -89,7 +89,7 @@ I created a Metric Monitor that watches the average of my custom metric (my_jon_
               def check(self, instance):
                   self.gauge('my_jon_metric', random.randint(0,1001))
 ---------------------
-Here are the emails that were generated for Aler, Warning and No Data.
+Here are the emails that were generated for Alert, Warning and No Data.
 
 <p align="center"><img src="Alert_monitor.png" width="500" ></img></p>
 <p align="center"><img src="Warning_monitor.png" width="500" ></img></p>
@@ -103,6 +103,24 @@ Here are the screenshots of the configuration in the Datadog Web Site.
 <p align="center"><img src="weekdaydowntime.png" width="500" ></img></p>
 <p align="center"><img src="weekenddowntime.png" width="500" ></img></p>
 
-Here are the screenshots of the emails I received cinfirming the schedule the downtime.
+Here are the screenshots of the emails I received confirming the schedule the downtime.
 <p align="center"><img src="weekenddowntimeemail1.png" width="500" ></img></p>
 <p align="center"><img src="weekenddowntimeemail2.png" width="500" ></img></p>
+
+Collecting APM Data:
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+Here is the screenshot when I tried to run the given Flask App. As you can see, it did not execute properly because the socket was in use.
+<p align="center"><img src="apmflaskerror.png" width="500" ></img></p>
+
+Here is the screenshot of the sample trace application that I was able to generate a trace to the ADM Service.
+<p align="center"><img src="apmsamplestrace.png" width="500" ></img></p>
+
+my code for the sample tracer
+
+---------------------
+            from ddtrace import tracer
+
+            with tracer.trace("web.request", service="my_adm_service") as span:
+              span.set_tag("my_adm_tracer_tag", "my_adm_tracer_value")
+---------------------
