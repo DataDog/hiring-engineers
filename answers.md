@@ -119,7 +119,7 @@ Configure the notification message in the 'See What's Happening' section. The sy
 [SCREENSHOT 10](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/10.MonitorMessageConfiguration.PNG) <br>
 [SCREENSHOT 11](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/11.WarningEmail.PNG)  <br>
 
-I had trouble seeing the host name and its ip in the email, didn't find any document about that.
+I had trouble seeing the host name and its ip in the email, didn't find any document about that. Perhaps should have used another variable or a tag name? 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
