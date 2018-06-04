@@ -1,0 +1,145 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red83\green83\blue83;}
+{\*\expandedcolortbl;;\cssrgb\c40000\c40000\c40000;}
+\margl1440\margr1440\vieww21180\viewh15800\viewkind0
+\deftab720
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{  \
+   'dash':\{  \
+      'read_only':False,\
+      'description':'created by pabel.martin@gmail.com',\
+      'created':'2018-05-29T15:59:38.900476+00:00',\
+      'title':'UI Created Timeboard',\
+      'modified':'2018-06-03T13:09:34.579088+00:00',\
+      'created_by':\{  \
+         'handle':'pabel.martin@gmail.com',\
+         'name':'Pabel Martin',\
+         'access_role':'adm',\
+         'verified':True,\
+         'disabled':False,\
+         'is_admin':True,\
+         'role':None,\
+         'email':'pabel.martin@gmail.com',\
+         'icon':'https://secure.gravatar.com/avatar/5b3403b34ef4dfedaf2b7e3f951b017a?s=48&d=retro'\
+      \},\
+      'graphs':[  \
+         \{  \
+            'definition':\{  \
+               'viz':'timeseries',\
+               'requests':[  \
+                  \{  \
+                     'q':'avg:my_metric\{host:precise64\}',\
+                     'style':\{  \
+                        'width':'normal',\
+                        'palette':'dog_classic',\
+                        'type':'solid'\
+                     \},\
+                     'type':'line',\
+                     'conditional_formats':[  \
+\
+                     ]\
+                  \}\
+               ],\
+               'autoscale':True\
+            \},\
+            'title':'Avg of my_metric over host:precise64'\
+         \},\
+         \{  \
+            'definition':\{  \
+               'viz':'timeseries',\
+               'requests':[  \
+                  \{  \
+                     'q':'avg:my_metric\{host:ubuntu-xenial\}',\
+                     'style':\{  \
+                        'width':'normal',\
+                        'palette':'dog_classic',\
+                        'type':'solid'\
+                     \},\
+                     'type':'line',\
+                     'conditional_formats':[  \
+\
+                     ]\
+                  \}\
+               ],\
+               'autoscale':True\
+            \},\
+            'title':'Avg of my_metric over host:ubuntu-xenial'\
+         \},\
+         \{  \
+            'definition':\{  \
+               'viz':'timeseries',\
+               'status':'done',\
+               'requests':[  \
+                  \{  \
+                     'q':"anomalies(avg:mongodb.locks.collection.acquirecount.intent_sharedps\{role:database\}, 'basic', 3)",\
+                     'aggregator':'avg',\
+                     'style':\{  \
+                        'width':'normal',\
+                        'palette':'dog_classic',\
+                        'type':'solid'\
+                     \},\
+                     'type':'line',\
+                     'conditional_formats':[  \
+\
+                     ]\
+                  \}\
+               ],\
+               'autoscale':True\
+            \},\
+            'title':'Mongo Metric Against DB Role with Basic Anomalies (3)'\
+         \},\
+         \{  \
+            'definition':\{  \
+               'viz':'query_value',\
+               'requests':[  \
+                  \{  \
+                     'q':'sum:my_metric\{host:precise64\}',\
+                     'aggregator':'sum',\
+                     'style':\{  \
+                        'width':'normal',\
+                        'palette':'dog_classic',\
+                        'type':'solid'\
+                     \},\
+                     'type':'line',\
+                     'conditional_formats':[  \
+\
+                     ]\
+                  \}\
+               ],\
+               'autoscale':True,\
+               'precision':'0'\
+            \},\
+            'title':'Sum of my_metric over host:precise64'\
+         \},\
+         \{  \
+            'definition':\{  \
+               'viz':'timeseries',\
+               'status':'done',\
+               'requests':[  \
+                  \{  \
+                     'q':"anomalies(avg:system.uptime\{host:ubuntu-xenial\}, 'basic', 2)",\
+                     'aggregator':'avg',\
+                     'style':\{  \
+                        'width':'normal',\
+                        'palette':'dog_classic',\
+                        'type':'solid'\
+                     \},\
+                     'type':'line',\
+                     'conditional_formats':[  \
+\
+                     ]\
+                  \}\
+               ],\
+               'autoscale':True\
+            \},\
+            'title':'Avg of system.uptime over host:ubuntu-xenial'\
+         \}\
+      ],\
+      'id':822625\
+   \},\
+   'url':'/dash/822625/ui-created-timeboard',\
+   'resource':'/api/v1/dash/822625'\
+\}}
