@@ -235,11 +235,15 @@ Create a new downtime schedule:
 
 Below are 2 examples of a weekday & weekend downtime schedule:
 
+**weekday downtime schedule with email notification**
+
 ![downtime 1](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_1.png)
 
 ![downtime 2](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_2.png)
 
 ![downtime 3](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_3.png)
+
+**weekend downtime schedule with email notification**
 
 ![downtime 4](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/downtime_4.png)
 
