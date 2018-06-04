@@ -121,10 +121,10 @@ https://gist.github.com/MichaelRomani/2bc033b52b678770083c0a8c387e9f5c
 
 Final Question:
 
-Gathering accurate weather information can be vital for some businesses.  For example, a company that specializes in painting the exterior of residential homes or in commercial window washing, their operations can be effected and at times halted for days or weeks due to unfavorable weather conditions.
+Gathering accurate weather information can be vital to some businesses.  For example, a business that specializes in painting the exteriors of residential homes or a commercial window washing company, their operations can be effected and at times halted for days or weeks due to unfavorable weather conditions.
 
-Companies in these areas that have expansive / national reach could use Datadog to centralize the tracking of weather conditions for the areas they operate.  This enable them to get a sense of which areas may have limited operations due to weather conditions, predicting costs incurred or loss of potential earnings due to down time.
+Companies that work in these areas that have expansive / national reach could use Datadog to centralize the tracking of weather conditions for the locations in which they operate.  This would enable them to get a sense of which areas may have limited operations due to weather conditions, predicting costs incurred or loss of potential earnings due to down time.
 
-Instead of waiting for each satellite office to report to central what the weather conditions are, they could utilize a weather API to gather relavent weather information and then utilize a custome agent check to send metrics to their Datadog account.  This could be used to create a chart displaying the percentage of service areas that may be effected by poor weather, or could be used to set up alerts if certain areas and or a certain percentage of areas are effected.
+The central office could utilize a weather API to gather relavent weather information and then use a custom agent check to send metrics to their Datadog account.  This could be used to create a chart displaying the percentage of service areas that may be effected by poor weather, or could be used to set up alerts if certain areas and or a certain percentage of areas are effected.
 
 
