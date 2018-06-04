@@ -52,6 +52,8 @@ By simply changing the configuration file to the following, I was able to change
 My intial configuation file for the agent was the following
 
 conf.d/my_metric.yaml:
+
+
 ---------------------
 
         init_config:
@@ -62,6 +64,8 @@ conf.d/my_metric.yaml:
 
 
 checks.d/my_metric.py:
+
+
 ---------------------
         import random
         from checks import AgentCheck
@@ -71,6 +75,8 @@ checks.d/my_metric.py:
 
 
 conf.d/my_metric.yaml:  Version 2 - 45 second intervals
+
+
 ---------------------
         init_config:
 
@@ -94,6 +100,8 @@ Below is the screenshot of a TimeBoard that I created using the Datadog API.
 <p align="center"><img src="timeboardAPIscreenshot.png" width="500" ></img></p>
 
 Below is the screenshot of a code to create TimeBoard that I created using the Datadog API.
+
+
 ---------------------
 from datadog import initialize, api
 
@@ -161,6 +169,8 @@ Here are the screenshot to the Timeboard set to 5 minutes and the associate emai
 <h1>Monitoring Data</h1>
 
 I created a Metric Monitor that watches the average of my custom metric (my_jon_metric) and will alert if it’s above the following values over the past 5 minutes: (code from above is included here for convenient reference)
+
+
 ---------------------
           import random
           from checks import AgentCheck
