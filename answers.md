@@ -79,6 +79,77 @@ conf.d/my_metric.yaml:  Version 2 - 45 second intervals
 
 Changing the collection interval is also possible by using the python API, however, I think a best practice would be to change configuration files instead of python code. By taking this approach, I also completed the "Bonus Question"
 
+
+
+Visualizing Data:
+Utilize the Datadog API to create a Timeboard that contains:
+
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Below is the screenshot of a TimeBoard that I created using the Datadog API.
+<p align="center"><img src="timeboardAPIscreenshot.png" width="500" ></img></p>
+
+Below is the screenshot of a code to create TimeBoard that I created using the Datadog API.
+---------------------
+              from datadog import initialize, api
+
+              options = {'api_key': 'af2b8082fb980350e86df4a19a4fd9ed',
+                         'app_key': 'ac34eb26abfd2e78f995703427b71225ec0e21f9'}
+
+              initialize(**options)
+
+              title = "Jon's API Timeboard"
+              description = "An informative timeboard."
+              graphs = [{
+                  "definition": {
+                      "events": [],
+                      "requests": [
+                          {"q": "avg:system.mem.free{*}"}
+                      ],
+                      "viz": "timeseries"
+                  },
+                  "title": "Average Memory Free"
+              },
+              {
+                  "definition": {
+                      "events": [],
+                      "requests": [
+                          {"q": "mysql.performance.cpu_time{*}"}
+                      ],
+                      "viz": "timeseries"
+                  },
+                  "title": "MySQL Performance"
+              },
+              {
+                  "definition": {
+                      "events": [],
+                      "requests": [
+                          {"q": "my_jon_metric{*}"}
+                      ],
+                      "viz": "timeseries"
+                  },
+                  "title": "my_jon_metric"
+              }]
+
+              template_variables = [{
+                  "name": "host1",
+                  "prefix": "host",
+                  "default": "host:my-host"
+              }]
+
+              read_only = True
+              api.Timeboard.create(title=title,
+                                   description=description,
+                                   graphs=graphs,
+                                   template_variables=template_variables,
+                                   read_only=read_only)
+
+---------------------
+
+
+
 Monitoring Data
 
 I created a Metric Monitor that watches the average of my custom metric (my_jon_metric) and will alert if it’s above the following values over the past 5 minutes: (code from above is included here for convenient reference)
@@ -124,3 +195,13 @@ my code for the sample tracer
             with tracer.trace("web.request", service="my_adm_service") as span:
               span.set_tag("my_adm_tracer_tag", "my_adm_tracer_value")
 ---------------------
+
+Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+
+I see an enormous amount of uses for Datadog. Here are just a few.
+1. Gather temperature, atmospheric pressure etc, for a distributed Weather station.
+2. Security Home Monitor
+3. Fire Sensors
+4. Connected vehicle applications
+5. Detect anomalies in road/railroad (potholes, crashes, downed signs, imperfections, etc) using drones.
