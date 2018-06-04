@@ -159,19 +159,23 @@ Next we need to make the configuration file in /etc/datadog-agent/conf.d:
 
 <a href="https://www.flickr.com/photos/158412660@N04/42561524491/in/dateposted/" title="mycheck-config"><img src="https://farm2.staticflickr.com/1759/42561524491_32455f84af.jpg" width="500" height="385" alt="mycheck-config"></a>
 
+4. For the changes to take effect, restart the Datadog Agent:
 
-To only send the metric at an interval of 45 seconds without altering the python file, simply add: ```min_collection_interval: 45``` to the instances section of the config file as shown above (**bonus question**).
+&nbsp;&nbsp;&nbsp;&nbsp;```sudo service datadog-agent restart```
 
-In this example I used mycheck.py and mycheck.yaml which is included in the code folder in https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=hothis branch. 
-
-<a href="https://www.flickr.com/photos/158412660@N04/40521358110/in/photostream/" title="mycheck"><img src="https://farm1.staticflickr.com/962/40521358110_31b3113fbe_z.jpg" width="640" height="199" alt="mycheck"></a>
-
-After some time the changes will show in the dashboard and the metric can be viewed by going to infrastructure -> host as shown here:
+After some time the changes will take effect. Head back to the host map in the browser to view your newly added metric:
 
 <a href="https://www.flickr.com/photos/158412660@N04/40521356690/in/dateposted/" title="my-metric-host"><img src="https://farm1.staticflickr.com/882/40521356690_02f63bc67a_z.jpg" width="584" height="640" alt="my-metric-host"></a>
 
 Clicking on the ((no-namespace) dashboard) link brings you [here](https://app.datadoghq.com/dash/integration/custom?live=true&tpl_var_scope=host%3Ajordans-pc&page=0&is_auto=false&from_ts=1527185954883&to_ts=1527189554883&tile_size=m):
 <a href="https://www.flickr.com/photos/158412660@N04/40521357180/in/dateposted/" title="my_metric"><img src="https://farm1.staticflickr.com/968/40521357180_72b63db753_z.jpg" width="640" height="323" alt="my_metric"></a>
+
+**Issue for this part** I was not able to determine why my metric was showing up as *no-namespace*. Before creating my own metric, I followed [this](https://docs.datadoghq.com/developers/agent_checks/#your-first-check. WHen I created the hello world metric, it showed up properly on my host map as 'Hello'. When I created my own metric it did not. I assume it is a result of how I set up the instances section in my configuration file.
+
+**Bonus Question**
+To only send the metric at an interval of 45 seconds without altering the python file, simply add: ```min_collection_interval: 45``` to the instances section of the config file as shown above.
+
+In this example I used mycheck.py and mycheck.yaml which is included in the code folder in this branch. 
 
 ## Visualizing Data
 
