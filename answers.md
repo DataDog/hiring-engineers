@@ -43,10 +43,115 @@ These screenshots will show the details of my Datadog trial account along with t
 
 ## Collecting Metrics
 
+### Datadog Agent and Tags
+
+I followed the instructions in the datadog docs [page for the agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/), as well as the instructions in the datadog app for my trial account.
+
+I navigated to /etc/datadog-agent and used sudo vim datadog.yaml to update the file.  It took some googling and longer than I'd like to admit to remember how to do that and use vim to edit and save the file.  I commented out the dd_url line, api_key, and tags section.  I added three tags to each host for location, environment, and role.  See screenshots and snippet of the datadog.yaml file below.
+
+```
+# The host of the Datadog intake server to send Agent data to
+dd_url: https://app.datadoghq.com
+
+# The Datadog api key to associate your Agent's data with your organization.
+# Can be found here:
+# https://app.datadoghq.com/account/settings
+api_key: dc32e242694d198af81287e6ee9461b6
+
+# If you need a proxy to connect to the Internet, provide it here (default:
+# disabled). You can use the 'no_proxy' list to specify hosts that should bypass the
+# proxy. These settings might impact your checks requests, please refer to the
+# specific check documentation for more details.
+#
+# proxy:
+#   http: http(s)://user:password@proxy_for_http:port
+#   https: http(s)://user:password@proxy_for_https:port
+#   no_proxy:
+#     - host1
+#     - host2
+
+# Setting this option to "yes" will tell the agent to skip validation of SSL/TLS certificates.
+# This may be necessary if the agent is running behind a proxy. See this page for details:
+# https://github.com/DataDog/dd-agent/wiki/Proxy-Configuration#using-haproxy-as-a-proxy
+# skip_ssl_validation: no
+
+# Setting this option to "yes" will force the agent to only use TLS 1.2 when
+# pushing data to the url specified in "dd_url".
+# force_tls_12: no
+
+# Force the hostname to whatever you want. (default: auto-detected)
+# hostname: mymachine.mydomain
+
+# Set the host's tags (optional)
+tags:
+   - location:DC
+   - env:prod
+   - role:VM-server
+```
+
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/precisetags.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/xenialtags.png)
 
 
+### MongoDB Installation and Integration Configuration
 
-**Bonus Question**
+I followed the instructions on the [Mongo site to install community edition](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).  As previously mentioned I had to do this twice because of the two different hosts I created on different versions of Ubuntu.
+
+I then used the instructions in the [datadog integration page in my trial account](https://app.datadoghq.com/account/settings#integrations/mongodb) and the [Docs section for Mongo](https://docs.datadoghq.com/integrations/mongo/) to configure the agent.  I google'd to find Mongo shell commands for user creation.  I had never worked with YAML before so it was a lot of trial and error using this [YAML interpreter](http://www.yamllint.com/) to get the proper conf.yaml file to recognize my Mongo server and collect metrics.
+```
+init_config:
+
+instances:
+      - server: mongodb://datadog:datadog@127.0.0.1:27017/admin
+        tags:
+            - location:DC
+            - role:database
+            - env:prod
+
+      - additional_metrics:
+            - collection       # collect metrics for each collection
+            - metrics.commands
+            - tcmalloc
+            - top
+```
+
+Here is a screenshot from datadog of MongoDB installed on both of my VMs along with the relevant tags.
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/MongoDBinstall.png)
+
+One thing I could never resolve were errors related to Mongo.  It seems as of two configurations are there for mongo on both services.  The host shows 'mongo' and 'mongodb', and while 'mongo' always had successfull checks and metrics, 'mongodb' always has errors associated with it.  Checking the datadog agent status and tailing the logs for the agent always revealed the same 'server is missing' error.  I imagine it's something that's misconfigured, but I could never figure out where the issue was.  See screenshots.
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors1.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors2.png)
+
+### Custom Agent Check
+
+To complete this section I used the [writing agent check section in datadog docs](https://docs.datadoghq.com/developers/agent_checks/), [this page](https://datadog.github.io/summit-training-session/handson/customagentcheck/) for a sample of a check, and [this page](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) for how to generate a random number in python.
+
+As mentioned before, I don't have much of this in my background so this was the first python file/script I ever created and run.  I'm not sure, nor would I want to admit, how long it took me to get this part done.
+```python
+from checks import AgentCheck
+import random
+
+class MyCheck(AgentCheck):
+
+    def check(self, instance):
+
+        self.gauge('my_metric', random.randint(-1,1001))
+```
+I confirmed this was working as expected by using the metrics explorer and searching for my_metric.  I also noticed that it appeared on the hosts under 'no-namespace' as well as in the datadog agent logs under 'mycheck'.
+
+To change the collection interval, I referenced the datadog docs which had a section for configuring a custom written check.  The combination of that, the YAML interpreter, a lot of trial and error, and tailing the agent log led to confirming this worked as expected.  Here's the mycheck.yaml file from /etc/datadog-agent/conf.d:
+```
+init_config:
+
+instances:
+    #[{}]
+    [{min_collection_interval: 45}]
+```
+
+
+### Bonus Question
+Based on this section from the datadog docs section, I changed the collection interval for my custom check using the YAML config file.  Given that I didn't have to change the Python check file I created, I believe the answer to this bonus question is **Yes**.
+>For Agent 5, min_collection_interval can be added to the init_config section to help define how often the check should be run >globally, or defined at the instance level. For Agent 6, min_collection_interval must be added at an instance level, and can >be configured individually for each instance.
 
 
 
