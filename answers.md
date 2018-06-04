@@ -12,7 +12,7 @@ Your API key can either be found at `https://app.datadoghq.com/account/settings#
 ## Collecting Metrics:
 #### 1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
-Tags provide the ability to easier query and correlate machines and metrics in Datadog. These can be configured automatically through Integrations, or manually though the Configuration file/GUI.
+Tags provide the ability to easily query and correlate machines and metrics in Datadog. These can be configured automatically through Integrations, or manually though the Configuration file/GUI.
 
 1.1 To add tags manually in the Agent config file, you first locate the .yaml config file for your platform [Datadog Docs - agent usage](https://docs.datadoghq.com/agent/basic_agent_usage/)
 
@@ -25,7 +25,7 @@ Edit the datadog.yaml file by uncommenting the "tags" line and add your chosen t
 
 ![datadog.yaml](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assiging-tag-datadogyaml.png)
 
-1.3 Save your edits to the configuration file and confirm them in the Datadog GUI by selecting your host in `https://app.datadoghq.com/infrastructure/map`
+1.3 Save your edits to the configuration file and confirm them in the Datadog GUI by selecting your host in [https://app.datadoghq.com/infrastructure/map](https://app.datadoghq.com/infrastructure/map)
 
 ![hostmap](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/assigning-tag-HostMap.png)
 
@@ -33,7 +33,7 @@ Edit the datadog.yaml file by uncommenting the "tags" line and add your chosen t
 
 Datadog provides more than 200 built-in integrations for monitoring across systems, apps & services. 
 
-2.1 To enable an Integration, navigate to `https://app.datadoghq.com/account/settings#integrations` to view the available Integrations and select the one to configure. For example, the MongoDB Integration.
+2.1 To enable an Integration, navigate to [https://app.datadoghq.com/account/settings#integrations](https://app.datadoghq.com/account/settings#integrations) to view the available Integrations and select the one to configure. For example, the MongoDB Integration.
 
 Clicking on an Integration will display an Overview description, Configuration steps & Metrics that are tracked.
 
@@ -81,7 +81,7 @@ Custom Agent Checks are made up of 2 files:
 
 `sudo -u dd-agent -- datadog-agent check mymetric` to test it runs without errors.
 
-3.4 The metric can now be visualised in the Datadog portal by navigating to `https://app.datadoghq.com/metric/explorer` and filtering by "my_metric" under "Graph":
+3.4 The metric can now be visualised in the Datadog portal by navigating to [https://app.datadoghq.com/metric/explorer](https://app.datadoghq.com/metric/explorer) and filtering by "my_metric" under "Graph":
 
 ![mycheck in GUI](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_GUI.png)
 
@@ -116,7 +116,7 @@ Before interacting with the Datadog API, you will need to locate 2 keys:
 - api_key = unique to your organisation and is required by the Datadog Agent to submit metrics and events to Datadog
 - app_key = used in conjunction with your api_key, give you full access to Datadog's programmatic API. They are associated with the user account that created them and are used to log all requests to the API.
 
-You can find and generate these keys at: `https://app.datadoghq.com/account/settings#api`
+You can find and generate these keys at: [https://app.datadoghq.com/account/settings#api](https://app.datadoghq.com/account/settings#api)
 
 Once you have located these keys, follow the instructions at [Datadog Docs - API Reference for Timeboards](https://docs.datadoghq.com/api/?lang=bash#timeboards) to understand the argument structure for making API calls.
 
@@ -173,7 +173,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
 
-The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at `https://app.datadoghq.com/dashboard/lists`:
+The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at [https://app.datadoghq.com/dashboard/lists](https://app.datadoghq.com/dashboard/lists) :
 
 ![Dashboard list](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/dashboard_list.png)
 
@@ -199,7 +199,7 @@ The user is then notified on their main dashboard:
 
 Datadog Monitors allow you to actively check key events/metrics across your infrastructure, systems and applications. Once a monitor is created, it can be configured to alert individuals or teams when conditions are met. It can also be integrated to 3rd party tools such as Slack via Webhooks. [Datadog Docs - Monitors](https://docs.datadoghq.com/monitors/)
 
-To create a new Monitor, go to `https://app.datadoghq.com/monitors#/create`. Here you can chose from different Monitor types depending on what you want to monitor, [Datadog Docs - Monitor Types](https://docs.datadoghq.com/monitors/monitor_types/)
+To create a new Monitor, go to [https://app.datadoghq.com/monitors#/create](https://app.datadoghq.com/monitors#/create). Here you can chose from different Monitor types depending on what you want to monitor, [Datadog Docs - Monitor Types](https://docs.datadoghq.com/monitors/monitor_types/)
 
 To create a Metric Monitor:
 1. Choose the detection method - specify what event you are watching on your metric
@@ -208,7 +208,7 @@ To create a Metric Monitor:
 
 3. Set alert conditions - specify the conditions that, if met, create an alert. See below for configuration of my alert
 
-4. Say what's happening - specify individual messages based on which condition has been met. This section supports markdown for custmosing the message with relevant information about the metric value
+4. Say what's happening - specify individual messages based on which condition has been met. This section supports markdown for customising the message with relevant information about the metric value
 
 5. Notify your team - specify who is alerted when the Monitor is triggered
 
@@ -222,7 +222,7 @@ When the Monitor is triggered, the users specified will receive an event notific
 
 ![alert 4](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/alert_4.png)
 
-To avoid disruption of a Monitor during certain periods, you can schedule downtime for individual Monitors at `https://app.datadoghq.com/monitors#downtime` 
+To avoid disruption of a Monitor during certain periods, you can schedule downtime for individual Monitors at [https://app.datadoghq.com/monitors#downtime](https://app.datadoghq.com/monitors#downtime) 
 
 Create a new downtime schedule:
 1. Choose which Monitors to silence
