@@ -57,32 +57,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
 
 *Solution:* <br>
-I found a way to use datadog API with PostMan [here](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs). With the [datadog API doc](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard), I was able to come up with the following script : <br>
-**Add Python Script myTimeboard.py** <br> 
-I also downloaded datadog Python library in order to run and test the script via this [link](https://github.com/DataDog/datadogpy). <br> 
-The following screenshot shows the timeboard created by the script: <br>
-The anomaly detection for the postgreSql database is based on the number of connections
-**Add Screenshot 5**
+I found a way to use datadog API with PostMan [here](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs). With the [datadog API doc](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard), I was able to come up with the following script :
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
-
-*Solution:* <br>
-Select a 5 minute interval on one of the graphs on the timeboard, the timeboard will 'zoom'. <br>
-**ADD screen shot 6**
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-
-*Solution:* <br>
-Click the camera icon to take a picture of the graph and use the @ annotation in the comment section <br>
-**ADD screen shot 7** <br>
-Enter the comment and I received a mail <br>
-**ADD screen shot8**
-
-* **Bonus Question**: What is the Anomaly graph displaying? <br> 
-*Solution:* <br>
-According to datadog documentation about anomaly detection, it distinguishes between normal and abnormal metric trends by analyzing a metric’s historical behavior. It shows the actual value and whether it is normal by using different colors based on the algorithm we choosed for the metric. 
-
+* **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
@@ -94,12 +76,6 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-*Solution:* <br>
-Click on the monitor tab and select New Monitor, configure the monitor to fit it to the requirement.<br>
-The configurations are demonstrated in the following screenshots: 
-
-**Add screenshots 9**
-
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
@@ -107,26 +83,11 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-*Solution: * <br>
-Configure the notification message in the 'See What's Happening' section. The syntax can be found by clicking the 'Use message template variables ' button <br>
-**Add screen shot 10** <br>
-**Add screen shot 11**  <br>
-
-I had trouble seeing the host name and its ip in the email, didn't find any document about that.
-
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
     * One that silences it from 7pm to 9am daily on M-F,
     * And one that silences it all day on Sat-Sun.
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-*Solution: * <br>
-Click on the Monitor tab then select 'Manage Downtime' <br> 
-Then click 'Schedule Downtime' on the top right corner. The configurations are demonstrated through screenshots below : <br>
-**Add screen shot 12** <br>
-**Add screen shot 13** <br>
-**Add screen shot 14** <br>
-**Add screen shot 15** <br>
 
 
 ## Collecting APM Data:
