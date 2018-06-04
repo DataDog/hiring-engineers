@@ -125,6 +125,11 @@ Once you have located these keys, follow the instructions at [Datadog Docs - API
 
 Followed by the API call:
 
+The script is made of 2 main components:
+
+- `"graphs" [{}]` : Here you can define a number of graphs by giving them a title, definition and the request using `{"q": "YOUR_PARAMETERS"}
+- After the graphs, the Timeboard is given a title & description
+
 ```json
 curl  -X POST -H "Content-type: application/json" \
 -d '{
@@ -171,11 +176,6 @@ curl  -X POST -H "Content-type: application/json" \
 The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at `https://app.datadoghq.com/dashboard/lists`:
 
 ![Dashboard list](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/dashboard_list.png)
-
-The script is made of 2 main components:
-
-- `"graphs" [{}]` : Here you can define a number of graphs by giving them a title, definition and the request using `{"q": "YOUR_PARAMETERS"}
-- After the graphs, the Timeboard is given a title & description
 
 5.2 Once you have created a Timeboard you can interact with is via the GUI:
 
