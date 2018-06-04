@@ -1,9 +1,8 @@
-Prerequisites - Setup the environment
+Prerequisites:  Setup the environment
+
 I set up the originally set up a vagrant environment blindly using the defaults given in the link. These defaults provide Ubuntu 12.04. I didn't really run into any issues until I tried to configure the Collecting APM Data Section. This is when I started running into problems. I tried creating another image of 12.04 thinking that I poked around too much on the first image and may have caused a configuration issue. But I ran into the same issue of not being able to download the prerequisites to configure the software.
 
 I then stopped using vagrant all together and used my Ubuntu 16.04 image that already had MySQL installed and installed the Datadog agent on that. Installation of the agent was super easy. I was able to download the prerequisites for Collecting APM Data Section. However, I was not able to get the given Flask application to execute properly. I was however able to run some test trigger successfully.
-
-
 
 Collecting Metrics:
 
@@ -103,3 +102,7 @@ And one that silences it all day on Sat-Sun.
 Here are the screenshots of the configuration in the Datadog Web Site.
 <p align="center"><img src="weekdaydowntime.png" width="500" ></img></p>
 <p align="center"><img src="weekenddowntime.png" width="500" ></img></p>
+
+Here are the screenshots of the emails I received cinfirming the schedule the downtime.
+<p align="center"><img src="weekenddowntimeemail1.png" width="500" ></img></p>
+<p align="center"><img src="weekenddowntime2.png" width="500" ></img></p>
