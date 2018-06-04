@@ -344,7 +344,36 @@ Once these are set an email notification will be sent:
 <a href="https://www.flickr.com/photos/158412660@N04/41443611025/in/dateposted/" title="downtime-email"><img src="https://farm2.staticflickr.com/1733/41443611025_6142441023.jpg" width="500" height="322" alt="downtime-email"></a>
 
 ## Collecting APM Data:
-The provided flask app that I modified can be found in this repositories code folder. Rather than using the ddtrace-run approach, I manually inserted the Middleware into the application.
+
+1. To utilize the APM, we need to install the ddtrace python package since we are using the provided Flask script:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```pip install ddtrace```
+
+2. Edit the provided Flask script as shown here:
+
+```
+import logging
+import sys
+import blinker as _
+
+from flask import Flask
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+tracer.configure()
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service='my_service')
+```
+
+The provided flask app that I modified can be found in the code folder of this repository. Rather than using the ddtrace-run approach, I manually inserted the Middleware into the application. That means that when we run the flask application, it will automatically report back to Datadog, just like our timeboard before.
 
 #### Issues
 When I initially tried to run the flask app integrated with the apm, I would encounter an error in terminal. I was able to trace it back to flask attempting to use the same port as the running Datadog Agent. 
