@@ -170,7 +170,7 @@ After some time the changes will take effect. Head back to the host map in the b
 Clicking on the ((no-namespace) dashboard) link brings you [here](https://app.datadoghq.com/dash/integration/custom?live=true&tpl_var_scope=host%3Ajordans-pc&page=0&is_auto=false&from_ts=1527185954883&to_ts=1527189554883&tile_size=m):
 <a href="https://www.flickr.com/photos/158412660@N04/40521357180/in/dateposted/" title="my_metric"><img src="https://farm1.staticflickr.com/968/40521357180_72b63db753_z.jpg" width="640" height="323" alt="my_metric"></a>
 
-**Issue for this part** I was not able to determine why my metric was showing up as *no-namespace*. Before creating my own metric, I followed the [your first check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check) example. WHen I created the hello world metric, it showed up properly on my host map as 'Hello'. When I created my own metric it did not. I assume it is a result of how I set up the instances section in my configuration file, but was unable to resolve it.
+**Issue for this part:** I was not able to determine why my metric was showing up as *no-namespace*. Before creating my own metric, I followed the [your first check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check) example. When I created the hello world metric, it showed up properly on my host map as 'Hello'. When I created my own metric it did not. I assume it is a result of how I set up the instances section in my configuration file, but was unable to resolve it.
 
 **Bonus Question**
 To only send the metric at an interval of 45 seconds without altering the python file, simply add: ```min_collection_interval: 45``` to the instances section of the config file as shown above.
@@ -223,7 +223,7 @@ graphs = [
 api.Timeboard.create(title=title, description=description, graphs=graphs)
 ```
 
-3. Before running this script, we want to add two more graphs. We want to add an anomaly function and a rollup function. Adding multiple plots is accomplished by creating multiple objects insided the graph array, separated by a comma as shown below:
+3. Before running this script, we want to add two more graphs--An anomaly function and a rollup function. Adding multiple plots is accomplished by creating multiple objects insided the graph array, separated by a comma as shown below:
 ```
 graphs = [
   {
@@ -308,15 +308,14 @@ Finally annotate as shown below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41663546095/in/dateposted/" title="json-timeboard"><img src="https://farm2.staticflickr.com/1736/41663546095_50a7349567.jpg" width="456" height="500" alt="json-timeboard"></a>
 
-This approach will save you a lot of times and headaches until you get comfortable with creating your own graphs and timeboards.
-
+This approach will save you a lot of time and ensure your timeboard will function properly when you are getting started.
 
 #### Bonus Question
-The anomaly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a specific time window. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available connections of my metric are steady.
+The anomaly function is designed to show if a metric is falling outside a defined threshold of standard deviations within a specific time window. This is important to see when a metric is behaving differently. In my example, I use basic detection with a standard deviation of 2, but the available mongo connections are steady.
 
 
 ## Monitoring Data
-Since I used the api to create a timeboard, I wanted to use the UI to create the monitor.
+Since we used the api to create a timeboard, lets use the UI to create the monitor.
 
 A new monitor can be created by going to the manage monitor page and clicking on New Monitor. You can then fill in the approriate information to create your monitor as shown below and the monitor can be found [here](https://app.datadoghq.com/monitors/5040024)
 
@@ -327,7 +326,7 @@ The resulting notification received via email is below:
 
 <a href="https://www.flickr.com/photos/158412660@N04/41443611395/in/dateposted/" title="warning"><img src="https://farm2.staticflickr.com/1746/41443611395_8ba4be95ce.jpg" width="491" height="500" alt="warning"></a>
 
-####Bonus Question
+#### Bonus Question
 Muting the monitor over night or weekend is accomplished in the manage downtime tab: 
 
 <a href="https://www.flickr.com/photos/158412660@N04/41443611115/in/dateposted/" title="downtime-dash"><img src="https://farm1.staticflickr.com/874/41443611115_6701bb3324.jpg" width="500" height="166" alt="downtime-dash"></a>
@@ -345,12 +344,27 @@ Once these are set an email notification will be sent:
 <a href="https://www.flickr.com/photos/158412660@N04/41443611025/in/dateposted/" title="downtime-email"><img src="https://farm2.staticflickr.com/1733/41443611025_6142441023.jpg" width="500" height="322" alt="downtime-email"></a>
 
 ## Collecting APM Data:
-The flask app that I modified can be found in this repositories code folder. Rather than using the ddtrace-run approach, I manually inserted the Middleware into the application. 
+The provided flask app that I modified can be found in this repositories code folder. Rather than using the ddtrace-run approach, I manually inserted the Middleware into the application.
 
-In a separate terminal run the following commands to start the flask server:
+#### Issues
+When I initially tried to run the flask app integrated with the apm, I would encounter an error in terminal. I was able to trace it back to flask attempting to use the same port as the running Datadog Agent. 
+
+<a href="https://www.flickr.com/photos/158412660@N04/42565065331/in/dateposted/" title="flask-error"><img src="https://farm2.staticflickr.com/1759/42565065331_1bc78d6862.jpg" width="500" height="322" alt="flask-error"></a>
+
+To resolve this issue, I simply did the following:
+
+1. ```sudo service datadog-agent stop```
+
+2. In the terminal, navigate to where the flask script is located. In my case it is ~/development/hiring-engineers. Run the following commands to start the flask server:
 
 &nbsp;&nbsp;&nbsp;&nbsp; ```export FLASK_APP=apm_flask.py```</br>
 &nbsp;&nbsp;&nbsp;&nbsp; ```flask run```
+
+3. Since we have a flask app running in this terminal, we have to open a new terminal and restart the Agent:
+
+&nbsp;&nbsp;&nbsp;&nbsp; ```sudo service datadog-agent start```
+
+This method allowed the flask app to run and eliminated the issue. I assume that the agent looks for a secondary port in this situation.
 
 Within a few moments, the Dashboard UI will update the APM tab to show the traces.
 
