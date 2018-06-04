@@ -93,60 +93,66 @@ Below is the screenshot of a TimeBoard that I created using the Datadog API.
 
 Below is the screenshot of a code to create TimeBoard that I created using the Datadog API.
 ---------------------
-              from datadog import initialize, api
+from datadog import initialize, api
 
-              options = {'api_key': 'af2b8082fb980350e86df4a19a4fd9ed',
-                         'app_key': 'ac34eb26abfd2e78f995703427b71225ec0e21f9'}
+options = {'api_key': 'af2b8082fb980350e86df4a19a4fd9ed',
+           'app_key': 'ac34eb26abfd2e78f995703427b71225ec0e21f9'}
 
-              initialize(**options)
+initialize(**options)
 
-              title = "Jon's API Timeboard"
-              description = "An informative timeboard."
-              graphs = [{
-                  "definition": {
-                      "events": [],
-                      "requests": [
-                          {"q": "avg:system.mem.free{*}"}
-                      ],
-                      "viz": "timeseries"
-                  },
-                  "title": "Average Memory Free"
-              },
-              {
-                  "definition": {
-                      "events": [],
-                      "requests": [
-                          {"q": "mysql.performance.cpu_time{*}"}
-                      ],
-                      "viz": "timeseries"
-                  },
-                  "title": "MySQL Performance"
-              },
-              {
-                  "definition": {
-                      "events": [],
-                      "requests": [
-                          {"q": "my_jon_metric{*}"}
-                      ],
-                      "viz": "timeseries"
-                  },
-                  "title": "my_jon_metric"
-              }]
+title = "Jon's API Timeboard"
+description = "An informative timeboard."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"
+},
+{
+    "definition": {
+    	"query": "avg(last_1h):anomalies(avg:avg:mysql.performance.cpu_time{*} by {host}, 'basic', 2, direction='both', alert_window='last_5m', interval=20, count_default_zero='true') >= 0.1",
+    	"message": "An Anomaly has been detected on {{host.name}} @jdellaria@gmail.com",
+        "events": [],
+        "requests": [
+            {"q": "mysql.performance.cpu_time{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL Performance"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_jon_metric{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_jon_metric"
+}]
 
-              template_variables = [{
-                  "name": "host1",
-                  "prefix": "host",
-                  "default": "host:my-host"
-              }]
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
 
-              read_only = True
-              api.Timeboard.create(title=title,
-                                   description=description,
-                                   graphs=graphs,
-                                   template_variables=template_variables,
-                                   read_only=read_only)
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
 
 ---------------------
+
+Here are the screenshot to the Timeboard set to 5 minutes and the associate email. Setting the 5 minute timframe was not avaialble in the drop down list but by simply clicking and dragging on any of the charts, you can set any length.
+<p align="center"><img src="timeboard5minutes.png" width="500" ></img></p>
+<p align="center"><img src="5minuteemail.png" width="500" ></img></p>
 
 
 
