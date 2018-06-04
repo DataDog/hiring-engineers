@@ -114,7 +114,7 @@ Here is the screenshot when I tried to run the given Flask App. As you can see, 
 <p align="center"><img src="apmflaskerror.png" width="500" ></img></p>
 
 Here is the screenshot of the sample trace application that I was able to generate a trace to the ADM Service.
-<p align="center"><img src="apmsamplestrace.png" width="500" ></img></p>
+<p align="center"><img src="apmsampletrace.png" width="500" ></img></p>
 
 my code for the sample tracer
 
