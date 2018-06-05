@@ -1,11 +1,11 @@
 ## Prerequisites - Setup the environment
 =======================================
+* I decided to use Vagrant VM to avoid dependency issues.
 
-I decided to use Vagrant VM to avoid dependency issues.
+⋅⋅⋅ ![agent reporting metrics](/img/agent_reporting_metrics.png) 
 
-![agent reporting metrics](/img/agent_reporting_metrics.png) 
-
-###### Documentation I used to complete this section: 
+###### Documentation I used to complete this section:
+===================================================== 
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)
 [Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)
 
@@ -42,3 +42,67 @@ I decided to use Vagrant VM to avoid dependency issues.
 [Writing an Agent Check](https://docs.datadoghq.com/developers/agent_checks/)
 [Agent Commands](https://docs.datadoghq.com/agent/faq/agent-commands/)
 [Python - Random Int](https://stackoverflow.com/questions/3996904/generate-random-integers-between-0-and-9)
+
+
+## Visualizing Data:
+====================
+
+Utilize the Datadog API to create a Timeboard that contains:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+⋅⋅⋅ Did not Implement
+
+```
+api_key=4f03487948708ff3a0d41e3c69bd5b9a
+app_key=43c5f29e91f2b86eb9db8cab1e7132a384f0c305
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+	  "query":"time_aggr(last_1h):anomalies(sum:my_metric{host:nicholesvibrantlife}, 'basic', 3, direction='above', alert_window='last_15m', interval=60)",
+      "graphs" : [{
+          "title": "My Metric Timeboard",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "sum:my_metric{host:nicholesvibrantlife}"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "My Metric Timeboard",
+      "description" : "A dashboard with memory info.",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+
+```
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+⋅⋅⋅ From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards. 
+
+⋅⋅⋅ ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5m.png)
+
+⋅⋅⋅ ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
+
+
+
+###### Documentation I used to complete this section:
+=====================================================
+[Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
+[Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)
+[Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)
+[Rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1)
+[Timeboard Video](https://docs.datadoghq.com/videos/datadog101-3-dashboards/?wtime=40.5)
+
+
