@@ -188,7 +188,7 @@ After running the flask app, the button 'traces' became available in the APM tab
 ![Screenshot 16](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/16.APM_Trace.PNG) <br>
 ![Screenshot 17](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/17.APM_Trace2.PNG)
 
-I created a dashboard combining the check 'mymetric' and python app we just created ![Screenshot 18](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/18.CustomedDashBoard.PNG). Then I made it public using the options button on the top right corner, ![ScreenShot 19](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/19.GeneratePublicURL.PNG). <br> 
+I created a dashboard combining the check 'mymetric' and the trace of the python app we just created ![Screenshot 18](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/18.CustomedDashBoard.PNG). Then I made it public using the options button on the top right corner, ![ScreenShot 19](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/19.GeneratePublicURL.PNG). <br> 
 The link to the dashboard is [here](https://p.datadoghq.com/sb/bc0f6093b-7b584e455cb564b634c85f1d4e90804b). 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
