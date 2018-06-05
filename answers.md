@@ -309,6 +309,116 @@ I created two scheduled downtimes to mute the alerts during the times listed in 
 
 
 ## Collecting APM Data
+This was easily the toughest portion of the exercise for me.  I'd never heard of Flask so spent a lot of time reading through the quickstart and installation documentation provided in the reference section.  In working through the Flask install, I hit a lot of errors/dependencies when using the original Ubuntu 12.04 host.  Because of that I manually upgraded it to Ubuntu 14 and then was able to get passed it and get through the installation (this was on my 'precise' host).  I wasn't able to get an installation done using venv as described in that documenation so just installed everything directly on the machine.
+
+I then copy and pasted the sample application provided in the exercise into a python script and started working through the quickstart instructions to get the flask app running.  I continually hit the following error when trying to get the flask app to run:
+error: socket.error: [Errno 98] Address already in use
+
+I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new host on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort as it took much less time to get it reconfigured.
+
+At this point I got right back to the same issue/blocker and hit the Address in use error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I uncommented the lines and changed them to 6000 and 6001.
+```
+# Additional path where to search for Python checks
+# By default, uses the checks.d folder located in the agent configuration folder.
+# additional_checksd:
+
+# The port for the go_expvar server
+expvar_port: 6000
+
+# The port on which the IPC api listens
+cmd_port: 6001
+
+# The port for the browser GUI to be served
+# Setting 'GUI_port: -1' turns off the GUI completely
+# Default is '5002' on Windows and macOS ; turned off on Linux
+# GUI_port: -1
+```
+
+I now was able to run the sample app via a python command as well as through the flask run commands, so felt good about getting passed that issue/blocker.  My issue now however, was that when I tried to hit the localhost/IP address and port from the browser on my MBPro I got a connection refused error.  I fought this error unsuccessfully for a few hours and then broke down and phoned a friend.  Not sure if that's cheating or not allowed, but I was at a loss.  If that's not OK, feel free to ignore the rest of this section.  I spoke with a friend who's a developer and walked him through what I had set up and what I was trying to accomplish.  As expected, it took 10 minutes to explain to him and maybe 2 minutes for him to walk through what I needed to look at.  He basically said the issue was that my MBPro had no path to access the machine so I was just hitting the MBPro's local loopback address.  He directed me to the Vagrantfile as opposed to the VirtualBox network settings as a way to get that resolved.  That piece of advice was the key to getting through this.
+
+I went to the Vagrantfile and updated the configuration to port forward from the host 5000 to the guest 5000.  I commented out this line and updated the ports.
+```
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
+```
+
+I reloaded the VM via this updated Vagrantfile and got the Flask app up and running again.  I still was hitting an error when trying to hit the app via the browser, but the error was different.  Instead of connection refused, I was now getting connection reset which seemed promising.  In reading through the [Flask quickstart](http://flask.pocoo.org/docs/0.12/quickstart/), I noticed the section about making the app/server Externally Visible.  I tried running the flask command with the --host 0.0.0.0 tags as described but was still hitting the issue.  Some more google'ing and clicking through the Flask pages led me [here](http://flask.pocoo.org/snippets/20/) where I found some samples of code where instead of app.run() they actually passed 0.0.0.0 and port name.  I did the same in my sample application configuration and that was the Eureka moment that made it work.  The ultimate irony is that only after figuring that out did I notice that the exercise page was updated to show this change to the sample flask application. I learned a very valuable lesson to always review the page to see any updates/changes made.  :(
+
+So after I confirmed that the app was running and I was getting expected responses, I started following the instructions in the APM section of my datadog trial account.  I installed the ddtrace libraries and then ran the application via ddtrace-run to have the application automatically instrumented.  I got the results below after starting the app and then hitting the URLs to get responses.
+```
+vagrant@ubuntu-xenial:/etc/python3/ddproject$ sudo ddtrace-run python ddflask.py flask
+DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
+2018-06-04 13:49:06,761 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
+DEBUG:ddtrace.writer:resetting queues. pids(old:None new:4938)
+2018-06-04 13:49:06,761 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:4938)
+DEBUG:ddtrace.writer:starting flush thread
+2018-06-04 13:49:06,761 - ddtrace.writer - DEBUG - starting flush thread
+ * Serving Flask app "ddflask" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2018-06-04 13:49:06,764 - werkzeug - INFO -  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+DEBUG:ddtrace.api:reported 1 services
+2018-06-04 13:49:06,765 - ddtrace.api - DEBUG - reported 1 services
+INFO:werkzeug:10.0.2.2 - - [04/Jun/2018 13:49:14] "GET / HTTP/1.1" 200 -
+2018-06-04 13:49:14,952 - werkzeug - INFO - 10.0.2.2 - - [04/Jun/2018 13:49:14] "GET / HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.01681s
+2018-06-04 13:49:15,798 - ddtrace.api - DEBUG - reported 1 traces in 0.01681s
+INFO:werkzeug:10.0.2.2 - - [04/Jun/2018 13:49:22] "GET /api/apm HTTP/1.1" 200 -
+2018-06-04 13:49:22,353 - werkzeug - INFO - 10.0.2.2 - - [04/Jun/2018 13:49:22] "GET /api/apm HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.00132s
+2018-06-04 13:49:22,814 - ddtrace.api - DEBUG - reported 1 traces in 0.00132s
+INFO:werkzeug:10.0.2.2 - - [04/Jun/2018 13:49:29] "GET /api/trace HTTP/1.1" 200 -
+2018-06-04 13:49:29,958 - werkzeug - INFO - 10.0.2.2 - - [04/Jun/2018 13:49:29] "GET /api/trace HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.00124s
+2018-06-04 13:49:30,859 - ddtrace.api - DEBUG - reported 1 traces in 0.00124s
+```
+
+After this, the metrics started showing up in my environment, I did another internal and maybe external fist pump, and then added an APM trace metric to my Timeboard I created via the UI in the exercise above.  Link to the dashboard and screenshot is below.
+
+[UI Created Dashboard w/ APM Data](https://app.datadoghq.com/dash/822625/ui-created-timeboard?live=true&page=0&is_auto=false&from_ts=1528208413485&to_ts=1528212013485&tile_size=m)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tbwithapm.png)
+
+Here is the application I used to generate the APM data.  It's the sample app provided in the exercise with my changes to the app.run() command.
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5000)
+#    app.run()
+```
+
+### Bonus Question
+
 
 
 ## Final Question
