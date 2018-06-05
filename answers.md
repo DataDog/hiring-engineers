@@ -422,7 +422,16 @@ if __name__ == '__main__':
 
 
 ## Final Question
+I don't know if it's terribly creative, but I'm considering upgrading my account to a paid version to help me out with all the IT support I provide my parents, aunts, uncles, in-laws, and siblings.
 
+I'm currently hit with the common questions/complaints most tech employees get:
+  * My computer is really slow, what's happening?
+  * My internet is really slow, is something wrong?
+  * Do I need to get a new computer?
+  * My wifi is going in and out, can you fix that?
 
+Today I'm indirectly responsible for 3 Windows desktops, 2 Windows, 4 MacBook Airs, 2 MacBook Pros, 3 Linksys routers, and 4 Netgear routers across 4 states in the US.
 
+I can envision a world where I have a dashboard and monitors set up on each of those devices, everyone's home network, and if possible a speed test on the ISP in everyone's city.  With that, I could either predict when the phone calls were going to start, pre-emptively let them know there's an outage, or proactively alert myself when real issues are going on and get in front of it.  
 
+Not a ton of business value or creativy outside of the Martin family, but a huge time savings that would deliver a great personal ROI.
