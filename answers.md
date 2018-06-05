@@ -142,7 +142,7 @@ The emails I reveived are listed below: <br>
 ![Downtime notification email 1](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/23.DownTimeNotificationMail1.PNG) <br> 
 ![Downtime notification email 2](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/24.DownTimeNotificationMail2.PNG) <br>  
 
-I noticed that the downtimes in the mails are different than the ones on the UI, it is due to the timezone setting, the timezone on the email is UTC while the time in the UI is CEST (Paris time) which is 2 hour aheaed of the UTC.
+I noticed that the downtimes in the mails are different than the ones on the UI, it is due to the timezone setting, the timezone for the emails is UTC while the timezone for the UI is CEST (Paris time) which is 2 hour aheaed of the UTC.
 
 
 ## Collecting APM Data:
