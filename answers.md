@@ -126,7 +126,7 @@ One thing I could never resolve were errors related to Mongo.  It seems as if tw
 
 To complete this section I used the [writing agent check section in datadog docs](https://docs.datadoghq.com/developers/agent_checks/), [this page](https://datadog.github.io/summit-training-session/handson/customagentcheck/) for a sample of a check, and [this page](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) for how to generate a random number in python.
 
-As mentioned before, I don't have much of this in my background so this was the first python file/script I ever created and run.  I'm not sure, nor would I want to admit, how long it took me to get this part done.
+As mentioned before, I don't have much of this in my background so this was the first python file/script I'd ever created and run.  I'm not sure, nor would I want to admit, how long it took me to get this part done.
 ```python
 from checks import AgentCheck
 import random
