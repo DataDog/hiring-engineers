@@ -418,7 +418,11 @@ if __name__ == '__main__':
 ```
 
 ### Bonus Question
+Based on my reading of the docs [here](https://docs.datadoghq.com/tracing/visualization/), a service is a collection of resources.  So the service would something like the database, while the queries and stored procedures would be resources.  Or a webapp would be a service, and specific URL's and functions would be the resources.
 
+Or....this Millenium falcon would be the service and each lego would be the resources.
+
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/falcon.jpg)
 
 
 ## Final Question
