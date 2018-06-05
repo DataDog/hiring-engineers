@@ -36,8 +36,9 @@ Screenshot: ![SCREENSHOT 3](https://github.com/HantingZHANG/hiring-engineers/blo
 *Soulution:*<br>
 In order to configure a custom metric, we need to put 2 files in datadog folders (C:\ProgramData\Datadog\checks.d for the check and C:\ProgramData\Datadog\conf.d for its configuration) <br>
 1.The .yaml configuration file [*mycheck.yaml*](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/mycheck.yaml) <br>
+![mycheck.yaml](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/20.myCheckConf.PNG) <br>
 2.The class file [*mycheck.py*](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/mycheck.py) <br> 
-The are both included in the pull request
+![mycheck.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/21.myCheckPython.PNG) <br>
 
 After the 2 files are added, restart the datadog agent, we can see the check in the tab 'Metrics'. By click on 'explore' and search for 'mycheck'. Screenshot: ![SCREENSHOT 4](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/4.myMertric.PNG)
 
@@ -179,8 +180,9 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 Please include your fully instrumented app in your submission, as well.
 
 *Solution:* <br>
-I had trouble running the python app via `ddtrace-run` command because it looks for a folder with a space in its name, so I added the middleware in the application instead. The source code is added in the pull request [my_app.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/my_app.py) <br>
-
+I had trouble running the python app via `ddtrace-run` command because it looks for a folder with a space in its name, so I added the middleware in the application instead. The source code is added in the pull request [my_app.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/my_app.py) <br> 
+![my_app.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/22.apmTracing_My_app.PNG)
+<br>
 After running the flask app, the button 'traces' became available in the APM tab of the Datadog UI. Click on it, we can now see the traces of our application: 
 <br>
 ![Screenshot 16](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/16.APM_Trace.PNG) <br>
