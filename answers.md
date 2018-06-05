@@ -120,4 +120,19 @@ In this part of the project we are familiarizing ourselves with Datadog's APM to
 1. First we saved the Flask code in a file `app.py`.
 2. In the chance we didn't have these python packages installed `pip install ddtrace flask` (note this is a global install)
 3. Update `/etc/datadog-agent/datadog.yaml` to include `apm_config: enabled: true`
-4. There are two approaches: add tracing middleware like [the documentation suggests](https://docs.datadoghq.com/tracing/setup/python/) or run `ddtrace-run python app.py`
+4. There are two approaches: add tracing middleware to the actual python code like [the documentation suggests](https://docs.datadoghq.com/tracing/setup/python/) or run `ddtrace-run python app.py`
+
+If we go to the locally running web application at http://0.0.0.0:5050/ and go to each of the routes we can see the application being traced.
+
+![datadog apm](DD_APM.png)
+
+**Bonus Question**: What is the difference between a Service and a Resource?
+
+On the Internet a service is what provides a resource. A service for example is a restful api or graphql api that serves the resources: data, media etc. It's like in the real world where shipping companies provide a service to move goods via boxes, trucks, planes, etc., to deliver your goods (i.e. the resource).
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?
+
+This may not be particularly creative but I would Datadog as an intrusion detection system. Modern proprietary servers have IDS features that enable alerts, load balancing, and other features. However, during a DDoS attack Datadog's visibility and metrics tracing along with monitoring alerts could be used to trigger other actions like turning on more load balancers, scaling up servers or filtering malicious traffic in realtime. This product would have been excellent for the work I had done previously at AT&T labs working on DDoD mitigation. Thus, I would use it to deal with DDoS attacks. I could use the API and programmatically control what happens after an alert has gone off.
