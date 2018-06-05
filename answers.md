@@ -137,6 +137,13 @@ Then click 'Schedule Downtime' on the top right corner. The configurations are d
 ![SCREENSHOT 14](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/14.DownTimeSettings1.PNG) <br>
 ![SCREENSHOT 15](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/15.DownTimeSettings2.PNG) <br>
 
+The emails I reveived are listed below: <br>
+
+![Downtime notification email 1](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/23.DownTimeNotificationMail1.PNG) <br> 
+![Downtime notification email 2](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/24.DownTimeNotificationMail2.PNG) <br>  
+
+I noticed that the downtimes in the mails are different than the ones on the UI, it is due to the timezone setting, the timezone on the email is UTC while the time in the UI is CEST (Paris time) which is 2 hour aheaed of the UTC.
+
 
 ## Collecting APM Data:
 
