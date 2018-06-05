@@ -136,3 +136,5 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 This may not be particularly creative but I would Datadog as an intrusion detection system. Modern proprietary servers have IDS features that enable alerts, load balancing, and other features. However, during a DDoS attack Datadog's visibility and metrics tracing along with monitoring alerts could be used to trigger other actions like turning on more load balancers, scaling up servers or filtering malicious traffic in realtime. This product would have been excellent for the work I had done previously at AT&T labs working on DDoD mitigation. Thus, I would use it to deal with DDoS attacks. I could use the API and programmatically control what happens after an alert has gone off.
+
+Additionally, we can use Datadog as an IoT data streaming service: in particular for the conservation of water. For people who take really long showers or looking at plant health attaching a bunch of senors to an Internet connected pbc's with Linux (mostly Pi's) is another good way to use Datadog's services. 
