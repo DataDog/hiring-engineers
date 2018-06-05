@@ -21,7 +21,7 @@ Screenshot : <br>
 
 
 *Solution:* <br>
-1.Install PostgreSql on the local machine, Screenshot : [SCREENSHOT 2](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/2.postgreSql_local_installation.PNG) <br>
+1.Install PostgreSql on the local machine, Screenshot : ![SCREENSHOT 2](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/2.postgreSql_local_installation.PNG) <br>
 2.Install integration for PostgreSql by following the configuration instruction on the Integration Tab <br>
 	-Create user 'datadog' who has the right to query the database stats <br>
 	-Create a configuration file at C:\ProgramData\Datadog\conf.d\postgres.d\postgres.yaml stating the database ip, username, password and tags <br>
@@ -29,7 +29,7 @@ Screenshot : <br>
    The postgres configuration file is attached at	[postgres.yaml](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/postgres.yaml) <br>
 3.Restart the datadog agent<br>
 4.We can now see the database metrics via the dashboard tab. <br> 
-Screenshot: [SCREENSHOT 3](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/3.postgreSql_dashBoard.PNG) 
+Screenshot: ![SCREENSHOT 3](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/3.postgreSql_dashBoard.PNG) 
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -39,7 +39,7 @@ In order to configure a custom metric, we need to put 2 files in datadog folders
 2.The class file [*mycheck.py*](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/mycheck.py) <br> 
 The are both included in the pull request
 
-After the 2 files are added, restart the datadog agent, we can see the check in the tab 'Metrics'. By click on 'explore' and search for 'mycheck'. Screenshot: [SCREENSHOT 4](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/4.myMertric.PNG)
+After the 2 files are added, restart the datadog agent, we can see the check in the tab 'Metrics'. By click on 'explore' and search for 'mycheck'. Screenshot: ![SCREENSHOT 4](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/4.myMertric.PNG)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -64,7 +64,7 @@ I found a way to use datadog API with PostMan [here](https://help.datadoghq.com/
 [myTimeboard.py](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/src/myTimeBoard.py "myTimeboard.py") <br> 
 I also downloaded datadog Python library in order to run and test the script via this [link](https://github.com/DataDog/datadogpy). <br> 
 The following screenshot shows the timeboard created by the script: <br>
-[SCREENSHOT 5](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/5.TimeBoard.PNG "SCREENSHOT 5") <br>
+![SCREENSHOT 5](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/5.TimeBoard.PNG "SCREENSHOT 5") <br>
 
 The anomaly detection for the postgreSql database is based on the number of connections <br>
 
@@ -75,17 +75,17 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 *Solution:* <br>
 Select a 5 minute interval on one of the graphs on the timeboard, the timeboard will 'zoom'. <br>
-[SCREENSHOT 6](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/6.TimeBoardWith5MinTimeRange.PNG)
+![SCREENSHOT 6](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/6.TimeBoardWith5MinTimeRange.PNG)
 <br>
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 *Solution:* <br>
 Click the camera icon to take a picture of the graph and use the @ annotation in the comment section <br>
-[SCREENSHOT 7](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/7.TimeBoardGraphWithNotification.PNG) 
+![SCREENSHOT 7](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/7.TimeBoardGraphWithNotification.PNG) 
 <br>
 Enter the comment and I received a mail <br>
-[SCREENSHOT 8](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/8.TimeBoardGraphWithNotificationMail.PNG)
+![SCREENSHOT 8](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/8.TimeBoardGraphWithNotificationMail.PNG)
 
 * **Bonus Question**: What is the Anomaly graph displaying? <br> 
 *Solution:* <br>
@@ -106,7 +106,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Click on the monitor tab and select New Monitor, configure the monitor to fit it to the requirement.<br>
 The configurations are demonstrated in the following screenshots: 
 
-[SCREENSHOT 9](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/9.MonitorThresholdConfiguration.PNG)
+![SCREENSHOT 9](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/9.MonitorThresholdConfiguration.PNG)
 
 Please configure the monitor’s message so that it will:
 
@@ -117,8 +117,8 @@ Please configure the monitor’s message so that it will:
 
 *Solution:* <br>
 Configure the notification message in the 'See What's Happening' section. The syntax can be found by clicking the 'Use message template variables ' button <br>
-[SCREENSHOT 10](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/10.MonitorMessageConfiguration.PNG) <br>
-[SCREENSHOT 11](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/11.WarningEmail.PNG)  <br>
+![SCREENSHOT 10](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/10.MonitorMessageConfiguration.PNG) <br>
+![SCREENSHOT 11](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/11.WarningEmail.PNG)  <br>
 
 I had trouble seeing the host name and its ip in the email, didn't find any document about that. Perhaps should have used another variable or a tag name? 
 
@@ -131,10 +131,10 @@ I had trouble seeing the host name and its ip in the email, didn't find any docu
 *Solution:* <br>
 Click on the Monitor tab then select 'Manage Downtime' <br> 
 Then click 'Schedule Downtime' on the top right corner. The configurations are demonstrated through screenshots below : <br>
-[SCREENSHOT 12](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/12.DownTimeSchedule1.PNG) <br>
-[SCREENSHOT 13](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/13.DownTimeSchedule2.PNG) <br>
-[SCREENSHOT 14](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/14.DownTimeSettings1.PNG) <br>
-[SCREENSHOT 15](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/15.DownTimeSettings2.PNG) <br>
+![SCREENSHOT 12](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/12.DownTimeSchedule1.PNG) <br>
+![SCREENSHOT 13](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/13.DownTimeSchedule2.PNG) <br>
+![SCREENSHOT 14](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/14.DownTimeSettings1.PNG) <br>
+![SCREENSHOT 15](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/15.DownTimeSettings2.PNG) <br>
 
 
 ## Collecting APM Data:
@@ -183,10 +183,10 @@ I had trouble running the python app via `ddtrace-run` command because it looks 
 
 After running the flask app, the button 'traces' became available in the APM tab of the Datadog UI. Click on it, we can now see the traces of our application: 
 <br>
-[Screenshot 16](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/16.APM_Trace.PNG) <br>
-[Screenshot 17](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/17.APM_Trace2.PNG)
+![Screenshot 16](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/16.APM_Trace.PNG) <br>
+![Screenshot 17](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/17.APM_Trace2.PNG)
 
-I created a dashboard combining the check 'mymetric' and python app we just created [Screenshot 18](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/18.CustomedDashBoard.PNG). Then I made it public using the options button on the top right corner, [ScreenShot 19](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/19.GeneratePublicURL.PNG). <br> 
+I created a dashboard combining the check 'mymetric' and python app we just created ![Screenshot 18](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/18.CustomedDashBoard.PNG). Then I made it public using the options button on the top right corner, ![ScreenShot 19](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/19.GeneratePublicURL.PNG). <br> 
 The link to the dashboard is [here](https://p.datadoghq.com/sb/bc0f6093b-7b584e455cb564b634c85f1d4e90804b). 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
