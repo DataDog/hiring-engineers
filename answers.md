@@ -173,7 +173,7 @@ initialize(**options)
 
 print api.Timeboard.get_all()
 ```
-Then I used a python script to pull a specific timeboard via the ID I got.
+Then I used a python script to pull a specific timeboard via the ID I got.  One piece that tripped me up here that seems obvious now was adding the print command to the last line.  Using the sample in the API docs, it didn't have the print command so I kept getting no response so thought it wasn't working.  Not sure if it was the time of night or what, but it took a minute before I realized I was missing the print command.
 ```python
 from datadog import initialize, api
 
@@ -293,6 +293,19 @@ The graph with anomaly applied is displaying when any metric is out of range of 
 
 
 ## Monitoring Data
+
+Using the UI, I created a monitor as defined in the exercise requirements.  It warns and alerts on the avg. of 500 and 800 for my_metric in a 5 minute range.  It is also set up to alert if no data is sent over the past 10 minutes.  I've also configured the notifications to show what caused the trigger, the specific host/IP, the alert state, and different text in the notification body based on the Alert, Warning, or No Data state.  See screenshots below for evidence.
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/Monitor.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/monitorconfig1.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/monitorconfig2.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/Monitor%20Email.png)
+
+### Bonus Question
+I created two scheduled downtimes to mute the alerts during the times listed in the exercise.  See screenshots for configuration and email notifications.
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/downtime1.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/downtime2.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/dtemail1.png)
+![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/dtemail2.png)
 
 
 ## Collecting APM Data
