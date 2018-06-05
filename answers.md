@@ -89,7 +89,7 @@ Enter the comment and I received a mail <br>
 
 * **Bonus Question**: What is the Anomaly graph displaying? <br> 
 *Solution:* <br>
-According to datadog documentation about anomaly detection, it distinguishes between normal and abnormal metric trends by analyzing a metric’s historical behavior. It shows the actual value and whether it is normal by using different colors based on the algorithm we choosed for the metric. 
+According to datadog documentation about anomaly detection, it distinguishes between normal and abnormal metric trends by analyzing a metric’s historical behavior. It shows the actual value and whether it is normal by using different colors based on the algorithm we chose for the metric. 
 
 
 ## Monitoring Data
@@ -192,7 +192,7 @@ The link to the dashboard is [here](https://p.datadoghq.com/sb/bc0f6093b-7b584e4
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 *Solution:* <br>
-A "Service" is the name of a set of processes that work together to provide a feature set. Such as a fonctional module of a web site <br> 
+A "Service" is the name of a set of processes that work together to provide a feature set. Such as a functional module of a web site <br> 
 A 'Resource' is a particular query to a service. For a web application, for examples a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks).
 
 ## Final Question:
