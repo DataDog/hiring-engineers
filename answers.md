@@ -15,7 +15,7 @@ The API key required for installation can be found via the menu at [Integration-
 The configuration file is also attached in the pull request [datadog.yaml](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/conf/datadog.yaml)
 <br>
 Screenshot : <br>
-[SCREENSHOT 1](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/1.agentTag.PNG)
+![SCREENSHOT 1](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/1.agentTag.PNG)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -77,6 +77,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Select a 5 minute interval on one of the graphs on the timeboard, the timeboard will 'zoom'. <br>
 [SCREENSHOT 6](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/6.TimeBoardWith5MinTimeRange.PNG)
 <br>
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 *Solution:* <br>
@@ -114,7 +115,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-*Solution: * <br>
+*Solution:* <br>
 Configure the notification message in the 'See What's Happening' section. The syntax can be found by clicking the 'Use message template variables ' button <br>
 [SCREENSHOT 10](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/10.MonitorMessageConfiguration.PNG) <br>
 [SCREENSHOT 11](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/11.WarningEmail.PNG)  <br>
@@ -127,7 +128,7 @@ I had trouble seeing the host name and its ip in the email, didn't find any docu
     * And one that silences it all day on Sat-Sun.
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-*Solution: * <br>
+*Solution:* <br>
 Click on the Monitor tab then select 'Manage Downtime' <br> 
 Then click 'Schedule Downtime' on the top right corner. The configurations are demonstrated through screenshots below : <br>
 [SCREENSHOT 12](https://github.com/HantingZHANG/hiring-engineers/blob/solutions-engineer/images/12.DownTimeSchedule1.PNG) <br>
