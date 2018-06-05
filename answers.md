@@ -1,13 +1,12 @@
-
 Setup the Environment (Vagrant):
 
-To setup Vagrant I utilized their 'Getting Started' tutorial. My intial steps were to intall Vagrant 2.1.1 for macOS and then to install VirtualBox, an open-source tool that supports the creation and management of guest virtual machines.
+To setup Vagrant I utilized their 'Getting Started' tutorial. My initial steps were to install Vagrant 2.1.1 for macOS and then to install VirtualBox, an open-source tool that supports the creation and management of guest virtual machines.
 
-After installing I created a directory for the Datadog assignment.  In the directory I ran the 'vagrant init hashicorp/precise64' command which placed a Vagrantfile into the directory and also downloaded a box from the Vagrant Cloud box catalog which was installed globally.
+After installing I created a directory for the Datadog assignment.  In the directory I ran the 'vagrant init hashicorp/precise64' command which placed a Vagrantfile into the directory and also downloaded / installed a box globally from the Vagrant Cloud box catalog.
 
-At this point, from the directory I was able to boot up the machine and SSH into it using the 'vagrant ssh' command.  The VM was not running the most up to date version of Ubuntu, so I upgraded as recommended in the Datadog assignment's README.md file.
+From the directory I was now able to boot up the machine and SSH into it using the 'vagrant ssh' command.  Initially the VM was not running the most up to date version of Ubuntu so I upgraded it as recommended in the Datadog assignment's README.md file.
 
-I then created an account on datadoghq.com and utilized the 'getting started: Install Agent' guide for ubuntu to intall the Datadog agent on to the virtual machine.
+I then created an account on datadoghq.com and utilized the 'getting started: Install Agent' guide for ubuntu in order to install the Datadog agent on to the VM.
 
 Collecting Metrics:
 
@@ -73,7 +72,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 -Bonus Question: What is the Anomaly graph displaying?
 
-There are two anomaly graphs being display, one for  row insertion into a table within the mydb database, the other for postgres percent usage connections.  These graphs were created using the ‘basic’ anomaly algorithm and use a color system to differentiate between normal behavior (blue) and abnormal behavior (orange).
+There are two anomaly graphs being display, one for row insertion into a table within the mydb database, the other for postgres percent usage connections.  These graphs were created using the ‘basic’ anomaly algorithm and use a color system to differentiate between normal behavior (blue) and abnormal behavior (orange).
 
 In the case of row insertion, normal behavior is when no rows are being inserted into the database.  When rows are being inserted, the behavior is out of bounds (floor and ceiling value constituting the ‘norm’) for what is considered 'normal behavior' and therefore these occurrences appear in orange.
 
