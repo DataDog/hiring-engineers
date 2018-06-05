@@ -1,3 +1,14 @@
+
+Setup the Environment (Vagrant):
+
+To setup Vagrant I utilized their 'Getting Started' tutorial. My intial steps were to intall Vagrant 2.1.1 for macOS and then to install VirtualBox, an open-source tool that supports the creation and management of guest virtual machines.
+
+After installing I created a directory for the Datadog assignment.  In the directory I ran the 'vagrant init hashicorp/precise64' command which placed a Vagrantfile into the directory and also downloaded a box from the Vagrant Cloud box catalog which was installed globally.
+
+At this point, from the directory I was able to boot up the machine and SSH into it using the 'vagrant ssh' command.  The VM was not running the most up to date version of Ubuntu, so I upgraded as recommended in the Datadog assignment's README.md file.
+
+I then created an account on datadoghq.com and utilized the 'getting started: Install Agent' guide for ubuntu to intall the Datadog agent on to the virtual machine.
+
 Collecting Metrics:
 
 -Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
