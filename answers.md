@@ -256,5 +256,84 @@ Below are 2 examples of a weekday & weekend downtime schedule:
 
 ## Collecting APM Data:
 
+Application Performance Management (APM) allows Datadog to provide deep insight into your application's performance side by side with your infrastructure monitoring and logs. Datadog will automatically generate dashboards monitoring key metrics, such as volume and latency, to detailed traces of individual requests. For more information, [Datadog Docs - APM](https://docs.datadoghq.com/tracing/)
+
+*ddtrace* is Datadog's tracing client used to trace requests across applications. The ddtrace client is installed depending on your application language, Datadog currently provides official support for Python, Ruby, Go & Java - which can be installed at [https://app.datadoghq.com/apm/install](https://app.datadoghq.com/apm/install). There is also a library of community libraries available at [Datadog Docs - Developer Libraries](https://docs.datadoghq.com/developers/libraries/)
+
+To instrument a Flask app, ensure you are running the latest Python, Flask and Blinker libraries:
+
+`sudo apt-get install python3.6`
+
+`sudo pip install flask`
+
+`sudo pip install blinker`
+
+Then, install the ddtrace python client:
+
+`pip install ddtrace`
+
+Then, instrument your application using the middleware by including the below in your my_app.py app:
+
+```import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+```
+
+The fully instrumented my_app.py should look like this:
+
+```from flask import Flask
+import logging
+import sys
+import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080)
+```
+
+Next, run the application using:
+
+`ddtrace-run python my_app.py`
+
+*personal note: I encountered a port conflict issue when running the application, which I suspect was a conflict with the Datadog agent. I therefore included a host IP and port number in my my_app.py code*
+
+Datadog will now automatically create an APM Service at [https://app.datadoghq.com/apm/services](https://app.datadoghq.com/apm/services) and automatically configure dashboard visualising Total Requests, Errors, Latency & Latency Distribution:
+
+![APM1](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/APM1.png)
+
+Individual graphs can then be exported to a Timeboard by clicking the export icon in the rop right hand corner:
+
+![APM2](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/APM2.png)
+
+Now - you can visualise infrastructure metrics alongside application data:
+
+![APM3](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/APM3.png)
+
+
 ## Final Question:
 
