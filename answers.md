@@ -130,7 +130,8 @@ The script is made of 2 main components:
 - `"graphs" [{}]` : Here you can define a number of graphs by giving them a title, definition and the request using `{"q": "YOUR_PARAMETERS"}
 - After the graphs, the Timeboard is given a title & description
 
-```json
+```
+json
 curl  -X POST -H "Content-type: application/json" \
 -d '{
   "graphs" : [{
@@ -274,7 +275,8 @@ Then, install the ddtrace python client:
 
 Then, instrument your application using the middleware by including the below in your my_app.py app:
 
-```import blinker as _
+```
+import blinker as _
 
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
@@ -282,7 +284,8 @@ from ddtrace.contrib.flask import TraceMiddleware
 
 The fully instrumented my_app.py should look like this:
 
-```from flask import Flask
+```
+from flask import Flask
 import logging
 import sys
 import blinker as _
