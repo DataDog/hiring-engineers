@@ -85,7 +85,7 @@ Custom Agent Checks are made up of 2 files:
 
 ![mycheck in GUI](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/mycheck_GUI.png)
 
-*personal note: this part of the challenge was the most complicated for me having not written Python before. I based my code on the Datadog Docs example, then modified based on googling of the Python Random Module however didn't have the code in the correct order to execute in the right steps*
+*personal note: in this section, I struggled to understand why my check wasn't executing. Having not written Python extensively before, I based my code on the Datadog Docs example, then modified based on googling of the Python Random Module however didn't have the code in the correct order to execute in the right steps*
 
 #### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
