@@ -10,4 +10,5 @@ instances:
             - region: california
             - role: database
 
-2 . Added #region: california and role: database tags to datadog.yaml file.             
+2 . Added #region: california and role: database tags to datadog.yaml file.  
+3 . Installed the respective Datadog integration for PostgreSQL.           
