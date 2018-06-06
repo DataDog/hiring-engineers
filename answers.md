@@ -1,6 +1,3 @@
-## Questions:
-
-
 ## Collecting Metrics:
 
 * **Q1**.
@@ -63,7 +60,11 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 * **Q1**
 
-  I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting Python code below and confirmed the timeboard worked as expected. Please refer to the two screenshots below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
+  I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting Python code below and confirmed the timeboard worked as expected. Please refer to the screenshot and the Python code below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
+
+  Screenshot: My_metric in the timeboard just created.
+
+  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)	
 
   Python code: /code/Create_timeboard.py
 
@@ -115,13 +116,15 @@ api.Timeboard.create(title=title,
                         read_only=read_only)
 ```
 
-   Screenshot: My_metric in the timeboard just created.
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
 
 * **Q2**
 
-  I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the Python code and the screenshot below. If I missed something, please point me to the right direction and let me know. Thank you.
+  I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the screenshot and the Python code below. If I missed something, please point me to the right direction and let me know. Thank you.
+  
+  Screenshot: Anomaly function applied to the mysql.net.connections metric
+
+  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_4.PNG)
 
   Python code: /code/Create_monitor_with_anomaly_function.py
 
@@ -153,13 +156,14 @@ api.Monitor.create(
 )
 ```
 
-  Screenshot: Anomaly function applied to the mysql.net.connections metric
-
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_4.PNG)
 
 * **Q3**
 
-  This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the two screenshots below. 
+  This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the screenshot and Python code below. 
+  
+  Screenshot: rollup function applied to the my_metric
+
+  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_6.PNG)
 
   Python code: /code/Create_timeboard.py
 
@@ -218,13 +222,6 @@ api.Timeboard.create(title=title,
                         read_only=read_only)
 ```
 
-  Screenshot: rollup function applied to the my_metric
-
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_6.PNG)
-
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-Set the Timeboard's timeframe to the past 5 minutes
 
 * **Q4**
 
