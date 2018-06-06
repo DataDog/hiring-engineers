@@ -3,7 +3,7 @@
 
 ## Collecting Metrics:
 
-* **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog**.
+* **Q1**.
 
   To add tags, I found an article "Assigning tags using the configuration files" in the Docs page (https://docs.datadoghq.com/getting_started/tagging/assigning_tags/assigning-tags-using-the-configuration-files) and configured datadog.yaml to add the region: nsw tag. Please refer to the two screenshots below.
 
@@ -15,7 +15,7 @@
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
 
-* **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database**.
+* **Q2**.
 
   I installed MySQL on my Ubuntu (16.04.4) and I followed the MySQL integration page (https://docs.datadoghq.com/integrations/mysql/) to configure MySQL and the agent. After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the two screenshots below.
 
@@ -27,7 +27,7 @@
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
 
-* **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
+* **Q3**
 
   To create a custom Agent check, I followed the Docs page (https://docs.datadoghq.com/developers/agent_checks/) and created mycheck.yaml and mycheck.py then configured the two files accordingly. Please refer to the two screenshots below. 
 
@@ -39,7 +39,7 @@
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
 
-* **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
+* **Q4**
 
   I used time.sleep function in mycheck.py to make the 45 seconds time delay to data collection interval. Please refer to the screenshot below.
 
@@ -47,7 +47,7 @@
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_3.PNG)
 
-* **Bonus Question: Can you change the collection interval without modifying the Python check file you created?**
+* **Bonus Question**
 
   We also could change the data collection interval by configuring min_collection_interval in the mycheck.yaml file. Please refer to the screenshot below.
 
@@ -61,7 +61,7 @@
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-* **Your custom metric scoped over your host.**
+* **Q1**
 
   I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting Python code below and confirmed the timeboard worked as expected. Please refer to the two screenshots below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
 
@@ -115,11 +115,11 @@ api.Timeboard.create(title=title,
                         read_only=read_only)
 ```
 
-  Screenshot: My_metric in the timeboard just created.
+   Screenshot: My_metric in the timeboard just created.
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
 
-* **Any metric from the Integration on your Database with the anomaly function applied.**
+* **Q2**
 
   I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the Python code and the screenshot below. If I missed something, please point me to the right direction and let me know. Thank you.
 
@@ -157,7 +157,7 @@ api.Monitor.create(
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_4.PNG)
 
-* **Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.**
+* **Q3**
 
   This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the two screenshots below. 
 
@@ -226,7 +226,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 
-* **Take a snapshot of this graph and use the @ notation to send it to yourself.**
+* **Q4**
 
   Screenshot 1: Graph of the timeboard
 
@@ -236,7 +236,7 @@ Set the Timeboard's timeframe to the past 5 minutes
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_9.PNG)
 
-* **Bonus Question: What is the Anomaly graph displaying?**
+* **Bonus Question**
 
   We use Anomaly Detection to identify when a metric is behaving differently to it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. From the graph below we can see the algorithm is monitoring historical data to calculate the metric’s expected normal range of behaviour.
 
@@ -247,20 +247,7 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-
-**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
-
-* **Warning threshold of 500**
-* **Alerting threshold of 800**
-* **And also ensure that it will notify you if there is No Data for this query over the past 10m.**
-
-**Please configure the monitor’s message so that it will:**
-
-* **Send you an email whenever the monitor triggers.**
-* **Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.**
-* **Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.**
-* **When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+* **Q1**
 
   Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created. I followed this Docs page (https://docs.datadoghq.com/monitors/notifications/) to created the monitor.
 
@@ -272,11 +259,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_1.PNG)
 
-* **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
-
-* **One that silences it from 7pm to 9am daily on M-F,**
-* **And one that silences it all day on Sat-Sun.**
-* **Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+* **Bonus Question**
 
   I followed this page in Docs https://docs.datadoghq.com/monitors/downtimes/ and created the two downtimes. Please refer to the two screenshots below.
 
@@ -291,47 +274,13 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-
-```
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-```
-
-* **Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.**
-* **Bonus Question: What is the difference between a Service and a Resource?**
+* **Bonus Question**
 
   Service is a set of processes that do the same job. For instance, a simple web application may consist of two services: a single webapp service and a single database service.
   
   Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home. For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
 
-  **Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
+* **Q1**
 
   Please refer to the link and the screenshot below:
   
@@ -341,16 +290,12 @@ if __name__ == '__main__':
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_APM_1.PNG)
   
 
-  **Please include your fully instrumented app in your submission, as well.**
+* **Q2**
 
-  I used the Python sample code (Flask app) above to create the APM.  
+  I used the Python sample code (Flask app) to create the APM.  
  
  
 ## Final Question:
-
-**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!**
-
-**Is there anything creative you would use Datadog for?**
 
  I’m very interested in IoT and I have developed a few Raspberry Pi based home automation projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home by myself as it could make life easier for my family and improve my technical skills.
 
