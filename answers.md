@@ -1,4 +1,4 @@
-1 . Configured the Agent to connect to the PostgreSQL server by adding the code below to the conf.yaml.example file. 
+1 . Configured the Agent to connect to the PostgreSQL server by adding the code below to the conf.yaml.example file.
 init_config:
 
 instances:
@@ -7,5 +7,7 @@ instances:
        username: datadog
        password: anQaBgT9qBf8BXRyR76n9RvQ
        tags:
-            - optional_tag1
-            - optional_tag2
+            - region: california
+            - role: database
+
+2 . Added #region: california and role: database tags to datadog.yaml file.             
