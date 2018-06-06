@@ -11,4 +11,11 @@ instances:
             - role: database
 
 2 . Added #region: california and role: database tags to datadog.yaml file.  
-3 . Installed the respective Datadog integration for PostgreSQL.           
+3 . Installed the respective Datadog integration for PostgreSQL.   
+4 . Created checkvalue.yaml file indie the etc directory in order to create custom agent check.
+init_config:
+
+instances:
+  [{}]
+
+            
