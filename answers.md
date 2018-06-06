@@ -1,6 +1,6 @@
 ## Collecting Metrics:
 
-* **Q1**.
+* **Q1**
 
   To add tags, I found an article "Assigning tags using the configuration files" in the Docs page (https://docs.datadoghq.com/getting_started/tagging/assigning_tags/assigning-tags-using-the-configuration-files) and configured datadog.yaml to add the region: nsw tag. Please refer to the two screenshots below.
 
@@ -12,7 +12,7 @@
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
 
-* **Q2**.
+* **Q2**
 
   I installed MySQL on my Ubuntu (16.04.4) and I followed the MySQL integration page (https://docs.datadoghq.com/integrations/mysql/) to configure MySQL and the agent. After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the two screenshots below.
 
@@ -48,7 +48,7 @@
 
   We also could change the data collection interval by configuring min_collection_interval in the mycheck.yaml file. Please refer to the screenshot below.
 
-  Screenshot: Added min_collection_interval into the /etc/datadog-agent/conf.d/mycheck.yaml
+  Screenshot: Added min_collection_interval to the /etc/datadog-agent/conf.d/mycheck.yaml
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_4.PNG)
 
@@ -56,11 +56,9 @@
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
-
 * **Q1**
 
-  I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting Python code below and confirmed the timeboard worked as expected. Please refer to the screenshot and the Python code below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
+  I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting the Python code below and confirmed the timeboard worked as expected. Please refer to the screenshot and the Python code below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
 
   Screenshot: My_metric in the timeboard just created.
 
@@ -117,7 +115,6 @@ api.Timeboard.create(title=title,
 ```
 
 
-
 * **Q2**
 
   I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the screenshot and the Python code below. If I missed something, please point me to the right direction and let me know. Thank you.
@@ -159,7 +156,7 @@ api.Monitor.create(
 
 * **Q3**
 
-  This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the screenshot and Python code below. 
+  This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the screenshot and the Python code below. 
   
   Screenshot: rollup function applied to the my_metric
 
