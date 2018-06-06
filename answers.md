@@ -1,4 +1,4 @@
-The below documentation is a guide to my first steps with Datadog and covers a how to of collecting, visualising & monitoring data.
+The below documentation is a guide to my first steps with Datadog and covers a how to of collecting, visualising & monitoring data. Images and code can be found in directories on this branch for reference.
 
 The below is based on an Ubuntu 16.04 local machine.
 The pre-requisite is to install the Datadog agent on the local machine to allow reporting to your Datadog account, the install process is documented at [Datadog Docs - Agent](https://docs.datadoghq.com/agent/) to select your platform of choice. 
@@ -176,6 +176,10 @@ curl  -X POST -H "Content-type: application/json" \
 
 *personal note: whilst I picked up the Datadog structure for the JSON file relatively quickly, the first few times I executed it my code failed. After some troubleshooting (Googling) I noticed errors in my code structure (mainly tabs/spacing) that would break my command.*
 
+Note: the JSON configuration can also be found by creating a graph in the UI and selecting the JSON output tab:
+
+![graph JSON](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/timeboardjson.png)
+
 The API will acknowledge the success and the Timeboard will be created in the Datadog GUI at [https://app.datadoghq.com/dashboard/lists](https://app.datadoghq.com/dashboard/lists) :
 
 ![Dashboard list](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/dashboard_list.png)
@@ -184,7 +188,7 @@ The API will acknowledge the success and the Timeboard will be created in the Da
 
 5.2.1 Set the timeframe to the past 5 minutes:
 
-The default time ranges for a Timeboard are found in the "show" dropdown above your graphs. To set the timeframe to a shorter period than the default Past Hour, hover your cursor over a graph and select a timeframe:
+The default time ranges for a Timeboard are found in the "show" dropdown above your graphs. To set the timeframe to a shorter period than the default Past Hour, hover your cursor over a graph, left click, drag and select a timeframe:
 
 ![Dashboard 5mins](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/timeboard_5mins.png)
 
@@ -337,6 +341,11 @@ Now - you can visualise infrastructure metrics alongside application data:
 
 ![APM3](https://github.com/ali-shaw/hiring-engineers/blob/ali-shaw-se/images/APM3.png)
 
-
 ## Final Question:
 
+From a personal point of view - having completed this challenge & gained a greater understanding of Datadog's capabilities to monitor both infrastructure and application metrics I would like to instrument some of the tooling in my home automation setup. I often suffer broadband drops which interferes with responsiveness of smart appliances - I'd like to see if Datadog can capture anomalies in events triggering in an app and correlate it back to monitoring of network packet loss on my broadband router.
+
+At a bigger scale - I can imagine a use case where Datadog can monitor metrics across traffic lights, CCTV capturing traffic flow and other variables to better understand metropolitan issues such as congestion and pollution.
+
+Thank you for the opportunity & challenge.
+Alastair
