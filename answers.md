@@ -6,4 +6,4 @@ Prerequisites - Setup the environment
   - Per instruction I go here: https://www.vagrantup.com/intro/getting-started/
   - Install Vagrant and VirtualBox using the download links on the page
   - In terminal, input the first 'Up and Running' command:
-    ![Get a Vagrantfile](/Users/nitinrw/Desktop/Get_a_vagrantfile.png)
+    ![Get a Vagrantfile](/assets/Get_a_vagrantfile.png)
