@@ -86,7 +86,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-   From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards. 
+   From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards, so that is the strategy I employed. 
 
    ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5m.png)
 
@@ -108,7 +108,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-   ![Alert Conditions](/img/alert_conidtions.png)  
+   ![Alert Conditions](/img/alert_conditions.png)  
 
 Please configure the monitor’s message so that it will:
 
@@ -128,6 +128,8 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
   
    ![Silencing from 7pm - 9](/img/email_config_7-9.png) 
    ![Silencing from 7pm - 9](/img/email_config_weekend.png)
+   ![Overnight Email](/img/overnight_email.png)  
+   ![Weekend Email](/img/weekend_email.png)
 
 
 
@@ -139,7 +141,7 @@ ________
 ## Collecting APM Data
 * Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-   ![Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)
+   [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)  
    ![Dashboard](/img/Dashboard_with_APM_and_Infrastructure_Metric.png)
 
 
