@@ -22,6 +22,10 @@ You'll also see this in the submission, but two major mistakes for me were not c
 
   * [Setup the Environment](#setup-the-environment)
   * [Collecting Metrics](#collecting-metrics)
+    * [Datadog Agent and Tags](#datadog-agent-and-tags)
+    * [MongoDB Installation and Integration Configuration](#mongodb-installation-and-integration-configuration)
+    * [Custom Agent Check](#custom-agent-check)
+    * [Bonus Question 1](#bonus-question-1)    
   * [Visualizing Data](#visualizing-data)
   * [Monitoring Data](#monitoring-data)
   * [Collecting APM Data](#collecting-apm-data)
@@ -149,7 +153,7 @@ instances:
 ```
 
 
-### Bonus Question
+### Bonus Question 1
 Based on this section from the datadog docs section, I changed the collection interval for my custom check using the YAML config file.  Given that I didn't have to change the Python check file I created, I believe the answer to this bonus question is **Yes**.
 >For Agent 5, min_collection_interval can be added to the init_config section to help define how often the check should be run globally, or defined at the instance level. For Agent 6, min_collection_interval must be added at an instance level, and can be configured individually for each instance.
 
