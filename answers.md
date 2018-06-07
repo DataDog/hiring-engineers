@@ -1,16 +1,14 @@
 ## Prerequisites - Setup the environment
-=======================================
-* I decided to use Vagrant VM to avoid dependency issues.
+* I decided to install vagrant to avoid any dependency issues. 
 
 ⋅⋅⋅![agent reporting metrics](/img/agent_report_metrics.png) 
 
 ###### Documentation I used to complete this section:
-===================================================== 
+=====================================================  
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)
 [Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)
 
 ## Collecting Metrics:
-=====================
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ⋅⋅⋅![Host Map page showing Tags](/img/hostmap_tag.png)
@@ -34,7 +32,7 @@
 
 
 ###### Documentation I used to complete this section:
-=====================================================
+=====================================================  
 [Datadog Doc - How to use Tags](https://docs.datadoghq.com/getting_started/tagging/using_tags/)
 [Datadog Doc - How to assign Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/)
 [Datadog Doc - MySQL Integration ](https://docs.datadoghq.com/integrations/mysql/)
@@ -45,7 +43,6 @@
 
 
 ## Visualizing Data:
-====================
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -96,7 +93,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 ⋅⋅⋅![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
 
 ###### Documentation I used to complete this section:
-=====================================================
+=====================================================  
 [Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
 [Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)
 [Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)
@@ -105,11 +102,31 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 
 ## Monitoring Data
-==================
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 
 ###### Documentation I used to complete this section:
-=====================================================
+=====================================================  
 [Monitoring docs](https://docs.datadoghq.com/monitors/)
+
+
+## Collecting APM Data
+* Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+[Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)
+
+
+###### Documentation I used to complete this section:
+=====================================================  
+[APM DOCS](https://docs.datadoghq.com/tracing/)
+[Setup APM in one minute](https://www.youtube.com/watch?v=faoR5M-BaSw)
+[Install Trace Agent on OSX](https://github.com/DataDog/datadog-trace-agent#run-on-osx)
+[Issues with installing DataDog Trace Agent](https://github.com/DataDog/datadog-trace-agent/issues/397)
+[Setting DD_API_KEY](https://github.com/DataDog/datadog-agent)
+[Tracing Visualization](https://docs.datadoghq.com/tracing/visualization/)
+[Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)
+[Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)
+
+
+
