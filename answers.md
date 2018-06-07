@@ -1,21 +1,20 @@
 # Solution Engineer Technical Exercise Submission - Pabel Martin
 
-Here are my answers for this technical exercise along with all supporting links, screenshots, and color commentary.
+Here are my answers for this technical exercise along with all supporting links, code, screenshots, and color commentary.
 
 What I think will be fairly obvious is that this exercise was **very** challenging for me.  For better or worse, a lot of this was a first for me in many areas:
   * I'd never heard of Vagrant, Flask, YAML, or Markdown until working on this exercise
-  * I've heard of Python, Ubuntu, MongoDB, and GitHub prior to this exercise, but hadn't worked with any hands-on and directly
+  * I've heard of Python, Ubuntu, MongoDB, and GitHub prior to this exercise, but hadn't worked with any of them hands-on and directly
   * The only thing I'd done before (that was a part of this exercise) was google liberally (always) and execute some command line stuff (years since I'd done this) so I was pretty rusty.
   
-If I had to characterize what it was like to go through this, I would say that it was brute force.  Throughout the whole exercise I was reminded me of the scene in the Matrix where Neo first sees Matrix code 'falling' on the monitor and asks Cypher if he always looks at it encoded. Cypher responds that he has to look at it encoded because of all the information coming through but that he's used to it and now just sees the people in the matrix that the code represents.  In this exercise, it felt like all I ever saw was green falling code.  Eventually after following enough instructions and steps and examples it worked, but I honestly don't know or understand all the details of how/why everything worked.
+If I had to characterize what it was like to go through this, I would say that it was brute force.  Throughout the whole exercise I was reminded of the scene in the Matrix where Neo first sees Matrix code 'falling' on the monitor and asks Cypher if he always looks at it encoded. In this exercise, it felt like all I ever saw was green falling code.  Eventually after following enough instructions and steps and examples it worked, but I honestly don't know or understand all the details of how/why everything worked.
 
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/scene1.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/scene2.png)
 
 This submission, for example, is something I've never done before.  I had a developer friend walk me through GitHub and what forks, commits, branches, pull requests, and markdown were and how they were used.  I haven't had experience with any of these to-date so I used [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) and [this](https://stackoverflow.com/questions/2822089/how-to-link-to-part-of-the-same-document-in-markdown/16426829#16426829) to create this submission.  It's entirely possible I haven't submitted as expected on the right branch so enjoy a chuckle if I didn't even get the first part right.  :)
 
-You'll also see this in the submission, but two major mistakes for me were not coming back to the main exercise GitHub page.  I missed the update to use Ubuntu 16.04 instead of 12.04 as well as the update to the Flask app for host name.  If I'd seen that, I would have saved myself a ton of grief/time; a mistake I'll strive to only make once.
-
+You'll also see this in the submission, but two major mistakes for me were not coming back to the main exercise GitHub page.  I missed the update to use Ubuntu 16.04 instead of 12.04 as well as the update to the Flask app for host name.  If I'd seen that, I would have saved myself a **ton** of grief/time; a mistake I'll strive to only make once.
 
 
 ## Table of Contents
@@ -35,14 +34,13 @@ You'll also see this in the submission, but two major mistakes for me were not c
   * [Final Question](#final-question)
   
 
-
 ## Setup the Environment
 
 I followed the steps outlined in the **Setting Up Vagrant** link from the Reference section and setup Vagrant on my Macbook Pro.  The exercise page as of 5/27/18 when I started referenced setting up a machine with Ubuntu 12.04 so I used the 'precise' argument in the command line referenced in the [Vagrant Getting Started](https://www.vagrantup.com/intro/getting-started/) page.
 
-This caused an issue later on in the exercise when trying to install MongoDB and Flask as it kept hitting issues/errors from dependencies.  I upgraded the box manually to Ubuntu 14 and that helped clear the MongoDB issues.  I still hit issues installing Flask later on that I couldn't get past so I was back on the exercise's GitHub page trying to find a workaround.  That's when I noticed that it was updated to reference Ubuntu 16.04 so I started the exercise from scratch with a new box on that version.
+This caused an issue later on in the exercise when trying to install MongoDB and Flask as it kept hitting issues/errors from dependencies.  I upgraded the box manually to Ubuntu 14 and that helped clear the MongoDB issues.  I still hit issues installing Flask later on that I couldn't get past so I went back on this exercise's GitHub page to find a workaround in the reference section.  That's when I noticed that it was updated to reference Ubuntu 16.04 so I started the exercise from scratch with a new box on that version.
 
-These screenshots will show the details of my Datadog trial account along with the Infrastructure List page showing both boxes I configured.  The configuration files documented below are the same on both boxes for the datadog-agent so I've only included one copy for review.
+These screenshots will show the details of my Datadog trial account along with the Infrastructure List page showing both boxes I ultimately configured as part of this exercise.  The configuration files documented below are the same on both boxes for the datadog-agent and others so I've only included one copy for review.
 
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/DDenv.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/infrahostlist.png)
@@ -53,9 +51,9 @@ These screenshots will show the details of my Datadog trial account along with t
 
 ### Datadog Agent and Tags
 
-I followed the instructions in the datadog docs [page for the agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/), as well as the instructions in the datadog app for my trial account.
+I followed the instructions in the datadog docs [page for the agent install on Ubuntu](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/), as well as the instructions in the datadog dashboard for my trial account.
 
-I navigated to /etc/datadog-agent and used sudo vim datadog.yaml to update the file.  It took some googling and longer than I'd like to admit to remember how to do that and use vim to edit and save the file.  I commented out the dd_url line, api_key, and tags section.  I added three tags to each host for location, environment, and role.  See screenshots and snippet of the datadog.yaml file below.
+I navigated to /etc/datadog-agent and used sudo vim datadog.yaml to update the file.  It took some googling and longer than I'd like to admit to remember how to navigate the box and use vim commands to edit and save the file.  I un-commented (is that what you say?) the dd_url line, api_key, and tags section.  I added three tags to each host for location, environment, and role.  See screenshots and snippet of the datadog.yaml file below.
 
 ```
 # The host of the Datadog intake server to send Agent data to
@@ -104,9 +102,9 @@ tags:
 
 ### MongoDB Installation and Integration Configuration
 
-I followed the instructions on the [Mongo site to install community edition](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).  As previously mentioned I had to do this twice because of the two different hosts I created on different versions of Ubuntu.
+I followed the instructions on the [Mongo site](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) to install community edition on Ubuntu.  As previously mentioned I had to do this twice because of the two different hosts I created on different versions of Ubuntu.
 
-I then used the instructions in the [datadog integration page in my trial account](https://app.datadoghq.com/account/settings#integrations/mongodb) and the [Docs section for Mongo](https://docs.datadoghq.com/integrations/mongo/) to configure the agent.  I google'd to find Mongo shell commands for user creation.  I had never worked with YAML before so it was a lot of trial and error using this [YAML interpreter](http://www.yamllint.com/) to get the proper conf.yaml file to recognize my Mongo server and collect metrics.
+I then used the instructions on the [integration page of my datadog dashboard](https://app.datadoghq.com/account/settings#integrations/mongodb) and the [Datadog Docs section for Mongo](https://docs.datadoghq.com/integrations/mongo/) to configure the agent.  I google'd to find Mongo shell commands for user creation to complete that step.  I had never worked with YAML before so it was a lot of trial and error using this [YAML interpreter](http://www.yamllint.com/) to get the proper conf.yaml file to recognize my Mongo server and collect metrics.
 ```
 init_config:
 
@@ -127,7 +125,7 @@ instances:
 Here is a screenshot from datadog of MongoDB installed on both of my VMs along with the relevant tags.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/MongoDBinstall.png)
 
-One thing I could never resolve were errors related to Mongo.  It seems as if two configurations are there for mongo on both services.  The host shows 'mongo' and 'mongodb', and while 'mongodb' always had successfull checks and metrics, 'mongo' always has errors associated with it.  Checking the datadog agent status and tailing the logs for the agent always revealed the same 'server is missing' error.  I imagine it's something that's misconfigured, but I could never figure out where the issue was.  That said, the one collector functioned as expected and returned the data needed to complete these steps. See screenshots.
+One thing I could never resolve were errors related to Mongo.  It seems as if two configurations are there for mongo on both services.  The host shows 'mongo' and 'mongodb', and while one would always have successfull checks and metrics, the other always had errors associated with it.  Checking the datadog agent status and tailing the logs for the agent always revealed the same 'server is missing' error.  I imagine it's something that's misconfigured, but I could never figure out where the issue was.  That said, the one collector functioned as expected and returned the data needed to complete these steps/exercise. See screenshots.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors1.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors2.png)
 
@@ -135,7 +133,7 @@ One thing I could never resolve were errors related to Mongo.  It seems as if tw
 
 ### Custom Agent Check
 
-To complete this section I used the [writing agent check section in datadog docs](https://docs.datadoghq.com/developers/agent_checks/), [this page](https://datadog.github.io/summit-training-session/handson/customagentcheck/) for a sample of a check, and [this page](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) for how to generate a random number in python.
+To complete this section I used the [writing agent check](https://docs.datadoghq.com/developers/agent_checks/) section in datadog docs, [this page](https://datadog.github.io/summit-training-session/handson/customagentcheck/) for a sample of a check, and [this page](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) for how to generate a random number in python.
 
 As mentioned before, I don't have much of this in my background so this was the first python file/script I'd ever created and run.  I'm not sure, nor would I want to admit, how long it took me to get this part done.
 ```python
@@ -148,7 +146,7 @@ class MyCheck(AgentCheck):
 
         self.gauge('my_metric', random.randint(-1,1001))
 ```
-I confirmed this was working as expected by using the metrics explorer and searching for my_metric.  I also noticed that it appeared on the hosts under 'no-namespace' as well as in the datadog agent logs under 'mycheck'.
+I confirmed this was working as expected by using the metrics explorer and searching for my_metric.  I also noticed that it appeared on the hosts under 'no-namespace' as well as in the datadog agent logs under 'mycheck'.  The 'no-namespace' piece didn't seem like the cleanest way to have this installed/configured, but I couldn't figure out why it was happening and how to fix it.
 
 To change the collection interval, I referenced the datadog docs which had a section for configuring a custom written check.  The combination of that, the YAML interpreter, a lot of trial and error, and tailing the agent log led to confirming this worked as expected.  Here's the mycheck.yaml file from /etc/datadog-agent/conf.d:
 ```
@@ -159,23 +157,26 @@ instances:
     [{min_collection_interval: 45}]
 ```
 
+[Back to the top](#table-of-contents)
 
 ### Bonus Question 1
-Based on this section from the datadog docs section, I changed the collection interval for my custom check using the YAML config file.  Given that I didn't have to change the Python check file I created, I believe the answer to this bonus question is **Yes**.
+Based on the datadog docs writing a check section, I changed the collection interval for my custom check using the YAML config file as opposed to the python file.  Given that I didn't have to change the Python check file I created, I believe the answer to this bonus question is **Yes**.
 >For Agent 5, min_collection_interval can be added to the init_config section to help define how often the check should be run globally, or defined at the instance level. For Agent 6, min_collection_interval must be added at an instance level, and can be configured individually for each instance.
 
 [Back to the top](#table-of-contents)
 
 
 ## Visualizing Data
-To complete this section, I took the approach detailed below.  I'm not sure if it's 'cheating', but given my lack of development background this was the only path I saw to getting this done.
+To complete this section, I took the approach detailed below.  I'm not sure if it was 'cheating', but given my lack of development background this was the only path I saw to getting this completed.
 
 I created a dashboard in my environment via the UI ([link](https://app.datadoghq.com/dash/822625/ui-created-timeboard?live=true&page=0&is_auto=false&from_ts=1528137594823&to_ts=1528141194823&tile_size=m)) with all the elements called for, plus a few others just to familiarize myself with the functionality.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_UI.png)
 
 [Back to the top](#table-of-contents)
 
-Once this was completed and working appropriately, I used to the [API timeboard docs](https://docs.datadoghq.com/api/?lang=python#timeboards) to get sample requests/responses.  I also got the API and APP keys from the API section in the datadog trial account environment.  I created a python script to get all timeboards in order to get the definition I needed.  It didn't bring back all the definitions, but it did give me the ID.
+Once this was completed and working appropriately, I used the [API timeboard docs](https://docs.datadoghq.com/api/?lang=python#timeboards) to get sample requests/responses.  I also got the API and APP keys from the API section in the datadog dashboard for my trial account.  
+
+Based on what I saw in the sample request, I installed the [datadog libraries](https://github.com/datadog/datadogpy) via 'sudo pip install datadog'.  Then I created a python script similar to the sample request to get all timeboards.  My aim was to get the definitions of the graphs I needed to submit a create via the API.  It didn't bring back all the definitions, but it did give me the ID.
 ```python
 from datadog import initialize, api
 
@@ -188,7 +189,7 @@ initialize(**options)
 
 print api.Timeboard.get_all()
 ```
-Then I used a python script to pull a specific timeboard via the ID I got.  One piece that tripped me up here that seems obvious now was adding the print command to the last line.  Using the sample in the API docs, it didn't have the print command so I kept getting no response so thought it wasn't working.  Not sure if it was the time of night or what, but it took a minute before I realized I was missing the print command.
+Then I used a python script to pull a specific timeboard via the ID I got.  One piece that tripped me up here that seems obvious now was adding the print command to the last line.  Using the sample in the API docs, it didn't have the print command so I kept getting no response and a command prompt after running the script.  In my head that meant it wasn't working.  Not sure if it was the time of night or what, but it took a minute before I realized I need to add the print command to the script.
 ```python
 from datadog import initialize, api
 
@@ -203,7 +204,7 @@ print api.Timeboard.get(822625)
 ```
 I received the [following output](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/Timeboard%20API%20Pull.rtf) which contained all of the definitions of the graphs I successfully created in the UI.
 
-I used that information as a guide to creating a python script to leverage the create a timeboard API.  I used the sample request and made adjustments specific to the exercise requirements and changed titles so it was clear that the dashboard was created via the API.
+I used that information as a guide to creating a python script to leverage the create a timeboard API.  I used the sample request and made adjustments specific to the exercise requirements and changed titles so it was clear that the dashboard was created via the API and not just a straight copy of the one I'd created first in the UI.
 ```python
 from datadog import initialize, api
 
@@ -310,7 +311,7 @@ I used the camera icon on my MongoDB graph to take a snapshot and send the notif
 [Back to the top](#table-of-contents)
 
 ### Bonus Question 2
-The graph with anomaly applied is displaying when any metric is out of range of what's expected based on historical values.  My particular graph is set to show anomalies outside of 3 deviations from norm.  This could potentially help determine if/when there is something wrong as the algorithm accounts for seasonality and historical trends.
+The graph with anomaly applied is displaying when the specified metric is out of range of what's expected based on historical values.  My particular graph is set to show anomalies outside of 3 deviations from norm.  This could potentially help determine if/when there is something going wrong or about to go wrong since the algorithm accounts for seasonality and historical trends.
 
 [Back to the top](#table-of-contents)
 
@@ -334,14 +335,14 @@ I created two scheduled downtimes to mute the alerts during the times listed in 
 [Back to the top](#table-of-contents)
 
 ## Collecting APM Data
-This was easily the toughest portion of the exercise for me.  I'd never heard of Flask so spent a lot of time reading through the quickstart and installation documentation provided in the reference section.  In working through the Flask install, I hit a lot of errors/dependencies when using the original Ubuntu 12.04 host.  Because of that I manually upgraded it to Ubuntu 14 and then was able to get passed it and get through the installation (this was on my 'precise' host).  I wasn't able to get an installation done using venv as described in that documenation so just installed everything directly on the machine.
+This was easily the toughest portion of the exercise for me.  I'd never heard of Flask so spent a lot of time reading through the quickstart and installation documentation provided in the reference section.  In working through the Flask install, I hit a lot of errors/dependencies when using the original Ubuntu 12.04 host.  Because of that I manually upgraded it to Ubuntu 14 and then was able to get past those errors and get through the installation (this was on my 'precise' host).  I wasn't able to get an installation done using venv as described in that documenation so just installed everything directly on the machine.
 
-I then copy and pasted the sample application provided in the exercise into a python script and started working through the quickstart instructions to get the flask app running.  I continually hit the following error when trying to get the flask app to run:
+I then copy/pasted the sample application provided in the exercise into a python script and started working through the quickstart instructions to get the flask app running.  I continually hit the following error when trying to get the app to run via the 'flask run' command:
 error: socket.error: [Errno 98] Address already in use
 
-I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new host on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort as it took much less time to get it reconfigured.
+I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new host on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort because it took much less time to get this new box configured.
 
-At this point I got right back to the same issue/blocker and hit the "Address in Use" error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I uncommented the lines and changed them to 6000 and 6001.
+At this point I got right back to the same issue/blocker and hit the "Address in Use" error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I un-commented the lines and changed them to 6000 and 6001.
 ```
 # Additional path where to search for Python checks
 # By default, uses the checks.d folder located in the agent configuration folder.
