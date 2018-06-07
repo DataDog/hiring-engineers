@@ -4,7 +4,7 @@
    ![agent reporting metrics](/img/agent_report_metrics.png) 
 
 ###### Documentation I used to complete this section:
-=====================================================  
+_______________  
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)  
 [Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)  
 
