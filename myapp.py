@@ -1,15 +1,12 @@
-from flask import Flask
+from flask import Flask, Response
 import blinker as _
 import logging
 import sys
-import werkzeug
-# from ddtrace import tracer
-# from ddtrace.contrib.flask import TraceMiddleware
-# import time
-# with tracer.trace("web.request", service="my_service") as span:
-# span.set_tag("my_tag", "my_value")
-# Have flask use stdout as the logger
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+import time
 
+# Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
 c = logging.StreamHandler(sys.stdout)
@@ -17,9 +14,25 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 
+# turn on debugging
+tracer.debug_logging = True
+
+# initializes app
 app = Flask(__name__)
 
-# traced_app = TraceMiddleware(app, tracer, service="my_service", distributed_tracing=False)
+traced_app = TraceMiddleware(app, tracer, service="myapp_service", distributed_tracing=False)
+
+# dummy function to immitate the time to start apm
+@tracer.wrap(name='start_api')
+def start_api():
+    time.sleep(0.5)
+    return 'Getting APM Started'
+
+# dummy function to immitate the time to post traces
+@tracer.wrap(name='post_trace')
+def post_trace():
+    time.sleep(0.3)
+    return 'Posting Traces'
 
 @app.route('/')
 def api_entry():
@@ -27,26 +40,22 @@ def api_entry():
 
 @app.route('/api/apm')
 def apm_endpoint():
-    return 'Getting APM Started'
+    time.sleep(0.2)
+    res = start_api()
+    time.sleep(0.2)
+    return Response(res, mimetype='application/json')
 
 @app.route('/api/trace')
 def trace_endpoint():
-    return 'Posting Traces'
+    time.sleep(0.3)
+    res = post_trace()
+    time.sleep(0.3)
+    return Response(res, mimetype='application/json')
 
-@app.errorhandler(werkzeug.exceptions.BadRequest)
-def handle_bad_request(e):
-    return 'bad request!', 400
-# @tracer.wrap(name='doc_work')
-# def work():
-#     time.sleep(0.5)
-#     return 42
-
-# @app.route('/doc/')
-# def doc_resource():
-#     time.sleep(0.3)
-#     res = work()
-#     time.sleep(0.3)
-#     return Response(str(res), mimetype='application/json')
+# dummy error
+@app.route('/error')
+def error():
+    return Response('Oh no! Something is wrong with our server!', status=500)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
