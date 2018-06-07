@@ -7,3 +7,7 @@ Prerequisites - Setup the environment
   - Install Vagrant and VirtualBox using the download links on the page
   - In terminal, input the first 'Up and Running' command:
     ![Get a Vagrantfile](/assets/Get_a_vagrantfile.png)
+  - Use vagrant up to bring up the machine
+    ![vagrant up](/assets/vagrant_up.png)
+  - And ssh into the machine using vagrant ssh
+    ![vagrant ssh](/assets/vagrant_ssh.png)
