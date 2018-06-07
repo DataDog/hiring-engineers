@@ -121,7 +121,7 @@ curl  -X POST -H "Content-type: application/json" \
 "read_only": "True"
 }
 ' \
-"https://api.datadoghq.com/api/v1/dash?api_key=83b404e895c0acfbc6777d84b3c20a43&application_key=d654eac78a60809beaee1ffd5a41cd43b63f8aae"
+"https://api.datadoghq.com/api/v1/dash?api_key=<YOUR_API_KEY>&application_key=<YOUR_APP_KEY>"
 
 ```
 
@@ -159,30 +159,52 @@ I've included screenshots of this process below, and [you can view this monitor 
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+I instrumented the provided Flask app using Datadog’s APM solution, and was able to view [a Dashboard with both APM and Infrastructure Metrics](https://app.datadoghq.com/dash/829501/ryans-tech-evaluation?live=true&page=0&is_auto=false&from_ts=1528379085330&to_ts=1528393485330&tile_size=m): ![Screenshot 13](13.png "Screenshot 13")
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+* **Bonus Question**: The difference between a Service and a Resource are as follows: A Service is the name of a set of processes that work together to provide a feature set, which consist of a resource(s). [Further information here.](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+My fully instrumented app looked as follows:
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+```
+from flask import Flask
+import logging
+import sys
+import blinker as _
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
 
-Please include your fully instrumented app in your submission, as well.
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080)
+```
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+The final question asks that we describe a creative way to use Datadog; I have an interesting vision in this space. I can imagine using Datadog to standardize a monitoring methodology, and go to market strategy, for ensuring the deliverability and performance of IOT networks.
 
-Is there anything creative you would use Datadog for?
+All the ingredients are here; Datadog's infrastructure monitoring capabilities, combined with distributed tracing and powerful charting capabilites, provide a powerful framework on which an IOT network monitoring recipe can be built.
 
-## Instructions
+I imagine architecting some sort of implementation, identifying/executing a customer use case and building the go to market stategy from there. This is particularly exciting to me given the snowball trend of consumer IOT use cases.
 
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+Technology continues to grow into the cracks of our everyday lives; I imagine app makers may someday yearn for a distributed trace spanning from apps on a consumer's smart home, to apps in their smart car, to apps in their smart office.
