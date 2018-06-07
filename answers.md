@@ -340,7 +340,7 @@ This was easily the toughest portion of the exercise for me.  I'd never heard of
 I then copy/pasted the sample application provided in the exercise into a python script and started working through the quickstart instructions to get the flask app running.  I continually hit the following error when trying to get the app to run via the 'flask run' command:
 error: socket.error: [Errno 98] Address already in use
 
-I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new host on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort because it took much less time to get this new box configured.
+I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new VM on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort because it took much less time to get this new box configured.
 
 At this point I got right back to the same issue/blocker and hit the "Address in Use" error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I un-commented the lines and changed them to 6000 and 6001.
 ```
@@ -362,9 +362,9 @@ cmd_port: 6001
 
 [Back to the top](#table-of-contents)
 
-I now was able to run the sample app via a python command as well as through the flask run commands, so felt good about getting passed that issue/blocker.  My issue now however, was that when I tried to hit the localhost/IP address and port from the browser on my MBPro I got a connection refused error.  I fought this error unsuccessfully for a few hours and then broke down and phoned a friend.  Not sure if that's cheating or not allowed, but I was at a loss.  If that's not OK, feel free to ignore the rest of this section.  I spoke with a friend who's a developer and walked him through what I had set up and what I was trying to accomplish.  As expected, it took 10 minutes to explain to him and maybe 2 minutes for him to walk through what I needed to look at.  He basically said the issue was that my MBPro had no path to access the machine so I was just hitting the MBPro's local loopback address.  He directed me to the Vagrantfile as opposed to the VirtualBox network settings as a way to get that resolved.  That piece of advice was the key to getting through this.
+I now was able to run the sample app via a python command as well as through the 'flask run' command, so felt good about getting passed that issue/blocker.  My issue now however, was that when I tried to hit the localhost/IP address and port from the browser on my MBPro I got a connection refused error.  I fought this error unsuccessfully for a few hours and then broke down and phoned a friend.  Not sure if that's cheating or not allowed, but I was at a loss.  If that's not OK, feel free to ignore the rest of this section.  I spoke with a friend who's a developer and walked him through what I had set up and what I was trying to accomplish.  As expected, it took 10 minutes to explain it to him and maybe 2 minutes for him to walk through what I needed to look at.  He basically said the issue was that my MBPro had no path to access the machine so I was just hitting the MBPro's local loopback address.  He directed me to the Vagrantfile as opposed to the VirtualBox network settings as a way to get that resolved.  That direction was the key to getting through this.
 
-I went to the Vagrantfile and updated the configuration to port forward from the host 5000 to the guest 5000.  I commented out this line and updated the ports.
+I went to the Vagrantfile and updated the configuration to port forward from the host 5000 to the guest 5000.  I un-commented this line and updated the ports.
 ```
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -373,7 +373,7 @@ I went to the Vagrantfile and updated the configuration to port forward from the
   config.vm.network "forwarded_port", guest: 5000, host: 5000
 ```
 
-I reloaded the VM via this updated Vagrantfile and got the Flask app up and running again.  I still was hitting an error when trying to hit the app via the browser, but the error was different.  Instead of connection refused, I was now getting connection reset which seemed promising.  In reading through the [Flask quickstart](http://flask.pocoo.org/docs/0.12/quickstart/), I noticed the section about making the app/server Externally Visible.  I tried running the flask command with the --host 0.0.0.0 tags as described but was still hitting the issue.  Some more google'ing and clicking through the Flask pages led me [here](http://flask.pocoo.org/snippets/20/) where I found some samples of code where instead of app.run() they actually passed 0.0.0.0 and port name.  I did the same in my sample application configuration and that was the Eureka moment that made it work.  The ultimate irony is that only after figuring that out did I notice that the exercise page was updated to show this change to the sample flask application. I learned a very valuable lesson to always review the page to see any updates/changes made.  :(
+From there, I reloaded the VM via this updated Vagrantfile and got the Flask app up and running again.  I still was hitting an error when trying to hit the app via the browser, but the error was different.  Instead of connection refused, I was now getting connection reset which seemed promising.  In reading through the [Flask quickstart](http://flask.pocoo.org/docs/0.12/quickstart/), I noticed the section about making the app/server Externally Visible.  I tried running the flask command with the --host 0.0.0.0 tags as described but was still hitting the issue.  Some more google'ing and clicking through the Flask pages led me [here](http://flask.pocoo.org/snippets/20/) where I found some samples of code where instead of app.run() they actually passed 0.0.0.0 and port name.  I did the same in my sample application configuration and that was the Eureka moment that made it work.  The ultimate irony is that only after figuring that out did I notice that the exercise page was updated to show this change to the sample flask application. I learned a very valuable lesson to always review the page to see any updates/changes made.  :(
 
 So after I confirmed that the app was running and I was getting expected responses, I started following the instructions in the APM section of my datadog trial account.  I installed the ddtrace libraries and then ran the application via ddtrace-run to have the application automatically instrumented.  I got the results below after starting the app and then hitting the URLs to get responses.
 ```
@@ -451,7 +451,7 @@ if __name__ == '__main__':
 ### Bonus Question 4
 Based on my reading of the docs [here](https://docs.datadoghq.com/tracing/visualization/), a service is a collection of resources.  So the service would something like the database, while the queries and stored procedures would be resources.  Or a webapp would be a service, and specific URL's and functions would be the resources.
 
-Or....this Millenium falcon would be the service and each lego would be the resources.
+Or....this Millenium falcon would be the service and each lego would be a resource.
 
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/falcon.jpg)
 
@@ -466,10 +466,10 @@ I'm currently hit with the common questions/complaints most tech employees get:
   * Do I need to get a new computer?
   * My wifi is going in and out, can you fix that?
 
-Today I'm indirectly responsible for 3 Windows desktops, 2 Windows, 4 MacBook Airs, 2 MacBook Pros, 3 Linksys routers, and 4 Netgear routers across 4 states in the US.
+Today I'm indirectly responsible for 3 Windows desktops, 2 Windows laptops, 4 MacBook Airs, 2 MacBook Pros, 3 Linksys routers, and 4 Netgear routers across 4 states in the US.  My aforementioned family members believe in a heterogenous environment.
 
 I can envision a world where I have a dashboard and monitors set up on each of those devices, everyone's home network, and if possible a speed test on the ISP in everyone's city.  With that, I could either predict when the phone calls were going to start, pre-emptively let them know there's an outage, or proactively alert myself when real issues are going on and get in front of it.  
 
-Not a ton of business value or creativy outside of the Martin family, but a huge time savings that would deliver a great personal ROI.
+Not a ton of business value or creativy outside of team Martin and Drenner (in-laws), but a huge time savings that would deliver a great personal ROI.
 
 [Back to the top](#table-of-contents)
