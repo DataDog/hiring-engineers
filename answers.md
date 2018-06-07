@@ -6,8 +6,6 @@
 
 ![tags screenshot](/screenshots/datadog_host_tags.png)
 
-- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ``` python
 # mycheck.py
@@ -22,7 +20,7 @@ class MyCheck(AgentCheck):
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds. **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Based on my understanding of the documentation, it seems that changing the mycheck config file's collection interval would suffice.
+  Based on my understanding of the documentation, it seems that changing the mycheck config file's collection interval would suffice.
 ``` yaml
 init_config:
 
@@ -32,7 +30,7 @@ instances:
 
 ## Visualizing Data
 
-- Link and screenshot for Custom Metric Timeboard:
+- Link and screenshot for Custom Metric Timeboard scoped over local host:
 
   - [Custom - Metrics Timeboard](https://app.datadoghq.com/dash/825841/custom---metrics?live=true&page=0&is_auto=false&from_ts=1528399035881&to_ts=1528402635881&tile_size=m)
 
@@ -107,5 +105,6 @@ Creative ways to use datadog:
 Datadog can be used to monitor plant health by detecting their watering needs based on soil moisture and air humidity.  Since humidity varies seasonaly and geographically, it could be difficult to determine and keep track of how much to water a plant in a multi-plant household when they are purchased from out of state or when seasons change. Datadog can help establish a watering baseline and send alerts when a plant needs watering or has been watered too much.
 
 ## Links
+- [Dashboard for local host](https://app.datadoghq.com/dash/host/491680408?live=true&page=0&from_ts=1528394732587&to_ts=1528409132587&is_auto=false&tile_size=m)
 - [APM & infrastructure metrics for myapp_service Timeboard](https://app.datadoghq.com/dash/830201/apm--infrastructure-metrics-for-myappservice?live=true&page=0&is_auto=false&from_ts=1528398638091&to_ts=1528402238091&tile_size=m)
 - [Custom - Metrics Timeboard](https://app.datadoghq.com/dash/825841/custom---metrics?live=true&page=0&is_auto=false&from_ts=1528399035881&to_ts=1528402635881&tile_size=m)

@@ -2,9 +2,10 @@ from flask import Flask, Response
 import blinker as _
 import logging
 import sys
+import time
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
-import time
+
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
