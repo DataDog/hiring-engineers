@@ -1,7 +1,7 @@
 ## Prerequisites - Setup the environment
 * I decided to install vagrant to avoid any dependency issues. 
 
-⋅⋅⋅![agent reporting metrics](/img/agent_report_metrics.png) 
+   ![agent reporting metrics](/img/agent_report_metrics.png) 
 
 ###### Documentation I used to complete this section:
 =====================================================  
@@ -11,24 +11,24 @@
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-⋅⋅⋅![Host Map page showing Tags](/img/hostmap_tag.png)
+   ![Host Map page showing Tags](/img/hostmap_tag.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-⋅⋅⋅I use MySQL so that's what I used for this challenge. 
-⋅⋅⋅![MySQL Integration](/img/mysql_integration.png)
+   I use MySQL so that's what I used for this challenge. 
+   ![MySQL Integration](/img/mysql_integration.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-⋅⋅⋅![Custom Agent Check with Random Value](/img/custom_agent_randomint.png)
+   ![Custom Agent Check with Random Value](/img/custom_agent_randomint.png)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-⋅⋅⋅![45 second Collection Interval](/img/collection_interval.png)
+   ![45 second Collection Interval](/img/collection_interval.png)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-⋅⋅⋅Yes, I modified the collection interval in the yaml file.
+   Yes, I modified the collection interval in the yaml file.
 
 
 ###### Documentation I used to complete this section:
@@ -49,7 +49,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-⋅⋅⋅Did not Implement
+   Did not Implement
 
 ```
 api_key=4f03487948708ff3a0d41e3c69bd5b9a
@@ -86,11 +86,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-⋅⋅⋅From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards. 
+   From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards. 
 
-⋅⋅⋅![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5m.png)
+   ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5m.png)
 
-⋅⋅⋅![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
+   ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
 
 ###### Documentation I used to complete this section:
 =====================================================  
