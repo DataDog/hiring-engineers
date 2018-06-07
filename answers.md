@@ -14,8 +14,8 @@ This document contains my answers/screenshots to the technical evaluation.
 * I added tags in the Agent config file; here's a screenshot of my host and its tags on the Host Map page in Datadog. [You can see this view here:](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&app=hello&host=497203256) ![Screenshot 2](2.png "Screenshot 2")
 * I installed a database on my machine (MySQL) and then installed the Datadog integration for MySQL. [You can see this view here:](https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?live=true&tpl_var_scope=host%3Aubuntu-xenial&page=0&is_auto=false&from_ts=1528333560783&to_ts=1528337160783&tile_size=m) ![Screenshot 3](3.png "Screenshot 3")
 * I created a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. [You can see this view here:](https://app.datadoghq.com/metric/summary?filter=my_metr) ![Screenshot 4](4.png "Screenshot 4")
-* I change my check's collection interval so that it only submits the metric once every 45 seconds. In the yaml file for my check, I changed `min_collection_interval: 45`
-* Using the configuration change above, I changed the collection interval without modifying the Python check file I created.
+* I changed my check's collection interval so that it only submits the metric once every 45 seconds. In the yaml file for my check, I changed `min_collection_interval: 45`
+* **Bonus Question**: Using the configuration change above, I changed the collection interval without modifying the Python check file I created.
 
 ## Visualizing Data:
 
@@ -155,7 +155,7 @@ I've included screenshots of this process below, and [you can view this monitor 
 
   * One that silences it from 7pm to 9am daily on M-F: ![Screenshot 11](11.png "Screenshot 11")
   * And one that silences it all day on Sat-Sun: ![Screenshot 10](10.png "Screenshot 10")
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification: ![Screenshot 12](12.png "Screenshot 12")
+  * When I scheduled the downtime, I took a screenshot of that notification: ![Screenshot 12](12.png "Screenshot 12")
 
 ## Collecting APM Data:
 
