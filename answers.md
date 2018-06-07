@@ -33,13 +33,13 @@ _______________
 
 ##### Documentation I used to complete this section:
 ________  
-[Datadog Doc - How to use Tags](https://docs.datadoghq.com/getting_started/tagging/using_tags/)
-[Datadog Doc - How to assign Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/)
-[Datadog Doc - MySQL Integration ](https://docs.datadoghq.com/integrations/mysql/)
-[APM in a minute](https://www.youtube.com/watch?v=faoR5M-BaSw)
-[Writing an Agent Check](https://docs.datadoghq.com/developers/agent_checks/)
-[Agent Commands](https://docs.datadoghq.com/agent/faq/agent-commands/)
-[Python - Random Int](https://stackoverflow.com/questions/3996904/generate-random-integers-between-0-and-9)
+[Datadog Doc - How to use Tags](https://docs.datadoghq.com/getting_started/tagging/using_tags/)  
+[Datadog Doc - How to assign Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/)  
+[Datadog Doc - MySQL Integration ](https://docs.datadoghq.com/integrations/mysql/)  
+[APM in a minute](https://www.youtube.com/watch?v=faoR5M-BaSw)  
+[Writing an Agent Check](https://docs.datadoghq.com/developers/agent_checks/)  
+[Agent Commands](https://docs.datadoghq.com/agent/faq/agent-commands/)  
+[Python - Random Int](https://stackoverflow.com/questions/3996904/generate-random-integers-between-0-and-9)  
 
 
 ## Visualizing Data:
@@ -94,11 +94,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ##### Documentation I used to complete this section:
 ________  
-[Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
-[Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)
-[Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)
-[Rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1)
-[Timeboard Video](https://docs.datadoghq.com/videos/datadog101-3-dashboards/?wtime=40.5)
+[Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)  
+[Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)  
+[Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)  
+[Rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1)  
+[Timeboard Video](https://docs.datadoghq.com/videos/datadog101-3-dashboards/?wtime=40.5)  
 
 
 ## Monitoring Data
@@ -108,25 +108,25 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 ##### Documentation I used to complete this section:
 ________  
-[Monitoring docs](https://docs.datadoghq.com/monitors/)
+[Monitoring docs](https://docs.datadoghq.com/monitors/)  
 
 
 ## Collecting APM Data
 * Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-[Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)
+[Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)  
 
 
 ##### Documentation I used to complete this section:
 ________  
-[APM DOCS](https://docs.datadoghq.com/tracing/)
-[Setup APM in one minute](https://www.youtube.com/watch?v=faoR5M-BaSw)
-[Install Trace Agent on OSX](https://github.com/DataDog/datadog-trace-agent#run-on-osx)
-[Issues with installing DataDog Trace Agent](https://github.com/DataDog/datadog-trace-agent/issues/397)
-[Setting DD_API_KEY](https://github.com/DataDog/datadog-agent)
-[Tracing Visualization](https://docs.datadoghq.com/tracing/visualization/)
-[Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)
-[Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)
+[APM DOCS](https://docs.datadoghq.com/tracing/)  
+[Setup APM in one minute](https://www.youtube.com/watch?v=faoR5M-BaSw)  
+[Install Trace Agent on OSX](https://github.com/DataDog/datadog-trace-agent#run-on-osx)  
+[Issues with installing DataDog Trace Agent](https://github.com/DataDog/datadog-trace-agent/issues/397)  
+[Setting DD_API_KEY](https://github.com/DataDog/datadog-agent)  
+[Tracing Visualization](https://docs.datadoghq.com/tracing/visualization/)  
+[Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
+[Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
 
 
 
