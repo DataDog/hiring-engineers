@@ -3,7 +3,7 @@
 
    ![agent reporting metrics](/img/agent_report_metrics.png) 
 
-###### Documentation I used to complete this section:
+##### Documentation I used to complete this section:
 _______________  
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)  
 [Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)  
@@ -31,8 +31,8 @@ _______________
    Yes, I modified the collection interval in the yaml file.
 
 
-###### Documentation I used to complete this section:
-=====================================================  
+##### Documentation I used to complete this section:
+________  
 [Datadog Doc - How to use Tags](https://docs.datadoghq.com/getting_started/tagging/using_tags/)
 [Datadog Doc - How to assign Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/)
 [Datadog Doc - MySQL Integration ](https://docs.datadoghq.com/integrations/mysql/)
@@ -92,8 +92,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
    ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
 
-###### Documentation I used to complete this section:
-=====================================================  
+##### Documentation I used to complete this section:
+________  
 [Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
 [Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)
 [Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)
@@ -106,8 +106,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 
-###### Documentation I used to complete this section:
-=====================================================  
+##### Documentation I used to complete this section:
+________  
 [Monitoring docs](https://docs.datadoghq.com/monitors/)
 
 
@@ -117,8 +117,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)
 
 
-###### Documentation I used to complete this section:
-=====================================================  
+##### Documentation I used to complete this section:
+________  
 [APM DOCS](https://docs.datadoghq.com/tracing/)
 [Setup APM in one minute](https://www.youtube.com/watch?v=faoR5M-BaSw)
 [Install Trace Agent on OSX](https://github.com/DataDog/datadog-trace-agent#run-on-osx)
