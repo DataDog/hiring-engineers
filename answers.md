@@ -29,7 +29,9 @@ You'll also see this in the submission, but two major mistakes for me were not c
   * [Visualizing Data](#visualizing-data)
     * [Bonus Question 2](#bonus-question-2)
   * [Monitoring Data](#monitoring-data)
+    * [Bonus Question 3](#bonus-question-3)
   * [Collecting APM Data](#collecting-apm-data)
+    * [Bonus Question 4](#bonus-question-4)
   * [Final Question](#final-question)
   
 
@@ -45,6 +47,7 @@ These screenshots will show the details of my Datadog trial account along with t
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/DDenv.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/infrahostlist.png)
 
+[Back to the top](#table-of-contents)
 
 ## Collecting Metrics
 
@@ -97,6 +100,7 @@ tags:
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/precisetags.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/xenialtags.png)
 
+[Back to the top](#table-of-contents)
 
 ### MongoDB Installation and Integration Configuration
 
@@ -126,6 +130,8 @@ Here is a screenshot from datadog of MongoDB installed on both of my VMs along w
 One thing I could never resolve were errors related to Mongo.  It seems as if two configurations are there for mongo on both services.  The host shows 'mongo' and 'mongodb', and while 'mongodb' always had successfull checks and metrics, 'mongo' always has errors associated with it.  Checking the datadog agent status and tailing the logs for the agent always revealed the same 'server is missing' error.  I imagine it's something that's misconfigured, but I could never figure out where the issue was.  That said, the one collector functioned as expected and returned the data needed to complete these steps. See screenshots.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors1.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/mongoerrors2.png)
+
+[Back to the top](#table-of-contents)
 
 ### Custom Agent Check
 
@@ -166,6 +172,8 @@ To complete this section, I took the approach detailed below.  I'm not sure if i
 
 I created a dashboard in my environment via the UI ([link](https://app.datadoghq.com/dash/822625/ui-created-timeboard?live=true&page=0&is_auto=false&from_ts=1528137594823&to_ts=1528141194823&tile_size=m)) with all the elements called for, plus a few others just to familiarize myself with the functionality.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_UI.png)
+
+[Back to the top](#table-of-contents)
 
 Once this was completed and working appropriately, I used to the [API timeboard docs](https://docs.datadoghq.com/api/?lang=python#timeboards) to get sample requests/responses.  I also got the API and APP keys from the API section in the datadog trial account environment.  I created a python script to get all timeboards in order to get the definition I needed.  It didn't bring back all the definitions, but it did give me the ID.
 ```python
@@ -289,15 +297,22 @@ api.Timeboard.create(title=title,
 This script successfully created the following timeboard.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_API.png)
 
+[Back to the top](#table-of-contents)
+
 Using the keyboard shortcut, I changed the API created timeboard to display the past 5 minutes.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/tb_API_5.png)
+
+[Back to the top](#table-of-contents)
 
 I used the camera icon on my MongoDB graph to take a snapshot and send the notification to myself via @mention.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/snapshotsend.png)
 
+[Back to the top](#table-of-contents)
+
 ### Bonus Question 2
 The graph with anomaly applied is displaying when any metric is out of range of what's expected based on historical values.  My particular graph is set to show anomalies outside of 3 deviations from norm.  This could potentially help determine if/when there is something wrong as the algorithm accounts for seasonality and historical trends.
 
+[Back to the top](#table-of-contents)
 
 ## Monitoring Data
 
@@ -307,13 +322,16 @@ Using the UI, I created a monitor as defined in the exercise requirements.  It w
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/monitorconfig2.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/Monitor%20Email.png)
 
-### Bonus Question
+[Back to the top](#table-of-contents)
+
+### Bonus Question 3
 I created two scheduled downtimes to mute the alerts during the times listed in the exercise.  See screenshots for configuration and email notifications.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/downtime1.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/downtime2.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/dtemail1.png)
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/dtemail2.png)
 
+[Back to the top](#table-of-contents)
 
 ## Collecting APM Data
 This was easily the toughest portion of the exercise for me.  I'd never heard of Flask so spent a lot of time reading through the quickstart and installation documentation provided in the reference section.  In working through the Flask install, I hit a lot of errors/dependencies when using the original Ubuntu 12.04 host.  Because of that I manually upgraded it to Ubuntu 14 and then was able to get passed it and get through the installation (this was on my 'precise' host).  I wasn't able to get an installation done using venv as described in that documenation so just installed everything directly on the machine.
@@ -323,7 +341,7 @@ error: socket.error: [Errno 98] Address already in use
 
 I google'd and searched for hours on how to get around this, looking for examples and suggested solutions.  I went back to the exercise's GitHub page to check out the reference section and that's when I noticed that the text was changed and it said that I needed to be using Ubuntu 16.04.  Based on that, I created a new host on Ubuntu 16.04 and went through all the previous setup again.  It wasn't ideal, but I wanted to start fresh and it helped solidify that I did learn a little something through all the pain and effort as it took much less time to get it reconfigured.
 
-At this point I got right back to the same issue/blocker and hit the Address in use error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I uncommented the lines and changed them to 6000 and 6001.
+At this point I got right back to the same issue/blocker and hit the "Address in Use" error.  I played around with Virtual Box network settings and tried a whole bunch of stuff that didn't work.  Through this research, I came across the following command to help determine what was running on your machine ("sudo netstat --program --listening --numeric --tcp").  Using this I noticed that the datadog agent was running on 5000 and I'd seen in the various pages I was on that 5000 was the same port that Flask ran on.  At this point I went to the datadog.yaml file and did an internal fist pump when I found a configuration line that allowed me to set the ports.  I uncommented the lines and changed them to 6000 and 6001.
 ```
 # Additional path where to search for Python checks
 # By default, uses the checks.d folder located in the agent configuration folder.
@@ -340,6 +358,8 @@ cmd_port: 6001
 # Default is '5002' on Windows and macOS ; turned off on Linux
 # GUI_port: -1
 ```
+
+[Back to the top](#table-of-contents)
 
 I now was able to run the sample app via a python command as well as through the flask run commands, so felt good about getting passed that issue/blocker.  My issue now however, was that when I tried to hit the localhost/IP address and port from the browser on my MBPro I got a connection refused error.  I fought this error unsuccessfully for a few hours and then broke down and phoned a friend.  Not sure if that's cheating or not allowed, but I was at a loss.  If that's not OK, feel free to ignore the rest of this section.  I spoke with a friend who's a developer and walked him through what I had set up and what I was trying to accomplish.  As expected, it took 10 minutes to explain to him and maybe 2 minutes for him to walk through what I needed to look at.  He basically said the issue was that my MBPro had no path to access the machine so I was just hitting the MBPro's local loopback address.  He directed me to the Vagrantfile as opposed to the VirtualBox network settings as a way to get that resolved.  That piece of advice was the key to getting through this.
 
@@ -385,6 +405,7 @@ INFO:werkzeug:10.0.2.2 - - [04/Jun/2018 13:49:29] "GET /api/trace HTTP/1.1" 200 
 DEBUG:ddtrace.api:reported 1 traces in 0.00124s
 2018-06-04 13:49:30,859 - ddtrace.api - DEBUG - reported 1 traces in 0.00124s
 ```
+[Back to the top](#table-of-contents)
 
 After this, the metrics started showing up in my environment, I did another internal and maybe external fist pump, and then added an APM trace metric to my Timeboard I created via the UI in the exercise above.  Link to the dashboard and screenshot is below.
 
@@ -424,13 +445,16 @@ if __name__ == '__main__':
 #    app.run()
 ```
 
-### Bonus Question
+[Back to the top](#table-of-contents)
+
+### Bonus Question 4
 Based on my reading of the docs [here](https://docs.datadoghq.com/tracing/visualization/), a service is a collection of resources.  So the service would something like the database, while the queries and stored procedures would be resources.  Or a webapp would be a service, and specific URL's and functions would be the resources.
 
 Or....this Millenium falcon would be the service and each lego would be the resources.
 
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/falcon.jpg)
 
+[Back to the top](#table-of-contents)
 
 ## Final Question
 I don't know if it's terribly creative, but I'm considering upgrading my account to a paid version to help me out with all the IT support I provide my parents, aunts, uncles, in-laws, and siblings.
@@ -446,3 +470,5 @@ Today I'm indirectly responsible for 3 Windows desktops, 2 Windows, 4 MacBook Ai
 I can envision a world where I have a dashboard and monitors set up on each of those devices, everyone's home network, and if possible a speed test on the ISP in everyone's city.  With that, I could either predict when the phone calls were going to start, pre-emptively let them know there's an outage, or proactively alert myself when real issues are going on and get in front of it.  
 
 Not a ton of business value or creativy outside of the Martin family, but a huge time savings that would deliver a great personal ROI.
+
+[Back to the top](#table-of-contents)
