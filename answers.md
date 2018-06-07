@@ -5,8 +5,8 @@
 
 ###### Documentation I used to complete this section:
 =====================================================  
-[Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)
-[Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)
+[Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)  
+[Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)  
 
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
