@@ -27,6 +27,7 @@ You'll also see this in the submission, but two major mistakes for me were not c
     * [Custom Agent Check](#custom-agent-check)
     * [Bonus Question 1](#bonus-question-1)    
   * [Visualizing Data](#visualizing-data)
+    * [Bonus Question 2](#bonus-question-2)
   * [Monitoring Data](#monitoring-data)
   * [Collecting APM Data](#collecting-apm-data)
   * [Final Question](#final-question)
@@ -156,6 +157,8 @@ instances:
 ### Bonus Question 1
 Based on this section from the datadog docs section, I changed the collection interval for my custom check using the YAML config file.  Given that I didn't have to change the Python check file I created, I believe the answer to this bonus question is **Yes**.
 >For Agent 5, min_collection_interval can be added to the init_config section to help define how often the check should be run globally, or defined at the instance level. For Agent 6, min_collection_interval must be added at an instance level, and can be configured individually for each instance.
+
+[Back to the top](#table-of-contents)
 
 
 ## Visualizing Data
@@ -292,7 +295,7 @@ Using the keyboard shortcut, I changed the API created timeboard to display the 
 I used the camera icon on my MongoDB graph to take a snapshot and send the notification to myself via @mention.
 ![alt text](https://github.com/pabel330/hiring-engineers/blob/solutions-engineer/snapshotsend.png)
 
-### Bonus Question
+### Bonus Question 2
 The graph with anomaly applied is displaying when any metric is out of range of what's expected based on historical values.  My particular graph is set to show anomalies outside of 3 deviations from norm.  This could potentially help determine if/when there is something wrong as the algorithm accounts for seasonality and historical trends.
 
 
