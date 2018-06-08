@@ -63,3 +63,11 @@ Collecting Metrics
       ![restart agent](/assets/metrics/restart_agent.png)
     - And when I refresh my host map, the tags are there!
       ![tags](/assets/metrics/tags.png)
+
+  - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.    
+    - I google around and find this link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04 to download PostgreSQL
+    - Which says to use these two commands in terminal:
+      sudo apt-get update
+      sudo apt-get install postgresql postgresql-contrib
+    - And that seems to work!  
+      ![install postgres](/assets/metrics/install_postgres.png)
