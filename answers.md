@@ -141,8 +141,8 @@ ________
 ## Collecting APM Data
 * Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-   [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-be289566f95d4b06ee753f7a7f153634)  
-   ![Dashboard](/img/Dashboard_with_APM_and_Infrastructure_Metric.png)
+   [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-fea48cfe80d82e08a0f30cddab616be4)  
+   ![Dashboard](/img/Dashboard_apm_hostmap.png)
 
 
 
@@ -156,6 +156,15 @@ ________
 [Tracing Visualization](https://docs.datadoghq.com/tracing/visualization/)  
 [Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
 [Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
+
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+I could see Datadog being used to monitor availability for mother's rooms in airports. In a similar vein to the restroom hack, the mother's rooms in any airport could have their locks monitored by a raspberry pi in order to show the status of whether or not they are in use and show how many mother's rooms are available at any given time. Thus preventing a mother from slogging through an airport with her child in tow only to find out that the room isn't available in her terminal. 
 
 
 
