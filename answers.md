@@ -25,3 +25,21 @@ Prerequisites - Setup the environment
     ![install box](/assets/setup/install_box.png)
   - So I open up Virtual Box and it seems it's up and running!
     ![virtual box](/assets/setup/virtual_box.png)
+- Signing up for Datadog    
+  - On the Datadog signup page here: https://app.datadoghq.com/signup I follow the three steps to sign up
+    Filling out form info:
+    1. ![sign up 1](/assets/setup/signup_1.png)
+    2. ![sign up 2](/assets/setup/signup_2.png)
+
+    Installing the agent:
+    3. I want to install the agent on Ubuntu so I use these directions:
+      ![agent setup instructions](/assets/setup/agent_setup.png)
+      I paste the one step install step into terminal, where I'm told I need to install curl:
+      ![one_step_install_first_try](/assets/setup/one_step_install_first_try.png)
+      So I run this: sudo apt-get install curl
+      And then try the one step install line again, which gives me this:
+      ![agent_install_confirmation](/assets/setup/agent_install_confirmation.png)
+      And on the Datadog site, I get a message that the Agent is reporting!
+      ![agent_reporting](/assets/setup/agent_reporting.png)
+      I click finish and am in!
+      ![welcome_page](/assets/setup/welcome_page.png)
