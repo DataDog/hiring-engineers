@@ -37,23 +37,23 @@ For this demo, we will download the Mac OS 64-bit package
 Execute vagrant.pkg and take all defaults through the installation
 ![vagrant2](https://user-images.githubusercontent.com/39865915/41007954-30768710-68dd-11e8-94f4-fc8888c58ee3.png)
 Now that we have Vagrant installed, we can create a directory for our Vagrant project by opening a terminal window and entering the following commands:
-- mkdir vagrant_dd_demo
-- cd vagrant_dd_demo
+- _mkdir vagrant_dd_demo_
+- _cd vagrant_dd_demo_
 
-For this demo, we will use the official Ubuntu 16.04 LTS provided by VirtualBox, from Vagrant's cloud box catalog found here:
+For this demo, we will use the official Ubuntu 16.04 LTS, from Vagrant's cloud box catalog found here:
 
 [https://app.vagrantup.com/boxes/search](url)
 
 In the terminal, enter the command to add the VM box:
-- vagrant box add ubuntu/xenial64
+- _vagrant box add ubuntu/xenial64_
 
 To create and initialize the Vagrant configuration file to use the box we just added, enter the following command in the terminal:
-- vagrant init ubuntu/xenial64
+- _vagrant init ubuntu/xenial64_
 
 ![vagrant3](https://user-images.githubusercontent.com/39865915/41010123-96679d18-68ea-11e8-8f02-f5933a79b6cf.png)
 
 Finally, to launch our Vagrant VM via virtual box, enter the following command into the terminal:
-- vagrant up --provider=virtualbox
+- _vagrant up --provider=virtualbox_
 
 Launch VirtualBox and you will see the Vagrant VM running
 ![virtualbox3](https://user-images.githubusercontent.com/39865915/41123326-235a2ace-6a53-11e8-8609-1c1cc9a06a04.png)
@@ -66,11 +66,53 @@ Login to the VM with the following:
 Go to the Datadog website ([https://www.datadoghq.com](url)), click on the "FREE TRIAL" icon, and enter your information to begin your trial:
 ![datadog](https://user-images.githubusercontent.com/39865915/41126910-f92fa9bc-6a5d-11e8-8f36-93fc2330958f.png)
 
-Since we are installing the agent to our VM that we just setup/configured, we will select "Ubuntu" from the menu run the installation script command from our VM command line interface.  The result should be as follows:
+Since we are installing the agent to our VM that we just setup/configured, we will select "Ubuntu" from the menu run the installation script command from our VM command line interface.  The result should look similar to the following:
 ![virtualbox5](https://user-images.githubusercontent.com/39865915/41126935-0aacfc9e-6a5e-11e8-921f-cdddf2e0b3c0.png)
-
-
+Once the installed agent is detected by Datadog, click "Finish" and you will be taken to the Datadog Events page
+![datadog2](https://user-images.githubusercontent.com/39865915/41130524-06a7af46-6a6c-11e8-84f6-010901d5d043.png)
 # Collecting Metrics
+## Tags
+**Reference**: [https://docs.datadoghq.com/getting_started/tagging](url)
+
+Agent Tags are, essentially, a feature that allows a user to establish custom "filters" associated with each host that has the Datadog agent installed.  Agent tags are configured in the _datadog.yaml_ file.  It is recommended that tags be implemented with a **key:value** syntax for optimal functionality. For this exercise we will edit the _datadog.yaml_ file to include the following tags:
+- _env:test_
+- _role:database_
+- _region:west_
+
+![vagrant4](https://user-images.githubusercontent.com/39865915/41140007-009677d4-6aa0-11e8-9052-0aab3e15cccc.png)
+After making changes to _datadog.yaml_, restart the Datadog agent with the command:
+- _sudo service datadog-agent restart_
+
+The added tags can then be seen and available for use on Datadog's Host Map page:
+![datadog3](https://user-images.githubusercontent.com/39865915/41140505-c2afa7c6-6aa2-11e8-8ef9-06028214b8ad.png)
+## Install MySQL
+**Reference**: [https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu](url)
+
+Install MySQL to the VM via the package manager by running the following commands:
+- _sudo apt-get update_
+- _sudo apt-get install mysql-server_
+
+When prompted, set the _root_ user password to a password of your choosing
+Start the MySQL shell by executing the following command:
+- _/usr/bin/mysql -u root -p_
+
+## Install Datadog MySQL Integration
+**Reference**: [https://docs.datadoghq.com/integrations/mysql](url)
+
+From the VM, make a copy of the MySQL _conf.yaml.example_ file, named _conf.yaml_, by executing the following commands:
+- _cd /etc/datadog-agent/conf.d/mysql.d_
+- _sudo cp conf.yaml.example conf.yaml_
+
+Follow the directions on [https://docs.datadoghq.com/integrations/mysql](url) to install the MySQL integration
+
+Using the _Integrations_ section of the Datadog UI, install the _MySQL_ integration
+![datadog4](https://user-images.githubusercontent.com/39865915/41144549-20871bf4-6ab2-11e8-9d11-40490b3c1a70.png)
+
+## Create a Custom Agent
+**Reference**: [https://docs.datadoghq.com/developers/agent_checks](url)
+
+
+
 # Visualizing Data
 # Monitoring Data
 # Collecting APM Data
