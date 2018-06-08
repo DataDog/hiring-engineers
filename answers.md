@@ -163,6 +163,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+______
+
 I'm an avid online shopper. I would be interested to track how many items are browsed before ultimately making the purchase. It would be interesting to track which items are browsed vs which items are purchased. 
 
 I was inspired by the bathroom hack that the Datadog staff wrote about. I could see Datadog being used to monitor availability for mother's rooms in airports. Similar to the bathroom hack, the mother's rooms could have their locks monitored by a raspberry pi in order to show the status of whether or not they are in use. This would allow mother's to see which rooms are available throughout the airport so that they can quickly plan a route to the nearest room upon arrival. 
