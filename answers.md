@@ -59,4 +59,4 @@ Collecting Metrics:
       exception: connect failed
       datadog user - OK
 
-      I tried multiple solutions, but continuously ran into this issue.
+      I tried multiple solutions, but continuously ran into this issue. I believe it is an issue with my machine's version of MongoDB.
