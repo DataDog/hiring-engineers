@@ -43,3 +43,23 @@ Prerequisites - Setup the environment
       ![agent_reporting](/assets/setup/agent_reporting.png)
       I click finish and am in!
       ![welcome_page](/assets/setup/welcome_page.png)
+
+Collecting Metrics
+  - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+    - To do this I creep around the Datadog Docs until I find this: https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files
+    - This link: https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration tells me that I need to go to /etc/datadog-agent/datadog.yaml to find the configuration files and folders for the Agent.
+    - So I cd into the /datadog-agent folder, where I see the datadog.yaml file
+      ![datadog-agent folder](/assets/metrics/datadog-agent.png)
+    - I run sudo vim datadog.yaml to get into the yaml file, and scroll down until I see the tags section:
+      ![tags section](/assets/metrics/tags_section.png)
+    - This link: says the first method below is valid for tags
+      ![ways to put in tags](/assets/metrics/ways_to_put_tags_in.png)
+      so I press I to edit text, and enter in this info:
+      ![new tags](/assets/metrics/add_tags.png)
+      Then press :wq to save and ESC out of vim.
+    - I don't see the tags showing up in my host map, so I google around and read here: https://docs.datadoghq.com/agent/basic_agent_usage/windows/#starting-and-stopping-the-agent that 'Any time you modify a Datadog integration you’ll need to restart the Datadog Agent service
+    - this page: https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands says the restart command is: sudo service datadog-agent restart
+    - So I try it in terminal:
+      ![restart agent](/assets/metrics/restart_agent.png)
+    - And when I refresh my host map, the tags are there!
+      ![tags](/assets/metrics/tags.png)
