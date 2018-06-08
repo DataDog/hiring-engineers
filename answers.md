@@ -60,3 +60,36 @@ Collecting Metrics:
       datadog user - OK
 
       I tried multiple solutions, but continuously ran into this issue. I believe it is an issue with my machine's version of MongoDB.
+
+
+  Creating a Custom Agent Check
+      Following the documentation listed here: https://docs.datadoghq.com/developers/agent_checks/
+
+      I made my first custom check following Datadog's simple check instructions for "your first check": https://docs.datadoghq.com/developers/agent_checks/#your-first-check
+
+      I created a hello.py file in the Checks.d folder, and a corresponding hello.yaml file in the conf.d folder, and tested it in the command line using - "datadog-agent check hello".
+
+      For my_metric, I created a my_metric.py file in the Checks.d folder, and a corresponding my_metric.yaml file in the conf.d folder.
+
+      in checks.d/my_metric.py I added the python code:
+        from checks import AgentCheck
+
+        from random import randint
+
+        class MyMetricCheck(AgentCheck):
+        def check(self, instance):
+          randomNumber = randint(0, 1000)
+          self.gauge('my_metric', randomNumber)
+
+      In my_metric.yaml I added:
+
+        init_config:
+
+        instances:
+          [{}]
+        tags:
+
+      I tested my_metric.py in the command line using "datadog-agent check my_metric"
+      I found my check summary in the Datadog dashboard and saw that my_metric has a status of "ok"
+
+      
