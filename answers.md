@@ -88,8 +88,21 @@ Collecting Metrics:
         instances:
           [{}]
         tags:
+          - my_metric:tag
 
       I tested my_metric.py in the command line using "datadog-agent check my_metric"
       I found my check summary in the Datadog dashboard and saw that my_metric has a status of "ok"
 
-      
+Changing The Check Collection Interval
+
+      In conf.d/my_metric.yaml I changed the instances to include:
+
+        init_config:
+
+        instances:
+          - min_collection_interval: 45
+        tags:
+          - my_metric:tag
+
+      When I restarted the agent for the my_metric check I got the message:
+      2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
