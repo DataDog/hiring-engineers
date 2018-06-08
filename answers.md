@@ -1,7 +1,7 @@
 # Welcome
 Welcome to the Datadog product demonstration!
 # Agenda
-- Prerequisites - Setup the environment
+- Prerequisites - Setup the environment (optional content)
    - Installing and Configuring VirtualBox
    - Installing and Configuring Vagrant
    - Installing the Datadog Agent
@@ -11,9 +11,12 @@ Welcome to the Datadog product demonstration!
 - Collecting APM Data
 - Final Question
 # Prerequisites - Setup the environment
-NOTE: This section is intended to assist with setting up an environment to run Datadog.  This section can be skipped if you already have an environment with the Datadog Agent installed
+NOTE: This section is intended to assist with setting up an environment to run Datadog.  This section can be skipped if you already have an environment with the Datadog Agent installed.  
 
-The Datadog agent can be installed on a variety of operating systems.  For this demo, we will be utilizing a Linux VM, courtesy of Vagrant, and viewing it through VirtualBox.  We will install the Datadog Agent to the Linux VM that we deploy in this section.
+The Datadog agent can be installed on a variety of operating systems.  For this demo, we will be utilizing a Linux VM, courtesy of Vagrant, and viewing it through VirtualBox.  We will install the Datadog Agent to the Linux VM that we deploy in this section.  To view details of this content, click 
+<details>
+   <summary>Expand</summary>
+
 ## Installing and Configuring VirtualBox
 You can download VirtualBox here:
 
@@ -70,6 +73,9 @@ Since we are installing the agent to our VM that we just setup/configured, we wi
 ![virtualbox5](https://user-images.githubusercontent.com/39865915/41126935-0aacfc9e-6a5e-11e8-921f-cdddf2e0b3c0.png)
 Once the installed agent is detected by Datadog, click "Finish" and you will be taken to the Datadog Events page
 ![datadog2](https://user-images.githubusercontent.com/39865915/41130524-06a7af46-6a6c-11e8-84f6-010901d5d043.png)
+
+</details>
+
 # Collecting Metrics
 ## Tags
 **Reference**: [https://docs.datadoghq.com/getting_started/tagging](url)
@@ -92,7 +98,7 @@ Install MySQL to the VM via the package manager by running the following command
 - _sudo apt-get update_
 - _sudo apt-get install mysql-server_
 
-When prompted, set the _root_ user password to a password of your choosing
+When prompted, set the _root_ user password to a password of your choosing.  For this demonstration, we used _datadog_ as the password.
 Start the MySQL shell by executing the following command:
 - _/usr/bin/mysql -u root -p_
 
@@ -103,17 +109,40 @@ From the VM, make a copy of the MySQL _conf.yaml.example_ file, named _conf.yaml
 - _cd /etc/datadog-agent/conf.d/mysql.d_
 - _sudo cp conf.yaml.example conf.yaml_
 
-Follow the directions on [https://docs.datadoghq.com/integrations/mysql](url) to install the MySQL integration
+Follow the directions from the **Metric Collection** section (from [https://docs.datadoghq.com/integrations/mysql](url)) to configure the MySQL integration for metric collection by editing the newly created _conf.yaml_ file as follows:
 
-Using the _Integrations_ section of the Datadog UI, install the _MySQL_ integration
+![vagrant5](https://user-images.githubusercontent.com/39865915/41173102-9e640aac-6b0a-11e8-8fc0-7cf756bde876.png)
+
+On the VM,prepare MySQL by creating a Datadog user (with password) and granting appropriate permissions by executing the following commands:
+- _CREATE USER 'datadog'@'127.0.0.1' IDENTIFIED BY 'datadog';_
+- _GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'127.0.0.1' WITH MAX_USER_CONNECTIONS 5;_
+- _GRANT PROCESS ON *.* TO 'datadog'@'127.0.0.1';_
+
+Using the _Integrations_ section of the Datadog UI, install the _MySQL_ integration:
 ![datadog4](https://user-images.githubusercontent.com/39865915/41144549-20871bf4-6ab2-11e8-9d11-40490b3c1a70.png)
 
-## Create a Custom Agent
+## Create a Custom Agent Check
 **Reference**: [https://docs.datadoghq.com/developers/agent_checks](url)
 
+Agent checks are intended to allow a user to collect Datadog metrics from custom applications or unique systems, while metric collection from more common applications, public services or open source projects, are intended to be implemented via Datadog's Integrations.  Agent checks have two parts, the check file, written in python, and the configuration file.  Both the check file and configuration must share the same name (ex. _mycheck.py_ and _mycheck.yaml_, respectively).  The check file resides in the Agent's _checks.d_ directory, and the configuration file resides in the Agent's _conf.d_ directory.  Both _checks.d_ and _conf.d_ directories exist under the Agent's root directory, in our case, _/etc/datadog-agent_.
 
+To show how a custom Agent check is implemented, we can create a custom Agent check that submits a metric named _my_metric_ with a random value between 1 and 1000.  We will also configure _my_metric_ check to have a collection interval that only submits once every 45 seconds.
+
+The _mycheck.py_ check file is as follows:
+![mycheck_py](https://user-images.githubusercontent.com/39865915/41180516-5432e07a-6b23-11e8-8881-0c9912966df0.png)
+
+The _mycheck.yaml_ configuration file is as follows:
+![mycheck_yaml](https://user-images.githubusercontent.com/39865915/41180539-62adc66a-6b23-11e8-910b-7d798881b500.png)
+
+After creating _mycheck.py_ and _mycheck.yaml_, restart the Datadog agent with the command:
+- _sudo service datadog-agent restart_
+
+We can change the collection interval without modifying the python check file we created by using the _min_collection_interval_ in the configuration file, _mycheck.yaml_, as referenced in the **Configuration** section from [https://docs.datadoghq.com/developers/agent_checks](url).  Be sure to restart the agent after any check file or configuration file updates!
 
 # Visualizing Data
+
+
+
 # Monitoring Data
 # Collecting APM Data
 # Final Question
