@@ -3,10 +3,11 @@
 
    ![agent reporting metrics](/img/agent_report_metrics.png) 
 
-##### Documentation I used to complete this section:
-_______________  
+#### Documentation I used to complete this section:
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)  
-[Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)  
+[Datadog Overview](https://www.youtube.com/watch?v=mpuVItJSFMc)
+
+
 
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -31,8 +32,7 @@ _______________
    Yes, I modified the collection interval in the yaml file.
 
 
-##### Documentation I used to complete this section:
-________  
+#### Documentation I used to complete this section: 
 [Datadog Doc - How to use Tags](https://docs.datadoghq.com/getting_started/tagging/using_tags/)  
 [Datadog Doc - How to assign Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/)  
 [Datadog Doc - MySQL Integration ](https://docs.datadoghq.com/integrations/mysql/)  
@@ -42,6 +42,7 @@ ________
 [Python - Random Int](https://stackoverflow.com/questions/3996904/generate-random-integers-between-0-and-9)  
 
 
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -49,7 +50,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-   Did not Implement
+   I struggled with this part. I read the documentation on rollup, but I ran into difficulties applying the function to the query. 
 
 ```
 api_key=4f03487948708ff3a0d41e3c69bd5b9a
@@ -92,13 +93,13 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
    ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
 
-##### Documentation I used to complete this section:
-________  
+#### Documentation I used to complete this section:
 [Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)  
 [Pretty Print in Terminal](https://stackoverflow.com/questions/26935353/pretty-print-python-dictionary-from-command-line)  
 [Create Monitor](https://docs.datadoghq.com/api/?lang=bash#monitors)  
 [Rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1)  
 [Timeboard Video](https://docs.datadoghq.com/videos/datadog101-3-dashboards/?wtime=40.5)  
+
 
 
 ## Monitoring Data
@@ -132,10 +133,9 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
    ![Weekend Email](/img/weekend_email.png)
 
 
-
-##### Documentation I used to complete this section:
-________  
+#### Documentation I used to complete this section: 
 [Monitoring docs](https://docs.datadoghq.com/monitors/)  
+
 
 
 ## Collecting APM Data
@@ -145,9 +145,7 @@ ________
    ![Dashboard](/img/Dashboard_apm_hostmap.png)
 
 
-
-##### Documentation I used to complete this section:
-________  
+#### Documentation I used to complete this section:
 [APM DOCS](https://docs.datadoghq.com/tracing/)  
 [Setup APM in one minute](https://www.youtube.com/watch?v=faoR5M-BaSw)  
 [Install Trace Agent on OSX](https://github.com/DataDog/datadog-trace-agent#run-on-osx)  
@@ -158,13 +156,16 @@ ________
 [Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
 
 
+
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
-I could see Datadog being used to monitor availability for mother's rooms in airports. In a similar vein to the restroom hack, the mother's rooms in any airport could have their locks monitored by a raspberry pi in order to show the status of whether or not they are in use and show how many mother's rooms are available at any given time. Thus preventing a mother from slogging through an airport with her child in tow only to find out that the room isn't available in her terminal. 
+I'm an avid online shopper. I would be interested to track how many items are browsed before ultimately making the purchase. It would be interesting to track which items are browsed vs which items are purchased. 
+
+I was inspired by the bathroom hack that the Datadog staff wrote about. I could see Datadog being used to monitor availability for mother's rooms in airports. Similar to the bathroom hack, the mother's rooms could have their locks monitored by a raspberry pi in order to show the status of whether or not they are in use. This would allow mother's to see which rooms are available throughout the airport so that they can quickly plan a route to the nearest room upon arrival. 
 
 
 
