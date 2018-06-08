@@ -93,7 +93,7 @@ Collecting Metrics:
       I tested my_metric.py in the command line using "datadog-agent check my_metric"
       I found my check summary in the Datadog dashboard and saw that my_metric has a status of "ok"
 
-Changing The Check Collection Interval
+  Changing The Check Collection Interval
 
       In conf.d/my_metric.yaml I changed the instances to include:
 
@@ -106,3 +106,5 @@ Changing The Check Collection Interval
 
       When I restarted the agent for the my_metric check I got the message:
       2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
+
+  Bonus Question: I changed the collection interval using the my_metric.yaml file in the above step. I was not able to find documentation on changing the check collection interval using the my_metric.py file.
