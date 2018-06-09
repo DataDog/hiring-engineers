@@ -1,3 +1,5 @@
 Flask==1.0.1
+Flask-API==1.0
+Flask-RESTful==0.3.6
+Flask-SQLAlchemy==2.3.2
 gunicorn==19.7.1
-
