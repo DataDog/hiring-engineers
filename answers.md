@@ -108,3 +108,13 @@ Collecting Metrics:
       2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
 
   Bonus Question: I changed the collection interval using the my_metric.yaml file in the above step. I was not able to find documentation on changing the check collection interval using the my_metric.py file.
+
+
+  Visualizing Data:
+
+    Utilize the Datadog API to create a Timeboard.
+    For creating a timeboard, I am using ruby, because I am most experienced in that language.
+    I found the documentation here: https://docs.datadoghq.com/api/?lang=ruby#timeboards
+
+    I found the documentation for the rollup method here:
+    https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1
