@@ -6,12 +6,18 @@ body,
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(189,193,210,1) 38%, rgba(0,212,255,1) 100%);
   font-family: 'Ubuntu';
-  font-size: 14px;
+}
+
+hr {
+  background-color: black;
+  height: 1px;
+  border: 0;
 }
 
 /* App-Header */
 .jumbotron {
-  padding: 5px;
+  padding: 0;
+  margin: 0;
 }
 
 .datadog-img {
@@ -21,7 +27,18 @@ body,
 }
 
 /* App-Quotes */
-.quote-buttons {
-  background: red;
+.app-quotes {
+  padding: 0;
+  text-align: center;
 }
+
+.app-quotes button {
+  margin: 3%;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+
+
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Team {{ team }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='team-styles.css') }}">
+  <style>
+      body {
+        {% if team == 'Valor' %}
+        background-color: red;
+        {% elif team == 'Mystic' %}
+        background-color: blue;
+        {% elif team == 'Instinct' %}
+        background-color: yellow;
+        {% endif %}
+      }
+  </style>
+  </head>
+
+
+  <body class="team">
+    <a href="/">Home</a><br>
+
+    <span>
+      <img src="/static/assets/ash.png" width="10%"/>
+      <img src="/static/assets/team-{{team}}.jpg" width="10%"/>
+    </span>
+
+    <h1>As a part of choosing Team {{ team }}. You got a {{ quote_type }} quote. </h1>
+      <h3>{{ quote }}</h3>
+
+
+  </body>
+</html>
+
+<!--
+  Home Page
+
+  Left side  : Picture of Ash
+  Right side : Picture of Team Valor
+
+  " You got a _____ quote. Below is your source of inspiration "
+  {{ quote }}
+
+  " Congratulations. There are currently ___ players on team {{ team }}
+-->

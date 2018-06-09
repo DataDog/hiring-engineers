@@ -22,23 +22,28 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
+################
+## Variables ##
+###############
+teamPage='team.html'
+
 #############
 ## Tracers ##
 #############
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="wisdom")
-def wisdom_tracer():
-    words=insertIntoDB('wisdom')
-    return render_template('quotes.html', quote=words)
-
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="chuck")
-def chuck_tracer():
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="valor")
+def valor_tracer():
     words=insertIntoDB('chuck')
-    return render_template('quotes.html', quote=words)
+    return render_template(teamPage, quote=words, team='Valor', quote_type="Chuck Norris")
 
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="cats")
-def cat_tracer():
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="mystic")
+def mystic_tracer():
+    words=insertIntoDB('wisdom')
+    return render_template(teamPage, quote=words, team='Mystic', quote_type="Wisdom")
+
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="instinct")
+def instinct_tracer():
     words=insertIntoDB('cats')
-    return render_template('quotes.html', quote=words)
+    return render_template(teamPage, quote=words, team='Instinct', quote_type="Cat")
 
 ############
 ## Routes ##
@@ -48,17 +53,17 @@ def home():
     return render_template('index.html')
 
 # 1. Quotes
-@app.route(getURL('quote', 'wisdom'))
-def wisdom():
-    return Response(str(wisdom_tracer()))
-
-@app.route(getURL('quote', 'chuck'))
+@app.route(getURL('team', 'valor'))
 def chuck():
-    return Response(str(chuck_tracer()))
+    return Response(str(valor_tracer()))
 
-@app.route(getURL('quote', 'cats'))
+@app.route(getURL('team', 'mystic'))
+def wisdom():
+    return Response(str(mystic_tracer()))
+
+@app.route(getURL('team', 'instinct'))
 def cats():
-    return Response(str(cat_tracer()))
+    return Response(str(instinct_tracer()))
 
 """
 # 2. Math game
