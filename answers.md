@@ -44,18 +44,21 @@
 > &rarr; You will find below all the three graphs based on my_metric.  
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 > &rarr; Concerning the script used I took screenshots of the differents json configuration of my graphs :  
-> ####	* my_metric 
+
+> #### - my_metric 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
-> ####	* anomaly of my_metric 
+
+> #### - anomaly of my_metric 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
-> ####	* sum_my_metric 
+
+> #### - sum_my_metric 
 >	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.PNG)
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 > &rarr; On the picture, you will see the timeboard showing the value of my_metric for the last 5 minutes and my snapshot.  
-
+>
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot4.PNG)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
@@ -68,7 +71,6 @@
 > 	* the alert threshold,  
 >	* the warning threshold,  
 >	* the notification in case there is some missing data for more than 10 minutes  
-
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
 > &rarr; Below you will find my monitor's message:  
@@ -94,13 +96,13 @@
 ## Collecting APM Data:
 
 > &rarr; I used the default app for this part as I am not used to the Flask package  
-
+>
 > my_app.py:  
 > ```
 > from flask import Flask
 > import logging
 > import sys
-
+>
 > #Have flask use stdout as the logger
 > main_logger = logging.getLogger()  
 > main_logger.setLevel(logging.DEBUG)  
@@ -108,9 +110,9 @@
 > formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
 > c.setFormatter(formatter)  
 > main_logger.addHandler(c)  
-
+>
 > app = Flask(__name__)  
-
+>
 > @app.route('/')  
 > def api_entry():  
 >	return 'Entrypoint to the Application'  
@@ -130,20 +132,20 @@
 
 **Bonus Question**: What is the difference between a Service and a Resource?
 
-&rarr; A service is defined by a verb which describes the function it implements, for exemple : validate a token.  
+> &rarr; A service is defined by a verb which describes the function it implements, for exemple : validate a token.  
 However, a resource refer to some data so it is defined by a noun, for exemple : log files.  
 
-The link to my dashboard is : https://p.datadoghq.com/sb/49ba87d1e-6327d00df9ae6d489a2fbbea92483705 .
-However, as my virtual machine isn't working all the time, I think this screenshot will show you the data when the VM was up.
-![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot9.png) 
+> The link to my dashboard is : https://p.datadoghq.com/sb/49ba87d1e-6327d00df9ae6d489a2fbbea92483705 .
+> However, as my virtual machine isn't working all the time, I think this screenshot will show you the data when the VM was up.
+> ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot9.png) 
 
 ## Final Question:
 
 * Is there anything creative you would use Datadog for?
 
-&rarr; When I see all the differents features of the Datadog agent, I think it can be used nearly everywhere to improve some old architecture system but that's not really creative.  
-A more creative way to use Datadog would be to gather data on online Games and help improve there resiliency.  
-Even better, using some iot technologies it could be possible to collect data from camera in museum to have to watchtime of each piece of art to know for example which one is the most watch and then help positionning the masterpiece all over the museum.
+> &rarr; When I see all the differents features of the Datadog agent, I think it can be used nearly everywhere to improve some old architecture system but that's not really creative.  
+> A more creative way to use Datadog would be to gather data on online Games and help improve there resiliency.  
+> Even better, using some iot technologies it could be possible to collect data from camera in museum to have to watchtime of each piece of art to know for example which one is the most watch and then help positionning the masterpiece all over the museum.
 
 ### I wanted to thanks you for your time reading me, I really enjoyed this exercice and especialy working with the Datadog technologies.
 ### Have a nice day.
