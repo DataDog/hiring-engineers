@@ -3,6 +3,7 @@
 ##################
 from flask import Flask, render_template, Response
 from flask_sqlalchemy import SQLAlchemy
+from flask.ext.heroku import Heroku
 import blinker as _
 
 from ddtrace import tracer
@@ -16,6 +17,7 @@ from database.models import *
 ############
 app = Flask(__name__, static_url_path='/static')
 app.config.from_pyfile('config/config.py')
+heroku = Heroku(app)
 
 with app.app_context():
     db.init_app(app)
@@ -81,6 +83,6 @@ def weather():
 ## Run Application ##
 ######################
 if __name__ == '__main__':
-    app.run(debug=True, port=8000, host="0.0.0.0")
-    #app.run()
+    #app.run(debug=True, port=8000, host="0.0.0.0")
+    app.run()
 
