@@ -64,10 +64,48 @@ Collecting Metrics
     - And when I refresh my host map, the tags are there!
       ![tags](/assets/metrics/tags.png)
 
-  - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.    
-    - I google around and find this link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04 to download PostgreSQL
-    - Which says to use these two commands in terminal:
-      sudo apt-get update
-      sudo apt-get install postgresql postgresql-contrib
-    - And that seems to work!  
-      ![install postgres](/assets/metrics/install_postgres.png)
+  - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.   
+    - Part 1: Install a database on your machine (MongoDB, MySQL, or PostgreSQL)
+      - I google around and find this link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04 to download PostgreSQL
+      - Which says to use these two commands in terminal:
+        sudo apt-get update
+        sudo apt-get install postgresql postgresql-contrib
+      - And that seems to work!  
+        ![install postgres](/assets/metrics/install_postgres.png)
+
+    - Part 2: Install the respective Datadog integration for that database
+      - https://docs.datadoghq.com/integrations/postgres/
+      - To start psql on my PostgreSQL database, I use instructions from here (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) and type sudo -i -u postgres in terminal, and then psql to access the Postgres prompt:
+        ![access postgres prompt](/assets/metrics/access_postgres_prompt.png)
+      - Then I create a user (datadog) and grant datadog access with these command prompts, following directions found here: https://docs.datadoghq.com/integrations/postgres/#prepare-postgres
+      ![create_user](/assets/metrics/create_user.png)
+      - Then I freak out because I copied and pasted the create user command without changing the password (so currently datadog's password is <PASSWORD>)
+      - So I take a quick detour and find this link: https://stackoverflow.com/questions/12720967/how-to-change-postgresql-user-password
+        - fdsnoin113543
+      - The above link says I can do this to change the password, and it seems to work:
+        ![change password](/assets/metrics/change_password.png)
+      - So I run the command to verify the correct permissions, which prompts me for my (new) password:
+        ![password prompt](/assets/metrics/password_prompt.png)
+      - And that works! I get this!
+        ![success](/assets/metrics/success.png)
+      - The last step is to edit the postgres.d/conf.yaml file in the conf.d/ folder. so I cd into that folder:
+        ![cd into postgres.d](/assets/metrics/postgres_d.png)
+      - And run sudo vim conf.yaml:
+        ![conf.yaml](/assets/metrics/conf_yaml.png)
+       and then copy everything from here: https://github.com/DataDog/integrations-core/blob/master/postgres/conf.yaml.example
+      into Terminal
+      -Then I scroll up to this part and update the username, password, and dbname
+        ![update info](/assets/metrics/update_info.png)
+      - I grab the restart command from  https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands says the restart command is: sudo service datadog-agent restart so I run it:
+        ![restart agent after postgres](/assets/metrics/restart_agent_after_postgres.png)
+      - This link: https://docs.datadoghq.com/integrations/postgres/#validation says to run the status subcommand and 'look for postgres under the Checks section'. So I run sudo datadog-agent status and scroll down to the Checks section:
+      - Alas! There's an error saying database "pg_stat_database" doesn't exist
+        ![postgres error](/assets/metrics/postgres_error.png)
+      - My guess as to this error is: when I edited the conf.yaml folder, I named the db pg_stat_database, but I think that's not actually the name of the database and I should have left that section blank. So I cd into the postgres.d folder, and then run sudo vim conf.yaml to comment out the db name:
+        ![edit conf.yaml](/assets/metrics/edit_conf_yaml.png)
+      - I run the restart command: sudo service datadog-agent restart
+        ![restart agent second try](/assets/metrics/restart_agent_V2.png)
+      - I run sudo datadog-agent status again to see if Postgres looks normal, and this time it does look normal! I see it in the Checks section!
+        ![successful postgres](/assets/metrics/successful_postgres_integration.png)
+      - Also I see it on my Host Map page:
+        ![postgres in host map](/assets/metrics/host_map_with_postgres.png)
