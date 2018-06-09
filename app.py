@@ -24,7 +24,6 @@ teamPage='team.html'
 app = Flask(__name__, static_url_path='/static')
 app.config.from_pyfile('config/config.py')
 heroku = Heroku(app)
-db=SQLAlchemy(app)
 
 with app.app_context():
     db.init_app(app)
