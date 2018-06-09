@@ -18,13 +18,13 @@ I choiced to use PostgreSQL because it is the database i am the most familiar wi
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Here is the code for my customagent.py  
-{  
+```
     from checks import AgentCheck  
     import random  
     class HelloCheck(AgentCheck):  
-    &nbsp;	def check(self, instance):  
-    &nbsp;&nbsp;		self.gauge('my_metric',random.randint(0,1000))  
-}
+    	def check(self, instance):  
+    		self.gauge('my_metric',random.randint(0,1000))
+```
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
@@ -72,15 +72,12 @@ On the screenshot, you will find the configuration of the monitor :
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
 Below you will find my monitor's message:  
-{  
+```
 	{{#is_alert}} This is an alert made by a {{value}} value from {{host.ip}} {{/is_alert}} 
-
 	{{#is_no_data}}There is no data since 10 min{{/is_no_data}} 
-
 	{{#is_warning}}This is a warning{{/is_warning}} 
-
 	@alexandrecorre.1995@gmail.com
-}  
+```
 this is the screenshot of the alerting mail that I received.  
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot6.PNG)
 
@@ -99,7 +96,7 @@ The is the mail that I received for the weekend downtime, and the configuration 
 I used the default app for this part as I am not used to the Flask package  
 
 my_app.py:  
-{  
+```
 from flask import Flask
 import logging
 import sys
@@ -120,15 +117,15 @@ def api_entry():
 
 @app.route('/api/apm')  
 def apm_endpoint():  
-&nbsp;    return 'Getting APM Started'  
+	return 'Getting APM Started'  
 
 @app.route('/api/trace')  
 def trace_endpoint():  
-&nbsp;    return 'Posting Traces'  
+	return 'Posting Traces'  
 
 if __name__ == '__main__':  
-&nbsp;    app.run(host='0.0.0.0', port='5050')  
-}  
+	app.run(host='0.0.0.0', port='5050')  
+```
 
 
 Bonus Question: What is the difference between a Service and a Resource?
