@@ -3,7 +3,7 @@
 ##################
 from flask import Flask, render_template, Response
 from flask_sqlalchemy import SQLAlchemy
-from flask.ext.heroku import Heroku
+from flask_heroku import Heroku
 import blinker as _
 
 from ddtrace import tracer
