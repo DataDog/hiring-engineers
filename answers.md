@@ -44,14 +44,14 @@
 > &rarr; You will find below all the three graphs based on my_metric.  
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 > &rarr; Concerning the script used I took screenshots of the differents json configuration of my graphs :  
-
-> #### - my_metric 
+>
+> #### - ** my_metric ** 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
-
-> #### - anomaly of my_metric 
+>
+> #### - ** anomaly of my_metric ** 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
-
-> #### - sum_my_metric 
+>
+> #### - ** sum_my_metric **
 >	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.PNG)
 
 * Set the Timeboard's timeframe to the past 5 minutes
@@ -72,7 +72,7 @@
 >	* the warning threshold,  
 >	* the notification in case there is some missing data for more than 10 minutes  
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
-
+>
 > &rarr; Below you will find my monitor's message:  
 > ```
 >	{{#is_alert}} This is an alert made by a {{value}} value from {{host.ip}} {{/is_alert}} 
@@ -134,7 +134,7 @@
 
 > &rarr; A service is defined by a verb which describes the function it implements, for exemple : validate a token.  
 However, a resource refer to some data so it is defined by a noun, for exemple : log files.  
-
+>
 > The link to my dashboard is : https://p.datadoghq.com/sb/49ba87d1e-6327d00df9ae6d489a2fbbea92483705 .
 > However, as my virtual machine isn't working all the time, I think this screenshot will show you the data when the VM was up.
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot9.png) 
