@@ -2,7 +2,7 @@
 
 ## Setup the environment
 
-&rarr; I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machine
+> &rarr; I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machine
 
 ## Collecting Metrics:
 
@@ -44,11 +44,11 @@
 &rarr; You will find below all the three graphs based on my_metric.  
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 &rarr; Concerning the script used I took screenshots of the differents json configuration of my graphs :  
-	- my_metric 
+####	* my_metric 
 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
-	- anomaly of my_metric 
+####	* anomaly of my_metric 
 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
-	- sum_my_metric 
+####	* sum_my_metric 
 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.PNG)
 
 * Set the Timeboard's timeframe to the past 5 minutes
@@ -65,9 +65,9 @@
 ## Monitoring Data
 
 &rarr; On the screenshot, you will find the configuration of the monitor :  
-	- the alert threshold,  
-	- the warning threshold,  
-	- the notification in case there is some missing data for more than 10 minutes  
+	* the alert threshold,  
+	* the warning threshold,  
+	* the notification in case there is some missing data for more than 10 minutes  
 
 ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot5.PNG)
 
@@ -113,7 +113,7 @@ app = Flask(__name__)
 
 @app.route('/')  
 def api_entry():  
-&nbsp;    return 'Entrypoint to the Application'  
+	return 'Entrypoint to the Application'  
 
 @app.route('/api/apm')  
 def apm_endpoint():  
