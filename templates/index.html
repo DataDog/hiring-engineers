@@ -5,8 +5,37 @@
 {% block head %} {{ super() }} {% endblock %}
 
 {% block content %}
+
+<div class="app-header">
+  <div class="jumbotron jumbotron-fluid" style="text-align:center;">
+    <div class="container">
+      <h2 class="display-4">
+         <img class="datadog-img" src="/static/assets/datadog.png" alt="Datadog Image">
+         Datadog Application
+      </h2>
+      <p class="lead">Ben Basuni - Solutions Engineer</p>
+    </div>
+  </div>
+</div>
+
+<div class="app-quotes">
   <a href="./v1/quote/wisdom"><button type="text">Wisdom</button></a>
   <a href="./v1/quote/chuck"><button type="text">Chuck</button></a>
   <a href="./v1/quote/cats"><button type="text">Generate a Cat</button></a>
-  <a href="./nbafinals"><button type="text">NBA Finals 2018</button></a>
+</div>
+
+<div class="app-math"></div>
+
+<div class="app-weather"></div>
+
 {% endblock %}
+
+<!--
+<div class="math-game">
+  <a href="./v1/math/game"><button type="text">NBA Finals 2018</button></a>
+</div>
+
+<div class="math-game">
+  <a href="./v1/math/game"><button type="text">NBA Finals 2018</button></a>
+</div>
+-->
