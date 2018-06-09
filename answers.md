@@ -19,11 +19,11 @@ I choiced to use PostgreSQL because it is the database i am the most familiar wi
 
 Here is the code for my customagent.py  
 {  
-	from checks import AgentCheck  
-	import random  
-	class HelloCheck(AgentCheck):  
-	&nbsp;	def check(self, instance):  
-	&nbsp;&nbsp;		self.gauge('my_metric',random.randint(0,1000))  
+    from checks import AgentCheck  
+    import random  
+    class HelloCheck(AgentCheck):  
+    &nbsp;	def check(self, instance):  
+    &nbsp;&nbsp;		self.gauge('my_metric',random.randint(0,1000))  
 }
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
