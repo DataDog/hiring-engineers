@@ -2,6 +2,7 @@ Flask==1.0.1
 Flask-API==1.0
 Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.3.2
+flask-heroku==0.1.9
 gunicorn==19.7.1
 requests==2.18.4
 blinker==1.4
