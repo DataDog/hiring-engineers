@@ -45,13 +45,13 @@
 > ![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/screenshot3.PNG)
 > &rarr; Concerning the script used I took screenshots of the differents json configuration of my graphs :  
 >
-> #### - ** my_metric ** 
+> #### - **my_metric** 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_config.png)
 >
-> #### - ** anomaly of my_metric ** 
+> #### - **anomaly of my_metric** 
 > 	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/anomaly_config.PNG)
 >
-> #### - ** sum_my_metric **
+> #### - **sum_my_metric**
 >	![alt text](https://github.com/Alexandrecorre/hiring-engineers/blob/solutions-engineer/my_metric_sum_config.PNG)
 
 * Set the Timeboard's timeframe to the past 5 minutes
