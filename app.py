@@ -15,7 +15,7 @@ from database.models import *
 ################
 ## Variables ##
 ###############
-ENVIRONMENT='prod'
+ENVIRONMENT='dev'
 teamPage='team.html'
 
 ############

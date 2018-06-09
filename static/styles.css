@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 /* Global */
+* { outline-style: none; !important }
+
 body,
 .jumbotron {
   background: rgb(255,255,255);
   background: linear-gradient(90deg, rgba(170, 170, 170,1) 0%,  rgba(156, 67, 125, 1) 100%);
-
   font-family: 'Ubuntu';
 }
 
@@ -15,10 +16,10 @@ hr {
   border: 0;
 }
 
+
 /* App-Header */
 .jumbotron {
-  padding: 0;
-  margin: 0;
+  padding-bottom: 0;
 }
 
 .pokeball-img {
@@ -38,11 +39,12 @@ hr {
 }
 
 .app-quotes button {
-  margin: 3%;
-  height: 80px;
-  width: 80px;
+  font-size: 1.8em;
+  margin: 4%;
+  height: 300px;
+  width: 300px;
   border-radius: 50%;
-  border: 1px solid grey;
+  border: 4px solid grey;
 }
 
 
