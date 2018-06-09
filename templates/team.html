@@ -1,45 +1,44 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Team {{ team }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='team-styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <style>
-      body {
+      html {
+        text-align: center;
+        font-family: 'Ubuntu';
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
         {% if team == 'Valor' %}
-        background-color: red;
+        background: rgb(244,28,28);
+        background: linear-gradient(148deg, rgba(244,28,28,1) 40%, rgba(255, 255, 255, 1) 96%);
         {% elif team == 'Mystic' %}
-        background-color: blue;
+        background: rgb(2,0,36);
+        background: linear-gradient(148deg,  rgba(189,193,210,1) 40%, rgba(0,212,255,1) 96%);
         {% elif team == 'Instinct' %}
-        background-color: yellow;
+        background: rgb(218,244,28);
+        background: linear-gradient(148deg, rgba(218,244,28,1) 40%, rgba(175,0,255,1) 96%);
         {% endif %}
       }
   </style>
   </head>
 
-
   <body class="team">
-    <a href="/">Home</a><br>
+    <a href="/"><button type="button" class="btn btn-danger">Home</button></a>
+
+    <h1>Congratulations for joining Team {{ team }}.</h1>
+    <p>There are currently 2 members on your team.</p>
 
     <span>
-      <img src="/static/assets/ash.png" width="10%"/>
-      <img src="/static/assets/team-{{team}}.jpg" width="10%"/>
+      <img src="/static/assets/team-{{team}}.jpg" width="30%"/>
     </span>
 
-    <h1>As a part of choosing Team {{ team }}. You got a {{ quote_type }} quote. </h1>
-      <h3>{{ quote }}</h3>
-
+    <div class="congratulations-message">
+      <p>As a new member of Team {{ team }}, here's a {{ quote_type }} quote. </p>
+      <p><strong>"{{ quote }}"</strong></p>
+    </div>
 
   </body>
 </html>
-
-<!--
-  Home Page
-
-  Left side  : Picture of Ash
-  Right side : Picture of Team Valor
-
-  " You got a _____ quote. Below is your source of inspiration "
-  {{ quote }}
-
-  " Congratulations. There are currently ___ players on team {{ team }}
--->
