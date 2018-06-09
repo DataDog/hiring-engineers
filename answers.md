@@ -2,7 +2,7 @@
 
 ## Setup the environment
 
-I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machine
+&rarr; I used an Ubuntu 18.04lts desktop version  hosted on a virtual box virtual machine
 
 ## Collecting Metrics:
 
