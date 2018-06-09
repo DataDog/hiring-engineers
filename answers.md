@@ -109,3 +109,39 @@ Collecting Metrics
         ![successful postgres](/assets/metrics/successful_postgres_integration.png)
       - Also I see it on my Host Map page:
         ![postgres in host map](/assets/metrics/host_map_with_postgres.png)
+  - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+    - I start by going to this link: https://docs.datadoghq.com/developers/agent_checks/#configuration
+    - Reading the directions, it seems like I should start by making a hello check
+      - So I cd into conf.d and run sudo vim hello.yaml
+        ![make hello yaml](/assets/metrics/make_hello_yaml.png)
+      - And copy and paste this in:
+        ![hello yaml](/assets/metrics/hello_yaml.png)  
+      - And then cd info checks.d and run sudo vim hello.py
+        ![make hello py](/assets/metrics/make_hello_py.png)
+      - And copy and paste this in:
+        ![hello py](/assets/metrics/hello_py.png)
+      - This link: https://docs.datadoghq.com/developers/agent_checks/#putting-it-all-together says to restart the agent for changes to be enabled so I run the restart command: sudo service datadog-agent restart
+      - And then run this: sudo -u dd-agent -- datadog-agent check hello
+      - It looks like this works!
+        ![check hello](/assets/metrics/check_hello.png)
+    - Okay now that we've made a hello check, we need to do something very similar except the metric name is my_metric instead of hello.word, and the value will be a random value between 0 and 1000 instead of 1.
+      - So lets go back into conf.d and run sudo vim my_metric.yaml and paste this into the file
+        ![my metric.yaml](/assets/metrics/my_metric_yaml.png)
+      - And then cd info checks.d and run sudo vim my_metric.py
+      - I google and find this link with directions to find a random number (I'm going to assume an integer is okay) from 1 to 100. I'll tweak this for my purposes: https://pythonspot.com/random-numbers/
+      - I paste this into the my_metric.py file:
+        ![my metric.py](/assets/metrics/my_metric_py.png)
+      - I run the restart command: sudo service datadog-agent restart  
+      - And then run this: sudo -u dd-agent -- datadog-agent check my_metric
+      - It looks like this works!
+        ![check my metric](/assets/metrics/check_my_metric.png)
+  - Change your check's collection interval so that it only submits the metric once every 45 seconds.   
+    - I see here: https://docs.datadoghq.com/developers/agent_checks/#configuration that the example has a min_collection_interval line in the yaml, so I will edit that.
+    - I cd into conf.d and run sudo vim my_metric.yaml to make this edit:
+      ![add interval](/assets/metrics/add_interval.png)
+    - I run the restart command: sudo service datadog-agent restart  
+    - This time I go to the Metrics Explorer in the dashboard to make sure I'm collecting a metric at regular intervals. It seems like it's working from this graph:
+      ![metrics_explorer](/assets/metrics/metrics_explorer.png)
+        Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
+  - Bonus Question Can you change the collection interval without modifying the Python check file you created?  
+    Yep! I only edited the yaml file above.
