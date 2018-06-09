@@ -12,6 +12,12 @@ from ddtrace.contrib.flask import TraceMiddleware
 from helpers.helpers import *
 from database.models import *
 
+################
+## Variables ##
+###############
+ENVIRONMENT='prod'
+teamPage='team.html'
+
 ############
 ## Config ##
 ############
@@ -21,13 +27,10 @@ heroku = Heroku(app)
 
 with app.app_context():
     db.init_app(app)
-    db.create_all()
-    db.session.commit()
+    if (ENVIRONMENT == 'dev'):
+        db.create_all()
+        db.session.commit()
 
-################
-## Variables ##
-###############
-teamPage='team.html'
 
 #############
 ## Tracers ##
@@ -83,6 +86,8 @@ def weather():
 ## Run Application ##
 ######################
 if __name__ == '__main__':
-    #app.run(debug=True, port=8000, host="0.0.0.0")
-    app.run()
+    if (ENVIRONMENT == 'dev'):
+        app.run(debug=True, port=8000, host="0.0.0.0")
+    else:
+        app.run()
 
