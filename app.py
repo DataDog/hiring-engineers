@@ -1,27 +1,44 @@
 ##################
 ## Import Items ##
 ##################
-from flask import Flask, render_template
-from helpers import *
+from flask import Flask, render_template, Response
 from flask_sqlalchemy import SQLAlchemy
+import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+from helpers.helpers import *
+from database.models import *
 
 ############
 ## Config ##
 ############
 app = Flask(__name__, static_url_path='/static')
-app.config.from_pyfile('config.py')
-db=SQLAlchemy(app)
+app.config.from_pyfile('config/config.py')
 
-class User(db.Model):
-    __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True)
+with app.app_context():
+    db.init_app(app)
+    db.create_all()
+    db.session.commit()
 
-    def __init__(self, email):
-        self.email = email
+#############
+## Tracers ##
+#############
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="wisdom")
+def wisdom_tracer():
+    words=insertIntoDB('wisdom')
+    return render_template('quotes.html', quote=words)
 
-    def __repr__(self):
-        return '<E-mail %r>' % self.email
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="chuck")
+def chuck_tracer():
+    words=insertIntoDB('chuck')
+    return render_template('quotes.html', quote=words)
+
+@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="cats")
+def cat_tracer():
+    words=insertIntoDB('cats')
+    return render_template('quotes.html', quote=words)
 
 ############
 ## Routes ##
@@ -33,16 +50,17 @@ def home():
 # 1. Quotes
 @app.route(getURL('quote', 'wisdom'))
 def wisdom():
-    return render_template('quotes.html', quote=getAPIData('wisdom'))
+    return Response(str(wisdom_tracer()))
 
 @app.route(getURL('quote', 'chuck'))
 def chuck():
-    return render_template('quotes.html', quote=getAPIData('chuck'))
+    return Response(str(chuck_tracer()))
 
 @app.route(getURL('quote', 'cats'))
 def cats():
-    return render_template('quotes.html', quote=getAPIData('cats'))
+    return Response(str(cat_tracer()))
 
+"""
 # 2. Math game
 @app.route(getURL('game', 'math'))
 def math():
@@ -52,18 +70,7 @@ def math():
 @app.route('/weather')
 def weather():
     return 'Weather application!'
-
-# Save e-mail to database and send to success page
-@app.route('/prereg')
-def prereg():
-    email = 'ben@gmail.com'
-    # Check that email does not already exist (not a great query, but works)
-    if not db.session.query(User).filter(User.email == email).count():
-        reg = User(email)
-        db.session.add(reg)
-        db.session.commit()
-        return 'check database'
-    return render_template('index.html')
+"""
 
 #####################
 ## Run Application ##
@@ -72,5 +79,3 @@ if __name__ == '__main__':
     app.run(debug=True, port=8000, host="0.0.0.0")
     #app.run()
 
-
-# Try and Catch
