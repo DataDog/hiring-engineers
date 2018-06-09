@@ -4,3 +4,4 @@ Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.3.2
 gunicorn==19.7.1
 requests==2.18.4
+blinker==1.4
