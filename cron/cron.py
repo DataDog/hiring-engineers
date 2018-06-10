@@ -3,7 +3,7 @@ import datetime
 import names
 import random
 import requests
-from urllib.request import urllib
+from urllib.request import urlopen
 
 from apscheduler.scheduler import Scheduler
 from helpers.helpers import *
@@ -12,7 +12,7 @@ cron = Scheduler(daemon=True)
 cron.start()
 
 def add_random_players():
-    urllib.urlopen('https://datadog-app.herokuapp.com/adduser')
+    urlopen('https://datadog-app.herokuapp.com/adduser')
     return True
 
 cron.add_interval_job(add_random_players, seconds=5)
