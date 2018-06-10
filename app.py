@@ -28,9 +28,9 @@ app.config.from_pyfile('config/config.py')
 
 with app.app_context():
     db.init_app(app)
-    #if (ENVIRONMENT == 'dev'):
-    db.create_all()
-    db.session.commit()
+    if (ENVIRONMENT == 'dev'):
+        db.create_all()
+        db.session.commit()
 
 #############
 ## Tracers ##
