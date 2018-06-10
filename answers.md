@@ -111,7 +111,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-> To create the Dashboard I first played with the GUI editor and corresponding JSON. Once I had that figured out I created two API keys, one new for the API and another for the 'application'. Then I opened up Postman and POSTED a complete JSON to `https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>`
+> To create the Dashboard I first played with the GUI editor and corresponding JSON. Once I had that figured out I created two API keys, one new for the API and another for the 'application'. Then I opened up Postman and sent a POST request of the JSON to `https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>`
 
 > <img src="./img-cache/dashboard.PNG">
 
@@ -273,3 +273,12 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 > I've recently taken an interest in IOT devices. One interesting use case I've encountered recently is instrumentation of a car. A modern car is extremely complex and requires exactly the sort of visibility that a platform like DD provides. Visibility into everything from raw sensor data like the Tire Pressure Sensors (TPS) to transaction tracing on the head unit where the user is directly interacting with applications like Sirius XM.
+
+## Summary:
+
+> Thanks for the opportunity! I look forward to our next conversation!
+
+
+> I closing GIF...
+
+> <img src="https://media.giphy.com/media/PJoLp4gDIqjYs/giphy.gif">
