@@ -194,10 +194,10 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 5. Type in your name in the *Notify your team* input bar.
 6. Add the tags 'my_metric' and your host name to the tags bar.
 7. Press save.
+
 ![New Metric 1](/screenshots/new-monitor-1.png)
 ![New Metric 2](/screenshots/new-monitor-2.png)
 ![New Metric 3](/screenshots/new-monitor-3.png)
-
 
 Here is an example email you will receive.
 ![Monitor Email](/screenshots/monitor-email.PNG)
@@ -242,7 +242,7 @@ Finally, run
 ```
 python app.py
 ```
-and return to your APM page.
+and return to your APM page on the Datadog application.
 
 [Here is the application.](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/app.py)
 
