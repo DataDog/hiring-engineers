@@ -6,7 +6,7 @@ db = SQLAlchemy()
 class Quote(db.Model):
     __tablename__ = "quotes"
     id    = db.Column(db.Integer, primary_key=True)
-    words = db.Column(db.String(240), unique=True)
+    words = db.Column(db.String(360), unique=True)
     category = db.Column(db.String(120))
 
     def __init__(self, words, category):

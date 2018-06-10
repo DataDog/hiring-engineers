@@ -21,7 +21,7 @@ def getAPIData(endpoint):
         return requests.get(CATS_API_ENDPOINT).json()['fact']
 
 # Database Helper Methods
-def insertIntoDB(category):
+def insertQuoteIntoDB(category):
     words = getAPIData(category)
     words_to_insert_db = Quote(words=words, category=category)
     if not db.session.query(Quote).filter(Quote.words == words).count():
@@ -29,10 +29,16 @@ def insertIntoDB(category):
         db.session.commit()
     return words
 
+def insertUserIntoDB(name, clan):
+    user_to_insert_db = User(username=name, team=clan)
+    if not db.session.query(User).filter(User.username == name).count():
+        db.session.add(user_to_insert_db)
+        db.session.commit()
+    return name
+
 def selectNumOfTeamMembers(clan):
     return User.query.filter_by(team=clan).count()
 
-# Login Helper Methods
 def userIsValid(username):
     if User.query.filter_by(username=username).count():
         return True
