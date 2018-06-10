@@ -38,7 +38,7 @@ We must first install curl:
 sudo apt install curl
 ```
 
-In the Linux termnal, run:
+In the Linux terminal, run:
 
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -215,7 +215,7 @@ pip install datadog
 ```
 
 
-[This Python script will create three custom metrics:](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/visualizing.py)
+[This Python script will create three custom metrics:](https://github.com/edzh/hiring-engineers/blob/EDWIN-ZHOU_Solutions_Engineer/scripts/visualizing.py)
 * my_metric scoped over the host.
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
@@ -299,7 +299,7 @@ python app.py
 ```
 and return to your APM page on the Datadog application.
 
-[Here is the application.](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/app.py)
+[Here is the application.](https://github.com/edzh/hiring-engineers/blob/EDWIN-ZHOU_Solutions_Engineer/scripts/app.py)
 
 **Bonus Question**: What is the difference between a Service and a Resource?
 
