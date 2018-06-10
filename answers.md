@@ -215,19 +215,19 @@ We will configure the monitor message so that it will:<br>
 - Include the metric value that caused the monitor to trigger, as well as a host IP when the monitor triggers an _Alert_ state<br>
 ## Create and Configure a Custom Monitor
 To create a cutom monitor to satisfy the above criteria:<br>
-- _Datadog UI_ -> _Monitors_ -> _New Monitor_<br>
-- Under _Select a monitor type_, select _Metric_<br>
-   1. Choose detection method: _Threshold Alert_<br>
-   2. Define the metric: **Metric**: _my_metric_ (you can leave remaining fields default)<br>
-   3. Set alert conditions: Trigger when the metric is _above_ the threshold _on average_ during the last _5 minutes_<br>
-      Alert threshold: _800_<br>
-      Warning threshold: _500_<br>
-      Alert recovery threshold: _(default)_<br>
-      Warning recovery threshold: _(default)_<br>
-      _Do not require_ a full window of data for evaluation<br>
-      _Notify_ if data is missing for more than _10 minutes_<br>
-      _Never_ automically resolve this event from a no data state<br>
-      Delay evaluation by _0_ seconds<br>
+- ***Datadog UI*** -> ***Monitors*** -> ***New Monitor***<br>
+- Under ***Select a monitor type***, select ***Metric***<br>
+   1. Choose detection method: ***Threshold Alert***<br>
+   2. Define the metric: Metric: ***my_metric*** (you can leave remaining fields default)<br>
+   3. Set alert conditions: Trigger when the metric is ***above*** the threshold ***on average*** during the last *** minutes***<br>
+      Alert threshold: ***800***<br>
+      Warning threshold: ***500***<br>
+      Alert recovery threshold: **(default)***<br>
+      Warning recovery threshold: ***(default)***<br>
+      ***Do not require*** a full window of data for evaluation<br>
+      ***Notify*** if data is missing for more than ***10 minutesv<br>
+      ***Never*** automically resolve this event from a no data state<br>
+      Delay evaluation by ***0*** seconds<br>
    4. Say what's happening:<br>
       _Random Number Generator_<br>
      
@@ -243,10 +243,10 @@ To create a cutom monitor to satisfy the above criteria:<br>
       _Monitor is reporting no data!_<br>
       _{{/is_no_data}}_<br>
    5. Notify your team:<br>
-      _Timothy Saleck_<br>
-      _Do not notify_ alert recipients when alert is modified<br>
-      _Do not restrict_ editing of this monitor to its creator or administrators<br>
-- Click _Save_<br>      
+      ***Timothy Saleck***<br>
+      ***Do not notify*** alert recipients when alert is modified<br>
+      ***Do not restrict*** editing of this monitor to its creator or administrators<br>
+- Click ***Save***<br>      
 
 When the monitor triggers, an email is sent to the user:
 ![rng](https://user-images.githubusercontent.com/39865915/41198618-f273dadc-6c36-11e8-803e-093be10ca150.png)
@@ -256,39 +256,39 @@ When the monitor triggers, an email is sent to the user:
 - Monitor will be silent all day Sat-Sun
 
 To make these updates to our monitor, do the following:
-- _Datadog UI_ -> _Monitors_ -> _Manage Downtime_<br>
-- Select _Schedule Downtime_<br>
-   1. Choose what to silence: _Monitor: Random Number Generator_, _host: ubuntu-xenial_<br>
+- ***Datadog UI*** -> ***Monitors*** -> ***Manage Downtime***<br>
+- Select ***Schedule Downtime***<br>
+   1. Choose what to silence: ***Monitor: Random Number Generator***, ***host: ubuntu-xenial***<br>
    2. Schedule:<br> 
-      _Recurring_<br>
-      Start Date: _2018/06/11_, Time Zone: _(default)_<br>
-      Repeat every: _1 days_<br>
-      Beginning: _7PM_<br>
-      Duration: _14 hours_<br>
-      Repeat until: _No end date_
+      ***Recurring***<br>
+      Start Date: ***2018/06/11***, Time Zone: ***(default)***<br>
+      Repeat every: ***1 days***<br>
+      Beginning: ***7PM***<br>
+      Duration: ***14 hours***<br>
+      Repeat until: ***No end date***
    3. Add a message:
-      _Monday-Friday, 7PM-9AM off!_<br>
+      ***Monday-Friday, 7PM-9AM off!***<br>
    4. Notify your team:<br>
-      _Timothy Saleck_<br>
-- Click _Save_<br> 
+      ***Timothy Saleck***<br>
+- Click ***Save***<br> 
 ![monfri](https://user-images.githubusercontent.com/39865915/41198634-2664223e-6c37-11e8-8dcc-fa7d69d53b9d.png)<br>
 
 And repeat for the weekend off!<br>
-- _Datadog UI_ -> _Monitors_ -> _Manage Downtime_<br>
+- ***Datadog UI*** -> ***Monitors*** -> ***Manage Downtime***<br>
 - Select _Schedule Downtime_<br>
-   1. Choose what to silence: _Monitor: Random Number Generator_, _host: ubuntu-xenial_<br>
+   1. Choose what to silence: ***Monitor: Random Number Generator***, ***host: ubuntu-xenial***<br>
    2. Schedule:<br> 
       _Recurring_<br>
-      Start Date: _2018/06/15_, Time Zone: _(default)_<br>
-      Repeat every: _7 days_<br>
-      Beginning: _12PM_<br>
-      Duration: _2 days_<br>
-      Repeat until: _No end date_
+      Start Date: ***2018/06/15***, Time Zone: ***(default)***<br>
+      Repeat every: ***7 days***<br>
+      Beginning: ***12PM***<br>
+      Duration: ***2 days***<br>
+      Repeat until: ***No end date***
    3. Add a message:
-      _Saturday and Sunday off!_<br>
+      ***Saturday and Sunday off!***<br>
    4. Notify your team:<br>
-      _Timothy Saleck_<br>
-- Click _Save_<br>  
+      ***Timothy Saleck***<br>
+- Click ***Save***<br>  
 ![satsun](https://user-images.githubusercontent.com/39865915/41198637-3e542aa6-6c37-11e8-8d05-f83185c0620e.png)
 # Collecting APM Data
 # Final Question
