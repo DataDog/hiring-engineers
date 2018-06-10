@@ -6,6 +6,8 @@ Solutions Engineer
 Technical Exercise
 
 ## Installing the Agent
+The Datadog Agent is software that is active on a host, and its purpose is to collect metrics and data, and display them on Datadog for analysis.
+
 Create your account on Datadog.
 
 In the Linux termnal, run:
@@ -47,6 +49,8 @@ sudo service datadog-agent restart
 ```
 ---
 ### Setting Up PostgreSQL on Ubuntu v17.10
+PostgreSQL is an open source, relational database. We will be using Datadog to monitor the activity on our Postgres database.
+
 **NOTE:** You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [Visit here to download libicu55 for Ubuntu v17.10.](https://packages.ubuntu.com/en/xenial/amd64/libicu55/download)
 
 From the downloads directory, run:
@@ -104,6 +108,8 @@ You should receive the following snippet as the result if setup successfully:
 ```
 ---
 ### Creating a Custom Agent
+Agent checks can be used to collect custom metrics from our own applications. If an integration doesn't exist for the application we wish to implement, then we must create our own agent.
+
 To create a custom agent, make a new check `my_metric.py` in `/etc/datadog-agent/checks.d/`
 
 In `my_metric.py`, insert the following code:
@@ -138,6 +144,8 @@ This configuration will change the collection interval of the check to occur onc
 
 
 ## Visualizing Data
+Timeboards are used to visualize metrics that are collected and displayed synchronously. Here, we will create several timeboards using the Datadog API. 
+
 Using the Datadog API, we can send requests to create timeboards without needing to access the application itself.
 
 First, we create a virtual environment in order to isolate our Python environment, and to prevent interference with other projects we may have.
@@ -183,6 +191,8 @@ The anomaly graph displays the number of scheduled checkpoints called within the
 ![Postgres Anomaly Graph](/img/anomaly-graph.png)
 
 ## Monitoring Data
+Monitors in Datadog allow us to keep active track of metrics provide alerts when the metrics provided reach a certain, user-determined criteria.
+
 We will now create a new monitor that monitors the data from my_metric, and sends a warning when the average value exceeds 500, an alert when the average value exceeds 800, and notify us if no data is sent for 10 minutes.
 
 To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
@@ -227,6 +237,8 @@ Here is the email you will receive after setting up the downtime:
 ![Downtime Email 2](/img/downtime-email-2.png)
 
 ## Collecting APM data
+The Datadog APM allows us to collect insight on our applications performance. We can trace our application and monitor key metrics such as latency, request time, and request volume.
+
 To collect data from a Flask application, we must install the middleware into the application `app.py`.
 
 To install the middleware, we must add:
