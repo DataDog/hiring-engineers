@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-
 # Edwin Zhou
 Solutions Engineer
 
