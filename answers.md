@@ -239,3 +239,58 @@ Visualizing Data
       ![email](/assets/visualizing_data/email.png)
   - Bonus Question: What is the Anomaly graph displaying?
     Sadly my anomaly graph isn't displaying anything but it should display the value of a selected metric, and also show when that value is different from what it normally is. The algorithm takes into account trends, day of the week, and time-of-day patterns. I learned all this here: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+
+Monitoring Data
+  - Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+  Warning threshold of 500
+  Alerting threshold of 800
+  And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+    - So this link: https://docs.datadoghq.com/monitors/#creating-a-monitor tells me to go to the Create Monitors page here: https://app.datadoghq.com/monitors#/create
+    ![create monitors page](/assets/visualizing_data/create_monitors_page.png)
+    - In the resulting page, I:
+      - Define the metric as my_metric
+      - Set the Alert threshold to 800
+      - Set the Warning threshold to 500
+      - Change 'Do Not Notify' if data is missing to: "Notify" if data is missing for more than "10" minutes
+
+    - My screen now looks like this:
+    ![set alert conditions](/assets/visualizing_data/set_alert_conditions.png)
+
+  - Please configure the monitor’s message so that it will:
+    - Send you an email whenever the monitor triggers.
+      - I do this in The Notify Your Team Section
+    - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+      - Done in the 'Say what's happening section'
+    - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+      - Done in the 'Say what's happening section'
+
+    My screen now looks like this:
+    ![configure alerts](/assets/visualizing_data/configure_alerts.png)
+    - I click "Save"
+  - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+    ![warning email](/assets/visualizing_data/warning_email.png)  
+
+  - Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+    - One that silences it from 7pm to 9am daily on M-F,
+    - And one that silences it all day on Sat-Sun.
+    - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.  
+
+    - Based on this link: https://docs.datadoghq.com/monitors/downtimes/#manage-downtime I navigate to this page:
+      ![downtime page](/assets/visualizing_data/downtime_page.png)
+    - I click on the Schedule Downtime button and fill in the following info for the weekday downtimes:
+      ![weekday downtimes](/assets/visualizing_data/weekly_downtimes.png)
+    - After I click "Save" I see it in my list of downtimes!
+      ![downtime list v1](/assets/visualizing_data/downtime_list_v1.png)
+    - And here's an email screenshot which gives the downtime in UTC:
+      ![email](/assets/visualizing_data/weekly_downtime_email.png)
+
+    So for the downtime meant for all day on Saturday and Sunday, I click on 'Schedule Downtime' again and fill in this info:
+      ![weekend downtimes](/assets/visualizing_data/weekend_downtimes.png)
+      Note: I tried including the downtime to start today (a Sunday) but got a notice saying downtimes couldn't be in the past so I've started this downtime for the next Saturday, June 16
+      - After I click "Save" I see it in my list of downtimes!
+        ![downtime list v1](/assets/visualizing_data/downtime_list_v2.png)
+      - And here's an email screenshot which gives the downtime in UTC:
+        ![email](/assets/visualizing_data/weekend_downtime_email.png)  
