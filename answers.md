@@ -1,4 +1,4 @@
-1. Collecting Metrics  
+# 1. Collecting Metrics  
   a. Installed Postgres and integrated with Datadog
   b. Create custom Agent Check (my_metric) with random value between 0 - 1000
   c. Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)
@@ -9,7 +9,7 @@
       * Can you change the collection interval without modifying the Python check file you created?
   
 
-2. Visualizing Data
+# 2. Visualizing Data
   a. With the Datadog API, create a Timeboard that contains:
       * Custom metric (my_metric)  
       * Database metric w/ anomaly function  
@@ -22,7 +22,7 @@
   d. Questions
       * What is the anomaly graph displaying?
 
-3. Monitoring Data
+# 3. Monitoring Data
   a. Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins
       * Warning threshold of 500
       * Alerting threshold of 800
@@ -39,6 +39,6 @@
     ![Downtime]
 
 
-4. Collecting APM Data
+# 4. Collecting APM Data
 
-5. Final Question
+# 5. Final Question
