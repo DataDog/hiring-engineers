@@ -206,9 +206,37 @@ My_Metric is: {{value}}
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 ```python
+Code removed
+```
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+> I tried the ddtrace approach with the flask application and it didn't work. So I manually instrumented the code as per the documentation. 
+
+> <img src="./img-cache/flask transactions.PNG">
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+> A Service is a set of processes that provide a complete set of functionality. A resource is a singular functionality provided by a service. An example of a Resource would be the route `/user/home`. A Service will typically provide many Resources. An application is made up of many services that each provide many resources.
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+> [Dashboard](https://p.datadoghq.com/sb/255933806-fb7b387395e8e7939b320ae24b43e184)
+
+> <img src="./img-cache/MyApp Dashboard.PNG">
+
+Please include your fully instrumented app in your submission, as well.
+
+> The source code can be [found here](./scripts/flask/flaskapp.py)
+
+```python
 from flask import Flask
+import blinker as _
 import logging
 import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -219,6 +247,8 @@ c.setFormatter(formatter)
 main_logger.addHandler(c)
 
 app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
@@ -235,14 +265,6 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-* **Bonus Question**: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
