@@ -276,9 +276,9 @@ Is there anything creative you would use Datadog for?
 
 ## Summary:
 
-> Thanks for the opportunity! I look forward to our next conversation!
+> Thanks for the opportunity! I look forward to our next conversation! I'm quite impressed at the flexibility of the platform. From out-of-box functionality, to dashboards, or extending the platform via custom metrics, DataDog is very versatile.
 
 
-> I closing GIF...
+> A closing GIF...
 
 > <img src="https://media.giphy.com/media/PJoLp4gDIqjYs/giphy.gif">
