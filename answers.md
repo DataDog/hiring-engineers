@@ -37,22 +37,23 @@ tags:
   - "custom-tag-2"
 ...
 ```
-
+Host tags on host in host map:
 ![Host Tags](/screenshots/host-tags.png)
 
 After adding the tags here, restart the agent using:
 ```
 sudo service datadog-agent restart
 ```
-
+---
 ### Setting Up PostgreSQL on Ubuntu v17.10
-You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [Visit here to download libicu55 for Ubuntu v17.10.](https://packages.ubuntu.com/en/xenial/amd64/libicu55/download)
+**NOTE:** You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [Visit here to download libicu55 for Ubuntu v17.10.](https://packages.ubuntu.com/en/xenial/amd64/libicu55/download)
 
 From the downloads directory, run:
 ```
 sudo dpkg -i ./libicu55_55.1-7ubuntu0.4_amd64.deb
 ```
 ---
+#### Installation
 To install PostgreSQL, run:
 ```
 sudo apt-get install postgresql-10
@@ -70,7 +71,7 @@ grant SELECT ON pg_stat_database to datadog;
 ```
 
 
-Now we must access our PostgreSQL conf.d file under `/etc/datadog-agent/conf.d/postgres.d/conf.yaml` and add the following lines:
+Now we must access our PostgreSQL `conf.d` file under `/etc/datadog-agent/conf.d/postgres.d/conf.yaml` and add the following lines:
 ```yaml
 init_config:
 
@@ -100,9 +101,10 @@ You should receive the following snippet as the result if setup successfully:
       Service Checks: 1, Total Service Checks: 1
       Average Execution Time : 110ms
 ```
-
+---
 ### Creating a Custom Agent
 To create a custom agent, make a new check `my_metric.py` in `/etc/datadog-agent/checks.d/`
+
 In `my_metric.py`, insert the following code:
 ```python
 from checks import AgentCheck
@@ -114,6 +116,7 @@ class CustomCheck(AgentCheck):
 
 ```
 This check will submit a metric with a random value from 0 to 1000.
+
 Then, make a new configuration directory for your new check. Note that the name of the new check must match the name of the new directory, in this case `my_metric`.
 ```
 mkdir /etc/datadog-agent/conf.d/my_metric.d/
@@ -139,25 +142,33 @@ We must install virtualenv,
 sudo apt install virtualenv
 ```
 
+
 Next, go to your desired directory of your project, and create the virtualenv.
 ```
 virtualenv venv
 ```
+
+
 Now activate the virtual environment
 ```
 source venv/bin/activate
 ```
+
+
 
 We can now install the Datadog package into our environment.
 ```
 pip install datadog
 ```
 
+
 [This Python script will create three custom metrics:](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/visualizing.py)
 * my_metric scoped over the host.
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
+![New timeboards](/screenshots/new-timeboards.png)
 
+New timeboard created posted on the events page.
 ![Timeboard graph 5 minutes](/screenshots/notified-to-events.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
@@ -170,7 +181,6 @@ The anomaly graph displays the number of scheduled checkpoints called within the
 We will now create a new monitor that monitors the data from my_metric, and sends a warning when the average value exceeds 500, an alert when the average value exceeds 800, and notify us if no data is sent for 10 minutes.
 
 To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
-
 ![New Monitor Page](/screenshots/new-metric-monitor-page.png)
 
 1. Under 'metric', select 'my_metric'. 
@@ -179,16 +189,14 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 4. Change *Do not notify* to 'notify' if data is missing. It will notify every 10 minutes by default.
 5. Type in your name in the *Notify your team* input bar.
 6. Add the tags 'my_metric' and your host name to the tags bar.
-6. Press save.
-
+7. Press save.
 ![New Metric 1](/screenshots/new-monitor-1.png)
 ![New Metric 2](/screenshots/new-monitor-2.png)
 ![New Metric 3](/screenshots/new-monitor-3.png)
 
 Here is an example email you will receive.
-
 ![Monitor Email](/screenshots/monitor-email.PNG)
-
+---
 ### Managing downtime - Bonus Question
 We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
 
@@ -198,7 +206,6 @@ Set both scheduled downtimes to monitor your newly created monitor under the mon
 
 #### Weekday Schedule
 Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
-
 ![Weekday monitor](/screenshots/weekday-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
@@ -206,7 +213,6 @@ Here is the email you will receive after setting up the downtime:
 
 #### Weekend Schedule
 Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
-
 ![Weekend monitor](/screenshots/weekend-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
