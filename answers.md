@@ -67,7 +67,16 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-> Following the online documenation I whipped something together, [Source Code Here](./checks/) I built and tested this locally without downloading the entire library by loading it into the checks.d directory and running `c:\Program Files\Datadog\Datadog Agent\embedded>agent.exe check mycheck` at the terminal.
+> Following the online documenation I whipped something together, [Source Code Here](./scripts/checks/) I built and tested this locally without downloading the entire library by loading it into the checks.d directory and running `c:\Program Files\Datadog\Datadog Agent\embedded>agent.exe check mycheck` at the terminal.
+
+```Python
+from checks import AgentCheck
+import random
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        randInt = random.randint(0, 1000)
+        self.count('my_metric', randInt)
+```
 
 > <img src="./img-cache/mycheck running in terminal.PNG" height="700">
 
@@ -80,6 +89,13 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 > Yes, I made the change via the yaml file and did not need to modify the python script itself.
+
+```YAML
+init_config:
+
+instances:
+    - min_collection_interval: 45
+```
 
 ## Visualizing Data:
 
@@ -94,7 +110,58 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+> To create the Dashboard I first played with the GUI editor and corresponding JSON. Once I had that figured out I created two API keys, one new for the API and another for the 'application'. Then I opened up Postman and POSTED a complete JSON to `https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>`
+
+> <img src="./img-cache/dashboard.PNG">
+
+> [The JSON can be found here](./scripts/dashboard/dashboard.json)
+
+```JSON
+{
+	"graphs": [{
+			"title": "My_Metric (BEAST)",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "MySQL CPU Time Anomalies",
+			"definition": {
+				"requests": [{
+					"q": "anomalies(avg:mysql.performance.cpu_time{*},'basic', 2)"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "My_Metric Rollup",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}.rollup(sum, 3600)"
+				}]
+			},
+			"viz": "timeseries"
+		}
+	],
+	"title": "MyTimeboard",
+	"description": "",
+	"template_variables": [{
+		"name": "host1",
+		"prefix": "host",
+		"default": "host:my-host"
+	}],
+	"read_only": "True"
+}
+```
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+> The Anomaly graph highlights data that is above or below the 'normal' or 'baseline' for the data by a set number of standard deviations. This is a good way to detect behavior that is abnormal without too much noise.
+
 
 ## Monitoring Data
 
