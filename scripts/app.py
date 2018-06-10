@@ -2,6 +2,10 @@ from flask import Flask
 import logging
 import sys
 
+import blinker as _
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
@@ -11,6 +15,8 @@ c.setFormatter(formatter)
 main_logger.addHandler(c)
 
 app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
@@ -25,4 +31,4 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port='5050')
+    app.run(host='0.0.0.0', port='5050')
