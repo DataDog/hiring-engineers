@@ -95,9 +95,7 @@ def register():
 
 @app.route('/adduser')
 def adduser():
-    name = names.get_first_name()
-    team = random.choice(['mystic', 'valor', 'instinct'])
-    return 'hello'
+    return Response(str(register_tracer()))
 
 # Charts
 @app.route('/charts')
