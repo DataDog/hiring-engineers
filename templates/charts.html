@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='charts.css') }}">
+
+<div class="container">
+  <div class="charts">
+    <a href="/"><button type="button" class="home btn btn-danger">Home</button></a>
+    <h1 style="text-align:center">Datadog Charts</h1>
+    <iframe src="https://app.datadoghq.com/graph/embed?token=1b721e33d0c5eb634c7886f9bfd9bf2b9a03176853686eed43c350ae406bac0b&height=500&width=1000&legend=true" width="1000" height="500"></iframe>
+    <iframe src="https://app.datadoghq.com/graph/embed?token=87c440c4125717454858d9775070962691fedf2a0c4ad653cefab926724375ed&height=500&width=1000&legend=true" width="1000" height="500"></iframe>
+    <iframe src="https://app.datadoghq.com/graph/embed?token=a63b088304168e67470a45e0af89fee3c100cbe84a1084c37108fe3000ea61ca&height=500&width=1000&legend=true" width="1000" height="500"></iframe>
+  </div>
+
+</div>

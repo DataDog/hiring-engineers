@@ -1,7 +1,7 @@
 ################
 ## Variables ##
 ###############
-ENVIRONMENT='prod'
+ENVIRONMENT='dev'
 team_page='team.html'
 
 ##################
@@ -89,6 +89,9 @@ def instinct():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     return Response(str(register_tracer()))
+@app.route('/charts')
+def charts():
+    return render_template('charts.html')
 
 #####################
 ## Run Application ##
