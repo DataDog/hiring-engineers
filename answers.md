@@ -180,11 +180,26 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+
+> To create this alert I used the below:
+```
+My_Metric is: {{value}}
+{{#is_alert}}Alerting on host: {{host.ip}} {{/is_alert}} 
+{{#is_warning}}This is a warning! My_Metric exceeded 500 but is below 800!{{/is_warning}} 
+{{#is_no_data}}My_Metric has not reported any data in the last 10 minutes...{{/is_no_data}}  @<my_email>@gmail.com
+```
+
+> <img src="./img-cache/Alert Email.PNG" height="400">
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+> I created two separate downtime schedules accordingly. Below is the email for the M-F change.
+
+> <img src="./img-cache/scheduled downtime.PNG" height="300">
 
 ## Collecting APM Data:
 
