@@ -12,13 +12,11 @@ from flask_heroku import Heroku
 import blinker as _
 import names
 import random
-import time
 
 from ddtrace import tracer
 
 from helpers.helpers import *
 from database.models import *
-from cron.cron import *
 
 ############
 ## Config ##
@@ -61,12 +59,14 @@ def register_tracer():
         team = request.form['team']
         insertUserIntoDB(name, team)
         return render_template('index.html')
-    elif request.method == 'GET':
-        name = names.get_first_name()
-        team = random.choice(['mystic', 'instinct', 'valor'])
-        insertUserIntoDB(name, team)
-        return None
     return render_template('register.html')
+
+@tracer.wrap(name="total_players", service="players", resource="players")
+def adduser_tracer():
+    name = names.get_first_name()
+    team = random.choice(['mystic', 'instinct', 'valor'])
+    insertUserIntoDB(name, team)
+    return None
 
 ############
 ## Routes ##
@@ -95,7 +95,7 @@ def register():
 
 @app.route('/adduser')
 def adduser():
-    return Response(str(register_tracer()))
+    return Response(str(adduser_tracer()))
 
 # Charts
 @app.route('/charts')
@@ -111,5 +111,3 @@ if __name__ == '__main__':
         app.run(debug=True, port=8000, host="0.0.0.0")
     else:
         app.run()
-
-add_random_players()

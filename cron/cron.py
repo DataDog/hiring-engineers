@@ -1,9 +1,8 @@
 import atexit
 import datetime
-import names
-import random
-import requests
-from urllib.request import urlopen
+#from urllib.request import urlopen
+import urllib2
+import time
 
 from apscheduler.scheduler import Scheduler
 from helpers.helpers import *
@@ -11,8 +10,11 @@ from helpers.helpers import *
 cron = Scheduler(daemon=True)
 cron.start()
 
+# Wanted to try to ping the /adduser endpoint to continously add users onto the database
 def add_random_players():
-    urlopen('https://datadog-app.herokuapp.com/adduser')
+    time.sleep(10)
+    #urllib2.urlopen('https://datadog-app.herokuapp.com/adduser')
+    #urlopen('https://datadog-app.herokuapp.com/adduser')
     return True
 
 cron.add_interval_job(add_random_players, seconds=15)
