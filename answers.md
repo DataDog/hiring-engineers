@@ -1,7 +1,6 @@
 Your answers to the questions go here.
 
-Edwin Zhou
-
+# Edwin Zhou
 Solutions Engineer
 
 Technical Exercise
@@ -235,4 +234,5 @@ Table of resources:
 
 ## Final Question:
 
-In a Rubik's Cube competition, 
+For a Rubik's Cube competition to be successfully run, competition organizers must be able to micromanage groups of people, the staff and volunteers, and the competitors. However, competitions often run behind schedule. We will provide organizers, staff, and competitors an application that will simplify the competing experience. Across many competitions, we can use Datadog to collect different metrics on each of these groups, and track when these groups are most inactive in given times. We can then develop solutions to mitigate downtime in order for competitions to coordinate more smoothly and on schedule.
+
