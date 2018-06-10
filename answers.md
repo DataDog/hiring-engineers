@@ -47,11 +47,11 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-> <img src="./img-cache/Added%20Agent%20Tags.PNG" height="100">
+> <img src="./img-cache/Added%20Agent%20Tags.PNG" height="300">
 
 > I edited the yaml without restarting the agent. After checking the controller I now know that yaml changes require an agent restart.
 
-> <img src="./img-cache/Hostmap%20Showing%20Tags.PNG" height="100">
+> <img src="./img-cache/Hostmap%20Showing%20Tags.PNG" height="300">
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -63,14 +63,23 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 > MySQL DB configuration setup was relavively straight forward. It took longer to install MySQL than it did to setup configuration. I merely provided login credentials for an admin user and restarted the agent. I also took the time to find the MySQL integration and add that to the controller.
 
-> <img src="./img-cache/MySQL Reporting.PNG" height="100">
+> <img src="./img-cache/MySQL Reporting.PNG" height="300">
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-> 
+> Following the online documenation I whipped something together, [Source Code Here](./checks/) I built and tested this locally without downloading the entire library by loading it into the checks.d directory and running `c:\Program Files\Datadog\Datadog Agent\embedded>agent.exe check mycheck` at the terminal.
+
+> <img src="./img-cache/mycheck running in terminal.PNG" height="700">
+
+> <img src="./img-cache/custom check reporting.PNG">
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+> I did this by adding `min_collection_interval: 45` to the mycheck.yaml file
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+> Yes, I made the change via the yaml file and did not need to modify the python script itself.
 
 ## Visualizing Data:
 
