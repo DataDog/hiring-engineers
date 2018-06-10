@@ -11,7 +11,7 @@ Welcome to the Datadog product demonstration!
 - Collecting APM Data
 - Final Question
 # Prerequisites - Setup the environment
-NOTE: This section is intended to assist with setting up an environment to run Datadog.  This section can be skipped if you already have an environment with the Datadog Agent installed.  
+NOTE: This section is intended to assist with setting up an environment to run Datadog.  This section can be skipped if you already have an environment with the Datadog Agent installed.
 
 The Datadog agent can be installed on a variety of operating systems.  For this demo, we will be utilizing a Linux VM, courtesy of Vagrant, and viewing it through VirtualBox.  We will install the Datadog Agent to the Linux VM that we deploy in this section.  To view details of this content, click: <details><summary>**Expand**</summary>
 ## Installing and Configuring VirtualBox
@@ -156,7 +156,7 @@ The _mycheck.yaml_ configuration file is as follows:
 After creating _mycheck.py_ and _mycheck.yaml_, restart the Datadog agent with the command:
 - _sudo service datadog-agent restart_
 
-We can change the collection interval without modifying the python check file we created by using the _min_collection_interval_ in the configuration file, _mycheck.yaml_, as referenced in the **Configuration** section from [https://docs.datadoghq.com/developers/agent_checks](url).  Be sure to restart the agent after any check file or configuration file updates!
+**Bonus**: We can change the collection interval without modifying the python check file we created by using the _min_collection_interval_ in the configuration file, _mycheck.yaml_, as referenced in the **Configuration** section from [https://docs.datadoghq.com/developers/agent_checks](url).  Be sure to restart the agent after any check file or configuration file updates!
 # Visualizing Data
 **Reference**: [https://docs.datadoghq.com/ja/api/#timeboards](url)
 
@@ -167,7 +167,7 @@ We can change the collection interval without modifying the python check file we
 **Reference**: [https://docs.datadoghq.com/graphing/miscellaneous/functions](url)
 
 ## Generate Application Key
-To use the Datadog API, we need to have both our API key, as well as create an Application key.  We can both see our API key and create our App key from the Datadog UI -> Integrations -> APIs.  To create the App key, simply type in the _New application key_ field and click on the _Create Application Key_ button.
+To use the Datadog API, we need to have both our API key, as well as create an Application key.  We can both see our API key and create our App key from the Datadog UI by navigating to **Integrations -> APIs**.  To create the App key, simply type in the _New application key_ field and click on the _Create Application Key_ button.
 ## Install _pip_ and Datadog Module for Python
 Before we can utilize the Datadog API, we need to install the _pip_ package mangement system, for software packages written in Python, onto our VM.  The Datadog Python module allows us to to use the Datadog API within our Python scripts, which among other things, allows us to implement Datadog Timeboards.  To do this we run the following commands:
 - _sudo apt-get update && sudo apt-get -y upgrade_
@@ -181,10 +181,115 @@ One way we can leverage the Datadog API, is by using it to create Timeboards.  F
 - Any metric from the Integration on our database with the anomoly function applied
 - Our custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Following the Python _example request_ from the **Create a Timeboard** section, we can get a template for our Python script.  Our script will simply replace the existing example, as well as define more graphs, to accomplish the above three criteria.  Our _mytimeboard.py_ can be seen here:
+Following the Python _example request_ from the **Create a Timeboard** section, we can get a template for our Python script.  Our script will simply replace the existing example, as well as define two more graphs, to accomplish the above three criteria.  Our _mytimeboard.py_ was created in the _/vagrant_ directory of our VM and can be seen here:
 
 
+We can initialize our newly created Timeboard in Datadog by executing our Python script.  To do this, run the following commands:
+- _cd /vagrant_
+- _python mytimeboard.py_
+
+Once the script executes successfully, we can view our newly created Timeboard in the Datadog UI by navigating to the **Dashboards -> Dashboard List** section and selecting _My Timeboard_ under **All Dashboards**:
+![timeboard](https://user-images.githubusercontent.com/39865915/41197001-1a56314a-6c04-11e8-8fe9-43d119d01324.png)
+
+From the Timeboard scren in the Datadog UI, we can zoom in a a range by simply click-holding on a point on any graph and dragging it to the time interval desired.
+
+We can also take snapshots of a particular graph and send them to any Datadog user using the **_@_** notation.
+
+For this demo, we changed the timeframe to the past five minutes, and sent a snapshot of the _my_metric Random Number Generator_ graph to myself, as shown below:
+![snap](https://user-images.githubusercontent.com/39865915/41197085-8aa63420-6c06-11e8-99a7-cd4025fc85e5.png)
+
+**Bonus**: In this demo, our anomaly graph is displaying when the average percentage of CPU time spent in kernel space by _MySQL_ on our VM goes above or below three standard deviations away from the established range.
 
 # Monitoring Data
+**References**: [https://docs.datadoghq.com/monitors/](url)<br>
+Monitoring is a key component of Datadog's software.  Monitor's allow Datadog's users to continuously check metrics, integration availibilty, network endpoints, (and more), and be notified by a variety of methods when established conditions are met. 
+
+In this demonstration, we will create a new Metric Monitor that watches the average of custom metric, _my_metric_, that we created at the beginning of this demonstration.  This Metric Monitor will alert if it is above the following values over the past 5 minutes:
+- _Warning_ threshold of 500<br>
+- _Alert_ threshold of 800<br>
+- Ensure that it will notify us if there is No Data for this query over the past 10 minutes<br>
+
+We will configure the monitor message so that it will:<br>
+- Send us an email whenever the monitor triggers<br>
+- Create different messages bases on whether the monitor is an _Alert_, _Warning_, or _No Data_ state<br>
+- Include the metric value that caused the monitor to trigger, as well as a host IP when the monitor triggers an _Alert_ state<br>
+## Create and Configure a Custom Monitor
+To create a cutom monitor to satisfy the above criteria:<br>
+- _Datadog UI_ -> _Monitors_ -> _New Monitor_<br>
+- Under _Select a monitor type_, select _Metric_<br>
+   1. Choose detection method: _Threshold Alert_<br>
+   2. Define the metric: **Metric**: _my_metric_ (you can leave remaining fields default)<br>
+   3. Set alert conditions: Trigger when the metric is _above_ the threshold _on average_ during the last _5 minutes_<br>
+      Alert threshold: _800_<br>
+      Warning threshold: _500_<br>
+      Alert recovery threshold: _(default)_<br>
+      Warning recovery threshold: _(default)_<br>
+      _Do not require_ a full window of data for evaluation<br>
+      _Notify_ if data is missing for more than _10 minutes_<br>
+      _Never_ automically resolve this event from a no data state<br>
+      Delay evaluation by _0_ seconds<br>
+   4. Say what's happening:<br>
+      _Random Number Generator_<br>
+     
+      _{{#is_alert}}_<br>
+      _Monitor is reporting above established threshold of 800!_<br>
+      _{{/is_alert}}_<br>
+
+      _{{#is_warning}}_<br> 
+      _Monitor is reporting above established threshold of 500!_<br>
+      _{{/is_warning}}_<br>
+      
+      _{{#is_no_data}}_<br>
+      _Monitor is reporting no data!_<br>
+      _{{/is_no_data}}_<br>
+   5. Notify your team:<br>
+      _Timothy Saleck_<br>
+      _Do not notify_ alert recipients when alert is modified<br>
+      _Do not restrict_ editing of this monitor to its creator or administrators<br>
+- Click _Save_<br>      
+
+When the monitor triggers, an email is sent to the user:
+![rng](https://user-images.githubusercontent.com/39865915/41198618-f273dadc-6c36-11e8-803e-093be10ca150.png)
+
+**Bonus**:  We can also configure our monitor to only alert during in-office hours, so we are not alerted when we are out of the office.  For this demonstration, we will set up downtimes for our monitor as follows:
+- Monitor will be off/silent from 7PM-9AM Mon-Fri
+- Monitor will be silent all day Sat-Sun
+
+To make these updates to our monitor, do the following:
+- _Datadog UI_ -> _Monitors_ -> _Manage Downtime_<br>
+- Select _Schedule Downtime_<br>
+   1. Choose what to silence: _Monitor: Random Number Generator_, _host: ubuntu-xenial_<br>
+   2. Schedule:<br> 
+      _Recurring_<br>
+      Start Date: _2018/06/11_, Time Zone: _(default)_<br>
+      Repeat every: _1 days_<br>
+      Beginning: _7PM_<br>
+      Duration: _14 hours_<br>
+      Repeat until: _No end date_
+   3. Add a message:
+      _Monday-Friday, 7PM-9AM off!_<br>
+   4. Notify your team:<br>
+      _Timothy Saleck_<br>
+- Click _Save_<br> 
+![monfri](https://user-images.githubusercontent.com/39865915/41198634-2664223e-6c37-11e8-8dcc-fa7d69d53b9d.png)<br>
+
+And repeat for the weekend off!<br>
+- _Datadog UI_ -> _Monitors_ -> _Manage Downtime_<br>
+- Select _Schedule Downtime_<br>
+   1. Choose what to silence: _Monitor: Random Number Generator_, _host: ubuntu-xenial_<br>
+   2. Schedule:<br> 
+      _Recurring_<br>
+      Start Date: _2018/06/15_, Time Zone: _(default)_<br>
+      Repeat every: _7 days_<br>
+      Beginning: _12PM_<br>
+      Duration: _2 days_<br>
+      Repeat until: _No end date_
+   3. Add a message:
+      _Saturday and Sunday off!_<br>
+   4. Notify your team:<br>
+      _Timothy Saleck_<br>
+- Click _Save_<br>  
+![satsun](https://user-images.githubusercontent.com/39865915/41198637-3e542aa6-6c37-11e8-8d05-f83185c0620e.png)
+
 # Collecting APM Data
 # Final Question
