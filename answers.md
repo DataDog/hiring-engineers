@@ -11,8 +11,8 @@ Don’t forget to read the [References](https://github.com/DataDog/hiring-engine
 
 > <img src="https://media1.tenor.com/images/095051a92b83613601093c59ce6b0108/tenor.gif?itemid=3567342" height="100">
 
-> While reading, I found a typo in the documentation
-`To keep backwards compatibility, the Agent will still pick up configuration files in the form */etc/datadog-agent/conf.d/<check_name>.yaml* but migrating to the new layout is strongly recommended.`
+> While reading, I found a typo in the documentation:
+`To keep backwards compatibility, the Agent will still pick up configuration files in the form /etc/datadog-agent/conf.d/<check_name>.yaml but migrating to the new layout is strongly recommended.`
 I believe the path should read `/etc/dd-agent/...`
 
 
@@ -33,13 +33,15 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 > For now, I've opted to try all of this on Windows 10 64-bit. Hopefully I don't regret that decision later ;)
 
-> After creating a DD account, I downloaded the windows agent. While reading the documentation I found that all agent versions are hosted in a JSON file on AWS. This would make enterprise deployments much easier for customers using CHEF/Puppet etc. and is preferable to the typical 'newest' approach that many companies use.
+> After creating a DD account, I downloaded the windows agent. While reading the documentation I found that all agent versions are listed in a JSON file on AWS. This would make enterprise deployments much easier for customers using CHEF/Puppet etc. and is preferable to the typical 'newest' approach that many companies use.
 
-> I copied the installer to the 'binaries' folder and ran the following command: `msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="MY_KEY_HERE" HOSTNAME="BEAST"`. This command failed silently. Rather than create an installation log, I manually ran the installer via the GUI. This was successful and I could see the agen running in task manager.
+> I copied the installer to the 'binaries' folder and ran the following command: `msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="MY_KEY_HERE" HOSTNAME="BEAST"`. This command failed silently. Rather than create an installation log, I manually ran the installer via the GUI. This was successful and I could see the agent running in task manager.
 
 > Now that the agent was running it wasn't reporting to the SaaS controller. I checked my firewall logs first, but didn't see any issues. After locating the install directory I ran `agent.exe check` and noticed the agent was unable to reach its yaml config file. I killed the agent and re-ran it as adminstrator. At that point it started reporting.
 
 > <img src="./img-cache/Agent%20Started.PNG" height="100">
+
+> <img src="https://media.giphy.com/media/GIEXgLDfghUSQ/giphy.gif">
 
 ## Collecting Metrics:
 
@@ -47,11 +49,22 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 > <img src="./img-cache/Added%20Agent%20Tags.PNG" height="100">
 
 > I edited the yaml without restarting the agent. After checking the controller I now know that yaml changes require an agent restart.
-
 > <img src="./img-cache/Hostmap%20Showing%20Tags.PNG" height="100">
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+> I've opted to go with MySQL. Version 8.0.11.0 was installed on my machine.
+
+> While installing MySQL I attempted to research documentation. For 5-10 minutes the website was innaccessible as the DNS wouldn't resolve.
+> <img src="./img-cache/docs down.PNG" height="200">
+
+> MySQL DB configuration setup was relavively straight forward. It took longer to install MySQL than it did to setup configuration. I merely provided login credentials for an admin user and restarted the agent. I also took the time to find the MySQL integration and add that to the controller.
+> <img src="./img-cache/MySQL Reporting.png" height="100">
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+> 
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 

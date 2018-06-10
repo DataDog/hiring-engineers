@@ -1,0 +1,1 @@
+"c:\Program Files\Datadog\Datadog Agent\embedded\agent.exe" start
