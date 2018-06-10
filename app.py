@@ -1,7 +1,13 @@
+################
+## Variables ##
+###############
+ENVIRONMENT='prod'
+team_page='team.html'
+
 ##################
 ## Import Items ##
 ##################
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
 import blinker as _
@@ -12,17 +18,12 @@ from ddtrace.contrib.flask import TraceMiddleware
 from helpers.helpers import *
 from database.models import *
 
-################
-## Variables ##
-###############
-ENVIRONMENT='dev'
-teamPage='team.html'
-
 ############
 ## Config ##
 ############
 app = Flask(__name__, static_url_path='/static')
 app.config.from_pyfile('config/config.py')
+
 #heroku = Heroku(app)
 
 with app.app_context():
@@ -31,24 +32,38 @@ with app.app_context():
         db.create_all()
         db.session.commit()
 
-
 #############
 ## Tracers ##
 #############
 @tracer.wrap(name="compilation_of_quotes", service="quotes", resource="valor")
 def valor_tracer():
     words=insertIntoDB('chuck')
-    return render_template(teamPage, quote=words, team='Valor', quote_type="Chuck Norris")
+    players=selectNumOfTeamMembers('valor')
+    return render_template(team_page, quote=words, team='Valor', quote_type="Chuck Norris", players=players)
 
 @tracer.wrap(name="compilation_of_quotes", service="quotes", resource="mystic")
 def mystic_tracer():
     words=insertIntoDB('wisdom')
-    return render_template(teamPage, quote=words, team='Mystic', quote_type="Wisdom")
+    players=selectNumOfTeamMembers('mystic')
+    return render_template(team_page, quote=words, team='Mystic', quote_type="Wisdom", players=players)
 
 @tracer.wrap(name="compilation_of_quotes", service="quotes", resource="instinct")
 def instinct_tracer():
     words=insertIntoDB('cats')
-    return render_template(teamPage, quote=words, team='Instinct', quote_type="Cat")
+    players=selectNumOfTeamMembers('instinct')
+    return render_template(team_page, quote=words, team='Instinct', quote_type="Cat", players=players)
+
+@tracer.wrap(name="total_players", service="players", resource="players")
+def register_tracer():
+    if request.method == 'POST':
+        username = request.form['username']
+        team     = request.form['team']
+        user = User(username=username, team=team)
+        if not userIsValid(username):
+            db.session.add(user)
+            db.session.commit()
+        return render_template('index.html')
+    return render_template('register.html')
 
 ############
 ## Routes ##
@@ -59,28 +74,21 @@ def home():
 
 # 1. Quotes
 @app.route(getURL('team', 'valor'))
-def chuck():
+def valor():
     return Response(str(valor_tracer()))
 
 @app.route(getURL('team', 'mystic'))
-def wisdom():
+def mystic():
     return Response(str(mystic_tracer()))
 
 @app.route(getURL('team', 'instinct'))
-def cats():
+def instinct():
     return Response(str(instinct_tracer()))
 
-"""
-# 2. Math game
-@app.route(getURL('game', 'math'))
-def math():
-    return 'Math Game here!'
-
-# 3. Weather App
-@app.route('/weather')
-def weather():
-    return 'Weather application!'
-"""
+# Register
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return Response(str(register_tracer()))
 
 #####################
 ## Run Application ##

@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-# Quote
+# Quotes
 class Quote(db.Model):
     __tablename__ = "quotes"
     id    = db.Column(db.Integer, primary_key=True)
@@ -16,3 +16,16 @@ class Quote(db.Model):
     def __repr__(self):
         return '<Quote %r>' % self.words
 
+# Users
+class User(db.Model):
+    __tablename__ = "users"
+    id    = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(40), unique=True)
+    team     = db.Column(db.String(40), unique=True)
+
+    def __init__(self, username, team):
+        self.username = username
+        self.team = team
+
+    def __repr__(self):
+        return '<Username %r>' % self.username

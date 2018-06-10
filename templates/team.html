@@ -29,7 +29,11 @@
     <a href="/"><button type="button" class="btn btn-danger">Home</button></a>
 
     <h1>Congratulations for joining Team {{ team }}.</h1>
-    <p>There are currently 2 members on your team.</p>
+    {% if players == 1 %}
+      <p>There is currently {{ players }} member on your team.</p>
+    {% else %}
+      <p>There are currently {{ players }} members on your team.</p>
+    {% endif %}
 
     <span>
       <img style="border-radius:20%" src="/static/assets/team-{{ team|lower }}.jpg" width="30%"/>

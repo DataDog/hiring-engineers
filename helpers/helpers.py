@@ -28,3 +28,14 @@ def insertIntoDB(category):
         db.session.add(words_to_insert_db)
         db.session.commit()
     return words
+
+def selectNumOfTeamMembers(clan):
+    return User.query.filter_by(team=clan).count()
+
+# Login Helper Methods
+def userIsValid(username):
+    if User.query.filter_by(username=username).count():
+        return True
+    return False
+
+

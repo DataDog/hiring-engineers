@@ -38,7 +38,7 @@ hr {
   text-align: center;
 }
 
-.app-quotes button {
+.choose-team {
   font-size: 1.8em;
   margin: 4%;
   height: 300px;
@@ -47,4 +47,10 @@ hr {
   border: 4px solid grey;
 }
 
-
+.register {
+  height: 60px;
+  width: 240px;
+  border-radius: 15px;
+  border: 4px solid grey;
+  font-size: 18px;
+}
