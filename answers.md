@@ -25,17 +25,26 @@
   
 
 # 2. Visualizing Data
-  a. With the Datadog API, create a Timeboard that contains:  
-      * Custom metric (my_metric)   
-      * Database metric w/ anomaly function   
-      * Custom metric w/ rollup function applied to sum up all points for past hour into 1 bucket   
-  b. Access Dashboard from Dashboard List in UI:  
-      * Set Timeboard's timeframe to past 5 mins  
+  ### Tasks
+  [x] With the Datadog API, create a Timeboard that contains:  
+      [x] Custom metric (my_metric)   
+      [x] Database metric w/ anomaly function   
+      [x] Custom metric w/ rollup function applied to sum up all points for past hour into 1 bucket   
+  [x] Access Dashboard from Dashboard List in UI:  
+      [x] Set Timeboard's timeframe to past 5 mins  
 
-  c. Screenshots of Graph w/ @ notation to send self  
-
-  d. Questions  
-      * What is the anomaly graph displaying?  
+  ### Screenshots
+  
+  #### Timeboard
+  ![Timeboard](screenshots/2-timeboard.png)
+ 
+  #### Graph w/ @ notation to send self  
+  ![Graph Snapshot](screenshots/2-graph-snapshot.png)
+  
+  #### Questions
+   What is the anomaly graph displaying?  
+   **Answer: **The Anomaly graph is currently not showcasing anything because there is no data inside my postgres database.**
+  
 
 # 3. Monitoring Data
   a. Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins 
