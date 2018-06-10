@@ -41,28 +41,33 @@
   #### Graph w/ @ notation to send self  
   ![Graph Snapshot](screenshots/2-graph-snapshot.png)
   
-  #### Questions
+  ### Questions
    What is the anomaly graph displaying?  
    **Answer: **The Anomaly graph is currently not showcasing anything because there is no data inside my postgres database.**
   
 
 # 3. Monitoring Data
-  a. Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins 
-      * Warning threshold of 500  
-      * Alerting threshold of 800  
-      * Notify if there is No Data for the past 10m  
-  b. Configure monitor's message so that it will:   
-      * Send an email whenever a monitor triggers  
-      * Create different messages based on warning, alert, no data  
-      * Include metric value and host IP on Alert  
-      * Bonus: Scheudle 2 downtimes   
+  ### Tasks
+  [x] Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins 
+      [x] Warning threshold of 500  
+      [x] Alerting threshold of 800  
+      [x] Notify if there is No Data for the past 10m  
+  [x] Configure monitor's message so that it will:   
+      [x] Send an email whenever a monitor triggers  
+      [x] Create different messages based on warning, alert, no data  
+      [x] Include metric value and host IP on Alert  
+      [x] Bonus: Scheudle 2 downtimes   
           - 7pm - 9am (M - F)   
           - All day Sat and Sun  
-  c. Screenshots of monitor email notification & scheduled downtime  
-    ![Monitor Message]  
-    ![Downtime]  
+  ### Screenshots
+  ![Monitoring Data](screenshots/3-monitoring-data.png)
+  ![Monitor Alert](screenshots/3-monitor-alert.png
+  ![No Data](screenshots/3-no-data.png)
+  ![Downtime](screenshots/3-downtime.png)
 
-
+  #### Questions
+  
+  
 # 4. Collecting APM Data   
 Given an app use Datadog’s APM solution
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
