@@ -56,9 +56,9 @@
       [x] Send an email whenever a monitor triggers  
       [x] Create different messages based on warning, alert, no data  
       [x] Include metric value and host IP on Alert  
-      [x] Bonus: Schedule 2 downtimes   
-          - 7pm - 9am (M - F)   
-          - All day Sat and Sun  
+      [x] Bonus: Schedule 2 downtimes     
+            - 7pm - 9am (M - F)   
+            - All day Sat and Sun  
   ### Screenshots
 
   #### Monitoring Data
@@ -69,7 +69,7 @@
   #### No Data Alert
   ![No Data](screenshots/3-no-data.png)
   
-  #### Downtime
+  #### Downtime (Bonus)
   ![Downtime](screenshots/3-downtime.png)
 
   #### Questions
