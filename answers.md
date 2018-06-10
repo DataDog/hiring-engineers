@@ -129,6 +129,8 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
 This configuration will change the collection interval of the check to occur once every 45 seconds.
 
 
@@ -168,7 +170,7 @@ pip install datadog
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
 ![New timeboards](/screenshots/new-timeboards.png)
 
-New timeboard created posted on the events page.
+New timeboard of my_metric over 5 minutes created posted on the events page.
 ![Timeboard graph 5 minutes](/screenshots/notified-to-events.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
@@ -193,6 +195,7 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 ![New Metric 1](/screenshots/new-monitor-1.png)
 ![New Metric 2](/screenshots/new-monitor-2.png)
 ![New Metric 3](/screenshots/new-monitor-3.png)
+
 
 Here is an example email you will receive.
 ![Monitor Email](/screenshots/monitor-email.PNG)
