@@ -37,7 +37,7 @@ tags:
 ...
 ```
 Host tags on host in host map:
-![Host Tags](/screenshots/host-tags.png)
+![Host Tags](/img/host-tags.png)
 
 #### Restarting your agent
 After adding the tags here, restart the agent using:
@@ -170,39 +170,39 @@ pip install datadog
 * my_metric scoped over the host.
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
-![New timeboards](/screenshots/new-timeboards.png)
+![New timeboards](/img/new-timeboards.png)
 
 New timeboard of my_metric over 5 minutes created posted on the events page.
-![Timeboard graph 5 minutes](/screenshots/notified-to-events.png)
+![Timeboard graph 5 minutes](/img/notified-to-events.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
 The anomaly graph displays the number of scheduled checkpoints called within the database, and indicates in red deviations from expected data with the anomaly algorithm.
 
-![Postgres Anomaly Graph](/screenshots/anomaly-graph.png)
+![Postgres Anomaly Graph](/img/anomaly-graph.png)
 
 ## Monitoring Data
 We will now create a new monitor that monitors the data from my_metric, and sends a warning when the average value exceeds 500, an alert when the average value exceeds 800, and notify us if no data is sent for 10 minutes.
 
 To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
-![New Monitor Page](/screenshots/new-metric-monitor-page.png)
+![New Monitor Page](/img/new-metric-monitor-page.png)
 
 1. Under 'metric', select 'my_metric'. Select your host. 
-![New Metric 1](/screenshots/new-monitor-1.png)
+![New Metric 1](/img/new-monitor-1.png)
 2. Set the *Alert Threshold* to '800'. 
 3. Set the *Warn Threshold* to '500'. 
-![New Metric 2](/screenshots/new-monitor-2.png)
+![New Metric 2](/img/new-monitor-2.png)
 4. Change *Do not notify* to 'notify' if data is missing. It will notify every 10 minutes by default.
-![New Metric 3](/screenshots/new-monitor-3.png)
+![New Metric 3](/img/new-monitor-3.png)
 5. Type in your name in the *Notify your team* input bar.
 6. Add the tags 'my_metric' and your host name to the tags bar.
-![New Metric 4](/screenshots/new-monitor-4.png)
+![New Metric 4](/img/new-monitor-4.png)
 7. Press save.
 
 
 Here is an example email you will receive.
 
-![Monitor Email](/screenshots/monitor-email.png)
+![Monitor Email](/img/monitor-email.png)
 ---
 ### Managing downtime - Bonus Question
 We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
@@ -213,17 +213,17 @@ Set both scheduled downtimes to monitor your newly created monitor under the mon
 
 #### Weekday Schedule
 Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
-![Weekday monitor](/screenshots/weekday-monitor.png)
+![Weekday monitor](/img/weekday-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email](/screenshots/downtime-email.png)
+![Downtime Email](/img/downtime-email.png)
 
 #### Weekend Schedule
 Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
-![Weekend monitor](/screenshots/weekend-monitor.png)
+![Weekend monitor](/img/weekend-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email 2](/screenshots/downtime-email-2.png)
+![Downtime Email 2](/img/downtime-email-2.png)
 
 ## Collecting APM data
 To collect data from a Flask application, we must install the middleware into the application `app.py`.
@@ -253,10 +253,10 @@ and return to your APM page on the Datadog application.
 A service is a set of processes that do the same job, such as a database, webapp, or an api. A resource is an action of a service. It can be an endpoint or a query.
 
 Table of services:
-![Services](/screenshots/services.png)
+![Services](/img/services.png)
 
 Table of resources:
-![Resources](/screenshots/resources.png)
+![Resources](/img/resources.png)
 
 ## Final Question:
 
