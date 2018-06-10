@@ -9,3 +9,4 @@ blinker==1.4
 ddtrace==0.12.0
 psycopg2==2.7.4
 datadog==0.20.0
+names==0.3.0
