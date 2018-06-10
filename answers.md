@@ -48,7 +48,7 @@
 
 # 3. Monitoring Data
   ### Tasks
-  [x] Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins 
+  [x] Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins   
       [x] Warning threshold of 500  
       [x] Alerting threshold of 800  
       [x] Notify if there is No Data for the past 10m  
@@ -56,13 +56,20 @@
       [x] Send an email whenever a monitor triggers  
       [x] Create different messages based on warning, alert, no data  
       [x] Include metric value and host IP on Alert  
-      [x] Bonus: Scheudle 2 downtimes   
+      [x] Bonus: Schedule 2 downtimes   
           - 7pm - 9am (M - F)   
           - All day Sat and Sun  
   ### Screenshots
+
+  #### Monitoring Data
   ![Monitoring Data](screenshots/3-monitoring-data.png)
-  ![Monitor Alert](screenshots/3-monitor-alert.png
+  #### Monitor Alert
+  ![Monitor Alert](screenshots/3-monitor-alert.png)
+  
+  #### No Data Alert
   ![No Data](screenshots/3-no-data.png)
+  
+  #### Downtime
   ![Downtime](screenshots/3-downtime.png)
 
   #### Questions
