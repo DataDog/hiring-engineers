@@ -224,6 +224,27 @@ Here is the email you will receive after setting up the downtime:
 ![Downtime Email 2](/screenshots/downtime-email-2.PNG)
 
 ## Collecting APM data
+To collect data from a Flask application, we must install the middleware into the application `app.py`.
+
+To install the middleware, we must add:
+```python
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+import blinker as _
+```
+and create a TraceMiddleware object after initializing the app:
+```
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+```
+Next, we must install ddtrace using: `pip install ddtrace` and blinker using: `pip install blinker`.
+
+Finally, run
+```
+python app.py
+```
+and return to your APM page.
+
+[Here is the application.](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/app.py)
 
 **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -237,4 +258,4 @@ Table of resources:
 
 ## Final Question:
 
-For a Rubik's Cube competition to be successfully run, competition organizers must be able to micromanage groups of people, the staff and volunteers, and the competitors. However, competitions often run behind schedule. We will provide organizers, staff, and competitors an application that will simplify the competing experience. Across many competitions, we can use Datadog to collect different metrics on each of these groups, and track when these groups are most inactive in given times. We can then develop solutions to mitigate downtime in order for competitions to coordinate more smoothly and on schedule.
+For a Rubik's Cube competition to be successfully run, competition organizers must be able to micromanage groups of people, the staff and volunteers, and the competitors. However, competitions often run behind schedule. We will provide organizers, staff, and competitors an application that will simplify the competing experience. Across many competitions, we can use Datadog coupled with this application to collect different metrics on each of these groups, and track when these groups are most inactive in given times. We can then develop solutions to mitigate downtime in order for competitions to coordinate more smoothly and on schedule.
