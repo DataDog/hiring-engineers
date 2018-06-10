@@ -3,12 +3,17 @@
   [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
   [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
 
-  d. Screenshot of Host Map, Postgres integration, my_metric   
+  ### Screenshots
+  
+  #### Host Map and Configuration
   ![Host Map](screenshots/1-hostmap.png)  
   ![Host Map 2](screenshots/1-config.png)
+
+  #### PostgresQL Integration
   ![pSQL Integration](screenshots/1-install-db.png)
   ![pSQL Integration 2](screenshots/1-postgres-integration.png)
   
+  #### Agent Check my_metric
   ![my_metric](screenshots/1-agentcheck-py.png)
   ![yaml](screenshots/1-agentcheck-yaml.png)
 
