@@ -102,7 +102,7 @@ def adduser():
 def charts():
     return render_template('charts.html')
 
-add_random_players()
+
 #####################
 ## Run Application ##
 ######################
@@ -112,3 +112,4 @@ if __name__ == '__main__':
     else:
         app.run()
 
+add_random_players()
