@@ -12,7 +12,7 @@ graphs = [{
     "definition": {
       "events": [],
       "requests": [
-        {"q": "avg:my_metric{host:EZH-LT}"}
+        {"q": "avg:my_metric{host:edzh-pc}"}
       ],
       "viz": "timeseries"
     },
@@ -22,7 +22,7 @@ graphs = [{
     "definition": {
       "events": [],
       "requests": [
-        {"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{host:EZH-LT}.as_count(), 'basic', 2)"}
+        {"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{host:edzh-pc}.as_count(), 'basic', 2)"}
       ],
       "viz": "timeseries"
     },
@@ -32,7 +32,7 @@ graphs = [{
     "definition": {
       "events": [],
       "requests": [
-        {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        {"q": "avg:my_metric{host:edzh-pc}.rollup(sum, 3600)"}
       ],
       "viz": "timeseries"
     },
