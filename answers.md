@@ -187,17 +187,18 @@ We will now create a new monitor that monitors the data from my_metric, and send
 To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
 ![New Monitor Page](/screenshots/new-metric-monitor-page.png)
 
-1. Under 'metric', select 'my_metric'. 
+1. Under 'metric', select 'my_metric'. Select your host. 
+![New Metric 1](/screenshots/new-monitor-1.png)
 2. Set the *Alert Threshold* to '800'. 
 3. Set the *Warn Threshold* to '500'. 
+![New Metric 2](/screenshots/new-monitor-2.png)
 4. Change *Do not notify* to 'notify' if data is missing. It will notify every 10 minutes by default.
+![New Metric 3](/screenshots/new-monitor-3.png)
 5. Type in your name in the *Notify your team* input bar.
 6. Add the tags 'my_metric' and your host name to the tags bar.
+![New Metric 4](/screenshots/new-monitor-4.png)
 7. Press save.
 
-![New Metric 1](/screenshots/new-monitor-1.png)
-![New Metric 2](/screenshots/new-monitor-2.png)
-![New Metric 3](/screenshots/new-monitor-3.png)
 
 Here is an example email you will receive.
 
