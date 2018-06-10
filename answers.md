@@ -200,6 +200,7 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 ![New Metric 3](/screenshots/new-monitor-3.png)
 
 Here is an example email you will receive.
+
 ![Monitor Email](/screenshots/monitor-email.PNG)
 ---
 ### Managing downtime - Bonus Question
