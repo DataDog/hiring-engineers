@@ -1,9 +1,16 @@
-# 1. Collecting Metrics  
-  a. Installed Postgres and integrated with Datadog   
-  b. Create custom Agent Check (my_metric) with random value between 0 - 1000   
-  c. Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)   
+# 1. Collecting Metrics   
+  [x] Installed Postgres and integrated with Datadog    
+  [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
+  [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
 
   d. Screenshot of Host Map, Postgres integration, my_metric   
+  ![Host Map](screenshots/1-hostmap.png)  
+  ![Host Map 2](screenshots/1-config.png)
+  ![pSQL Integration](screenshots/1-install-db.png)
+  ![pSQL Integration 2](screenshots/1-postgres-integration.png)
+  
+  ![my_metric](screenshots/1-agentcheck-py.png)
+  ![yaml](screenshots/1-agentcheck-yaml.png)
 
   e. Questions   
       * Can you change the collection interval without modifying the Python check file you created?
