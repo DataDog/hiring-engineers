@@ -290,6 +290,8 @@ And repeat for the weekend off!<br>
       _Timothy Saleck_<br>
 - Click _Save_<br>  
 ![satsun](https://user-images.githubusercontent.com/39865915/41198637-3e542aa6-6c37-11e8-8d05-f83185c0620e.png)
-
 # Collecting APM Data
 # Final Question
+Is there a creative way you would use Datadog for?<br>
+
+Ever been to a big city, and never able to find parking?  I think a good application of Datadog would be for monitoring metered parking lots/sturctures, or even down to specific metered parking spaces. This would require a "smart" meter system that could support the Datadog Agent (if one doesnt already exist).  I know there are relatively low cost options for this, such as Raspberry Pi (mentioned in the Datadog blogs).  If each meter had the Datadog Agent, or if each "pay for parking" kiosk, had the Datadog Agent, you could monitor all kinds of data that would be useful real-time, or even for predicting future availability.  You could use Datadog's monitoring capabilities to report everything about the meter, from simply "available" or "occupied", to even "how long is the spot paid for/when will it be available" types of things.  I was thinking if you could project the real-time monitoring to some sort of app for a smartphone, one may have more success trying to find an available parking spot, or soon to be available parking spot.  While this may not be an application that shows off all of Datadog's capabilities, if implemented thoughtlfully, I think it would practical to use regularly.
