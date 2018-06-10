@@ -12,6 +12,7 @@ from flask_heroku import Heroku
 import blinker as _
 import names
 import random
+import time
 
 from ddtrace import tracer
 
@@ -32,6 +33,7 @@ with app.app_context():
         db.create_all()
         db.session.commit()
 
+time.sleep(10)
 add_random_players()
 #############
 ## Tracers ##

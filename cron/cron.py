@@ -12,10 +12,10 @@ cron = Scheduler(daemon=True)
 cron.start()
 
 def add_random_players():
-    #urlopen('https://datadog-app.herokuapp.com/adduser')
+    urlopen('https://datadog-app.herokuapp.com/adduser')
     return True
 
-cron.add_interval_job(add_random_players, seconds=5)
+cron.add_interval_job(add_random_players, seconds=15)
 
 # Shutdown cron thread if web process is stopped
 atexit.register(lambda: cron.shutdown(wait=False))
