@@ -39,14 +39,16 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 > Now that the agent was running it wasn't reporting to the SaaS controller. I checked my firewall logs first, but didn't see any issues. After locating the install directory I ran `agent.exe check` and noticed the agent was unable to reach its yaml config file. I killed the agent and re-ran it as adminstrator. At that point it started reporting.
 
-> <img src="img-cache/Agent Started.png" height="100">
+> <img src="./img-cache/Agent%20Started.PNG" height="100">
 
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-> <img src="img-cache/Added Agent Tags.png" height="100">
+> <img src="./img-cache/Added%20Agent%20Tags.PNG" height="100">
 
 > I edited the yaml without restarting the agent. After checking the controller I now know that yaml changes require an agent restart.
+
+> <img src="./img-cache/Hostmap%20Showing%20Tags.PNG" height="100">
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
