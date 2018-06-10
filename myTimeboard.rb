@@ -6,8 +6,8 @@ app_key = '764cdf93411341dd0dda6f061be2d3a7668e7ee1'
 
 dog = Dogapi::Client.new(api_key, app_key)
 
-title = 'Timeboard with my_metric, my_metric rollup, and anomolies on DB Color 2'
-description = 'Test on My_Metric'
+title = 'Timeboard with my_metric, my_metric rollup, and anomolies on DB FINAL'
+description = "Sarah's Solution Engineer Exercise Timeboard"
 graphs = [
   {
       "definition" => {
@@ -36,7 +36,13 @@ graphs = [
     "definition" => {
         "events" => [],
         "requests" => [{
-            "q" => "sum:my_metric{*}.rollup(avg, 3600)"
+            "q" => "sum:my_metric{*}.rollup(avg, 3600)",
+            "type" => "bars",
+               "style": {
+                 "palette": "orange",
+                 "type": "solid",
+                 "width": "normal"
+               }
         }],
         "viz" => "timeseries"
     },

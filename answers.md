@@ -138,4 +138,13 @@ Collecting Metrics:
     I found the documentation for the anomalies method here:
     https://docs.datadoghq.com/monitors/monitor_types/anomaly/#example
 
-    
+    From the dashboard list, I found my timeboard "Timeboard with my_metric, my_metric rollup, and anomolies on DB FINAL"
+
+    Using my cursor I selected 5 minutes from the graph, which zoomed in the graph to 5 minutes, I then pressed the >> button to show the last five minutes available. The graph showing use of the rollup method  does not show data because it is from the last 5 minutes and not the last 1 hour.
+
+    I took a snapshot using the camera icon, and sent it to myself using @hello@sarahschaab.com.
+    I found the snapshot under the "events" tab.
+
+    Bonus Question: What is the Anomaly graph displaying?
+      The Anomaly Graph is using anomaly detection. It is an algorithmic feature to help show when a metric is behaving abnormally. 
+      https://docs.datadoghq.com/monitors/monitor_types/anomaly/
