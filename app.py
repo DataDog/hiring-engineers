@@ -1,7 +1,7 @@
 ################
 ## Variables ##
 ###############
-ENVIRONMENT='dev'
+ENVIRONMENT='prod'
 team_page='team.html'
 
 ##################
