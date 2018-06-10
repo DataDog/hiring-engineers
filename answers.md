@@ -43,7 +43,7 @@ Collecting Metrics:
           })
 
       In the mongo.yaml file I changed the server to
-      - server: mongodb://datadog:<myPassword>@localhost:27017/admin
+      - server: mongodb://datadog:<myPassword>@127.0.0.1/admin
 
       In the Datadog Dashboard I navigated to the integrations tab and downloaded the Mongodb Integration.
 
@@ -60,6 +60,22 @@ Collecting Metrics:
       datadog user - OK
 
       I tried multiple solutions, but continuously ran into this issue. I believe it is an issue with my machine's version of MongoDB.
+
+      I initially installed MongoDB using Homebrew, so I uninstalled it running "brew uninstall mongo"
+
+      Upon trying to reinstall MongoDB, I found that it's dependency on Python was crashing the install process. In terminal "which python" was resulting in "/Library/Frameworks/Python.framework/Versions/2.7/bin/python" I knew this was an error, because it should be located in /usr/local/bin/python.
+
+      These are the steps that I took to solve the issue:
+        - nano .bashrc
+      In Bash I added the line: export PATH=/usr/local/bin:$PATH
+      saved Bash, and exited.
+        - source .bashrc
+      "Which python" now showed  /usr/local/bin/python
+
+      I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo Dashboard I have available 1 available hosts(now in green!), and in the checks summary I have 0 critical errors.
+
+      This is the article that I used to help solve this issue https://hackercodex.com/guide/mac-development-configuration/
+
 
 
   Creating a Custom Agent Check
@@ -118,3 +134,8 @@ Collecting Metrics:
 
     I found the documentation for the rollup method here:
     https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1
+
+    I found the documentation for the anomalies method here:
+    https://docs.datadoghq.com/monitors/monitor_types/anomaly/#example
+
+    
