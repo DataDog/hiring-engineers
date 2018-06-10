@@ -1,1 +1,284 @@
-Your answers to the questions go here.
+## Preface
+
+<a href="https://media0.giphy.com/media/3ohzdKLJTw15P7yo7K/giphy.gif" title="We begin a new journey">
+<img src="https://media0.giphy.com/media/3ohzdKLJTw15P7yo7K/giphy.gif" width="480" height="197" alt="Blade Runner GIF"></a>
+
+> As we begin this journey together I will respond inline with GIFs and single quoted text. I hope you enjoy reading this as much as I enjoyed putting it together!
+
+## The Exercise
+
+Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
+
+> <img src="https://media1.tenor.com/images/095051a92b83613601093c59ce6b0108/tenor.gif?itemid=3567342" height="100">
+
+> While reading, I found a typo in the documentation:
+`To keep backwards compatibility, the Agent will still pick up configuration files in the form /etc/datadog-agent/conf.d/<check_name>.yaml but migrating to the new layout is strongly recommended.`
+I believe the path should read `/etc/dd-agent/...`
+
+
+## Questions
+
+Please provide screenshots and code snippets for all steps.
+
+> I'll do my best!
+
+## Prerequisites - Setup the environment
+
+You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+
+* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
+* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+
+Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+
+> For now, I've opted to try all of this on Windows 10 64-bit. Hopefully I don't regret that decision later ;)
+
+> After creating a DD account, I downloaded the windows agent. While reading the documentation I found that all agent versions are listed in a JSON file on AWS. This would make enterprise deployments much easier for customers using CHEF/Puppet etc. and is preferable to the typical 'newest' approach that many companies use.
+
+> I copied the installer to the 'binaries' folder and ran the following command: `msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="MY_KEY_HERE" HOSTNAME="BEAST"`. This command failed silently. Rather than create an installation log, I manually ran the installer via the GUI. This was successful and I could see the agent running in task manager.
+
+> Now that the agent was running it wasn't reporting to the SaaS controller. I checked my firewall logs first, but didn't see any issues. After locating the install directory I ran `agent.exe check` and noticed the agent was unable to reach its yaml config file. I killed the agent and re-ran it as adminstrator. At that point it started reporting.
+
+> <img src="./img-cache/Agent%20Started.PNG" height="100">
+
+> <img src="https://media.giphy.com/media/GIEXgLDfghUSQ/giphy.gif">
+
+## Collecting Metrics:
+
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+> <img src="./img-cache/Added%20Agent%20Tags.PNG" height="300">
+
+> I edited the yaml without restarting the agent. After checking the controller I now know that yaml changes require an agent restart.
+
+> <img src="./img-cache/Hostmap%20Showing%20Tags.PNG" height="300">
+
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+> I've opted to go with MySQL. Version 8.0.11.0 was installed on my machine.
+
+> While installing MySQL I attempted to research documentation. For 5-10 minutes the website was innaccessible as the DNS wouldn't resolve.
+
+> <img src="./img-cache/docs down.PNG" height="200">
+
+> MySQL DB configuration setup was relavively straight forward. It took longer to install MySQL than it did to setup configuration. I merely provided login credentials for an admin user and restarted the agent. I also took the time to find the MySQL integration and add that to the controller.
+
+> <img src="./img-cache/MySQL Reporting.PNG" height="300">
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+> Following the online documenation I whipped something together, [Source Code Here](./scripts/checks/) I built and tested this locally without downloading the entire library by loading it into the checks.d directory and running `c:\Program Files\Datadog\Datadog Agent\embedded>agent.exe check mycheck` at the terminal.
+
+```Python
+from checks import AgentCheck
+import random
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        randInt = random.randint(0, 1000)
+        self.count('my_metric', randInt)
+```
+
+> <img src="./img-cache/mycheck running in terminal.PNG" height="700">
+
+> <img src="./img-cache/custom check reporting.PNG">
+
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+> I did this by adding `min_collection_interval: 45` to the mycheck.yaml file
+
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+> Yes, I made the change via the yaml file and did not need to modify the python script itself.
+
+```YAML
+init_config:
+
+instances:
+    - min_collection_interval: 45
+```
+
+## Visualizing Data:
+
+Utilize the Datadog API to create a Timeboard that contains:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+> To create the Dashboard I first played with the GUI editor and corresponding JSON. Once I had that figured out I created two API keys, one new for the API and another for the 'application'. Then I opened up Postman and sent a POST request of the JSON to `https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>`
+
+> <img src="./img-cache/dashboard.PNG">
+
+> [The JSON can be found here](./scripts/dashboard/dashboard.json)
+
+```JSON
+{
+	"graphs": [{
+			"title": "My_Metric (BEAST)",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "MySQL CPU Time Anomalies",
+			"definition": {
+				"requests": [{
+					"q": "anomalies(avg:mysql.performance.cpu_time{*},'basic', 2)"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "My_Metric Rollup",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}.rollup(sum, 3600)"
+				}]
+			},
+			"viz": "timeseries"
+		}
+	],
+	"title": "MyTimeboard",
+	"description": "",
+	"template_variables": [{
+		"name": "host1",
+		"prefix": "host",
+		"default": "host:my-host"
+	}],
+	"read_only": "True"
+}
+```
+
+* **Bonus Question**: What is the Anomaly graph displaying?
+
+> The Anomaly graph highlights data that is above or below the 'normal' or 'baseline' for the data by a set number of standard deviations. This is a good way to detect behavior that is abnormal without too much noise.
+
+
+## Monitoring Data
+
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Please configure the monitor’s message so that it will:
+
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+
+> To create this alert I used the below:
+```
+My_Metric is: {{value}}
+{{#is_alert}}Alerting on host: {{host.ip}} {{/is_alert}} 
+{{#is_warning}}This is a warning! My_Metric exceeded 500 but is below 800!{{/is_warning}} 
+{{#is_no_data}}My_Metric has not reported any data in the last 10 minutes...{{/is_no_data}}  @<my_email>@gmail.com
+```
+
+> <img src="./img-cache/Alert Email.PNG" height="400">
+
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+> I created two separate downtime schedules accordingly. Below is the email for the M-F change.
+
+> <img src="./img-cache/scheduled downtime.PNG" height="300">
+
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```python
+Code removed
+```
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+> I tried the ddtrace approach with the flask application and it didn't work. So I manually instrumented the code as per the documentation. 
+
+> <img src="./img-cache/flask transactions.PNG">
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+> A Service is a set of processes that provide a complete set of functionality. A Resource is a singular functionality provided by a Service. An example of a Resource would be the route `/user/home`. A Service will typically provide many Resources. An application is made up of many Services that each provide many Resources.
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+> [Dashboard](https://p.datadoghq.com/sb/255933806-fb7b387395e8e7939b320ae24b43e184)
+
+> <img src="./img-cache/MyApp Dashboard.PNG">
+
+Please include your fully instrumented app in your submission, as well.
+
+> The source code can be [found here](./scripts/flask/flaskapp.py)
+
+```python
+from flask import Flask
+import blinker as _
+import logging
+import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+> I've recently taken an interest in IOT devices. One interesting use case I've encountered recently is instrumentation of a car. A modern car is extremely complex and requires exactly the sort of visibility that a platform like DD provides. Visibility into everything from raw sensor data like the Tire Pressure Sensors (TPS) to transaction tracing on the head unit where the user is directly interacting with applications like Sirius XM.
+
+## Summary:
+
+> Thanks for the opportunity! I look forward to our next conversation! I'm quite impressed at the flexibility of the platform. From out-of-box functionality, to dashboards, or extending the platform via custom metrics, DataDog is very versatile.
+
+
+> A closing GIF...
+
+> <img src="https://media.giphy.com/media/PJoLp4gDIqjYs/giphy.gif">

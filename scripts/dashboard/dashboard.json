@@ -1,0 +1,38 @@
+{
+	"graphs": [{
+			"title": "My_Metric (BEAST)",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "MySQL CPU Time Anomalies",
+			"definition": {
+				"requests": [{
+					"q": "anomalies(avg:mysql.performance.cpu_time{*},'basic', 2)"
+				}]
+			},
+			"viz": "timeseries"
+		},
+		{
+			"title": "My_Metric Rollup",
+			"definition": {
+				"requests": [{
+					"q": "avg:my_metric{host:BEAST}.rollup(sum, 3600)"
+				}]
+			},
+			"viz": "timeseries"
+		}
+	],
+	"title": "MyTimeboard",
+	"description": "",
+	"template_variables": [{
+		"name": "host1",
+		"prefix": "host",
+		"default": "host:my-host"
+	}],
+	"read_only": "True"
+}
