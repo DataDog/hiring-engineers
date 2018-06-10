@@ -7,16 +7,13 @@ Technical Exercise
 ## Installing the Agent
 Create your account on Datadog.
 
-<a href="https://app.datadoghq.com/account/settings#agent/windows">Download the Datadog Agent for Windows here.</a>
-
 In the Linux termnal, run:
 
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-
 ```
 
-<a href="https://app.datadoghq.com/account/settings#api">Your API key can be found here</a>
+[https://app.datadoghq.com/account/settings#api](Your API key can be found here)
 
 The Datadog agent should have started on its own, if not, run:
 ```
@@ -46,7 +43,14 @@ After adding the tags here, restart the agent using:
 sudo service datadog-agent restart
 ```
 
-### Setting Up PostgreSQL via BigSQL
+### Setting Up PostgreSQL on Ubuntu v17.10
+You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [https://packages.ubuntu.com/en/xenial/amd64/libicu55/download](Visit here to download libicu55 for Ubuntu v17.10.)
+
+From the downloads directory, run:
+```
+sudo dpkg -i ./libicu55_55.1-7ubuntu0.4_amd64.deb
+```
+---
 To install PostgreSQL, run:
 ```
 sudo apt-get install postgresql-10
@@ -151,3 +155,51 @@ The Python script below will create three custom metrics:
 * my_metric scoped over the host.
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
+
+**ADD SCREENSHOT OF TIMEBOARD GRAPH HERE**
+
+The anomaly graph displays the number of scheduled checkpoints called within the database, and indicates in red deviations from expected data with the anomaly algorithm.
+
+**ADD SCREENSHOT OF ANOMALY TIMEBOARD GRAPH HERE**
+
+## Monitoring Data
+We will now create a new monitor that monitors the data from my_metric, and sends a warning when the average value exceeds 500, an alert when the average value exceeds 800, and notify us if no data is sent for 10 minutes.
+
+To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
+
+**METRIC SCREENSHOT HERE**
+
+1. Under 'metric', select 'my_metric'. 
+2. Set the *Alert Threshold* to '800'. 
+3. Set the *Warn Threshold* to '500'. 
+4. Change *Do not notify* to 'notify' if data is missing. It will notify every 10 minutes by default.
+5. Type in your name in the *Notify your team* input bar.
+6. Add the tags 'my_metric' and your host name to the tags bar.
+6. Press save.
+
+**CREATE NEW METRIC SCREENSHOT HERE**
+
+Here is an example email you will receive.
+
+**SCREENSHOT OF MONITOR EMAIL HERE**
+
+### Managing downtime
+We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
+
+First, go to Monitors->Manage Downtime and select *Schedule Downtime*.
+
+Set both scheduled downtimes to monitor your newly created monitor under the monitor's host.
+
+For the weekday schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
+
+**SCREENSHOT OF WEEKDAY SCHEDULE**
+
+For the weekend schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
+
+**SCREENSHOT OF WEEKEND SCHEDULE**
+
+A service is a set of processes that do the same job, such as a database, webapp, or an api. A resource is an action of a service. It can be an endpoint or a query.
+
+## Final Question:
+
+In a Rubik's Cube competition, 
