@@ -145,20 +145,22 @@ Collecting Metrics
         Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
   - Bonus Question Can you change the collection interval without modifying the Python check file you created?  
     Yep! I only edited the yaml file above.
+
 Visualizing Data
+
   - Utilize the Datadog API to create a Timeboard that contains:
     - Your custom metric scoped over your host.
     - Any metric from the Integration on your Database with the anomaly function applied.
     - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
   Okay so here's a list of things I need to figure out, with links I find helpful:
-    how to make a timeboard, so find instructions here:
+  - how to make a timeboard, so find instructions here:
     - I find instructions here: https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
       - and I think the instructions above have directions for 'your custom metric scoped over your host'
-    Any metric from the Integration on your Database with the anomaly function applied.
+  - Any metric from the Integration on your Database with the anomaly function applied.
     - Here's a list of metrics: https://docs.datadoghq.com/integrations/postgres/#metrics
     - Anomaly function: I think I need this: https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api (although not sure if my free trial includes this... I guess we'll find out!)
-    - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Info about rollups, I found here: https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
+  - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Info about rollups, I found here: https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
     - I plan to use Postman to make API calls, and when I google around to see if there might be a tutorial, I do find this link: https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
   Cool, so I think I have an idea of what to do.   
@@ -183,9 +185,9 @@ Visualizing Data
     - Just to check that this works, I update the description to read 'SAMPLE EXAMPLE - A dashboard with memory info.' and click SEND
       ![make sample timeboard](/assets/visualizing_data/make_sample_timeboard.png)
     - I get this response in Postman:
-      ![sample timeboard response](/assets/visualizing_data/sample timeboard response.png)
+      ![sample timeboard response](/assets/visualizing_data/sample_timeboard_response.png)
     - And in the Dashboards section list I see the sample one I made:
-      ![sample dashboard](/assets/visualizing_data/sample dashboard.png)
+      ![sample dashboard](/assets/visualizing_data/sample_dashboard.png)
     - So my guess is, we need to update the code in the body to reflect the three things we want in our new timeboard, and then we'll see a successful response and timeboard in the Dashboard
       - For the first part of the request, 'Your custom metric scoped over your host', I follow the format outlined here: https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/
         - There is no function or space-aggregration, the scope can be left as { * } since there's just one host, and there's no time-aggregation, so I think I only have to update the metric portion so the request reads:  {"q": "my_metric{* }"}
@@ -212,9 +214,9 @@ Visualizing Data
 
         - {"q": "my_metric{* }.rollup(sum, 3600)"}
     - So anyway my final request looks like this:
-      ![timeboard request](/assets/visualizing_data/timeboard request.png)
+      ![timeboard request](/assets/visualizing_data/timeboard_request.png)
     - I click "Send" and get a 200 response:
-      ![timeboard response](/assets/visualizing_data/timeboard response.png)
+      ![timeboard response](/assets/visualizing_data/timeboard_response.png)
     - And in the All Dashboards page I do see my new dashboard!
       ![all dashboards list](/assets/visualizing_data/all_dashboards_list.png)
     - Ack! Some of the graphs look blank though:
