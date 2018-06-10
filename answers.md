@@ -1,7 +1,9 @@
 Your answers to the questions go here.
 
 Edwin Zhou
+
 Solutions Engineer
+
 Technical Exercise
 
 ## Installing the Agent
@@ -13,7 +15,7 @@ In the Linux termnal, run:
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-[https://app.datadoghq.com/account/settings#api](Your API key can be found here)
+[Your API key can be found here](https://app.datadoghq.com/account/settings#api)
 
 The Datadog agent should have started on its own, if not, run:
 ```
@@ -36,7 +38,7 @@ tags:
 ...
 ```
 
-**ADD SCREENSHOT HERE**
+![Host Tags](/screenshots/host-tags.png)
 
 After adding the tags here, restart the agent using:
 ```
@@ -44,7 +46,7 @@ sudo service datadog-agent restart
 ```
 
 ### Setting Up PostgreSQL on Ubuntu v17.10
-You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [https://packages.ubuntu.com/en/xenial/amd64/libicu55/download](Visit here to download libicu55 for Ubuntu v17.10.)
+You may be prompted to install libicu55 when performing `apt-get install postgresql-10`. [Visit here to download libicu55 for Ubuntu v17.10.](https://packages.ubuntu.com/en/xenial/amd64/libicu55/download)
 
 From the downloads directory, run:
 ```
@@ -156,18 +158,18 @@ The Python script below will create three custom metrics:
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
 
-**ADD SCREENSHOT OF TIMEBOARD GRAPH HERE**
+![Timeboard graph 5 minutes](/screenshots/notified-to-events.png)
 
 The anomaly graph displays the number of scheduled checkpoints called within the database, and indicates in red deviations from expected data with the anomaly algorithm.
 
-**ADD SCREENSHOT OF ANOMALY TIMEBOARD GRAPH HERE**
+![Postgres Anomaly Graph](/screenshots/anomaly-graph.png)
 
 ## Monitoring Data
 We will now create a new monitor that monitors the data from my_metric, and sends a warning when the average value exceeds 500, an alert when the average value exceeds 800, and notify us if no data is sent for 10 minutes.
 
 To create a new monitor, in the Datadog application, go to Monitor->New Monitor and select 'Metric'.
 
-**METRIC SCREENSHOT HERE**
+![New Monitor Page](/screenshots/new-metric-monitor-page.png)
 
 1. Under 'metric', select 'my_metric'. 
 2. Set the *Alert Threshold* to '800'. 
@@ -177,11 +179,13 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 6. Add the tags 'my_metric' and your host name to the tags bar.
 6. Press save.
 
-**CREATE NEW METRIC SCREENSHOT HERE**
+![New Metric 1](/screenshots/new-monitor-1.png)
+![New Metric 2](/screenshots/new-monitor-2.png)
+![New Metric 3](/screenshots/new-monitor-3.png)
 
 Here is an example email you will receive.
 
-**SCREENSHOT OF MONITOR EMAIL HERE**
+![Monitor Email](/screenshots/monitor-email.png)
 
 ### Managing downtime
 We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
@@ -192,13 +196,27 @@ Set both scheduled downtimes to monitor your newly created monitor under the mon
 
 For the weekday schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
 
-**SCREENSHOT OF WEEKDAY SCHEDULE**
+![Weekday monitor](/screenshots/weekday-monitor.png)
+
+Here is the email you will receive after setting up the downtime:
+![Downtime Email](/screenshots/downtime-email.png)
 
 For the weekend schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
 
-**SCREENSHOT OF WEEKEND SCHEDULE**
+![Weekend monitor](/screenshots/weekend-monitor.png)
+
+Here is the email you will receive after setting up the downtime:
+![Downtime Email 2](/screenshots/downtime-email-2.png)
+
+
 
 A service is a set of processes that do the same job, such as a database, webapp, or an api. A resource is an action of a service. It can be an endpoint or a query.
+
+Table of services:
+![Services](/screenshots/services.png)
+
+Table of resources:
+![Resources](/screenshots/resources.png)
 
 ## Final Question:
 
