@@ -213,7 +213,17 @@ We can now install the Datadog package into our environment.
 ```
 pip install datadog
 ```
+### Creating Application Key
+In order for our Python script to properly create timeboards, we must generate an application key for our application from the Datadog app. [Click here to visit the page to create the app key.](https://app.datadoghq.com/account/settings#api)
 
+Select *Create Application Key*.
+![New App Key](/img/new-app-key.png)
+
+Then place the following configuration inside your application with your newly generated app key and your previously generated api key:
+```python
+options = {'api_key': 'YOUR_API_KEY',
+           'app_key': 'YOUR_APP_KEY'}
+```
 
 [This Python script will create three custom metrics:](https://github.com/edzh/hiring-engineers/blob/EDWIN-ZHOU_Solutions_Engineer/scripts/visualizing.py)
 * my_metric scoped over the host.
@@ -298,6 +308,8 @@ Finally, run
 python app.py
 ```
 and return to your APM page on the Datadog application.
+
+We may respectively trigger `api_entry`, `apm_endpoint`, `trace_endpoint` resources by going to `0.0.0.0:5050/`, `0.0.0.0:5050/api/apm`, and `0.0.0.0:5050/api/trace`
 
 [Here is the application.](https://github.com/edzh/hiring-engineers/blob/EDWIN-ZHOU_Solutions_Engineer/scripts/app.py)
 
