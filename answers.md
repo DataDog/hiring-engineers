@@ -153,12 +153,14 @@ We can now install the Datadog package into our environment.
 pip install datadog
 ```
 
-The Python script below will create three custom metrics:
+[This Python script will create three custom metrics:](https://github.com/edzh/hiring-engineers/blob/Edwin-Zhou/scripts/visualizing.py)
 * my_metric scoped over the host.
 * A metric from PostgreSQL called postgres.bgwriter.checkpoints_timed with the anomaly function applied.
 * my_metric with the rollup function applied that sums up all of the points for the hour into one bucket.
 
 ![Timeboard graph 5 minutes](/screenshots/notified-to-events.png)
+
+**Bonus Question**: What is the Anomaly graph displaying?
 
 The anomaly graph displays the number of scheduled checkpoints called within the database, and indicates in red deviations from expected data with the anomaly algorithm.
 
@@ -185,30 +187,34 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 
 Here is an example email you will receive.
 
-![Monitor Email](/screenshots/monitor-email.png)
+![Monitor Email](/screenshots/monitor-email.PNG)
 
-### Managing downtime
+### Managing downtime - Bonus Question
 We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
 
 First, go to Monitors->Manage Downtime and select *Schedule Downtime*.
 
 Set both scheduled downtimes to monitor your newly created monitor under the monitor's host.
 
-For the weekday schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
+#### Weekday Schedule
+Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Monday to Friday. Begin the downtime at 7PM, and make the duration 14 hours. 
 
 ![Weekday monitor](/screenshots/weekday-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email](/screenshots/downtime-email.png)
+![Downtime Email](/screenshots/downtime-email.PNG)
 
-For the weekend schedule, under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
+#### Weekend Schedule
+Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
 
 ![Weekend monitor](/screenshots/weekend-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email 2](/screenshots/downtime-email-2.png)
+![Downtime Email 2](/screenshots/downtime-email-2.PNG)
 
+## Collecting APM data
 
+**Bonus Question**: What is the difference between a Service and a Resource?
 
 A service is a set of processes that do the same job, such as a database, webapp, or an api. A resource is an action of a service. It can be an endpoint or a query.
 
