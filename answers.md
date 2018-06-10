@@ -39,6 +39,7 @@ tags:
 Host tags on host in host map:
 ![Host Tags](/screenshots/host-tags.png)
 
+#### Restarting your agent
 After adding the tags here, restart the agent using:
 ```
 sudo service datadog-agent restart
@@ -84,7 +85,7 @@ instances:
             - optional_tag2
 ```
 
-Restart your agent.
+[Restart your agent.](#restarting-your-agent)
 
 To verify that the database is integrated into Datadog, run `sudo -u dd-agent -- datadog-agent check postgres`.
 
@@ -128,6 +129,8 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
+[Restart your agent.](#restarting-your-agent)
+
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 This configuration will change the collection interval of the check to occur once every 45 seconds.
@@ -235,4 +238,3 @@ Table of resources:
 ## Final Question:
 
 For a Rubik's Cube competition to be successfully run, competition organizers must be able to micromanage groups of people, the staff and volunteers, and the competitors. However, competitions often run behind schedule. We will provide organizers, staff, and competitors an application that will simplify the competing experience. Across many competitions, we can use Datadog to collect different metrics on each of these groups, and track when these groups are most inactive in given times. We can then develop solutions to mitigate downtime in order for competitions to coordinate more smoothly and on schedule.
-
