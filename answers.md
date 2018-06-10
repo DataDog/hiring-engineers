@@ -3,10 +3,40 @@ Solutions Engineer
 
 Technical Exercise
 
+## Setting Up the Environment
+I used Oracle's VirtualBox as my virtual machine environment, since it is already conveniently installed on my computer to complete previous projects.
+
+[Click here to install Ubuntu v17.10.](http://releases.ubuntu.com/17.10/ubuntu-17.10.1-desktop-amd64.iso)
+
+In VirtualBox, select *New*, set *Type* to 'Linux' and set *Version* to 'Ubuntu(64-bit)'. I recommend giving the virtual machine 2 GB RAM. 
+
+![Virtual Box Create VM](/img/virtualbox-1.png)
+
+Press *Create*.
+
+If your computer specifications permits, I recommend adding additional threads to the VM, increasing video memory to 128 MB, and enabling 3D acceleration. This will greatly increase the performance of the virtual machine and alleviate much frustration due to frame drops and unresponsiveness. 
+
+![More Cores](/img/more-cores.png)
+![More Video](/img/more-video.png)
+
+Launch your Ubuntu virtual machine. You will be prompted to select an Ubuntu image. Select `ubuntu-17.10.1-desktop-amd64.iso` in your downloads directory.
+
+![Virtual Box Create VM](/img/virtualbox-2.png)
+
+Select *Install Ubuntu*.
+
+![Virtual Box Create VM](/img/virtualbox-3.png)
+
+
 ## Installing the Agent
 The Datadog Agent is software that is active on a host, and its purpose is to collect metrics and data, and display them on Datadog for analysis.
 
 Create your account on Datadog.
+
+We must first install curl:
+```
+sudo apt install curl
+```
 
 In the Linux termnal, run:
 
@@ -57,10 +87,22 @@ sudo dpkg -i ./libicu55_55.1-7ubuntu0.4_amd64.deb
 ```
 ---
 #### Installation
+First we must update add the apt repository. To do that, create a file `/etc/apt/sources.list.d/pgdg.list` and add the following line:
+```
+deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+```
+
+Next, import the repository signing key and update the package lists.
+```
+> wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+> sudo apt-get update
+```
+
 To install PostgreSQL, run:
 ```
 sudo apt-get install postgresql-10
 ```
+**Note the above notice if you run into the `libicu55` error.**
 
 Run the command:
 ```
