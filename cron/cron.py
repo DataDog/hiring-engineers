@@ -3,7 +3,7 @@ import datetime
 import names
 import random
 import requests
-import urllib.request as urllib
+from urllib.request import urllib
 
 from apscheduler.scheduler import Scheduler
 from helpers.helpers import *
