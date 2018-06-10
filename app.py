@@ -33,8 +33,6 @@ with app.app_context():
         db.create_all()
         db.session.commit()
 
-time.sleep(10)
-add_random_players()
 #############
 ## Tracers ##
 #############
@@ -104,6 +102,7 @@ def adduser():
 def charts():
     return render_template('charts.html')
 
+add_random_players()
 #####################
 ## Run Application ##
 ######################
