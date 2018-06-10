@@ -217,7 +217,7 @@ Code removed
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-> A Service is a set of processes that provide a complete set of functionality. A resource is a singular functionality provided by a service. An example of a Resource would be the route `/user/home`. A Service will typically provide many Resources. An application is made up of many services that each provide many resources.
+> A Service is a set of processes that provide a complete set of functionality. A Resource is a singular functionality provided by a Service. An example of a Resource would be the route `/user/home`. A Service will typically provide many Resources. An application is made up of many Services that each provide many Resources.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -272,42 +272,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+> I've recently taken an interest in IOT devices. One interesting use case I've encountered recently is instrumentation of a car. A modern car is extremely complex and requires exactly the sort of visibility that a platform like DD provides. Visibility into everything from raw sensor data like the Tire Pressure Sensors (TPS) to transaction tracing on the head unit where the user is directly interacting with applications like Sirius XM.
