@@ -202,7 +202,7 @@ To create a new monitor, in the Datadog application, go to Monitor->New Monitor 
 
 Here is an example email you will receive.
 
-![Monitor Email](/screenshots/monitor-email.PNG)
+![Monitor Email](/screenshots/monitor-email.png)
 ---
 ### Managing downtime - Bonus Question
 We will create two schedule downtimes, one that silences the my_metric monitor from 7pm to 9am from Monday to Friday, and another that silences the my_metric monitor all day Saturday and Sunday.
@@ -216,14 +216,14 @@ Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Mo
 ![Weekday monitor](/screenshots/weekday-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email](/screenshots/downtime-email.PNG)
+![Downtime Email](/screenshots/downtime-email.png)
 
 #### Weekend Schedule
 Under *Schedule* click *Recurring* and set a schedule to repeat weekly. Check Saturday and Sunday Begin the downtime at 12AM, and make the duration 24 hours. 
 ![Weekend monitor](/screenshots/weekend-monitor.png)
 
 Here is the email you will receive after setting up the downtime:
-![Downtime Email 2](/screenshots/downtime-email-2.PNG)
+![Downtime Email 2](/screenshots/downtime-email-2.png)
 
 ## Collecting APM data
 To collect data from a Flask application, we must install the middleware into the application `app.py`.
