@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+<div class="body">
+  <h1 style="text-align: center; font-size: 48px">Registration</h1>
+  <form action="/register" method="post">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <p><input type="text" id="username" class="form-control" name="username" placeholder="What is your name?"></p>
+    </div>
+
+    <div class="form-group">
+      <label for="team-select">Please Choose a Team:</label>
+      <select class="form-control" id="team-select" name="team">
+        <option value="valor">Team Valor</option>
+        <option value="mystic">Team Mystic</option>
+        <option value="instinct">Team Instinct</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <p><input class="register" type="submit" value="Register"></p>
+    </div>
+  </form>
+
+  <div class='teams'>
+    <a href="./v1/team/valor"><button type="button" class="btn btn-danger choose-team">Team<br>Valor</button></a>
+    <a href="./v1/team/mystic"><button type="button" class="btn btn-primary choose-team">Team<br>Mystic</button></a>
+    <a href="./v1/team/instinct"><button type="button" class="btn btn-warning choose-team">Team<br>Instinct</button></a>
+  </div>
+</div>

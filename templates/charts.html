@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='charts.css') }}">
+
+<div class="container">
+  <div class="charts">
+    <a href="/"><button type="button" class="home btn btn-danger">Home</button></a>
+    <h1 style="text-align:center">Datadog Charts</h1>
+
+    <div class="row">
+      <div class="col">
+        <!-- Total Players Joining -->
+        <iframe src="https://app.datadoghq.com/graph/embed?token=0ba1b676ae0aca0b330eed9947dfb93706a7c534aee41da309692812067f8c08&height=500&width=1000&legend=true" width="1000" height="500" frameborder="0"></iframe>
+      </div>
+      <div class="col">
+        <!-- Quotes -->
+        <iframe src="https://app.datadoghq.com/graph/embed?token=1e92041ba31b3ceab2a3b765d3d2d91def4010be0c6288dc163509b808ecf82e&height=500&width=1000&legend=true" width="1000" height="500" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <!-- Hello World Instance -->
+        <iframe src="https://app.datadoghq.com/graph/embed?token=4e0d98c7e4980f96aa8b40a580ad2be3928f748cfeca5a1437066544b755edcf&height=500&width=1000&legend=true" width="1000" height="500"></iframe>
+      </div>
+      <div class="col">
+        <!-- Anomaly Graph of PostgresQL -->
+        <iframe src="https://app.datadoghq.com/graph/embed?token=605c02299b66112be58492bb6ece8bfa0391f0505f1069dc55a5f1382a37ea7b&height=500&width=1000&legend=true" width="1000" height="500" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

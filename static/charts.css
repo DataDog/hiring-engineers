@@ -1,0 +1,11 @@
+body {
+  background: rgb(206,233,38);
+  background: linear-gradient(148deg, rgba(206,233,38,1) 0%, rgba(190,52,52,1) 45%, rgba(104,104,184,1) 100%);
+}
+.charts {
+  text-align: center
+}
+
+.home {
+  margin-top: 10px;
+}
