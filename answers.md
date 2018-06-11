@@ -52,7 +52,7 @@ The app is deployed live at https://datadog-app.herokuapp.com/
   
   ### Questions
    What is the anomaly graph displaying?  
-   Answer: **The Anomaly graph reveals the anomalies that happens when pSQL database makes commits.**
+   Answer: **The Anomaly graph reveals anything different outside of the norm that happens when pSQL database makes commits.**
   
 
 # 3. Monitoring Data
