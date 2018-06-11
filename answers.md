@@ -9,9 +9,12 @@ Collecting Metrics:
 
   Adding Host Tags
 
-    After a bit of experimentation working with the datadog.yaml file and the datadog UI Dashboard I found the documentation for assigning Tags at https://docs.datadoghq.com/getting_started/tagging/assigning_tags/
+    After a bit of experimentation working with the datadog.yaml file
+    and the datadog UI Dashboard I found the documentation for assigning Tags at
+    https://docs.datadoghq.com/getting_started/tagging/assigning_tags/
     First, I chose to add a tag through the UI, with a key of hello and a value of world "hello:world"
-    Then, I navigated to the datadog.yaml file and uncommented line 35, "tags:", and added my own tags, region:eastus, region:westus, and region:centralus.
+    Then, I navigated to the datadog.yaml file and uncommented line 35, "tags:",
+    and added my own tags, region:eastus, region:westus, and region:centralus.
 
     According to the documentation you should use the following form in the datadog.yaml file:
     tags: key_first_tag:value_1, key_second_tag:value_2, key_third_tag:value_3
@@ -29,7 +32,8 @@ Collecting Metrics:
       MongoDB Integrations Documentation:
       https://docs.datadoghq.com/integrations/mongo/
 
-      I am using MongoDB, I already have it installed on my machine so I am skipping the installation process.
+      I am using MongoDB, I already have it installed on my machine so I am skipping
+      the installation process.
 
       Navigating to the conf.d/Mongo.d file I created a file called Mongo.yaml
       and added the recommended config file from the Datadog documentation.
@@ -55,22 +59,29 @@ Collecting Metrics:
       I restarted the agent and saw that there was an error with the mongo check connecting to port 27017.
       I removed the .lock file from MongoDB, and still ran into this error.
 
-      In the Mongo Dashboard I have available 1 available hosts, but in the checks summary I am recieving 7 critical warnings under the mongodb.can_connect check.
+      In the Mongo Dashboard I have available 1 available hosts,
+      but in the checks summary I am recieving 7 critical warnings under the mongodb.can_connect check.
       [Mongo_can_connect_Critical screenshot](/screenshots/Mongo_Can_Connect_Critical.png)
       [Mongo_Dashboard_Error screenshot](/screenshots/Mongo_Dashboard_Error.png)
 
       I stopped the agent and ran
-      - echo "db.auth('datadog', 'ddsolutions')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
+      - echo "db.auth('datadog', 'ddsolutions')" | mongo admin |
+      grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 
       When I recieved the output:
       exception: connect failed
       datadog user - OK
 
-      I tried multiple solutions, but continuously ran into this issue. I believe it is an issue with my machine's version of MongoDB.
+      I tried multiple solutions, but continuously ran into this issue.
+      I believe it is an issue with my machine's version of MongoDB.
 
       I initially installed MongoDB using Homebrew, so I uninstalled it running "brew uninstall mongo"
 
-      Upon trying to reinstall MongoDB, I found that it's dependency on Python was crashing the install process. In terminal "which python" was resulting in "/Library/Frameworks/Python.framework/Versions/2.7/bin/python" I knew this was an error, because it should be located in /usr/local/bin/python.
+      Upon trying to reinstall MongoDB, I found that it's dependency on Python was
+       crashing the install process. In terminal "which python" was resulting in
+        "/Library/Frameworks/Python.framework/Versions/2.7/bin/python" I knew this was an
+         error, because it should be located in /usr/local/bin/python.
+
 
       These are the steps that I took to solve the issue:
         - nano .bashrc
@@ -79,7 +90,9 @@ Collecting Metrics:
         - source .bashrc
       "Which python" now showed  /usr/local/bin/python
 
-      I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo Dashboard I have available 1 available hosts(now in green!), and in the checks summary I have 0 critical errors.
+      I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo
+       Dashboard I have available 1 available hosts(now in green!), and in the checks
+        summary I have 0 critical errors.
       [Mongo_Successful_Connection screenshot](/screenshots/Mongo_Successful_Connection.png)
 
       This is the article that I used to help solve this issue https://hackercodex.com/guide/mac-development-configuration/
@@ -89,11 +102,15 @@ Collecting Metrics:
   Creating a Custom Agent Check
       Following the documentation listed here: https://docs.datadoghq.com/developers/agent_checks/
 
-      I made my first custom check following Datadog's simple check instructions for "your first check": https://docs.datadoghq.com/developers/agent_checks/#your-first-check
+      I made my first custom check following Datadog's simple check instructions
+      for "your first check": https://docs.datadoghq.com/developers/agent_checks/#your-first-check
 
-      I created a hello.py file in the Checks.d folder, and a corresponding hello.yaml file in the conf.d folder, and tested it in the command line using - "datadog-agent check hello".
+      I created a hello.py file in the Checks.d folder, and a corresponding
+      hello.yaml file in the conf.d folder, and tested it in the command line using
+      - "datadog-agent check hello".
 
-      For my_metric, I created a my_metric.py file in the Checks.d folder, and a corresponding my_metric.yaml file in the conf.d folder.
+      For my_metric, I created a my_metric.py file in the Checks.d folder,
+      and a corresponding my_metric.yaml file in the conf.d folder.
 
       in checks.d/my_metric.py I added code:
         from checks import AgentCheck
@@ -137,6 +154,7 @@ Collecting Metrics:
 
 
   Visualizing Data:
+
     Link to my timeboard: https://app.datadoghq.com/dash/831863/timeboard-with-mymetric-mymetric-rollup-and-anomolies-on-db-final?live=false&page=0&is_auto=false&from_ts=1528694952051&to_ts=1528695252051&tile_size=m
 
     Utilize the Datadog API to create a Timeboard.
@@ -149,25 +167,32 @@ Collecting Metrics:
     I found the documentation for the anomalies method here:
     https://docs.datadoghq.com/monitors/monitor_types/anomaly/#example
 
-    From the dashboard list, I found my timeboard "Timeboard with my_metric, my_metric rollup, and anomolies on DB FINAL"
+    From the dashboard list, I found my timeboard "Timeboard with my_metric,
+    my_metric rollup, and anomolies on DB FINAL"
     [My_Timeboard screenshot](/screenshots/My_Timeboard.png)
 
-    Using my cursor I selected 5 minutes from the graph, which zoomed in the graph to 5 minutes, I then pressed the >> button to show the last five minutes available. The graph showing use of the rollup method  does not show data because it is from the last 5 minutes and not the last 1 hour.
+    Using my cursor I selected 5 minutes from the graph, which zoomed in the graph
+    to 5 minutes, I then pressed the >> button to show the last five minutes available.
+     The graph showing use of the rollup method  does not show data because it is from
+     the last 5 minutes and not the last 1 hour.
     [My_Timeboard_5Min screenshot](/screenshots/My_Timeboard_5Min.png)
 
-    I took a snapshot using the camera icon, and sent it to myself using @hello@sarahschaab.com.
+    I took a snapshot using the camera icon, and sent it to myself using
+     @hello@sarahschaab.com.
     I found the snapshot under the "events" tab.
     [Timeboard_showing_@notation screenshot](/screenshots/Timeboard_showing_@notation.png)
 
     Bonus Question: What is the Anomaly graph displaying?
-      The Anomaly Graph is using anomaly detection. It is an algorithmic feature to help show when a metric is behaving abnormally.
+      The Anomaly Graph is using anomaly detection. It is an algorithmic feature
+      to help show when a metric is behaving abnormally based on history of that metric.
       https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 
   Monitoring Data:
 
     Warning threshold of 500 created
     Alerting threshold of 800 created
-    And also ensure that it will notify you if there is No Data for this query over the past 10m.
+    And also ensure that it will notify you if there is No Data for this query over
+    the past 10m.
     [Monitor_For_My_Metric screenshot](/screenshots/Monitor_For_My_Metric.png)
 
     Bonus Question:
@@ -177,15 +202,16 @@ Collecting Metrics:
       Please see "Weekend_Downtime_Email.png"
       [Weekend_Downtime_Email screenshot](/screenshots/Weekend_Downtime_Email.png)
 
-      I could not figure out how to get these times to display in the email as Eastern Time, they appear in UTC.
 
   Collecting APM Data:
+
       I configured my datadog.yaml file under apm_config:
         apm_config:
 
         enabled: true
 
-      According to the Datadog docs, the trace agent needs to be installed separately on macOS https://docs.datadoghq.com/tracing/setup/#setup-process
+      According to the Datadog docs, the trace agent needs to be installed separately
+      on macOS https://docs.datadoghq.com/tracing/setup/#setup-process
 
       install Datadog Trace Agent:
       https://github.com/DataDog/datadog-trace-agent/#run-on-osx
@@ -194,14 +220,16 @@ Collecting Metrics:
       install Go:
       I used the official documentation,
       https://golang.org/doc/install?download=go1.10.3.darwin-amd64.pkg
-      Because I have no experience with Go I found this source, more beginner friendly
+      Because I have no experience with Go I found this source,
+      more beginner friendly
       http://sourabhbajaj.com/mac-setup/Go/README.html
 
 
       Datadog issues: @catalinciurea commented on Apr 23
       https://github.com/DataDog/datadog-trace-agent/issues/397
 
-      I followed these steps and successfully installed Go, I could not get the trace agent running in the foreground to send traces to my dashboard.
+      I followed these steps and successfully installed Go, I could not get the
+      trace agent running in the foreground to send traces to my dashboard.
 
       I also attempted following this documentation:
       https://app.datadoghq.com/apm/install
@@ -214,14 +242,28 @@ Collecting Metrics:
         "FLASK_APP=my_app.py flask run"
       My Flask app was running on localhost:5050, but was failing to send traces.
 
-      I uncommented the "receiver_port: 8126" line in the datadog.yaml file, as one last attempt, but still failed to connect the APM traces.
+      I uncommented the "receiver_port: 8126" line in the datadog.yaml file,
+      as one last attempt, but still failed to connect the APM traces.
 
-      I'm disappointed that I was unable to get this section set up, however I am excited because this documentation led me to creating my first "hello world" Go app up and running. I would like to learn more about Application Performance Management, so that I can incorporate it in future apps that I create.
+      I'm disappointed that I was unable to get this section set up,
+      however I am excited because this documentation led me to creating my first
+      "hello world" Go app. I would like to learn more about Application
+      Performance Management, so that I can incorporate it in future apps.
 
       Bonus Question: What is the difference between a Service and a Resource
         In terms of Applications, the first thing that comes to mind is REST Resources. REST resources are defined by URLs using HTTP protocol. A service is a collection of methods/processes to deliver a single feature. Apps that use REST, may have multiple services - like with AWS Applications, they are usually built with a combination of services like DynamoDB, AWS Lambda, API Gateway, and S3. All of the resources within an application make specific calls to these services.
         So more simply put, a resource is a query to one of those specific services, while a service is a set of methods that provide a specific feature.  
 
 
-    Final Question:
-       I would use datadog in conjunction with FITBIT. Sending alerts may promote a healthier lifestyle for those of us who work sitting at a desk. By setting alert thresholds you could ensure that when you have been stationary for too long, you are reminded to stand up and work, or take a walk. You can utilize the downtime feature for nighttime mode, and receive an alert in the morning when it is time to start moving again. With data showing that minor increases in physical activity can significantly lower the risk of heart disease (and many other ailments!), having the ability to monitor stationary behaviours could vastly improve a persons health & wellbeing.  
+Final Question:
+
+       I would use datadog in conjunction with FITBIT. Sending alerts may promote
+       a healthier lifestyle for those of us who work sitting at a desk.
+       By setting alert thresholds you could ensure that when you have been
+       stationary for too long, you are reminded to stand up and work, or take a
+       walk. You can utilize the downtime feature for nighttime mode, and receive
+       an alert in the morning when it is time to start moving again. With data
+       showing that minor increases in physical activity can significantly lower
+       the risk of heart disease (and many other ailments!), having the ability
+       to monitor stationary behaviours could vastly improve a persons health &
+       wellbeing.  
