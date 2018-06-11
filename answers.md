@@ -1,4 +1,5 @@
 # Completed App  
+
 The app is deployed live at https://datadog-app.herokuapp.com/  
 [x] Implemented Datadog-Tracer onto Heroku  
 [x] Connected PostgresQL database onto Heroku    
@@ -7,6 +8,7 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 ---
 # 1. Collecting Metrics
   ### Tasks
+  [x] Use virtualenv to establish Virtual Environment on local machine  
   [x] Installed Postgres and integrated with Datadog    
   [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
   [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
@@ -95,6 +97,10 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
   
   #### Application Metrics
   ![DataDog Solutions Engineer](screenshots/4-datadog-metrics.png)
+  
+### Question: What is the difference between a Service and a Resource?
+
+ **Answer: A service is a process that does a job. This can be used to showcase a graph in Datadog. A service can be a database, webapp, API endpoint. A resource is an action of a service, such as a query to a database or an endpoint**
 
 # 5. Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -119,6 +125,16 @@ Is there anything creative you would use Datadog for?
          - Accuracy of passes
          
 3. Income/Expense Chart Flow for personal and business use
+
+4. Government usage such as traffic flow, DMV lines, etc
+
+5. Personal gadget trackers (Raspberry PI) 
+    - Temperature in the house
+    - Water usage
+    - Microwave/Electricity usage
+    Also would be useful to send alerts if usage would go over a certain amount
+    I also notice that there is already a DataDog Integration here
+    https://docs.datadoghq.com/developers/faq/deploying-the-agent-on-raspberrypi/
 ```
 # App Screenshots
   
