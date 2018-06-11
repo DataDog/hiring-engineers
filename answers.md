@@ -96,7 +96,6 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
   #### Application Metrics
   ![DataDog Solutions Engineer](screenshots/4-datadog-metrics.png)
 
-
 # 5. Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
@@ -122,3 +121,22 @@ Is there anything creative you would use Datadog for?
 3. Income/Expense Chart Flow for personal and business use
 ```
 # App Screenshots
+  
+  #### App Home Page
+  ![Home Page](screenshots/5-app-home.png)
+
+  #### Datadog Charts
+  ![Datadog Charts](screenshots/5-app-charts.png)
+
+  #### Register for a Team
+  ![Register for a Team](screenshots/5-app-register.png)
+
+  #### Team Mystic
+  ![Team Mystic](screenshots/5-app-mystic.png)
+  
+  #### Team Valor
+  ![Team Valor](screenshots/5-app-valor.png)
+  
+  #### Team Instinct
+  ![Team Instinct](screenshots/5-app-instinct.png)
+  
