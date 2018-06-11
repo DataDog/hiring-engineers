@@ -197,6 +197,9 @@ Collecting Metrics:
     And also ensure that it will notify you if there is No Data for this query over
     the past 10m.
     [Monitor_For_My_Metric screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Montior_For_My_Metric.png)
+    
+    Alert Email:
+    [Alert_Email screenshot] https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png
 
     Bonus Question:
       Please see "Weekday_Downtime_Email.png"
