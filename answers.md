@@ -162,4 +162,45 @@ Collecting Metrics:
       Please see "Weekend_Downtime_Email.png"
 
       I could not figure out how to get these times to display in the email as Eastern Time, they appear in UTC.
-      
+
+  Collecting APM Data:
+      I configured my datadog.yaml file under apm_config:
+        apm_config:
+
+        enabled: true
+
+      According to the Datadog docs, the trace agent needs to be installed separately on macOS https://docs.datadoghq.com/tracing/setup/#setup-process
+
+      install Datadog Trace Agent:
+      https://github.com/DataDog/datadog-trace-agent/#run-on-osx
+
+      In order to use the DataDog Trace agent install Go.
+      install Go:
+      I used the official documentation,
+      https://golang.org/doc/install?download=go1.10.3.darwin-amd64.pkg
+      Because I have no experience with Go I found this source, more beginner friendly
+      http://sourabhbajaj.com/mac-setup/Go/README.html
+
+
+      Datadog issues: @catalinciurea commented on Apr 23
+      https://github.com/DataDog/datadog-trace-agent/issues/397
+
+      I followed these steps and successfully installed Go, I could not get the trace agent running in the foreground to send traces to my dashboard.
+
+      I also attempted following this documentation:
+      https://app.datadoghq.com/apm/install
+      As well as this documentation:
+      http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
+
+      The first time, running
+        "ddtrace-run python my_app.py"
+      and the second time with the middleware manually installed with
+        "FLASK_APP=my_app.py flask run"
+      My Flask app was running on localhost:5050, but was failing to send traces.
+
+      I uncommented the "receiver_port: 8126" line in the datadog.yaml file, as one last attempt, but still failed to connect the APM traces.
+
+      I'm disappointed that I was unable to get this section set up, however I am excited because this documentation led me to creating my first "hello world" Go app up and running. I would like to learn more about Application Performance Management, so that I can incorporate it in future apps that I create.
+
+      Bonus Question: What is the difference between a Service and a Resource
+        
