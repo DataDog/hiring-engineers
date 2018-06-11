@@ -149,8 +149,10 @@ Collecting Metrics:
       2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
       [My_Metric_45sec screenshot](/screenshots/My_Metric_45sec.png)
 
-      Bonus Question: I changed the collection interval using the my_metric.yaml file in the above step. I was not able to find documentation on changing the check collection interval using the my_metric.py file.
-        [My_Metric_Yaml_45sec screenshot](/screenshots/My_Metric_Yaml_45sec.png)
+      Bonus Question: I changed the collection interval using the my_metric.yaml
+      file in the above step. I was not able to find documentation on changing
+      the check collection interval using the my_metric.py file.
+      [My_Metric_Yaml_45sec screenshot](/screenshots/My_Metric_Yaml_45sec.png)
 
 
   Visualizing Data:
@@ -173,8 +175,8 @@ Collecting Metrics:
 
     Using my cursor I selected 5 minutes from the graph, which zoomed in the graph
     to 5 minutes, I then pressed the >> button to show the last five minutes available.
-     The graph showing use of the rollup method  does not show data because it is from
-     the last 5 minutes and not the last 1 hour.
+    The graph showing use of the rollup method  does not show data because it is from
+    the last 5 minutes and not the last 1 hour.
     [My_Timeboard_5Min screenshot](/screenshots/My_Timeboard_5Min.png)
 
     I took a snapshot using the camera icon, and sent it to myself using
@@ -183,9 +185,9 @@ Collecting Metrics:
     [Timeboard_showing_@notation screenshot](/screenshots/Timeboard_showing_@notation.png)
 
     Bonus Question: What is the Anomaly graph displaying?
-      The Anomaly Graph is using anomaly detection. It is an algorithmic feature
-      to help show when a metric is behaving abnormally based on history of that metric.
-      https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+    The Anomaly Graph is using anomaly detection. It is an algorithmic feature
+    to help show when a metric is behaving abnormally based on history of that metric.
+    https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 
   Monitoring Data:
 
