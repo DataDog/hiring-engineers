@@ -84,6 +84,8 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 Given an app use Datadog’s APM solution
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+[Dashboard Link](https://app.datadoghq.com/dash/826079/apm-and-infrastructure-metrics?live=true&page=0&is_auto=false&from_ts=1527979455178&to_ts=1527983055178&tile_size=m)
+
 ### Screenshots
 
   #### APM and Infrastructure Metrics
