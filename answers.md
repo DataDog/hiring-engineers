@@ -1,44 +1,87 @@
-1. Collecting Metrics  
-  a. Installed Postgres and integrated with Datadog
-  b. Create custom Agent Check (my_metric) with random value between 0 - 1000
-  c. Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)
+# 1. Collecting Metrics
+  ### Tasks
+  [x] Installed Postgres and integrated with Datadog    
+  [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
+  [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
 
-  d. Screenshot of Host Map, Postgres integration, my_metric 
+  ### Screenshots
+  
+  #### Host Map and Configuration
+  ![Host Map](screenshots/1-hostmap.png)  
+  ![Host Map 2](screenshots/1-config.png)
 
-  e. Questions
-      * Can you change the collection interval without modifying the Python check file you created?
+  #### PostgresQL Integration
+  ![pSQL Integration](screenshots/1-install-db.png)
+  ![pSQL Integration 2](screenshots/1-postgres-integration.png)
+  
+  #### Agent Check my_metric
+  ![my_metric](screenshots/1-agentcheck-py.png)
+  ![yaml](screenshots/1-agentcheck-yaml.png)
+
+  ### Questions   
+   Can you change the collection interval without modifying the Python check file you created?
+   
+   **Answer: I configured the min_collection_interval setting to 45.**
   
 
-2. Visualizing Data
-  a. With the Datadog API, create a Timeboard that contains:
-      * Custom metric (my_metric)  
-      * Database metric w/ anomaly function  
-      * Custom metric w/ rollup function applied to sum up all points for past hour into 1 bucket  
-  b. Access Dashboard from Dashboard List in UI:
-      * Set Timeboard's timeframe to past 5 mins
+# 2. Visualizing Data
+  ### Tasks
+  [x] With the Datadog API, create a Timeboard that contains:  
+      [x] Custom metric (my_metric)   
+      [x] Database metric w/ anomaly function   
+      [x] Custom metric w/ rollup function applied to sum up all points for past hour into 1 bucket   
+  [x] Access Dashboard from Dashboard List in UI:  
+      [x] Set Timeboard's timeframe to past 5 mins  
 
-  c. Screenshots of Graph w/ @ notation to send self
+  ### Screenshots
+  
+  #### Timeboard
+  ![Timeboard](screenshots/2-timeboard.png)
+ 
+  #### Graph w/ @ notation to send self  
+  ![Graph Snapshot](screenshots/2-graph-snapshot.png)
+  
+  ### Questions
+   What is the anomaly graph displaying?  
+   **Answer: **The Anomaly graph is currently not showcasing anything because there is no data inside my postgres database.**
+  
 
-  d. Questions
-      * What is the anomaly graph displaying?
+# 3. Monitoring Data
+  ### Tasks
+  [x] Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins   
+      [x] Warning threshold of 500  
+      [x] Alerting threshold of 800  
+      [x] Notify if there is No Data for the past 10m  
+  [x] Configure monitor's message so that it will:   
+      [x] Send an email whenever a monitor triggers  
+      [x] Create different messages based on warning, alert, no data  
+      [x] Include metric value and host IP on Alert  
+      [x] Bonus: Schedule 2 downtimes     
+            - 7pm - 9am (M - F)   
+            - All day Sat and Sun  
+  ### Screenshots
 
-3. Monitoring Data
-  a. Create a new Metric Monitor that watched my_metric and will alert if it's above the following values for the past 5 mins
-      * Warning threshold of 500
-      * Alerting threshold of 800
-      * Notify if there is No Data for the past 10m
-  b. Configure monitor's message so that it will:  
-      * Send an email whenever a monitor triggers
-      * Create different messages based on warning, alert, no data
-      * Include metric value and host IP on Alert
-      * Bonus: Scheudle 2 downtimes  
-          - 7pm - 9am (M - F)  
-          - All day Sat and Sun
-  c. Screenshots of monitor email notification & scheduled downtime
-    ![Monitor Message]
-    ![Downtime]
+  #### Monitoring Data
+  ![Monitoring Data](screenshots/3-monitoring-data.png)
+  #### Monitor Alert
+  ![Monitor Alert](screenshots/3-monitor-alert.png)
+  
+  #### No Data Alert
+  ![No Data](screenshots/3-no-data.png)
+  
+  #### Downtime (Bonus)
+  ![Downtime](screenshots/3-downtime.png)
+
+  #### Questions
+  
+  
+# 4. Collecting APM Data   
+Given an app use Datadog’s APM solution
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 
-4. Collecting APM Data
 
-5. Final Question
+# 5. Final Question
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
