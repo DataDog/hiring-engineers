@@ -40,6 +40,8 @@ The app is deployed live at https://datadog-app.herokuapp.com/
   [x] Access Dashboard from Dashboard List in UI:  
       [x] Set Timeboard's timeframe to past 5 mins  
 
+[Datadog API Script creating Timeboard](scripts/timeboard.py)
+
   ### Screenshots
   
   #### Timeboard
