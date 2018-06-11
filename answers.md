@@ -52,7 +52,7 @@ The app is deployed live at https://datadog-app.herokuapp.com/
   
   ### Questions
    What is the anomaly graph displaying?  
-   **Answer: **The Anomaly graph is currently not showcasing anything because there is no data inside my postgres database.**
+   Answer: **The Anomaly graph is currently not showcasing anything because there is no data inside my postgres database.**
   
 
 # 3. Monitoring Data
