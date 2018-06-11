@@ -182,7 +182,7 @@ Collecting Metrics:
     I took a snapshot using the camera icon, and sent it to myself using
      @hello@sarahschaab.com.
     I found the snapshot under the "events" tab.
-    [Timeboard_showing_@notation screenshot](/screenshots/Timeboard_showing_@notation.png)
+    [Timeboard_showing_@notation screenshot](hiring-engineers/screenshots/Timeboard_showing_@notation.png)
 
     Bonus Question: What is the Anomaly graph displaying?
     The Anomaly Graph is using anomaly detection. It is an algorithmic feature
