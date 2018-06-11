@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='assets/datadog.ico') }}">
+      <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+      <!--&copy; Created by Ben Basuni-->
+      {% endblock %}
+    </div>
+  </body>
+</html>
