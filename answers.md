@@ -70,6 +70,7 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 
   #### Monitoring Data
   ![Monitoring Data](screenshots/3-monitoring-data.png)
+  
   #### Monitor Alert
   ![Monitor Alert](screenshots/3-monitor-alert.png)
   
@@ -86,6 +87,13 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 Given an app use Datadog’s APM solution
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+### Screenshots
+
+  #### APM and Infrastructure Metrics
+  ![APM and Infrasctructure](screenshots/4-infrastructure-apm-metrics.png)
+  
+  #### Application Metrics
+  ![DataDog Solutions Engineer](screenshots/4-datadog-metrics.png)
 
 
 # 5. Final Question
