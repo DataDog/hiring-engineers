@@ -203,4 +203,5 @@ Collecting Metrics:
       I'm disappointed that I was unable to get this section set up, however I am excited because this documentation led me to creating my first "hello world" Go app up and running. I would like to learn more about Application Performance Management, so that I can incorporate it in future apps that I create.
 
       Bonus Question: What is the difference between a Service and a Resource
-      
+        In terms of Applications, the first thing that comes to mind is REST Resources. REST resources are defined by URLs using HTTP protocol. A service is a collection of methods/processes to deliver a single feature. Apps that use REST, may have multiple services - like with AWS Applications, they are usually built with a combination of services like DynamoDB, AWS Lambda, API Gateway, and S3. All of the resources within an application make specific calls to these services.
+        So more simply put, a resource is a query to one of those specific services, while a service is a set of methods that provide a specific feature.   
