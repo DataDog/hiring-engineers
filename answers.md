@@ -204,4 +204,8 @@ Collecting Metrics:
 
       Bonus Question: What is the difference between a Service and a Resource
         In terms of Applications, the first thing that comes to mind is REST Resources. REST resources are defined by URLs using HTTP protocol. A service is a collection of methods/processes to deliver a single feature. Apps that use REST, may have multiple services - like with AWS Applications, they are usually built with a combination of services like DynamoDB, AWS Lambda, API Gateway, and S3. All of the resources within an application make specific calls to these services.
-        So more simply put, a resource is a query to one of those specific services, while a service is a set of methods that provide a specific feature.   
+        So more simply put, a resource is a query to one of those specific services, while a service is a set of methods that provide a specific feature.  
+
+
+    Final Question:
+       I would use datadog in conjunction with FITBIT. Sending alerts may promote a healthier lifestyle for those of us who work sitting at a desk. By setting alert thresholds you could ensure that when you have been stationary for too long, you are reminded to stand up and work, or take a walk. You can utilize the downtime feature for nighttime mode, and receive an alert in the morning when it is time to start moving again. With data showing that minor increases in physical activity can significantly lower the risk of heart disease (and many other ailments!), having the ability to monitor stationary behaviours could vastly improve a persons health & wellbeing.  
