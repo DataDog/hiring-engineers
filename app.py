@@ -1,7 +1,7 @@
 ################
 ## Variables ##
 ###############
-ENVIRONMENT='prod'
+ENVIRONMENT='dev'
 team_page='team.html'
 
 ##################
@@ -34,19 +34,19 @@ with app.app_context():
 #############
 ## Tracers ##
 #############
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="valor")
+@tracer.wrap(name="compilation_of_quotes", service="valor", resource="valor")
 def valor_tracer():
     words=insertQuoteIntoDB('chuck')
     players=selectNumOfTeamMembers('valor')
     return render_template(team_page, quote=words, team='Valor', quote_type="Chuck Norris", players=players)
 
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="mystic")
+@tracer.wrap(name="compilation_of_quotes", service="mystic", resource="mystic")
 def mystic_tracer():
     words=insertQuoteIntoDB('wisdom')
     players=selectNumOfTeamMembers('mystic')
     return render_template(team_page, quote=words, team='Mystic', quote_type="Wisdom", players=players)
 
-@tracer.wrap(name="compilation_of_quotes", service="quotes", resource="instinct")
+@tracer.wrap(name="compilation_of_quotes", service="instinct", resource="instinct")
 def instinct_tracer():
     words=insertQuoteIntoDB('cats')
     players=selectNumOfTeamMembers('instinct')
@@ -63,10 +63,27 @@ def register_tracer():
 
 @tracer.wrap(name="total_players", service="players", resource="players")
 def adduser_tracer():
-    name = names.get_first_name()
-    team = random.choice(['mystic', 'instinct', 'valor'])
-    insertUserIntoDB(name, team)
+    num = random.randrange(0, 99)
+    print(num)
+    if num < 33:
+        mystic_player_tracer()
+    elif num > 33 and num < 66:
+        valor_player_tracer()
+    elif num > 66:
+        instinct_player_tracer()
     return None
+
+@tracer.wrap(name="total_players", service="mystic", resource="mystic")
+def mystic_player_tracer():
+    insertUserIntoDB(names.get_first_name(), 'mystic')
+
+@tracer.wrap(name="total_players", service="valor", resource="valor")
+def valor_player_tracer():
+    insertUserIntoDB(names.get_first_name(), 'valor')
+
+@tracer.wrap(name="total_players", service="instinct", resource="instinct")
+def instinct_player_tracer():
+    insertUserIntoDB(names.get_first_name(), 'instinct')
 
 ############
 ## Routes ##
