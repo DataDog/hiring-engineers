@@ -100,7 +100,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?  
 
-**1. Connect Datadog with Mobile Health apps (Track running, steps walked, meditation duration during the day, etc)  
-2. Use Datadog Metrics for Professional Sports  
-          a. Basketball - Track distance ran, times passed, defense vs offense duration, duration of what half they played on, etc.  
-    b. Soccer - Track distance ran, times passed, accuracy of passes**
+**1. Connect Datadog with Mobile Health apps (Track running, steps walked, meditation duration during the day, etc)**  
+**2. Use Datadog Metrics for Professional Sports**    
+          **a. Basketball - Track distance ran, times passed, defense vs offense duration, duration of what half they played on, etc.**    
+    **b. Soccer - Track distance ran, times passed, accuracy of passes**
