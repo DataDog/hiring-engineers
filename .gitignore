@@ -1,0 +1,4 @@
+# ignore compiled python file
+*.pyc
+# ignore vscode
+.vscode
