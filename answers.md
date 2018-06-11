@@ -21,6 +21,8 @@ Collecting Metrics:
       - key_first_tag:value_1
       - key_second_tag:value_2
       - key_third_tag:value_3
+      [Add_tags screenshot](/screenshots/Add_Tags.png)
+      [Add_tags UI screenshot](/screenshots/Add_Tags_UI_View.png)
 
   Installing DB and DB integration
 
@@ -54,6 +56,8 @@ Collecting Metrics:
       I removed the .lock file from MongoDB, and still ran into this error.
 
       In the Mongo Dashboard I have available 1 available hosts, but in the checks summary I am recieving 7 critical warnings under the mongodb.can_connect check.
+      [Mongo_can_connect_Critical screenshot](/screenshots/Mongo_Can_Connect_Critical.png)
+      [Mongo_Dashboard_Error screenshot](/screenshots/Mongo_Dashboard_Error.png)
 
       I stopped the agent and ran
       - echo "db.auth('datadog', 'ddsolutions')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
@@ -76,6 +80,7 @@ Collecting Metrics:
       "Which python" now showed  /usr/local/bin/python
 
       I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo Dashboard I have available 1 available hosts(now in green!), and in the checks summary I have 0 critical errors.
+      [Mongo_Successful_Connection screenshot](/screenshots/Mongo_Successful_Connection.png)
 
       This is the article that I used to help solve this issue https://hackercodex.com/guide/mac-development-configuration/
 
@@ -90,7 +95,7 @@ Collecting Metrics:
 
       For my_metric, I created a my_metric.py file in the Checks.d folder, and a corresponding my_metric.yaml file in the conf.d folder.
 
-      in checks.d/my_metric.py I added the python code:
+      in checks.d/my_metric.py I added code:
         from checks import AgentCheck
 
         from random import randint
@@ -125,8 +130,10 @@ Collecting Metrics:
 
       When I restarted the agent for the my_metric check I got the message:
       2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
+      [My_Metric_45sec screenshot](/screenshots/My_Metric_45sec.png)
 
-  Bonus Question: I changed the collection interval using the my_metric.yaml file in the above step. I was not able to find documentation on changing the check collection interval using the my_metric.py file.
+      Bonus Question: I changed the collection interval using the my_metric.yaml file in the above step. I was not able to find documentation on changing the check collection interval using the my_metric.py file.
+        [My_Metric_Yaml_45sec screenshot](/screenshots/My_Metric_Yaml_45sec.png)
 
 
   Visualizing Data:
@@ -143,11 +150,14 @@ Collecting Metrics:
     https://docs.datadoghq.com/monitors/monitor_types/anomaly/#example
 
     From the dashboard list, I found my timeboard "Timeboard with my_metric, my_metric rollup, and anomolies on DB FINAL"
+    [My_Timeboard screenshot](/screenshots/My_Timeboard.png)
 
     Using my cursor I selected 5 minutes from the graph, which zoomed in the graph to 5 minutes, I then pressed the >> button to show the last five minutes available. The graph showing use of the rollup method  does not show data because it is from the last 5 minutes and not the last 1 hour.
+    [My_Timeboard_5Min screenshot](/screenshots/My_Timeboard_5Min.png)
 
     I took a snapshot using the camera icon, and sent it to myself using @hello@sarahschaab.com.
     I found the snapshot under the "events" tab.
+    [Timeboard_showing_@notation screenshot](/screenshots/Timeboard_showing_@notation.png)
 
     Bonus Question: What is the Anomaly graph displaying?
       The Anomaly Graph is using anomaly detection. It is an algorithmic feature to help show when a metric is behaving abnormally.
@@ -158,12 +168,14 @@ Collecting Metrics:
     Warning threshold of 500 created
     Alerting threshold of 800 created
     And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
-    attached screenshots of email alerts "Alert Email.png"
+    [Monitor_For_My_Metric screenshot](/screenshots/Monitor_For_My_Metric.png)
 
     Bonus Question:
       Please see "Weekday_Downtime_Email.png"
+      [Weekday_Downtime_Email screenshot](/screenshots/Weekday_Downtime_Email.png)
+
       Please see "Weekend_Downtime_Email.png"
+      [Weekend_Downtime_Email screenshot](/screenshots/Weekend_Downtime_Email.png)
 
       I could not figure out how to get these times to display in the email as Eastern Time, they appear in UTC.
 
