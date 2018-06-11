@@ -8,7 +8,7 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 ---
 # 1. Collecting Metrics
   ### Tasks
-  [x] Use virtualenv to establish Virtual Environment  
+  [x] Use virtualenv to establish Virtual Environment on local machine  
   [x] Installed Postgres and integrated with Datadog    
   [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
   [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
