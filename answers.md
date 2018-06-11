@@ -104,7 +104,7 @@ To complete this excercise, I used Mac OS X with agent 6. All instructions and i
 
 I created the timeboard using the script at `timeboard.py`
 
-When selecting the best visualization for the `my_metric_rollup` graph, I initially selected "line", which made the invisible since it's displaying data rolled up to an hour. So I changed it to "bar" visualization.
+When selecting the best visualization for the `my_metric_rollup` graph, I initially selected "line", which made the display invisible since it's displaying data rolled up to an hour. So I changed it to "bar" visualization.
 
 Here is a screenshot of the finished timeboard:
 ![timebaord screenshot](/screenshots/my_metric_timeboard.png)
