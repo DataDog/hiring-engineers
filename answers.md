@@ -22,7 +22,10 @@ Collecting Metrics:
       - key_second_tag:value_2
       - key_third_tag:value_3
 
-   Installing DB and DB integration
+  Installing DB and DB integration
+
+      MongoDB Integrations Documentation:
+      https://docs.datadoghq.com/integrations/mongo/
 
       I am using MongoDB, I already have it installed on my machine so I am skipping the installation process.
 
@@ -127,6 +130,7 @@ Collecting Metrics:
 
 
   Visualizing Data:
+    Link to my timeboard: https://app.datadoghq.com/dash/831863/timeboard-with-mymetric-mymetric-rollup-and-anomolies-on-db-final?live=false&page=0&is_auto=false&from_ts=1528694952051&to_ts=1528695252051&tile_size=m
 
     Utilize the Datadog API to create a Timeboard.
     For creating a timeboard, I am using ruby, because I am most experienced in that language.
