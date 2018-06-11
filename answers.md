@@ -146,5 +146,20 @@ Collecting Metrics:
     I found the snapshot under the "events" tab.
 
     Bonus Question: What is the Anomaly graph displaying?
-      The Anomaly Graph is using anomaly detection. It is an algorithmic feature to help show when a metric is behaving abnormally. 
+      The Anomaly Graph is using anomaly detection. It is an algorithmic feature to help show when a metric is behaving abnormally.
       https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+
+  Monitoring Data:
+
+    Warning threshold of 500 created
+    Alerting threshold of 800 created
+    And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+    attached screenshots of email alerts "Alert Email.png"
+
+    Bonus Question:
+      Please see "Weekday_Downtime_Email.png"
+      Please see "Weekend_Downtime_Email.png"
+
+      I could not figure out how to get these times to display in the email as Eastern Time, they appear in UTC.
+      
