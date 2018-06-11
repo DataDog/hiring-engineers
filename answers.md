@@ -1,3 +1,10 @@
+# Completed App  
+The app is deployed live at https://datadog-app.herokuapp.com/  
+[x] Implemented Datadog-Tracer onto Heroku  
+[x] Connected PostgresQL database onto Heroku    
+[x] Implemented Datadog Timeboards onto App  
+
+---
 # 1. Collecting Metrics
   ### Tasks
   [x] Installed Postgres and integrated with Datadog    
