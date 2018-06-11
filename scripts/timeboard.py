@@ -28,7 +28,7 @@ anomaly_graph = {
     "definition": {
         "events": [],
         "requests": [
-            {"q": "anomalies(avg:postgresql.bgwriter.write_time{*}.as_count(), 'basic', 2)"}
+            {"q": "anomalies(avg:postgresql.commits{*}, 'basic', 2)"}
         ],
         "viz": "timeseries"
     }
