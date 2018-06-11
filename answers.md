@@ -203,4 +203,4 @@ Collecting Metrics:
       I'm disappointed that I was unable to get this section set up, however I am excited because this documentation led me to creating my first "hello world" Go app up and running. I would like to learn more about Application Performance Management, so that I can incorporate it in future apps that I create.
 
       Bonus Question: What is the difference between a Service and a Resource
-        
+      
