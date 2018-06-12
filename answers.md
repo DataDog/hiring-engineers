@@ -41,18 +41,18 @@ source: https://github.com/DataDog/integrations-core/blob/master/mongo/conf.yaml
 
 In the Mongo shell I created a user 'datadog' within my admin db.
 following the steps provided in the documentation
-        `db.createUser({`
-            `"user":"datadog",`
-            `"pwd": "<UNIQUEPASSWORD>",`
-            `"roles" : [`
-              `{role: 'read', db: 'admin' },`
-              `{role: 'clusterMonitor', db: 'admin'},`
-              `{role: 'read', db: 'local' }`
-            `]`
-          `})`
+            `db.createUser({`
+                `"user":"datadog",`
+                `"pwd": "<UNIQUEPASSWORD>",`
+                `"roles" : [`
+                  `{role: 'read', db: 'admin' },`
+                  `{role: 'clusterMonitor', db: 'admin'},`
+                  `{role: 'read', db: 'local' }`
+                `]`
+              `})`
 
 In the mongo.yaml file I changed the server to
-      `- server: mongodb://datadog:<myPassword>@127.0.0.1/admin`
+            `- server: mongodb://datadog:<myPassword>@127.0.0.1/admin`
 
 In the Datadog Dashboard I navigated to the integrations tab and downloaded the Mongodb Integration.
 
@@ -66,18 +66,18 @@ I am recieving 7 critical warnings under the mongodb.can_connect check.
 ![Mongo_Dashboard_Error screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Dashboard_Error.png)
 
 I stopped the agent and ran
-      `- echo "db.auth('datadog', 'ddsolutions')" | mongo admin |
-      grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e        "\033[0;32mdatadog user - OK\033[0m"`
+              `- echo "db.auth('datadog', 'ddsolutions')" | mongo admin |
+              grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e        "\033[0;32mdatadog user - OK\033[0m"`
 
 When I recieved the output:
-      `exception: connect failed`
-      `datadog user - OK`
+              `exception: connect failed`
+              `datadog user - OK`
 
 I tried multiple solutions, but continuously ran into this issue.
 I believe it is an issue with my machine's version of MongoDB.
 
 I initially installed MongoDB using Homebrew, so I uninstalled it running 
-`brew uninstall mongo`
+            `brew uninstall mongo`
 
 Upon trying to reinstall MongoDB, I found that it's dependency on Python was 
 crashing the install process. In terminal `which python` was resulting in
@@ -85,11 +85,11 @@ crashing the install process. In terminal `which python` was resulting in
 error, because it should be located in `/usr/local/bin/python`
 
 These are the steps that I took to solve the issue:
-            `- nano .bashrc`
+                `- nano .bashrc`
 In Bash I added the line: 
-            `- export PATH=/usr/local/bin:$PATH`
+                `- export PATH=/usr/local/bin:$PATH`
 saved Bash, and exited.
-             `- source .bashrc`
+                `- source .bashrc`
 `Which python` now showed  `/usr/local/bin/python`
 
 I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo
