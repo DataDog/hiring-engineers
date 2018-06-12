@@ -294,3 +294,225 @@ Monitoring Data
         ![downtime list v1](/assets/visualizing_data/downtime_list_v2.png)
       - And here's an email screenshot which gives the downtime in UTC:
         ![email](/assets/visualizing_data/weekend_downtime_email.png)  
+
+Collecting APM Data
+  - First I read through the docs here: https://docs.datadoghq.com/tracing/ and here: http://flask.pocoo.org/docs/0.12/quickstart/
+  - Then, to get started I watch this video here: https://www.youtube.com/watch?v=faoR5M-BaSwand decide to follow his instructions, which make everything seem simple. :D
+  - Per his instructions I first go to https://app.datadoghq.com/apm/docs and click 'Get Started', which takes my to this page:
+    ![report traces](/assets/apm/report_traces.png)
+  - Just to double check what language to pick, I google and confirm it's Python:
+    ![flask language](/assets/apm/flask_language.png)
+  - So in terminal, I Install the Python client using pip install ddtrace
+  - I get this message: The program 'pip' is currently not installed.  You can install it by typing:
+sudo apt-get install python-pip
+  - So I run sudo apt-get install python-pip, and then pip install ddtrace
+    ![pip_install_ddtrace](/assets/apm/flask_language.png)
+  - In terminal there's a weird message of:
+    "Downloading/unpacking ddtrace
+      Cannot fetch index base URL http://pypi.python.org/simple/
+      Could not find any downloads that satisfy the requirement ddtrace
+    No distributions at all found for ddtrace" so I wonder if I should open up my Flask App before proceeding (or maybe I should've done that before this step? Not sure, but I will do it now)
+  - So, now to set my Flask app up!
+    - First I need to install Flask based on instructions here: http://flask.pocoo.org/docs/0.12/installation/#installation
+    - So I run this: sudo apt-get install python-virtualenv, which seems to set up a virtual environment
+      ![virtual_env](/assets/apm/virtual_env.png)
+    - The next step in the installation instructions is to create your own environment:
+      - I ignore this for now because I'm not sure that's what I want? If it is I can come back to it later.
+    - I run pip install Flask but am not sure this is what I'm supposed to see:
+      ![install Flask](/assets/apm/pip_install_Flask.png)
+    - anyway so back to these docs: http://flask.pocoo.org/docs/0.12/quickstart/
+    - I make a file called my_flask_app.py and save the contents of the app in there   
+      ![Flask app v1](/assets/apm/initial_Flask_app.png)  
+    - And I try running the commands needed to get the app running but get an error:
+      ![Flask not found](/assets/apm/flask_not_found.png)  
+    - so I google around and find this link: https://stackoverflow.com/questions/30227360/installed-flask-in-a-virtualenv-yet-command-not-found. I try all the solutions listed here but none work.
+    - So on a whim I go back to the Installation page and try this again: sudo apt-get install python-virtualenv
+    And I think something good happens? At least, this is what I see in terminal:
+      ![virtual env v2](/assets/apm/virtual_env_v2.png)
+    - Then I try virtualenv venv in the terminal to create my own environment (maybe we do need one?) and see this:
+      ![virtualenv venv](/assets/apm/virtualenv_venv.png)
+    - Now that I'm on a roll, I activate the environment and then deactivate it, just out of curiosity:
+      ![activate and deactivate](/assets/apm/activate_deactivate.png)
+    - I try pip install Flask and still get this error:
+      ![flask install error](/assets/apm/flask_error.png)
+    - I'm not sure if this error is okay or not, so I just google the exact error (pip install flask Cannot fetch index base URL http://pypi.python.org/simple/) and the first link that shows up is: https://stackoverflow.com/questions/21294997/pip-connection-failure-cannot-fetch-index-base-url-http-pypi-python-org-simpl
+    - I try all the solutions there and keep getting the same error :(
+    - Time to try something else: I google around again and come upon this tutorial: http://hanzratech.in/2015/01/16/setting-up-flask-in-ubuntu-14-04-in-virtual-environment.html
+      - I follow:
+      sudo apt-get install python-virtualenv
+      sudo apt-get install python-pip
+      virtualenv --version
+      mkdir flask-application
+      cd flask-application
+      Note- I think maybe my previous commands weren't working because I had put the flask app folder in the hiring engineers folder, but not within the vagrant VM. But lets see if it works now...
+    - At this point my terminal looks like:
+      ![in progress flask app](/assets/apm/in_progress_flask_app.png)  
+    - Okay so I run virtualenv flask-env according to the directions and see this:
+      ![flask env](/assets/apm/flask_env.png)
+    - So I guess I successfully created a virtual environment. Now I try activating it with: source flask-env/bin/activate
+    - And then try this again: pip install Flask
+    - Ugh I get this again:
+      ![flask error v2](/assets/apm/flask_error_v2.png)
+    - Let me trying cd-ing into the logs folder... ah okay so it seems there is an SSL issue:
+      ![error log](/assets/apm/error_log.png)
+    - Okay I go back here: http://flask.pocoo.org/docs/0.12/installation/ and the 'Living on the Edge' section:
+      sudo apt-get install git
+      sudo git clone http://github.com/pallets/flask.git (tried without sudo and it didn't work)
+      cd flask
+      sudo virtualenv venv
+    - ![install pip again](/assets/apm/install_pip.png)  
+    then i run: . venv/bin/activate
+    sudo python setup.py develop
+    and my screen looks like what's below. I'm not totally sure if this worked but will forge ahead!
+    - ![flask installed](/assets/apm/flask_installed.png)
+- Um. Okay I go back to: https://app.datadoghq.com/apm/install and see the command for instrumenting my application (I've made a new file called my_flask_app.py and copied the app in there)
+- Lets just run it and see what happens.. ack! more errors!
+  - ![more errors](/assets/apm/more_errors.png)
+- Okay lets change tracks and try doing this with a Ruby app...
+- I'll try making a quick new Rails app using instructions here: http://guides.rubyonrails.org/getting_started.html
+- First I run gem install rails in my terminal to get this:
+  - ![gem install rails](/assets/apm/gem_install_rails.png)
+- then I run rails new blog to make an app called 'blog', and cd into it:
+  - ![rails new blog](/assets/apm/rails_new_blog.png)
+- Then I boot up the rails server with: bin/rails server
+  - ![rails server](/assets/apm/boot_rails_server.png)
+- and go to localhost:3000 to confirm that stuff works so far...
+  - ![localhost](/assets/apm/localhost.png)
+- all right, lets quickly create a welcome page so the app does something...
+  I run: bin/rails generate controller Welcome index in terminal to create a Welcome controller and "Index" action.
+    - ![welcome controller](/assets/apm/welcome_controller.png)
+- And then edit the text a user sees on the welcome page:
+  - ![edit welcome page text](/assets/apm/edit_welcome_page.png)
+- Just to double check that it works I go back to http://localhost:3000/welcome/index and see this:
+  - ![app homepage](/assets/apm/app_hp.png)
+- Okay cool. It's simple but it is technically a Ruby on Rails app.
+- So following the instructions here: https://app.datadoghq.com/apm/install for Ruby, I run gem install ddtrace in terminal to install the Ruby client
+  - ![gem install ddtrace](/assets/apm/gem_install_ddtrace.png)
+- Then I click on the Rails directions to see this:
+  - ![rails directions](/assets/apm/rails_directions.png)
+- Per the directions, I make a file in config/intializers/datadog-tracer.rb that looks like this:
+  - ![datadog tracer](/assets/apm/ddtracer.png)
+- I go back here: https://app.datadoghq.com/apm/install but nothing has changed
+
+And that's when I realize... I made a rails app in the hiring-engineers directory, but I think I should have made the new app while in my VM!!!
+... Okay real quick I do the same thing I just did, except in the terminal tab with my VM.
+Here are the terminal commands I use, in order:
+sqlite3 --version
+sudo apt-get install sqlite3
+gem install rails
+sudo gem install rails
+sudo apt-get install ruby-rvm (I get an error saying my Ruby is out of date so google and find this command)
+rvm install ruby --latest (to update to the latest Ruby version)
+sudo gem install rails
+sudo apt-get install rbenv (because Ruby was still too old)
+sudo apt-get install ruby2.3 ruby2.3-dev (because nothing else worked)
+sudo apt-get update (seems ruby is still an old version)
+Ugh everytime I try ruby -v it says I have version 1.8.7
+So I follow this link:
+https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04
+
+And try:
+sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+source ~/.bashrc
+type rbenv
+Which does show me this, and Digital Ocean says that is how it's supposed to be:
+  - ![rbenv](/assets/apm/rbenv.png)
+I keep blindly following this tutorial and type:
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+rbenv install -l
+rbenv install 2.5.0
+rbenv global 2.5.0
+ruby -v
+And it seems I finally have an updated version of Ruby now:
+  - ![updated ruby](/assets/apm/updated_ruby.png)
+okay so now I can proceed with installing rails based on the instructions here: http://guides.rubyonrails.org/getting_started.html  
+  gem install rails gives me this:
+    - ![gem install rails](/assets/apm/gem_install_rails_2.png)
+  I confirm rails is installed by running: rails --version  
+  Then create a new app called blog2 with: sudo rails new blog2
+  Then cd into the folder with: cd blog2. Here's how my terminal looks:
+  - ![cd into blog2](/assets/apm/cd_into_blog2.png)
+- All right, now lets boot up our rails server:
+  - I get an error saying 'There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)' which I google to find this article: https://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire which tells me to run 'sudo apt-get install nodejs'
+  - After that I run: sudo bin/rails server
+  Which works!
+  Terminal screenshot:
+    - ![rails server 2](/assets/apm/rails_server_2.png)
+  Actually when I go to localhost:3000 it says the site can't be reached.
+    - ![site can't be reached](/assets/apm/site_cant_be_reached.png)
+  I'm wondering if that's because I'm in a VM though, so I keep trekking along...
+  Based on the instructions here: https://app.datadoghq.com/apm/install
+  I run gem install ddtrace:
+    - ![gem install ddtrace2](/assets/apm/gem_install_ddtrace2.png)
+  Next I need to implement the Rails specific instructions here:
+    - ![rails_instructions](/assets/apm/rails_instructions.png)
+  So I cd into the config/initializer folder and create a datadog-tracer.rb file
+    - ![tracer file](/assets/apm/tracer_file.png)
+  I copy and paste the info in:
+    - ![updated tracer file](/assets/apm/updated_tracer_file.png)
+  Okay after a few minutes my apm install page looks the same, so I think something went wrong. I run the command bundle info ddtrace to see where it is, and get this message:
+    - ![missing gem](/assets/apm/missing_gem.png)
+  Okay so I think something went wrong with my original installation method, let me try going into the Gemfile and manually adding it...
+  - I sudo vim Gemfile to open it up and add the ddtrace gem
+    - ![add ddtrace gem](/assets/apm/add_ddtrace_gem.png)
+  - Then I run sudo bundle install, and I do see the gem!
+    - ![ddtrace is here](/assets/apm/ddtrace_is_here.png)
+  - So I wander around the Datadog docs, wondering where I went wrong, and see this: https://docs.datadoghq.com/tracing/setup/
+  And I remember - I think when I was dealing with all the Flask install drama, I totally forgot to go through the APM Setup process!
+  So I go back into my datadog.yaml and file and comment back in this part:
+    - ![apm_config_true](/assets/apm/apm_config_true.png)
+  And restart my agent with: sudo service datadog-agent restart
+  Still nothing.
+  hmm, I go into my datadog. yaml file and change to this:
+    - ![env_none](/assets/apm/env_none.png)
+  And restart my agent with: sudo service datadog-agent restart
+  Hmm, still nothing
+  I see this: https://docs.datadoghq.com/tracing/setup/ruby/#compatibility and wonder if my Ruby version is too new. So I go back to the Digital Ocenan Ruby link: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04
+  and run rbenv install 2.4.0 to install Ruby v 2.4
+  then I run rbenv global 2.4.0 to set that as my global version, and running ruby -v shows that's successful:
+    - ![ruby v](/assets/apm/ruby_v.png)
+  hmm I remember when I was in the datadog.yaml file I saw something about SSLs. I also remember that the log stuff from the Flask drama had to do with SSL. I'll try commenting it back in and telling the agent to skip validation and just... see what happens.
+  https://cl.ly/1u0w0Y0G3q0C
+  Not sure if it's too early or not but I restart the agent: sudo service datadog-agent restart
+  Still get this error - https://cl.ly/2Q112k291v2A
+  Hmm okay I'll go back and comment out the SSL stuff:
+    - ![comment out ssl again](/assets/apm/comment_out_ssl_again.png)
+
+Okay time to change tactics: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
+So I decide to try instrumenting the basic Ruby app. Surely if this is a Datadog example, it will work? And if it doesn't I'll be able to assume I messed up somewhere in the configuration/setup phase.
+Okay so the sample app is here that I'm going to use. So while in my VM I run gem install ddtrace:
+  - ![gem install ddtrace](/assets/apm/gem_install_ddtrace3.png)
+  (Note - why does it say I installed two gems at the end? I have no idea.
+  -  Then create a file called my_app.rb
+    - ![my_app.rb](/assets/apm/my_app.png)
+  - Then I run sudo vim my_app.rb to get into it, and copy in the info from the same ruby app:
+    - ![ruby_app](/assets/apm/ruby_app.png)
+  - Then according to documentation I wrap the Datadog.tracer.trace around the app like so:
+    - ![add trace](/assets/apm/add_trace.png)
+  - I restart the agent but still am not seeing traces.
+
+Okay let me start totally from scratch because something is wrong with the tracing, I think.
+I uninstall the agent with:  sudo apt-get --purge remove datadog-agent -y
+Download the Mac OS X agent with: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+I exit my VM and just run the Mac OS X agent on my computer
+https://cl.ly/3A412B0V2e2B
+Once that's done, I have two hosts! How exciting!
+https://cl.ly/3C1T3h3L3Y2v
+Okay that's step 1 of the directions here: https://docs.datadoghq.com/tracing/setup/#setup-process
+Now for step 2: I go here: https://github.com/DataDog/datadog-trace-agent#run-on-osx
+- and download the latest OSX Trace Agent release
+- I run this: but nothing happens: ./trace-agent-osx-X.Y.Z -config /opt/datadog-agent/etc/datadog.conf
+- I try a couple of variations of this (adding version name instead of X.Y.Z., etc. but they don't work). I google around and find this is an issue: https://github.com/DataDog/datadog-trace-agent/issues/397 but see someone got it working with an old version here: https://github.com/DataDog/datadog-trace-agent/releases?after=5.21.1
+- Nvm just reinstall the Ubuntu agent: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+- Edit yaml file: https://cl.ly/0N1H2s3H1a0E
+- Restart agent: sudo service datadog-agent restart
+- Still nothing...
+For now I just move on...
+Bonus Question: What is the difference between a Service and a Resource?
+  Based on this link: https://docs.datadoghq.com/tracing/visualization/#services a service is a set of process that does the same job (ie: a database). And a resource is a particular action for that service (so for example, an individual endpoint).
+
+Final Question:  
+- I'd love to see Datadog used to monitor noise levels around the city. There are things like this: https://mashable.com/2012/01/11/noisetube-noise-pollution/#_HU9y2nvs8qA that help to track noise pollution and all you need is a smartphone. If the technology that powers this used Datadog, it would allow users to see what locations in the city are the most quiet at any given time. Users could also segment data by time of day, or day of the week, or even season to know how to avoid noise pollution. One of my favorite things to do after work is go on long walks, but I hate hearing the sound of honking horns, so something like this would be perfect for me.
