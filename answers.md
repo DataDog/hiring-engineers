@@ -1,3 +1,1 @@
 # Logan Morales - Technical Exercise
-
-
