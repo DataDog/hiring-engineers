@@ -2,9 +2,6 @@
 Welcome to the Datadog product demonstration!
 # Agenda
 - Prerequisites - Setup the environment (optional content)
-   - Installing and Configuring VirtualBox
-   - Installing and Configuring Vagrant
-   - Installing the Datadog Agent
 - Collecting Metrics
 - Visualizing Data
 - Monitoring Data
@@ -13,7 +10,7 @@ Welcome to the Datadog product demonstration!
 # Prerequisites - Setup the environment
 NOTE: This section is intended to assist with setting up an environment to run Datadog.  This section can be skipped if you already have an environment with the Datadog Agent installed.<br>
 
-The Datadog agent can be installed on a variety of operating systems.  For this demo, we will be utilizing a Linux VM, courtesy of Vagrant, and viewing it through VirtualBox.  We will install the Datadog Agent to the Linux VM that we deploy in this section.  To view details of this content, click: <details><summary>**Expand**</summary>
+The Datadog agent can be installed on a variety of operating systems.  For this demo, we will be working from a Macbook as our host, utilizing an Ubuntu 16.04 LTS VM, courtesy of Vagrant, and viewing it through VirtualBox.  We will install the Datadog Agent to the Linux VM that we deploy in this section.  To view details of this content, click: <details><summary>**Expand**</summary>
 
 ## Installing and Configuring VirtualBox
 You can download VirtualBox here:<br>
@@ -103,6 +100,7 @@ sudo apt-get update
 sudo apt-get install mysql-server
 ```
 When prompted, set the _root_ user password to a password of your choosing.  For this demonstration, we used _datadog_ as the password.<br>
+
 You can start the MySQL shell by executing the following command:<br>
 ```
 /usr/bin/mysql -u root -p
@@ -135,6 +133,7 @@ Uncomment the _user_, _pass_, _port_, _options_, _replication_, _galera_cluster_
 The resulting _conf.yaml_ file should look similar to the following:<br>
 ![vagrant5](https://user-images.githubusercontent.com/39865915/41173102-9e640aac-6b0a-11e8-8fc0-7cf756bde876.png)<br>
 Save and exit the VI editor<br>
+
 On the VM,prepare MySQL by creating a Datadog user (with password) and granting appropriate permissions by executing the following commands:<br>
 ```
 /usr/bin/mysql -u root -p (enter password when prompted)
