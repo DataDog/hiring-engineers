@@ -25,8 +25,8 @@ Collecting Metrics:
       - key_second_tag:value_2
       - key_third_tag:value_3
       
-      [Add_tags screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Add_Tags.png)
-      [Add_tags UI screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Add_Tags_UI_View.png)
+      ![Add_tags screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Add_Tags.png)
+      ![Add_tags UI screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Add_Tags_UI_View.png)
 
   Installing DB and DB integration
 
@@ -62,8 +62,8 @@ Collecting Metrics:
 
       In the Mongo Dashboard I have available 1 available hosts,
       but in the checks summary I am recieving 7 critical warnings under the mongodb.can_connect check.
-      [Mongo_can_connect_Critical screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Can_Connect_Critical.png)
-      [Mongo_Dashboard_Error screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Dashboard_Error.png)
+      ![Mongo_can_connect_Critical screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Can_Connect_Critical.png)
+      ![Mongo_Dashboard_Error screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Dashboard_Error.png)
 
       I stopped the agent and ran
       - echo "db.auth('datadog', 'ddsolutions')" | mongo admin |
@@ -94,9 +94,10 @@ Collecting Metrics:
       I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo
        Dashboard I have available 1 available hosts(now in green!), and in the checks
         summary I have 0 critical errors.
-      [Mongo_Successful_Connection screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Successful_Connection.png)
+      ![Mongo_Successful_Connection screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Successful_Connection.png)
 
-      This is the article that I used to help solve this issue https://hackercodex.com/guide/mac-development-configuration/
+      This is the article that I used to help solve this issue: 
+      https://hackercodex.com/guide/mac-development-configuration/
 
 
 
@@ -148,12 +149,12 @@ Collecting Metrics:
 
       When I restarted the agent for the my_metric check I got the message:
       2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
-      [My_Metric_45sec screenshot](/https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_45sec.png)
+      ![My_Metric_45sec screenshot](/https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_45sec.png)
 
       Bonus Question: I changed the collection interval using the my_metric.yaml
       file in the above step. I was not able to find documentation on changing
       the check collection interval using the my_metric.py file.
-      [My_Metric_Yaml_45sec screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_Yaml_45sec.png)
+      ![My_Metric_Yaml_45sec screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_Yaml_45sec.png)
 
 
   Visualizing Data:
@@ -172,18 +173,18 @@ Collecting Metrics:
 
     From the dashboard list, I found my timeboard "Timeboard with my_metric,
     my_metric rollup, and anomolies on DB FINAL"
-    [My_Timeboard screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard.png)
+    ![My_Timeboard screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard.png)
 
     Using my cursor I selected 5 minutes from the graph, which zoomed in the graph
     to 5 minutes, I then pressed the >> button to show the last five minutes available.
     The graph showing use of the rollup method  does not show data because it is from
     the last 5 minutes and not the last 1 hour.
-    [My_Timeboard_5Min screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard_5Min.png)
+    ![My_Timeboard_5Min screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard_5Min.png)
 
     I took a snapshot using the camera icon, and sent it to myself using
      @hello@sarahschaab.com.
     I found the snapshot under the "events" tab.
-    [Timeboard_showing_@notation screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Timeboard_showing_@notation.png)
+    ![Timeboard_showing_@notation screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Timeboard_showing_@notation.png)
 
     Bonus Question: What is the Anomaly graph displaying?
     The Anomaly Graph is using anomaly detection. It is an algorithmic feature
@@ -196,17 +197,17 @@ Collecting Metrics:
     Alerting threshold of 800 created
     And also ensure that it will notify you if there is No Data for this query over
     the past 10m.
-    [Monitor_For_My_Metric screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Montior_For_My_Metric.png)
+    ![Monitor_For_My_Metric screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Montior_For_My_Metric.png)
     
     Alert Email:
-    [Alert_Email screenshot] https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png
+    ![Alert_Email screenshot] https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png
 
     Bonus Question:
       Please see "Weekday_Downtime_Email.png"
-      [Weekday_Downtime_Email screenshot](/screenshothttps://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
+      ![Weekday_Downtime_Email screenshot](/screenshothttps://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
 
       Please see "Weekend_Downtime_Email.png"
-      [Weekend_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekend_Downtime_Email.png)
+      ![Weekend_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekend_Downtime_Email.png)
 
 
   Collecting APM Data:
@@ -237,7 +238,7 @@ Collecting Metrics:
       I followed these steps and successfully installed Go, I could not get the
       trace agent running in the foreground to send traces to my dashboard.
       
-      https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/APM_Trace_Agent_with_golang.png
+      ![APM_Trace_Agent_with_golang](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/APM_Trace_Agent_with_golang.png)
 
       I also attempted following this documentation:
       https://app.datadoghq.com/apm/install
