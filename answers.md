@@ -206,11 +206,11 @@ And also ensures that it will notify you if there is No Data for this query over
 ![Monitor_For_My_Metric screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Montior_For_My_Metric.png)
     
 Alert Email:
-![Alert_Email screenshot] https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png
+![Alert_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png)
 
 **Bonus Question:**
 Weekday Downtime:
-![Weekday_Downtime_Email screenshot](/screenshothttps://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
+![Weekday_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
 Weekend Downtime:
 ![Weekend_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekend_Downtime_Email.png)
 
