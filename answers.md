@@ -152,7 +152,7 @@ In conf.d/my_metric.yaml I changed the instances to include:
 When I restarted the agent for the my_metric check I got the message:
       `2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s`
 
-![My_Metric_45sec screenshot](/https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_45sec.png)
+![My_Metric_45sec screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_45sec.png)
 
 **Bonus Question:** I changed the collection interval using the my_metric.yaml
 file in the above step. I was not able to find documentation on changing
