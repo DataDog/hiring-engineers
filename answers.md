@@ -209,8 +209,11 @@ Alert Email:
 ![Alert_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png)
 
 **Bonus Question:**
+In the previous section I realized that in my "Say What's Happening" section in order to show host name and host IP in the email it had to be written like this {{sarahs-Macbook-Pro.local.name}} {{sarahs-Macbook-Pro.local.ip}}, which I updated and applied to the emails: 
+
 Weekday Downtime:
-![Weekday_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
+![Weekday_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.png)
+
 Weekend Downtime:
 ![Weekend_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekend_Downtime_Email.png)
 
