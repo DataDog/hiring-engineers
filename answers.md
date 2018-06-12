@@ -41,26 +41,27 @@ source: https://github.com/DataDog/integrations-core/blob/master/mongo/conf.yaml
 
 In the Mongo shell I created a user 'datadog' within my admin db.
 following the steps provided in the documentation
-        db.createUser({
-            "user":"datadog",
-            "pwd": "<UNIQUEPASSWORD>",
-            "roles" : [
-              {role: 'read', db: 'admin' },
-              {role: 'clusterMonitor', db: 'admin'},
-              {role: 'read', db: 'local' }
-            ]
-          })
+        `db.createUser({`
+            `"user":"datadog",`
+            `"pwd": "<UNIQUEPASSWORD>",`
+            `"roles" : [`
+              `{role: 'read', db: 'admin' },`
+              `{role: 'clusterMonitor', db: 'admin'},`
+              `{role: 'read', db: 'local' }`
+            `]`
+          `})`
 
 In the mongo.yaml file I changed the server to
-      - server: mongodb://datadog:<myPassword>@127.0.0.1/admin
+      `- server: mongodb://datadog:<myPassword>@127.0.0.1/admin`
 
 In the Datadog Dashboard I navigated to the integrations tab and downloaded the Mongodb Integration.
 
 I restarted the agent and saw that there was an error with the mongo check connecting to port 27017.
-I removed the .lock file from MongoDB, and still ran into this error.
+As a common resolution, I removed the .lock file from MongoDB, and still ran into this error.
 
 In the Mongo Dashboard I have available 1 available hosts, but in the checks summary
 I am recieving 7 critical warnings under the mongodb.can_connect check.
+
 ![Mongo_can_connect_Critical screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Can_Connect_Critical.png)
 ![Mongo_Dashboard_Error screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Dashboard_Error.png)
 
@@ -69,8 +70,8 @@ I stopped the agent and ran
       grep -E "(Authentication failed)|(auth fails)" && echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e        "\033[0;32mdatadog user - OK\033[0m"`
 
 When I recieved the output:
-      `exception: connect failed
-      datadog user - OK`
+      `exception: connect failed`
+      `datadog user - OK`
 
 I tried multiple solutions, but continuously ran into this issue.
 I believe it is an issue with my machine's version of MongoDB.
@@ -79,20 +80,21 @@ I initially installed MongoDB using Homebrew, so I uninstalled it running
 `brew uninstall mongo`
 
 Upon trying to reinstall MongoDB, I found that it's dependency on Python was 
-crashing the install process. In terminal "which python" was resulting in
+crashing the install process. In terminal `which python` was resulting in
 `/Library/Frameworks/Python.framework/Versions/2.7/bin/python` I knew this was an
 error, because it should be located in `/usr/local/bin/python`
 
 These are the steps that I took to solve the issue:
-        `- nano .bashrc`
+            `- nano .bashrc`
 In Bash I added the line: 
-        `- export PATH=/usr/local/bin:$PATH`
+            `- export PATH=/usr/local/bin:$PATH`
 saved Bash, and exited.
-        `- source .bashrc`
-"Which python" now showed  `/usr/local/bin/python`
+             `- source .bashrc`
+`Which python` now showed  `/usr/local/bin/python`
 
 I installed Mongodb using Homebrew, restarted my agent, and saw in the Mongo
 Dashboard I have available 1 available hosts(now in green!), and in the checks summary I have 0 critical errors.
+
 ![Mongo_Successful_Connection screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Mongo_Successful_Connection.png)
 
 This is the article that I used to help solve this issue: 
@@ -114,7 +116,7 @@ hello.yaml file in the conf.d folder, and tested it in the command line using
 For my_metric, I created a my_metric.py file in the Checks.d folder,
 and a corresponding my_metric.yaml file in the conf.d folder.
 
-in checks.d/my_metric.py I added code:
+in checks.d/my_metric.py I added code (see my_metric.py):
         `from checks import AgentCheck`
 
         `from random import randint`
@@ -148,10 +150,11 @@ In conf.d/my_metric.yaml I changed the instances to include:
           `- my_metric:tag`
 
 When I restarted the agent for the my_metric check I got the message:
-      2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
+      `2018-06-08 14:02:54 EDT | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s`
+
 ![My_Metric_45sec screenshot](/https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_45sec.png)
 
-Bonus Question: I changed the collection interval using the my_metric.yaml
+**Bonus Question:** I changed the collection interval using the my_metric.yaml
 file in the above step. I was not able to find documentation on changing
 the check collection interval using the my_metric.py file.
 ![My_Metric_Yaml_45sec screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Metric_Yaml_45sec.png)
@@ -159,7 +162,7 @@ the check collection interval using the my_metric.py file.
 
 ##Visualizing Data:
 
-    Link to my timeboard: https://app.datadoghq.com/dash/831863/timeboard-with-mymetric-mymetric-rollup-and-anomolies-on-db-final?live=false&page=0&is_auto=false&from_ts=1528694952051&to_ts=1528695252051&tile_size=m
+Link to my timeboard: https://app.datadoghq.com/dash/831863/timeboard-with-mymetric-mymetric-rollup-and-anomolies-on-db-final?live=false&page=0&is_auto=false&from_ts=1528694952051&to_ts=1528695252051&tile_size=m
 
 Utilize the Datadog API to create a Timeboard.
 For creating a timeboard, I am using ruby, because I am most experienced in that language.
@@ -172,20 +175,24 @@ I found the documentation for the anomalies method here:
 https://docs.datadoghq.com/monitors/monitor_types/anomaly/#example
 
 From the dashboard list, I found my timeboard "Timeboard with my_metric, my_metric rollup, and anomolies on DB FINAL"
+
 ![My_Timeboard screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard.png)
 
 Using my cursor I selected 5 minutes from the graph, which zoomed in the graph
 to 5 minutes, I then pressed the >> button to show the last five minutes available.
 The graph showing use of the rollup method  does not show data because it is from
 the last 5 minutes and not the last 1 hour.
+
 ![My_Timeboard_5Min screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/My_Timeboard_5Min.png)
 
 I took a snapshot using the camera icon, and sent it to myself using
      `@hello@sarahschaab.com`
+     
 ![Timeboard_showing_@notation screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Timeboard_showing_@notation.png)
+
 I found the snapshot under the "events" tab.
     
-Bonus Question: What is the Anomaly graph displaying?
+**Bonus Question:** What is the Anomaly graph displaying?
 The Anomaly Graph is using anomaly detection. It is an algorithmic feature
 to help show when a metric is behaving abnormally based on history of that metric.
 https://docs.datadoghq.com/monitors/monitor_types/anomaly/
@@ -195,16 +202,16 @@ https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 Warning threshold of 500 created
 Alerting threshold of 800 created
 And also ensures that it will notify you if there is No Data for this query over the past 10m.
+
 ![Monitor_For_My_Metric screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Montior_For_My_Metric.png)
     
 Alert Email:
 ![Alert_Email screenshot] https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Alert_Email.png
 
-Bonus Question:
-Please see "Weekday_Downtime_Email.png"
+**Bonus Question:**
+Weekday Downtime:
 ![Weekday_Downtime_Email screenshot](/screenshothttps://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekday_Downtime_Email.pngs/Weekday_Downtime_Email.png)
-
-Please see "Weekend_Downtime_Email.png"
+Weekend Downtime:
 ![Weekend_Downtime_Email screenshot](https://raw.githubusercontent.com/sarah-schaab/hiring-engineers/sarahschaab_solutions_engineer/screenshots/Weekend_Downtime_Email.png)
 
 
