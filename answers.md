@@ -129,8 +129,9 @@ user: datadog
 pass: 'datadog'
 replication: 0
 galera_cluster: 1
+
+Uncomment the _user_, _pass_, _port_, _options_, _replication_, _galera_cluster_, _extra_status_metrics_, _extra_innodb_metrics_, _extra_performance_metrics_, _schema_size_metrics_, and _disable_innodb_metrics_ entries
 ```
-Uncomment the _user_, _pass_, _port_, _options_, _replication_, _galera_cluster_, _extra_status_metrics_, _extra_innodb_metrics_, _extra_performance_metrics_, _schema_size_metrics_, and _disable_innodb_metrics_ entries<br>
 The resulting _conf.yaml_ file should look similar to the following:<br>
 ![vagrant5](https://user-images.githubusercontent.com/39865915/41173102-9e640aac-6b0a-11e8-8fc0-7cf756bde876.png)<br>
 Save and exit the VI editor<br>
@@ -146,7 +147,8 @@ Using the _Integrations_ section of the Datadog UI, install the _MySQL_ integrat
 ![datadog4](https://user-images.githubusercontent.com/39865915/41144549-20871bf4-6ab2-11e8-9d11-40490b3c1a70.png)<br>
 ## Create a Custom Agent Check
 **Reference**: [https://docs.datadoghq.com/developers/agent_checks](url)<br>
-Agent checks are intended to allow a user to collect Datadog metrics from custom applications or unique systems, while metric collection from more common applications, public services or open source projects, are intended to be implemented via Datadog's Integrations.  Agent checks have two parts, the check file, written in Python, and the configuration file.  
+Agent checks are intended to allow a user to collect Datadog metrics from custom applications or unique systems, while metric collection from more common applications, public services or open source projects, are intended to be implemented via Datadog's Integrations.  Agent checks have two parts, the check file, written in Python, and the configuration file.<br>
+
 Both the check file and configuration must share the same name (ex. _mycheck.py_ and _mycheck.yaml_, respectively).  The check file resides in the Agent's _checks.d_ directory, and the configuration file resides in the Agent's _conf.d_ directory.  Both the _checks.d_ and _conf.d_ directories exist under the Agent's root directory, in our case, _/etc/datadog-agent_.<br>
 To show how a custom Agent check is implemented, we can create a custom Agent check that submits a metric named _my_metric_ with a random value between 1 and 1000.  We will also configure _my_metric_ check to have a collection interval that only submits once every 45 seconds.<br>
 
@@ -358,7 +360,8 @@ sudo service datadog-agent restart
 ## Install Virtual Environment-- then Flask, Blinker, and ddtrace
 **Reference**: [http://flask.pocoo.org/docs/1.0/installation/](url)<br>
 **Reference**: [https://docs.datadoghq.com/tracing/setup/python](url)<br>
-Datadog's Tracing library, _ddtrace_, allows us to begin 
+**Reference**: [http://pypi.datadoghq.com/trace/docs/#](url)<br>
+Datadog's Tracing library for Python, _ddtrace_, allows us to begin tracing requests as they flow across web servers, which can be extremely useful for troubleshooting requests and detecting traffic bottlenecks.  Datadog tracing can automatically instrument many Python libraries and web frameworks, including _Flask_.  _Flask_ instrumentation through _ddtrace_ requires the _Blinker_ library also be installed.  The virtual enviroment is recommended practice when developing web applications.
 
 From the VM, execute the following commands:<br>
 ```
@@ -367,7 +370,7 @@ cd /vagrant
 virtualenv venv
 . venv/bin/activate
 ```
-You should see a _(venv)_ preceding the command line interface in the VM, indicating the activated environment
+You should see a _(venv)_ preceding the command line interface in the VM, indicating the activated environment.  
 ```
 cd venv
 pip install flask
@@ -375,8 +378,8 @@ pip install blinker
 pip install ddtrace
 ```
 We then copy the provided flask app into a newly created _my_app.py_ file located in our virtual environment folder _/vagrant/venv_<br>
-
-Execute the code with the following command:<br>
+## Execute the Flask Application
+From the VM, execute the following command:<br>
 ```
 ddtrace-run python my_app.py
 ```
@@ -419,7 +422,7 @@ While the web application is running, open an Internet browser window on the hos
 - [http://ubuntu-xenial:5050/api/trace](url)<br>
 ![trace](https://user-images.githubusercontent.com/39865915/41271071-492d942a-6dc3-11e8-8e2c-ea0f53a8f705.png)<br>
 Navigate between the above addresses a few times each to create traces to each defined route (_/_, _/api/apm_, and _/api/trace_) defined in _my_app.py_.<br>
-
+## Datadog APM
 After a few moments you can check the Datadog application's _APM_ -> _Services_ menu, select _env:test_, and you will see the _flask_:
 ![flask](https://user-images.githubusercontent.com/39865915/41271186-f38d12a6-6dc3-11e8-8a48-6aa518e5fd1d.png)<br>
 Click on the _flask_ to bring up the trace data.  Export each graph to the timeboard created earlier in this exercise by clicking on the _Share_ icon, _Export to Timeboard_, leaving the graph name default, and selecting _My Timeboard_:<br>
