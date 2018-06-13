@@ -132,10 +132,10 @@ To understand the process of doing this, I spent a lot of time reading over the 
 
 7. my_metric Inbound!
 
-![alt text](https://media.giphy.com/media/tG6ZDOfW5Xeo/giphy.gif)
+   ![alt text](https://media.giphy.com/media/tG6ZDOfW5Xeo/giphy.gif)
 
-Screenshot of my_metric on Datadog
+   Screenshot of my_metric on Datadog
 
-![alt text](https://i.imgur.com/DvsDEob.png)
+   ![alt text](https://i.imgur.com/DvsDEob.png)
 
 
