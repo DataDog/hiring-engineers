@@ -96,8 +96,8 @@ I took the following steps to get this going:
 
 To understand the process of doing this, I spent a lot of time reading over the [documentation](https://docs.datadoghq.com/developers/agent_checks/) provided by Datadog. Following along with the documentation, here are the steps that I took:
 
-1. `cd /etc/datadog-agent/conf.d/` getting into the directory for the .yaml file
-2. `sudo touch my_metric.yaml` creating a new config file, sudo roots required.
+1. `cd /etc/datadog-agent/conf.d/` getting into the directory for the .yaml file.
+2. `sudo touch my_metric.yaml` creating a new config file, sudo rights required.
 3. `sudo nano my_metric.yaml` to edit the file and filled with:
 
 	```
@@ -109,9 +109,33 @@ To understand the process of doing this, I spent a lot of time reading over the 
     	[{}]
 	```
 
-Here is a screenshot of my configuration file:
+   Here is a screenshot of my configuration file:
 
-![alt text](https://i.imgur.com/FIiMzNX.png)
+   ![alt text](https://i.imgur.com/FIiMzNX.png)
 
+4. `cd /etc/datadog-agent/checks.d/` getting into the directory for the python script.
+5. `sudo touch my_metric.py` must be the same name as the .yaml created in step 2, sudo rights required.
+6. `sudo nano my_metric.py` to edit the file and filled with:
+	
+	```
+	from checks import AgentCheck	# Required, inherits from AgentCheck
+	import random					# import random number package
+
+	class CustomCheck(AgentCheck):  # define class CustomCheck
+		def check(self, instance):
+			self.gauge('my_metric', random.randint(0,1000))
+	```
+
+   Here is a screenshot of my python file:
+
+   ![alt text](https://i.imgur.com/MDVntv8.png)
+
+7. my_metric Inbound!
+
+![alt text](https://media.giphy.com/media/tG6ZDOfW5Xeo/giphy.gif)
+
+Screenshot of my_metric on Datadog
+
+![alt text](https://i.imgur.com/DvsDEob.png)
 
 
