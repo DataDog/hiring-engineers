@@ -31,7 +31,7 @@ My configuration file looks like this:
 
 ![alt text](https://i.imgur.com/2im4SJj.png "Logo Title Text 1")
 
-And it populated inside of Datadogs interface within a few minutes:
+I restarted the datadog-agent using `sudo service datadog-agent restart` and my tags populated inside of Datadog's interface within a few minutes:
 
 ![alt text](https://i.imgur.com/XqA2WIu.png)
 
