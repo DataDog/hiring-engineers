@@ -241,11 +241,9 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
      1. When I first ran dd-trace-run, I received the following error: 
 
        ```
-       you must specify an API Key, either via a configuration file or the DD_API_KEY env var
+        you must specify an API Key, either via a configuration file or the DD_API_KEY env var
        ```
-
-       At first, I believed the issue was that the trace-agent could not find access to the api key so I changed the `datadog.yaml` file from `api_key: 4f03487948708ff3a0d41e3c69bd5b9a` to `DD_API_KEY`. This did not resolve the error. 
-
+     Initially, I believe the issue was that the trace-agent could not find access to the api key so I changed the `datadog.yaml` file from `api_key: 4f03487948708ff3a0d41e3c69bd5b9a` to `DD_API_KEY`. This did not resolve the error.
      2. Next, I decided to give the Development configuration a try. I installed Go, then downloaded the latest source by running: `go get -u github.com/DataDog/datadog-trace-agent/...`. Then, I added a $GOPATH/bin to my bash_profile. Finally, I entered the following code into my terminal. 
 
      ```
