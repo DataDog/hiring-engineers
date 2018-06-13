@@ -88,4 +88,30 @@ I took the following steps to get this going:
 
    ![alt text](https://i.imgur.com/gLBcC2A.png)
 
+   And here is Datadog web interface reporting the metrics from my MySQL integration:
+
+   ![alt text](https://i.imgur.com/AsY1xUt.png)
+
+### Custom Agent reporting metrics with random integer between 1 and 1000.
+
+To understand the process of doing this, I spent a lot of time reading over the [documentation](https://docs.datadoghq.com/developers/agent_checks/) provided by Datadog. Following along with the documentation, here are the steps that I took:
+
+1. `cd /etc/datadog-agent/conf.d/` getting into the directory for the .yaml file
+2. `sudo touch my_metric.yaml` creating a new config file, sudo roots required.
+3. `sudo nano my_metric.yaml` to edit the file and filled with:
+
+	```
+	# barebones configuration boilerplate
+	
+	init_config: 	
+
+	instances:
+    	[{}]
+	```
+
+Here is a screenshot of my configuration file:
+
+![alt text](https://i.imgur.com/FIiMzNX.png)
+
+
 
