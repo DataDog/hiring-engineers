@@ -77,7 +77,15 @@ I took the following steps to get this going:
         	replication: 0
         	galera_cluster: 1
 	```
+
+   Here is a screenshot of my configuration file (`/etc/datadog-agent/conf.d/mysql.d/conf.yaml`):
 	
-   [Imgur](https://i.imgur.com/ViXlih0.png)
+   ![alt text](https://i.imgur.com/ViXlih0.png)
+
+   - I then restarted my agent - `sudo service datadog-agent restart` and ran a check command `sudo datadog-agent check mysql | more` . I appended `| more` so that I could scroll through the results. 
+
+   Here is a screenshot of the check command results:
+
+   ![alt text](https://i.imgur.com/gLBcC2A.png)
 
 
