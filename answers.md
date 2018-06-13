@@ -172,7 +172,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI.
 
    ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5.png)
 
-   ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
+   ![Screenboard timeframe annotated](/img/timeboard_annotated.png)
 
 
 * Bonus Question
@@ -218,7 +218,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
    Muting the monitors overnight or on the weekend can be accomplished via the manage downtime section of the app. You can find this section by hovering over `Monitors` and selecting `Manage Downtime`. Once you fill in the required information, you will receive a confirmation email as well as an email at the start and end of the time you indicated 
   
-   ![Silencing from 7pm - 9](/img/email_config_7-9.png) 
+   ![Silencing from 7pm - 9](/img/email_config_7-9.png)
    ![Silencing over the weekend](/img/email_config_weekend.png)
    ![Overnight Email](/img/overnight_email.png)  
    ![Weekend Email](/img/weekend_email.png)
