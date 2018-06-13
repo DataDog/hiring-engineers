@@ -31,8 +31,25 @@ My configuration file looks like this:
 
 ![alt text](https://i.imgur.com/2im4SJj.png "Logo Title Text 1")
 
-I restarted the datadog-agent using `sudo service datadog-agent restart` and my tags populated inside of Datadog's interface within a few minutes:
+I restarted the datadog- agent using 
+`sudo service datadog-agent restart` 
+so that the agent would read the updated config file and my tags populated inside of Datadog's interface within a few minutes:
 
 ![alt text](https://i.imgur.com/XqA2WIu.png)
+
+### Lets get that database going!
+
+I was first introduced into databases during my time at General Assembly where we learned PostgreSQL. Recently, I have been working with MySQL quite a lot and I'm going to use this for my database integration. 
+
+I took the following steps to get this going:
+	
+	1. `sudo apt-get update` to update the package index
+	2. `sudo apt-get install mysql-server` to install MySQL
+	3. Follow the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) for installing the MySQL integration:
+		- I created a user for the datadog agent with rights to the MySQL Server using the commands:
+		```
+		sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '$password'
+		sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+		```
 
 
