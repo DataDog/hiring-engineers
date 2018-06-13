@@ -1,15 +1,18 @@
-<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
-
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+#### Agent Config File
+
 ![Agent Config File](images/agentconfig.png)
+
+#### Host Map Visualization
 
 ![Host Map Visualization](images/hostmap.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+#### MongoDB Integration
 
 ![MongoDB Integration](images/mongodbintegration.png)
 
@@ -42,7 +45,7 @@ instances:
 
 ⋅⋅⋅The collection interval can be changed by configuring min_collection_interval of each check instance to a positive numerical value.
 
-## Visualizing Data:
+#### Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -50,13 +53,78 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+**timeboard.py:**
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '5077ea49d30f7c6e2b1e47a2eb9e701d',
+    'app_key': '07d17cb9388be688455f1e13b8f3067e7a659ca0'
+}
+
+initialize(**options)
+
+title = "My Metric Data + MongoDB Collections"
+description = "Values generated every 45 sec + MongoDB collections."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:first.my_metric{*}"},
+            {"q": "anomalies(avg:mongodb.stats.collections{*}, 'basic', 2)"},
+            {"q": "avg:first.my_metric{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Random Values Over Time"
+}]
+
+template_variables = [{
+    "name": "timeboard",
+    "prefix": "my_metric",
+    "default": "host:Ralph-PC"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+
+```
+
+#### MongoDB Configuration (located in /conf.d/mongo.d/conf.yaml)
+
+```
+init_config:
+instances:
+  - server: mongodb://datadog:NMexkkPoWYv7p4hy86kRyaOG@localhost:27017/admin
+    additional_metrics:
+      - collection       # collect metrics for each collection
+      - metrics.commands
+      - tcmalloc
+      - top
+```
+
+Once the Timeboard is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+#### Generated Timeboard (last 5 minutes)
+
+![Generated Timeboard](images/last5min.png)
+
+#### Timeboard Emailed to Self
+
+![Emailed Timeboard](images/senttimeboard.png)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly graph displays the metric visualization plus any areas that deviate from the expected flow of data (in the case of my graph, deviations are colored red). Since my timeboard was visualizing Mongo collection data for my admin db, an anomaly occurred as I was generating more collections for that db since initially, there were little to none within the time frame.
 
 ## Monitoring Data
 
@@ -115,8 +183,6 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
