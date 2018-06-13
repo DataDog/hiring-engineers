@@ -218,8 +218,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
    Muting the monitors overnight or on the weekend can be accomplished via the manage downtime section of the app. You can find this section by hovering over `Monitors` and selecting `Manage Downtown`. Once you fill in the required information, you will receive a confirmation email as well as an email at the start and end of the time you indicated 
   
-   ![Silencing from 7pm - 9](/img/email_config_7-9.png =250x)
-   ![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png | width=100)
+   ![Silencing from 7pm - 9](/img/email_config_7-9.png)
    ![Silencing over the weekend](/img/email_config_weekend.png)
    ![Overnight Email](/img/overnight_email.png)  
    ![Weekend Email](/img/weekend_email.png)
