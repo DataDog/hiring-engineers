@@ -194,7 +194,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-   I created a mew monitor by going to the manage monitor page and clicking on New Monitor. You can easily customize your monitor on the page. This is where I set hte warning and alert threshold as well as requiring a notification if I received No Data for the query. 
+   I created a mew monitor by going to the manage monitor page and clicking on New Monitor. You can easily customize your monitor on the page. This is where I set the warning and alert threshold as well as requiring a notification if I received no data for the query. 
 
    ![Alert Conditions](/img/alert_conditions.png)  
 
@@ -216,7 +216,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
 
-   Muting the monitors overnight or on the weekend can be accomplished via the manage downtime section of the app. You can find this section by hovering over `Monitors` and selecting `Manage Downtown`. Once you fill in the required information, you will receive a confirmation email as well as an email at the start and end of the time you indicated 
+   Muting the monitors overnight or on the weekend can be accomplished via the manage downtime section of the app. You can find this section by hovering over `Monitors` and selecting `Manage Downtime`. Once you fill in the required information, you will receive a confirmation email as well as an email at the start and end of the time you indicated 
   
    ![Silencing from 7pm - 9](/img/email_config_7-9.png) 
    ![Silencing over the weekend](/img/email_config_weekend.png)
@@ -243,7 +243,8 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
        ```
        you must specify an API Key, either via a configuration file or the DD_API_KEY env var
        ```
-       First, I believed the issue was that the trace-agent could not find access to the api key so I changed the `datadog.yaml` file from `api_key: 4f03487948708ff3a0d41e3c69bd5b9a` to `DD_API_KEY`. This did not resolve the error. 
+
+       At first, I believed the issue was that the trace-agent could not find access to the api key so I changed the `datadog.yaml` file from `api_key: 4f03487948708ff3a0d41e3c69bd5b9a` to `DD_API_KEY`. This did not resolve the error. 
 
      2. Next, I decided to give the Development configuration a try. I installed Go, then downloaded the latest source by running: `go get -u github.com/DataDog/datadog-trace-agent/...`. Then, I added a $GOPATH/bin to my bash_profile. Finally, I entered the following code into my terminal. 
 
