@@ -47,6 +47,7 @@ I took the following steps to get this going:
 	2. `sudo apt-get install mysql-server` to install MySQL
 	3. Follow the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) for installing the MySQL integration:
 		- I created a user for the datadog agent with rights to the MySQL Server using the commands:
+		
 		```
 		sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '$password'
 		sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
