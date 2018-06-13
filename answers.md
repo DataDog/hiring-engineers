@@ -14,6 +14,8 @@ After getting my VM up and running, I created a trial account with Datadog and s
 ## Collecting Metrics
 
 ### Tags... Oh tags.
+![alt text](https://media.giphy.com/media/3o6Ei0fWOw1iQ79d0A/giphy.gif)
+
 Following alongside the [documentation](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) I was able to locate the `datadog.yaml` config file inside of `/etc/datadog-agent` and make a few changes:
 
 - `sudo nano datadog.yaml`
