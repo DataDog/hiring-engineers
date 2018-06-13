@@ -128,30 +128,45 @@ The anomaly graph displays the metric visualization plus any areas that deviate 
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* And also ensure that it will notify you if there is No Data for this query over the past 10m. (shown in 2nd screenshot in this section)
+
+![Monitor Config](images/monitorconfig.png)
 
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![Monitor Messages](images/monitormessages.png)
+
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+![Monitor Email](images/monitoremail.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
+
+  ![Downtime during Weekdays](images/downtimeweekdays.png)
+
+  * And one that silences it all day on Sat-Sun. Specifically, it silences the monitor from Friday at 7pm to Monday at 9am (62 hours).
+
+  ![Downtime during Weekends](images/downtimeweekends.png)
+
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+  ![Emailed Downtime](images/downtimeemail.png)
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+The dashboard I generated for this section visualizes the number of request hits and their duration times for the provided Flask app. After running ddtrace-run on the following script, I accessed the app's apm and trace routes multiple times to collect trace data for my host, which is then rendered on a timeboard:
+
+**my_app.py:**
 
 ```python
 from flask import Flask
@@ -181,14 +196,19 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
+    app.run(host='192.168.1.7', port='5050')
+
 ```
+
+#### Dashboard containing APM and Infrastructure Metrics
+
+![dashboard](images/apm_infra_metrics.png)
+
+Refer to the dashboard ![here.](https://app.datadoghq.com/dash/834046)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
+A service is a set of processes that drive an application or system, and a resource is a specific action that is carried out to fulfill that service. Let's take a restaurant as an example. There are often two primary services at that restaurant: customer-engagement (hosts, servers) and kitchen workers (chefs, cleaners). The customer engagement team is in charge of greeting customers, seating them, and taking their orders, all of which are resources for that particular service. The resources of the kitchen workers consist of making food based off of customer orders and cleaning kitchen utensils for re-usability.
 
 ## Final Question:
 
