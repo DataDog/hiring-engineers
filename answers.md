@@ -19,7 +19,8 @@ Following alongside the [documentation](https://docs.datadoghq.com/getting_start
 - `sudo nano datadog.yaml`
 - Uncomment out the 'tags' section
 - Change to:
-```tags:
+```
+tags:
 	- name:logan
 	- applying_for:solutions_engineer
 ```
