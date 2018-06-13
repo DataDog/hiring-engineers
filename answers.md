@@ -511,6 +511,52 @@ Now for step 2: I go here: https://github.com/DataDog/datadog-trace-agent#run-on
 - Restart agent: sudo service datadog-agent restart
 - Still nothing...
 For now I just move on...
+
+EDIT - Okay coming back to this!
+- In my VM, I make a new file and copy the Flask app in there.
+  - ![make new flask app](/assets/apm/make_new_flask_app.png)
+- I run pip install ddtrace but get the same error I've been getting_startedhttps://cl.ly/013x0F1z2X1f
+- One thing I saw while trying to debug was 'installing from source' so I look up a tutorial and find this: https://www.howtogeek.com/105413/how-to-compile-and-install-from-source-on-ubuntu/
+  - I run sudo apt-get install build-essential
+  - I go here to find source files: https://pypi.org/project/ddtrace/#files and download them
+  - I guess and make a shared folder  according to
+  https://cl.ly/1W2P2K2v151V
+Actually let me see if making a new VM does the trick...
+vagrant destroy
+delete old Vagrantfile
+ vagrant init hashicorp/precise64
+ vagrant up
+ vagrant ssh to get this:
+ https://cl.ly/3r2G1S1P2R08
+ One step Ubuntu agent install: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+And I see this: https://cl.ly/0w0f1Z2S180K
+Agent successfully installed!
+sudo vim app.py to make a new file for the app, copy flask app in there
+pip install ddtrace
+Get this message: https://cl.ly/3t0X3W1e1H0e
+sudo apt-get install python-pip - from this link here: https://askubuntu.com/questions/672808/sudo-apt-get-install-python-pip-is-failing
+I try this pip install ddtrace again: AND IT WORKS
+https://cl.ly/0l0I2a2s3x0V
+Then try:
+ddtrace-run python app.py
+It gives me a 'no module for Flask error'
+So I just replace the flask app with the same python app here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
+I run this again: ddtrace-run python my_app.py
+And I see stuff in my console!!!!! https://cl.ly/0u3V3Z1G1u1j
+AND I see a message saying my first traces are now available!!!!
+(apm_dashboard_overview)
+Here are my beautiful graphs:
+APM graphs
+https://cl.ly/0q2w381N2y2V
+Link: https://app.datadoghq.com/apm/service/sample-app/request?start=1528856813185&end=1528860413185&env=none&paused=false
+A copy of the instrument python app is in app.py. It's taken from here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
+(Note: there is also a my_flask_app.py and rails blog folder in here from attempts that didn't work. I left them in here but they're not being used)
+
+
+
+
+
 Bonus Question: What is the difference between a Service and a Resource?
   Based on this link: https://docs.datadoghq.com/tracing/visualization/#services a service is a set of process that does the same job (ie: a database). And a resource is a particular action for that service (so for example, an individual endpoint).
 
