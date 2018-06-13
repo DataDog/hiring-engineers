@@ -53,4 +53,31 @@ I took the following steps to get this going:
 	sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
 	```
 
+	- I also opted to receive full metrics catalog by using the following command provided in the docs:
+
+	```
+	sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
+	sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+	```
+
+	- Moving on! Next I edited the MySQL config file for datadog inside of `/etc/datadog-agent/conf.d/mysql.d/` to connect MySQL to my agent. I created a working copy of the example file 
+	(`conf.yaml.example`) using `cp conf.yaml.example ./conf.yaml` and un-commented out the lines corresponding to the documentation provided by Datadog:
+
+	```
+	init_config:
+
+	instances:
+	  	server: localhost
+    	user: datadog
+    	pass: $password 
+    	tags:
+        	optional_tag1
+        	optional_tag2
+    	options:
+        	replication: 0
+        	galera_cluster: 1
+	```
+	
+   [Imgur](https://i.imgur.com/ViXlih0.png)
+
 
