@@ -1,5 +1,5 @@
 ## Prerequisites - Setup the environment
-* For this challenge I am using a fairly new MacBookPro OS version 10.12.06. I followed the Vagrant setup documentation and successfully installed the VM. However, I did not utilize the VM while completing this challenge. I have a new machine and felt confident I wouldn't run into dependency issues. To install the Datadog Agent, I followed the instructions in the GUI by running the command below in my terminal: 
+I followed the Vagrant setup documentation and successfully installed the VM. To install the Datadog Agent, I followed the instructions in the GUI by running the command below in my terminal: 
 
 ```
 DD_API_KEY=4f03487948708ff3a0d41e3c69bd5b9a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
@@ -24,13 +24,13 @@ datadog-agent launch-gui
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-   I added the following tags: `env: production, and role:database` in the `datadog.yaml` config file which can be found in `opt/datadog-agent/etc/`. The tags needed to be added with the tags: key in the `datadog.yaml` file. After adding the tags I restarted the agent using `datadog-agent restart`.
+   I added the following tags: `env: production, and role:database` in the `datadog.yaml` config file which can be found in `opt/datadog-agent/etc/`. I inserted the tags with the `tags:` key in the `datadog.yaml` file. After adding the tags I restarted the Agent.
 
    ![Host Map page showing Tags](/img/hostmap_tag.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-   I use MySQL so that's what I used for this challenge. 
+   I am most familiar with MySQL so that's what I used for this challenge. It is already installed on my machine. 
    
    First, I created a database for the Agent by running the following query in MySQL: `CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'my_password';`. Then in order to verify that the user was created successfully I ran the following command: 
 
@@ -67,27 +67,23 @@ datadog-agent launch-gui
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-   To create a new custom agent, I made a new check in `my_metric.py` which I placed in `/etc/datadog-agent/checks.d/`. Then I inserted the following code in the file: 
+   To create a new custom agent, I created a new check which I placed in `/etc/datadog-agent/checks.d/`. Then I inserted the following code in the file `my_metric.py`: 
 
    ```
-   from checks import AgentCheck
-   import randint 
+    from checks import AgentCheck
+    from random import randint
 
-   class MetricCheck(AgentCheck):
-        def check(self, instance):
+    class MetricCheck(AgentCheck):
+      def check(self, instance):
         randomInt = randint(0, 1000)
-        self.gauge('my_metric', randomInt, tags=[my_metric])
+        self.gauge('my_metric',  randomInt)
    ```
 
-   After this step, I created a new configuration file named `conf.yaml` and placed it in a new directory. I created the new directory in the terminal by using the following command: 
-
-   ```
-   mkdir /etc/datadog-agent/conf.d/my_metric.d/
-   ```
+   After this step, I updated the file`conf.yaml` which is located in the ```/etc/datadog-agent/conf.d/mysql.d/``` directory
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-  In order to accomplish this, I updated the `my_metric.py` file, by updating the collection interval to 45. 
+  In order to accomplish this, I updated the `my_metric.yaml` file, by updating the collection interval to 45. 
 
    ![45 second Collection Interval](/img/collection_interval.png)
 
@@ -171,10 +167,16 @@ Once this is created, access the Dashboard from your Dashboard List in the UI.
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+   
+   Issues: I could only determine how to create a 5 minute timeframe with screenboards so that is what I used to generate the 5 minute timeframe. 
 
    ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5.png)
 
    ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
+
+
+* Bonus Question
+   The anomaly algorithmic feature is designed to identify when a metric is deviating from its past behavior. 
 
 #### Documentation I used to complete this section:
 [Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)  
@@ -203,7 +205,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-   The notification I received via email can be found in the screenshots below. 
+   The notification I received via email can be found in the screenshots below. The monitor can be found [here](https://app.datadoghq.com/monitors/5149754)
 
    ![Email configuration based on conditions](/img/email_config.png) 
    ![Email notification](/img/email_not_monitor.png)
@@ -232,8 +234,32 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
    First, I needed to install ddtrace. I did this by using pip and the folliwng commmadn: `pip install ddtrace`
 
-   [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-fea48cfe80d82e08a0f30cddab616be4)  
+   Then, I copied the provided script and placed it in the scripts/ directory. The flask app can be found [here](scripts/flaskapp.py)
+
+   I ran into issues running `ddtrace-run python flaskapp.py`. These are the steps I followed to resolve the issue: 
+
+     1. When I first ran dd-trace-run, I received the following error: 
+
+       ```
+       you must specify an API Key, either via a configuration file or the DD_API_KEY env var
+       ```
+       First, I believed the issue was that the trace-agent could not find access to the api key so I changed the `datadog.yaml` file from `api_key: 4f03487948708ff3a0d41e3c69bd5b9a` to `DD_API_KEY`. This did not resolve the error. 
+
+     2. Next, I decided to give the Development configuration a try. I installed Go, then downloaded the latest source by running: `go get -u github.com/DataDog/datadog-trace-agent/...`. Then, I added a $GOPATH/bin to my bash_profile. Finally, I entered the following code into my terminal. 
+
+     ```
+     cd $GOPATH/src/github.com/DataDog/datadog-trace-agent
+     make install
+     ```
+
+     When I entered `trace-agent --config /opt/datadog-agent/etc/datadog.yaml` the trace agent began to run on http://0.0.0.0:5050/. Next, I ran `ddtrace-run python flaskapp.py`. Then, I visited all of the routes on the flask app: /, /api/trace, /api/apm. After a few moments the app showed my traces on the APM->Traces section of the app. 
+
+   [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-76a7f7c7545fb03324f45304500a6080)  
    ![Dashboard](/img/Dashboard_apm_hostmap.png)
+
+* Bonus Question
+
+   A services is a set of processes that provide a feature set. An example would be a database like MySQL. A resource is a query to a service. A good example is the actual SQL of a database query like: `Select * from table_name LIMIT 5`
 
 
 #### Documentation I used to complete this section:
