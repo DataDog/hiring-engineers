@@ -5,12 +5,13 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-![Agent Config File](../../../Pictures/Screenshots/agentconfig.png)
-![Host Map Visualization](../../../Pictures/Screenshots/hostmap.png)
+![Agent Config File](images/agentconfig.png)
+
+![Host Map Visualization](images/hostmap.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-![MongoDB Integration]C:\Users\Ralph\Pictures\Screenshots\mongodbintegration.png?raw=true "MongoDB Integration")
+![MongoDB Integration](images/mongodbintegration.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
