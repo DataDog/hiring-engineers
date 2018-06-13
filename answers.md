@@ -1,7 +1,19 @@
 ## Prerequisites - Setup the environment
-* I decided to install vagrant to avoid any dependency issues. 
+* For this challenge I am using a fairly new MacBookPro OS version 10.12.06. I followed the Vagrant setup documentation and successfully installed the VM. However, I did not utilize the VM while completing this challenge. I have a new machine and felt confident I wouldn't run into dependency issues. To install the Datadog Agent, I followed the instructions in the GUI by running the command below in my terminal: 
 
-   ![agent reporting metrics](/img/agent_report_metrics.png) 
+```
+DD_API_KEY=4f03487948708ff3a0d41e3c69bd5b9a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+```
+
+Once this step was complete, I stopped the agent and launched the GUI by using the following commands: 
+
+```
+datadog-agent stop
+datadog-agent start
+datadog-agent launch-gui
+```
+![agent reporting metrics](/img/agent_report_metrics.png) 
+
 
 #### Documentation I used to complete this section:
 [Vagrant Setup Documentation](https://www.vagrantup.com/intro/getting-started/project_setup.html)  
@@ -12,24 +24,76 @@
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+   I added the following tags: `env: production, and role:database` in the `datadog.yaml` config file which can be found in `opt/datadog-agent/etc/`. The tags needed to be added with the tags: key in the `datadog.yaml` file. After adding the tags I restarted the agent using `datadog-agent restart`.
+
    ![Host Map page showing Tags](/img/hostmap_tag.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
    I use MySQL so that's what I used for this challenge. 
+   
+   First, I created a database for the Agent by running the following query in MySQL: `CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'my_password';`. Then in order to verify that the user was created successfully I ran the following command: 
+
+   ```
+   mysql -u datadog --password='my_password' -e "show status" | \
+   grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+   echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+   mysql -u datadog --password='my_password' -e "show slave status" && \
+   echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+   echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+   ``` 
+
+   Then, I edited the `conf.yaml` file in the `conf.d/mysql.d` directory in order to connect the Agent to my local MySQL server. I added the following code to the file: 
+
+   ```
+   instances: 
+      - server: 127.0.0.1
+        user: datadog
+        pass: your_password_in_string
+        port: 3306
+        options:
+          replication: 0
+          galera_cluster: 1
+          extra_status_metrics: true
+          extra_innodb_metrics: true
+          extra_performance_metrics: true
+          schema_size_metrics: false
+          disable_innodb_metrics: false
+   ```
+
+   After these steps were complete, I restarted the agent. In the app, I confirmed that my integration was successful. Additionally, in the terminal I ran the check `datadog-agent check mysql` and confirmed the integration was successful.
+
    ![MySQL Integration](/img/mysql_integration.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-   ![Custom Agent Check with Random Value](/img/custom_agent_randomint.png)
+   To create a new custom agent, I made a new check in `my_metric.py` which I placed in `/etc/datadog-agent/checks.d/`. Then I inserted the following code in the file: 
+
+   ```
+   from checks import AgentCheck
+   import randint 
+
+   class MetricCheck(AgentCheck):
+        def check(self, instance):
+        randomInt = randint(0, 1000)
+        self.gauge('my_metric', randomInt, tags=[my_metric])
+   ```
+
+   After this step, I created a new configuration file named `conf.yaml` and placed it in a new directory. I created the new directory in the terminal by using the following command: 
+
+   ```
+   mkdir /etc/datadog-agent/conf.d/my_metric.d/
+   ```
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+  In order to accomplish this, I updated the `my_metric.py` file, by updating the collection interval to 45. 
 
    ![45 second Collection Interval](/img/collection_interval.png)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-   Yes, I modified the collection interval in the yaml file.
+   Yes, I modified the collection interval in the `/etc/datadog-agent/conf.d/my_metric.d/conf.yaml` file that I created. I added `min_collection_interval: 45` to the instances section in order to achieve this collection interval. 
 
 
 #### Documentation I used to complete this section: 
@@ -50,46 +114,65 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-   I struggled with this part. I read the documentation on rollup, but I ran into difficulties applying the function to the query. 
+   
+   Of the options in the API documentation, I'm most comfortable in the terminal so I used Curl. first I installed coreutils by using the following command: `brew install coreutils`. I generated a new app key in the settings section of the DataDog app found here: https://app.datadoghq.com/account/settings#api. 
+
+  In order to add multiple graphs to the timeboard, I inserted multiple objects into the graph array. The issue I ran into was with escaping the quotes around `'basic'`. Once I determined how to do this, the script ran with no issues. The final timeboard can be found [here](https://app.datadoghq.com/dash/833933/my-timeboard-final?live=true&page=0&is_auto=false&from_ts=1528859389405&to_ts=1528862989405&tile_size=m)
+
+
 
 ```
 api_key=4f03487948708ff3a0d41e3c69bd5b9a
 app_key=43c5f29e91f2b86eb9db8cab1e7132a384f0c305
 
-curl  -X POST -H "Content-type: application/json" \
+curl -X POST -H "Content-type: applicaiton/json" \
 -d '{
-	  "query":"time_aggr(last_1h):anomalies(sum:my_metric{host:nicholesvibrantlife}, 'basic', 3, direction='above', alert_window='last_15m', interval=60)",
-      "graphs" : [{
-          "title": "My Metric Timeboard",
-          "definition": {
-              "events": [],
-              "requests": [
-                  {"q": "sum:my_metric{host:nicholesvibrantlife}"}
-              ]
-          },
-          "viz": "timeseries"
-      }],
-      "title" : "My Metric Timeboard",
-      "description" : "A dashboard with memory info.",
-      "template_variables": [{
-          "name": "host1",
-          "prefix": "host",
-          "default": "host:my-host"
-      }],
-      "read_only": "True"
+  "title": "My Timeboard Final v1", 
+  "description": "A New Timeboard with Metric Information",
+  "graphs" : 
+  [
+    {
+      "title": "my_metric scoped over host",
+      "definition": {
+        "events": [],
+        "requests": [
+          {"q": "avg:my_metric{host:nicholesvibrantlife}"}
+        ]
+      },
+      "viz": "timeseries"
+
+    },
+    {
+      "title": "Mysql Collection Anomallies",
+      "definition": {
+        "events": [],
+        "requests": [
+          {"q": "anomalies(avg:my_metric{host:nicholesvibrantlife}, \"basic\", 3)"}
+        ]
+      }, 
+      "viz": "timeseries"
+    },
+    {
+      "title": "my_metric w/rollup sum of points over an hour",
+      "definition": {
+        "events": [],
+        "requests": [
+          {"q": "avg:my_metric{host:nicholesvibrantlife}.rollup(\"sum\", 3600)"}
+        ]
+      }
+    }
+  ]
 }' \
 "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 
 ```
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Once this is created, access the Dashboard from your Dashboard List in the UI.
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-   From the research I conducted, I could only find a way to show a 5 minute timeframe using screenboards, so that is the strategy I employed. 
-
-   ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5m.png)
+   ![Screenboard timeframe set to past 5 minutes](/img/screenboard_timeframe_5.png)
 
    ![Screenboard timeframe set to past 5 minutes](/img/timeboard_annotated.png)
 
@@ -109,6 +192,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+   I created a mew monitor by going to the manage monitor page and clicking on New Monitor. You can easily customize your monitor on the page. This is where I set hte warning and alert threshold as well as requiring a notification if I received No Data for the query. 
+
    ![Alert Conditions](/img/alert_conditions.png)  
 
 Please configure the monitor’s message so that it will:
@@ -118,6 +203,8 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+   The notification I received via email can be found in the screenshots below. 
+
    ![Email configuration based on conditions](/img/email_config.png) 
    ![Email notification](/img/email_not_monitor.png)
 
@@ -126,9 +213,11 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 * One that silences it from 7pm to 9am daily on M-F,
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
+
+   Muting the monitors overnight or on the weekend can be accomplished via the manage downtime section of the app. You can find this section by hovering over `Monitors` and selecting `Manage Downtown`. Once you fill in the required information, you will receive a confirmation email as well as an email at the start and end of the time you indicated 
   
    ![Silencing from 7pm - 9](/img/email_config_7-9.png) 
-   ![Silencing from 7pm - 9](/img/email_config_weekend.png)
+   ![Silencing over the weekend](/img/email_config_weekend.png)
    ![Overnight Email](/img/overnight_email.png)  
    ![Weekend Email](/img/weekend_email.png)
 
@@ -140,6 +229,8 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
 ## Collecting APM Data
 * Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+   First, I needed to install ddtrace. I did this by using pip and the folliwng commmadn: `pip install ddtrace`
 
    [Link to Screenboard](https://p.datadoghq.com/sb/eebd8a387-fea48cfe80d82e08a0f30cddab616be4)  
    ![Dashboard](/img/Dashboard_apm_hostmap.png)
