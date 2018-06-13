@@ -204,7 +204,7 @@ if __name__ == '__main__':
 
 ![dashboard](images/apm_infra_metrics.png)
 
-Refer to the dashboard ![here.](https://app.datadoghq.com/dash/834046)
+Dashboard link: https://app.datadoghq.com/dash/834046
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
