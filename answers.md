@@ -145,74 +145,73 @@
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?  
     Yep! I only edited the yaml file above.
 
-Visualizing Data
-
-  - Utilize the Datadog API to create a Timeboard that contains:
-    - Your custom metric scoped over your host.
-    - Any metric from the Integration on your Database with the anomaly function applied.
-    - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+## Visualizing Data
+### Utilize the Datadog API to create a Timeboard that contains:
+  - Your custom metric scoped over your host.
+  - Any metric from the Integration on your Database with the anomaly function applied.
+  - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
   Okay so here's a list of things I need to figure out, with links I find helpful:
   - how to make a timeboard, so find instructions here:
     - I find instructions here: https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
-      - and I think the instructions above have directions for 'your custom metric scoped over your host'
+    - and I think the instructions above have directions for 'your custom metric scoped over your host'
   - Any metric from the Integration on your Database with the anomaly function applied.
     - Here's a list of metrics: https://docs.datadoghq.com/integrations/postgres/#metrics
-    - Anomaly function: I think I need this: https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api (although not sure if my free trial includes this... I guess we'll find out!)
+    - Anomaly function: I think I need this: https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api
   - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Info about rollups, I found here: https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time
-    - I plan to use Postman to make API calls, and when I google around to see if there might be a tutorial, I do find this link: https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
+  - I plan to use Postman to make API calls, and when I google around to see if there might be a tutorial, I find this link: https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
   Cool, so I think I have an idea of what to do.   
   - First things first: The sample code on https://docs.datadoghq.com/api/?lang=python#create-a-timeboard suggests I need an APP KEY and an API Key.
-    - I navigate to here: https://app.datadoghq.com/account/settings#api where I see I already have an API key, and I click 'Create Application Key' to make an App key
-      ![make app key](/assets/visualizing_data/make_app_key.png)
+  - I navigate to here: https://app.datadoghq.com/account/settings#api where I see I already have an API key, and I click 'Create Application Key' to make an App key
+    ![make app key](/assets/visualizing_data/make_app_key.png)
   - Next I navigate to this tutorial: https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs, but I get an error!
     ![error](/assets/visualizing_data/error.png)
   - So I try the same link in Safari and it works for me:
     ![tutorial](/assets/visualizing_data/tutorial.png)
-    - Per their instructions I download Postman
-    - Then I download the Datadog Postman Collection from the download link and save it to my Desktop
-    - Per the tutorial directions, I replace all instances of INSERT_API_KEY_HERE with my API Key of cc93d681a5105d4f54f3e9907f7167a6
-      ![replace API key](/assets/visualizing_data/replace_API_key.png)
-    - I do the same and replace INSERT_APP_KEY_HERE  with 381ed52d16440f81418d3d3aa315a6fba0aa3ae5
-      ![replace APP key](/assets/visualizing_data/replace_APP_key.png)
-    - Now it's time to import the Datadog Postman Collection:  
-      - Per the instructions, I click on File > Import, drag and drop the postman_collection json file in, and click on 'Collections' to see this:
-      ![datadog collection](/assets/visualizing_data/datadog_collection.png)
-    - I navigate to the Timeboards Collection and click on 'Create a Timeboard' to see this:
-      ![create timeboard](/assets/visualizing_data/create_timeboard.png)
-    - Just to check that this works, I update the description to read 'SAMPLE EXAMPLE - A dashboard with memory info.' and click SEND
-      ![make sample timeboard](/assets/visualizing_data/make_sample_timeboard.png)
-    - I get this response in Postman:
-      ![sample timeboard response](/assets/visualizing_data/sample_timeboard_response.png)
-    - And in the Dashboards section list I see the sample one I made:
-      ![sample dashboard](/assets/visualizing_data/sample_dashboard.png)
-    - So my guess is, we need to update the code in the body to reflect the three things we want in our new timeboard, and then we'll see a successful response and timeboard in the Dashboard
-      - For the first part of the request, 'Your custom metric scoped over your host', I follow the format outlined here: https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/
-        - There is no function or space-aggregration, the scope can be left as { * } since there's just one host, and there's no time-aggregation, so I think I only have to update the metric portion so the request reads:  {"q": "my_metric{* }"}
-      - For this part: Any metric from the Integration on your Database with the anomaly function applied.
-        - I pick a metric of postgresql.database_size from the list here, because one time at work my database ran out of disk space and now I'm obsessed with disk space: https://docs.datadoghq.com/integrations/postgres/#data-collected
-        - I update the request to include: :
-          - an anomaly function
-          - An updated metric name of postgresql.database_size
-          - I leave out a space-aggregation because I don't think we're looking for an average
-          - I leave the host as * since there's just the one host
-          - There's no time-aggregation so I leave that out
-          - I also add the 'basic' anomaly detection algorithm
-          - This link (https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) says there should be a second parameter, bounds, and a value of 2 or 3 should be large enough to include normal points, so I add that in
-          - Note: This link (https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) has various other options but I think they are optional so I leave things alone and just use what I have below. Worst case scenario, the timeboard doesn't make sense and I have to redo some things:
+  - Per their instructions I download Postman
+  - Then I download the Datadog Postman Collection from the download link and save it to my Desktop
+  - Per the tutorial directions, I replace all instances of INSERT_API_KEY_HERE with my API Key of cc93d681a5105d4f54f3e9907f7167a6
+    ![replace API key](/assets/visualizing_data/replace_API_key.png)
+  - I do the same and replace INSERT_APP_KEY_HERE  with 381ed52d16440f81418d3d3aa315a6fba0aa3ae5
+    ![replace APP key](/assets/visualizing_data/replace_APP_key.png)
+  - Now it's time to import the Datadog Postman Collection:  
+    - Per the instructions, I click on File > Import, drag and drop the postman_collection json file in, and click on 'Collections' to see this:
+    ![datadog collection](/assets/visualizing_data/datadog_collection.png)
+  - I navigate to the Timeboards Collection and click on 'Create a Timeboard' to see this:
+    ![create timeboard](/assets/visualizing_data/create_timeboard.png)
+  - Just to check that this works, I update the description to read 'SAMPLE EXAMPLE - A dashboard with memory info.' and click SEND
+    ![make sample timeboard](/assets/visualizing_data/make_sample_timeboard.png)
+  - I get this response in Postman:
+    ![sample timeboard response](/assets/visualizing_data/sample_timeboard_response.png)
+  - And in the Dashboards section list I see the sample one I made:
+    ![sample dashboard](/assets/visualizing_data/sample_dashboard.png)
+  - So my guess is, we need to update the code in the body to reflect the three things we want in our new timeboard, and then we'll see a successful response and timeboard in the Dashboard
+    - For the first part of the request, 'Your custom metric scoped over your host', I follow the format outlined here: https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/
+      - There is no function or space-aggregration, the scope can be left as { * } since there's just one host, and there's no time-aggregation, so I think I only have to update the metric portion so the request reads:  {"q": "my_metric{* }"}
+    - For this part: Any metric from the Integration on your Database with the anomaly function applied.
+      - I pick a metric of postgresql.database_size from the list here, because one time at work my database ran out of disk space and now I'm obsessed with disk space: https://docs.datadoghq.com/integrations/postgres/#data-collected
+      - I update the request to include: :
+        - an anomaly function
+        - An updated metric name of postgresql.database_size
+        - I leave out a space-aggregation because I don't think we're looking for an average
+        - I leave the host as * since there's just the one host
+        - There's no time-aggregation so I leave that out
+        - I also add the 'basic' anomaly detection algorithm
+        - This link (https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) says there should be a second parameter, bounds, and a value of 2 or 3 should be large enough to include normal points, so I add that in
+        - Note: This link (https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) has various other options but I think they are optional so I leave things alone and just use what I have below. Worst case scenario, the timeboard doesn't make sense and I have to redo some things:
 
-            {"q": "anomalies(postgresql.database_size{* }, 'basic', 2)"}
-      - For the third part: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-        - Okay documentation for rollup functions is here: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1
-        - And luckily, the doc I've been using to format my queries has a rollup function in there: https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/
-        - Again, I don't think we have any space-aggregation (although I think we will use 'sum' as one of the arguments in the rollup function) so I leave that out
-        - the metric name I change to my_metric
-        - the host I leave as is because there is only one host
-        - I add .rollup(sum, 3600) because we want the sum of all the points, and if time is in seconds (based on this: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1), 60 minutes is 3600 seconds
+          {"q": "anomalies(postgresql.database_size{* }, 'basic', 2)"}
+    - For the third part: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+      - Okay documentation for rollup functions is here: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1
+      - And luckily, the doc I've been using to format my queries has a rollup function in there: https://docs.datadoghq.com/getting_started/from_the_query_to_the_graph/
+      - Again, I don't think we have any space-aggregation (although I think we will use 'sum' as one of the arguments in the rollup function) so I leave that out
+      - the metric name I change to my_metric
+      - the host I leave as is because there is only one host
+      - I add .rollup(sum, 3600) because we want the sum of all the points, and if time is in seconds (based on this: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1), 60 minutes is 3600 seconds
 
-        - {"q": "my_metric{* }.rollup(sum, 3600)"}
-    - So anyway my final request looks like this:
+      - {"q": "my_metric{* }.rollup(sum, 3600)"}
+    - My final request looks like this:
       ![timeboard request](/assets/visualizing_data/timeboard_request.png)
     - I click "Send" and get a 200 response:
       ![timeboard response](/assets/visualizing_data/timeboard_response.png)
@@ -224,19 +223,21 @@ Visualizing Data
       ![timeboard v2](/assets/visualizing_data/timeboard_v2.png)
     - I'm not totally sure why the anomaly graph looks blank though. Maybe there are just no anomalies? That seems unlikely, though.
     - Using the GUI, I edit the 'basic' checking to 'robust', and also update the bounds to '1' , but the graph looks the same. :( So I switch back to the way things were.
-    - At this point, I'm not sure why it looks blank but I'll move on and come back to this to debug if I have time. For now - onwards!
-  - Access the Dashboard from your Dashboard List in the UI. Set the Timeboard's timeframe to the past 5 minutes
-    - I stumbled upon this my accident while I was clicking all around my empty graphs, trying to figure out what was wrong.
-    - If you click a point on the graph and drag your mouse, the timeboard will show only that timeframe
-    - This is what 5 minutes looked like for me:
-      ![5 minutes timeboard](/assets/visualizing_data/5_minutes.png)
-  - Take a snapshot of this graph and use the @ notation to send it to yourself.
-    - This is intuitive: I click on the camera icon here:
-      ![camera icon](/assets/visualizing_data/click_blue_camera.png)
-    - I write a note and @ my email, and then when I press enter it sends to my email:
-      ![send message](/assets/visualizing_data/send_message.png)
-      ![email](/assets/visualizing_data/email.png)
-  - Bonus Question: What is the Anomaly graph displaying?
+
+### Access the Dashboard from your Dashboard List in the UI. Set the Timeboard's timeframe to the past 5 minutes
+  - I stumbled upon this my accident while I was clicking all around my empty graphs, trying to figure out what was wrong.
+  - If you click a point on the graph and drag your mouse, the timeboard will show only that timeframe
+  - This is what 5 minutes looked like for me:
+    ![5 minutes timeboard](/assets/visualizing_data/5_minutes.png)
+
+###Take a snapshot of this graph and use the @ notation to send it to yourself.
+  - This is intuitive: I click on the camera icon here:
+    ![camera icon](/assets/visualizing_data/click_blue_camera.png)
+  - I write a note and @ my email, and then when I press enter it sends to my email:
+    ![send message](/assets/visualizing_data/send_message.png)
+    ![email](/assets/visualizing_data/email.png)
+
+### Bonus Question: What is the Anomaly graph displaying?
     Sadly my anomaly graph isn't displaying anything but it should display the value of a selected metric, and also show when that value is different from what it normally is. The algorithm takes into account trends, day of the week, and time-of-day patterns. I learned all this here: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 
 Monitoring Data
