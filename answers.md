@@ -1,3 +1,5 @@
+# Solutions Engineer Solutions by Rafaeli Arroyo
+
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -43,9 +45,9 @@ instances:
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-⋅⋅⋅The collection interval can be changed by configuring min_collection_interval of each check instance to a positive numerical value.
+The collection interval can be changed by configuring min_collection_interval of each check instance to a positive numerical value.
 
-#### Visualizing Data:
+## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -112,11 +114,12 @@ instances:
 Once the Timeboard is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 #### Generated Timeboard (last 5 minutes)
 
 ![Generated Timeboard](images/last5min.png)
+
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 #### Timeboard Emailed to Self
 
@@ -154,7 +157,7 @@ Please configure the monitor’s message so that it will:
 
   ![Downtime during Weekdays](images/downtimeweekdays.png)
 
-  * And one that silences it all day on Sat-Sun. Specifically, it silences the monitor from Friday at 7pm to Monday at 9am (62 hours).
+  * And one that silences it all day on Sat-Sun - specifically, it silences the monitor from Friday at 7pm to Monday at 9am (62 hours).
 
   ![Downtime during Weekends](images/downtimeweekends.png)
 
@@ -164,7 +167,7 @@ Please configure the monitor’s message so that it will:
 
 ## Collecting APM Data:
 
-The dashboard I generated for this section visualizes the number of request hits and their duration times for the provided Flask app. After running ddtrace-run on the following script, I accessed the app's apm and trace routes multiple times to collect trace data for my host, which is then rendered on a timeboard:
+The dashboard I generated for this section visualizes the number of request hits and their duration times for the provided Flask app. After running ddtrace-run on the following script, I accessed the app's apm and trace routes multiple times to collect trace data for my host, which I later rendered on a Timeboard:
 
 **my_app.py:**
 
@@ -208,7 +211,7 @@ Dashboard link: https://app.datadoghq.com/dash/834046
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-A service is a set of processes that drive an application or system, and a resource is a specific action that is carried out to fulfill that service. Let's take a restaurant as an example. There are often two primary services at that restaurant: customer-engagement (hosts, servers) and kitchen workers (chefs, cleaners). The customer engagement team is in charge of greeting customers, seating them, and taking their orders, all of which are resources for that particular service. The resources of the kitchen workers consist of making food based off of customer orders and cleaning kitchen utensils for re-usability.
+A service is a set of processes that drive an application or system, and a resource is a specific action that is carried out to fulfill that service. Let's take a restaurant as an example. There are often two primary services at restaurants: customer-engagement (hosts, servers) and kitchen workers (chefs, cleaners). The customer engagement team is in charge of greeting customers, seating them, and taking their orders, all of which are resources for that particular service. The resources of the kitchen workers consist of making food based off of customer orders and cleaning kitchen utensils for re-usability.
 
 ## Final Question:
 
@@ -216,4 +219,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I'd like to use Datadog to give me an idea of my app usage on my phone during my free time. I want to be fully aware of how I tend to use my phone on a day-to-day basis when I'm not working, since there are moments where I tend to open up apps like Facebook or Twitter without thinking about why I'm doing so. Because of that, I tend to lose track of how much time passes when I use my phone at times when I realize that I really don't need to. It's a habit that I'm sure a lot of people can relate to as well. If Datadog could provide information to people regarding how many times they open up certain apps on their phones AND how much time passes while they are actively navigating said apps, I think it would really help them understand how they are spending their free time and shape how they want to address their individual priorities in the future. Of course, this information should be accessible to the owner of the phone only and not anyone else, so the experience is personalized specifically for that individual. Since the information is personalized, maybe people would be inspired to develop or use notification systems, whether they are concrete or just on the person's mind, to establish their own thresholds letting them know if they're using their phones too much.
+I'd love to use Datadog to give me an idea of my app usage on my phone during my free time! I want to be fully aware of how I tend to use my phone on a day-to-day basis when I'm not working, since there are moments where I tend to open up apps like Facebook or Twitter without thinking about why I'm doing so. Because of that, I tend to lose track of how much time passes when I use my phone at times when I realize that I really don't need to. It's a habit that I'm sure a lot of people can relate to as well. If Datadog could provide information to people regarding how many times they open up certain apps on their phones AND how much time passes while they are actively navigating said apps, I think it would really help them understand how they are spending their free time and shape how they want to address their individual priorities in the future. Of course, this information should be accessible to the owner of the phone only and not anyone else, so the experience is personalized specifically for that individual. Since the information is personalized, maybe people would be inspired to develop or use notification systems, whether they are concrete or just apparent on the person's mind, to establish their own thresholds letting them know if they're using their phones more often than they think they should.
