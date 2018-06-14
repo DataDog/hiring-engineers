@@ -129,9 +129,9 @@ However, in our datadog UI we were unable to see the APM metrics, even though we
 
 ![screenshot](/images/img23.png)
 
-So we decided to install the APM manually :
+We tried several configurations (in datadog.yaml and the app code), but we couldn't get the APM to start.
 
-(in progress)
+![screenshot](/images/img25.png)
 
 [Dasboard URL](https://app.datadoghq.com/dash/826035/hadhemis-timeboard-2-jun-2018-1944?live=true&page=0&isauto=false&fromts=1528491582880&tots=1528664382880&tilesize=m) 
 
