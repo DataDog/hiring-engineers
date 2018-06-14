@@ -143,7 +143,7 @@
     Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
 
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?  
-    Yep! I only edited the yaml file above.
+  - Yep! I only edited the yaml file above.
 
 ## Visualizing Data
 ### Utilize the Datadog API to create a Timeboard that contains:
@@ -225,7 +225,7 @@
     - Using the GUI, I edit the 'basic' checking to 'robust', and also update the bounds to '1' , but the graph looks the same. :( So I switch back to the way things were.
 
 ### Access the Dashboard from your Dashboard List in the UI. Set the Timeboard's timeframe to the past 5 minutes
-  - I stumbled upon this my accident while I was clicking all around my empty graphs, trying to figure out what was wrong.
+  - I stumbled upon this by accident while I was clicking all around my empty graphs, trying to figure out what was wrong.
   - If you click a point on the graph and drag your mouse, the timeboard will show only that timeframe
   - This is what 5 minutes looked like for me:
     ![5 minutes timeboard](/assets/visualizing_data/5_minutes.png)
@@ -492,84 +492,79 @@ sudo apt-get install python-pip
     ![comment in ssl again](/assets/apm/comment_out_ssl_again.png)
 
 #### Attempt 5: Let's try using one of your sample apps
-Okay time to change tactics: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
-So I decide to try instrumenting the basic Ruby app. Surely if this is a Datadog example, it will work? And if it doesn't I'll be able to assume I messed up somewhere in the configuration/setup phase.
-Okay so the sample app is here that I'm going to use. So while in my VM I run gem install ddtrace:
-  - ![gem install ddtrace](/assets/apm/gem_install_ddtrace3.png)
-  (Note - why does it say I installed two gems at the end? I have no idea.
-  -  Then create a file called my_app.rb
-    - ![my_app.rb](/assets/apm/my_app.png)
+  - Okay time to change tactics: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
+  - So I decide to try instrumenting the basic Ruby app. Surely if this is a Datadog example, it will work? - And if it doesn't I'll be able to assume I messed up somewhere in the configuration/setup phase.
+  - Okay so the sample app is here that I'm going to use. So while in my VM I run gem install ddtrace:
+    ![gem install ddtrace](/assets/apm/gem_install_ddtrace3.png)
+    (Note - why does it say I installed two gems at the end? I have no idea.)
+  - Then create a file called my_app.rb
+    ![my_app.rb](/assets/apm/my_app.png)
   - Then I run sudo vim my_app.rb to get into it, and copy in the info from the same ruby app:
-    - ![ruby_app](/assets/apm/ruby_app.png)
+    ![ruby_app](/assets/apm/ruby_app.png)
   - Then according to documentation I wrap the Datadog.tracer.trace around the app like so:
-    - ![add trace](/assets/apm/add_trace.png)
+    ![add trace](/assets/apm/add_trace.png)
   - I restart the agent but still am not seeing traces.
 
-Okay let me start totally from scratch because something is wrong with the tracing, I think.
-I uninstall the agent with:  sudo apt-get --purge remove datadog-agent -y
-Download the Mac OS X agent with: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
-I exit my VM and just run the Mac OS X agent on my computer
-https://cl.ly/3A412B0V2e2B
-Once that's done, I have two hosts! How exciting!
-https://cl.ly/3C1T3h3L3Y2v
-Okay that's step 1 of the directions here: https://docs.datadoghq.com/tracing/setup/#setup-process
-Now for step 2: I go here: https://github.com/DataDog/datadog-trace-agent#run-on-osx
-- and download the latest OSX Trace Agent release
+#### Attempt 6: Play with the Mac OS X agent
+- Okay let me start totally from scratch because something is wrong with the tracing, I think. And with the Mac agent, it looks like there are directions on how to confirm if the tracing works. So lets try it.
+- I uninstall the agent with:  sudo apt-get --purge remove datadog-agent -y
+- Download the Mac OS X agent with: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+- I exit my VM and just run the Mac OS X agent on my computer
+  ![mac agent](/assets/apm/mac_agent.png)
+- Once that's done, I have two hosts! How exciting!
+  ![two hosts](/assets/apm/two_hosts.png)
+- Okay that's step 1 of the directions here: https://docs.datadoghq.com/tracing/setup/#setup-process
+- Now for step 2: I go here: https://github.com/DataDog/datadog-trace-agent#run-on-osx
+- And download the latest OSX Trace Agent release
 - I run this: but nothing happens: ./trace-agent-osx-X.Y.Z -config /opt/datadog-agent/etc/datadog.conf
-- I try a couple of variations of this (adding version name instead of X.Y.Z., etc. but they don't work). I google around and find this is an issue: https://github.com/DataDog/datadog-trace-agent/issues/397 but see someone got it working with an old version here: https://github.com/DataDog/datadog-trace-agent/releases?after=5.21.1
-- Nvm just reinstall the Ubuntu agent: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-- Edit yaml file: https://cl.ly/0N1H2s3H1a0E
-- Restart agent: sudo service datadog-agent restart
-- Still nothing...
-For now I just move on...
+- I try a couple of variations of this (adding version name instead of X.Y.Z., etc. but they don't work). I google around and find this is an issue: https://github.com/DataDog/datadog-trace-agent/issues/397
+- For now I just move on...
 
-EDIT - Okay coming back to this!
+#### Attempt 7: Try Flask again!
 - In my VM, I make a new file and copy the Flask app in there.
-  - ![make new flask app](/assets/apm/make_new_flask_app.png)
-- I run pip install ddtrace but get the same error I've been getting_startedhttps://cl.ly/013x0F1z2X1f
+  ![make new flask app](/assets/apm/make_new_flask_app.png)
+- I run pip install ddtrace but get the same error I've been getting:
+  ![classic error](/assets/apm/classic_error.png)
 - One thing I saw while trying to debug was 'installing from source' so I look up a tutorial and find this: https://www.howtogeek.com/105413/how-to-compile-and-install-from-source-on-ubuntu/
   - I run sudo apt-get install build-essential
   - I go here to find source files: https://pypi.org/project/ddtrace/#files and download them
-  - I guess and make a shared folder  according to
-  https://cl.ly/1W2P2K2v151V
-Actually let me see if making a new VM does the trick...
-vagrant destroy
-delete old Vagrantfile
- vagrant init hashicorp/precise64
- vagrant up
- vagrant ssh to get this:
- https://cl.ly/3r2G1S1P2R08
- One step Ubuntu agent install: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+  - I guess and make a shared folder
+  - Then my computer freezes. I think this might be doomed.
 
-And I see this: https://cl.ly/0w0f1Z2S180K
-Agent successfully installed!
-sudo vim app.py to make a new file for the app, copy flask app in there
-pip install ddtrace
-Get this message: https://cl.ly/3t0X3W1e1H0e
-sudo apt-get install python-pip - from this link here: https://askubuntu.com/questions/672808/sudo-apt-get-install-python-pip-is-failing
-I try this pip install ddtrace again: AND IT WORKS
+#### Attempt 8: Make a new VM, this time with v 16.04!
+- Actually let me see if making a new VM does the trick...
+- I run vagrant destroy to delete the old Vagrantfile
+- Then run vagrant init ubuntu/xenial64 instead of what's in the tutorial (hashicorp/precise64) so we get the right version in our new VM. I find the name of the box here: https://app.vagrantup.com/boxes/search
+- Then run: vagrant up
+- Then: vagrant ssh to get this:
+  ![vagrant ssh](/assets/apm/vagrant_ssh.png)
+- I use the one step Ubuntu agent install: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+- And I see that the agent was successfully installed:
+  ![agent installed](/assets/apm/agent_installed.png)
+- I run sudo vim app.py to make a new file for the app, and copy the flask app in there
+- Then run pip install ddtrace
+- Get this message: "The program "pip" is currently not installed"
+- I run: sudo apt-get install python-pip - from this link here: https://askubuntu.com/questions/672808/sudo-apt-get-install-python-pip-is-failing
+- I try pip install ddtrace again, and it works!!
 https://cl.ly/0l0I2a2s3x0V
-Then try:
-ddtrace-run python app.py
-It gives me a 'no module for Flask error'
-So I just replace the flask app with the same python app here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
-I run this again: ddtrace-run python my_app.py
-And I see stuff in my console!!!!! https://cl.ly/0u3V3Z1G1u1j
-AND I see a message saying my first traces are now available!!!!
-(apm_dashboard_overview)
-Here are my beautiful graphs:
-APM graphs
-https://cl.ly/0q2w381N2y2V
-Link: https://app.datadoghq.com/apm/service/sample-app/request?start=1528856813185&end=1528860413185&env=none&paused=false
-A copy of the instrument python app is in app.py. It's taken from here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
+  ![successful pip](/assets/apm/success_pip_install_ddtrace.png)
+- Then try: ddtrace-run python app.py
+- It gives me a 'no module for Flask error', so I just replace the flask app with the sample python app here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py to see if that works
+- I run this again: ddtrace-run python my_app.py
+- And I see stuff in my console!!!!! https://cl.ly/0u3V3Z1G1u1j
+  ![trace available](/assets/apm/trace_works.png)
+- I see a message saying my first traces are now available!!!!
+  ![traces are available](/assets/apm/traces_available.png)
+- And here's a dashboard overview:
+  ![dashboard overview](/assets/apm/apm_dashboard_overview.png)
+- Here are my graphs:
+  ![graphs](/assets/apm/graphs.png)
+- Link to dashboard: https://app.datadoghq.com/apm/service/sample-app/request?start=1528856813185&end=1528860413185&env=none&paused=false
+- A copy of the instrumented python app is in app.py. It's taken from here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
 (Note: there is also a my_flask_app.py and rails blog folder in here from attempts that didn't work. I left them in here but they're not being used)
 
-
-
-
-
-Bonus Question: What is the difference between a Service and a Resource?
+#### Bonus Question: What is the difference between a Service and a Resource?
   Based on this link: https://docs.datadoghq.com/tracing/visualization/#services a service is a set of process that does the same job (ie: a database). And a resource is a particular action for that service (so for example, an individual endpoint).
 
-Final Question:  
+###Final Question: Is there anything creative you would use Datadog for?
 - I'd love to see Datadog used to monitor noise levels around the city. There are things like this: https://mashable.com/2012/01/11/noisetube-noise-pollution/#_HU9y2nvs8qA that help to track noise pollution and all you need is a smartphone. If the technology that powers this used Datadog, it would allow users to see what locations in the city are the most quiet at any given time. Users could also segment data by time of day, or day of the week, or even season to know how to avoid noise pollution. One of my favorite things to do after work is go on long walks, but I hate hearing the sound of honking horns, so something like this would be perfect for me.
