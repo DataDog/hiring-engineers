@@ -6,6 +6,7 @@
   - Install Vagrant and VirtualBox using the download links on the page
   - In terminal, input the first 'Up and Running' command:
     ![Get a Vagrantfile](/assets/setup/Get_a_vagrantfile.png)
+    (Note: I didn't realize at the time that this command was for v.12.04. If I could go back and do it again I'd use the ubuntu/xenial64 box to get v. 16.04 running from the start)
   - Use vagrant up to bring up the machine
     ![vagrant up](/assets/setup/vagrant_up.png)
   - And ssh into the machine using vagrant ssh
@@ -17,7 +18,7 @@
     https://askubuntu.com/questions/364404/e-unable-to-fetch-some-archives-maybe-run-apt-get-update-or-try-with-fix-mis
   - Which tells me to try this: sudo apt-get update. And that seems to work!
     ![apt-get update](/assets/setup/apt_get_update.png)
-  - Then I run sudo apt-get install vagrant again. Yaas, this works! So I run vagrant init and get this message:
+  - Then I run sudo apt-get install vagrant again. This works! So I run vagrant init and get this message:
     ![vagrant init](/assets/setup/vagrant_init.png)
   - I run vagrant box add hashicorp/precise64 and get an error. Curious, I click ahead in the instructions and realize I'm already done and this step was unnecessary.
     ![install box](/assets/setup/install_box.png)
@@ -49,13 +50,13 @@
     ![datadog-agent folder](/assets/metrics/datadog-agent.png)
   - I run sudo vim datadog.yaml to get into the yaml file, and scroll down until I see the tags section:
     ![tags section](/assets/metrics/tags_section.png)
-  - This link: says the first method below is valid for tags
+  - This link: https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files says the first method below is valid for tags
     ![ways to put in tags](/assets/metrics/ways_to_put_tags_in.png)
     so I press I to edit text, and enter in this info:
     ![new tags](/assets/metrics/add_tags.png)
-    Then press :wq to save and ESC out of vim.
+    Then press ESC and :wq to save and get out of vim.
   - I don't see the tags showing up in my host map, so I google around and read here: https://docs.datadoghq.com/agent/basic_agent_usage/windows/#starting-and-stopping-the-agent that 'Any time you modify a Datadog integration you’ll need to restart the Datadog Agent service
-  - this page: https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands says the restart command is: sudo service datadog-agent restart
+  - This page: https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands says the restart command is: sudo service datadog-agent restart
   - So I try it in terminal:
     ![restart agent](/assets/metrics/restart_agent.png)
   - And when I refresh my host map, the tags are there!
@@ -71,12 +72,12 @@
       ![install postgres](/assets/metrics/install_postgres.png)
 
   - Part 2: Install the respective Datadog integration for that database
-    - https://docs.datadoghq.com/integrations/postgres/
+    - I read this link: https://docs.datadoghq.com/integrations/postgres/
     - To start psql on my PostgreSQL database, I use instructions from here (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) and type sudo -i -u postgres in terminal, and then psql to access the Postgres prompt:
       ![access postgres prompt](/assets/metrics/access_postgres_prompt.png)
     - Then I create a user (datadog) and grant datadog access with these command prompts, following directions found here: https://docs.datadoghq.com/integrations/postgres/#prepare-postgres
     ![create_user](/assets/metrics/create_user.png)
-    - Then I freak out because I copied and pasted the create user command without changing the password (so currently datadog's password is <PASSWORD>)
+    - Then I freak out because I copied and pasted the create user command without changing the password
     - So I take a quick detour and find this link: https://stackoverflow.com/questions/12720967/how-to-change-postgresql-user-password
     - The above link says I can do this to change the password, and it seems to work:
       ![change password](/assets/metrics/change_password.png)
@@ -97,7 +98,7 @@
     - This link: https://docs.datadoghq.com/integrations/postgres/#validation says to run the status subcommand and 'look for postgres under the Checks section'. So I run sudo datadog-agent status and scroll down to the Checks section:
     - Alas! There's an error saying database "pg_stat_database" doesn't exist
       ![postgres error](/assets/metrics/postgres_error.png)
-    - My guess as to this error is: when I edited the conf.yaml folder, I named the db pg_stat_database, but I think that's not actually the name of the database and I should have left that section blank. So I cd into the postgres.d folder, and then run sudo vim conf.yaml to comment out the db name:
+    - My guess is: when I edited the conf.yaml folder, I named the db pg_stat_database, but I think that's not actually the name of the database and I should have left that section blank. So I cd into the postgres.d folder, and then run sudo vim conf.yaml to comment out the db name:
       ![edit conf.yaml](/assets/metrics/edit_conf_yaml.png)
     - I run the restart command: sudo service datadog-agent restart
       ![restart agent second try](/assets/metrics/restart_agent_V2.png)
@@ -139,7 +140,7 @@
     ![add interval](/assets/metrics/add_interval.png)
   - I run the restart command: sudo service datadog-agent restart  
   - This time I go to the Metrics Explorer in the dashboard to make sure I'm collecting a metric at regular intervals. It seems like it's working from this graph:
-    ![metrics_explorer](/assets/metrics/metrics_explorer.png)
+    ![metrics explorer](/assets/metrics/metrics_explorer.png)
     Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
 
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?  
@@ -152,9 +153,9 @@
   - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
   Okay so here's a list of things I need to figure out, with links I find helpful:
-  - how to make a timeboard, so find instructions here:
+  - How to make a timeboard: I find instructions here:
     - I find instructions here: https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
-    - and I think the instructions above have directions for 'your custom metric scoped over your host'
+    - I think the instructions above have directions for 'your custom metric scoped over your host'
   - Any metric from the Integration on your Database with the anomaly function applied.
     - Here's a list of metrics: https://docs.datadoghq.com/integrations/postgres/#metrics
     - Anomaly function: I think I need this: https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api
@@ -192,15 +193,15 @@
     - For this part: Any metric from the Integration on your Database with the anomaly function applied.
       - I pick a metric of postgresql.database_size from the list here, because one time at work my database ran out of disk space and now I'm obsessed with disk space: https://docs.datadoghq.com/integrations/postgres/#data-collected
       - I update the request to include: :
-        - an anomaly function
+        - An anomaly function
         - An updated metric name of postgresql.database_size
         - I leave out a space-aggregation because I don't think we're looking for an average
         - I leave the host as * since there's just the one host
         - There's no time-aggregation so I leave that out
         - I also add the 'basic' anomaly detection algorithm
         - This link (https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) says there should be a second parameter, bounds, and a value of 2 or 3 should be large enough to include normal points, so I add that in
-        - Note: This link (https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) has various other options but I think they are optional so I leave things alone and just use what I have below. Worst case scenario, the timeboard doesn't make sense and I have to redo some things:
-
+        - Note: This link (https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) has various other options but I think they are optional so I leave things alone and just use what I have below.
+        - The request part for this looks like;
           {"q": "anomalies(postgresql.database_size{* }, 'basic', 2)"}
     - For the third part: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
       - Okay documentation for rollup functions is here: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1
@@ -209,14 +210,14 @@
       - the metric name I change to my_metric
       - the host I leave as is because there is only one host
       - I add .rollup(sum, 3600) because we want the sum of all the points, and if time is in seconds (based on this: https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1), 60 minutes is 3600 seconds
-
-      - {"q": "my_metric{* }.rollup(sum, 3600)"}
+      - The request part for this looks like;
+        {"q": "my_metric{* }.rollup(sum, 3600)"}
     - My final request looks like this:
       ![timeboard request](/assets/visualizing_data/timeboard_request.png)
     - I click "Send" and get a 200 response:
       ![timeboard response](/assets/visualizing_data/timeboard_response.png)
     - And in the All Dashboards page I do see my new dashboard!
-      ![all dashboards list](/assets/visualizing_data/all_dashboards_list.png)
+      ![all dashboards list](/assets/visualizing_data/all_dashboard_list.png)
     - Ack! Some of the graphs look blank though:
       ![timeboard v1](/assets/visualizing_data/timeboard_v1.png)
     - I change the time range to reflect 1 day instead of 1 hour and I do see the rollup graph change:
@@ -238,17 +239,17 @@
     ![email](/assets/visualizing_data/email.png)
 
 ### Bonus Question: What is the Anomaly graph displaying?
-    Sadly my anomaly graph isn't displaying anything but it should display the value of a selected metric, and also show when that value is different from what it normally is. The algorithm takes into account trends, day of the week, and time-of-day patterns. I learned all this here: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+  - Sadly my anomaly graph isn't displaying anything but it should display the value of a selected metric, and also show when that value is different from what it normally is. The algorithm takes into account trends, day of the week, and time-of-day patterns. I learned all this here: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 
 ## Monitoring Data
 ### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-  Warning threshold of 500
-  Alerting threshold of 800
-  And also ensure that it will notify you if there is No Data for this query over the past 10m.
+  - Warning threshold of 500
+  - Alerting threshold of 800
+  - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
   - So this link: https://docs.datadoghq.com/monitors/#creating-a-monitor tells me to go to the Create Monitors page here: https://app.datadoghq.com/monitors#/create
-  ![create monitors page](/assets/visualizing_data/create_monitors_page.png)
+  ![create monitors page](/assets/monitoring_data/create_monitors_page.png)
   - In the resulting page, I:
     - Define the metric as my_metric
     - Set the Alert threshold to 800
@@ -256,7 +257,7 @@
     - Change 'Do Not Notify' if data is missing to: "Notify" if data is missing for more than "10" minutes
 
   - My screen now looks like this:
-  ![set alert conditions](/assets/visualizing_data/set_alert_conditions.png)
+  ![set alert conditions](/assets/monitoring_data/set_alert_conditions.png)
 
 ### Please configure the monitor’s message so that it will:
   - Send you an email whenever the monitor triggers.
@@ -267,10 +268,10 @@
     - Done in the 'Say what's happening section'
 
   My screen now looks like this:
-  ![configure alerts](/assets/visualizing_data/configure_alerts.png)
+  ![configure alerts](/assets/monitoring_data/configure_alerts.png)
   - I click "Save"
   - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-    ![warning email](/assets/visualizing_data/warning_email.png)  
+    ![warning email](/assets/monitoring_data/warning_email.png)  
 
 ### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -279,17 +280,17 @@
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.  
 
   - Based on this link: https://docs.datadoghq.com/monitors/downtimes/#manage-downtime I navigate to this page:
-    ![downtime page](/assets/visualizing_data/downtime_page.png)
+    ![downtime page](/assets/monitoring_data/downtime_page.png)
   - I click on the Schedule Downtime button and fill in the following info for the weekday downtimes:
-    ![weekday downtimes](/assets/visualizing_data/weekly_downtimes.png)
+    ![weekday downtimes](/assets/monitoring_data/weekly_downtimes.png)
   - After I click "Save" I see it in my list of downtimes!
-    ![downtime list v1](/assets/visualizing_data/downtime_list_v1.png)
+    ![downtime list v1](/assets/monitoring_data/downtime_list_v1.png)
   - And here's an email screenshot which gives the downtime in UTC:
-    ![email](/assets/visualizing_data/weekly_downtime_email.png)
+    ![email](/assets/monitoring_data/weekly_downtime_email.png)
 
-  So for the downtime meant for all day on Saturday and Sunday, I click on 'Schedule Downtime' again and fill in this info:
-  ![weekend downtimes](/assets/visualizing_data/weekend_downtimes.png)
-  Note: I tried including the downtime to start today (a Sunday) but got a notice saying downtimes couldn't be in the past so I've started this downtime for the next Saturday, June 16
+  - So for the downtime meant for all day on Saturday and Sunday, I click on 'Schedule Downtime' again and fill in this info:
+    ![weekend downtimes](/assets/visualizing_data/weekend_downtimes.png)
+    Note: I tried including the downtime to start today (a Sunday) but got a notice saying downtimes couldn't be in the past so I've started this downtime for the next Saturday, June 16
   - After I click "Save" I see it in my list of downtimes!
     ![downtime list v1](/assets/visualizing_data/downtime_list_v2.png)
   - And here's an email screenshot which gives the downtime in UTC:
@@ -302,14 +303,12 @@ Okay for this part it took me about 8 tries to get this working (my fault, I had
 #### Attempt 1: Using the Flask App example:
   - First I read through the docs here: https://docs.datadoghq.com/tracing/ and here: http://flask.pocoo.org/docs/0.12/quickstart/
   - Then, to get started I watch this video here: https://www.youtube.com/watch?v=faoR5M-BaSwand decide to follow his instructions, which make everything seem simple. :D
-  - Per his instructions I first go to https://app.datadoghq.com/apm/docs and click 'Get Started', which takes my to this page:
+  - Per his instructions I first go to https://app.datadoghq.com/apm/docs and click 'Get Started', which takes me to this page:
     ![report traces](/assets/apm/report_traces.png)
-  - Just to double check what language to pick, I google and confirm it's Python:
-    ![flask language](/assets/apm/flask_language.png)
-  - So in terminal, I Install the Python client using pip install ddtrace
+  - In terminal, I try to install the Python client using pip install ddtrace
   - I get this message: The program 'pip' is currently not installed.  You can install it by typing:
 sudo apt-get install python-pip
-  - So I run sudo apt-get install python-pip, and then pip install ddtrace
+  - I run sudo apt-get install python-pip, and then pip install ddtrace
     ![pip_install_ddtrace](/assets/apm/flask_language.png)
   - In terminal there's a weird message of:
     "Downloading/unpacking ddtrace
@@ -319,18 +318,18 @@ sudo apt-get install python-pip
   - So, now to set my Flask app up!
     - First I need to install Flask based on instructions here: http://flask.pocoo.org/docs/0.12/installation/#installation
     - So I run this: sudo apt-get install python-virtualenv, which seems to set up a virtual environment
-      ![virtual_env](/assets/apm/virtual_env.png)
+      ![virtual_env](/assets/apm/virtualenv.png)
     - The next step in the installation instructions is to create your own environment:
       - I ignore this for now because I'm not sure that's what I want? If it is I can come back to it later.
     - I run pip install Flask but am not sure this is what I'm supposed to see:
       ![install Flask](/assets/apm/pip_install_Flask.png)
-    - anyway so back to these docs: http://flask.pocoo.org/docs/0.12/quickstart/
+    - Back to these docs: http://flask.pocoo.org/docs/0.12/quickstart/
     - I make a file called my_flask_app.py and save the contents of the app in there   
       ![Flask app v1](/assets/apm/initial_Flask_app.png)  
     - And I try running the commands needed to get the app running but get an error:
       ![Flask not found](/assets/apm/flask_not_found.png)  
-    - So I google around and find this link: https://stackoverflow.com/questions/30227360/installed-flask-in-a-virtualenv-yet-command-not-found. I try all the solutions listed here but none work.
-    - So on a whim I go back to the Installation page and try this again: sudo apt-get install python-virtualenv
+    - I google around and find this link: https://stackoverflow.com/questions/30227360/installed-flask-in-a-virtualenv-yet-command-not-found. - I try all the solutions listed here but none work.
+    - On a whim I go back to the Installation page and try this again: sudo apt-get install python-virtualenv
     - And I think something good happens? At least, this is what I see in terminal:
       ![virtual env v2](/assets/apm/virtual_env_v2.png)
     - Then I try virtualenv venv in the terminal to create my own environment (maybe we do need one?) and see this:
@@ -353,9 +352,9 @@ sudo apt-get install python-pip
       ![in progress flask app](/assets/apm/in_progress_flask_app.png)  
     - Okay so I run virtualenv flask-env according to the directions and see this:
       ![flask env](/assets/apm/flask_env.png)
-    - So I guess I successfully created a virtual environment. Now I try activating it with: source flask-env/bin/activate
+    - Now I try activating the virtual environment with: source flask-env/bin/activate
     - And then try this again: pip install Flask
-    - Ugh I get this again:
+    - But I get this again:
       ![flask error v2](/assets/apm/flask_error_v2.png)
     - Let me trying cd-ing into the logs folder... ah okay so it seems there is an SSL issue:
       ![error log](/assets/apm/error_log.png)
@@ -374,17 +373,17 @@ sudo apt-get install python-pip
     - Lets just run it and see what happens.. ack! more errors!
       ![more errors](/assets/apm/more_errors.png)
 #### Attempt 2: Let's try a Rails app!
-  - Okay lets change tracks and try doing this with a Ruby app...
+  - Okay lets change gears and try doing this with a Rails app...
   - I'll try making a quick new Rails app using instructions here: http://guides.rubyonrails.org/getting_started.html
   - First I run gem install rails in my terminal to get this:
     ![gem install rails](/assets/apm/gem_install_rails.png)
-  - then I run rails new blog to make an app called 'blog', and cd into it:
+  - Then I run rails new blog to make an app called 'blog', and cd into it:
     ![rails new blog](/assets/apm/rails_new_blog.png)
   - Then I boot up the rails server with: bin/rails server
     ![rails server](/assets/apm/boot_rails_server.png)
-  - and go to localhost:3000 to confirm that stuff works so far...
+  - And go to localhost:3000 to confirm that stuff works so far...
     ![localhost](/assets/apm/localhost.png)
-  - all right, lets quickly create a welcome page so the app does something...
+  - All right, lets quickly create a welcome page so the app does something...
     I run: bin/rails generate controller Welcome index in terminal to create a Welcome controller and "Index" action.
     ![welcome controller](/assets/apm/welcome_controller.png)
   - And then edit the text a user sees on the welcome page:
@@ -400,7 +399,7 @@ sudo apt-get install python-pip
     ![datadog tracer](/assets/apm/ddtracer.png)
   - I go back here: https://app.datadoghq.com/apm/install but nothing has changed
 
-  And that's when I realize... I made a rails app in the hiring-engineers directory, but I think I should have made the new app whilein my VM!!!
+  And that's when I realize... I made a rails app in the hiring-engineers directory, but I think I should have made the new app while in my VM!!!
 
 #### Attempt 3: Let's try that again, this time in the right directory
   - Real quick I do the same thing I just did, except in the terminal tab with my VM.
@@ -426,7 +425,7 @@ sudo apt-get install python-pip
     - source ~/.bashrc
     - type rbenv
   - Which shows me this, and Digital Ocean says that is how it's supposed to be:
-    - ![rbenv](/assets/apm/rbenv.png)
+    ![rbenv](/assets/apm/rbenv.png)
   - I keep following this tutorial and type:
     - git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     - rbenv install -l
@@ -434,7 +433,7 @@ sudo apt-get install python-pip
     - rbenv global 2.5.0
     - ruby -v
   - And it seems I finally have an updated version of Ruby now:
-    - ![updated ruby](/assets/apm/updated_ruby.png)
+    ![updated ruby](/assets/apm/updated_ruby.png)
   - So now I can proceed with installing rails based on the instructions here: http://guides.rubyonrails.org/getting_started.html  
   - gem install rails gives me this:
     ![gem install rails](/assets/apm/gem_install_rails_2.png)
@@ -451,7 +450,7 @@ sudo apt-get install python-pip
     ![site can't be reached](/assets/apm/site_cant_be_reached.png)
   - I'm wondering if that's because I'm in a VM though, so I keep trekking along...
   - Based on the instructions here: https://app.datadoghq.com/apm/install I run gem install ddtrace:
-    ![gem install ddtrace2](/assets/apm/gem_install_ddtrace2.png)
+    ![gem install ddtrace2](/assets/apm/gem_install_ddtrace_2.png)
   - Next I need to implement the Rails specific instructions here:
     ![rails_instructions](/assets/apm/rails_instructions.png)
   - So I cd into the config/initializer folder and create a datadog-tracer.rb file
@@ -466,20 +465,20 @@ sudo apt-get install python-pip
   - Then I run sudo bundle install, and I do see the gem!
     ![ddtrace is here](/assets/apm/ddtrace_is_here.png)
   - So I wander around the Datadog docs, wondering where I went wrong, and see this: https://docs.datadoghq.com/tracing/setup/
-  - And I remember - I think when I was dealing with all the Flask install drama, I totally forgot to go through the APM Setup process!
+  - And I remember - I think when I was dealing with all the Flask install drama, I forgot to go through the APM Setup process!
   - So I go back into my datadog.yaml and file and comment back in this part:
     ![apm_config_true](/assets/apm/apm_config_true.png)
   - And restart my agent with: sudo service datadog-agent restart
   - Still nothing.
-  - Hmm, I go into my datadog. yaml file and change to this:
-      - ![env_none](/assets/apm/env_none.png)
+  - Hmm, I go into my datadog. yaml file and change to this, to see if that helps at all
+      ![env_none](/assets/apm/env_none.png)
   - And restart my agent with: sudo service datadog-agent restart
   - Hmm, still nothing
   - I see this: https://docs.datadoghq.com/tracing/setup/ruby/#compatibility and wonder if my Ruby version is too new. So I go back to the Digital Ocenan Ruby link: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04
   - And run rbenv install 2.4.0 to install Ruby v 2.4
   - Then I run rbenv global 2.4.0 to set that as my global version, and running ruby -v shows that's successful:
-    - ![ruby v](/assets/apm/ruby_v.png)
-  - Still nothing.  
+    ![ruby v](/assets/apm/ruby_v.png)
+  - Still nothing in the APM dashboard though.  
 
 
 #### Attempt 4: Maybe it's an SSL thing?
@@ -488,14 +487,14 @@ sudo apt-get install python-pip
     ![skip ssl](/assets/apm/skip_ssl_validation.png)
   - Not sure if it's too early or not but I restart the agent: sudo service datadog-agent restart
   - Still get an error though.
-  - Hmm okay I'll go back and comment out the SSL stuff:
+  - Hmm okay I'll go back and comment out the SSL stuff.
     ![comment in ssl again](/assets/apm/comment_out_ssl_again.png)
 
 #### Attempt 5: Let's try using one of your sample apps
-  - Okay time to change tactics: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
+  - New idea: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
   - So I decide to try instrumenting the basic Ruby app. Surely if this is a Datadog example, it will work? - And if it doesn't I'll be able to assume I messed up somewhere in the configuration/setup phase.
   - Okay so the sample app is here that I'm going to use. So while in my VM I run gem install ddtrace:
-    ![gem install ddtrace](/assets/apm/gem_install_ddtrace3.png)
+    ![gem install ddtrace](/assets/apm/gem_install_ddtrace_3.png)
     (Note - why does it say I installed two gems at the end? I have no idea.)
   - Then create a file called my_app.rb
     ![my_app.rb](/assets/apm/my_app.png)
@@ -506,7 +505,7 @@ sudo apt-get install python-pip
   - I restart the agent but still am not seeing traces.
 
 #### Attempt 6: Play with the Mac OS X agent
-- Okay let me start totally from scratch because something is wrong with the tracing, I think. And with the Mac agent, it looks like there are directions on how to confirm if the tracing works. So lets try it.
+- Okay I'll start totally from scratch with the agent. With a Mac agent, it looks like there are directions on how to confirm if the tracing works here: https://github.com/DataDog/datadog-trace-agent. So lets try it.
 - I uninstall the agent with:  sudo apt-get --purge remove datadog-agent -y
 - Download the Mac OS X agent with: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
 - I exit my VM and just run the Mac OS X agent on my computer
@@ -528,11 +527,11 @@ sudo apt-get install python-pip
 - One thing I saw while trying to debug was 'installing from source' so I look up a tutorial and find this: https://www.howtogeek.com/105413/how-to-compile-and-install-from-source-on-ubuntu/
   - I run sudo apt-get install build-essential
   - I go here to find source files: https://pypi.org/project/ddtrace/#files and download them
-  - I guess and make a shared folder
+  - I guess and make a shared folder in my VM to access the files
   - Then my computer freezes. I think this might be doomed.
 
 #### Attempt 8: Make a new VM, this time with v 16.04!
-- Actually let me see if making a new VM does the trick...
+- Next idea: Let me see if making a whole new VM does the trick...
 - I run vagrant destroy to delete the old Vagrantfile
 - Then run vagrant init ubuntu/xenial64 instead of what's in the tutorial (hashicorp/precise64) so we get the right version in our new VM. I find the name of the box here: https://app.vagrantup.com/boxes/search
 - Then run: vagrant up
@@ -566,5 +565,5 @@ https://cl.ly/0l0I2a2s3x0V
 #### Bonus Question: What is the difference between a Service and a Resource?
   Based on this link: https://docs.datadoghq.com/tracing/visualization/#services a service is a set of process that does the same job (ie: a database). And a resource is a particular action for that service (so for example, an individual endpoint).
 
-###Final Question: Is there anything creative you would use Datadog for?
+## Final Question: Is there anything creative you would use Datadog for?
 - I'd love to see Datadog used to monitor noise levels around the city. There are things like this: https://mashable.com/2012/01/11/noisetube-noise-pollution/#_HU9y2nvs8qA that help to track noise pollution and all you need is a smartphone. If the technology that powers this used Datadog, it would allow users to see what locations in the city are the most quiet at any given time. Users could also segment data by time of day, or day of the week, or even season to know how to avoid noise pollution. One of my favorite things to do after work is go on long walks, but I hate hearing the sound of honking horns, so something like this would be perfect for me.
