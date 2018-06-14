@@ -141,7 +141,7 @@
   - I run the restart command: sudo service datadog-agent restart  
   - This time I go to the Metrics Explorer in the dashboard to make sure I'm collecting a metric at regular intervals. It seems like it's working from this graph:
     ![metrics explorer](/assets/metrics/metrics_explorer.png)
-  Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
+  - Heads up - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
 
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?  
   - Yep! I only edited the yaml file above.
