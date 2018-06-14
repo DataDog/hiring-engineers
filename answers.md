@@ -141,9 +141,8 @@ Collecting Metrics
       ![add interval](/assets/metrics/add_interval.png)
     - I run the restart command: sudo service datadog-agent restart  
     - This time I go to the Metrics Explorer in the dashboard to make sure I'm collecting a metric at regular intervals. It seems like it's working from this graph:
-      ![metrics explorer](/assets/metrics/metrics_explorer.png)
-
-      Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
+      ![metrics_explorer](/assets/metrics/metrics_explorer.png)
+        Note - the values are all between 1 and 100 for a while because I accidentally set the random value to be between 1 and 100 for a while, and then changed it to be between 0 and 1000 when I noticed.
   - Bonus Question Can you change the collection interval without modifying the Python check file you created?  
     Yep! I only edited the yaml file above.
 
@@ -268,10 +267,10 @@ Monitoring Data
       - Done in the 'Say what's happening section'
 
     My screen now looks like this:
-    ![configure alerts](/assets/monitoring_data/configure_alerts.png)
+    ![configure alerts](/assets/visualizing_data/configure_alerts.png)
     - I click "Save"
   - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-    ![warning email](/assets/monitoring_data/warning_email.png)  
+    ![warning email](/assets/visualizing_data/warning_email.png)  
 
   - Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -280,21 +279,21 @@ Monitoring Data
     - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.  
 
     - Based on this link: https://docs.datadoghq.com/monitors/downtimes/#manage-downtime I navigate to this page:
-      ![downtime page](/assets/monitoring_data/downtime_page.png)
+      ![downtime page](/assets/visualizing_data/downtime_page.png)
     - I click on the Schedule Downtime button and fill in the following info for the weekday downtimes:
-      ![weekday downtimes](/assets/monitoring_data/weekly_downtimes.png)
+      ![weekday downtimes](/assets/visualizing_data/weekly_downtimes.png)
     - After I click "Save" I see it in my list of downtimes!
-      ![downtime list v1](/assets/monitoring_data/downtime_list_v1.png)
+      ![downtime list v1](/assets/visualizing_data/downtime_list_v1.png)
     - And here's an email screenshot which gives the downtime in UTC:
-      ![email](/assets/monitoring_data/weekly_downtime_email.png)
+      ![email](/assets/visualizing_data/weekly_downtime_email.png)
 
     So for the downtime meant for all day on Saturday and Sunday, I click on 'Schedule Downtime' again and fill in this info:
-      ![weekend downtimes](/assets/monitoring_data/weekend_downtimes.png)
+      ![weekend downtimes](/assets/visualizing_data/weekend_downtimes.png)
       Note: I tried including the downtime to start today (a Sunday) but got a notice saying downtimes couldn't be in the past so I've started this downtime for the next Saturday, June 16
       - After I click "Save" I see it in my list of downtimes!
-        ![downtime list v1](/assets/monitoring_data/downtime_list_v2.png)
+        ![downtime list v1](/assets/visualizing_data/downtime_list_v2.png)
       - And here's an email screenshot which gives the downtime in UTC:
-        ![email](/assets/monitoring_data/weekend_downtime_email.png)  
+        ![email](/assets/visualizing_data/weekend_downtime_email.png)  
 
 Collecting APM Data
   - First I read through the docs here: https://docs.datadoghq.com/tracing/ and here: http://flask.pocoo.org/docs/0.12/quickstart/
@@ -307,6 +306,7 @@ Collecting APM Data
   - I get this message: The program 'pip' is currently not installed.  You can install it by typing:
 sudo apt-get install python-pip
   - So I run sudo apt-get install python-pip, and then pip install ddtrace
+    ![pip_install_ddtrace](/assets/apm/flask_language.png)
   - In terminal there's a weird message of:
     "Downloading/unpacking ddtrace
       Cannot fetch index base URL http://pypi.python.org/simple/
@@ -315,7 +315,7 @@ sudo apt-get install python-pip
   - So, now to set my Flask app up!
     - First I need to install Flask based on instructions here: http://flask.pocoo.org/docs/0.12/installation/#installation
     - So I run this: sudo apt-get install python-virtualenv, which seems to set up a virtual environment
-      ![virtual_env](/assets/apm/virtualenv.png)
+      ![virtual_env](/assets/apm/virtual_env.png)
     - The next step in the installation instructions is to create your own environment:
       - I ignore this for now because I'm not sure that's what I want? If it is I can come back to it later.
     - I run pip install Flask but am not sure this is what I'm supposed to see:
@@ -446,7 +446,7 @@ okay so now I can proceed with installing rails based on the instructions here: 
   I'm wondering if that's because I'm in a VM though, so I keep trekking along...
   Based on the instructions here: https://app.datadoghq.com/apm/install
   I run gem install ddtrace:
-    - ![gem install ddtrace2](/assets/apm/gem_install_ddtrace_2.png)
+    - ![gem install ddtrace2](/assets/apm/gem_install_ddtrace2.png)
   Next I need to implement the Rails specific instructions here:
     - ![rails_instructions](/assets/apm/rails_instructions.png)
   So I cd into the config/initializer folder and create a datadog-tracer.rb file
@@ -484,7 +484,7 @@ okay so now I can proceed with installing rails based on the instructions here: 
 Okay time to change tactics: I google around for a Datadog APM tutorial and find this: https://github.com/DataDog/trace-examples/tree/master/ruby
 So I decide to try instrumenting the basic Ruby app. Surely if this is a Datadog example, it will work? And if it doesn't I'll be able to assume I messed up somewhere in the configuration/setup phase.
 Okay so the sample app is here that I'm going to use. So while in my VM I run gem install ddtrace:
-  - ![gem install ddtrace3](/assets/apm/gem_install_ddtrace_3.png)
+  - ![gem install ddtrace](/assets/apm/gem_install_ddtrace3.png)
   (Note - why does it say I installed two gems at the end? I have no idea.
   -  Then create a file called my_app.rb
     - ![my_app.rb](/assets/apm/my_app.png)
@@ -519,46 +519,42 @@ EDIT - Okay coming back to this!
 - One thing I saw while trying to debug was 'installing from source' so I look up a tutorial and find this: https://www.howtogeek.com/105413/how-to-compile-and-install-from-source-on-ubuntu/
   - I run sudo apt-get install build-essential
   - I go here to find source files: https://pypi.org/project/ddtrace/#files and download them
-  - I guess and make a shared folder like this:
-  ![shared folder](/assets/apm/shared_folder.png)
-  (At this point my computer froze and I figured it wasn't meant to be)
-
-New tactic: let me see if making a new VM does the trick...
+  - I guess and make a shared folder  according to
+  https://cl.ly/1W2P2K2v151V
+Actually let me see if making a new VM does the trick...
 vagrant destroy
 delete old Vagrantfile
- vagrant init ubuntu/xenial64 (found the command for the Ubuntu 16.04 version here: https://app.vagrantup.com/boxes/search)
-  ![vagrant init new VM](/assets/apm/vagrant_init_new_VM.png)
+ vagrant init hashicorp/precise64
  vagrant up
  vagrant ssh to get this:
-   ![vagrant ssh](/assets/apm/vagrant_ssh.png)
+ https://cl.ly/3r2G1S1P2R08
  One step Ubuntu agent install: DD_API_KEY=cc93d681a5105d4f54f3e9907f7167a6 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
-And I see this:
- ![agent installed](/assets/apm/agent_installed.png)
+And I see this: https://cl.ly/0w0f1Z2S180K
 Agent successfully installed!
 sudo vim app.py to make a new file for the app, copy flask app in there
 pip install ddtrace
-Get this message: The program 'pip' is currently not installed. To run 'pip' please ask your administrator to install the package 'python-pip'
+Get this message: https://cl.ly/3t0X3W1e1H0e
 sudo apt-get install python-pip - from this link here: https://askubuntu.com/questions/672808/sudo-apt-get-install-python-pip-is-failing
 I try this pip install ddtrace again: AND IT WORKS
-![succesful dd trace](/assets/apm/success_pip_install_ddtrace.png)
+https://cl.ly/0l0I2a2s3x0V
 Then try:
 ddtrace-run python app.py
 It gives me a 'no module for Flask error'
-So I just replace the flask app with the sample python app here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
+So I just replace the flask app with the same python app here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
 I run this again: ddtrace-run python my_app.py
-And I see stuff in my console!!!!!
-![trace works](/assets/apm/trace_works.png)
+And I see stuff in my console!!!!! https://cl.ly/0u3V3Z1G1u1j
 AND I see a message saying my first traces are now available!!!!
-![traces available](/assets/apm/traces_available.png)
-Here's my dashboard overview:
-![dashboard overview](/assets/apm/apm_dashboard_overview.png)
+(apm_dashboard_overview)
 Here are my beautiful graphs:
 APM graphs
-![apm graphs](/assets/apm/apm_graphs.png)
-Link to APM dashboard: https://app.datadoghq.com/apm/service/sample-app/request?start=1528856813185&end=1528860413185&env=none&paused=false
+https://cl.ly/0q2w381N2y2V
+Link: https://app.datadoghq.com/apm/service/sample-app/request?start=1528856813185&end=1528860413185&env=none&paused=false
 A copy of the instrument python app is in app.py. It's taken from here: https://github.com/DataDog/trace-examples/blob/master/python/sample_app.py
 (Note: there is also a my_flask_app.py and rails blog folder in here from attempts that didn't work. I left them in here but they're not being used)
+
+
+
 
 
 Bonus Question: What is the difference between a Service and a Resource?
