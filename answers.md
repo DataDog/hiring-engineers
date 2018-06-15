@@ -256,6 +256,38 @@ To setup downtime I used the `Manage Downtime` UI under Monitors and configured 
 > **NOTE**: I intentionally bumped up the time so that it would start now and send an email
 
 
+## Collecting APM Data
+Before I could run this application I needed to setup a python environment on my Ubuntu system:
+
+> **Note**: I followed the docs found [here](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask) which is how I knew to install blinker and ddtrace
+
+```bash
+sudo apt-get install python3-venv
+python3 -m venv ~/venv
+source ~/venv/bin/activate
+pip install wheel
+pip install flask
+pip install blinker
+pip install ddtrace
+```
+  
+Following the docs I made minimal changes to the app (diff below) - source is [here](scripts/app.py):
+
+![appdiff](img/app_diff.jpeg)
+
+Here is the resulting screenshot of the dashboard with unified APM and Infra data:
+![apm and infra](img/apm_infra_dash.jpeg)
+
+> **Note**: Where's the link?  I see where if I create a screenboard I can generate a public link.  The problem I am having is that I cannot seem to add metrics to charts from APM sources(see screenshot below).  I was able to build charts and export them to timeboards, however.  So clearly I'm doing something wrong here.
+>
+> ![cant apm](img/cant_apm.jpeg)
+>
+> The link directly to my timeboard is [here](https://app.datadoghq.com/dash/836839/apminfra-together?live=true&page=0&is_auto=false&from_ts=1529092035146&to_ts=1529095635146&tile_size=m)
+
+## Bonus Question: What is the difference between a Service and a Resource?
+A service represents the application (or service) itself, whereas each service may have many resources.  In this example, the resources are the different Flask routes: `/`, `/api/apm`, and `/api/trace`.
+
+
 
 
 
