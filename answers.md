@@ -221,6 +221,41 @@ Yes, I would just adjust `min_collection_interval` to the appropriate value and 
 ## Visualizing Data
 For this challenge the first thing I needed to do was review the API guide; I started [here](https://docs.datadoghq.com/api/?lang=python#overview).  Since I was using my local mac to run these scripts I did have to add the `datadog` module to my machine, which I did via `pip install datadog`. Also, I had to (following the docs) go and collect my API key and generate a new application key to allow me to authenticate and use the API.
   
-Once I got the basics working I turned to the API docs specific for Timeboards, specific
+Once I got the basics working I turned to the API docs specific for Timeboards, specifically [this](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) doc.  In addition, I leveraged the function documentation found [here](https://docs.datadoghq.com/graphing/miscellaneous/functions/).
+  
+I had some problems getting the `anomalies` function, so I ended up building the query in the WebUI through the metrics page.
+  
+Once that was built, I completed my script [here](scripts/timeboard.py).  In the WebUI I navigated to the new timeboard and using `alt+]` set the timeframe down to 5 minutes.  From there I took a snapshot of the anomaly graph and included myself in the comment via `@` notation.  Here is the email I received:
+
+![email of the graph](img/thegraph.jpeg)
+
+### Bonus Question:  What is the Anomaly graph displaying?
+The anomaly is displaying the data points that fall outside of a historically typical pattern.  In my case I'm using the `basic` algorithm so that I had data that showed up (vs agile or robust that require more historical data to account for longer trends)
+
+
+## Monitoring Data
+In the WebUI I headed over to `Monitors` -> `Manage Monitors` and clicked **New Monitor**.  I chose `Metric` and selected `my_metric` in this list, set `from` to `host:ubuntu-xenial` (my vm).
+  
+From there I filled in some more fields:
+* **Alert Threshold**: `800`
+* **Warning Threshold**: `500`
+* **Notify if data is missing more than X minutes**: `10`
+* Populated my email message using macros for alert and warning:
+
+![email](img/alert.jpeg)
+  
+Here is an example of an email I received when it went status `warning`:
+
+![email warning](img/email_alert.jpeg)
+
+### Bonus Question: Downtime Schedule
+TO setup downtime I used the `Manage Downtime` UI under Monitors and configured as described. See the email below of the scheduled notification:
+
+![scheduled downtime](img/started_downtime.jpeg)
+
+> **NOTE**: I intentionally bumped up the time so that it would start now and send an email
+
+
+
 
 
