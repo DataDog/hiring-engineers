@@ -137,7 +137,87 @@ A quick screenshot of the working MySQL integration:
 
 ![mysql](img/mysql.jpeg)
 
+### Custom Metric
+Since I've never worked with DataDog before my first step for this was to find the right documentation.  I ended up using this doc: [link](https://docs.datadoghq.com/developers/agent_checks/#your-first-check)
+
+The resulting check in check.d:
+
+```python
+from checks import AgentCheck
+import random
+
+class MyMetricCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000))
+```
+
+And the corresponding config file (conf.d/my_metric.d/my_metric.yaml):
+
+```yaml
+init_config:
 
 
+instances:
+    [{}]
+```
+
+Running the check manually produces:
+
+```console
+$ sudo datadog-agent check my_metric
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1529080703,
+          552
+        ]
+      ],
+      "tags": null,
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    my_metric
+    ---------
+      Total Runs: 1
+      Metrics: 1, Total Metrics: 1
+      Events: 0, Total Events: 0
+      Service Checks: 0, Total Service Checks: 0
+      Average Execution Time : 0ms
+```
+
+#### Change the custom metric to 45 second collection interval
+To change the interval I followed the guidance on this docs page:[link](https://docs.datadoghq.com/developers/agent_checks/#your-first-check).  My updated configuration file looked like this:
+
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+Once I made these updates and restarted the agent I saw the following log messages confirming the change:
+
+```console
+Jun 15 17:01:12 ubuntu-xenial agent[6284]: 2018-06-15 17:01:12 UTC | INFO | (scheduler.go:72 in Enter) | Scheduling check my_metric with an interval of 45s
+```
+
+#### Bonus question: Can you change the collection interval without modifying the Python check file you created?
+Yes, I would just adjust `min_collection_interval` to the appropriate value and restart the agent.
+
+## Visualizing Data
 
 
