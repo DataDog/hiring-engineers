@@ -1,4 +1,4 @@
-*Your answers to the questions go here.*
+# Your answers to the questions go here.
 
 Thanks for the oppurtunity to complete the tech challenge!  Please see my results inline.
 
