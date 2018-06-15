@@ -288,6 +288,9 @@ Here is the resulting screenshot of the dashboard with unified APM and Infra dat
 A service represents the application (or service) itself, whereas each service may have many resources.  In this example, the resources are the different Flask routes: `/`, `/api/apm`, and `/api/trace`.
 
 
+## Final Question
+Given the example of monitoring bathrooms, it certainly made me consider all of the possibilities!!!  I was actually just discussing with my wife before the end of school how we wished we knew exactly when my daughters bus was coming - we've spent many a day camping out waiting for it to come, or missing it completely.  It'd be really nice to monitor its arrival time so we could do a bit better planning!  Not sure *how* I'd achieve that, but it sure would be nice!
+
 
 
 
