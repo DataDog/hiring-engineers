@@ -249,7 +249,7 @@ Here is an example of an email I received when it went status `warning`:
 ![email warning](img/email_alert.jpeg)
 
 ### Bonus Question: Downtime Schedule
-TO setup downtime I used the `Manage Downtime` UI under Monitors and configured as described. See the email below of the scheduled notification:
+To setup downtime I used the `Manage Downtime` UI under Monitors and configured as described. See the email below of the scheduled notification:
 
 ![scheduled downtime](img/started_downtime.jpeg)
 
