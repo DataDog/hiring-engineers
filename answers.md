@@ -60,7 +60,7 @@ tags: id:matt_laptop, env:testing, role:techchallenge, location:ohio, building:h
 
 And here is the view of these glorious tags in the UI!
 
-![glorious tags](/img/tags.jpeg)
+![glorious tags](img/tags.jpeg)
 
 ### Database Integration
 I choose to install MySQL.  Installation was simple, completed via a basic apt command:
