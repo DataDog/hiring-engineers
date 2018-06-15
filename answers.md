@@ -200,7 +200,7 @@ Collector
 ```
 
 #### Change the custom metric to 45 second collection interval
-To change the interval I followed the guidance on this docs page:[link](https://docs.datadoghq.com/developers/agent_checks/#your-first-check).  My updated configuration file looked like this:
+To change the interval I followed the guidance on this docs page: [link](https://docs.datadoghq.com/developers/agent_checks/#your-first-check).  My updated configuration file looked like this:
 
 ```yaml
 init_config:
@@ -219,5 +219,8 @@ Jun 15 17:01:12 ubuntu-xenial agent[6284]: 2018-06-15 17:01:12 UTC | INFO | (sch
 Yes, I would just adjust `min_collection_interval` to the appropriate value and restart the agent.
 
 ## Visualizing Data
+For this challenge the first thing I needed to do was review the API guide; I started [here](https://docs.datadoghq.com/api/?lang=python#overview).  Since I was using my local mac to run these scripts I did have to add the `datadog` module to my machine, which I did via `pip install datadog`. Also, I had to (following the docs) go and collect my API key and generate a new application key to allow me to authenticate and use the API.
+  
+Once I got the basics working I turned to the API docs specific for Timeboards, specific
 
 
