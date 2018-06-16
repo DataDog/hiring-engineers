@@ -17,15 +17,20 @@
 
 # Introduction
 Hello,
-My name is Mal Herring and may I take the pleasure in submitting my technical assessment for your review.  
+My name is Mal Herring and may I take the pleasure in submitting my technical assessment for your review. 
 
-I have provided my answers as best as I can and supplied the associated screenshots, each section is contained within its own block, and of course, I used the Datadog knowledge base extensively.
+I'd like to take a moment to tell you a little more about myself.
+I live in Welwyn, Hertfordshire with my partner Rosie and our 3 year old daughter, Violet. This last week we also introduced a kitten which my daughter named Mog so I am getting used to having a pet amongst a moody toddler who's just learnt the word "No!"
 
-As I would with any PoV I run, I've given my "Working Notes" at the bottom of this document. I use these in a Nutshell document to keep a record of significant issues, situations, interventions with people (training etc.) and the thinking behind the process if required. This information dump can often be useful in the sales process along with the working notes that Sales will use, but also valuable for win/loss reviews as a reminder of the actions and steps taken. I've approached with this task with the same mindset as a PoV.
+I have a few passions in life, Music (used to be a DJ - don't ask me about headphones unless you really like the subject) :grin: - Trying to keep fit (gym/cycling/MMA) - Snowboarding (not been for years) and of course I love being a Dad and teaching someone else how to be cheeky and sarcastic, which my other half doesn't appreciate.  One of my biggest acheivements in recent years, other than becoming a parent, was cycling with two of my closest friends to Paris on road bikes, we took the long route and cycled some 260 miles. I prefer hotels over tents but not when shared with two other guys... Cycling through France is something I'd love to do again, riding through the Somme Battlefields was incredibly sombre but there is such history in the region that I'd love to spend more time there on the next ride through.
 
-I look forward to the feedback; I enjoyed the process. I found it challenging; however, I like to be stretched and love to learn new skills.
+So, onto the technical assessment, I have provided my answers as best as I can and supplied the associated screenshots. Each section is contained within its own block, and of course, I used the Datadog knowledge base extensively, which I found to be brilliant.
 
-Please feel free to click on my profile on LinkedIn, just click my profile picture.
+As I would with any PoV I run, I've given my "Working Notes" at the bottom of this markdown. I use these comments in a "Nutshell" document to keep a record of significant issues, situations, interventions with people (training etc.) and the thinking behind the process if required. This information dump can often be useful in the sales process along with the working notes that Sales will use, but I find it also valuable for win/loss reviews as a reminder of the actions and steps taken. I've approached this task with the same mindset as I would a PoV.
+
+I look forward to the feedback; I've very much enjoyed the process. I found it challenging; however, I like to be stretched and love to learn new skills.
+
+Please feel free to click on my profile picture to view my LinkedIn profile.
 
 Yours Sincerely
 
@@ -44,7 +49,7 @@ I've added notes, inserted the screenshot and linked the image to the relevant p
 
 ### Q. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-I found this task pretty easy, and it also highlighted on a very simple level the power of tags, I was blown away by the host map, that was a big WOW moment when I say it's capability.
+I found this task fairly simple but it highlight the power of tags, I was blown away by the host map and the way it is able to visualise the data, that was a big WOW moment when I saw it's capability.
 </br>
 
 [![Host Tags](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/host_tags.png)](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices "Open: Getting started with tags")
@@ -53,13 +58,13 @@ I found this task pretty easy, and it also highlighted on a very simple level th
 
 ### Q. Install a database on your machine (Used MySQL) and then install the respective Datadog integration for that database.
 
-I opted for MySQL as I have experience of using this in a past life, installation went smoothly and configuring the check was a breeze, again, the ease and simplicity of configuring Datadog shone through again.
+I opted for MySQL as I have experience of using this in a past life when I used to build and maintain a linux backend for a client that provided a SAAZ solution to the UK & US markets, installation went smoothly and configuring the check was a breeze, again, the ease and simplicity of configuring Datadog shone through.
 
 </br>
 
 ### Q. Create a custom Agent check that submits a metric named my_metric with a random 
 
-Originally I set a value of 40 but then realised this gave me a flatline graph and then figured this was not going to represent a real-world metric well so after some research I discovered the randomNumber function and set this to give me a better view.
+Originally I set a value of 40 but then realised this gave me a flatline graph and then figured this was not going to represent a real-world metric well so after some research I discovered the randomNumber function and set this to give me a better view. Note to self, do not be so literal.
 </br>
 
 [![My Custom Check](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/custom_check.png)](https://docs.datadoghq.com/developers/agent_checks/ "Open: Writing an Agent check")
@@ -68,7 +73,7 @@ Originally I set a value of 40 but then realised this gave me a flatline graph a
 
 ### Q. Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-Yes, by adding min_collection_interval under instances to the YAML file, not the PY file. Originally this was not working as I misread the syntax on the documentation page [**here**](https://docs.datadoghq.com/developers/agent_checks/#configuration), I saw that it could be added in the init_config section, but this is relevant for V5, so I needed to ensure this worked for V6, which I believe it now does.
+Yes, by adding min_collection_interval under instances to the YAML file, not the PY file. Originally this was not working as I misread the syntax on the documentation page [**here**](https://docs.datadoghq.com/developers/agent_checks/#configuration), I saw that it could be added in the init_config section, but this is relevant for V5, so I needed to ensure this worked for V6, which I believe it now does and can be seen in the above screenshot.
 </br>
 
 ---
@@ -122,9 +127,9 @@ Here is a snapshot of the email I received when I annotated my graph, very power
 </br>
 
 ### Q. What is the Anomaly graph displaying?
-The anomaly monitor can give you a view of its behaviour that differs from how it has behaved in the past. This is very useful to assist in understanding if your environment is acting as it has done traditionally or if the behaviour is different from what is expected. 
+The anomaly monitor can give you a view on behaviour that differs from the past. This is very useful to assist in understanding if your environment is acting as it has done traditionally or if the behaviour is different from what is expected. 
 
-This can often serve as an early warning to something not being as it should and allows for questions to be asked or investigations to be run. As an example, this could serve as an early indicator of data leakage (more data sent by a device or more activity than usual)
+This can often serve as an early warning to something not being as it should and allows for questions to be asked or investigations to be run sooner so that, potentially, a bigger issue can be averted. As an example, this could serve as an early indicator of data leakage by warning of a device sending more data or showing more activity than usual.
 </br>
 
 ---
@@ -132,7 +137,7 @@ This can often serve as an early warning to something not being as it should and
 # Monitoring Data
 Below you'll find the code I used in the status notification along with a screenshot of the alert conditions.
 
-I had originally made an error but caught this during testing and corrected it. I had selected the wrong variable for one of the recovery lines, and this highlights the importance of testing everything! :wink:
+I had originally made an error but caught this during testing and corrected it. I had selected the wrong variable for one of the recovery lines, and this highlights the importance of testing everything! :wink: That said, I'm sure I've still made mistakes with it being a new system but that's the fun of learning something new, learning from your mistakes!
 
 #### Code for Notification
 ```
@@ -161,12 +166,12 @@ Your friendly Datadog
 
 #### Alert Email Received
 
-![Alert Email](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/alert_email.JPG)
+![Alert Email](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/alert_email.JPG "Alert Email")
 </br>
 
 #### Recovery Email
 
-![Recovery Email](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/recover_email.JPG)
+![Recovery Email](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/recover_email.JPG "Recovery Email")
 </br>
 
 # Q. Bonus Question
@@ -177,7 +182,7 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 </br></br>
 
-As per my working notes, while setting downtime periods, I noted that the question called for "two" scheduled downtimes and when using the GUI I found that setting an all day Sat/Sun was simple as was doing a Mon>Fri evening but this would leave a gap on Monday 00:00 > 19:00 so I extended my evening downtime period over the weekend also to cover the Monday morning gap, this assumes my logic is correct. 
+As per my working notes, while setting downtime periods, I noted that the question called for "two" scheduled downtimes and when using the GUI I found that setting an all day Sat/Sun was simple as was doing a Mon>Fri evening but this would leave a gap on Monday 00:00 > 09:00 so I extended my evening downtime period over Sat/Sun to cover the Monday morning gap, I could have just selected Sunday, however this assumes my logic is correct.
 
 
 
@@ -204,9 +209,9 @@ As per my working notes, while setting downtime periods, I noted that the questi
 ---
 
 # Collecting APM Data
-I'm afraid I have to admit defeat on this section. 
+Hands Up, I'm afraid I'll have to admit defeat on this section. 
 
-I had considerable issues getting things to install/run and tried Google as best as I could, but at this stage, I'd be looking to utilise internal knowledge base articles if there is one, internal communication channels or a mentor/senior member of the team.
+I had considerable issues getting things to install/run on my vagrant box and tried Google for hours to try to resolve the issues, but at this stage, I'd be looking to utilise internal knowledge base articles if there are any, internal communication channels or a mentor/senior member of the team to assist me further this one.
 
  I'm not above asking for help and not only enjoy helping others with my knowledge, but I also enjoy when others share their knowledge with me.
 </br>
@@ -216,13 +221,13 @@ I had considerable issues getting things to install/run and tried Google as best
 # Final Question Response
 Having better understood Datadog and it's power to bring in information from diverse systems, I feel it would be groundbreaking if we were able to query data sources to understand the mood of the nation better. 
 
-Imagine being able to bring in data from smartphones, IoT devices and Facebook, for example, and view a city, county or country in a host map. Datadog could create a fun "Mood App" in the App Stores that allow users to rate, by colour, how they feel and this could then be used as data, with consent, to build the national view.
+Imagine being able to bring in data from smartphones, IoT devices and Facebook, for example, and view a city, county or country in a host map. Datadog could create a fun "Mood App" in the App Stores that allow users to rate, by colour, how they feel and this could then be used as data, with consent, to build the national " Mood of the Nation" view.
 
 Green people would be those that are happy and go about their daily life with a smile on their face, but using the colour coding system; we could be alerted to those not feeling so happy and possibly may need an intervention before they harm themselves or another.
 
-Being able to have an early warning could save health providers millions by intervening earlier rather than waiting until the situation is dire, we could see nation productivity skyrocket as people feel happier and more engaged.
+Being able to have an early warning could save health providers millions by intervening earlier rather than waiting until the situation is dire, we could see national productivity skyrocket as people feel happier and more content.
 
-If the person is using wearable tech, we could monitor their health stats and view this, but more importantly, perhaps we can "monitor and alert" to potential situations, for example, a construction site worker who is tired and whose levels suggest he may not be safe to be working on a site or consider a lone worker that has a fall or 
+If a person is using wearable tech, we could monitor their health stats and act on this, but more importantly, perhaps we can "monitor and alert" to potential situations, for example, a construction site worker who is tired and whose health levels suggest he may not be safe to be working on a site or consider a lone worker that has had a fall or is in difficulty and cannot notify someone, perhaps they've had a stroke and are alone... 
 
 Sounds a bit "Minority Report" but this is the power of data, that said, data regulations may stop this from ever happening...
 
