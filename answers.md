@@ -17,12 +17,11 @@
 
 # Introduction
 Hello,
-My name is Mal Herring and may I take the pleasure in submitting my technical assessment for your review. 
+My name is Mal Herring and may I take this opportunity to introduce myself and submit to you my technical assessment review. 
 
-I'd like to take a moment to tell you a little more about myself.
-I live in Welwyn, Hertfordshire with my partner Rosie and our 3 year old daughter, Violet. This last week we also introduced a kitten which my daughter named Mog so I am getting used to having a pet amongst a moody toddler who's just learnt the word "No!"
+Let me tell you a little more about me. I live in Welwyn, Hertfordshire with my partner, Rosie and our 3 year old daughter, Violet. This last week we also introduced a kitten which my daughter named Mog so I am getting used to having a pet amongst a moody toddler who's just learnt the word "No!"
 
-I have a few passions in life, Music (used to be a DJ - don't ask me about headphones unless you really like the subject) :grin: - Trying to keep fit (gym/cycling/MMA) - Snowboarding (not been for years) and of course I love being a Dad and teaching someone else how to be cheeky and sarcastic, which my other half doesn't appreciate.  One of my biggest acheivements in recent years, other than becoming a parent, was cycling with two of my closest friends to Paris on road bikes, we took the long route and cycled some 260 miles. I prefer hotels over tents but not when shared with two other guys... Cycling through France is something I'd love to do again, riding through the Somme Battlefields was incredibly sombre but there is such history in the region that I'd love to spend more time there on the next ride through.
+I have a few passions in life, Music (used to be a DJ, still have the vinyl - don't ask me about headphones) :grin: - Trying to keep fit (gym/cycling/MMA) - Self Improvement (very active MindValley user) - Snowboarding (not been for years) and of course I love being a Dad and teaching someone else how to be cheeky and sarcastic, which my other half doesn't appreciate.  One of my biggest acheivements in recent years, other than becoming a parent, was cycling with two of my closest friends to Paris on road bikes, we took the long route and cycled some 260 miles. I prefer hotels over tents but not when shared with two other guys... Cycling through France is something I'd love to do again, riding through the Somme Battlefields was incredibly sombre but there is such history in the region that I'd love to spend more time there on the next ride through.
 
 So, onto the technical assessment, I have provided my answers as best as I can and supplied the associated screenshots. Each section is contained within its own block, and of course, I used the Datadog knowledge base extensively, which I found to be brilliant.
 
@@ -49,20 +48,20 @@ I've added notes, inserted the screenshot and linked the image to the relevant p
 
 ### Q. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-I found this task fairly simple but it highlight the power of tags, I was blown away by the host map and the way it is able to visualise the data, that was a big WOW moment when I saw it's capability.
+I found this task fairly simple but it highlights the power of tags, I was blown away by the host map and the way it is able to visualise the data, that was a big WOW moment when I saw it's capability.
 </br>
 
 [![Host Tags](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/host_tags.png)](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices "Open: Getting started with tags")
 
 </br>
 
-### Q. Install a database on your machine (Used MySQL) and then install the respective Datadog integration for that database.
+### Q. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 I opted for MySQL as I have experience of using this in a past life when I used to build and maintain a linux backend for a client that provided a SAAZ solution to the UK & US markets, installation went smoothly and configuring the check was a breeze, again, the ease and simplicity of configuring Datadog shone through.
 
 </br>
 
-### Q. Create a custom Agent check that submits a metric named my_metric with a random 
+### Q. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Originally I set a value of 40 but then realised this gave me a flatline graph and then figured this was not going to represent a real-world metric well so after some research I discovered the randomNumber function and set this to give me a better view. Note to self, do not be so literal.
 </br>
@@ -127,7 +126,7 @@ Here is a snapshot of the email I received when I annotated my graph, very power
 </br>
 
 ### Q. What is the Anomaly graph displaying?
-The anomaly monitor can give you a view on behaviour that differs from the past. This is very useful to assist in understanding if your environment is acting as it has done traditionally or if the behaviour is different from what is expected. 
+The anomaly monitor can give you a view on behaviour that differs from the past. This assistance is very useful in understanding if your environment is acting as it has done traditionally or if the behaviour is different from what is expected. 
 
 This can often serve as an early warning to something not being as it should and allows for questions to be asked or investigations to be run sooner so that, potentially, a bigger issue can be averted. As an example, this could serve as an early indicator of data leakage by warning of a device sending more data or showing more activity than usual.
 </br>
@@ -211,7 +210,7 @@ As per my working notes, while setting downtime periods, I noted that the questi
 # Collecting APM Data
 Hands Up, I'm afraid I'll have to admit defeat on this section. 
 
-I had considerable issues getting things to install/run on my vagrant box and tried Google for hours to try to resolve the issues, but at this stage, I'd be looking to utilise internal knowledge base articles if there are any, internal communication channels or a mentor/senior member of the team to assist me further this one.
+I had considerable issues getting things to install/run on my vagrant box and tried Google for hours to try to resolve the issues, but at this stage, I'd be looking to utilise internal knowledge base articles if there are any, internal communication channels or a mentor/senior member of the team to assist me further with this one.
 
  I'm not above asking for help and not only enjoy helping others with my knowledge, but I also enjoy when others share their knowledge with me.
 </br>
@@ -221,15 +220,18 @@ I had considerable issues getting things to install/run on my vagrant box and tr
 # Final Question Response
 Having better understood Datadog and it's power to bring in information from diverse systems, I feel it would be groundbreaking if we were able to query data sources to understand the mood of the nation better. 
 
-Imagine being able to bring in data from smartphones, IoT devices and Facebook, for example, and view a city, county or country in a host map. Datadog could create a fun "Mood App" in the App Stores that allow users to rate, by colour, how they feel and this could then be used as data, with consent, to build the national " Mood of the Nation" view.
+Imagine being able to bring in data from smartphones, IoT devices and Facebook, for example, and view a city, county or country in a host map. Datadog could create a "Mood App" in the App Stores that allow users to rate, by colour, how they feel and this could then be used as data, with consent, to build the national "Mood of the Nation" view.
 
-Green people would be those that are happy and go about their daily life with a smile on their face, but using the colour coding system; we could be alerted to those not feeling so happy and possibly may need an intervention before they harm themselves or another.
+People shown as green would be those that are happy and go about their daily life with a smile on their face, but using the colour coding system; people shown as red would not be feeling so happy and alerting could be used to create an intervention.
 
-Being able to have an early warning could save health providers millions by intervening earlier rather than waiting until the situation is dire, we could see national productivity skyrocket as people feel happier and more content.
+Being able to have an early warning could save health providers millions by intervening earlier rather than waiting until the situation is worse, we could see national productivity skyrocket as people feel happier and more content.
 
 If a person is using wearable tech, we could monitor their health stats and act on this, but more importantly, perhaps we can "monitor and alert" to potential situations, for example, a construction site worker who is tired and whose health levels suggest he may not be safe to be working on a site or consider a lone worker that has had a fall or is in difficulty and cannot notify someone, perhaps they've had a stroke and are alone... 
 
 Sounds a bit "Minority Report" but this is the power of data, that said, data regulations may stop this from ever happening...
+
+
+## Thank you for taking the time to review my notes and for the opportunity with Datadog.
 
 ---
 ### Working Notes
