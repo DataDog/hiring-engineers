@@ -1,24 +1,16 @@
 ---
-</br>
-<p align="center">
-<a href="https://www.datadoghq.com/"><img src="https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/datadoglogo.png" title="Datadog Rocks!"/></a>
-</p>
+
+[![Datadog Rocks!](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/datadoglogo.png)](https://www.datadoghq.com/ "Datadog Rocks!")
 </br>
 
+# Technical Assignment Submission
+## M Herring - Solutions Engineer Candidate
 
-<h1 align="center">Technical Assignment Submission</br>
-M Herring - Solutions Engineer Candidate
-</h1>
-
-</br>
-<p align="center">
-<a href="https://www.linkedin.com/in/malherring/"><img src="https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/headshot_rounded+200x200.gif" title="Find me on LinkedIn"/></a>
-</p>
+[![Mal Herring](https://s3-eu-west-1.amazonaws.com/malherring/datadog_screenshots/headshot_rounded+200x200.gif)](https://www.linkedin.com/in/malherring/ "Find me on LinkedIn")
 </br>
 
-<h2 align="center">
-Date: 15th June 2018
-</h2></br></br>
+### Date: 15th June 2018
+
 
 ---
 </br>
