@@ -31,46 +31,53 @@
   
   - 1.Configuration - Create a database user for the Datadog Agent
   
-   Launch MySQL and input the command below:
+    Launch MySQL and input the command below:
   
-   `mysql> CREATE USER 'datadog'@'192.168.1.5' IDENTIFIED BY 'Su27k2003';`
+    `mysql> CREATE USER 'datadog'@'192.168.1.5' IDENTIFIED BY 'Su27k2003';`
   
-   Then verified the user was created successfully using the following commands.
+    Then verified the user was created successfully using the following commands.
    
-   `mysql -u datadog --password=Su27k2003 -e "show status" | \`
-   `grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \`
-   `echo -e "\033[0;31mCannot connect to MySQL\033[0m"`
-   `mysql -u datadog --password=Su27k2003 -e "show slave status" && \`
-   `echo -e "\033[0;32mMySQL grant - OK\033[0m" || \`
-   `echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"`
+    `mysql -u datadog --password=Su27k2003 -e "show status" | \`
+    
+    `grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \`
+    
+    `echo -e "\033[0;31mCannot connect to MySQL\033[0m"`
+    
+    `mysql -u datadog --password=Su27k2003 -e "show slave status" && \`
+    
+    `echo -e "\033[0;32mMySQL grant - OK\033[0m" || \`
+    
+    `echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"`
    
-   The Agent needs a few privileges in order to collect metrics. Grant the user the following limited privileges ONLY:
+    The Agent needs a few privileges in order to collect metrics. Grant the user the following limited privileges ONLY:
    
-   `mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'192.168.1.5' WITH MAX_USER_CONNECTIONS 5;`
-   `mysql> GRANT PROCESS ON *.* TO 'datadog'@'192.168.1.5';`
+    `mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'192.168.1.5' WITH MAX_USER_CONNECTIONS 5;`
    
-   If enabled, metrics can be collected from the performance_schema database by granting an additional privilege:
+    `mysql> GRANT PROCESS ON *.* TO 'datadog'@'192.168.1.5';`
    
-   `mysql> show databases like 'performance_schema';`
-   `mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'192.168.1.5';`
+    If enabled, metrics can be collected from the performance_schema database by granting an additional privilege:
+   
+    `mysql> show databases like 'performance_schema';`
+    
+    `mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'192.168.1.5';`
    
   - 2.Configuration - Metric Collection
    
-   Added the configuration block below to the mysql.d/conf.yaml in order to start gathering the MySQL metrics:
+    Added the configuration block below to the mysql.d/conf.yaml in order to start gathering the MySQL metrics:
    
-   Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+    Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql_conf.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql_conf.PNG)
 
   - 3.Configuration - Restart the agent
   
   - 4.Confirmation
   
-   After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the screenshot below.
+    After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the screenshot below.
   
-   Screenshot 2: MySQL dashboard
+    Screenshot 2: MySQL dashboard
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
   
   - References: [Datadog Docs - Mysql](https://docs.datadoghq.com/integrations/mysql/)
 
@@ -81,19 +88,19 @@
   
   - 1.Configuration - Create mycheck.yaml in conf.d directory
  
-   As the custom Agent check does nothing more than sending random value for the metric my_metric, mycheck.yaml is very simple, including no real information.
+    As the custom Agent check does nothing more than sending random value for the metric my_metric, mycheck.yaml is very simple, including no real information.
  
-   Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
+    Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_1.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_1.PNG)
 
   - 2.Configuration - Create mycheck.yaml in checks.d directory
   
-   The check itself inherits from AgentCheck and send a gauge of random value for my_metric on each call. This goes in checks.d/mycheck.py:
+    The check itself inherits from AgentCheck and send a gauge of random value for my_metric on each call. This goes in checks.d/mycheck.py:
   
-   Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
+    Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
   
   - **Note:** 
     - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
