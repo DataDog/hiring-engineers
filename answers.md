@@ -1,7 +1,8 @@
 ## Prerequisites - Setup the environment
 
-You can utilize any OS/host that you would like to complete this exercise.
-I decided to skip the Vagrant and Containerized approaches and decided to accept the challenge of getting the exercise done on macOS 10.13.14. Other than some minor compatibility issues, the installation was mostly straightforward.
+* You can utilize any OS/host that you would like to complete this exercise.
+
+I decided to skip the Vagrant and Containerized approaches and accept the challenge of getting the exercise done on macOS 10.13.14.
 
 * Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
@@ -25,29 +26,11 @@ ad-autoconfig, ad-configresolver, aggregator, collector-queue, dogstatsd-main, f
 ===========================
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Typically, the yaml file is located in `~/.datadog-agent/datadog.yaml`. However my file was located in typically where things are located if you're working with the source code: `~/opt/datadog-agent/etc/datadog.yaml`. This was unexpected as I was certain that this yaml file would be generated automatically in directory noted [here](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-). What mattered though at this point was seeing whether the tags added to the yaml would show up in the host page.
-
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-
-I went ahead and made sure my API key was present and [enabled some tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) that, if surfaced, would appear to have been clearly made by me.
-```
-tags:
-  - mytag
-  - env:prod
-  - role:database
-  - user:joe
-  - animal:dog
-  ```
-
-And voila, these tags were surfaced on the hosts page as coming from my local machine.
-
-![Live Hosts](/2_live_hosts.png)
+Typically, the yaml file is located in `~/.datadog-agent/datadog.yaml`. My file structure more closely resembled the source code structure: `~/opt/datadog-agent/etc/datadog.yaml` as seen [here](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-).Working within these directories was still manageable and I was able to collect the necessary metrics.
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Here's where I encountered some issues with MySQL. First, my machine refused to grant universal permissions to the new 'datadog'@'localhost' user. I even tried specifying every unique MySQL action to the new user, but to no avail. It did not dawn on me what the issue was until I fired up a second terminal window with MySQL as `mysql -u root -p`. At root I was able to grant all permissions This felt like the MySQL troubleshooting equivalent of 'did you try turning it on and off again'.
+I decided to setup a MySQL database as it was the first kind of relational database system I encountered years ago. I ran into some minor issues with permissions. First, my machine refused to grant universal permissions to the new 'datadog'@'localhost' user. I even tried specifying every unique MySQL action to the new user, but to no avail. It did not dawn on me what the issue was until I fired up a second terminal window with MySQL as `mysql -u root -p`. At root I was able to grant all permissions This felt like the MySQL troubleshooting equivalent of 'did you try turning it on and off again'. When in doubt, take the root/sudo route.
 
 With the new user created, I went to add the configuration block to the mysql.d/conf.yaml file.
 
@@ -66,7 +49,24 @@ With the new user created, I went to add the configuration block to the mysql.d/
           extra_performance_metrics: true
           schema_size_metrics: false
           disable_innodb_metrics: false
+        ```
+
+
+I went ahead and made sure my API key was present in my configuration file and [enabled some tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) that, if surfaced, would clearly have been made by me.
 ```
+tags:
+  - mytag
+  - env:prod
+  - role:database
+  - user:joe
+  - animal:dog
+  ```
+
+And voila, these tags were surfaced on the hosts page as coming from my local machine.
+
+![Live Hosts](/2_live_hosts.png)
+
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I then followed the instructions [in the Agent check documentation](https://docs.datadoghq.com/developers/agent_checks/) and made the custom metric at `opt/datadog-agent/etc/checks.d/my_metric.py` and a simple config file at `/opt/datadog-agent/etc/conf.d/my_metric.yaml`.
@@ -192,7 +192,7 @@ Collector
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-This timeboard was created by making a POST request via Postman, as this was a platform I had used several times in the past to generate requests when using APIs. I followed the instructions listed [here](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) for the most part, however I kept receiving errors that my API key was required, even after importing the Datadog Postman Collection and updating all required keys. Unfortunately it turned out that I needed to use a deprecated version (> version 6.0) to successfully make the calls. I headed over to the [Postman Changelog](https://www.getpostman.com/apps#changelog), copied the download link for the latest version, and then changed the version number in the URL to download a deprecated verison of Postman. I was then able to successfully make API calls and create a Timeboard:
+My timeboard was created by making a POST request via Postman, as this was a platform I had used several times in the past to generate requests when using APIs. I followed the instructions listed [here](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) for the most part, however I kept receiving errors that my API key was required, even after importing the Datadog Postman Collection and updating all required keys. Unfortunately it turned out that I needed to use a deprecated version (> version 6.0) to successfully make the calls. I headed over to the [Postman Changelog](https://www.getpostman.com/apps#changelog), copied the download link for the latest version, and then changed the version number in the URL to download a deprecated verison of Postman. I was then able to successfully make API calls and create a Timeboard:
 
 
 ```
