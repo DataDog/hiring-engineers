@@ -238,7 +238,7 @@ Lets begin!
 
 	- Next! To make the 'custom metric with the rollup function applied to sum up all the points for the past hour into one bucket'... I used the [rollup function in Datadog docs](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup) to assist me on this one. Below is my script and a screenshot of the timeboard in Datadog.
 
-	![alt_text][Imgur](https://i.imgur.com/fP0ygb5.png)
+	![alt_text](https://i.imgur.com/fP0ygb5.png)
 
 	```
 	{
