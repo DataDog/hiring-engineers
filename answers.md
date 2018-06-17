@@ -157,4 +157,4 @@ And here is a screenshot my of 'my_metric.yaml' file:
 
 Here is a screenshot of the metric on a 45 second interval from Datadog:
 
-[alt_text](https://i.imgur.com/1E4KIro.png)
+![alt_text](https://i.imgur.com/1E4KIro.png)
