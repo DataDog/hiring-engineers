@@ -6,23 +6,23 @@
   
   - 1.Configuration - Create a database user for the Datadog Agent:
   
-   Open the datadog.yaml file and define the tag by adding "tags: region:nsw" under the "#Set the host's tags" line.
+    Open the datadog.yaml file and define the tag by adding "tags: region:nsw" under the "#Set the host's tags" line.
   
-   **Note:** There are two forms to define tags in the configuration files, but for the datadog.yaml init file only support the "tags: key_first_tag:value_1, key_second_tag:value_2, ..." form.
+    **Note:** There are two forms to define tags in the configuration files, but for the datadog.yaml init file only support the "tags: key_first_tag:value_1, key_second_tag:value_2, ..." form.
   
-   Screenshot 1: datadog.yaml
+    Screenshot 1: datadog.yaml
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_datadog_yaml.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_datadog_yaml.PNG)
 
   - 2.Confirmation
   
-   After a few seconds, confirmed the new tag appears in the Host Map.
+    After a few seconds, confirmed the new tag appears in the Host Map.
   
-   Screenshot 2: Host Map (Added the "region:nsw" tag)
+    Screenshot 2: Host Map (Added the "region:nsw" tag)
 
-   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
   
-  - References: [Assigning tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#how-to-assign-tags)
+  - References: [Datadog Docs - Assigning tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#how-to-assign-tags)
   
   
 * **Q2**
@@ -72,7 +72,7 @@
 
    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
   
-  - References: [Mysql](https://docs.datadoghq.com/integrations/mysql/)
+  - References: [Datadog Docs - Mysql](https://docs.datadoghq.com/integrations/mysql/)
 
 
 * **Q3**
@@ -98,7 +98,7 @@
   - **Note:** 
     - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
     - Before running the custom Agent check, better to check the exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there is any improper configuration, programming error cause the check could not collect metrics.
-  - References: [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
+  - References: [Datadog Docs - Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
 
 * **Q4**
 
