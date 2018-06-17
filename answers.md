@@ -51,7 +51,8 @@ I decided to setup a MySQL database as it was the first relational database syst
 
 With the new user created, I went to add the configuration block to the mysql.d/conf.yaml file.
 
-```instances:
+```
+instances:
     # NOTE: Even if the server name is "localhost", the agent will connect to MySQL using TCP/IP, unless you also
     # provide a value for the sock key (below).
     - server: 127.0.0.1
@@ -66,7 +67,7 @@ With the new user created, I went to add the configuration block to the mysql.d/
           extra_performance_metrics: true
           schema_size_metrics: false
           disable_innodb_metrics: false
-        ```
+```
 
 
 One small issue I encountered while setting up the MySQL database monitoring and log collection was that the my.cnf file described [here](https://docs.datadoghq.com/integrations/mysql/) was located in a different directory. This was due to having previously [had MySQL installed via Homebrew](https://stackoverflow.com/a/24250739). Changing the files in the noted directory worked for me.
