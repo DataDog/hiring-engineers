@@ -181,3 +181,133 @@ Lets begin!
 	- I made a test timeboard called 'Hi there' that I pulled from a file on Datadogs [documentation](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) on using Postman with Datadog. Below is a screenshot of the timeboard in Datadog:
 
 	![alt_text](https://i.imgur.com/bxLPTZI.png)
+
+	- Next, I created a timeboard with my custom metric scoped over my host. Here is my script and a screenshot of the timeboard in Datadog:
+
+	![alt_text](https://i.imgur.com/TLee4CM.png)
+
+	```
+	{
+      "graphs" : [{
+          "title": "Metric over Host",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "Logan's timeboard1",
+      "description" : "Made by Logan Morales",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+    }
+	```
+
+	- Moving on! Then, I made a another timeboard with anomoly information on my MySQL database integration. This was a bit more difficult because I didnt initially know how to connect the MySQL integration. After navigating to the 'Integrations' page and Selected 'MySQL', I navigated right to 'Metrics' and found some usuful information I can look for. I combined this with the anomoly function found in Datadogs [documentation](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) Below is my script and a screenshot of the timeboard in Datadog.
+
+	![alt_text](https://i.imgur.com/rhhTRL6.png)
+
+	```
+	{
+      "graphs" : [{
+          "title": "MySQL Anomoly",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "Logan's timeboard2-1",
+      "description" : "Made by Logan Morales",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+    }
+	```
+
+	- Next! To make the 'custom metric with the rollup function applied to sum up all the points for the past hour into one bucket'... I used the [rollup function in Datadog docs](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup) to assist me on this one. Below is my script and a screenshot of the timeboard in Datadog.
+
+	![alt_text][Imgur](https://i.imgur.com/fP0ygb5.png)
+
+	```
+	{
+      "graphs" : [{
+          "title": "Fruit Rollups 🍭",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "Logan's timeboard3",
+      "description" : "Made by Logan Morales",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+    }
+	```
+
+3. After getting all of my individual timeboards together I put them together into one... GIANT... TIMEBOARD! Script and Datadog screenshot below:
+
+![alt_text](https://i.imgur.com/0PRUgce.png)
+
+```
+{
+      "graphs" : [{
+          "title": "Fruit Rollups 🍭",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "MySQL Anomoly",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)"}
+              ]
+          },
+          "viz": "timeseries"
+      },{
+          "title": "Custom Metric over Host",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "Logan's Custom Ultimate Timeboard",
+      "description" : "Made by Logan Morales",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+    }
+```
+
+
+
+
