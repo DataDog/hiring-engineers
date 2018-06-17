@@ -141,7 +141,9 @@
     
   - 2.Create a Timeboard via Datadog API
   
-    There are few ways to submitting Datadog API such as Curl or Python/Ruby code. I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and we just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)", most important thing is modified the "requests" part in "graphs" to add the metric: "my_metric" into the Timeboard.
+    There are few ways to submitting Datadog API such as using Curl or Python/Ruby code. 
+    I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. 
+    The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and we just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)". The most important thing is modifying the "requests" part in "graphs" to add the metric: "my_metric" into the Timeboard.
 
     Python code: /code/Create_timeboard.py
 
@@ -193,15 +195,18 @@
                             read_only=read_only)
     ```
     
-    Screenshot: My_metric in the timeboard just created.
-
-    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
     
   - 3.Confirmation
   
     The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle your request. In addition to the status code, the response may contain a JSON object with an errors array containing more detailed error messages. Status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
+    
     **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
+    
     I confirmed the timeboard worked as expected.
+    
+    Screenshot: My_metric in the timeboard just created.
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
      
   - References: [Datadog Docs - Create a Timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
 
