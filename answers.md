@@ -373,7 +373,6 @@ trace-agent --config ~/.datadog-agent/datadog.yaml
 Afterwards I got to tracing my Python app, running `pip install ddtrace` and then importing the tracer in the app.
 
 ```
-
 from flask import Flask
 import logging
 import sys
@@ -406,7 +405,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-    ```
+```
 
 I then ran myapp.py:
 
