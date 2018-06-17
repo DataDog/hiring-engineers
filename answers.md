@@ -202,7 +202,7 @@
     
       **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
     
-    - I confirmed the timeboard worked as expected.
+    - I confirmed the timeboard worked as expected. Please refer to the screenshot below.
     
       Screenshot: My_metric in the timeboard just created.
 
