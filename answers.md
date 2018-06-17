@@ -2,39 +2,103 @@
 
 * **Q1**
 
-  To add tags, I found an article "Assigning tags using the configuration files" in the Docs page (https://docs.datadoghq.com/getting_started/tagging/assigning_tags/assigning-tags-using-the-configuration-files) and configured datadog.yaml to add the region: nsw tag. Please refer to the two screenshots below.
+  To add tags, there are few methods to achieve it such as using the UI or API, though the UI and API only allow us to add tags at the host level. The remommended method is to rely on the integrations or via the configuration files. In this example, I am assigning a new tag "region:nsw" as a agent tag via configure the datadog.yaml file. Please refer to the two screenshots below.
+  
+  - 1.Configuration - Create a database user for the Datadog Agent:
+  
+   Open the datadog.yaml file and define the tag by adding "tags: region:nsw" under the "#Set the host's tags" line.
+  
+   **Note:** There are two forms to define tags in the configuration files, but for the datadog.yaml init file only support the "tags: key_first_tag:value_1, key_second_tag:value_2, ..." form.
+  
+   Screenshot 1: datadog.yaml
 
-  Screenshot 1: datadog.yaml
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_datadog_yaml.PNG)
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_datadog_yaml.PNG)
+  - 2.Confirmation
+  
+   After a few seconds, confirmed the new tag appears in the Host Map.
+  
+   Screenshot 2: Host Map (Added the "region:nsw" tag)
 
-  Screenshot 2: Host Map (Added the "region:nsw" tag)
-
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
-
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_HostMap.PNG)
+  
+  - References: [Assigning tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#how-to-assign-tags)
+  
+  
 * **Q2**
 
-  I installed MySQL on my Ubuntu (16.04.4) and I followed the MySQL integration page (https://docs.datadoghq.com/integrations/mysql/) to configure MySQL and the agent. After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the two screenshots below.
+  I installed MySQL on my Ubuntu (16.04.4) and I followed the MySQL integration page to configure MySQL and the agent. Please refer to the steps below.
+  
+  - 1.Configuration - Create a database user for the Datadog Agent
+  
+   Launch MySQL and input the command below:
+  
+   `mysql> CREATE USER 'datadog'@'192.168.1.5' IDENTIFIED BY 'Su27k2003';`
+  
+   Then verified the user was created successfully using the following commands.
+   
+   `mysql -u datadog --password=Su27k2003 -e "show status" | \`
+   `grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \`
+   `echo -e "\033[0;31mCannot connect to MySQL\033[0m"`
+   `mysql -u datadog --password=Su27k2003 -e "show slave status" && \`
+   `echo -e "\033[0;32mMySQL grant - OK\033[0m" || \`
+   `echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"`
+   
+   The Agent needs a few privileges in order to collect metrics. Grant the user the following limited privileges ONLY:
+   
+   `mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'192.168.1.5' WITH MAX_USER_CONNECTIONS 5;`
+   `mysql> GRANT PROCESS ON *.* TO 'datadog'@'192.168.1.5';`
+   
+   If enabled, metrics can be collected from the performance_schema database by granting an additional privilege:
+   
+   `mysql> show databases like 'performance_schema';`
+   `mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'192.168.1.5';`
+   
+  - 2.Configuration - Metric Collection
+   
+   Added the configuration block below to the mysql.d/conf.yaml in order to start gathering the MySQL metrics:
+   
+   Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
 
-  Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql_conf.PNG)
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql_conf.PNG)
+  - 3.Configuration - Restart the agent
+  
+  - 4.Confirmation
+  
+   After configuration, I confirmed the dashboard was receiving data from MySQL. Please refer to the screenshot below.
+  
+   Screenshot 2: MySQL dashboard
 
-  Screenshot 2: MySQL dashboard
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
+  
+  - References: [Mysql](https://docs.datadoghq.com/integrations/mysql/)
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_mysql.PNG)
 
 * **Q3**
 
-  To create a custom Agent check, I followed the Docs page (https://docs.datadoghq.com/developers/agent_checks/) and created mycheck.yaml and mycheck.py then configured the two files accordingly. Please refer to the two screenshots below. 
+  To create a custom Agent check, I created mycheck.yaml and mycheck.py then configured the two files accordingly. Please refer to the steps and screenshots below. 
+  
+  - 1.Configuration - Create mycheck.yaml in conf.d directory
+ 
+   As the custom Agent check does nothing more than sending random value for the metric my_metric, mycheck.yaml is very simple, including no real information.
+ 
+   Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
 
-  Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_1.PNG)
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_1.PNG)
+  - 2.Configuration - Create mycheck.yaml in checks.d directory
+  
+   The check itself inherits from AgentCheck and send a gauge of random value for my_metric on each call. This goes in checks.d/mycheck.py:
+  
+   Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
 
-  Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
-
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
+   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
+  
+  - **Note:** 
+    - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
+    - Before running the custom Agent check, better to check the exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there is any improper configuration, programming error cause the check could not collect metrics.
+  - References: [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
 
 * **Q4**
 
@@ -51,7 +115,9 @@
   Screenshot: Added min_collection_interval to the /etc/datadog-agent/conf.d/mycheck.yaml
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_4.PNG)
+  
 
+****
 
 
 ## Visualizing Data:
@@ -239,6 +305,9 @@ api.Timeboard.create(title=title,
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_8.PNG)
  
 
+****
+
+
 ## Monitoring Data
 
 * **Q1**
@@ -266,6 +335,9 @@ api.Timeboard.create(title=title,
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_2.PNG)
 
 
+****
+
+
 ## Collecting APM Data:
 
 * **Bonus Question**
@@ -288,7 +360,10 @@ api.Timeboard.create(title=title,
 
   I used the Python sample code (Flask app) to create the APM.  
  
- 
+
+****
+
+
 ## Final Question:
 
  I’m very interested in IoT and I have developed a few Raspberry Pi based home automation projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home by myself as it could make life easier for my family and improve my technical skills.
