@@ -1,4 +1,4 @@
-##### Answers - Joe Plonsker 
+##### Answers - Joe Plonsker
 
 ## Prerequisites - Setup the environment
 
@@ -38,7 +38,7 @@ tags:
   - role:database
   - user:joe
   - animal:dog
-  ```
+```
 
 And voila, these tags were surfaced on the hosts page as coming from my local machine.
 
@@ -105,7 +105,7 @@ Running the agent check resulted in a successful response.
 
 ```
 Joes-MacBook-Pro:checks.d joeplonsker$ datadog-agent check my_metric
-=== Series ===
+ Series
 {
   "series": [
     {
@@ -124,12 +124,12 @@ Joes-MacBook-Pro:checks.d joeplonsker$ datadog-agent check my_metric
     }
   ]
 }
-=========
+
 Collector
-=========
+
 
   Running Checks
-  ==============
+
     my_metric
     ---------
       Total Runs: 1
@@ -179,12 +179,9 @@ Joes-MacBook-Pro:checks.d joeplonsker$ datadog-agent check my_metric
     }
   ]
 }
-=========
 Collector
-=========
 
   Running Checks
-  ==============
     my_metric
     ---------
       Total Runs: 1
