@@ -198,15 +198,15 @@
     
   - 3.Confirmation
   
-    The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle your request. In addition to the status code, the response may contain a JSON object with an errors array containing more detailed error messages. Status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
+    - The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle user's request. Status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
     
-    **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
+      **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
     
-    I confirmed the timeboard worked as expected.
+    - I confirmed the timeboard worked as expected.
     
-    Screenshot: My_metric in the timeboard just created.
+      Screenshot: My_metric in the timeboard just created.
 
-    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
+      ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
      
   - References: [Datadog Docs - Create a Timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
 
