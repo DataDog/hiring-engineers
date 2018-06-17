@@ -138,4 +138,23 @@ To understand the process of doing this, I spent a lot of time reading over the 
 
    ![alt text](https://i.imgur.com/DvsDEob.png)
 
+### 45 Second Collection Interval
 
+To change the collection interval of my_metric, I simply followed the same documentation mentioned above. I modified the file 'my_metric.yaml' to add `min_collection_interval: 45` under `init_config`. The file contents looks like this:
+
+```
+init_config: 	
+	
+instances:
+    - username: <$username>
+    - password: <$password>
+    - min_collection_interval: 45
+```
+
+And here is a screenshot my of 'my_metric.yaml' file:
+
+![alt_text](https://i.imgur.com/Dp4HJcG.png)
+
+Here is a screenshot of the metric on a 45 second interval from Datadog:
+
+[alt_text](https://i.imgur.com/1E4KIro.png)
