@@ -101,6 +101,10 @@
     Screenshot 2: Created and configured /etc/datadog-agent/checks.d/mycheck.py
 
     ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_custom_check_2.PNG)
+    
+  - 3.Confirmation
+  
+    After configuration, confirmed the 'my_metric' appeared under the Metric menu in the UI and collects data properly. Please refer to the screenshot at the first question in Visualizing Data part. 
   
   - **Note:** 
     - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
@@ -131,62 +135,75 @@
 
 * **Q1**
 
-  I created a timeboard which collected data of the custom metric: my_metric we just created in the previous step by submitting the Python code below and confirmed the timeboard worked as expected. Please refer to the screenshot and the Python code below. This page (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) gave me lots of useful information about how to use the Datadog API.
+  - 1.Check authentication - API and APP keys
+  
+    As all requests to Datadog’s API must be authenticated, we should confirm the API and APP keys first. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key. The API and APP keys could be found at https://app.datadoghq.com/account/settings#api. 
+    
+  - 2.Create a Timeboard via Datadog API
+  
+    There are few ways to submitting Datadog API such as Curl or Python/Ruby code. I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and we just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)", most important thing is modified the "requests" part in "graphs" to add the metric: "my_metric" into the Timeboard.
 
-  Screenshot: My_metric in the timeboard just created.
+    Python code: /code/Create_timeboard.py
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)	
+    ```
+    from datadog import initialize, api
 
-  Python code: /code/Create_timeboard.py
+    options = {
+        'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+        'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
+    }
 
-```
-from datadog import initialize, api
-
-options = {
-    'api_key': '',
-    'app_key': ''
-}
-
-initialize(**options)
+    initialize(**options)
 
 
-# Create a new Timeboard
-title = "Show my_metric"
-description = "For the home challenge"
-graphs = [{
-    "definition": {
-        "events": [],
-        "viz": "timeseries",
-        "requests": [
-            {"q": "my_metric{host:deep-learning-virtual-machine}",
-            "type": "line",
-            "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"},
-            "conditional_formats": [],
-            "aggregator": "avg"
-            },
-        ],
-    },
-    "title": "My Metric (custom metric)"
-}]
+    # Create a new Timeboard
+    title = "Show my_metric"
+    description = "For the home challenge"
+    graphs = [{
+        "definition": {
+            "events": [],
+            "viz": "timeseries",
+            "requests": [
+                {"q": "my_metric{host:deep-learning-virtual-machine}",
+                "type": "line",
+                "style": {
+                    "palette": "dog_classic",
+                    "type": "solid",
+                    "width": "normal"},
+                "conditional_formats": [],
+                "aggregator": "avg"
+                },
+            ],
+        },
+        "title": "My Metric (custom metric)"
+    }]
 
-template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:my-host"
-}]
+    template_variables = [{
+        "name": "host1",
+        "prefix": "host",
+        "default": "host:my-host"
+    }]
 
-read_only = True
+    read_only = True
 
-api.Timeboard.create(title=title,
-                        description=description,
-                        graphs=graphs,
-                        template_variables=template_variables,
-                        read_only=read_only)
-```
+    api.Timeboard.create(title=title,
+                            description=description,
+                            graphs=graphs,
+                            template_variables=template_variables,
+                            read_only=read_only)
+    ```
+    
+    Screenshot: My_metric in the timeboard just created.
 
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
+    
+  - 3.Confirmation
+  
+    The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle your request. In addition to the status code, the response may contain a JSON object with an errors array containing more detailed error messages. Status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
+    **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
+    I confirmed the timeboard worked as expected.
+     
+  - References: [Datadog Docs - Create a Timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
 
 * **Q2**
 
@@ -202,8 +219,8 @@ api.Timeboard.create(title=title,
 from datadog import initialize, api
 
 options = {
-    'api_key': '',
-    'app_key': ''
+    'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+    'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
 }
 
 initialize(**options)
@@ -241,8 +258,8 @@ api.Monitor.create(
 from datadog import initialize, api
 
 options = {
-    'api_key': '',
-    'app_key': ''
+    'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+    'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
 }
 
 initialize(**options)
