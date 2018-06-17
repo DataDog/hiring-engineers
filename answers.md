@@ -66,7 +66,8 @@ instances:
           extra_innodb_metrics: true
           extra_performance_metrics: true
           schema_size_metrics: false
-          disable_innodb_metrics: false```
+          disable_innodb_metrics: false
+```
 
 
 One small issue I encountered while setting up the MySQL database monitoring and log collection was that the my.cnf file described [here](https://docs.datadoghq.com/integrations/mysql/) was located in a different directory. This was due to having previously [had MySQL installed via Homebrew](https://stackoverflow.com/a/24250739). Changing the files in the noted directory worked for me.
@@ -413,7 +414,6 @@ I then ran myapp.py:
 Joes-MacBook-Pro:Documents joeplonsker$ python myapp.py
 2018-06-14 23:13:55,795 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
 2018-06-14 23:13:56,629 - ddtrace.api - DEBUG - reported 1 traces in 0.00295s
-
 ```
 
 Bonus Question: What is the difference between a Service and a Resource?
