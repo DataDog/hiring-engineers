@@ -3,7 +3,7 @@
 
 ## Environment:
 
- I used **Google Cloud** to create two virtual machines. One has **windows Server 2016** operating system and other has **Ubuntu 16.04 LTS**
+ I used **Google Cloud** to create two virtual machines. One has **Windows Server 2016** operating system and other has **Ubuntu 16.04 LTS**
 
 
 
@@ -33,47 +33,47 @@ updated the *datadog.yaml* file in */etc/datadog-agent* with the following tags
 
 
 
-**In the browser under Host map, the tags were reflecting after i restarted agent.**
+**In the browser under Host map, the tags were reflecting after I restarted the agent.**
 
 > ![Browser windows tag](images/2.Q1-datadog-dashboard-screenshot-tags.PNG)
 
 
 
-Note: i created two VM's so that i can actually see the use of tag's. 
+Note: I created two VM's so that I can actually see the use of tags. 
 
-So, i tried to group hosts on google cloud and it was really helpful. below is the screenshot of the same
+So, I tried to group hosts on google cloud and it was really helpful. below is the screenshot of the same
 
 ![Group by tag](images/Q1-Hosts-filtered-by-tag.PNG)
 
 
-## Question 2 : Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+## Question 2: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I have  installed mongoDB on windows and postgresql on Ubuntu and integrated both.
+I have installed MongoDB on Windows and PostgreSQL on Ubuntu and integrated both.
 
 **MongoDB:**
 
-Result of *agent status* for mongoDB : 
+Result of *agent status* for MongoDB : 
 
 ![mongoDB status](images/3.Q2-datadog-status-screenshot-mongo.PNG)
 
-Success message on Integration of mongoDB in browser:
+Success message on Integration of mongoDB in the browser:
 
 ![mongoDB browser](images/4.Q2-datadog-dashboard-screenshot-mongo.PNG)
 
 
 **Postgresql**
 
-Result of *agent status* for postgresql
+The result of *agent status* for PostgreSQL
 
 ![Postgresql status](images/3.Q2-datadog-status-screenshot-postgres.PNG)
 
-Success message on integration of postgresql in browser
+Success message on the integration of PostgreSQL in the browser
 
 ![Postgresql browser](images/4.Q2-datadog-dashboard-screenshot-postgres.PNG)
 
 
 
-## Question 3 : Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+## Question 3: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I used ubuntu machine to do this.
 I created a *my_metric.yaml* file in */etc/datadog-agent/conf.d* with text as shown in  below image
@@ -92,7 +92,7 @@ I checked the same in my dashboard and its as shown below
 
 ![my_metric dashboard](images/7.Q3-datadog-my_metric_dashboard.PNG)
 
-So, custom metric is being recorded.
+So, the custom metric is being recorded.
 
 ## Question 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -107,7 +107,7 @@ The following was the output when i ran `sudo -u dd-agent -- datadog-agent check
 As seen in the above image, it took 45 seconds pause. so, Success!
 
 
-## Bonus Question : Can you change the collection interval without modifying the Python check file you created?
+## Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 Yes, by modifying my_metrics.yaml file to as shown below, i was able to add interval without modifying python check file
 
@@ -118,7 +118,7 @@ Yes, by modifying my_metrics.yaml file to as shown below, i was able to add inte
 # Visualizing Data:
 
 
-## Question : Utilize the Datadog API to create a Timeboard that contains:
+## Question: Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
  * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -145,29 +145,29 @@ Timeboard of mongoDB in browser:
 
 
 
-## Question : Once this is created, access the Dashboard from your Dashboard List in the UI:
+## Question: Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 For Custom timeboard
-![5 min timeframe](images/CustomMetric - 5 min timeframe.PNG)
+![5 min timeframe](images/CustomMetric1.PNG)
 
 For mongoDB timeboard:
-![5 min mongo](images/MongoDB-5 min timeframe.PNG)
+![5 min mongo](images/MongoDB-1.PNG)
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 For custom metric:
-![mail custom metric](images/CustomMetric - 5 min timeframe - mail.PNG)
+![mail custom metric](images/CustomMetricMail.PNG)
 
 for mongo metric:
-![mail mongo metric](images/MongoDB-5 min timeframe - mail.PNG)
+![mail mongo metric](images/MongoDB-Mail.PNG)
 
 
 
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-I have refered [THIS](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) to understand the concept. According to the documentation, the data that do not fit the norm based on different algorithms are marked as anomaly. 
+I have referred [THIS](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) to understand the concept. According to the documentation, the data that do not fit the norm based on different algorithms are marked as an anomaly. 
 
 
 
@@ -213,7 +213,7 @@ Recovered from warning-  Email:
 ![M-F downtime](images/Downtime-7to9.PNG)
 
 Mail- Screenshot
-![M-F downtime Mail](images/Downtime-7to9 - Mail.PNG)
+![M-F downtime Mail](images/Downtime-7to9-Mail.PNG)
 
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
@@ -222,13 +222,13 @@ Mail- Screenshot
 
 Mail- Screenshot
 
-![Weekend-downtime mail](images/Downtime-Weekend - Mail.PNG)
+![Weekend-downtime mail](images/Downtime-WeekendMail.PNG)
 
 
 
 # Collecting APM Data:
 
-I used provided Flask App. The dashboard generated for this section has number of requests and the durations.
+I used provided Flask App. The dashboard generated for this section has a number of requests and the duration.
 
 flask_code.py
 ![apm_code](images/apm_flask.PNG)
@@ -242,9 +242,9 @@ link to dashboard: https://app.datadoghq.com/apm/service/flask/flask.request?sta
 
 ### Bonus Question: What is the difference between a Service and a Resource?
 
-A service is a set of processes that caries out a functionality. where as resource is the point of action for a service. for example, rest service could be a flask application running and this is a service. A JSON response is the resource.
+A service is a set of processes that caries out a functionality. where as a resource is the point of action for a service. for example, rest service could be a flask application running and this is a service. A JSON response is a resource.
 
 
 # Final Question: Is there anything creative you would use Datadog for?
 
-I think datadog will be extremely helpful where everything needs to be tracked. i think, this can be extremely useful, if its paired with AI,computer vision. Lets say, we have a AI system that does object detection. So, the dashboard will be showings number of objects detected(Could be used to monitor traffic). Number of Human's or animals. Number of trucks, and so on. 
+I think datadog will be extremely helpful where everything needs to be tracked. i think, this can be extremely useful if it's paired with an AI,computer vision. Lets say, we have a AI system that does object detection. So, the dashboard will be showing  number of objects detected(Could be used to monitor traffic). Number of Human's or animals. Number of trucks, and so on. 
