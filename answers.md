@@ -135,6 +135,8 @@
 
 * **Q1**
 
+  I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. Please refer to the steps below for detailed information.
+
   - 1.Check authentication - API and APP keys
   
     As all requests to Datadog’s API must be authenticated, we should confirm the API and APP keys first. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key. The API and APP keys could be found at https://app.datadoghq.com/account/settings#api. 
@@ -142,12 +144,12 @@
   - 2.Create a Timeboard via Datadog API
   
     There are few ways to submitting Datadog API such as using Curl or Python/Ruby code. 
-    I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. 
-    The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and we just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)". The most important thing is modifying the "requests" part in "graphs" to add the metric: "my_metric" into the Timeboard.
+     
+    The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and I just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)". The most important thing is modifying the "requests" part in "graphs" to add the metric: "my_metric" to the Timeboard.
 
     Python code: /code/Create_timeboard.py
 
-    ```
+    ```python
     from datadog import initialize, api
 
     options = {
@@ -188,19 +190,25 @@
 
     read_only = True
 
-    api.Timeboard.create(title=title,
-                            description=description,
-                            graphs=graphs,
-                            template_variables=template_variables,
-                            read_only=read_only)
-    ```
+    try:
+        api.Timeboard.create(title=title,
+                                description=description,
+                                graphs=graphs,
+                                template_variables=template_variables,
+                                read_only=read_only)
+    except:
+        print 'Error occurred!'
+    else:
+        print 'Sent API request successfully.'
+
+    '''
     
     
   - 3.Confirmation
   
-    - The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle user's request. Status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
+    - The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle user's request. The explanation of status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
     
-      **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects.  
+      **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects, so better to use exception in the code to handle errors.  
     
     - I confirmed the timeboard worked as expected. Please refer to the screenshot below.
     
@@ -209,6 +217,7 @@
       ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
      
   - References: [Datadog Docs - Create a Timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
+
 
 * **Q2**
 
