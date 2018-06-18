@@ -1,8 +1,8 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '',
-    'app_key': ''
+    'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+    'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
 }
 
 initialize(**options)
@@ -45,8 +45,14 @@ template_variables = [{
 
 read_only = True
 
-api.Timeboard.create(title=title,
-                        description=description,
-                        graphs=graphs,
-                        template_variables=template_variables,
-                        read_only=read_only)
+try:
+    api.Timeboard.create(title=title,
+                            description=description,
+                            graphs=graphs,
+                            template_variables=template_variables,
+                            read_only=read_only)
+except:
+    print 'Error occurred!'
+else:
+    print 'Sent API request successfully.'
+ 
