@@ -41,13 +41,49 @@ Success!!
 
 I installed the Datadog agent on Ubuntu with the easy one step install `DD_API_KEY=1852b8c40afd989d5e512340f1a0d3c8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 //TODO: insert picture of agent output
-Agent v6 installed successfully and is running. 
-####  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+Agent v6 installed successfully and is running.
+ 
+### Adding Tags to the Agent file:
+    I navigated over to the agent config file located at `/etc/datadog-agent/datadog.yaml` (note: agent v6 will be a `.yaml` file and v5 is `.conf`)
+    
+    I checked out the `datadog.yaml.example` and the `datadog.yaml` too see how to format my tags. It looks like these files start off identical by default but it'll be good to have an unchanged example copy if I needed to ever revert back. 
+    I uncommented the tags on `datadog.yaml` file and added a few of my own and saved.
+    
+        # Set the host's tags (optional)
+         tags:
+           - mytag
+           - crystalball
+           - env:dev
+           - role:database:postgres
+           
+    I went onto my dashboard to see if my tags were there and didn't see any. I checked the dogs and didn't see another step requiring a restart. So then I tried to check the agent's config with ` sudo datadog-agent configcheck`
+    I got the following error:
+    
+    ![agent config check error](./screenshots/config_check_error.png)
+    
+    
+    
+I went beck to investigate my yaml file. I see my api key is in there and not commented out on top. Since I am able to see my host on the dashboard but just not my new tags I started to doubt this is the kind of key it was referring too.
+I went over to line 34 and it is my tags settings. After a quick search I found that some people have solved a similar error in other programs with indentation. I fixed the indentation in the file.
 
-#### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-#### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-#### Change your check's collection interval so that it only submits the metric once every 45 seconds.
-#### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+That solved the  agent config check error! However, the actual output wasn't helpful after all.
+So, I decided to try restarting the agent thinking maybe the service should restart whenever you change the config file.
+
+ It wasn't until I went to filter on the hostmap dashboard that I noticed My tags showed up.
+    
+   ![Screenshot of Tags in Host Map](screenshots/tags_hostmap.png)
+    
+Yay!
+- [X]  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+### Integrating the database:
+- [ ]  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+- [ ]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+- [ ]  Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+- [ ]  **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
 
