@@ -312,5 +312,11 @@ Lets begin!
 
 ![alt_text](https://i.imgur.com/Jihtpt8.png)
 
+5. Next! I followed this [blog post](https://www.datadoghq.com/blog/real-time-graph-annotations/) by Isaac Sadaqah to help me with the snapshot of the graph. I cliked on the camera icon next to my graph and left a comment '@loganjmorales@gmail.com ANOMALIES INBOUND~'. There is a screenshot of my action, as well as the graph in my inbox below:
+
+![alt_text](https://i.imgur.com/PorCDKo.png)
+
+![alt_text](https://i.imgur.com/gOOdhmB.png)
+
 
 
