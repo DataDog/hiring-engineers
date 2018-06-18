@@ -3,6 +3,9 @@
 ### Phone Greeting
 Hi there Customer ! My name is Ben and I'm a Solutions Engineer here at Datadog. How can I be of assistance for you today?
 
+
+#### Just a heads up, when I run the command 'a' in my terminal, it's an alias that outputs ls -A. Just in case there is any confusion there.
+
 ### Prerequisites - Setting up the Environment
 ----
 ##### Docker Attempt: 
