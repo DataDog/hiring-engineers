@@ -221,127 +221,178 @@
 
 * **Q2**
 
-  I randomly picked mysql.net.connections as the metric to apply anomaly function (https://docs.datadoghq.com/monitors/monitor_types/anomaly/). Unfortunately, I couldn't find the way to add the mysql.net.connections metric to the timeboard I just created in the last step. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. Please refer to the screenshot and the Python code below. If I missed something, please point me to the right direction and let me know. Thank you.
+  I randomly picked mysql.net.connections as the metric to apply anomaly function. I tried to adding the anomalies function to the timeboard I just created in the last step as requested, unfortunately I couldn't find the way to add the mysql.net.connections metric to the timeboard. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. (If I missed something, please point me to the right direction and let me know. Thank you.) 
   
-  Screenshot: Anomaly function applied to the mysql.net.connections metric
+  To add the anomalies function to the monitor query, it should follows this formula in the API query:
+  
+  ```
+  time_aggr(eval_window_length):anomalies(space_aggr:metric{tags}, 'basic/agile/robust', deviation_number, direction='both/above/below', alert_window='alert_window_length', interval=seconds, count_default_zero='true') >= threshold_value
+  ```
+  
+  In this case, we created a monitor called 
+"Anomaly Function (MySQL Net-connections)" with the anomaly function which for the metric: mysql.net.connections. I used the "Basic" as the anomaly detection algorithms for test purpose as I don't know the metric has seasonal behavior or not. Please refer to the Python code and screenshot below. 
+  
+  - 1.Create a monitor with anomalies function applied via Datadog API
+  
+    Python code: /code/Create_monitor_with_anomaly_function.py
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_4.PNG)
+    ```python
+    from datadog import initialize, api
 
-  Python code: /code/Create_monitor_with_anomaly_function.py
+    options = {
+        'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+        'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
+    }
 
-```
-from datadog import initialize, api
+    initialize(**options)
 
-options = {
-    'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
-    'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
-}
+    # Create a new monitor with the anomaly function applied
+    options = {
+        "notify_no_data": True,
+        "no_data_timeframe": 20
+    }
+    tags = ["anomaly"]
 
-initialize(**options)
-
-# Create a new monitor with the anomaly function applied
-options = {
-    "notify_no_data": True,
-    "no_data_timeframe": 20
-}
-tags = ["anomaly"]
-
-api.Monitor.create(
-    type="metric alert",
-    query="avg(last_4h):anomalies(avg:mysql.net.connections{host:deep-learning-virtual-machine}, \
-     'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1",
-    name="Anomaly Function (MySQL Net-connections)",
-    message="Alert test",
-    tags=tags,
-    options=options
-)
-```
+	try:
+      api.Monitor.create(
+          type="metric alert",
+          query="avg(last_4h):anomalies(avg:mysql.net.connections{host:deep-learning-virtual-machine}, \
+           'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1",
+          name="Anomaly Function (MySQL Net-connections)",
+          message="Alert test",
+          tags=tags,
+          options=options
+      )
+    except:
+    	print 'Error occurred!'
+	else:
+    	print 'Sent API request successfully.'
+    ```
+    
+    
+    **Note**: 
+    - Anomaly detection monitors may only be used by enterprise-level customer subscriptions. If you have a pro-level customer subscription and would like to use the anomaly detection monitoring feature, you can reach out to your customer success representative or email Datadog's billing team to discuss that further. 
+    - There are three different anomaly detection algorithms we can apply to the function:
+      - Basic: Use this algorithm for metrics that have no repeating seasonal pattern.
+      - Agile: Use this algorithm for seasonal metrics when you want the algorithm to quickly adjust to level shifts in the metric.
+      - Robust: Use this algorithm for seasonal metrics where you expect the metric to be stable and want to consider slow level shifts as anomalies.
+  
+  - 2.Confirmation
+    I confirmed the anomaly detection monitor worked as expected. Please refer to the screenshot below. 
+    
+    Screenshot 1: Anomaly function applied to the mysql.net.connections metric
+    ![](https://github.com/su27k-2003/hiring-engineers/raw/master/image/Visualizing_4.PNG)
+    
+    Screenshot 2: Received alert from the anomaly detection monitor  
+    ![](https://github.com/su27k-2003/hiring-engineers/raw/master/image/Visualizing_10.PNG)
+  
+  - References: [Datadog Docs - Anomaly Monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api)
 
 
 * **Q3**
 
-  This page (https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) guided me on how to use rollup function to sum up data and I applied it to the custom metric (my_metric) from the host:deep-learning-virtual-machine. Please refer to the screenshot and the Python code below. 
+  To sum up data and delineate it in the Timeboard, I applied rollup function to  to the custom metric (my_metric) for test. The function takes two parameters, method and time: `.rollup(method,time)`. The method can be sum/min/max/count/avg and time is in seconds. 
   
-  Screenshot: rollup function applied to the my_metric
+  - 1.Create rollup function applied via Datadog API and combine it to the Timeboard: "Show my_metric" we created in the previous step.  
+  
+  In this case, I used `.rollup(sum, 3600)` as it requested sum up all the points for the past hour equal to 3600 seconds. Also, draw the rollup function applied graph into the Timeboard: Show my_metric we created in the previous step to combine the custom metric: my_metric and the new one in same bucket by adding two "q"s in the API query. Please refer to the Python code and the screenshot below. 
+  
+    Python code: /code/Create_timeboard.py
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_6.PNG)
+    ```python
+    from datadog import initialize, api
 
-  Python code: /code/Create_timeboard.py
+    options = {
+        'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
+        'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
+    }
 
-```
-from datadog import initialize, api
-
-options = {
-    'api_key': '5032023d686e6bd9b5e0b376a59bb27f',
-    'app_key': '94846c5a071f7c2dc77381214fed18614987250a'
-}
-
-initialize(**options)
+    initialize(**options)
 
 
-# Create a new Timeboard
-title = "Show my_metric"
-description = "For the home challenge"
-graphs = [{
-    "definition": {
-        "events": [],
-        "viz": "timeseries",
-        "requests": [
-            {"q": "my_metric{host:deep-learning-virtual-machine}",
-            "type": "line",
-            "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"},
-            "conditional_formats": [],
-            "aggregator": "avg"
-            },
-            {"q": "sum:my_metric{host:deep-learning-virtual-machine}.rollup(sum, 3600)",
-            "type": "line",
-            "style": {
-                "palette": "orange",
-                "type": "solid",
-                "width": "normal"}
-            }
-        ],
-    },
-    "title": "My Metric (custom metric)"
-}]
+    # Create a new Timeboard
+    title = "Show my_metric"
+    description = "For the home challenge"
+    graphs = [{
+        "definition": {
+            "events": [],
+            "viz": "timeseries",
+            "requests": [
+                {"q": "my_metric{host:deep-learning-virtual-machine}",
+                "type": "line",
+                "style": {
+                    "palette": "dog_classic",
+                    "type": "solid",
+                    "width": "normal"},
+                "conditional_formats": [],
+                "aggregator": "avg"
+                },
+                {"q": "sum:my_metric{host:deep-learning-virtual-machine}.rollup(sum, 3600)",
+                "type": "line",
+                "style": {
+                    "palette": "orange",
+                    "type": "solid",
+                    "width": "normal"}
+                }
+            ],
+        },
+        "title": "My Metric (custom metric)"
+    }]
 
-template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:my-host"
-}]
+    template_variables = [{
+        "name": "host1",
+        "prefix": "host",
+        "default": "host:my-host"
+    }]
 
-read_only = True
+    read_only = True
 
-api.Timeboard.create(title=title,
-                        description=description,
-                        graphs=graphs,
-                        template_variables=template_variables,
-                        read_only=read_only)
-```
+	try:
+      api.Timeboard.create(title=title,
+                              description=description,
+                              graphs=graphs,
+                              template_variables=template_variables,
+                              read_only=read_only)
+    except:
+    	print 'Error occurred!'
+    else:
+    	print 'Sent API request successfully.'
+    ```
+    
+  - 2.Confirmation
+    I confirmed the two Timeboard worked as expected. The original my_metric metric and the rollup function applied my_metric both are showing in the same graph: My Metric (custom metric). Please refer to the screenshot below. 
+
+    Screenshot: rollup function applied to the my_metric
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_6.PNG)
+
+  - References: [Datadog Docs - Graphing Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1)
 
 
 * **Q4**
 
-  Screenshot 1: Graph of the timeboard
+  - Screenshot 1: Graph of the timeboard
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_7.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_7.PNG)
 
-  Screenshot 2: @ notation 
+  - Screenshot 2: @ notation 
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_9.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_9.PNG)
+
 
 * **Bonus Question**
 
-  We use Anomaly Detection to identify when a metric is behaving differently to it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. From the graph below we can see the algorithm is monitoring historical data to calculate the metric’s expected normal range of behaviour.
+  We use Anomaly Detection to identify when a metric is behaving differently to it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting. From this point, the metric: mysql.net.connections I appied anomaly function is not a good example as the value of the metric is too stable in my environment but from the secand screenshot I can understand that the system generated a alert because it identified anomalies that spike out of the normal range of values. From the first screenshot below we can see the algorithm is monitoring historical data to calculate the metric’s expected normal range of behaviour.
 
-  Screenshot: Anomaly graph
+  - Screenshot 1: Anomaly graph
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_8.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_8.PNG)
+    
+  - Screenshot 2: Anomaly function's alert  
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_10.PNG)
  
+  - References: [Datadog Docs - Anomaly monitor](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
 
 ****
 
@@ -350,7 +401,31 @@ api.Timeboard.create(title=title,
 
 * **Q1**
 
-  Please refer to the two screenshots below or my account (liuqi_jp@hotmail.com) to check the metric monitor I created. I followed this Docs page (https://docs.datadoghq.com/monitors/notifications/) to created the monitor.
+  To create a metric monitor and meet the demand fo the question, I followed the steps below.
+  
+  - 1.Created a metric monitor and configurated it in the UI
+    - Step 1: As we have specific value of the Warning threshold and Alerting threshold, I clicked the "New Monitor" under the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
+    - Step 2: In the New Monitor page, firstly selected the "Threshold Alert" as the detection method.
+    - Step 3: Selected "my_metric" in the "Define the metric". As I only monitor a metric from a sigle host in my environment, I leave the alert grouping as "Simple Alert".
+      **Note**: A multi alert applies the alert to each source.
+    - Step 4: in this step, I configurated the Monitor watches the average of the custom metric (my_metric) and will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for the "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
+      **Note**: Details of each threshold value option:
+          - on average: The series is averaged to produce a single value that is checked against the threshold. It adds the avg() functions at the beginning of your monitor query.
+          - at least once: If any single value in the generated series crosses the threshold then an alert is triggered. It adds the max() functions at the beginning of your monitor query.
+          - at all times: If every point in the generated series is outside the threshold then an alert is triggered. It adds the min() functions at the beginning of your monitor query.
+          - in total: If the summation of every point in the series is outside the threshold then an alert is triggered. It adds the sum() functions at the beginning of your monitor query.
+    - setp 5: Confirem the data missing option has been selected as "Notify" for more than "10" minutes.
+    - setp 6: To send message include the metric value that caused the monitor to trigger and host ip when the monitor triggers, I used Conditional variables and Tag variables below in "Say what's happening" part.
+    
+       ```   
+       {{#is_alert}} Attention: The value of my_metric ({{value}}) on {{host.name}} ({{host.ip}}) is {{comparator}} the threshold ({{threshold}}). {{/is_alert}}` 
+       {{#is_warning}} Attention: The value of my_metric ({{value}}) on {{host.name}} ({{host.ip}}) is {{comparator}} the threshold ({{warn_threshold}}). {{/is_warning}}  
+
+       Alert for my_metric @liuqi_jp@hotmail.com
+       ```
+     - setp 7: Save the configuration for the monitor.
+     
+  Please refer to the two screenshots below or access to my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
 
   Screenshot 1: Creating the monitor
 
@@ -359,10 +434,18 @@ api.Timeboard.create(title=title,
   Screenshot 2: Email notification
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_1.PNG)
+  
+  - References:
+    - [Datadog Docs - Metric monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/)
+    - [Datadog Docs - Notifications](https://docs.datadoghq.com/monitors/notifications)
 
 * **Bonus Question**
 
-  I followed this page in Docs https://docs.datadoghq.com/monitors/downtimes/ and created the two downtimes. Please refer to the two screenshots below.
+  To silence the monitor I created in last step, we should use the Downtime function. Please refer to the steps below.
+  
+  - 1.Created and manage Downtime function in the UI
+    Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. 
+    created the two downtimes. Please refer to the two screenshots below.
 
   Screenshot 1: Downtime from 7pm to 9am daily on M-F
 
@@ -372,7 +455,9 @@ api.Timeboard.create(title=title,
 
   ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_2.PNG)
 
-
+  - References:
+    - [Datadog Docs - Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
+   
 ****
 
 
