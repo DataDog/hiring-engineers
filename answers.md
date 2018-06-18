@@ -283,12 +283,15 @@
       - Robust: Use this algorithm for seasonal metrics where you expect the metric to be stable and want to consider slow level shifts as anomalies.
   
   - 2.Confirmation
+  
     I confirmed the anomaly detection monitor worked as expected. Please refer to the screenshot below. 
     
     Screenshot 1: Anomaly function applied to the mysql.net.connections metric
+    
     ![](https://github.com/su27k-2003/hiring-engineers/raw/master/image/Visualizing_4.PNG)
     
-    Screenshot 2: Received alert from the anomaly detection monitor  
+    Screenshot 2: Received alert from the anomaly detection monitor
+    
     ![](https://github.com/su27k-2003/hiring-engineers/raw/master/image/Visualizing_10.PNG)
   
   - References: [Datadog Docs - Anomaly Monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api)
@@ -365,6 +368,7 @@
     ```
     
   - 2.Confirmation
+  
     I confirmed the two Timeboard worked as expected. The original my_metric metric and the rollup function applied my_metric both are showing in the same graph: My Metric (custom metric). Please refer to the screenshot below. 
 
     Screenshot: rollup function applied to the my_metric
@@ -409,17 +413,29 @@
   To create a metric monitor and meet the demand for the question, I followed the steps below.
   
   - 1.Created a metric monitor and configurated it in the UI
+    
     - Step 1: As we have two specific values for the Warning threshold and Alerting threshold, I clicked on "New Monitor" in the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
+    
     - Step 2: In the New Monitor page, select the "Threshold Alert" as the detection method.
+    
     - Step 3: Select "my_metric" in "Define the metric". As I only monitor a metric from a single host in my environment, I left the alert grouping as "Simple Alert".
+      
       **Note**: A multi alert applies the alert to each source.
+    
     - Step 4: in this step, I configurated the Monitor to watch the average of the custom metric (my_metric) and it will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
+      
       **Note**: Details of each threshold value option:
+          
           - on average: The series is averaged to produce a single value that is checked against the threshold. It adds the avg() functions at the beginning of your monitor query.
+          
           - at least once: If any single value in the generated series crosses the threshold then an alert is triggered. It adds the max() functions at the beginning of your monitor query.
+          
           - at all times: If every point in the generated series is outside the threshold then an alert is triggered. It adds the min() functions at the beginning of your monitor query.
+          
           - in total: If the summation of every point in the series is outside the threshold then an alert is triggered. It adds the sum() functions at the beginning of your monitor query.
+    
     - step 5: Confirm the data missing option has been selected as "Notify" for more than "10" minutes.
+    
     - step 6: To send message include the metric value that caused the monitor to trigger and host IP when the monitor triggers, I used Conditional variables and Tag variables below in "Say what's happening" part.
     
        ```   
@@ -431,6 +447,7 @@
      - step 7: Save the configuration for the monitor.
      
   - 2.Confirmation   
+    
     I confirmed the monitor worked properly. Please refer to the two screenshots below or access to my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
 
     Screenshot 1: Creating the monitor
