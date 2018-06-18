@@ -2,7 +2,7 @@
 
 * **Q1**
 
-  To add tags, there are few methods to achieve it such as using the UI or API, though the UI and API only allow us to add tags at the host level. The remommended method is to rely on the integrations or via the configuration files. In this example, I am assigning a new tag "region:nsw" as a agent tag via configure the datadog.yaml file. Please refer to the two screenshots below.
+  To add tags, there are few methods to achieve it such as using the UI or API, though the UI and API only allow us to add tags at the host level. The recommended method is to rely on the integrations or via the configuration files. In this example, I am assigning a new tag "region:nsw" as an agent tag via configuring the datadog.yaml file. Please refer to the two screenshots below.
   
   - 1.Configuration - Create a database user for the Datadog Agent:
   
@@ -88,7 +88,7 @@
   
   - 1.Configuration - Create mycheck.yaml in conf.d directory
  
-    As the custom Agent check does nothing more than sending random value for the metric my_metric, mycheck.yaml is very simple, including no real information.
+    As the custom Agent check does nothing more than sending random values for the metric my_metric, mycheck.yaml is very simple, including no real information.
  
     Screenshot 1: Created and configured /etc/datadog-agent/conf.d/mycheck.yaml
 
@@ -108,7 +108,7 @@
   
   - **Note:** 
     - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
-    - Before running the custom Agent check, better to check the exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there is any improper configuration, programming error cause the check could not collect metrics.
+    - Before running the custom Agent check, better to check the exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there are any improper configuration, programming error cause the check could not collect metrics.
   - References: [Datadog Docs - Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
 
 * **Q4**
@@ -221,7 +221,7 @@
 
 * **Q2**
 
-  I randomly picked mysql.net.connections as the metric to apply anomaly function. I tried to adding the anomalies function to the timeboard I just created in the last step as requested, unfortunately I couldn't find the way to add the mysql.net.connections metric to the timeboard. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. (If I missed something, please point me to the right direction and let me know. Thank you.) 
+  I randomly picked mysql.net.connections as the metric to apply anomaly function. I tried to add the anomalies function to the timeboard I just created in the last step as requested, unfortunately I couldn't find the way to add the mysql.net.connections metric to the timeboard. It seems the anomaly function only could apply to the monitor so I created a monitor instead of timeboard in this step. (If I missed something, please point me to the right direction and let me know. Thank you.) 
   
   To add the anomalies function to the monitor query, it should follows this formula in the API query:
   
@@ -291,11 +291,11 @@
 
 * **Q3**
 
-  To sum up data and delineate it in the Timeboard, I applied rollup function to  to the custom metric (my_metric) for test. The function takes two parameters, method and time: `.rollup(method,time)`. The method can be sum/min/max/count/avg and time is in seconds. 
+  To sum up data and delineate it in the Timeboard, I applied rollup function to the custom metric (my_metric) for the test. The function takes two parameters, method and time: `.rollup(method,time)`. The method can be sum/min/max/count/avg and time is in seconds. 
   
   - 1.Create rollup function applied via Datadog API and combine it to the Timeboard: "Show my_metric" we created in the previous step.  
   
-  In this case, I used `.rollup(sum, 3600)` as it requested sum up all the points for the past hour equal to 3600 seconds. Also, draw the rollup function applied graph into the Timeboard: Show my_metric we created in the previous step to combine the custom metric: my_metric and the new one in same bucket by adding two "q"s in the API query. Please refer to the Python code and the screenshot below. 
+  In this case, I used `.rollup(sum, 3600)` as it requested sum up all the points for the past hour equal to 3600 seconds. Also, draw the rollup function applied graph into the Timeboard: Show my_metric we created in the previous step to combine the custom metric: my_metric and the new one in the same bucket by adding two "q"s in the API query. Please refer to the Python code and the screenshot below. 
   
     Python code: /code/Create_timeboard.py
 
@@ -382,7 +382,7 @@
 
 * **Bonus Question**
 
-  We use Anomaly Detection to identify when a metric is behaving differently to it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting. From this point, the metric: mysql.net.connections I appied anomaly function is not a good example as the value of the metric is too stable in my environment but from the secand screenshot I can understand that the system generated a alert because it identified anomalies that spike out of the normal range of values. From the first screenshot below we can see the algorithm is monitoring historical data to calculate the metric’s expected normal range of behaviour.
+  We use Anomaly Detection to identify when a metric is behaving differently to it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting. From this point, the metric: mysql.net.connections I applied anomaly function is not a good example as the value of the metric is too stable in my environment but from the second screenshot I can understand that the system generated an alert because it identified anomalies that spike out of the normal range of values. From the first screenshot below we can see the algorithm is monitoring historical data to calculate the metric’s expected normal range of behaviour.
 
   - Screenshot 1: Anomaly graph
 
@@ -401,12 +401,12 @@
 
 * **Q1**
 
-  To create a metric monitor and meet the demand fo the question, I followed the steps below.
+  To create a metric monitor and meet the demand for the question, I followed the steps below.
   
   - 1.Created a metric monitor and configurated it in the UI
-    - Step 1: As we have specific value of the Warning threshold and Alerting threshold, I clicked the "New Monitor" under the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
+    - Step 1: As we have two specific values for the Warning threshold and Alerting threshold, I clicked the "New Monitor" under the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
     - Step 2: In the New Monitor page, firstly selected the "Threshold Alert" as the detection method.
-    - Step 3: Selected "my_metric" in the "Define the metric". As I only monitor a metric from a sigle host in my environment, I leave the alert grouping as "Simple Alert".
+    - Step 3: Selected "my_metric" in the "Define the metric". As I only monitor a metric from a single host in my environment, I leave the alert grouping as "Simple Alert".
       **Note**: A multi alert applies the alert to each source.
     - Step 4: in this step, I configurated the Monitor watches the average of the custom metric (my_metric) and will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for the "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
       **Note**: Details of each threshold value option:
@@ -414,8 +414,8 @@
           - at least once: If any single value in the generated series crosses the threshold then an alert is triggered. It adds the max() functions at the beginning of your monitor query.
           - at all times: If every point in the generated series is outside the threshold then an alert is triggered. It adds the min() functions at the beginning of your monitor query.
           - in total: If the summation of every point in the series is outside the threshold then an alert is triggered. It adds the sum() functions at the beginning of your monitor query.
-    - setp 5: Confirem the data missing option has been selected as "Notify" for more than "10" minutes.
-    - setp 6: To send message include the metric value that caused the monitor to trigger and host ip when the monitor triggers, I used Conditional variables and Tag variables below in "Say what's happening" part.
+    - step 5: Confirm the data missing option has been selected as "Notify" for more than "10" minutes.
+    - step 6: To send message include the metric value that caused the monitor to trigger and host IP when the monitor triggers, I used Conditional variables and Tag variables below in "Say what's happening" part.
     
        ```   
        {{#is_alert}} Attention: The value of my_metric ({{value}}) on {{host.name}} ({{host.ip}}) is {{comparator}} the threshold ({{threshold}}). {{/is_alert}}` 
@@ -423,7 +423,7 @@
 
        Alert for my_metric @liuqi_jp@hotmail.com
        ```
-     - setp 7: Save the configuration for the monitor.
+     - step 7: Save the configuration for the monitor.
      
   - 2.Confirmation   
     I confirmed the monitor worked properly. Please refer to the two screenshots below or access to my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
@@ -447,8 +447,8 @@
   - 1.Created and manage Downtime function in the UI
     Step 1: Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. To schedule downtime, click the “Schedule Downtime” button in the upper right.
     Step 2: Choose what to silence. In this case, we select "Monitor: Test: Notification for my_metric" and the host is "host:deep-learning-virtual-machine".
-    Step 3: In this set a schedule step, I setup recurring schedule for the two Downtimes.
-    Step 4: Add an optional message to notify the team. In this case, setup the message to send email to my email box. Please refer to the two screenshots below.
+    Step 3: In this set a schedule step, I set up recurring schedule for the two Downtimes.
+    Step 4: Add an optional message to notify the team. In this case, set up the message to send email to my email box. Please refer to the two screenshots below.
     
     Screenshot 1: Downtime setup 7pm-9am daily on M-F
 
@@ -459,7 +459,7 @@
     ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_4.PNG)
     
   - 2.Confirmation  
-    I confirmed the two Downtime funcations worked properly. Please refer to the two screenshots below.
+    I confirmed the two Downtime functions worked properly. Please refer to the two screenshots below.
 
     Screenshot 3: Downtime email notification for 7pm-9am daily on M-F
 
