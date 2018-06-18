@@ -4,7 +4,6 @@
 Hi there Customer ! My name is Ben and I'm a Solutions Engineer here at Datadog. How can I be of assistance for you today?
 
 
-#### Just a heads up, when I run the command 'a' in my terminal, it's an alias that outputs ls -A. Just in case there is any confusion there.
 
 ### Prerequisites - Setting up the Environment
 ----
@@ -15,6 +14,8 @@ I started to try and have the Docker container running, however this would take 
 This was the traditional way that I used to finish the solutions engineering challenge. Please refer to the BEN_BASUNI_solutions_engineer branch located [here](https://github.com/stampedethegoat/hiring-engineers/tree/BEN_BASUNI_solutions_engineer) for my original submission.  
 Here are the steps that I took to set up the Python virtual environment. 
 
+
+#### Just a heads up, when I run the command 'a' in my terminal, it's an alias that outputs ls -A. Just in case there is any confusion there.
 ![virtualenv installation](screenshots/python-virtualenv.png)
 
 Running virtualenv . got me up and running! And just like that I have a container in my local mac OS X for this repo. 
