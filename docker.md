@@ -1,4 +1,4 @@
-## Attempt to instegrate Docker
+## Attempt to integrate Docker
 I wanted to try and integrated Docker with Datadog. Here was my thought process.
  
 I have used Docker once in a project, but never really understood how it really works. I understand at a high level, but I’ve never been able to instinctively know how to set a docker container. 
