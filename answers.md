@@ -425,13 +425,9 @@
     - Step 4: in this step, I configurated the Monitor to watch the average of the custom metric (my_metric) and it will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
       
       **Note**: Details of each threshold value option:
-          
           - on average: The series is averaged to produce a single value that is checked against the threshold. It adds the avg() functions at the beginning of your monitor query.
-          
           - at least once: If any single value in the generated series crosses the threshold then an alert is triggered. It adds the max() functions at the beginning of your monitor query.
-          
           - at all times: If every point in the generated series is outside the threshold then an alert is triggered. It adds the min() functions at the beginning of your monitor query.
-          
           - in total: If the summation of every point in the series is outside the threshold then an alert is triggered. It adds the sum() functions at the beginning of your monitor query.
     
     - step 5: Confirm the data missing option has been selected as "Notify" for more than "10" minutes.
