@@ -8,7 +8,7 @@
   
     Open the datadog.yaml file and define the tag by adding "tags: region:nsw" under the "#Set the host's tags" line.
   
-    **Note:** There are two forms to define tags in the configuration files, but for the datadog.yaml init file only support the "tags: key_first_tag:value_1, key_second_tag:value_2, ..." form.
+    **Note:** There are two forms to define tags in the configuration files, but datadog.yaml init file only supports the "tags: key_first_tag:value_1, key_second_tag:value_2, ..." form.
   
     Screenshot 1: datadog.yaml
 
@@ -16,7 +16,7 @@
 
   - 2.Confirmation
   
-    After a few seconds, confirmed the new tag appears in the Host Map.
+    After a few seconds, confirmed the new tag appeared in the Host Map.
   
     Screenshot 2: Host Map (Added the "region:nsw" tag)
 
@@ -63,7 +63,7 @@
    
   - 2.Configuration - Metric Collection
    
-    Added the configuration block below to the mysql.d/conf.yaml in order to start gathering the MySQL metrics:
+    Added the configuration block below to mysql.d/conf.yaml in order to start gathering the MySQL metrics:
    
     Screenshot 1: Configured /etc/datadog-agent/conf.d/mysql.d/conf.yaml
 
@@ -104,11 +104,16 @@
     
   - 3.Confirmation
   
-    After configuration, confirmed the 'my_metric' appeared under the Metric menu in the UI and collects data properly. Please refer to the screenshot at the first question in Visualizing Data part. 
+    After configuration, confirmed 'my_metric' appeared in the Metric menu in the UI and was collecting data properly. Please refer to the screenshot below. 
+    
+    Screenshot: My_metric in the timeboard
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Visualizing_2.PNG)
+    
   
   - **Note:** 
-    - The names of the configuration and check files must match. If the check is called mycheck.py then the configuration file must be named mycheck.yaml.
-    - Before running the custom Agent check, better to check the exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there are any improper configuration, programming error cause the check could not collect metrics.
+    - The names of the configuration and check files must match. If the check file is called mycheck.py then the configuration file must be named mycheck.yaml.
+    - Before running the custom Agent check, it's best to check for exceptions by running the command: `sudo /etc/init.d/datadog-agent info`. It should raise a meaningful exception if there were any improper configuration or programming error resulting in the check failing to collect metrics.
   - References: [Datadog Docs - Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
 
 * **Q4**
@@ -121,7 +126,7 @@
 
 * **Bonus Question**
 
-  We also could change the data collection interval by configuring min_collection_interval in the mycheck.yaml file. Please refer to the screenshot below.
+  We also could change the data collection interval by configuring min_collection_interval in mycheck.yaml file. Please refer to the screenshot below.
 
   Screenshot: Added min_collection_interval to the /etc/datadog-agent/conf.d/mycheck.yaml
 
@@ -135,15 +140,15 @@
 
 * **Q1**
 
-  I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running the Python code below. Please refer to the steps below for detailed information.
+  I created a timeboard which collected data of the custom metric: my_metric just created in the previous step by running Python code below. Please refer to the steps below for detailed information.
 
   - 1.Check authentication - API and APP keys
   
-    As all requests to Datadog’s API must be authenticated, we should confirm the API and APP keys first. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key. The API and APP keys could be found at https://app.datadoghq.com/account/settings#api. 
+    As all requests to Datadog’s API must be authenticated, we should confirm the API and APP keys first. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key. The API and APP keys can be found at https://app.datadoghq.com/account/settings#api. 
     
   - 2.Create a Timeboard via Datadog API
   
-    There are few ways to submitting Datadog API such as using Curl or Python/Ruby code. 
+    There are a few ways to submit Datadog API such as using Curl or Python/Ruby code. 
      
     The "How to" page in the Docs gave me lots of useful information about how to use the Datadog API and I just need to copy the source code from the Docs and modify it accordingly. In this case, I changed the title of the Timeboard to "Show my_metric" and the name of the graph to "My Metric (custom metric)". The most important thing is modifying the "requests" part in "graphs" to add the metric: "my_metric" to the Timeboard.
 
@@ -208,7 +213,7 @@
   
     - The Datadog API uses HTTP status codes to indicate the success or failure of a request. An error indicates that the service did not successfully handle user's request. The explanation of status codes can be found at https://docs.datadoghq.com/api/?lang=python#success-and-errors.
     
-      **Note**: When using libraries, some errors may throw exceptions rather than return JSON objects, so better to use exception in the code to handle errors.  
+      **Note**: When using libraries, some errors may throw exceptions rather than returning JSON objects, so it's better to use exception in the code to handle errors.  
     
     - I confirmed the timeboard worked as expected. Please refer to the screenshot below.
     
@@ -230,7 +235,7 @@
   ```
   
   In this case, we created a monitor called 
-"Anomaly Function (MySQL Net-connections)" with the anomaly function which for the metric: mysql.net.connections. I used the "Basic" as the anomaly detection algorithms for test purpose as I don't know the metric has seasonal behavior or not. Please refer to the Python code and screenshot below. 
+"Anomaly Function (MySQL Net-connections)" with the anomaly function which for the metric: mysql.net.connections. I used "Basic" as the anomaly detection algorithms for test purpose as I don't know whether the metric has seasonal behavior or not. Please refer to the Python code and screenshot below. 
   
   - 1.Create a monitor with anomalies function applied via Datadog API
   
@@ -291,11 +296,11 @@
 
 * **Q3**
 
-  To sum up data and delineate it in the Timeboard, I applied rollup function to the custom metric (my_metric) for the test. The function takes two parameters, method and time: `.rollup(method,time)`. The method can be sum/min/max/count/avg and time is in seconds. 
+  To sum up data and display it in the Timeboard, I applied rollup function to the custom metric (my_metric) for the test. The function takes two parameters, method and time: `.rollup(method,time)`. The method can be sum/min/max/count/avg and time is in seconds. 
   
-  - 1.Create rollup function applied via Datadog API and combine it to the Timeboard: "Show my_metric" we created in the previous step.  
+  - 1.Create a rollup function applied via Datadog API and add it to the Timeboard "Show my_metric" I created in the previous step.  
   
-  In this case, I used `.rollup(sum, 3600)` as it requested sum up all the points for the past hour equal to 3600 seconds. Also, draw the rollup function applied graph into the Timeboard: Show my_metric we created in the previous step to combine the custom metric: my_metric and the new one in the same bucket by adding two "q"s in the API query. Please refer to the Python code and the screenshot below. 
+    In this case, I used `.rollup(sum, 3600)` as it requested to sum up all the points for the past hour equal to 3600 seconds. Also, add the rollup function applied graph to the Timeboard "Show my_metric" I created in the previous step to combine the custom metric: my_metric and the new one in the same bucket by adding two "q"s in the API query. Please refer to the Python code and the screenshot below. 
   
     Python code: /code/Create_timeboard.py
 
@@ -404,11 +409,11 @@
   To create a metric monitor and meet the demand for the question, I followed the steps below.
   
   - 1.Created a metric monitor and configurated it in the UI
-    - Step 1: As we have two specific values for the Warning threshold and Alerting threshold, I clicked the "New Monitor" under the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
-    - Step 2: In the New Monitor page, firstly selected the "Threshold Alert" as the detection method.
-    - Step 3: Selected "my_metric" in the "Define the metric". As I only monitor a metric from a single host in my environment, I leave the alert grouping as "Simple Alert".
+    - Step 1: As we have two specific values for the Warning threshold and Alerting threshold, I clicked on "New Monitor" in the "Monitors" menu in the top page of the UI then selected "Metric" as the monitor type. 
+    - Step 2: In the New Monitor page, select the "Threshold Alert" as the detection method.
+    - Step 3: Select "my_metric" in "Define the metric". As I only monitor a metric from a single host in my environment, I left the alert grouping as "Simple Alert".
       **Note**: A multi alert applies the alert to each source.
-    - Step 4: in this step, I configurated the Monitor watches the average of the custom metric (my_metric) and will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for the "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
+    - Step 4: in this step, I configurated the Monitor to watch the average of the custom metric (my_metric) and it will alert if it’s above the warning threshold value: 500 and the alerting threshold value: 800 over the past 5 minutes. There are 4 options for "Threshold value" and I used "on average" during the last "5 minutes" as requested. 
       **Note**: Details of each threshold value option:
           - on average: The series is averaged to produce a single value that is checked against the threshold. It adds the avg() functions at the beginning of your monitor query.
           - at least once: If any single value in the generated series crosses the threshold then an alert is triggered. It adds the max() functions at the beginning of your monitor query.
@@ -442,12 +447,12 @@
 
 * **Bonus Question**
 
-  To silence the monitor I created in the last step, we should use the Downtime function. Please refer to the steps below to setup Downtime.
+  To silence the monitor I created in the last step, I used the Downtime function. Please refer to the steps below to setup Downtime.
   
   - 1.Created and manage Downtime function in the UI
     Step 1: Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. To schedule downtime, click the “Schedule Downtime” button in the upper right.
     Step 2: Choose what to silence. In this case, we select "Monitor: Test: Notification for my_metric" and the host is "host:deep-learning-virtual-machine".
-    Step 3: In this set a schedule step, I set up recurring schedule for the two Downtimes.
+    Step 3: In te set a schedule step, I set up recurring schedule for the two Downtimes.
     Step 4: Add an optional message to notify the team. In this case, set up the message to send email to my email box. Please refer to the two screenshots below.
     
     Screenshot 1: Downtime setup 7pm-9am daily on M-F
@@ -513,14 +518,14 @@
 
 ## Final Question:
 
- I’m very interested in IoT and I have developed a few Raspberry Pi based home automation projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home by myself as it could make life easier for my family and improve my technical skills.
+ I’m very interested in IoT and I have developed a few Raspberry Pi based home automation projects such as smart garage door (Demo: https://youtu.be/OaJwVSyagKI) and home security camera. I’m aiming to build a smart home as it could make life easier for my family and improve my technical skills.
 
  While developing these projects, I found a few pain points and I think Datadog could help me to resolve/improve it.
 
  * Analysing issues
 
- For example, on the smart garage door project sometimes I found the smart garage door system did not work properly for some reason. The issue could be a communication issue between my phone and the Raspberry Pi (HTTP sending/receiving) or bugs in the script I developed and even the Raspberry Pi itself. Usually it’s not easy to figure out the root cause so I spent a lot of time on troubleshooting and debugging and found a way to determine and fix issues by sending out notification from each function in the system to trace which part caused the issue.
- Now, I could create a dashboard in Datadog which include Infrastructure Metrics of Raspberry Pi and APM for the Flask application I developed, those data could help me to understand the current system state easily also allow me to quickly determine which part of the system didn't function when issue occurred. For example, if I still could receive those infrastructure metrics data from the Raspberry Pi but the APM didn't show the proper data I would check any potential communication issues such as the mobile data function had been turned off in my phone. If it wasn't a communication issue then I would look into the Flask as the next step to find the root cause.  
+ For example, in the smart garage door project sometimes I found the smart garage door system did not work properly for some reason. The issue could be a communication issue between my phone and the Raspberry Pi (HTTP sending/receiving) or bugs in the script I developed and even the Raspberry Pi itself. Usually it’s not easy to figure out the root cause so I spent a lot of time on troubleshooting and debugging and found a way to determine and fix issues by sending out notification from each function in the system to trace which part caused the issue.
+ Now, I could create a dashboard in Datadog which includes Infrastructure Metrics of Raspberry Pi and APM for the Flask application I developed, those data could help me to understand the current system state easily also allow me to quickly determine which part of the system didn't function when issue occurred. For example, if I still could receive those infrastructure metrics data from the Raspberry Pi but the APM didn't show proper data I would check any potential communication issues such as mobile data function had been turned off on my phone. If it wasn't a communication issue then I would look into the Flask as the next step to find the root cause.  
                
  * Integrate separate data into a single smart home system monitor
 
