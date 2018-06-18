@@ -308,6 +308,9 @@ Lets begin!
     }
 ```
 
+4. I set the timeboard to 5 minutes by using my mouse to click and drag over a 5 minute window. There is no data for the rollup sum because there was no data yet for the past hour since restarting my system. Below is a screenshot of the 5 minute timeboard:
+
+![alt_text](https://i.imgur.com/Jihtpt8.png)
 
 
 
