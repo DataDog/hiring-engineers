@@ -464,20 +464,21 @@
   To silence the monitor I created in the last step, I used the Downtime function. Please refer to the steps below to setup Downtime.
   
   - 1.Created and manage Downtime function in the UI
-    Step 1: Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. To schedule downtime, click the “Schedule Downtime” button in the upper right.
-    Step 2: Choose what to silence. In this case, we select "Monitor: Test: Notification for my_metric" and the host is "host:deep-learning-virtual-machine".
-    Step 3: In te set a schedule step, I set up recurring schedule for the two Downtimes.
-    Step 4: Add an optional message to notify the team. In this case, set up the message to send email to my email box. Please refer to the two screenshots below.
+    - Step 1: Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. To schedule downtime, click the “Schedule Downtime” button in the upper right.
+    - Step 2: Choose what to silence. In this case, we select "Monitor: Test: Notification for my_metric" and the host is "host:deep-learning-virtual-machine".
+    - Step 3: In te set a schedule step, I set up recurring schedule for the two Downtimes.
+    - Step 4: Add an optional message to notify the team. In this case, set up the message to send email to my email box. Please refer to the two screenshots below.
     
-    Screenshot 1: Downtime setup 7pm-9am daily on M-F
+      Screenshot 1: Downtime setup 7pm-9am daily on M-F
 
-    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_3.PNG)
+      ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_3.PNG)
 
-    Screenshot 2: Downtime setup all day on Sat-Sun
+      Screenshot 2: Downtime setup all day on Sat-Sun
 
-    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_4.PNG)
+      ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_4.PNG)
     
-  - 2.Confirmation  
+  - 2.Confirmation
+  
     I confirmed the two Downtime functions worked properly. Please refer to the two screenshots below.
 
     Screenshot 3: Downtime email notification for 7pm-9am daily on M-F
