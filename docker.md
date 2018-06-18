@@ -7,23 +7,23 @@ The first step I did was google “How to install docker on mac”,
 I also googled TutorialsPoint Docker and both provided me with the next step, 
 which was to install docker with homebrew.
 
-![Install Docker with Homebrew](a/raw/b/screenshots/docker-screenshots/brew-install-docker.png)
+![Install Docker with Homebrew](screenshots/docker-screenshots/brew-install-docker.png)
 
 I then managed to stumble upon this article. https://docs.docker.com/docker-for-mac/, which made me look up the versions for docker, docker-compose, and docker-machine. I didn’t have docker-compose. So I managed to just do brew install docker-compose to install it. 
 
 Once I finished, I have all 3 of these and am ready for the next step.
 
-![Docker Versions](a/raw/b/screenshots/docker-screenshots/docker-version.png)
+![Docker Versions](screenshots/docker-screenshots/docker-version.png)
 
 As I continue going through the article, I try and run the hello world docker container.
 
 docker run hello-world and docker run -d -p 80:80 --name webserver nginx
 
 However, when I run both commands, I get this error message. "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?”
-![Attempt to Login](a/raw/b/screenshots/docker-screenshots/logging-in-docker.png)
+![Attempt to Login](screenshots/docker-screenshots/logging-in-docker.png)
 
 ### Having trouble running docker ps here
-![Docker PS](a/raw/b/screenshots/docker-screenshots/installing-docker.png)
+![Docker PS](screenshots/docker-screenshots/installing-docker.png)
 
 So I googled it and I encounter this post https://stackoverflow.com/questions/44084846/cannot-connect-to-the-docker-daemon-on-macos
 
@@ -36,13 +36,13 @@ When I run docker run hello-world, I get this message "unauthorized: incorrect u
 The reason I get this warning is because of this post here in github. https://github.com/docker/hub-feedback/issues/935
 
 #### Signing into Docker Cloud to get access!
-![Signing In Docker](a/raw/b/screenshots/docker-screenshots/docker-cloud.png)
+![Signing In Docker](screenshots/docker-screenshots/docker-cloud.png)
 I managed to run docker login and insert my username and password and now it works!
 
 So now I run $ docker run -d -p 80:80 --name webserver nginx and I get something returning in my browser!
 
 #### Running hello-world on my Docker
-![Hello World](a/raw/b/screenshots/docker-screenshots/hello-world.png)
+![Hello World](screenshots/docker-screenshots/hello-world.png)
 
 
 I continue running through the documentation and I learn that whenever you spin up a server, it gets saved onto your history of containers. Running docker container ls shows the containers that are currently being spun up, running docker container ls -a shows the history of previous running containers.
@@ -56,7 +56,7 @@ I learned what Docker is by toying around with it in my terminal and googling st
 
 So the next step for me is to find a way to run my python flask server onto docker! 
 
-![Nginx](a/raw/b/screenshots/docker-screenshots/nginx.png)
+![Nginx](screenshots/docker-screenshots/nginx.png)
 
 ## Part II
 Now I go here https://docs.datadoghq.com/integrations/docker_daemon/.
@@ -66,7 +66,7 @@ One issue that I am encountering is adding the user running the Agent to docker�
 I proceed to google around for workarounds here. I spend at least an hour and I put this path on pause. 
 
 #### Picture of Docker Integration from Datadog
-![Docker Integration](a/raw/b/screenshots/docker-screenshots/datadog-docker.png)
+![Docker Integration](screenshots/docker-screenshots/datadog-docker.png)
 
 
 
