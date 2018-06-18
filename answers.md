@@ -469,11 +469,11 @@
     - Step 3: In te set a schedule step, I set up recurring schedule for the two Downtimes.
     - Step 4: Add an optional message to notify the team. In this case, set up the message to send email to my email box. Please refer to the two screenshots below.
     
-      Screenshot 1: Downtime setup 7pm-9am daily on M-F
+      Screenshot 1: Downtime setup for 7pm-9am daily on M-F
 
       ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_3.PNG)
 
-      Screenshot 2: Downtime setup all day on Sat-Sun
+      Screenshot 2: Downtime setup for all day on Sat-Sun
 
       ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_4.PNG)
     
@@ -504,7 +504,9 @@
   Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home. For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
 
 * **Q1**
+
   To use Datadog's APM solution, we should follow these steps below.
+  
   - 1.APM Setup
     - step 1: Install the Datadog Agent
     - step 2: Install the Trace Agent. After installing the Datadog Agent to my Ubuntu, the trace agent is pre-packaged with the standard Datadog agent and no extra configuration is needed.
@@ -513,6 +515,7 @@
     - step 5: Start monitoring the app’s performance. Just simply run the Flask app then the Flask services appear in the APM home page. 
     
   - 2.Confirmation
+  
     Datadog APM provides deep insight into application's performance. In this case, it automatically generated dashboards monitoring key metrics for the Flask app, such as request volume and latency. Please refer to the link and the screenshot below.  
     
     APM page of the Flask app and infrastructure metrics: https://p.datadoghq.com/sb/1d199b067-1878f66f0cbee4b76c9a3de718a749bd?tv_mode=true
