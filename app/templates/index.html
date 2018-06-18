@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block head %} {{ super() }} {% endblock %}
+
+{% block content %}
+
+<div class="app-header">
+  <div class="jumbotron jumbotron-fluid" style="text-align:center;">
+    <div class="container">
+      <h1 class="display-4">
+         <img class="datadog-img" src="/static/assets/datadog.png" alt="Datadog Image">
+         <img class="pokeball-img" src="/static/assets/pokeball.png" alt="Pokeball Image">
+         Pokemon Go Initiation
+      </h1>
+      <p class="lead">Ben Basuni - Solutions Engineer @ Datadog</p>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<div class="app-quotes">
+  <h2>Select a Team</h2>
+  <a href="./v1/team/valor"><button type="button" class="btn btn-danger choose-team">Team<br>Valor</button></a>
+  <a href="./v1/team/mystic"><button type="button" class="btn btn-primary choose-team">Team<br>Mystic</button></a>
+  <a href="./v1/team/instinct"><button type="button" class="btn btn-warning choose-team">Team<br>Instinct</button></a>
+  <br>
+  <a href="/register"><button type="button" class="register btn btn-success">Register for a Team</button></a>
+  <a href="/charts"><button type="button" class="charts btn btn-default">Datadog Charts</button></a>
+</div>
+
+
+{% endblock %}

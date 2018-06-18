@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+/* Global */
+* { outline-style: none; !important }
+
+body,
+.jumbotron {
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(170, 170, 170,1) 0%,  rgba(156, 67, 125, 1) 100%);
+  font-family: 'Ubuntu';
+}
+
+hr {
+  background-color: black;
+  height: 1px;
+  border: 0;
+}
+
+
+/* App-Header */
+.jumbotron {
+  padding-bottom: 0;
+}
+
+.pokeball-img {
+  width: 5%;
+  height: 5%;
+}
+.datadog-img {
+  border-radius: 20%;
+  width: 5%;
+  height: 5%;
+}
+
+/* App-Quotes */
+.app-quotes {
+  padding: 0;
+  text-align: center;
+}
+
+.choose-team {
+  font-size: 1.8em;
+  margin: 4%;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 4px solid grey;
+}
+
+.charts,
+.register {
+  height: 60px;
+  width: 240px;
+  border-radius: 15px;
+  border: 4px solid grey;
+  font-size: 18px;
+  margin: 3%;
+}

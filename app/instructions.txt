@@ -1,0 +1,22 @@
+Things to do
+  1. API Calls
+      a. Connect Weather API
+      b. Create an Addition, Multiplication game
+      c. Store the Quote calls onto a separate page
+  2. Connect Postgres database
+      a. Test write
+      b. Test read
+      c. Test update
+      d. Test delete
+  3. Connect Mongo database
+      a. Test write
+      b. Test read
+      c. Test update
+      d. Test delete
+  4. CSS Styling
+
+Weather App
+   - 5 day weather report of San Francisco
+
+Things Done
+  1. Deployed to Heroku
