@@ -15,19 +15,19 @@ The app is deployed live at https://datadog-app.herokuapp.com/
   [x] Create custom Agent Check (my_metric) with random value between 0 - 1000    
   [x] Submit metric once every 45 seconds (Bonus: change w/o modifying Python check file)    
 
-  ### Screenshots
+  ### screenshots/old-screenshots
   
   #### Host Map and Configuration
-  ![Host Map](screenshots/1-hostmap.png)  
-  ![Host Map 2](screenshots/1-config.png)
+  ![Host Map](screenshots/old-screenshots/1-hostmap.png)  
+  ![Host Map 2](screenshots/old-screenshots/1-config.png)
 
   #### PostgresQL Integration
-  ![pSQL Integration](screenshots/1-install-db.png)
-  ![pSQL Integration 2](screenshots/1-postgres-integration.png)
+  ![pSQL Integration](screenshots/old-screenshots/1-install-db.png)
+  ![pSQL Integration 2](screenshots/old-screenshots/1-postgres-integration.png)
   
   #### Agent Check my_metric
-  ![my_metric](screenshots/1-agentcheck-py.png)
-  ![yaml](screenshots/1-agentcheck-yaml.png)
+  ![my_metric](screenshots/old-screenshots/1-agentcheck-py.png)
+  ![yaml](screenshots/old-screenshots/1-agentcheck-yaml.png)
 
   ### Questions   
    Can you change the collection interval without modifying the Python check file you created?
@@ -46,13 +46,13 @@ The app is deployed live at https://datadog-app.herokuapp.com/
 
 [Datadog API Script creating Timeboard](scripts/timeboard.py)
 
-  ### Screenshots
+  ### screenshots/old-screenshots
   
   #### Timeboard
-  ![Timeboard](screenshots/2-timeboard.png)
+  ![Timeboard](screenshots/old-screenshots/2-timeboard.png)
  
   #### Graph w/ @ notation to send self  
-  ![Graph Snapshot](screenshots/2-graph-snapshot.png)
+  ![Graph Snapshot](screenshots/old-screenshots/2-graph-snapshot.png)
   
   ### Questions
    What is the anomaly graph displaying?  
@@ -72,19 +72,19 @@ The app is deployed live at https://datadog-app.herokuapp.com/
       [x] Bonus: Schedule 2 downtimes     
             - 7pm - 9am (M - F)   
             - All day Sat and Sun  
-  ### Screenshots
+  ### screenshots/old-screenshots
 
   #### Monitoring Data
-  ![Monitoring Data](screenshots/3-monitoring-data.png)
+  ![Monitoring Data](screenshots/old-screenshots/3-monitoring-data.png)
   
   #### Monitor Alert
-  ![Monitor Alert](screenshots/3-monitor-alert.png)
+  ![Monitor Alert](screenshots/old-screenshots/3-monitor-alert.png)
   
   #### No Data Alert
-  ![No Data](screenshots/3-no-data.png)
+  ![No Data](screenshots/old-screenshots/3-no-data.png)
   
   #### Downtime (Bonus)
-  ![Downtime](screenshots/3-downtime.png)  
+  ![Downtime](screenshots/old-screenshots/3-downtime.png)  
   
 # 4. Collecting APM Data   
 Given an app use Datadog’s APM solution   
@@ -92,13 +92,13 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 [Dashboard Link](https://app.datadoghq.com/dash/826079/apm-and-infrastructure-metrics?live=true&page=0&is_auto=false&from_ts=1527979455178&to_ts=1527983055178&tile_size=m)
 
-### Screenshots
+### screenshots/old-screenshots
 
   #### APM and Infrastructure Metrics
-  ![APM and Infrasctructure](screenshots/4-infrastructure-apm-metrics.png)
+  ![APM and Infrasctructure](screenshots/old-screenshots/4-infrastructure-apm-metrics.png)
   
   #### Application Metrics
-  ![DataDog Solutions Engineer](screenshots/4-datadog-metrics.png)
+  ![DataDog Solutions Engineer](screenshots/old-screenshots/4-datadog-metrics.png)
   
 ### Question: What is the difference between a Service and a Resource?
 
@@ -138,23 +138,23 @@ Is there anything creative you would use Datadog for?
     I also notice that there is already a DataDog Integration here
     https://docs.datadoghq.com/developers/faq/deploying-the-agent-on-raspberrypi/
 ```
-# App Screenshots
+# App screenshots/old-screenshots
   
   #### App Home Page
-  ![Home Page](screenshots/5-app-home.png)
+  ![Home Page](screenshots/old-screenshots/5-app-home.png)
 
   #### Datadog Charts
-  ![Datadog Charts](screenshots/5-app-charts.png)
+  ![Datadog Charts](screenshots/old-screenshots/5-app-charts.png)
 
   #### Register for a Team
-  ![Register for a Team](screenshots/5-app-register.png)
+  ![Register for a Team](screenshots/old-screenshots/5-app-register.png)
 
   #### Team Mystic
-  ![Team Mystic](screenshots/5-app-mystic.png)
+  ![Team Mystic](screenshots/old-screenshots/5-app-mystic.png)
   
   #### Team Valor
-  ![Team Valor](screenshots/5-app-valor.png)
+  ![Team Valor](screenshots/old-screenshots/5-app-valor.png)
   
   #### Team Instinct
-  ![Team Instinct](screenshots/5-app-instinct.png)
+  ![Team Instinct](screenshots/old-screenshots/5-app-instinct.png)
   
