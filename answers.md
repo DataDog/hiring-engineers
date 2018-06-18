@@ -425,15 +425,16 @@
        ```
      - setp 7: Save the configuration for the monitor.
      
-  Please refer to the two screenshots below or access to my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
+  - 2.Confirmation   
+    I confirmed the monitor worked properly. Please refer to the two screenshots below or access to my account (liuqi_jp@hotmail.com) to check the metric monitor I created.
 
-  Screenshot 1: Creating the monitor
+    Screenshot 1: Creating the monitor
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_2.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_2.PNG)
 
-  Screenshot 2: Email notification
+    Screenshot 2: Email notification
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_1.PNG)
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Monitoring_1.PNG)
   
   - References:
     - [Datadog Docs - Metric monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/)
@@ -441,19 +442,32 @@
 
 * **Bonus Question**
 
-  To silence the monitor I created in last step, we should use the Downtime function. Please refer to the steps below.
+  To silence the monitor I created in the last step, we should use the Downtime function. Please refer to the steps below to setup Downtime.
   
   - 1.Created and manage Downtime function in the UI
-    Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. 
-    created the two downtimes. Please refer to the two screenshots below.
+    Step 1: Navigate to the Manage Downtime page by highlighting the “Monitors” tab in the main menu and selecting the “Manage Downtime” link. To schedule downtime, click the “Schedule Downtime” button in the upper right.
+    Step 2: Choose what to silence. In this case, we select "Monitor: Test: Notification for my_metric" and the host is "host:deep-learning-virtual-machine".
+    Step 3: In this set a schedule step, I setup recurring schedule for the two Downtimes.
+    Step 4: Add an optional message to notify the team. In this case, setup the message to send email to my email box. Please refer to the two screenshots below.
+    
+    Screenshot 1: Downtime setup 7pm-9am daily on M-F
 
-  Screenshot 1: Downtime from 7pm to 9am daily on M-F
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_3.PNG)
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_1.PNG)
+    Screenshot 2: Downtime setup all day on Sat-Sun
 
-  Screenshot 2: Downtime all day on Sat-Sun
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_4.PNG)
+    
+  - 2.Confirmation  
+    I confirmed the two Downtime funcations worked properly. Please refer to the two screenshots below.
 
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_2.PNG)
+    Screenshot 3: Downtime email notification for 7pm-9am daily on M-F
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_1.PNG)
+
+    Screenshot 4: Downtime email notification all day on Sat-Sun
+
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Downtime_2.PNG)
 
   - References:
     - [Datadog Docs - Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
@@ -470,15 +484,25 @@
   Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home. For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
 
 * **Q1**
-
-  Please refer to the link and the screenshot below:
+  To use Datadog's APM solution, we should follow these steps below.
+  - 1.APM Setup
+    - step 1: Install the Datadog Agent
+    - step 2: Install the Trace Agent. After installing the Datadog Agent to my Ubuntu, the trace agent is pre-packaged with the standard Datadog agent and no extra configuration is needed.
+    - step 3: Configure your environment
+    - step 4: Instrument your application. In my case, I'm using Python so I need to install the Datadog Tracing library using pip: `pip install ddtrace`.
+    - step 5: Start monitoring the app’s performance. Just simply run the Flask app then the Flask services appear in the APM home page. 
+    
+  - 2.Confirmation
+    Datadog APM provides deep insight into application's performance. In this case, it automatically generated dashboards monitoring key metrics for the Flask app, such as request volume and latency. Please refer to the link and the screenshot below.  
+    
+    APM page of the Flask app and infrastructure metrics: https://p.datadoghq.com/sb/1d199b067-1878f66f0cbee4b76c9a3de718a749bd?tv_mode=true
   
-  https://p.datadoghq.com/sb/1d199b067-1878f66f0cbee4b76c9a3de718a749bd?tv_mode=true
+    Screenshot: APM and Infrastructure Metrics
+    ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_APM_1.PNG)
   
-  Screenshot: APM and Infrastructure Metrics
-  ![](https://github.com/su27k-2003/hiring-engineers/blob/master/image/Collecting_APM_1.PNG)
-  
-
+  - References:
+    - [Datadog Docs - APM and Distributed Tracing](https://docs.datadoghq.com/tracing/)
+    
 * **Q2**
 
   I used the Python sample code (Flask app) to create the APM.  
