@@ -134,7 +134,7 @@ change this:
 
 to this:
 
-![pg conf original](screenshots/section1/integrations/pg_conf_change.png)
+![pg conf changed](screenshots/section1/integrations/pg_conf_change.png)
 
 and restart postgres: `sudo ../../etc/init.d/postgresql96 restart`
 
@@ -206,7 +206,7 @@ I ran the check with `sudo -u dd-agent datadog-agent check mycheck`
 
 - [X]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-### Changeing the collection interval
+### Changing the collection interval
 To change the metric collection interval I could either edit `mycheck.py` and hardcode it into the check or I can use the `mycheck.yaml` file to configure settings.
 I think keeping configurations separate would be the best practice because even though my check is very small now a more complicated check could easily bury these settings.
 
@@ -230,19 +230,59 @@ I wasn't sure how to check how often mycheck is running but I believe this worke
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+## Utilize the Datadog API to create a Timeboard that contains:
+I setup my Dogshell so that I can interact with the datadogAPI via my terminal
+I made a timeboard using the Dashboard GUI to just figure out what the graphs could look like:
+![gui timeboard result](./screenshots/section2/timeboard/gui_timeboard_result.png)
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+I then made the python script `timeboard.py` and tried to run it with `python timeboard.py` and was stuck.
+I was getting no output and didn't show any new timeboard when i ran `dog timeboard show_all`.
 
+Through trial and error I was able to figure out the format and that my metric should be written as `"avg:my_metric{*}"`
+
+![timeboard show all](./screenshots/section2/timeboard/timboard_all.png)
+- [X] Your custom metric scoped over your host.
+
+        "definition": {
+                "events": [],
+                "requests": [
+                    {"q": "avg:my_metric{*}"}
+                ],
+                "viz": "timeseries"
+            },
+            "title": "random metric number over time"
+        
+- [X] Any metric from the Integration on your Database with the anomaly function applied.
+        
+        "definition": {
+                "events": [],
+                "requests": [
+                    {"q": "anomalies(avg:postgresql.database_size{role:database:postgres}, 'basic',3)")
+            }],
+               "viz": "timeseries"
+            },
+            "title": "Database size anomalies" 
+- [X] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+    
+        "definition":{
+            "events": [],
+            "requests": [
+                {"q": "avg:my_metric{*}.rollup(sum, 3600}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "Hourly Rollup Sum of my_metric"
+I deleted my old `Random_Dashboard` and reran the timeboard.py script
+
+![all graphs on dash](./screenshots/section2/timeboard/all_graphs.png)
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+![link to timeboard.py](timeboard.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+### Monitoring the Timeboard
+- [ ] Set the Timeboard's timeframe to the past 5 minutes
+- [ ] Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [ ] **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
