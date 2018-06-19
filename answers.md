@@ -398,4 +398,75 @@ In order to set up the schedule downtimes, I noticed a tab at the top of the Mon
 
 ## Collecting APM Data
 
+Documentation used:
+
+- [Flask docs for creating env](http://flask.pocoo.org/-ocs/1.0/installation/#install-create-env)
+- [Datadog docs for tracing setup](https://docs.datadoghq.com/tracing/setup/)
+- [Datadog docs for tracing setup env](https://docs.datadoghq.com/tracing/setup/environment/)
+- [Datadog docs for tracing setup python](https://docs.datadoghq.com/tracing/setup/python/)
+- [Datadog docs for Flask](http://pypi.datadoghq.com/trace/docs/#flask)
+
+Before getting started, the first thing I did was install pip using `sudo apt-get install python-pip`.
+
+After this, I took these steps:
+
+1. `pip install ddtrace` to install Datadog's python tracing client. 
+
+2. Navigate over the 'datadog.yaml' to enable apm.
+
+```
+apm_config:
+  enabled: true
+```
+
+3. Navigate back to my root directory (`cd ~`) and install the flask environment. 
+	- First I had to run `sudo apt-get install python3-venv`
+	- Next, create my environment:
+	```
+	mkdir flaskapp && cd flaskapp
+	python3 -m venv venv
+	```
+	-- Install flask on virtual environment with `pip install Flask`
+
+4. I made my python file 'flaskapp.py' and filled with this:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+So the app started running, but it was not showing up in my infreastructure list on Datadog... 
+
+Time to investigate.
+
+![alt_text](https://media.giphy.com/media/Gpf8A8aX2uWAg/giphy.gif)
+
+
+
 
