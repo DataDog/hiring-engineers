@@ -380,20 +380,22 @@ Email of No Data State:
 
 In order to set up the schedule downtimes, I noticed a tab at the top of the Monitors pages 'Manage Downtime'. I navigated to that page and selected the yellow 'Schedule Downtime' button. 
 	
-	Mon-Fri
-	- I selected my new monitor for the downtime and switched the mode to recurring. Here are the settings I gave to the Scheduled Downtime and a screenshot of the email notifying my of the downtime::
+   Mon-Fri
+   - I selected my new monitor for the downtime and switched the mode to recurring. Here are the settings I gave to the Scheduled Downtime and a screenshot of the email notifying my of the downtime::
 
-	![alt_text](https://i.imgur.com/j1qlIPb.png)
+   ![alt_text](https://i.imgur.com/j1qlIPb.png)
 
-	![alt_text](https://i.imgur.com/1YftPO3.png)
+   ![alt_text](https://i.imgur.com/1YftPO3.png)
 
-	Weekends!
-	- I followed the same steps mentioned above but with the following settings, along with a screenshot of the email notification:
+   Weekends!
+   - I followed the same steps mentioned above but with the following settings, along with a screenshot of the email notification:
 
-	![alt_text](https://i.imgur.com/756YVoW.png)
+   ![alt_text](https://i.imgur.com/756YVoW.png)
 
-	![alt_text](https://i.imgur.com/NVOiCFY.png)
+   ![alt_text](https://i.imgur.com/NVOiCFY.png)
 
 ![alt_text](https://media.giphy.com/media/l4pTsh45Dg7jnDM6Q/giphy.gif)
+
+## Collecting APM Data
 
 
