@@ -374,6 +374,6 @@ Email of Alert State:
 
 Email of No Data State:
 
-![alt_text]()
+![alt_text](https://i.imgur.com/Y9yAyYF.png)
 
 
