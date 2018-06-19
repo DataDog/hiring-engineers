@@ -209,7 +209,7 @@ Lets begin!
     }
 	```
 
-	- Moving on! Then, I made a another timeboard with anomoly information on my MySQL database integration. This was a bit more difficult because I didnt initially know how to connect the MySQL integration. After navigating to the 'Integrations' page and Selected 'MySQL', I navigated right to 'Metrics' and found some usuful information I can look for. I combined this with the anomoly function found in Datadogs [documentation](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) Below is my script and a screenshot of the timeboard in Datadog.
+	- Moving on! Then, I made a another timeboard with anomaly information on my MySQL database integration. This was a bit more difficult because I didnt initially know how to connect the MySQL integration. After navigating to the 'Integrations' page and Selected 'MySQL', I navigated right to 'Metrics' and found some usuful information I can look for. I combined this with the anomaly function found in Datadogs [documentation](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) Below is my script and a screenshot of the timeboard in Datadog.
 
 	![alt_text](https://i.imgur.com/rhhTRL6.png)
 
@@ -317,6 +317,10 @@ Lets begin!
 ![alt_text](https://i.imgur.com/PorCDKo.png)
 
 ![alt_text](https://i.imgur.com/gOOdhmB.png)
+
+6. BONUS!
+
+During my internship at Comodo, we spent a great deal of time performing tasks of an everyday data analyst. One of the biggest tasks was understanding and implementing anomaly detection algorithms on big data. Applying that knowledge to the metric caught by Datadog, the anomaly graph is displaying events that dont quite align with the 'normal' behavior. Anomaly algorithms function to detect what that normal behavior is and uses it as a baseline for detecting behavior that is not normal. In my graph, the red lines are used to identify and bound a particular moment where the points are not behaving like 'nornmal'. There is a also a grayed out line that signifies where the datapoints should be and where they're deviating from. Anomaly detection is extremely important for analyzing any dataset. In my scenario, it is useful to have the anomaly graph beside the others because I can look at other useful information that may be contributing to the metric behaving abnormaly. 
 
 
 
