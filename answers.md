@@ -320,7 +320,60 @@ Lets begin!
 
 6. BONUS!
 
-During my internship at Comodo, we spent a great deal of time performing tasks of an everyday data analyst. One of the biggest tasks was understanding and implementing anomaly detection algorithms on big data. Applying that knowledge to the metric caught by Datadog, the anomaly graph is displaying events that dont quite align with the 'normal' behavior. Anomaly algorithms function to detect what that normal behavior is and uses it as a baseline for detecting behavior that is not normal. In my graph, the red lines are used to identify and bound a particular moment where the points are not behaving like 'nornmal'. There is a also a grayed out line that signifies where the datapoints should be and where they're deviating from. Anomaly detection is extremely important for analyzing any dataset. In my scenario, it is useful to have the anomaly graph beside the others because I can look at other useful information that may be contributing to the metric behaving abnormaly. 
+During my internship at [Comodo](www.comodo.com), we spent a great deal of time performing tasks of an everyday data analyst. One of the biggest tasks was understanding and implementing anomaly detection algorithms on big data. Applying that knowledge to the metric caught by Datadog, the anomaly graph is displaying events that dont quite align with the 'normal' behavior. Anomaly algorithms function to detect what that normal behavior is and uses it as a baseline for detecting behavior that is not normal. In my graph, the red lines are used to identify and bound a particular moment where the points are not behaving like 'nornmal'. There is a also a grayed out line that signifies where the datapoints should be and where they're deviating from. Anomaly detection is extremely important for analyzing any dataset. In my scenario, it is useful to have the anomaly graph beside the others because I can look at other useful information that may be contributing to the metric behaving abnormaly. 
 
+## Monitoring Data
+
+Next we want to create a new metric monitor that will alert me if the average of my custom metric is above the following values over the course of five minutes:
+	- Warning threshold of 500
+	- Alerting threshold of 800
+	- Notify if there is No Data for this query over the past 10 minutes
+
+Here are my steps!
+
+1. Hover over the 'Monitors' section in the navigation and select 'New Monitor'. I want to monitor my custom metric (my_metric), so I selected 'Metric' as my monitor type.
+
+2. I left the detection method at it's default (threshold alert) and defined the metric as 'my_metric'. Setting up the alert considtions, I filled in 800 next to 'Alert Threshold' and 500 next to 'Warning Threshold'. I also changed the notify if data is missing field from 'Do not notify' to 'Notify if data is missing for more than 10 minutes'. In the 'Say whats Happening' section, I filled it in with the following:
+
+```
+@loganjmorales@gmail.com HEY! YOU!! THERE'S A PROBLEM WITH {{host.name}}
+
+{{#is_alert}}
+![alt_text](https://media.giphy.com/media/3o6Zt3qAcq9gq4wkWA/giphy.gif)
+ALErt! ALERTTT!
+
+Host: {{status.hostIP}}
+
+Current metric value: {{value}} 
+{{/is_alert}} 
+
+{{#is_warning}}
+Keep it cool, this is just a warning
+
+Current metric value: {{value}}
+{{/is_warning}} 
+
+{{#is_no_data}}
+Nothing has happened in the past 10 minutes.
+
+Current metric value: {{value}}
+{{/is_no_data}}
+```
+
+WE'VE GOT MAIl!
+
+![alt_text](https://media.giphy.com/media/xT5LMQCHxHbsuqDl28/giphy.gif)
+
+Email of Warning: 
+
+![alt_text](https://i.imgur.com/bJv7xr0.png)
+
+Email of Alert State:
+
+![alt_text]()
+
+Email of No Data State:
+
+![alt_text]()
 
 
