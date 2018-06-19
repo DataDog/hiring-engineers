@@ -9,14 +9,14 @@ However, after setting up and making a vagrant box to share I decided to switch 
 Log into aws 
 Navigate to the EC2 Dashboard from the Services drop down menu and Launch an Instance.
 From there follow the directions on the Quick Start screen.
-![select AMI](./screenshots/aws_linux_setup1.png) 
+![select AMI](screenshots/section0/aws_linux_setup1.png) 
 I chose the first option for my AMI because it came with Python and Postgres preloaded.
 
 Next option was to chose the Instance type. 
 Since this is a light tutorial the free tier t2 Micro should be more than fine.
-![select Size](./screenshots/aws_linux_setup2.png)
+![select Size](screenshots/section0/aws_linux_setup2.png)
 Finally before my vm is created I created and downloaded a new key pair so that I can ssh into my vm from my local machine.
-![generate key pem](./screenshots/aws_linux_setup3.png)
+![generate key pem](screenshots/section0/aws_linux_setup3.png)
 
 From here I had two ways I could access my VM from windows. 
 Either through puTTy or through ssh in the Windows Sub-Linux(WSL). I'll be using the latter.
@@ -27,16 +27,17 @@ In the bash shell use the `chmod` command to make sure your private key file isn
 Use the ssh command to connect to the instance. You specify the private key (.pem) file and user_name@public_dns_name. For example, if you used an Amazon Linux AMI, the user name is ec2-user. 
 `sudo ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com`
 you can find the public DNS address on your dashboard 
-![dashboard](./screenshots/ec2_dashboard.png)
+![dashboard](screenshots/section0/ec2_dashboard.png)
 
 __warning: without `sudo` I got an 'unprotected private key file' error__
-![private key file error](./screenshots/private_key_file_error.png)
+![private key file error](screenshots/section0/private_key_file_error.png)
 
 SUDO!
-![success](./screenshots/in_vm.png)
+
+![success](screenshots/section0/in_vm.png)
+
 Success!!
 
- //TODO:  
 ## Collecting Metrics:
 
 I installed the Datadog agent on Ubuntu with the easy one step install `DD_API_KEY=1852b8c40afd989d5e512340f1a0d3c8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
@@ -44,24 +45,24 @@ I installed the Datadog agent on Ubuntu with the easy one step install `DD_API_K
 Agent v6 installed successfully and is running.
  
 ### Adding Tags to the Agent file:
-    I navigated over to the agent config file located at `/etc/datadog-agent/datadog.yaml` (note: agent v6 will be a `.yaml` file and v5 is `.conf`)
-    
-    I checked out the `datadog.yaml.example` and the `datadog.yaml` too see how to format my tags. It looks like these files start off identical by default but it'll be good to have an unchanged example copy if I needed to ever revert back. 
-    I uncommented the tags on `datadog.yaml` file and added a few of my own and saved.
-    
-        # Set the host's tags (optional)
-         tags:
-           - mytag
-           - crystalball
-           - env:dev
-           - role:database:postgres
-           
-    I went onto my dashboard to see if my tags were there and didn't see any. I checked the dogs and didn't see another step requiring a restart. So then I tried to check the agent's config with ` sudo datadog-agent configcheck`
-    I got the following error:
-    
-    ![agent config check error](./screenshots/config_check_error.png)
-    
-    
+I navigated over to the agent config file located at `/etc/datadog-agent/datadog.yaml` (note: agent v6 will be a `.yaml` file and v5 is `.conf`)
+
+I checked out the `datadog.yaml.example` and the `datadog.yaml` too see how to format my tags. It looks like these files start off identical by default but it'll be good to have an unchanged example copy if I needed to ever revert back. 
+I uncommented the tags on `datadog.yaml` file and added a few of my own and saved.
+
+    # Set the host's tags (optional)
+     tags:
+       - mytag
+       - crystalball
+       - env:dev
+       - role:database:postgres
+       
+I went onto my dashboard to see if my tags were there and didn't see any. I checked the dogs and didn't see another step requiring a restart. So then I tried to check the agent's config with ` sudo datadog-agent configcheck`
+I got the following error:
+
+![agent config check error](screenshots/section1/tags/config_check_error.png)
+
+
     
 I went beck to investigate my yaml file. I see my api key is in there and not commented out on top. Since I am able to see my host on the dashboard but just not my new tags I started to doubt this is the kind of key it was referring too.
 I went over to line 34 and it is my tags settings. After a quick search I found that some people have solved a similar error in other programs with indentation. I fixed the indentation in the file.
@@ -71,14 +72,101 @@ So, I decided to try restarting the agent thinking maybe the service should rest
 
  It wasn't until I went to filter on the hostmap dashboard that I noticed My tags showed up.
     
-   ![Screenshot of Tags in Host Map](screenshots/tags_hostmap.png)
+   ![Screenshot of Tags in Host Map](screenshots/section1/tags/tags_hostmap.png)
     
 Yay!
 - [X]  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ### Integrating the database:
-- [ ]  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+One of the benefits of using AWS is that Postgres is that it has postgres packages you can readily install onto their instances. 
+Run `sudo yum list postgres*` to see available packages 
+I'm going to pick their newest available and run `sudo yum install postgresql96-server` to install postgres from amazon's maintained packages. 
 
+After Postgres is installed I initialized my first database and started the postgres server.
+        
+        sudo ../../etc/init.d/postgresql96 initdb
+        sudo ../../etc/init.d/postgresql96 start
+
+Then I created a role for ec2-user:
+
+    sudo -u postgres createuser --superuser $USER
+    createdb $USER
+
+At this point the  `psql` command works.
+
+I went to the integrations menu on my datadog dashboard and selected PostgresSQL to install
+
+![integrations menu](screenshots/section1/integrations/integrations_menu.png)
+
+I followed the directions on the 'configurations' tab.
+and got an indent auth failure when trying to verify my new datadog user. 
+
+![indent auth fail](screenshots/section1/integrations/indent_auth.png)
+
+I looked up what proper permissions should be set for postgres on ec2.
+
+I couldn't find the config file in it's usual spot but i found it's location with the following commands:
+![psql config location](screenshots/section1/integrations/pg_conf_path.png)
+
+
+but That wasn't the correct config file. So then I tried this:
+![hba config file location](screenshots/section1/integrations/hba_conf_show.png)
+
+and opened that path in a text editor: `sudo vim /var/lib/pgsql96/data/pg_hba.conf`
+That was the right one. 
+changed this:
+
+![original hba config](screenshots/section1/integrations/hba_conf_orig.png)
+
+to this:
+
+![changed hba config](screenshots/section1/integrations/hba_conf_orig.png)
+
+I changed it to how I usually have my config file set up if I were on Vagrant or my regular windows os.
+trouble shooting online also suggested changing a setting in the original config file I found to allow localhost connection. 
+
+Open `sudo vim  /var/lib/pgsql96/data/postgresql.conf` 
+
+change this:
+
+![pg conf original](screenshots/section1/integrations/pg_conf_orig.png)
+
+to this:
+
+![pg conf original](screenshots/section1/integrations/pg_conf_change.png)
+
+and restart postgres: `sudo ../../etc/init.d/postgresql96 restart`
+
+just to be safe I'm going to delete the datadog user I made and start again from the directions. 
+in PSQL:
+
+    ec2-user=# revoke SELECT ON pg_stat_database from datadog;
+    ec2-user=# DROP ROLE datadog;
+ 
+Alright, datadog role is valid.
+
+![pg validation passed](screenshots/section1/integrations/pg_validation_pass.png)
+
+I went to edit my postgres config yaml file but only found `conf.yaml.example` there so I copied it.
+
+`sudo cp conf.yaml.example conf.yaml`
+
+and changed it according to the directions...
+
+![init config](screenshots/section1/integrations/integration_conf.png)
+
+`sudo initctl restart datadog-agent`
+Verify install:
+
+`sudo datadog-agent stats`
+
+![agent stats results](screenshots/section1/integrations/postgres_agent_stat_result.png) 
+
+and finally click 'Install Integration' to install it on your Datadog Dashboard.
+
+- [X]  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+### Creating a custom Agent check:
 - [ ]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 - [ ]  Change your check's collection interval so that it only submits the metric once every 45 seconds.
