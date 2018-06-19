@@ -110,6 +110,7 @@ I couldn't find the config file in it's usual spot but i found it's location wit
 
 
 but That wasn't the correct config file. So then I tried this:
+
 ![hba config file location](screenshots/section1/integrations/hba_conf_show.png)
 
 and opened that path in a text editor: `sudo vim /var/lib/pgsql96/data/pg_hba.conf`
@@ -156,6 +157,7 @@ and changed it according to the directions...
 ![init config](screenshots/section1/integrations/integration_conf.png)
 
 `sudo initctl restart datadog-agent`
+
 Verify install:
 
 `sudo datadog-agent stats`
@@ -167,11 +169,64 @@ and finally click 'Install Integration' to install it on your Datadog Dashboard.
 - [X]  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 ### Creating a custom Agent check:
-- [ ]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+For this section I'll be following the datadog docs for [writing your first check](https://docs.datadoghq.com/developers/agent_checks/)
 
-- [ ]  Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Checks are made of two files, a python file and a yaml configuration file. They must have the same name and they are placed in two specific folders.
+    
+    # python file goes in:
+    /etc/datadog-agent/checks.d
+    # yaml file goes in:
+    /etc/datadog-agent/conf.d
 
-- [ ]  **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+So I'll start off making those two files `mycheck.py` and `mycheck.yaml` and placing them in their folders.
+I modeled my agent check to the Hello world example and kept it very simple:
+
+my initial `mycheck.yaml`:
+
+    init_config:           
+                           
+    instances:             
+        [{}]               
+
+my initial `mycheck.py`:
+
+    import random
+    from checks import AgentCheck
+    
+    class RandomCheck(AgentCheck):
+        def check(self, instance):
+            rand_num = random.randint(1, 1000)
+            self.gauge('my_metric', rand_num)
+            
+(_Note:_ custom python libraries have to be manually installed. However I didn't need to do that with random since it is part of the standard library.)
+
+I ran the check with `sudo -u dd-agent datadog-agent check mycheck`
+
+![mycheck output](./screenshots/section1/agentCheck/mycheck_output.png)
+
+- [X]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+### Changeing the collection interval
+To change the metric collection interval I could either edit `mycheck.py` and hardcode it into the check or I can use the `mycheck.yaml` file to configure settings.
+I think keeping configurations separate would be the best practice because even though my check is very small now a more complicated check could easily bury these settings.
+
+I updated `mycheck.yaml`:
+
+    init_config:
+    
+    instances:
+        - min_collection_interval: 45
+
+restarted the agent `sudo initctl restart datadog-agent`
+
+I wasn't sure how to check how often mycheck is running but I believe this worked because when I run `sudo datadog-agent status` and checkout the running checks in the output I can see that mycheck is running less frequently than all of the other default metrics
+
+![mycheck metrics count](./screenshots/section1/agentCheck/mycheck_run_count.png)
+     
+- [X]  Change your check's collection interval so that it only submits the metric once every 45 seconds.
+ 
+### BONUS
+- [X]  **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
 
