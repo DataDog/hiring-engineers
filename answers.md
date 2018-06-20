@@ -105,7 +105,7 @@ and got an indent auth failure when trying to verify my new datadog user.
 
 I looked up what proper permissions should be set for postgres on ec2.
 
-I couldn't find the config file in it's usual spot but i found it's location with the following commands:
+I couldn't find the config file in it's usual spot but I found it's location with the following commands:
 ![psql config location](screenshots/section1/integrations/pg_conf_path.png)
 
 
@@ -236,7 +236,7 @@ I made a timeboard using the Dashboard GUI to just figure out what the graphs co
 ![gui timeboard result](./screenshots/section2/timeboard/gui_timeboard_result.png)
 
 I then made the python script `timeboard.py` and tried to run it with `python timeboard.py` and was stuck.
-I was getting no output and didn't show any new timeboard when i ran `dog timeboard show_all`.
+I was getting no output and didn't show any new timeboard when I ran `dog timeboard show_all`.
 
 Through trial and error I was able to figure out the format and that my metric should be written as `"avg:my_metric{*}"`
 
@@ -275,9 +275,8 @@ Through trial and error I was able to figure out the format and that my metric s
 I deleted my old `Random_Dashboard` and reran the timeboard.py script
 
 ![all graphs on dash](./screenshots/section2/timeboard/all_graphs.png)
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-[link to timeboard.py](timeboard.py)
+Here is the script used to create this timeboard: [link to timeboard.py](timeboard.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 ### Monitoring the Timeboard
@@ -290,66 +289,65 @@ I was able to view the five min timeframe from the UI dash by zooming in the gra
 ![five min notify](./screenshots/section2/timeboard/five_min_board.png)
 
 - [ ] **Bonus Question**: What is the Anomaly graph displaying?
+
 My anomalies graph is displaying my database size with a grey area marking what is a normal fluctuation. This particular db metric hasn't changed.
 
 ## Monitoring Data
 
 - [X] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
 In the UI from the Monitor menu I've selected 'New Monitor'/Metric.
  I set to alert conditions to __Warning threshold of 500__, __Alerting threshold of 800__ and __Notify if there is not data for 10 mins__
  
  ![alert conditions](./screenshots/section2/metric_monitor/alert_conditions.png)
  
 I configured the monitor message to __Send me an email whenever the monitor triggers__
+
 - [X] Using conditional statements created different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 - [X] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 - [X] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![my metric email](./screenshots/section2/metric_monitor/my_metric_email.png)
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
+- [X] **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+I set up two monitor downtimes from the 'Manage Downtimes' Section of the Monitor Menu.
   * One that silences it from 7pm to 9am daily on M-F,
+    ![downtime daily email](./screenshots/section2/metric_monitor/downtime_daily.png)
   * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
+    ![downtime weekend email](./screenshots/section2/metric_monitor/downtime_weekend.png)
+  
 ## Collecting APM Data:
+I had a lot of trouble getting the tracer to work. 
+I pasted the boilerplate code to a new file called `my_app.py` and followed the directions to install the tracer with regular pip. I also installed it with datadog's custom pip install for good measure.
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+I enabled the APM from the `datadog.yaml` and restarted my Agent.
 
-```python
-from flask import Flask
-import logging
-import sys
+I set it to the following:
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+![apm config](./screenshots/section3/apm_config.png)
 
-app = Flask(__name__)
+I've tried using the boiler without changes with `ddtrace-run python my_app.py`. The terminal output says there is one service being reported but I'm not seeing anything on my UI dash.
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+![no middleware output](./screenshots/section3/no_middle_output.png)
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
+I then manually added the flask middleware from the doc example and then installed `Flask` and `Blinker` with pip and datadog's pip
 
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
+I ran this file with `python my_app.py` because of the warning of using one or the other.
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
+I got an identical output to the no middleware method with no change on my UI
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+![with middleware output](./screenshots/section3/my_app_middleware_output.png) 
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+I finally remember that I haven't accessed my localhost yet so, there is nothing to report (ugh!).
+
+I navigate over to my public ip at port 5050 `http://ec2-18-236-72-13.us-west-2.compute.amazonaws.com:5050/` 
+
+![Ui showing both apms](./screenshots/section3/Ui_finally.png) 
+
+- [X] **Bonus Question**: What is the difference between a Service and a Resource?
+
+A "Service" is the name of a set of processes that do the same job and a "Resource" is a particular action for a service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -360,3 +358,4 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+I would love to use datadog to track traffic in the American Museum of Natural History. 
