@@ -507,8 +507,8 @@ My family installed a wireless fence around the house and yard to make for a saf
 
 It would be WAY more interesting if the collar could, in addition to enforcing borders, collect metrics about the dog about their activity, whereabouts and their health. The data could be sent to an app on the owner's phone where they could see this data. The application could also implement monitoring technologies offered by Datadog to really understand the data that is coming back about the pup. Maybe Snowball isn't as active on a particular day, we could use anomaly detection to understand when that is happening and correspond it to other collected metrics about the dog's health during that instance. ENDLESS POSSIBILITIES! Please, PLEASE, let's not forget about the pups. 
 
-![alt_text](https://media.giphy.com/media/4XSc0NkhKJQhW/giphy.gif)
+![alt_text](https://media.giphy.com/media/qBsOrZfHD4VZC/giphy.gif)
 
 Thank you for giving me the opportunity to undergo this challenge. It was so much fun and I hope to have more challenges like this in my future. <3
 
-
+![alt_text](https://media.giphy.com/media/7yojoQtevjOCI/giphy.gif)
