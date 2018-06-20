@@ -335,3 +335,47 @@ Two downtimes were scheduled and two emails informing us from a downtime schedul
 ![weekend downtime](https://imgur.com/a/V8jccuC)
 
 
+##Collecting APM Data:
+
+Collection APM Data:
+
+I created the following file my_app.py for my app and then instrument this using Datadog APM. First I installed the Python client and then to instrument my app I created a trace request for Python app by using the command line wrapper. To tailor the instrumentation for my app I used the Flask framework and followed the steps outlined in the documentation. I found the APM solution to be bit confusing and not very user friendly. 
+http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask 
+
+```
+from flask import Flask
+import logging
+import sys
+import blinker as _
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+from flask import flask
+app = flask(_name_)
+traced_app = TraceMiddleware(app, tracer, service='my_app", distributed_tracing = false)
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+app = Flask(__name__)
+@app.route('/')
+def api_entry():
+   return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+  return 'Getting APM Started'
+@app.route('/api/trace')
+def trace_endpoint():
+   return 'Posting Traces'
+if __name__ == '__main__':
+  app.run()
+
+``` 
+
+![APM](https://imgur.com/a/gstZuIb)
+
+
+
+
