@@ -491,10 +491,24 @@ to the Flask app. To run this time, I just used `python flaskapp.py` since I'm n
 
 Next I tried modifying the 'datadog.yaml' config file to see if I missed anything there. One thing I noticed was that `enabled: true` was not indented properly (I know that sounds silly but you never know...) so I fixed that up and restarted the agent. Unfortunately, this did not work either. 
 
+![alt_text](https://media.giphy.com/media/l46CxmW82zcQiRghG/giphy.gif)
+
 I am sad about not getting the Flask app to show in my Datadog dashboard, but I am proud of myself for getting the app to run. 
 
 If selected to advance in the hiring process, I would like the opportunity to walk through the APM solution with a Datadog Guru and understand where I went wrong. I know I am close!
 
+## FINAL QUESTION!!!
 
+I have had a blast learning about Datadog and the many use cases for such robust monitoring system. Something I would like to see... Datadog for DOGS!! Seriously.
+
+I have a few young pups and home and they are extremely active. They have a lot of space to run around and be dogs all over: In the house, in the yard, in my room... Any place they have the opportunity to be silly dogs they take full advantage. 
+
+My family installed a wireless fence around the house and yard to make for a safe and easy border for the dogs. There is a small collar to enforce this. I like it. It's simple and makes a lot of sense. I think it would be a cool idea to take this a step further.
+
+It would be WAY more interesting if the collar could, in addition to enforcing borders, collect metrics about the dog about their activity, whereabouts and their health. The data could be sent to an app on the owner's phone where they could see this data. The application could also implement monitoring technologies offered by Datadog to really understand the data that is coming back about the pup. Maybe Snowball isn't as active on a particular day, we could use anomaly detection to understand when that is happening and correspond it to other collected metrics about the dog's health during that instance. ENDLESS POSSIBILITIES! Please, PLEASE, let's not forget about the pups. 
+
+![alt_text](https://media.giphy.com/media/4XSc0NkhKJQhW/giphy.gif)
+
+Thank you for giving me the opportunity to undergo this challenge. It was so much fun and I hope to have more challenges like this in my future. <3
 
 
