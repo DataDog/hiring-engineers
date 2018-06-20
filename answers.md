@@ -64,3 +64,55 @@ launchctl start com.datadoghq.agent
 
 
 ![PostgreSQL Integration Validation](https://imgur.com/a/epPq5a3)
+
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Datadog custom agent checks are a way for you to get the Agent to collect metrics from your custom applications or unique systems.
+
+Different types of check can be sent (metric, event, service), however we will here focus on implementing a gauge metric.
+
+To get an Agent check to submit a brand-new metric, I had to create two distinct files: 
+
+* mymetric.yaml that needs to go in `datadog-agent/conf.d`:
+
+```yaml
+init_config:
+
+instances:
+    [{}]
+```
+
+* mymetric.py that has to go in `datadog-agent/checks.d`: 
+
+```python
+from random import random
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', 1000 * random())
+```
+
+After that, I restarted the Datadog Agent and executed the `datadog-agent status` command line to make sure the check had successfully been implemented.
+
+![Custom Agent Check Validation](https://imgur.com/a/317okAN)
+
+
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+
+This can be changed by modifying the check’s yaml file: you simply need to add the `min_collection_interval: nb_of_seconds` parameter at the init_config or at the instance level.
+
+To change our check’s collection interval, I therefore slightly modified the `datadog-agent/conf.d/mymetric.yaml` file, and simply added the parameter `min_collection_interval: 45` to the configuration file.
+
+```yaml
+init_config:
+  min_collection_interval: 45
+
+instances:
+    [{}]
+```
+
+After that, I restarted again the Datadog agent, and went back to the graph to make sure that the collection interval had, indeed, gone from 15-20 to 45 seconds.
+
+![Change of Collection Interval 47sec](https://imgur.com/a/KDvTJbL)
