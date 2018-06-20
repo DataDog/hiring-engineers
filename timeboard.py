@@ -24,10 +24,10 @@ graphs = [{
         "events": [],
         "requests": [
             {"q": "anomalies(avg:postgresql.database_size{role:database:postgres}, 'basic',3)"
-}],
-"viz": "timeseries"
-},
-"title": "Database size anomalies"
+             }],
+        "viz": "timeseries"
+    },
+    "title": "Database size anomalies"
 }, {
     "definition": {
         "events": [],

@@ -276,31 +276,36 @@ I deleted my old `Random_Dashboard` and reran the timeboard.py script
 
 ![all graphs on dash](./screenshots/section2/timeboard/all_graphs.png)
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-![link to timeboard.py](timeboard.py)
+
+[link to timeboard.py](timeboard.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 ### Monitoring the Timeboard
-- [ ] Set the Timeboard's timeframe to the past 5 minutes
-- [ ] Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [X] Set the Timeboard's timeframe to the past 5 minutes
+
+I was able to view the five min timeframe from the UI dash by zooming in the graphs with `Alt+]`
+
+- [X] Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![five min notify](./screenshots/section2/timeboard/five_min_board.png)
+
 - [ ] **Bonus Question**: What is the Anomaly graph displaying?
+My anomalies graph is displaying my database size with a grey area marking what is a normal fluctuation. This particular db metric hasn't changed.
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+- [X] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+In the UI from the Monitor menu I've selected 'New Monitor'/Metric.
+ I set to alert conditions to __Warning threshold of 500__, __Alerting threshold of 800__ and __Notify if there is not data for 10 mins__
+ 
+ ![alert conditions](./screenshots/section2/metric_monitor/alert_conditions.png)
+ 
+I configured the monitor message to __Send me an email whenever the monitor triggers__
+- [X] Using conditional statements created different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+- [X] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- [X] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
-Please configure the monitor’s message so that it will:
-
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
+![my metric email](./screenshots/section2/metric_monitor/my_metric_email.png)
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
