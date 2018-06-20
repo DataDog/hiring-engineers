@@ -364,17 +364,21 @@ WE'VE GOT MAIL!
 
 ![alt_text](https://media.giphy.com/media/xT5LMQCHxHbsuqDl28/giphy.gif)
 
+Email of No Data State:
+
+![alt_text](https://i.imgur.com/Y9yAyYF.png)
+
 Email of Warning: 
 
 ![alt_text](https://i.imgur.com/bJv7xr0.png)
 
-Email of Alert State:
+I was wondering why I wasn't getting any Alert emails... And then I thought 'OHHHHHH I forgot the metric is submitting RANDOM values'. The metric was programed to send a random value between 0 and 1000 so it makes sense that the average for all metrics over a 5 minute window was in the 500 range. I studied the metric and it was submitting values over 800, but not frequent enough for the average to be pulled up that high. So, in order to get this email, I kind of... changed... the metric 🤭
 
-![alt_text]()
+I changed the metric for the purposes of this particular challenge to submit random values between 800 and 1000 and sure enough...
 
-Email of No Data State:
+![alt_text](https://i.imgur.com/1vzo51s.png)
 
-![alt_text](https://i.imgur.com/Y9yAyYF.png)
+![alt_text](https://media.giphy.com/media/LRVnPYqM8DLag/giphy.gif)
 
 3. BONUS!
 
@@ -428,7 +432,7 @@ apm_config:
 	```
 	-- Install flask on virtual environment with `pip install Flask`
 
-4. I made my python file 'flaskapp.py' and filled with this:
+4. I made my python file 'flaskapp.py' and filled with the provided python application:
 
 ```
 from flask import Flask
@@ -466,6 +470,20 @@ So the app started running, but it was not showing up in my infreastructure list
 Time to investigate.
 
 ![alt_text](https://media.giphy.com/media/Gpf8A8aX2uWAg/giphy.gif)
+
+I tried going to the Datadog APM UI page to add the app into my system. I selected 'Python' for my language and ran the app - it still wasnt showing up in my interface.
+
+Next, I tried putting in my old middleware by adding
+
+```
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+```
+
+to the Flask app.
 
 
 
