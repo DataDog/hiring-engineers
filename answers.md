@@ -1,11 +1,32 @@
-//TODO: add a table of contents with links to question sections.
-## Prerequisites - Setup the environment
+* [Section 0 - Setup the Environment](#prerequisites---setup-the-environment)
+    * [Setting up AWS](#setting-up-aws-linux)
+* [Section 1 - Collecting Metrics](#collecting-metrics)
+    * [Adding Tags to the Agent File](#adding-tags-to-the-agent-file)
+    * [Integrating the Database](#integrating-the-database)
+    * [Creating a Custom Agent Check](#creating-a-custom-agent-check)
+    * [Changing the Collection Interval](#changing-the-collection-interval)
+* [Section 2 - Visualizing the Data](#visualizing-data)
+    * [Utilize the Datadog API to create a Timeboard](#utilize-the-datadog-api-to-create-a-timeboard)
+    * [Monitoring the Timeboard](#monitoring-the-timeboard)
+* [Section 3 - Monitoring Data](#monitoring-data)
+    * [Create a Custom Metric Monitor](#create-a-custom-metric-monitor)
+    * [Setting up Downtimes](#setting-up-downtimes)
+* [Section 4 - Collecting APM Data](#collecting-apm-data)
+* [Final Question](#final-question)
+    
+
+# Answers:
+
+
+## Prerequisites - Setup the environment:
+
 Originally for this challenge I decided to set up my environment with Vagrant. I'm on a Windows 10 home OS I've used Vagrant before and really enjoyed it and I figured why not.
 However, after setting up and making a vagrant box to share I decided to switch to AWS' cloud Linux vm. I've always wanted to try EC2 and running my vm on their cloud would save me space, cpu and work installing postgres.
  
 -- You can still read about how I set up my vagrant [here](vagrantSetup.md)
 
-### Setting up AWS Linux
+### Setting up AWS Linux:
+
 Log into aws 
 Navigate to the EC2 Dashboard from the Services drop down menu and Launch an Instance.
 From there follow the directions on the Quick Start screen.
@@ -45,6 +66,7 @@ I installed the Datadog agent on Ubuntu with the easy one step install `DD_API_K
 Agent v6 installed successfully and is running.
  
 ### Adding Tags to the Agent file:
+
 I navigated over to the agent config file located at `/etc/datadog-agent/datadog.yaml` (note: agent v6 will be a `.yaml` file and v5 is `.conf`)
 
 I checked out the `datadog.yaml.example` and the `datadog.yaml` too see how to format my tags. It looks like these files start off identical by default but it'll be good to have an unchanged example copy if I needed to ever revert back. 
@@ -78,6 +100,7 @@ Yay!
 - [X]  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ### Integrating the database:
+
 One of the benefits of using AWS is that Postgres is that it has postgres packages you can readily install onto their instances. 
 Run `sudo yum list postgres*` to see available packages 
 I'm going to pick their newest available and run `sudo yum install postgresql96-server` to install postgres from amazon's maintained packages. 
@@ -169,6 +192,7 @@ and finally click 'Install Integration' to install it on your Datadog Dashboard.
 - [X]  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 ### Creating a custom Agent check:
+
 For this section I'll be following the datadog docs for [writing your first check](https://docs.datadoghq.com/developers/agent_checks/)
 
 Checks are made of two files, a python file and a yaml configuration file. They must have the same name and they are placed in two specific folders.
@@ -206,7 +230,8 @@ I ran the check with `sudo -u dd-agent datadog-agent check mycheck`
 
 - [X]  Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-### Changing the collection interval
+### Changing the collection interval:
+
 To change the metric collection interval I could either edit `mycheck.py` and hardcode it into the check or I can use the `mycheck.yaml` file to configure settings.
 I think keeping configurations separate would be the best practice because even though my check is very small now a more complicated check could easily bury these settings.
 
@@ -230,7 +255,8 @@ I wasn't sure how to check how often mycheck is running but I believe this worke
 
 ## Visualizing Data:
 
-## Utilize the Datadog API to create a Timeboard that contains:
+## Utilize the Datadog API to create a Timeboard:
+
 I setup my Dogshell so that I can interact with the datadogAPI via my terminal
 I made a timeboard using the Dashboard GUI to just figure out what the graphs could look like:
 ![gui timeboard result](./screenshots/section2/timeboard/gui_timeboard_result.png)
@@ -279,7 +305,9 @@ I deleted my old `Random_Dashboard` and reran the timeboard.py script
 Here is the script used to create this timeboard: [link to timeboard.py](timeboard.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
-### Monitoring the Timeboard
+
+### Monitoring the Timeboard:
+
 - [X] Set the Timeboard's timeframe to the past 5 minutes
 
 I was able to view the five min timeframe from the UI dash by zooming in the graphs with `Alt+]`
@@ -292,14 +320,16 @@ I was able to view the five min timeframe from the UI dash by zooming in the gra
 
 My anomalies graph is displaying my database size with a grey area marking what is a normal fluctuation. This particular db metric hasn't changed.
 
-## Monitoring Data
+## Monitoring Data:
+
+### Create a Custom Metric Monitor:
 
 - [X] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 In the UI from the Monitor menu I've selected 'New Monitor'/Metric.
  I set to alert conditions to __Warning threshold of 500__, __Alerting threshold of 800__ and __Notify if there is not data for 10 mins__
  
- ![alert conditions](./screenshots/section2/metric_monitor/alert_conditions.png)
+ ![alert conditions](screenshots/section3/metric_monitor/alert_conditions.png)
  
 I configured the monitor message to __Send me an email whenever the monitor triggers__
 
@@ -307,17 +337,20 @@ I configured the monitor message to __Send me an email whenever the monitor trig
 - [X] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 - [X] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![my metric email](./screenshots/section2/metric_monitor/my_metric_email.png)
+![my metric email](screenshots/section3/metric_monitor/my_metric_email.png)
 
 - [X] **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
+### Setting up Downtimes:
+
 I set up two monitor downtimes from the 'Manage Downtimes' Section of the Monitor Menu.
   * One that silences it from 7pm to 9am daily on M-F,
-    ![downtime daily email](./screenshots/section2/metric_monitor/downtime_daily.png)
+    ![downtime daily email](screenshots/section3/metric_monitor/downtime_daily.png)
   * And one that silences it all day on Sat-Sun.
-    ![downtime weekend email](./screenshots/section2/metric_monitor/downtime_weekend.png)
+    ![downtime weekend email](screenshots/section3/metric_monitor/downtime_weekend.png)
   
 ## Collecting APM Data:
+
 I had a lot of trouble getting the tracer to work. 
 I pasted the boilerplate code to a new file called `my_app.py` and followed the directions to install the tracer with regular pip. I also installed it with datadog's custom pip install for good measure.
 
@@ -345,17 +378,22 @@ I navigate over to my public ip at port 5050 `http://ec2-18-236-72-13.us-west-2.
 
 ![Ui showing both apms](./screenshots/section3/Ui_finally.png) 
 
+Here is the link to python file I used for my_app [LINK to my_app.py](my_app.py) I ran it with `python my_app.py` to not cause an error.
+
 - [X] **Bonus Question**: What is the difference between a Service and a Resource?
 
 A "Service" is the name of a set of processes that do the same job and a "Resource" is a particular action for a service.
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+I made a screenboard to show my APM and Infrastructure metrics. [link to screenboard](https://p.datadoghq.com/sb/66ef15e59-9cbb68fcf742786f3d7390d1326f6487) 
 
-Please include your fully instrumented app in your submission, as well.
+![screenboard metrics](./screenshots/section3/screenboard.png)
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+__Is there anything creative you would use Datadog for?__
 
-Is there anything creative you would use Datadog for?
-I would love to use datadog to track traffic in the American Museum of Natural History. 
+I would love to use datadog to track traffic in the American Museum of Natural History. I feel that there could be a lot of data you can track that would be useful to both the patrons and the curators.
+As a patron you can track how crowded different wings and exhibits are and plan you trip around going to the less populated areas. 
+
+As a curator, if you were able to track how many people crowd around a particular exhibit piece and how long people generally stay there you can better plan where the best spots to display are or you can track how much interest a particular piece is getting.
+You could probably even plan a whole special exhibit on intersecting popular subjects that might not have been thought of together. 
