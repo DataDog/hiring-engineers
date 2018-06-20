@@ -285,4 +285,53 @@ It is not obvious in the previous graph as it displayed a constant figure (maxim
 
 ##Monitoring Data
 
+__Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.__
+__Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:__
+* __Warning threshold of 500__
+* __Alerting threshold of 800__
+* __And also ensure that it will notify you if there is No Data for this query over the past 10m.__
+
+__Please configure the monitor’s message so that it will:__
+* __Send you an email whenever the monitor triggers.__
+* __Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.__
+* __Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.__
+
+> Datadog not only allows you to visualize your data, it also enables you to monitor it, and to be alerted when critical changes happen. There are different types of monitor that can be implemented within Datadog: host, metric, integration, process, network, event-based, and custom. 
+
+Here we will focus on metric monitor. To create a monitor, first click “Monitors” on Datadog Application’s side bar, then hit the “+ New monitor” button, and start editing your monitor visually.
+
+You can create different types of metric monitors (threshold, forecast or change alert, anomaly or outlier detection), you then need to define conditions, to setup notifications and you’re good to go!
+
+In this example I decided to define a threshold alert on my_metric from our host:
+-	I first set a warning in case the average of the custom metric went over the 500 threshold in the past 5 minutes.
+-	I then set an alert in case the average of the custom metric went over the 800 threshold in the past 5 minutes.
+-	Thirdly, I asked for a notification in case data was missing for more than 10 minutes.
+
+I also designed a monitor’s message adapted to the type of issue: alert, warning or missing data. In the alert message, I included the host name, ip, the threshold and the value that caused the monitor to trigger. Finally, I added my email address to check the email notifications worked.
+
+![Warning email](https://imgur.com/a/ONflZAB)
+
+* __Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:__
+	* __One that silences it from 7pm to 9am daily on M-F,__
+	* __And one that silences it all day on Sat-Sun.__
+	* __Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.__
+
+> For various reasons (upgrades, maintenance, etc.), you might be willing to schedule downtimes. This Datadog feature allows you to take off systems without triggering the related monitors.
+
+To schedule a downtime, you need to remain in the “Monitors” section of Datadog Application side bar, to click on “Manage Downtime” and to hit the “Schedule Downtime” button.
+
+You then need to follow Datadog Application UI and…
+1.	Choose what to silence
+2.	Schedule the downtime
+3.	Add a message for the downtime
+4.	Choose who should consequently be notified
+
+Two downtimes were scheduled and two emails informing us from a downtime scheduling were received.
+
+-	The first one to silence our my_metric monitor from 7pm to 9am daily from Monday to Friday.
+
+![M-F email](https://imgur.com/a/h9uIX66)
+
+![weekend downtime](https://imgur.com/a/V8jccuC)
+
 
