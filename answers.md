@@ -376,6 +376,10 @@ if __name__ == '__main__':
 
 ![APM](https://imgur.com/a/gstZuIb)
 
+##Final Question
+
+It would be interesting if a dog collar could collect metrics about the dog's activity, whereabouts and their health. The data could be sent to an app on the owner's phone where they could see this data. 
+
 
 
 
