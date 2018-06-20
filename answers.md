@@ -320,7 +320,7 @@ Lets begin!
 
 6. BONUS!
 
-During my internship at [Comodo](www.comodo.com), we spent a great deal of time performing tasks of an everyday data analyst. One of the biggest tasks was understanding and implementing anomaly detection algorithms on big data. Applying that knowledge to the metric caught by Datadog, the anomaly graph is displaying events that dont quite align with the 'normal' behavior. Anomaly algorithms function to detect what that normal behavior is and uses it as a baseline for detecting behavior that is not normal. In my graph, the red lines are used to identify and bound a particular moment where the points are not behaving like 'nornmal'. There is a also a grayed out line that signifies where the datapoints should be and where they're deviating from. Anomaly detection is extremely important for analyzing any dataset. In my scenario, it is useful to have the anomaly graph beside the others because I can look at other useful information that may be contributing to the metric behaving abnormaly. 
+During my internship at [Comodo](www.comodo.com), we spent a great deal of time performing tasks of an everyday data analyst. One of the biggest tasks was understanding and implementing anomaly detection algorithms on big data. Applying that knowledge to the metric caught by Datadog, the anomaly graph is displaying events that don't quite align with the 'normal' behavior. Anomaly algorithms function to detect what that normal behavior is and uses it as a baseline for detecting behavior that is not normal. In my graph, the red lines are used to identify and bound a particular moment where the points are not behaving like 'normal'. There is a also a grayed out line that signifies where the datapoints should be and where they're deviating from. Anomaly detection is extremely important for analyzing any dataset. In my scenario, it is useful to have the anomaly graph beside the others because I can look at other useful information that may be contributing to the metric behaving abnormally. 
 
 ## Monitoring Data
 
@@ -333,7 +333,7 @@ Here are my steps!
 
 1. Hover over the 'Monitors' section in the navigation and select 'New Monitor'. I want to monitor my custom metric (my_metric), so I selected 'Metric' as my monitor type.
 
-2. I left the detection method at it's default (threshold alert) and defined the metric as 'my_metric'. Setting up the alert considtions, I filled in 800 next to 'Alert Threshold' and 500 next to 'Warning Threshold'. I also changed the notify if data is missing field from 'Do not notify' to 'Notify if data is missing for more than 10 minutes'. In the 'Say whats Happening' section, I filled it in with the following:
+2. I left the detection method at it's default (threshold alert) and defined the metric as 'my_metric'. Setting up the alert conditions, I filled in 800 next to 'Alert Threshold' and 500 next to 'Warning Threshold'. I also changed the notify if data is missing field from 'Do not notify' to 'Notify if data is missing for more than 10 minutes'. In the 'Say whats Happening' section, I filled it in with the following:
 
 ```
 @loganjmorales@gmail.com HEY! YOU!! THERE'S A PROBLEM WITH {{host.name}}
@@ -465,6 +465,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+I started the app with `ddtrace-run python flaskapp.py`
+
 So the app started running, but it was not showing up in my infreastructure list on Datadog... 
 
 Time to investigate.
@@ -483,7 +485,7 @@ traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tr
 
 ```
 
-to the Flask app.
+to the Flask app. To run this time, I just used `python flaskapp.py` since I'm not pulling the middleware from `ddtrace-run python`. The app successfully ran again, but still nothing in the APM dashboard.
 
 
 
