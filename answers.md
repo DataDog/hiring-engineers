@@ -471,7 +471,7 @@ So the app started running, but it was not showing up in my infreastructure list
 
 Time to investigate.
 
-![alt_text](https://media.giphy.com/media/Gpf8A8aX2uWAg/giphy.gif)
+![alt_text](https://media.giphy.com/media/ntxLxpZ0xW1kA/giphy.gif)
 
 I tried going to the Datadog APM UI page to add the app into my system. I selected 'Python' for my language and ran the app - it still wasnt showing up in my interface.
 
@@ -485,7 +485,15 @@ traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tr
 
 ```
 
-to the Flask app. To run this time, I just used `python flaskapp.py` since I'm not pulling the middleware from `ddtrace-run python`. The app successfully ran again, but still nothing in the APM dashboard.
+to the Flask app. To run this time, I just used `python flaskapp.py` since I'm not pulling the middleware from `ddtrace-run python`. The app successfully ran again (screenshot below), but still nothing in the APM dashboard.
+
+![alt_text](https://i.imgur.com/6X2GsOa.png)
+
+Next I tried modifying the 'datadog.yaml' config file to see if I missed anything there. One thing I noticed was that `enabled: true` was not indented properly (I know that sounds silly but you never know...) so I fixed that up and restarted the agent. Unfortunately, this did not work either. 
+
+I am sad about not getting the Flask app to show in my Datadog dashboard, but I am proud of myself for getting the app to run. 
+
+If selected to advance in the hiring process, I would like the opportunity to walk through the APM solution with a Datadog Guru and understand where I went wrong. I know I am close!
 
 
 
