@@ -154,7 +154,7 @@ changed this:
 
 to this:
 
-![changed hba config](screenshots/section1/integrations/hba_conf_orig.png)
+![changed hba config](screenshots/section1/integrations/hba_conf_change.png)
 
 I chose to change it to how I usually have my config file set up if I were on Vagrant or my regular windows os.
 
