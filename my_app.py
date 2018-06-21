@@ -15,11 +15,10 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(level)s - % (message)s
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 
-app = Flask(__name__) \
- \
-      @ tracer.wrap(name='trace_work')
+app = Flask(__name__)
 
 
+@tracer.wrap(name='trace_work')
 def work():
     time.sleep(0.5)
     return 42
