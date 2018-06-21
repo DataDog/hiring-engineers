@@ -1,3 +1,4 @@
+## Contents:
 * [Section 0 - Setup the Environment](#prerequisites---setup-the-environment)
     * [Setting up AWS](#setting-up-aws-linux)
 * [Section 1 - Collecting Metrics](#collecting-metrics)
@@ -20,7 +21,7 @@
 
 ## Prerequisites - Setup the environment:
 
-Originally for this challenge I decided to set up my environment with Vagrant. I'm on a Windows 10 home OS I've used Vagrant before and really enjoyed it and I figured why not.
+Originally for this challenge I decided to set up my environment with Vagrant. I'm on a Windows 10 home OS and I've used Vagrant before. I really enjoyed it and I figured why not.
 However, after setting up and making a vagrant box to share I decided to switch to AWS' cloud Linux vm. I've always wanted to try EC2 and running my vm on their cloud would save me space, cpu and work installing postgres.
  
 -- You can still read about how I set up my vagrant [here](vagrantSetup.md)
@@ -31,12 +32,16 @@ Log into aws
 Navigate to the EC2 Dashboard from the Services drop down menu and Launch an Instance.
 From there follow the directions on the Quick Start screen.
 ![select AMI](screenshots/section0/aws_linux_setup1.png) 
+
 I chose the first option for my AMI because it came with Python and Postgres preloaded.
 
 Next option was to chose the Instance type. 
 Since this is a light tutorial the free tier t2 Micro should be more than fine.
+
 ![select Size](screenshots/section0/aws_linux_setup2.png)
+
 Finally before my vm is created I created and downloaded a new key pair so that I can ssh into my vm from my local machine.
+
 ![generate key pem](screenshots/section0/aws_linux_setup3.png)
 
 From here I had two ways I could access my VM from windows. 
@@ -51,6 +56,7 @@ you can find the public DNS address on your dashboard
 ![dashboard](screenshots/section0/ec2_dashboard.png)
 
 __warning: without `sudo` I got an 'unprotected private key file' error__
+
 ![private key file error](screenshots/section0/private_key_file_error.png)
 
 SUDO!
@@ -62,7 +68,6 @@ Success!!
 ## Collecting Metrics:
 
 I installed the Datadog agent on Ubuntu with the easy one step install `DD_API_KEY=1852b8c40afd989d5e512340f1a0d3c8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
-//TODO: insert picture of agent output
 Agent v6 installed successfully and is running.
  
 ### Adding Tags to the Agent file:
@@ -85,11 +90,11 @@ I got the following error:
 ![agent config check error](screenshots/section1/tags/config_check_error.png)
 
 
-    
 I went beck to investigate my yaml file. I see my api key is in there and not commented out on top. Since I am able to see my host on the dashboard but just not my new tags I started to doubt this is the kind of key it was referring too.
 I went over to line 34 and it is my tags settings. After a quick search I found that some people have solved a similar error in other programs with indentation. I fixed the indentation in the file.
 
 That solved the  agent config check error! However, the actual output wasn't helpful after all.
+
 So, I decided to try restarting the agent thinking maybe the service should restart whenever you change the config file.
 
  It wasn't until I went to filter on the hostmap dashboard that I noticed My tags showed up.
@@ -97,12 +102,15 @@ So, I decided to try restarting the agent thinking maybe the service should rest
    ![Screenshot of Tags in Host Map](screenshots/section1/tags/tags_hostmap.png)
     
 Yay!
+
 - [X]  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ### Integrating the database:
 
-One of the benefits of using AWS is that Postgres is that it has postgres packages you can readily install onto their instances. 
+One of the benefits of using AWS is it has postgres packages you can readily install onto their instances. 
+
 Run `sudo yum list postgres*` to see available packages 
+
 I'm going to pick their newest available and run `sudo yum install postgresql96-server` to install postgres from amazon's maintained packages. 
 
 After Postgres is installed I initialized my first database and started the postgres server.
@@ -121,23 +129,25 @@ I went to the integrations menu on my datadog dashboard and selected PostgresSQL
 
 ![integrations menu](screenshots/section1/integrations/integrations_menu.png)
 
-I followed the directions on the 'configurations' tab.
-and got an indent auth failure when trying to verify my new datadog user. 
+I followed the directions on the 'configurations' tab and got an 'indent auth failure' when trying to verify my new datadog user. 
 
 ![indent auth fail](screenshots/section1/integrations/indent_auth.png)
 
 I looked up what proper permissions should be set for postgres on ec2.
 
 I couldn't find the config file in it's usual spot but I found it's location with the following commands:
+
 ![psql config location](screenshots/section1/integrations/pg_conf_path.png)
 
 
-but That wasn't the correct config file. So then I tried this:
+but that wasn't the correct config file. So then I tried this:
 
 ![hba config file location](screenshots/section1/integrations/hba_conf_show.png)
 
 and opened that path in a text editor: `sudo vim /var/lib/pgsql96/data/pg_hba.conf`
+
 That was the right one. 
+
 changed this:
 
 ![original hba config](screenshots/section1/integrations/hba_conf_orig.png)
@@ -146,8 +156,9 @@ to this:
 
 ![changed hba config](screenshots/section1/integrations/hba_conf_orig.png)
 
-I changed it to how I usually have my config file set up if I were on Vagrant or my regular windows os.
-trouble shooting online also suggested changing a setting in the original config file I found to allow localhost connection. 
+I chose to change it to how I usually have my config file set up if I were on Vagrant or my regular windows os.
+
+Trouble shooting online also suggested changing a setting in the original config file I found to allow localhost connection. 
 
 Open `sudo vim  /var/lib/pgsql96/data/postgresql.conf` 
 
@@ -161,7 +172,8 @@ to this:
 
 and restart postgres: `sudo ../../etc/init.d/postgresql96 restart`
 
-just to be safe I'm going to delete the datadog user I made and start again from the directions. 
+Just to be safe I'm going to delete the datadog user I made and start again from the directions. 
+
 in PSQL:
 
     ec2-user=# revoke SELECT ON pg_stat_database from datadog;
@@ -250,23 +262,26 @@ I wasn't sure how to check how often mycheck is running but I believe this worke
      
 - [X]  Change your check's collection interval so that it only submits the metric once every 45 seconds.
  
-### BONUS
 - [X]  **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
 
 ## Utilize the Datadog API to create a Timeboard:
 
-I setup my Dogshell so that I can interact with the datadogAPI via my terminal
+I setup my Dogshell so that I can interact with the datadogAPI via my terminal.
+
 I made a timeboard using the Dashboard GUI to just figure out what the graphs could look like:
+
 ![gui timeboard result](./screenshots/section2/timeboard/gui_timeboard_result.png)
 
 I then made the python script `timeboard.py` and tried to run it with `python timeboard.py` and was stuck.
+
 I was getting no output and didn't show any new timeboard when I ran `dog timeboard show_all`.
 
 Through trial and error I was able to figure out the format and that my metric should be written as `"avg:my_metric{*}"`
 
 ![timeboard show all](./screenshots/section2/timeboard/timboard_all.png)
+
 - [X] Your custom metric scoped over your host.
 
         "definition": {
@@ -298,6 +313,7 @@ Through trial and error I was able to figure out the format and that my metric s
             "viz": "timeseries"
         },
         "title": "Hourly Rollup Sum of my_metric"
+        
 I deleted my old `Random_Dashboard` and reran the timeboard.py script
 
 ![all graphs on dash](./screenshots/section2/timeboard/all_graphs.png)
@@ -327,7 +343,8 @@ My anomalies graph is displaying my database size with a grey area marking what 
 - [X] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 In the UI from the Monitor menu I've selected 'New Monitor'/Metric.
- I set to alert conditions to __Warning threshold of 500__, __Alerting threshold of 800__ and __Notify if there is not data for 10 mins__
+
+I set to alert conditions to __Warning threshold of 500__, __Alerting threshold of 800__ and __Notify if there is not data for 10 mins__
  
  ![alert conditions](screenshots/section3/metric_monitor/alert_conditions.png)
  
@@ -344,25 +361,30 @@ I configured the monitor message to __Send me an email whenever the monitor trig
 ### Setting up Downtimes:
 
 I set up two monitor downtimes from the 'Manage Downtimes' Section of the Monitor Menu.
+
   * One that silences it from 7pm to 9am daily on M-F,
+  
     ![downtime daily email](screenshots/section3/metric_monitor/downtime_daily.png)
+    
   * And one that silences it all day on Sat-Sun.
+  
     ![downtime weekend email](screenshots/section3/metric_monitor/downtime_weekend.png)
   
 ## Collecting APM Data:
 
 I had a lot of trouble getting the tracer to work. 
+
 I pasted the boilerplate code to a new file called `my_app.py` and followed the directions to install the tracer with regular pip. I also installed it with datadog's custom pip install for good measure.
 
 I enabled the APM from the `datadog.yaml` and restarted my Agent.
 
 I set it to the following:
 
-![apm config](./screenshots/section3/apm_config.png)
+![apm config](./screenshots/section4/apm_config.png)
 
 I've tried using the boiler without changes with `ddtrace-run python my_app.py`. The terminal output says there is one service being reported but I'm not seeing anything on my UI dash.
 
-![no middleware output](./screenshots/section3/no_middle_output.png)
+![no middleware output](./screenshots/section4/no_middle_output.png)
 
 I then manually added the flask middleware from the doc example and then installed `Flask` and `Blinker` with pip and datadog's pip
 
@@ -370,13 +392,13 @@ I ran this file with `python my_app.py` because of the warning of using one or t
 
 I got an identical output to the no middleware method with no change on my UI
 
-![with middleware output](./screenshots/section3/my_app_middleware_output.png) 
+![with middleware output](./screenshots/section4/my_app_middleware_output.png) 
 
 I finally remember that I haven't accessed my localhost yet so, there is nothing to report (ugh!).
 
 I navigate over to my public ip at port 5050 `http://ec2-18-236-72-13.us-west-2.compute.amazonaws.com:5050/` 
 
-![Ui showing both apms](./screenshots/section3/Ui_finally.png) 
+![Ui showing both apms](./screenshots/section4/Ui_finally.png) 
 
 Here is the link to python file I used for my_app [LINK to my_app.py](my_app.py) I ran it with `python my_app.py` to not cause an error.
 
@@ -386,7 +408,7 @@ A "Service" is the name of a set of processes that do the same job and a "Resour
 
 I made a screenboard to show my APM and Infrastructure metrics. [link to screenboard](https://p.datadoghq.com/sb/66ef15e59-9cbb68fcf742786f3d7390d1326f6487) 
 
-![screenboard metrics](./screenshots/section3/screenboard.png)
+![screenboard metrics](./screenshots/section4/screenboard.png)
 
 ## Final Question:
 
