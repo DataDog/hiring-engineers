@@ -14,6 +14,7 @@
     * [Setting up Downtimes](#setting-up-downtimes)
 * [Section 4 - Collecting APM Data](#collecting-apm-data)
 * [Final Question](#final-question)
+* [Links](#links)
     
 
 # Answers:
@@ -319,6 +320,7 @@ I deleted my old `Random_Dashboard` and reran the timeboard.py script
 ![all graphs on dash](./screenshots/section2/timeboard/all_graphs.png)
 
 Here is the script used to create this timeboard: [link to timeboard.py](timeboard.py)
+Here is a Link to a sharable screenboard version of these timeboards [Link to Graphs timeboard](https://p.datadoghq.com/sb/66ef15e59-8609df014cbb06dfc5c8db5cf331caf9)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -419,3 +421,11 @@ As a patron you can track how crowded different wings and exhibits are and plan 
 
 As a curator, if you were able to track how many people crowd around a particular exhibit piece and how long people generally stay there you can better plan where the best spots to display are or you can track how much interest a particular piece is getting.
 You could probably even plan a whole special exhibit on intersecting popular subjects that might not have been thought of together. 
+
+## Links:
+
+* [APM and Infrastructure Screenboard](https://p.datadoghq.com/sb/66ef15e59-9cbb68fcf742786f3d7390d1326f6487) 
+* [Timeboard Graphs as Screenboard](https://p.datadoghq.com/sb/66ef15e59-8609df014cbb06dfc5c8db5cf331caf9)
+* [mycheck.py](mycheck.py) and [mycheck.yaml](mycheck.yaml)
+* [timeboard.py](timeboard.py)
+* [my_app.py](my_app.py)
