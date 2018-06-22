@@ -11,7 +11,7 @@ I followed along the [documentation](https://docs.datadoghq.com/getting_started/
 - change to: 
 		tags: project:test,laptop:koshap,role:database
 
-![Custom Tags](screenshots/customtags.png)
+![Custom Tags](Screenshots/customtags.png)
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -63,7 +63,9 @@ launchctl start com.datadoghq.agent
 
 
 
-![PostgreSQL Integration Validation](https://imgur.com/a/epPq5a3)
+![PostgreSQL Integration Validation](Screenshots/Postgresintegration.png)
+
+![PostgreSQL Integration Dashboard](Screenshots/postgresdashboard.png)
 
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -95,7 +97,7 @@ class HelloCheck(AgentCheck):
 
 After that, I restarted the Datadog Agent and executed the `datadog-agent status` command line to make sure the check had successfully been implemented.
 
-![Custom Agent Check Validation](https://imgur.com/a/317okAN)
+![Custom Agent Check Validation](Screenshots/customcheck.png)
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -115,7 +117,7 @@ instances:
 
 After that, I restarted again the Datadog agent, and went back to the graph to make sure that the collection interval had, indeed, gone from 15-20 to 45 seconds.
 
-![Change of Collection Interval 47sec](https://imgur.com/a/KDvTJbL)
+![Change of Collection Interval 47sec](Screenshots/45secinterval.png)
 
 * Bonus: I changed the interval using the 'my_metric.yaml' file therefore the python file was not touched. 
 
@@ -134,7 +136,7 @@ We will here focus on creating a timeboard through Datadog API.
 
 To start using Datadog API, you first need to install Datadog. Therefore, go to your python environment and run the `pip install datadog` command line as indicated here: https://github.com/DataDog/datadogpy. 
 
-![Datadog Installation](/screenshots/pipinstalldd.png)
+
 
 You then need to look for your API key and to create your application key. To do so, just go to Datadog application, go to the “Integrations” section in the side bar menu, and pick the APIs tab. Just hit the button “Create Application Key” and there you go, your brand-new application key!
 
@@ -262,17 +264,17 @@ Then, save and run the python script you just created on your terminal. It shoul
 }
 ```
 
-![Timeboard with rollup and anomoly](https://imgur.com/a/QRrr8db)
+![Timeboard with rollup and anomoly](Screenshots/timeboardanomoly.png)
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-![5min timeframe](https://imgur.com/a/zfknK5r)
+![5min timeframe](Screenshots/5minutes.png)
 
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![Email 5min interval](https://imgur.com/a/Ux96Gkx)
+![Email 5min interval](Screenshots/5minemail.png)
 
 
 * **Bonus Question**: What is the Anomaly graph displaying?
@@ -309,7 +311,7 @@ In this example I decided to define a threshold alert on my_metric from our host
 
 I also designed a monitor’s message adapted to the type of issue: alert, warning or missing data. In the alert message, I included the host name, ip, the threshold and the value that caused the monitor to trigger. Finally, I added my email address to check the email notifications worked.
 
-![Warning email](https://imgur.com/a/ONflZAB)
+![Warning email](Screenshots/warningemail.png)
 
 * __Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:__
 	* __One that silences it from 7pm to 9am daily on M-F,__
@@ -330,9 +332,9 @@ Two downtimes were scheduled and two emails informing us from a downtime schedul
 
 -	The first one to silence our my_metric monitor from 7pm to 9am daily from Monday to Friday.
 
-![M-F email](https://imgur.com/a/h9uIX66)
+![M-F email](Screenshots/weeklyemail.png)
 
-![weekend downtime](https://imgur.com/a/V8jccuC)
+![weekend downtime](Screenshots/weekendemail.png)
 
 
 ##Collecting APM Data:
@@ -374,7 +376,7 @@ if __name__ == '__main__':
 
 ``` 
 
-![APM](https://imgur.com/a/gstZuIb)
+![APM](Screenshots/DatadogApm.png)
 
 ##Final Question
 
