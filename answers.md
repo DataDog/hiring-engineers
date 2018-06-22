@@ -269,7 +269,10 @@ Then, save and run the python script you just created on your terminal. It shoul
 * Set the Timeboard's timeframe to the past 5 minutes
 
 ![5min timeframe](Screenshots/5minutes.png)
+<<<<<<< HEAD
 
+=======
+>>>>>>> f407cd11260778de5f911916052ef9519b3bc937
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -332,8 +335,14 @@ Two downtimes were scheduled and two emails informing us from a downtime schedul
 
 -	The first one to silence our my_metric monitor from 7pm to 9am daily from Monday to Friday.
 
+<<<<<<< HEAD
 ![M-F email](Screenshots/weeklyemail.png)
 
+=======
+
+![M-F email](Screenshots/weeklyemail.png)
+
+>>>>>>> f407cd11260778de5f911916052ef9519b3bc937
 ![weekend downtime](Screenshots/weekendemail.png)
 
 
