@@ -497,6 +497,63 @@ I am sad about not getting the Flask app to show in my Datadog dashboard, but I 
 
 If selected to advance in the hiring process, I would like the opportunity to walk through the APM solution with a Datadog Guru and understand where I went wrong. I know I am close!
 
+### UPDATE!! I am very thankful that I was allowed a few extra days to figure out this APM issue. Here we go! Again...
+
+![alt_text](https://media.giphy.com/media/yj5UdA4elp8Wc/giphy.gif)
+
+The first thing I wanted to try was curling the local site created by the flask app. Thinking about it for a second, I realized I would run into a small hiccup:
+
+I am running Ubuntu only in the CLI and am unable to curl, or run any command, while the flask app is running.
+
+I did not use Vagrant to initialize my VM and set it up with barebones Virtualbox. I considered simply SSHing in, but also realized that my VM is configured to NAT and was on a different network than my host machine. So... here are the step I took:
+
+1. Switch my Ubuntu VM NIC to a bridged adapter, instead of NAT. This allows the VM to work off of the same network as my host machine and get me on the right track. .
+
+2. Start my VM back up and run a quick `ifconfig` to make sure the network is the same as my host (screenshots below):
+
+Host Machine:
+
+![alt_text](https://i.imgur.com/J2JkIHL.png?1)
+
+Ubuntu VM:
+
+![alt_text](https://i.imgur.com/S3djiIN.png?1)
+
+Nice! Moving on.
+
+3. I opted to install OpenSHH during my linux installation so I am already good there. The next step would be to test a connection from my host to guest machine. I opened up a terminal window in MacOS and ran the command `ssh logan@10.104.71.62`, entered my password add...
+
+![alt_text](https://i.imgur.com/MbdgaQ4.png)
+
+VOILA! We're not out of the woods yet... 
+
+4. Now that I have access to multiple terminal sessions, I can curl the local site from my VirtualBox VM while the flask app runs in my SSH session. I ran the app, executed the curl and received the return statement "Entrypoint to the Application" from the flask app. However, I was still not getting any traces reported in Datadog.
+
+5. I started playing around with the routes and curled all of them. I checked my flask console and noticed a bunch of HTTP traffic, but not reports of traces being sent (Screenshot below).
+
+![alt_text](https://i.imgur.com/eX2A3OX.png)
+
+6. I made a sudden realization: While I was debugging in the previous submission, I added the manual middleware to the app's code and was still running `ddtrace-run python flaskapp.py` to start the application! How silly of me... It clearly said not to do that. I commened out the code and ran `ddtrace-run python flaskapp.py` one last time. I curled the site again. I wait in anticipation.
+
+![alt_text](https://i.imgur.com/gsw2rDo.png)
+
+![alt_text](https://media.giphy.com/media/3oxOCfV7z28QtXXAtO/giphy.gif)
+
+Sweeeeeet, sweeeet sweet victory, yeah.
+
+Here is a screenshot of the APM metrics:
+
+![alt_text](https://i.imgur.com/FVGHS3x.png)
+
+Here is a screenshot of the APM and Infrastructure metrics:
+
+![alt_text](https://i.imgur.com/ocVM6ej.png)
+
+### BONUS!
+
+After navigating the Datadog APM interface a bit, I understand services being the processes that are monitored or traced, where resources are a single method, or query, within that service. For example, in the Flask App, there is a resource called 'api_entry' that is used by the 'Flask' service. Resources help out services and services need resources. It's a nice relationship. 
+
+
 ## FINAL QUESTION!!!
 
 I have had a blast learning about Datadog and the many use cases for such robust monitoring system. Something I would like to see... Datadog for DOGS!! Seriously.
