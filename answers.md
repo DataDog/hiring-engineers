@@ -505,7 +505,7 @@ The first thing I wanted to try was curling the local site created by the flask 
 
 I am running Ubuntu only in the CLI and am unable to curl, or run any command, while the flask app is running.
 
-I did not use Vagrant to initialize my VM and set it up with barebones Virtualbox. I considered simply SSHing in, but also realized that my VM is configured to NAT and was on a different network than my host machine. So... here are the step I took:
+I did not use Vagrant to initialize my VM and set it up with barebones Virtualbox. I considered simply SSHing in, but also realized that my VM is configured to NAT and was on a different network than my host machine. So... here are the steps I took:
 
 1. Switch my Ubuntu VM NIC to a bridged adapter, instead of NAT. This allows the VM to work off of the same network as my host machine and get me on the right track. .
 
