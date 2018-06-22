@@ -11,7 +11,7 @@ I followed along the [documentation](https://docs.datadoghq.com/getting_started/
 - change to: 
 		tags: project:test,laptop:koshap,role:database
 
-![Custom Tags](https://imgur.com/a/xx5xpqs)
+![Custom Tags](screenshots/customtags.png)
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
