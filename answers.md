@@ -535,6 +535,13 @@ VOILA! We're not out of the woods yet...
 
 6. I made a sudden realization: While I was debugging in the previous submission, I added the manual middleware to the app's code and was still running `ddtrace-run python flaskapp.py` to start the application! How silly of me... It clearly said not to do that. I commened out the code and ran `ddtrace-run python flaskapp.py` one last time. I curled the site again. I wait in anticipation.
 
+
+Application:
+
+![alt_text](https://i.imgur.com/HTcG9Fe.png)
+
+Datadog:
+
 ![alt_text](https://i.imgur.com/gsw2rDo.png)
 
 ![alt_text](https://media.giphy.com/media/3oxOCfV7z28QtXXAtO/giphy.gif)
