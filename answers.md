@@ -4,6 +4,8 @@ Your answers to the questions go here.
 
 * Added tags in the Agent config file, located on the host machine at: "/etc/datadog-agent/datadog.yaml" Here is a screen shot of the machine in the Host Map page in Datadog: (insert screenshot here)
 
+![alt text](./screenshots/hostmap.png)
+
 * Installed MySQL on the host and then installed the respective Datadog integration. (insert screenshot here)
 
 * Submits my_metric using the gauge() function
