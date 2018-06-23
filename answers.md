@@ -3,7 +3,8 @@ Your answers to the questions go here.
 * Using a VM Ubuntu 16.04 as host machine.
 
 * Add tags in the Agent config file, located on the host machine at: */etc/datadog-agent/datadog.yaml*:
-	* ```yaml
+	*
+	```yaml
 	# Set the host's tags (optional)
 	tags:
 	   - region:westcoast
