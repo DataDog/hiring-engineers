@@ -68,3 +68,82 @@ Your answers to the questions go here.
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 	* The above method does not modify the python file.
+
+
+## Visualizing Data
+Utilize the Datadog API to create a Timeboard that contains:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+ Python script used to create this dashboard:
+  ```python
+  from datadog import initialize, api
+ import json
+
+ d = None
+ with open('./keys.json') as json_data:
+     d = json.load(json_data)
+
+ API_KEY = d["api_key"]
+ APP_KEY = d["app_key"]
+
+ options = {
+     'api_key': API_KEY,
+     'app_key': APP_KEY
+ }
+
+ initialize(**options)
+
+ title = "Visualizing Data Timeboard"
+ description = "DataDog challenge second question on visualizing data."
+ graphs = [{
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q":"avg:my_metric{host:utsav-VirtualBox}"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "My Metric"
+ },
+
+ {
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q": "anomalies(avg:mysql.performance.cpu_time{host:utsav-VirtualBox}, 'basic', 1)"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "SQL Performance Metric"
+ },
+
+ {
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q":"avg:my_metric{host:utsav-VirtualBox}.rollup(avg, 3600)"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "My Metric (Rollup - 1hr)"
+ }
+ ]
+
+ template_variables = [{
+     "name": "host1",
+     "prefix": "host",
+     "default": "host:my-host"
+ }]
+
+ read_only = True
+ response = api.Timeboard.create(title=title,
+                      description=description,
+                      graphs=graphs,
+                      template_variables=template_variables,
+                      read_only=read_only)
+
+ print(response)
+  ```
