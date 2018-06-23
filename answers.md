@@ -30,7 +30,7 @@ After that I was able to complete the setup process and was taken to the main da
 
 ## Collecting Metrics
 
-The instructions next said to "Agg tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
+The instructions next said to "Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
 
 I had to do some research to find where the Agent config file was located. I found the answer at this [resource](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-). After moving to the `etc/datadog-agent` directory, I located the `datadog.yaml` file. I opened the file to edit it. 
 
@@ -43,6 +43,10 @@ The tags are visible in the configuration file at the bottom of the terminal win
 And here are the tags in the host map:
 
 ![host map](host_map.png)
+
+Next I needed to install a database on the machine and then install the respective Datadog integration for that database. I decided to go with MongoDB. First I updated my Ubuntu operating system from 12.04 to 14.04 in line with the instructions on MongoDB's [website](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) to install the Community Edition on Ubuntu.
+
+After installing MongoDB, I began the install for the integration for Datadog. I followed these [instructions](https://docs.datadoghq.com/integrations/mongo/#setup).
 
 
 
