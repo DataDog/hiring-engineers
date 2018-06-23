@@ -1,0 +1,59 @@
+{
+	"variables": [],
+	"info": {
+		"name": "My Datadog",
+		"_postman_id": "bcdbcdb1-356e-4849-b15b-fc039eed751b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Timeboard",
+			"request": {
+				"url": {
+					"raw": "https://app.datadoghq.com/api/v1/dash?api_key=c5ef15520895549edf48d66ac0afebf6&application_key=554ea12553d8d40bb1719757034e1f7c2cb3723b",
+					"protocol": "https",
+					"host": [
+						"app",
+						"datadoghq",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"dash"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "c5ef15520895549edf48d66ac0afebf6",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "application_key",
+							"value": "554ea12553d8d40bb1719757034e1f7c2cb3723b",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"graphs\" : [{\n      \"title\": \"My metric by host\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"sum:my_metric{host:gcp.dev}\", \"type\": \"bars\"}\n          ]\n      },\n      \"viz\": \"timeseries\"\n  },{\n      \"title\": \"Queries p/second to the MongoDB, with anomaly detection in place\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"anomalies(sum:mongodb.opcounters.queryps{database:mongodb}, 'basic', 2)\", \"type\": \"line\"}\n          ]\n      },\n      \"viz\": \"timeseries\"\n  },{\n      \"title\": \"My metric rolled up and summed by the past hour\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"sum:my_metric{host:gcp.dev}.rollup(sum, 3600)\", \"type\": \"line\"}\n          ]\n      },\n      \"viz\": \"query_value\",\n      \"autoscale\": \"true\"\n  }],\n  \"title\" : \"Data Visual Timeboard (postman)\",\n  \"description\" : \"An informative timeboard of the metric 'My Metric'.\",\n  \"read_only\": \"True\"\n}"
+				},
+				"description": "Create a timeboard"
+			},
+			"response": []
+		}
+	]
+}
