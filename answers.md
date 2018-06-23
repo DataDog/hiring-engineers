@@ -1,34 +1,39 @@
 # Journey through Datadog
 Welcome, welcome, welcome!
 
-If you're reading this then you're about to embarque on a journey through the realm of Datadog, where you'll encounter challenges like
+Sit back and relax, while I tell you the story of my journey through the realm of Datadog. I'm going to tell you all about challenges encountered (as listed below) and how there were solved.
+
 - Collecting Metrics
 - Monitoring Data
 - Monitoring Applications
 
-To keep you company throughout your journey, you'll have your very own Datadog called 'Dax'.
-
-There are some basic notions you should be familiar with before reading on. These are:
-- Cloud Computing (Google Cloud Platform)
-- Programming/Scripting (Python, JSON)
-- Databases (MongoDB)
-- Postman (Rest APIs)
+To keep me company throughout my journey, I had my very own Datadog called 'Dax'. Now, before getting into any details, here are some basic notions you should be familiar with before reading on.
+- [Cloud Computing (Google Cloud Platform)](https://cloud.google.com/)
+- [Scripting (Python)](https://www.python.org/)
+- [Data formats (JSON)](https://www.json.org/)
+- [Databases (MongoDB)](https://www.mongodb.com/)
+- [API Development Environment (Postman)](https://www.getpostman.com/)
 
 So, are you excited? Well, you should be!
 
 ## Journey Equipment
-Now, to begin this journey, you'll need a few gadgets as listed below.
-- Create a free Google Cloud Platform (GCP) account [here](https://cloud.google.com/).
-- Create a g1-small instance on GCP using supporting documentation [here](https://cloud.google.com/compute/docs/).
-- Install ToDO application (and it's dependencies) on your newly created GCP instance by following the instructions in [To-Do List using Fask & MongoDB](https://github.com/adelhaider/To-Do-List-using-Flask-and-MongoDB). Note that you'll need to access your GCP instance using SSH.
-- Postman App
+Now, to begin the journey, I decided to equip myself with a few gadgets, as listed below.
+- A free Google Cloud Platform (GCP) account [here](https://cloud.google.com/).
+- A g1-small instance on GCP, using supporting documentation [here](https://cloud.google.com/compute/docs/).
+- An example ToDo application called [To-Do List using Fask & MongoDB](https://github.com/adelhaider/To-Do-List-using-Flask-and-MongoDB), which I forked from [here](https://github.com/CoolBoi567/To-Do-List-using-Flask-and-MongoDB).
+- A local install of the Postman Application
 
-All set? Let's go!
+Once I was all set, it was time to take off!
 
-## Starting point
-Your journey starts here.
+## Collecting Metrics
+My journey began the collection of some metrics from within my GCP instance. To achieve this, I installed & configured Dax on my g1-small instance.
 
-# Collecting Metrics
+The screenshot below shows the installation within the instance itself.
+![gcp-install-data-agent-2](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/gcp-install-data-agent-2.PNG?raw=true "gcp-install-data-agent-2")
+
+The screenshot below shows the configuration from within the Datadog UI.
+![datadog-gcp-integration](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/datadog-gcp-integration.PNG?raw=true "datadog-gcp-integration")
+
 Your first checkpoint explains the topic of Collecting Metrics. [add a description]
 ## Can you change the collection interval without modifying the Python check file you created?
 Yes, you can add `min_collection_interval: 45` in the [my_metric.yaml](checks/my_metric/my_metric.yaml) config file.
