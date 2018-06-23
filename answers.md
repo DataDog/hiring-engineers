@@ -32,19 +32,19 @@ My journey began in [METRICS](https://docs.datadoghq.com/developers/metrics/#sub
 My first challenge here was to collect some metrics from within my GCP instance, to monitor it's behaviour. To achieve this, I installed & configured Dax on my g1-small instance.
 
 #### Here's what the installation looking like from within the instance itself.
-![gcp-install-data-agent-2](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/gcp-install-data-agent-2.PNG?raw=true "gcp-install-data-agent-2")
+![gcp-install-data-agent-2](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/gcp-install-data-agent-2.png?raw=true "gcp-install-data-agent-2")
 
 #### Here's a screenshot of the configuration from within the Datadog UI.
-![datadog-gcp-integration](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/datadog-gcp-integration.PNG?raw=true "datadog-gcp-integration")
+![datadog-gcp-integration](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/datadog-gcp-integration.png?raw=true "datadog-gcp-integration")
 
 #### I also decided to fiddle about with the tags in Dax's configuration and this is the end result
-![hostmap-tags](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/hostmap-tags.PNG?raw=true "hostmap-tags")
+![hostmap-tags](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/hostmap-tags.png?raw=true "hostmap-tags")
 
 ### Challenge 2: Collect Metrics from a Database (MongoDB)
 My second challenge was to collect some metrics from a database, my choice being MongoDB. To address this challenge, I relied on my trusty friend Dax who pointed me to the [Mongo Integration Documentation](https://docs.datadoghq.com/integrations/mongo/) on Datadog.
 
 #### After a few minutes of config, here's what the default mongodb dashboard looked like.
-![mongodb-dashboard](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/mongodb-dashboard.PNG?raw=true "mongodb-dashboard")
+![mongodb-dashboard](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/mongodb-dashboard.png?raw=true "mongodb-dashboard")
 
 ### Challenge 3: Custom Agent Check
 My third challenge was to create a custom Agent check that submits a metric named __my_metric__ with a random value between 0 and 1000, submitting the value one eveery 45 seconds.
@@ -70,7 +70,7 @@ The challenge involved creating a timeboard, using the Datadog API, containing t
 - My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 - Any metric from the Integration on my Database with the anomaly function applied.
 
-To accomplish this challenge, I used Postman to invoke the API, defining the graphs within the payload of the request. Here's the [Postman Collection](timeboards/my_postman_collection.json) I used for this. An alternative approach to using postman, would have been to use a python script, namely [timeboard.py](timeboards/timeboard.py).
+To accomplish this challenge, I used Postman to invoke the API, defining the graphs within the payload of the request. Here's the [Postman Collection](my_postman_collection.json) I used for this. An alternative approach to using postman, would have been to use a python script, namely [timeboard.py](timeboard.py).
 
 #### Here's a timeboard dashboard resulting from this challenge.
 ![data-timeboard_datadog-API](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/data-timeboard_datadog-API.png?raw=true "data-timeboard_datadog-API")
