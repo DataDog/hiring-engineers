@@ -99,6 +99,7 @@ To overcome this challenge, I setup a Metric Monitor within the Datadog UI.
 #### Here's a screenshot of the configuration.
 ![my_metric_monitor](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/my_metric_monitor.png?raw=true "my_metric_monitor")
 
+#### Here's a screenshot of email confirmation.
 ![my_metric_monitor_created](https://github.com/adelhaider/hiring-engineers/blob/solutions-engineer/screenshots/my_metric_monitor_created.png "my_metric_monitor_created")
 
 ### Bonus Challenge
@@ -141,10 +142,11 @@ This city also had a billboard at the exit, with the following question:
 Here's what I encovered during my time at this city.
 
 ##### Service
-A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
+
+A __Service__ is a set of processes that work together to provide a feature set. In my case, for example, I have two services: the todo app service and the mongodb database service.
 
 ##### Resource
-A Resource is a particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
+A __Resource__ is a particular query to a service. In my case, again, these are the canonical URL like /tasks, /lists & /completed.
 
 # Journey End
 At the end of my journey, I encountered a wise munk in the form of a dog, who left me with a thought for my return home.
