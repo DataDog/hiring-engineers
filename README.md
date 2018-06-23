@@ -28,21 +28,90 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-## Visualizing Data:
+ ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+ Utilize the Datadog API to create a Timeboard that contains:
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+ * Your custom metric scoped over your host.
+ * Any metric from the Integration on your Database with the anomaly function applied.
+ * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+ Python script used to create this dashboard:
+  ```python
+  from datadog import initialize, api
+ import json
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+ d = None
+ with open('./keys.json') as json_data:
+     d = json.load(json_data)
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+ API_KEY = d["api_key"]
+ APP_KEY = d["app_key"]
+
+ options = {
+     'api_key': API_KEY,
+     'app_key': APP_KEY
+ }
+
+ initialize(**options)
+
+ title = "Visualizing Data Timeboard"
+ description = "DataDog challenge second question on visualizing data."
+ graphs = [{
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q":"avg:my_metric{host:utsav-VirtualBox}"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "My Metric"
+ },
+
+ {
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q": "anomalies(avg:mysql.performance.cpu_time{host:utsav-VirtualBox}, 'basic', 1)"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "SQL Performance Metric"
+ },
+
+ {
+     "definition": {
+         "events": [],
+         "requests": [
+             {"q":"avg:my_metric{host:utsav-VirtualBox}.rollup(avg, 3600)"}
+         ],
+         "viz": "timeseries"
+     },
+     "title": "My Metric (Rollup - 1hr)"
+ }
+ ]
+
+ template_variables = [{
+     "name": "host1",
+     "prefix": "host",
+     "default": "host:my-host"
+ }]
+
+ read_only = True
+ response = api.Timeboard.create(title=title,
+                      description=description,
+                      graphs=graphs,
+                      template_variables=template_variables,
+                      read_only=read_only)
+
+ print(response)
+  ```
+
+ Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+ * Set the Timeboard's timeframe to the past 5 minutes
+ * Take a snapshot of this graph and use the @ notation to send it to yourself.
+ * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
