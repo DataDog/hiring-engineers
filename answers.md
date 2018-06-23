@@ -10,7 +10,7 @@ Then I started up the virtual machine with the command `vagrant up` and ran the 
 
 ![vagrant up and vagrant ssh command](images/up_ssh.png)
 
-I then signed for a Datadog account.
+I then signed up for a Datadog account.
 
 ![sign up](images/sign_up.png)
 
@@ -31,5 +31,20 @@ After that I was able to complete the setup process and was taken to the main da
 ## Collecting Metrics
 
 The instructions next said to "Agg tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
+
+I had to do some research to find where the Agent config file was located. I found the answer at this [resource](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-). After moving to the `etc/datadog-agent` directory, I located the `datadog.yaml` file. I opened the file to edit it. 
+
+I added some tags according to these instructions on this [page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), and then I went back to look at the host map. **I'm still not sure how to get the tags to reflect immediatedly on the host map.** I was trying to restart the service, and I don't think that worked. I couldn't figure out how to do the command to run the service check on the agent so that didn't work. It just updated after a while. Regardless, now my Agent configration file and the host map both reflect the same tags. 
+
+The tags are visible in the configuration file at the bottom of the terminal window:
+
+![config file](config_file.png)
+
+And here are the tags in the host map:
+
+![host map](host_map.png)
+
+
+
 
 
