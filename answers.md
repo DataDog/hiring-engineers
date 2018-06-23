@@ -6,7 +6,7 @@ Your answers to the questions go here.
 ![alt text](./screenshots/hostmap.png)
 
 * Installed MySQL on the host and then installed the respective Datadog integration.
-![alt text](./screenshots/sql_graphs.png)
+![alt text](./screenshots/sql_graphs.jpg)
 
 * Submits my_metric using the gauge() function.
 ![alt text](./screenshots/my_metric.png)
