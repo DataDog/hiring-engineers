@@ -147,3 +147,10 @@ Utilize the Datadog API to create a Timeboard that contains:
 
  print(response)
   ```
+  * Screenshot of Timeboard:
+  ![alt text](./screenshots/visualizing_data_timeboard.png)
+  
+  * **Bonus**: The anomaly function uses an algorithm to identify when a metric is behaving differently than it has in the past, taking into account trends.
+ 
+
+## Monitoring Data
