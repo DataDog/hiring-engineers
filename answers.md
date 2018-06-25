@@ -38,23 +38,23 @@ I added some tags according to these instructions on this [page](https://docs.da
 
 The tags are visible in the configuration file at the bottom of the terminal window:
 
-![config file](config_file.png)
+![config file](images/config_file.png)
 
 And here are the tags in the host map:
 
-![host map](host_map.png)
+![host map](images/host_map.png)
 
 Next I needed to install a database on the machine and then install the respective Datadog integration for that database. I decided to go with MongoDB. First I updated my Ubuntu operating system from 12.04 to 14.04 in line with the instructions on MongoDB's [website](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) to install the Community Edition on Ubuntu.
 
 After installing MongoDB, I began the install for the integration for Datadog. I followed these [instructions](https://docs.datadoghq.com/integrations/mongo/#setup). I set up the `conf.yaml` file, set up the user in the mongo shell, and installed the integration on Datadog. Here you can see some screenshots on Datadog that the MongoDB integration is up and running on the host. 
 
-![host with mongo](host_with_mongo.png)
-![mongo integration installed](mongo_integration_installed.png)
-![mongo dashboard](mongo_dashboard.png)
+![host with mongo](images/host_with_mongo.png)
+![mongo integration installed](images/mongo_integration_installed.png)
+![mongo dashboard](images/mongo_dashboard.png)
 
 Running an info status check, `sudo datadog-agent status`, the checks appear for MongoDB. Here is a screenshot:
 
-![mongo status check](mongo_status_check.png)
+![mongo status check](images/mongo_status_check.png)
 
 
 
