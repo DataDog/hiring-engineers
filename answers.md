@@ -154,3 +154,14 @@ Utilize the Datadog API to create a Timeboard that contains:
  
 
 ## Monitoring Data
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+	* Screenshot of Monitor Details:
+	![alt text](./screenshots/metric_monitor.png)
+	
+	* Screenshot of Monitor Alert Email:
+	![alt text](./screenshots/monitor_alert_email.png)
+
+	* Screenshot of Monitor Scheduled Downtime Email:
+	![alt text](./screenshots/downtime_email.png)
