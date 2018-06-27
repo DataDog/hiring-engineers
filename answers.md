@@ -84,7 +84,7 @@ Here is a screenshot of the my_metric dashboard. You can see that after I change
 
 ## Visualizing Data
 
-Next I was to use the Datadog API to create a Timeboard with three metrics on the same timeseries graph. Doing so required a bit of research. First I read the general graphing [documentation](https://docs.datadoghq.com/graphing/) for the UI. Once I was familiar, I read the [documentation](https://docs.datadoghq.com/graphing/miscellaneous/graphingjson/) about editing graphs with JSON. This is how I would be primarily editing the graph I was creating. Finally, I researched the [functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) I would be using like the `anomalies()` and `.rollup()` function. I added the three metrics described in the bullet points (custom metric scoped over host, any method from Integration from database with anomaly function applied, and custom metric with rollup function). 
+Next I was to use the Datadog API to create a Timeboard with three metrics on the same timeseries graph. Doing so required a bit of research. First I read the general graphing [documentation](https://docs.datadoghq.com/graphing/) for the UI. Once I was familiar, I read the [documentation](https://docs.datadoghq.com/graphing/miscellaneous/graphingjson/) about editing graphs with JSON. This is how I would be primarily editing the graph I was creating. Finally, I researched the [functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) I would be using the `anomalies()` and `.rollup()` function. I added the three metrics described in the bullet points (custom metric scoped over host, any method from Integration from database with anomaly function applied, and custom metric with rollup function). 
 
 The script for this Timeboard is included in the repository as `timeboard.json`. Here is the completed Dashboard. I could not figure out how to set the timeframe for the Timeboard to just the last five minutes so I set it to the past hour. Here is a screenshot of the timeseries graph: 
 
@@ -97,6 +97,36 @@ I then took a snapshot of the graph and used the -at- notation to send it to mys
 As for the **bonus question**, I don't think the anomaly part of the graph is displaying anything for me besides just the regular metric line because my MongoDB database doesn't have any anomalous changes to its metrics. It was completely consistent for the snapshot I took.
 
 ## Monitoring Data
+
+### Setting Up Monitor
+
+Next up is creating a Metric Monitor to watch the average of my custom metric and alert for certain events. I used the form to create the monitor. It notifies for a warning threshold of 500 (for a 5 minute average), notifies for an alerting threshold of 800 (for a 5 minute average), and notifies if there is No Data for the query over the past 10 minutes. This was easy enough to figure out how to do. 
+
+I then set up the monitor's message to have special notes with each trigger. The three alerts will send the host name and host ip with their notes, and the Alert and Warning will include the metric number that triggered the monitor.
+
+Here are screenshots of the setup:
+
+![metric monitor 1](metric_monitor_1.png)
+![metric monitor 2](metric_monitor_2.png)
+![metric monitor 3](metric_monitor_3.png)
+
+Here is a screenshot of an email it sent me:
+
+![monitor email](monitor_email.png)
+
+### **Bonus** Setting Up Downtime
+
+For the **bonus question** I set up the scheduled downtime for Monday-Friday 7:00 PM - 9:00 AM and Saturday-Sunday all day.
+
+Here is the M-F downtime setup and the corresponding email notification:
+
+![weekday downtime](downtime_1.png)
+![weekday email](email_1.png)
+
+Here is the S-S downtime setup and the corresponding email notification:
+
+![weekend downtime](downtime_2.png)
+![weekend email](email_2.png)
 
 ## Collecting APM Data
 
