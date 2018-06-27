@@ -157,11 +157,42 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-	* Screenshot of Monitor Details:
-	![alt text](./screenshots/metric_monitor.png)
+* Screenshot of Monitor Details:
+![alt text](./screenshots/metric_monitor.png)
 	
-	* Screenshot of Monitor Alert Email:
-	![alt text](./screenshots/monitor_alert_email.png)
+* Screenshot of Monitor Alert Email:
+![alt text](./screenshots/monitor_alert_email.png)
 
-	* Screenshot of Monitor Scheduled Downtime Email:
-	![alt text](./screenshots/downtime_email.png)
+* Screenshot of Monitor Scheduled Downtime Email:
+![alt text](./screenshots/downtime_email.png)
+
+
+## Collecting APM Data
+
+* Add the following python libraries to the app:
+	```python
+	from flask import Flask
+	import blinker as _
+
+	from ddtrace import tracer
+	from ddtrace.contrib.flask import TraceMiddleware
+	```
+
+* Then create the flask app and insert code to create traced app with the middleware call:
+	```python
+	app = Flask(__name__)
+	traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+	```
+
+* Screenshot of dashboard with flask tracing:
+![alt text](./screenshots/apm_dashboard.png)
+
+* Screenshot of dashboard with host infrastructure data:
+![alt text](./screenshots/infrastructure_dash.png)
+
+
+## Links to Dashboards:
+* [utsav-VirtualBox (host)](https://app.datadoghq.com/dash/host/510159929?live=true&page=0&is_auto=false&from_ts=1530054428216&to_ts=1530058028216&tile_size=m)
+* [APM Dashboard](https://app.datadoghq.com/dash/845710/apm-and-infrastructure?live=true&page=0&is_auto=false&from_ts=1530054394568&to_ts=1530057994568&tile_size=m)
+* [Visualizing Data Timeboard](https://app.datadoghq.com/dash/843528/visualizing-data-timeboard)
+* [mySQL Overview]( https://app.datadoghq.com/dash/integration/12/mysql---overview?live=true&page=0&is_auto=false&from_ts=1530054368154&to_ts=1530057968154&tile_size=m)
