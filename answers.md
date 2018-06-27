@@ -1,4 +1,4 @@
-Your answers to the questions go here.
+All links to relevant dashboards at the bottom of this readme
 ## Collecting Metrics:
 * Using a VM Ubuntu 16.04 as host machine.
 
