@@ -1,0 +1,36 @@
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:precise64}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "anomalies(avg:mongodb.dbs{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    },
+    {
+      "q": "avg:my_metric{*}.rollup(sum, 300)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true
+}
