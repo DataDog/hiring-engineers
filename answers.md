@@ -192,6 +192,9 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 * **Bonus Question:** Service is  a set of processes that work together to provide a feature. In this case the simple flask web app is the only one service. A Resource is A particular query to a service. So in this case, queries to the different endpoints are resources the belong to the web app service.
 
+## Final Question
+I would use DataDog to monitor data about the local gym I go to. It would be really useful to monitor data on what hours various services are used up. For example what hours the weight room is packed, what machines/equipment are in use, wheather or not the swimming pool is packed. Also then, I wouldn't have to bother trying to go when its packed. Plus this data could be used by the gym to create a better load balancing system, or incentives for people to come at different hours to maximize equipment usage and even increase profits.
+
 ## Links to Dashboards:
 * [utsav-VirtualBox (host)](https://app.datadoghq.com/dash/host/510159929?live=true&page=0&is_auto=false&from_ts=1530054428216&to_ts=1530058028216&tile_size=m)
 * [APM Dashboard](https://app.datadoghq.com/dash/845710/apm-and-infrastructure?live=true&page=0&is_auto=false&from_ts=1530054394568&to_ts=1530057994568&tile_size=m)
