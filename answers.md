@@ -26,7 +26,7 @@ I did a bit of searching to see if other people had had a similar problem, and f
 
 I initially had some problems with this, since I had never dealt with a .yaml file of the length of the datadog.yaml file. My tags wouldn't display at first because I wasn't indenting the tags in the config file correctly.
 
-If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing. I would also add an error message that makes it clear that there is a parsing issue with the `datadog.yaml` file.
+If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing. I would also add an error message that makes it clear on startup that there is a parsing issue with the `datadog.yaml` file. I
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
