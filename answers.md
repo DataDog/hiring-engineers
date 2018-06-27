@@ -106,13 +106,13 @@ I then set up the monitor's message to have special notes with each trigger. The
 
 Here are screenshots of the setup:
 
-![metric monitor 1](metric_monitor_1.png)
-![metric monitor 2](metric_monitor_2.png)
-![metric monitor 3](metric_monitor_3.png)
+![metric monitor 1](images/metric_monitor_1.png)
+![metric monitor 2](images/metric_monitor_2.png)
+![metric monitor 3](images/metric_monitor_3.png)
 
 Here is a screenshot of an email it sent me:
 
-![monitor email](monitor_email.png)
+![monitor email](images/monitor_email.png)
 
 ### **Bonus** Setting Up Downtime
 
@@ -120,13 +120,13 @@ For the **bonus question** I set up the scheduled downtime for Monday-Friday 7:0
 
 Here is the M-F downtime setup and the corresponding email notification:
 
-![weekday downtime](downtime_1.png)
-![weekday email](email_1.png)
+![weekday downtime](images/downtime_1.png)
+![weekday email](images/email_1.png)
 
 Here is the S-S downtime setup and the corresponding email notification:
 
-![weekend downtime](downtime_2.png)
-![weekend email](email_2.png)
+![weekend downtime](images/downtime_2.png)
+![weekend email](images/email_2.png)
 
 ## Collecting APM Data
 
