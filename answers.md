@@ -1,6 +1,4 @@
-
-
-I experimented with using Docker for this assignment at first, but then decided to use Vagrant instead. I had a little experience with Vagrant environments from an open source project that used it for a dev environment. When I was initially trying to get the environment set up, I got this error message when I ran `vagrant up`:
+I experimented with using Docker for this assignment at first, but then decided to use Vagrant instead, since it offered automatically synced folders. I had a little experience with Vagrant environments from an open source project that used it for a dev environment. When I was initially trying to get the environment set up, I got this error message when I ran `vagrant up`:
 
 ```
 The box you're attempting to add doesn't support the provider
@@ -19,18 +17,20 @@ Requested provider: [:lxc]
 
 I did a bit of searching to see if other people had had a similar problem, and found that if I used the command `vagrant up --provider virtualbox`, the Vagrant box would boot without errors.
 
-
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-(Tags.png)
+![tags](https://user-images.githubusercontent.com/17437250/42003196-38d6eece-7a38-11e8-8559-67384f5a5faf.png)
+
 
 I initially had some problems with this, since I had never dealt with a .yaml file of the length of the datadog.yaml file. My tags wouldn't display at first because I wasn't indenting the tags in the config file correctly.
 
-If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing. I would also add an error message that makes it clear on startup that there is a parsing issue with the `datadog.yaml` file. I
+If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing. I would also add an error message that makes it clear on startup that there is a parsing issue with the `datadog.yaml` file.
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-(mongo.png) I installed it and it is working.
+I installed MongoDB and its integration and it is working:
+![mongo](https://user-images.githubusercontent.com/17437250/42003230-6100e440-7a38-11e8-955e-1c0040ff6158.png)
+
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -46,7 +46,7 @@ class HelloCheck(AgentCheck):
 
 ```
 
-I initially ran into some trouble with this, since I had mistakenly put my `my_metric.yaml` file in the `/checks.d` directory instead of in `/conf.d`. Based on this experience, I would improve the error message that occurs when people try to run checks that lack a .yaml file in the `conf.d` directory. Instead of saying `Error: no valid check found`, I would raise an error that says that the file is missing from `/conf.d`.
+I initially ran into some trouble with this, since I had mistakenly put my `my_metric.yaml` file in the `/checks.d` directory instead of in `/conf.d`. Based on this experience, I would improve the error message that occurs when people try to run checks that lack a .yaml file in the `/conf.d` directory. Instead of saying `Error: no valid check found`, I would raise an error that says that the file is missing from `/conf.d`.
 
 The documentation could also benefit from an example of a yaml config file, so users can see the syntax.
 
@@ -74,11 +74,13 @@ Yes, the collection interval can be changed by changing the `min_collection_inte
 
 
 
-## Utilize the Datadog API to create a Timeboard
+## Visualizing Data
+
+### Utilize the Datadog API to create a Timeboard
 
 [Link to Timeboard](https://app.datadoghq.com/dash/841769/lauras-timeboard?live=true&page=0&is_auto=false&from_ts=1529863991213&to_ts=1529867591213&tile_size=m)
 
-Script: timeboard.py
+The script is attached as `timeboard.py`.
 
 There are a few things that could be improved in the documentation for the [Python wrapper for the Datadog API](https://datadogpy.readthedocs.io/en/latest/) -- it would be useful to know which versions of Python it supports, and a few more examples would be helpful.
 
@@ -87,24 +89,32 @@ There are a few things that could be improved in the documentation for the [Pyth
 The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database were growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
 
 ## Monitoring Data
+Screenshot of timeboard:
+![timeboard_5m](https://user-images.githubusercontent.com/17437250/42003362-17b571ec-7a39-11e8-8476-0d61798521e0.png)
+
+Screenshot of email:
+![my_metric_messages](https://user-images.githubusercontent.com/17437250/42003385-32ec0b74-7a39-11e8-9501-0d48c23c15c1.png)
+
+![my_metric_alert_msg](https://user-images.githubusercontent.com/17437250/42003392-3adfb470-7a39-11e8-8285-d449461972a1.png)
 
 I would improve this by making the "preview" section in the metric setup dialog render the tags in curly braces (like {{host.name}} or {{host.ip}}). I used the syntax to display the host IP from the documentation, and it didn't display. I tried changing the syntax a bit, but I had to wait for the alarm to trigger to see if my edits worked.
 
-- include screenshots of emails
-
 ### Bonus Question: Scheduled downtime
+I used the web interface to schedule downtime outside of work hours and on weekends:
 
-- screenshots of emails
+![weekend-downtime](https://user-images.githubusercontent.com/17437250/42003425-58e1733c-7a39-11e8-8b9d-a29b42a0dffe.png)
 
 ## APM
 
-Here is the link to the Dashboard: https://app.datadoghq.com/dash/846819?live=true&page=0&is_auto=false&from_ts=1530128574143&to_ts=1530132174143&tile_size=m
+Here is the [link to the Dashboard](https://app.datadoghq.com/dash/846819?live=true&page=0&is_auto=false&from_ts=1530128574143&to_ts=1530132174143&tile_size=m).
 
 Here is the Dashboard screenshot:
-(apm_dashboard.png)
+![apm_dashboard](https://user-images.githubusercontent.com/17437250/42003445-7053d294-7a39-11e8-81af-cff6c353cd13.png)
 
+Here is a screenshot of the APM:
+![apm_trace](https://user-images.githubusercontent.com/17437250/42003792-1a537d5c-7a3b-11e8-83bd-0a91f4decd0b.png)
 
-One thing I would change in the docs is that on [this page](https://docs.datadoghq.com/tracing/setup/), the docs say that in Linux the `apm_config` is enabled by default, but this was not the case in my environment.
+The instrumented Flask app is included as `flask_apm_app.py`.
 
 When I tried using the APM middleware on the Flask application, I initially got an error that said the following:
 
@@ -112,9 +122,7 @@ When I tried using the APM middleware on the Flask application, I initially got 
 ddtrace.writer - ERROR - cannot send services to localhost:8126: [Errno 111] Connection refused
 
 ```
-
 I also tried using the `dd-trace run` command, but that gave the same error. I found a [GitHub issue](https://github.com/DataDog/dd-trace-py/issues/132) for the error message, but it did not have any information on how to resolve the issue.
-
 
 Then I tailed the logs at `/var/log/datadog/trace-agent.log` and found it was throwing the following error from parsing the `datadog.yaml` file:
 
@@ -124,7 +132,6 @@ Then I tailed the logs at `/var/log/datadog/trace-agent.log` and found it was th
 
 ```
 I fixed the issue with the `datadog.yaml` file and then it worked.
-
 
 
 ### What is the difference between a Service and a Resource?
@@ -143,8 +150,8 @@ I am a gardener, and I think it would be very interesting to have a Datadog to v
 - soil pH
 - nutrients available in soil
 
-It would be helpful to get alerts if planters need water, or if the soil is warm enough to plant spring vegetables. It would also be nice to have all the data collected in a dashboard, so I could keep an eye on how all my plants were doing, even if I wasn't home.
+It would be very interesting have a dashboard that displayed this information, especially if it could be overlaid on previous years' data. It would be really neat  to get alerts if planters need water, or if the soil is warm enough to plant spring vegetables. The dashboard would allow me to keep an eye on how all my plants were doing, even if I wasn't home.
 
-Through monitoring of these metrics, combined with manually entered data, like how much fruit or flowers a plant produced, I could determine the best plant varieties to grow in my garden, and improve the plants' growing conditions for next year.
+Through monitoring of these metrics, combined with manually entered data, like how much fruit or flowers a plant produced, I could determine the best plant varieties to grow in my garden, and improve the plants' growing conditions for next year by moving them to spaces in the garden that suited them better or adjusting the amount of water or nutrients in the soil around them.
 
 A similar sort of monitoring setup would also be useful in larger-scale growing operations, such as nursery growers, farms, and botanical gardens. The use of monitoring technology is becoming more prevalent in agriculture, and Datadog's visualizations and comparisons between various metrics would be useful to farmers as well.
