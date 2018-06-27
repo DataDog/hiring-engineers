@@ -190,6 +190,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Screenshot of dashboard with host infrastructure data:
 ![alt text](./screenshots/infrastructure_dash.png)
 
+* **Bonus Question:** Service is  a set of processes that work together to provide a feature. In this case the simple flask web app is the only one service. A Resource is A particular query to a service. So in this case, queries to the different endpoints are resources the belong to the web app service.
 
 ## Links to Dashboards:
 * [utsav-VirtualBox (host)](https://app.datadoghq.com/dash/host/510159929?live=true&page=0&is_auto=false&from_ts=1530054428216&to_ts=1530058028216&tile_size=m)
