@@ -1,6 +1,6 @@
 # Datadog Solutions Engineer Exercises - Matthew Tessler
 
-## Prequisites - Setup the Environment
+## Prerequisites - Setup the Environment
 
 ### Vagrant VM Creation
 
@@ -42,7 +42,7 @@ The instructions next said to "Add tags in the Agent config file and show us a s
 
 I had to do some research to find where the Agent config file was located. I found the answer at this [resource](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-). After moving to the `etc/datadog-agent` directory, I located the `datadog.yaml` file. I opened the file to edit it. 
 
-I added some tags according to these instructions on this [page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), and then I went back to look at the host map. **I'm still not sure how to get the tags to reflect immediatedly on the host map.** I was trying to restart the service, and I don't think that worked. I couldn't figure out how to do the command to run the service check on the agent so that didn't work. It just updated after a while. Regardless, now my Agent configration file and the host map both reflect the same tags. 
+I added some tags according to these instructions on this [page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), and then I went back to look at the host map. **I'm still not sure how to get the tags to reflect immediately on the host map.** I was trying to restart the service, and I don't think that worked. I couldn't figure out how to do the command to run the service check on the agent so that didn't work. It just updated after a while. Regardless, now my Agent configuration file and the host map both reflect the same tags. 
 
 The tags are visible in the configuration file at the bottom of the terminal window:
 
@@ -76,7 +76,11 @@ The my_metric dashboard is now available on the host. It is shown here on the in
 
 ![custom metric running](images/custom_metric_running.png)
 
-Next up was to change the collection interval so it only submits the metric once every 45 seconds. The **bonus question** asks if this can be done without modifying the Python check file that I created. I'm actually not sure of how to modify the interval by changing the Python file. Maybe it's something obvious like creating an if-statement that only lets it run once every three times, but the way I found how to do it when researching was not through that. According to the documentation for the custom agent check, the checks run every 15-20 seconds depending on how many integrations there are. The way to change how often the metric is submitted is to add the `min_collection_interval` property in the `yaml` file that corresponds with the custom agent check. The way that works -based on my understanding of the documentation- is that when the collection check comes around every 15-20 seconds, it'll see if 45 seconds have elapsed since it last submitted the metric. If 45 seconds have not elapsed, it won't submit the metric. If 45 seconds have elapsed, it will. In my experience, this means that it either submits the my_metric every 40 seconds, or every 60 seconds. Before I changed the collection interval, it was submitting every 20 seconds. When I changed it, it does 40 seconds or 60 seconds. I kind of get why it is doing that, but not completely. Regardless, I think that's the best way to do it.
+Next up was to change the collection interval so it only submits the metric once every 45 seconds. The **bonus question** asks if this can be done without modifying the Python check file that I created. I'm actually not sure of how to modify the interval by changing the Python file. Maybe it's something obvious like creating an if-statement that only lets it run once every three times, but the way I found how to do it when researching was not through that. 
+
+According to the documentation for the custom agent check, the checks run every 15-20 seconds depending on how many integrations there are. The way to change how often the metric is submitted is to add the `min_collection_interval` property in the `yaml` file that corresponds with the custom agent check. The way that works -based on my understanding of the documentation- is that when the collection check comes around every 15-20 seconds, it'll see if 45 seconds have elapsed since it last submitted the metric. If 45 seconds have not elapsed, it won't submit the metric. If 45 seconds have elapsed, it will. 
+
+In my experience, this means that it either submits the my_metric every 40 seconds, or every 60 seconds. Before I changed the collection interval, it was submitting every 20 seconds. When I changed it, it does 40 seconds or 60 seconds. I kind of get why it is doing that, but not completely. Regardless, I think the `min_collection_interval` is the best way to do it.
 
 ![collection interval change](images/collection_interval_change.png)
 
@@ -146,11 +150,11 @@ I thought I might try running the Flask app and doing the APM data collection fr
 
 I tried a few more ways to get the Flask app to run, including just running a barebones Flask app and then working up from there, but this yielded the same errors. I'm not quite sure how to fix the issues I've been running into, so I decided to detail these notes after a few hours of trying to get it to work. The directions for installing the trace agent on Ubuntu and instrumenting the Flask app seemed pretty straightforward, I just couldn't get to the steps beyond running the Flask app.
 
-I might be making some obvious errors or they might be easy fixes for this, but I'm not sure what they are. If I was working with other engineers, at this point I'd probably ask for help from someone more knowledgeable than me. I was able to complete all of the other technical sections of the engineering exercise, but this one I could not.
+I might be making some obvious errors or there might be easy fixes for this, but I'm not sure what they are. If I was working with other engineers, at this point I'd probably ask for help from someone more knowledgeable than me. I was able to complete all of the other technical sections of the engineering exercise, but this one I could not.
 
 ## Final Question
 
-I think a creative way to use Datadog would be to monitor noise pollution in New York and/or 311 complaints in New York. I think hosts could be blocks on the grid, or streets, or neighborhoods, and then the 311 complaints could be submitted metrics. They could be divided up by their specific metrics (e.g. loud parties, cars honking, construction, etc.) and aggregated. Metric monitors could be triggered if certain areas went over a threshold, and the police could be notified. In the longterm, this could be used to affect zoning and policy decisions.
+I think a creative way to use Datadog would be to monitor noise pollution in New York and/or 311 complaints in New York. NYC Open Data would be a good resource for that. I think hosts could be blocks on the grid, or streets, or neighborhoods, and then the 311 complaints could be submitted metrics. They could be divided up by their specific metrics (e.g. loud parties, cars honking, construction, etc.) and aggregated. Metric monitors could be triggered if certain areas went over a threshold, and the police could be notified. In the longterm, this could be used to affect zoning and policy decisions.
 
 
 
