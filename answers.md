@@ -130,8 +130,27 @@ Here is the S-S downtime setup and the corresponding email notification:
 
 ## Collecting APM Data
 
+Next in the directions was instrumenting a web application using Datadog's APM solution. I decided to try using the given Flask app as I have no experience with Ruby or Go and not much experience building Flask apps. I used `pip` to install Flask (version 1.02), and then I used these [directions](http://flask.pocoo.org/docs/1.0/quickstart/) to run the Flask app. When I tried to run it `export FLASK_APP=apm_flask.py` and then `python flask -m run` it gave me an error. Here is the error:
+
+![Python 2 Error](images/python_2_error.png)
+
+I Googled the error, which was "AttributeError: 'module' object has no attribute 'SSLContext", and it turned out it was a common issue with running older versions of Python 2.7. The only feasible fixes I saw were to upgrade Python. The Ubuntu VM via Vagrant that I was running on the suggestion of the instructions had 2.7.6 downloaded as its default Python 2 version. So, in theory, upgrading past Python 2.7.9 would fix it. However, before I tried that, I wanted to try running it with Python 3 to see if that worked. Running it with Python 3 also gave me an error. Here is the error:
+
+![Python 3 Error](images/python_3_error.png)
+
+The error was "OSError: [Errno 98] Address already in use". This sounded like an issue with ports already being in use. However, I used the command `lsof -i :5050` to see what process was running on that port, and there was none. I tried changing the port that the Flask app ran on and it gave me the same error. This confused me, so I decided to go back to the Python 2 route.
+
+I researched how to upgrade Python on Ubuntu from 2.7.6 to 2.7.14 (the latest version of Python 2.7) and I didn't find any official resources for doing so. Most resources asserted that it would not be easy. I tried the steps on this blog [post](https://tecadmin.net/install-python-2-7-on-ubuntu-and-linuxmint/) but they didn't work. I thought maybe using virtualenv would do the trick, but I still couldn't figure out a good way to upgrade the version to one that would work. 
+
+I thought I might try running the Flask app and doing the APM data collection from my local environment, but I had trouble installing the trace agent after successfully downloading the regular agent.
+
+I tried a few more ways to get the Flask app to run, including just running a barebones Flask app and then working up from there, but this yielded the same errors. I'm not quite sure how to fix the issues I've been running into, so I decided to detail these notes after a few hours of trying to get it to work. The directions for installing the trace agent on Ubuntu and instrumenting the Flask app seemed pretty straightforward, I just couldn't get to the steps beyond running the Flask app.
+
+I might be making some obvious errors or they might be easy fixes for this, but I'm not sure what they are. If I was working with other engineers, at this point I'd probably ask for help from someone more knowledgeable than me. I was able to complete all of the other technical sections of the engineering exercise, but this one I could not.
+
 ## Final Question
 
+I think a creative way to use Datadog would be to monitor noise pollution in New York and/or 311 complaints in New York. I think hosts could be blocks on the grid, or streets, or neighborhoods, and then the 311 complaints could be submitted metrics. They could be divided up by their specific metrics (e.g. loud parties, cars honking, construction, etc.) and aggregated. Metric monitors could be triggered if certain areas went over a threshold, and the police could be notified. In the longterm, this could be used to affect zoning and policy decisions.
 
 
 
