@@ -2,9 +2,13 @@
 
 ## Prerequisites - Setup the Environment
 
+This was my first time using Datadog's platform so the engineering exercise was a great learning experience. I think I've really gotten a grasp on how the platform works and I'd be excited to learn more. The documentation, videos, and blog posts are all great for learning the vast set of resources and capabilities that Datadog makes available. The responses I've given are to the best of my current abilities. I got better at using Datadog as I went further with the exercise, and I think I know much more than I did before.
+
+These are my responses for the engineering exercise:
+
 ### Vagrant VM Creation
 
-I am completing this exercise on a Mac OS X operating system. To avoid dependency issues, as the instructions recommended, I decided to spin up a fresh linux VM via Vagrant. I followed their [instructions](https://www.vagrantup.com/intro/getting-started/). I ran the command `vagrant init hashicorp/precise64` to create the virtual machine. 
+I am completing this exercise on a Mac OS X operating system. To avoid dependency issues, as the instructions recommended, I decided to spin up a fresh linux VM via Vagrant. Although I've had experience with linux virtual machines, this was my first time using Vagrant. I followed their [instructions](https://www.vagrantup.com/intro/getting-started/). I ran the command `vagrant init hashicorp/precise64` to create the virtual machine. 
 
 ![vagrant init hashicorp/precise64 command](images/init.png)
 
@@ -42,7 +46,7 @@ The instructions next said to "Add tags in the Agent config file and show us a s
 
 I had to do some research to find where the Agent config file was located. I found the answer at this [resource](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-). After moving to the `etc/datadog-agent` directory, I located the `datadog.yaml` file. I opened the file to edit it. 
 
-I added some tags according to these instructions on this [page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), and then I went back to look at the host map. **I'm still not sure how to get the tags to reflect immediately on the host map.** I was trying to restart the service, and I don't think that worked. I couldn't figure out how to do the command to run the service check on the agent so that didn't work. It just updated after a while. Regardless, now my Agent configuration file and the host map both reflect the same tags. 
+This was my first time editing `yaml` files so I had to do a little research on the syntax. I had some debugging to do with syntax before I got things exactly right. I added some tags according to these instructions on this [page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), and then I went back to look at the host map. **I'm still not sure how to get the tags to reflect immediately on the host map.** I restarted the service, but I didn't see immediate effects on the platform. It just seemed to update after a certain interval. I'd like to learn more about how that runs. Regardless, now my Agent configuration file and the host map both reflect the same tags. 
 
 The tags are visible in the configuration file at the bottom of the terminal window:
 
@@ -54,9 +58,9 @@ And here are the tags in the host map:
 
 ### Installing Database
 
-Next I needed to install a database on the machine and then install the respective Datadog integration for that database. I decided to go with MongoDB. First I updated my Ubuntu operating system from 12.04 to 14.04 in line with the instructions on MongoDB's [website](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) to install the Community Edition on Ubuntu.
+Next I needed to install a database on the machine and then install the respective Datadog integration for that database. I decided to go with MongoDB as I'd used it before and was familiar with the interface and using it on the command line. First I updated my Ubuntu operating system from 12.04 to 14.04 in line with the instructions on MongoDB's [website](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) to install the Community Edition on Ubuntu.
 
-After installing MongoDB, I began the install for the integration for Datadog. I followed these [instructions](https://docs.datadoghq.com/integrations/mongo/#setup). I set up the `conf.yaml` file, set up the user in the mongo shell, and installed the integration on Datadog. Here you can see some screenshots on Datadog that the MongoDB integration is up and running on the host. 
+After installing MongoDB, I began the install for the Integration for Datadog. I followed these [instructions](https://docs.datadoghq.com/integrations/mongo/#setup). I set up the `conf.yaml` file, set up the user in the `mongo` shell, and installed the integration on Datadog. Here you can see some screenshots on Datadog that the MongoDB integration is up and running on the host. 
 
 ![host with mongo](images/host_with_mongo.png)
 ![mongo integration installed](images/mongo_integration_installed.png)
@@ -70,9 +74,9 @@ Running an info status check, `sudo datadog-agent status`, the checks appear for
 
 The next instructions are to "create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000." I read these [directions](https://docs.datadoghq.com/developers/agent_checks/#agentcheck-interface) to learn how custom agent checks work and how to submit a metric.
 
-Following those instructions, I created a `custom_check.yaml` file in the `conf.d` directory. I also created a `custom_check.py` file in the `checks.d` directory. Both these files are included in the repository.
+Following those instructions, I created a `custom_check.yaml` file in the `conf.d` directory. I also created a `custom_check.py` file in the `checks.d` directory. I used the `random.randint()` function to make the submissions random within the specified range. Both the aforementioned files are included in the repository.
 
-The my_metric dashboard is now available on the host. It is shown here on the infrastructure list page under the host I've been running.
+The my_metric dashboard is now available on the host. I'm not sure why it says (no-namespace). I went back and double-checked the tutorial for custom agent checks, and I couldn't see any places where I'd differed from the instructions. Regardless, the metric submits with no problem. It is shown here on the infrastructure list page under the host I've been running.
 
 ![custom metric running](images/custom_metric_running.png)
 
@@ -80,7 +84,7 @@ Next up was to change the collection interval so it only submits the metric once
 
 According to the documentation for the custom agent check, the checks run every 15-20 seconds depending on how many integrations there are. The way to change how often the metric is submitted is to add the `min_collection_interval` property in the `yaml` file that corresponds with the custom agent check. The way that works -based on my understanding of the documentation- is that when the collection check comes around every 15-20 seconds, it'll see if 45 seconds have elapsed since it last submitted the metric. If 45 seconds have not elapsed, it won't submit the metric. If 45 seconds have elapsed, it will. 
 
-In my experience, this means that it either submits the my_metric every 40 seconds, or every 60 seconds. Before I changed the collection interval, it was submitting every 20 seconds. When I changed it, it does 40 seconds or 60 seconds. I kind of get why it is doing that, but not completely. Regardless, I think the `min_collection_interval` is the best way to do it.
+In my experience, this means that it either submits the my_metric every 40 seconds, or every 60 seconds. Before I changed the collection interval, it was submitting every 20 seconds. When I changed it, it does 40 seconds or 60 seconds. I kind of get why it is doing that, but not completely. Regardless, I think the `min_collection_interval` is the best way to change the submission interval.
 
 ![collection interval change](images/collection_interval_change.png)
 
@@ -120,7 +124,7 @@ Here is a screenshot of an email it sent me:
 
 ### **Bonus** Setting Up Downtime
 
-For the **bonus question** I set up the scheduled downtime for Monday-Friday 7:00 PM - 9:00 AM and Saturday-Sunday all day.
+For the **bonus question** I set up the scheduled downtime for Monday-Friday 7:00 PM-9:00 AM and Saturday-Sunday all day.
 
 Here is the M-F downtime setup and the corresponding email notification:
 
@@ -144,7 +148,7 @@ I Googled the error, which was "AttributeError: 'module' object has no attribute
 
 The error was "OSError: [Errno 98] Address already in use". This sounded like an issue with ports already being in use. However, I used the command `lsof -i :5050` to see what process was running on that port, and there was none. I tried changing the port that the Flask app ran on and it gave me the same error. This confused me, so I decided to go back to the Python 2 route.
 
-I researched how to upgrade Python on Ubuntu from 2.7.6 to 2.7.14 (the latest version of Python 2.7) and I didn't find any official resources for doing so. Most resources asserted that it would not be easy. I tried the steps on this blog [post](https://tecadmin.net/install-python-2-7-on-ubuntu-and-linuxmint/) but they didn't work. I thought maybe using virtualenv would do the trick, but I still couldn't figure out a good way to upgrade the version to one that would work. 
+I researched how to upgrade Python on Ubuntu from 2.7.6 to 2.7.14 (the latest version of Python 2.7) and I didn't find any official resources for doing so. Most resources asserted that it would not be easy. I didn't want to risk messing up the VM or the Datadog agent within it and having to start over or reinstall everything. I tried the steps on this blog [post](https://tecadmin.net/install-python-2-7-on-ubuntu-and-linuxmint/) but they didn't work. I thought maybe using virtualenv would do the trick, but I still couldn't figure out a good way to upgrade the version to one that would work. 
 
 I thought I might try running the Flask app and doing the APM data collection from my local environment, but I had trouble installing the trace agent after successfully downloading the regular agent.
 
@@ -154,7 +158,7 @@ I might be making some obvious errors or there might be easy fixes for this, but
 
 ## Final Question
 
-I think a creative way to use Datadog would be to monitor noise pollution in New York and/or 311 complaints in New York. NYC Open Data would be a good resource for that. I think hosts could be blocks on the grid, or streets, or neighborhoods, and then the 311 complaints could be submitted metrics. They could be divided up by their specific metrics (e.g. loud parties, cars honking, construction, etc.) and aggregated. Metric monitors could be triggered if certain areas went over a threshold, and the police could be notified. In the longterm, this could be used to affect zoning and policy decisions.
+I think a creative way to use Datadog would be to monitor noise pollution in New York and/or 311 complaints in New York. NYC Open Data would be a good resource for that. I think hosts could be blocks on the grid, or streets, or neighborhoods, and then the 311 complaints could be submitted metrics. They could be divided up by their specific metrics (e.g. loud parties, cars honking, construction, etc.) and aggregated. Metric monitors could be triggered if certain areas went over a threshold, and the police could be notified. It could be a great way to deploy resources, organize data about a common issue, and allow people to make informed decisions about where they lived and/or worked. In the longterm, this could be used to affect zoning and policy decisions. 
 
 
 
