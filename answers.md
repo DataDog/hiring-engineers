@@ -4,7 +4,7 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-* _For carrying out this step, I ran the browser-based Datadog Agent Manager and added tags (hedgehogs, sloths, whales, sharks) under the "tags" field of "Settings". Initially, I had a bit of trouble in accessing the Datadog Agent Manager until I learned from Datadog docs that the most recent version of the Agent (v6) can be accessed only by running the manager as an administrator. For Agent version 5, it was accessible via a pop-out window._
+_For carrying out this step, I ran the browser-based Datadog Agent Manager and added tags (hedgehogs, sloths, whales, sharks) under the "tags" field of "Settings". Initially, I had a bit of trouble in accessing the Datadog Agent Manager until I learned from Datadog docs that the most recent version of the Agent (v6) can be accessed only by running the manager as an administrator. For Agent version 5, it was accessible via a pop-out window._
 
 #### Agent Config File
 
@@ -26,7 +26,7 @@ db.auth("admin", "admin-password")
 db.createUser({"user":"datadog", "pwd": "NMexkkPoWYv7p4hy86kRyaOG", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
 
-_Through these commands, I'm using the MongoDB instance called "admin" and authenticating a read-only administrator for it called "datadog". These steps are necessary for later collecting the instance's metric data. The next step was to produce checks for my MongoDB instance in the form of a configuration file with a .yaml extension. I went to "Checks" > "Manage Checks" section of the Datadog Agent Manager, and attempted to add a check for MongoDB. However, I found that there was no option to add a mongo check on the manager, so instead, I decided to add the configuration file through my local machine which my agent was in sync with. Having the Datadog agent installed on it, it was a viable alternative. Initially, I didn't know what directory to insert the file in, so I had to do a bit of research on what it was. I learned that the location for the agent's checks on an agent's machine is dependent on OS, and since I was using Windows, mine can be found at the directory C:\ProgramData\Datadog\conf.d. There, I found a directory called mongo.d/ in which I produced the following file called conf.yaml, then restarted the agent:_
+_Through these commands, I'm using the MongoDB instance called "admin" and authenticating a read-only administrator for it called "datadog". These steps are necessary for later collecting the instance's metric data. The next step was to produce checks for my MongoDB instance in the form of a configuration file with a .yaml extension. I went to "Checks" > "Manage Checks" section of the Datadog Agent Manager, and attempted to add a check for MongoDB. However, I found that there was no option to add a mongo check on the manager, so instead, I decided to add the configuration file through my local machine which my agent was in sync with. Having the Datadog agent installed on it, it was a viable alternative. Initially, I didn't know what directory to insert the file in, so I had to do a bit of research on what it was. I indirectly learned through the link https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent- that the location for the agent's checks on an agent's machine is dependent on OS, and since I was using Windows, mine can be found at the directory C:\ProgramData\Datadog\conf.d. There, I found a directory called mongo.d/ in which I produced the following file called conf.yaml, then restarted the agent:_
 
 ```
 init_config:
@@ -63,7 +63,7 @@ class MetricCheck(AgentCheck):
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-_Referring to the same link, defining a numerical value for min_collection_interval in the metric's respective .yaml file (check) got the job done. I was able to verify that the collection interval was set to 45 seconds by viewing my_metric's graph of the app "first" within my host through "Infrastructure" > "Host Map". There, I noticed all corners within the graph, representing point values between 0 and 1000, were separated by 45 units (i.e. 45 seconds), and these values kept being generated as time went by._
+_Referring to the same link, defining a numerical value for min_collection_interval in the metric's respective .yaml file got the job done. I was able to verify that the collection interval was set to 45 seconds by viewing my_metric's graph of the app "first" within my host through "Infrastructure" > "Host Map". There, I noticed all corners within the graph, representing point values between 0 and 1000, were separated by 45 units (i.e. 45 seconds), and these values kept being generated as time went by._
 
 **my_metric.yaml:**
 
@@ -153,7 +153,7 @@ _This is done by clicking the camera icon at the top-right corner of the graph a
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph displays the metric visualization plus any areas that deviate from the expected flow of data (in the case of my graph, deviations are colored red). Since my timeboard was visualizing Mongo collection data for my admin db, an anomaly occurred as I was generating more collections for that db since initially, there were little to none within the time frame.
+_The anomaly graph displays the metric visualization plus any areas that deviate from the expected flow of data (in the case of my graph, deviations are colored red). Since my timeboard was visualizing Mongo collection data for my admin db, an anomaly occurred as I was generating more collections for that db since initially, there were little to none within the time frame._
 
 ## Monitoring Data
 
@@ -163,7 +163,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m. (shown in 2nd screenshot in this section)
 
-_I created a monitor by selecting "New Monitor" under "Monitors" of the Datadog interface and making the following configurations:_
+_I created a monitor by selecting "Monitors" > "New Monitor" of the Datadog interface and making the following configurations:_
 
 ![Monitor Config](images/monitorconfig.png)
 
@@ -173,7 +173,7 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-_By expanding "Use message template variables" above the message window, the user is able to view examples for configuring messages depending on the monitor state. Through this, I learned that the host's IP and name can be obtained through {host.ip} and {host.name} respectively for the host defined in earlier field of the monitor's interface. I initially struggled with obtaining the host IP for the notifications, but I was able to solve that problem by learning that I mistakenly forgot to define a host (my host) in the very first section of the monitor config. Encapsulating messages between starting and ending labels enclosed by "{{ }}" allows for different kinds of messages. Also, in typing "{{#", a drop-down menu appears displaying what labels are available to choose from. Using that menu as guidance, I was able to configure different messages depending on if the monitor triggered on an Alert, Warning, or No Data state._
+_By expanding "Use message template variables" above the message window, the user is able to view examples for configuring messages depending on the monitor state. Through this, I learned that the host's IP and name can be obtained through {host.ip} and {host.name} respectively for the host defined in earlier field of the monitor's interface. I initially struggled with obtaining the host IP for the notifications, but I was able to solve that problem by learning that I mistakenly forgot to define a host (my host) in the very first section of the monitor config and left it blank instead. Encapsulating messages between starting and ending labels enclosed by "{{ }}" allows for different kinds of messages. Also, in typing "{{#", a drop-down menu appears displaying what labels are available to choose from. Using that menu as guidance, I was able to configure different messages depending on if the monitor triggered on an Alert, Warning, or No Data state._
 
 ![Monitor Messages](images/monitormessages.png)
 
@@ -195,7 +195,7 @@ _By expanding "Use message template variables" above the message window, the use
 
   ![Emailed Downtime](images/downtimeemail.png)
 
-_In this section, I navigated to "Monitors" > "Manage Downtime" > "Schedule Downtime". From the intervals mentioned, I created two recurring downtimes. The first one silences the monitor from 7pm to 9am daily M-F, so I had this monitor occur every 1 week, and selected all days M-F. This downtime would start 7pm and last till 9am, so the duration would be 14 hours. The second downtime was a bit trickier to configure. Establishing a uniform downtime for several days seems straightforward after establishing the first downtime, however with just the first downtime alone, the monitor would become active on Saturday 9am onwards after being inactive 14 hours previously from the day before. Having a 24-hour downtime for Saturday and Sunday was my initial thought, however that would mean that the monitor would be active 12am onwards on Monday, which ideally is not what we would want. The true interval we'd want concerning weekend downtime is to have downtime from Friday 7pm till Monday 9am. It's an interval that I thought would be best represented in hours rather than days, since we still want downtime after Sunday is over. Therefore, I configured the second downtime to cover that interval (62 hours)._
+_In this section, I navigated to "Monitors" > "Manage Downtime" > "Schedule Downtime". From the intervals mentioned, I created two recurring downtimes. The first one silences the monitor from 7pm to 9am daily M-F, so I had this monitor occur every 1 week, and selected all days M-F. This downtime would start 7pm and last till 9am, so the duration would be 14 hours. The second downtime was a bit trickier to configure. Establishing a uniform downtime for several days seems straightforward after having established the first downtime, however with just the first downtime alone, the monitor would become active on Saturday 9am onwards after being inactive 14 hours previously from the day before. Having a 24-hour downtime for Saturday and Sunday was my initial thought, however that would mean that the monitor would be active 12am onwards on Monday, which ideally is not what we would want. The true interval we'd want concerning weekend downtime is to have downtime from Friday 7pm till Monday 9am. It's an interval that I thought would be best represented in hours rather than days, since we still want downtime after Sunday is over at 12am. Therefore, I configured the second downtime to more accurately cover that interval (62 hours)._
 
 ## Collecting APM Data:
 
@@ -245,7 +245,7 @@ Dashboard link: https://app.datadoghq.com/dash/834046
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-A service is a set of processes that drive an application or system, and a resource is a specific action that is carried out to fulfill that service. Let's take a restaurant as an example. There are often two primary services at restaurants: customer-engagement (hosts, servers) and kitchen workers (chefs, cleaners). The customer engagement team is in charge of greeting customers, seating them, and taking their orders, all of which are resources for that particular service. The resources of the kitchen workers consist of making food based off of customer orders and cleaning kitchen utensils for re-usability.
+_A service is a set of processes that drive an application or system, and a resource is a specific action that is carried out to fulfill that service. Let's take a restaurant as an example. There are often two primary services at restaurants: customer-engagement (hosts, servers) and kitchen workers (chefs, cleaners). The customer engagement team is in charge of greeting customers, seating them, and taking their orders, all of which are resources for that particular service. The resources of the kitchen workers consist of making food based off of customer orders and cleaning kitchen utensils for re-usability._
 
 ## Final Question:
 
@@ -253,4 +253,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I'd love to use Datadog to give me an idea of my app usage on my phone during my free time! I want to be fully aware of how I tend to use my phone on a day-to-day basis when I'm not working, since there are moments where I tend to open up apps like Facebook or Twitter without thinking about why I'm doing so. Because of that, I tend to lose track of how much time passes when I use my phone at times when I realize that I really don't need to. It's a habit that I'm sure a lot of people can relate to as well. If Datadog could provide information to people regarding how many times they open up certain apps on their phones AND how much time passes while they are actively navigating said apps, I think it would really help them understand how they are spending their free time and shape how they want to address their individual priorities in the future. Of course, this information should be accessible to the owner of the phone only and not anyone else, so the experience is personalized specifically for that individual. Since the information is personalized, maybe people would be inspired to develop or use notification systems, whether they are concrete or just apparent on the person's mind, to establish their own thresholds letting them know if they're using their phones more often than they think they should.
+_I'd love to use Datadog to give me an idea of my app usage on my phone during my free time! I want to be fully aware of how I tend to use my phone on a day-to-day basis when I'm not working, since there are moments where I tend to open up apps like Facebook or Twitter without thinking about why I'm doing so. Because of that, I tend to lose track of how much time passes when I use my phone at times when I realize that I really don't need to. It's a habit that I'm sure a lot of people can relate to as well. If Datadog could provide information to people regarding how many times they open up certain apps on their phones AND how much time passes while they are actively navigating said apps, I think it would really help them understand how they are spending their free time and shape how they want to address their individual priorities in the future. Of course, this information should be accessible to the owner of the phone only and not anyone else, so the experience is personalized specifically for that individual. Since the information is personalized, maybe people would be inspired to develop or use notification systems, whether they are concrete or just apparent on the person's mind, to establish their own thresholds letting them know if they're using their phones more often than they think they should._
