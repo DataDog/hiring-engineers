@@ -1,36 +1,42 @@
-All links to relevant dashboards at the bottom of this readme
+## Answers
+Links to relevant dashboards at the bottom of this readme. [here](links-to-dashboards).
+
+## Environment
+For the host machine, I used *Oracle VM VirtualBox* software to spin up an instance of Ubuntu 16.04. I edited configuration files, agent properties, and other host related settings through the VM terminal, though having the actual operating system graphical interface was useful to configure other properties. Below is a screenshot of the configured host machine with the datadog agent running on it. Remember, the command to check the status of the datadog agent is `sudo service datadog-agent status`:
+(Add Screenshot of ubuntu host with datadog)
+
 ## Collecting Metrics:
-* Using a VM Ubuntu 16.04 as host machine.
+To begin collecting metrics with the agent to send to our DataDog client, let's edit the agent config file, which is located on the host machine at: */etc/datadog-agent/datadog.yaml*. We Want to add the api key for our account, which you can get from the DataDog HQ through your browser. Once we add the api key, we can add tags for our host as well in the same file. Here is a snippet of the config file with these parameters:
+```yaml
+...
+api_key = <YOUR_API_KEY>
+...
 
-* Add tags in the Agent config file, located on the host machine at: */etc/datadog-agent/datadog.yaml*:
-	*
-	```yaml
-	# Set the host's tags (optional)
-	tags:
-	   - region:westcoast
-	   - env:test
-	   - hiremelol
-	```
+# Set the host's tags (optional)
+tags:
+   - region:westcoast
+   - env:test
+   - hiremelol
+```
 
-	* Here is a screen shot of the machine in the Host Map page in Datadog:
-	![alt text](./screenshots/hostmap.png)
+Now that we have the agent configured, and sending data to DataDog, we can check out the host in the *Host Map* page in DataDog. Here is a screen shot of my host machine in the Host Map page in Datadog:
+![alt text](./screenshots/hostmap.png)
 
-* Install MySQL on the host and then install the respective Datadog integration. Then create the following mysql configuration in */etc/datadog-agent/conf.d/mysql.d/conf.yaml*
-	* 
-	```yaml
-	init_config:
+Install MySQL on the host and then install the respective Datadog integration. Then create the following mysql configuration in */etc/datadog-agent/conf.d/mysql.d/conf.yaml*
+```yaml
+init_config:
 
-	instances:
-	  - server: localhost
-	    user: datadog
-	    pass: 'teapot00'
-	    tags:
-		- optional_tag1
-		- optional_tag2
-	    options:
-		replication: 0
-		galera_cluster: 1
-	```
+instances:
+  - server: localhost
+    user: datadog
+    pass: 'teapot00'
+    tags:
+	- optional_tag1
+	- optional_tag2
+    options:
+	replication: 0
+	galera_cluster: 1
+```
 	
 	* graphs of sql metrics on the dashboard: 
 	![alt text](./screenshots/sql_graphs.jpg)
