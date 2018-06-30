@@ -22,7 +22,11 @@ tags:
 Now that we have the agent configured, and sending data to DataDog, we can check out the host in the *Host Map* page in DataDog. Here is a screen shot of my host machine in the Host Map page in Datadog:
 ![alt text](./screenshots/hostmap.png)
 
-Install MySQL on the host and then install the respective Datadog integration in the browser app. Then create the following file to set up mysql integration with the datadog agent in */etc/datadog-agent/conf.d/mysql.d/conf.yaml*.
+Install MySQL on the host and then install the respective Datadog integration in the browser app. This pair of steps make take some time. I ran into some trouble setting up this step where I didn't give my VM enough space to install the sql server packages. If you run into space issues with your VM (and are currently using Windows software like me), just give your VM more space by following the instructions [here](https://www.howtogeek.com/124622/how-to-enlarge-a-virtual-machines-disk-in-virtualbox-or-vmware/).
+
+Once you have your mySQL server installed on the host, you want to set up a "datadog" user in the host SQL server and create the password. This will be the user that sends mySQL metrics to the agent running on the host.
+
+Now, we want create/edit the file to specify configuration properties for mysql integration with the datadog agent. Edit (or create) the file on the host at: */etc/datadog-agent/conf.d/mysql.d/conf.yaml*.
 ```yaml
 init_config:
 
@@ -40,10 +44,9 @@ instances:
 	
 	* graphs of sql metrics on the dashboard: 
 	![alt text](./screenshots/sql_graphs.jpg)
+Also, my mySQL instance was on `localhost` server, but remember to remove this and replace with the mySQL server of the instance you desire.
 
-There was a little bit of trouble setting up this step. Mainly running out of space in the virtual machine to install the proper mysql database packages. The last thing we have to do (technically before adding the above code) is set up a "datadog" user in the host SQL server and create the password for the datadog agent user. Also, my mySQL instance was on `localhost` server, but remember to remove this and replace with the server of the instance you desire.
-
-To create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000, we will follow instruction on the [*Writing an Agent check*](https://docs.datadoghq.com/developers/agent_checks/) tutorial. I left the file names the same since it is just a test metric anyways. So, as per the tutorial we first create *hello.yaml* and *hello.py* files in the *./config.d/* and *./check.d/* directories, respectively.
+To create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000, we will follow instruction on the [*Writing an Agent check*](https://docs.datadoghq.com/developers/agent_checks/) tutorial. I left the file names the same since it is just a test metric anyways. As per the tutorial, we first create *hello.yaml* and *hello.py* files in the *./config.d/* and *./check.d/* directories, respectively.
 *hello.yaml*
 ``` yaml
 init_config:
@@ -65,7 +68,7 @@ class HelloCheck(AgentCheck):
 Screenshot of my metric on Data Dog
 ![alt text](./screenshots/my_metric.png)
 
-An important note to remember is that the *.yaml* and *.py* files must have the same name for the agent check to run. Once we have properly configured the checks, we can see the status of the datadog agent service again with `sudo service datadog-agent` and see that the "hello" test runs properly.
+An important note to remember is that the *.yaml* and *.py* files must have the same name for the agent check to run. Once we have properly configured the checks, we can see the status of the datadog agent service again with `sudo service datadog-agent` and see that the "hello" (or whatever you name your files) test runs properly.
 
 To change the check's collection interval to every 45sec (in v6), I added the *min_collection_interval* instance parameter in the check config file (*/config.d/hello.yaml*), and set it to 45. It will skip 2 checks and gauge the metric once every 3rd check.
 updated *hello.yaml* file
@@ -87,7 +90,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
- Python script used to create this dashboard is below. Check out the comments in the `graphs` list to see the datadog queries we use to create the graphs above.
+ Python script used to create this dashboard is below. Check out the comments in the `graphs` list to see the datadog queries we use to create the graphs with the above specifications.
   ```python
   from datadog import initialize, api
  import json
@@ -167,7 +170,7 @@ Screenshot of Visualizing Data Timeboard (link at bottom):
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above certain values over the past 5 minutes. To do this we go to DataDog HQ in the browser and create a new monitor and follow the on screen steps to alert for certain values. In order to print certain segments conditionally based on whether we have a warning, alert, or no-data response we take advantage of the variables `is_alert, is_no_data, is_warning`. And add monitor message text where messages like '{{#var}} This text will show {{/var}}' only if the variable "var" is true. That way we can only show certain messages when they are relevant to the alert type.
 
-Check out the [*Monitors*](https://docs.datadoghq.com/monitors/) guide for more detailed instructions and in depth information.
+In case my explanation here is vague, just check out the [*Monitors*](https://docs.datadoghq.com/monitors/) documenation for more detailed instructions and in depth information.
 
 Screenshot of Monitor Details:
 ![alt text](./screenshots/metric_monitor.png)
@@ -181,7 +184,23 @@ Screenshot of Monitor Scheduled Downtime Email:
 
 ## Collecting APM Data
 
-To begin collecting APM data for the flask app in the instructions, we will install the DataDog middleware to the flask app. To begin instrumenting the application, we need to edit the code (I'm using python) for the app to include the following python libraries:
+To begin collecting APM data for the flask app in the instructions, we will install the DataDog middleware to the flask app. I'm using python, and we need to add some important python packages before we begin, so let's start with that.
+
+Run a python instance. Maybe use a `virtualenv` if you are so inclined (in my case, I just installed the packages directly on the host machine's python library). Make sure you have `pip` installed, if you don't know what that is, check out [this page](https://pypi.org/project/pip/).
+
+With pip installed and a python shell open, let's install the `blinker` and `ddtrace` python libraries to our host:
+First,
+```sh
+>>> pip install blinker 
+```
+Then,
+```sh
+>>> pip install ddtrace 
+```
+
+Now we have the neccesary libraries installed to begin tracing our application!
+
+To begin instrumenting the application, we need to edit the code for the app to include the following python libraries:
 ```python
 from flask import Flask
 import blinker as _
@@ -196,7 +215,7 @@ app = Flask(__name__)
 traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 ```
 
-And that's it to get the most basic information about our dummy flask application! We can collect more in-depth data by utilizing more functions available to us with the datadog libary. To go more in depth on this, checkout the info and links provided in the datdog docs [here](https://docs.datadoghq.com/tracing/setup/python/).
+And that's it to get the most basic information about our dummy flask application sending to our datadog agent! We can collect more in-depth data by utilizing more functions available to us with the datadog libary. To go more in depth on this, checkout the info and links provided in the datdog docs [here](https://docs.datadoghq.com/tracing/setup/python/).
 
 Screenshot of dashboard with flask tracing:
 ![alt text](./screenshots/apm_dashboard.png)
