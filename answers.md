@@ -29,7 +29,7 @@ init_config:
 instances:
   - server: localhost
     user: datadog
-    pass: 'teapot00'
+    pass: <PASSWORD_HERE>
     tags:
 	- optional_tag1
 	- optional_tag2
