@@ -19,10 +19,10 @@ tags:
    - hiremelol
 ```
 
-Now that we have the agent configured, and sending data to DataDog, we can check out the host in the *Host Map* page in DataDog. Here is a screen shot of my host machine in the Host Map page in Datadog:
+Now that we have the agent configured, and sending data to DataDog, we can check out the host in the *Host Map* (see link at bottom) page in DataDog. Here is a screen shot of my host machine in the Host Map page:
 ![alt text](./screenshots/hostmap.png)
 
-Install MySQL on the host and then install the respective Datadog integration in the browser app. This pair of steps make take some time. I ran into some trouble setting up this step where I didn't give my VM enough space to install the sql server packages. If you run into space issues with your VM (and are currently using Windows software like me), just give your VM more space by following the instructions [here](https://www.howtogeek.com/124622/how-to-enlarge-a-virtual-machines-disk-in-virtualbox-or-vmware/).
+On to the next questions... Now we want to install MySQL on the host and then install the respective Datadog integration in the browser app. This pair of steps may take some time. I ran into some trouble setting up this step where I didn't give my VM enough space to install the sql server packages. If you run into space issues with your VM (and are currently using Windows software like me), just give your VM more space by following the instructions [here](https://www.howtogeek.com/124622/how-to-enlarge-a-virtual-machines-disk-in-virtualbox-or-vmware/).
 
 Once you have your mySQL server installed on the host, you want to set up a "datadog" user in the host SQL server and create the password. This will be the user that sends mySQL metrics to the agent running on the host.
 
