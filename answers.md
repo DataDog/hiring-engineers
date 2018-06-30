@@ -3,7 +3,7 @@ Links to relevant dashboards at the bottom of this readme. [here](links-to-dashb
 
 ## Environment
 For the host machine, I used *Oracle VM VirtualBox* software to spin up an instance of Ubuntu 16.04. I edited configuration files, agent properties, and other host related settings through the VM terminal, though having the actual operating system graphical interface was useful to configure other properties. Below is a screenshot of the configured host machine with the datadog agent running on it. Remember, the command to check the status of the datadog agent is `sudo service datadog-agent status`:
-(Add Screenshot of ubuntu host with datadog)
+![alt text](./screenshots/host_vm_agent.png)
 
 ## Collecting Metrics:
 To begin collecting metrics with the agent to send to our DataDog client, let's edit the agent config file, which is located on the host machine at: */etc/datadog-agent/datadog.yaml*. We Want to add the api key for our account, which you can get from the DataDog HQ through your browser. Once we add the api key, we can add tags for our host as well in the same file. Here is a snippet of the config file with these parameters:
@@ -22,7 +22,7 @@ tags:
 Now that we have the agent configured, and sending data to DataDog, we can check out the host in the *Host Map* page in DataDog. Here is a screen shot of my host machine in the Host Map page in Datadog:
 ![alt text](./screenshots/hostmap.png)
 
-Install MySQL on the host and then install the respective Datadog integration. Then create the following mysql configuration in */etc/datadog-agent/conf.d/mysql.d/conf.yaml*
+Install MySQL on the host and then install the respective Datadog integration in the browser app. Then create the following file to set up mysql integration with the datadog agent in */etc/datadog-agent/conf.d/mysql.d/conf.yaml*.
 ```yaml
 init_config:
 
@@ -41,39 +41,43 @@ instances:
 	* graphs of sql metrics on the dashboard: 
 	![alt text](./screenshots/sql_graphs.jpg)
 
-* Create *hello.yaml* and *hello.py* files in the *./config.d/* and *./check.d/* directories, respectively.
-	* *hello.yaml*
-	``` yaml
-	init_config:
+There was a little bit of trouble setting up this step. Mainly running out of space in the virtual machine to install the proper mysql database packages. The last thing we have to do (technically before adding the above code) is set up a "datadog" user in the host SQL server and create the password for the datadog agent user. Also, my mySQL instance was on `localhost` server, but remember to remove this and replace with the server of the instance you desire.
 
-	instances:
-	    [{}]
-	```
-	* *hello.py*
-	```python
-	from checks import AgentCheck
-	import random
+To create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000, we will follow instruction on the [*Writing an Agent check*](https://docs.datadoghq.com/developers/agent_checks/) tutorial. I left the file names the same since it is just a test metric anyways. So, as per the tutorial we first create *hello.yaml* and *hello.py* files in the *./config.d/* and *./check.d/* directories, respectively.
+*hello.yaml*
+``` yaml
+init_config:
+
+instances:
+    [{}]
+```
+*hello.py*
+```python
+from checks import AgentCheck
+import random
 
 
-	class HelloCheck(AgentCheck):
-	    def check(self, instance):
-		self.gauge('my_metric', random.randint(0,1001))
-	```
-	
-	* Screenshot of my metric on Data Dog
-	![alt text](./screenshots/my_metric.png)
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+	self.gauge('my_metric', random.randint(0,1001))
+```
 
-* To change the check's collection interval to every 45sec (in v6), I added the *min_collection_interval* instance parameter in the check config file (*/config.d/hello.yaml*), and set it to 45. It will skip 2 checks and gauge the metric once every 3rd check.
-	* updated *hello.yaml* file
-	``` yaml
-	init_config:
+Screenshot of my metric on Data Dog
+![alt text](./screenshots/my_metric.png)
 
-	instances:
-	    - min_collections_interval: 45
-	```
+An important note to remember is that the *.yaml* and *.py* files must have the same name for the agent check to run. Once we have properly configured the checks, we can see the status of the datadog agent service again with `sudo service datadog-agent` and see that the "hello" test runs properly.
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-	* The above method does not modify the python file.
+To change the check's collection interval to every 45sec (in v6), I added the *min_collection_interval* instance parameter in the check config file (*/config.d/hello.yaml*), and set it to 45. It will skip 2 checks and gauge the metric once every 3rd check.
+updated *hello.yaml* file
+``` yaml
+init_config:
+
+instances:
+    - min_collections_interval: 45
+```
+
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+The above method does not modify the python file.
 
 
 ## Visualizing Data
@@ -83,7 +87,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
- Python script used to create this dashboard:
+ Python script used to create this dashboard is below. Check out the comments in the `graphs` list to see the datadog queries we use to create the graphs above.
   ```python
   from datadog import initialize, api
  import json
@@ -108,7 +112,7 @@ Utilize the Datadog API to create a Timeboard that contains:
      "definition": {
          "events": [],
          "requests": [
-             {"q":"avg:my_metric{host:utsav-VirtualBox}"}
+             {"q":"avg:my_metric{host:utsav-VirtualBox}"} # custom metric scoped over host
          ],
          "viz": "timeseries"
      },
@@ -119,7 +123,7 @@ Utilize the Datadog API to create a Timeboard that contains:
      "definition": {
          "events": [],
          "requests": [
-             {"q": "anomalies(avg:mysql.performance.cpu_time{host:utsav-VirtualBox}, 'basic', 1)"}
+             {"q": "anomalies(avg:mysql.performance.cpu_time{host:utsav-VirtualBox}, 'basic', 1)"} # metric from the Integration on your Database with the anomaly function applied
          ],
          "viz": "timeseries"
      },
@@ -130,7 +134,7 @@ Utilize the Datadog API to create a Timeboard that contains:
      "definition": {
          "events": [],
          "requests": [
-             {"q":"avg:my_metric{host:utsav-VirtualBox}.rollup(avg, 3600)"}
+             {"q":"avg:my_metric{host:utsav-VirtualBox}.rollup(avg, 3600)"} # custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
          ],
          "viz": "timeseries"
      },
@@ -153,53 +157,57 @@ Utilize the Datadog API to create a Timeboard that contains:
 
  print(response)
   ```
-  * Screenshot of Timeboard:
-  ![alt text](./screenshots/visualizing_data_timeboard.png)
+Screenshot of Visualizing Data Timeboard (link at bottom):
+![alt text](./screenshots/visualizing_data_timeboard.png)
   
-  * **Bonus**: The anomaly function uses an algorithm to identify when a metric is behaving differently than it has in the past, taking into account trends.
+**Bonus**: The anomaly function uses an algorithm to identify when a metric is behaving differently than it has in the past, taking into account relevant trends. The graph displays the actual metric value over time and overlays what the expected metric value range is in light gray.
  
 
 ## Monitoring Data
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above certain values over the past 5 minutes. To do this we go to DataDog HQ in the browser and create a new monitor and follow the on screen steps to alert for certain values. In order to print certain segments conditionally based on whether we have a warning, alert, or no-data response we take advantage of the variables `is_alert, is_no_data, is_warning`. And add monitor message text where messages like '{{#var}} This text will show {{/var}}' only if the variable "var" is true. That way we can only show certain messages when they are relevant to the alert type.
 
-* Screenshot of Monitor Details:
+Check out the [*Monitors*](https://docs.datadoghq.com/monitors/) guide for more detailed instructions and in depth information.
+
+Screenshot of Monitor Details:
 ![alt text](./screenshots/metric_monitor.png)
 	
-* Screenshot of Monitor Alert Email:
+Screenshot of Monitor Alert Email:
 ![alt text](./screenshots/monitor_alert_email.png)
 
-* Screenshot of Monitor Scheduled Downtime Email:
+Screenshot of Monitor Scheduled Downtime Email:
 ![alt text](./screenshots/downtime_email.png)
 
 
 ## Collecting APM Data
 
-* Add the following python libraries to the app:
-	```python
-	from flask import Flask
-	import blinker as _
+To begin collecting APM data for the flask app in the instructions, we will install the DataDog middleware to the flask app. To begin instrumenting the application, we need to edit the code (I'm using python) for the app to include the following python libraries:
+```python
+from flask import Flask
+import blinker as _
 
-	from ddtrace import tracer
-	from ddtrace.contrib.flask import TraceMiddleware
-	```
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+```
 
-* Then create the flask app and insert code to create traced app with the middleware call:
-	```python
-	app = Flask(__name__)
-	traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
-	```
+Once we create the `app` variable that initializes a flask application instance, we want to insert code to create the traced app with the middleware call:
+```python
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+```
 
-* Screenshot of dashboard with flask tracing:
+And that's it to get the most basic information about our dummy flask application! We can collect more in-depth data by utilizing more functions available to us with the datadog libary. To go more in depth on this, checkout the info and links provided in the datdog docs [here](https://docs.datadoghq.com/tracing/setup/python/).
+
+Screenshot of dashboard with flask tracing:
 ![alt text](./screenshots/apm_dashboard.png)
 
-* Screenshot of dashboard with host infrastructure data:
+Screenshot of dashboard with host infrastructure data:
 ![alt text](./screenshots/infrastructure_dash.png)
 
-* **Bonus Question:** Service is  a set of processes that work together to provide a feature. In this case the simple flask web app is the only one service. A Resource is A particular query to a service. So in this case, queries to the different endpoints are resources the belong to the web app service.
+**Bonus Question:** A Service is a "set of processes that work together to provide a feature". In this case the simple flask web app is the only one service. A Resource is a particular query to a service. So in this case, queries to the different endpoints are resources that belong to the web app service.
 
 ## Final Question
-I would use DataDog to monitor data about the local gym I go to. It would be really useful to monitor data on what hours various services are used up. For example what hours the weight room is packed, what machines/equipment are in use, wheather or not the swimming pool is packed. Also then, I wouldn't have to bother trying to go when its packed. Plus this data could be used by the gym to create a better load balancing system, or incentives for people to come at different hours to maximize equipment usage and even increase profits.
+I would use DataDog to monitor data about the local gym I go to. It would be really useful to monitor data on what hours various services are used up. For example what hours the weight room is packed, what machines/equipment are in use, whether or not the swimming pool is packed. This data could be used by the gym to create a better load balancing system, or incentives for people to come at different hours to maximize equipment usage and even increase profits.
 
 ## Links to Dashboards:
 * [utsav-VirtualBox (host)](https://app.datadoghq.com/dash/host/510159929?live=true&page=0&is_auto=false&from_ts=1530054428216&to_ts=1530058028216&tile_size=m)
