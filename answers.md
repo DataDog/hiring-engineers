@@ -1,19 +1,47 @@
 # Hiring Challenge
 
-Greetings! Thank you for taking the time to look through my hiring challenge. As recommended, I have spun up a fresh Ubuntu VM via Vagrant and have [signed up](https://www.datadoghq.com) for Datadog. For more information on setting up and using a Vagrant Ubuntu VM, please refer to this [tutorial](https://www.vagrantup.com/intro/getting-started/).
+## Setup
+
+To get started with using the Datadog Agent, let's begin by spinning up a fresh Ubuntu VM using Vagrant. Install Vagrant on your local machine and enter the following:
+
+Setting up the Ubuntu VM:
+
+```
+vagrant init ubuntu/xenial64
+vagrant up
+vagrant ssh
+```
+
+We should now have a shiny new VM running Ubuntu 16.04 (for more information on using Vagrant, see [here](https://www.vagrantup.com/intro/getting-started/)). Log in to your Datadog account (sign up if you haven't yet for a 14 day free trial) and you'll be sent to the Events page of your account. From the Events page, navigate to Integrations -> Agent and select your OS. Follow the instructions on the screen and you'll soon have a Datadog Agent to use. With the Agent v6 installed, let's start exploring Datadog! 
 
 ## Collecting Metrics
 
 ### Adding tags in the Agent config file
 
-Tags provide Datadog users with a way to query aggregated data from their metrics. Tags can be assigned in various ways, but I recommend using the configuration files. For Ubuntu users, the configuration file for the overall Agent is located at **/etc/datadog-agent** and is named **datadog.yaml**.
+Tags provide Datadog users with a way to query aggregated data from their metrics across a number of hosts. This is useful because we'll have a bird's eye view of how metrics behave across a collection of systems instead of each system individually. To get started with tags, we'll have to modify the overall Agent's configuration file by navigating to the directory it's located in and editing it with an editor of your choice (in this example, I'll be using vim).
 
-To assign tags, we must edit the datadog.yaml file by first finding the section marked *Set the host's tags (optional)* and then we can make our own tag dictionary with a list of tags. For optimal functionality, it is recommended that we use the key:value syntax for our tags. Below, I've modified the configuration file and checked to see if my host was updated on the Host Map page (Note: your host may not update immediately):
+Navigating to datadog.yaml:
 
 ```
+cd \etc\datadog-agent
+sudo vim datadog.yaml
+``` 
+
+Open the file and look for the section that sets the host's tags. You'll notice that there is an example of tags already there, but for the fun of it let's create our own. **For optimal functionality, Datadog recommends that we contruct tags that use the *key:value* syntax**. 
+
+datadog.yaml:
+
+```
+# The host of the Datadog intake server to send Agent data to
+dd_url: https://app.datadoghq.com
+
+[...]
+
 # Set the host's tags (optional)
 tags: name:jonathan, region:westus, env:test
 ```
+
+Now that we've modified the configuration file, [restart your Agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands) and go to your Events page and navigate to Infrastructure -> Host Map. Here are all the Agents associated with your account. Select the Agent you've been working on and you'll be able to confirm that your tags was added (note: it may take a few minutes for your tags to show up with your host). Here is mine for reference:
 
 ![alt text](https://raw.githubusercontent.com/jonathan-paul-deguzman/hiring-engineers/agent_with_tags_from_host_map.png "Agent overview from Host Map")
 
@@ -21,27 +49,41 @@ For more information on assigning tags, please refer to the Datadog documentatio
 
 ### Installing the Datadog MySQL integration
 
-Before we continue, let's set up a MySQL database on our local machine and install the respective Datadog integration for that database. For help with setting up a MySQL database on Ubuntu, please refer to this [MySQL guide](https://help.ubuntu.com/lts/serverguide/mysql.html.en) from the Ubuntu documentationi. To install the MySQL Datadog integration, please refer to the Datadog documentation [here](https://docs.datadoghq.com/integrations/mysql/). An additional method (the way I used) is to, while logged in, start from Datadog's home page, click on Integrations, and click on the MySQL option from the list of integrations. Following the instructions, you should have been able to successfully install the MySQL integration.
+Before we begin collecting metrics, we'll need to set up MySQL on our VM and then install its respective Datadog integration. 
 
-To check if your installation has been successful, restart your Agent and then run the status command:
+Installing MySQL:
+
+```
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+
+To install the Datadog MySQL integration, start at your Events page and navigate to Integrations -> Integrations and click on the MySQL option from the list of integrations. Following the instructions, you should have successfully installed the MySQL integration. To check if your installation was successful, restart your Agent and then run the status command.
+
+Using the Agent's status command:
 
 ```
 sudo service datadog-agent restart
 sudo datadog-agent status
 ``` 
 
-You should see a response that contains something similar  the following in its body:
+You should see a response that contains something similar to the following in its body:
 
 My results of running the above commands:
 
 ```
-mysql
------
-  Total runs: 1
-  Metric samples: 63, Total: 63
-  Events: 0, Total: 0
-  Service Checks: 1, Total: 1
-  Average Execution Time: 77ms
+Running Checks
+==============
+
+[...]
+
+    mysql
+    -----
+      Total Runs: 7
+      Metric Samples: 61, Total: 426
+      Events: 0, Total: 0
+      Service Checks: 1, Total: 7
+      Average Execution Time : 29ms
 ```
 
 ### Creating a custom Agent check
@@ -81,6 +123,138 @@ instances:
     - min_collection_interval: 45
 ````
 
+Restart the Agent for the changes to be enabled and, from your Agent root, run:
 
+```
+sudo -u dd-agent -- datadog-agent check metric_check
+```
 
+You should now get a response very similar to the one I got:
 
+```
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1530416448,
+          656
+        ]
+      ],
+      "tags": null,
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    metric_check
+    ------------
+      Total Runs: 1
+      Metric Samples: 1, Total: 1
+      Events: 0, Total: 0
+      Service Checks: 0, Total: 0
+      Average Execution Time : 0ms
+```
+
+## Visualizing Data
+
+### Creating a Timeboard
+
+Timeboards are great for troubleshooting and visualizing your metrics! Before we make our first timeboard, I strongly recommend that you learn the basics of [Dashboards](https://docs.datadoghq.com/graphing/dashboards/) and read the [Timeboard API documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard). Now let's get started! To use Datadog's API with Python, we need to first install Datadog on our VM.
+
+To install from pip:
+
+````
+pip install datadog
+````
+
+To install from source:
+
+```
+python setup.py install
+```
+
+There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your datadog.yaml file in the /etc/datadog-agent directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named timeboard.py with the following code:
+
+timeboard.py
+
+```python
+options = {
+    'api_key': '<YOUR_API_KEY>',
+    'app_key': '<YOUR_APP_KEY>'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "An informative timeboard that contains the following information: my custom metric scoped over my host, a metric from MySQL with the anomaly function applied, and my custom metric with the rollup function applied"
+
+""" Create our custom graphs and modify each graph definition based on what we want to analyze """
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric scoped over host"
+},
+{
+    "definition": {
+            "events": [],
+            "requests": [
+                {"q": "avg:anomalies(mysql.performance.queries{*}, 'basic', 3)"}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "mysql.performance.queries with the anomaly function applied"
+},
+{
+    "definition": {
+            "events": [],
+            "requests": [
+                {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "my_metric with the rollup function applied"
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+Start off by replacing the placeholders for your API and APP keys. Give your Timeboard a name and description that tells your team what your Timeboard is about. For each graph that you want on your Timeboard, create a new graph definition inside *graphs* that describes how your metrics will be aggregated. 
+
+Our first graph definition queries for our custom metric, my_metric, over our host. Our second graphs queries the mysql.performance.queries metric from our MySQL integration with the anomalies function applied. The anomalies function takes two parameters: the anomaly algorithm you want to use as the first parameter and the standard deviations for your algorithm (usually 2 or 3). Our last graph definition queries for our custom metric with the rollup function applied. The rollup function also takes two parameters: the method used and time in seconds. In this case, we wanted to sum up all the points for the past hour into one bucket.
+
+When you're done, simply run the Python script.
+
+For more information on how to use graph functions, check out the Datadog documentation [here](https://docs.datadoghq.com/graphing/miscellaneous/functions/). You'll learn more about the anomalies and rollup functions as well as all the other graphing functions that Datadog has to offer.
+
+### Setting the Timeboard's timeframe to the past 5 minutes
+
+Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to Dashboards -> Dashboard List. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before and after that selected point. Let's look at an example:
+
+Select the data point in your graph that you want to analyze and drag your cursor 5 minutes to the left or right. Your graph will now change to show you the data within that 5 minute timeframe.  
