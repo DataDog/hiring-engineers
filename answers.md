@@ -41,6 +41,25 @@ I was able to access the main dashboard.
 
 ## Collecting Metrics
 
+### Adding tags
+The instructions told me to add tags to the Agent config file which would also display onto the Host Map page in Datadog. I was able to find the config file from this [page](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) and learned how to add tags appropriately from this [instructional page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files). Initially I had trouble seeing the tags displayed onto the Host Map because my spacing wasn't correct in the 'datadog.yaml' file.
+
+Here are the tags written in the configuration file:
+![Config file tags](images/CollectingMetrics/ConfigTags.png)
+
+Here are the tags displayed on the Host Map:
+![Host map tags](images/CollectingMetrics/HostMapTags.png)
+
+### Installing database
+I chose to install a PostgreSQL database onto my machine because I have some experience with this specific database and am used to the commands. To understand how to install the Datadog integration for Postgre, I used the available [instructional page](https://docs.datadoghq.com/integrations/postgres/).
+
+![Integration success](images/CollectingMetrics/IntegrationSuccess.png)
+
+![Host apps](images/CollectingMetrics/HostApps.png)
+
+When I run the 'sudo datadog-agent status' command to display Agent information, it shows a successful PostgreSQL integration to my host.
+![Info status](images/CollectingMetrics/InfoStatus.png)
+
 ## Visualizing Data:
 
 ## Monitoring Data
