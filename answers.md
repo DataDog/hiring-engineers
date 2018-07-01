@@ -58,6 +58,7 @@ I chose to install a PostgreSQL database onto my machine because I have some exp
 ![Host apps](images/CollectingMetrics/HostApps.png)
 
 When I run the 'sudo datadog-agent status' command to display Agent information, it shows a successful PostgreSQL integration to my host.
+
 ![Info status](images/CollectingMetrics/InfoStatus.png)
 
 ## Visualizing Data:
