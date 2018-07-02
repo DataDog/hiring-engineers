@@ -28,6 +28,7 @@ instances:
 
 ### Create a custom timeboard with Datadog API
 
+I used a custom script for that.
 [Here](create_timeboard_via_api.rb)
  is the script I used to create the
 timeboard.
@@ -43,6 +44,7 @@ On this picture you can see the last 5min of my metrics reporting, as I'm sendin
 The anomaly graph is displaying a metrics, with a grey overlay for the Anomaly function used on this metrics. It is useful to determine if a metrics is reporting normaly or anormal values, thanks to an algorithm based on previous values. On my timeboard, it just overlays a bit my metrics values because It is mostly constant.
 
 ## MONITORING DATA
+
 ### Create a monitor for the custom metrics with 500 & 800 thresholds
 
 > ![picture](screenshots/my_monitor.png)
@@ -65,11 +67,11 @@ And here it's the the details of this downtime setup
 ## COLLECTING APM DATA
 
 ### Implement APM
-.
-[Here](https://p.datadoghq.com/sb/e3173ed8a-a7d8b4026550bb06b28c901b59e9a884) is a link of a Dashboard, with both APM and Infrastructure Metrics
 
 > ![picture](screenshots/final_dashboard.png)
-And here is a picture of the result
+Here is a picture of the result
+
+And [Here](https://p.datadoghq.com/sb/e3173ed8a-a7d8b4026550bb06b28c901b59e9a884) is a link of a Dashboard, with both APM and Infrastructure Metrics
 
 The App I used is a small website I'm currently developping, it's a Ruby on Rails Project. I just added the gem 'dd-trace', and a datadog.rb initializer.
 
