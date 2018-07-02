@@ -65,6 +65,7 @@ And here it's the the details of this downtime setup
 ## COLLECTING APM DATA
 
 ### Implement APM
+.
 [Here](https://p.datadoghq.com/sb/e3173ed8a-a7d8b4026550bb06b28c901b59e9a884) is a link of a Dashboard, with both APM and Infrastructure Metrics
 
 > ![picture](screenshots/final_dashboard.png)
