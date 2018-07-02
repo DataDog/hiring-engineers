@@ -25,6 +25,7 @@ instances:
 ```
 
 ## VISUALIZING DATA
+
 ### Create a custom timeboard with Datadog API
 
 [Here](create_timeboard_via_api.rb)
@@ -62,6 +63,7 @@ On this picture, you can see that I've setup the downtime for my application, to
 And here it's the the details of this downtime setup
 
 ## COLLECTING APM DATA
+
 ### Implement APM
 [Here](https://p.datadoghq.com/sb/e3173ed8a-a7d8b4026550bb06b28c901b59e9a884) is a link of a Dashboard, with both APM and Infrastructure Metrics
 
@@ -76,6 +78,7 @@ A Resource is a data access mechanism. It is for me mostly data, a memory locati
 
 
 ## FINAL QUESTION:
+
 ### Is there anything creative you would use Datadog for?
 
 I see some other applications for the datadog app. It could be used in online games for examples, like in popular esport games, who are live, multiplayer and statistic-intensive. It could mesure effectiveness of a player compared to the other, to the overall state of the game, and produce analytics to help coaches understand what are the best strategies, or which player struggles with it.
