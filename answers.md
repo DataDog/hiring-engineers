@@ -58,18 +58,14 @@ sudo apt-get update
 sudo apt-get install mysql-server
 ```
 
-To install the Datadog MySQL integration, start at your Events page and navigate to Integrations -> Integrations and click on the MySQL option from the list of integrations. Following the instructions, you should have successfully installed the MySQL integration. To check if your installation was successful, restart your Agent and then run the status command.
-
-Using the Agent's status command:
+To install the Datadog MySQL integration, start at your Events page and navigate to Integrations -> Integrations and click on the MySQL option from the list of integrations. Following the instructions, you should have successfully installed the MySQL integration. To check if your installation was successful, restart your Agent and then run the status command:
 
 ```
 sudo service datadog-agent restart
 sudo datadog-agent status
 ``` 
 
-You should see a response that contains something similar to the following in its body:
-
-My results of running the above commands:
+You should see a response very similar to the one I got:
 
 ```
 Running Checks
@@ -112,9 +108,9 @@ instances:
     [{}]
 ```
 
-It's possible to [change the collection interval](https://docs.datadoghq.com/developers/agent_checks/#configuration) from inside the configuration file by adding **min_collection_interval** at the instance level.
+It's possible to [change the collection interval](https://docs.datadoghq.com/developers/agent_checks/#configuration) from inside the configuration file by adding **min_collection_interval** at the instance level. This means that we don't have to modify the Python check file we just created!
 
-metric_check.yaml
+metric_check.yaml:
 
 ```
 init config:
@@ -172,19 +168,25 @@ Collector
 
 Timeboards are great for troubleshooting and visualizing your metrics! Before we make our first timeboard, I strongly recommend that you learn the basics of [Dashboards](https://docs.datadoghq.com/graphing/dashboards/) and read the [Timeboard API documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard). Now let's get started! To use Datadog's API with Python, we need to first install Datadog on our VM.
 
-To install from pip:
+Check if datadog is installed:
+
+```
+pip freeze | grep datadog
+```
+
+If not installed, install from pip:
 
 ````
 pip install datadog
 ````
 
-To install from source:
+Or install from source:
 
 ```
 python setup.py install
 ```
 
-There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your datadog.yaml file in the /etc/datadog-agent directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named timeboard.py with the following code:
+There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your *datadog.yaml* file in the */etc/datadog-agent* directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named *timeboard.py* with the following code:
 
 timeboard.py
 
@@ -245,9 +247,9 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
-Start off by replacing the placeholders for your API and APP keys. Give your Timeboard a name and description that tells your team what your Timeboard is about. For each graph that you want on your Timeboard, create a new graph definition inside *graphs* that describes how your metrics will be aggregated. 
+Start off by replacing the placeholders for your API and APP keys. Give your Timeboard a name and description that tells your team what your Timeboard is about. For each graph that you want on your Timeboard, create a new graph definition inside the *graphs* list that describes how your metrics will be aggregated. 
 
-Our first graph definition queries for our custom metric, my_metric, over our host. Our second graphs queries the mysql.performance.queries metric from our MySQL integration with the anomalies function applied. The anomalies function takes two parameters: the anomaly algorithm you want to use as the first parameter and the standard deviations for your algorithm (usually 2 or 3). Our last graph definition queries for our custom metric with the rollup function applied. The rollup function also takes two parameters: the method used and time in seconds. In this case, we wanted to sum up all the points for the past hour into one bucket.
+Our first graph definition queries for our custom metric, my_metric, over our host. Our second graphs queries the mysql.performance.queries metric from our MySQL integration with the anomalies function applied. The anomalies function takes two parameters: the anomaly algorithm (basic/agile/robust) you want to use as the first parameter and the standard deviations for your algorithm (usually 2 or 3) as the second parameter. We'll be using the basic algorithm because we do not have enough historical data to make use of the other two algorithms. Our last graph definition queries for our custom metric with the rollup function applied. The rollup function also takes two parameters: the method used (sum/min/max/count/avg) and time(in seconds). In this case, we wanted to sum up all the points for the past hour into one bucket and display it on our graph.
 
 When you're done, simply run the Python script.
 
@@ -255,6 +257,17 @@ For more information on how to use graph functions, check out the Datadog docume
 
 ### Setting the Timeboard's timeframe to the past 5 minutes
 
-Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to Dashboards -> Dashboard List. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before and after that selected point. Let's look at an example:
+Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to Dashboards -> Dashboard List. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before or after that selected point. Let's look at an example:
 
-Select the data point in your graph that you want to analyze and drag your cursor 5 minutes to the left or right. Your graph will now change to show you the data within that 5 minute timeframe.  
+Select the data point in your graph that you want to analyze and drag your cursor 5 minutes (the x-axis unit of measurement) to the left or right. Your graph will now change to show you the data within that 5 minute timeframe. 
+
+### What is the Anomaly graph displaying?
+
+In my Anomaly graph, I noticed that my data (the blue line) looks almost constant with the Anomaly function (the gray band) covering data width slightly below and slightly above our own. The gray band ensures that anomalies inside it is the data we normally would expect and anything that goes beyond it is anomalous. Note that this band is wide enough so that there is variation allowed in our data, but narrow enough so that any data that can be anomalous is shown. It is possible that because I chose a metric that was not fluctuating much, its data seemed very smooth and the Anomaly band's width did not have to be that wide (but it is large enough to know that if there a large number of queries at one time, it is detected and an alert is triggered).
+
+Anomaly detection gives users a great way to automate metric watching. Although the metric sample size I used in this example is really small, imagine the possibilities of being able to view and measure all the metrics you've collected over a course of months and across way more devices! If anomaly detection is something that you want to learn more about, please see this article [here](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which describes anomalies more in detail.
+
+## Monitoring Data
+
+
+
