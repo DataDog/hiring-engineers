@@ -1,0 +1,5 @@
+# from datdog-agent/conf.d
+init_config:
+
+instances:
+  - min_collection_interval: 45
