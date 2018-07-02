@@ -61,6 +61,21 @@ When I run the 'sudo datadog-agent status' command to display Agent information,
 
 ![Info status](images/CollectingMetrics/InfoStatus.png)
 
+### Creating custom Agent check
+The next steps were to create a custom Agent check that submits a metric with a random value between 0 and 1000. I used these [directions](https://docs.datadoghq.com/developers/agent_checks/) to understand how to create an Agent check. From these instructions, I created a `mycheck.py` file inside the `checks.d` directory and a `mycheck.yaml` file inside the `conf.d` directory. To have the metric return a random value within a specified range, I used the `random.randInt()` function from the standard Python library.
+
+`mycheck.py`
+
+![mycheck](images/CollectingMetrics/Mycheck.png)
+
+Afterwards, I had to change the check's collection interval so that it only submits the metric once every 45 seconds. The bonus question also challenged me to change this interval without editing the python file I created. After studying the AgentCheck class, I came to the conclusion that using `min_collection_interval` would be the best way to limit my_metric's collection interval.
+
+`mycheck.yaml`
+
+![Minimum collection](images/CollectingMetrics/MinCollection.png)
+
+![My_metric](images/CollectingMetrics/My_metric.png)
+
 ## Visualizing Data:
 
 ## Monitoring Data
