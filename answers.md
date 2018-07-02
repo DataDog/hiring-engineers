@@ -78,8 +78,13 @@ Afterwards, I had to change the check's collection interval so that it only subm
 
 ## Visualizing Data:
 
+### Creating Timeboard
+
+
 ## Monitoring Data
 
 ## Collecting APM Data:
 
 ## Final Question
+
+I think an interesting use of Datadog would be to monitor gym equipment usage. 
