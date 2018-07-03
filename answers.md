@@ -64,7 +64,7 @@ When I run the 'sudo datadog-agent status' command to display Agent information,
 
 ![Info status](images/CollectingMetrics/InfoStatus.png)
 
-## Creating Custom Agent Check
+### Creating Custom Agent Check
 The next steps were to create a custom Agent check that submits a metric with a random value between 0 and 1000. I used these [directions](https://docs.datadoghq.com/developers/agent_checks/) to understand how to create an Agent check. From these instructions, I created a `mycheck.py` file inside the `checks.d` directory and a `mycheck.yaml` file inside the `conf.d` directory. To have the metric return a random value within a specified range, I used the `random.randInt()` function from the standard Python library.
 
 `mycheck.py`
