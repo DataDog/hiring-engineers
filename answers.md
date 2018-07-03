@@ -95,6 +95,8 @@ Snapshot of Timeboard's timeframe to past five minutes.
 
 ![Timeboard snapshot](images/VisualizingData/TimeboardSnapshot.png)
 
+The Anomaly graph displays changes in behavior of the metric it tracks by keeping track of historical data and patterns and being able to detect any deltas that may occur. Anomaly graphs are useful for metrics that have a consistent reoccuring pattern as any significant changes to those patterns means a very drastic issue that metric may have.
+
 ## Monitoring Data
 
 I created a Metric Monitor that warns me if `my_metric` reaches 500 or above or alerts me if it reaches to 800 or above. Another check I implemented was to alert me if `my_metric` did not report any data for over 10 minutes. Some options that I included was to have the monitor email me whenever it triggers, have different messages based on what the monitor reports, and display the host name and IP for the metric value that triggers an Alert state.
