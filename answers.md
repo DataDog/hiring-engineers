@@ -261,19 +261,11 @@ For more information on how to use graph functions, check out the Datadog docume
 
 ### Setting the Timeboard's timeframe to the past 5 minutes
 
-Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to Dashboards -> Dashboard List. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before or after that selected point. Let's look at an example:
+Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to `Dashboards -> Dashboard List`. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before or after that selected point. Let's look at an example:
 
 ![my timeboard](images/my_timeboard.png)
 
  Select the data point in your graph that you want to analyze and drag your cursor 5 minutes (the x-axis unit of measurement) to the left or right. Your graph will now change to show you the data within that 5 minute timeframe. Pressing on the camera icon will take a snapshot of this graph and using the @ notation will allow you to send it to yourself. 
-
-Warning threshold email:
-
-![warning threshold email](images/warning_threshold_email.png)
-
-Alert threshold email:
- 
-![alert threshold email](images/alert_threshold_email.png)
 
 ### What is the Anomaly graph displaying?
 
@@ -285,7 +277,11 @@ Anomaly detection gives users a great way to automate metric watching. Although 
 
 Not only does Datadog provide us with a way to view our metrics through Timeboards, but we are also given a way to know when critical changes are occurring within the metrics by using [monitors](https://docs.datadoghq.com/monitors/). 
 
-There are a couple ways to create a monitor in Datadog. My recommended approach is to, starting from the Events page, navigate to Monitors -> Manage Monitors -> New Monitor. You'll be prompted to select a monitor type (for this example, let's use a metric monitor). Now define the metric you wish to monitor, set the alert condition thresholds, and figure out how you would like to alert your team if a critical change occurs. For more information on setting up notifications for your team, please see the Datadog documentation on [Notifications](https://docs.datadoghq.com/monitors/notifications/). 
+There are a couple ways to create a monitor in Datadog. My recommended approach is to, starting from the Events page, navigate to `Monitors -> Manage Monitors -> New Monitor`. You'll be prompted to select a monitor type (for this example, let's use a metric monitor). Now define the metric you wish to monitor and begin to setup its [configuration](https://docs.datadoghq.com/monitors/monitor_types/metric/#configuration/). Set the alert condition thresholds and figure out how you would like to notify your team if a critical change occurs. For more information on setting up notifications for your team, please see the Datadog documentation on [Notifications](https://docs.datadoghq.com/monitors/notifications/). 
+
+My finished Metric Monitor:
+
+![metric monitor](images/metric_monitor.png)
 
 The second is to use [Datadog's API on monitors](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) to create a basic monitor:
 
@@ -314,9 +310,19 @@ api.Monitor.create(
 )
 ```
 
-Once finished, run this as a Python script and you'll be happy to see it in your monitors list when you go to Monitors -> Manage Monitors. Note that you can still edit this monitor to your liking.
+Once finished, run this as a Python script and you'll be happy to see it in your monitors list when you go to `Monitors -> Manage Monitors`. Note that you can still edit this monitor to your liking.
 
-Since this monitor is going to alert pretty often, it's useful to [schedule downtimes](https://docs.datadoghq.com/monitors/downtimes/) so that you won't be alerted when you're out of the office. To set downtimes, navigate to Monitors -> Manage Downtime -> Schedule Downtime and fill in the necessary steps as shown below.
+However you decide to do it, make sure to keep an eye on your email for all the notifications that will be coming through.
+
+Warning threshold email:
+
+![warning threshold email](images/warning_threshold_email.png)
+
+Alert threshold email:
+
+![alert threshold email](images/alert_threshold_email.png)
+
+Since this monitor is going to alert pretty often, it's useful to [schedule downtimes](https://docs.datadoghq.com/monitors/downtimes/) so that you won't be alerted when you're out of the office. To set downtimes, navigate to `Monitors -> Manage Downtime -> Schedule Downtime` and fill in the necessary steps as shown below.
 
 Downtime for M-F from 7 PM PDT to 9 AM PDT:
 
@@ -373,7 +379,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ``` 
 
-Before we can get it running, we'll need to install ddtrace:
+Before we can get it running, we'll need to install `ddtrace`:
 
 ```
 pip install ddtrace
@@ -392,7 +398,7 @@ sudo wget http://0.0.0.0:5050/api/apm
 sudo wget http://0.0.0.0:5050/api/trace
 ```
 
-We'll now be able to view our APM data by navigating to Events -> APM -> Services and Events -> APM -> Traces. 
+We'll now be able to view our APM data by navigating to `Events -> APM -> Services` and `Events -> APM -> Traces`. 
 
 ![apm latency](images/apm_latency.png)
 
@@ -401,9 +407,13 @@ From here, export your graphs to a timeboard so that you can display both APM an
 APM and Infrastructure Timeboard:
 ![timeboard](images/apm_timeboard.png)
 
+And [here](https://app.datadoghq.com/dash/849252/my-timeboard?live=true&page=0&is_auto=false&from_ts=1530509734397&to_ts=1530596134397&tile_size=m) is a link to my Timeboard.
+
 ### What is the difference between a Service and a Resource?
 
 A service is a set of processes that do the same job; for instance, a single webapp service and a single database service that both belongs to a simple web application. A resource is a particular action for a service, such as a canonical URL for the webapp or a query for the SQL database.
+
+Want to learn more about services and resources? Take a look [here](https://docs.datadoghq.com/tracing/visualization/#services).
 
 ## Final Question: Is there anything creative you would use Datadog for?
 
