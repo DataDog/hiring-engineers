@@ -95,21 +95,26 @@ Snapshot of Timeboard's timeframe to past five minutes.
 I created a Metric Monitor that warns me if `my_metric` reaches 500 or above or alerts me if it reaches to 800 or above. Another check I implemented was to alert me if `my_metric` did not report any data for over 10 minutes. Some options that I included was to have the monitor email me whenever it triggers, have different messages based on what the monitor reports, and display the host name and IP for the metric value that triggers an Alert state.
 
 Options I set for the Metric Monitor.
-[!Metric values](images/MonitoringData/MetricValues.png)
+
+![Metric values](images/MonitoringData/MetricValues.png)
 
 Description of the different messages the Metric Monitor may email me.
-[!Monitor message](images/MonitoringData/MonitorMessage.png)
+
+![Monitor message](images/MonitoringData/MonitorMessage.png)
 
 Screenshot of the email that Datadog sends when the monitor is triggered.
-[!Monitor email](images/MonitoringData/MonitorEmail.png)
+
+![Monitor email](images/MonitoringData/MonitorEmail.png)
 
 To create a downtime for the monitor, I implemented one that silenced itself between a certain time frames. Because I was filling out the downtime options after 7pm, Datadog did not allow me to create a recurring downtime for 7pm as it was an earlier time. This is why I set the downtime range from 8pm to 10am.
 
 Options that I set for the downtime.
-[!Downtime options](images/MonitoringData/Downtime.png)
+
+![Downtime options](images/MonitoringData/Downtime.png)
 
 Screenshot that Datadog sends when the downtime is active.
-[!Downtime email](images/MonitoringData/DowntimeEmail.png)
+
+![Downtime email](images/MonitoringData/DowntimeEmail.png)
 
 ## Collecting APM Data:
 
