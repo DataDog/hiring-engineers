@@ -381,7 +381,9 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ``` 
 
-Before we can get it running, we'll need to install `ddtrace`:
+Before we can get it running, install flask using this [link](http://flask.pocoo.org/docs/0.12/installation/). 
+
+We'll also need to install `ddtrace`:
 
 ```
 pip install ddtrace
