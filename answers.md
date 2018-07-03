@@ -147,5 +147,5 @@ Datadog can also be used for gyms looking to see the critical areas that they ne
 
 ## Conclusion
 
-This Solutions Engineer technical challenge was very interesting and I had a lot of fun learning about the Datadog platform and the numerous functions that it provides.
+This Solutions Engineer technical challenge was very interesting and I had a lot of fun learning about the Datadog platform and the numerous functions that it provides. By being able to touch many aspects of Datadog, I was able to gain a high level understanding of the product. This would transition very well into a Solutions Engineer role as I will be needing to explain in depth Datadog and its features to potential clients and be able to create elegant solutions to any problems that may arise.
 
