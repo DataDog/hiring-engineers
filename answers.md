@@ -3,11 +3,11 @@
 ## Prerequisites - Setup the environment
 
 ### Vagrant Installation
-I am completing this exercise using Windows 10 and to avoid any OS or dependency issues, I setup a Vagrant Ubuntu VM. To setup the virtual machine, I used the command 'vagrant init hashicorp/precise64' after installing the Vagrant packages. Unfortunately, I had already installed Vagrant before taking a screenshot.
+I am completing this exercise using Windows 10 and to avoid any OS or dependency issues, I setup a Vagrant Ubuntu VM. To setup the virtual machine, I used the command `vagrant init hashicorp/precise64` after installing the Vagrant packages. Unfortunately, I had already installed Vagrant before taking a screenshot.
 
 ![Setup command](images/Prerequisites/Setup.png)
 
-Then I used the command 'vagrant up' to start up the virtual machine and used the command 'vagrant ssh' to connect to it and interact with the virtual machine.
+Then I used the command `vagrant up` to start up the virtual machine and used the command `vagrant ssh` to connect to it and interact with the virtual machine.
 
 ![Vagrant up and vagrant ssh](images/Prerequisites/VagrantSSH.png)
 
