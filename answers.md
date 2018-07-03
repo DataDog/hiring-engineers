@@ -4,7 +4,7 @@ I decided to use an Ubuntu 16.04 virtual machine using VirtualBox, as that was t
 
 # Collecting Metrics
 
-After getting the agent installed and running, the next step was to start collecting metrics on the VM running the agent. The first part of this was to add host tags to the file in `/etc/datadog-agent/datadog.yaml`. Inside this file around line 42, you should find a section that looks like this:
+After getting the agent installed and running, the next step was to start collecting metrics on the VM running the agent. The first part of this was to add host tags to the file in `/etc/datadog-agent/datadog.yaml`. Inside this file around line 42, there is a section that looks like this:
 
 ![Original datadog.yaml file with lines commented out](resources/dd-config-ex.PNG)
 
@@ -26,7 +26,7 @@ I then installed MySQL onto my virtual machine, and followed the instructions in
 
 ![Metrics for the MySQL integration in the host's dashboard](resources/dd-mysql-metrics.PNG)
 
-The next task was to create a custom agent that reported a random number between 0 and 1000. I created a new file in the `check.d` folder in the DataDog agent root called `my_metric.py`:
+The next task was to create a custom agent that reported a random number between 0 and 1000. I created a new file in the `check.d` folder in the DataDog agent root called `my_metric.py` [(file)](code/my_metric.py):
 
 ```python
 from checks import AgentCheck
@@ -37,7 +37,7 @@ class MyCheck(AgentCheck):
 		self.gauge('my_metric', randint(0, 1000))
 
 ```
-I then made a file called `my_metric.yaml` in the `conf.d` directory that stores the configuration for the metric I made:
+I then made a file called `my_metric.yaml` [(file)](code/my_metric.yaml) in the `conf.d` directory that stores the configuration for the metric I made:
 
 ```yaml
 init_config:
