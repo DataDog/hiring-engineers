@@ -4,8 +4,6 @@
 
 To get started with using the Datadog Agent, let's begin by spinning up a fresh Ubuntu VM using Vagrant. Install Vagrant on your local machine and enter the following:
 
-Setting up the Ubuntu VM:
-
 ```
 vagrant init ubuntu/xenial64
 vagrant up
@@ -18,7 +16,7 @@ We should now have a shiny new VM running Ubuntu 16.04 (for more information on 
 
 ### Adding tags in the Agent config file
 
-Tags provide Datadog users with a way to query aggregated data from their metrics across a number of hosts. This is useful because we'll have a bird's eye view of how metrics behave across a collection of systems instead of each system individually. To get started with tags, we'll have to modify the overall Agent's configuration file by navigating to the directory it's located in and editing it with an editor of your choice (in this example, I'll be using vim).
+Tags provide Datadog users with a way to query aggregated data from their metrics across a number of hosts. This is useful because we'll have a bird's eye view of how metrics behave across a collection of systems instead of each system individually. To get started with tags, we'll have to modify the overall Agent's configuration file by navigating to the directory it's located in and editing it with an editor of your choice (for these examples, I'll be using vim).
 
 Navigating to datadog.yaml:
 
@@ -43,7 +41,7 @@ tags: name:jonathan, region:westus, env:test
 
 Now that we've modified the configuration file, [restart your Agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands) and go to your Events page and navigate to Infrastructure -> Host Map. Here are all the Agents associated with your account. Select the Agent you've been working on and you'll be able to confirm that your tags was added (note: it may take a few minutes for your tags to show up with your host). Here is mine for reference:
 
-![alt text](https://raw.githubusercontent.com/jonathan-paul-deguzman/hiring-engineers/agent_with_tags_from_host_map.png "Agent overview from Host Map")
+![host map image](images/host_map_agent.png)
 
 For more information on assigning tags, please refer to the Datadog documentation on [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files).
 
@@ -97,7 +95,7 @@ class MetricCheck(AgentCheck):
         self.gauge('my_metric', randint(0, 1000))
 ```
 
-Now navigate to the **/etc/datadog-agent/conf.d**. Here, we must create a configuration file that matches our check. Since we have named our check **metric_check.py**, we'll have to create a configuration file named **metric_check.yaml** inside the current directory.
+Now navigate to the `/etc/datadog-agent/conf.d`. Here, we must create a configuration file that matches our check. Since we have named our check `metric_check.py`, we'll have to create a configuration file named `metric_check.yaml` inside the current directory.
 
 metric_check.yaml:
 
@@ -186,7 +184,7 @@ Or install from source:
 python setup.py install
 ```
 
-There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your *datadog.yaml* file in the */etc/datadog-agent* directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named *timeboard.py* with the following code:
+There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your `datadog.yaml` file in the `/etc/datadog-agent` directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named `timeboard.py` with the following code:
 
 timeboard.py
 
@@ -212,6 +210,7 @@ graphs = [{
     },
     "title": "my_metric scoped over host"
 },
+
 {
     "definition": {
             "events": [],
@@ -222,6 +221,7 @@ graphs = [{
         },
         "title": "mysql.performance.queries with the anomaly function applied"
 },
+
 {
     "definition": {
             "events": [],
@@ -249,7 +249,11 @@ api.Timeboard.create(title=title,
 
 Start off by replacing the placeholders for your API and APP keys. Give your Timeboard a name and description that tells your team what your Timeboard is about. For each graph that you want on your Timeboard, create a new graph definition inside the *graphs* list that describes how your metrics will be aggregated. 
 
-Our first graph definition queries for our custom metric, my_metric, over our host. Our second graphs queries the mysql.performance.queries metric from our MySQL integration with the anomalies function applied. The anomalies function takes two parameters: the anomaly algorithm (basic/agile/robust) you want to use as the first parameter and the standard deviations for your algorithm (usually 2 or 3) as the second parameter. We'll be using the basic algorithm because we do not have enough historical data to make use of the other two algorithms. Our last graph definition queries for our custom metric with the rollup function applied. The rollup function also takes two parameters: the method used (sum/min/max/count/avg) and time(in seconds). In this case, we wanted to sum up all the points for the past hour into one bucket and display it on our graph.
+Our first graph definition queries for our custom metric, my_metric, over our host. 
+
+Our second graphs queries the mysql.performance.queries metric from our MySQL integration with the anomalies function applied. The anomalies function takes two parameters: the anomaly algorithm (basic/agile/robust) you want to use as the first parameter and the standard deviations for your algorithm (usually 2 or 3) as the second parameter. We'll be using the basic algorithm because we do not have enough historical data to make use of the other two algorithms. 
+
+Our last graph definition queries for our custom metric with the rollup function applied. The rollup function also takes two parameters: the method used (sum/min/max/count/avg) and time(in seconds). In this case, we wanted to sum up all the points for the past hour into one bucket and display it on our graph.
 
 When you're done, simply run the Python script.
 
@@ -259,7 +263,17 @@ For more information on how to use graph functions, check out the Datadog docume
 
 Now that we've created our Timeboard, it's time to look at our results! Go back to the Events page and navigate to Dashboards -> Dashboard List. This is where all the Timeboards created by you and your team will be; click on the Timeboard you just made and you'll be moved to your Timeboard's page. The reason for why Timeboards are great for troubleshooting is that you can use the timeframe feature to select a data point and view data from before or after that selected point. Let's look at an example:
 
-Select the data point in your graph that you want to analyze and drag your cursor 5 minutes (the x-axis unit of measurement) to the left or right. Your graph will now change to show you the data within that 5 minute timeframe. 
+![my timeboard](images/my_timeboard.png)
+
+ Select the data point in your graph that you want to analyze and drag your cursor 5 minutes (the x-axis unit of measurement) to the left or right. Your graph will now change to show you the data within that 5 minute timeframe. Pressing on the camera icon will take a snapshot of this graph and using the @ notation will allow you to send it to yourself. 
+
+Warning threshold email:
+
+![warning threshold email](images/warning_threshold_email.png)
+
+Alert threshold email:
+ 
+![alert threshold email](images/alert_threshold_email.png)
 
 ### What is the Anomaly graph displaying?
 
@@ -271,7 +285,7 @@ Anomaly detection gives users a great way to automate metric watching. Although 
 
 Not only does Datadog provide us with a way to view our metrics through Timeboards, but we are also given a way to know when critical changes are occurring within the metrics by using [monitors](https://docs.datadoghq.com/monitors/). 
 
-There are a couple ways to create a monitor in Datadog. The recommended approach is to, starting from the Events page, navigate to Monitors -> Manage Monitors -> New Monitor. You'll be prompted to select a monitor type (for this example, let's use a metric monitor). Now define the metric you wish to monitor, set the alert condition thresholds, and figure out how you would like to alert your team if a critical change occurs. For more information on setting up notifications for your team, please see the Datadog documentation on [Notifications](https://docs.datadoghq.com/monitors/notifications/). 
+There are a couple ways to create a monitor in Datadog. My recommended approach is to, starting from the Events page, navigate to Monitors -> Manage Monitors -> New Monitor. You'll be prompted to select a monitor type (for this example, let's use a metric monitor). Now define the metric you wish to monitor, set the alert condition thresholds, and figure out how you would like to alert your team if a critical change occurs. For more information on setting up notifications for your team, please see the Datadog documentation on [Notifications](https://docs.datadoghq.com/monitors/notifications/). 
 
 The second is to use [Datadog's API on monitors](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) to create a basic monitor:
 
@@ -306,7 +320,19 @@ Since this monitor is going to alert pretty often, it's useful to [schedule down
 
 Downtime for M-F from 7 PM PDT to 9 AM PDT:
 
+![downtime mon fri](images/downtime_mon_fri.png)
+
+Email from M-F downtime:
+
+![downtime email](images/downtime_mon_fri_email.png)
+
 Downtime for Sat-Sun all day:
+
+![downtime sat sun](images/downtime_sat_sun.png)
+
+Email from Sat-Sun downtime:
+
+![downtime email](images/downtime_sat_sun_email.png)
 
 ## Collecting APM Data
 
@@ -316,7 +342,7 @@ Datadog's APM provides users with a way to analyze the performance of both their
 
 my_app.py:
 
-```
+```python
 from flask import Flask
 import logging
 import sys
@@ -366,8 +392,14 @@ sudo wget http://0.0.0.0:5050/api/apm
 sudo wget http://0.0.0.0:5050/api/trace
 ```
 
-We'll now be able to view our APM data by navigating to Events -> APM -> Services and Events -> APM -> Traces.
+We'll now be able to view our APM data by navigating to Events -> APM -> Services and Events -> APM -> Traces. 
 
+![apm latency](images/apm_latency.png)
+
+From here, export your graphs to a timeboard so that you can display both APM and Infrastructure metrics.
+
+APM and Infrastructure Timeboard:
+![timeboard](images/apm_timeboard.png)
 
 ### What is the difference between a Service and a Resource?
 
