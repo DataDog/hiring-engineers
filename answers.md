@@ -10,7 +10,7 @@ vagrant up
 vagrant ssh
 ```
 
-We should now have a shiny new VM running Ubuntu 16.04 (for more information on using Vagrant, see [here](https://www.vagrantup.com/intro/getting-started/)). Log in to your Datadog account (sign up if you haven't yet for a 14 day free trial) and you'll be sent to the Events page of your account. From the Events page, navigate to Integrations -> Agent and select your OS. Follow the instructions on the screen and you'll soon have a Datadog Agent to use. With the Agent v6 installed, let's start exploring Datadog! 
+We should now have a shiny new VM running Ubuntu 16.04 (for more information on using Vagrant, see [here](https://www.vagrantup.com/intro/getting-started/)). Log in to your Datadog account (sign up if you haven't yet for a 14 day free trial) and you'll be sent to the Events page of your account. From the Events page, navigate to `Integrations -> Agent` and select your OS. Follow the instructions on the screen and you'll soon have a Datadog Agent to use. With the Agent v6 installed, let's start exploring Datadog! 
 
 ## Collecting Metrics
 
@@ -39,7 +39,7 @@ dd_url: https://app.datadoghq.com
 tags: name:jonathan, region:westus, env:test
 ```
 
-Now that we've modified the configuration file, [restart your Agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands) and go to your Events page and navigate to Infrastructure -> Host Map. Here are all the Agents associated with your account. Select the Agent you've been working on and you'll be able to confirm that your tags was added (note: it may take a few minutes for your tags to show up with your host). Here is mine for reference:
+Now that we've modified the configuration file, [restart your Agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#commands) and go to your Events page and navigate to `Infrastructure -> Host Map`. Here are all the Agents associated with your account. Select the Agent you've been working on and you'll be able to confirm that your tags was added (note: it may take a few minutes for your tags to show up with your host). Here is mine for reference:
 
 ![host map image](images/host_map_agent.png)
 
@@ -56,7 +56,7 @@ sudo apt-get update
 sudo apt-get install mysql-server
 ```
 
-To install the Datadog MySQL integration, start at your Events page and navigate to Integrations -> Integrations and click on the MySQL option from the list of integrations. Following the instructions, you should have successfully installed the MySQL integration. To check if your installation was successful, restart your Agent and then run the status command:
+To install the Datadog MySQL integration, start at your Events page and navigate to `Integrations -> Integrations` and click on the MySQL option from the list of integrations. Following the instructions, you should have successfully installed the MySQL integration. To check if your installation was successful, restart your Agent and then run the status command:
 
 ```
 sudo service datadog-agent restart
@@ -82,7 +82,7 @@ Running Checks
 
 ### Creating a custom Agent check
 
-Agent checks are a great way to collect metrics from custom applications or unique systems. For more information, be sure to check out Datadog's documentation on [writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check). We can start making our custom Agent check by first creating a Python script that submits *my_metric* and a random value between 0 and 1000. Navigate to **/etc/datadog-agent/checks.d** and create a Python class **metric_check.py** inside that directory.
+Agent checks are a great way to collect metrics from custom applications or unique systems. For more information, be sure to check out Datadog's documentation on [writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check). We can start making our custom Agent check by first creating a Python script that submits `my_metric` and a random value between 0 and 1000. Navigate to `/etc/datadog-agent/checks.d` and create a Python class `metric_check.py` inside that directory.
 
 metric_check.py:
 
@@ -106,7 +106,9 @@ instances:
     [{}]
 ```
 
-It's possible to [change the collection interval](https://docs.datadoghq.com/developers/agent_checks/#configuration) from inside the configuration file by adding **min_collection_interval** at the instance level. This means that we don't have to modify the Python check file we just created!
+### Can you change you check's collection interval without modifying the Python check file?
+
+It's possible to [change the collection interval](https://docs.datadoghq.com/developers/agent_checks/#configuration) from inside the configuration file by adding `min_collection_interval` at the instance level. This means that we could change the collection interval to 45 seconds without having to modify the Python check file we just created!
 
 metric_check.yaml:
 
@@ -123,7 +125,7 @@ Restart the Agent for the changes to be enabled and, from your Agent root, run:
 sudo -u dd-agent -- datadog-agent check metric_check
 ```
 
-You should now get a response very similar to the one I got:
+You should now get a response similar to the one I got:
 
 ```
 === Series ===
@@ -184,7 +186,7 @@ Or install from source:
 python setup.py install
 ```
 
-There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your `datadog.yaml` file in the `/etc/datadog-agent` directory. Starting from your Events page, you can create an APP key by going to Integrations -> APIs -> Application Keys. You're ready to create your first Timeboard! From the /etc/datadog-agent directory, create a file named `timeboard.py` with the following code:
+There's just two more pieces of information we'll need before we can start coding: your API key and APP key. Your API key can be found inside your `datadog.yaml` file in the `/etc/datadog-agent` directory. Starting from your Events page, you can create an APP key by going to `Integrations -> APIs -> Application Keys`. You're ready to create your first Timeboard! From the `/etc/datadog-agent` directory, create a file named `timeboard.py` with the following code:
 
 timeboard.py
 
@@ -424,11 +426,9 @@ A player's stats is the best indicator of how well he is doing with respect to t
 	* Write an Agent Check to collect the average metrics for each stat (points, rebounds, assists, steals, blocks, 3s, FG%, FT%) and display the data on a Timeboard.
 	* Write an Agent Check to collect the metrics for how many times a certain player is added and dropped during the day (if there's a lot of commotion, something big must have happened).
 	* Using anomalies and a monitor, I would email myself whenever a player does exceptionally well that day so that I would be able to log in to the app and pick him up on my team.
+	* I would also want to monitor the 14 players currently on my team to see who is performing well (if somebody performs below expectations a certain number of times, I might need to drop him).
 	* As fun as this all sounds, it would probably be a good idea to schedule downtimes for this monitor during work hours.
 
-Hey, this actually sounds like a pretty good app idea now that I think about it.
-
-
-
+Hey, now that I think about it, this actually sounds like a pretty good idea for an app!
 
 
