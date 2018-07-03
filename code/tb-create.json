@@ -1,0 +1,48 @@
+{
+    "graphs": [
+        {
+            "title": "my_metric data scoped over host",
+            "viz": "timeseries",
+            "status": "done",
+            "definition": {
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:datadog-soleng} by {host}",
+                        "type": "line"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "MySQL CPU usage time with anomaly function",
+            "viz": "timeseries",
+            "status": "done",
+            "definition": {
+                "requests": [
+                    {
+                        "q": "anomalies(avg:mysql.performance.cpu_time{host:datadog-soleng}, 'basic', 2)",
+                        "type": "line"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "Sum of my_metric values over past hour",
+            "viz": "query_value",
+            "status": "done",
+            "definition": {
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:datadog-soleng} by {host}.rollup(sum, 3600)",
+                        "type": "area"
+                    }
+                ]
+            },
+            "autoscale": false,
+            "precision": "0"
+        }
+    ],
+    "title": "Technical Challenge Dashboard",
+    "description": "Dashboard that fulfills the requirements of the Solutions Engineer technical challenge.",
+    "read_only": "True"
+}
