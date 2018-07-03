@@ -56,7 +56,7 @@ This explains why, later in the challenge, I observed that the actual collection
 
 # Visualizing Data
 
-For this part of the challenge, I was tasked with using the API to create a Timeboard that displayed data about my custom agent and the MySQL integration. To start, I used the Curl shell script given in the docs as a framework, and inserted the graphs I needed in the JSON. When I was poking around in the application, I noticed that when you make a graph in a timeboard, it provides you with JSON that is useful as a starting point to working with the API, so I used that for each of my 3 graphs. I took the URL (inserting each key in its respective place) and the JSON body I had crafted from the docs and the application, and used Postman (my preferred tool for interacting with and testing APIs) to send the POST request to the API.
+For this part of the challenge, I was tasked with using the API to create a Timeboard that displayed data about my custom agent and the MySQL integration. To start, I used the Curl shell script given in the [docs](https://docs.datadoghq.com/api/?lang=bash#timeboards) as a framework, and inserted the graphs I needed in the JSON. When I was poking around in the application, I noticed that when you make a graph in a timeboard, it provides you with JSON that is useful as a starting point to working with the API, so I used that for each of my 3 graphs. I took the URL (inserting each key in its respective place) and the JSON body I had crafted from the docs and the application, and used Postman (my preferred tool for interacting with and testing APIs) to send the POST request to the API.
 
 ![API request in Postman](resources/dd-postman.PNG)
 
@@ -86,4 +86,19 @@ I also had these scheduled downtimes send me an email after I configured and sav
 
 ![Downtime emails](resources/dd-downtime-emails.PNG)
 
+# Collecting APM Data
 
+My final task was to take a simple Python Flask API, change it to use DataDog's program tracing solution, and collect data from the program through said framework. The [docs](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask) contained everything I needed to use the Flask middleware approach. After modifying the program and starting it with the command `python apm-test.py` [(file)](code/apm-test.py), I decided to use a program I have used to load test APIs in the past called [Artillery](https://artillery.io/) to quickly get some data into the application. I had it send requests to the program with a roughly even split between 4 different URLs: `/`, `/api/trace`, `/api/apm`, and `/api` (which does not exist). This gave me the opportunity to play with some different visualizations and actually come to some meaningful realizations, namely that the invalid requests ran significantly slower than valid requests as you can see on this dashboard (along with other APM and infrastructure metrics):
+
+![Screen for my-flask-app service](resources/dd-apm.PNG)
+
+![APM dashboard](resources/dd-apm-dash.PNG)
+[Dashboard containing APM and infrastructure metrics](https://p.datadoghq.com/sb/50be9916d-833c1d27ab68c4ce68a5b9e5bef7cda0)
+
+For the bonus, a service is a program, like an API, while a resource is a function within a service, like an endpoint for an API. In this instance, "my-flask-app" is the service, and "apm_endpoint", "api_entry", "trace_endpoint", and "404" are resources within that service.
+
+# Final Question and Conclusion
+
+I really enjoyed getting to know this product. Even just spending a small amount of time with it, I could see how powerful it could be as systems scale up. I wish I had been able to use this to monitor some of the systems I built in college. The documentation was generally very well-written and easy to follow, and almost everything worked like it was supposed to. I can tell that getting to work with such a flexible and powerful application every day would really be a treat.
+
+So to what creative applications would I apply DataDog? Well, even though it's on the mundane side, I would love to use it to gather metrics on the efficiency of different frameworks, and even compare different functions/features within specific frameworks. Using it in conjunction with Artillery (which I later found out has an integration with DataDog - just keeps getting better and better) was really neat, and I'd love to dig into why 404s take longer to process than successful requests. Doing deep-dive investigation into small efficiency improvements that scale out to massive improvements in large systems was one of my favorite tasks in college, and I'd love to bring that into the real world.
