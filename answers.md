@@ -269,5 +269,124 @@ Anomaly detection gives users a great way to automate metric watching. Although 
 
 ## Monitoring Data
 
+Not only does Datadog provide us with a way to view our metrics through Timeboards, but we are also given a way to know when critical changes are occurring within the metrics by using [monitors](https://docs.datadoghq.com/monitors/). 
+
+There are a couple ways to create a monitor in Datadog. The recommended approach is to, starting from the Events page, navigate to Monitors -> Manage Monitors -> New Monitor. You'll be prompted to select a monitor type (for this example, let's use a metric monitor). Now define the metric you wish to monitor, set the alert condition thresholds, and figure out how you would like to alert your team if a critical change occurs. For more information on setting up notifications for your team, please see the Datadog documentation on [Notifications](https://docs.datadoghq.com/monitors/notifications/). 
+
+The second is to use [Datadog's API on monitors](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) to create a basic monitor:
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<YOUR_API_KEY>',
+    'app_key': '<YOU_APP_KEY>'
+}
+
+initialize(**options)
+
+# Create a new monitor
+options = {
+    "notify_no_data": True,
+    "no_data_timeframe": 10,
+}
+api.Monitor.create(
+    type="metric alert",
+    query="avg(last_5m):avg:my_metric{*} > 800",
+    name="my_metric tracked over the past 5 minutes with alerts over 800",
+    message="Critical - test metric has gone over 800",
+    tags=tags,
+    options=options
+)
+```
+
+Once finished, run this as a Python script and you'll be happy to see it in your monitors list when you go to Monitors -> Manage Monitors. Note that you can still edit this monitor to your liking.
+
+Since this monitor is going to alert pretty often, it's useful to [schedule downtimes](https://docs.datadoghq.com/monitors/downtimes/) so that you won't be alerted when you're out of the office. To set downtimes, navigate to Monitors -> Manage Downtime -> Schedule Downtime and fill in the necessary steps as shown below.
+
+Downtime for M-F from 7 PM PDT to 9 AM PDT:
+
+Downtime for Sat-Sun all day:
+
+## Collecting APM Data
+
+### Using Datadog's APM Solution
+
+Datadog's APM provides users with a way to analyze the performance of both their infrastructure and application. For this example, I'll be using the provided Flask Python application. Start by creating `my_app.py` using the following code snippet.
+
+my_app.py:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+``` 
+
+Before we can get it running, we'll need to install ddtrace:
+
+```
+pip install ddtrace
+```
+
+Now we can use ddtrace to instrument the Python code:
+
+```
+ddtrace-run python my_app.py
+```
+
+And finally, we can access the following resources with our service:
+```
+sudo wget http://0.0.0.0:5050/
+sudo wget http://0.0.0.0:5050/api/apm
+sudo wget http://0.0.0.0:5050/api/trace
+```
+
+We'll now be able to view our APM data by navigating to Events -> APM -> Services and Events -> APM -> Traces.
+
+
+### What is the difference between a Service and a Resource?
+
+A service is a set of processes that do the same job; for instance, a single webapp service and a single database service that both belongs to a simple web application. A resource is a particular action for a service, such as a canonical URL for the webapp or a query for the SQL database.
+
+## Final Question: Is there anything creative you would use Datadog for?
+
+I'm a huge basketball fan. For the past 4 years, my friends and I get together and play fantasy basketball during the regular season of the NBA. The problem is that I'm very competitive and my friends are generally better than I am at picking up high-performing free agent players. Whenever a player starts to do really well, he's picked up by another team hours before I can even do any research. I want to beat them to the punch and I think Datadog can help me with that.
+
+A player's stats is the best indicator of how well he is doing with respect to the stats of the other available free agents to choose from. Using Datadog, I would:
+
+	* Write an Agent Check to collect the average metrics for each stat (points, rebounds, assists, steals, blocks, 3s, FG%, FT%) and display the data on a Timeboard.
+	* Write an Agent Check to collect the metrics for how many times a certain player is added and dropped during the day (if there's a lot of commotion, something big must have happened).
+	* Using anomalies and a monitor, I would email myself whenever a player does exceptionally well that day so that I would be able to log in to the app and pick him up on my team.
+	* As fun as this all sounds, it would probably be a good idea to schedule downtimes for this monitor during work hours.
+
+Hey, this actually sounds like a pretty good app idea now that I think about it.
+
+
+
 
 
