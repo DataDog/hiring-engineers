@@ -81,13 +81,16 @@ Here is `my_metric` after setting the check's collection interval to 45 seconds.
 
 ## Visualizing Data:
 
-To understand how to use Datadog's API to create a Timeboard, I used this [reference guide]https://docs.datadoghq.com/api/?lang=python#timeboards) to learn about the different functions that Datadog offers.
+To understand how to use Datadog's API to create a Timeboard, I used this [reference guide](https://docs.datadoghq.com/api/?lang=python#timeboards) to learn about the different functions that Datadog offers.
 
 The script to create this timeboard is included in this respository as `timeboard.py`.
+
+Finished Timeboard with the various metrics.
 
 ![Timeboard](images/VisualizingData/Timeboard.png)
 
 Snapshot of Timeboard's timeframe to past five minutes.
+
 ![Timeboard snapshot](images/VisualizingData/TimeboardSnapshot.png)
 
 ## Monitoring Data
@@ -118,9 +121,15 @@ Screenshot that Datadog sends when the downtime is active.
 
 ## Collecting APM Data:
 
-When I was instrumenting the given Flask app using Datadog's APM solution, I had trouble displaying it onto the Datadog tracing client. The prompt exclaimed that I should not use both `ddtrace-run` and Middleware at the same time so I chose to use Middleware. Unfortunately, I believe that my Flask was not able to connect with the APM solution even though it was able to run. Below, I have displayed the output of running my flask app.
+To understand how Datadog's APM solution worked, I used this given Python guide and these [specific instructions](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask) to walk me through the process. When I was instrumenting the given Flask app using Datadog's APM solution, I had trouble displaying it onto the Datadog tracing client. The prompt exclaimed that I should not use both `ddtrace-run` and Middleware at the same time so I chose to use Middleware. Unfortunately, I believe that my Flask was not able to connect with the APM solution even though it was able to run. Below, I have displayed the output of running my flask app.
 
-[!Flask error](images/CollectingData/Flask_error.png)
+![Flask error](images/CollectingData/Flask_error.png)
+
+When I tried using the flask command `export FLASK_APP=apm_flask.py` and then `python -m flask run` it gave me a very specific error. 
+
+![Python error](images/CollectingData/Python_error.png)
+
+After Googling the error, it appears to be an issue with running older versions of Python. Even after upgrading Python to a newer version, a similar error also occured. There wasn't much else for me to do without risking my entire virtual machine and agent so I wanted to document this error in my report.
 
 I have attached the instrumented app as `flask_apm.py` in this respository.
 
