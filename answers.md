@@ -44,10 +44,12 @@ I was able to access the main dashboard.
 ### Adding tags
 The instructions told me to add tags to the Agent config file which would also display onto the Host Map page in Datadog. I was able to find the config file from this [page](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) and learned how to add tags appropriately from this [instructional page](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files). Initially I had trouble seeing the tags displayed onto the Host Map because my spacing wasn't correct in the 'datadog.yaml' file.
 
-Tags written in the configuration file:
+Tags written in the configuration file.
+
 ![Config file tags](images/CollectingMetrics/ConfigTags.png)
 
-Tags displayed on the Host Map:
+Tags displayed on the Host Map.
+
 ![Host map tags](images/CollectingMetrics/HostMapTags.png)
 
 ### Installing database
@@ -62,7 +64,7 @@ When I run the 'sudo datadog-agent status' command to display Agent information,
 
 ![Info status](images/CollectingMetrics/InfoStatus.png)
 
-## Creating custom Agent check
+## Creating Custom Agent Check
 The next steps were to create a custom Agent check that submits a metric with a random value between 0 and 1000. I used these [directions](https://docs.datadoghq.com/developers/agent_checks/) to understand how to create an Agent check. From these instructions, I created a `mycheck.py` file inside the `checks.d` directory and a `mycheck.yaml` file inside the `conf.d` directory. To have the metric return a random value within a specified range, I used the `random.randInt()` function from the standard Python library.
 
 `mycheck.py`
