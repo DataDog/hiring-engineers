@@ -22,7 +22,7 @@ I then installed MySQL onto my virtual machine, and followed the instructions in
 
 ![Instructions to install integration](resources/dd-mysql.PNG)
 
-(Note: If your database's root user has a password set, it will probably be easier to enter the commands given here in the MySQL command line instead of in the terminal.)
+(Note: If your database's root user has a password set, it will probably be easier to enter the commands given here inside the quotation marks in the MySQL command line instead of in the terminal.)
 
 ![Metrics for the MySQL integration in the host's dashboard](resources/dd-mysql-metrics.PNG)
 
@@ -52,7 +52,7 @@ This file is also pretty bare-bones, but it made it easy to complete the next st
 
 > The collector runs every 15-20 seconds depending on how many integrations are enabled. If the interval on this Agent happens to be every 20 seconds, then the Agent collects and includes the Agent check. The next time it collects 20 seconds later, it sees that 20 is less than 30 and doesn’t collect the custom Agent check. The next time it sees that the time since last run was 40 which is greater than 30 and therefore the Agent check is collected.
 
-This would come into play later on in the challenge.
+This explains why, later in the challenge, I observed that the actual collection interval varied between 40 seconds and 60 seconds.
 
 # Visualizing Data
 
@@ -67,3 +67,23 @@ I really wanted the "Sum of my_metric values over past hour" to be a query value
 ![Snapshots of timeboard graphs](resources/dd-snapshots.PNG)
 
 The anomaly graph is showing what the algoritm the graph is using expects for the data to be like with the shaded grey area, and what the actual data is like with the line. In the snapshot, every time a part of the graph is red or circled is a time that the actual value was outside the bounds of the expected value.
+
+# Monitoring Data
+
+Now that I had created the metric and visualized it, my next task was to sutomatically generate alerts based on the average value of my_metric over the past 5 minutes, sending an "Alert" message if it's above 800 and a "Warning" message if it's above 500. I also needed to send an alert if there has been no data reported from the metric in the past 10 minutes, and have the monitor send an email to me whenever it triggers. To me, this seemed like a lot at first, but DataDog's tools and documentation ended up making it the part that gave me the fewest headaches. My configuration for the alerts is as follows:
+
+![Monitor config pt. 1](resources/dd-monitor-1.PNG)
+
+![Monitor config pt. 2](resources/dd-monitor-2.PNG)
+
+For the bonus on this section, I was to schedule downtime on the monitor from 7pm-9am Monday-Friday and all day Saturday and Sunday. This would mute notifications from the monitor when I would be out of the office during a work week. To do this, I clicked the "Manage Downtime" button in the "Monitors" submenu, and created 2 new recurring scheduled downtimes with configuration as follows:
+
+![Weekday downtime config](resources/dd-downtime-weekday.PNG)
+
+![Weekend downtime config](resources/dd-downtime-weekend.PNG)
+
+I also had these scheduled downtimes send me an email after I configured and saved them:
+
+![Downtime emails](resources/dd-downtime-emails.PNG)
+
+
