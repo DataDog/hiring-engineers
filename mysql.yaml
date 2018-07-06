@@ -1,0 +1,12 @@
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: datadog 
+    tags:
+        - Prod_DB 
+        - MySQL_Prod 
+    options:
+        replication: 0
+        galera_cluster: 1
