@@ -95,6 +95,10 @@ Here is a screen shot of the monitor config:
 Here is a screenshot of an email the monitor sent:
 ![Monitor Email](https://github.com/pazzman99/hiring-engineers/blob/master/Monitor_Email.JPG)
  
+**Bonus Question:** Here are some screenshots of the configred maintenance windows
+
+Daily Window
+
 
 
 # Collecting APM Data:
@@ -143,12 +147,15 @@ Here is a link to the file:
 
 
 Here are several screenshots of a the dashboard with APM and host metrics:
+
+**APM 1**
 ![APM 1](https://github.com/pazzman99/hiring-engineers/blob/master/APM_1.JPG)
 
+**APM 2**
 ![APM 2](https://github.com/pazzman99/hiring-engineers/blob/master/APM_2.JPG)
 
+**APM 3**
 ![APM 3](https://github.com/pazzman99/hiring-engineers/blob/master/APM_3.JPG)
-
 
 
 
