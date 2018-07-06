@@ -8,6 +8,7 @@ While I thought the excercises are a good idea and will show how resourceful a c
 
 Here are the answers to the invididual tracks:
 
+
 **Collecting Metrics:**
 
 Here is the YAML for the MySQL DB I monitored:
@@ -52,13 +53,12 @@ This is the code for the "Random Number" metric:
 Here is the link the the Yaml file
 [My_Metric.yaml](https://github.com/pazzman99/hiring-engineers/blob/master/my_metric.yaml)
 
-Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+**Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 - You can do this by going to metrics/summary and clicking on the metadata edit and change the interval
 
 
 
-**Visualizing Data**
-
+**Visualizing Data:**
 
 For the timeboard creation through the API, i cheated a little since I was having trouble getting the script to do the actual HTTP post and used the Postman free utility to do the post function. 
 
@@ -84,63 +84,61 @@ Here is a screenshot of the email that was sent using the @ notation:
 ![Email From Snapshot](https://github.com/pazzman99/hiring-engineers/blob/master/Email_of_Snapshot.JPG)
 
 
-Here is a screenshot of the dashboard with the custom and MySQL metrics over time:
-https://github.com/pazzman99/hiring-engineers/blob/master/Dashboard_with_Metric.JPG
+**Bonus Question:** What is the Anomaly graph displaying?
+- This is showing deviations from learned normal behavoir over time
 
 
 
-Monitoring Data:
+# Monitoring Data:
 
 Here is a screen shot of the monitor config:
-https://github.com/pazzman99/hiring-engineers/blob/master/Monitor_Config.JPG
+![Monitor Config](https://github.com/pazzman99/hiring-engineers/blob/master/Monitor_Config.JPG)
 
 
 Here is a screenshot of an email the monitor sent:
-https://github.com/pazzman99/hiring-engineers/blob/master/Monitor_Email.JPG
+![Monitor Email](https://github.com/pazzman99/hiring-engineers/blob/master/Monitor_Email.JPG)
  
 
 
-Collecting APM Data:
+# Collecting APM Data:
 
 Here is the code for the flask app with the instrumentation configured:
 
-from flask import Flask
-import blinker as _
+    from flask import Flask
+    import blinker as _
 
-import logging
-import sys
+    import logging
+    import sys
 
-from ddtrace import tracer
-from ddtrace.contrib.flask import TraceMiddleware
+    from ddtrace import tracer
+    from ddtrace.contrib.flask import TraceMiddleware
 
+    # Have flask use stdout as the logger
+    main_logger = logging.getLogger()
+    main_logger.setLevel(logging.DEBUG)
+    c = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    c.setFormatter(formatter)
+    main_logger.addHandler(c)
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+    app = Flask(__name__)
 
-app = Flask(__name__)
+    traced_app = TraceMiddleware(app, tracer, service="MyWebbApp_V2", distributed_tracing=False)
 
-traced_app = TraceMiddleware(app, tracer, service="MyWebbApp_V2", distributed_tracing=False)
+    @app.route('/')
+    def api_entry():
+        return 'Entrypoint to the Application'
 
+    @app.route('/api/apm')
+    def apm_endpoint():
+        return 'Getting APM Started'
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+    @app.route('/api/trace')
+    def trace_endpoint():
+        return 'Posting Traces'
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port='4999')
+    if __name__ == '__main__':
+        app.run(host='127.0.0.1', port='4999')
     
     
 Here is a link to the file:
