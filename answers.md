@@ -55,20 +55,23 @@ Here is the link the the Yaml file
 Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 - You can do this by going to metrics/summary and clicking on the metadata edit and change the interval
 
+
+
 **Visualizing Data:**
 
 
 For the timeboard creation through the API, i cheated a little since I was having trouble getting the script to do the actual HTTP post and used the Postman free utility to do the post function. 
 
-    
+Here is a snapshot of the code that I used inside of Postman
 
 
+![Timeboard_API.jpg](https://github.com/pazzman99/hiring-engineers/blob/master/Timeboard_API.JPG)
 
 
-Here is a link to the snapshot of the timeboard:
-https://github.com/pazzman99/hiring-engineers/blob/master/Timeboard_API.JPG
+Here is a snapshot of the timeboard created through the API. It also includes an additional graph of the hourly rollup which was also part of the excercise:
 
-Here is the code for the script:
+![Dashboard With Metric](https://github.com/pazzman99/hiring-engineers/blob/master/Dashboard_with_Metric.JPG)
+
 
 
 
