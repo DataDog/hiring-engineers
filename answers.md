@@ -3,7 +3,7 @@ Your answers to the questions go here.
 
 Note: I spun up a vagrant ubuntu 16.04 distribution and installed MongoDB. 
 
-##Collecting Metrics:
+## Collecting Metrics:
 
 *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
@@ -49,7 +49,7 @@ e.g.
 min_collection_interval: 45
 
 
-##Visualizing Data:
+## Visualizing Data:
 
 
 *Utilize the Datadog API to create a Timeboard that contains:
@@ -129,13 +129,13 @@ https://github.com/shimran/hiring-engineers/blob/master/Screen%20Shot%202018-07-
 
 The Anomaly graph displays abberrant behavior within a metric as compared to historical data the agent has tracked throughout the certain variables such as time-of-day trends.i
 
-##Monitoring Data
+## Monitoring Data
 
-*Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+*Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:*
 
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.*
+*Warning threshold of 500*
+*Alerting threshold of 800*
+*And also ensure that it will notify you if there is No Data for this query over the past 10m.*
 
 Monitor Screenshot:
 https://github.com/shimran/hiring-engineers/blob/master/Screen%20Shot%202018-07-06%20at%2012.29.10%20AM.png
@@ -160,7 +160,7 @@ I probably would put a feature request to have the email put the time in the pro
 
 
 
-##Collecting APM Data:
+## Collecting APM Data:
 
 *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.*
 https://github.com/shimran/hiring-engineers/blob/master/Screen%20Shot%202018-07-06%20at%2012.43.20%20AM.png
@@ -219,7 +219,7 @@ They are fundamentally different concepts. Services can be distinct components o
 A resource, on the other hand, is "a particular query to a service," but if probably best thought of as a transaction that engages with the service. URLs that map to parts of an application, the SQL transaction itself, are all transactions that occur that interface with the respective webapp and db service. 
 
 
-##Final Question:
+## Final Question:
 *Is there anything creative you would use Datadog for?*
 
 I have many interests that fascinate me, especially infrastrcture. Since NYC subway was taken and I work in computer infrastructure, I think I want to focus on food perishability. The whole idea of food lifetimes and food management interests me...especially considering how much food inevitably ends up wasted.
