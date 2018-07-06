@@ -57,7 +57,7 @@ Bonus Question: Can you change the collection interval without modifying the Pyt
 
 
 
-**Visualizing Data:**
+**Visualizing Data**
 
 
 For the timeboard creation through the API, i cheated a little since I was having trouble getting the script to do the actual HTTP post and used the Postman free utility to do the post function. 
@@ -74,14 +74,14 @@ Here is a snapshot of the timeboard created through the API. It also includes an
 
 
 
-
-
 Here is a screenshot of MySQL metric with anomoly detection turned on:
-https://github.com/pazzman99/hiring-engineers/blob/master/Metric_with_Anomoly_Detection.JPG
+![MySQL Metric with Anomoly Detection](https://github.com/pazzman99/hiring-engineers/blob/master/Metric_with_Anomoly_Detection.JPG)
+
+
 
 
 Here is a screenshot of the email that was sent using the @ notation:
-https://github.com/pazzman99/hiring-engineers/blob/master/Email_of_Snapshot.JPG
+![Email From Snapshot](https://github.com/pazzman99/hiring-engineers/blob/master/Email_of_Snapshot.JPG)
 
 
 Here is a screenshot of the dashboard with the custom and MySQL metrics over time:
