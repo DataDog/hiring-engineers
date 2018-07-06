@@ -11,23 +11,23 @@ Here are the answers to the invididual tracks:
 Collecting Metrics:
 
 Here is the YAML for the MySQL DB I monitored:
-init_config: 
-2 
+
+    init_config:  
  
-3 instances: 
-4   - server: localhost 
-5     user: datadog 
-6     pass: datadog  
-7     tags: 
-8         - Prod_DB  
-9         - MySQL_Prod  
-10     options: 
-11         replication: 0 
-12         galera_cluster: 1 
+      instances: 
+      - server: localhost 
+      user: datadog 
+      pass: datadog  
+      tags: 
+          - Prod_DB  
+          - MySQL_Prod  
+      options: 
+          replication: 0 
+          galera_cluster: 1 
 
 
-Here is a link to a monitored host with custom tags:
-https://github.com/pazzman99/hiring-engineers/blob/master/Tags.JPG
+Here is a screenshot if a monitored host with custom tags:
+![Tags Image](https://github.com/pazzman99/hiring-engineers/blob/master/Tags.JPG)
 
 
 This is the code for the "Random Number" metric:
