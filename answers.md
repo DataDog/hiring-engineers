@@ -51,7 +51,6 @@ I chose to install PostgreSQL as my data base since I had used it in the past. T
 
 [PostgreSQL install](images/Collecting_Metrics/PostgresInstall)
 
-postgres pass 3urauX3D1YcmXwNYGDxfVOx6
 After installing postgres, it’s important to log in to the database in order to setup the data dog integration. `sudo -u postgres -i`.
 
 Once logged in I simply followed the integration instructions from the data dog docs.
