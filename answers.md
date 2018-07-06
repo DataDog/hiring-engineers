@@ -9,7 +9,7 @@ While I thought the excercises are a good idea and will show how resourceful a c
 Here are the answers to the invididual tracks:
 
 
-**Collecting Metrics:**
+# Collecting Metrics:
 
 Here is the YAML for the MySQL DB I monitored:
 
@@ -58,7 +58,7 @@ Here is the link the the Yaml file
 
 
 
-**Visualizing Data:**
+# Visualizing Data:
 
 For the timeboard creation through the API, i cheated a little since I was having trouble getting the script to do the actual HTTP post and used the Postman free utility to do the post function. 
 
@@ -73,11 +73,8 @@ Here is a snapshot of the timeboard created through the API. It also includes an
 ![Dashboard With Metric](https://github.com/pazzman99/hiring-engineers/blob/master/Dashboard_with_Metric.JPG)
 
 
-
 Here is a screenshot of MySQL metric with anomoly detection turned on:
 ![MySQL Metric with Anomoly Detection](https://github.com/pazzman99/hiring-engineers/blob/master/Metric_with_Anomoly_Detection.JPG)
-
-
 
 
 Here is a screenshot of the email that was sent using the @ notation:
@@ -142,11 +139,17 @@ Here is the code for the flask app with the instrumentation configured:
     
     
 Here is a link to the file:
-https://github.com/pazzman99/hiring-engineers/blob/master/testweb.py
+[TestWeb.pv]https://github.com/pazzman99/hiring-engineers/blob/master/testweb.py
 
 
-Here is a screenshots of a dashboard with APM and host metrics:
-https://github.com/pazzman99/hiring-engineers/blob/master/APM_3.JPG
+Here are several screenshots of a the dashboard with APM and host metrics:
+![APM 1](https://github.com/pazzman99/hiring-engineers/blob/master/APM_1.JPG)
+
+![APM 2](https://github.com/pazzman99/hiring-engineers/blob/master/APM_2.JPG)
+
+![APM 3](https://github.com/pazzman99/hiring-engineers/blob/master/APM_3.JPG)
+
+
 
 
 For the final question, since you can grab metrics from anywhere, it would be really cool to add business metrcis to the technology ones. For example, maybe see $$ of sales aligned with user hits or traffic volumes over time. Maybe even ITOM stuff like ticket or incident volumes graphed with system performance over time. There are a lot of possibilities. 
