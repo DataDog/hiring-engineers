@@ -98,6 +98,11 @@ Here is a screenshot of an email the monitor sent:
 **Bonus Question:** Here are some screenshots of the configred maintenance windows
 
 Daily Window
+![Daily](https://github.com/pazzman99/hiring-engineers/blob/master/Downtime_Config.JPG)
+
+
+Weekend Window
+![Weekend](https://github.com/pazzman99/hiring-engineers/blob/master/Downtime_Config2.JPG)
 
 
 
@@ -143,7 +148,7 @@ Here is the code for the flask app with the instrumentation configured:
     
     
 Here is a link to the file:
-[TestWeb.pv]https://github.com/pazzman99/hiring-engineers/blob/master/testweb.py
+[TestWeb.py]https://github.com/pazzman99/hiring-engineers/blob/master/testweb.py
 
 
 Here are several screenshots of a the dashboard with APM and host metrics:
@@ -158,6 +163,7 @@ Here are several screenshots of a the dashboard with APM and host metrics:
 ![APM 3](https://github.com/pazzman99/hiring-engineers/blob/master/APM_3.JPG)
 
 
+# Final Question
 
 For the final question, since you can grab metrics from anywhere, it would be really cool to add business metrcis to the technology ones. For example, maybe see $$ of sales aligned with user hits or traffic volumes over time. Maybe even ITOM stuff like ticket or incident volumes graphed with system performance over time. There are a lot of possibilities. 
 
