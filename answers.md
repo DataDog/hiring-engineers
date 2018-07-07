@@ -91,6 +91,61 @@ Finally, in order to set the interval at which the data was collected, I had to 
 
 ## Visualizing Data:
 
+I spent a while reading the [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the DataDog API to setup timeboards, the [graphing documentation](https://docs.datadoghq.com/graphing/), and searching through the help forums before coming up with a way to make my timeboard.
+
+I chose to use Postman when making my requests after reading this great article [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs).
+
+My request looks like this:
+
+```JSON
+{
+  "title" : "George's TimeBoard",
+    "description" : "A TimeBoard for solutions engineers",
+    "graphs" : [{
+        "title": "My_Metric",
+        "definition": {
+            "events": [],
+            "requests": [{
+              "q": "avg:my_metric{*}"
+            }]
+        },
+      "viz": "timeseries"
+    }, {
+        "title": "Anomolies Monitor for PostgresDB timed checkpoints",
+        "definition": {
+          "events": [],
+          "requests": [{
+            "q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{role:database:postgresql}, 'basic', 2)"
+          }]
+        }
+    }, {
+        "title": "my_metric rollup point sum",
+        "definition": {
+          "events": [],
+          "requests": [{
+            "q": "avg:my_metric{*}.rollup(sum, 3600)"
+          }]
+        }
+      }],
+    "read_only": "True"
+}
+```
+
+The script version can be viewed at [Georges TimeBoard Script](scripts/time_board.py)
+
+Once the TimeBoard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
+![Georges TimeBoard for the past 5 min](images/Visualizing_Data/PastFiveMins)
+
+Next I took a snapshot of my graph and sent it to myself using @george.smsweeper@gmail.com
+
+![A Snapshot of Georges Graph](images/Visualizing_Data/SnapShot.png)
+
+* **Bonus Question**: What is the Anomaly graph displaying?
+My Anomaly graph isn’t displaying anything at the moment, because I don’t have an “enterprise level subscription”.
+![Image of enterprise sub](images/Visualizing_Data/EnterpriseLevelSub)
+
+However if I had and enterprise level subscription, the graph would display a basic range of expected values as a "cloud", with the actual values superimposed on top.
+
 ## Monitoring Data
 
 ## Collecting APM Data:
