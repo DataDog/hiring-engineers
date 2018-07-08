@@ -206,5 +206,61 @@ Lastly, I checked that I was notified through email that a downtime was schedule
 
 ## Collecting APM Data
 
-to be completed
+### Instrument a Flask app
+
+To learn how Datadog's APM solution worked, I followed the [instructions in the web UI](https://app.datadoghq.com/apm/intro), installing `ddtrace` and `blinker`. I then ran the provided Flask app with `ddtrace-run python flaskapp1.py`.
+
+Upon running the command, however, I got the following error:
+
+```bash
+ERROR:ddtrace.writer:cannot send services to localhost:8126: [Errno 61] Connection refused
+```
+
+From Datadog's [docs about tracing on Docker apps](https://docs.datadoghq.com/tracing/setup/docker/), I found out that I had to pass an environment variable and expose port 8126 during `docker run`, meaning I had to remove and rerun my agent container. I used
+
+```bash
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -e DD_API_KEY=<YOUR_API_KEY> \
+              -e DD_APM_ENABLED=true \
+              -p 8126:8126/tcp
+              datadog/agent:latest
+```
+
+and this time, ddtrace worked correctly:
+
+![19_ddtrace_cmdline](./screenshots/19_ddtrace_cmdline.png)
+
+However, for some reason, the APM page on the web UI never updated, and remained on the install page:
+
+![20_apm_install_page](./screenshots/20_apm_install_page.png)
+
+This may be due to
+
+* A bug with the Dockerized agent or
+* Not showing due to my Datadog trial expiring
+* Me incorrectly implementing the Flask app
+
+though I strongly believe it is a bug due to the Dockerized agent, as the command line showed that ddtrace was successfully tracing my Flask app. I was also able to graph APM metrics in [my timeboard I created](https://app.datadoghq.com/dash/855394/apm-flask-app-timeboard), which I made from cloning my agent container infrastructure timeboard and adding 2 additional APM metrics.
+
+![21_apm_timeboard](./screenshots/21_apm_timeboard.png)
+
+The instrumented app is included in the project as `flaskapp1.py`.
+
+**Bonus Question:** [This help article](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-) on the Datadog site describes the differences between services and resouces.
+
+A **service** is a set of processes that implement a feature, such as a databse. In the case of my app, ddtrace tracked 2 services.
+
+A **resource** is a query to a service, such as the query to a SQL database.
+
+The resources of a particular service can be seen by clicking on it in the APM section of the web UI, though I was unable to do so due to the issue described above.
+
+## Final Question
+
+### What would you use Datadog for?
+
+I play a online strategy card game called **Hearthstone**, where the game's "meta" - the optimal, popular strategies and decks at the moment - to change as new cards are released. As such, to stay on top of the competition, players must react to changes in the meta quickly and adapt in order to capitalize on strong decks before the majority of players react to this meta change, lowering the effectiveness of new meta decks (as they are able to prepare better against meta decks once they are discovered).
+
+Fortunately, a large group of the game's playerbase track their game data, allowing people to access heaps of match data and deck information. Whenever a small group of players begin experimenting with a particular deck archetype that becomes very successful, this adds to the tracked data subtly; this data can be processed and analyzed to discover trending, upcoming decks before a majority of the population can detect these soon-to-be meta decks themselves. With Datadog, I would be able to use features like the anomaly function to find decks that perform unusually well despite a low sample size much earlier than most people would be able to by looking at metrics such as winrate spikes.
 
