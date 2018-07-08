@@ -102,13 +102,13 @@ instances:
     - min_collection_interval 45
 ```
 
-**Bonus Question:** Editing the config file allows me to avoid having to change the Python check file and hardcodeit to send a metric exactly every 45 seconds.
+**Bonus Question:** Editing the config file allows me to avoid having to change the Python check file and hardcode it to send a metric once every 45 seconds.
 
 Once again, I verified that the interval had correctly changed by checking the graph in the web UI:
 
 ![5_mymetric45](./screenshots/5_mymetric45.png)
 
-The width between each spike in the graph increased, so it was quite clear the interval had been successfully changed to 45, since the default is 15-20 seconds.
+The width between each value in the graph increased, so it was quite clear the minimum interval had been successfully changed to 45, since the default is 15-20 seconds.
 
 ## Visualizing Data
 
@@ -130,17 +130,17 @@ The request for displaying `my_metric` scoped over my host was as simple as
 
 `{"q": "avg:my_metric{host:Prestige.local}"}`.
 
-though at first, I had unknowingly averaged by host instead of scoping it over my host computer by writing
+though at first, I had unknowingly averaged by host instead of scoping it over my host machine by writing
 
 `{"q": "avg:my_metric{*} by {host}"}`.
 
-While the graphs looked identical on the timeboard in the web UI, I realized this subtle mistake in the JSON editor, which had two separate inputs, one for "from" and one for "avg by"; the former was what I was supposed to be using.
+While the graphs looked identical on the timeboard in the web UI, I realized this subtle mistake through the JSON editor, which had two separate inputs, one for "from" and one for "avg by"; the former was what I was supposed to be using to scope the metric over my host machine.
 
 For graphing a metric from my MySQL integration, I chose bytes sent, since it would show data without the need for me to do anything else. I then applied `anomalies` using the [anomaly documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which looked like this:
 
 `{"q": "anomalies(mysql.performance.bytes_sent{*}, 'basic', 3)"}`
 
-Lastly, I had to sum up all of the values of `my_metric` into 1-hour buckets. I did this with the help of the [rollup function docs](https://docs.datadoghq.com/graphing/#aggregate-and-rollup), once again using the JSON editor to verify that my request was formatted correctly.
+Lastly, I had to sum up all of the values of `my_metric` into 1-hour buckets. I did this with the help of the [rollup function docs](https://docs.datadoghq.com/graphing/#aggregate-and-rollup), once again using the JSON editor to verify that my request was formatted correctly:
 
 `{"q": "avg:my_metric{host:Prestige.local}.rollup(sum, 3600)"}`
 
@@ -148,7 +148,7 @@ I ran the file with `python timeboard1.py` and checked the timeboard in the web 
 
 ![7_timeboard1](./screenshots/7_timeboard1.png)
 
-### Changing my Timeboard from the web UI
+### Modifying my Timeboard from the web UI
 
 At first, I could not figure out how to customize the timeframe beyond 24 hours; I tried using the "Select Range" option at the top of the timeboard, but it did not go any smaller than the same day. I also tried to edit the URL and change the timestamps manually by making `from_ts` and `to_ts` 300 seconds apart, but it did nothing.
 
@@ -174,6 +174,37 @@ The script for creating the timeboard is included in the project as `timeboard1.
 
 ## Monitoring Data
 
-to be completed
+### Creating a Metric Monitor
 
+To create a new metric monitor, I clicked the "New Monitor" option in the web UI and created a new metric monitor.
+
+![12_new_monitor](./screenshots/12_new_monitor.png)
+
+There, I specified the alert and warning thresholds to be 800 and 500 respectively, and I checked the option to notify if there was no data for the past 10 minutes.
+
+![13_monitor1](./screenshots/13_monitor1.png)
+
+Next, I configured it to email me whenever the monitor triggered, using the `{{var}}` syntax to send me a different message in the case of an alert, a warning, or no data. In the case of an alert, I also included the metric value and the host IP. 
+
+![14_monitor2](./screenshots/14_monitor2.png)
+
+I received an email shortly afterwards, as `my_metric` had gone over 500, so I received the appropriate warning message.
+
+![15_monitor_email1](./screenshots/15_monitor_email1.png)
+
+### Scheduling downtimes for the monitor
+
+**Bonus Question:** To avoid excess monitor notification emails, I set up 2 downtimes as described in the exercise, again doing this through the web UI with "Manage Downtime"; I scheduled both downtimes to be recurring once a week on Mon-Fri and Sat-Sun respectively.
+
+![16_monitor_downtime1](./screenshots/16_monitor_downtime1.png)
+
+![17_monitor_downtime2](./screenshots/17_monitor_downtime2.png)
+
+Lastly, I checked that I was notified through email that a downtime was scheduled:
+
+![18_downtime_email1](./screenshots/18_downtime_email1.png)
+
+## Collecting APM Data
+
+to be completed
 
