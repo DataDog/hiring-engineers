@@ -1,9 +1,12 @@
 # Answers
 
 ## Prerequisites
-I chose to use Docker since containers are much more lightweight than VMs; to do this, I created a container using the `datadog/agent` image, and followed Datadog's [setup documentation](https://docs.datadoghq.com/agent/basic_agent_usage/docker).
 
-Afterwards, I installed the Datadog Agent v6 on my host machine, which runs OS X using the instructions [here](https://app.datadoghq.com/account/settings#agent/mac).
+### Setup
+
+I chose to use Docker since containers are much more lightweight than VMs. To do this, I created a container using the `datadog/agent` image, and followed Datadog's [Docker setup documentation](https://docs.datadoghq.com/agent/basic_agent_usage/docker).
+
+Afterwards, I installed [Datadog Agent v6](https://app.datadoghq.com/account/settings#agent/mac) on my host machine, which runs OS X.
 
 ## Collecting Metrics
 
@@ -88,7 +91,7 @@ I quickly checked that this was working by filtering by `my_metric` in the web U
 
 ![4_mymetric](./screenshots/4_mymetric.png)
 
-Looks good. I also let it run a little longer to ensure that the value never went outside the range of 0 to 1000.
+The graph looked fine, but I let it run a little longer to ensure that the value never went outside the range of 0 to 1000.
 
 I also needed to change the collection interval to be at least 45 seconds, which I did by modifying `conf.d/mymetric.yaml`:
 
@@ -99,7 +102,7 @@ instances:
     - min_collection_interval 45
 ```
 
-Editing the config file allows me to avoid having to change the Python check file and hardcode sending a metric exactly every 45 seconds.
+**Bonus Question:** Editing the config file allows me to avoid having to change the Python check file and hardcodeit to send a metric exactly every 45 seconds.
 
 Once again, I verified that the interval had correctly changed by checking the graph in the web UI:
 
@@ -117,9 +120,9 @@ Next, using the [Python API docs](https://docs.datadoghq.com/api/?lang=python#ti
 
 * Creating an application key [here](https://app.datadoghq.com/account/settings#api) and copying both API keys to my timeboard Python file
 * Getting the name of my host with `datadog-agent status | grep host` to put in `template_variables` 
-* Editing the `graphs` section of the file to include the 3 metrics to be shown on the timeboard
+* Editing the `graphs` variable to include the 3 metrics to be shown on the timeboard
 
-To graph my custom metric, I played around with the JSON editor in the web UI to help me figure out the syntax for the Python file, which made it much easier to edit in vim.
+To learn the syntax for requesting metrics, I played around with the JSON editor in the web UI (pictured below), which made it much easier to edit in vim.
 
 ![6_JSONeditor](./screenshots/6_JSONeditor.png)
 
@@ -131,13 +134,13 @@ though at first, I had unknowingly averaged by host instead of scoping it over m
 
 `{"q": "avg:my_metric{*} by {host}"}`.
 
-While the graphs looked identical on the timeboard in the web UI, I realized this subtle mistake by using the JSON editor in the web UI to compare the two requests.
+While the graphs looked identical on the timeboard in the web UI, I realized this subtle mistake in the JSON editor, which had two separate inputs, one for "from" and one for "avg by"; the former was what I was supposed to be using.
 
-For graphing a metric from my MySQL integration, I chose bytes sent, since it would show data without the need for me to do anything else. I then applied `anomalies` using the [docs about the anomaly function](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which looked like this:
+For graphing a metric from my MySQL integration, I chose bytes sent, since it would show data without the need for me to do anything else. I then applied `anomalies` using the [anomaly documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which looked like this:
 
 `{"q": "anomalies(mysql.performance.bytes_sent{*}, 'basic', 3)"}`
 
-Lastly, I had to sum up all of the values of `my_metric` into 1-hour buckets. I did this with the help of the [docs that described using the rollup function](https://docs.datadoghq.com/graphing/#aggregate-and-rollup), once again using the JSON editor to verify that by request was formatted correctly.
+Lastly, I had to sum up all of the values of `my_metric` into 1-hour buckets. I did this with the help of the [rollup function docs](https://docs.datadoghq.com/graphing/#aggregate-and-rollup), once again using the JSON editor to verify that my request was formatted correctly.
 
 `{"q": "avg:my_metric{host:Prestige.local}.rollup(sum, 3600)"}`
 
@@ -145,25 +148,27 @@ I ran the file with `python timeboard1.py` and checked the timeboard in the web 
 
 ![7_timeboard1](./screenshots/7_timeboard1.png)
 
-At first, I could not figure out how to set the timeframe beyond the past 24 hours; I tried using the "Select Range" option at the top of the timeboard, but it stopped at the past day. I also tried to edit the URL and change the timestamps manually by making `from_ts` and `to_ts` 300 seconds apart, but it did nothing.
+### Changing my Timeboard from the web UI
+
+At first, I could not figure out how to customize the timeframe beyond 24 hours; I tried using the "Select Range" option at the top of the timeboard, but it did not go any smaller than the same day. I also tried to edit the URL and change the timestamps manually by making `from_ts` and `to_ts` 300 seconds apart, but it did nothing.
 
 Before long, I clicked the keyboard icon, which showed that the shortcut ALT + ] would tighten the timeframe.
 
 ![8_timeboard_shortcut](./screenshots/8_timeboard_shortcut.png)
 
-I used this to make the timeframe of my timeboard to be the past 5 minutes.
+I used this to make the timeframe of my timeboard to be the past 5 minutes:
 
 ![9_timeboard2](./screenshots/9_timeboard2.png)
 
-While there was no option to send a snapshot of my entire timeboard (since the exercise instructions are unclear about which graph to @ myself with), I could @ myself with a single graph of a metric, so I chose the MySQL bytes sent anomaly graph by clicking the camera icon at the top right of the graph and @ing myself in an annotation.
+While there was no option to send a snapshot of my entire timeboard (since the exercise instructions are unclear about which graph to @ myself with), I could [@ myself](https://docs.datadoghq.com/monitors/notifications/#mentions-in-slack-from-monitor-alert) with a single graph of a metric, so I chose the MySQL bytes sent anomaly graph by clicking the camera icon at the top right of the graph and @ing myself in an annotation.
 
 ![10_at_notation](./screenshots/10_at_notation.png)
 
-I received an email as expected, notifying me of having been tagged and showing me a screenshot of the graph.
+As expected, I received an email with the annotation a screenshot of the graph I was tagged in.
 
 ![11_at_notation_email](./screenshots/11_at_notation_email.png)
 
-The anomaly graph displays the metric, with "anomaly" values colored red and normal values colored blue. Anomaly values are determined by previous metric values and patterns, which helps alert the owner of unusual behavior that might be difficult to notice without analyzing past metric trends.
+**Bonus Question:** The anomaly graph displays a metric, with anomalous values colored red and normal values colored blue. Anomalous values are determined by previous metric values and patterns, which helps alert the owner of unusual behavior that might be difficult to notice without analyzing past metric trends.
 
 The script for creating the timeboard is included in the project as `timeboard1.py`.
 
