@@ -4,14 +4,14 @@
 
 ### Setup
 
-I chose to use Docker since containers are much more lightweight than VMs. To do this, I created a container using the `datadog/agent` image, and followed Datadog's [Docker setup documentation](https://docs.datadoghq.com/agent/basic_agent_usage/docker).
+I chose to use **Docker** since containers are much more lightweight than VMs. To do this, I created a container using the `datadog/agent` image, and followed Datadog's [Docker setup documentation](https://docs.datadoghq.com/agent/basic_agent_usage/docker).
 
 Afterwards, I installed [Datadog Agent v6](https://app.datadoghq.com/account/settings#agent/mac) on my host machine, which runs OS X.
 
 ## Collecting Metrics
 
 ### Adding tags and visualizing on the Host Map page
-To add host tags, I needed to edit the config file then verify that the tags were properly added by checking the web UI. I used vim to open `~/.datadog-agent/datadog.yaml` (which is a symlink to the real location in `/opt/datadog-agent/`) and added the following lines:
+To add host tags, I needed to edit the agent config file. I used vim to open `~/.datadog-agent/datadog.yaml` (which is a symlink to the real location in `/opt/datadog-agent/`) and added the following lines:
 
 ```yaml
 tags:
@@ -21,13 +21,13 @@ tags:
   - role:database:mysql
 ```
 
-I then checked the my Host Map page on Datadog's web UI to make sure that the tags showed up in the "Tags" section when inspecting my host machine.
+I then checked the my Host Map page on Datadog's web UI to make sure that the tags showed up in the **Tags** section when inspecting my host machine.
 
 ![1_tags](./screenshots/1_tags.png)
 
 ### Installing a database and Datadog integration
 
-For this part, I chose to use MySQL, since I am more familiar with it than other databases. I spun up a MySQL Docker instance with
+For this part, I chose to use **MySQL**, since I am more familiar with it than other databases. I spun up a MySQL Docker instance with
 
 ```bash
 docker run --name mysql01 -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 -d mysql:5.6
@@ -114,7 +114,7 @@ The width between each value in the graph increased, so it was quite clear the m
 
 ### Creating a Timeboard using DataDog API
 
-I decided to use Python, the language I am the most familiar with, to create a timeboard. First, however, I had to install the [DataDog Python library](https://github.com/DataDog/datadogpy), which I did with `pip install datadog`.
+I decided to use **Python**, the language I am the most familiar with, to create a timeboard. First, however, I had to install the [DataDog Python library](https://github.com/DataDog/datadogpy), which I did with `pip install datadog`.
 
 Next, using the [Python API docs](https://docs.datadoghq.com/api/?lang=python#timeboards), I modified the API request example to display my custom metric on the timeboard, which I did through
 
@@ -122,7 +122,7 @@ Next, using the [Python API docs](https://docs.datadoghq.com/api/?lang=python#ti
 * Getting the name of my host with `datadog-agent status | grep host` to put in `template_variables` 
 * Editing the `graphs` variable to include the 3 metrics to be shown on the timeboard
 
-To learn the syntax for requesting metrics, I played around with the JSON editor in the web UI (pictured below), which made it much easier to edit in vim.
+To learn the syntax for requesting metrics, I played around with the **JSON editor** in the web UI (pictured below), which made it much easier to edit in vim.
 
 ![6_JSONeditor](./screenshots/6_JSONeditor.png)
 
@@ -136,7 +136,7 @@ though at first, I had unknowingly averaged by host instead of scoping it over m
 
 While the graphs looked identical on the timeboard in the web UI, I realized this subtle mistake through the JSON editor, which had two separate inputs, one for "from" and one for "avg by"; the former was what I was supposed to be using to scope the metric over my host machine.
 
-For graphing a metric from my MySQL integration, I chose bytes sent, since it would show data without the need for me to do anything else. I then applied `anomalies` using the [anomaly documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which looked like this:
+For graphing a metric from my MySQL integration, I chose **bytes sent**, since it would show data without the need for me to do anything else. I then applied `anomalies` using the [anomaly documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), which looked like this:
 
 `{"q": "anomalies(mysql.performance.bytes_sent{*}, 'basic', 3)"}`
 
@@ -152,7 +152,7 @@ I ran the file with `python timeboard1.py` and checked the timeboard in the web 
 
 At first, I could not figure out how to customize the timeframe beyond 24 hours; I tried using the "Select Range" option at the top of the timeboard, but it did not go any smaller than the same day. I also tried to edit the URL and change the timestamps manually by making `from_ts` and `to_ts` 300 seconds apart, but it did nothing.
 
-Before long, I clicked the keyboard icon, which showed that the shortcut ALT + ] would tighten the timeframe.
+Before long, I clicked the keyboard icon, which showed that the shortcut **ALT + ]** would tighten the timeframe.
 
 ![8_timeboard_shortcut](./screenshots/8_timeboard_shortcut.png)
 
@@ -160,7 +160,7 @@ I used this to make the timeframe of my timeboard to be the past 5 minutes:
 
 ![9_timeboard2](./screenshots/9_timeboard2.png)
 
-While there was no option to send a snapshot of my entire timeboard (since the exercise instructions are unclear about which graph to @ myself with), I could [@ myself](https://docs.datadoghq.com/monitors/notifications/#mentions-in-slack-from-monitor-alert) with a single graph of a metric, so I chose the MySQL bytes sent anomaly graph by clicking the camera icon at the top right of the graph and @ing myself in an annotation.
+While there was no option to send a snapshot of my entire timeboard (since the exercise instructions are unclear about which graph to @ myself with), I could [@ myself](https://docs.datadoghq.com/monitors/notifications/#mentions-in-slack-from-monitor-alert) with a single graph of a metric, so I chose the **MySQL bytes sent** anomaly graph by clicking the camera icon at the top right of the graph and @ing myself in an annotation.
 
 ![10_at_notation](./screenshots/10_at_notation.png)
 
@@ -168,7 +168,7 @@ As expected, I received an email with the annotation a screenshot of the graph I
 
 ![11_at_notation_email](./screenshots/11_at_notation_email.png)
 
-**Bonus Question:** The anomaly graph displays a metric, with anomalous values colored red and normal values colored blue. Anomalous values are determined by previous metric values and patterns, which helps alert the owner of unusual behavior that might be difficult to notice without analyzing past metric trends.
+**Bonus Question:** The anomaly graph displays a metric, with anomalous values colored **red** and normal values colored **blue**. Anomalous values are determined by previous metric values and patterns, which helps alert the owner of unusual behavior that might be difficult to notice without analyzing past metric trends.
 
 The script for creating the timeboard is included in the project as `timeboard1.py`.
 
@@ -208,7 +208,7 @@ Lastly, I checked that I was notified through email that a downtime was schedule
 
 ### Instrument a Flask app
 
-To learn how Datadog's APM solution worked, I followed the [instructions in the web UI](https://app.datadoghq.com/apm/intro), installing `ddtrace` and `blinker`. I then ran the provided Flask app with `ddtrace-run python flaskapp1.py`.
+To learn how Datadog's APM solution worked, I followed the [instructions in the web UI](https://app.datadoghq.com/apm/intro), installing `ddtrace` and `blinker`. I then ran the provided **Flask** app with `ddtrace-run python flaskapp1.py`.
 
 Upon running the command, however, I got the following error:
 
@@ -219,16 +219,17 @@ ERROR:ddtrace.writer:cannot send services to localhost:8126: [Errno 61] Connecti
 From Datadog's [docs about tracing on Docker apps](https://docs.datadoghq.com/tracing/setup/docker/), I found out that I had to pass an environment variable and expose port 8126 during `docker run`, meaning I had to remove and rerun my agent container. I used
 
 ```bash
-docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
+docker run -d --name datadog01 \
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
               -v /proc/:/host/proc/:ro \
               -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
               -e DD_API_KEY=<YOUR_API_KEY> \
               -e DD_APM_ENABLED=true \
-              -p 8126:8126/tcp
+              -p 8126:8126/tcp \
               datadog/agent:latest
 ```
 
-and this time, ddtrace worked correctly:
+and this time, ddtrace ran successfully on the command line:
 
 ![19_ddtrace_cmdline](./screenshots/19_ddtrace_cmdline.png)
 
@@ -236,11 +237,11 @@ However, for some reason, the APM page on the web UI never updated, and remained
 
 ![20_apm_install_page](./screenshots/20_apm_install_page.png)
 
-This may be due to
+This may have been caused by
 
-* A bug with the Dockerized agent or
-* Not showing due to my Datadog trial expiring
-* Me incorrectly implementing the Flask app
+* A bug with the Dockerized agent
+* Not showing due to my Datadog trial having expired, or
+* Having incorrectly instrumented the Flask app
 
 though I strongly believe it is a bug due to the Dockerized agent, as the command line showed that ddtrace was successfully tracing my Flask app. I was also able to graph APM metrics in [my timeboard I created](https://app.datadoghq.com/dash/855394/apm-flask-app-timeboard), which I made from cloning my agent container infrastructure timeboard and adding 2 additional APM metrics.
 
@@ -250,9 +251,9 @@ The instrumented app is included in the project as `flaskapp1.py`.
 
 **Bonus Question:** [This help article](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-) on the Datadog site describes the differences between services and resouces.
 
-A **service** is a set of processes that implement a feature, such as a databse. In the case of my app, ddtrace tracked 2 services.
+A **service** is a set of processes that implement a feature, such as a database. In the case of my app, ddtrace tracked 2 services.
 
-A **resource** is a query to a service, such as the query to a SQL database.
+A **resource** is a query to a service, such as a `SELECT` query to a SQL database.
 
 The resources of a particular service can be seen by clicking on it in the APM section of the web UI, though I was unable to do so due to the issue described above.
 
