@@ -4,30 +4,38 @@
 
 I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
 
+The setup is as follows:
+
 `brew cask install vagrant`
 ![BrewInstallVagrantCommand](images/Prereq/VagrantInstall.png)
+
 `brew cask install virtualbox`
 ![BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
 
-Once these have been installed it’s time to spin up a fresh Ubuntu VM. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
+Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
 
-In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build. `vagrant init ubuntu/xenial64`.
+In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build. 
 
-[Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
+`vagrant init ubuntu/xenial64`.
 
-Now that Vagrant has been initialized you have to run `vagrant up` to start the VM. Once the VM is up and running typing`vagrant ssh` into the command prompt will log you into the to the newly started VM.
+![Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
+
+Now that Vagrant has been initialized, running `vagrant up` will start the VM. 
+
+Once the VM is up and running typing`vagrant ssh` into the command prompt logs you into the to the new Virtual Machine.
 
 When done correctly, your prompt should now look similar to the one below:
-[Vagrant Prompt](images/Prereq/VagrantPrompt.png)
 
-After logging into the new virtual machine, you must sign up for data dog in order to get access to my Data Dog agent metrics, your API KEY, and Dashboard.
+![Vagrant Prompt](images/Prereq/VagrantPrompt.png)
+
+After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
 
 ![Datadog sign up](images/Prereq/DD_API_KEY.png)
 
-I suggest using copying the entire provided prompt and pasting it into the prompt in your VM. Doing this will install DataDogs agent onto your VM, store your API_KEY, and provide access to the DataDog dashboard.
+I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
-[Installing DataDog Agent messages](images/Prereq/InstallingAgent)
-[Data Dog Agent Installed messages](images/Prereq/AgentInstalled)
+![Installing DataDog Agent messages](images/Prereq/InstallingAgent.png)
+![Data Dog Agent Installed messages](images/Prereq/AgentInstalled.png)
 
 ## Collecting Metrics:
 
@@ -240,11 +248,11 @@ if __name__ == '__main__':
 
 After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
 
-![ddtrace terminal output](images/APM/ddtrace_running)
+![ddtrace terminal output](images/APM/ddtrace_running.png)
 
 It seems like the trace is reporting one service, but when I go to the APM UI, the process hasn't moved past the install stage:
 
-![APM install UI](images/APM/APM_install_screen)
+![APM install UI](images/APM/APM_install_screen.png)
 
 * **Bonus Question**
 
