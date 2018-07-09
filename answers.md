@@ -153,7 +153,7 @@ Next I took a snapshot of my graph and sent it to myself using @george.smsweeper
 
 ![A Snapshot of Georges Graph](images/Visualizing_Data/SnapShot.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+**Bonus Question**: What is the Anomaly graph displaying?
 
 My Anomaly graph is displaying a red spike that represents a deviation from an expected range of values. There isn’t much data coming in, and I’m using a basic algorithm, so it will be difficult to build up a long trend and present them in a cloud.
 
@@ -199,20 +199,21 @@ Email confirmation:
 
 ## Collecting APM Data:
 
-I first had to get pip so that I should install ddtrace.
+I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), and the [APM setup](https://docs.datadoghq.com/tracing/setup/), before diving into my APM setup. Collecting data seems like it was going to be a breeze, but I was unable to fully implement a solution.
+
+My efforts are documented below.
+
+I first had to install pip so that I could install ddtrace.
 `sudo apt install python3-pip`
 
-I then installed ddtrace:
+Then I installed ddtrace:
 `pip3 install ddtrace`
 
-Then installed Flask:
+Then I installed Flask:
 `pip3 install Flask`
 
-Created a file to store the Flask app, and inserted the provided code:
+Finally I created a file to store the Flask app, and inserted the provided code:
 `sudo touch my_app.py`
-
-
-`my_app.py`
 
 ```python
 from flask import Flask
@@ -245,7 +246,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-#### Running the trace
+**Running the trace**
 
 After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
 
@@ -255,7 +256,9 @@ It seems like the trace is reporting one service, but when I go to the APM UI, t
 
 ![APM install UI](images/APM/APM_install_screen.png)
 
-* **Bonus Question**
+I searched high and low for a solution, erased all of my code, checked my config files, and still couldn't come up with a fix. I believe a simple line of code, or misplaced space in a .yaml is causing my issues. 
+
+**Bonus Question**
 
 What is the difference between a Service and a Resource?
 
@@ -263,7 +266,7 @@ I found this great article which I referenced for this answer. [Service vs Refer
 
 A service is **the name of a set of processes that work together to provide a feature set** while a resource is **A particular query to a service**.
 
-Services help a user to distinguish from different processes, and more easily when instrumenting their application with DataDog.
+Services help a user to distinguish from different processes, and more easily instrument their application with DataDog.
 
 Resources are the queries that a user constructs to interact with the services they've created. When using traces, a resource can be a path such as `/user/home`.
 
