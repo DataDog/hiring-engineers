@@ -4,99 +4,108 @@
 
 I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
 
+The setup is as follows:
+
 `brew cask install vagrant`
 ![BrewInstallVagrantCommand](images/Prereq/VagrantInstall.png)
+
 `brew cask install virtualbox`
 ![BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
 
-Once these have been installed it’s time to spin up a fresh Ubuntu VM. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
+Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
 
-In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build. `vagrant init ubuntu/xenial64`.
+In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build. 
 
-[Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
+`vagrant init ubuntu/xenial64`.
 
-Now that Vagrant has been initialized you have to run `vagrant up` to start the VM. Once the VM is up and running typing`vagrant ssh` into the command prompt will log you into the to the newly started VM.
+![Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
+
+Now that Vagrant has been initialized, running `vagrant up` will start the VM. 
+
+Once the VM is up and running typing`vagrant ssh` into the command prompt logs you into the to the new Virtual Machine.
 
 When done correctly, your prompt should now look similar to the one below:
-[Vagrant Prompt](images/Prereq/VagrantPrompt.png)
 
-After logging into the new virtual machine, you must sign up for data dog in order to get access to my Data Dog agent metrics, your API KEY, and Dashboard.
+![Vagrant Prompt](images/Prereq/VagrantPrompt.png)
+
+After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
 
 ![Datadog sign up](images/Prereq/DD_API_KEY.png)
 
-I suggest using copying the entire provided prompt and pasting it into the prompt in your VM. Doing this will install DataDogs agent onto your VM, store your API_KEY, and provide access to the DataDog dashboard.
+I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
-[Installing DataDog Agent messages](images/Prereq/InstallingAgent)
-[Data Dog Agent Installed messages](images/Prereq/AgentInstalled)
+![Installing DataDog Agent messages](images/Prereq/InstallingAgent.png)
+![Data Dog Agent Installed messages](images/Prereq/AgentInstalled.png)
 
 ## Collecting Metrics:
 
 I took some time to read the [tagging documentation](https://docs.datadoghq.com/getting_started/tagging/) and added my tags to the agent config file at `/etc/datadog-agent/datadog/yaml`.
 
-[Tags inside the config file](images/Collecting_Metrics/TagsInConfig.png)
+![Tags inside the config file](images/Collecting_Metrics/TagsInConfig.png)
 
-Initially the tags weren’t showing up in my Host Map, so I ran `sudo datadog-agent status` to check if my agent was running. It wasn’t.
+Initially the tags weren’t showing up in my Host Map, so I ran `sudo systemctl status datadog-agent.service` to check if my agent was running. It wasn’t.
 
-[Agent not running](images/Collecting_Metrics/AgentNotRunning.png)
+![Agent not running](images/Collecting_Metrics/AgentNotRunning.png)
 
-I then ran `sudo data dog-agent start` and checked again. The tags can now be viewed under the host map.
+I then ran `sudo systemctl start datadog-agent.service` and checked again. The tags can now be viewed under the host map.
 
-[Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
+![Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
 
-******Install database
+**Installing the database**
 
-I chose to install PostgreSQL as my data base since I had used it in the past. The install is handled by running the command `sudo apt-get install postgresql`.
+I chose to install PostgreSQL as my database since I had used it in the past. The install is handled by running the command `sudo apt-get install postgresql`.
 
-[PostgreSQL install](images/Collecting_Metrics/PostgresInstall.png)
+![PostgreSQL install](images/Collecting_Metrics/PostgresInstall.png)
 
-After installing postgres, it’s important to log in to the database in order to setup the data dog integration. `sudo -u postgres -i`.
+After installing Postgres, it’s important to log in to the database in order to setup the Datadog integration. Log in is handled by running the command `sudo -u postgres -i`.
 
-Once logged in I simply followed the integration instructions from the data dog docs.
+Once logged in I simply followed the integration instructions from the Datadog docs.
 
-[Postgres Integration](images/Collecting_Metrics/Postgres Integration.png)
+![Postgres Integration](images/Collecting_Metrics/PostgresIntegration.png)
 
  I took the provided example at conf.yaml.example, and renamed it conf.yaml, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
 
 This is my edited conf.yaml for this step:
 ![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
 
-******Create Custom Agent Check
+**Creating a custom agent check**
 
 I had to do some digging in order to setup my custom agent check, but the [documentation](https://docs.datadoghq.com/developers/agent_checks/) helped me immensely.
 
 The first step is to create a check file inside of the checks.d folder.
 
-“from inside the root directory”
 `sudo touch /etc/datadog-agent/checks.d/firstCheck.py`
 
-Next I created the Check inside of the `firstCheck.py` file, and imported the [random package](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) in order to generate integers from 0-1000.
+Next I created the check inside of the `firstCheck.py` file, and imported the [random package](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) from python in order to generate integers from 0-1000.
 
-[CheckUsingRandom](images/Colleting_Metrics/CheckUsingRandom.png)
+![CheckUsingRandom](images/Collecting_Metrics/CheckUsingRandom.png)
 
-Finally, in order to set the interval at which the data was collected, I had to create a  `firstCheck.yaml` file  inside of the conf.d directory that contains the configurations.
+Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory that contains the configurations for, data collection intervals.
 `sudo touch /etc/datadog-agent/conf.d/firstCheck.yaml`
 
-![SettingCheckInterval](images/Colleting_Metrics/SettingCheckInterval.png)
+![SettingCheckInterval](images/Collecting_Metrics/SettingCheckInterval.png)
 
 “my_metric” can now be viewed in the metrics explorer:
-![MyMetricsExplorer](images/Colleting_Metrics/MyMetricsExplorer.png)
+![MyMetricsExplorer](images/Collecting_Metrics/MyMetricsExplorer.png)
 
 
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-  Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
+ Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
+
 
 ## Visualizing Data:
 
-I spent a while reading the [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the DataDog API to setup timeboards, the [graphing documentation](https://docs.datadoghq.com/graphing/), and searching through the help forums before coming up with a way to make my timeboard.
 
-I chose to use Postman when making my requests after reading this great article [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs).
+I spent a while reading the [create a timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the Datadog API to setup timeboards, the [graphing](https://docs.datadoghq.com/graphing/) documentation, and [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs), before coming up with a way to make my timeboard.
+
+Postman seemded like the natural choice because I have past experience with it, and Datadog provided a collection of prebuilt requests to use.
 
 Postman interface:
 ![PostManRequest](images/Visualizing_Data/PostmanRequest.png)
 
-My request looks like this:
+My API request to build a timeboard looks like this:
 
 ```JSON
 {
@@ -135,16 +144,16 @@ My request looks like this:
 }
 ```
 
-The script version can be viewed at [Georges TimeBoard Script](scripts/time_board.py)
+The script version can be viewed at [Georges Timeboard Script](scripts/time_board.py).
 
-Once the TimeBoard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
+Once the timeboard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
 ![Georges TimeBoard for the past 5 min](images/Visualizing_Data/PastFiveMins.png)
 
 Next I took a snapshot of my graph and sent it to myself using @george.smsweeper@gmail.com
 
 ![A Snapshot of Georges Graph](images/Visualizing_Data/SnapShot.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+**Bonus Question**: What is the Anomaly graph displaying?
 
 My Anomaly graph is displaying a red spike that represents a deviation from an expected range of values. There isn’t much data coming in, and I’m using a basic algorithm, so it will be difficult to build up a long trend and present them in a cloud.
 
@@ -152,17 +161,17 @@ My Anomaly graph is displaying a red spike that represents a deviation from an e
 
 Our custom metric routinely goes above 800, so we would like to create a monitor that automatically alerts us when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
 
-The first thing I did was select a monitor type to create:
+The first thing I did was select a monitor type:
 ![Metric monitor selection](images/Monitoring_Data/SelectMonitorType.png)
 
-Next I selected the monitor I would like the track:
+Next I selected the metric I would like the track:
 ![Metric to track](images/Monitoring_Data/SelectMetric.png)
 
-The third step was to create a “Warning” threshold of 500, and “Alerting” threshold of 800 if my_metric exceeds these values in the past 5 minutes:
+The third step was to create a “Warning” threshold of 500, and an “Alerting” threshold of 800. I would be notified if my_metric exceeds these values in the past 5 minutes:
 ![Set alert and warning thresholds](images/Monitoring_Data/AlertThreshold.png)
 
 Next I configured the monitor to notify me if data was missing for more than to minutes:
-![Configure missing data warning](images/Monitoring_Data/MissingDataNotificaiton.png)
+![Configure missing data warning](images/Monitoring_Data/MissingDataNotification.png)
 
 Finally I added different messages for Alerts, Warnings and Missing data, and had the monitor notify me by email when a condition was met:
 
@@ -170,9 +179,9 @@ Setting messages:
 ![Setting alert messages](images/Monitoring_Data/AlertMessages.png)
 
 Receiving emailed notification:
-![Received notification](images/Monitoring_Data/ReceivedNotification.png)
+![Received notification](images/Monitoring_Data/NoDataAlert.png)
 
-* **Bonus Question**
+**Bonus Question**
 
 In order to complete the bonus requirements,I created two downtimes for the new monitor, and had them email me once they had been configured.
 
@@ -190,20 +199,21 @@ Email confirmation:
 
 ## Collecting APM Data:
 
-I first had to get pip so that I should install ddtrace.
+I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), and the [APM setup](https://docs.datadoghq.com/tracing/setup/), before diving into my APM setup. Collecting data seems like it was going to be a breeze, but I was unable to fully implement a solution.
+
+My efforts are documented below.
+
+I first had to install pip so that I could install ddtrace.
 `sudo apt install python3-pip`
 
-I then installed ddtrace:
+Then I installed ddtrace:
 `pip3 install ddtrace`
 
-Then installed Flask:
+Then I installed Flask:
 `pip3 install Flask`
 
-Created a file to store the Flask app, and inserted the provided code:
+Finally I created a file to store the Flask app, and inserted the provided code:
 `sudo touch my_app.py`
-
-
-`my_app.py`
 
 ```python
 from flask import Flask
@@ -236,17 +246,19 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-#### Running the trace
+**Running the trace**
 
 After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
 
-![ddtrace terminal output](images/APM/ddtrace_running)
+![ddtrace terminal output](images/APM/ddtrace_running.png)
 
 It seems like the trace is reporting one service, but when I go to the APM UI, the process hasn't moved past the install stage:
 
-![APM install UI](images/APM/APM_install_screen)
+![APM install UI](images/APM/APM_install_screen.png)
 
-* **Bonus Question**
+I searched high and low for a solution, erased all of my code, checked my config files, and still couldn't come up with a fix. I believe a simple line of code, or misplaced space in a .yaml is causing my issues. 
+
+**Bonus Question**
 
 What is the difference between a Service and a Resource?
 
@@ -254,7 +266,7 @@ I found this great article which I referenced for this answer. [Service vs Refer
 
 A service is **the name of a set of processes that work together to provide a feature set** while a resource is **A particular query to a service**.
 
-Services help a user to distinguish from different processes, and more easily when instrumenting their application with DataDog.
+Services help a user to distinguish from different processes, and more easily instrument their application with DataDog.
 
 Resources are the queries that a user constructs to interact with the services they've created. When using traces, a resource can be a path such as `/user/home`.
 
