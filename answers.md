@@ -41,59 +41,59 @@ I suggest using copying the entire provided command, and pasting it into the pro
 
 I took some time to read the [tagging documentation](https://docs.datadoghq.com/getting_started/tagging/) and added my tags to the agent config file at `/etc/datadog-agent/datadog/yaml`.
 
-[Tags inside the config file](images/Collecting_Metrics/TagsInConfig.png)
+![Tags inside the config file](images/Collecting_Metrics/TagsInConfig.png)
 
-Initially the tags weren’t showing up in my Host Map, so I ran `sudo datadog-agent status` to check if my agent was running. It wasn’t.
+Initially the tags weren’t showing up in my Host Map, so I ran `sudo systemctl status datadog-agent.service` to check if my agent was running. It wasn’t.
 
-[Agent not running](images/Collecting_Metrics/AgentNotRunning.png)
+![Agent not running](images/Collecting_Metrics/AgentNotRunning.png)
 
-I then ran `sudo data dog-agent start` and checked again. The tags can now be viewed under the host map.
+I then ran `sudo systemctl start datadog-agent.service` and checked again. The tags can now be viewed under the host map.
 
-[Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
+![Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
 
-******Install database
+**Installing the database**
 
-I chose to install PostgreSQL as my data base since I had used it in the past. The install is handled by running the command `sudo apt-get install postgresql`.
+I chose to install PostgreSQL as my database since I had used it in the past. The install is handled by running the command `sudo apt-get install postgresql`.
 
-[PostgreSQL install](images/Collecting_Metrics/PostgresInstall.png)
+![PostgreSQL install](images/Collecting_Metrics/PostgresInstall.png)
 
-After installing postgres, it’s important to log in to the database in order to setup the data dog integration. `sudo -u postgres -i`.
+After installing Postgres, it’s important to log in to the database in order to setup the Datadog integration. Log in is handled by running the command `sudo -u postgres -i`.
 
-Once logged in I simply followed the integration instructions from the data dog docs.
+Once logged in I simply followed the integration instructions from the Datadog docs.
 
-[Postgres Integration](images/Collecting_Metrics/Postgres Integration.png)
+![Postgres Integration](images/Collecting_Metrics/PostgresIntegration.png)
 
  I took the provided example at conf.yaml.example, and renamed it conf.yaml, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
 
 This is my edited conf.yaml for this step:
 ![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
 
-******Create Custom Agent Check
+**Creating a custom agent check**
 
 I had to do some digging in order to setup my custom agent check, but the [documentation](https://docs.datadoghq.com/developers/agent_checks/) helped me immensely.
 
 The first step is to create a check file inside of the checks.d folder.
 
-“from inside the root directory”
 `sudo touch /etc/datadog-agent/checks.d/firstCheck.py`
 
-Next I created the Check inside of the `firstCheck.py` file, and imported the [random package](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) in order to generate integers from 0-1000.
+Next I created the check inside of the `firstCheck.py` file, and imported the [random package](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) from python in order to generate integers from 0-1000.
 
-[CheckUsingRandom](images/Colleting_Metrics/CheckUsingRandom.png)
+![CheckUsingRandom](images/Collecting_Metrics/CheckUsingRandom.png)
 
-Finally, in order to set the interval at which the data was collected, I had to create a  `firstCheck.yaml` file  inside of the conf.d directory that contains the configurations.
+Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory that contains the configurations for, data collection intervals.
 `sudo touch /etc/datadog-agent/conf.d/firstCheck.yaml`
 
-![SettingCheckInterval](images/Colleting_Metrics/SettingCheckInterval.png)
+![SettingCheckInterval](images/Collecting_Metrics/SettingCheckInterval.png)
 
 “my_metric” can now be viewed in the metrics explorer:
-![MyMetricsExplorer](images/Colleting_Metrics/MyMetricsExplorer.png)
+![MyMetricsExplorer](images/Collecting_Metrics/MyMetricsExplorer.png)
 
 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-  Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
+ Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
+
 
 ## Visualizing Data:
 
