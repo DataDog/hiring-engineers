@@ -1,15 +1,13 @@
-Your answers to the questions go here.
-
-# Solutions Engineer Exercises - George Smith-Sweeper
+# Solutions Engineer Exercise- George Smith-Sweeper
 
 ## Prerequisites - Setup the environment
 
-I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using HomeBrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
+I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
 
 `brew cask install vagrant`
-[BrewInstllVagrantCommand](images/Prereq/VagrantInstall.png)
+![BrewInstallVagrantCommand](images/Prereq/VagrantInstall.png)
 `brew cask install virtualbox`
-[BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
+![BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
 
 Once these have been installed it’s time to spin up a fresh Ubuntu VM. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
 
@@ -24,7 +22,7 @@ When done correctly, your prompt should now look similar to the one below:
 
 After logging into the new virtual machine, you must sign up for data dog in order to get access to my Data Dog agent metrics, your API KEY, and Dashboard.
 
-[Datadog sign up](images/Prereq/DD_API_KEY.png)
+![Datadog sign up](images/Prereq/DD_API_KEY.png)
 
 I suggest using copying the entire provided prompt and pasting it into the prompt in your VM. Doing this will install DataDogs agent onto your VM, store your API_KEY, and provide access to the DataDog dashboard.
 
@@ -60,7 +58,7 @@ Once logged in I simply followed the integration instructions from the data dog 
  I took the provided example at conf.yaml.example, and renamed it conf.yaml, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
 
 This is my edited conf.yaml for this step:
-[PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
+![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
 
 ******Create Custom Agent Check
 
@@ -71,17 +69,17 @@ The first step is to create a check file inside of the checks.d folder.
 “from inside the root directory”
 `sudo touch /etc/datadog-agent/checks.d/firstCheck.py`
 
-Next I created the Check inside of the `firstCheck.py` file, and imported the [random pacage](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) in order to generate integers from 0-1000.
+Next I created the Check inside of the `firstCheck.py` file, and imported the [random package](http://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python) in order to generate integers from 0-1000.
 
 [CheckUsingRandom](images/Colleting_Metrics/CheckUsingRandom.png)
 
 Finally, in order to set the interval at which the data was collected, I had to create a  `firstCheck.yaml` file  inside of the conf.d directory that contains the configurations.
 `sudo touch /etc/datadog-agent/conf.d/firstCheck.yaml`
 
-[SettingCheckInterval](images/Colleting_Metrics/SettingCheckInterval.png)
+![SettingCheckInterval](images/Colleting_Metrics/SettingCheckInterval.png)
 
 “my_metric” can now be viewed in the metrics explorer:
-[MyMetricsExplorer](images/Colleting_Metrics/MyMetricsExplorer.png)
+![MyMetricsExplorer](images/Colleting_Metrics/MyMetricsExplorer.png)
 
 
 
@@ -96,7 +94,7 @@ I spent a while reading the [documentation](https://docs.datadoghq.com/api/?lang
 I chose to use Postman when making my requests after reading this great article [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs).
 
 Postman interface:
-[PostManRequest](images/Visualizing_Data/PostmanRequest.png)
+![PostManRequest](images/Visualizing_Data/PostmanRequest.png)
 
 My request looks like this:
 
@@ -192,4 +190,78 @@ Email confirmation:
 
 ## Collecting APM Data:
 
+I first had to get pip so that I should install ddtrace.
+`sudo apt install python3-pip`
+
+I then installed ddtrace:
+`pip3 install ddtrace`
+
+Then installed Flask:
+`pip3 install Flask`
+
+Created a file to store the Flask app, and inserted the provided code:
+`sudo touch my_app.py`
+
+
+`my_app.py`
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+#### Running the trace
+
+After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
+
+![ddtrace terminal output](images/APM/ddtrace_running)
+
+It seems like the trace is reporting one service, but when I go to the APM UI, the process hasn't moved past the install stage:
+
+![APM install UI](images/APM/APM_install_screen)
+
+* **Bonus Question**
+
+What is the difference between a Service and a Resource?
+
+I found this great article which I referenced for this answer. [Service vs Reference](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
+A service is **the name of a set of processes that work together to provide a feature set** while a resource is **A particular query to a service**.
+
+Services help a user to distinguish from different processes, and more easily when instrumenting their application with DataDog.
+
+Resources are the queries that a user constructs to interact with the services they've created. When using traces, a resource can be a path such as `/user/home`.
+
 ## Final Question:
+
+**Is there anything creative that you would use DataDog for?**
+
+I used to work in the snow-sports industry at a mountain resort, and one of the major issues each season was managing the snow depth at different parts of the mountain, and figuring out which snow guns to turn on in order to maintain an even level across all terrain.
+
+I would set up metrics to keep track of the depth and temperatures of the slopes, and turn on the snow guns if the depth fell below a predefined threshold. Since snow guns consume a huge amount of water while covering the slopes with fresh snow, I would also use DataDog to monitor the local pond and ground water levels to prevent us from depleting the surrounding areas, and inflicting irreversible damage.
