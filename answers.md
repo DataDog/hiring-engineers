@@ -161,17 +161,17 @@ My Anomaly graph is displaying a red spike that represents a deviation from an e
 
 Our custom metric routinely goes above 800, so we would like to create a monitor that automatically alerts us when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
 
-The first thing I did was select a monitor type to create:
+The first thing I did was select a monitor type:
 ![Metric monitor selection](images/Monitoring_Data/SelectMonitorType.png)
 
-Next I selected the monitor I would like the track:
+Next I selected the metric I would like the track:
 ![Metric to track](images/Monitoring_Data/SelectMetric.png)
 
-The third step was to create a “Warning” threshold of 500, and “Alerting” threshold of 800 if my_metric exceeds these values in the past 5 minutes:
+The third step was to create a “Warning” threshold of 500, and an “Alerting” threshold of 800. I would be notified if my_metric exceeds these values in the past 5 minutes:
 ![Set alert and warning thresholds](images/Monitoring_Data/AlertThreshold.png)
 
 Next I configured the monitor to notify me if data was missing for more than to minutes:
-![Configure missing data warning](images/Monitoring_Data/MissingDataNotificaiton.png)
+![Configure missing data warning](images/Monitoring_Data/MissingDataNotification.png)
 
 Finally I added different messages for Alerts, Warnings and Missing data, and had the monitor notify me by email when a condition was met:
 
@@ -179,9 +179,9 @@ Setting messages:
 ![Setting alert messages](images/Monitoring_Data/AlertMessages.png)
 
 Receiving emailed notification:
-![Received notification](images/Monitoring_Data/ReceivedNotification.png)
+![Received notification](images/Monitoring_Data/NoDataAlert.png)
 
-* **Bonus Question**
+**Bonus Question**
 
 In order to complete the bonus requirements,I created two downtimes for the new monitor, and had them email me once they had been configured.
 
