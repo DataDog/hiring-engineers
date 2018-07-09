@@ -192,4 +192,79 @@ Email confirmation:
 
 ## Collecting APM Data:
 
+I first had to get pip so that I should install ddtrace.
+`sudo apt install python3-pip`
+
+I then installed ddtrace:
+`pip3 install ddtrace`
+
+Then installed Flask:
+`pip3 install Flask`
+
+Created a file to store the Flask app, and inserted the provided code:
+`sudo touch my_app.py`
+
+
+`my_app.py`
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+#### Running the trace
+
+After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
+
+![ddtrace terminal output](images/APM/ddtrace_running)
+
+It seems like the trace is reporting one service, but when I go to the APM UI, the process hasn't moved past the install stage:
+
+![APM install UI](images/APM/APM_install_screen)
+
+* **Bonus Question**
+
+What is the difference between a Service and a Resource?
+
+I found this great article which I referenced for this answer. [Service vs Reference](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
+A service is **the name of a set of processes that work together to provide a feature set** while a resource is **A particular query to a service**.
+
+Services help a user to distingush from different processes, and more easily when intrumenting their application with Datadog.
+
+Resources are the queries that a user contructs to interact with the services they've created. When using traces, a resource can be a path such as `/user/home`.
+
 ## Final Question:
+
+Is there anything creative that you would use Datadog for?
+
+I used to work in the snowsports industry at a mountain resort, and one of the major issues each season was managing the snow depth at differnt parts of the mountain, and figuring out which snow guns to turn on in order to maintain an even level across all terrain.
+
+I would set up metrics to keep track of the depth and temperatures of the slopes, and turn on the snow guns if the depth fell below a predefined threshold. Since snow guns consume a huge amount of water in order to cover the slopes with fresh snow, I would also use DataDog to monitor the local pond and group water levels to make sure that we weren't doing irriversible damage to the surrounding areas.
+
