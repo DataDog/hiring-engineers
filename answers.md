@@ -90,7 +90,7 @@ Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory 
 
 
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
  Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
 
