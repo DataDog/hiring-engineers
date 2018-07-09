@@ -97,14 +97,15 @@ Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory 
 
 ## Visualizing Data:
 
-I spent a while reading the [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the DataDog API to setup timeboards, the [graphing documentation](https://docs.datadoghq.com/graphing/), and searching through the help forums before coming up with a way to make my timeboard.
 
-I chose to use Postman when making my requests after reading this great article [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs).
+I spent a while reading the [create a timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the Datadog API to setup timeboards, the [graphing](https://docs.datadoghq.com/graphing/) documentation, and [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs), before coming up with a way to make my timeboard.
+
+Postman seemded like the natural choice because I have past experience with it, and Datadog provided a collection of prebuilt requests to use.
 
 Postman interface:
 ![PostManRequest](images/Visualizing_Data/PostmanRequest.png)
 
-My request looks like this:
+My API request to build a timeboard looks like this:
 
 ```JSON
 {
@@ -143,9 +144,9 @@ My request looks like this:
 }
 ```
 
-The script version can be viewed at [Georges TimeBoard Script](scripts/time_board.py)
+The script version can be viewed at [Georges Timeboard Script](scripts/time_board.py).
 
-Once the TimeBoard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
+Once the timeboard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
 ![Georges TimeBoard for the past 5 min](images/Visualizing_Data/PastFiveMins.png)
 
 Next I took a snapshot of my graph and sent it to myself using @george.smsweeper@gmail.com
