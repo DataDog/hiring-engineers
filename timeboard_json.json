@@ -1,0 +1,68 @@
+{
+    "dash": {
+        "read_only": true,
+        "graphs": [
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "q": "avg:my_metric{*} by {ubuntu-xenial}"
+                        }
+                    ],
+                    "events": []
+                },
+                "title": "Average of my_metric"
+            },
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "q": "anomalies(avg:postgresql.rows_fetched{*}, 'basic', 2)"
+                        }
+                    ],
+                    "events": []
+                },
+                "title": "Anomolies for bgwriter.checkpoints_timed Metric on postgresQL integration"
+            },
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "q": "my_metric{*}.rollup(sum, 3600)"
+                        }
+                    ],
+                    "events": []
+                },
+                "title": "Roll up sum for my_metric"
+            }
+        ],
+        "template_variables": [
+            {
+                "default": "host:ubuntu-xenial",
+                "prefix": "host",
+                "name": "Gianpaul Rachiele"
+            }
+        ],
+        "description": "Datadog Hiring Exercise",
+        "title": "Solutions Engineer Timeboard",
+        "created": "2018-07-10T18:59:29.243575+00:00",
+        "id": 857060,
+        "created_by": {
+            "disabled": false,
+            "handle": "gianpaul817@gmail.com",
+            "name": "Gianpaul Rachiele",
+            "is_admin": true,
+            "role": null,
+            "access_role": "adm",
+            "verified": true,
+            "email": "gianpaul817@gmail.com",
+            "icon": "https://secure.gravatar.com/avatar/84ab1cbaca27169d45c21a29ebab1c71?s=48&d=retro"
+        },
+        "modified": "2018-07-10T18:59:29.277563+00:00"
+    },
+    "url": "/dash/857060/solutions-engineer-timeboard",
+    "resource": "/api/v1/dash/857060"
+}
