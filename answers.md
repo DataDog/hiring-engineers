@@ -381,14 +381,6 @@ Here is the timeboard that was created showing both APM and Infrastructure metri
 Finally, here is the link to the dashboard:
 https://app.datadoghq.com/dash/858307/apm-and-infrastructure?live=true&page=0&is_auto=false&from_ts=1531342584083&to_ts=1531346184083&tile_size=m
 
-# Conclusion
-Thank you for taking the time to review my submission. 
-
-I learned a lot from completing this excercise. I had never used many of the tools that were required such as flask and vagrant, but by carefully reading the incredible Datadog documentation and googling a few things along the way I was able to successfully complete every task.
-
-I think the toughest part of this excercise was getting the APM setup properly, but after some resiliance, the flask server was setup with the middleware and datadog was tracing away.
-
-
 Bonus question:
 From the datadog knowledge base, "A service is a set of processes that do the same job." Some examples include webapp, admin, and query. Also from the knowledge base, "A Resource is a particular action for a service." Some examples include, for a web application a URL like "/etc/datadog" or some SQL query like "SELECT * FROM table1234"
 
@@ -397,4 +389,13 @@ From the datadog knowledge base, "A service is a set of processes that do the sa
 ## Creative use for Datadog
 
 A great fit that I can see for Datadog is in the manufacturing industry. My current employer maintains a manufacturing facility with many different CNC machines. It would be a great help to have insights on the analytics of the machines such as uptime, production speed and perhaps even more specific things like the vibration of the CNC machines. We may then tie in the different programs that are being run on the machines and be able to find some really useful information. For instance, one particular program may vibrate the CNC machine a lot more than usual, and shortly after the large vibrations occur, we can see that the machine malfunctions, receives an error, and goes down. This would save manfacturing environments a lot of money if they could quickly figure out the source of various problems in their machinery.
+
+
+# Conclusion
+Thank you for taking the time to review my submission. 
+
+I learned a lot from completing this excercise. I had never used many of the tools that were required such as flask and vagrant, but by carefully reading the incredible Datadog documentation and googling a few things along the way I was able to successfully complete every task.
+
+I think the toughest part of this excercise was getting the APM setup properly, but after some resiliance, the flask server was setup with the middleware and datadog was tracing away.
+
 
