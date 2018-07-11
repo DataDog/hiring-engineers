@@ -6,7 +6,9 @@ And set up 16.04 linux version. I then signed up for Datadog for the 14 day free
 
 ### Collecting Metrics: ###
 Tags give you a way to distinguish between hosts. 
-First we to adapt the Agent configuration file. We can set up datadog by configuring datadog.yaml. Once inside the file you can modify the the tag section.
+First we to adapt the Agent configuration file. We can set up datadog by configuring datadog.yaml. It can be found her \etc\datadog-agent\datadog.yaml
+
+Once inside the file you can modify the the tag section.
 Here is an example of mine:
 
 ![picture](./img/1.png)
