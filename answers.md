@@ -44,7 +44,7 @@ Once inside the yaml file check’s collection interval needs to be modified so 
 
 Yes. You can set a min interval option in the custom metric check. yaml file inside the conf.d directory. The name of the yaml file needs to match the name of your custom agent check python file in the checks.d directory. Ex: conf.d/smile.yaml and checks.d/smile.py
 
-So really all that needs to be changes is in the yaml file.
+Really all that needs to be changes is in the min_collection_interval in the yaml file.
 
 ### Visualizing Data ###
 
@@ -54,27 +54,13 @@ It should look something like this:
 ![picture](./img/5.png)
 ![picture](./img/6.png)
 
-
-
-
-
-
-
 My custom timeboard:
 ![picture](./img/7.png)
-
-
-
-
-
 
 My timeboard over a span of 5 seconds after I emailed myself with the @notation.
 ![picture](./img/8.png)
 
 ![picture](./img/9.png)
-
-
-
 
 **What is the Anomaly graph displaying?**
 
