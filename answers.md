@@ -15,7 +15,7 @@ Here is an example of mine:
 
 You then need to restart you Agent using: sudo service datadog-agent restart
 
-It took me a couple of tries for it to appear on my host map but once it does. This is what is should look like:
+It took me a couple of tries for it to appear on my host map but once it did this is what it looked like:
 
 ![picture](./img/2.png)
 
@@ -35,7 +35,7 @@ Once inside the yaml file check’s collection interval needs to be modified so 
 
 ![picture](./img/4.png)
 
-** Can you change the collection interval without modifying the Python check file you created? **
+**Can you change the collection interval without modifying the Python check file you created?**
 
 Yes. You can set a min interval option in the custom metric check. yaml file inside the conf.d directory. The name of the yaml file needs to match the name of your custom agent check python file in the checks.d directory. Ex: conf.d/smile.yaml and checks.d/smile.py
 
@@ -49,7 +49,7 @@ It should look something like this:
 ![picture](./img/5.png)
 ![picture](./img/6.png)
 
-Setting the timeboard to show the time frame of the past 5 minutes is simple. I hovered the curser and selected the 5 minute time frame and emailed myself the snapshot to mysel.
+Setting the timeboard to show the time frame of the past 5 minutes is simple. I hovered the cursor and selected the 5 minute time frame and emailed myself the snapshot to myself.
 
 This is what my 5 minute timeboard look liked
 
@@ -59,7 +59,7 @@ My timeboard over a span of 5 minutes after I emailed myself with the @notation:
 
 ![picture](./img/7.png)
 
-** What is the Anomaly graph displaying? **
+**What is the Anomaly graph displaying?**
 
 The Anomaly graph detects data change based on past expressions of the information. It predicts what the normal flow of the data should look look like. The graph is staying constant on the y-axis. Therefore, there are no anomalies being detected.
 
@@ -73,11 +73,11 @@ Data can be monitored from Datadog’s platform.
 
 ![picture](./img/9.png)
 
-The warning message would change depeneding on if it was a warning, alert or no data.
+The warning message would change depeneding on if it was a warning, alert or no data. I inclueded alll three
 
 This is what an over 500 warning would look like.
 
-![picture](./img/15.png)
+![picture](./img/17.png)
 
 Here is how I set up my downtime monitor for 7 pm to 9 am EST(11pm to 1pm UTC) as well as weekends.
 
@@ -101,13 +101,13 @@ After expoting the graph to a timeboard this si what it looked like:
 
 ![picture](./img/14.png)
 
-** What is the difference between a Service and a Resource? **
+**What is the difference between a Service and a Resource?**
 
 A service is a set of behaviors that is going to consistently perform the same task.  Services work together to provide a feature.
 A resource is a specific behavior of a service. 
 
  
-** Is there anything creative you would use Datadog for? **
+**Is there anything creative you would use Datadog for?**
 
 An interesting way that I would use datadog would be as a habit tracker. Many of us have goals and habits that we would like to incorporate into our lives. Yet, a good way to make it habit adaptions easier is to make the incorporation of those habits as seamless as possible. First thing I would do is track our circadian rhythms.
 Create a scope that tracks when are most active, most focused, most tired, most hungry, most likely to need to need to use the bathroom etc.
