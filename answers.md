@@ -3,14 +3,18 @@ I set up the Vagrant Ubuntu VM:
 
 ![alt-text](./vagrant_installed.png "vagrant_installed")
 
-Then, I installed the datadog Agent for Ubuntu:
+Then, I installed the Datadog Agent for Ubuntu:
 
 ![alt-text](./datadog_agent_installed.png "datadog_agent_installed")
+
+and got the Agent reporting [system metrics](https://app.datadoghq.com/dash/integration/1/system---overview?live=true&page=0&is_auto=false&from_ts=1531317665377&to_ts=1531321265377&tile_size=m):
+
+![alt-text](./system_metrics.png "system_metrics")
 
 ---
 #### _The next thing I did was..._
 
-I added the tags here they are on the Host Map page in Datadog:
+I added some tags. Here they are on the Host Map page in Datadog:
 
 ![alt-text](./host_and_tags.png "host_and_tags")
 
@@ -21,7 +25,7 @@ Then, I successfully installed the PostgreSQL integration:
 
 **my_metric.py**
 
-This file is the Agent Check which submits a metric named my_metric with a random integer between 0 and 1000.
+This file is the Agent Check which submits a metric named `my_metric` with a random integer between 0 and 1000.
 
 ```python
 from checks import AgentCheck
@@ -58,7 +62,7 @@ Yes, you can change the min_collection_interval in the **.yaml** file for the me
 I used POSTMAN to access the Datadog API. I made a POST request to:
 https://api.datadoghq.com/api/v1/dash?api_key=848bc620be9c697d90db8e52e85eb55d&application_key=d84eb73de427ce7f3319fd9c6a73380beb04c450
 
-I used the following JSON in the POST request.
+I used the following JSON in the body of the POST request.
 
 ```json
 {
@@ -131,13 +135,13 @@ I used the following JSON in the POST request.
 }
 ```
 
-This POST request with the JSON above created the following charts in my dashboard. They each display a 5 minute timeframe. The graphs below are the result of sending myself a email using the @ notation in a comment on the graph.
+This POST request, with the JSON above as the body, created the following charts in my dashboard. They each display a 5 minute timeframe. The graphs below are the result of sending myself a email using the @ notation in a comment on the graph.
 
-### Here's a link to my [timeboard](https://app.datadoghq.com/dash/857060/solutions-engineer-timeboard?live=true&page=0&is_auto=false&from_ts=1531283492073&to_ts=1531287092073&tile_size=m)
+### Here's a link to my custom [timeboard](https://app.datadoghq.com/dash/857060/solutions-engineer-timeboard?live=true&page=0&is_auto=false&from_ts=1531283492073&to_ts=1531287092073&tile_size=m)
 
 ##### average_my_metric
 
-![alt-text](./average_my_metric.png "average_my_metric")
+![alt-text](./avg_my_metric.png "average_my_metric")
 
 ##### Roll up sum for my_metric
 
@@ -260,11 +264,11 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I would use Datadog for tracking airport statistics. I would like to see what times of day airports have the most on-time departures and arrivals. I would also like to track what type of weather causes the most delays into and out of airports.
+I would use Datadog for tracking airport statistics. I would like to see what times of day airports have the most on-time departures and arrivals. I would also like to track what type of weather causes the most delays into and out of airports. This could be a good way for consumers to know which timeframes generally have the best on time percentages and help them to book their itineraries accordingly.
 
 ## Sidenote:
 
-I initially had a lot of trouble getting everything up and running. I chose not to use a VM that ran Ubuntu and instead opted to run the datadog-agent on my OSX. That choice ended up causing some issues where certain metrics were not reporting. In the end, I read through the docs very carefully and started all over from scratch and used the VM running Ubuntu 16.04.
+I initially had a lot of trouble getting everything up and running. I chose not to use a VM that ran Ubuntu and instead opted to run the datadog-agent on my OSX. That choice ended up causing some issues where certain metrics were not reporting i.e. the I/O metric. In the end, I read through the docs very carefully and started all over from scratch and used the VM running Ubuntu 16.04 and was able to fully complete the exercise.
 
 I want to thank you for the opportunity to complete this hiring exercise. It was a great learning experience and extremely gratifying to see completed!
 
