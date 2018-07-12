@@ -1,7 +1,8 @@
 Prerequisites - Setup the environment
 --  
 
-1) Installed a containerized agent on an Ubunto EC2 host.  
+1) Installed a containerized agent on an Ubunto EC2 host.  Later switched to the Ubuntu agent as the containerized agent
+could not communicate with MySQL.
 
 ![alt text](ubuntu_ec2_instance.png)  
 
