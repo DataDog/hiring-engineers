@@ -9,13 +9,13 @@ options = {'api_key': api_key,
 
 initialize(**options)
 
-title = "ddogd3m0 Timeboard"
+title = "ddogd3m0 Rollup Timeboard"
 description = "My Random Check"
 graphs = [{
     "definition": {
         "events": [],
         "requests": [
-            {"q": "my_random_check{*}.rollup(sum, 60)"}
+            {"q": "my_random_check{*}.rollup(sum, 3600)"}
         ],
         "viz": "timeseries"
     },
