@@ -60,7 +60,7 @@ In mysql_timeboard.py
 
 In timeboard_rollup.py	  
 
-![alt text](rollup.png)
+![alt text](rollup_tb.png)
 
 4) Set the Timeboard's timeframe to the past 5 minutes  
 
