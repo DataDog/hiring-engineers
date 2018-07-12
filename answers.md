@@ -21,8 +21,7 @@ Collecting Metrics
 
 3) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
 
-![alt text](mysql_integration_1.png)  
-![alt text](mysql_integration_2.png)  
+Complete  
 
 4) Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
 
