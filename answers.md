@@ -135,5 +135,5 @@ Final Question
 
 Is there anything creative you would use Datadog for?  
 
-In iteresting thought is to use it to monitor traffic flow on toll roads to increase / decrease price based on traffic loads.  
+An iteresting thought is to use it to monitor traffic flow on toll roads to increase / decrease price based on traffic loads.  
 
