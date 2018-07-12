@@ -101,7 +101,7 @@ And also ensure that it will notify you if there is No Data for this query over 
 
 5) When this monitor sends you an email notification, take a screenshot of the email that it sends you.  
 
-![alt text](email_threshold.png)
+![alt text](email_th.png)
 
 6) Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
