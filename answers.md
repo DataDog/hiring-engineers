@@ -43,13 +43,13 @@ I installed MySQL and found the integration documentation clean and complete.  I
 the integration.  The issue was a refused connection.  I ended up mentioning the issue to the team and as suggested it was 
 that the container couldn't talk to the local DB.  This made sense and was fixed easily by switching to the Ubuntu agent.  I know this about containers 
 however I think it didn't cross my mind since the containerized version was recommended for use.  Out of curiousity, 
-what do you all recommend to customers in relation to agent integration communication?
+what do you all recommend to customers in relation to containerized agent integration communication?
 
 4) Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
 
 ![alt text](my_random_check.png)  
 
-This was straight forward and well documented.  I started out with the hello world and then implemented my_check with 
+This was straight forward and well documented.  I started out with the hello world example and then implemented my_check with 
 conf.d/my_metric.yaml and checks.d/my_metric.py  After creating a random value between 0 and 1000 I passed it as the 
 second argument of self.guage.
 
@@ -60,7 +60,7 @@ I don't think this is the right answer, however I did not see a better alternati
 
 6) Bonus Question Can you change the collection interval without modifying the Python check file you created?  
 
-To do this one can change the yaml file as noted in 5 above as that is the configuration that is passed to the check method.  
+This was well documented in the documentation.  To do this one can change the yaml file as noted in 5 above as that is the configuration that is passed to the check method.  
 
 Visualizing Data
 -   
@@ -75,7 +75,8 @@ Created by timeboard.py,  my_metric.py, and my_metric.yaml  This was well docume
 
 2) Any metric from the Integration on your Database with the anomaly function applied.
 
-In mysql_timeboard.py.  I started out reading up on the anomoly function.  I started to implement it in code and was 
+I ran into a little trouble finding how to call MySQL metrics, however after a quick searchi I located the correct 
+documentation.  In mysql_timeboard.py.  I started out reading up on the anomoly function.  I started to implement it in code and was 
 initially unsuccessful.  I then implemented it in the UI and was able to get the query string I needed from there to use 
 in the code.  
 
@@ -89,14 +90,14 @@ in the code.
 
 My experience here was similar to the anomaly function.  I looked at the API documentation and the rollup function I used 
 did not work.  I then implemented it in the UI and was able to see how to implement the query string properly.  The 
-code is in timeboard_rollup.py	  
+code is in timeboard_rollup.py.	  
 
 ![alt text](rollup_tb.png)
 
 4) Set the Timeboard's timeframe to the past 5 minutes
 
 I am not confident my answer here is correct.  The task was to set the timeboard's timeframe to the past five minutes.  
-I did not see how to set the timeboard to less than an hour.  I did see how to do this in the anomaly monitor and I implemented 
+I did not see how to set the timeboard's timeframe to less than an hour.  I did see how to do this in the anomaly monitor and I implemented 
 it there.  I am interested in feedback on this.    
 
 ![alt text](monitor_5_minutes.png)  
@@ -171,7 +172,9 @@ is in PDT and the email is in UTC, but once I noticed that I was good.
 I ran into a little issue here after installing the library.  I ran the samlple flask app using 
 and ddtrace-run python <app>.py and it executed but I never saw the trace in the UI.  I am not 
 sure what happened there, but can look into that at another time.  I ended up using the 
- sample_app.py that is in the GitHub examples and this worked like a charm.    
+ sample_app.py that is in the GitHub examples and this worked like a charm.  I also had trouble 
+ figuring out how to get a dashboard with both APM and infrastructure metrics.  I then dug into 
+ the documentation and learned how to do it.  
 
 ![alt text](apm_infra.png)
 
