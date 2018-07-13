@@ -195,3 +195,11 @@ Final Question
 Is there anything creative you would use Datadog for?  
 
 An iteresting thought is to use it to monitor traffic flow on toll roads to increase / decrease price based on traffic loads.  
+
+Final Comment
+-
+
+I enjoyed getting an introduction to Datadog.  I found the initial ramp-up to be quick and straight forward.  As I noted, 
+I was able to get over the hurdles I accomplished by mentioning an issue I had and using the documentation and UI.  The Product 
+is interesting in many aspects, however I love that it is DevOps focused and covers hybrid environments including infrastructure, 
+third party applications as well as custom applications.  This was a great introduction and I look forward to learning more.  
