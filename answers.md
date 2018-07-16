@@ -95,6 +95,7 @@ Please include your fully instrumented app in your submission, as well.
 Link to App: https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/apmtest.py
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
 ANSWER: a service is a set of processes that do the same job	, while a resource is a certain action for a service.
 
 ## Final Question:
