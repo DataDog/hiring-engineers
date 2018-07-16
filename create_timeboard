@@ -11,12 +11,13 @@ APP_KEY = ENV["APP_KEY"]
 
 
 def run_app
+
   dog = Dogapi::Client.new(API_KEY, APP_KEY)
   title = get_title
   description = get_desc
   path = get_path
   graph = json_file_to_hash(path)
-  binding.pry
+
   response = dog.create_dashboard(title, description, graph)
 
   if response.include?("400")
@@ -27,6 +28,7 @@ def run_app
   else
     puts "Application Error"
   end
+  
 end
 
 def json_file_to_hash(path)
