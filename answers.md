@@ -1,10 +1,23 @@
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+ <img src="https://i.imgur.com/ZEhmwqB.png" width="600" height="300" alt=""> </a>
+ <img src="https://i.imgur.com/dd4nkFk.png" width="600" height="300" alt=""> </a>
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+ <img src="https://i.imgur.com/jutJVM9.png" width="600" height="300" alt=""> </a>
+ <img src="https://i.imgur.com/ZVXWcKe.png" width="600" height="300" alt=""> </a>
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+ <img src="https://i.imgur.com/01gUMrt.png" width="600" height="300" alt=""> </a>
+
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+ <img src="https://i.imgur.com/LTkY5VY.png" width="600" height="300" alt=""> </a>
+
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+ ANSWER: Yes, you can update the min_collection_interval value in the YAML config file of the corresponding check.
 
 ## Visualizing Data:
 
