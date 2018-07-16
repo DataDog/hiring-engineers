@@ -73,8 +73,8 @@ Please configure the monitor’s message so that it will:
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+
    <img src="https://i.imgur.com/X7VaH8C.png" width="450" height="500" alt=""> </a>
-   
 
   * And one that silences it all day on Sat-Sun.
 
