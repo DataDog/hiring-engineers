@@ -103,3 +103,9 @@ ANSWER: a service is a set of processes that do the same job	, while a resource 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+ANSWER: I previously worked at a Middle School that had an in-school detention called the "Sendout Room". Students would be sent there after receiving a certain number demerits in a school day.
+
+A way to integrate Datadog would have the students check-in or scan when entering/exiting the "Sendout Room". This could allow the teachers to analyze how long students were staying in the "Sendout Room", if the "Sendout Room" was full, or the daily traffic based on a certain time period. 
+
+This could be useful for teacher and leadership to understand trends and how to make changes based on this information.
