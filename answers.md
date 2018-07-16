@@ -30,7 +30,7 @@ When done correctly, your prompt should now look similar to the one below:
 
 After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
 
-![Datadog sign up](images/Prereq/DD_API_KEY.png)
+![Datadog sign up](images/Prereq/DD_API_KE.png)
 
 I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
