@@ -1,6 +1,8 @@
 # Solutions Engineer Exercise- George Smith-Sweeper
 
+
 ## Prerequisites - Setup the environment
+
 
 I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
 
@@ -37,7 +39,9 @@ I suggest using copying the entire provided command, and pasting it into the pro
 ![Installing DataDog Agent messages](images/Prereq/InstallingAgent.png)
 ![Data Dog Agent Installed messages](images/Prereq/AgentInstalled.png)
 
+
 ## Collecting Metrics:
+
 
 I took some time to read the [tagging documentation](https://docs.datadoghq.com/getting_started/tagging/) and added my tags to the agent config file at `/etc/datadog-agent/datadog/yaml`.
 
@@ -87,7 +91,6 @@ Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory 
 
 “my_metric” can now be viewed in the metrics explorer:
 ![MyMetricsExplorer](images/Collecting_Metrics/MyMetricsExplorer.png)
-
 
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -157,7 +160,9 @@ Next I took a snapshot of my graph and sent it to myself using @george.smsweeper
 
 My Anomaly graph is displaying a red spike that represents a deviation from an expected range of values. There isn’t much data coming in, and I’m using a basic algorithm, so it will be difficult to build up a long trend and present them in a cloud.
 
+
 ## Monitoring Data
+
 
 Our custom metric routinely goes above 800, so we would like to create a monitor that automatically alerts us when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
 
@@ -197,7 +202,9 @@ Silences monitor on Saturday and Sunday:
 Email confirmation:
 ![WeekEndConfirm](images/Monitoring_Data/ScheduledWeekEnd.png)
 
+
 ## Collecting APM Data:
+
 
 I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog]https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/ before diving into my APM setup. Collecting data seems like it was going to be a breeze, but required more steps then I was anticipating.
 
@@ -271,9 +278,18 @@ I ran curl three times with the following endpoints, and watched the logger upda
 
 ![Terminal Logging](images/APM/TerminalResult.png)
 
-**Working with the APM Ui**
+**Working with the APM UI**
 
+I switched back to the Datadog APM UI to check the progress of the install and was greeted with this screen which prompted me to modify my `datadog.yaml`:
 
+![APM configuration instructions](images/APM/APMConfiguration.png)
+![Updated Datadog.yam configuration](images/APM/DDYamlConfig.png)
+
+Once the changes had been made, the ui sprang to life, and I was able to view all of my requests, endpoint hits, traces, and view the app data in my metrics explorer!
+
+![Full page app analysis](images/APM/APMAnalysis.png)
+![All traces run](images/APM/AllTracesRun.png)
+![Metrics explorer dashboard](images/APM/MetricsExplorerTrace.png)
 
 
 **Bonus Question**
