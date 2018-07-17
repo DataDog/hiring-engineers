@@ -4,19 +4,21 @@
 ## Prerequisites - Setup the environment
 
 
-I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager I chose to install Vagrant and Virtual-Box via the command-line.
+I chose to use Vagrant and Virtual-Box to complete these exercises. Since I’ve been using Homebrew as my package manager, I installed Vagrant and Virtual-Box via the command-line.
 
 The setup is as follows:
 
 `brew cask install vagrant`
+
 ![BrewInstallVagrantCommand](images/Prereq/VagrantInstall.png)
 
 
 `brew cask install virtualbox`
+
 ![BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
 
 
-Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
+Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and then jump into that newly created folder `cd dataDogExercise`.
 
 In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build.
 
@@ -25,23 +27,22 @@ In order to avoid dependency issues I searched the [vagrant cloud](https://app.v
 ![Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
 
 
-Now that Vagrant has been initialized, running `vagrant up` will start the VM.
+Now that Vagrant has been initialized, running `vagrant up` will start the VM, and typing `vagrant ssh` into the command prompt will log you in.
 
-Once the VM is up and running typing`vagrant ssh` into the command prompt logs you into the to the new Virtual Machine.
-
-When done correctly, your prompt should now look similar to the one below:
+When done correctly, your prompt should look similar to the one below:
 
 ![Vagrant Prompt](images/Prereq/Prompt.png)
 
 
-After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
+After logging into the new virtual machine, you must sign up for Datagog in order to get access to the Datadog agent metrics, your API KEY, and Dashboard.
 
 ![Datadog sign up](images/Prereq/DatadogApiKey.png)
 
 
-I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
+I suggest copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
 ![Installing DataDog Agent messages](images/Prereq/InstallingAgent.png)
+
 ![Data Dog Agent Installed messages](images/Prereq/AgentInstalled.png)
 
 
@@ -77,7 +78,7 @@ Once logged in I simply followed the integration instructions from the Datadog d
 ![Postgres Integration](images/Collecting_Metrics/PostgresIntegration.png)
 
 
- I took the provided example at conf.yaml.example, and renamed it conf.yaml, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
+ I took the provided example at `conf.yaml.example`, and renamed it `conf.yaml`, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
 
 ![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
 
@@ -101,7 +102,7 @@ Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory 
 ![SettingCheckInterval](images/Collecting_Metrics/SettingCheckInterval.png)
 
 
-“my_metric” can now be viewed in the metrics explorer:
+**my_metric** can now be viewed in the metrics explorer:
 
 ![MyMetricsExplorer](images/Collecting_Metrics/MyMetricsExplorer.png)
 
@@ -109,22 +110,22 @@ Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory 
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
- Yes! It’s possible to change the collection interval my setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
+ Yes! It’s possible to change the collection interval by setting the min_collection_interval in the checks Yaml file. (firstCheck.yaml).
 
 
 ## Visualizing Data:
 
 
-I spent a while reading the [create a timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) for using the Datadog API to setup timeboards, the [graphing](https://docs.datadoghq.com/graphing/) documentation, and [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs), before coming up with a way to make my timeboard.
+I spent a while reading the [create a timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) docs for using the Datadog API, the [graphing](https://docs.datadoghq.com/graphing/) documentation, and the article [Using Postman with DataDog API’s](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs), before coming up with a way to implement my timeboard.
 
-Postman seemded like the natural choice because I have past experience with it, and Datadog provided a collection of prebuilt requests to use.
+Postman seemed like the natural choice as I have past experience with it, and Datadog provided a collection of prebuilt requests to use.
 
-Postman interface:
+**Postman interface:**
 
 ![PostManRequest](images/Visualizing_Data/PostmanRequest.png)
 
 
-My API request to build a timeboard looks like this:
+**My API request to build a timeboard:**
 
 ```JSON
 {
@@ -165,12 +166,12 @@ My API request to build a timeboard looks like this:
 
 The script version can be viewed at [Georges Timeboard Script](scripts/time_board.py).
 
-Once the timeboard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
+Once the timeboard had been created I went to the dashboard, and set the time frame for the past 5 minutes.
 
 ![Georges TimeBoard for the past 5 min](images/Visualizing_Data/PastFiveMins.png)
 
 
-Next I took a snapshot of my graph and sent it to myself using @george.smsweeper@gmail.com
+Next I took a snapshot of my graph and sent it to myself @george.smsweeper@gmail.com.
 
 ![A Snapshot of Georges Graph](images/Visualizing_Data/SnapShot.png)
 
@@ -183,7 +184,7 @@ My Anomaly graph is displaying a red spike that represents a deviation from an e
 ## Monitoring Data
 
 
-Our custom metric routinely goes above 800, so we would like to create a monitor that automatically alerts us when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
+My custom metric routinely goes above 800, so I would like to create a monitor that automatically alerts me when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
 
 The first thing I did was select a monitor type:
 
@@ -200,7 +201,7 @@ The third step was to create a “Warning” threshold of 500, and an “Alertin
 ![Set alert and warning thresholds](images/Monitoring_Data/AlertThreshold.png)
 
 
-Next I configured the monitor to notify me if data was missing for more than to minutes:
+Next I configured the monitor to notify me if data was missing for more than 10 minutes:
 
 ![Configure missing data warning](images/Monitoring_Data/MissingDataNotification.png)
 
@@ -212,31 +213,31 @@ Setting messages:
 ![Setting alert messages](images/Monitoring_Data/AlertMessages.png)
 
 
-Receiving emailed notification:
+**Receiving emailed notification:**
 
 ![Received notification](images/Monitoring_Data/NoDataAlert.png)
 
 
 **Bonus Question**
 
-In order to complete the bonus requirements,I created two downtimes for the new monitor, and had them email me once they had been configured.
+In order to complete the bonus requirements, I created two down times for the new monitor, and had them email me once they had been configured.
 
-Silencing monitor from 7pm to 9am daily on M-F:
+**Silencing monitor from 7pm to 9am daily on M-F:**
 
 ![WeekDay](images/Monitoring_Data/WeekDayDown.png)
 
 
-Email confirmation:
+**Email confirmation:**
 
 ![WeekDayConfirm](images/Monitoring_Data/ScheduledWeekday.png)
 
 
-Silencing monitor on Saturday and Sunday:
+**Silencing monitor on Saturday and Sunday:**
 
 ![WeekEnd](images/Monitoring_Data/WeekEndDown.png)
 
 
-Email confirmation:
+**Email confirmation:**
 
 ![WeekEndConfirm](images/Monitoring_Data/ScheduledWeekEnd.png)
 
@@ -244,10 +245,10 @@ Email confirmation:
 ## Collecting APM Data:
 
 
-I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/), before diving into my APM setup. Collecting data seems like it was going to be a breeze, but required more steps then I was anticipating.
+I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/), before diving into my APM setup. Collecting data seemed like it was going to be a breeze, but required more steps then I was anticipating.
 
 
-I first had to install pip so that I could install ddtrace with `sudo apt install python3-pip`.
+I first had to install pip with `sudo apt install python3-pip`.
 
 Then I installed ddtrace using `pip3 install ddtrace`.
 
@@ -293,7 +294,7 @@ After the initial setup I ran the trace with `ddtrace-run python my_app.py`, and
 ![ddtrace terminal output](images/APM/ddtrace_running.png)
 
 
-It seems like the trace is reporting one service, but when I went to the APM UI, the process had not moved past the install stage:
+It seems like the trace is reporting one service, but when I went to the **APM UI**, the process had not moved past the install stage:
 
 ![APM install UI](images/APM/APM_install_screen.png)
 
@@ -303,14 +304,17 @@ I searched high and low for a solution, and checked my config files, before fina
 I ran curl three times with the following endpoints, and watched the logger update the terminal output:
 
 `curl http://127.0.0.1:5050/`
+
 ![Entry Point Command](images/APM/EntryPoint.png)
 
 
-`curl http://127.0.0.1:5050/api/arm`
+`curl http://127.0.0.1:5050/api/apm`
+
 ![Getting Started Command](images/APM/GettingStarted.png)
 
 
 `curl http://127.0.0.1:5050/api/trace`
+
 ![Entry Point Command](images/APM/PostingTraces.png)
 
 
@@ -325,7 +329,7 @@ I switched back to the Datadog APM UI to check the progress of the install and w
 
 ![Updated Datadog.yam configuration](images/APM/DDYamlConfig.png)
 
-Once the changes had been made, the ui sprang to life, and I was able to view all of my requests, endpoint hits, traces, and view the app data in my metrics explorer!
+Once the changes had been made, the UI sprang to life, and I was able to view all of my requests, endpoint hits, traces, and view the app data in my metrics explorer!
 
 ![Full page app analysis](images/APM/APMAnalysis.png)
 
