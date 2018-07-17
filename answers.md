@@ -9,7 +9,7 @@ To assign tags, you can edit the config file located in `/etc/datadog-agent/data
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-To install a integration for MySQL, you can navigate to the Datadog Agent integrations page. From here, you can select **MySQL** and access the **Congifuration** tab for step by step instructions. Please visit the [MySQL Integration Guide](https://docs.datadoghq.com/integrations/mysql/) for more detailed instructions. 
+To install an integration for MySQL, you can navigate to the Datadog Agent integrations page. From here, you can select **MySQL** and access the **Congifuration** tab for step by step instructions. Please visit the [MySQL Integration Guide](https://docs.datadoghq.com/integrations/mysql/) for more detailed instructions. 
 
  <img src="https://i.imgur.com/jutJVM9.png" width="600" height="300" alt=""> </a>
  <img src="https://i.imgur.com/ZVXWcKe.png" width="600" height="300" alt=""> </a>
@@ -27,7 +27,7 @@ instances:
     -metric: my_metric
 ```
 
-The check itself inherits from AgentCheck and send a gauge of a random value between 1 and 1000 on each call. We name the metric 'my_metric' and give it a tag of 'randmetric'. This goes in `checks.d/randval.py` and can be seen in the screenshot below.
+The check itself inherits from AgentCheck and send a gauge of a random value between 1 and 1000 on each call. We name the metric 'my_metric' and give it a tag of 'randmetric'. This goes into `checks.d/randval.py` and can be seen in the screenshot below.
 
 Please note that the names of the configuration and check files must match. If your check is called **mycheck.py** your configuration file must be named **mycheck.yaml**.
 
@@ -55,17 +55,44 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
  https://app.datadoghq.com/graph/embed?token=bea6c08e445447b861664863ec2f044bd704c5cebe467d5af73cc4f3f0849652&height=300&width=600&legend=true
  
+ 
+ To create a Timeboard using the Datadog API you will first need to create a new Application Key. This will give you full access to Datadog's programmatic API. An Application Key can be created via the Integration > Agents menu, providing an app name and clicking **Create Application Key**
+ 
+ Using the Timeboad endpoint, you can create a timeboard with graphs which the following arguemnts:
+ 
+ ```
+- title [required]:
+  The name of the dashboard.
+- description [required]:
+  A description of the dashboard’s content.
+- graphs [optional, default=None]:
+  A list of graph definitions. Graph definitions follow this form:
+  - title [required]:
+   The name of the graph.
+  - definition [optional, default=None]:
+   The graph definition. Example: {"requests": [{"q": "system.cpu.idle{*} by {host}"}
+- template_variables [optional, default=None]:
+  A list of template variables for using Dashboard templating. Template variable definitions follow this form:
+  - name [required]:
+    The name of the variable.
+  - prefix [optional, default=None]:
+    The tag prefix associated with the variable. Only tags with this prefix appear in the variable dropdown.
+  - default [optional, default=None]:
+    The default value for the template variable on dashboard load.
+ ```
+ 
+ Please see this [example](https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/createTimeboard.rb) for a Ruby script that creates a timeboard with three graphs
+ 
   <img src="https://i.imgur.com/vtuuIiZ.png" width="600" height="300" alt=""> </a>
  
  
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-Script found here: https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/createTimeboard.rb
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-In order to update the Timboard's timeframe to view the past 5 minutes, you can click and drag on a graph from left to right until you are only selecting the intended timeframe. 
+In order to update the Timboard's timeframe to view the past 5 minutes, you can click and drag on a graph from right to left until you are only selecting the intended timeframe. 
  
   <img src="https://i.imgur.com/KR9obUH.png" width="600" height="300" alt=""> </a>
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -74,7 +101,7 @@ To take a snapshot of a graph, you can hover over the graph and select camera ic
   <img src="https://i.imgur.com/ERhJuOs.png" width="600" height="300" alt=""> </a>
 * **Bonus Question**: What is the Anomaly graph displaying?
 
- ANSWER: The Anamaly graph will detect anomalous behaviour for a metric based on historical data. It will allow you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting. Please visit the [Anamoly Detection Guide](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more information
+ ANSWER: The Anomaly graph will detect anomalous behavior for a metric based on historical data. It will allow you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting. Please visit the [Anamoly Detection Guide](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) for more information
 
 
 ## Monitoring Data
@@ -88,7 +115,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 
-In order to setup a new monitor, you can navigate to the **Create Monitors** page by hovering over **Monitors** in the main menu and clicking **New Monitor** in the sub-menu. From here you can select **Metric** to begin configuring your monitor. 
+In order to set up a new monitor, you can navigate to the **Create Monitors** page by hovering over **Monitors** in the main menu and clicking **New Monitor** in the sub-menu. From here you can select **Metric** to begin configuring your monitor. 
 
 For **step 1**, select **Threshold alert**, which compares the value in the selected timeframe against a given threshold.
 
@@ -106,11 +133,11 @@ Please configure the monitor’s message so that it will:
 
 **Step 4** of the Monitor configuration page will allow you to create email notifications customizing the message based on the state. You can create different messages based on the state by using message template variables. 
 
-Using `{{#is_alert}} {{/is_alert}}` tags will allow you to display a mesage only when the **alert threshold** is met. Using `{{#is_warning}} {{/is_warning}}` tags will allow you to display a mesage only when the **warning threshold** is met.
+Using `{{#is_alert}} {{/is_alert}}` tags will allow you to display a message only when the **alert threshold** is met. Using `{{#is_warning}} {{/is_warning}}` tags will allow you to display a message only when the **warning threshold** is met.
 
-You can also include other variables in the message such as `{{value}}` which will inlcude the metric value or `{{host.ip}}`. Please visit the [Notifications Guide](https://docs.datadoghq.com/monitors/notifications/#message-template-variables) for deatiled information and additional variables.
+You can also include other variables in the message such as `{{value}}` which will include the metric value or `{{host.ip}}`. Please visit the [Notifications Guide](https://docs.datadoghq.com/monitors/notifications/#message-template-variables) for detailed information and additional variables.
 
-Lastly, **step 5** will allow you to notify certain users when the monitor is active. You can type in a users name to inlcude them in the notifaction email. Please see below for a sample set up of step 4 and 5.
+Lastly, **step 5** will allow you to notify certain users when the monitor is active. You can type in a users name to include them in the notification email. Please see below for a sample set up of step 4 and 5.
 
   <img src="https://i.imgur.com/kg3LC7q.png" width="600" height="300" alt=""> </a>
 
@@ -127,7 +154,7 @@ Below is a sample of a notifaction email that a user would see:
 
 In order to schedule downtimes for your monitor, you navigate to the **Manage Downtime** page by highlighting the Monitors tab in the main menu and selecting the **Manage Downtime** link. From here you can select Schedule Downtime to begin configuring your options. 
 
-For **step 1**, you can select the monitor you wish to schedule the downtime for along with constrain your downtime to a specific host.
+For **step 1**, you can select the monitor you wish to schedule the downtime for along with constraining your downtime to a specific host.
 
 **Step 2** will allow you to set a schedule for your downtime. Below is an example of downtime scheduled from 7pm to 9am daily on M-F and one scheduled all day on Sat-Sun. 
 
@@ -172,7 +199,7 @@ with tracer.trace("web.request", service="my_service") as span:
 
 ```
 
-After running your python application, you should begin seeing your services appear in the APM home page. Please visit our [Tracing FAQ](https://docs.datadoghq.com/tracing/faq/) for commonly asked questions.
+After running your Python application, you should begin seeing your services appear in the APM home page. Please visit our [Tracing FAQ](https://docs.datadoghq.com/tracing/faq/) for commonly asked questions.
  
    <img src="https://i.imgur.com/sn9K5X6.png" width="600" height="300" alt=""> </a>
 
