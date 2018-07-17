@@ -258,7 +258,7 @@ It seems like the trace is reporting one service, but when I go to the APM UI, t
 
 I searched high and low for a solution, erased all of my code, checked my config files, before finally attempting to hit the provided endpoints using curl!
 
-I ran curl three times with the following endpoints:
+I ran curl three times with the following endpoints, and watched the logger update the terminal output:
 
 `curl http://127.0.0.1:5050/`
 ![Entry Point Command](images/APM/EntryPoint.png)
@@ -268,6 +268,12 @@ I ran curl three times with the following endpoints:
 
 `curl http://127.0.0.1:5050/api/trace`
 ![Entry Point Command](images/APM/PostingTraces.png)
+
+![Terminal Logging](images/APM/TerminalResult.png)
+
+**Working with the APM Ui**
+
+
 
 
 **Bonus Question**
