@@ -2,7 +2,7 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
- To assign tags, you can edit the config file located in `/etc/datadog-agent/datadog.yaml`. In the config file, you can assign tags by adding key:value pairs as needed. Below is a screenshot of how tags would be set up in the `datadog.yaml` file. After assigning tags, you can [restart your agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) to begin seeing the tags in the Host Map page. 
+To assign tags, you can edit the config file located in `/etc/datadog-agent/datadog.yaml`. In the config file, you can assign tags by adding key:value pairs as needed. Below is a screenshot of how tags would be set up in the `datadog.yaml` file. After assigning tags, you can [restart your agent](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) to begin seeing the tags in the Host Map page. 
 
  <img src="https://i.imgur.com/ZEhmwqB.png" width="600" height="300" alt=""> </a>
  <img src="https://i.imgur.com/dd4nkFk.png" width="600" height="300" alt=""> </a>
@@ -147,6 +147,33 @@ For **step 1**, you can select the monitor you wish to schedule the downtime for
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+
+  To being setting up an APM, you will need already have the latest [Datadog agent](https://app.datadoghq.com/account/settings#agent) installed. 
+  
+  For Linux, the Trace Agent is pre-packaged with the standard Datadog Agent and no extra configuration is needed. To ensure the APM agent is enabled, you can access your `datadog.yaml` configuration file. You can update the `apm_config` key as see below:
+
+```
+apm_config:
+  enabled: true
+```
+
+Lastly, you can instrument your application to begin tracing. To setup tracing for Python applications, you will need to Datadog Tracing library using pip:
+```
+pip install ddtrace
+```
+
+Once installed you can import tracer and instrument your application:
+
+```
+from ddtrace import tracer
+
+with tracer.trace("web.request", service="my_service") as span:
+  span.set_tag("my_tag", "my_value")
+
+```
+
+After running your python application, you should begin seeing your services appear in the APM home page. Please visit our [Tracing FAQ](https://docs.datadoghq.com/tracing/faq/) for commonly asked questions.
+ 
    <img src="https://i.imgur.com/sn9K5X6.png" width="600" height="300" alt=""> </a>
 
 
