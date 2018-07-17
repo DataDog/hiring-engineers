@@ -208,6 +208,7 @@ After running your Python application, you should begin seeing your services app
 
 Please include your fully instrumented app in your submission, as well.
 Link to App: https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/apmtest.py
+Link to Dashboard: https://app.datadoghq.com/dash/861515/apm-dashboard-with-infrastructure-metrics?live=true&page=0&is_auto=false&from_ts=1531846121659&to_ts=1531849721659&tile_size=m
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
