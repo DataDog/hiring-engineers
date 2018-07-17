@@ -11,8 +11,10 @@ The setup is as follows:
 `brew cask install vagrant`
 ![BrewInstallVagrantCommand](images/Prereq/VagrantInstall.png)
 
+
 `brew cask install virtualbox`
 ![BrewInstallVirtualBoxInstall](images/Prereq/VirtualBoxInstall.png)
+
 
 Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
 
@@ -22,6 +24,7 @@ In order to avoid dependency issues I searched the [vagrant cloud](https://app.v
 
 ![Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
 
+
 Now that Vagrant has been initialized, running `vagrant up` will start the VM.
 
 Once the VM is up and running typing`vagrant ssh` into the command prompt logs you into the to the new Virtual Machine.
@@ -30,9 +33,11 @@ When done correctly, your prompt should now look similar to the one below:
 
 ![Vagrant Prompt](images/Prereq/Prompt.png)
 
+
 After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
 
 ![Datadog sign up](images/Prereq/DatadogApiKey.png)
+
 
 I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
@@ -47,13 +52,16 @@ I took some time to read the [tagging documentation](https://docs.datadoghq.com/
 
 ![Tags inside the config file](images/Collecting_Metrics/TagsInConfig.png)
 
+
 Initially the tags weren’t showing up in my Host Map, so I ran `sudo systemctl status datadog-agent.service` to check if my agent was running. It wasn’t.
 
 ![Agent not running](images/Collecting_Metrics/AgentNotRunning.png)
 
+
 I then ran `sudo systemctl start datadog-agent.service` and checked again. The tags can now be viewed under the host map.
 
 ![Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
+
 
 ### Installing the database
 
@@ -61,16 +69,18 @@ I chose to install PostgreSQL as my database since I had used it in the past. Th
 
 ![PostgreSQL install](images/Collecting_Metrics/PostgresInstall.png)
 
+
 After installing Postgres, it’s important to log in to the database in order to setup the Datadog integration. Log in is handled by running the command `sudo -u postgres -i`.
 
 Once logged in I simply followed the integration instructions from the Datadog docs.
 
 ![Postgres Integration](images/Collecting_Metrics/PostgresIntegration.png)
 
+
  I took the provided example at conf.yaml.example, and renamed it conf.yaml, so that I would have uneasily editable template to work with. (`sudo mv conf.yaml.example conf.yaml`).
 
-This is my edited conf.yaml for this step:
 ![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
+
 
 ### Creating a custom agent check
 
@@ -84,13 +94,17 @@ Next I created the check inside of the `firstCheck.py` file, and imported the [r
 
 ![CheckUsingRandom](images/Collecting_Metrics/CheckUsingRandom.png)
 
+
 Finally I had to create a `firstCheck.yaml` file inside of the conf.d directory that contains the configurations for, data collection intervals.
 `sudo touch /etc/datadog-agent/conf.d/firstCheck.yaml`
 
 ![SettingCheckInterval](images/Collecting_Metrics/SettingCheckInterval.png)
 
+
 “my_metric” can now be viewed in the metrics explorer:
+
 ![MyMetricsExplorer](images/Collecting_Metrics/MyMetricsExplorer.png)
+
 
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -106,7 +120,9 @@ I spent a while reading the [create a timeboard](https://docs.datadoghq.com/api/
 Postman seemded like the natural choice because I have past experience with it, and Datadog provided a collection of prebuilt requests to use.
 
 Postman interface:
+
 ![PostManRequest](images/Visualizing_Data/PostmanRequest.png)
+
 
 My API request to build a timeboard looks like this:
 
@@ -150,11 +166,14 @@ My API request to build a timeboard looks like this:
 The script version can be viewed at [Georges Timeboard Script](scripts/time_board.py).
 
 Once the timeboard had been created I went to the dash board, and set the timeframe for the past 5 minutes.
+
 ![Georges TimeBoard for the past 5 min](images/Visualizing_Data/PastFiveMins.png)
+
 
 Next I took a snapshot of my graph and sent it to myself using @george.smsweeper@gmail.com
 
 ![A Snapshot of Georges Graph](images/Visualizing_Data/SnapShot.png)
+
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -167,60 +186,74 @@ My Anomaly graph is displaying a red spike that represents a deviation from an e
 Our custom metric routinely goes above 800, so we would like to create a monitor that automatically alerts us when this happens. I found the [Monitor Documentation](https://docs.datadoghq.com/monitors/) very helpful when creating my own monitor.
 
 The first thing I did was select a monitor type:
+
 ![Metric monitor selection](images/Monitoring_Data/SelectMonitorType.png)
 
+
 Next I selected the metric I would like the track:
+
 ![Metric to track](images/Monitoring_Data/SelectMetric.png)
 
+
 The third step was to create a “Warning” threshold of 500, and an “Alerting” threshold of 800. I would be notified if my_metric exceeds these values in the past 5 minutes:
+
 ![Set alert and warning thresholds](images/Monitoring_Data/AlertThreshold.png)
 
+
 Next I configured the monitor to notify me if data was missing for more than to minutes:
+
 ![Configure missing data warning](images/Monitoring_Data/MissingDataNotification.png)
+
 
 Finally I added different messages for Alerts, Warnings and Missing data, and had the monitor notify me by email when a condition was met:
 
 Setting messages:
+
 ![Setting alert messages](images/Monitoring_Data/AlertMessages.png)
 
+
 Receiving emailed notification:
+
 ![Received notification](images/Monitoring_Data/NoDataAlert.png)
+
 
 **Bonus Question**
 
 In order to complete the bonus requirements,I created two downtimes for the new monitor, and had them email me once they had been configured.
 
-Silences monitor from 7pm to 9am daily on M-F:
+Silencing monitor from 7pm to 9am daily on M-F:
+
 ![WeekDay](images/Monitoring_Data/WeekDayDown.png)
 
+
 Email confirmation:
+
 ![WeekDayConfirm](images/Monitoring_Data/ScheduledWeekday.png)
 
-Silences monitor on Saturday and Sunday:
+
+Silencing monitor on Saturday and Sunday:
+
 ![WeekEnd](images/Monitoring_Data/WeekEndDown.png)
 
+
 Email confirmation:
+
 ![WeekEndConfirm](images/Monitoring_Data/ScheduledWeekEnd.png)
 
 
 ## Collecting APM Data:
 
 
-I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog]https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/ before diving into my APM setup. Collecting data seems like it was going to be a breeze, but required more steps then I was anticipating.
+I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/), before diving into my APM setup. Collecting data seems like it was going to be a breeze, but required more steps then I was anticipating.
 
-My efforts are documented below.
 
-I first had to install pip so that I could install ddtrace.
-`sudo apt install python3-pip`
+I first had to install pip so that I could install ddtrace with `sudo apt install python3-pip`.
 
-Then I installed ddtrace:
-`pip3 install ddtrace`
+Then I installed ddtrace using `pip3 install ddtrace`.
 
-Then I installed Flask:
-`pip3 install Flask`
+Next I installed Flask with `pip3 install Flask`.
 
 Finally I created a file to store the Flask app, and inserted the provided code:
-`sudo touch my_app.py`
 
 ```python
 from flask import Flask
@@ -255,40 +288,49 @@ if __name__ == '__main__':
 
 ### Running the trace
 
-After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
+After the initial setup I ran the trace with `ddtrace-run python my_app.py`, and received this message in my terminal:
 
 ![ddtrace terminal output](images/APM/ddtrace_running.png)
 
-It seems like the trace is reporting one service, but when I go to the APM UI, the process hasn't moved past the install stage:
+
+It seems like the trace is reporting one service, but when I went to the APM UI, the process had not moved past the install stage:
 
 ![APM install UI](images/APM/APM_install_screen.png)
 
-I searched high and low for a solution, erased all of my code, checked my config files, before finally attempting to hit the provided endpoints using curl!
+
+I searched high and low for a solution, and checked my config files, before finally attempting to hit the provided endpoints using curl!
 
 I ran curl three times with the following endpoints, and watched the logger update the terminal output:
 
 `curl http://127.0.0.1:5050/`
 ![Entry Point Command](images/APM/EntryPoint.png)
 
+
 `curl http://127.0.0.1:5050/api/arm`
 ![Getting Started Command](images/APM/GettingStarted.png)
+
 
 `curl http://127.0.0.1:5050/api/trace`
 ![Entry Point Command](images/APM/PostingTraces.png)
 
+
 ![Terminal Logging](images/APM/TerminalResult.png)
+
 
 ### Working with the APM UI
 
 I switched back to the Datadog APM UI to check the progress of the install and was greeted with this screen which prompted me to modify my `datadog.yaml`:
 
 ![APM configuration instructions](images/APM/APMConfiguration.png)
+
 ![Updated Datadog.yam configuration](images/APM/DDYamlConfig.png)
 
 Once the changes had been made, the ui sprang to life, and I was able to view all of my requests, endpoint hits, traces, and view the app data in my metrics explorer!
 
 ![Full page app analysis](images/APM/APMAnalysis.png)
+
 ![All traces run](images/APM/AllTracesRun.png)
+
 ![Metrics explorer dashboard](images/APM/MetricsExplorerTrace.png)
 
 
