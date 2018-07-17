@@ -28,11 +28,11 @@ Once the VM is up and running typing`vagrant ssh` into the command prompt logs y
 
 When done correctly, your prompt should now look similar to the one below:
 
-![Vagrant Prompt](images/Prereq/VagrantPrompt.png)
+![Vagrant Prompt](images/Prereq/Prompt.png)
 
 After logging into the new virtual machine, you must sign up for Datagog in order to get access to my Datadog agent metrics, your API KEY, and Dashboard.
 
-![Datadog sign up](images/Prereq/DD_API_KEY.png)
+![Datadog sign up](images/Prereq/DatadogApiKey.png)
 
 I suggest using copying the entire provided command, and pasting it into the prompt in your VM. Doing this will install Datadogs agent onto your VM, store your API_KEY, and provide access to the Datadog dashboard.
 
@@ -55,7 +55,7 @@ I then ran `sudo systemctl start datadog-agent.service` and checked again. The t
 
 ![Tags in host map](images/Collecting_Metrics/TagsInHostMap.png)
 
-**Installing the database**
+### Installing the database
 
 I chose to install PostgreSQL as my database since I had used it in the past. The install is handled by running the command `sudo apt-get install postgresql`.
 
@@ -72,7 +72,7 @@ Once logged in I simply followed the integration instructions from the Datadog d
 This is my edited conf.yaml for this step:
 ![PostgresYaml](images/Collecting_Metrics/PostgresYaml.png)
 
-**Creating a custom agent check**
+### Creating a custom agent check
 
 I had to do some digging in order to setup my custom agent check, but the [documentation](https://docs.datadoghq.com/developers/agent_checks/) helped me immensely.
 
@@ -253,7 +253,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-**Running the trace**
+### Running the trace
 
 After the initial setup I ran the trace with `ddtrace-run python my_app.py` and received this message in my terminal:
 
@@ -278,7 +278,7 @@ I ran curl three times with the following endpoints, and watched the logger upda
 
 ![Terminal Logging](images/APM/TerminalResult.png)
 
-**Working with the APM UI**
+### Working with the APM UI
 
 I switched back to the Datadog APM UI to check the progress of the install and was greeted with this screen which prompted me to modify my `datadog.yaml`:
 
@@ -306,7 +306,7 @@ Resources are the queries that a user constructs to interact with the services t
 
 ## Final Question:
 
-**Is there anything creative that you would use DataDog for?**
+### Is there anything creative that you would use DataDog for?
 
 I used to work in the snow-sports industry at a mountain resort, and one of the major issues each season was managing the snow depth at different parts of the mountain, and figuring out which snow guns to turn on in order to maintain an even level across all terrain.
 
