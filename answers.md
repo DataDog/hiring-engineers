@@ -58,7 +58,10 @@ Utilize the Datadog API to create a Timeboard that contains:
  
  To create a Timeboard using the Datadog API you will first need to create a new Application Key. This will give you full access to Datadog's programmatic API. An Application Key can be created via the Integration > Agents menu, providing an app name and clicking **Create Application Key**
  
- Using the Timeboad endpoint, you can create a timeboard with graphs using the following arguemnts:
+ Using the Timeboad endpoint, you can create a timeboard with graphs using the arguments below. You can use a script to create a timeboard using the format found in the [API Timeboard Guide](https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard). 
+ 
+ Please see this [example](https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/createTimeboard.rb) for a Ruby script that creates a timeboard with three graphs.
+
  
  ```
 - title [required]:
@@ -81,7 +84,6 @@ Utilize the Datadog API to create a Timeboard that contains:
     The default value for the template variable on dashboard load.
  ```
  
- Please see this [example](https://github.com/johanesteves/hiring-engineers/blob/solutions-engineer/createTimeboard.rb) for a Ruby script that creates a timeboard with three graphs
  
   <img src="https://i.imgur.com/vtuuIiZ.png" width="600" height="300" alt=""> </a>
  
@@ -92,7 +94,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-In order to update the Timboard's timeframe to view the past 5 minutes, you can click and drag on a graph from right to left until you are only selecting the intended timeframe. 
+In order to update the Timeboard's timeframe to view the past 5 minutes, you can click and drag on a graph from right to left until you are only selecting the intended timeframe. 
  
   <img src="https://i.imgur.com/KR9obUH.png" width="600" height="300" alt=""> </a>
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -121,7 +123,7 @@ For **step 1**, select **Threshold alert**, which compares the value in the sele
 
 For **step 2**, you'll select your metric (my_metric). 
 
-Lastly, for **step 3**, you can add your warning and alert thresholds. The **alert threshold** will be set to 800 and the **warning threshold** will be set to 500. Additionally, you can update the 'notify if data is missing' to **Notify** and setting this alert to 10 mintues. The screenshot below shows a sample setup:
+Lastly, for **step 3**, you can add your warning and alert thresholds. The **alert threshold** will be set to 800 and the **warning threshold** will be set to 500. Additionally, you can update the 'notify if data is missing' to **Notify** and set this option to 10 mintues. The screenshot below shows a sample setup:
 
  <img src="https://i.imgur.com/M4WMrDo.png" width="450" height="500" alt=""> </a>
 
@@ -137,7 +139,7 @@ Using `{{#is_alert}} {{/is_alert}}` tags will allow you to display a message onl
 
 You can also include other variables in the message such as `{{value}}` which will include the metric value or `{{host.ip}}`. Please visit the [Notifications Guide](https://docs.datadoghq.com/monitors/notifications/#message-template-variables) for detailed information and additional variables.
 
-Lastly, **step 5** will allow you to notify certain users when the monitor is active. You can type in a users name to include them in the notification email. Please see below for a sample set up of step 4 and 5.
+Lastly, **step 5** will allow you to notify certain users when the monitor's alerts are active. You can type in a users name to include them in the notification email. Please see below for a sample set up of step 4 and 5.
 
   <img src="https://i.imgur.com/kg3LC7q.png" width="600" height="300" alt=""> </a>
 
@@ -175,16 +177,16 @@ For **step 1**, you can select the monitor you wish to schedule the downtime for
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 
-  To being setting up an APM, you will need already have the latest [Datadog agent](https://app.datadoghq.com/account/settings#agent) installed. 
+  To being setting up an APM, you will need to have the latest [Datadog agent](https://app.datadoghq.com/account/settings#agent) installed. 
   
-  For Linux, the Trace Agent is pre-packaged with the standard Datadog Agent and no extra configuration is needed. To ensure the APM agent is enabled, you can access your `datadog.yaml` configuration file. You can update the `apm_config` key as see below:
+  For Linux, the Trace Agent is pre-packaged with the standard Datadog Agent and no extra configuration is needed. To ensure the APM agent is enabled, you can access your `datadog.yaml` configuration file. You can update the `apm_config` key as seen below:
 
 ```
 apm_config:
   enabled: true
 ```
 
-Lastly, you can instrument your application to begin tracing. To setup tracing for Python applications, you will need to Datadog Tracing library using pip:
+Lastly, you can instrument your application to begin tracing. To setup tracing for Python applications, you will need to install the Datadog Tracing library using pip:
 ```
 pip install ddtrace
 ```
