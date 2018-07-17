@@ -58,7 +58,7 @@ Utilize the Datadog API to create a Timeboard that contains:
  
  To create a Timeboard using the Datadog API you will first need to create a new Application Key. This will give you full access to Datadog's programmatic API. An Application Key can be created via the Integration > Agents menu, providing an app name and clicking **Create Application Key**
  
- Using the Timeboad endpoint, you can create a timeboard with graphs which the following arguemnts:
+ Using the Timeboad endpoint, you can create a timeboard with graphs using the following arguemnts:
  
  ```
 - title [required]:
