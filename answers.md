@@ -14,13 +14,13 @@ The setup is as follows:
 
 Once these have been installed it’s time to spin up a fresh instance of Ubuntu. The first step is to create a new folder for the exercises `mkdir dataDogExercises` and the jump into that newly created folder `cd dataDogExercise`.
 
-In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build. 
+In order to avoid dependency issues I searched the [vagrant cloud](https://app.vagrantup.com/boxes/search) for a Ubuntu 16.04 LTS build (ubuntu/xenial64) and initialized my vagrant with this build.
 
 `vagrant init ubuntu/xenial64`.
 
 ![Photo of command line prompts initializing Vagrant](images/Prereq/InitializeVagrant.png)
 
-Now that Vagrant has been initialized, running `vagrant up` will start the VM. 
+Now that Vagrant has been initialized, running `vagrant up` will start the VM.
 
 Once the VM is up and running typing`vagrant ssh` into the command prompt logs you into the to the new Virtual Machine.
 
@@ -189,7 +189,7 @@ Silences monitor from 7pm to 9am daily on M-F:
 ![WeekDay](images/Monitoring_Data/WeekDayDown.png)
 
 Email confirmation:
-![WeekDayConfirm](images/Monitoring_Data/ScheduledWeekDay.png)
+![WeekDayConfirm](images/Monitoring_Data/ScheduledWeekday.png)
 
 Silences monitor on Saturday and Sunday:
 ![WeekEnd](images/Monitoring_Data/WeekEndDown.png)
@@ -199,7 +199,7 @@ Email confirmation:
 
 ## Collecting APM Data:
 
-I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), and the [APM setup](https://docs.datadoghq.com/tracing/setup/), before diving into my APM setup. Collecting data seems like it was going to be a breeze, but I was unable to fully implement a solution.
+I read the [ddtrace client](http://pypi.datadoghq.com/trace/docs/#) documentation, the [tracing FAQ](https://docs.datadoghq.com/tracing/faq/), the the [APM setup](https://docs.datadoghq.com/tracing/setup/), and [monitoring flask apps with datadog]https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/ before diving into my APM setup. Collecting data seems like it was going to be a breeze, but required more steps then I was anticipating.
 
 My efforts are documented below.
 
@@ -256,7 +256,19 @@ It seems like the trace is reporting one service, but when I go to the APM UI, t
 
 ![APM install UI](images/APM/APM_install_screen.png)
 
-I searched high and low for a solution, erased all of my code, checked my config files, and still couldn't come up with a fix. I believe a simple line of code, or misplaced space in a .yaml is causing my issues. 
+I searched high and low for a solution, erased all of my code, checked my config files, before finally attempting to hit the provided endpoints using curl!
+
+I ran curl three times with the following endpoints:
+
+`curl http://127.0.0.1:5050/`
+![Entry Point Command](images/APM/EntryPoint.png)
+
+`curl http://127.0.0.1:5050/api/arm`
+![Getting Started Command](images/APM/GettingStarted.png)
+
+`curl http://127.0.0.1:5050/api/trace`
+![Entry Point Command](images/APM/PostingTraces.png)
+
 
 **Bonus Question**
 
