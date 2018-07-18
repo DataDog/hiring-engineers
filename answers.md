@@ -177,7 +177,7 @@ I set mine up to alert me with a warning if the threshold is greater or equal to
 
 ![picture](./img/8.png)
 
-Then I set up the alerts. Depending on which monitor is triggered the message needs to be catered to it. {{#is_alert}}{{/is_alert}} for example will let me know if the data output is over 800. I included all three alerts, the warning and the scenario in which there is no data.
+Then I set up the alerts. Depending on which monitor is triggered the message needs to be catered to the specific monitor. {{#is_alert}}{{/is_alert}} for example will let me know if the data output is over 800. I included all three alerts, the warning and the scenario in which there is no data.
 
 It looked like this:
 
@@ -189,7 +189,7 @@ This is what an over 500 email warning would look like.
 
 ### Setting Up DownTime ###
 
-To set up the I selected **Monitors** and then clicked **Manage Downtime** 
+To set up the DownTime I selected **Monitors** and then clicked **Manage Downtime** 
 
 The following images depict how I set up the downtime monitor for 7 pm to 9 am EST(11 pm to 1 pm UTC) as well as weekends.
 
@@ -197,7 +197,7 @@ The following images depict how I set up the downtime monitor for 7 pm to 9 am E
 
 ![picture](./img/12.png)
 
-The downtime email received I received looked:
+The downtime email I received:
 
 ![picture](./img/10.png)
 
@@ -207,7 +207,7 @@ First, I needed to install [flask](http://flask.pocoo.org/docs/0.12/installation
 
 Following Flask’s installation, I used the Flask app provided by the Datadog challenge. I created a python file and used ddtrace to start the python script and then hit the endpoints (ex. 0.0.0.0:5050/api/trace).
 
-Once its all set up I was able to view APM.
+Once it was all set up I was able to view the APM.
 
 Here is a [linkto my dashboard](https://app.datadoghq.com/dash/856222/training-timeboard-for-hiring-engineers-exercise?live=true&page=0&is_auto=false&from_ts=1531179455884&to_ts=1531265855884&tile_size=m) and a screenshot.
 
@@ -227,18 +227,8 @@ A resource is a specific behavior of a service.
 
 An interesting way that I would use datadog would be as a habit tracker. Many of us have goals and habits that we would like to incorporate into our lives. A a good way for a new habit to stick is to incorporate the habit as seamlessly as possible. 
 
-First thing I would track our circadian rhythms.
+First thing I would track is my circadian rhythms. Create a scope that tracks when I am most active, most focused, most tired, most hungry, most likely to need to use the bathroom etc. Then depending on my schedule I could incorporate the habit when it is most appropriate.
 
-Create a scope that tracks when we are most active, most focused, most tired, most hungry, most likely to need to need to use the bathroom etc.
+For example, if I want to exercise more I would schedule a work out routine when my energy levels are at their peak. If the I needs to learn new information I would schedule a study session when I'm the most focused.
 
-Then depending on the user’s schedule he/ she could incorporate his/ her habit when it is most appropriate.
-
-For example, if the user would like to exercise more he would schedule a work out routine when his energy levels are at their peak.
-
-If the user needs to learn new information he would schedule a study session when he is most focused.
-
-Over time the user would be able to track is the incorporations of the new behaviors were successfully maintained. If not, adaptations can be made.
-
-
-
-
+Over time the I would be able to track the incorporations of the new behaviors were successfully maintained. If not, adaptations can be made.
