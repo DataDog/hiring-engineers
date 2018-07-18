@@ -229,6 +229,6 @@ An interesting way that I would use datadog would be as a habit tracker. Many of
 
 First thing I would track is my circadian rhythms. Create a scope that tracks when I am most active, most focused, most tired, most hungry, most likely to need to use the bathroom etc. Then depending on my schedule I could incorporate the habit when it is most appropriate.
 
-For example, if I want to exercise more I would schedule a work out routine when my energy levels are at their peak. If the I needs to learn new information I would schedule a study session when I'm the most focused.
+For example, if I want to exercise more I would schedule a work out routine when my energy levels are at their peak. If I need to learn new information I would schedule a study session when I'm the most focused.
 
-Over time the I would be able to track the incorporations of the new behaviors were successfully maintained. If not, adaptations can be made.
+Over time I would be able to track the incorporations of the new behaviors. At that point I would be able to ascertain the behaviors that were successfully maintained.
