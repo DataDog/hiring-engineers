@@ -190,3 +190,41 @@ This notification/comment then showed up both in the event stream, and also in a
 #### Bonus Question: *What is the Anomaly graph displaying?* ####
 
 The anomaly graph displays the normal values metric of mysql.performance.cpu_time over time, but with a background band that predicts and shows the normal range of values/data based on past trends. Any discrepancies in data that occur are shown as points outside this band, and in a different color from the rest of the "normal flow" of the data in the graph.
+
+## MONITORING DATA
+
+### Creating a New Metric Monitor
+
+I utilized the UI in order to create a new metric monitor with the given requirements:
+
+- Warning threshold of 500 (over the past 5m)
+- Alerting threshold of 800 (over the past 5m)
+- Ensure that it will notify you if there is No Data for this query over the past 10m.
+
+The UI was straightforward to use for basic setup of sending notifications at these threshold points.
+
+In order to configure the monitor messages for each type of status, I consulted the docs regarding template variables and [conditional variables](https://docs.datadoghq.com/monitors/notifications/#conditional). After creation, I can see the properties I created it with under 'Manage Monitors' in the Datadog UI:
+
+![datadog monitor properties](./Monitoring-Data/datadog-monitor.png?raw=true "Datadog Monitor Properties")
+
+As the alert happens pretty often, I received several email notifications to this effect:
+
+![datadog monitor alert email](./Monitoring-Data/datadog-monitor-alert-email.png?raw=true "Datadog Monitor Alert Email")
+
+#### Bonus Question: *Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor.* ####
+
+The first requested downtime (to silence it from 7pm to 9am daily M-F) looks as follows:
+
+![datadog monitor weekday downtime](./Monitoring-Data/datadog-monitor-downtime-weekday.png?raw=true "Datadog Monitor Downtime - Weekday")
+
+And the second requested downtime (to silence it all day Sat-Sun) looks like this:
+
+![datadog monitor weekend downtime](./Monitoring-Data/datadog-monitor-downtime-weekend.png?raw=true "Datadog Monitor Downtime - Weekend")
+
+Whenever downtime is scheduled, I receive an email notification that looks like this:
+
+![datadog scheduled downtime notification](./Monitoring-Data/datadog-scheduled-downtime.png?raw=true "Datadog Scheduled Downtime Email Notif")
+
+*Note: The times were set up correctly as you can see from the Datadog UI screenshot, but the email seems to display PDT times instead of EDT (i.e. 11pm - 1pm instead of 7pm - 9am). However, the notification email is actually sent at the correct time as you can see here (at the top right):
+
+![datadog email timestamp](./Monitoring-Data/datadog-time-stamp.png?raw=true "Datadog Email Timestamp")
