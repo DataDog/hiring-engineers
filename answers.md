@@ -100,3 +100,93 @@ On Datadog, the timeseries now looked like this:
 #### Bonus Question: *Can you change the collection interval without modifying the Python check file you created?*
 
 Yes. Setting the collection interval in the first place did not require any changes to the Python check file; changing the interval would require updating the `min_collection_interval` value found in the related config file.
+
+## VISUALIZING DATA
+
+### Utilizing Datadog API:
+
+In order to create a Timeboard that contained the requested metrics, which were:
+
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+[*The other metric I chose besides the custom `my_metric` was `mysql.performance.cpu_time` since that would have data without my having to run queries.*]
+
+I consulted the [API documentation](https://docs.datadoghq.com/api/?lang=python#timeboards) for options and examples.
+
+For the use of special functions, I looked at the articles about available [functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup) and [anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/). I also used the Web UI graph creator within a Timeboard to make sure my request syntax was correct, by selecting metrics and functions and looking at their JSON representation:
+
+![datadog timeboard creator ui](./Visualizing-Data/datadog-timeboard-ui.png?raw=true "Datadog Timeboard Graph UI")
+
+After creating an app key and finding my api key from the integrations page, I wrote the final script, [create_timeboard.py](./scripts/create_timeboard.py) which was located at `/etc/datadog-agent/` and looked like this:
+
+    from datadog import initialize, api
+
+    options = {
+      'api_key': '********************************',
+      'app_key': '***************************************'
+    }
+
+    initialize(**options)
+
+    title = "Visualizing Data Timeboard"
+    description = "Timeboard containing three metrics for the Hiring Solutions Engineer Exercise"
+    graphs = [{
+       "definition": {
+           "events": [],
+           "requests": [{"q":"avg:my_metric{host:ubuntu-xenial}"}],
+           "viz": "timeseries"
+       },
+       "title": "my_metric vs time" },
+       {
+       "definition": {
+           "events": [],
+           "requests": [{"q":"anomalies(avg:mysql.performance.cpu_time{host:ubuntu-xenial},'basic', 3)"}],
+           "viz": "timeseries"
+       },
+       "title": "Anomaly function applied to mysql.performance.cpu_time vs time" },
+       {
+       "definition": {
+           "events": [],
+           "requests": [{"q":"avg:my_metric{host:ubuntu-xenial}.rollup(avg, 120)"}],
+           "viz": "timeseries"
+       },
+       "title": "Rollup function applied to my_metric vs time"
+    }]
+
+    template_variables = [{
+       "name":"ubuntu-xenial",
+       "prefix": "host",
+       "default": "host:ubuntu-xenial"
+    }]
+
+    read_only = True
+
+    api.Timeboard.create(title=title,
+                         description=description,
+                         graphs=graphs,
+                         template_variables=template_variables,
+                         read_only=read_only)
+
+On Datadog, the dashboard looked like this:
+
+![datadog timeboard from api](./Visualizing-Data/datadog-viz-timeboard.png?raw=true "Datadog Timeboard from API")
+
+### Utilizing Dashboard UI:
+
+To set the Timeboard's timeframe to the past five minutes, I clicked and dragged over a span of what represented five minutes across the x-axis on one of the graphs. All of the graphs in the Timeboard then updated to have the same timeframe.
+
+![datadog timeboard ui timeframe changed](./Visualizing-Data/datadog-viz-timeboard-5m.png?raw=true "Datadog Timeboard UI 5m Timeframe")
+
+In order to send a notification of a graph (since the instructions did not specify, I chose the `mysql.performance.cpu_time` metric graph), I hovered over it and a camera icon appeared in its header, which takes a snapshot. I could then comment on it and tag someone:
+
+![datadog graph snapshot](./Visualizing-Data/datadog-graph-snapshot.png?raw=true "Datadog Graph Snapshot")
+
+This notification/comment then showed up both in the event stream, and also in an email I received:
+
+![datadog graph email notif](./Visualizing-Data/datadog-graph-notif.png?raw=true "Datadog Graph Email Notification")
+
+#### Bonus Question: *What is the Anomaly graph displaying?* ####
+
+The anomaly graph displays the normal values metric of mysql.performance.cpu_time over time, but with a background band that predicts and shows the normal range of values/data based on past trends. Any discrepancies in data that occur are shown as points outside this band, and in a different color from the rest of the "normal flow" of the data in the graph.
