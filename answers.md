@@ -140,7 +140,7 @@ While I cannot magically fix the Internet and get rid of latency, I thought it w
 
 I ran into a couple snags while designing the a check. First, there is a predefined TCP ping check in the Datadog Agent conf.d folder, but that would not work to check the ping due to the architecture of the League of Legends game servers. I needed to use ICMP to check the ping properly. There are a few ICMP python libraries, but they require sudo privileges to work.
 
-To get around this, I wrote a python check that runs an OS ping command, and pipes the stdout as a string into a variable. It then uses RegEx to parse the string to find the latency in milliseconds. The check then submits a gauge to the Datadog service with the latency. If the server is unresponsive, it will submit an event with a timestamp and the server IP instead.  The associated .yaml file contains the IP addresses of the two League of Legends servers.
+To get around this, I wrote a [python check](code_snippets/ping.py) that runs an OS ping command, and pipes the stdout as a string into a variable. It then uses RegEx to parse the string to find the latency in milliseconds. The check then submits a gauge to the Datadog service with the latency. If the server is unresponsive, it will submit an event with a timestamp and the server IP instead.  The associated [.yaml file](code_snippets/ping.yaml) contains the IP addresses of the two League of Legends servers.
 
 
 ![awesome_metrics](screenshots/lolping.png)
