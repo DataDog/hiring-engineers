@@ -18,14 +18,14 @@ After restarting the Datadog service via `sudo service datadog-agent restart` an
 
 ![hostmap](screenshots/hostmap_with_tags.png)
 
-The next step was to install and PostGres and integrate it with DataDog. I followed [these instructions](http://www.alexandrawright.net/posts/your_first_heroku_deployment_with_rails) to install Postgres and do basic configuration.Following the   [the Datadog docs suggestions](https://docs.datadoghq.com/integrations/postgres/) I set up the `postgres.d/[conf.yaml](code_snippets/conf.yaml)` file, created the datadog user, and assigned it the appropriate permissions to access Postgres.
+The next step was to install and PostGres and integrate it with DataDog. I followed [these instructions](http://www.alexandrawright.net/posts/your_first_heroku_deployment_with_rails) to install Postgres and do basic configuration.Following the   [the Datadog docs suggestions](https://docs.datadoghq.com/integrations/postgres/) I set up the postgres.d/[conf.yaml](code_snippets/conf.yaml) file, created the datadog user, and assigned it the appropriate permissions to access Postgres.
 
 To define a custom metric, I ran the following command:
 
 ```bash
   touch  /etc/datadog-agent/checks.d/mycheck.py && touch /etc/datadog-agent/conf.d/mycheck.yaml
 ```
-This creates a python file, and a .yaml file. The python file contains a class that  submits metrics to Datadog, and the .yaml file contains settings that change how a check should be ran. I made mycheck submit a random number between 1 - 1000 to the Datadog service every 45 seconds. Check out the associated code snippets:
+This creates a python file, and a .yaml file. I added the following to the associated files: 
 
 ##### [mycheck.py](code_snippets/mycheck.py)
 ```python
@@ -49,6 +49,8 @@ instances:
   -   min_collection_interval: 45
 ```
 
+The python file contains a class that submits metrics to Datadog, and the .yaml file contains settings that change how a check should be ran. I made mycheck submit a random number between 1 - 1000 to the Datadog service every 45 seconds.
+
 #### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 This is sort of a trick question. I was able to change the collection interval using the `min_collection_interval` key in the mycheck.yaml file, which is not a python file!
@@ -62,9 +64,11 @@ The [create_timeboard](code_snippets/create_timeboard) app is located in this re
 
 ![awesome_metrics](screenshots/awesome_metrics.png)
 
-All data collected from the metrics is stored. I found the snapshot feature to be really cool – You can take a snapshot of a graph over a specific timeframe, annotate it, and send it to your team. 
+Starting from the left, the first graph is a timeseries that shows the average score of my_metric, the second is a query value that shows the sum of the score with the rollup function applied over the last hour, and the final is a timeseries graph that shows the average number of records inserted into the database.
 
-INSERT EMAIL PIC HERE
+All data collected from the metrics is stored, making it possible to take a "snapshot" of any moment in time since the metrics started being collected. I found the snapshot feature to be really cool – You can take a snapshot of a graph over a specific timeframe, annotate it, and send it to your team. 
+
+![snapshot](screenshots/email_snapshot.png)
 
 #### Bonus Question: What is the anomaly graph displaying?
 
@@ -76,7 +80,7 @@ Monitors are an incredibly useful service offered by Datadog. They offer users t
 
 I made a new Metric Monitor that uses the threshold alert setting. I set up a threshold monitor that will email me a warning if my_metric goes over 500,  an alert if my_metric goes over 800, an a message if there has been no data for the past 10 minutes. Here is an example warning email:
 
-INSERT WARNING EMAIL
+![notifications](screenshots/email_warning.png)
 
 When defining notifications, you can use message template variables which contain information about the notification. I used the template variables to display different messages depending on what sort of threshold triggered the alert 
 
@@ -86,7 +90,7 @@ When defining notifications, you can use message template variables which contai
 
 In order to not be bombarded with messages when I should be sleeping, I added two regularly scheduled downtimes. One of them occurs every weekday, from 7 pm to 9 am. The other commences on the weekend, stopping all notifications from 7pm Friday until 9 am the following Monday.
 
-INSERT SCHEDULED EMAILS HERE
+![notifications](screenshots/downtime.png)
 
 
 ### Collecting APM Data:
@@ -107,19 +111,22 @@ Datadog.configure do |c|
   c.use :rails, service_name: 'my-rails-app'
 end
 ```
-I made a branch with the instrumented version of the application, available [here](https://github.com/f3mshep/sugoi-sudoku/tree/data-dog).
+There is a branch with the instrumented version of the application, available [here](https://github.com/f3mshep/sugoi-sudoku/tree/data-dog).
 
 I restarted the Datadog service, and waited a few moments for the ddtrace agent to sync up with the Datadog Web app. I was pleasantly surprised by how insightful and useful the new metrics provided by the APM are!
 
 After creating a dash with each resource from my rails service I was able to pinpoint which actions in my controller were performing the worst. I also particularly liked being able to look at a resource that hits the database, and see how much of the time spent is from the HTTP request compared to accessing the database. 
 
-INSERT DASH SCREENSHOT
+![main_dash](screenshots/main_dash.png)
 
 A live version of this Timeboard is available [here!](https://app.datadoghq.com/dash/863639/main-dash)
 
 In this timeboard, I also included metrics from my infrastructure. This way, I was able to trace a request and follow along on a specific timeframe to watch how resource intensive a particular request could be.
 
 ![system_performance](screenshots/system_performance.png)
+
+I also absolutely adore the breakdown of the time spent on a resource handling a request - The light blue area represents the app handling the HTTP request, whereas the dark blue area represents time interacting with the database.
+
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
@@ -136,7 +143,7 @@ I ran into a couple snags while designing the a check. First, there is a predefi
 To get around this, I wrote a python check that runs an OS ping command, and pipes the stdout as a string into a variable. It then uses RegEx to parse the string to find the latency in milliseconds. The check then submits a gauge to the Datadog service with the latency. If the server is unresponsive, it will submit an event with a timestamp and the server IP instead.  The associated .yaml file contains the IP addresses of the two League of Legends servers.
 
 
-![awesome_metrics](screenshots/awesome_metrics.png)
+![awesome_metrics](screenshots/lolping.png)
 
 Check out the live version [here](https://app.datadoghq.com/dash/863948/lol-ping)
 
