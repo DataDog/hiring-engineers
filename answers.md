@@ -1,4 +1,6 @@
-I set up a fresh environment to do the Datadog technical challenge. After weighing the pros and cons of Docker vs. Vagrant, I ended up installing Vagrant and following along on the Vagrant tutorial to create my first vagrant box. I was impressed by how easy it was to create a fresh Ubuntu box – the process took under 5 minutes. If I created a new virtual machine with Virtual Box alone, the process would have taken closer to half an hour. I also took the liberty of installing rmate on my vagrant box and the Remote Code extension for VisualStudio Code on my host machine. In tandem, this allows VisualStudio code to edit remote files via SSH. This was a massive step up from editing configuration files with nano.
+## Solutions Engineer Technical Challenge
+
+To begin the technical challenge, I needed a fresh linux environment to avoid dependency issues. After weighing the pros and cons of Docker vs. Vagrant, I ended up installing Vagrant and following along on the Vagrant tutorial to create my first vagrant box. I was impressed by how easy it was to create a fresh Ubuntu box – the process took under 5 minutes. If I created a new virtual machine with Virtual Box alone, the process would have taken closer to half an hour. I also took the liberty of installing rmate on my vagrant box and the Remote Code extension for VisualStudio Code on my host machine. In tandem, this allows VisualStudio code to edit remote files via SSH. This was a massive step up from editing configuration files with nano.
 
 ### Collecting Metrics
 
@@ -7,29 +9,23 @@ The first portion of the project involves setting up the environment to collect 
 The first step of the project was to set up the Datadog Agent configuration file so the host map would display custom host tags. Since I am using version 6 of the agent, I ran the following command: `sudo rmate /etc/datadog-agent/datadog.yaml` to open the main configuration file. I changed the tags line to the following:
 
 ```yaml
-	tags: host_env:dev, host_testing:true, hello_world, goodbye
+
+  tags: host_env:dev, host_testing:true, hello_world, goodbye
+
 ```
 
 After restarting the Datadog service via `sudo service datadog-agent restart` and waiting a few moments for the metrics to be collected, I saw the new tags pop up in the host map:
 
-![hostmap](screenshots/)
+![hostmap](screenshots/hostmap_with_tags.png)
 
-The next step was to install and PostGres and integrate it with DataDog. I followed [these instructions](http://www.alexandrawright.net/posts/your_first_heroku_deployment_with_rails) to install Postgres and do basic configuration.Following the   [the Datadog docs suggestions](https://docs.datadoghq.com/integrations/postgres/) I set up the `postgres.d/[conf.yaml](code_snippets/conf.yaml)`  file, created the datadog user, and assigned it the appropriate permissions to access Postgres.
+The next step was to install and PostGres and integrate it with DataDog. I followed [these instructions](http://www.alexandrawright.net/posts/your_first_heroku_deployment_with_rails) to install Postgres and do basic configuration.Following the   [the Datadog docs suggestions](https://docs.datadoghq.com/integrations/postgres/) I set up the `postgres.d/[conf.yaml](code_snippets/conf.yaml)` file, created the datadog user, and assigned it the appropriate permissions to access Postgres.
 
 To define a custom metric, I ran the following command:
 
 ```bash
-touch  /etc/datadog-agent/checks.d/mycheck.py && touch /etc/datadog-agent/conf.d/mycheck.yaml
+  touch  /etc/datadog-agent/checks.d/mycheck.py && touch /etc/datadog-agent/conf.d/mycheck.yaml
 ```
 This creates a python file, and a .yaml file. The python file contains a class that  submits metrics to Datadog, and the .yaml file contains settings that change how a check should be ran. I made mycheck submit a random number between 1 - 1000 to the Datadog service every 45 seconds. Check out the associated code snippets:
-
-
-
-
-
-
-
-
 
 ##### [mycheck.py](code_snippets/mycheck.py)
 ```python
@@ -43,7 +39,7 @@ class MyCheck(AgentCheck):
       print(rand)
       self.gauge('my_metric', rand)
 ```
-##### [datadog.yaml](code_snippets/datadog.yaml)
+##### [datadog.yaml](code_snippets/mycheck.yaml)
 
 ```yaml
 #mycheck.yaml
@@ -61,10 +57,10 @@ This is sort of a trick question. I was able to change the collection interval u
 
 To visualize incoming metrics from the Postgres database and my custom metric, I created a timeboard using the Timeboard API. The API works by constructing graphs from JSON. The JSON contains the desired metrics to be used and how to format the graphs. This collection of graphs that start at the same time is a Timeboard! In the name of modularity, I wrote a Ruby CLI app that submits .json files to the Timeboard API endpoint. 
 
-The [create_timeboard](code_snippets/create_timeboard/create_timeboard) app is located in this repo. To use it, make the file executable, run using `./create_timeboard`, and then follow the prompts. The .json file I used to create the graphs is included as well. For more instructions on usage, check out the included readme in the create_timeboard folder.
+The [create_timeboard](code_snippets/create_timeboard) app is located in this repo. To use it, make the file executable, run using `./create_timeboard`, and then follow the prompts. The .json file I used to create the graphs is included as well. For more instructions on usage, take a look at the readme in the create_timeboard folder.
 
 
-INSERT AWESOME METRICS SCREENSHOT HERE
+![awesome_metrics](screenshots/awesome_metrics.png)
 
 All data collected from the metrics is stored. I found the snapshot feature to be really cool – You can take a snapshot of a graph over a specific timeframe, annotate it, and send it to your team. 
 
@@ -84,7 +80,7 @@ INSERT WARNING EMAIL
 
 When defining notifications, you can use message template variables which contain information about the notification. I used the template variables to display different messages depending on what sort of threshold triggered the alert 
 
-INSERT NOTIFICATION SHOT
+![notifications](screenshots/notifications.png)
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -111,7 +107,7 @@ Datadog.configure do |c|
   c.use :rails, service_name: 'my-rails-app'
 end
 ```
-I made a branch with the instrumented version of the application, available (here)[https://github.com/f3mshep/sugoi-sudoku/tree/data-dog].
+I made a branch with the instrumented version of the application, available [here](https://github.com/f3mshep/sugoi-sudoku/tree/data-dog).
 
 I restarted the Datadog service, and waited a few moments for the ddtrace agent to sync up with the Datadog Web app. I was pleasantly surprised by how insightful and useful the new metrics provided by the APM are!
 
@@ -123,7 +119,7 @@ A live version of this Timeboard is available [here!](https://app.datadoghq.com/
 
 In this timeboard, I also included metrics from my infrastructure. This way, I was able to trace a request and follow along on a specific timeframe to watch how resource intensive a particular request could be.
 
-INSERT SYSTEM PERFORMANCE TIME SERIES
+![system_performance](screenshots/system_performance.png)
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
@@ -140,9 +136,9 @@ I ran into a couple snags while designing the a check. First, there is a predefi
 To get around this, I wrote a python check that runs an OS ping command, and pipes the stdout as a string into a variable. It then uses RegEx to parse the string to find the latency in milliseconds. The check then submits a gauge to the Datadog service with the latency. If the server is unresponsive, it will submit an event with a timestamp and the server IP instead.  The associated .yaml file contains the IP addresses of the two League of Legends servers.
 
 
-INSERT SHOT OF LOLPING DASH
+![awesome_metrics](screenshots/awesome_metrics.png)
 
-Check out the live version [here!](https://app.datadoghq.com/dash/863948/lol-ping)
+Check out the live version [here](https://app.datadoghq.com/dash/863948/lol-ping)
 
 The timeseries graph uses anomaly detection. If the ping is outside the normal range, it is highlighted in red!
 
