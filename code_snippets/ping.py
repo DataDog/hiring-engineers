@@ -50,3 +50,4 @@ class PingCheck(AgentCheck):
         'msg_text': 'Server %s timed out.' % (server_num),
         'aggregation_key': aggregation_key
       })
+

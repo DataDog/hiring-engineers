@@ -9,3 +9,4 @@ instances:
     -   host: 104.160.131.1
         min_collection_interval: 30
         server_num: 1
+        
