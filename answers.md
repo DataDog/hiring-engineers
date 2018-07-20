@@ -1,3 +1,14 @@
+# Datadog Solutions Engineer Technical Exercise: Answers
+
+###### Name: Sondhayni Murmu
+###### Username: [smurmus](https://github.com/smurmus)
+
+###### *Notes:*
+- Each section of the hiring exercise has been listed below in order with their respective headers.
+- All scripts and external articles/documentation are hyperlinked
+- Some scripts have been embedded, but they can all be found in full in the `/scripts` folder
+- Screenshots are shown in sequence below, but can also be found at `<hiring_exercise_section>/<img_name>.png` (e.g. `Collecting-Metrics/datadog-my-metric.png`)
+
 ## PREREQUISITES/SETUP:
 
 I spun a fresh linux VM via vagrant (so I would be using Ubuntu 16.04) using its set up [documentation](https://www.vagrantup.com/intro/getting-started/index.html):
