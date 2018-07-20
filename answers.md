@@ -267,7 +267,7 @@ Then, I went back to Datadog and saw my traces now being collected from this fla
 
 ![datadog flask app](./Collecting-APM/datadog-apm-trace-graphs.png?raw=true "Datadog APM Trace Metrics")
 
-### Creating a Dashboard with APM + Infrastructure METRICS
+### Creating a Dashboard with APM + Infrastructure Metrics
 
 In order to make the final Dashboard, I went to create a Screenboard (so that it could be publicly shared). The infrastructure metrics were straightforward to add, since those were the same as the timeseries graphs I had created earlier.
 
@@ -275,9 +275,9 @@ To ensure I was correctly querying APM Metrics, I went to "edit" the *Total Requ
 
 ![datadog flask app graph metrics](./Collecting-APM/datadog-apm-metrics-edit.png?raw=true "Datadog APM Trace Metrics")
 
-Using that information, I proceeded to create the [final dashboard](https://p.datadoghq.com/sb/28675d3e2-7a35ae1480cfa921d37dda515c8c821c) with both APM and Infrastructure Metrics:
+Using that information, I proceeded to create a [ dashboard](https://p.datadoghq.com/sb/28675d3e2-7a35ae1480cfa921d37dda515c8c821c) with both APM and Infrastructure Metrics:
 
-![datadog apm and infra metrics](./Collecting-APM/datadog-apm-infra-metrics-board.png?raw=true "Datadog APM and Infra Metrics Dash")
+![datadog apm and infra metrics](./Collecting-APM/datadog-APM-infra-metrics-board.png?raw=true "Datadog APM and Infra Metrics Dash")
 
 #### Bonus Question: *What is the difference between a Service and a Resource?* ####
 
@@ -285,4 +285,11 @@ A service is a set of processes that contribute to a feature set (for example: i
 
 <sup>1</sup> Reference: [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
-## 
+## FINAL QUESTION:
+### *Is there anything creative you would use Datadog for?* ####
+
+After reading through some of the blog posts I found online (the *Pokemon Go* article was fun in particular), I think I'd use it for something in the same vein. I'm not personally a streamer, but I follow a handful of them on Twitch.
+
+I think it'd be interesting to use data created in some kind of app via the Twitch API to monitor certain metrics that are maybe specific to certain games/streaming regions/etc. These metrics could include the load/frequency of chatbot use, current user load/counts, and how users/the network reacts to actions that are available within the Twitch API.
+
+I haven't personally used it (only skimmed the [documentation](https://dev.twitch.tv/docs/)), but it's possible to create all sorts of apps from it that could let streamers or gamers (who do the dev work) to better gauge something like their engagement.  
