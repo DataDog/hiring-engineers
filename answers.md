@@ -119,7 +119,9 @@ For the use of special functions, I looked at the articles about available [func
 
 ![datadog timeboard creator ui](./Visualizing-Data/datadog-timeboard-ui.png?raw=true "Datadog Timeboard Graph UI")
 
-After creating an app key and finding my api key from the integrations page, I wrote the final script, [create_timeboard.py](./scripts/create_timeboard.py) which was located at `/etc/datadog-agent/` and looked like this:
+After creating an app key and finding my api key from the integrations page, I had to make sure to install the dependencies with `sudo apt-get install datadog`.
+
+The final script, [create_timeboard.py](./scripts/create_timeboard.py) which was located at `/etc/datadog-agent/`, looked like this:
 
     from datadog import initialize, api
 
@@ -225,6 +227,62 @@ Whenever downtime is scheduled, I receive an email notification that looks like 
 
 ![datadog scheduled downtime notification](./Monitoring-Data/datadog-scheduled-downtime.png?raw=true "Datadog Scheduled Downtime Email Notif")
 
-*Note: The times were set up correctly as you can see from the Datadog UI screenshot, but the email seems to display PDT times instead of EDT (i.e. 11pm - 1pm instead of 7pm - 9am). However, the notification email is actually sent at the correct time as you can see here (at the top right):
+>*Note: The times were set up correctly as you can see from the Datadog UI screenshot, but the email seems to display PDT times instead of EDT (i.e. 11pm - 1pm instead of 7pm - 9am). However, the notification email is actually sent at the correct time as you can see here (at the top right):*
 
-![datadog email timestamp](./Monitoring-Data/datadog-time-stamp.png?raw=true "Datadog Email Timestamp")
+>![datadog email timestamp](./Monitoring-Data/datadog-time-stamp.png?raw=true "Datadog Email Timestamp")
+
+## COLLECTING APM Data
+
+In order to instrument the provided Flask app, I chose Python.
+
+### Setting up Python
+
+To set it up, I first had to run `sudo apt-get install python-pip` so I would have access to other relevant downloads. Then, I followed along with the datadog docs about [tracing python](https://docs.datadoghq.com/tracing/setup/python/).
+
+This required a few simple pip installs:
+
+- `sudo pip install ddtrace`
+- `sudo pip install blinker`
+
+### Instrumenting Flask App in Python
+
+Afterwards, I turned the provided app into [apm_flaskapp.py](./scripts/apm_flaskapp.py) which was located in `/etc/datadog-agent`. At first, I tried to run the app and it didn't work, until I realized I had to make sure I was using the right host/port, so I changed the values in one line towards the end. I modified the host and port from `0.0.0.0:5050` to `127.0.0.1:8080` respectively:
+
+      if __name__ == '__main__':
+          app.run(host='127.0.0.1', port='8080')
+
+I chose to run ddtrace rather than inserting Middleware, based on the [Python Datadog Trace documentation](http://pypi.datadoghq.com/trace/docs/#):
+
+![ubuntu flask app running](./Collecting-APM/ubuntu-flask-app-run.png?raw=true "Ubuntu run ddtrace")
+
+To check whether the endpoints were being hit, I ran some queries with `curl` which gave the expected output:
+
+![ubuntu flask app curl](./Collecting-APM/ubuntu-flask-app-curl.png?raw=true "Ubuntu run ddtrace curl")
+
+### Viewing APM Metrics on Datadog UI
+
+Then, I went back to Datadog and saw my traces now being collected from this flask app:
+
+![datadog flask app service](./Collecting-APM/datadog-flask-service.png?raw=true "Datadog APM Flask Service")
+
+![datadog flask app](./Collecting-APM/datadog-apm-trace-graphs.png?raw=true "Datadog APM Trace Metrics")
+
+### Creating a Dashboard with APM + Infrastructure METRICS
+
+In order to make the final Dashboard, I went to create a Screenboard (so that it could be publicly shared). The infrastructure metrics were straightforward to add, since those were the same as the timeseries graphs I had created earlier.
+
+To ensure I was correctly querying APM Metrics, I went to "edit" the *Total Requests* graph from the Flask app in the APM tab. This showed me the right options for the metrics I needed to add:
+
+![datadog flask app graph metrics](./Collecting-APM/datadog-apm-metrics-edit.png?raw=true "Datadog APM Trace Metrics")
+
+Using that information, I proceeded to create the [final dashboard](https://p.datadoghq.com/sb/28675d3e2-7a35ae1480cfa921d37dda515c8c821c) with both APM and Infrastructure Metrics:
+
+![datadog apm and infra metrics](./Collecting-APM/datadog-apm-infra-metrics-board.png?raw=true "Datadog APM and Infra Metrics Dash")
+
+#### Bonus Question: *What is the difference between a Service and a Resource?* ####
+
+A service is a set of processes that contribute to a feature set (for example: in a web app, services include a `webapp` and `database` service), while a resource is a specific query *related to* a service.<sup>1</sup>
+
+<sup>1</sup> Reference: [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
+## 
