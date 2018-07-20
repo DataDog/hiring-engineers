@@ -39,7 +39,7 @@ class MyCheck(AgentCheck):
       print(rand)
       self.gauge('my_metric', rand)
 ```
-##### [datadog.yaml](code_snippets/mycheck.yaml)
+##### [mycheck.yaml](code_snippets/mycheck.yaml)
 
 ```yaml
 #mycheck.yaml
