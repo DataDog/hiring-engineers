@@ -36,7 +36,7 @@ It took a couple of restarts, but eventually the tags appeared on the Host Map p
 
 I chose to use MySQL. I installed it on to my VM following [these instructions](https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/).
 
-Following the [datadog docs](https://docs.datadoghq.com/integrations/mysql/#prepare-mysql), upon installing MySQL, I created a `datadog@localhost` user and granted it the appropriate permissions:
+Following the [Datadog docs](https://docs.datadoghq.com/integrations/mysql/#prepare-mysql), upon installing MySQL, I created a `datadog@localhost` user and granted it the appropriate permissions:
 
 ![create datadog user](./Collecting-Metrics/ubuntu-create-datadog-user.png?raw=true "Create Datadog User")
 
@@ -65,7 +65,7 @@ I ensured that MySQL was integrated/installed correctly by running a `sudo datad
 
 ### Custom Metric/Agent Check:
 
-I consulted the datadog docs about the options for [custom metrics](https://docs.datadoghq.com/developers/metrics/) as well as the example provided in the docs for [custom agent checks](https://docs.datadoghq.com/developers/agent_checks/). Following the example, I created two files for `my_metric`.
+I consulted the Datadog docs about the options for [custom metrics](https://docs.datadoghq.com/developers/metrics/) as well as the example provided in the docs for [custom agent checks](https://docs.datadoghq.com/developers/agent_checks/). Following the example, I created two files for `my_metric`.
 
 [my_metric_check.py](./scripts/my_metric_check.py) (in  `/etc/datadog-agent/checks.d/`):
 
@@ -242,13 +242,13 @@ Whenever downtime is scheduled, I receive an email notification that looks like 
 
 >![datadog email timestamp](./Monitoring-Data/datadog-time-stamp.png?raw=true "Datadog Email Timestamp")
 
-## COLLECTING APM Data
+## COLLECTING APM DATA
 
 In order to instrument the provided Flask app, I chose Python.
 
 ### Setting up Python
 
-To set it up, I first had to run `sudo apt-get install python-pip` so I would have access to other relevant downloads. Then, I followed along with the datadog docs about [tracing python](https://docs.datadoghq.com/tracing/setup/python/).
+To set it up, I first had to run `sudo apt-get install python-pip` so I would have access to other relevant downloads. Then, I followed along with the Datadog docs about [tracing Python](https://docs.datadoghq.com/tracing/setup/python/).
 
 This required a few simple pip installs:
 
