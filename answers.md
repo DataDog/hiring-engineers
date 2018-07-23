@@ -78,9 +78,9 @@ My anomaly graph is displaying the amount of records inserted into the database 
 
 Monitors are an incredibly useful service offered by Datadog. They offer users the ability to define triggers that will alert them via email if the proper conditions are met. 
 
-I made a new Metric Monitor that uses the threshold alert setting. I set up a threshold monitor that will email me a warning if my_metric goes over 500,  an alert if my_metric goes over 800, an a message if there has been no data for the past 10 minutes. Here is an example warning email:
+I made a new Metric Monitor that uses the threshold alert setting. I set up a threshold monitor that will email me a warning if my_metric goes over 500,  an alert if my_metric goes over 800, an a message if there has been no data for the past 10 minutes. Here is an example triggered email:
 
-![notifications](screenshots/email_warning.png)
+![notifications](screenshots/triggered.png)
 
 When defining notifications, you can use message template variables which contain information about the notification. I used the template variables to display different messages depending on what sort of threshold triggered the alert 
 
