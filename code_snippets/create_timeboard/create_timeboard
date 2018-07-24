@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'dogapi'
+require 'dotenv/load'
+require 'colorize'
+require 'pry'
+require 'json'
+
+API_KEY = ENV["API_KEY"]
+APP_KEY = ENV["APP_KEY"]
+
+
+def run_app
+
+  dog = Dogapi::Client.new(API_KEY, APP_KEY)
+  title = get_title
+  description = get_desc
+  path = get_path
+  graph = json_file_to_hash(path)
+
+  response = dog.create_dashboard(title, description, graph)
+
+  if response.include?("400")
+    puts "Something went wrong:".colorize(:red)
+    puts response.last["errors"]
+  elsif response.include?("200")
+    puts "You can visit your new timeboard at " + "https://app.datadoghq.com#{response.last["url"]}".colorize(:light_blue)
+  else
+    puts "Application Error"
+  end
+  
+end
+
+def json_file_to_hash(path)
+  json = (File.read(path))
+  JSON.parse(json)
+end
+
+def get_title
+  puts "Enter Timeboard name".colorize(:cyan)
+  input = gets.strip
+  return get_title if !input
+  input
+end
+
+def get_desc
+  puts "Enter Timeboard description".colorize(:cyan)
+  input = gets.strip
+  return get_desc if !input
+  input
+end
+
+def get_path
+  puts "Enter path to graphs in .json format".colorize(:cyan)
+  input = gets.strip
+  return get_path if !input || input.split(".").last == ".json"
+  input
+end
+
+run_app
+

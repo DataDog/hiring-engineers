@@ -1,0 +1,12 @@
+init_config:
+    default_timeout: 5
+
+instances:
+    -   host: 104.160.131.3
+        min_collection_interval: 30
+        server_num: 3
+
+    -   host: 104.160.131.1
+        min_collection_interval: 30
+        server_num: 1
+        

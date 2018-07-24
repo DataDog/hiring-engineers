@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.2)
+    colorize (0.8.1)
+    dogapi (1.30)
+      multi_json
+    dotenv (2.5.0)
+    json (2.1.0)
+    method_source (0.9.0)
+    multi_json (1.13.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  dogapi
+  dotenv
+  json
+  pry
+
+BUNDLED WITH
+   1.16.1
