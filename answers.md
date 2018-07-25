@@ -44,6 +44,41 @@ Agent is running and functioning properly.  Your first Datadog Agent is reportin
 
 <hr>
 
+### Collecting Metrics
+
+> Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+Research [how to assign tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) in the documentation, specifically [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), information about the [configuration files and folders for the Agent locations](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) and [troubleshooting forums](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) for specific file locations.  I referred to [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) when creating my tags.  
+
+As a backup, created a temporary copy of the original .yaml file.  
+
+```shell
+  $ sudo cp /etc/datadog-agent/datadog.yaml /tmp
+```
+
+Modify `/etc/datadog-agent/datadog.yaml` in vi, restarting service to force change.
+
+```shell
+  $ sudo vi /etc/datadog-agent/datadog.yaml
+  $ sudo service datadog-agent restart
+```
+
+![datadog.yaml before change](https://i.imgur.com/wPXbUf9.png)
+
+![datadog.yaml after change](https://i.imgur.com/Qjp3Y10.png)
+
+![host map tags](https://i.imgur.com/d8lls61.png)
+
+> Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+> Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+> Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+> Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+<hr>
+
 ### Candidate Information
 
 Solutions Engineer Hiring Challenge - Cathleen Wright
