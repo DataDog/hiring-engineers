@@ -73,6 +73,34 @@ Modify `/etc/datadog-agent/datadog.yaml` in vi, restarting service to force chan
 
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+Install MongoDB 2.0.4 on virtual machine.  [Follow configuration instructions](https://app.datadoghq.com/account/settings#integrations/mongodb), including insertion of datadog user.
+
+[Configuration](https://app.datadoghq.com/account/settings#integrations/mongodb) **Step 1**:
+
+![mongodb install](https://i.imgur.com/vpuRyud.png)
+
+![mongodb ok](https://i.imgur.com/OFDWUO3.png)
+
+**Step 2**: Edit `/etc/datadog-agent/conf.d/mongo.d/conf.yaml` and add the MongoDB instances to instances:
+
+![edited yaml](https://i.imgur.com/t8migsU.png)
+
+*Note: File name varies between configuration instructions,  [mongo.d/conf.yaml](https://docs.datadoghq.com/integrations/mongo/#configuration) & [conf.d/mongo.yaml](https://app.datadoghq.com/account/settings#integrations/mongodb).  Used `mongo.d/conf.yaml`.*
+
+**Step 3**: Restart the agent.
+
+```shell
+  $ sudo service datadog-agent restart
+```
+**Step 4**: Execute the info command and verify that the integration check has passed.
+
+```shell
+  $ sudo datadog-agent status
+```
+![step 4 infocheck](https://i.imgur.com/es3dwJE.png)
+
+![mongodb dashboard](https://i.imgur.com/4AFbmsg.png)
+
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
