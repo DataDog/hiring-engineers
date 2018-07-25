@@ -25,7 +25,9 @@ _Welcome to your Vagrant-built virtual machine._
 
 ###### Datadog and Agent Reporting Metrics
 
-Get Started with Datadog using Datadog Recruiting Candidate as the Company.  [Follow the instructions to install your first Datadog Agent for Ubuntu](https://i.imgur.com/nG4CXDv.png).  
+Get Started with Datadog using Datadog Recruiting Candidate as the Company. Follow the instructions to install your first Datadog Agent for Ubuntu.
+
+![Instructions to install your first Datadog Agent for Ubuntu](https://i.imgur.com/nG4CXDv.png)
 
 ```shell
 The program 'curl' is currently not installed.  You can install it by typing:
@@ -34,12 +36,17 @@ $ sudo apt-get install curl
 $ DD_API_KEY=c802ac74556f263f47de0d8cddd8131a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-[Agent is running and functioning properly](https://i.imgur.com/9cU6eQg.png).  Your first Datadog Agent is reporting.
+Agent is running and functioning properly.  Your first Datadog Agent is reporting.
 
-[Initial Dashboard](https://i.imgur.com/YVjtSIO.png)
+![Agent is running and functioning properly](https://i.imgur.com/9cU6eQg.png)
+
+![Initial Dashboard](https://i.imgur.com/YVjtSIO.png)
 
 <hr>
+
 ### Candidate Information
+
 Solutions Engineer Hiring Challenge - Cathleen Wright
+
 - [LinkedIn](https://www.linkedin.com/in/cathleenmwright/)
 - [GitHub](https://github.com/cwithac)
