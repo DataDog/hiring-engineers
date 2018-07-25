@@ -73,7 +73,9 @@ Modify `/etc/datadog-agent/datadog.yaml` in vi, restarting service to force chan
 
 Install MongoDB 2.0.4 on virtual machine.  [Follow configuration instructions](https://app.datadoghq.com/account/settings#integrations/mongodb), including insertion of datadog user.
 
-[Configuration](https://app.datadoghq.com/account/settings#integrations/mongodb) **Step 1**:
+*Note: File name varies between configuration instructions,  [mongo.d/conf.yaml](https://docs.datadoghq.com/integrations/mongo/#configuration) & [conf.d/mongo.yaml](https://app.datadoghq.com/account/settings#integrations/mongodb).  Used `mongo.d/conf.yaml`.*
+
+**Step 1**:
 
 ![mongodb install](https://i.imgur.com/vpuRyud.png)
 
@@ -82,8 +84,6 @@ Install MongoDB 2.0.4 on virtual machine.  [Follow configuration instructions](h
 **Step 2**: Edit `/etc/datadog-agent/conf.d/mongo.d/conf.yaml` and add the MongoDB instances to instances:
 
 ![edited yaml](https://i.imgur.com/t8migsU.png)
-
-*Note: File name varies between configuration instructions,  [mongo.d/conf.yaml](https://docs.datadoghq.com/integrations/mongo/#configuration) & [conf.d/mongo.yaml](https://app.datadoghq.com/account/settings#integrations/mongodb).  Used `mongo.d/conf.yaml`.*
 
 **Step 3**: Restart the agent.
 
