@@ -42,6 +42,8 @@ Agent is running and functioning properly.  Your first Datadog Agent is reportin
 
 ![Initial Dashboard](https://i.imgur.com/YVjtSIO.png)
 
+_Please note, a test installation to MacOS was set up but not used and may appear in images below.  Additional setup required basic syntax of vi text editor in virtual environment._
+
 <hr>
 
 ### Collecting Metrics
