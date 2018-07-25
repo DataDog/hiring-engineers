@@ -1,7 +1,7 @@
 ### Prerequisites - Setup The Environment
 
-###### GitHub
-Fork the [repository](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) and clone [the fork](https://github.com/cwithac/hiring-engineers/tree/solutions-engineer) into my local environment, checking out _solutions-engineers_ and building branch "Cathleen_Wright_Solutions_Engineer" for unique access to the directory and _answers.md_ in the text editor [Atom](https://atom.io/).  
+##### GitHub
+Forked the [repository](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) and cloned [the fork](https://github.com/cwithac/hiring-engineers/tree/solutions-engineer) into my local environment, checking out _solutions-engineers_ and building branch "Cathleen_Wright_Solutions_Engineer" for unique access to the directory and _answers.md_ in the text editor [Atom](https://atom.io/).  
 
 ```shell
   $ git clone git@github.com:cwithac/hiring-engineers.git
@@ -11,9 +11,11 @@ Fork the [repository](https://github.com/DataDog/hiring-engineers/tree/solutions
   $ atom .
 ```
 
-###### Vagrant
+##### Vagrant
 
-Download and install [VirtualBox 5.2](https://www.virtualbox.org/), 5.2.16 platform packages for OS X hosts.  Download and install the [latest version of Vagrant](https://www.vagrantup.com/downloads.html) for macOS, 64-bit.  Initialize, activate and SSH into the virtual machine.  
+Downloaded and installed [VirtualBox 5.2](https://www.virtualbox.org/), 5.2.16 platform packages for OS X hosts.  Downloaded and installed the [latest version of Vagrant](https://www.vagrantup.com/downloads.html) for macOS, 64-bit.  
+
+Initialize, activate and SSH into the virtual machine:  
 
 ```shell
   $ vagrant init hashicorp/precise64
@@ -23,9 +25,9 @@ Download and install [VirtualBox 5.2](https://www.virtualbox.org/), 5.2.16 platf
 
 _Welcome to your Vagrant-built virtual machine._
 
-###### Datadog and Agent Reporting Metrics
+##### Datadog and Agent Reporting Metrics
 
-Get Started with Datadog using Datadog Recruiting Candidate as the Company. Follow the instructions to install your first Datadog Agent for Ubuntu.
+Signed up using `Datadog Recruiting Candidate` as Company, following the instructions to `install your first Datadog Agent for Ubuntu`.
 
 ![Instructions to install your first Datadog Agent for Ubuntu](https://i.imgur.com/nG4CXDv.png)
 
@@ -36,7 +38,7 @@ $ sudo apt-get install curl
 $ DD_API_KEY=c802ac74556f263f47de0d8cddd8131a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-Agent is running and functioning properly.  Your first Datadog Agent is reporting.
+_Your first Datadog Agent is reporting._
 
 ![Agent is running and functioning properly](https://i.imgur.com/9cU6eQg.png)
 
@@ -48,15 +50,9 @@ Agent is running and functioning properly.  Your first Datadog Agent is reportin
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Research [how to assign tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) in the documentation, specifically [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), information about the [configuration files and folders for the Agent locations](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) and [troubleshooting forums](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) for specific file locations.  I referred to [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) when creating my tags.  
+Researched [how to assign tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) in the documentation, specifically [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), information about the [configuration files and folders for the Agent locations](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) and [troubleshooting forums](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) for specific file locations.  I referred to [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) when creating my tags.  
 
-As a backup, created a temporary copy of the original .yaml file.  
-
-```shell
-  $ sudo cp /etc/datadog-agent/datadog.yaml /tmp
-```
-
-Modify `/etc/datadog-agent/datadog.yaml` in vi, restarting service to force change.
+Modified `/etc/datadog-agent/datadog.yaml` in vi, restarting the service to force/expedite change.
 
 ```shell
   $ sudo vi /etc/datadog-agent/datadog.yaml
@@ -71,9 +67,9 @@ Modify `/etc/datadog-agent/datadog.yaml` in vi, restarting service to force chan
 
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Install MongoDB 2.0.4 on virtual machine.  [Follow configuration instructions](https://app.datadoghq.com/account/settings#integrations/mongodb), including insertion of datadog user.
+Installed MongoDB 2.0.4 on virtual machine.  [Followed configuration instructions](https://app.datadoghq.com/account/settings#integrations/mongodb), including insertion of Datadog user.
 
-*Note: File name varies between configuration instructions,  [mongo.d/conf.yaml](https://docs.datadoghq.com/integrations/mongo/#configuration) & [conf.d/mongo.yaml](https://app.datadoghq.com/account/settings#integrations/mongodb).  Used `mongo.d/conf.yaml`.*
+*Note: File names vary between configuration instructions,  [mongo.d/conf.yaml](https://docs.datadoghq.com/integrations/mongo/#configuration) & [conf.d/mongo.yaml](https://app.datadoghq.com/account/settings#integrations/mongodb).  Used `mongo.d/conf.yaml`.*
 
 **Step 1**:
 
@@ -81,7 +77,7 @@ Install MongoDB 2.0.4 on virtual machine.  [Follow configuration instructions](h
 
 ![mongodb ok](https://i.imgur.com/OFDWUO3.png)
 
-**Step 2**: Edit `/etc/datadog-agent/conf.d/mongo.d/conf.yaml` and add the MongoDB instances to instances:
+**Step 2**: Edit `/etc/datadog-agent/conf.d/mongo.d/conf.yaml` and added the MongoDB instances:
 
 ![edited yaml](https://i.imgur.com/t8migsU.png)
 
