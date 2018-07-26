@@ -1,5 +1,3 @@
-
-a
 # Environment
 
 ![Docker Logo](https://www.vectorlogo.zone/logos/docker/docker-card.png)
@@ -23,16 +21,16 @@ I developed methods to post comments and events.
 
 I installed the datadog agent using the preferred Ubuntu install script. I noticed that the provided script is prepopulated with necessary keys and that made installation a breeze.
 
-![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/agent_exit.PNG)
+![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/agent_exit.png)
 Something needs fixing, the agent won't stay running. Looks like I need to enable  the agent.
 
 I adjusted the datadog.yaml file to enable the agent and APM and added tags while I was there.
-![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/epa.PNG)
+![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/epa.png)
 
-![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/tic.PNG)
+![agent exiting](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/tic.png)
 
 Then I verified that the agent was listening on the expected port:
-![verified port](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/confirm_8126.PNG)
+![verified port](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/confirm_8126.png)
 
 *note: 404 is the expected response.*
 
@@ -71,22 +69,22 @@ instances:
 
 Checking the config **sudo service datadog-agent status**
 
-![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/checks.PNG)
+![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/checks.png)
 
 *pleased to find my_check listed at the top*
 
 Timing confirmed in agent logs:
-![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/45.PNG)
+![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/45.png)
 
 And then, as configured, the check ran:
-![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/check_ran.PNG)
+![agent config](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/check_ran.png)
 
 # Tags on infrastructure
 
 As show earlier, configured tags:
-![tags shown in config file](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/tic.PNG)
+![tags shown in config file](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/tic.png)
 
-![host tags in UI](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/host_tags.PNG)
+![host tags in UI](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/host_tags.png)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created? **see config & logs above**
 
@@ -116,7 +114,7 @@ instances:
     username: datadog
 ```
 
-![Database Dashboard](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/db_dashboard.PNG)
+![Database Dashboard](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/db_dashboard.png)
 
 [Link to board](https://app.datadoghq.com/screen/integration/235/postgres---overview?page=0&is_auto=false&from_ts=1532551260000&to_ts=1532554860000&live=true)
 
@@ -196,7 +194,7 @@ https://app.datadoghq.com/dash/871420
     
 Included in this dashboard are process metrics, my_metric chaos, NTP offset, and average Apdex by resource.
 
-![App & Host metrics](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/hostandapp.PNG)
+![App & Host metrics](https://raw.githubusercontent.com/tmayse/hiring-engineers/master/images/hostandapp.png)
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
