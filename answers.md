@@ -59,9 +59,11 @@ Modified `/etc/datadog-agent/datadog.yaml` in vi, restarting the service to forc
   $ sudo service datadog-agent restart
 ```
 
-![datadog.yaml before change](https://i.imgur.com/wPXbUf9.png)
-
-![datadog.yaml after change](https://i.imgur.com/Qjp3Y10.png)
+```
+# Set the host's tags (optional)
+tags: tagwithoutkeyvalue, tag1:tag_one, tag2:tag_two
+```
+*For the datadog.yaml init file, only the single line form is valid.*
 
 ![host map tags](https://i.imgur.com/d8lls61.png)
 
