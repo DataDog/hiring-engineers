@@ -165,17 +165,34 @@ Restart the Agent for the changes to be enabled.
   $ sudo service datadog-agent restart
 ```
 
-For Agent 6, `min_collection_interval` must be added at an instance level, and can be configured individually for each instance.
+_Notes from [documentation](https://docs.datadoghq.com/developers/agent_checks/#configuration): For Agent 6, `min_collection_interval` must be added at an instance level, and can be configured individually for each instance.
 
 The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds.
 
-The collector runs every 15-20 seconds depending on how many integrations are enabled. If the interval on this Agent happens to be every 20 seconds, then the Agent collects and includes the Agent check. The next time it collects 20 seconds later, it sees that 20 is less than 30 and doesn’t collect the custom Agent check. The next time it sees that the time since last run was 40 which is greater than 30 and therefore the Agent check is collected.
+The collector runs every 15-20 seconds depending on how many integrations are enabled. If the interval on this Agent happens to be every 20 seconds, then the Agent collects and includes the Agent check. The next time it collects 20 seconds later, it sees that 20 is less than 30 and doesn’t collect the custom Agent check. The next time it sees that the time since last run was 40 which is greater than 30 and therefore the Agent check is collected._
 
-![my_metric45](https://i.imgur.com/5m1K0a0.png)
+![my_metric45](https://i.imgur.com/VLaCiuF.png)
 
 > Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 The change must be made in the `/conf.d/my_metric.yaml` configuration file.
+
+<hr>
+
+### Visualizing Data
+
+> Utilize the Datadog API to create a Timeboard that contains:
+> - Your custom metric scoped over your host.
+> - Any metric from the Integration on your Database with the anomaly function applied.
+> - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+> Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+> Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+> - Set the Timeboard's timeframe to the past 5 minutes
+> - Take a snapshot of this graph and use the @ notation to send it to yourself.
+> - Bonus Question: What is the Anomaly graph displaying?
 
 <hr>
 
