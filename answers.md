@@ -99,9 +99,83 @@ Installed MongoDB 2.0.4 on virtual machine.  [Followed configuration instruction
 
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Researched [writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/), specifically [your first check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check).
+
+The names of the configuration and check files must match. If your check is called `my_metric.py` your configuration file must be named `my_metric.yaml`.  The entire check would be placed into the `checks.d` folder, the corresponding configuration would be placed into the `conf.d` folder.
+
+```shell
+  $ sudo vi /etc/datadog-agent/conf.d/my_metric.yaml
+  $ sudo vi /etc/datadog-agent/checks.d/my_metric.py
+```
+
+Code adapted from `hello.world` example.  [Resource for import random](https://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python).
+
+`my_metric.yaml`
+```python
+init_config:
+
+instances:
+  [{}]
+```
+`my_metric.py`
+```python
+# from checks import AgentCheck
+# class HelloCheck(AgentCheck):
+#     def check(self, instance):
+#         self.gauge('hello.world', 1)
+
+from checks import AgentCheck
+import random
+
+class MyMetric(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', random.randint(0,1000))
+```
+
+Restart the Agent for the changes to be enabled.
+
+```shell
+  $ sudo service datadog-agent restart
+```
+
+![my_metric](https://i.imgur.com/9bSHlb0.png)
+
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+`my_metric.yaml`
+```python
+init_config:
+
+instances:
+    -   min_collection_interval: 45
+```
+`my_metric.py`
+```python
+from checks import AgentCheck
+import random
+
+class MyMetric(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', random.randint(0,1000))
+```
+
+Restart the Agent for the changes to be enabled.
+
+```shell
+  $ sudo service datadog-agent restart
+```
+
+For Agent 6, `min_collection_interval` must be added at an instance level, and can be configured individually for each instance.
+
+The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds.
+
+The collector runs every 15-20 seconds depending on how many integrations are enabled. If the interval on this Agent happens to be every 20 seconds, then the Agent collects and includes the Agent check. The next time it collects 20 seconds later, it sees that 20 is less than 30 and doesn’t collect the custom Agent check. The next time it sees that the time since last run was 40 which is greater than 30 and therefore the Agent check is collected.
+
+![my_metric45](https://i.imgur.com/5m1K0a0.png)
+
 > Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+The change must be made in the `/conf.d/my_metric.yaml` configuration file.
 
 <hr>
 
