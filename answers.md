@@ -181,10 +181,103 @@ The change must be made in the `/conf.d/my_metric.yaml` configuration file.
 
 ### Visualizing Data
 
+*Note: At this stage, Vagrant upgrade needed to continue.*
+
+![uname -a](https://i.imgur.com/Kgr5LdQ.png)
+![curl auth fail](https://i.imgur.com/wdj56f1.png)
+
+![curl auth success](https://i.imgur.com/GyQorAR.png)
+
 > Utilize the Datadog API to create a Timeboard that contains:
 > - Your custom metric scoped over your host.
+
+Researched [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/), [API Timeboards](https://docs.datadoghq.com/api/?lang=bash#timeboards) as well as [API Authentication](https://docs.datadoghq.com/api/?lang=bash#authentication), requests that read data require full access and also require an application key.
+
+![Application key](https://i.imgur.com/tVmUFYb.png)  
+
 > - Any metric from the Integration on your Database with the anomaly function applied.
+
+[anomalies()](https://docs.datadoghq.com/graphing/miscellaneous/functions/#anomalies) and [anomaly monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) - The function has two parameters:
+
+- The first parameter is for selecting which algorithm is used.
+- The second parameter is labeled bounds, tune it to change the width of the gray band. bounds can be interpreted as the standard deviations for your algorithm; a value of 2 or 3 should be large enough to include most “normal” points.
+
 > - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+[.rollup()](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) - Appending this function to the end of a query allows you to control the number of raw points rolled up into a single point plotted on the graph. The function takes two parameters, method and time: `.rollup(method,time)`.
+
+```bash
+$ api_key=c802ac74556f263f47de0d8cddd8131a
+$ app_key=7112e60f24aa4e28d5d8f03d51de477e7ac5ccd7
+```
+```json
+$ curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "graphs" : [{
+          "title": "scoped over host",
+          "definition": {
+              "events": [],
+              "requests": [
+                {"q": "avg:my_metric{*}"}
+              ]
+          },
+          "viz": "timeseries"
+      },
+      {
+          "title": "rollup function applied",
+          "definition": {
+              "events": [],
+              "requests": [
+                {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "My_Metric Timeboard",
+      "description" : "A dashboard with my_metric custom agent.",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+```
+
+```bash
+RESPONSE:
+{"dash":{"read_only":true,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{*}"}],"events":[]},"title":"scoped over host"},{"definition":{"requests":[{"q":"avg:my_metric{*}.rollup(sum, 3600)"}],"events":[]},"title":"rollup function applied"}],"template_variables":[{"default":"host:my-host","prefix":"host","name":"host1"}],"description":"A dashboard with my_metric custom agent.","title":"My_Metric Timeboard","created":"2018-07-26T21:48:17.439658+00:00","id":872422,"created_by":{"disabled":false,"handle":"cathleenmwright@gmail.com","name":"Cathleen Wright","is_admin":true,"role":null,"access_role":"adm","verified":true,"email":"cathleenmwright@gmail.com","icon":"https://secure.gravatar.com/avatar/127e2966bc2d20469f81fdf522092c56?s=48&d=retro"},"modified":"2018-07-26T21:48:17.462807+00:00"},"url":"/dash/872422/mymetric-timeboard","resource":"/api/v1/dash/872422"}
+```
+
+![my_metrics timeboard](https://i.imgur.com/ZLikAYy.png)
+
+_Note: Anomaly graph unable to run, can not find resolution to error, including attempting different metrics and parameters in anomaly function.  Graph created with GUI and JSON manipulation._
+
+```json
+ATTEMPTED CODE:
+{
+    "title": "integration of database with anomaly function applied",
+    "definition": {
+        "events": [],
+        "requests": [
+          {"q": "anomalies(avg:mongodb.dbs{*}, 'basic', 2"}
+        ]
+    },
+    "viz": "timeseries"
+}
+```
+
+```bash
+RESPONSE ERROR
+{"errors": ["Error parsing query: unable to parse anomalies(mongodb.dbs{*}, basic, 2: Rule 'scope_expr' didn't match at ', 2' (line 1, column 32)."]}
+```
+
+![gui anomaly](https://i.imgur.com/FrVzMHE.png)
+
+![gui metric](https://i.imgur.com/ViVKn24.png)
+
+![gui json](https://i.imgur.com/5Nt2tpo.png?1)
 
 > Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
