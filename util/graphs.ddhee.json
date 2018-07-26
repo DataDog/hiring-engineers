@@ -1,0 +1,61 @@
+{
+	"graphs": [{
+			"title": "Realtime Chaos",
+			"definition": {
+				"viz": "timeseries",
+				"requests": [{
+					"q": "avg:my_metric{host:psh8wbmgg}",
+					"type": "line",
+					"style": {
+						"palette": "dog_classic",
+						"type": "solid",
+						"width": "normal"
+					},
+					"conditional_formats": [],
+					"aggregator": "avg"
+				}],
+				"autoscale": true,
+				"status": "done"
+			}
+		},
+		{
+			"title": "Cummulative Chaos",
+			"definition": {
+				"viz": "query_value",
+				"requests": [{
+					"q": "avg:my_metric{*}",
+					"type": "line",
+					"style": {
+						"palette": "dog_classic",
+						"type": "solid",
+						"width": "normal"
+					},
+					"conditional_formats": [],
+					"aggregator": "sum"
+				}],
+				"autoscale": true,
+				"precision": "1",
+				"status": "done"
+			}
+		},
+		{
+			"title": "DB disk with anomaly detection",
+			"definition": {
+				"requests": [{
+					"q": "anomalies(avg:postgresql.disk_read{*}, 'robust', 1)",
+					"type": "line",
+					"style": {
+						"palette": "dog_classic",
+						"type": "solid",
+						"width": "normal"
+					},
+					"conditional_formats": []
+				}],
+				"viz": "timeseries",
+				"autoscale": true
+			}
+		}
+	],
+	"title": "DDHEE timeboarrd by API take IV (all three graphs)",
+	"description": "An exercise in assembling scattered information."
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl  -X POST -H "Content-type: application/json" \
+-d @graphs.ddhee.json "https://api.datadoghq.com/api/v1/dash?api_key=e1dbdaceaf7516f90ef9e2ad5546072e&application_key=25b8d433ca6e9ca99c1ee791e8ece8c67e6a0ec3"
