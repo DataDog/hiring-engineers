@@ -279,13 +279,20 @@ RESPONSE ERROR
 
 ![gui json](https://i.imgur.com/5Nt2tpo.png?1)
 
-> Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
 > Once this is created, access the Dashboard from your Dashboard List in the UI:
-
 > - Set the Timeboard's timeframe to the past 5 minutes
+
+Modification made by hihlighting/click and drag the last five minutes of the graph within the GUI, discovered organically, could not find supporting documentation.  
+
+![5 min](https://i.imgur.com/KRFNKGd.png)
+
 > - Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![snapshot](https://i.imgur.com/2Im9NyX.png)
+
 > - Bonus Question: What is the Anomaly graph displaying?
+
+An [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph is tracking whether the metric is behaving differently than it has in the past within an assigned deviation (gray overlay).  
 
 <hr>
 
