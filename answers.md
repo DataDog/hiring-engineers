@@ -1,3 +1,4 @@
+
 a
 # Environment
 
@@ -18,26 +19,26 @@ I developed a simple api with 6 resources: 3 evil, 3 nice. Since my app is based
 
 I developed methods to post comments and events.
 
-![event posted](https://github.com/tmayse/hiring-engineers/tree/master/images/event.png)
+![event posted](hiring-engineers/images/event.png)
 
 I installed the datadog agent using the preferred Ubuntu install script. I noticed that the provided script is prepopulated with necessary keys and that made installation a breeze.
 
-![agent exiting](https://github.com/tmayse/hiring-engineers/tree/master/images/agent_exit.PNG)
+![agent exiting](hiring-engineers/images/agent_exit.PNG)
 Something needs fixing, the agent won't stay running. Looks like I need to enable  the agent.
 
 I adjusted the datadog.yaml file to enable the agent and APM and added tags while I was there.
-![agent exiting](https://github.com/tmayse/hiring-engineers/tree/master/images/epa.PNG)
+![agent exiting](hiring-engineers/images/epa.PNG)
 
-![agent exiting](https://github.com/tmayse/hiring-engineers/tree/master/images/tic.PNG)
+![agent exiting](hiring-engineers/images/tic.PNG)
 
 Then I verified that the agent was listening on the expected port:
-![verified port](https://github.com/tmayse/hiring-engineers/tree/master/images/confirm_8126.PNG)
+![verified port](hiring-engineers/images/confirm_8126.PNG)
 
 *note: 404 is the expected response.*
 
 And data is coming in!
 
-![new data](https://github.com/tmayse/hiring-engineers/tree/master/images/errors.png)
+![new data](hiring-engineers/images/errors.png)
 
 # Custom Check and Metric
 
@@ -70,22 +71,22 @@ instances:
 
 Checking the config **sudo service datadog-agent status**
 
-![agent config](https://github.com/tmayse/hiring-engineers/tree/master/images/checks.PNG)
+![agent config](hiring-engineers/images/checks.PNG)
 
 *pleased to find my_check listed at the top*
 
 Timing confirmed in agent logs:
-![agent config](https://github.com/tmayse/hiring-engineers/tree/master/images/45.PNG)
+![agent config](hiring-engineers/images/45.PNG)
 
 And then, as configured, the check ran:
-![agent config](https://github.com/tmayse/hiring-engineers/tree/master/images/check_ran.PNG)
+![agent config](hiring-engineers/images/check_ran.PNG)
 
 # Tags on infrastructure
 
 As show earlier, configured tags:
-![tags shown in config file](https://github.com/tmayse/hiring-engineers/tree/master/images/tic.PNG)
+![tags shown in config file](hiring-engineers/images/tic.PNG)
 
-![host tags in UI](https://github.com/tmayse/hiring-engineers/tree/master/images/host_tags.PNG)
+![host tags in UI](hiring-engineers/images/host_tags.PNG)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created? **see config & logs above**
 
@@ -115,7 +116,7 @@ instances:
     username: datadog
 ```
 
-![Database Dashboard](https://github.com/tmayse/hiring-engineers/tree/master/images/db_dashboard.PNG)
+![Database Dashboard](hiring-engineers/images/db_dashboard.PNG)
 
 [Link to board](https://app.datadoghq.com/screen/integration/235/postgres---overview?page=0&is_auto=false&from_ts=1532551260000&to_ts=1532554860000&live=true)
 
@@ -133,7 +134,7 @@ curl  -X POST -H "Content-type: application/json" \
 -d @graphs.ddhee.json "https://api.datadoghq.com/api/v1/dash?api_key=e1dbdaceaf7516f90ef9e2ad5546072e&application_key=25b8d433ca6e9ca99c1ee791e8ece8c67e6a0ec3"
 ```
 
-![Dashboard created by API](https://github.com/tmayse/hiring-engineers/tree/master/images/Dashboard.png)
+![Dashboard created by API](hiring-engineers/images/Dashboard.png)
 
 
 [dashboard link](https://app.datadoghq.com/dash/871365/)
@@ -150,7 +151,7 @@ python dash --api-key e1dbdaceaf7516f90ef9e2ad5546072e --app-key 25b8d433ca6e9ca
 e "From Timeboard" 871365
 ```
 
-![Screenboard Converted by scipt](https://github.com/tmayse/hiring-engineers/tree/master/images/screenboard.png)
+![Screenboard Converted by scipt](hiring-engineers/images/screenboard.png)
 
 [screenboard link](http://app.datadoghq.com/screen/393468)
 
@@ -162,32 +163,32 @@ It reads "Not enough historical data for this algorithm."
 *note: I didn't explore other algorithms' data requirements.*
 
 I didn't figure out how to send a screenshot, so I sent myself a URL:
-![at mention for new screenboard](https://github.com/tmayse/hiring-engineers/tree/master/images/atmention.png)
+![at mention for new screenboard](hiring-engineers/images/atmention.png)
 
 The email I got as a result looked like this:
-![email from at mention](https://github.com/tmayse/hiring-engineers/tree/master/images/atmentionemail.png)
+![email from at mention](hiring-engineers/images/atmentionemail.png)
 
 # Monitoring Data
 
 This image has all the info necessary to verify notifications: Here's what I did:
 
-![monitor setup](https://github.com/tmayse/hiring-engineers/tree/master/images/monitorpage.png)
+![monitor setup](hiring-engineers/images/monitorpage.png)
 
 This is very noisy, of course. I'm glad configuring downtimes was part of the exercise.
-![downtimes scheduled](https://github.com/tmayse/hiring-engineers/tree/master/images/downtime.png)
+![downtimes scheduled](hiring-engineers/images/downtime.png)
 
 https://app.datadoghq.com/monitors/5645900
 
 **note: For the weekend downtime, I was frustrated by an error that was telling me my start time was too early any time around midnight. I tried from 11:59PM Fri for two days, but that's clearly not right as it didn't have the desired effect. It only just now ocurred to me that the times are UTC. The email was clear about that, but I didn't read it. A better error message might say "that time is in the past", but ulitmately, this was my bad.**
 
-![downtime](https://github.com/tmayse/hiring-engineers/tree/master/images/schedtime.png)
+![downtime](hiring-engineers/images/schedtime.png)
 
 In addition to an email, I captured this event in the event stream:
 
-![event in stream](https://github.com/tmayse/hiring-engineers/tree/master/images/notif.png)
+![event in stream](hiring-engineers/images/notif.png)
 
 I also enable suggested monitors for my API and was alerted
-![hammer](https://github.com/tmayse/hiring-engineers/tree/master/images/hammer.png)
+![hammer](hiring-engineers/images/hammer.png)
 
 # Integrated Dashboard
 
@@ -195,7 +196,7 @@ https://app.datadoghq.com/dash/871420
     
 Included in this dashboard are process metrics, my_metric chaos, NTP offset, and average Apdex by resource.
 
-![App & Host metrics](https://github.com/tmayse/hiring-engineers/tree/master/images/hostandapp.PNG)
+![App & Host metrics](hiring-engineers/images/hostandapp.PNG)
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
@@ -203,11 +204,11 @@ A service is a group of resources. Short answer: service is essentially the appl
 
 Here's my application's resource list:
 
-![resource list](https://github.com/tmayse/hiring-engineers/tree/master/images/resources.png)
+![resource list](hiring-engineers/images/resources.png)
 
 and here's the service to which they all belong:
 
-![services](https://github.com/tmayse/hiring-engineers/tree/master/images/services.png)
+![services](hiring-engineers/images/services.png)
 
 # Last Question
 
