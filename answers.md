@@ -1,3 +1,17 @@
+![datadog logo](https://i.imgur.com/4a0vj3W.png)
+
+# Solutions Engineer Hiring Exercise
+
+- [Prerequisites - Setup The Environment](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#prerequisites---setup-the-environment)
+- [Collecting Metrics](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#collecting-metrics)
+- [Visualizing Data](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#visualizing-data)
+- [Monitoring Data](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#monitoring-data)
+- [Collecting APM Data](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#collecting-apm-data)
+- [Final Question](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#final-question)
+- [Candidate Information](https://github.com/cwithac/hiring-engineers/blob/Cathleen_Wright_Solutions_Engineer/answers.md#candidate-information)
+
+<hr>
+
 ### Prerequisites - Setup The Environment
 
 ##### GitHub
@@ -357,7 +371,7 @@ Researched [downtimes](https://docs.datadoghq.com/monitors/downtimes/).
 
 <hr>
 
-### Collecting APM Data:
+### Collecting APM Data
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -409,7 +423,7 @@ if __name__ == '__main__':
 
 <hr>
 
-### Final Question:
+### Final Question
 
 > Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
