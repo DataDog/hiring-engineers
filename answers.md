@@ -361,7 +361,8 @@ Researched [downtimes](https://docs.datadoghq.com/monitors/downtimes/).
 
 > - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![mondayfriday email](https://i.imgur.com/tNtgZ8U.png)
+![mondayfriday email 1](https://i.imgur.com/dUjtHeY.png)
+![mondayfriday email 2](https://i.imgur.com/tNtgZ8U.png)
 
 ![satsun email](https://i.imgur.com/jsQPqfw.png)
 
