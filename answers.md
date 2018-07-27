@@ -430,6 +430,8 @@ if __name__ == '__main__':
 
 > Is there anything creative you would use Datadog for?
 
+In my free time, I like to see Broadway shows, but getting tickets, particularly last minute tickets, can be especially challenging.  There are some resources available [online](http://www.playbill.com/article/broadway-rush-lottery-and-standing-room-only-policies-com-116003) for information about rush and lottery policies, but tickets are primarily based on daily availability.  As most of the major theater houses use providers such as Ticketmaster, it would be beneficial to know when there were a lot of remaining seats at a certain time period prior to the curtain.  For example, in order to have better luck being able to purchase a last minute ticket, I could set an alert that notified me two hours before curtain if the threshold of available tickets went above 20 for 'Hamilton' on Tuesday nights.
+
 <hr>
 
 ### Candidate Information
