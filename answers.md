@@ -220,7 +220,7 @@ Researched [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard
 
 [.rollup()](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) - Appending this function to the end of a query allows you to control the number of raw points rolled up into a single point plotted on the graph. The function takes two parameters, method and time: `.rollup(method,time)`.
 
-```bash
+```shell
 $ api_key=c802ac74556f263f47de0d8cddd8131a
 $ app_key=7112e60f24aa4e28d5d8f03d51de477e7ac5ccd7
 ```
@@ -259,7 +259,7 @@ $ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
 
-```bash
+```shell
 RESPONSE:
 {"dash":{"read_only":true,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{*}"}],"events":[]},"title":"scoped over host"},{"definition":{"requests":[{"q":"avg:my_metric{*}.rollup(sum, 3600)"}],"events":[]},"title":"rollup function applied"}],"template_variables":[{"default":"host:my-host","prefix":"host","name":"host1"}],"description":"A dashboard with my_metric custom agent.","title":"My_Metric Timeboard","created":"2018-07-26T21:48:17.439658+00:00","id":872422,"created_by":{"disabled":false,"handle":"cathleenmwright@gmail.com","name":"Cathleen Wright","is_admin":true,"role":null,"access_role":"adm","verified":true,"email":"cathleenmwright@gmail.com","icon":"https://secure.gravatar.com/avatar/127e2966bc2d20469f81fdf522092c56?s=48&d=retro"},"modified":"2018-07-26T21:48:17.462807+00:00"},"url":"/dash/872422/mymetric-timeboard","resource":"/api/v1/dash/872422"}
 ```
@@ -282,7 +282,7 @@ ATTEMPTED CODE:
 }
 ```
 
-```bash
+```shell
 RESPONSE ERROR
 {"errors": ["Error parsing query: unable to parse anomalies(mongodb.dbs{*}, basic, 2: Rule 'scope_expr' didn't match at ', 2' (line 1, column 32)."]}
 ```
@@ -345,7 +345,7 @@ Researched [notification options](https://docs.datadoghq.com/monitors/notificati
 
 ![no data](https://i.imgur.com/WK6rTPP.png)
 
-_Note: `{{host.ip}}` does not generate a response.  Can not find additional support documentation._
+_Note: `{{host.ip}}` does not generate a response, possibly due to virtual machine configuration.  Can not find additional support documentation._
 
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
