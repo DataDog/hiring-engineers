@@ -15,7 +15,7 @@
 ### Prerequisites - Setup The Environment
 
 ##### GitHub
-Forked the [repository](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) and cloned [the fork](https://github.com/cwithac/hiring-engineers/tree/solutions-engineer) into my local environment, checking out _solutions-engineers_ and building branch "Cathleen_Wright_Solutions_Engineer" for unique access to the directory and _answers.md_ in the text editor [Atom](https://atom.io/).  
+Forked the [repository](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) and cloned [the fork](https://github.com/cwithac/hiring-engineers/tree/solutions-engineer) into my local environment, checking out `solutions-engineers` and building branch `Cathleen_Wright_Solutions_Engineer` for unique access to the directory and `answers.md` in the text editor [Atom](https://atom.io/).  
 
 ```shell
   $ git clone git@github.com:cwithac/hiring-engineers.git
@@ -64,20 +64,22 @@ _Your first Datadog Agent is reporting._
 
 > Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Researched [how to assign tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) in the documentation, specifically [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), information about the [configuration files and folders for the Agent locations](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) and [troubleshooting forums](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-) for specific file locations.  I referred to [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) when creating my tags.  
+Researched [how to assign tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) in the documentation, specifically [assigning tags using the configuration files](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/#assigning-tags-using-the-configuration-files).  I found information about the specific file locations in [configuration files and folders for the Agent locations](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/#configuration) and the [troubleshooting forums](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-).  I referred to [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) when creating my tags.  
 
-Modified `/etc/datadog-agent/datadog.yaml` in vi, restarting the service to force/expedite change.
+Modified `/etc/datadog-agent/datadog.yaml`, restarting the service to force/expedite change.
 
 ```shell
   $ sudo vi /etc/datadog-agent/datadog.yaml
   $ sudo service datadog-agent restart
 ```
 
+*For the `datadog.yaml` init file, only the single line form is valid.*
+
 ```
 # Set the host's tags (optional)
 tags: tagwithoutkeyvalue, tag1:tag_one, tag2:tag_two
 ```
-*For the datadog.yaml init file, only the single line form is valid.*
+
 
 ![host map tags](https://i.imgur.com/d8lls61.png)
 
@@ -122,7 +124,7 @@ The names of the configuration and check files must match. If your check is call
   $ sudo vi /etc/datadog-agent/checks.d/my_metric.py
 ```
 
-Code adapted from `hello.world` example.  [Resource for import random](https://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python).
+Code adapted from `hello.world` example and [resource for import random](https://www.pythonforbeginners.com/random/how-to-use-the-random-module-in-python).
 
 `my_metric.yaml`
 ```python
@@ -179,7 +181,7 @@ Restart the Agent for the changes to be enabled.
   $ sudo service datadog-agent restart
 ```
 
-_Notes from [documentation](https://docs.datadoghq.com/developers/agent_checks/#configuration): For Agent 6, `min_collection_interval` must be added at an instance level, and can be configured individually for each instance._
+_Notes from [documentation](https://docs.datadoghq.com/developers/agent_checks/#configuration) I found of interest after the change: For Agent 6, `min_collection_interval` must be added at an instance level, and can be configured individually for each instance._
 
 _The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds._
 
@@ -194,13 +196,6 @@ The change must be made in the `/conf.d/my_metric.yaml` configuration file.
 <hr>
 
 ### Visualizing Data
-
-*Note: At this stage, Vagrant upgrade needed to continue.*
-
-![uname -a](https://i.imgur.com/Kgr5LdQ.png)
-![curl auth fail](https://i.imgur.com/wdj56f1.png)
-
-![curl auth success](https://i.imgur.com/GyQorAR.png)
 
 > Utilize the Datadog API to create a Timeboard that contains:
 > - Your custom metric scoped over your host.
@@ -219,6 +214,8 @@ Researched [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard
 > - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 [.rollup()](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) - Appending this function to the end of a query allows you to control the number of raw points rolled up into a single point plotted on the graph. The function takes two parameters, method and time: `.rollup(method,time)`.
+
+Confirm access to curl and API: ![curl](https://i.imgur.com/of64Eue.png)
 
 ```shell
 $ api_key=c802ac74556f263f47de0d8cddd8131a
@@ -287,11 +284,11 @@ RESPONSE ERROR
 {"errors": ["Error parsing query: unable to parse anomalies(mongodb.dbs{*}, basic, 2: Rule 'scope_expr' didn't match at ', 2' (line 1, column 32)."]}
 ```
 
-![gui anomaly](https://i.imgur.com/FrVzMHE.png)
-
 ![gui metric](https://i.imgur.com/ViVKn24.png)
 
 ![gui json](https://i.imgur.com/5Nt2tpo.png?1)
+
+![gui anomaly graph](https://i.imgur.com/FrVzMHE.png)
 
 > Once this is created, access the Dashboard from your Dashboard List in the UI:
 > - Set the Timeboard's timeframe to the past 5 minutes
@@ -312,7 +309,7 @@ An [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph i
 
 ### Monitoring Data
 
-*Note: Vagrant upgrade disabled `sudo` access to Datadog Agent, reinstalled per setup and created a new `my_metric` per previous configuration.*
+*Note: Virtual Machine reset required reinstall of Datadog Agent per setup, created a new `my_metric` per previous configuration.  Additionally, provided opportunity for 'no data' monitor.*
 
 > Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -341,11 +338,13 @@ Researched [notification options](https://docs.datadoghq.com/monitors/notificati
 
 ![alert](https://i.imgur.com/gRelcdn.png)
 
+_Note: `{{host.ip}}` does not generate a response, possibly due to virtual machine configuration.  Can not find additional support documentation._
+
 ![warning](https://i.imgur.com/SsDFpws.png)
 
 ![no data](https://i.imgur.com/WK6rTPP.png)
 
-_Note: `{{host.ip}}` does not generate a response, possibly due to virtual machine configuration.  Can not find additional support documentation._
+
 
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
