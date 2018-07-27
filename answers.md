@@ -282,7 +282,7 @@ RESPONSE ERROR
 > Once this is created, access the Dashboard from your Dashboard List in the UI:
 > - Set the Timeboard's timeframe to the past 5 minutes
 
-Modification made by hihlighting/click and drag the last five minutes of the graph within the GUI, discovered organically, could not find supporting documentation.  
+Modification made by highlighting/click and drag the last five minutes of the graph within the GUI, discovered organically, could not find supporting documentation.  
 
 ![5 min](https://i.imgur.com/KRFNKGd.png)
 
@@ -298,7 +298,7 @@ An [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph i
 
 ### Monitoring Data
 
-*Note: Vagrant upgrade disabled sudo access to Datadog Agent, reinstalled per setup and created a new `my_metric` per previous configuration.*
+*Note: Vagrant upgrade disabled `sudo` access to Datadog Agent, reinstalled per setup and created a new `my_metric` per previous configuration.*
 
 > Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -352,6 +352,8 @@ Researched [downtimes](https://docs.datadoghq.com/monitors/downtimes/).
 ![satsun email](https://i.imgur.com/jsQPqfw.png)
 
 *Note: `my_metric monitor` 'muted' after screen shots obtained.*
+
+![muted](https://i.imgur.com/pqn8mPc.png)
 
 <hr>
 
