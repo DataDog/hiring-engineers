@@ -436,7 +436,7 @@ In my free time, I like to see Broadway shows, but getting tickets, particularly
 
 ### Candidate Information
 
-Solutions Engineer Hiring Challenge - Cathleen Wright
+Cathleen Wright
 
 - [LinkedIn](https://www.linkedin.com/in/cathleenmwright/)
 - [GitHub](https://github.com/cwithac)
