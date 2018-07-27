@@ -298,22 +298,60 @@ An [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph i
 
 ### Monitoring Data
 
+*Note: Vagrant upgrade disabled sudo access to Datadog Agent, reinstalled per setup and created a new `my_metric` per previous configuration.*
+
 > Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Researched [metric monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/).
+
+![create metric monitor](https://i.imgur.com/XiV3BTH.png)
+
 > Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
 > - Warning threshold of 500
 > - Alerting threshold of 800
 > - And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+![monitor 1-3](https://i.imgur.com/LUGE4QD.png)
+
+Researched [notification options](https://docs.datadoghq.com/monitors/notifications/#overview0), specifically [templating variables](https://docs.datadoghq.com/monitors/notifications/#say-what-s-happening).
 
 > Please configure the monitor’s message so that it will:
 > - Send you an email whenever the monitor triggers.
 > - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 > - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![monitor 4-5](https://i.imgur.com/yTe1csw.png)
+
 > - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+![alert](https://i.imgur.com/gRelcdn.png)
+
+![warning](https://i.imgur.com/SsDFpws.png)
+
+![no data](https://i.imgur.com/WK6rTPP.png)
+
+_Note: `{{host.ip}}` does not generate a response.  Can not find additional support documentation._
+
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+Researched [downtimes](https://docs.datadoghq.com/monitors/downtimes/).
+
 > - One that silences it from 7pm to 9am daily on M-F,
+
+![mondayfriday monitor](https://i.imgur.com/c8mQ8Pu.png)
+
 > - And one that silences it all day on Sat-Sun.
+
+![satsun monitor](https://i.imgur.com/V1jeXH7.png)
+
 > - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![mondayfriday email](https://i.imgur.com/tNtgZ8U.png)
+
+![satsun email](https://i.imgur.com/jsQPqfw.png)
+
+*Note: `my_metric monitor` 'muted' after screen shots obtained.*
 
 <hr>
 
