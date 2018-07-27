@@ -413,14 +413,67 @@ if __name__ == '__main__':
 </p>
 </details>
 
-
 > Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+*Note: Unable to complete the task due to the below errors, best attempts through research and GUI presented.  Similar errors for both Python and Ruby.  Error is not networking, `ping google.com` returns success response.*
+
+```shell
+$ sudo apt-get install python-virtualenv
+$ mkdir datadog
+$ cd datadog/
+$ virtualenv venv
+$ . venv/bin/activate
+
+(venv):~/datadog$ pip install ddtrace
+Downloading/unpacking ddtrace
+  Cannot fetch index base URL http://pypi.python.org/simple/
+  Could not find any downloads that satisfy the requirement ddtrace
+No distributions at all found for ddtrace
+Storing complete log in /home/vagrant/.pip/pip.log
+
+(venv):~/datadog$ pip install flask
+Downloading/unpacking flask
+  Cannot fetch index base URL http://pypi.python.org/simple/
+  Could not find any downloads that satisfy the requirement flask
+No distributions at all found for flask
+Storing complete log in /home/vagrant/.pip/pip.log
+
+$ deactivate
+
+$ pip --version
+pip 1.0 from /usr/lib/python2.7/dist-packages (python 2.7)
+
+```
+
+```shell
+$ gem install ddtrace
+Fetching: msgpack-1.2.4.gem (100%)
+ERROR:  While executing gem ... (Gem::FilePermissionError)
+    You don\'t have write permissions into the /opt/vagrant_ruby/lib/ruby/gems/1.8 directory.
+
+$ sudo gem install ddtrace
+Fetching: msgpack-1.2.4.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing ddtrace:
+	ERROR: Failed to build gem native extension.
+```
+
+Researched [APM (tracing)](https://docs.datadoghq.com/tracing/), [APM Setup](https://docs.datadoghq.com/tracing/setup/), specifically [Tracking Python Applications](https://docs.datadoghq.com/tracing/setup/python/).  Also researched [Flask Setup](http://flask.pocoo.org/docs/0.12/installation/#installation), [Introduction to Flask](http://flask.pocoo.org/docs/0.12/quickstart/), and [Flask Framework Compatibility](http://pypi.datadoghq.com/trace/docs/#flask).
+
+![APM setup](https://i.imgur.com/EIMeGBC.png)
+
+![APM Python](https://i.imgur.com/EIMeGBC.png)
 
 > Bonus Question: What is the difference between a Service and a Resource?
 
-> Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Researched [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/).
 
+A [service](https://docs.datadoghq.com/tracing/visualization/#services) is a set of processes that do the same job while a [resource](https://docs.datadoghq.com/tracing/visualization/#resources) is a particular action for a service.
+
+> Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 > Please include your fully instrumented app in your submission, as well.
+
+*Please see note on errors from above.*
 
 <hr>
 
