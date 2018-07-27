@@ -411,11 +411,14 @@ if __name__ == '__main__':
 ```
 
 </p>
-</details>
 
 > Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-*Note: Unable to complete the task due to the below errors, best attempts through research and GUI presented.  Similar errors for both Python and Ruby.  Error is not networking, `ping google.com` returns success response.*
+</details>
+
+
+
+*Note: Unable to complete the task due to the below errors, best attempts through research and GUI presented.  Similar errors for both Python and Ruby.  Additional troubleshooting included attempting to download and install `ddtrace` locally through `https://pypi.org/project/ddtrace/`, unable to process due to issues syncing Vagrantfile.  Error is not networking, `ping google.com` returns success response.*
 
 ```shell
 $ sudo apt-get install python-virtualenv
@@ -462,7 +465,28 @@ Researched [APM (tracing)](https://docs.datadoghq.com/tracing/), [APM Setup](htt
 
 ![APM setup](https://i.imgur.com/EIMeGBC.png)
 
-![APM Python](https://i.imgur.com/EIMeGBC.png)
+![APM python](https://i.imgur.com/MzcPfdH.png)
+
+Based on the [custom getting started](http://pypi.datadoghq.com/trace/docs/#custom) documentation, my understanding would be to wrap a trace code around each of the individual routes in order to track their specific performance.  I am curious to see how the GUI would impact this process, as it appears to be a very comprehensive [dashboard](https://www.datadoghq.com/apm/).   
+
+```python
+from ddtrace import tracer
+
+# add the `wrap` decorator to trace an entire function.
+@tracer.wrap(service='my-app')
+def save_thumbnails(img, sizes):
+
+    thumbnails = [resize_image(img, size) for size in sizes]
+
+    # Or just trace part of a function with the `trace`
+    # context manager.
+    with tracer.trace("thumbnails.save") as span:
+        span.set_meta("thumbnails.sizes", str(sizes))
+
+        image_server.store(thumbnails)
+```
+
+
 
 > Bonus Question: What is the difference between a Service and a Resource?
 
