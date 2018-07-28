@@ -1,4 +1,4 @@
-from datadog_checks.checks import AgentCheck
+from checks import AgentCheck
 from random import randrange
 
 class RandomCheck(AgentCheck):
