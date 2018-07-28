@@ -43,11 +43,13 @@ read_only = False
 
 api.Timeboard.create(title=title, description=description,graphs=graphs, read_only=read_only)
 ```
-Link - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_auto=false&from_ts=1532736031198&to_ts=1532739631198&tile_size=m
 
 Set the Timeboard's timeframe to the past 5 minutes
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/unnamed.png)
+
+
+Link - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_auto=false&from_ts=1532736031198&to_ts=1532739631198&tile_size=m
 
 
 #### Bonus Question: What is the Anomaly graph displaying?
@@ -57,12 +59,13 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 # Monitoring Data:
 
-Send email with custom message and value whenever triggered
+### Send email with custom message and value whenever triggered
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3619.PNG)
 
 
+ 
 
-#### Bonus Question: Downtime
+### Bonus Question: Downtime
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3624.PNG)
 
 
@@ -81,7 +84,7 @@ Link - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=15327358
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
-**Answer:** A service is a set of process that are doing a particular job. Where a resource is an action against service such as a restful request to a webserver(process).
+**Answer:** A service is a set of process that are doing a particular job. Where a resource is an action against a service such as a restful request to a webserver(process).
 
 # Final Question:
 
