@@ -51,7 +51,7 @@ read_only = False
 api.Timeboard.create(title=title, description=description,graphs=graphs, read_only=read_only)
 ```
 
-### Set the Timeboard's timeframe to the past 5 minutes
+### Set the Timeboard's timeframe to the past 5 minutes and send notification
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/5%20min%20metric.png)
 
@@ -72,7 +72,7 @@ api.Timeboard.create(title=title, description=description,graphs=graphs, read_on
 
  
 
-### Bonus Question: Downtime for weeknighs and the weekends.
+## Bonus Question: Downtime for weeknights and the weekends.
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/Scheduled%20down%20time.PNG)
 
 
@@ -87,7 +87,7 @@ with tracer.trace("apm.basics", service="apm_services") as span:
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/APM%20instrument.png)
 
-Link to APM - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=1532735893790&end=1532739493790&env=none&paused=false
+**Link to APM** - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=1532735893790&end=1532739493790&env=none&paused=false
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
