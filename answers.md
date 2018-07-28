@@ -1,11 +1,15 @@
 # Collecting Metrics:
-Added tags hello:world and role:exercise
+### Added tags hello:world and role:exercise
 
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/Screen%20Shot%202018-07-27%20at%206.29.37%20PM.png)
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/Host%20map%20and%20tags.png)
+
+### Postgres Intergration
+
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/Postgres%20dashboard.PNG)
 
 ### Custom Agent Check
 ```python
-from datadog_checks.checks import AgentCheck
+from checks import AgentCheck
 from random import randrange
 
 class RandomCheck(AgentCheck):
@@ -19,6 +23,9 @@ class RandomCheck(AgentCheck):
 
 
 # Visualizing Data:
+
+## Timeboard
+
 ```python
 from datadog import initialize, api
 
@@ -46,10 +53,10 @@ api.Timeboard.create(title=title, description=description,graphs=graphs, read_on
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/unnamed.png)
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/5%20min%20metric.png)
 
 
-Link - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_auto=false&from_ts=1532736031198&to_ts=1532739631198&tile_size=m
+**Link to timeboard** - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_auto=false&from_ts=1532736031198&to_ts=1532739631198&tile_size=m
 
 
 #### Bonus Question: What is the Anomaly graph displaying?
@@ -60,13 +67,13 @@ Link - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_au
 # Monitoring Data:
 
 ### Send email with custom message and value whenever triggered
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3619.PNG)
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/Custom%20warning.PNG)
 
 
  
 
 ### Bonus Question: Downtime for weeknighs and the weekends.
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3624.PNG)
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/Scheduled%20down%20time.PNG)
 
 
 # Collecting APM Data:
