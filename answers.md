@@ -1,5 +1,5 @@
 # Collecting Metrics:
-Added tags hello:world, role:exercise
+Added tags hello:world and role:exercise
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/Screen%20Shot%202018-07-27%20at%206.29.37%20PM.png)
 
@@ -44,7 +44,7 @@ read_only = False
 api.Timeboard.create(title=title, description=description,graphs=graphs, read_only=read_only)
 ```
 
-Set the Timeboard's timeframe to the past 5 minutes
+### Set the Timeboard's timeframe to the past 5 minutes
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/unnamed.png)
 
@@ -65,7 +65,7 @@ Link - https://app.datadoghq.com/dash/873292/my-timeboard?live=true&page=0&is_au
 
  
 
-### Bonus Question: Downtime
+### Bonus Question: Downtime for weeknighs and the weekends.
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3624.PNG)
 
 
