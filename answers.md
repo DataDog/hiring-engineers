@@ -13,7 +13,7 @@ class RandomCheck(AgentCheck):
 		self.gauge('my_metric', randrange(0, 1000))
 ```
 
-**Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
+#### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 **Answer:** The interval can be changed in the UI in the matadata of the metric.
 
@@ -49,7 +49,8 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/unnamed.png)
 
-**Bonus Question:** What is the Anomaly graph displaying?
+
+#### Bonus Question: What is the Anomaly graph displaying?
 
 **Answer:** 
 
@@ -59,7 +60,9 @@ Set the Timeboard's timeframe to the past 5 minutes
 Send email with custom message and value whenever triggered
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3619.PNG)
 
-**Bonus Question:** Downtime
+
+
+#### Bonus Question: Downtime
 ![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/IMG_3624.PNG)
 
 
