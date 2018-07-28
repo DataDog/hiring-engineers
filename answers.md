@@ -85,9 +85,9 @@ with tracer.trace("apm.basics", service="apm_services") as span:
   span.set_tag("role", "exercise")
 ```
 
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20images/Screen%20Shot%202018-07-27%20at%208.39.03%20PM.png)
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/APM%20instrument.png)
 
-Link - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=1532735893790&end=1532739493790&env=none&paused=false
+Link to APM - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=1532735893790&end=1532739493790&env=none&paused=false
 
 #### Bonus Question: What is the difference between a Service and a Resource?
 
