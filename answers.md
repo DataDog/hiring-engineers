@@ -31,10 +31,10 @@ You need to allow Oracle to be install in your [Security & Privacy settings[(htt
 
 You will now need to [download Vagrant](https://www.vagrantup.com/downloads.html). Once Vagrant is downloaded you can use the following to get your vagrant environment up and running:
 
-'''
+```
 $ vagrant init hashicorp/precise64
 $ vagrant up
-'''
+```
 
 If this step is successful should see the following: 
 
