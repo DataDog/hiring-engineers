@@ -21,7 +21,12 @@ I'm using PostgreSQL on my Mac with the corresponding Datadog integration.
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Answer is in the agentcheckanswers.py file
+
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+Answer is in the agentcheckanswers.py file
 
 
-##Visualizing Data:
-
+##Visualizing Data, Utilize the Datadog API to create a Timeboard that contains::
+1. 
