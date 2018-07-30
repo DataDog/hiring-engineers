@@ -21,7 +21,7 @@ The first step in the POC is to replicate Acme's current technology stack.
 
 Acme has developed a Flask web application that leverages MongoDB. It is deployed via on premise Ubuntu servers. We will use Vagrant and Virtual Box to create a test environment for the POC. 
 
-The first step is downloading and installing Virtual Box (https://www.virtualbox.org/wiki/Downloads). 
+The first step is downloading and installing [Virtual Box](https://www.virtualbox.org/wiki/Downloads). 
 
 Tip: If installing Virtual Box on a Mac and your installation fails with the following:
 
