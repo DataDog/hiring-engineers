@@ -1,0 +1,24 @@
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:precise64}, avg:mongodb.uptime{host:precise64}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true,
+  "events": [
+    {
+      "q": "start ",
+      "tags_execution": "and"
+    }
+  ]
+}
