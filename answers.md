@@ -27,9 +27,9 @@ Tip: If installing Virtual Box on a Mac and your installation fails with the fol
 
 ![alt text](https://cl.ly/0S380f2x1W3A/Image%2525202018-07-30%252520at%2525208.52.17%252520AM.png)
 
-You need to allow Oracle to be install in your Security & Privacy settings(https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
+You need to allow Oracle to be install in your [Security & Privacy settings[(https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
 
-You will now need to download Vagrant(https://www.vagrantup.com/downloads.html). Once Vagrant is downloaded you can use the following to get your vagrant environment up and running:
+You will now need to [download Vagrant](https://www.vagrantup.com/downloads.html). Once Vagrant is downloaded you can use the following to get your vagrant environment up and running:
 
 '''
 $ vagrant init hashicorp/precise64
@@ -38,26 +38,26 @@ $ vagrant up
 
 If this step is successful should see the following: 
 
-(https://cl.ly/242O2G113h0J/Image%2525202018-07-28%252520at%25252011.42.52%252520AM.png)
+![alt text](https://cl.ly/242O2G113h0J/Image%2525202018-07-28%252520at%25252011.42.52%252520AM.png)
 
 
-Now that you have your Ubuntu Environment, we need to get the Datadog agent installed in your environment (https://docs.datadoghq.com/agent/). The Datadog agent is responsible for collecting data from your infrastructure and application. 
+Now that you have your Ubuntu Environment, we need to get the [Datadog agent installed in your environment](https://docs.datadoghq.com/agent/). The Datadog agent is responsible for collecting data from your infrastructure and application. 
 
-But, before installing the agent, you need a Datadog account! Please sign up here (https://app.datadoghq.com/signup) My account is under jeb2162@gmail.com
+But, before installing the agent, you need a Datadog account! Please sign up [here](https://app.datadoghq.com/signup) My account is under jeb2162@gmail.com
 
 After getting your account, you can install the Datadog agent via the following command on your Ubuntu machine:
 
-'''
+```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-'''
+```
 
-This page (https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) has additional info on installing and using the agent in Ubuntu. Once completed you will see the following in your Ubuntu command line:
+[This page](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/) has additional info on installing and using the agent in Ubuntu. Once completed you will see the following in your Ubuntu command line:
 
-(https://cl.ly/310a0s0U3m2X/Image%2525202018-07-28%252520at%25252012.08.20%252520PM.png)
+![alt text](https://cl.ly/310a0s0U3m2X/Image%2525202018-07-28%252520at%25252012.08.20%252520PM.png)
 
 If you log into your Datadog account online and go to the events section you will see that your Agent has started.
 
-(https://cl.ly/1p1k1i0a292i/Image%2525202018-07-28%252520at%25252012.09.16%252520PM.png)
+![alt text](https://cl.ly/1p1k1i0a292i/Image%2525202018-07-28%252520at%25252012.09.16%252520PM.png)
 
 Congrats! You are now collecting data on your Ubuntu test environment.
 
@@ -70,59 +70,59 @@ The previous steps will enable you to collect System metrics such as CPU usage, 
 
 But Acme's use case requires more customization of these metrics. Acme needs to tag incoming metrics, so it can quickly filter data to identify and resolve issues. Acme also needs the ability to capture custom metrics that describe the health of Acmes underlying infrastructure.
 
-To do this we will create tags and a custom Data check (https://docs.datadoghq.com/developers/agent_checks/) in Datadog.
+To do this we will create tags and a [custom Data check](https://docs.datadoghq.com/developers/agent_checks/) in Datadog.
 
-Tags are values descriptive value attached to data (https://docs.datadoghq.com/getting_started/tagging/). This descriptive value help to filter and understand data. Tags will enable us to determine if a CPU usage value is coming from a server in New York or in Boston. 
+[Tags](https://docs.datadoghq.com/getting_started/tagging/) are values descriptive value attached to data. This descriptive value help to filter and understand data. Tags will enable us to determine if a CPU usage value is coming from a server in New York or in Boston. 
 
-To add tags to our application, we will need to open the datadog.yaml file which is located at "/etc/datadog-agent/datadog.yaml" on our Ubuntu machine(https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-).
+To [add tags to our application](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-), we will need to open the datadog.yaml file which is located at "/etc/datadog-agent/datadog.yaml" on our Ubuntu machine.
 
-To edit the file, we will use nano in the command line (https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/).
+To edit the file, we will use [nano in the command line](https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/).
 
 To add a tag, insert the following into the datadog.yaml file:
 
-'''
+```
 tags:
  - location:somerville_ma
  - env_type:test_instance
-'''
+```
 
 After modifying the datadog.yaml file, restart the Agent and return to your Datadog event dashboard. You should notice your tags are no included in the start event as the following image shows.
 
-(https://cl.ly/3Z1N1T1g2h1O/Image%202018-07-28%20at%201.34.33%20PM.png)
+![alt text](https://cl.ly/3Z1N1T1g2h1O/Image%202018-07-28%20at%201.34.33%20PM.png)
 
 You will also be able to see the tags in the Host Map section of your Datadog account.
 
-(https://cl.ly/0Q3l203t123N)
+![alt text](https://cl.ly/0Q3l203t123N)
 
 
-Now we need to show how Datadog integrates with mongoDB. First, lets get a mongoDB instance up. This article illustrates how to get mongoDB on Ubuntu (http://www.mkyong.com/mongodb/how-to-install-mongodb-on-ubuntu/). After going through the steps in the article we will want to check that our database is operational. 
+Now we need to show how Datadog integrates with mongoDB. First, lets get a mongoDB instance up. [This article](http://www.mkyong.com/mongodb/how-to-install-mongodb-on-ubuntu/) illustrates how to get mongoDB on Ubuntu. After going through the steps in the article we will want to check that our database is operational. 
 
 If we type mongo into the Ubuntu machines command line, we will enter the mongo shell. We can then type "show dbs" to verify we are connected to our database as shown below:
 
-(https://cl.ly/47401v3k212j/Image%202018-07-28%20at%201.52.53%20PM.png)
+![alt text](https://cl.ly/47401v3k212j/Image%202018-07-28%20at%201.52.53%20PM.png)
 
 
-We now need to add the mongoDB integration for Datadog. This article (https://www.datadoghq.com/blog/monitor-mongodb-performance-with-datadog/) will be a helpful reference. In the integrations section of Datadog search for mongoDB. Selecting the mongoDB integration will lead you to a configuration window as shown below:
+We now need to add the mongoDB integration for Datadog. [This article](https://www.datadoghq.com/blog/monitor-mongodb-performance-with-datadog/) will be a helpful reference. In the integrations section of Datadog search for mongoDB. Selecting the mongoDB integration will lead you to a configuration window as shown below:
 
-(https://cl.ly/2s0v2D1y2r46)
+![alt text](https://cl.ly/2s0v2D1y2r46)
 
 Here, Datadog will generate commands for you to run in the mongo shell. It will also provide the text of a mongo.yaml file. Follow the instructions to install the mongoDB Datadog Agent. 
 
 Once this is complete you will need to confirm the mongodb service is running via the "sudo -u dd-agent -- datadog-agent check mongo" in the Ubuntu command line. This should yield the following:
 
-(https://cl.ly/3X2h1w0V093l/Image%202018-07-28%20at%202.29.58%20PM.png)
+![alt text](https://cl.ly/3X2h1w0V093l/Image%202018-07-28%20at%202.29.58%20PM.png)
 
 Now you can go into your Datadog account, the dashboard list, and selecting mongoDB and find the following:
 
-(https://cl.ly/132q451x1c1w/Image%202018-07-28%20at%202.34.29%20PM.png)
+![alt text](https://cl.ly/132q451x1c1w/Image%202018-07-28%20at%202.34.29%20PM.png)
 
-The last component of collecting metrics from our infrastructure is extending the Datadog collection software to acquire custom metrics. We do this via a custom Agent Check (https://docs.datadoghq.com/developers/agent_checks/). 
+The last component of collecting metrics from our infrastructure is extending the Datadog collection software to acquire custom metrics. We do this via a [custom Agent Check](https://docs.datadoghq.com/developers/agent_checks/). 
 
 To do this we will need to write a custom check in python and configure the Agent to run the check via a .yaml file. To illustrate a custom check, our code will generate a random number between 0-1000 and record that every 45 seconds. We will call this metric 'my_metric'
 
 Let’s call our check joshCheck. We will create a python file "checks.d/joshCheck.py" that contains the following:
 
-'''
+```python
 from checks import AgentCheck
 from random import randint
 
@@ -130,28 +130,28 @@ class joshBrownAgengCheck(AgentCheck):
  
 	def check(self, instance):
 		self.gauge('my_metric', randint(0, 1000))
-'''
+```
 
 Next, we need to create the .yaml file 'conf.d/joshCheck.yaml'. Please note, the .yaml file and .py file should have the same name. We will create the following joshCheck.yaml file:
 
-'''
+```
 init_config:
 
 instances:
     - min_collection_interval: 45
- '''
+ ```
 
  Please note, we are setting min_collection_interval to 45 seconds. This does not guarantee joshCheck will run every 45 seconds. It ensures that it will not be collected faster than every 45 seconds.
 
  Now you can restart the Agent and use 'sudo -u dd-agent --datadog-agent check joshCheck' to confirm the custom Agent check is working. You should see:
 
- (https://cl.ly/1W432S000f2U/Image%202018-07-28%20at%206.50.01%20PM.png)
+ ![alt text](https://cl.ly/1W432S000f2U/Image%202018-07-28%20at%206.50.01%20PM.png)
 
  Tip: if you see the following:
 
- (https://cl.ly/260i470R101p/Image%202018-07-28%20at%204.46.47%20PM.png)
+ ![alt text](https://cl.ly/260i470R101p/Image%202018-07-28%20at%204.46.47%20PM.png)
 
-You have a tab in your .yaml file. Replace the tab with spaces per this article (https://github.com/moraes/config/issues/1).
+You have a tab in your .yaml file. Replace the tab with spaces per [this article](https://github.com/moraes/config/issues/1).
 
 Nice, we now have a custom Agent check running! But wait... How can we combine the system, mongoDB, and custom metrics we are collecting to better understand our application’s performance.
 
@@ -174,11 +174,11 @@ I am using Agent 6.
 
 Data Acme's systems, database, and applications in isolation is useless. To reduce downtime and proactively identify weak spots in Acme's infrastructure, we need tie the data we are collecting in the previous section together.
 
-To do this, we will use Datadog's graphing and dashboard tools (https://docs.datadoghq.com/graphing/).
+To do this, we will use Datadog's [graphing and dashboard tools](https://docs.datadoghq.com/graphing/).
 
 First, in the Datadog web application, go to Dashboard>New Dash Board. You will see a series of widgets. Drag the Timeseries widget into the finish editing area. This will open a modal that will look like this:
 
-(https://cl.ly/3c162B3P0b3p/Image%202018-07-30%20at%2011.31.56%20AM.png)
+![alt text](https://cl.ly/3c162B3P0b3p/Image%202018-07-30%20at%2011.31.56%20AM.png)
 
 Before we dive into the modal, lets define what we want to see. 
 
@@ -186,13 +186,15 @@ Let’s say the goal of this graph is to help debug an issue with one specific o
 
 To do this we will search for and select my_metric from the metric filter from our troubled host (precise64).
 
-(https://cl.ly/2P3x3Q0l0Z0v/Image%202018-07-29%20at%207.58.08%20AM.png)
+![alt text](https://cl.ly/2P3x3Q0l0Z0v/Image%202018-07-29%20at%207.58.08%20AM.png)
 
-Next we will get the mongodb.uptime metric (https://cl.ly/1L3a2z1o1w2x/Image%202018-07-29%20at%207.58.40%20AM.png).
+Next we will get the mongodb.uptime metric:
+
+![alt text](https://cl.ly/1L3a2z1o1w2x/Image%202018-07-29%20at%207.58.40%20AM.png).
 
 This will yield the following result:
 
-(https://cl.ly/3t2W1Q1h0R3r)
+![alt text](https://cl.ly/3t2W1Q1h0R3r)
 
 We can see the blue line representing my_metric varying between 0-1000. 
 
@@ -202,22 +204,22 @@ Of course, once you solve the case of precise64 you will need to share your insi
 
 Datadog makes this easy via the share button in the top write of the graph. You can @mention a team might with a screen shoot and notes as shown below.
 
-(https://cl.ly/0u2M2a2b3x2n/Image%202018-07-29%20at%208.04.31%20AM.png)
+![alt text](https://cl.ly/0u2M2a2b3x2n/Image%202018-07-29%20at%208.04.31%20AM.png)
 
 What makes Datadog so powerful is how we can layer analysis on top of the data we tie together in graphs. Let’s say as a next step we wanted to troubleshoot the metric mongodb.network.bytesinps. We can use Datadog's anomaly detection (https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) to identify trends in data that are abnormal. 
 
 See the graph below:
 
-(https://cl.ly/1f0V3L0w1o14)
+![alt text](https://cl.ly/1f0V3L0w1o14)
 
 More traditional analysis is also available. Below is an example of taking a one hour rolling average of the my_metric value.
 
-(https://cl.ly/2u0h0r2i2w2K)
+![alt text](https://cl.ly/2u0h0r2i2w2K)
 
 For reference, here are the scripts used to create these graphs:
 
 ### my_metric with mongodb overlay scoped to Ubunto Server
-'''
+```json
 {
   "viz": "timeseries",
   "status": "done",
@@ -242,9 +244,9 @@ For reference, here are the scripts used to create these graphs:
     }
   ]
 }
-'''
+```
 ### mongodb.network.bytesinps with anomoly analysis
-'''
+```json
 {
   "viz": "timeseries",
   "status": "done",
@@ -263,9 +265,9 @@ For reference, here are the scripts used to create these graphs:
   ],
   "autoscale": true
 }
-'''
+```
 ### my_metric with 1 hour average
-'''
+```json
 {
   "requests": [
     {
@@ -284,7 +286,7 @@ For reference, here are the scripts used to create these graphs:
   "autoscale": true,
   "status": "done"
 }
-'''
+```
 
 ### Additional Info (Bonus) What is the Anomaly graph displaying?
 
@@ -292,7 +294,7 @@ Folks often ask what the anomaly graph is actually displaying. To understand thi
 
 From the Datadog mongoDB integration documentation, mongodb.network.bytesinps represents "The number of bytes that reflects the amount of network traffic received by this database."
 
-So, the blue and red line in the provided graph (https://cl.ly/1f0V3L0w1o14)) corresponds to the amount of network traffic the database received.
+So, the blue and red line in the [provided graph](https://cl.ly/1f0V3L0w1o14)) corresponds to the amount of network traffic the database received.
 
 Ok, so why does the line change colors and what is the grey area?
 
@@ -316,16 +318,16 @@ Let’s use my_metric to demonstrate Datadog's monitoring capabilities.
 
 Recall, my_metric is a randomly generated value between 0 and 1000. Pretend that values of 500 and above are import to know about. Values of 800 and above require immediate response. 
 
-Setting up alerting in Datadog is straight forward as is this document outlines (https://docs.datadoghq.com/monitors/). If you open the New Monitor section under Monitors, you can configure you monitor to look like the following:
+Setting up alerting in Datadog is straight forward as [this document outlines](https://docs.datadoghq.com/monitors/). If you open the New Monitor section under Monitors, you can configure you monitor to look like the following:
 
-(https://cl.ly/473e3M1O1Y2l)
+![alt text](https://cl.ly/473e3M1O1Y2l)
 
 
 Please remember to add your team member to the monitor via the @mention in the Notify your team section. Note that I have created a custom message with template variables. This is helpful as context is critical to generating the proper response from team members.
 
 Given the warning and alert thresholds we have set, you should get an email similar to the following shortly after the monitor is saved.
 
-(https://cl.ly/022v1S451t1s/Image%202018-07-29%20at%209.00.07%20AM.png)
+![alt text](https://cl.ly/022v1S451t1s/Image%202018-07-29%20at%209.00.07%20AM.png)
 
 Nice! Now team members can be notified when something is amok. They will have the proper context and even custom messages with instructions on how to respond. 
 
@@ -337,13 +339,13 @@ This results in costly inaction when alerts are received.
 
 Speaking of which, let’s look at how we can put a Monitor to sleep during periods where we do not need to be alerted. A good example might be planned server downtime on a weekend. 
 
-We can schedule one off or recurring downtime using Manage Downtime tool in Monitors. (https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/)
+We can schedule one off or recurring downtime using the [Manage Downtime tool](https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/). 
 
 I set up downtime at night as well as on the weekend for the my_metric monitor. Below are the email notifications I received after setting up the downtime.
 
-(https://cl.ly/1v3N3T2j2a21/Image%202018-07-30%20at%203.19.47%20PM.png)
+![alt text](https://cl.ly/1v3N3T2j2a21/Image%202018-07-30%20at%203.19.47%20PM.png)
 
-(https://cl.ly/2c190a3l3A2A/Image%202018-07-30%20at%203.20.58%20PM.png)
+![alt text](https://cl.ly/2c190a3l3A2A/Image%202018-07-30%20at%203.20.58%20PM.png)
 
 
 
@@ -353,7 +355,7 @@ To truly get a handle on Acme's tech stack, we need to tie the infrastructure mo
 
 Let’s use the following Flask App as an example.
 
-'''
+```
 from flask import Flask
 import logging
 import sys
@@ -392,11 +394,11 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
-'''
+```
 
 To instrument this app with Datadog's APM monitoring tools we need to configure our Ubuntu machine to run flask. 
 
-First, we need to install python and pip on the machine. With Ubuntu 16 you may run into a few issues with the installation. This Stackoverflow post was extremely helpful for me (https://stackoverflow.com/questions/44296498/unable-to-install-pip-in-ubuntu).
+First, we need to install python and pip on the machine. With Ubuntu 16 you may run into a few issues with the installation. [This Stackoverflow post](https://stackoverflow.com/questions/44296498/unable-to-install-pip-in-ubuntu) was extremely helpful for me.
 
 Ensure that python is installed correctly by using "python -v" in the Ubuntu command line. 
 
@@ -404,22 +406,22 @@ Now you can use pip to install Flask, datadog, and ddtrace using "pip install [p
 
 Before you run the app we need to modify the datadog.yaml file. We need to add the following:
 
-'''
+```
 apm_config:
   enabled: true
-'''
+```
 
 Restart the Datadog agent and then start the flask app with 'ddtrace-run python flask_app.py' in the Ubuntu command line. If your flask app has a different name than flask_app.py, replace flask_app.py with the appropriate name.
 
 Now if you go to the APM section Datadog, select python, you will see:
 
-(https://cl.ly/0H0b2v2J012z)
+![alt text](https://cl.ly/0H0b2v2J012z)
 
 Wait! We already did everything listed on that page. What is going on?
 
 To trouble shoot this we can open '/var/log/datadog/trace-agent.log' on our Ubuntu machine. You will likely see a log that looks like this:
 
-'''
+```
 018-07-28 16:06:05 INFO (main.go:85) - pid '2099' written to pid file '/opt/datadog-agent/run/trace-agent.pid'
 2018-07-28 16:06:05 INFO (main.go:98) - Loaded configuration: /etc/datadog-agent/datadog.yaml
 2018-07-28 16:06:06 INFO (trace_writer.go:49) - Trace writer initializing with config: {MaxSpansPerPayload:1000 FlushPeriod:5s UpdateInfoPeriod:1m0s SenderConfig:{MaxAge:20m0s MaxQueuedBytes:67108864 Max$
@@ -455,19 +457,19 @@ To trouble shoot this we can open '/var/log/datadog/trace-agent.log' on our Ubun
 2018-07-28 16:19:26 INFO (receiver.go:324) - no data received
 2018-07-28 16:20:06 INFO (service_mapper.go:59) - total number of tracked services: 0
 2018-07-28 16:20:36 INFO (receiver.go:324) - no data received
-'''
+```
 
 Our service is up and running but no data is being sent. 
 
-The reason is that we have not hit one of the routes in our Flask app. If we use telnet to send a GET request (http://blog.tonycode.com/tech-stuff/http-notes/making-http-requests-via-telnet/) and return to the APM section of Datadog we will now see:
+The reason is that we have not hit one of the routes in our Flask app. If we use telnet to [send a GET request](http://blog.tonycode.com/tech-stuff/http-notes/making-http-requests-via-telnet/) and return to the APM section of Datadog we will now see:
 
-(https://cl.ly/3J270b1n1z2S)
+![alt text](https://cl.ly/3J270b1n1z2S)
 
 Now you can use the export function - top right hand corner of the graphs in the above image - to add these graphs to our previously created dashboard.
 
-Dashboard with APM and Infrastructure
-(https://cl.ly/0J0T372m3Q3F)
-(https://app.datadoghq.com/dash/873979/joshuas-timeboard-28-jul-2018-1851?live=true&page=0&is_auto=false&from_ts=1532807383334&to_ts=1532980183334&tile_size=m)
+[Dashboard with APM and Infrastructure](https://app.datadoghq.com/dash/873979/joshuas-timeboard-28-jul-2018-1851?live=true&page=0&is_auto=false&from_ts=1532807383334&to_ts=1532980183334&tile_size=m)
+![alt text](https://cl.ly/0J0T372m3Q3F)
+
 
 Datadog is now providing insights across Acmes application and infrastructure.
 
@@ -481,9 +483,9 @@ Part of the app I developed enables the user to search the database of trades ma
 
 The resource is a specific query made to the service. Looking at the url below you, everything after '/trades_serach/' is a part of the resource. The resource provides the service with the information to understand which trades the user is searching for.
 
-'''
+```
 /trades_search/?&trade_type=Long-Call-Spread,&option_type=SLD,&trade_date=01/01/2018%20-%2005/04/2050,&expiry_date=01/01/2018%20-%2005/04/2050,&max_moneyness_at_initiation=,&min_moneyness_at_initiation=,&max_duration_at_initiation=,&min_duration_at_initiation=,&min_tp_added_at_initiation=,&max_tp_added_at_initiation=,&min_total_tp_added_at_initiation=,&max_total_tp_added_at_initiation=,&max_current_moneyness=,&min_current_moneyness=,&min_duration_current=,&max_duration_current=,&min_mtm_per_contract_profit=,&max_mtm_per_contract_profit=,&min_mtm_total_profit=,&max_mtm_total_profit=,&primary_sort=Symbol,&secondary_sort=Symbol,&third_sort=Symbol,&fourth_sort=Symbol,&reverse_sort=True,&max_number_of_results=,
-'''
+```
 
 ## Final Question
 
