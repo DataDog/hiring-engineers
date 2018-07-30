@@ -25,7 +25,7 @@ The first step is downloading and installing [Virtual Box](https://www.virtualbo
 
 Tip: If installing Virtual Box on a Mac and your installation fails with the following:
 
-(https://cl.ly/0S380f2x1W3A/Image%2525202018-07-30%252520at%2525208.52.17%252520AM.png)
+![alt text](https://cl.ly/0S380f2x1W3A/Image%2525202018-07-30%252520at%2525208.52.17%252520AM.png)
 
 You need to allow Oracle to be install in your Security & Privacy settings(https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
 
