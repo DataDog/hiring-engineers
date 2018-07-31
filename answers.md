@@ -300,7 +300,7 @@ From the Datadog mongoDB integration documentation, mongodb.network.bytesinps re
 
 So, the blue and red line in the graph below corresponds to the amount of network traffic the database received.
 
-[!alt text](https://cl.ly/1f0V3L0w1o14/Image%202018-07-30%20at%2012.01.10%20PM.png)
+![alt text](https://cl.ly/1f0V3L0w1o14/Image%202018-07-30%20at%2012.01.10%20PM.png)
 
 Ok, so why does the line change colors and what is the grey area?
 
