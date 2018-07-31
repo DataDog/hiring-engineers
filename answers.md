@@ -27,7 +27,7 @@ Tip: If installing Virtual Box on a Mac and your installation fails with the fol
 
 ![alt text](https://cl.ly/0S380f2x1W3A/Image%2525202018-07-30%252520at%2525208.52.17%252520AM.png)
 
-You need to allow Oracle to be install in your [Security & Privacy settings[(https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
+You need to allow Oracle to be install in your [Security & Privacy settings](https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
 
 You will now need to [download Vagrant](https://www.vagrantup.com/downloads.html). Once Vagrant is downloaded you can use the following to get your vagrant environment up and running:
 
@@ -104,7 +104,7 @@ If we type mongo into the Ubuntu machines command line, we will enter the mongo 
 
 We now need to add the mongoDB integration for Datadog. [This article](https://www.datadoghq.com/blog/monitor-mongodb-performance-with-datadog/) will be a helpful reference. In the integrations section of Datadog search for mongoDB. Selecting the mongoDB integration will lead you to a configuration window as shown below:
 
-![alt text](https://cl.ly/2s0v2D1y2r46)
+![alt text](https://cl.ly/0Q3l203t123N/Image%202018-07-30%20at%2010.28.56%20AM.png)
 
 Here, Datadog will generate commands for you to run in the mongo shell. It will also provide the text of a mongo.yaml file. Follow the instructions to install the mongoDB Datadog Agent. 
 
@@ -116,11 +116,15 @@ Now you can go into your Datadog account, the dashboard list, and selecting mong
 
 ![alt text](https://cl.ly/132q451x1c1w/Image%202018-07-28%20at%202.34.29%20PM.png)
 
+After some time the dash board will have more data and look as follows:
+
+![alt text](https://cl.ly/3F342c433G1n/Image%202018-07-31%20at%209.49.59%20AM.png)
+
 The last component of collecting metrics from our infrastructure is extending the Datadog collection software to acquire custom metrics. We do this via a [custom Agent Check](https://docs.datadoghq.com/developers/agent_checks/). 
 
 To do this we will need to write a custom check in python and configure the Agent to run the check via a .yaml file. To illustrate a custom check, our code will generate a random number between 0-1000 and record that every 45 seconds. We will call this metric 'my_metric'
 
-Let’s call our check joshCheck. We will create a python file "checks.d/joshCheck.py" that contains the following:
+Let’s call our check joshCheck. We will create a python file "/etc/datadog-agent/checks.d/joshCheck.py" that contains the following:
 
 ```python
 from checks import AgentCheck
@@ -132,7 +136,7 @@ class joshBrownAgengCheck(AgentCheck):
 		self.gauge('my_metric', randint(0, 1000))
 ```
 
-Next, we need to create the .yaml file 'conf.d/joshCheck.yaml'. Please note, the .yaml file and .py file should have the same name. We will create the following joshCheck.yaml file:
+Next, we need to create the .yaml file '/etc/datadog-agent/conf.d/joshCheck.yaml'. Please note, the .yaml file and .py file should have the same name. We will create the following joshCheck.yaml file:
 
 ```
 init_config:
@@ -194,7 +198,7 @@ Next we will get the mongodb.uptime metric:
 
 This will yield the following result:
 
-![alt text](https://cl.ly/3t2W1Q1h0R3r)
+![alt text](https://cl.ly/3t2W1Q1h0R3r/Image%202018-07-30%20at%2011.26.23%20AM.png)
 
 We can see the blue line representing my_metric varying between 0-1000. 
 
@@ -210,11 +214,11 @@ What makes Datadog so powerful is how we can layer analysis on top of the data w
 
 See the graph below:
 
-![alt text](https://cl.ly/1f0V3L0w1o14)
+![alt text](https://cl.ly/1f0V3L0w1o14/Image%202018-07-30%20at%2012.01.10%20PM.png)
 
 More traditional analysis is also available. Below is an example of taking a one hour rolling average of the my_metric value.
 
-![alt text](https://cl.ly/2u0h0r2i2w2K)
+![alt text](https://cl.ly/2u0h0r2i2w2K/Image%202018-07-30%20at%202.35.53%20PM.png)
 
 For reference, here are the scripts used to create these graphs:
 
@@ -294,7 +298,9 @@ Folks often ask what the anomaly graph is actually displaying. To understand thi
 
 From the Datadog mongoDB integration documentation, mongodb.network.bytesinps represents "The number of bytes that reflects the amount of network traffic received by this database."
 
-So, the blue and red line in the [provided graph](https://cl.ly/1f0V3L0w1o14)) corresponds to the amount of network traffic the database received.
+So, the blue and red line in the graph below corresponds to the amount of network traffic the database received.
+
+[!alt text](https://cl.ly/1f0V3L0w1o14/Image%202018-07-30%20at%2012.01.10%20PM.png)
 
 Ok, so why does the line change colors and what is the grey area?
 
@@ -320,7 +326,7 @@ Recall, my_metric is a randomly generated value between 0 and 1000. Pretend that
 
 Setting up alerting in Datadog is straight forward as [this document outlines](https://docs.datadoghq.com/monitors/). If you open the New Monitor section under Monitors, you can configure you monitor to look like the following:
 
-![alt text](https://cl.ly/473e3M1O1Y2l)
+![alt text](https://cl.ly/473e3M1O1Y2l/Image%202018-07-30%20at%203.03.29%20PM.png)
 
 
 Please remember to add your team member to the monitor via the @mention in the Notify your team section. Note that I have created a custom message with template variables. This is helpful as context is critical to generating the proper response from team members.
@@ -415,7 +421,7 @@ Restart the Datadog agent and then start the flask app with 'ddtrace-run python 
 
 Now if you go to the APM section Datadog, select python, you will see:
 
-![alt text](https://cl.ly/0H0b2v2J012z)
+![alt text](https://cl.ly/0H0b2v2J012z/Image%202018-07-30%20at%204.03.30%20PM.png)
 
 Wait! We already did everything listed on that page. What is going on?
 
@@ -463,12 +469,12 @@ Our service is up and running but no data is being sent.
 
 The reason is that we have not hit one of the routes in our Flask app. If we use telnet to [send a GET request](http://blog.tonycode.com/tech-stuff/http-notes/making-http-requests-via-telnet/) and return to the APM section of Datadog we will now see:
 
-![alt text](https://cl.ly/3J270b1n1z2S)
+![alt text](https://cl.ly/0r273S3O1x0M/[8161635189fdab8c35834dcdd71d87d0]_dashboard.png)
 
 Now you can use the export function - top right hand corner of the graphs in the above image - to add these graphs to our previously created dashboard.
 
 [Dashboard with APM and Infrastructure](https://app.datadoghq.com/dash/873979/joshuas-timeboard-28-jul-2018-1851?live=true&page=0&is_auto=false&from_ts=1532807383334&to_ts=1532980183334&tile_size=m)
-![alt text](https://cl.ly/0J0T372m3Q3F)
+![alt text](https://cl.ly/0Z1J05011A2P)
 
 
 Datadog is now providing insights across Acmes application and infrastructure.
