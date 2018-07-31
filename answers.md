@@ -5,7 +5,7 @@ This POC will illustrate Datadog’s ability to tie infrastructure and applicati
 
 At the end of the POC we will have:
 	1. Set up a Vagrant Ubuntu Environment
-	2. Collect Metrics (memory and processor utilization, database uptime, ect) on our environment
+	2. Collect Metrics (memory and processor utilization, database uptime, etc) on our environment
 	3. Visualize these metrics to gain insights
 	4. Set up alerting conditions
 	5. Instrument our Flask application
@@ -19,7 +19,7 @@ At the end of the POC we will have:
 
 The first step in the POC is to replicate Acme's current technology stack. 
 
-Acme has developed a Flask web application that leverages MongoDB. It is deployed via on premise Ubuntu servers. We will use Vagrant and Virtual Box to create a test environment for the POC. 
+Acme has developed a Flask web application that leverages MongoDB. It is deployed via on-premise Ubuntu servers. We will use Vagrant and Virtual Box to create a test environment for the POC. 
 
 The first step is downloading and installing [Virtual Box](https://www.virtualbox.org/wiki/Downloads). 
 
@@ -27,7 +27,7 @@ Tip: If installing Virtual Box on a Mac and your installation fails with the fol
 
 ![alt text](https://cl.ly/0S380f2x1W3A/Image%2525202018-07-30%252520at%2525208.52.17%252520AM.png)
 
-You need to allow Oracle to be install in your [Security & Privacy settings](https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
+You need to allow Oracle to be installed in your [Security & Privacy settings](https://apple.stackexchange.com/questions/301303/virtualbox-5-1-28-fails-to-install-on-macos-10-13-due-to-kext-security)
 
 You will now need to [download Vagrant](https://www.vagrantup.com/downloads.html). Once Vagrant is downloaded you can use the following to get your vagrant environment up and running:
 
@@ -72,7 +72,7 @@ But Acme's use case requires more customization of these metrics. Acme needs to 
 
 To do this we will create tags and a [custom Data check](https://docs.datadoghq.com/developers/agent_checks/) in Datadog.
 
-[Tags](https://docs.datadoghq.com/getting_started/tagging/) are values descriptive value attached to data. This descriptive value help to filter and understand data. Tags will enable us to determine if a CPU usage value is coming from a server in New York or in Boston. 
+[Tags](https://docs.datadoghq.com/getting_started/tagging/) are descriptive values attached to data. This descriptive value help to filter and understand data. Tags will enable us to determine if a CPU usage value is coming from a server in New York or in Boston. 
 
 To [add tags to our application](https://help.datadoghq.com/hc/en-us/articles/203037169-Where-is-the-configuration-file-for-the-Agent-), we will need to open the datadog.yaml file which is located at "/etc/datadog-agent/datadog.yaml" on our Ubuntu machine.
 
@@ -86,7 +86,7 @@ tags:
  - env_type:test_instance
 ```
 
-After modifying the datadog.yaml file, restart the Agent and return to your Datadog event dashboard. You should notice your tags are no included in the start event as the following image shows.
+After modifying the datadog.yaml file, restart the Agent and return to your Datadog event dashboard. You should notice your tags are not included in the start event as the following image shows.
 
 ![alt text](https://cl.ly/3Z1N1T1g2h1O/Image%202018-07-28%20at%201.34.33%20PM.png)
 
@@ -95,7 +95,7 @@ You will also be able to see the tags in the Host Map section of your Datadog ac
 ![alt text](https://cl.ly/0Q3l203t123N)
 
 
-Now we need to show how Datadog integrates with mongoDB. First, lets get a mongoDB instance up. [This article](http://www.mkyong.com/mongodb/how-to-install-mongodb-on-ubuntu/) illustrates how to get mongoDB on Ubuntu. After going through the steps in the article we will want to check that our database is operational. 
+Now we need to show how Datadog integrates with mongoDB. First, let us get a mongoDB instance up. [This article](http://www.mkyong.com/mongodb/how-to-install-mongodb-on-ubuntu/) illustrates how to get mongoDB on Ubuntu. After going through the steps in the article we will want to check that our database is operational. 
 
 If we type mongo into the Ubuntu machines command line, we will enter the mongo shell. We can then type "show dbs" to verify we are connected to our database as shown below:
 
@@ -116,7 +116,7 @@ Now you can go into your Datadog account, the dashboard list, and selecting mong
 
 ![alt text](https://cl.ly/132q451x1c1w/Image%202018-07-28%20at%202.34.29%20PM.png)
 
-After some time the dash board will have more data and look as follows:
+After some time the dashboard will have more data and look as follows:
 
 ![alt text](https://cl.ly/3F342c433G1n/Image%202018-07-31%20at%209.49.59%20AM.png)
 
@@ -176,15 +176,15 @@ I am using Agent 6.
 
 ## Visualizing Data
 
-Data Acme's systems, database, and applications in isolation is useless. To reduce downtime and proactively identify weak spots in Acme's infrastructure, we need tie the data we are collecting in the previous section together.
+Data Acme's systems, database, and applications in isolation are useless. To reduce downtime and proactively identify weak spots in Acme's infrastructure, we need to tie the data we are collecting in the previous section together.
 
 To do this, we will use Datadog's [graphing and dashboard tools](https://docs.datadoghq.com/graphing/).
 
-First, in the Datadog web application, go to Dashboard>New Dash Board. You will see a series of widgets. Drag the Timeseries widget into the finish editing area. This will open a modal that will look like this:
+First, in the Datadog web application, go to Dashboard>New Dashboard. You will see a series of widgets. Drag the Timeseries widget into the finish editing area. This will open a modal that will look like this:
 
 ![alt text](https://cl.ly/3c162B3P0b3p/Image%202018-07-30%20at%2011.31.56%20AM.png)
 
-Before we dive into the modal, lets define what we want to see. 
+Before we dive into the modal, let us define what we want to see. 
 
 Let’s say the goal of this graph is to help debug an issue with one specific on premiss server. Pretend the issue involves my_metric and our mongoDB database on our server. It would be helpful to see the mongodb database's uptime overlaid on my_metric for this troublesome server.
 
@@ -192,7 +192,7 @@ To do this we will search for and select my_metric from the metric filter from o
 
 ![alt text](https://cl.ly/2P3x3Q0l0Z0v/Image%202018-07-29%20at%207.58.08%20AM.png)
 
-Next we will get the mongodb.uptime metric:
+Next, we will get the mongodb.uptime metric:
 
 ![alt text](https://cl.ly/1L3a2z1o1w2x/Image%202018-07-29%20at%207.58.40%20AM.png).
 
@@ -206,7 +206,7 @@ The mongodb.uptime increases until there is a start event at which point it retu
 
 Of course, once you solve the case of precise64 you will need to share your insights with the team. 
 
-Datadog makes this easy via the share button in the top write of the graph. You can @mention a team might with a screen shoot and notes as shown below.
+Datadog makes this easy via the share button in the top right of the graph. You can @mention a team might with a screen shot and notes as shown below.
 
 ![alt text](https://cl.ly/0u2M2a2b3x2n/Image%202018-07-29%20at%208.04.31%20AM.png)
 
@@ -216,7 +216,7 @@ See the graph below:
 
 ![alt text](https://cl.ly/1f0V3L0w1o14/Image%202018-07-30%20at%2012.01.10%20PM.png)
 
-More traditional analysis is also available. Below is an example of taking a one hour rolling average of the my_metric value.
+A more traditional analysis is also available. Below is an example of taking a one hour rolling average of the my_metric value.
 
 ![alt text](https://cl.ly/2u0h0r2i2w2K/Image%202018-07-30%20at%202.35.53%20PM.png)
 
@@ -306,7 +306,7 @@ Ok, so why does the line change colors and what is the grey area?
 
 The anomaly tool in Datadog looks at historic values and identifies when a value deviates from an expected range. The expected range is the grey area. A blue line means the value is in the expected range. The red means it falls outside of that range. 
 
-Our data set is small since we just started this server. Thus, you can see the expected value change (get wider in the y axis) as the model adds additional data points. 
+Our data set is small since we just started this server. Thus, you can see the expected value change (get wider in the y-axis) as the model adds additional data points. 
 
 Even as the model is being trained on this small dataset, it is smart enough to know that the network traffic from ~18:00 to ~07:00 is abnormal. This makes sense as we are looking at a period where the server was down and thus there was no network traffic. 
 
@@ -317,19 +317,19 @@ Zero traffic is definitely abnormal for a functioning database!
 
 ## Monitoring Data
 
-Being able to gain insights from data is useful. But proactively addressing problem to prevent major outages is the ultimate goal of Acme. This is where Datadog's monitoring tools come into play.
+Being able to gain insights from data is useful. But proactively addressing problems to prevent major outages is the ultimate goal of Acme. This is where Datadog's monitoring tools come into play.
 
 
 Let’s use my_metric to demonstrate Datadog's monitoring capabilities.
 
-Recall, my_metric is a randomly generated value between 0 and 1000. Pretend that values of 500 and above are import to know about. Values of 800 and above require immediate response. 
+Recall, my_metric is a randomly generated value between 0 and 1000. Pretend that values of 500 and above are important to know about. Values of 800 and above require an immediate response. 
 
-Setting up alerting in Datadog is straight forward as [this document outlines](https://docs.datadoghq.com/monitors/). If you open the New Monitor section under Monitors, you can configure you monitor to look like the following:
+Setting up alerts in Datadog is straightforward as [this document outlines](https://docs.datadoghq.com/monitors/). If you open the New Monitor section under Monitors, you can configure your monitor to look like the following:
 
 ![alt text](https://cl.ly/473e3M1O1Y2l/Image%202018-07-30%20at%203.03.29%20PM.png)
 
 
-Please remember to add your team member to the monitor via the @mention in the Notify your team section. Note that I have created a custom message with template variables. This is helpful as context is critical to generating the proper response from team members.
+Please remember to add your team member to the monitor via the @mention in the Notify your team section. Note that I have created a custom message with template variables. This is helpful as the context is critical to generating the proper response from team members.
 
 Given the warning and alert thresholds we have set, you should get an email similar to the following shortly after the monitor is saved.
 
@@ -337,7 +337,7 @@ Given the warning and alert thresholds we have set, you should get an email simi
 
 Nice! Now team members can be notified when something is amok. They will have the proper context and even custom messages with instructions on how to respond. 
 
-The customization of Datadog's monitoring is critical to avoiding the "boy who cried wolf situation." Monitoring that lacks customization can result in to many alerts with no context. This desensitizes team members to the emails and notifications they receive. 
+The customization of Datadog's monitoring is critical to avoiding the "boy who cried wolf situation." Monitoring that lacks customization can result in many alerts with no context. This desensitizes team members to the emails and notifications they receive. 
 
 This results in costly inaction when alerts are received. 
 
@@ -345,7 +345,7 @@ This results in costly inaction when alerts are received.
 
 Speaking of which, let’s look at how we can put a Monitor to sleep during periods where we do not need to be alerted. A good example might be planned server downtime on a weekend. 
 
-We can schedule one off or recurring downtime using the [Manage Downtime tool](https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/). 
+We can schedule one-off or recurring downtime using the [Manage Downtime tool](https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/). 
 
 I set up downtime at night as well as on the weekend for the my_metric monitor. Below are the email notifications I received after setting up the downtime.
 
@@ -471,7 +471,7 @@ The reason is that we have not hit one of the routes in our Flask app. If we use
 
 ![alt text](https://cl.ly/0r273S3O1x0M/[8161635189fdab8c35834dcdd71d87d0]_dashboard.png)
 
-Now you can use the export function - top right hand corner of the graphs in the above image - to add these graphs to our previously created dashboard.
+Now you can use the export function - top right-hand corner of the graphs in the above image - to add these graphs to our previously created dashboard.
 
 [Dashboard with APM and Infrastructure](https://app.datadoghq.com/dash/873979/joshuas-timeboard-28-jul-2018-1851?live=true&page=0&is_auto=false&from_ts=1532807383334&to_ts=1532980183334&tile_size=m)
 ![alt text](https://cl.ly/0Z1J05011A2P)
@@ -485,9 +485,9 @@ A service refers to functionality delivered by a group of processes. A resource 
 
 To illustrate, consider the application I developed for New Model Investing. 
 
-Part of the app I developed enables the user to search the database of trades made by the portfolio manager. This is the "trades_search" service. All of the background code - mongodb interface, real time calculations, ect - are a part of this service.
+Part of the app I developed enables the user to search the database of trades made by the portfolio manager. This is the "trades_search" service. All of the background code - mongodb interface, real-time calculations, etc - are a part of this service.
 
-The resource is a specific query made to the service. Looking at the url below you, everything after '/trades_serach/' is a part of the resource. The resource provides the service with the information to understand which trades the user is searching for.
+The resource is a specific query made to the service. Looking at the URL below you, everything after '/trades_serach/' is a part of the resource. The resource provides the service with the information to understand which trades the user is searching for.
 
 ```
 /trades_search/?&trade_type=Long-Call-Spread,&option_type=SLD,&trade_date=01/01/2018%20-%2005/04/2050,&expiry_date=01/01/2018%20-%2005/04/2050,&max_moneyness_at_initiation=,&min_moneyness_at_initiation=,&max_duration_at_initiation=,&min_duration_at_initiation=,&min_tp_added_at_initiation=,&max_tp_added_at_initiation=,&min_total_tp_added_at_initiation=,&max_total_tp_added_at_initiation=,&max_current_moneyness=,&min_current_moneyness=,&min_duration_current=,&max_duration_current=,&min_mtm_per_contract_profit=,&max_mtm_per_contract_profit=,&min_mtm_total_profit=,&max_mtm_total_profit=,&primary_sort=Symbol,&secondary_sort=Symbol,&third_sort=Symbol,&fourth_sort=Symbol,&reverse_sort=True,&max_number_of_results=,
