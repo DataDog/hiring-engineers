@@ -210,7 +210,7 @@ Datadog makes this easy via the share button in the top right of the graph. You 
 
 ![alt text](https://cl.ly/0u2M2a2b3x2n/Image%202018-07-29%20at%208.04.31%20AM.png)
 
-What makes Datadog so powerful is how we can layer analysis on top of the data we tie together in graphs. Let’s say as a next step we wanted to troubleshoot the metric mongodb.network.bytesinps. We can use Datadog's anomaly detection (https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) to identify trends in data that are abnormal. 
+What makes Datadog so powerful is how we can layer analysis on top of the data we tie together in graphs. Let’s say as a next step we wanted to troubleshoot the metric mongodb.network.bytesinps. We can use Datadog's [anomaly detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) to identify trends in data that are abnormal. 
 
 See the graph below:
 
