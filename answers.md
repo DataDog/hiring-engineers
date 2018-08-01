@@ -116,7 +116,6 @@ import sys
 
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
-from ddtrace import patch_all
 
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
@@ -160,8 +159,8 @@ Next I created a new dashboard showing both APM data and system metric data.
 
 **Is there anything creative you would use Datadog for?**
 
-1(practical). A good creative way to use Datadog, would be to monitor and report outages of utilities and services. Growing up in the NY suburbs, there's constantly outages do to hurricane season, heavy snow in the winter and accidents. Utilities and service providers getting information in real time without needing reports of outages from their customers will help them organize a solution faster. Telling the customer this information lets them know of the situation and that the company is on top of it without the customer needed to call having to call.
+1 (practical). A good creative way to use Datadog, would be to monitor and report outages of utilities and services. Growing up in the NY suburbs, there's constantly outages do to hurricane season, heavy snow in the winter and accidents. Utilities and service providers getting information in real time without needing reports of outages from their customers will help them organize a solution faster. Telling the customer this information lets them know of the situation and that the company is on top of it without the customer needed to call having to call.
 
-2(Fun). With E-Sports becoming more popular. Stats will become just as important as they are in other sports. Using Datadog, stats that have never been collected be collected now. This is good information that commentators to use. Example: last time someone got a 20 kills without dying in a round was John Smith September 9th 2017 at the grand tournament. This is good for old historical data. But Datadog’s ability to monitor real time can take it a step further. During tournaments, it can keep track of all stats across all games at once and compare this data to show who’s doing the best in which areas. This data can be display to people watching for a better experience.
+2 (Fun). With E-Sports becoming more popular. Stats will become just as important as they are in other sports. Using Datadog, stats that have never been collected be collected now. This is good information that commentators to use. Example: last time someone got a 20 kills without dying in a round was John Smith September 9th 2017 at the grand tournament. This is good for old historical data. But Datadog’s ability to monitor real time can take it a step further. During tournaments, it can keep track of all stats across all games at once and compare this data to show who’s doing the best in which areas. This data can be display to people watching for a better experience.
 
 
