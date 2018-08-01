@@ -106,24 +106,59 @@ A notification for each was setup of with custom messages to notify when the dow
 
 # Collecting APM Data:
 
-```python
-from ddtrace import tracer
+I took the Flask app provided and instrumented it using the APM.
 
-with tracer.trace("apm.basics", service="apm_services") as span:
-  span.set_tag("role", "exercise")
+```python
+from flask import Flask
+import blinker as _
+import logging
+import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+from ddtrace import patch_all
+
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="tracer-flask", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port='5051')
 ```
 
-![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/APM%20instrument.png)
+Next I created a new dashboard showing both APM data and system metric data.
 
-**Link to APM** - https://app.datadoghq.com/apm/service/apm_tracer/my_metric?start=1532735893790&end=1532739493790&env=none&paused=false
+![alt text](https://github.com/josephrivers/hiring-engineers/blob/master/support%20files/images/APM%20Dashboard.png)
 
-#### Bonus Question: What is the difference between a Service and a Resource?
+**Link to APM** - https://p.datadoghq.com/sb/9a994d2a2-de255325f8ff6c461f307736a3b1a7f0
 
-**Answer:** A service is a set of process that are doing a particular job. Where a resource is an action against a service such as a restful request to a webserver(process).
+
+### Bonus Question: What is the difference between a Service and a Resource?
+
+**Answer:** A service is a set of processes that are doing a particular job. Where a resource is an action against a service such as a restful request to a webserver(process).
 
 # Final Question:
 
-#### Is there anything creative you would use Datadog for?
+**Is there anything creative you would use Datadog for?**
 
 1(practical). A good creative way to use Datadog, would be to monitor and report outages of utilities and services. Growing up in the NY suburbs, there's constantly outages do to hurricane season, heavy snow in the winter and accidents. Utilities and service providers getting information in real time without needing reports of outages from their customers will help them organize a solution faster. Telling the customer this information lets them know of the situation and that the company is on top of it without the customer needed to call having to call.
 
