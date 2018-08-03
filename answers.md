@@ -39,6 +39,19 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 
 [Yaml file for custom check](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myCustomCheck.yaml)
 
+I verified that the check was not run every time by running the status command every 20 seconds or so and seeing "MyCustom Check" being peformed every other check.
+
+* Here is the first time run, shows the check did not run:
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/nocheck.png" title="Custom Check not run">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/nocheck.png"  alt="norun></a>
+
+* Here is the next time run, shows the check had run:
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/checkrun.png" title="Check has run">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/checkrun.png"  alt="checkrun"></a>
+
+
 * **Bonus Question** so as stated above I did set this up outside the Python file by using min_collection_interval in the YAML file.
 
 ## Visualizing Data:
