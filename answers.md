@@ -13,12 +13,15 @@ Adding tags to configuration file and showing them in host map:
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/HostMapTags.png" title="DataDogYamlTags">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/HostMapTags.png"  alt="_DSC4652"></a>
 
+
 * Screenshot showing mySQL metrics on host after installing mySQL and configuring the integration
+
 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/hostwmysql.png" title="DataDogYamlTags">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/hostwmysql.png"  alt="_DSC4652"></a>
 
 * Python file to create custom check to send my_metric a random value between of 0 and 1000:
+
 [Python file to create custom check](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myCustomCheck.py)
 
 * Tried to configure in the Python file to force it only sending the metric every 45 seconds. Was not able to properly determine the last time the metric ran. Found a couple of examples online but would not work. Thinking that checks are called every 15 - 20 seconds, I could check the last time it ran, find how long ago that was, and sleep for whatever time until we reach 45 seconds. Here is a screenshot of what I tried to do:
