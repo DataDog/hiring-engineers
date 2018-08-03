@@ -95,6 +95,14 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png
 
 I used ddtrace for the two python apps:
+* [pythonapp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/pythonapp.py)
+* [myPythonApp] (https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myPythonApp.py)
 
+And inserted the Middleware on the flask app:
+* [flaskapp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/flaskapp.py)
+
+**Bonus Question**
+
+Based on my experience during this exercise, it appears that DataDog can't get just about any type of data on the host that the agent is installed on. Given how software is eating the world and almost everything has an operating system installed on it, DataDog could be used to measure the real-time health of vehicles (Cars, Airplanes), Infrastructure (Nuclear Plant, Dam, etc...) and even Health Care Providers (provide metrics from all the various devices on a patient).
 
 
