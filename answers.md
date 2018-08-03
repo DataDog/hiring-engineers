@@ -21,7 +21,7 @@ Adding tags to configuration file and showing them in host map:
 
 * Python file used to create Timeboard:
 
-[Python file to create timeboard](https://github.com/cremerfc/hiring-engineers/blob/master/create_timeboard.py)
+[Python file to create timeboard](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/create_timeboard.py)
 
 
 
