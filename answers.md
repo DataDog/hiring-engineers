@@ -50,7 +50,7 @@ I verified that the check was not run every time by running the status command e
 * Here is the first time run, shows the check did not run:
 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/nocheck.png" title="Custom Check not run">
-<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/nocheck.png"  alt="norun></a>
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/nocheck.png"  alt="no_check_run"></a>
                                                                                                   
 
 * Here is the next time run, shows the check had run:
