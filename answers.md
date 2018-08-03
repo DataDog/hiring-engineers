@@ -5,20 +5,12 @@ Your answers to the questions go here.
 #### - Added tags: hello:world, machine:ubuntu/xenial and env:test
 #### - Please see image: 
 
-[[https://github.com/muratlutfigoncu/hiring-engineers/blob/master/images/question1.png]]
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/customcheck.png)
 
 
 ## Database Integration:
 
-```bash
-> sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-> echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-> sudo apt-get update
-> sudo apt-get install -y mongodb-org
-> sudo systemctl start mongod
-> sudo systemctl status mongod
 
-```
 From DataDog dashboard: Click Integrations and select PostgreSQL
 To collect database metrics, we need to create a user on PostgreSQL and grant access
 
@@ -53,7 +45,7 @@ sudo systemctl status datadog-agent	  ### check status of service
 sudo datadog-agent status ### check status of agent
 ```
 
-The result should be like the image bellow
+The result should be like the image below.
 #### - Please see image: postgres1.png
 
 Let's check our dashboard: click Dashboards on the menu and select Postgres - Metrics.
