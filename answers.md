@@ -279,7 +279,7 @@ A service is the name given to a set of processes that work together. For exampl
 
 # Final question:
 
-In Istanbul we have three bridges that connects two sides of the city (Europe and Asia). Generally people live in the asian side and travel through the european side for work. Everyday millions of people travels from Asia to Europe and vice versa and while passing pay tolls. In the rush hour, traffic jams are massive, as you can see in the image below :). DataDog  can be used to monitor the devices embedded in tollhouses. 
+In Istanbul we have three bridges that connects two sides of the city (Europe and Asia). Generally people live in the asian side and travel through the european side for work. Everyday millions of people travels from Asia to Europe and vice versa and while passing pay tolls. In the rush hour, traffic jams are massive, as you can see in the image below :). DataDog can be used to monitor the devices embedded in tollhouses used for automatic tolling.
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/traffic.jpg)
 
