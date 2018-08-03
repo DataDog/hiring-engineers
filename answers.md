@@ -13,3 +13,17 @@ Adding tags to configuration file and showing them in host map:
 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/HostMapTags.png" title="DataDogYamlTags">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/HostMapTags.png"  alt="_DSC4652"></a>
+
+* Screenshot showing mySQL metrics on host after installing mySQL and configuring the integration
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/hostwmysql.png" title="DataDogYamlTags">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/hostwmysql.png"  alt="_DSC4652"></a>
+
+* Python file used to create Timeboard:
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/master/create_timeboard.py" title="DataDogYamlTags">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/master/create_timeboard.py"  alt="_DSC4652"></a>
+
+
+
+
