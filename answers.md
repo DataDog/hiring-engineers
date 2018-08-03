@@ -37,6 +37,8 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 
 [Yaml file for custom check](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myCustomCheck.yaml)
 
+* **Bonus Question** so as stated above I did set this up outside the Python file by using min_collection_interval in the YAML file.
+
 ## Visualizing Data:
 
 * Python file used to create Timeboard:
@@ -53,7 +55,9 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/snapshot_email.png" title="Snapshot Email">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/snapshot_email.png"  alt="snapshot_email"></a>
 
+* **Bonus Question** The anomaly graph shows deviation from what the expected value is based on history. This is done by comparing the obvserved value against the expected value.
 
+## Monitoring Data
 
 
 
