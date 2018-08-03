@@ -76,12 +76,10 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 
 * Here is the email notifying me of the downtime:
 
-<a https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png title="Downtime weekdays email">
-<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png  alt="downtime_Weekdays_email"></a>
+<a https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png title="Downtime weekdays email"><img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png  alt="downtime_Weekdays_email"></a>
 
 * Here is the downtime scheduled for the weekend:
-<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png title="Downtime weekdend">
-<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png  alt="downtime_Weekdend"></a>
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png title="Downtime weekdend"><img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png  alt="downtime_Weekdend"></a>
 
 * Here is the email notifying me of the downtime:
 
