@@ -5,7 +5,7 @@ Your answers to the questions go here.
 #### - Added tags: hello:world, machine:ubuntu/xenial and env:test
 #### - Please see image: 
 
-![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/customcheck.png)
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/question1.png)
 
 
 ## Database Integration:
@@ -46,11 +46,11 @@ sudo datadog-agent status ### check status of agent
 ```
 
 The result should be like the image below.
-#### - Please see image: postgres1.png
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/postgres1.png)
 
 Let's check our dashboard: click Dashboards on the menu and select Postgres - Metrics.
 The result should be like the image bellow
-#### - Please see image: postgres2.png
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/postgres2.png)
 
 ##  Creating a Custom Check:
 To create a custom check we need to create two things: hello.py and a configuration file for that check hello.yaml. (Names should be the same).
@@ -90,7 +90,8 @@ min_collection_interval: 45  ##seconds
 ##  Bonus question:
 
 To change the collection interval, we can use the datadog user interface. For this click Metrics -> Summary then search for your metric, in our case my_metric, click on it. Now edit the metadata, custom change the interval.
-#### - Please see image: customcheck.png
+
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/customcheck.png)
 
 
 # Visualizing Data:
@@ -157,13 +158,16 @@ api.Timeboard.create(title=title,
 
 Created timeboard can be seen below:
 
-#### - Please see image: timeboard.png
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/timeboard.png)
+
 
 Created an annotation from my_metric graph. Result can be seen below:
 
-#### - Please see image: annotation.png
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/annotation.png)
+
 
 ## Bonus question:
+
 The anomaly graph is showing us where a metric is behaving differently than it has in the past.
 
 
@@ -186,12 +190,14 @@ Then created different messages for every condition and added the current value 
 ```
 
 On the image below we can see the screenshot of the mail notification
-#### - Please see image: mailnotif.png
+
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/mailnotif.png)
+
 
 ## Bonus:
 
 Let's start with weekdays. On the monitor page, navigate to Manage Downtime. From here selected the host that we want to silence (i.e. host:ubuntu-xenial). Created a silencer:  start date today, repeating everyday, beginning hour 19:00 and lasting 14 hours and no end date. This silencer will schedule downtime for weekdays but also weekends. But we want to schedule downtime for every weekend. To accomplish this we will need to create another scheduler. For example: start date would the next weekend (in my case 04/08/2018), repeating every 5 days, beginning hour 00:00 and lasting 24 hours.
-#### - Please see image:  downtimeschedule.png
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/downtimeschedule.png)
 
 # Collecting APM Data:
 
