@@ -202,10 +202,16 @@ Let's start with weekdays. On the monitor page, navigate to Manage Downtime. Fro
 # Collecting APM Data:
 
 
+Used the Flask application provided and insert the middleware.
+
 ```python
 from flask import Flask
 import logging
 import sys
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+from ddtrace import patch_all
+import blinker as _
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -216,6 +222,8 @@ c.setFormatter(formatter)
 main_logger.addHandler(c)
 
 app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="flask-trace", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
@@ -232,6 +240,21 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
-Used the Flask application provided. 
+
 
 First installed 
+
+
+## Bonus question (What is the difference between a Service and a Resource?):
+
+A service is the name given to a set of processes that work together. For example a web application can consist of two services: webapp and database. Whereas a resource is specific action for a service. In a web application an examples of a resource might be a canonical URL like /user/home.
+
+
+
+# Final question:
+
+In Istanbul we have three bridges that connects two sides of the city (Europe and Asia). Generally people live in the asian side and travel through the european side for work. Everyday millions of people travels from Asia to Europe and vice versa and while passing pay tolls. In the rush hour, traffic jams are massive, as you can see in the image below :). DataDog  can be used to monitor the devices embedded in tollhouses. 
+
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/traffic.jpg)
+
+
