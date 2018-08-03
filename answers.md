@@ -1,4 +1,10 @@
-Answers to Solution Engineering by Fernando Cremer (cremerfc@gmail.com)
+Thank you for the opportunity to participate in this exercise. It was fun.
+
+Here my answers, please let me know if you have any questions.
+
+Regards,
+
+Fernando Cremer (cremerfc@gmail.com)
 
 ## Collecting Metrics
 
@@ -117,7 +123,7 @@ https://app.datadoghq.com/screen/400682/fernandos-all-inclusive-screenboard?page
 
 I used ddtrace for the two python apps:
 * [pythonapp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/pythonapp.py)
-* [myPythonApp] (https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myPythonApp.py)
+* [myPythonApp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myPythonApp.py)
 
 And inserted the Middleware on the flask app:
 * [flaskapp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/flaskapp.py)
