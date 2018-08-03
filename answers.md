@@ -1,4 +1,5 @@
-Your answers to the questions go here.
+Candidate: Murat Goncu
+Contact: muratlutfigoncu@gmail.com
 
 # Collecting Metrics:
 
