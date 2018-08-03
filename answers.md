@@ -59,5 +59,10 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 
 ## Monitoring Data
 
+* Here is the configuration of the monitor that shows the alert and warning thresholds set accordingly abd the option to alert me if there is no data for more than 10 minutes:
+
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/AlertConfig.png title="Monitor Config">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/AlertConfig.png  alt="monitor config"></a>
+
 
 
