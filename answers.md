@@ -62,7 +62,32 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 * Here is the configuration of the monitor that shows the alert and warning thresholds set accordingly abd the option to alert me if there is no data for more than 10 minutes:
 
 <a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/AlertConfig.png title="Monitor Config">
-<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/AlertConfig.png  alt="monitor config"></a>
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/AlertConfig.png  alt="monitorconfig"></a>
+
+* Here is the email sent to my inbox from the monitor:
+
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/monitor_email.png title="Monitor Email">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/monitor_email.png  alt="monitor_email"></a>
+
+* Here is the downtime scheduled for Monday through Friday:
+
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_M_F.png title="Downtime weekdays">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_M_F.png  alt="downtime_Weekdays"></a>
+
+* Here is the email notifying me of the downtime:
+
+<a https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png title="Downtime weekdays email">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_wd_email.png  alt="downtime_Weekdays_email"></a>
+
+* Here is the downtime scheduled for the weekend:
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png title="Downtime weekdend">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_weekend.png  alt="downtime_Weekdend"></a>
+
+* Here is the email notifying me of the downtime:
+
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_we_email.png title="Downtime weekdays email">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_we_email.png  alt="downtime_Weekdays_email"></a>
+
 
 
 
