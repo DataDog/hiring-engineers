@@ -202,7 +202,7 @@ Let's start with weekdays. On the monitor page, navigate to Manage Downtime. Fro
 # Collecting APM Data:
 
 
-Used the Flask application provided and insert the middleware.
+Used the Flask application provided and insert the middleware. 
 
 ```python
 from flask import Flask
@@ -241,8 +241,34 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+To make APM trace work, first I enabled APM in datadog.yaml located in /etc/datadog-agent. The APM part in yaml file can be commented out:
 
-First installed 
+```yaml
+apm_config:
+#   Whether or not the APM Agent should run
+    enabled: true
+```
+
+Then restart datadog agent using terminal commands and check status of agent.
+
+```bash
+sudo systemctl restart datadog-agent
+sudo systemctl status datadog-agent
+```
+
+Finally run Flask application:
+
+```bash
+python test.py
+```
+
+Created a dashboard with values obtain from Flask application and also system metrics. 
+
+![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/dashboard.png)
+
+And here's the public url of the dashboard:
+
+https://p.datadoghq.com/sb/18ff9e83c-91b55934d75d1498487fd686be5dc6c1
 
 
 ## Bonus question (What is the difference between a Service and a Resource?):
