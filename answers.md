@@ -88,6 +88,16 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 <a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_we_email.png title="Downtime weekdays email">
 <img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/downtime_we_email.png  alt="downtime_Weekdays_email"></a>
 
+## Collecting APM Data:
+
+* Here is a screenshot of a screen board I created to show metrics from infrastrcuture and applications showing a CPU spike around the same time that one of the application had a spike in request hits:
+
+<a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png title="Inclusive Dashboard">
+<img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png  alt="inclusive_board"></a>
+
+https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png
+
+I used ddtrace for the two python apps:
 
 
 
