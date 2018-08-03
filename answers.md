@@ -37,10 +37,16 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 
 [Yaml file for custom check](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/myCustomCheck.yaml)
 
+## Visualizing Data:
 
 * Python file used to create Timeboard:
 
 [Python file to create timeboard](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/create_timeboard.py)
+
+* Here is a screenshot:
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png" title="Timeboard created by API">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png"  alt="TimeboardAPI"></a>
 
 
 
