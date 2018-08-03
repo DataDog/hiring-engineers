@@ -48,6 +48,12 @@ So ended up setting the min_collection_interval in the YAML file for the custom 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png" title="Timeboard created by API">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png"  alt="TimeboardAPI"></a>
 
+* Screenshot of email received from snapshot:
+
+<a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/snapshot_email.png" title="Snapshot Email">
+<img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/snapshot_email.png"  alt="snapshot_email"></a>
+
+
 
 
 
