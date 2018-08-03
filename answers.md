@@ -65,6 +65,10 @@ I verified that the check was not run every time by running the status command e
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png" title="Timeboard created by API">
 <img src="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/TimeboardAPI.png"  alt="TimeboardAPI"></a>
 
+* Here is the URL of the dashboard:
+
+https://app.datadoghq.com/dash/879150/fernandos-timeboard-for-the-excersice?live=true&page=0&is_auto=false&from_ts=1533308805362&to_ts=1533323205362&tile_size=m
+
 * Screenshot of email received from snapshot:
 
 <a href="https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/snapshot_email.png" title="Snapshot Email">
@@ -108,7 +112,8 @@ I verified that the check was not run every time by running the status command e
 <a href=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png title="Inclusive Dashboard">
 <img src=https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png  alt="inclusive_board"></a>
 
-https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/inclusive_board.png
+* Here is the URL for the Screen Board:
+https://app.datadoghq.com/screen/400682/fernandos-all-inclusive-screenboard?page=0&is_auto=false&from_ts=1533319740000&to_ts=1533323340000&live=true
 
 I used ddtrace for the two python apps:
 * [pythonapp](https://github.com/cremerfc/hiring-engineers/blob/solutions-engineer/pythonapp.py)
