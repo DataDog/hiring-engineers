@@ -1,7 +1,7 @@
 ### Candidate: Murat Goncu 
 ### Contact: muratlutfigoncu@gmail.com
 
-# Collecting Metrics:
+# 1 - Collecting Metrics:
 
 #### - Added tags: hello:world, machine:ubuntu/xenial and env:test
 #### - Please see image: 
@@ -9,7 +9,7 @@
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/question1.png)
 
 
-## Database Integration:
+## a - Database Integration:
 
 
 From DataDog dashboard: Click Integrations and select PostgreSQL
@@ -53,7 +53,7 @@ Let's check our dashboard: click Dashboards on the menu and select Postgres - Me
 The result should be like the image bellow
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/postgres2.png)
 
-##  Creating a Custom Check:
+## b - Creating a Custom Check:
 To create a custom check we need to create two things: hello.py and a configuration file for that check hello.yaml. (Names should be the same).
 hello.py should be placed in a folder called 'checks' 
 
@@ -80,7 +80,7 @@ class hello(AgentCheck):
 ```
 
 
-##  Editing custom check's collection interval:
+## c - Editing custom check's collection interval:
 
 In order to edit the collection interval, we need to edit hello.yaml file. 
 ```yaml
@@ -88,16 +88,16 @@ min_collection_interval: 45  ##seconds
 ```
 
 
-##  Bonus question:
+## d - Bonus question:
 
 To change the collection interval, we can use the datadog user interface. For this click Metrics -> Summary then search for your metric, in our case my_metric, click on it. Now edit the metadata, custom change the interval.
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/customcheck.png)
 
 
-# Visualizing Data:
+# 2 - Visualizing Data:
 
-## Timeboard
+## 1 - Timeboard
 In order to create a timeboard using the DataDog API, we need to create a pair of credentials (api key and app key). Navigate to Integrations -> API's and click create application key and create API key. Copy those keys, we will need them in our timeboard creator python  file.
 
 To create timeboard using DataDog API, created a python file like below. Which created three graphs: my_metric, postgresql.bgwriter.checkpoints_timed anomalies graph and my_metric 1 hour rollup graph, all from the host:ubuntu-xenial. 
@@ -193,23 +193,23 @@ Created an annotation from my_metric graph. Clicked the camera icon at the right
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/annotation.png)
 
 
-## Bonus question:
+## 2 - Bonus question:
 
 The anomaly graph is showing us where a metric is behaving differently than it has in the past. This type of graph will display in red color, when the anomaly happens.
 
 
-# Monitoring Data:
+# 3 - Monitoring Data:
 
-Created a new metric monitor for my_metric on host ubuntu-xenial. Selected my_metric then defined alert conditions:
-Alert if my_metric is above 800 over last 5 minutes
-Warning if my_metric is above 500 over last 5 minutes
-No Data if cannot receive values from my_metric for more than 10 minutes
+Created a new metric monitor for my_metric on host ubuntu-xenial. Selected my_metric then defined alert conditions: <br/>
+Alert if my_metric is above 800 over last 5 minutes <br/>
+Warning if my_metric is above 500 over last 5 minutes <br/>
+No Data if cannot receive values from my_metric for more than 10 minutes 
 
 Then created different messages for every condition and added the current value of my_metric to the message. The monitor will also send a notification to user. The message template can be found below:
 
 ```bash
 
-{{#is_alert}}  Alert: my_metric is above 800! Current value is {{value}} {{/is_alert}}
+{{#is_alert}}  Alert: my_metric is above 800! Current value is {{value}} {{host.ip}} {{/is_alert}}
 {{#is_warning}} Warning: my_metric is above 500! Current value is {{value}}  {{/is_warning}}
 {{#is_no_data}} No Data from my_metric over the last 10 minutes {{/is_no_data}}
 
@@ -223,10 +223,10 @@ On the image below we can see the screenshot of the mail notification.
 
 ## Bonus:
 
-Let's start with weekdays. On the monitor page, navigate to Manage Downtime. From here selected the host that we want to silence (i.e. host:ubuntu-xenial). Created a silencer:  start date today, repeating everyday, beginning hour 19:00 and lasting 14 hours and no end date. This silencer will schedule downtime for weekdays but also weekends. But we want to schedule downtime for every weekend. To accomplish this we will need to create another scheduler. For example: start date would the next weekend (in my case 04/08/2018), repeating every 5 days, beginning hour 00:00 and lasting 24 hours.
+Let's start with weekdays. On the monitor page, navigate to Manage Downtime. From here selected the host that we want to silence (i.e. host:ubuntu-xenial). Created a silencer:  start date today, repeating everyday, beginning hour 19:00 and lasting 14 hours and no end date. This silencer will schedule downtime for weekdays but also weekends. But we want to schedule downtime for every weekend. To accomplish this we will need to create another scheduler. For example: start date would the next weekend (in my case 04/08/2018), repeating every 5 days, beginning hour 00:00 and lasting 2 days.
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/downtimeschedule.png)
 
-# Collecting APM Data:
+# 4 - Collecting APM Data:
 
 
 Used the Flask application provided and insert the middleware. 
@@ -311,7 +311,7 @@ A service is the name given to a set of processes that work together. For exampl
 
 
 
-# Final question:
+# 5 - Final question:
 
 In Istanbul we have three bridges that connects two sides of the city (Europe and Asia). Generally people live in the asian side and travel through the european side for work. Everyday millions of people travels from Asia to Europe and vice versa and while passing pay tolls. In the rush hour, traffic jams are massive, as you can see in the image below :). DataDog can be used to monitor the devices embedded in tollhouses used for automatic tolling.
 
