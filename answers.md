@@ -1,5 +1,5 @@
-Candidate: Murat Goncu
-Contact: muratlutfigoncu@gmail.com
+### Candidate: Murat Goncu 
+### Contact: muratlutfigoncu@gmail.com
 
 # Collecting Metrics:
 
@@ -98,33 +98,58 @@ To change the collection interval, we can use the datadog user interface. For th
 # Visualizing Data:
 
 ## Timeboard
-In order to create a timeboard using the DataDog API, we need to create a pair of credentials (api key and app key). Created timeboard using DataDog API, created a python file like below. Which created three graphs: my_metric, postgresql.bgwriter.checkpoints_timed anomalies graph and my_metric 1 hour rollup graph, all from the host:ubuntu-xenial
+In order to create a timeboard using the DataDog API, we need to create a pair of credentials (api key and app key). Navigate to Integrations -> API's and click create application key and create API key. Copy those keys, we will need them in our timeboard creator python  file.
+
+To create timeboard using DataDog API, created a python file like below. Which created three graphs: my_metric, postgresql.bgwriter.checkpoints_timed anomalies graph and my_metric 1 hour rollup graph, all from the host:ubuntu-xenial. 
+
+In order to run the python file below (timeboardCreator.py), we have to install python datadog module in our system, we will be using pip to install packages. If your system doesn't have pip you can install with the following commands:
+
+```bash
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+
+```bash
+pip install datadog
+```
+We can confirm python datadog installation by using python shell:
+
+```bash
+$ python
+>>> import datadog
+>>> print datadog.__version__
+```
+
 
 ```python
+### timeboardCreator.py
+
 from datadog import initialize, api
 
 options = {
-    'api_key': '18ee9d63a4db532ab3db2d6b1fd4af9a',
-    'app_key': '2b1e8c7585b5ff070558a11e289e7b1f27531a2b'
+    'api_key': '****',  # Enter the api key
+    'app_key': '****'   # Enter the app key 
 }
 
 initialize(**options)
 
-title = "My Timeboard"
-description = "An informative timeboard."
-graphs = [
+title = "My Timeboard"                          # Give your timeboard a title
+description = "An informative timeboard."       # Description of your timeboard
+graphs = [                                      # Make a list of the graphs that you want to create in the timeboard
 
+    ### Json used to create my_metric graph
     {
         "definition": {
             "events": [],
             "requests": [
-                {   "q": "avg:my_metric{host:ubuntu-xenial}",
+                {   "q": "avg:my_metric{host:ubuntu-xenial}", 
                 }
             ],
         },
-        "title": "my_metric"
+        "title": "my_metric" ## Title of the graph
     },
 
+    ### Json used to create graph from postgresql metric
     {
         "definition": {
             "events": [],
@@ -134,9 +159,10 @@ graphs = [
                 }
             ],
         },
-        "title": "bgwriter.checkpoints_timed anomalies"
-    },
+        "title": "bgwriter.checkpoints_timed anomalies" ## Title of the graph
+    }, 
 
+    ### Json used to create graph from my_metric (rollup of 1 hour)
     {
         "definition": {
             "events": [],
@@ -146,7 +172,7 @@ graphs = [
                 }
             ],
         },
-        "title": "my_metric rollup"
+        "title": "my_metric rollup" ## Title of the graph
     },
 ]
 read_only = True
@@ -162,14 +188,14 @@ Created timeboard can be seen below:
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/timeboard.png)
 
 
-Created an annotation from my_metric graph. Result can be seen below:
+Created an annotation from my_metric graph. Clicked the camera icon at the right-corner of the my_metric graph and entered the user email to annotate. Result can be seen below:
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/annotation.png)
 
 
 ## Bonus question:
 
-The anomaly graph is showing us where a metric is behaving differently than it has in the past.
+The anomaly graph is showing us where a metric is behaving differently than it has in the past. This type of graph will display in red color, when the anomaly happens.
 
 
 # Monitoring Data:
@@ -190,7 +216,7 @@ Then created different messages for every condition and added the current value 
 @muratlutfigoncu@gmail.com
 ```
 
-On the image below we can see the screenshot of the mail notification
+On the image below we can see the screenshot of the mail notification.
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/mailnotif.png)
 
@@ -242,7 +268,13 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-To make APM trace work, first I enabled APM in datadog.yaml located in /etc/datadog-agent. The APM part in yaml file can be commented out:
+Intalled necesasary packages to run this python flask application:
+
+```bash
+pip install flask ddtrace blinker
+```
+
+To make APM trace work, first we need to enabled APM config in datadog.yaml located in /etc/datadog-agent. The APM part in yaml file can be commented out:
 
 ```yaml
 apm_config:
@@ -263,11 +295,12 @@ Finally run Flask application:
 python test.py
 ```
 
+In a couple of minutes, DataDog APM will start to display metrics obtained from our Flask application.
 Created a dashboard with values obtain from Flask application and also system metrics. 
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/dashboard.png)
 
-And here's the public url of the dashboard:
+Also we can create a public url to share our dashboard with others, on the Dashboard page click the settings icon and click generate public URL. Here's the public url of the dashboard:
 
 https://p.datadoghq.com/sb/18ff9e83c-91b55934d75d1498487fd686be5dc6c1
 
@@ -281,6 +314,7 @@ A service is the name given to a set of processes that work together. For exampl
 # Final question:
 
 In Istanbul we have three bridges that connects two sides of the city (Europe and Asia). Generally people live in the asian side and travel through the european side for work. Everyday millions of people travels from Asia to Europe and vice versa and while passing pay tolls. In the rush hour, traffic jams are massive, as you can see in the image below :). DataDog can be used to monitor the devices embedded in tollhouses used for automatic tolling.
+
 
 ![alt text](https://raw.githubusercontent.com/muratlutfigoncu/hiring-engineers/master/images/traffic.jpg)
 
