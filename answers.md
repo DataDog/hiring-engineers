@@ -14,3 +14,5 @@ Signed up as Datadog Recruiting Candidate to get necessary credentials to instal
 Collecting Metrics:
 
 Added tags in agent config file datadog.yaml
+
+![tags in yaml](https://raw.github.com/syedghouri/hiring-engineers/Tag names in file.png?raw=true)
