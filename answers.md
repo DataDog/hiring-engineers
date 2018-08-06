@@ -16,3 +16,5 @@ Collecting Metrics:
 Added tags in agent config file datadog.yaml
 
 ![tags in yaml](https://raw.github.com/syedghouri/hiring-engineers/Tag names in file.png?raw=true)
+
+![tags in yaml](https://raw.githubusercontent.com/syedghouri/hiring-engineers/Tag%20names%20in%20file.png)
