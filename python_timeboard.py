@@ -9,7 +9,7 @@ options = {
 
 initialize(**options)
 
-title = "My Timeboard test"
+title = "Syed's Timeboard from API"
 description = "Visualizing metrics"
 graphs = [{
     "definition": {
