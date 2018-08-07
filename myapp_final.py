@@ -20,7 +20,7 @@ main_logger.addHandler(c)
 
 app = Flask(__name__)
 
-#traced_app = TraceMiddleware(app, tracer, service="my-app", distributed_tracing=False)
+traced_app = TraceMiddleware(app, tracer, service="my-app", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
