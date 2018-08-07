@@ -86,7 +86,7 @@ On referring API docs, the dashboard is created using the python API.
 avg:my_metric{env:my_ubuntu1}
 
 •	Query for anomaly function applied on metric from databae
-avg(last_4h):anomalies(avg:mysql.performance.queries{mytag_hiring_challenge} by {host}, 'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1
+"avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5"
 
 •	Query for custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 sum:my_metric{mytag_hiring_challenge}.rollup(sum, 3600)
@@ -110,7 +110,12 @@ Dashboard:
 
 Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction of bounds, the time period of lookup data can be decided based on query.
 
-This is currently set for mysql.performance.queries metric for host my_hiring_challenge to check if the metric value is above or below 2 standard deviations away threshold from normal value is last 15 minutes using the following query
+Currently based on the following query
+
+avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5
+
+It checks if the mysql.performance.queries is greater than 0.5 in last 4 hours
+
 
 
 <h2>Monitoring Data</h2>
