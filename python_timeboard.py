@@ -9,7 +9,7 @@ options = {
 
 initialize(**options)
 
-title = "Syed's Timeboard from API"
+title = "My Timeboard test"
 description = "Visualizing metrics"
 graphs = [{
     "definition": {
@@ -52,7 +52,7 @@ read_only = True
 
 api.Monitor.create(
     type="metric alert",
-    query="avg(last_1h):sum:system.net.bytes_rcvd{host:host0} > 100",
+    query="avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5",
     name="Anomalous check for metric from database.",
     message="Anomaly function applied on metric from database.",
 )
