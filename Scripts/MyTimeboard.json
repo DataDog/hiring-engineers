@@ -1,0 +1,36 @@
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "avg:my_metric{*}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    },
+    {
+      "q": "avg:my_metric{*}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true
+}
