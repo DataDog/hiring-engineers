@@ -323,10 +323,10 @@ sudo nano my_app.py
 ```
 
 This opens an editor, which is blank, add in below :
-
+```python
 from flask import Flask
 import logging
-import sys
+import sys 
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -352,6 +352,8 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+```
+
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Type these commands:
 ddtrace-run python my_app.py
