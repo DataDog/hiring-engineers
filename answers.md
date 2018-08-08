@@ -106,7 +106,7 @@ Dashboard:
 
 ![dashboard](https://imgur.com/WrJeYhd.png)
 
-•	Bonus Question: What is the Anomaly graph displaying?
+**•	Bonus Question: What is the Anomaly graph displaying?**
 
 Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction and intensity (deviation number)of bounds, the time period of lookup data can be decided based on query. 
 
