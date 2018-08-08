@@ -103,7 +103,8 @@ sudo nano conf.yaml
 This opens an editor, please scroll down til you see the section “#instances:” , uncomment instances:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
 
-<d1><pre>
+<d1>
+<pre>
  - server: 127.0.0.1
    user: datadog
    pass: 'PASSWORD'
@@ -116,7 +117,8 @@ Be careful, the spacing is important. Can either uncomment appropriate lines, or
        extra_performance_metrics: true
        schema_size_metrics: false
        disable_innodb_metrics: false
-</pre></d1>
+</pre>
+</d1>
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.mysql.d.conf.yaml
