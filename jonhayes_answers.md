@@ -1,8 +1,6 @@
-Hello please allow me to take you through this exercise.
-Step 0, getting started
-I have a laptop with some free drive space. I needed to enable VT-x options in the bios.
-Software, install virtualbox, which can be gotten from 
-https://www.virtualbox.org/wiki/Downloads
+Hello, please allow me to take you through this exercise.
+Getting started.
+I needed to enable VT-x options in the bios of the laptop first. Available inventory, a laptop with some free drive space, and [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 Next up was to install vagrant. This resulted in a running virtual machine vm, with just an ssh terminal. This worked, until laptop went to sleep, woken up and the vm was corrupt. The rest of the exercise was performed inside a normal vm inside virtualbox. Please see this guide to installing ubuntu as a vm inside virtualbox :
 https://askubuntu.com/questions/142549/how-to-install-ubuntu-on-virtualbox
 last prep step was to sign up for DataDog trial. This process asks a few questions and results with an api key that associates your company with the DataDog servers.   
@@ -21,8 +19,8 @@ cd /etc/datadog-agent
 sudo cp datadog.yaml datadog.yaml.bak
 sudo nano datadog.yaml
 
-Side note : the second line above is a safety measue, to enable ìrollbackî should something go wrong. Not strictly needed, just a safety precaution.
-This opens an editor, please scroll down til you see the section #tagsî, uncomment tags: by removing the # in front, 
+Side note : the second line above is a safety measue, to enable ‚Äúrollback‚Äù should something go wrong. Not strictly needed, just a safety precaution.
+This opens an editor, please scroll down til you see the section #tags‚Äù, uncomment tags: by removing the # in front, 
 and follow by adding in the rest seen below, change tags ass desired.
 tags:
  - region:east
@@ -78,7 +76,7 @@ Type these commands:
 cd /etc/datadog-agent/conf.d/mysql.d
 sudo nano conf.yaml
 
-This opens an editor, please scroll down til you see the section ì#instances:î , uncomment instances:, add in this below.
+This opens an editor, please scroll down til you see the section ‚Äú#instances:‚Äù , uncomment instances:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
 
  - server: 127.0.0.1
@@ -157,7 +155,7 @@ cd /etc/datadog-agent/conf.d/mysql.d
 sudo cp conf.yaml conf.yaml.bak
 sudo nano conf.yaml
 
-This opens an editor, please scroll down til you see the section ì#logs:î , uncomment logs:, add in this below.
+This opens an editor, please scroll down til you see the section ‚Äú#logs:‚Äù , uncomment logs:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
 
 logs:
@@ -253,7 +251,7 @@ please see dd-04
 shows up in events, also see dd-02
 
 --Bonus Question: What is the Anomaly graph displaying?
-By analyzing a metricís historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. Anomaly detection can separate the trend component from the seasonal component of a timeseries, so it can track metrics that are trending steadily upward or downward. its not just a high or a low, it is using statistical models to detect something outside of normal. for example traffic, might be slow on a sunday morning, but to hit that same lower number on a Tuesday afternoon would not trigger a normal alert, it needs to correlate historical trends. 
+By analyzing a metric‚Äôs historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. Anomaly detection can separate the trend component from the seasonal component of a timeseries, so it can track metrics that are trending steadily upward or downward. its not just a high or a low, it is using statistical models to detect something outside of normal. for example traffic, might be slow on a sunday morning, but to hit that same lower number on a Tuesday afternoon would not trigger a normal alert, it needs to correlate historical trends. 
 
 
 Monitoring Data
