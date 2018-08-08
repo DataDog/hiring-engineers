@@ -1,0 +1,452 @@
+## /etc/datadog-agent/datadog.yaml
+
+# Set the host's tags (optional)
+tags:
+  - env:virtualbox
+  - name:dd-excercise
+#   - mytag
+#   - env:prod
+#   - role:database
+
+
+## Restart the Agent
+
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ 
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ sudo service datadog-agent restart
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ 
+
+
+
+## Install MySQL
+
+vagrant@ubuntu-xenial:~$ sudo apt update
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]               
+Hit:2 http://archive.ubuntu.com/ubuntu xenial InRelease  
+Ign:3 https://apt.datadoghq.com stable InRelease                                   
+Hit:4 https://apt.datadoghq.com stable Release                                     
+Get:5 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [109 kB]           
+Get:7 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [107 kB]                    
+Get:8 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [820 kB]
+Get:9 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [675 kB]                                                                                  
+Fetched 1818 kB in 7s (231 kB/s)                                                                                                                                        
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+vagrant@ubuntu-xenial:~$ 
+vagrant@ubuntu-xenial:~$ 
+vagrant@ubuntu-xenial:~$ sudo apt install mysql-server mysql-client
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.0-5 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl
+  libhttp-date-perl libhttp-message-perl libio-html-perl liblwp-mediatypes-perl libtimedate-perl liburi-perl mysql-client-5.7 mysql-client-core-5.7 mysql-common
+  mysql-server-5.7 mysql-server-core-5.7
+Suggested packages:
+  libdata-dump-perl libipc-sharedcache-perl libwww-perl mailx tinyca
+The following NEW packages will be installed:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.0-5 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl
+  libhttp-date-perl libhttp-message-perl libio-html-perl liblwp-mediatypes-perl libtimedate-perl liburi-perl mysql-client mysql-client-5.7 mysql-client-core-5.7
+  mysql-common mysql-server mysql-server-5.7 mysql-server-core-5.7
+0 upgraded, 22 newly installed, 0 to remove and 2 not upgraded.
+Need to get 19.4 MB of archives.
+After this operation, 163 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-common all 5.7.23-0ubuntu0.16.04.1 [15.4 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial/main amd64 libaio1 amd64 0.3.110-2 [6356 B]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-client-core-5.7 amd64 5.7.23-0ubuntu0.16.04.1 [6675 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-client-5.7 amd64 5.7.23-0ubuntu0.16.04.1 [1662 kB]                                               
+Get:5 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-server-core-5.7 amd64 5.7.23-0ubuntu0.16.04.1 [7765 kB]                                          
+Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libevent-core-2.0-5 amd64 2.0.21-stable-2ubuntu0.16.04.1 [70.6 kB]                                     
+Get:7 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-server-5.7 amd64 5.7.23-0ubuntu0.16.04.1 [2597 kB]                                               
+Get:8 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhtml-tagset-perl all 3.20-2 [13.5 kB]                                                                       
+Get:9 http://archive.ubuntu.com/ubuntu xenial/main amd64 liburi-perl all 1.71-1 [76.9 kB]                                                                               
+Get:10 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhtml-parser-perl amd64 3.72-1 [86.1 kB]                                                                    
+Get:11 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcgi-pm-perl all 4.26-1 [185 kB]                                                                            
+Get:12 http://archive.ubuntu.com/ubuntu xenial/main amd64 libfcgi-perl amd64 0.77-1build1 [32.3 kB]                                                                     
+Get:13 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcgi-fast-perl all 1:2.10-1 [10.2 kB]                                                                       
+Get:14 http://archive.ubuntu.com/ubuntu xenial/main amd64 libencode-locale-perl all 1.05-1 [12.3 kB]                                                                    
+Get:15 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhtml-template-perl all 2.95-2 [60.4 kB]                                                                    
+Get:16 http://archive.ubuntu.com/ubuntu xenial/main amd64 libtimedate-perl all 2.3000-2 [37.5 kB]                                                                       
+Get:17 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhttp-date-perl all 6.02-1 [10.4 kB]                                                                        
+Get:18 http://archive.ubuntu.com/ubuntu xenial/main amd64 libio-html-perl all 1.001-1 [14.9 kB]                                                                         
+Get:19 http://archive.ubuntu.com/ubuntu xenial/main amd64 liblwp-mediatypes-perl all 6.02-1 [21.7 kB]                                                                   
+Get:20 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhttp-message-perl all 6.11-1 [74.3 kB]                                                                     
+Get:21 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-client all 5.7.23-0ubuntu0.16.04.1 [10.0 kB]                                                    
+Get:22 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 mysql-server all 5.7.23-0ubuntu0.16.04.1 [10.8 kB]                                                    
+Fetched 19.4 MB in 31s (610 kB/s)                                                                                                                                       
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+Preconfiguring packages ...
+/usr/bin/locale: Cannot set LC_CTYPE to default locale: No such file or directory
+/usr/bin/locale: Cannot set LC_ALL to default locale: No such file or directory
+Selecting previously unselected package mysql-common.
+(Reading database ... 65178 files and directories currently installed.)
+Preparing to unpack .../mysql-common_5.7.23-0ubuntu0.16.04.1_all.deb ...
+Unpacking mysql-common (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package libaio1:amd64.
+Preparing to unpack .../libaio1_0.3.110-2_amd64.deb ...
+Unpacking libaio1:amd64 (0.3.110-2) ...
+Selecting previously unselected package mysql-client-core-5.7.
+Preparing to unpack .../mysql-client-core-5.7_5.7.23-0ubuntu0.16.04.1_amd64.deb ...
+Unpacking mysql-client-core-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package mysql-client-5.7.
+Preparing to unpack .../mysql-client-5.7_5.7.23-0ubuntu0.16.04.1_amd64.deb ...
+Unpacking mysql-client-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package mysql-server-core-5.7.
+Preparing to unpack .../mysql-server-core-5.7_5.7.23-0ubuntu0.16.04.1_amd64.deb ...
+Unpacking mysql-server-core-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package libevent-core-2.0-5:amd64.
+Preparing to unpack .../libevent-core-2.0-5_2.0.21-stable-2ubuntu0.16.04.1_amd64.deb ...
+Unpacking libevent-core-2.0-5:amd64 (2.0.21-stable-2ubuntu0.16.04.1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up mysql-common (5.7.23-0ubuntu0.16.04.1) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Selecting previously unselected package mysql-server-5.7.
+(Reading database ... 65346 files and directories currently installed.)
+Preparing to unpack .../mysql-server-5.7_5.7.23-0ubuntu0.16.04.1_amd64.deb ...
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+Unpacking mysql-server-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package libhtml-tagset-perl.
+Preparing to unpack .../libhtml-tagset-perl_3.20-2_all.deb ...
+Unpacking libhtml-tagset-perl (3.20-2) ...
+Selecting previously unselected package liburi-perl.
+Preparing to unpack .../liburi-perl_1.71-1_all.deb ...
+Unpacking liburi-perl (1.71-1) ...
+Selecting previously unselected package libhtml-parser-perl.
+Preparing to unpack .../libhtml-parser-perl_3.72-1_amd64.deb ...
+Unpacking libhtml-parser-perl (3.72-1) ...
+Selecting previously unselected package libcgi-pm-perl.
+Preparing to unpack .../libcgi-pm-perl_4.26-1_all.deb ...
+Unpacking libcgi-pm-perl (4.26-1) ...
+Selecting previously unselected package libfcgi-perl.
+Preparing to unpack .../libfcgi-perl_0.77-1build1_amd64.deb ...
+Unpacking libfcgi-perl (0.77-1build1) ...
+Selecting previously unselected package libcgi-fast-perl.
+Preparing to unpack .../libcgi-fast-perl_1%3a2.10-1_all.deb ...
+Unpacking libcgi-fast-perl (1:2.10-1) ...
+Selecting previously unselected package libencode-locale-perl.
+Preparing to unpack .../libencode-locale-perl_1.05-1_all.deb ...
+Unpacking libencode-locale-perl (1.05-1) ...
+Selecting previously unselected package libhtml-template-perl.
+Preparing to unpack .../libhtml-template-perl_2.95-2_all.deb ...
+Unpacking libhtml-template-perl (2.95-2) ...
+Selecting previously unselected package libtimedate-perl.
+Preparing to unpack .../libtimedate-perl_2.3000-2_all.deb ...
+Unpacking libtimedate-perl (2.3000-2) ...
+Selecting previously unselected package libhttp-date-perl.
+Preparing to unpack .../libhttp-date-perl_6.02-1_all.deb ...
+Unpacking libhttp-date-perl (6.02-1) ...
+Selecting previously unselected package libio-html-perl.
+Preparing to unpack .../libio-html-perl_1.001-1_all.deb ...
+Unpacking libio-html-perl (1.001-1) ...
+Selecting previously unselected package liblwp-mediatypes-perl.
+Preparing to unpack .../liblwp-mediatypes-perl_6.02-1_all.deb ...
+Unpacking liblwp-mediatypes-perl (6.02-1) ...
+Selecting previously unselected package libhttp-message-perl.
+Preparing to unpack .../libhttp-message-perl_6.11-1_all.deb ...
+Unpacking libhttp-message-perl (6.11-1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_5.7.23-0ubuntu0.16.04.1_all.deb ...
+Unpacking mysql-client (5.7.23-0ubuntu0.16.04.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../mysql-server_5.7.23-0ubuntu0.16.04.1_all.deb ...
+Unpacking mysql-server (5.7.23-0ubuntu0.16.04.1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for systemd (229-4ubuntu21.4) ...
+Setting up libaio1:amd64 (0.3.110-2) ...
+Setting up mysql-client-core-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Setting up mysql-client-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Setting up mysql-server-core-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+Setting up libevent-core-2.0-5:amd64 (2.0.21-stable-2ubuntu0.16.04.1) ...
+Setting up mysql-server-5.7 (5.7.23-0ubuntu0.16.04.1) ...
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Renaming removed key_buffer and myisam-recover options (if present)
+Setting up libhtml-tagset-perl (3.20-2) ...
+Setting up liburi-perl (1.71-1) ...
+Setting up libhtml-parser-perl (3.72-1) ...
+Setting up libcgi-pm-perl (4.26-1) ...
+Setting up libfcgi-perl (0.77-1build1) ...
+Setting up libcgi-fast-perl (1:2.10-1) ...
+Setting up libencode-locale-perl (1.05-1) ...
+Setting up libhtml-template-perl (2.95-2) ...
+Setting up libtimedate-perl (2.3000-2) ...
+Setting up libhttp-date-perl (6.02-1) ...
+Setting up libio-html-perl (1.001-1) ...
+Setting up liblwp-mediatypes-perl (6.02-1) ...
+Setting up libhttp-message-perl (6.11-1) ...
+Setting up mysql-client (5.7.23-0ubuntu0.16.04.1) ...
+Setting up mysql-server (5.7.23-0ubuntu0.16.04.1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Processing triggers for systemd (229-4ubuntu21.4) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+vagrant@ubuntu-xenial:~$ 
+
+
+
+
+## Setup MySQL Monitoring
+
+https://docs.datadoghq.com/integrations/mysql/
+https://app.datadoghq.com/account/settings#integrations/mysql
+
+vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'password';" -u root -p 
+Enter password: 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;" -u root -p
+Enter password: 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';" -u root -p
+Enter password: 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';" -u root -p
+Enter password: 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ mysql -u datadog --password='password' -e "show status" | \
+> grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+> echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Uptime	980
+Uptime_since_flush_status	980
+MySQL user - OK
+vagrant@ubuntu-xenial:/etc/datadog-agent$ mysql -u datadog --password='jJdsZ8Hlv(VFiTCIDXLtMChM' -e "show slave status" && \
+> echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+> echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'datadog'@'localhost' (using password: YES)
+Missing REPLICATION CLIENT grant
+vagrant@ubuntu-xenial:/etc/datadog-agent$ mysql -u datadog --password='password' -e "SELECT * FROM performance_schema.threads" && \
+> echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
+> echo -e "\033[0;31mMissing SELECT grant\033[0m"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++-----------+----------------------------------------+------------+----------------+------------------+------------------+----------------+---------------------+------------------+-------------------+------------------------------------------+------------------+------+--------------+---------+-----------------+--------------+
+| THREAD_ID | NAME                                   | TYPE       | PROCESSLIST_ID | PROCESSLIST_USER | PROCESSLIST_HOST | PROCESSLIST_DB | PROCESSLIST_COMMAND | PROCESSLIST_TIME | PROCESSLIST_STATE | PROCESSLIST_INFO                         | PARENT_THREAD_ID | ROLE | INSTRUMENTED | HISTORY | CONNECTION_TYPE | THREAD_OS_ID |
++-----------+----------------------------------------+------------+----------------+------------------+------------------+----------------+---------------------+------------------+-------------------+------------------------------------------+------------------+------+--------------+---------+-----------------+--------------+
+|         1 | thread/sql/main                        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             1027 | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10704 |
+|         2 | thread/sql/thread_timer_notifier       | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |                1 | NULL | YES          | YES     | NULL            |        10711 |
+|         3 | thread/innodb/io_ibuf_thread           | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10712 |
+|         4 | thread/innodb/io_log_thread            | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10713 |
+|         5 | thread/innodb/io_read_thread           | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10714 |
+|         6 | thread/innodb/io_read_thread           | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10715 |
+|         7 | thread/innodb/io_read_thread           | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10716 |
+|         8 | thread/innodb/io_read_thread           | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10717 |
+|         9 | thread/innodb/io_write_thread          | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10718 |
+|        10 | thread/innodb/io_write_thread          | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10719 |
+|        11 | thread/innodb/io_write_thread          | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10720 |
+|        12 | thread/innodb/io_write_thread          | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10721 |
+|        13 | thread/innodb/page_cleaner_thread      | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10722 |
+|        15 | thread/innodb/srv_lock_timeout_thread  | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10724 |
+|        16 | thread/innodb/srv_error_monitor_thread | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10725 |
+|        17 | thread/innodb/srv_monitor_thread       | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10726 |
+|        18 | thread/innodb/srv_master_thread        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10727 |
+|        19 | thread/innodb/srv_purge_thread         | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10728 |
+|        20 | thread/innodb/srv_worker_thread        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10729 |
+|        21 | thread/innodb/srv_worker_thread        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10730 |
+|        22 | thread/innodb/srv_worker_thread        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10731 |
+|        23 | thread/innodb/buf_dump_thread          | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10732 |
+|        24 | thread/innodb/dict_stats_thread        | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |             NULL | NULL | YES          | YES     | NULL            |        10733 |
+|        25 | thread/sql/signal_handler              | BACKGROUND |           NULL | NULL             | NULL             | NULL           | NULL                |             NULL | NULL              | NULL                                     |                1 | NULL | YES          | YES     | NULL            |        10736 |
+|        26 | thread/sql/compress_gtid_table         | FOREGROUND |              1 | NULL             | NULL             | NULL           | Daemon              |             1027 | Suspending        | NULL                                     |                1 | NULL | YES          | YES     | NULL            |        10737 |
+|        40 | thread/sql/one_connection              | FOREGROUND |             15 | datadog          | localhost        | NULL           | Query               |                0 | Sending data      | SELECT * FROM performance_schema.threads |             NULL | NULL | YES          | YES     | Socket          |        10739 |
++-----------+----------------------------------------+------------+----------------+------------------+------------------+----------------+---------------------+------------------+-------------------+------------------------------------------+------------------+------+--------------+---------+-----------------+--------------+
+MySQL SELECT grant - OK
+vagrant@ubuntu-xenial:/etc/datadog-agent$ mysql -u datadog --password='jJdsZ8Hlv(VFiTCIDXLtMChM' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
+> echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
+> echo -e "\033[0;31mMissing PROCESS grant\033[0m"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'datadog'@'localhost' (using password: YES)
+Missing PROCESS grant
+vagrant@ubuntu-xenial:/etc/datadog-agent$ 
+vagrant@ubuntu-xenial:/etc/datadog-agent$ 
+
+
+
+
+
+## /etc/datadog-agent/conf.d/mysql.yaml
+--
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: password
+    tags:
+        - env:virtualbox
+        - name:dd-excercise
+        - service:mysql
+    options:
+        replication: 0
+        galera_cluster: 1
+--
+
+## Restart the Agent
+
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ 
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ sudo service datadog-agent restart
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ 
+
+
+
+
+
+## Custom Agent Check
+
+https://docs.datadoghq.com/ja/guides/agent_checks/
+https://docs.datadoghq.com/developers/agent_checks/
+
+## /etc/datadog-agent/conf.d/my_metric.yaml
+--
+init_config:
+
+instances:
+    [{}]
+--
+
+## /etc/datadog-agent/checks.d/my_metric.py
+--
+from checks import AgentCheck
+import random
+
+class MyMetric(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', random.randint(0,100))
+    self.log.info('my_metric')
+--
+
+## Change Agent Check Interval
+
+## /etc/datadog-agent/conf.d/my_metric.yaml
+--
+init_config:
+    min_collection_interval: 45
+
+instances:
+    [{}]
+--
+
+
+## Monitor
+
+## Notification Message
+--
+ @sns-kikeyama-sns-alert-topic @ikeyama.x.knhk@gmail.com 
+
+{{#is_alert}}
+This is **Alert** Message for Monitoring `my_metric`
+my_metric in total: {{value}} ( threshold: {{threshold}} )
+{{/is_alert}} 
+
+{{#is_warning}}
+This is **Warning** Message for Monitoring `my_metric`
+my_metric in total: {{value}} ( warning threshold: {{warn_threshold}} )
+{{/is_warning}} 
+
+{{#is_no_data}}
+This is **No Data** Message for Monitoring `my_metric`
+{{/is_no_data}} 
+--
+
+
+
+
+## APM
+
+## /etc/datadog-agent/datadog.yaml
+--
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if none is applied here
+#   env: none
+#   The port that the Receiver should listen on
+#   receiver_port: 8126
+#   Whether the Trace Agent should listen for non local traffic
+#   Only enable if Traces are being sent to this Agent from another host/container
+#   apm_non_local_traffic: false
+#   Extra global sample rate to apply on all the traces
+#   This sample rate is combined to the sample rate from the sampler logic, still promoting interesting traces
+#   From 1 (no extra rate) to 0 (don't sample at all)
+#   extra_sample_rate: 1.0
+#   Maximum number of traces per second to sample.
+#   The limit is applied over an average over a few minutes ; much bigger spikes are possible.
+#   Set to 0 to disable the limit.
+#   max_traces_per_second: 10
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+#   ignore_resources: []
+  analyzed_spans:
+    flask|flask.request: 1
+--
+
+## By wrapper
+
+vagrant@ubuntu-xenial:~$ ddtrace-run python flask_dd_trace.py
+DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
+2018-08-05 14:02:37,173 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
+DEBUG:ddtrace.contrib.flask.middleware:please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
+2018-08-05 14:02:37,173 - ddtrace.contrib.flask.middleware - DEBUG - please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
+ * Serving Flask app "flask_dd_trace" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2018-08-05 14:02:37,176 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+DEBUG:ddtrace.api:reported 1 traces in 0.00119s
+2018-08-05 14:02:38,175 - ddtrace.api - DEBUG - reported 1 traces in 0.00119s
+DEBUG:ddtrace.api:reported 2 services
+2018-08-05 14:02:38,177 - ddtrace.api - DEBUG - reported 2 services
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:02:50] "GET / HTTP/1.1" 200 -
+2018-08-05 14:02:50,640 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:02:50] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:02:50] "GET /favicon.ico HTTP/1.1" 404 -
+2018-08-05 14:02:50,731 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:02:50] "GET /favicon.ico HTTP/1.1" 404 -
+DEBUG:ddtrace.api:reported 2 traces in 0.00089s
+2018-08-05 14:02:51,190 - ddtrace.api - DEBUG - reported 2 traces in 0.00089s
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:04:23] "GET / HTTP/1.1" 200 -
+2018-08-05 14:04:23,469 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:04:23] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:04:23] "GET /favicon.ico HTTP/1.1" 404 -
+2018-08-05 14:04:23,556 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:04:23] "GET /favicon.ico HTTP/1.1" 404 -
+DEBUG:ddtrace.api:reported 2 traces in 0.00108s
+2018-08-05 14:04:24,343 - ddtrace.api - DEBUG - reported 2 traces in 0.00108s
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:04:41] "GET / HTTP/1.1" 200 -
+2018-08-05 14:04:41,030 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:04:41] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.2 - - [05/Aug/2018 14:04:41] "GET /favicon.ico HTTP/1.1" 404 -
+2018-08-05 14:04:41,117 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 14:04:41] "GET /favicon.ico HTTP/1.1" 404 -
+DEBUG:ddtrace.api:reported 2 traces in 0.00109s
+2018-08-05 14:04:41,367 - ddtrace.api - DEBUG - reported 2 traces in 0.00109s
+
+## By instrument
+
+vagrant@ubuntu-xenial:~$ python flask_dd_trace.py 
+2018-08-05 15:54:51,699 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
+ * Serving Flask app "flask_dd_trace" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2018-08-05 15:54:51,701 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2018-08-05 15:54:52,702 - ddtrace.api - DEBUG - reported 1 traces in 0.00133s
+2018-08-05 15:54:52,703 - ddtrace.api - DEBUG - reported 1 services
+2018-08-05 15:54:56,285 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 15:54:56] "GET /api/trace HTTP/1.1" 200 -
+2018-08-05 15:54:56,378 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 15:54:56] "GET /favicon.ico HTTP/1.1" 404 -
+2018-08-05 15:54:56,707 - ddtrace.api - DEBUG - reported 2 traces in 0.00132s
+2018-08-05 15:55:01,508 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 15:55:01] "GET /api/apm HTTP/1.1" 200 -
+2018-08-05 15:55:01,716 - ddtrace.api - DEBUG - reported 1 traces in 0.00085s
+2018-08-05 15:55:07,687 - werkzeug - INFO - 10.0.2.2 - - [05/Aug/2018 15:55:07] "GET / HTTP/1.1" 200 -
+2018-08-05 15:55:07,721 - ddtrace.api - DEBUG - reported 1 traces in 0.00090s
