@@ -15,10 +15,11 @@ Please see these pages as reference material.
 [assigning_tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) [basic_agent_usage](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/)
 
 Inside the vm ssh terminal, run the commands:
-`cd /etc/datadog-agent`
-`sudo cp datadog.yaml datadog.yaml.bak`
-`sudo nano datadog.yaml`
-
+<d1>
+cd /etc/datadog-agent <br>  
+sudo cp datadog.yaml datadog.yaml.bak <br>
+sudo nano datadog.yaml
+</d1>
 
 Side note : the second line above is a safety measue, to enable “rollback” should something go wrong. Not strictly needed, just a safety precaution.
 This opens an editor, please scroll down til you see the section #tags”, uncomment tags: by removing the # in front, 
