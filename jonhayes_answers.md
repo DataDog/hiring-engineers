@@ -149,25 +149,30 @@ Type these commands:
 service mysql restart
 
 This section is needed to grant the DataDog agent access to the logrotate folder, mysql log files.
-Please see this page as a guide :
-https://help.datadoghq.com/hc/en-us/articles/360001001211-Setting-file-permissions-for-rotating-logs-linux-
+Please see this page as a guide : [linux logs](https://help.datadoghq.com/hc/en-us/articles/360001001211-Setting-file-permissions-for-rotating-logs-linux-)
 Type these commands:
+```
 sudo setfacl -m u:dd-agent:rx /var/log/mysql
 getfacl /var/log/mysql
 sudo touch /etc/logrotate.d/dd-agent_ACLs
 sudo nano /etc/logrotate.d/dd-agent_ACLs
+```
 
 This opens an editor, which was blank, add in below :
+```
 {
  postrotate
  /usr/bin/setfacl -m g:dd-agent:rx /var/log/mysql
  endscript
 }
+```
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.logrotate.d.dd-agent_ACLs
 Type these commands:
+```
 sudo nano /etc/logrotate.d/mysql-server
+```
 edit first line to look like: /var/log/mysql.log /var/log/mysql/*log /var/log/mysql/mysql.log /var/log/mysql/mysql-slow.log {
 edit create line to look like:  create 644 mysql adm
 
