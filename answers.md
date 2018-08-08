@@ -23,6 +23,7 @@ Sign up with the required details for a free trial
 Install the downloaded DataDog Agent as per OS, in my case, it is Ubuntu that I have created on Virtual Box:
 
 ![image](https://user-images.githubusercontent.com/41904992/43808171-1f54a932-9aef-11e8-9d29-5ddf984508bf.png)
+
 Then SSH the Ubuntu machine from the command prompt and run the commands mentioned below.
 
 ![image](https://user-images.githubusercontent.com/41904992/43808189-384af004-9aef-11e8-98c9-9abafddb0a5f.png)
