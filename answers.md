@@ -45,10 +45,12 @@ Once the agent is installed, it starts reporting to the DataDog Console.
 ![image](https://user-images.githubusercontent.com/41904992/43808314-d071b43a-9aef-11e8-837a-9a8347f91d50.png)
 
 # Level 2: Collecting Metrics
-1._Add tags in the agent conf.d file_
+1. _Add tags in the agent conf.d file_
 
 Add tags on the root location by following the instructions in the link
 <https://docs.datadoghq.com/getting_started/tagging/assigning_tags/>
+
+
 
 ![image](https://user-images.githubusercontent.com/41904992/43808416-50252ebe-9af0-11e8-96a2-16a7cfeb5f53.png)
 
