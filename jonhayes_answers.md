@@ -9,7 +9,7 @@ last prep step was to sign up for DataDog trial. This process asks a few questio
 Then inside the vm ssh terminal, run the command provided, substituting in your own key :
 `DD_API_KEY=149af9318091dbc92d4e4e2ec60f32f1 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
-Collecting Metrics:
+# H1 Collecting Metrics:
 --Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Please see these pages as reference material.
 https://docs.datadoghq.com/getting_started/tagging/assigning_tags/
