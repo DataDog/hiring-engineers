@@ -83,17 +83,22 @@ echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 ```
 
 now we need to go back in mysql, add permissions. Type :
+
+```
 mysql -u root
 GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 show databases like 'performance_schema';
 GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 exit
+```
 This all gives the DataDog client access to the mysql db.
 
 Type these commands:
+```
 cd /etc/datadog-agent/conf.d/mysql.d
 sudo nano conf.yaml
+```
 
 This opens an editor, please scroll down til you see the section “#instances:” , uncomment instances:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
