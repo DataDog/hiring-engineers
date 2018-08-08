@@ -9,7 +9,7 @@ options = {
 
 initialize(**options)
 
-title = "My Timeboard test"
+title = "Syed's Timeboard from API"
 description = "Visualizing metrics"
 graphs = [{
     "definition": {
@@ -25,7 +25,7 @@ graphs = [{
     "definition": {
         "events": [],
         "requests": [
-            {"q":"avg:mysql.performance.queries{mytag_hiring_challenge} by {host}"}],
+            {"q":"anomalies(avg:mysql.performance.queries{mytag_hiring_challenge} by {host}, 'basic',2)"}],
         "viz": "timeseries"
     },
     "title": "mysql.performance.queries metric with anomaly function applied"
@@ -50,12 +50,6 @@ template_variables = [{
 
 read_only = True
 
-api.Monitor.create(
-    type="metric alert",
-    query="avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5",
-    name="Anomalous check for metric from database.",
-    message="Anomaly function applied on metric from database.",
-)
 
 api.Timeboard.create(title=title,
                      description=description,
