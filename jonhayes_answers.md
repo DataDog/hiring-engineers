@@ -202,44 +202,39 @@ logs:
    path: /var/log/mysql/mysql_error.log
    source: mysql
    sourcecategory: database
-   service: myapplication
-
+   service: myapplication <br>
  - type: file
    path: /var/log/mysql/mysql-slow.log
    source: mysql
    sourcecategory: database
-   service: myapplication
-
+   service: myapplication <br>
  - type: file
    path: /var/log/mysql/mysql.log
    source: mysql
    sourcecategory: database
    service: myapplication
-   # For multiline logs, if they start by the date with the format yyyy-mm-dd uncomment the following processing rule
-   # log_processing_rules:
-   #   - type: multi_line
-   #     name: new_log_start_with_date
-   #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
-</pre>
+</pre>   
 </d1>
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.mysql.d.conf.yaml
 Type these commands:
+```
 sudo service datadog-agent restart
 sudo datadog-agent status
+```
 
 
 --Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Please see these pages as reference :
-https://docs.datadoghq.com/developers/agent_checks/
-https://datadog.github.io/summit-training-session/handson/customagentcheck/
-https://docs.python.org/2/library/random.html
-https://help.datadoghq.com/hc/en-us/articles/115002137506-Where-can-I-visualize-my-service-check-in-the-Datadog-UI-
+Please see these pages as reference : [agent checks](https://docs.datadoghq.com/developers/agent_checks/)
+[customagentcheck](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+[python random](https://docs.python.org/2/library/random.html) [visualize](https://help.datadoghq.com/hc/en-us/articles/115002137506-Where-can-I-visualize-my-service-check-in-the-Datadog-UI-)
 
 Type these commands:
+```
 cd /etc/datadog-agent/conf.d/
 sudo nano my_check.yaml
+```
 
 This opens an editor, which is blank, add in below :
 
