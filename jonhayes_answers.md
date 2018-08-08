@@ -35,22 +35,29 @@ tags:
  - role:testing
 </pre>
 </d1>
-Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
-Type :
-sudo service datadog-agent restart
-sudo datadog-agent status
+Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. Type :
+
+`sudo service datadog-agent restart`
+
+`sudo datadog-agent status`
+
 Please see file : etc.datadog-agent.datadog.yaml
+
 Now wait. Go make a cup of coffee, watch the weather channel in the breakroom. You deserve it.
+
 
 
 --Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 Please see these pages as reference material.
-https://docs.datadoghq.com/agent/faq/agent-configuration-files/#agent-configuration-directory
-https://docs.datadoghq.com/integrations/mysql/
-https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost
+[agent-configuration-directory](https://docs.datadoghq.com/agent/faq/agent-configuration-files/#agent-configuration-directory)
+[mysql](https://docs.datadoghq.com/integrations/mysql/)
+[error-1698](https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost)
 
 I started with a fresh ubuntu vm. Anything needed would have to be installed/added.
 Inside the vm ssh terminal, run the commands:
+
+<d1>
+<pre>
 sudo apt-get update
 sudo apt-get install mysql-server
 cd /etc/datadog-agent/conf.d/mysql.d
@@ -58,16 +65,22 @@ sudo cp conf.yaml.example conf.yaml
 mysql -u root 
 CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'PASSWORD';
 exit
+</pre>
+</d1>
 
 This drops you back to the terminal prompt.
 Run this from unix commandline, not mysql commandline (where we are now) :
+```
 mysql -u datadog --password=PASSWORD -e "show status" | \
 grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
 echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+```
 
+```
 mysql -u datadog --password=PASSWORD -e "show slave status" && \
 echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+```
 
 now we need to go back in mysql, add permissions. Type :
 mysql -u root
@@ -163,7 +176,7 @@ sudo nano conf.yaml
 
 This opens an editor, please scroll down til you see the section “#logs:” , uncomment logs:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
-
+<d1><pre>
 logs:
  - type: file
    path: /var/log/mysql/mysql_error.log
@@ -187,7 +200,7 @@ logs:
    #   - type: multi_line
    #     name: new_log_start_with_date
    #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
-
+</pre></d1>
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.mysql.d.conf.yaml
 Type these commands:
