@@ -86,7 +86,7 @@ On referring API docs, the dashboard is created using the python API.
 avg:my_metric{env:my_ubuntu1}
 
 •	Query for anomaly function applied on metric from databae
-"avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5"
+anomalies(avg:mysql.performance.queries{mytag_hiring_challenge} by {host}, 'basic',2)
 
 •	Query for custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 sum:my_metric{mytag_hiring_challenge}.rollup(sum, 3600)
