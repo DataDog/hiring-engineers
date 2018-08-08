@@ -9,7 +9,7 @@ last prep step was to sign up for DataDog trial. This process asks a few questio
 Then inside the vm ssh terminal, run the command provided, substituting in your own key :
 `DD_API_KEY=149af9318091dbc92d4e4e2ec60f32f1 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
-# H1 Collecting Metrics:
+# Collecting Metrics:
 --Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Please see these pages as reference material.
 [assigning_tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) [basic_agent_usage](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/)
@@ -265,52 +265,54 @@ class my_metricCheck(AgentCheck):
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 please see file etc.datadog-agent.checks.d.my_check.py
 Type these commands:
+```
 sudo -u dd-agent -- datadog-agent check my_check
 sudo service datadog-agent restart
-
+```
 --Bonus Question Can you change the collection interval without modifying the Python check file you created?
-This page answers how to fo this : https://help.datadoghq.com/hc/en-us/articles/204590189-Is-there-an-alternative-to-dogstatsd-and-the-api-to-submit-metrics-Threadstats-
+[This page answers how to do this](https://help.datadoghq.com/hc/en-us/articles/204590189-Is-there-an-alternative-to-dogstatsd-and-the-api-to-submit-metrics-Threadstats-)
 
+# Visualizing Data
 --Utilize the Datadog API to create a Timeboard that contains:
---Your custom metric scoped over your host.
-https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669047061&to_ts=1533683447061&tile_size=m
+--[Your custom metric scoped over your host](https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669047061&to_ts=1533683447061&tile_size=m)
 
 --Any metric from the Integration on your Database with the anomaly function applied.
 Please see this page as reference: 
-https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
-https://app.datadoghq.com/monitors/5814287
+[anomaly-detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
+
+[answer](https://app.datadoghq.com/monitors/5814287)
 
 --Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669300761&to_ts=1533683700761&tile_size=m
-please see dd-04
+[rollup](https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669300761&to_ts=1533683700761&tile_size=m)
+please see image dd-04
 
 
 --Take a snapshot of this graph and use the @ notation to send it to yourself.
-shows up in events, also see dd-02
+shows up in events, also see image dd-02
 
 --Bonus Question: What is the Anomaly graph displaying?
 By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. Anomaly detection can separate the trend component from the seasonal component of a timeseries, so it can track metrics that are trending steadily upward or downward. its not just a high or a low, it is using statistical models to detect something outside of normal. for example traffic, might be slow on a sunday morning, but to hit that same lower number on a Tuesday afternoon would not trigger a normal alert, it needs to correlate historical trends. 
 
 
-Monitoring Data
+# Monitoring Data
 Please see these pages as reference : 
-https://docs.datadoghq.com/monitors/monitor_types/metric/
-https://docs.datadoghq.com/monitors/notifications/#message-template-variables
+[metric](https://docs.datadoghq.com/monitors/monitor_types/metric/) [variables](https://docs.datadoghq.com/monitors/notifications/#message-template-variables)
 
-here is the logic to send the alert
+Here is the logic to send the alert:
+```
 {{#is_alert}} value over 800, actual value of {{value}} and with IP {{host.ip}}  {{/is_alert}}
 {{#is_warning}} value over 500 {{/is_warning}}
 {{#is_no_data}} there is No Data for this query over the past 10m {{/is_no_data}} @hayesjonathand@gmail.com
-
+```
 please see picture dd-02
 
 
-Collecting APM Data:
+# Collecting APM Data:
 Please see these pages for reference :
-https://docs.datadoghq.com/tracing/visualization/
-https://stackoverflow.com/questions/31252791/flask-importerror-no-module-named-flask
+[visualization](https://docs.datadoghq.com/tracing/visualization/) [no module named flask](https://stackoverflow.com/questions/31252791/flask-importerror-no-module-named-flask)
 
 Type these commands:
+```
 cd /etc/datadog-agent/checks.d
 sudo apt-get install virtualenv python-virtualenv
 sudo pip install flask
@@ -318,6 +320,7 @@ sudo virtualenv venv
 . venv/bin/activate
 sudo pip install blinker
 sudo nano my_app.py
+```
 
 This opens an editor, which is blank, add in below :
 
