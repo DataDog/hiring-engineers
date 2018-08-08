@@ -12,13 +12,15 @@ Then inside the vm ssh terminal, run the command provided, substituting in your 
 # H1 Collecting Metrics:
 --Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Please see these pages as reference material.
-https://docs.datadoghq.com/getting_started/tagging/assigning_tags/
-https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/
+[assigning_tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/) [basic_agent_usage](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/)
 
 Inside the vm ssh terminal, run the commands:
-cd /etc/datadog-agent
-sudo cp datadog.yaml datadog.yaml.bak
-sudo nano datadog.yaml
+`cd /etc/datadog-agent`
+
+`sudo cp datadog.yaml datadog.yaml.bak`
+
+`sudo nano datadog.yaml`
+
 
 Side note : the second line above is a safety measue, to enable “rollback” should something go wrong. Not strictly needed, just a safety precaution.
 This opens an editor, please scroll down til you see the section #tags”, uncomment tags: by removing the # in front, 
