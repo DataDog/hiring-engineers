@@ -356,11 +356,13 @@ if __name__ == '__main__':
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Type these commands:
+```
 ddtrace-run python my_app.py
-now visit vm_ip_address:5050, this triggers an event
-now visit DataDog dashboard, should be a new lisitng under APM.
-please see file etc.datadog-agent.checks.d.my_app.py
-https://app.datadoghq.com/dash/879620?live=true&page=0&is_auto=false&from_ts=1533659542700&to_ts=1533673942700&tile_size=m
+```
+Visit vm_ip_address:5050, this triggers an event.
+Visit DataDog dashboard, should be a new lisitng under APM.
+Please see file etc.datadog-agent.checks.d.my_app.py
+[dashboard](https://app.datadoghq.com/dash/879620?live=true&page=0&is_auto=false&from_ts=1533659542700&to_ts=1533673942700&tile_size=m)
 
 please see picture dd-03
 
