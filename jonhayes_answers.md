@@ -104,7 +104,6 @@ This opens an editor, please scroll down til you see the section â€œ#instances:â
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
 
 <d1><pre>
-
  - server: 127.0.0.1
    user: datadog
    pass: 'PASSWORD'
@@ -122,12 +121,15 @@ Be careful, the spacing is important. Can either uncomment appropriate lines, or
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.mysql.d.conf.yaml
 Type these commands:
+```
 sudo service datadog-agent restart
 sudo datadog-agent status
 sudo nano /etc/mysql/my.cnf
+```
 
 Add in this to the end of the file :
 
+<d1><pre>
 [mysqld_safe]
 log_error=/var/log/mysql/mysql_error.log
 [mysqld]
@@ -137,6 +139,7 @@ log_error=/var/log/mysql/mysql_error.log
 slow_query_log = on
 slow_query_log_file = /var/log/mysql/mysql-slow.log
 long_query_time = 2
+</pre></d1>
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.mysql.my.cnf
