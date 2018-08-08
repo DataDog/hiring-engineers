@@ -194,7 +194,9 @@ sudo nano conf.yaml
 
 This opens an editor, please scroll down til you see the section “#logs:” , uncomment logs:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
-<d1><pre>
+
+<d1>
+<pre>
 logs:
  - type: file
    path: /var/log/mysql/mysql_error.log
@@ -218,7 +220,9 @@ logs:
    #   - type: multi_line
    #     name: new_log_start_with_date
    #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
-</pre></d1>
+</pre>
+</d1>
+
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.mysql.d.conf.yaml
 Type these commands:
