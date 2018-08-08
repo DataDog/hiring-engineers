@@ -1,12 +1,13 @@
 Hello, please allow me to take you through this exercise.
+
 Getting started.
+
 I needed to enable VT-x options in the bios of the laptop first. Available inventory, a laptop with some free drive space, and [virtualbox](https://www.virtualbox.org/wiki/Downloads)
-Next up was to install vagrant. This resulted in a running virtual machine vm, with just an ssh terminal. This worked, until laptop went to sleep, woken up and the vm was corrupt. The rest of the exercise was performed inside a normal vm inside virtualbox. Please see this guide to installing ubuntu as a vm inside virtualbox :
-https://askubuntu.com/questions/142549/how-to-install-ubuntu-on-virtualbox
+Next up was to install vagrant. This resulted in a running virtual machine vm, with just an ssh terminal. This worked, until laptop went to sleep, woken up and the vm was corrupt. The rest of the exercise was performed inside a normal vm inside virtualbox. Please see this [guide to installing ubuntu as a vm inside virtualbox](https://askubuntu.com/questions/142549/how-to-install-ubuntu-on-virtualbox)
 last prep step was to sign up for DataDog trial. This process asks a few questions and results with an api key that associates your company with the DataDog servers.   
 
 Then inside the vm ssh terminal, run the command provided, substituting in your own key :
-DD_API_KEY=149af9318091dbc92d4e4e2ec60f32f1 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+`DD_API_KEY=149af9318091dbc92d4e4e2ec60f32f1 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
 Collecting Metrics:
 --Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
