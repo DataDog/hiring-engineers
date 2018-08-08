@@ -98,7 +98,7 @@ Once this is created, Dashboard is accessed from Dashboard List in the UI:
 
 This is completed by clicking and dragging the cursor in the timeseries plot. The windows of 5 min is set by dragging cursor only for small portion
 
-•	Take a snapshot of this graph and use the @ notation to send it to yourself.
+•	snapshot of this graph sent using @ notation.
 
 ![fivemin interval](https://imgur.com/pyu6UbB.png)
 
@@ -108,14 +108,7 @@ Dashboard:
 
 •	Bonus Question: What is the Anomaly graph displaying?
 
-Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction of bounds, the time period of lookup data can be decided based on query.
-
-Currently based on the following query
-
-anomalies(avg:mysql.performance.queries{mytag_hiring_challenge} by {host}, 'basic',2)
-
-It checks if the average of mysql.performance.queries is greater than 2 standard deviations away from normal value in both directions.
-
+Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction and intensity (deviation number)of bounds, the time period of lookup data can be decided based on query. 
 
 
 <h2>Monitoring Data</h2>
@@ -167,7 +160,7 @@ Email notification: time in UTC
 
 <h2>Collecting APM Data</h2>
 
-The given app is instrumented using middleware
+The given app is instrumented. I had few issues in the beginning about connection being refused. I fixed the indentation in yaml file and it worked.
 
 Following links were used as reference
 
