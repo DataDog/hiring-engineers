@@ -7,13 +7,17 @@ First I have downloaded and installed Virtual Box and Vagrant as per the instruc
 ![image](https://user-images.githubusercontent.com/41904992/43808052-87bcd46e-9aee-11e8-8c33-8979aaaf2636.png)
 
 3. *Once the setup is downloaded and installed, I setup Vagrant as per the instructions in* <https://www.vagrantup.com/downloads.html>
+
 ![image](https://user-images.githubusercontent.com/41904992/43808107-b7de1f4a-9aee-11e8-8e9b-cc6b445a0bb1.png)
 
 4. *Open Command Prompt and run the commands as per the link* <https://app.vagrantup.com/ubuntu/boxes/xenial64>
+
 ![image](https://user-images.githubusercontent.com/41904992/43808149-e92f542e-9aee-11e8-84dd-a529b9b89e2b.png)
 
 5. *Install the DataDog agent on the Ubuntu machine as per link* <https://docs.datadoghq.com/agent/>
+
 Sign up with the required details for a free trial
+
 ![image](https://user-images.githubusercontent.com/41904992/43809637-b4233afe-9af6-11e8-92a9-31c62bcbaab7.png)
 
 Install the downloaded DataDog Agent as per OS, in my case, it is Ubuntu that I have created on Virtual Box:
