@@ -26,7 +26,7 @@ Visualizing Data:
 
 See snapshot for custom metric scoped over my host:
 
-See Snapshot for MySQL metric with th anomaly functino applied:
+See Snapshot for MySQL metric with th anomaly function applied:
 
 See snapshot for custom metric with the rollup functino applied for one hour buckets:
 
@@ -34,11 +34,17 @@ See snapshot for 5 minute time window
 
 See snapshot for the email I had sent to myself with the @notation
 
-Visualise Data Bonus Question:
+Visualize Data Bonus Question:
 The Anomaly function returns the usual results along with an "expected normal" range by using past data. They provide a "historical context" so you can see how the metric behaved in the past as well as a seperate "evaluation window" that is longer than the alerting window to provide some immediate context.
 
 
 
 
 Monitoring Data:
+
+See screen shot of email alert sent to my email. I tried using the {{host.name}} variable from the documentaion but it did not resolve into an IP or Hostname.
+
+See screenshot of my alert definition:
+
+
 
