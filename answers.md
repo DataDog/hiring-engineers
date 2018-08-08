@@ -45,10 +45,10 @@ Once the agent is installed, it starts reporting to the DataDog Console.
 ![image](https://user-images.githubusercontent.com/41904992/43808314-d071b43a-9aef-11e8-837a-9a8347f91d50.png)
 
 # Level 2: Collecting Metrics
-1. *Add tags in the agent conf.d file. *
-Add tags on the root location by following the instructions in the <https://docs.datadoghq.com/getting_started/tagging/assigning_tags/>
+1._Add tags in the agent conf.d file_
 
-![image](https://user-images.githubusercontent.com/41904992/43808411-49eab26c-9af0-11e8-9703-54c9d13fc501.png)
+Add tags on the root location by following the instructions in the link
+<https://docs.datadoghq.com/getting_started/tagging/assigning_tags/>
 
 ![image](https://user-images.githubusercontent.com/41904992/43808416-50252ebe-9af0-11e8-96a2-16a7cfeb5f53.png)
 
@@ -62,7 +62,8 @@ Tags on the host page of DataDog will come up after some time.
 ![image](https://user-images.githubusercontent.com/41904992/43808464-7d93b12c-9af0-11e8-9fc1-a1e6d3de8a96.png)
 
 2. *Install MYSQL or any other Database of your choice*
-Installed MySQL database on my Ubuntu machine by following the below link <https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04>
+Installed MySQL database on my Ubuntu machine by following the below link 
+<https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04>
 
 ![image](https://user-images.githubusercontent.com/41904992/43808500-b0fe79fc-9af0-11e8-9132-c7a496570de6.png)
 
