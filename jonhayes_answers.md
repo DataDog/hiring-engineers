@@ -237,19 +237,21 @@ sudo nano my_check.yaml
 ```
 
 This opens an editor, which is blank, add in below :
-
+```
 init_config:
 
 instances:
   - min_collection_interval: 45 #Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
+```
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.conf.d.my_check.yaml
 Type these commands:
+```
 cd /etc/datadog-agent/checks.d
 sudo nano my_check.py
+```
 This opens an editor, which is blank, add in below :
-
+```python
 import random
 from checks import AgentCheck
 class my_metricCheck(AgentCheck):
@@ -258,7 +260,7 @@ class my_metricCheck(AgentCheck):
     data=random.randrange(0, 1000, 1)
 
     self.gauge('my_check.update.value', data)
-
+```
 
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 please see file etc.datadog-agent.checks.d.my_check.py
