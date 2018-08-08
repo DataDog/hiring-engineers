@@ -104,17 +104,11 @@ This is completed by clicking and dragging the cursor in the timeseries plot. Th
 
 Dashboard:
 
-![dashboard](https://imgur.com/r6Q153I.png)
+![dashboard](https://imgur.com/WrJeYhd.png)
 
 •	Bonus Question: What is the Anomaly graph displaying?
 
-Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction of bounds, the time period of lookup data can be decided based on query.
-
-Currently based on the following query
-
-avg(last_4h):avg:mysql.performance.queries{mytag_hiring_challenge} > 0.5
-
-It checks if the mysql.performance.queries is greater than 0.5 in last 4 hours
+Anomaly graph shows if the metric value is out of range of stipulated upper bound and lower bound. The direction and deviation number of bounds, the time period of lookup data can be decided based on query.
 
 
 
