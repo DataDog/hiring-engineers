@@ -16,22 +16,23 @@ Please see these pages as reference material.
 
 Inside the vm ssh terminal, run the commands:
 `cd /etc/datadog-agent`
-
 `sudo cp datadog.yaml datadog.yaml.bak`
-
 `sudo nano datadog.yaml`
 
 
 Side note : the second line above is a safety measue, to enable “rollback” should something go wrong. Not strictly needed, just a safety precaution.
 This opens an editor, please scroll down til you see the section #tags”, uncomment tags: by removing the # in front, 
 and follow by adding in the rest seen below, change tags ass desired.
+<d1>
+<pre>
 tags:
  - region:east
  - region:south
  - application:database
  - database:primary
  - role:testing
-
+</pre>
+</d1>
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Type :
 sudo service datadog-agent restart
