@@ -1,0 +1,5 @@
+{{#is_alert}}  Start escalation process to get performance back to desired level! Current value is {{value}} {{host.ip}} {{/is_alert}}
+
+{{#is_warning}} Performance is bit above the average! Current value is {{value}}  {{/is_warning}}
+
+{{#is_no_data}} No Data from my_metric over the last 10 minutes {{/is_no_data}}
