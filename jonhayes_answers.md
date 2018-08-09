@@ -183,7 +183,9 @@ edit create line to look like:  create 644 mysql adm
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 please see file etc.logrotate.d.mysql-server
 Type these commands:
+```
 sudo nano /etc/datadog-agent/datadog.yaml
+```
 
 by default, the line looks like : #logs_enabled: false
 use control + w to find line, change to :
@@ -192,9 +194,11 @@ logs_enabled: true
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.datadog-agent.datadog.yaml
 Type these commands:
+```
 cd /etc/datadog-agent/conf.d/mysql.d
 sudo cp conf.yaml conf.yaml.bak
 sudo nano conf.yaml
+```
 
 This opens an editor, please scroll down til you see the section “#logs:” , uncomment logs:, add in this below.
 Be careful, the spacing is important. Can either uncomment appropriate lines, or leave the whole comment block in and just add this in in addition to preserve the original as examples.
