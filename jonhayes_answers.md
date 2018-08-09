@@ -43,6 +43,8 @@ Press control + O to save, control + x to exit when finished. This drops you bac
 
 Please see file : etc.datadog-agent.datadog.yaml
 
+![dd-01](https://github.com/ixidorecu/hiring-engineers/blob/master/dd-01.JPG)
+
 Now wait. Go make a cup of coffee, watch the weather channel in the breakroom. You deserve it.
 
 
@@ -367,7 +369,7 @@ Visit DataDog dashboard, should be a new lisitng under APM.
 Please see file etc.datadog-agent.checks.d.my_app.py
 [dashboard](https://app.datadoghq.com/dash/879620?live=true&page=0&is_auto=false&from_ts=1533659542700&to_ts=1533673942700&tile_size=m)
 
-please see picture dd-03
+![picture dd-03](https://github.com/ixidorecu/hiring-engineers/blob/master/dd-03.JPG)
 
 -- Bonus Question: What is the difference between a Service and a Resource?
 - a service is the job/action that performs the task. on linux these are typically daemons, on windows they are "services". some examples include ntp for time, iis as webserver.
