@@ -384,5 +384,6 @@ Please see file etc.datadog-agent.checks.d.my_app.py
 - a resource is an action on or using a service. an example is an end to end dns request fulfilled, here the dns service is asked to perform its task and return information. the request and answer is the resource 
 
 --Final question. 
+Given a home with a smart power meter such that you can monitor the spot price of power with an api call. Query the price of power and the selling price of Bitcoin. Write two alerts; 1 where price of power is low enough and bitcoin price high enough, so minercan be turned ON, and 2 where power is high and Bitcoin is low so miner can be turned OFF. with the ability ro remotly enable/disable the Bitcoin miner, this would allow you to only mine when the price is right. 
 
 
