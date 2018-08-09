@@ -309,7 +309,7 @@ Here is the logic to send the alert:
 {{#is_warning}} value over 500 {{/is_warning}}
 {{#is_no_data}} there is No Data for this query over the past 10m {{/is_no_data}} @hayesjonathand@gmail.com
 ```
-please see picture dd-02
+![picture dd-02](https://github.com/ixidorecu/hiring-engineers/blob/master/dd-02.JPG)
 
 
 # Collecting APM Data:
@@ -375,5 +375,6 @@ Please see file etc.datadog-agent.checks.d.my_app.py
 - a service is the job/action that performs the task. on linux these are typically daemons, on windows they are "services". some examples include ntp for time, iis as webserver.
 - a resource is an action on or using a service. an example is an end to end dns request fulfilled, here the dns service is asked to perform its task and return information. the request and answer is the resource 
 
---final question. I am currently on the lookout for server gear to fillout my homelab. write up a a webpage that does a pricelookup for the specific item, returns dollar amount. use alert thresholds to send email when price gets below certian point.
+--Final question. 
+
 
