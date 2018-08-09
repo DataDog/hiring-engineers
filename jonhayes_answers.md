@@ -7,7 +7,7 @@ Next up was to install vagrant. This resulted in a running virtual machine vm, w
 last prep step was to sign up for DataDog trial. This process asks a few questions and results with an api key that associates your company with the DataDog servers.   
 
 Then inside the vm ssh terminal, run the command provided, substituting in your own key :
-`DD_API_KEY=149af9318091dbc92d4e4e2ec60f32f1 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
+`DD_API_KEY=xxxxxxxxxxxxxxxxxxxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
 # Collecting Metrics:
 --Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -146,7 +146,9 @@ long_query_time = 2
 Press control + O to save, control + x to exit when finished. This drops you back to the terminal prompt. 
 Please see file etc.mysql.my.cnf
 Type these commands:
-service mysql restart
+```
+Sudo service mysql restart
+```
 
 This section is needed to grant the DataDog agent access to the logrotate folder, mysql log files.
 Please see this page as a guide : [linux logs](https://help.datadoghq.com/hc/en-us/articles/360001001211-Setting-file-permissions-for-rotating-logs-linux-)
@@ -284,7 +286,8 @@ Please see this page as reference:
 
 --Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 [rollup](https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669300761&to_ts=1533683700761&tile_size=m)
-please see image dd-04
+
+![image dd-04](https://github.com/ixidorecu/hiring-engineers/blob/master/dd-04.JPG)
 
 
 --Take a snapshot of this graph and use the @ notation to send it to yourself.
