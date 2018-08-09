@@ -289,6 +289,10 @@ Please see this page as reference:
 [anomaly-detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
 
 [answer](https://app.datadoghq.com/monitors/5814287)
+here is the query : 
+```
+avg(last_4h):anomalies(avg:system.load.1{host:jon-VirtualBox}, 'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1
+```
 
 --Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 [rollup](https://app.datadoghq.com/dash/879620/mycheck?live=true&page=0&is_auto=false&from_ts=1533669300761&to_ts=1533683700761&tile_size=m)
