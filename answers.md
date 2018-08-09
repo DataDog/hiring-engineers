@@ -311,9 +311,13 @@ Here were the emails I received after doing so:
 
 
 ## Collecting APM Data
+This was by far the most challenging part of this excercise for me, I had a lot of trouble getting it up and running. As mentioned, I used Vagrant to setup my enviroment and when I tried to install ddtrace onto my machine, the version of pip that was running was too old. After a lot of struggling I managed to update pip to a proper version and installed ddtrace. I should also mention that I had never encountered something like "middleware" before, and so when I first read the instructions that had stated "Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other." I, at first, did not really understand what that meant. As I dove deeper into this part of the challenge, I began to understand what middleware was exactly, and what ddtrace was doing. However, unfortunately, I forgot about that line that I read. Combined with my frustrations with the outdated version of pip, by the time I got to trying to collect the APM data, I had done exactly what was stated to be avoided and I ran both the middleware and ddtrace. When I realized what I did I immediatley corrected it, but still had some issues. I then discovered that the final issue was due to port forwarding being disabled on the VM. After correcting everything I finally got the APM data to start collecting.
+
+
 In order to collect APM data, I used this Datadog article:  https://docs.datadoghq.com/tracing/setup/python/
 
-I installed ddtracer and flask and also blinker using pip.
+
+
 
 Then, I integrated the middleware into the provided code by adding the following code snippets:
 
@@ -326,7 +330,7 @@ from ddtrace.contrib.flask import TraceMiddleware
 traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 ```
 
-I also changed port 5050 to 8080 because initially I could not get the traces to send to Datadog. Tweaking that and also forwading port 8080 from my VM to my host machine fixed the issue for whatever reason.
+I also changed port 5050 to 8080 because initially I could not get the traces to send to Datadog. Tweaking that and also forwading port 8080 from my VM to my host machine fixed the issue.
 
 Here is the full code I used:
 
