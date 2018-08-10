@@ -1,48 +1,54 @@
+#!/usr/bin/env/python3.6
 from datadog import initialize, api
 
 # keys added here for convenience, in production they should probably be passed as environment variables
 
-options = {"api_key": "963dc35000c5cb12e12d5095ff38b861", "app_key":"969c206e89ef5a8147cf026176fbcba403dbd622" }
+options = {"api_key": "fca79176336236ae32fb2548e0ea51a3", "app_key":"2f36f4bc5c64535d1ce24b6e93d03fb83b5aa882" }
 
 initialize(**options)
 
 title = "Laura's Timeboard"
-description = "Tracks my_metric"
-
+description = "An informative timeboard."
 graphs = [{
     "definition": {
         "events": [],
         "requests": [
-            {"q": "avg:my_metric{*}"}
+            {"q": "my_metric.my_metric{host:ubuntu-bionic}"}
         ],
         "viz": "timeseries"
     },
-    "title": "my_metric over time"
-}, {
+    "title": "My Metric"
+},
+{
     "definition": {
         "events": [],
         "requests": [
-            {"q": "anomalies(avg:mongodb.database_size{role:database:mongodb}, 'basic', 3)"
-             }],
-        "viz": "timeseries"
-    },
-    "title": "Database size anomalies"
-}, {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+            {"q": "my_metric.my_metric{host:ubuntu-bionic}.rollup(avg, 3600)"}
         ],
         "viz": "timeseries"
     },
-    "title": "Hourly Rollup Sum of my_metric"
-}]
+    "title": "My Metric with Rollup Function"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mongodb.connections.totalcreated{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MongoDB Total Connections Created with Anomaly"
+}
+
+]
 
 template_variables = [{
-    "name": "i-0a9ff2c19f22d237a",
+    "name": "host1",
     "prefix": "host",
-    "default": "host:i-0a9ff2c19f22d237a"
+    "default": "host:my-host"
 }]
+
+
 
 read_only = True
 

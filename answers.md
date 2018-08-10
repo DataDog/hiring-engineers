@@ -24,12 +24,73 @@ I did a bit of searching to see if other people had had a similar problem, and f
 
 I initially had some problems with this, since I had never dealt with a .yaml file of the length of the datadog.yaml file. My tags wouldn't display at first because I wasn't indenting the tags in the config file correctly.
 
-If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing. I would also add an error message that makes it clear on startup that there is a parsing issue with the `datadog.yaml` file.
+If I were improving the documentation for this, I would add a troubleshooting section to the documentation that recommends using a yaml validator or linter if the tags are not appearing.
+
+To prevent the trouble I had when initially doing this exercise, I copied the existing `datadog.yaml` file and change its name to `datadog-original.yaml`so I have the original to refer to. Large `.yaml` files can be [difficult to edit and read](https://arp242.net/weblog/yaml_probably_not_so_great_after_all.html#can-be-hard-to-edit-especially-for-large-files). Since the `datadog.yaml` file is so long, it can be hard to see if lines are indented correctly.
+
+I created a new, empty `datadog.yaml` file, into which I copy the configuration I need:
+
+```
+sudo mv datadog.yaml datadog-original.yaml
+
+touch datadog.yaml
+
+```
+In `datadog.yaml`, I paste in the the first 10 or so lines of the old `datadog.yaml` file, with my api key and Datadog URL.
+
+(screenshot - datadog-yaml-first)
+
+I restart my Agent:
+
+```
+sudo systemctl restart datadog-agent
+
+```
+
+And refresh my Host Map, and my agent appears.
+
+Now I can edit my `datadog.yaml` to add some tags:
+
+(screenshot - datadog-yaml-tags)
+
+Now I restart the agent with `sudo systemctl restart datadog-agent` and refresh the Host Map, and the tags appear:
+
+(screenshot tags-in-host)
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I installed MongoDB and its integration and it is working:
-![mongo](https://user-images.githubusercontent.com/17437250/42003230-6100e440-7a38-11e8-955e-1c0040ff6158.png)
+I chose to install MongoDB, even though I don't have that much experience with it. I have the most experience with Postgres, but setting up Postgres on a Linux machine can be time-consuming.  I read the setup documentation for MongoDB and it was more straightforward than setting up Postgres.
+
+I ran into some installation issues with MongoDB which required me to create and then change permissions on the MongoDB `/data/db` folder, which led me to this [Stack Overflow answer](https://stackoverflow.com/questions/7948789/mongod-complains-that-there-is-no-data-db-folder). I followed the instructions, created the `data/db` folder, and changed the permissions on it, and MongoDB was up and running.
+
+Then, I set up Datadog integration.  First, I created Datadog user:
+
+ ( screenshot create-mongodb-user)
+
+Then, I edited `/etc/datadog-agent/conf.d/mongo.d/conf.yaml`:
+
+(screenshot mongodb-conf-yaml )
+
+I restarted the agent restart agent, but didn't see the MongoDB integration on the Datadog site, because of yaml errors:
+
+yaml errors? screenshot - mongodb-yaml-error
+
+I resolved the yaml errors, but then the mongodb check was not running:
+
+screenshot mongodb-check-status
+
+I restarted `mongod` and restarted Datadog Agent with `sudo service datadog-agent restart`, MongoDB appears on host:
+screenshot mongodb-on-host-map
+screenshot mongodb-host-map-details
+
+
+created metric called my_metric and ran it:
+
+screenshot my_metric_running_commandln
+
+trouble with tagging/renaming my_metric - why is namespace not explained if it appears on the Host Map? It is the first thing I search for
+
+
 
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -42,13 +103,14 @@ from checks import AgentCheck
 
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('my_metric', randint(1,1000))
+        self.gauge('my_metric.my_metric', randint(1,1000), tags=['my_metric'])
+
 
 ```
 
 I initially ran into some trouble with this, since I had mistakenly put my `my_metric.yaml` file in the `/checks.d` directory instead of in `/conf.d`. Based on this experience, I would improve the error message that occurs when people try to run checks that lack a .yaml file in the `/conf.d` directory. Instead of saying `Error: no valid check found`, I would raise an error that says that the file is missing from `/conf.d`.
 
-The documentation could also benefit from an example of a yaml config file, so users can see the syntax.
+The documentation could also benefit from a more fleshed-out example of a yaml config file, so users can see the syntax.
 
 In addition, I would strongly suggest changing the name of the file used in the example for the HTTP check in the documentation [here](https://docs.datadoghq.com/developers/agent_checks/) to something like `http-check.py`(and `http-check.yaml`). This is because there is a Python module called [`http`](https://docs.python.org/3/library/http.html) that `pip` depends on. When importing modules, [Python first looks in the directory from which the script is run](https://docs.python.org/3/tutorial/modules.html#the-module-search-path) -- and returns the local `http` before it finds the correct version.
 
@@ -78,11 +140,131 @@ Yes, the collection interval can be changed by changing the `min_collection_inte
 
 ### Utilize the Datadog API to create a Timeboard
 
-[Link to Timeboard](https://app.datadoghq.com/dash/841769/lauras-timeboard?live=true&page=0&is_auto=false&from_ts=1529863991213&to_ts=1529867591213&tile_size=m)
+[Link to Timeboard](https://app.datadoghq.com/dash/884449/lauras-timeboard?live=true&page=0&is_auto=false&from_ts=1533913657499&to_ts=1533928057499&tile_size=m&fullscreen=false)
 
 The script is attached as `timeboard.py`.
 
 There are a few things that could be improved in the documentation for the [Python wrapper for the Datadog API](https://datadogpy.readthedocs.io/en/latest/) -- it would be useful to know which versions of Python it supports, and a few more examples would be helpful.
+
+Since the API documentation showed the Python API being used with a package called `datadog`, I created a virtual environment, and installed the package in it.
+
+(dd-docs-api-package)
+
+```
+virtualenv -p `which python3.6` venv
+source venv/bin/activate
+pip install datadog
+
+```
+
+I created my application key and API key per the instructions [here](https://app.datadoghq.com/account/settings#api), and ran the example Python script in the documentation.
+
+I ran the script and it exited without an error.
+
+Then, I tried creating a Timeboard as in the Python example in the documentation:
+
+screenshot timeboard_py_create_first_board
+
+I ran the script and it exited without errors. I went and checked in my Dashboards, and a new Timeboard had appeared:
+
+screenshot Test_timeboard
+
+Now that my script works, I can add the graphs from assignment. Since I will be adding graphs to the Timeboard, I consulted the documentation for graphing here: https://docs.datadoghq.com/graphing/.
+
+I noticed that Graphs can be specified with JSON objects, and that the objects in the Python API scripts that define the Graphs are Python dictionaries, which are very similar to JSON objects, so I can also rely on the [documentation on defining graphs in JSON](https://docs.datadoghq.com/graphing/miscellaneous/graphingjson/) to create my script.
+
+First, I used the Metrics Explorer to find the correct name for my metric:
+
+screenshot: metrics_explorer_search
+
+Based on the syntax in the documentation, I specify that my_metric will be scoped over my host, which is named `ubuntu-bionic`:
+
+```
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric.my_metric{host:ubuntu-bionic}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric"
+}]
+
+```
+
+I ran the new script, and it appeared in my Timeboard:
+
+screenshot: my_metric_scoped_over_host
+
+Since I'm working with my_metric already, I am going to work on the graph that applies the rollup function to `my_metric`.  I replicated the existing graph by copying the dictionary object, ran the script, and then I had two identical graphs:
+
+screenshot: 2_metric_function_graphs
+
+Two identical graphs are not that useful, so I add the rollup function as described [here](https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time). The 3600 passed to the rollup function refers to the number of seconds in an hour.
+
+```
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric.my_metric{host:ubuntu-bionic}.rollup(avg, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric with Rollup Function"
+}
+
+```
+
+
+
+Now I have my_metric displayed, along with a graph that shows my_metric with the hourly rollup function applied:
+
+my_metric_with_rollup
+
+(The rollup graph displays one point, because the time interval for the Timeboard is set to 1 hour.)
+
+Finally, I look in the Metrics Explorer for something interesting to display from my database with the anomaly function applied:
+
+I find `mongodb.connections.totalcreated`, which looks like an interesting graph:
+
+screenshot: metrics_explorer_DB
+
+As in the previous example, I first create the graph definition, which currently displays the MongoDB metric without an anomaly function:
+
+```
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "mongodb.connections.totalcreated{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MongoDB Total Connections Created"
+}
+```
+
+I have been using [this JSON documentation](https://docs.datadoghq.com/graphing/miscellaneous/graphingjson/) and this [documentation on graphing](https://docs.datadoghq.com/graphing), but neither page has information about anomaly functions and how to apply them.  If I were improving the documentation, I would add a more complete description of the graphing language in the page on how to use JSON to define graphs.
+
+Since the documentation on how to define graphs with JSON does not show me the syntax for applying an anomaly function, I am going to reverse-engineer the syntax from the JSON of a graph that I create using the GUI:
+
+screenshot: Mongodb_GUI_graph
+
+The GUI allows me to select the anomaly function and apply it.  Now I can look at the JSON this graph uses:
+
+screenshot: GUI_graph_JSON
+
+And put it into my script:
+
+screenshot: script from RE GUI
+
+I run the script again, and the graph with the anomaly function appeared. The Timeboard is complete:
+
+screenshot: Timeboard_final
+
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
