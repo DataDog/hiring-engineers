@@ -288,6 +288,58 @@ I used the web interface to schedule downtime outside of work hours and on weeke
 
 ## APM
 
+I copy the Python application into a file:
+
+screenshot: flask_apm_app_no_middleware
+
+Per the instructions in the [APM documentation](https://app.datadoghq.com/apm/install#), I install the package `ddtrace` on my VM:
+
+```
+sudo pip install ddtrace
+
+```
+
+Since my Flask app is in my shared folder, I can run it on my VM with `ddtrace`:
+
+```
+ddtrace-run python ddtrace-run python flask_apm_app_no_middleware.py
+
+```
+`werkzeug` starts running the site:
+
+screenshot: dd-trace run flask app
+
+There aren't any traces yet, since nothing is requesting data from the app, so I use `curl` inside the VM to request data. (I use `curl` inside the VM since the VM is not setup to allow me to access the app IP address from outside the machine.)
+
+For some reason my VM doesn't come with `curl` installed, so I install it:
+
+```
+sudo apt install curl
+
+```
+
+Then, I use it to request pages from the app:
+
+```
+curl 0.0.0.0:5050
+curl 0.0.0.0:5050/api/apm
+curl 0.0.0.0:5050/api/traces
+
+```
+
+The app responds:
+
+
+screenshot: curl_apm_endpoints
+
+Now that the app has served data, the traces are available:
+
+screenshot: APM_traces
+
+
+
+
+
 Here is the [link to the Dashboard](https://app.datadoghq.com/dash/846819?live=true&page=0&is_auto=false&from_ts=1530128574143&to_ts=1530132174143&tile_size=m).
 
 Here is the Dashboard screenshot:
