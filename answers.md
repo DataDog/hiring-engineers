@@ -1,17 +1,23 @@
 Your answers to the questions go here.
 
 Collecting Metrics :
- * Tags :
+ * Tags : 
+<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Tags" width="500" height="332" alt="METRICS_Tags">
 
  * Installing the DB
 
  * Custom Check
+<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_my_metric_Random" width="500" height="332" alt="METRICS_my_metric_Random">
+METRICS_my_metric_Random
 
  * Collection interval
+<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Interval_py" width="500" height="332" alt="METRICS_Interval_py">
+METRICS_Interval_py
 
  * Bonus:
-Without modifying the file directly, I could switch from the CLI commands and VIM editor to the Datadog Agent GUI and tweak some things like the collection interval from there. But this would actually modify the Python file.
 Else on the app.datadoghq.com/metric/summary, we have access to the metadatas of our metrics therefore we can modify the interval.
+<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Interval_web" width="500" height="332" alt="METRICS_Interval_web">
+METRICS_Interval_web
 
 
 Visualizing Data:
@@ -40,4 +46,10 @@ Monitoring Data:
  * Bonus: Manage Downtime
 
 
+Collecting APM Data:
+ - Screen of the dd-trace working
 
+ * 
+
+ * Bonus:
+From what I understood, a service is a process or a set of processes like a database and a resource is an action for a service like a query to a database. Therefore, a service can have multiple resources.
