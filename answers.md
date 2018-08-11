@@ -2,12 +2,14 @@ Your answers to the questions go here.
 
 Collecting Metrics :
  * Tags : 
+[Contribution guidelines for this project](00_ASSETS/01_SCREENSHOTS/METRICS_Tags.png)
+![Contribution guidelines for this project](00_ASSETS/01_SCREENSHOTS/METRICS_Tags.png)
 <img src="00_ASSETS/01_SCREENSHOTS/METRICS_Tags" width="500" height="332" alt="METRICS_Tags">
 
  * Installing the DB
 
  * Custom Check
-<img src="00_ASSETS/01_SCREENSHOTS/METRICS_my_metric_Random" width="500" height="332" alt="METRICS_my_metric_Random">
+<img src="00_ASSETS/01_SCREENSHOTS/METRICS_my_metric_Random.png" width="500" height="332" alt="METRICS_my_metric_Random">
 METRICS_my_metric_Random
 
  * Collection interval
