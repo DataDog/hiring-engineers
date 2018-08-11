@@ -2,21 +2,21 @@ Your answers to the questions go here.
 
 Collecting Metrics :
  * Tags : 
-<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Tags" width="500" height="332" alt="METRICS_Tags">
+<img src="00_ASSETS/01_SCREENSHOTS/METRICS_Tags" width="500" height="332" alt="METRICS_Tags">
 
  * Installing the DB
 
  * Custom Check
-<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_my_metric_Random" width="500" height="332" alt="METRICS_my_metric_Random">
+<img src="00_ASSETS/01_SCREENSHOTS/METRICS_my_metric_Random" width="500" height="332" alt="METRICS_my_metric_Random">
 METRICS_my_metric_Random
 
  * Collection interval
-<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Interval_py" width="500" height="332" alt="METRICS_Interval_py">
+<img src="00_ASSETS/01_SCREENSHOTS/METRICS_Interval_py" width="500" height="332" alt="METRICS_Interval_py">
 METRICS_Interval_py
 
  * Bonus:
 Else on the app.datadoghq.com/metric/summary, we have access to the metadatas of our metrics therefore we can modify the interval.
-<img src="./00_ASSETS/01_SCREENSHOTS/METRICS_Interval_web" width="500" height="332" alt="METRICS_Interval_web">
+<img src="00_ASSETS/01_SCREENSHOTS/METRICS_Interval_web" width="500" height="332" alt="METRICS_Interval_web">
 METRICS_Interval_web
 
 
