@@ -64,7 +64,7 @@ __My custom metric with a rollup function__
 As for the script, since I did not use the API but the UI, I wrote one to fetch my Timeboard which is used as a save. The Curl request was:
 > curl "https://api.dash/883660?api_key=c2a059719d8ed637828c38c8d5699d44&application_key=f291ca2d769bbda165f427a823f004980a00ffeb"
 
-I stored the JSON result and the Curl request in my "[**00_ASSETS/02_SCRIPTS**](00_ASSETS/02_SCRIPTS/VISUAL_Script_Get_Timeboard.png)" folder as "**Script_Timeboard_Get**"
+I stored the JSON result and the Curl request in my "**00_ASSETS/02_SCRIPTS**" folder as "[**Script_Timeboard_Get**](00_ASSETS/02_SCRIPTS/Script_Timeboard_Get.txt)"
 __Curl GET request__
 
 ![Curl GET request](00_ASSETS/01_SCREENSHOTS/VISUAL_Script_Get_Timeboard.png)
