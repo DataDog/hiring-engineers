@@ -1,6 +1,0 @@
-init_config:
-
-instances:
-
-    - host: localhost
-      min_collection_interval: 45
