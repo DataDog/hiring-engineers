@@ -9,7 +9,7 @@ Hey everybody (Hi Dr. Nick). Thanks for taking the time to go through my PR, ple
 
 ### Prerequisites - Setup the environment
 
-- 1a Vagrant + VirtualBox Setup: After installing Vagrant I spun up an Ubuntu 16 Linux VM ([here](https://app.vagrantup.com/ubuntu/boxes/xenial64))  ![`ubuntu/xenial64`](./1a.png)
+- 1a Vagrant + VirtualBox Setup: After installing Vagrant I spun up an Ubuntu 16 Linux VM [here](https://app.vagrantup.com/ubuntu/boxes/xenial64)  ![ubuntu xenial64](./1a_update.png)
 
 - 1b I ssh'd into VM `vagrant ssh` and confirmed `v. 16.04` ![Ubuntu 16.04](./1b.png)
 
