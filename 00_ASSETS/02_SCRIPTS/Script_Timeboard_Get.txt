@@ -1,0 +1,99 @@
+## Curl Request
+curl "hdash/883660?api_key=c2a059719d8ed637828c38c8d5699d44&application_key=f291ca2d769bbda165f427a823f004980a00ffeb"
+
+## JSON returned
+{
+  "dash": {
+    "read_only":false,
+    "graphs": [
+      {
+        "definition": {
+          "viz":"timeseries",
+          "status":"done",
+          "requests": [
+            {
+              "q":"top(avg:my_metric{$host}, 10, 'mean', 'desc')",
+              "aggregator":"avg",
+              "style": {
+                "width":"normal",
+                "palette":"dog_classic",
+                "type":"solid"
+              },
+              "type":"line",
+              "conditional_formats":[]
+            }
+          ],
+          "autoscale":true
+        },
+        "title":"my_metric scoped over my VM host"
+      },
+      {
+        "definition": {
+          "viz":"timeseries",
+          "status":"done",
+          "requests":[
+            {
+              "q":"anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+              "style": {
+                "width":"normal",
+                "palette":"dog_classic",
+                "type":"solid"
+              },
+              "type":"line",
+              "conditional_formats":[]
+            }
+          ],
+          "autoscale":true
+        },
+        "title":"Avg of mysql.performance.cpu_time over *"
+      },
+      {
+        "definition": {
+          "viz":"timeseries",
+          "status":"done",
+          "requests": [
+            {
+              "q":"top(avg:my_metric{host:FryktLinuxVM}.rollup(sum, 3600), 10, 'mean', 'desc')",
+              "aggregator":"avg",
+              "style": {
+                "width":"normal",
+                "palette":"dog_classic",
+                "type":"solid"
+              },
+              "type":"line",
+              "conditional_formats":[]
+            }
+          ],
+          "autoscale":true,
+          "yaxis": {"max":"50000"}
+        },
+        "title":"Avg of my_metric over host:FryktLinuxVM"
+      }
+    ],
+    "template_variables": [
+      {
+        "default":"FryktLinuxVM",
+        "prefix":"host",
+        "name":"host"
+      }
+    ],
+    "description":"created by johanagche@hotmail.fr",
+    "title":"Test Timeboard V01",
+    "created":"2018-08-09T09:48:58.420320+00:00",
+    "id":883660,
+    "created_by": {
+      "disabled":false,
+      "handle":"johanagche@hotmail.fr",
+      "name":"Johan Frykten Gache",
+      "is_admin":true,
+      "role":"",
+      "access_role":"adm",
+      "verified":true,
+      "email":"johangache@hotmail.fr",
+      "icon":"https://secure.gravatar.com/avatar/d759336f0e8f0503094b3bcf8c2f6bb7?s=48&d=retro"
+    },
+    "modified":"2018-08-11T13:45:20.863359+00:00"
+  },
+  "url":"/dash/883660/test-timeboard-v01",
+  "resource":"/api/v1/dash/883660"
+}
