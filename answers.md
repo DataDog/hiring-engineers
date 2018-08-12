@@ -16,3 +16,16 @@ Hey everybody (Hi Dr. Nick). Thanks for taking the time to go through my PR, ple
 - 1c I signed up for Datadog and installed the Datadog Agent  successfully  ` DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"` ![screenshot](./1c.png)
 
 - 1d I navigated to the [eventstream](https://app.datadoghq.com/event/stream) `https://app.datadoghq.com/event/stream` and confirmed Agent reporting from my local machine ![screenshot](./1d.png)
+
+
+### Collecting Metrics
+
+- 2a 2b Added two tags in the Agent config file `datadog.yaml` `example` and a key/value pair `env:prod` ![screenshot](./2a.png) ![screenshot](./2b.png)
+
+- 2c 2d restarted agent `sudo service datadog-agent restart` and confirmed via that tags added ti agent yaml config file were accounted for on Host Map page ![screenshot](./2c.png) ![screenshot](./2d.png)
+
+- 2e 2f I installed PostresSQL on my VM
+```
+  sudo apt-get update
+  sudo apt-get install postgresql postgresql-contrib
+``` and then after confirming installation ![confirm installation](./2e.png) I started postgres and followed [Datadog PostgreSQL integration and configuation instructions](https://app.datadoghq.com/account/settings#integrations/postgres) ![here](./2f.png) and ![here](./2g.png) and confirmed connection ![here](./2h.png) and configured agent to connect to PostgreSQL server ![here](./2i.png) and restarted the Agent ![here](./2j.png) , checked the status `sudo datadog-agent status` ![here](./2k.png) via CLI and the [relevant Dashboard](https://app.datadoghq.com/dash/integration/17/postgres---metrics) ![here](./2l.png)
