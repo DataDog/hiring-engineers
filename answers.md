@@ -24,7 +24,7 @@ __DD's Host Map page__
 ![DD's Host Map page](00_ASSETS/01_SCREENSHOTS/METRICS_Tags.png)
 
  * Custom Check: To create a Custom Agent check we need two files.
-One in the "_/etc/datadog-agent/checks.d_" and one in the "_/etc/datadog-agent/conf.d_". We'll see about the later at the next question. 
+One in the "_/etc/datadog-agent/checks.d_" and one in the "_/etc/datadog-agent/conf.d_". We'll see about the latter at the next question. 
 The first one is a .py document and is a small Python Program just to check a random number between 0 and 1000.
 
 __.py Check__
@@ -79,7 +79,7 @@ __Snapshot sent to my account__
 
 
  * **Bonus**:
-The MySql Performance CPU with Anomaly Detection graph is displaying what is normal - the _greyed area_ - and what is not - the _red flagged points_ outside of this greyed area. The greyed area shows a trend of what should be next and by such detects what should not be: strange checks that are way too high or way too low.
+The MySql Performance CPU with Anomaly Detection graph is displaying what is normal - the _greyed area_ - and what is not - the _red flagged points_ outside of this greyed area. The greyed area shows a trend of what should be next and thereby detects what should not be: strange checks that are way too high or way too low.
 
 
 ## Monitoring Data:
@@ -97,7 +97,7 @@ __On the DD Web App__
 ![On the DD Web App](00_ASSETS/01_SCREENSHOTS/MONITORING_Creation_Results.png)
 
 
- * Sending an email: Writing the email script is also neat. We need the Team/Person(s) to contact tag(s) (here: _@me_). We can program some conditions with brackets and *#is_something* (here: *{{#is_alert}}* for example). And we have access to some variables like the "_{{value}}_" we are monitoring and our "_{{host.ip}}_" to know where is the problem.
+ * Sending an email: Writing the email script is also neat. We need the Team/Person(s) to contact tag(s) (here: _@me_). We can program some conditions with brackets and *#is_something* (here: *{{#is_alert}}* for example). And we have access to some variables like the "_{{value}}_" we are monitoring and our "_{{host.ip}}_" to know where the problem is.
 
 __Scripted Email__
 
@@ -154,8 +154,9 @@ From what I understood, a service is _a process or a set of processes_ like a da
 
 
 ## Final Question:
-I could think of an application for Spotify, Deezer, Qobuz or maybe even Youtube to monitor what kind of music we listen to and at which hours. Maybe I listen to classical in the morning and metal in the evening _usually_ and that on days where I listen to jazz _before_ going to sleep I lose my will sleep! Or if I _start_ the day with some cult badass 70s rock maybe I will want to eat more at lunch...
+I could think of an application for Spotify, Deezer, Qobuz or maybe even Youtube to monitor what kind of music we listen to and at what time. Maybe I _usually_ listen to classical in the morning and metal in the evening and that the days I listen to jazz _before_ going to sleep I stay awake longer! Or if I _start_ the day with some cult badass 70s rock maybe I will want to eat more at lunch...
 Well... You said "_creative_".
 
+---
 
-Once again, thank you. I hope I wrote enough and was able to be clear and sound.
+Once again, thank you. I hope I wrote enough and was able to be clear and concise.
