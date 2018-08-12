@@ -25,7 +25,8 @@ Hey everybody (Hi Dr. Nick). Thanks for taking the time to go through my PR, ple
 - 2c 2d restarted agent `sudo service datadog-agent restart` and confirmed via that tags added ti agent yaml config file were accounted for on Host Map page ![screenshot](./2c.png) ![screenshot](./2d.png)
 
 - 2e 2f I installed PostresSQL on my VM
-```
-  sudo apt-get update
-  sudo apt-get install postgresql postgresql-contrib
-``` and then after confirming installation ![confirm installation](./2e.png) I started postgres and followed [Datadog PostgreSQL integration and configuation instructions](https://app.datadoghq.com/account/settings#integrations/postgres) ![here](./2f.png) and ![here](./2g.png) and confirmed connection ![here](./2h.png) and configured agent to connect to PostgreSQL server ![here](./2i.png) and restarted the Agent ![here](./2j.png) , checked the status `sudo datadog-agent status` ![here](./2k.png) via CLI and the [relevant Dashboard](https://app.datadoghq.com/dash/integration/17/postgres---metrics) ![here](./2l.png)
+  ```
+    sudo apt-get update
+    sudo apt-get install postgresql postgresql-contrib
+  ```
+  and then after confirming installation ![confirm installation](./2e.png) I started postgres and followed [Datadog PostgreSQL integration and configuation instructions](https://app.datadoghq.com/account/settings#integrations/postgres) ![here](./2f.png) and ![here](./2g.png) and confirmed connection ![here](./2h.png) and configured agent to connect to PostgreSQL server ![here](./2i.png) and restarted the Agent ![here](./2j.png) , checked the status `sudo datadog-agent status` ![here](./2k.png) via CLI and the [relevant Dashboard](https://app.datadoghq.com/dash/integration/17/postgres---metrics) ![here](./2l.png)
