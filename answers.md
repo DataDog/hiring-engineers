@@ -16,7 +16,6 @@
 ![dd2](https://user-images.githubusercontent.com/22799519/44004211-e6e912cc-9e2c-11e8-8959-61073c87c033.PNG)
 
 ## Configuring the Agent to Collect Metrics
-(datadog.yaml file can be found at the end of file)
 1. Adding a custom tag in the datadog.yaml file
   - tags:
       role:datadog_test
