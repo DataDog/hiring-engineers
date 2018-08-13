@@ -174,7 +174,7 @@ As I started changing over to including the Middleware manually I noticed I was 
 
 ![](scrshots/apm_dashboard-metrics.png "DataDog - APM and Infrastructure Metrics")
 
-####Bonus Question: What is the difference between a Service and a Resource?
+#### Bonus Question: What is the difference between a Service and a Resource?
 As stated in the documentation [[14]](#14): "Service" is the name of a set of processes that work together to provide a feature set. While a resource is an action for a service or query to a service.
 
 ## Creative Use Case
@@ -183,17 +183,17 @@ Seismic monitoring, satellite tracking, pollen count monitoring, epidemiology or
 While these wouldn't be as effective for real-time use it might help provide different insights especially if they can be monitored & analyzed against other criteria or data points.
 
 ## References
-##1 https://docs.docker.com/install/linux/docker-ce/ubuntu/
-##2 https://app.datadoghq.com/account/settings#agent/ubuntu
-##3 https://docs.datadoghq.com/
-##4 https://docs.datadoghq.com/integrations/postgres/
-##5 https://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
-##6 https://docs.datadoghq.com/integrations/mysql/
-##7 https://www.datadoghq.com/blog/mysql-monitoring-with-datadog/
-##8 https://docs.datadoghq.com/developers/agent_checks/#your-first-check
-##9 https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
-##10 https://github.com/DataDog/datadogpy
-##11 https://docs.datadoghq.com/monitors/monitor_types/anomaly/
-##12 https://app.datadoghq.com/apm/install#
-##13 http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
-##14 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+## 1 https://docs.docker.com/install/linux/docker-ce/ubuntu/
+## 2 https://app.datadoghq.com/account/settings#agent/ubuntu
+## 3 https://docs.datadoghq.com/
+## 4 https://docs.datadoghq.com/integrations/postgres/
+## 5 https://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
+## 6 https://docs.datadoghq.com/integrations/mysql/
+## 7 https://www.datadoghq.com/blog/mysql-monitoring-with-datadog/
+## 8 https://docs.datadoghq.com/developers/agent_checks/#your-first-check
+## 9 https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
+## 10 https://github.com/DataDog/datadogpy
+## 11 https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+## 12 https://app.datadoghq.com/apm/install#
+## 13 http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
+## 14 https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
