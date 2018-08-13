@@ -76,3 +76,31 @@ For the anomalies function and the rollup function I followed the documentation 
 ![4g](./4g.png)
 ![4h](./4h.png)
 
+
+### Collecting APM Data
+
+ - 5a 5b 5c This one was fun. I decided not to rewrite the python app in ruby with sinatra or rails, so first I had to install pip and flask locally, and then followed the instructions in the `https://docs.datadoghq.com/tracing/setup/python/`  first installing `pip install ddtrace` then updating the example app as found here `http://pypi.datadoghq.com/trace/docs/#flask` to import the relevant ddtrace and blinker libraries and add the middleware on top of the example Flask app.  example app can be found in this repo at `my_app.py`  I ran into a few issues along the way.  First I was unable to connect to my webserver in the vm from my  browser, and after some time debugging I realized I had to setup the appropriate port forwarding which I did by editting the Vagrant file `config.vm.network "forwarded_port", guest: 5050, host: 8080` . Not a very secure approach but allowed me to make requests.  Then I remembered to update my `datadog.yaml` conf to include
+```
+ apm_config:
+  enabled: true
+
+```
+But was still having issues with ddtrace and everytime i started up the updated flask app `python my_app.py` I got debug logs `ddtrace.writer - ERROR - cannot send span to localhost:8126: [Errno 111] Connection refused`. It turns out I just needed to restart the agent, `sudo service datadog-agent restart` and from there my flask app tracing worked great and I was able to see APM metrics in Datadog's UI, and I made a simple timeboard with both APM and Infra Metrics, as seen below. Links to APM and Infra graph here (Not sure if this is the right approach I just took the embed src link value)
+
+[APM](https://app.datadoghq.com/graph/embed?token=d3879abb024883724beb86400b4c3d3afaf4e278d0f1065e289e6d9be497a27a&height=300&width=600&legend=true)
+`https://app.datadoghq.com/graph/embed?token=d3879abb024883724beb86400b4c3d3afaf4e278d0f1065e289e6d9be497a27a&height=300&width=600&legend=true`
+[Infra](https://app.datadoghq.com/graph/embed?token=22f3da6ae7ce7a1815cc1fe7cb5008e4d71e91fd430cc1d11c861e8ad8c5d237&height=300&width=600&legend=true)
+`https://app.datadoghq.com/graph/embed?token=22f3da6ae7ce7a1815cc1fe7cb5008e4d71e91fd430cc1d11c861e8ad8c5d237&height=300&width=600&legend=true`
+
+![5a](./5a.png)
+![5b](./5b.png)
+![5c](./5c.png)
+
+- Bonus Surprise Question: What is a service and what is a resource? Put briefly, a service is a group of processes that are all centered around a similar job (so for example a web server could be considered a few different services, web views and database) and a resource is just one specific type of action within a service, like for example `/home` routes or just a single sql query like `SELECT users.email, users.first_name, first_orders.order_id FROM users JOIN first_orders on first_orders.user_id = users.id WHERE users.first_name LIKE "%Spartacus%"`;
+
+### Final Question
+- Datadog has a lot of interesting uses. I think an interesting service could be monitoring your expected commute time of your daily commute to and from the office.  You could write a relatively simple web scraper that could query for the Google Maps Directions estimated Commute time of your commute (say, at 6pm travelling from Grand Central NY to Astoria Queens NY). The commute time in minutes could be tracked as a custom metric in Datadog, you could set up Threshold Alerts or an Anomaly Function for when that commute time is expected to exceed it's usual amount of time, alerting you with an email ahead of time to let you know to tell your significant other you might be home late for dinner, or that you should take an alternative route in order to avoid the issue impacting your commute.
+
+
+
+
