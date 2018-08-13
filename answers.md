@@ -407,5 +407,5 @@ From a business perspective we now see ‘Big Data’ and ‘Data lakes’. Comp
 -  Correlate this with usual data such as footsteps, sleep and other items and this would be an amazing dashboard which could be shared with personal trainers.
 
 **Cloud costs**
--  A pretty obvious one and likely on the roadmap. While Datadog are partnered with CloudCheckr and many of the cloud providers have their own tools for spotting cost savings it would be great to have a single dashboard to show total cost savings across all providers or simply areas to look at if costs cannot be worked out.
+-  An obvious suggestion and likely on the roadmap. While Datadog are partnered with CloudCheckr and many of the cloud providers have their own tools for spotting cost savings it would be great to have a single dashboard to show total cost savings across all providers or simply areas to look at if costs cannot be worked out.
 -  For example, if you notice an EC2 instance is consistently running at 40% without any deviations a smaller instance could be suggested.
