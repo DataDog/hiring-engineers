@@ -8,7 +8,7 @@ A new Datadog account can be created [here](https://www.datadoghq.com/) by click
 <img src="Screenshots/signingin.png">
 </p>
 
-As part of this exercise I wanted to install the Datadog Agent on a few different systems – just to make it more interesting, 
+As part of this exercise I wanted to install the Datadog Agent on a few different systems to
 see how easy the agents were to install and understand the breadth of the deployment options.
 
 Installing agents is simple. By navigating to the Integrations > Agents page you are greeted with the below screen
@@ -113,7 +113,7 @@ instances:
 
 **Change your check’s collection interval so that it only submits the metric once every 45 seconds**
 
-Information about changing the collection intervals can be found [here(https://docs.datadoghq.com/developers/agent_checks/#configuration).
+Information about changing the collection intervals can be found [here](https://docs.datadoghq.com/developers/agent_checks/#configuration).
 
 This was achieved by editing the `my_metric.yaml` file. This is the config file which is required in addition to the agent above.
 
@@ -232,7 +232,7 @@ This is a useful way to collaborate and quickly share information with other use
 
 Anomaly graphs allow you to view when a metric is behaving differently than in the past. More information can be read about them [here](https://docs.datadoghq.com/monitors/monitor_types/anomaly/).
 
-My anomaly graph is focused on the CPU utilisation of the MySQL database. I used basic logging as there is no repeating seasonal pattern and it is set to show up to two deviatiations (bounds) from the normal behaviour.
+My anomaly graph is focused on the CPU utilisation of the MySQL database. I used basic logging as there is no repeating seasonal pattern and it is set to show up to two deviations (bounds) from the normal behaviour.
 
 ## Visualizing Data:
 
@@ -356,7 +356,7 @@ if __name__ == '__main__':
 <img src="Screenshots/apm.png">
 </p>
 
-In the image below we see that the APM screen has enabled and metrics have begun to come through
+In the image below we see that the APM screen has enabled itself and metrics have begun to come through.
 
 <p align="center">
 <img src="Screenshots/apm8.png">
