@@ -62,4 +62,17 @@ For the anomalies function and the rollup function I followed the documentation 
 
 - Bonus: The Anomaly Graph is basically displaying a range of expected values that the metric is expected to fall within in the future a certain percentage of the time, given it's previous values.  The range it's expected to fall within is tighter or wider depending on the Param you pass in of number of standard deviations, I chose 2 standard deviations for statistical significance. Though I'm not a stats wiz the range is basically saying `95% of the time the number should fall within this range`. So, the 1 out of 20 times it is above or below that range, it probably indicative of an anamoly or underlying change in data, and is worth alerting a user on.
 
+### Monitoring Data
+
+- 4a 4b 4c in The Datadog UI I navigated to the [Monitor Page](https://app.datadoghq.com/monitors#/create) and selected a create new monitor, then followed the instructions to create an alert with a threshold > 800 and a warning above 500 over the previous 5 minute period, as well as a No Data alert if there's zero recorded instances of the metric over a 10 minute period.  Using Markdown and the Datadog templating language I constructed an email that has different messaging for alert, warn, and no data, and logs the my_metric value and host ip in the case of an alert.  This successfully sent me a warning alert right away as it didn't take long to go above 500, screenshots of the inputting of values into the new monitor and the email i got from this monitor can be seen here
+![4a](./4a.png)
+![4b](./4b.png)
+![4c](./4c.png)
+
+- Bonus: since we don't want this to alert constantly during normal business hours and on the weekend off hours, I set up two recurring scheduled downtimes via the `Manage Downtime` menu option. I selected recurring downtimes for the weekend and weekdays during Eastern Time 7:00am - 9:00pm, the emails note UTC times which, when adjusted, line up with our EST preferences.  Downtime creation forms and the emails rec'd as a result can be seen below
+![4d](./4d.png)
+![4e](./4e.png)
+![4f](./4f.png)
+![4g](./4g.png)
+![4h](./4h.png)
 
