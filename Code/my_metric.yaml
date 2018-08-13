@@ -1,0 +1,5 @@
+init_config:
+    key1: my_metric
+
+instances:
+    - min_collection_interval: 45
