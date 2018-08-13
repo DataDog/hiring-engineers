@@ -13,7 +13,7 @@ The objective of this exercise is to provision a Linux VM with a target applicat
 
 I found the exercise a good introduction to getting started with DataDog and as expected from a mature product it was a straightforward process.
 
-Since I am comfortable with the either approach I decided to move forward with Docker for Linux and the dockerized Datadog Agent image for two reasons, lower profile and an opportunity to become familiar with the dockerized agent.
+Since I am comfortable with either approach I decided to move forward with Docker for Linux and the dockerized Datadog Agent image for two reasons, lower profile and an opportunity to become familiar with the dockerized agent.
 
 ## Environment
 
@@ -46,26 +46,28 @@ Now that we have the agent installed and reporting data back to DataDog we will 
 Tagging in Datadog can be accomplished in a few different ways - Agent, DogStatsD, Integration/Check, etc.
 
 Initially I configured the datadog.yaml in the following format based on the commented out sample in file:
-`
+
+```
 tags:
    - env:demo
    - role:database
    - region:socal
-`
+```
+
 This configuration didn't work even though the existing sample in the datadog.yaml was the same, so I restarted the agent `systemctl restart datadog-agent` with no success. Next I changed it to be on a single line but still wasn't seeing the expected results.
 
 `tags: env:demo, role:database, region:socal`
 
 I then went looking for any DataDog logs and found the process-agent.log file which referenced a process_config env variable.
 
-`
+```
 2018-08-11 22:11:37 INFO (main_common.go:146) - process-agent not enabled.
 Set env var DD_PROCESS_AGENT_ENABLED=true or add
 process_config:
   enabled: "true"
 to your datadog.yaml file.
 Exiting.
-`
+```
 
 After a few searches I come across the documentation for Live Process Monitoring which included information about enabling process_config for DataDog to collect process and containers.
 
@@ -76,9 +78,9 @@ Final list of tags used: `tags: env:demo, role:database, region:socal, client:tu
 ![](scrshots/reporting_view_dd_yaml_agent_tags.png "Host Map view of host and its tags")
 
 ### Install database and DD integration
-After initially considering MongoDB I went with PostgreSQL and the associated integration announced at the Ausitin 2017 Summit.
+After initially considering MongoDB I went with PostgreSQL and the associated integration announced at the Austin 2017 Summit.
 
-Installation was performed using apt-get - 'apt-get install postgresql-10'
+Installation was performed using apt-get - `apt-get install postgresql-10`
 
 Next I followed the PostgreSQL integration documentation [4](#4) and reviewed blog post [5](#5) to configure the postgres.d/conf.yaml file.
 
