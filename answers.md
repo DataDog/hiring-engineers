@@ -397,7 +397,7 @@ From a business perspective we now see ‘Big Data’ and ‘Data lakes’. Comp
 
 **'Boris Bike' Monitoring**
 -  These are the London bicycles that are for rent. 
--  There are (in my opinion) ongoing issues with regards distribution and predicting use which can be improved. 
+-  There are (in my opinion) ongoing issues with regards distribution and predicting use.
 -  It would be great to have an agent running somewhere on the bikes so they know the location while being used and can better predict needs while the bikes are in flight rather than relying on end points.
 - Given the density of London a Bluetooth Mesh could be used and with some machine learning applied distribution of bikes could be better predicted and handled.
 
