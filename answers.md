@@ -31,11 +31,80 @@
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
-<img width="1145" alt="my_metric-timeboard" src="https://user-images.githubusercontent.com/17325777/44071499-59a278fa-9f57-11e8-98e7-030c12e06af8.png">
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+<img width="1009" alt="timeboard" src="https://user-images.githubusercontent.com/17325777/44104994-58d230c0-9fbe-11e8-8395-d718f3aecede.png">
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+```
+var dogapi = require("dogapi");
+var options = {
+  api_key: DD_API_KEY,
+  app_key: DD_APP_KEY
+};
+dogapi.initialize(options);
+var title = "Visualizing Data";
+var description = "A timeboard for hiring exercise. Custom metric shown with system load";
+var graphs = [
+  {
+    definition: {
+      events: [],
+      requests: [
+        {q: "avg:system.load.1{*}"}, 
+        {q: "avg:my_metric{*}"}
+      ],
+      viz: "timeseries"
+    },
+    title: "custom metric"
+  },
+  {
+    definition: {
+      events: [],
+      requests: [
+        {q: "sum:my_metric{host:Rachels-MBP-2.home} by {host}"}
+      ],
+      viz: "timeseries"
+    },
+    title: "my_metric over host"
+  }, 
+  {
+    definition: {
+      events: [],
+      requests: [
+        {q: "my_metric{host:Rachels-MBP-2.home} by {host}.rollup(sum, 3600)"}
+      ],
+      viz: "timeseries"
+    },
+    title: "my_metric rolled-up every hour"
+  },
+  {
+    definition: {
+      events: [],
+      requests: [
+        {q: "anomalies(avg:postgresql.rows_returned{db:movie_ratings}, 'basic', 2)"}
+      ],
+      viz: "timeseries"
+    },
+    title: "postgreSQL anomaly"
+  }
+];
+var templateVariables = [
+  {
+    name: "host1",
+    prefix: "host",
+    "default": "host:Rachels-MBP-2.home"
+  }
+];
+dogapi.timeboard.create(
+  title, description, graphs, options, templateVariables,
+  function(err, res){
+    console.dir(res);
+  }
+);
+
+
+
+```
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
