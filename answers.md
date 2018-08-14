@@ -22,3 +22,6 @@
 <img width="1054" alt="custom-metric" src="https://user-images.githubusercontent.com/17325777/44067501-d74def14-9f43-11e8-9794-9bef800cd07c.png">
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+**collection interval of cutsom metric changed to submit metric once every 45 seconds**
+<img width="1018" alt="interval" src="https://user-images.githubusercontent.com/17325777/44067817-4401e4fc-9f45-11e8-9d7a-2ff138d7648e.png">
