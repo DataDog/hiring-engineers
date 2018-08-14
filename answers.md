@@ -15,6 +15,8 @@ DD_API_KEY=0df5392e3fcf52b4ee65fef26c2f0cb7 bash -c "$(curl -L https://raw.githu
 
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+![alt-text](pics/datadogYamltag.PNG "Host Tages:")
+![alt-text](pics/webApp.PNG "Web Tages:")
 ```
 cp datadog.yaml /etc/datadog-agent/datadog.yaml
 ```
@@ -62,7 +64,10 @@ python /vagrant/DataDogAPI/DataDogAPIScreenShoot.py
 # Monitoring Data:
 ```
 python /vagrant/DataDogAPI/DataDogAPIMonitor.py
+
 ```
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![alt-text](pics/emailNotification.PNG "Email Notification:")
 # Collecting APM Data:
 ```
 python /vagrant/DataDogAPI/DataDogAPM.py
