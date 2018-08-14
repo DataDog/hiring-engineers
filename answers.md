@@ -18,4 +18,7 @@
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+**Agent Check metric script w/random value**
+<img width="1054" alt="custom-metric" src="https://user-images.githubusercontent.com/17325777/44067501-d74def14-9f43-11e8-9794-9bef800cd07c.png">
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
