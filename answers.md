@@ -31,6 +31,7 @@
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
+<img width="1145" alt="my_metric-timeboard" src="https://user-images.githubusercontent.com/17325777/44071499-59a278fa-9f57-11e8-98e7-030c12e06af8.png">
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
