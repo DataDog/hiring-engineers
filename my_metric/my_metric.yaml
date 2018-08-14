@@ -1,0 +1,8 @@
+init_config:
+    key1: val1
+    key2: val2
+
+instances:
+    - username: vagrant
+      password: 1234
+      min_collection_interval: 45
