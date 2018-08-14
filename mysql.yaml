@@ -1,0 +1,14 @@
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: Ypr5O!aFdVTn1CpG80Vdz5E7
+    tags:
+        - optional_tag1
+        - optional_tag2
+    options:
+        replication: 0
+        galera_cluster: 1
+
+    
