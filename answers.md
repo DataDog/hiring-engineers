@@ -139,10 +139,11 @@ Please configure the monitor’s message so that it will:
 <img width="565" alt="monitor-query-and-message" src="https://user-images.githubusercontent.com/17325777/44128429-ee28d668-a010-11e8-807a-6ec0bc679c9f.png">
 
 - [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-**Monitor email notification re: No Data
+
+**Monitor email notification re: No Data**
 <img width="778" alt="monitor-nodata-alert-email" src="https://user-images.githubusercontent.com/17325777/44128310-52a06cec-a010-11e8-9869-ed67bca23f50.png">
 
-**Monitor email Threshold alert with alert triggering value and host name
+**Monitor email Threshold alert with alert triggering value and host name**
 <img width="796" alt="monitor-alert-email" src="https://user-images.githubusercontent.com/17325777/44128337-74d2e9e8-a010-11e8-8166-7d864d64d7d2.png">
 
 - [x] **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
