@@ -11,7 +11,7 @@ A new Datadog account can be created [here](https://www.datadoghq.com/) by click
 As part of this exercise I wanted to install the Datadog Agent on a few different systems to
 see how easy the agents were to install and understand the breadth of the deployment options.
 
-Installing agents is simple. By navigating to the Integrations > Agents page you are greeted with the below screen
+Installing agents is simple. By navigating to the `Integrations > Agents` page you are greeted with the below screen
 
 <p align="center">
 <img src="Screenshots/agents.png">
@@ -139,9 +139,9 @@ Yes, as above, you can achieve this by editing the `my_metric.yaml` file and the
 
 The Datadog [API Guide](https://docs.datadoghq.com/api/?lang=python#timeboards) will guide users through creating their own Timeboard using the API.
 
-First you will need to create an API key and Application Key by going into `Integrations > APIs' in the GUI.
+First you will need to create an API key and Application Key by going into `Integrations > APIs` in the GUI.
 
-The below image shows three metrics reporting into a Dashboard
+The below image shows three metrics reporting into a Dashboard from which I have called via the API.
 
 <p align="center">
 <img src="Screenshots/metrics3.png">
@@ -318,7 +318,7 @@ At any time you can go into a Downtime item and edit it.
 
 The APM functionality provides you with insight into the performance of an application with automatically generated dashboards. These range from monitoring key metrics, such as request volume and latency, to detailed traces of individual requests-side by side with your logs and infrastructure monitoring. 
 
-More information about Datadog APM can be found [here](https://docs.datadoghq.com/tracing/)
+More information about Datadog APM can be found [here](https://docs.datadoghq.com/tracing/).
 
 After some trial and error around ddtrace, middleware and changing IP addresses I was able to get the app to function. I utilised ddtrace and modified the IP address to the localhost - `127.0.0.1`.
 
@@ -350,7 +350,7 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', port='5050')
+   app.run(host='127.0.0.1', port='5050')
 ```
 <p align="center">
 <img src="Screenshots/apm.png">
@@ -366,13 +366,13 @@ In the image below we see that the APM screen has enabled itself and metrics hav
 
 A Service is a set of processes that work together. For example, an application may have a number of processes such as database and wget.
 
-A resource is a particular query to a service. For example, in MySQL a resource would be the query itself.
+A Resource is a particular query to a service. For example, in MySQL a resource would be the query itself.
 
-A more detailed explanation can be found [here](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+A more detailed explanation can be found [here](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-).
 
 -  **Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
 
-Below shows my dashboard with metrics from the APM and Infrastructure. This is an example of how application performance metrics can be combined with infrastructure  metrics on a single dashboard.
+Below shows my dashboard with metrics from the APM and Infrastructure. This is an example of how application performance metrics can be combined with infrastructure metrics on a single dashboard.
 
 <p align="center">
 <img src="Screenshots/apmhi.png">
@@ -403,9 +403,9 @@ From a business perspective we now see ‘Big Data’ and ‘Data lakes’. Comp
 
 **The digital gym**
 -  It would be nice to get detailed stats on gym sessions - from actual amount of weight lifted to exact amount rowed or whatever the activity.
--  Add in a camera such a Amazon DeepLens to check for posture and flag anomalies to your dashboard
+-  Add in a camera such a Amazon DeepLens to check for posture and flag anomalies to your dashboard. 
 -  Correlate this with usual data such as footsteps, sleep and other items and this would be an amazing dashboard which could be shared with personal trainers.
 
 **Cloud costs**
--  An obvious suggestion and likely on the roadmap. While Datadog are partnered with CloudCheckr and many of the cloud providers have their own tools for spotting cost savings it would be great to have a single dashboard to show total cost savings across all providers or simply areas to look at if costs cannot be worked out.
+-  An obvious suggestion and likely on the roadmap. While Datadog are partnered with CloudCheckr and many of the cloud providers have their own tools for spotting cost savings it would be great to have a single dashboard to show total cost savings across all providers or simply areas to look at if a cost checking exercise is being carried out.
 -  For example, if you notice an EC2 instance is consistently running at 40% without any deviations a smaller instance could be suggested.
