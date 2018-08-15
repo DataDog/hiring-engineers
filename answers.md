@@ -2,22 +2,21 @@
 
 # Setup the environment 
 
-I create virtual machine  **Ubuntu/xenial** on **VirtualBox** using **Vagrant**  an I used datadog agent V6.
+I create a  **Ubuntu/xenial** virtual machine  on **VirtualBox** using **Vagrant**  and I used datadog agent V6.
 
 ## Installing the agent
 
-to install the agent on a ubuntu machine i run :
+To install the agent on a ubuntu machine I run the fellowing command to download and run the installation script :
 
 ```bash
 DD_API_KEY=<my_api_Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-# Collecting Metrics:
+# Collecting Metrics
 
- 
+ - **Adding custom tag :**
 
- - ***Adding custom tag***  
- edit the file /etc/datadog-agent/datadog.yaml :
+ Edit the file /etc/datadog-agent/datadog.yaml :
 
 ``` /etc/datadog-agent/datadog.yaml
  tags:
@@ -25,9 +24,8 @@ DD_API_KEY=<my_api_Key> bash -c "$(curl -L https://raw.githubusercontent.com/Dat
   ```
 
   ![enter image description here](\screenshots\Screen+Shot+2018-08-08+at+15.24.53.png)
- - ***Install Mysql and configure the agent:***
 
- install Mysql
+- **install MYSQL**
 
 ```bash
 sudo apt-get update 
@@ -42,10 +40,11 @@ sudo ufw allow mysql
 sudo systemctl enable mysql
 
 ```
+- **configure datadog Agent integration**
 
-  - configure datadog agent integration
 [More information about Mysql integration](https://docs.datadoghq.com/integrations/mysql/)
-create database user for the Datadog Agent :
+
+Create database user for the Datadog Agent :
 
 ```bash
 sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<datadog-dbuser-passowrd>';"
@@ -57,7 +56,7 @@ sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
 sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
 ```
 
-check for the datadog user :
+Check that datadog user have granted privileges:
 
 ```bash
 mysql -u datadog --password='<datadog-dbuser-passowrd>' -e "SELECT * FROM performance_schema.threads" && \
@@ -69,7 +68,7 @@ echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 ```
 
-Create  /etc/datadog-agent/conf.d/mysql.yaml file :
+Configure the Agent to connect to MySQL, Create or edit the /etc/datadog-agent/conf.d/mysql.yaml file  :
 
 ```yaml
 init_config:
@@ -85,51 +84,68 @@ instances:
         replication: 0
         galera_cluster: 1
 ```
-Then restart the collector
+
+Then restart the Agent
+
 ```bash
 sudo systemctl restart datadog-agent
 ```
+
 ![enter image description here](/screenshots/Screen+Shot+2018-08-08+at+17.36.57.png)
- 3. ***Create a custom Agent check***
-To create a custom agent it's simple just create the python checker `/etc/datadog-agent/checks.d/mycheck.py` :
-This checker will send random integers between 0 and 10.
-```py
+
+ - **Create a custom Agent check**
+
+<aside class="notice">
+ The file name should match the name of the check module `mycheck.py` and `mycheck.yaml` 
+</aside>
+
+To create a custom Agent it's simple just create the python checker `/etc/datadog-agent/checks.d/mycheck.py` file:
+
+
+```python
 import random
 from checks import AgentCheck
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('custom.metric', random.randint(0,1000))
+        self.gauge('my_metric', random.randint(0,1000))
 ```
 
-Then and the checker config file to collecte metric as often as every 45 seconds 
- `/etc/datadog-agent/conf.d/mycheck.yaml` :
-```
+This checker will send random integers between 0 and 1000.
+
+Then the checker config file `/etc/datadog-agent/conf.d/mycheck.yaml` to send my_metric as often as every 45 seconds :
+
+```yaml
 init_config:
 
 instances:
    -  min_collection_interval: 45
 ```
 
-Then restart the collector
+Then restart the Agent.
 
 ```bash
 sudo service datadog-agent restart
 ```
-(/screenshots/)
+![](/screenshots/my_metric.PNG)
 
-**Bonus**:  yes I can change the collection interval without modifying the Python check file.
-## Visualizing Data:
+**Bonus**:  yes I can change the collection interval without modifying the Python check file just with adding `min_collection_interval: ` in config file.
+
+# Visualizing Data
+
 To create a Timeboard using datadog api, 
 First of all I started by creating the api and app keys:
+
 ![enter image description here](/screenshots/secrets.png)
 
 And then I installed the Datadog python library by following the instructions on the Datadog python github: https://github.com/DataDog/datadogpy
 
-`pip install datadog`
+```
+pip install datadog
+```
 
-Secondly I felowed istruction from datadog api to create the python script below:
+Secondly I fellowed instructions from datadog api to create the python script below:
 
-[More information about datadog api](https://docs.datadoghq.com/api/?lang=python#timeboards)
+[More information about Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards)
 
 ```python
 from datadog import initialize , api
@@ -187,31 +203,68 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
-By executing this script the new Timeboard will be created .
+By executing this script the new Timeboard will be created.
+
 ![enter image description here](/screenshots/timeboard.png)
 
-To change the timeframe to the past 5 minutes I just select this period of time as described below
+To change the timeframe to the past 5 minutes I just select this period of time as described below.
+
 ![enter image description here](/screenshots/5min-timeboard.png)
 ![enter image description here](/screenshots/5min.PNG)
 
-To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon
+To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon:
+
 ![enter image description here](/screenshots/snapshot.PNG)
-And then tag my email
+
+And then tag my email:
+
 ![enter image description here](/screenshots/sendtome.PNG)
+
 to receive this email from datadog:
+
 ![enter image description here](/screenshots/notificationscreen.PNG)
 
 **Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [*Anomaly Detection Algorithms*](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
 
 # Monitoring Data
 
-![enter image description here](/screenshots/monitorgraph.png)
+- Create a monitor for my_metric it wil push alert if it’s above:
+
+-Warning threshold of 500
+
+-Alerting threshold of 800
+
+-notify you if there is No Data for this query over the past 10m.
+
+ over the past 5 minutes.
+![my_metric monitor](/screenshots/monitor.png)
+
+```
+{{#is_alert}} **Alert!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_alert}}
+{{#is_warning}} **Warning!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_warning}}
+{{#is_no_data}}**No Data state!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_no_data}}
+
+@marouaneallagui@gmail.com
+```
+
 ![enter image description here](/screenshots/notificationtext.png)
-![enter image description here](/screenshots/notificationtext.png)
+
+- Alert Email:
+
+![](/screenshots/emailalert.PNG)
+
+- Scheduling weekly downtime:
+
 ![enter image description here](/screenshots/weeklydowntime.png)
-![enter image description here](/screenshots/emailweekly.png)
-![enter image description here](/screenshots/weekendowntime.png)
-![enter image description here](/screenshots/emailweekend.png)
+![enter image description here](/screenshots/emailWeekly.png)
+
+- Scheduling weekend downtime:
+
+![enter image description here](/screenshots/weekenDowntime.png)
+
+- Alert Email:
+
+![enter image description here](/screenshots/emailWeekend.png)
 
 
 
