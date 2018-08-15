@@ -35,7 +35,11 @@ The result is a number of hosts reporting back within minutes of creating an acc
 
 The Agent config file can be found in a number of locations depending on the Operating System. [This link](https://docs.datadoghq.com/agent/faq/agent-configuration-files/) will show you the directories while [this link](https://docs.datadoghq.com/tagging/assigning_tags/) will walk you through how to create tags.
 
-The result is that, after an agent restart, tags will show up as seen below.
+In Windows you can navigate to the relevant folder and edit the `datadog.yaml` file. The following syntax was used to create host tags -
+
+`tags: app:sqlsystem , env:test, os:windows, role:dbserver`
+
+The result is that, after an agent restart, tags will show up as seen below. Please note - it may take 5-10 minutes before the tags show up.
 
 <p align="center">
 <img src="Screenshots/tags1.png">
@@ -44,6 +48,8 @@ The result is that, after an agent restart, tags will show up as seen below.
 <p align="center">
 <img src="Screenshots/tags2.png">
 </p>
+
+Tags are one of the most important aspects of any Application Monitoring in your environment as they allow you to aggregate and find metrics quickly. The [Tagging best practices](https://docs.datadoghq.com/tagging/) should be followed and integrated right at the start of your deployment.
 
 **Install a database on your machine (MondoDB, MySQl, or PostgresSQL) and then install the respective Datadog integration for that database**
 
