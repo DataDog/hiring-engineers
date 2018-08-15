@@ -203,5 +203,49 @@ to receive this email from datadog:
 
 **Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [*Anomaly Detection Algorithms*](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
 
-# **Monitoring Data**
+# Monitoring Data
+
+![enter image description here](/screenshots/monitorgraph.png)
+![enter image description here](/screenshots/notificationtext.png)
+![enter image description here](/screenshots/notificationtext.png)
+![enter image description here](/screenshots/weeklydowntime.png)
+![enter image description here](/screenshots/emailweekly.png)
+![enter image description here](/screenshots/weekendowntime.png)
+![enter image description here](/screenshots/emailweekend.png)
+
+
+
+# Collecting APM Data
+
+The APM Agent (also known as Trace Agent) is shipped by default with the Agent 6 in the Linux it will just need to enable it by editing the file `/etc/datadog-agent/datadog.yaml`:
+
+```yaml
+apm_config:
+  enabled: true
+  env: test  #trace tag
+```
+
+Installing datadog trace library:
+
+```bash
+pip install ddtrace
+````
+Edit the Flask app by adding: 
+
+```python
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+```
+
+And create the tracerobject:
+
+```python
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+```
+![enter image description here](/screenshots/FlaskAPM.png)
+![enter image description here](/screenshots/Flaskapp.png)
+![enter image description here](/screenshots/APMservice.png)
+
+
+https://app.datadoghq.com/screen/409257/marouanes-screenboard-13-aug-2018-1623?page=0&is_auto=false&from_ts=1534166700000&to_ts=1534170300000&live=true
 
