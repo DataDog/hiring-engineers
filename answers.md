@@ -9,7 +9,7 @@ A new Datadog account can be created [here](https://www.datadoghq.com/) by click
 </p>
 
 As part of this exercise I wanted to install the Datadog Agent on a few different systems to
-see how easy the agents were to install and understand the breadth of the deployment options.
+see how easy the agents were to install and understand the breadth of the deployment options. I chose some Windows systems and also Ubuntu running on VirtualBox.
 
 Installing agents is simple. By navigating to the `Integrations > Agents` page you are greeted with the below screen
 
@@ -17,7 +17,11 @@ Installing agents is simple. By navigating to the `Integrations > Agents` page y
 <img src="Screenshots/agents.png">
 </p>
 
-You are then presented with instructions on installing specific agents.
+You are then presented with instructions on installing specific agents. Above is the Ubuntu agent install which automatically installs in a few moments.
+
+The Windows installer is a typical .msi file. In the `CMD.exe` or Powershell you can run the follwing:
+
+`msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="377fd636da3480ab9e95434af48ca9ae" HOSTNAME="my_hostname" TAGS="mytag1,mytag2"`
 
 <p align="center">
 <img src="Screenshots/agents2.png">
@@ -123,6 +127,8 @@ Information about changing the collection intervals can be found [here](https://
 
 This was achieved by editing the `my_metric.yaml` file. This is the config file which is required in addition to the agent above.
 
+Note: the default collection interval of an agent is 15-20 seconds.
+
 ```
 init_config:
     key1: my_metric
@@ -153,7 +159,7 @@ The below image shows three metrics reporting into a Dashboard from which I have
 <img src="Screenshots/metrics3.png">
 </p>
 
-Below is the Python code used to create the above Dashboard.
+Below is the Python code used to create the above Dashboard. The [API Guide](https://docs.datadoghq.com/api/?lang=python#timeboards) gives an example of one table but you need ensure a graphs list is created when adding more than one graph.
 
 ```
 from datadog import initialize, api
