@@ -19,7 +19,7 @@ Installing agents is simple. By navigating to the `Integrations > Agents` page y
 
 You are then presented with instructions on installing specific agents. Above is the Ubuntu agent install which automatically installs in a few moments.
 
-The Windows installer is a typical .msi file. In the `CMD.exe` or Powershell you can run the follwing:
+The Windows installer is a typical .msi file. In the `CMD.exe` or Powershell you can run the follwing in the directory which you downloaded the installer:
 
 `msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="377fd636da3480ab9e95434af48ca9ae" HOSTNAME="my_hostname" TAGS="mytag1,mytag2"`
 
