@@ -196,6 +196,21 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 
 - [] Please include your fully instrumented app in your submission, as well.
 
+Unfortunately, I was not able to complete this portion of the exercise.  The APM Agent Trace must be downloaded manually with OSX.  I was not able to do that.  When trying to download via the [trace-agent-darwin-amd64-6.4.1](https://github.com/DataDog/datadog-trace-agent/releases/download/6.4.1/trace-agent-darwin-amd64-6.4.1), but ran into the following issue: 
+
+<img width="579" alt="screen shot 2018-08-15 at 5 08 24 pm" src="https://user-images.githubusercontent.com/17325777/44183593-97354c00-a0d9-11e8-9c0d-82e5ae14c526.png">
+
+I searched for an alternative way to download the agent trace.  
+1.  The most relevant solution found was via closed issue [Error when run in mac osx #397](https://github.com/DataDog/datadog-trace-agent/issues/397).  
+2.  In reviewing this issue, I attempted to download the trace agent via an older version that included mac osx binaries [trace-agent-osx]( https://github.com/DataDog/datadog-trace-agent/releases?after=5.21.1), but ran into the same issue as above.
+3. I reached out for assistance via the Datadog Public Slack channel
+<img width="1225" alt="screen shot 2018-08-15 at 10 12 26 pm" src="https://user-images.githubusercontent.com/17325777/44184073-c3ea6300-a0db-11e8-84a1-a9d1e7d8e950.png">
+
+4.  I downloaded GO and attempted, set up the go variables and attempted to download the trace agent via the development setup found here: [APM Trace Agent Github](https://github.com/DataDog/datadog-trace-agent)
+<img width="844" alt="screen shot 2018-08-15 at 10 41 15 pm" src="https://user-images.githubusercontent.com/17325777/44184685-29d7ea00-a0de-11e8-922a-1c9b1fd9b155.png">
+
+
+
 ## Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
