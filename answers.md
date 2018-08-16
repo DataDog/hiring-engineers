@@ -60,9 +60,13 @@ answer in answers.py file
     command for Agent V6, what I have, doesn't work. I am unsure of how I should
     being the Agent Check.
 
+    My answer is the answers.py file is written as if I got the Agent Check to work.
+
 
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+answer in answers.py file
 
 
 
