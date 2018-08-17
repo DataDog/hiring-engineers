@@ -1,0 +1,5 @@
+{
+ postrotate
+ /usr/bin/setfacl -m g:dd-agent:rx /var/log/mysql
+ endscript
+}
