@@ -217,27 +217,50 @@ python /vagrant/DataDogAPI/DataDogAPIScreenShoot.py
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
+Article: [Monitor](https://docs.datadoghq.com/api/?lang=python#monitors)
+
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 
 ```
+"warning": "500"
 ```
 
 * Alerting threshold of 800
 
-
 ```
+"critical": "800"
 ```
 
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+```
+"no_data_timeframe": "10",
+```
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
+
+```
+@alexander.guesnon@gmail.com @(email)
+```
+
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+```
+{{#is_alert}}{{/is_alert}}
+{{#is_warning}}{{/is_warning}}
+{{#is_no_data}}{{/is_no_data}}
+```
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+```
+{{host.ip}}
+{{host.name}}
+```
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+![alt-text](pics/emailNotification.PNG "Email Notification:")
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -263,7 +286,7 @@ python /vagrant/DataDogAPI/DataDogAPIMonitor.py
 
 ```
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-![alt-text](pics/emailNotification.PNG "Email Notification:")
+
 # Collecting APM Data:
 ```
 python /vagrant/DataDogAPI/DataDogAPM.py
@@ -284,7 +307,8 @@ I want to collect data on parasites in standing fresh water. I want to see how c
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-```python
+```
+python
 from flask import Flask
 import logging
 import sys
@@ -322,49 +346,3 @@ if __name__ == '__main__':
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
-
-## Final Question:
-
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
-Is there anything creative you would use Datadog for?
-
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
