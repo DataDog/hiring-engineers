@@ -54,7 +54,7 @@ This is controlled through the `my_metric.py`
         def check(self, instance):
             self.gauge('my_metric', random.randint(0, 1000)) # 0 to 1000
 
-Article:
+Article: [Custom Check Agent](https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a)
 
 -   Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -69,7 +69,7 @@ This is the `my-metric.yaml` file
           password: 1234
           min_collection_interval: 45 // <- this will tell to loop every 45s
 
-Article:
+Article: [Check Agent](https://docs.datadoghq.com/developers/agent_checks/)
 
 -   **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
@@ -239,8 +239,10 @@ Please configure the monitor’s message so that it will:
 
 -   Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+```
     {{host.ip}}
     {{host.name}}
+```
 
 -   When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
@@ -256,6 +258,10 @@ Please configure the monitor’s message so that it will:
 ## Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+Article: [APM DataDog Docs](https://docs.datadoghq.com/tracing/)
+
+Article: [flask DataDog APM](http://pypi.datadoghq.com/trace/docs/#flask)
 
 ```
     from flask import Flask
@@ -291,6 +297,12 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+File:
+
+```
+python /vagrant/DataDogAPI/DataDogAPM.py
+```
+
 # Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -298,6 +310,3 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 * Is there anything creative you would use Datadog for?
 
 I want to collect data on parasites in standing fresh water. I want to see how conditions affect the population and patterns. Datadog would be great at aggregating data.
-
-# Collecting APM Data:
-	python /vagrant/DataDogAPI/DataDogAPM.py
