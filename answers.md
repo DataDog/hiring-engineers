@@ -28,6 +28,7 @@ The next step was to install a database. I chose to install MySQL since I am fam
 
 Following the steps found [here](https://app.datadoghq.com/account/settings#integrations/mysql) I created a datadog user:
 ![user creation](https://i.imgur.com/FZ1CoRc.png)
+
 and gave that user proper permissions:
 ![permissions](https://i.imgur.com/7bhTf5a.png)
 
@@ -41,6 +42,7 @@ and found that the mysql check had passed:
 ![mysql check](https://i.imgur.com/A6NiDiS.png)
 
 The next step to create a custom metric I needed to add a ```my_metric.yaml``` to the ```/opt/datadog-agent/etc/conf.d/``` directory:
+
 ![directory](https://i.imgur.com/e8DMkOk.png)
 The ```min_collection_interval``` makes sure that the agent checks the metric at most once every 45 seconds versus the default 15 seconds. 
 
@@ -112,7 +114,9 @@ api.Timeboard.create(title=title,
 The Dashboard can be seen in the Datadog Dashboard UI scoped over 5 minutes:
 ![dashboard](https://i.imgur.com/h7QcvYX.png)
 Sending a snapshot to myself:
+
 ![snapshot](https://i.imgur.com/xfvKBbf.png)
+
 The anomaly graph is displaying a moving average of where datadog expect the metric to fall within given the variable settings. 
 
 
@@ -153,6 +157,7 @@ Scheduled Weekend Downtime
 The first step was to install the Datadog AMP agent found [here](https://github.com/DataDog/datadog-trace-agent#development)
 
 The source code was downloaded using the command:
+
 ```go get -u github.com/DataDog/datadog-trace-agent/releases/download/6.4.1/trace-agent-darwin-amd64-6.4.1```
 
 and installed the agent using the command:
@@ -207,7 +212,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-    ```
+```
 
 The agent was then started using the command:
 ```$GOPATH/bin/trace-agent```
