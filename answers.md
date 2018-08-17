@@ -157,7 +157,7 @@ Scheduled Weekend Downtime
 ![weekend downtime](https://i.imgur.com/xHQneXz.png)
 
 ## Collecting APM Data:
-The first step was to install the Datadog AMP agent found [here](https://github.com/DataDog/datadog-trace-agent#development)
+The first step was to install the Datadog APM agent found [here](https://github.com/DataDog/datadog-trace-agent#development)
 
 The source code was downloaded using the command:
 
@@ -229,7 +229,11 @@ I then visualized the APM data with an included infrastructure metric:
 with a public link to the screenboard found [here](https://p.datadoghq.com/sb/9194d43ca-e03ea8699c90b2e7aff37f4d3c09a3cc)
 
 ## Final Question
-The type of metric analytics provided by datadog can be used in a countless amount of ways in almost every industry. I am interested in vertical farming and these process can be used for many different types of monitoring including atmospheric and environmental monitoring. One of my big interest is cryptocurrencies and blockchains. Datadog could be use to analyze the price of the cryptocurrencies in order to automate trading and monitor price. Many of the tools provided could also be used to monitor the health of blockchain servers and analyze throughput metrics and the usage/transactional output of blockchains.
+I was first introduced to DataDog when working as a Process/Production Engineer at shapeways. The factory instrumented DataDog dashboards to show the status of PO’s in our production pipeline. It would also alert the team when a PO was in a specific status for too long in order to avoid lost orders. This type of monitoring is what got me interested in programming and automation. 
+
+One of my favorite non-fiction books is called “Dataclysm”, it uses big data analytics to show how people act in various social media platforms. This book fascinated me and introduced me into a new field merging data analytics and sociology. It would be very interesting to see DataDog applied to these fields, scrape data from social media and analyze general trends of social problems and how people react on social media.
+
+The obvious implications of Data Analytics can be used in a countless amount of ways in almost every industry. In the new emerging field of vertical/automated farming, DataDog could be easily implemented to integrate with existing environmental monitors/sensors. In Blockchains/Crypto currencies Datadog could be used for automatic trading/trend analysis of transactional throughput of blockchain databases and servers. 
 
 The uses for this type of technological infrastructure monitoring are countless and DataDog is leading the way. 
 
