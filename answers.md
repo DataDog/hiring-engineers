@@ -41,7 +41,7 @@ and found that the mysql check had passed:
 ![mysql check](https://i.imgur.com/A6NiDiS.png)
 
 The next step to create a custom metric I needed to add a ```my_metric.yaml``` to the ```/opt/datadog-agent/etc/conf.d/``` directory:
-![https://i.imgur.com/e8DMkOk.png]
+![directory](https://i.imgur.com/e8DMkOk.png)
 The ```min_collection_interval``` makes sure that the agent checks the metric at most once every 45 seconds versus the default 15 seconds. 
 
 The next step was to create the python check file named ```my_metric.py```. The new file was located in:
