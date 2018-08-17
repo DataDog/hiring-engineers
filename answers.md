@@ -42,7 +42,19 @@ installed through vagrant and Datadog plugins
 
 install database:
 
-plugin:
+Source: [Root privileges on PSQL](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
+
+```
+sudo -u postgres psql
+```
+
+On DataDog WebApp Install PSQL plugin and follow directions:
+
+```
+create user datadog with password 'MktYwzriuIs98mQx4F4t5P5e';
+grant SELECT ON pg_stat_database to datadog;
+\q
+```
 
 Articles:
 
