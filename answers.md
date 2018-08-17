@@ -81,45 +81,131 @@ Article:
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 
+## Visualizing Data:
+
+Utilize the Datadog API to create a Timeboard that contains:
+Article: https://docs.datadoghq.com/api/?lang=python#timeboards
+* Your custom metric scoped over your host.
+
+Create `my_metric` graph
+
+```
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {
+                "q": "avg:my_metric{*}",
+                "type": "area",
+                "style": {
+                    "palette": "warm",
+                    "type": "solid",
+                    "width": "normal"
+                },
+                "conditional_formats": [],
+                "aggregator": "avg"
+            }
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_Metric"
+},
+```
+* Any metric from the Integration on your Database with the anomaly function applied.
+
+Create PSQL graph in json
+
+```
+{
+"definition": {
+		"events": [],
+		"requests": [
+				{
+						"q": "avg:postgresql.buffer_hit{*}",
+						"type": "bars",
+						"style": {
+								"palette": "dog_classic",
+								"type": "solid",
+								"width": "normal"
+						},
+						"conditional_formats": [],
+						"aggregator": "avg"
+				}
+		],
+		"viz": "timeseries"
+},
+"title": "PostgreSQL"
+},
+```
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket file
+```
+{
+"definition": {
+		"requests": [
+				{
+						"q": "avg:my_metric{*}.rollup(avg, 3600)",
+						"type": "line",
+						"style": {
+								"palette": "purple",
+								"type": "solid",
+								"width": "thick"
+						},
+						"conditional_formats": [],
+						"aggregator": "avg"
+				}
+		],
+		"viz": "timeseries",
+		"autoscale": "true",
+		"status": "done"
+},
+"title": "My_Metric_AVG_H"
+}
+```
+
+
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+```
+python /vagrant/DataDogAPI/DataDogAPITimeBoard.py
+```
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+Article: https://docs.datadoghq.com/api/?lang=python#graph-snapshot
+Article: https://docs.datadoghq.com/api/?lang=python#create-a-comment
+* Set the Timeboard's timeframe to the past 5 minutes
+```
+import time
+import json
+from datadog import initialize, api
+
+options = {'api_key': '0df5392e3fcf52b4ee65fef26c2f0cb7',
+           'app_key': '958de7a7ae45656320a630d7de70ae4efbddac5f'}
+
+initialize(**options)
+
+# Take a graph snapshot
+end = int(time.time())
+start = end - (60 * 5) # <- 5 minute is the end
+response = api.Graph.create(
+```
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+```
+img = "![](" + response['snapshot_url'] + ")" # snapshot url in markdown and store in img
+message = '@alexander.guesnon@gmail.com' + '\n\n' + img # send it to this email
+
+api.Comment.create(
+     handle='alexander.guesnon@gmail.com',
+    message = message
+)
+```
+
+Screenshot file
+```
+python /vagrant/DataDogAPI/DataDogAPIScreenShoot.py
+```
+
+* **Bonus Question**: What is the Anomaly graph displaying?
+
 ///
-
-## Collecting Metrics:
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![alt-text](pics/datadogYamltag.PNG "Host Tages:")
-![alt-text](pics/webApp.PNG "Web Tages:")
-```
-cp datadog.yaml /etc/datadog-agent/datadog.yaml
-```
-Then restart the agent
-```
-	sudo service datadog-agent restart
-```
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-
-Login to PostgreSQL
-```
-sudo -u postgres psql
-```
-
-Create Datadog user
-
-```
-create user datadog with password 'MktYwzriuIs98mQx4F4t5P5e';
-grant SELECT ON pg_stat_database to datadog;
-\q
-```
-
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-
-
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
-Put `my_metric` files in their respective directories
-
-```
-sudo cp /vagrant/My_metric/my_metric.yaml /etc/datadog-agent/conf.d/
-sudo cp /My_metric/my_metric.py /etc/datadog-agent/checks.d/
-```
 
 # Visualizing Data:
 TimeBoard
@@ -151,26 +237,6 @@ I want to collect data on parasites in standing fresh water. I want to see how c
 
 
 ////////
-
-
-
-
-
-## Visualizing Data:
-
-Utilize the Datadog API to create a Timeboard that contains:
-
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
