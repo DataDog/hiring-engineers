@@ -267,7 +267,7 @@ with a public link to the screenboard found [here](https://p.datadoghq.com/sb/91
 ## Final Question
 I was first introduced to DataDog when working as a Process/Production Engineer at shapeways. The factory instrumented a DataDog dashboards to show the status of PO’s in our production pipeline. It would also alert the team when a PO was in a specific status for too long in order to avoid lost orders. This type of monitoring is what got me interested in programming and automation. 
 
-One of my favorite non-fiction books is called “Dataclysm”, it uses Big Data analytics to show how people act in various social media platforms. This book fascinated me and introduced me to a new field merging Big Data analytics and sociology. It would be very interesting to see DataDog applied to these fields, scrape data from social media and analyze general trends of social problems and how people react on social media.
+One of my favorite non-fiction books is called *Dataclysm*, it uses Big Data analytics to show how people act in various social media platforms. This book fascinated me and introduced me to a new field merging Big Data analytics and sociology. It would be very interesting to see DataDog applied to these fields, scrape data from social media and analyze general trends of social problems and how people react on social media.
 
 The obvious implications of data analytics can be used in a countless amount of ways in almost every industry. In the new emerging field of vertical/automated farming, DataDog could be easily implemented to integrate with existing environmental monitors/sensors. In Blockchains/Crypto currencies Datadog could be used for automatic trading/trend analysis of transactional throughput of blockchain databases and servers. 
 
