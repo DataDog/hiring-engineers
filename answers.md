@@ -21,7 +21,8 @@ In order to add custom tags you must begin by modifying the datadog config file 
 ```/opt/datadog-agent/etc/datadog.yaml```
 and adding the following tags:
 ![agent tags](https://i.imgur.com/QGayXNS.png)
-I was able to find the newly added tags on my Datadog Host Map page.
+I was able to find the newly 
+tags on my Datadog Host Map page.
 ![host map page](https://i.imgur.com/7TvCJvv.png)
 
 The next step was to install a database. I chose to install MySQL since I am familiar with the process. I chose to use homebrew for the installation found [here](https://gist.github.com/spencercharest/fc1748808af1a7aa157e0eebb64926f6)
@@ -52,7 +53,7 @@ The next step was to create the python check file named ```my_metric.py```. The 
 
 ![python check file](https://i.imgur.com/9eDmZsQ.png)
 
-I added the ```self.log.info``` in order to verify the file was being checked every 45 seconds in the log output.
+I added the line of code ```self.log.info``` in order to verify the file was being checked every 45 seconds in the log output.
 ![log file](https://i.imgur.com/D3Llbh5.png)
 ![log file](https://i.imgur.com/3tpJSVS.png)
 ![log file](https://i.imgur.com/74CXu6J.png)
@@ -129,7 +130,10 @@ Next I created an alert that takes a 5 minute average:
 -alerts when the metric falls above 800
 -notifies when no data has been collected for the past 10 minutes. 
 The monitor settings are as follow:
+
 ![monitor](https://i.imgur.com/QTj8dqy.png)
+
+![no activity](https://i.imgur.com/D8LZ8aw.png)
 
 The custom message is as follows:
 ```
@@ -152,8 +156,11 @@ A snapshot of a warning email:
 ![warning email](https://i.imgur.com/2OP2TbQ.png)
 
 Scheduled Monday-Friday 7PM-9AM Downtime:
+
 ![weekday downtime](https://i.imgur.com/EUh9Tzs.png)
+
 Scheduled Weekend Downtime
+
 ![weekend downtime](https://i.imgur.com/xHQneXz.png)
 
 ## Collecting APM Data:
@@ -224,16 +231,17 @@ The agent was then started using the command:
 the python-flask server was started using the command:
 ```python apm_trace.py```
 
-I then visualized the APM data with an included infrastructure metric: 
+I then navigated my broswer to ```http://localhost:5050/``` and ```http://localhost:5050/api/apm``` in order to give teh AMP some metrics to read. I visualized the APM data with an included infrastructure metric: 
 ![metrics](https://i.imgur.com/Xv2rgE1.png)
+
 with a public link to the screenboard found [here](https://p.datadoghq.com/sb/9194d43ca-e03ea8699c90b2e7aff37f4d3c09a3cc)
 
 ## Final Question
-I was first introduced to DataDog when working as a Process/Production Engineer at shapeways. The factory instrumented DataDog dashboards to show the status of PO’s in our production pipeline. It would also alert the team when a PO was in a specific status for too long in order to avoid lost orders. This type of monitoring is what got me interested in programming and automation. 
+I was first introduced to DataDog when working as a Process/Production Engineer at shapeways. The factory instrumented a DataDog dashboards to show the status of PO’s in our production pipeline. It would also alert the team when a PO was in a specific status for too long in order to avoid lost orders. This type of monitoring is what got me interested in programming and automation. 
 
-One of my favorite non-fiction books is called “Dataclysm”, it uses big data analytics to show how people act in various social media platforms. This book fascinated me and introduced me into a new field merging data analytics and sociology. It would be very interesting to see DataDog applied to these fields, scrape data from social media and analyze general trends of social problems and how people react on social media.
+One of my favorite non-fiction books is called “Dataclysm”, it uses Big Data analytics to show how people act in various social media platforms. This book fascinated me and introduced me to a new field merging Big Data analytics and sociology. It would be very interesting to see DataDog applied to these fields, scrape data from social media and analyze general trends of social problems and how people react on social media.
 
-The obvious implications of Data Analytics can be used in a countless amount of ways in almost every industry. In the new emerging field of vertical/automated farming, DataDog could be easily implemented to integrate with existing environmental monitors/sensors. In Blockchains/Crypto currencies Datadog could be used for automatic trading/trend analysis of transactional throughput of blockchain databases and servers. 
+The obvious implications of data analytics can be used in a countless amount of ways in almost every industry. In the new emerging field of vertical/automated farming, DataDog could be easily implemented to integrate with existing environmental monitors/sensors. In Blockchains/Crypto currencies Datadog could be used for automatic trading/trend analysis of transactional throughput of blockchain databases and servers. 
 
 The uses for this type of technological infrastructure monitoring are countless and DataDog is leading the way. 
 
