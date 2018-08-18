@@ -30,8 +30,7 @@ In order to add custom tags you must begin by modifying the datadog config file 
 
 and adding the following tags:
 ![agent tags](https://i.imgur.com/QGayXNS.png)
-I was able to find the newly 
-tags on my Datadog Host Map page.
+I was able to find the newly added tags on my Datadog Host Map page.
 ![host map page](https://i.imgur.com/7TvCJvv.png)
 
 The next step was to install a database. I chose to install MySQL since I am familiar with the process. I chose to use homebrew for the installation found [here](https://gist.github.com/spencercharest/fc1748808af1a7aa157e0eebb64926f6)
