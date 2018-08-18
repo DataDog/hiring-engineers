@@ -132,18 +132,18 @@ sudo service datadog-agent restart
 
 # Visualizing Data
 
-To create a Timeboard using datadog api, 
+* To create a Timeboard using datadog api, 
 First of all I started by creating the api and app keys:
 
 ![enter image description here](/screenshots/secrets.png)
 
-And then I installed the Datadog python library by following the instructions on the Datadog python github: https://github.com/DataDog/datadogpy
+  * And then I installed the Datadog python library by following the instructions on the Datadog python github: https://github.com/DataDog/datadogpy
 
 ```
 pip install datadog
 ```
 
-Secondly I fellowed instructions from datadog api to create the python script below:
+* Secondly I fellowed instructions from datadog api to create the python script below:
 
 [More information about Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards)
 
@@ -203,49 +203,45 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
-By executing this script the new Timeboard will be created.
+* By executing this script the new Timeboard will be created.
 
 ![enter image description here](/screenshots/timeboard.png)
 
-To change the timeframe to the past 5 minutes I just select this period of time as described below.
+* To change the timeframe to the past 5 minutes I just select this period of time as described below.
 
 ![enter image description here](/screenshots/5min-timeboard.png)
 ![enter image description here](/screenshots/5min.PNG)
 
-To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon:
+* To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon:
 
 ![enter image description here](/screenshots/snapshot.PNG)
 
-And then tag my email:
+*  And then tag my email:
 
 ![enter image description here](/screenshots/sendtome.PNG)
 
-to receive this email from datadog:
+* I received this email from datadog:
 
 ![enter image description here](/screenshots/notificationscreen.PNG)
 
-**Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [*Anomaly Detection Algorithms*](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
+**Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [Anomaly Detection Algorithms](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
 
 # Monitoring Data
 
-- Create a monitor for my_metric it wil push alert if it’s above:
+* Create a monitor for my_metric it wil push alert if it’s above:
 
--Warning threshold of 500
+  * Warning threshold of 500
 
--Alerting threshold of 800
+  * Alerting threshold of 800
 
--notify you if there is No Data for this query over the past 10m.
+    over the past 5 minutes.
 
- over the past 5 minutes.
+  * notify you if there is No Data for this query
+  
+     over the past 10m.
+
+
 ![my_metric monitor](/screenshots/monitor.png)
-
-```
-{{#is_alert}} **Alert!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_alert}}
-{{#is_warning}} **Warning!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_warning}}
-{{#is_no_data}}**No Data state!** host-ip: {{host.ip}} , my_metric: {{value}} {{/is_no_data}}
-
-@marouaneallagui@gmail.com
-```
 
 ![enter image description here](/screenshots/notificationtext.png)
 
@@ -256,21 +252,18 @@ to receive this email from datadog:
 - Scheduling weekly downtime:
 
 ![enter image description here](/screenshots/weeklydowntime.png)
-![enter image description here](/screenshots/emailWeekly.png)
 
 - Scheduling weekend downtime:
 
 ![enter image description here](/screenshots/weekenDowntime.png)
 
-- Alert Email:
+- Email Scheduling downtime :
 
-![enter image description here](/screenshots/emailWeekend.png)
-
-
+![enter image description here](/screenshots/emailDowntime.png)
 
 # Collecting APM Data
 
-The APM Agent (also known as Trace Agent) is shipped by default with the Agent 6 in the Linux it will just need to enable it by editing the file `/etc/datadog-agent/datadog.yaml`:
+The APM Agent (also known as Trace Agent) is shipped by default with the Agent 6 in the Linux I will just need to enable it by editing the file `/etc/datadog-agent/datadog.yaml`:
 
 ```yaml
 apm_config:
@@ -278,27 +271,34 @@ apm_config:
   env: test  #trace tag
 ```
 
-Installing datadog trace library:
+* Installing datadog trace library:
 
 ```bash
 pip install ddtrace
-````
-Edit the Flask app by adding: 
+```
+
+* Import the ddtrace in my `app.py` file:
 
 ```python
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
 ```
 
-And create the tracerobject:
+* Create the trace object:
 
 ```python
 traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 ```
+
+* And run the app. 
+
+
 ![enter image description here](/screenshots/FlaskAPM.png)
 ![enter image description here](/screenshots/Flaskapp.png)
 ![enter image description here](/screenshots/APMservice.png)
 
+Please find [*here*](https://p.datadoghq.com/sb/28d01a8f1-b886c7228ff271b31955bad27c554ee2) my public Screenboard.
 
-https://app.datadoghq.com/screen/409257/marouanes-screenboard-13-aug-2018-1623?page=0&is_auto=false&from_ts=1534166700000&to_ts=1534170300000&live=true
+### Final Question
 
+I think that if we can use datadog monitoring in hospitals it will be good idea, to get health measures from sensors and sends alerts to prevent doctors and avoid an illness.
