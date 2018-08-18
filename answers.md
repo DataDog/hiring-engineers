@@ -259,7 +259,7 @@ the python-flask server was started using the command:
 ```python apm_trace.py```
 
 
-I then navigated my broswer to ```http://localhost:5050/``` and ```http://localhost:5050/api/apm``` in order to give the AMP some metrics to read. I visualized the APM data with an included infrastructure metric: 
+I then navigated my broswer to ```http://localhost:5050/``` and ```http://localhost:5050/api/apm``` in order to give the APM some metrics to read. I visualized the APM data with an included infrastructure metric: 
 ![metrics](https://i.imgur.com/Xv2rgE1.png)
 
 with a public link to the screenboard found [here](https://p.datadoghq.com/sb/9194d43ca-e03ea8699c90b2e7aff37f4d3c09a3cc)
