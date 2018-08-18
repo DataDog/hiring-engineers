@@ -23,7 +23,11 @@ in order to see the agent status use the command
 
 
 In order to add custom tags you must begin by modifying the datadog config file found in: 
+
+
 ```/opt/datadog-agent/etc/datadog.yaml```
+
+
 and adding the following tags:
 ![agent tags](https://i.imgur.com/QGayXNS.png)
 I was able to find the newly 
