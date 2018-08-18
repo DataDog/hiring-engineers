@@ -126,7 +126,7 @@ Then restart the Agent.
 ```bash
 sudo service datadog-agent restart
 ```
-![](/screenshots/my_metric.PNG)
+![](/screenshots/my_metric.png)
 
 **Bonus**:  yes I can change the collection interval without modifying the Python check file just with adding `min_collection_interval: ` in config file.
 
@@ -210,19 +210,19 @@ api.Timeboard.create(title=title,
 * To change the timeframe to the past 5 minutes I just select this period of time as described below.
 
 ![enter image description here](/screenshots/5min-timeboard.png)
-![enter image description here](/screenshots/5min.PNG)
+![enter image description here](/screenshots/5minpng)
 
 * To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon:
 
-![enter image description here](/screenshots/snapshot.PNG)
+![enter image description here](/screenshots/snapshot.png)
 
 *  And then tag my email:
 
-![enter image description here](/screenshots/sendtome.PNG)
+![enter image description here](/screenshots/sendtome.png)
 
 * I received this email from datadog:
 
-![enter image description here](/screenshots/notificationscreen.PNG)
+![enter image description here](/screenshots/notificationscreen.png)
 
 **Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [Anomaly Detection Algorithms](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
 
@@ -247,7 +247,7 @@ api.Timeboard.create(title=title,
 
 - Alert Email:
 
-![](/screenshots/emailalert.PNG)
+![](/screenshots/emailalert.png)
 
 - Scheduling weekly downtime:
 
