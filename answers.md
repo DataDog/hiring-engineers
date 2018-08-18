@@ -126,9 +126,14 @@ The anomaly graph is displaying a moving average of where datadog expect the met
 
 ## Monitoring Data
 Next I created an alert that takes a 5 minute average:
+
 -warns when the custom metric falls above 500
+
 -alerts when the metric falls above 800
+
 -notifies when no data has been collected for the past 10 minutes. 
+
+
 The monitor settings are as follow:
 
 ![monitor](https://i.imgur.com/QTj8dqy.png)
