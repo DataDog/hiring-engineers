@@ -10,10 +10,15 @@ Following the steps on found [here](https://app.datadoghq.com/account/settings#a
 ## Collecting Metrics:
 
 Any time any configuration file is modified the DataDog Agent must be restarted. On OS X the commands are:
+
 ```launchctl stop com.datadoghq.agent```
+
 ```launchctl start com.datadoghq.agent```
 
+
 in order to see the agent status use the command
+
+
 ```datadog-agent status```
 
 
@@ -49,7 +54,10 @@ The next step to create a custom metric I needed to add a ```my_metric.yaml``` t
 The ```min_collection_interval``` makes sure that the agent checks the metric at most once every 45 seconds versus the default 15 seconds. 
 
 The next step was to create the python check file named ```my_metric.py```. The new file was located in:
+
+
 ```/opt/datadog-agent/etc/checks.d```
+
 
 ![python check file](https://i.imgur.com/9eDmZsQ.png)
 
@@ -173,9 +181,12 @@ The first step was to install the Datadog APM agent found [here](https://github.
 
 The source code was downloaded using the command:
 
+
 ```go get -u github.com/DataDog/datadog-trace-agent/releases/download/6.4.1/trace-agent-darwin-amd64-6.4.1```
 
+
 and installed the agent using the command:
+
 ```
 cd $GOPATH/src/github.com/DataDog/datadog-trace-agent
 make install
@@ -234,10 +245,16 @@ if __name__ == '__main__':
 ```
 
 The agent was then started using the command:
+
+
 ```$GOPATH/bin/trace-agent```
 
+
 the python-flask server was started using the command:
+
+
 ```python apm_trace.py```
+
 
 I then navigated my broswer to ```http://localhost:5050/``` and ```http://localhost:5050/api/apm``` in order to give the AMP some metrics to read. I visualized the APM data with an included infrastructure metric: 
 ![metrics](https://i.imgur.com/Xv2rgE1.png)
