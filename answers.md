@@ -70,16 +70,33 @@ answer in answers.py file
 
 
 
-##Visualizing Data, Utilize the Datadog API to create a Timeboard that contains::
+##Visualizing Data, Utilize the Datadog API to create a Timeboard that contains:
 
 1. Your custom metric scoped over your host.
+   ![Timeboard](screencaptures/timeboard1.png "My Timeboard")
+   ![Timeboard](screencaptures/timeboard2.png "My Timeboard") 
 
+ Roadblocks -
+     I understand that this wants me to incorporate my metric from the 
+     previous section above but I'm not sure how to do that. I looked in the
+     timeboard menu as well as my command line but again, I couldn't get the
+     Agent to run it. 
+    
 2. Any metric from the Integration on your Database with the anomaly function applied.
+    
+    answer in answers.py
+   ![Anomaly function](screencaptures/anomaly1.png "Anomaly function")
+   ![Anomaly Function](screencaptures/anomaly2.png "Anomaly function") 
+    
+    Roadblocks - 
+      I found the anomaly function on the DataDog docs (screenshot above) page which I'm going to
+      put into my_metric in the answers.py file. My understanding is I need to
+      tie these two pieces together which will make it appear on my Timeboard.
+      Hence "Visualizing" the data. 
+
 
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket   
     
-    Unsure why the line is flat
-
 4. I included my email and a 5 minute time notfication with the timeboard
 posted above
 
