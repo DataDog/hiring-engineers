@@ -11,7 +11,7 @@ To install the agent on a ubuntu machine I run the fellowing command to download
 ```bash
 DD_API_KEY=<my_api_Key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
-
+  ![](/screenshots/1-agent-installation.png)
 # Collecting Metrics
 
  - **Adding custom tag :**
@@ -23,7 +23,7 @@ DD_API_KEY=<my_api_Key> bash -c "$(curl -L https://raw.githubusercontent.com/Dat
  - mytag:myubuntu-agent-onmac
   ```
 
-  ![enter image description here](\screenshots\Screen+Shot+2018-08-08+at+15.24.53.png)
+  ![](/screenshots/Screen+Shot+2018-08-08+at+15.24.53.png)
 
 - **install MYSQL**
 
@@ -91,7 +91,7 @@ Then restart the Agent
 sudo systemctl restart datadog-agent
 ```
 
-![enter image description here](/screenshots/Screen+Shot+2018-08-08+at+17.36.57.png)
+![](/screenshots/Screen+Shot+2018-08-08+at+17.36.57.png)
 
  - **Create a custom Agent check**
 
@@ -135,7 +135,7 @@ sudo service datadog-agent restart
 * To create a Timeboard using datadog api, 
 First of all I started by creating the api and app keys:
 
-![enter image description here](/screenshots/secrets.png)
+![](/screenshots/secrets.png)
 
   * And then I installed the Datadog python library by following the instructions on the Datadog python github: https://github.com/DataDog/datadogpy
 
@@ -205,24 +205,24 @@ api.Timeboard.create(title=title,
 
 * By executing this script the new Timeboard will be created.
 
-![enter image description here](/screenshots/timeboard.png)
+![](/screenshots/timeboard.png)
 
 * To change the timeframe to the past 5 minutes I just select this period of time as described below.
 
-![enter image description here](/screenshots/5min-timeboard.png)
-![enter image description here](/screenshots/5minpng)
+![](/screenshots/5min-timeboard.png)
+![](/screenshots/5minpng)
 
 * To send a snapshot of mysql anomaly graph to myself I clicked on the camera icon:
 
-![enter image description here](/screenshots/snapshot.png)
+![](/screenshots/snapshot.png)
 
 *  And then tag my email:
 
-![enter image description here](/screenshots/sendtome.png)
+![](/screenshots/sendtome.png)
 
 * I received this email from datadog:
 
-![enter image description here](/screenshots/notificationscreen.png)
+![](/screenshots/notificationscreen.png)
 
 **Bonus:** The anomaly graph is displaying metric compared by historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. using [Anomaly Detection Algorithms](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
 
@@ -243,7 +243,7 @@ api.Timeboard.create(title=title,
 
 ![my_metric monitor](/screenshots/monitor.png)
 
-![enter image description here](/screenshots/notificationtext.png)
+![](/screenshots/notificationText.png)
 
 - Alert Email:
 
@@ -251,15 +251,15 @@ api.Timeboard.create(title=title,
 
 - Scheduling weekly downtime:
 
-![enter image description here](/screenshots/weeklydowntime.png)
+![](/screenshots/weeklydowntime.png)
 
 - Scheduling weekend downtime:
 
-![enter image description here](/screenshots/weekenDowntime.png)
+![](/screenshots/weekenDowntime.png)
 
 - Email Scheduling downtime :
 
-![enter image description here](/screenshots/emailDowntime.png)
+![](/screenshots/emailDowntime.png)
 
 # Collecting APM Data
 
@@ -293,9 +293,9 @@ traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tr
 * And run the app. 
 
 
-![enter image description here](/screenshots/FlaskAPM.png)
-![enter image description here](/screenshots/Flaskapp.png)
-![enter image description here](/screenshots/APMservice.png)
+![](/screenshots/FlaskAPM.png)
+![](/screenshots/Flaskapp.png)
+![](/screenshots/APMservice.png)
 
 Please find [*here*](https://p.datadoghq.com/sb/28d01a8f1-b886c7228ff271b31955bad27c554ee2) my public Screenboard.
 
