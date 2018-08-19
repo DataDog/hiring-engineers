@@ -190,13 +190,14 @@ if __name__ == '__main__':
 ```
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-- [] **Bonus Question:** What is the difference between a Service and a Resource?
+- [x] **Bonus Question:** What is the difference between a Service and a Resource?
+
 
 - [] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 - [] Please include your fully instrumented app in your submission, as well.
 
-Unfortunately, I was not able to complete this portion of the exercise.  The APM Agent Trace must be downloaded manually with OSX.  I was not able to do that.  When trying to download via the [trace-agent-darwin-amd64-6.4.1](https://github.com/DataDog/datadog-trace-agent/releases/download/6.4.1/trace-agent-darwin-amd64-6.4.1), but ran into the following issue: 
+I was unable to successfully install the APM trace-agent for this portion of the exercise. The APM Agent Trace must be downloaded manually with OSX.  I was not able to do that.  When trying to download via the [trace-agent-darwin-amd64-6.4.1](https://github.com/DataDog/datadog-trace-agent/releases/download/6.4.1/trace-agent-darwin-amd64-6.4.1), but ran into the following issue: 
 
 <img width="579" alt="screen shot 2018-08-15 at 5 08 24 pm" src="https://user-images.githubusercontent.com/17325777/44183593-97354c00-a0d9-11e8-9c0d-82e5ae14c526.png">
 
