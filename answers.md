@@ -1,4 +1,3 @@
-Your answers to the questions go here.
 
 ##Collecting Metrics:
 
@@ -17,7 +16,7 @@ Here are my edits to the yaml file and the tags on the Host Map page
 ![host map tags](screencaptures/tags.png "Host Map tags")
 
 
-##Question 1 Roadblocks - 
+##Roadblocks - 
     I downloaded the virtual box that was recommended, but I'm getting 
     an error when I try to run it. I've attached a screen shot of the error below.
     I've read the Vargrant documentation that was provided in the reference links
@@ -44,14 +43,14 @@ use during my time at General Assembly.
 ![postgresql integration](screencaptures/postgresql.png "PostgreSQL DD Integration")
 
 
-##Question 2 Roadblocks - 
+##Roadblocks - 
     None. Installing the integration was an easy process.
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 answer in answers.py file
 
-##Question 3 Roadblocks -
+##Roadblocks -
     Simply making an agent check proved difficult. As mentioned earlier I have
     a DataDog Agent installed on my mac, but the specifc commands for the 
     command line aren't working the way I hoped for. 
@@ -76,7 +75,7 @@ answer in answers.py file
    ![Timeboard](screencaptures/timeboard1.png "My Timeboard")
    ![Timeboard](screencaptures/timeboard2.png "My Timeboard") 
 
- Roadblocks -
+ ##Roadblocks -
      I understand that this wants me to incorporate my metric from the 
      previous section above but I'm not sure how to do that. I looked in the
      timeboard menu as well as my command line but again, I couldn't get the
@@ -88,27 +87,99 @@ answer in answers.py file
    ![Anomaly function](screencaptures/anomaly1.png "Anomaly function")
    ![Anomaly Function](screencaptures/anomaly2.png "Anomaly function") 
     
-    Roadblocks - 
+  ##Roadblocks - 
       I found the anomaly function on the DataDog docs (screenshot above) page which I'm going to
       put into my_metric in the answers.py file. My understanding is I need to
       tie these two pieces together which will make it appear on my Timeboard.
       Hence "Visualizing" the data. 
 
 
-3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket   
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
+
+   answer in answers.py file
+
+  ##Roadblocks - I found the rollup function on the Datadog Graphing doc
+    and applied it to my function in answers.py. Where to actually include
+    the function is something I am unsure about.
+
     
-4. I included my email and a 5 minute time notfication with the timeboard
-posted above
+4. Set the Timeboard's timeframe to the past 5 minutes
+    I see where to set the timeframe but do not see any option for 5 minutes
+    ![Timeframe](screencaptures/timeframe1.png "Timeframe")
+    ![Timeframe](screencaptures/timeframe2.png "Timeframe") 
+
+5. Take a snapshot of this graph and use the @ notation to send it to yourself.
+   
+   Here's a screenshot of my graph and I set it for the past month so you'd 
+   see a wider range of data. Unsure how to send it to myself as the question asks.
+    
+    ![Graph](screencaptures/graph.png "Graph") 
+
+  Bonus Question: What is the Anomaly graph displaying?
+
+    If the Anomaly Function is working, it displays why hiccups that might
+    occure during your data monitering. 
 
 ##Monitoring Data
 
-The following are screenshots showing the Warning and Alerting thresholds
-and the corresponding emails that were sent to me. The alert email is from
-a few days ago when I was working with these settings
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+1. Warning threshold of 500
+    ![Warning threshold](screencaptures/warning.png "Warning Threshold") 
+
+2. Alerting threshold of 800
+    ![Alert threshold](screencaptures/alertthreshold.png "Alert Threshold") 
+
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+    ![Delay minutes](screencaptures/minutes.png "10 Minutes")
+
+
+Please configure the monitor’s message so that it will:
+
+1. Send you an email whenever the monitor triggers.
+    ![Email Notfication](screencaptures/notify.png "Email Notfication")
+
+2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+    ![Alert Notfication](screencaptures/alertnotice.png "Alert Notfication")
+    ![Warning Notfication](screencaptures/warningnotice.png "Warning Notfication")
+    ![No Data Notfication](screencaptures/nodata.png "No Data Notfication")
+
+
+3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+  Unsure of how exactly to answer this.
+
+4. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+  ![Email Alert](screencaptures/emailalert.png "Email Alert")
+
+
+##Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+
+And one that silences it all day on Sat-Sun.
+
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+ ##Roadblocks-
+   I understand what the bonus question is asking me to do, however I am not 
+sure where these settings are. If given the opportunity to study this further,
+perhaps with a guiding hand, I know I could complete it. 
+
 
 
 ##Collecting APM Data
+ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
     answer in .py file
+  
+  Roadblocks - 
+    I understand that APM is Application Performance Monitoring 
+  and it cuts the gap between the app and the middleware. However, the "solution"
+  as the questiona asks, is it a specifc line of code? Is it a certain method? 
+  I am not sure how to go about this but would love to learn more if given the chance
+  to work with someone. 
 
 ##Final question
     I would use Datadog to monitor for any available parking spaces
