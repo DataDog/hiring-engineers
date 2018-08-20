@@ -66,3 +66,84 @@ We can check that the agent is posting once every 45 seconds from referring the 
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 I dont think so. (More research required)
+
+### Visualizing Data: 
+#### Question: Utilize the Datadog API to create a Timeboard
+Here is my code to create the timeboard as asked
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '412d911e8166a2a1488c6fc8206b51cc',
+    'app_key': 'aff723d2f7496c25a98ef3ca13d0cf342533e462'
+}
+
+initialize(**options)
+
+title = "My Solutions Engineer Timeboard"
+description = "Timeboard for solutions engineer task"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{host:Hetansh-Ubuntu-VirtualBox}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric average over host: Hetansh-Ubuntu-VirtualBox"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:postgresql.commits{*}, 'basic',2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "PostgreSQL Commits"
+},{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric rollup visualization with time 1hr"
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+resp = api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+This created the timeboard with timeframe as 5 mins as shown in the image: 
+
+![The Timeboard](https://s3.amazonaws.com/solutions-engineer-photos/timeboard.png)
+
+To see the roll up function of 1hr applied to my_metric I changed the timeframe to past 4 hrs to see 4 values of each hour as:
+
+![The Timeboard](https://s3.amazonaws.com/solutions-engineer-photos/roll_up.png)
+
+#### Question: Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Sending the graph to myself and also getting notified on email: 
+
+![The Timeboard](https://s3.amazonaws.com/solutions-engineer-photos/atonation.png)
+![The Timeboard](https://s3.amazonaws.com/solutions-engineer-photos/events.png)
+![The Timeboard](https://s3.amazonaws.com/solutions-engineer-photos/email_anot.png)
+
+#### Bonus Question: What is the Anomaly graph displaying?
+The metrics are variable and it keeps on changing everytime. Figuring out what change, or what value of a metrics is abormal
+or should trigger a alert is a tough task. Anomaly graph shows us the expected behavior of that particular value based on the historic
+values of that metrics. It takes into account the past data corresponding to that day, time of day, etc. to give a gray band which covers
+the range of the metric value expected to be normal. Anything outside the grey band is considered not normal.
