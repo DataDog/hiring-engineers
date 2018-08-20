@@ -147,3 +147,91 @@ The metrics are variable and it keeps on changing everytime. Figuring out what c
 or should trigger a alert is a tough task. Anomaly graph shows us the expected behavior of that particular value based on the historic
 values of that metrics. It takes into account the past data corresponding to that day, time of day, etc. to give a gray band which covers
 the range of the metric value expected to be normal. Anything outside the grey band is considered not normal.
+
+### Monitoring Data:
+
+I created a new Metric Monitor that watches the average of mu custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+- Warning threshold of 500
+- Alerting threshold of 800
+- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+The settings are as shown in the image below:
+![The Metric Monitor Settings](https://s3.amazonaws.com/solutions-engineer-photos/monitor.png)
+
+Here is the Monitor's custom message:
+```
+@thenormalengineer@gmail.com
+{{#is_warning}}
+Your metric my_metric has gone above  {{warn_threshold}}! Your metric is {{value}} on host: {{host.name}} with host IP: {{host.ip}}. 
+{{/is_warning}} 
+
+ {{#is_alert}}
+Your metric my_metric has gone above  {{alert_threshold}}! Your metric is {{value}} on host: {{host.name}} with host IP: {{host.ip}}. 
+{{/is_alert}} 
+
+ {{#is_no_data}}
+Your metric has stopped sending data for 10 Minutes. 
+{{/is_no_data}}
+```
+Here is the image of an alert email to me:
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/monitor_email.png)
+
+Two scheduled downtimes for monitor:
+1. Weekday 7:00pm to 9:00am
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_1.png)
+2. No alerts from Friday 7:00pm to Monday 9:00am (Weekend)
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_2.png)
+
+
+----
+#### Collecting APM Data:
+First I needed to install ddtrace to trace the flask app for which I used pip install
+```
+pip install ddtrace
+```
+Next to integrate APM tracing for flask app I refered the flask documentation given on:
+http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask
+
+The code for my final flask app is as:
+```
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+raced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Next I needed to edit the config file to enable APM
+
+Then run the flask app using the code:
+```
+ddtrace-run python apm_trail.py
+```
+
+The public url : https://p.datadoghq.com/sb/8cfa517e3-e593da047062cb207521747d205cddbc
