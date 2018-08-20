@@ -301,4 +301,4 @@ Please find [*here*](https://p.datadoghq.com/sb/28d01a8f1-b886c7228ff271b31955ba
 
 ### Final Question
 
-I think that if we can use datadog monitoring in hospitals it will be good idea, to get health measures from sensors and sends alerts to prevent doctors and avoid an illness.
+I think that if we can use datadog monitoring in hospitals it will be good idea, to get health state of patients and sends alerts to doctors for faster intervention .
