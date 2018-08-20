@@ -1,0 +1,52 @@
+{
+  "graphs" : [{
+      "title": "HC Visualizing Data My Metric Over Host",
+      "definition": {
+          "events": [],
+          "requests": [
+              {"q": "my_metric{host:cegglin-VirtualBox}"}
+          ]
+      },
+      "viz": "timeseries"
+  },
+  {
+      "title": "HC Visualizing Data Postgres Free Memory Over Host",
+      "definition": {
+          "events": [],
+          "requests": [
+              {"q": "anomalies(system.mem.free{host:cegglin-VirtualBox}, 'basic', 2)"}
+          ]
+      },
+      "viz": "timeseries"
+  },
+  {
+      "title": "HC Visualizing Data My Metric Rollup Over Host",
+      "definition": {
+          "events": [],
+          "requests": [
+              {"q": "my_metric{host:cegglin-VirtualBox}.rollup(sum, 3600)"}
+          ]
+      },
+      "viz": "timeseries"
+  },
+  {
+      "title": "HC Visualizing Data Combined",
+      "definition": {
+          "events": [],
+          "requests": [
+              {"q": "my_metric{host:cegglin-VirtualBox}"},
+              {"q": "anomalies(system.mem.free{host:cegglin-VirtualBox}, 'basic', 2)"},
+              {"q": "my_metric{host:cegglin-VirtualBox}.rollup(sum, 3600)"}
+          ]
+      },
+      "viz": "timeseries"
+  }],
+  "title" : "HC Custom Metric and Database Visualization Timeboard",
+  "description" : "A dashboard displaying my_metric agent check and Postgres available memory.",
+  "template_variables": [{
+      "name": "host1",
+      "prefix": "host",
+      "default": "host:my-host"
+  }],
+  "read_only": "True"
+}
