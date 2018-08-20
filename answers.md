@@ -48,24 +48,20 @@ use during my time at General Assembly.
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-answer in answers.py file
+    full answer in answers.py file
 
 ##Roadblocks -
     Simply making an agent check proved difficult. As mentioned earlier I have
     a DataDog Agent installed on my mac, but the specifc commands for the 
-    command line aren't working the way I hoped for. 
-
-    For example: when I do DataDog datadog-agent start command it starts the app, but the 
+    command line aren't working the way I hoped for. For example: when I do DataDog datadog-agent start command it starts the app, but the 
     command for Agent V6, what I have, doesn't work. I am unsure of how I should
-    being the Agent Check.
-
-    My answer is the answers.py file is written as if I got the Agent Check to work.
+    being the Agent Check. My answer is the answers.py file is written as if I got the Agent Check to work.
 
 
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-answer in answers.py file
+    full answer in answers.py file
 
 
 
@@ -83,7 +79,9 @@ answer in answers.py file
     
 2. Any metric from the Integration on your Database with the anomaly function applied.
     
-    answer in answers.py
+    full answer in answers.py file
+
+
    ![Anomaly function](screencaptures/anomaly1.png "Anomaly function")
    ![Anomaly Function](screencaptures/anomaly2.png "Anomaly function") 
     
@@ -96,7 +94,7 @@ answer in answers.py file
 
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
 
-   answer in answers.py file
+    full answer in answers.py file
 
   ##Roadblocks - I found the rollup function on the Datadog Graphing doc
     and applied it to my function in answers.py. Where to actually include
@@ -134,10 +132,14 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
     ![Delay minutes](screencaptures/minutes.png "10 Minutes")
 
 
+
+
 Please configure the monitor’s message so that it will:
 
 1. Send you an email whenever the monitor triggers.
     ![Email Notfication](screencaptures/notify.png "Email Notfication")
+
+
 
 2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
     ![Alert Notfication](screencaptures/alertnotice.png "Alert Notfication")
@@ -172,7 +174,7 @@ perhaps with a guiding hand, I know I could complete it.
 ##Collecting APM Data
  Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-    answer in .py file
+    full answer in answers.py file
   
   Roadblocks - 
     I understand that APM is Application Performance Monitoring 
