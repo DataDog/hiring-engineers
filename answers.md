@@ -3,7 +3,7 @@
 
 # Collecting Metrics
 
-##### * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog. *
+#### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
   To add tags in the agent config file, I had to first navigate to the file located in V6 at /etc/datadog-agent/datadog.yaml and open it with the text editor as admin. And assigned tags per the documentation
 
   Assigning agent tags using the config file:
@@ -12,13 +12,13 @@
   Host map display of host infrastructure and tags using the DataDog UI:
   ![Host and Tags on Host Map](https://i.imgur.com/vix1FPc.jpg)
 
-##### * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. *
+#### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
   I'd already installed PostgreSQL for use in personal projects, and I installed the corresponding integration using the integrations section of the UI
 
   Screenshot of the completed integrations (including Postgres):
   ![PostgreSQL Integration](https://i.imgur.com/ZdhDyuA.jpg?1)
 
-##### * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. *
+#### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
   In order to create a custom agent check, I had to create both a configuration (yaml) file and the actual check py file. Using help from the documentation examples, I created the configuration file at etc/datadog-agent/conf.d/mymetric.yaml and the check file at etc/datadog-agent/checks.d/mymetric.py. The configuration file was simple as there were no explicit check configurations or instances for which I needed to add specifications.
 
   Configuration File:
@@ -29,13 +29,13 @@
   Check File:
   ![Agent Check py File](https://i.imgur.com/KLSJrTh.jpg?1)
 
-##### * Change your check's collection interval so that it only submits the metric once every 45 seconds. *
+#### Change your check's collection interval so that it only submits the metric once every 45 seconds.
   To only submit the metric once every 45 seconds, I modified the check py file. I defined a default minimum collection interval constant of 45 seconds and then set the agent's min collection interval for an instance to be either first the interval set specifically for that instance in the configuration file or second the value of the constant.
 
   Check file with specified collection interval:
   ![Agent Check py File](https://i.imgur.com/nq2SqcH.jpg?1)
 
-##### * Bonus Question: Can you change the collection interval without modifying the Python check file you created? *
+#### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
   Yes, instead of modifying the collection interval in the check file you can change the collection interval in the check configuration file. Where you can even define specific collection intervals for different instances.
 
   Here is an example of that using example instances from the [documentation](https://docs.datadoghq.com/developers/agent_checks/#configuration):
@@ -43,7 +43,7 @@
 
 # Visualizing Data:
 
-##### * Utilize the Datadog API to create a Timeboard that contains: *
+#### Utilize the Datadog API to create a Timeboard that contains:
   - Your custom metric scoped over your host.
   - Any metric from the Integration on your Database with the anomaly function applied.
   - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -56,7 +56,7 @@
   Here is a full-screen view of the three combined:
   ![API Combined Timeboard](https://i.imgur.com/P0KL7M0.jpg?1)
 
-##### * Once this is created, access the Dashboard from your Dashboard List in the UI: *
+#### Once this is created, access the Dashboard from your Dashboard List in the UI:
   - Set the Timeboard's timeframe to the past 5 minutes
   - Take a snapshot of this graph and use the @ notation to send it to yourself
 
@@ -66,12 +66,12 @@
   And the email notification:
   ![Email Notification Screenshot of 5 Minute Timeframe](https://i.imgur.com/EuhVgKw.jpg?1)
 
-##### * Bonus Question: What is the Anomaly graph displaying? *
+#### Bonus Question: What is the Anomaly graph displaying?
   The anomaly graph displays a prediction of the expected behavior based on past events, which is depicted in the gray area surrounding the actual metrics.
 
 # Monitoring Data
 
-##### * Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes: *
+#### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
   - Warning threshold of 500
   - Alerting threshold of 800
   - And also ensure that it will notify you if there is No Data for this query over the past 10m.
@@ -82,7 +82,7 @@
   And what the alert and warning look like on the graph:
   ![Metric Thresholds Visualized on the Graph](https://i.imgur.com/AqL9cyk.jpg?1)
 
-##### * Please configure the monitor’s message so that it will: *
+#### Please configure the monitor’s message so that it will:
   - Send you an email whenever the monitor triggers.
   - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
   - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -94,7 +94,7 @@
   And a screenshot of the email from the notification:
   ![Email Notification Screenshot](https://i.imgur.com/TvHyNaP.jpg?1)
 
-##### * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: *
+#### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
   - One that silences it from 7pm to 9am daily on M-F,
   - And one that silences it all day on Sat-Sun.
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
@@ -113,7 +113,7 @@
 
 # Collecting APM Data
 
-##### * Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: *
+#### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
   In order to instrument the given flask app, I created and ran a Flask virtual environment. I then installed ddtrace and ran the sample Flask app, in sampleflaskapp.py modified to support tracing, using DDtrace-run to start the APM tracing. To set up tracing for the app, I imported ddtrace from tracer and wrapped the application file using "\@tracer.wrap('sampleflaskapp.fetch')". Then when I navigated to the flask app, I started getting trace data for the app. I created a screenboard to display this data. I added a service summary board and a host map board to the screenboard. To set up the service summary board to display the APM trace data, I had to choose the production environment, since that was where the application was running, and to display all the data. To set up the host map I had to choose to filter by the production environment.
 
   The resulting screenboard featuring the Flask app APM and infrastructure data can be seen in the following screenshot:
@@ -121,10 +121,10 @@
 
   As well as a [link to the screenboard](https://p.datadoghq.com/sb/df8671eb7-cec14f9fbda39aeaad39bfaa7110b0e6).
 
-##### * Bonus Question: What is the difference between a Service and a Resource? *
+#### Bonus Question: What is the difference between a Service and a Resource?
   Straight from the documentation, a service is a set of processes that do the same job while a resource is a particular action for a service.
 
 # Final Question
 
-##### * Is there anything creative you would use Datadog for? *
+#### Is there anything creative you would use Datadog for?
   I've always been bothered by the homelessness issue in the United States and perhaps using DataDog to track availability in homeless shelters and similar housing might prevent people from having to sleep out on the street and in uncomfortable conditions. Tracking shelter availability information as well as homeless populations in an area in a database may allow for initiatives to create additional shelters in areas of greater volume and necessity or even just providing transportation of those without shelter to open areas nearby.
