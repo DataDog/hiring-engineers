@@ -6,17 +6,17 @@
 #### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
   To add tags in the agent config file, I had to first navigate to the file located in V6 at /etc/datadog-agent/datadog.yaml and open it with the text editor as admin. And assigned tags per the documentation
 
-  Assigning agent tags using the config file:  return
-  ![Agent Config File Tags](https://i.imgur.com/YeAj6y5.jpg?1)
+  Assigning agent tags using the config file:
+  - ![Agent Config File Tags](https://i.imgur.com/YeAj6y5.jpg?1)
 
   Host map display of host infrastructure and tags using the DataDog UI:
-  ![Host and Tags on Host Map](https://i.imgur.com/vix1FPc.jpg)
+  - ![Host and Tags on Host Map](https://i.imgur.com/vix1FPc.jpg)
 
 #### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
   I'd already installed PostgreSQL for use in personal projects, and I installed the corresponding integration using the integrations section of the UI
 
   Screenshot of the completed integrations (including Postgres):
-  ![PostgreSQL Integration](https://i.imgur.com/ZdhDyuA.jpg?1)
+  - ![PostgreSQL Integration](https://i.imgur.com/ZdhDyuA.jpg?1)
 
 #### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
   In order to create a custom agent check, I had to create both a configuration (yaml) file and the actual check py file. Using help from the documentation examples, I created the configuration file at etc/datadog-agent/conf.d/mymetric.yaml and the check file at etc/datadog-agent/checks.d/mymetric.py. The configuration file was simple as there were no explicit check configurations or instances for which I needed to add specifications.
