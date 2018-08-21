@@ -7,10 +7,10 @@
   To add tags in the agent config file, I had to first navigate to the file located in V6 at /etc/datadog-agent/datadog.yaml and open it with the text editor as admin. And assigned tags per the documentation
 
   Assigning agent tags using the config file:
-  ![Agent Config File Tags](https://i.imgur.com/YeAj6y5.jpg?1)
+   ![Agent Config File Tags](https://i.imgur.com/YeAj6y5.jpg?1)
 
   Host map display of host infrastructure and tags using the DataDog UI:
-  ![Host and Tags on Host Map](https://i.imgur.com/vix1FPc.jpg)
+   ![Host and Tags on Host Map](https://i.imgur.com/vix1FPc.jpg)
 
 #### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
   I'd already installed PostgreSQL for use in personal projects, and I installed the corresponding integration using the integrations section of the UI
