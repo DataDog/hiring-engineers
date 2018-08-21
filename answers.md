@@ -1,7 +1,3 @@
-Your answers to the questions go here.
-
-# My solution to the Solutions Engineer questions
-## - Hetansh Madhani
 
 # My solution to the Solutions Engineer questions
 ## - Hetansh Madhani
@@ -34,7 +30,7 @@ sudo apt install postgresql postgresql-contrib
 I followed the integration steps found in the agent as well the Datadog Support Documents on the official Website
 https://docs.datadoghq.com/integrations/postgres/
 
-I had to creat edit the *__postgres.yaml__*  file in *__conf.d/postgres.d/__* to make the agent collect PostgreSQL metrics and logs
+I had to create and edit the *__postgres.yaml__*  file in *__conf.d/postgres.d/__* to make the agent collect PostgreSQL metrics and logs
 ![PostgreSQL Configured File](https://s3.amazonaws.com/solutions-engineer-photos/postgres_yaml.png)
 
 I could see the integration was successful in the agent. 
@@ -51,7 +47,7 @@ I had to create 2 files:
 
 *__my_metric.py__* is as shown:
 
-![Custom Agent Check Metric File](https://s3.amazonaws.com/solutions-engineer-photos/check_py.png)
+![Custom Agent Check Metric File](https://s3.amazonaws.com/solutions-engineer-photos/new_agent.png)
 
 *__my_metric.yaml__* is as shown to include the 45 sec time interval:
 
@@ -61,11 +57,11 @@ We do that by adding ``` -min_collection_interval: 45 ```
 
 We can check that the agent is posting once every 45 seconds from referring the logs:
 
-![Custom Agent Check Logs](https://s3.amazonaws.com/solutions-engineer-photos/check_log.png)
+![Custom Agent Check Logs](https://s3.amazonaws.com/solutions-engineer-photos/custom_agent.png)
 - - - -
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-I dont think so. (More research required)
+I dont think so. I think one way would be to change the main check interval. But I am not sure about it.
 
 ### Visualizing Data: 
 #### Question: Utilize the Datadog API to create a Timeboard
@@ -150,7 +146,7 @@ the range of the metric value expected to be normal. Anything outside the grey b
 
 ### Monitoring Data:
 
-I created a new Metric Monitor that watches the average of mu custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+I created a new Metric Monitor that watches the average of my custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
@@ -159,27 +155,31 @@ The settings are as shown in the image below:
 
 Here is the Monitor's custom message:
 ```
-@thenormalengineer@gmail.com
 {{#is_warning}}
-Your metric my_metric has gone above  {{warn_threshold}}! Your metric is {{value}} on host: {{host.name}} with host IP: {{host.ip}}. 
+Your metric my_metric has gone above  {{warn_threshold}}! Your metric is {{value}}.
 {{/is_warning}} 
 
  {{#is_alert}}
-Your metric my_metric has gone above  {{alert_threshold}}! Your metric is {{value}} on host: {{host.name}} with host IP: {{host.ip}}. 
+Your metric my_metric has gone above  {{alert_threshold}}! Your metric is {{value}} on host IP: {{host.ip}}
 {{/is_alert}} 
 
  {{#is_no_data}}
 Your metric has stopped sending data for 10 Minutes. 
-{{/is_no_data}}
+{{/is_no_data}} 
+Notify @thenormalengineer@gmail.com
 ```
 Here is the image of an alert email to me:
 ![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/monitor_email.png)
 
 Two scheduled downtimes for monitor:
 1. Weekday 7:00pm to 9:00am
-![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_1.png)
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_4.png)
 2. No alerts from Friday 7:00pm to Monday 9:00am (Weekend)
-![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_2.png)
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_3.png)
+
+The downtime email sent to me:
+
+![The Alert Email](https://s3.amazonaws.com/solutions-engineer-photos/downtime_email.png)
 
 
 ----
@@ -209,7 +209,6 @@ main_logger.addHandler(c)
 
 app = Flask(__name__)
 
-raced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
@@ -229,9 +228,40 @@ if __name__ == '__main__':
 
 Next I needed to edit the config file to enable APM
 
+![The Apm](https://s3.amazonaws.com/solutions-engineer-photos/aom_config.png)
+
 Then run the flask app using the code:
 ```
 ddtrace-run python apm_trail.py
 ```
+I could find the service and the trace in the APM section:
+![The Apm](https://s3.amazonaws.com/solutions-engineer-photos/apm_trace.png)
+![The Apm](https://s3.amazonaws.com/solutions-engineer-photos/apm_service.png)
 
-The public url : https://p.datadoghq.com/sb/8cfa517e3-e593da047062cb207521747d205cddbc
+Here is a screenshot of a dashboard with APM metrics and Infrastructure Metrics:
+![The Apm](https://s3.amazonaws.com/solutions-engineer-photos/apm_dashboard.png)
+
+The public url : https://p.datadoghq.com/sb/8cfa517e3-ac04059d152f1e940e1394d187e198ce
+
+#### Bonus Question: 
+#### What is the difference between a Service and a Resource?
+A Service is the name of a set of processes that work together to provide a whole feature like a web application. 
+It may contain different things like database connection, admin section and different processing 
+
+A resource is defined by its URL and definition of inputs/outputs for every operation supported by a resource.
+Unlike a service, where methods are completely independent and can be deployed as independent endpoints, methods on a resource
+have to exist on the same URL
+
+----
+
+##Final Question
+#### Datadog has been used in a lot of creative ways in the past. 
+We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?
+
+I think use of datadog to monitor traffic would be a really cood idea. Not just vehicle traffic but also pedestrain traffic. 
+It would be cool to see the traffic to my way home from a datadog dashboard, or for the surrounding areas.
+We can have sensors to calculate foot traffic, who's data can be monitored by datadog and can be used in many interesting ways,
+for example, a advertising company can look at the number of people walking and control the digital ads dynamically based on the foot traffic.
+
+
