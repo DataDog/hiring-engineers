@@ -6,13 +6,7 @@
 
 ## Collecting Metrics
 
--Added unique tags and aliased my host name by opening the `datadog.yaml` config file located in `/opt/datadog-agent/etc/`: 
-
-![config file](https://imgur.com/mPHnEYF)
-
-then checked to confirm the changes had taken effect in the host map:
-
-![host map](https://imgur.com/FHhDMJc)
+-Added unique tags and aliased my host name by opening the `datadog.yaml` [config file](https://imgur.com/mPHnEYF) located in `/opt/datadog-agent/etc/` then checked to confirm the changes had taken effect in the [host map](https://imgur.com/FHhDMJc).
 
 -Due to my familiarity and already having it installed on my machine, I decided on PostgreSQL as my database of choice. I completed [integration](https://imgur.com/mNgXPNE) by following the configuration steps found [here](https://app.datadoghq.com/account/settings#integrations/postgres) and editing the `postgres.yaml` [file](https://imgur.com/5HTZ4Sm) found in `/opt/datadog-agent/etc/conf.d`.
 
