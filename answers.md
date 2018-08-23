@@ -19,178 +19,9 @@ vagrant up
 * Access the machine
 vagrant ssh 
 
---> Logs:
-***********************
-PS C:\Users\A\Documents\Documents\partage> vagrant status
-Current machine states:
 
-default                   poweroff (virtualbox)
-
-The VM is powered off. To restart the VM, simply run `vagrant up`
-PS C:\Users\A\Documents\Documents\partage> vagrant up
-Bringing machine 'default' up with 'virtualbox' provider...
-==> default: Checking if box 'ubuntu/xenial64' is up to date...
-==> default: There was a problem while downloading the metadata for your box
-==> default: to check for updates. This is not an error, since it is usually due
-==> default: to temporary network problems. This is just a warning. The problem
-==> default: encountered was:
-==> default:
-==> default: Could not resolve host: vagrantcloud.com
-==> default:
-==> default: If you want to check for box updates, verify your network connection
-==> default: is valid and try again.
-==> default: Clearing any previously set forwarded ports...
-==> default: Clearing any previously set network interfaces...
-==> default: Preparing network interfaces based on configuration...
-    default: Adapter 1: nat
-==> default: Forwarding ports...
-    default: 22 (guest) => 2222 (host) (adapter 1)
-==> default: Running 'pre-boot' VM customizations...
-==> default: Booting VM...
-==> default: Waiting for machine to boot. This may take a few minutes...
-    default: SSH address: 127.0.0.1:2222
-    default: SSH username: vagrant
-    default: SSH auth method: private key
-    default: Warning: Connection reset. Retrying...
-    default: Warning: Connection aborted. Retrying...
-    default: Warning: Connection reset. Retrying...
-    default: Warning: Connection aborted. Retrying...
-    default: Warning: Connection reset. Retrying...
-    default: Warning: Connection aborted. Retrying...
-    default: Warning: Connection reset. Retrying...
-    default: Warning: Connection aborted. Retrying...
-    default: Warning: Remote connection disconnect. Retrying...
-    default: Warning: Connection aborted. Retrying...
-    default: Warning: Connection reset. Retrying...
-    default: Warning: Connection aborted. Retrying...
-==> default: Machine booted and ready!
-==> default: Checking for guest additions in VM...
-    default: The guest additions on this VM do not match the installed version of
-    default: VirtualBox! In most cases this is fine, but in rare cases it can
-    default: prevent things such as shared folders from working properly. If you see
-    default: shared folder errors, please make sure the guest additions within the
-    default: virtual machine match the version of VirtualBox you have installed on
-    default: your host and reload your VM.
-    default:
-    default: Guest Additions Version: 5.1.38
-    default: VirtualBox Version: 5.2
-==> default: Mounting shared folders...
-    default: /vagrant => C:/Users/A/Documents/Documents/partage
-==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
-==> default: flag to force provisioning. Provisioners marked to run always will still run.
-PS C:\Users\A\Documents\Documents\partage> vagrant ssh
-Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-131-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
-
-2 packages can be updated.
-0 updates are security updates.
-
-
-Last login: Sun Aug  5 21:23:33 2018 from 10.0.2.2
-vagrant@ubuntu-xenial:
-**********************
-
-
-* Installing agent 
-
---> Logs
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/APM$ DD_API_KEY=e527bbb476b605db8ad1044e94ce2b3a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 10323  100 10323    0     0  10364      0 --:--:-- --:--:-- --:--:-- 10364
-tee: ddagent-install.log: Permission denied
-***************************
-
-* Installing apt-transport-https
-
---> Logs
-***************************
-Hit:1 http://archive.ubuntu.com/ubuntu xenial InRelease
-Get:2 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]
-Get:3 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [109 kB]
-Get:4 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [107 kB]
-Ign:5 https://apt.datadoghq.com stable InRelease
-Hit:6 https://apt.datadoghq.com stable Release
-Get:7 http://archive.ubuntu.com/ubuntu xenial-updates/main Sources [318 kB]
-Get:8 http://security.ubuntu.com/ubuntu xenial-security/main Sources [131 kB]
-Get:9 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [217 kB]
-Get:10 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [69.5 kB]
-Get:12 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [533 kB]
-Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [824 kB]
-Get:14 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [228 kB]
-Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [339 kB]
-Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [676 kB]
-Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [273 kB]
-Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/main Sources [4,488 B]
-Get:19 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [6,756 B]
-Get:20 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [363 kB]
-Get:21 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [136 kB]
-Fetched 4,442 kB in 3s (1,307 kB/s)
-Reading package lists...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-apt-transport-https is already the newest version (1.2.27).
-0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
-Reading package lists...
-Building dependency tree...
-Reading state information...
-dirmngr is already the newest version (2.1.11-6ubuntu2.1).
-0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
-***************************
-
-* Installing APT package sources for Datadog
-
---> Logs:
-***************************
-Executing: /tmp/tmp.knDSx8oyI0/gpg.1.sh --recv-keys
---keyserver
-hkp://keyserver.ubuntu.com:80
-382E94DE
-gpg: requesting key 382E94DE from hkp server keyserver.ubuntu.com
-gpg: key 382E94DE: "Datadog, Inc <package@datadoghq.com>" not changed
-gpg: Total number processed: 1
-gpg:              unchanged: 1
-
-* Installing the Datadog Agent package
-
-Ign:1 https://apt.datadoghq.com stable InRelease
-Hit:2 https://apt.datadoghq.com stable Release
-Reading package lists...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-datadog-agent is already the newest version (1:6.4.1-1).
-0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
-
-* Keeping old datadog.yaml configuration file
-
-* Starting the Agent...
-
-
-
-Your Agent is running and functioning properly. It will continue to run in the
-background and submit metrics to Datadog.
-
-If you ever want to stop the Agent, run:
-
-    sudo systemctl stop datadog-agent
-
-And to run it again run:
-
-    sudo systemctl start datadog-agent
-
-vagrant@ubuntu-xenial:/etc/datadog-agent/APM$
-***************************
-
-Hosts MAP Link: https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
+Hosts MAP Link: 
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
 
 
 2- Collecting Metrics
@@ -205,9 +36,11 @@ tags:
    - host:ubuntu
    - name:precise64
 
-(check the config file in the attached documents Scripts/datadogyaml)
+(check the config file in the attached documents Scripts/datadogyaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/datadog.yaml)
 
-Check screenshot of the added tags on Host monitor (Screenshots/adding_tags.png, Screenshots/hostmap_tags.png).
+Check screenshot of the added tags on Host monitor 
+(Screenshots/adding_tags.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/adding_tags.png, 
+Screenshots/hostmap_tags.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/hostmap_tags.png).
 
 Host Map tags link: https://app.datadoghq.com/infrastructure/map?host=543861600&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
 
@@ -369,7 +202,7 @@ instances:
 ***************************
 
 
-The file can be found within the attached documents (Scripts/conf.yaml).
+The file can be found within the attached documents (Scripts/conf.yaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/conf.yaml).
 
 
 ** Mettre à jour le fichier my.cnf
@@ -412,7 +245,7 @@ vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$
 ***************************
 
 
-The file can be found within the attached documents. (Scripts/my.cnf)
+The file can be found within the attached documents. (Scripts/my.cnf: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my.cnf)
 
 
 ** enabling mysql logs in datadog conf file:
@@ -452,7 +285,8 @@ Agent restart was done after each change
 * Creating custom metric
 
 In order to create a new metric, two files needs to be created:
-- /etc/datadog-agent/conf.d/my_metric.yaml (Scripts/my_metric.yaml)
+- /etc/datadog-agent/conf.d/my_metric.yaml
+ (Scripts/my_metric.yaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my_metric.yaml)
 
 ***************************
 vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ cat my_metric.yaml
@@ -466,7 +300,8 @@ vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$
 min_collection_interval: 45 was added to enable the check every 45s
 
 
-- /etc/datadog-agent/check.d/my_metric.py (Scripts/my_metric.py)
+- /etc/datadog-agent/check.d/my_metric.py 
+(Scripts/my_metric.py: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my_metric.py)
 
 ***************************
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ cat my_metric.py
@@ -484,57 +319,117 @@ and then then restart agent.
 BONUS QUESTION:
 The change of the check interval is done on the config file, thus, no need to modify the python script.
 
-Check the attached screenshot for the my_metric graph. (Screenshots/my_metric_interval_45.png, Screenshots/last_5_min.png)
+Check the attached screenshot for the my_metric graph.
+ (Screenshots/my_metric_interval_45.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_interval_45.png
+Screenshots/last_5_min.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/last_5_min.png)
 
 
 3- Visualizing data
 
 
-- Script used to create the timeboard:
+First step is setting the api_key and app_key 
 
-{
+vagrant@ubuntu-xenial:/etc/datadog-agent$ export app_key=bdfabec3f3baa57a44f6514d1d302fa3bed5e69a
+vagrant@ubuntu-xenial:/etc/datadog-agent$ export api_key=e527bbb476b605db8ad1044e94ce2b3a
+vagrant@ubuntu-xenial:/etc/datadog-agent$ echo $app_key
+bdfabec3f3baa57a44f6514d1d302fa3bed5e69a
+vagrant@ubuntu-xenial:/etc/datadog-agent$ echo $api_key
+e527bbb476b605db8ad1044e94ce2b3a
+vagrant@ubuntu-xenial:/etc/datadog-agent$
+
+
+The insertion of the anomalies graph did not work:
+
+agrant@ubuntu-xenial:/etc/datadog-agent$ curl  -X POST -H "Content-type: application/json" -d '{
+  "title" : "MyMetric Dashboard",
+  "description" : "A dashboard created with API.",
   "viz": "timeseries",
   "status": "done",
-  "requests": [
-    {
-      "q": "avg:my_metric{*}",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      },
-      "conditional_formats": [],
-      "aggregator": "avg"
-    },
-    {
-      "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      }
-    },
-    {
-      "q": "avg:my_metric{*}.rollup(sum, 3600)",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      }
-    }
-  ],
-  "autoscale": true
+  "graphs": [{
+        "title": "MyMetric Timeboard",
+         "definition": {
+         "events": [],
+         "requests": [
+         {
+                "q": "avg:my_metric{*}",
+                "type": "line",
+                "style": {
+                        "palette": "dog_classic",
+                        "type": "solid",
+                        "width": "normal"
+                        },
+                "conditional_formats": [],
+                "aggregator": "avg"
+        },
+        {
+        "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+        "type": "line",
+        "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+                }
+        },
+        {
+        "q": "avg:my_metric{*}.rollup(sum, 3600)",
+        "type": "line",
+        "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+                }
+        }
+        ]
 }
+}],
+  "autoscale": true
+}' "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+{"errors": ["Error parsing query: unable to parse anomalies(avg:mysql.performance.cpu_time{*}, basic, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 51)."]}vagrant@ubuntu-xenial:/etc/datadog-agent$
 
-(script under Scripts/MyTimeboard.json)
 
+The other graphs were created:
+
+vagrant@ubuntu-xenial:/etc/datadog-agent$ curl  -X POST -H "Content-type: application/json" -d '{
+  "title" : "MyMetric Dashboard",
+  "description" : "A dashboard created with API.",
+  "viz": "timeseries",
+  "status": "done",
+  "graphs": [{
+        "title": "MyMetric Timeboard",
+         "definition": {
+         "events": [],
+         "requests": [
+         {
+                "q": "avg:my_metric{*}",
+                "type": "line",
+                "style": {
+                        "palette": "dog_classic",
+                        "type": "solid",
+                        "width": "normal"
+                        },
+                "conditional_formats": [],
+                "aggregator": "avg"
+        },
+        {
+        "q": "avg:my_metric{*}.rollup(sum, 3600)",
+        "type": "line",
+        "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+                }
+        }
+        ]
+}
+}],
+  "autoscale": true
+}' "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+{"dash":{"read_only":false,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{*}","aggregator":"avg","style":{"width":"normal","palette":"dog_classic","type":"solid"},"type":"line","conditional_formats":[]},{"q":"avg:my_metric{*}.rollup(sum, 3600)","style":{"width":"normal","palette":"dog_classic","type":"solid"},"type":"line"}],"events":[]},"title":"MyMetric Timeboard"}],"description":"A dashboard created with API.","title":"MyMetric Dashboard","created":"2018-08-22T20:52:15.892313+00:00","id":895669,"created_by":{"disabled":false,"handle":"safa.el.kafsi@gmail.com","name":"Safa Gafsi","is_admin":true,"role":null,"access_role":"adm","verified":true,"email":"safa.el.kafsi@gmail.com","icon":"https://secure.gravatar.com/avatar/45be402fe79dc57b1ddaa5fc8651dcb0?s=48&d=retro"},"modified":"2018-08-22T20:52:15.906881+00:00"},"url":"/dash/895669/mymetric-dashboard","resource":"/api/v1/dash/895669"}vagrant@ubuntu-xenial:/etc/datadog-agent$
 Please check also the attached screenshots (Screenshots/MyDashboard.png, Screenshots/MyTimeboard.png, Screenshots/anomalie.png).
 
+Timeboard screenshot: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/API_Graph.png
 
-Timeboard link: https://app.datadoghq.com/dash/878535/mytimeboard?live=true&page=0&is_auto=false&from_ts=1533662828984&to_ts=1533677228984&tile_size=m
+Timeboard link: https://app.datadoghq.com/dash/895669/mymetric-dashboard?live=false&page=0&is_auto=false&from_ts=1535057639133&to_ts=1535057952140&tile_size=m
 
 BONUS QUESTION:
 --> The anomaly graph is displaying the expected behavior of the metric based on its past collected values.
@@ -542,8 +437,8 @@ BONUS QUESTION:
 
 4- Monitoring Data
 
-Please check attached screenshots (Screenshots/notification_config.png).
-Notification annotation (Screenshots/email_notification.png)
+Please check attached screenshots (Screenshots/notification_config.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_config.png).
+Notification annotation (Screenshots/email_annotation.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/email_annotation.png)
 
 Monitor link: https://app.datadoghq.com/monitors/5825551
 
@@ -574,7 +469,7 @@ Please be warned that no data was collected on {{host.name}} ({{host.ip}}), for 
 Regards, @safa.el.kafsi@gmail.com
 ***************************
 
-Mails received (Screenshots/notification_warn)
+Mails received (Screenshots/notification_warn: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_warn.png)
 
 
 ** Adding maintenance periods:
@@ -582,7 +477,11 @@ Mails received (Screenshots/notification_warn)
 Maintenance period link: https://app.datadoghq.com/monitors#downtime?id=358240967
 
 
-Check attached screenshots (Screenshots/maintenance_weekend.png, Screenshots/MaintenancePeriod.png, Screenshots/weekend_maintenance.png, Screenshots/weekday_maintenance.png)
+Check attached screenshots 
+(Screenshots/maintenance_weekend.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend.png, 
+Screenshots/MaintenancePeriod.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MaintenancePeriod.png, 
+Screenshots/weekend_maintenance.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/weekend_maintenance.png, 
+Screenshots/weekday_maintenance.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/weekday_maintenance.png)
 
 5- Collecting APM Data
 
@@ -670,7 +569,9 @@ DEBUG:ddtrace.api:reported 1 services
 2018-08-06 22:26:04,054 - ddtrace.api - DEBUG - reported 1 services
 ***************************
 
-Please check the attached screenshots (Screenshots/apm_enabled.png, Screenshots/APMvsCPULoad.png)
+Please check the attached screenshots 
+(Screenshots/apm_enabled.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_enabled.png, 
+Screenshots/APMvsCPULoad.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/APMvsCPULoad.png)
 
 Timeboard System vs APM metrics: https://app.datadoghq.com/dash/880157/apm-vs-system-timeboard?live=true&page=0&is_auto=false&from_ts=1533673962051&to_ts=1533677562051&tile_size=m
 
