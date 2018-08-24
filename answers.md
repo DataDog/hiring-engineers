@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 # About Datadog
 Datadog is a data monitoring service for cloud-scale applications, bringing together data from servers, databases, tools, and services to present a unified view of an entire stack. These capabilities are provided on a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
-
+ 
 ### Features
 * Observability - From infrastructure to apps, in any environment
 * Dashboards - Use instant, real-time boards or build your own
@@ -26,14 +26,12 @@ I am here to apply for the support engineer at [Datadog](http://datadog.com) Syd
 ### Level 0 (optional) - Setup an Ubuntu VM
 
 * While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
->Answer: I am using macOS Sierra Version 10.12.6 for this Challenge.
 
+MP ANSWER: I am using Debian 4.13.0 for this exercise.
 
 ### Level 1 - Collecting your Data
 
 * Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
-
->Answer: [Sign up here](https://www.datadoghq.com/#), get a datadog account for free for 14 days.
 
 >login, click on [_integration-Agent_](https://app.datadoghq.com/account/settings#agent/mac) in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
 
@@ -41,31 +39,31 @@ I am here to apply for the support engineer at [Datadog](http://datadog.com) Syd
 ```
 DD_API_KEY=63ab065b2982aed65fff538ba18a93ba bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
 ```
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/Agent%20instalation%20and%20config.png" />
+
+MP ANSWER: I used the API key from the main datadog page after creating my account along with the agent install string provided on the page.
+DD_API_KEY=MYAPIKEYWASHERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)”
 
 * Bonus question: In your own words, what is the Agent?
 
->Answer: The Datadog agent is a full stack data monitoring platform/software which brings data from servers, databases, tools, and services to the Datadog web interface.
+MP ANSWER: The Datadog agent collects the data from the devices (servers, dbs, tools, containers) to the Datadog Web UI.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
->Answer: Change direction by type _cd ~/.datadog-agent_ in terminal, then type _emacs datadog.conf_ to open and edit the configuration file. 
-[reference](https://docs.datadoghq.com/guides/tagging/)
+MP ANSWER: This is a screenshot of my yaml in vi.
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/hosttags1.png" />
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
-
-After a few minutes refresh the Datadog, go to [_Infrastructure - Host Map_](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false), the tags are now shown in there.
+After a few minutes refresh the Datadog, go to [_Infrastructure - Host Map_]
 
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20host%20map.png" />
+MP ANSWER: This is a screen shot showing the tags in the dashboard.
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/hosttags2.png" />
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
->Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
+MP ANSWER: I chose PostgreSQL and installed it using: sudo apt install postgresql postgresql-contrib
 
->Find the PostgreSQL API under [_Integrations-Integrations_](https://app.datadoghq.com/account/settings), click _install_, then click on _Configuration_ tab.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/integration.png" />
+>Find the PostgreSQL API under [_Integrations-Integrations_], click _install_, then click on _Configuration_ tab.
 
 >Create a read-only datadog user with proper access to your PostgreSQL Server.
 ```
@@ -74,54 +72,44 @@ grant SELECT ON pg_stat_database to datadog;
 ```
 >Configure the Agent to connect to the PostgreSQL server 
 >Edit _conf.d/postgres.yaml_
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgres_yaml.png" />
+
+MP ANSWER: 
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/postgresproperlyinstalled.png" />
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/postgresinstances.png" />
 
 >Restart the Agent
 
 >Type _datadog-agent info_ in Terminal to check states.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
+MP ANSWER: 
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/postgresstatus.png" />
 
 >Can also go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list) to check whether it is working or not.
 
 * Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
+MP ANSWER:
+I created a file in conf.d called randomcheck.yaml
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/confdrandomcheckyaml.png" />
 
->Answer: Each check will have a configuration file that will be placed in the conf.d directory. Configuration is written using YAML. The file name should match the name of the check module (e.g. randomcheck.py and randomcheck.yaml).There are two places that you will need to add files for your check. 
-> The first is the checks.d folder, which lives in your Agent root. _~/.datadog-agent/checks.d/randomcheck.py_
+I created a file in checks.d called randomcheck.py
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/checksdrandomcheckpy.png" />
 
-```
-import random
-from checks import AgentCheck
-class RandomCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('test.support.random', random.random())
-```
+I show the metrics collection in the Web GUI
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/metricswebgui.png" />
 
->The other folder is conf.d which lives in the Agent configuration root. _~/.datadog-agent/conf.d/randomcheck.yaml_
 
-```
-init_config:
-instances:
-    [{}]
-```
-
-[reference](https://docs.datadoghq.com/guides/agent_checks/)
-
-Here is a snippet that prints a random value in python:
-
-```python
-import random
-print(random.random())
-```
 
 ### Level 2 - Visualizing your Data
 
 * Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
 
 >Answer: Go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list), select [_Postgres_](https://app.datadoghq.com/dash/integration/postgresql?live=true&page=0&is_auto=false&from_ts=1508633477863&to_ts=1508637077863&tile_size=m) under _Integration Dashboards_, then click on _Clone Dashboard_ on the top right corner.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
+
 
 >Click on add new graph and type _test.support.random_ in the Get then click Save.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/new%20graph%20test_%20support_random.png" />
+MP ANSWER:
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/testsupportrandomaddgraph.png" />
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/postgresclonedwithrandomgraph.png" />
+
 
 [reference](https://docs.datadoghq.com/guides/templating/)
 
@@ -133,9 +121,9 @@ print(random.random())
 
 * Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
 
->Answer: click on the camera icon on the top right of the graph will get you a screenshot of the current graph, draw a box on the graph and type mesage @your_email, then the screenshot will be sent to your email address.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/notification.png" />
-
+MP ANSWER:
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/randomover90.png" />
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/randomover902.png" />
 
 ### Level 3 - Alerting on your Data
 
@@ -144,7 +132,6 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 >Answer: click on the [_setting icon - create Monitor_](https://app.datadoghq.com/monitors#create/metric?aggregator=avg&metric=test.support.random) on the top right of the graph
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
 
 >1.Choose the detection method
 
@@ -152,7 +139,8 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 >3.Select the alert grouping
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
+MP ANSWER:
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/alertconditions.png" />
 
 [reference](https://docs.datadoghq.com/guides/monitors/)
 
@@ -166,8 +154,9 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 >Enter a message for the monitor. This field allows standard markdown formatting as well as @your_email_address.
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert2.png" />
 
+MP ANSWER: 
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/notification.png" />
 
 * This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
 <img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/email%20notif.png" />
@@ -183,9 +172,9 @@ Since you've already caught your test metric going above 0.90 once, you don't wa
 
 >(optional)3-4.Add an optional message to notify your team
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/downtime.png" />
 
-
+MP ANSWER: 
+<img src="https://s3.us-east-2.amazonaws.com/mpdev0-datadog/downtime.png" />
 
 ## Instructions
 If you have a question, create an issue in this repository.
