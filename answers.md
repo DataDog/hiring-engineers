@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 # About Datadog
 Datadog is a data monitoring service for cloud-scale applications, bringing together data from servers, databases, tools, and services to present a unified view of an entire stack. These capabilities are provided on a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
-
+ 
 ### Features
 * Observability - From infrastructure to apps, in any environment
 * Dashboards - Use instant, real-time boards or build your own
