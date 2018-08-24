@@ -1,0 +1,85 @@
+Actually used:
+
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "graphs" : [
+        {
+          "title": "my_metric Over Time Output",
+          "definition": {
+            "events": [],
+            "requests": [{
+              "q": "avg:my_metric{*}"
+            }]
+          },
+          "viz": "timeseries"
+        },
+        {
+          "title": "my_metric Hourly Rollup Sum Result",
+          "definition": {
+            "events": [],
+            "requests": [{
+              "q": "avg:my_metric{*}.rollup(sum, 3600)"
+            }]
+          },
+          "viz": "timeseries"
+        }
+      ],
+      "title" : "Timeboard by Alan Yu",
+      "description" : "A dashboard to track my custom metric, database anomalies and hourly sum over periods of time",
+      "template_variables": [{
+          "name": "precise64",
+          "prefix": "host",
+          "default": "host:precise64"
+      }],
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=466cb831f31f0169aaea4f3109da9099&application_key=9fa27ace5c76de5158a810e51555ff5b2ca865b2"
+
+
+Planned to use:
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "graphs" : [
+        {
+          "title": "my_metric Over Time Output",
+          "definition": {
+            "events": [],
+            "requests": [{
+              "q": "avg:my_metric{*}"
+            }]
+          },
+          "viz": "timeseries"
+        },
+        {
+          "title": "Database Anomalies Report",
+          "definition": {
+            "events": [],
+            "requests": [{
+              "q": "anomalies(avg:postgesql.system.load.5{database:postgresql}, 'basic', 3, direction='both', alert_window='last_5m', interval=20, count_default_zero='true') >= 1)"
+            }]
+          },
+          "viz": "timeseries"
+        },
+        {
+          "title": "my_metric Hourly Rollup Sum Result",
+          "definition": {
+            "events": [],
+            "requests": [{
+              "q": "avg:my_metric{*}.rollup(sum, 3600)"
+            }]
+          },
+          "viz": "timeseries"
+        }
+      ],
+      "title" : "Timeboard by Alan Yu",
+      "description" : "A dashboard to track my custom metric, database anomalies and hourly sum over periods of time",
+      "template_variables": [{
+          "name": "precise64",
+          "prefix": "host",
+          "default": "host:precise64"
+      }],
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=466cb831f31f0169aaea4f3109da9099&application_key=9fa27ace5c76de5158a810e51555ff5b2ca865b2"
