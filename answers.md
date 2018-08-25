@@ -15,7 +15,7 @@
 I edited the `postgres.yaml` file found in `/opt/datadog-agent/etc/conf.d`:
 ![posgres yaml](screenshots/postgres_yaml.png "Posgres Config")
 
-Restarted the agent and ran `datadog-agent status` in terminal to confirm my integration was successful by finding this output:
+Restarted the agent and ran `datadog-agent status` in terminal to confirm my integration was successful by finding this:
 ![posgres confirmation](screenshots/postgres_integration_confirmed.png "Postgres Integration Confirmed")
 
 And on the Dashboard:
@@ -32,7 +32,6 @@ And on the Dashboard:
 ## Visualizing Data
 
 * I followed this [guide](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) to setup a DataDog environment in Postman. Then submitted the three requested graphs for my timeboard with the following:
-
 ```{
       "graphs" : [{
           "title": "Metric average over durandal.minimalghost",
@@ -73,7 +72,7 @@ And on the Dashboard:
       }],
       "read_only": "True"
     }
-    ```
+```
 
 * I found my newly created timeboard by navigating to the dashboard list. This can be seen below scoped to 4 hours in order to see some manner of graphing in action for the rollup frame, which only has a single point of data when set to the default scope:
 ![timeboard 4h](screenshots/timeboard_4h.png "Timeboard 4 Hour")
