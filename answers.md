@@ -88,20 +88,20 @@ This results in the targeted user receiving an email notification with the snaps
 
 **Bonus Question:** What is the Anomaly graph displaying?
 
-**Answer:** The grey area on the graph represents DataDog's assessment of the normalized thresholds for that metric. Anything falling above or below this range is considered anomalous or abnormal behavior and is flagged in red.
+**Answer:** The grey area on the graph represents DataDog's assessment of the normalized thresholds for that metric based on previous data. Anything falling above or below this range is considered anomalous or abnormal behavior and is flagged in red.
 
 ## Monitoring Data
 
 * To create a new monitor go to Monitors > New Monitor on the dashboard.
 
-* 1) Choose the detection method: Leave the default `Threshold Alert`.
-* 2) Define the metric: Select `my_metric` from the metric dropdown list and set from to `host:durandal.minimalghost`, the rest of the options can be left to default.
-* 3) Set alert conditions: Set `Alert threshold` to 800 and `Warning threshold` to 500. Select `Notify` if data is missing from the dropdown. Everything else can be left as default.
+1. Choose the detection method: Leave the default `Threshold Alert`.
+2. Define the metric: Select `my_metric` from the metric dropdown list and set from to `host:durandal.minimalghost`, the rest of the options can be left to default.
+3. Set alert conditions: Set `Alert threshold` to 800 and `Warning threshold` to 500. Select `Notify` if data is missing from the dropdown. Everything else can be left as default.
 
-* The final product should look something like this:
-![create monitor](snapshots/monitor_creation.png "Create Monitor")
+The final product should look something like this:
+![create monitor](screenshots/monitor_creation.png "Create Monitor")
 
-* My custom alert, warning and no data message snippet:
+My custom alert, warning and no data message snippet:
 ```{{#is_alert}}
 my_metric at host ip {{host.ip}} has surpassed {{threshold}} and is currently at {{value}}!
 {{/is_alert}}
@@ -118,7 +118,7 @@ my_metric has not received data for the past 10 minutes!
 ```
 
 When the warning threshold condition was met I received this email:
-[monitor email warning](screenshots/monitor_email_warn.png "Monitor Email Warning")
+![monitor warning](screenshots/monitor_email_warn.png "Monitor Warning")
 
 **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
   * One that silences it from 7pm to 9am daily on M-F
@@ -128,9 +128,9 @@ When the warning threshold condition was met I received this email:
 By navigating to Monitors > Manage Downtime and clicking the `Schedule Downtime` button, I was able to configure these two downtime requests.
 
 * Weeknights downtime:
-[weeknight downtime](screenshots/weeknight_downtime.png "Weeknight Downtime")
+![weeknight downtime](screenshots/weeknight_downtime.png "Weeknight Downtime")
 
 * Weekend downtime, note the beginning time is highlighted red and the summary time is displaying incorrectly because this was scheduled around 12:40PM on a Saturday:
-[weekend downtime](screenshots/weekend_downtime.png "Weekend Downtime")
+![weekend downtime](screenshots/weekend_downtime.png "Weekend Downtime")
 
 * Email notification for weeknight downtime to be added Monday night:
