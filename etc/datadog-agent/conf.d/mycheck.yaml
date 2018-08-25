@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+  - test:
+    min_collection_interval: 45
+
