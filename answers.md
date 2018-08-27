@@ -2,15 +2,13 @@
 
 ## Collecting Metrics
 
-* Added unique tags and aliased my host name by opening the `datadog.yaml` config file located in `/opt/datadog-agent/etc/`:
-
+Added unique tags and aliased my host name by opening the `datadog.yaml` config file located in `/opt/datadog-agent/etc/`:
 ![agent config](screenshots/host_tags_01.png "Config Tags and Host Alias")
 
-* Then checked to confirm the changes had taken effect in the Host Map:
-
+Then checked to confirm the changes had taken effect in the Host Map:
 ![dashboard tags](screenshots/host_tags_02.png "Tags on Host Map")
 
-* Due to being previously installed on my machine and my familiarity with it, I decided on PostgreSQL as my database of choice. I followed the configuration steps found [here](https://app.datadoghq.com/account/settings#integrations/postgres)
+Due to being previously installed on my machine and my familiarity with it, I decided on PostgreSQL as my database of choice. I followed the configuration steps found [here](https://app.datadoghq.com/account/settings#integrations/postgres)
 
 I edited the `postgres.yaml` file found in `/opt/datadog-agent/etc/conf.d`:
 ![posgres yaml](screenshots/postgres_yaml.png "Posgres Config")
@@ -21,7 +19,7 @@ Restarted the agent and ran `datadog-agent status` in terminal to confirm my int
 And on the Dashboard:
 ![postgres integration](screenshots/postgres_integration.png "Postgres Success Screen")
 
-* Created custom check file `checkvalue.py` and it's corresponding config file `checkvalue.yaml` in `/opt/datadog-agent/etc/checks.d` and `/opt/datadog-agent/etc/conf.d`, respectively:
+Created custom check file `checkvalue.py` and it's corresponding config file `checkvalue.yaml` in `/opt/datadog-agent/etc/checks.d` and `/opt/datadog-agent/etc/conf.d`, respectively:
 ![check file](screenshots/check_file.png "Check File")
 ![check config](screenshots/check_config.png "Check Config")
 
@@ -31,7 +29,7 @@ And on the Dashboard:
 
 ## Visualizing Data
 
-* I followed this [guide](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) to setup a DataDog environment in Postman. Then submitted the three requested graphs for my timeboard with the following:
+I followed this [guide](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) to setup a DataDog environment in Postman. Then submitted the three requested graphs for my timeboard with the following:
 ```{
       "graphs" : [{
           "title": "Metric average over durandal.minimalghost",
@@ -74,13 +72,13 @@ And on the Dashboard:
     }
 ```
 
-* I found my newly created timeboard by navigating to the dashboard list. This can be seen below scoped to 4 hours in order to see some manner of graphing in action for the rollup frame, which only has a single point of data when set to the default scope:
+I found my newly created timeboard by navigating to the dashboard list. This can be seen below scoped to 4 hours in order to see some manner of graphing in action for the rollup frame, which only has a single point of data when set to the default scope:
 ![timeboard 4h](screenshots/timeboard_4h.png "Timeboard 4 Hour")
 
 I then set it to the requested 5 minute scope by using the keyboard shortcut `alt + ]`:
 ![timeboard 5m](screenshots/timeboard_scoped_5m.png "Timeboard 5 Minutes")
 
-* Next I took a snapshot of my metric average graph by clicking the camera icon that appears when you mouse over any individual frame and sent it to myself using the @ symbol:
+Next I took a snapshot of my metric average graph by clicking the camera icon that appears when you mouse over any individual frame and sent it to myself using the @ symbol:
 ![snapshot graph](screenshots/dashboard_snapshot.png "Dashboard Snapshot")
 
 This results in the targeted user receiving an email notification with the snapshot:
@@ -92,7 +90,7 @@ This results in the targeted user receiving an email notification with the snaps
 
 ## Monitoring Data
 
-* To create a new monitor go to **Monitors > New Monitor** on the dashboard.
+To create a new monitor go to **Monitors > New Monitor** on the dashboard.
 
 1. Choose the detection method: Leave the default **Threshold Alert**.
 2. Define the metric: Select `my_metric` from the metric dropdown list and set from to `host:durandal.minimalghost`, the rest of the options can be left to default.
@@ -134,13 +132,14 @@ By navigating to **Monitors > Manage Downtime** and clicking the **Schedule Down
 ![weekend downtime](screenshots/weekend_downtime.png "Weekend Downtime")
 
 * Email notification for weeknight downtime:
-![weeknight email notification](screenshots/weekend_email_downtime.png "Weekend Email Notification")
+![weeknight email notification](screenshots/weeknight_email_downtime.png "Weeknight Email Notification")
 
 ## Collecting APM Data
 
-* First I manually downloaded the trace agent from GitHub by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent` then `cd go/src/github.com/DataDog/datadog-trace-agent` and ran `make install`. I checked to confirm my trace agent had properly installed by looking for it in `/opt/datadog-agent/embedded/bin`. Then I made sure to uncomment the agent apm settings in `datadog.yaml` so my app could be properly traced by the agent.
+I manually downloaded the trace agent from GitHub by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent` then `cd go/src/github.com/DataDog/datadog-trace-agent` and ran `make install`.
+I checked to confirm my trace agent had properly installed by looking for it in `/opt/datadog-agent/embedded/bin`.
 
-I installed dd_trace and blinker via `pip install`, then following the Flask trace docs [here](http://pypi.datadoghq.com/trace/docs/#) I added the necessary imports:
+Then I made sure to uncomment the agent APM settings in `datadog.yaml` so my app could be properly traced by the agent. I installed dd_trace and blinker via `pip install`. Then following the Flask trace docs [here](http://pypi.datadoghq.com/trace/docs/#) I added the necessary imports and pointed the tracer at my Flask app:
 
 ```from flask import Flask
 import blinker as _
@@ -178,14 +177,14 @@ if __name__ == '__main__':
 
 First I enabled the trace-agent with `go/bin/trace-agent`, then in a separate terminal window I navigated to my Flask app and started it with `python dd_flask_app.py`.
 
-I saw the following outputs from the trace-app:
+* I saw the following outputs from the trace-app:
 ![trace app output](screenshots/tracer_output.png "Trace App Output")
 
-And my Flask app:
+* And my Flask app:
 ![flask app output](screenshots/flask_app_output.png "Flask App Output")
 
-Which indicated to me that the tracer had successfully connected to my service, listening for activity. I assumed once I wired up the trace agent to my service I would see new analytics appear on the APM docs page as it mentioned checking back there after setup, but I saw no change. I hit the
-`http://localhost:5050/` and `http://localhost:5050/api/trace` endpoints a couple times and checked back on the dashboard. Sure enough, there was a **Trace Search & Analytics** tab listing my Flask app. I then continued onto documenting the various analytics ahead.
+Which indicated to me that the tracer had successfully connected to my service and was listening for activity. I assumed once I wired up the trace agent to my service I would see new analytics appear on the APM docs page as it mentioned checking back there after completing setup, but I saw no change. I generated some traces by hitting the
+`http://localhost:5050/` and `http://localhost:5050/api/trace` endpoints a couple times and checked back on the dashboard. Sure enough, there was a **Trace Search & Analytics** tab listing my Flask app. I then continued onto documenting the requested analytics ahead.
 
 * Created a [screenboard](https://p.datadoghq.com/sb/6417246f3-6ec7b41faf9c7dac9fc3c825176756a6) with both APM and infrastructure metrics:
 ![apm screenboard](screenshots/APM_Infrastructure_Screenboard.png "APM Screenboard")
