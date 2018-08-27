@@ -15,7 +15,7 @@
 I edited the `postgres.yaml` file found in `/opt/datadog-agent/etc/conf.d`:
 ![posgres yaml](screenshots/postgres_yaml.png "Posgres Config")
 
-Restarted the agent and ran `datadog-agent status` in terminal to confirm my integration was successful by finding this:
+Restarted the agent and ran `datadog-agent status` in terminal to confirm my integration was successful:
 ![posgres confirmation](screenshots/postgres_integration_confirmed.png "Postgres Integration Confirmed")
 
 And on the Dashboard:
@@ -92,11 +92,11 @@ This results in the targeted user receiving an email notification with the snaps
 
 ## Monitoring Data
 
-* To create a new monitor go to Monitors > New Monitor on the dashboard.
+* To create a new monitor go to **Monitors > New Monitor** on the dashboard.
 
-1. Choose the detection method: Leave the default `Threshold Alert`.
+1. Choose the detection method: Leave the default **Threshold Alert**.
 2. Define the metric: Select `my_metric` from the metric dropdown list and set from to `host:durandal.minimalghost`, the rest of the options can be left to default.
-3. Set alert conditions: Set `Alert threshold` to 800 and `Warning threshold` to 500. Select `Notify` if data is missing from the dropdown. Everything else can be left as default.
+3. Set alert conditions: Set **Alert threshold** to **800** and **Warning threshold** to **500**. Select `Notify` if data is missing from the dropdown. Everything else can be left as default.
 
 The final product should look something like this:
 ![create monitor](screenshots/monitor_creation.png "Create Monitor")
@@ -125,12 +125,74 @@ When the warning threshold condition was met I received this email:
   * And one that silences it all day on Sat-Sun
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
 
-By navigating to Monitors > Manage Downtime and clicking the `Schedule Downtime` button, I was able to configure these two downtime requests.
+By navigating to **Monitors > Manage Downtime** and clicking the **Schedule Downtime** button, I was able to configure these two downtime requests.
 
 * Weeknights downtime:
 ![weeknight downtime](screenshots/weeknight_downtime.png "Weeknight Downtime")
 
-* Weekend downtime, note the beginning time is highlighted red and the summary time is displaying incorrectly because this was scheduled around 12:40PM on a Saturday:
+* Weekend downtime:
 ![weekend downtime](screenshots/weekend_downtime.png "Weekend Downtime")
 
-* Email notification for weeknight downtime to be added Monday night:
+* Email notification for weeknight downtime:
+![weeknight email notification](screenshots/weekend_email_downtime.png "Weekend Email Notification")
+
+## Collecting APM Data
+
+* First I manually downloaded the trace agent from GitHub by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent` then `cd go/src/github.com/DataDog/datadog-trace-agent` and ran `make install`. I checked to confirm my trace agent had properly installed by looking for it in `/opt/datadog-agent/embedded/bin`. Then I made sure to uncomment the agent apm settings in `datadog.yaml` so my app could be properly traced by the agent.
+
+I installed dd_trace and blinker via `pip install`, then following the Flask trace docs [here](http://pypi.datadoghq.com/trace/docs/#) I added the necessary imports:
+
+```from flask import Flask
+import blinker as _
+import logging
+import sys
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service="dd-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+First I enabled the trace-agent with `go/bin/trace-agent`, then in a separate terminal window I navigated to my Flask app and started it with `python dd_flask_app.py`.
+
+I saw the following outputs from the trace-app:
+![trace app output](screenshots/tracer_output.png "Trace App Output")
+
+And my Flask app:
+![flask app output](screenshots/flask_app_output.png "Flask App Output")
+
+Which indicated to me that the tracer had successfully connected to my service, listening for activity. I assumed once I wired up the trace agent to my service I would see new analytics appear on the APM docs page as it mentioned checking back there after setup, but I saw no change. I hit the
+`http://localhost:5050/` and `http://localhost:5050/api/trace` endpoints a couple times and checked back on the dashboard. Sure enough, there was a **Trace Search & Analytics** tab listing my Flask app. I then continued onto documenting the various analytics ahead.
+
+* Created a [screenboard](https://p.datadoghq.com/sb/6417246f3-6ec7b41faf9c7dac9fc3c825176756a6) with both APM and infrastructure metrics:
+![apm screenboard](screenshots/APM_Infrastructure_Screenboard.png "APM Screenboard")
+
+**Bonus Question:** What is the difference between a Service and a Resource?
+
+**Answer:** A service can be thought of as a self-contained software implementation that *serves* a specific functionality and is generally built to easily integrate with other services. They are the component pieces that make up larger platforms. Examples of a service could be Rails, ReactJS, PostgreSQL or MongoDB. A resource is any data query made to a service, for example a CRUD action made through a URL or route in an MVC framework.
+
+## Final Question
+I'm always interested in harnessing technology for social good. I think with everything going on right now regarding our democratic process being tampered with by foreign and domestic powers alike *(See: voter roll purging, gerrymandering, polling site closures around targeted demographics, hacking, etc.)* comparing metrics like voter registration versus turnout during elections in different states/districts could generate fascinating data to study. This could be used to potentially pinpoint concentrated points where these nefarious practices take place to help combat them. I'm unsure how much of this kind of information is even available publicly, I know the Census Bureau has an API but I haven't done enough research on what kind of data it exposes.
