@@ -256,6 +256,10 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+The application traces
+
+![Imgur](https://i.imgur.com/KgHmnll.jpg)
+
 The APM and Infrastructure Metrics dashboard
 
 ![Imgur](https://i.imgur.com/eSvtiRX.png)
