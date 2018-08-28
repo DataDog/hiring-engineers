@@ -184,7 +184,7 @@ First I enabled the trace-agent with `go/bin/trace-agent`, then in a separate te
 ![flask app output](screenshots/flask_app_output.png "Flask App Output")
 
 Which indicated to me that the tracer had successfully connected to my service and was listening for activity. I assumed once I wired up the trace agent to my service I would see new analytics appear on the APM docs page as it mentioned checking back there after completing setup, but I saw no change. I generated some traces by hitting the
-`http://localhost:5050/` and `http://localhost:5050/api/trace` endpoints a couple times to generate traffic and checked back on the dashboard. Sure enough, there was a **Trace Search & Analytics** tab listing my Flask app. I then continued onto documenting the requested analytics ahead.
+`http://localhost:5050/` and `http://localhost:5050/api/trace` endpoints a couple times and checked back on the dashboard. Sure enough, there was a **Trace Search & Analytics** tab listing my Flask app. I then continued onto documenting the requested analytics ahead.
 
 * Created a [screenboard](https://p.datadoghq.com/sb/6417246f3-6ec7b41faf9c7dac9fc3c825176756a6) with both APM and infrastructure metrics:
 ![apm screenboard](screenshots/APM_Infrastructure_Screenboard.png "APM Screenboard")
