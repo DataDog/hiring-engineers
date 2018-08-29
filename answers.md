@@ -1,27 +1,50 @@
 # Eric Kollegger Solutions Engineer Exercise
 
+## Setup the Environment
+
+* This exercise will explain how to get up and running with the DataDog Mac OS X Agent. I'll be using macOS High Sierra 10.13.6. First go to `https://www.datadoghq.com/` and click on the **Get Started Free** button in the upper right corner. After filling out and submitting the form, you'll receive an email confirming that your free trial has begun.
+
+* I logged in with my credentials at `https://app.datadoghq.com` and clicked on **Integrations > Agent > Mac OS X**. Rather than downloading the DMG package, I opted to download via terminal by running `DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"` so my API key would come integrated with the Agent out-of-the-box.
+
+* The DataDog Agent is located in **Finder > Applications**, after opening it you should see a small dog bone icon appear in the top right tray which signals that it's active. We now have our very own DataDog Agent installed and ready for configuration!
+
 ## Collecting Metrics
 
-Added unique tags and aliased my host name by opening the `datadog.yaml` config file located in `/opt/datadog-agent/etc/`:
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+Using terminal, navigate to the Agent configuration file by typing `cd /opt/datadog-agent/etc/` and opening the `datadog.yaml` config file. From there, I added some custom tags to help identify my host. Your hostname will default to your machine name, e.g. `Erics-Macbook-Pro`, but I chose to alias mine:
 ![agent config](screenshots/host_tags_01.png "Config Tags and Host Alias")
 
-Then checked to confirm the changes had taken effect in the Host Map:
+Then we'll need to restart the Agent for the changes to get picked up. To do this you can click the Agent icon in the tray and select **Restart**, or if you want to achieve the same thing in terminal you'll run `launchctl stop com.datadoghq.agent` and then `launchctl start com.datadoghq.agent`. For more on basic Agent usage for Mac OS X, check out the docs [here](https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6). Now back on our DataDog dashboard, go to **Infrastructure > Host Map** and click on the single hexagonal shape which represents our host. Under the **Tags** section you should see your custom tags are now being displayed. Mine looks like this:
 ![dashboard tags](screenshots/host_tags_02.png "Tags on Host Map")
 
-Due to being previously installed on my machine and my familiarity with it, I decided on PostgreSQL as my database of choice. I followed the configuration steps found [here](https://app.datadoghq.com/account/settings#integrations/postgres)
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I edited the `postgres.yaml` file found in `/opt/datadog-agent/etc/conf.d`:
+Due to being previously installed on my machine and my familiarity with it, I decided on PostgreSQL as my database of choice. On the dashboard go to **Integrations > Integrations**, find **PostgreSQL**, click on it and follow the configuration steps outlined [there](https://app.datadoghq.com/account/settings#integrations/postgres).
+
+Once you've completed **Step 1** under **Configuration**, you'll need to edit the `postgres.yaml` file to reflect your generated password. This file can can be found in `/opt/datadog-agent/etc/conf.d`. After making the necessary changes mine looks like this:
 ![posgres yaml](screenshots/postgres_yaml.png "Posgres Config")
 
-Restarted the agent and ran `datadog-agent status` in terminal to confirm my integration was successful:
+Restart the Agent and run `datadog-agent status` in terminal to confirm that your integration was successful. This will output a list of information, for our needs we'll be looking specifically for a bit of output confirming the PostgreSQL integration was successful:
 ![posgres confirmation](screenshots/postgres_integration_confirmed.png "Postgres Integration Confirmed")
 
-And on the Dashboard:
+Then if we check back again on the Dashboard under **Integrations > Integrations** we should see our database is showing up under **Installed**:
 ![postgres integration](screenshots/postgres_integration.png "Postgres Success Screen")
 
-Created custom check file `checkvalue.py` and it's corresponding config file `checkvalue.yaml` in `/opt/datadog-agent/etc/checks.d` and `/opt/datadog-agent/etc/conf.d`, respectively:
-![check file](screenshots/check_file.png "Check File")
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+For our custom Agent check we'll need to create two files; a `.py` check file in `/opt/datadog-agent/etc/checks.d` and it's corresponding `.yaml` configuration file to be placed in `/opt/datadog-agent/etc/conf.d`. You can call it whatever you'd like but both file names must match. I named mine `checkvalue.py` and `checkvalue.yaml`, respectively.
+
+As stated in the [Documentation](https://docs.datadoghq.com/developers/agent_checks/), all custom Agent checks inherit from the `AgentCheck` class and require a `check()` method. We're going to import our `AgentCheck` dependency and `randInt` to generate our randomized metric for collection. Then in our `check()` method, we name our metric and sample it with `self.gauge()`.
+![init check files](screenshots/initial_check_files.png "Init Check Files")
+
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+The collector runs every 15-20 seconds by default, but we can change this by adding a `min-collection-interval` to our check's config file globally or at the instance level. For the purposes of this exercise we'll add it under `init_config` to set it globally. When you're done it should look like this:
 ![check config](screenshots/check_config.png "Check Config")
+
+We'll need to restart the Agent to in order to see the changes on the dashboard, this is true whenever changes are made to the check file or the accompanying config file. On the dashboard, navigate back to **Infrastructure > Host Map** and click on your host hexagon. On the left side of the panel there are several blue buttons representing our metrics being recorded thus far. If you named your random metric simply `my_metric` as I did it'll display as `(no-namespace)`. Click on it and you should see the following:
+![my metric graph](screenshots/my_metric_graph.png "My Metric Graph")
 
 **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 
@@ -29,7 +52,14 @@ Created custom check file `checkvalue.py` and it's corresponding config file `ch
 
 ## Visualizing Data
 
-I followed this [guide](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) to setup a DataDog environment in Postman. Then submitted the three requested graphs for my timeboard with the following:
+Utilize the Datadog API to create a Timeboard that contains:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+I highly recommend installing [Postman for Mac OS X](https://www.getpostman.com/apps) and following this [guide](https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs) which incorporates the [DataDog API Collection](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json) for setting up a DataDog-specific environment in Postman. This empowers you with organized API calls for easy editing and re-use. It also offers a birds-eye view of the wide range of requests that can be made to DataDog. Check [here](https://docs.datadoghq.com/graphing/functions/#apply-functions-optional) for all available functions that can be applied to your metrics. Below is a request I put together for a Timeboard that graphs the average of `my_metric`, transaction `anomalies()` on my database and a `rollup()` average of `my_metric` over the course of one hour:
+
 ```{
       "graphs" : [{
           "title": "Metric average over durandal.minimalghost",
@@ -72,16 +102,20 @@ I followed this [guide](https://help.datadoghq.com/hc/en-us/articles/11500218286
     }
 ```
 
-I found my newly created timeboard by navigating to the dashboard list. This can be seen below scoped to 4 hours in order to see some manner of graphing in action for the rollup frame, which only has a single point of data when set to the default scope:
+After making a successful submission (indicated by a `200` status code response) return to the DataDog Web UI and navigate to **Dashboards > Dashboard List**. At the top of the list should be a new Dashboard with the name you assigned to `title` in the request. Clicking on it will bring up your newly created Timeboard taking in real-time data! Below is my own Timeboard scoped to 4 hours in order to display some manner of graphing for the rollup frame, which looks empty when set to the default scope of 1 hour since it only has a single point of data:
 ![timeboard 4h](screenshots/timeboard_4h.png "Timeboard 4 Hour")
 
-I then set it to the requested 5 minute scope by using the keyboard shortcut `alt + ]`:
+* Set the Timeboard's timeframe to the past 5 minutes
+
+You can manipulate the timeframe you want your graph scoped for by using the keyboard shortcuts `alt + [` to increase and `alt + ]` to decrease it. I've set mine to the requested 5 minute scope by using this method:
 ![timeboard 5m](screenshots/timeboard_scoped_5m.png "Timeboard 5 Minutes")
 
-Next I took a snapshot of my metric average graph by clicking the camera icon that appears when you mouse over any individual frame and sent it to myself using the @ symbol:
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+You can take a snapshot of a graph on the Timeboard by clicking the camera icon that appears when you mouse over any individual frame. You can then send it to yourself or a co-worker by using the @ symbol followed by the appropriate user name. Below is an example of me sending the `my_metric` average graph to myself:
 ![snapshot graph](screenshots/dashboard_snapshot.png "Dashboard Snapshot")
 
-This results in the targeted user receiving an email notification with the snapshot:
+This will send the snapshot with any notes you include to the email associated with that user. Here is the resulting email notification I received:
 ![snapshot email](screenshots/snapshot_email_notification.png "Snapshot Email")
 
 **Bonus Question:** What is the Anomaly graph displaying?
