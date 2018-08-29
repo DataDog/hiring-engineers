@@ -147,9 +147,53 @@ Having only used templates to create YAML files in the past, I referenced this [
 > 
 > ![postgres success](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_running.png)
 > 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+- [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+> The process to create a custom check involves creating 2 files
+> 
+*   a config yaml file in the `conf.d` directory
+*   a python file in the `checks.d` directory
+
+> To create a random value, I referenced this [tutorial](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) and created the files. 
+> 
+> ![randomvalue.py](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_random_py.png)
+> ![randvalue.yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_initial_config.png)
+
+- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+> To change the collection interval, I needed to update the randomvalue.yaml file with a min_collection_interval within the `instance` section 
+> 
+> ![checkvalue interval yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_interval_config.png)
+> 
+> Running the run check command 
+> ```sudo -u dd-agent -- datadog-agent check <check_name>```
+> ![check run](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_running.png)
+> 
+> And according to the [documention](https://docs.datadoghq.com/agent/faq/agent-commands/#agent-information)
+> 
+> 	"On Agent v6, a properly configured integration will be displayed under “Running Checks” with no warnings or errors, as seen below:"
+> 
+	Running Checks
+	==============
+	network (1.6.0)
+	---------------
+      Total Runs: 5
+      Metric Samples: 26, Total: 130
+      Events: 0, Total: 0
+      Service Checks: 0, Total: 0
+      Average Execution Time : 0ms
+> 
+> With my output producing no errors or warnings: 
+> 
+> ```network (1.6.0)
+    	---------------
+      Total Runs: 78
+      Metric Samples: 26, Total: 2028
+      Events: 0, Total: 0
+      Service Checks: 0, Total: 0
+      Average Execution Time : 0ms* ```
+      
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
 
