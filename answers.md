@@ -12,10 +12,12 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Using terminal, navigate to the Agent configuration file by typing `cd /opt/datadog-agent/etc/` and opening the `datadog.yaml` config file. From there, I added some custom tags to help identify my host. Your hostname will default to your machine name, e.g. `Erics-Macbook-Pro`, but I chose to alias mine:
+Using terminal, navigate to the Agent configuration file by typing `cd /opt/datadog-agent/etc/` and opening the `datadog.yaml` config file. From there, add some custom tags to help identify your host. I decided to alias my hostname, but it's perfectly fine to leave the hostname commented out. This will result in it defaulting to your machine name, e.g. `Erics-Macbook-Pro`. Below is the `datadog.yaml` file with my edits:
 ![agent config](screenshots/host_tags_01.png "Config Tags and Host Alias")
 
-Then we'll need to restart the Agent for the changes to get picked up. To do this you can click the Agent icon in the tray and select **Restart**, or if you want to achieve the same thing in terminal you'll run `launchctl stop com.datadoghq.agent` and then `launchctl start com.datadoghq.agent`. For more on basic Agent usage for Mac OS X, check out the docs [here](https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6). Now back on our DataDog dashboard, go to **Infrastructure > Host Map** and click on the single hexagonal shape which represents our host. Under the **Tags** section you should see your custom tags are now being displayed. Mine looks like this:
+Then we'll need to restart the Agent for the changes to get picked up. To do this you can click the Agent icon in the tray and select **Restart**, or if you want to achieve the same thing in terminal you'll run `launchctl stop com.datadoghq.agent` and then `launchctl start com.datadoghq.agent`. For more on basic Agent usage for Mac OS X, check out the docs [here](https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6).
+
+Now back on our DataDog dashboard, go to **Infrastructure > Host Map** and click on the single hexagonal shape which represents our host. Please note that if you recently aliased your hostname, you may see **two** hexagons in the Host Map, side-by-side. Don't panic, you haven't created a second host! This is just DataDog differentiating two instances of your single host; the default named state with the newly aliased state. The old instance of your host will not continue to be displayed after a short time. Under the **Tags** section you should see your custom tags are now being displayed. Mine looks like this:
 ![dashboard tags](screenshots/host_tags_02.png "Tags on Host Map")
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -124,16 +126,30 @@ This will send the snapshot with any notes you include to the email associated w
 
 ## Monitoring Data
 
-To create a new monitor go to **Monitors > New Monitor** on the dashboard.
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-1. Choose the detection method: Leave the default **Threshold Alert**.
-2. Define the metric: Select `my_metric` from the metric dropdown list and set from to `host:durandal.minimalghost`, the rest of the options can be left to default.
-3. Set alert conditions: Set **Alert threshold** to **800** and **Warning threshold** to **500**. Select `Notify` if data is missing from the dropdown. Everything else can be left as default.
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+To create a new Metric Monitor navigate to **Monitors > New Monitor > Metric** on the dashboard.
+
+1. **Choose the detection method:** Determines the type of detection method we want to use. Since the default is set to *Threshold Alert* we don't have to change anything.
+2. **Define the metric:** Selects which of our metrics we will be monitoring. I've selected `my_metric` from the metric dropdown list and set the *from* dropdown to my aliased host `host:durandal.minimalghost`, the rest of the options can be left to default.
+3. **Set alert conditions:** This is where we decide what threshold value being hit should issue a warning and a threshold value we consider critical to issue an alert. I've set *Alert threshold* to 800 and *Warning threshold* to 500 for this exercise. We can also get notifications when no data is received for a period of time by selecting `Notify` from the dropdown. The default is 10 minutes which is what we're after right now, the rest of this section can be left as default.
 
 The final product should look something like this:
 ![create monitor](screenshots/monitor_creation.png "Create Monitor")
 
-My custom alert, warning and no data message snippet:
+Please configure the monitor’s message so that it will:
+
+* Send you an email whenever the monitor triggers.
+
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+4. **Say what's happening:** This is where you can custom tailor the notifications to be sent out for each condition, including any specific data as you need. Documentation for custom notifications can be found [here](https://docs.datadoghq.com/monitors/notifications/). Below is a snippet of my custom alert, warning and no data message:
 ```{{#is_alert}}
 my_metric at host ip {{host.ip}} has surpassed {{threshold}} and is currently at {{value}}!
 {{/is_alert}}
@@ -149,23 +165,32 @@ my_metric has not received data for the past 10 minutes!
 @eric.kollegger@gmail.com
 ```
 
-When the warning threshold condition was met I received this email:
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+If you've been following along with the random `my_metric` example you should receive an email notification shortly after creating the monitor when one of the specified conditions is met. When the warning threshold was breached I received this email:
 ![monitor warning](screenshots/monitor_email_warn.png "Monitor Warning")
 
 **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-  * One that silences it from 7pm to 9am daily on M-F
-  * And one that silences it all day on Sat-Sun
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
 
-By navigating to **Monitors > Manage Downtime** and clicking the **Schedule Downtime** button, I was able to configure these two downtime requests.
+To schedule downtime for our monitors, navigate to **Monitors > Manage Downtime** and click the **Schedule Downtime** button on the top right. In it's most basic usage, this allows us to specify recurring times throughout the week to silence our monitors.
 
-* Weeknights downtime:
+1. **Choose what to silence:** Select which monitor we want to target for downtime.
+2. **Schedule:** Choose whether it will be a one-time or recurring event, then specify date/time/duration/etc.
+3. **Add a Message:** This is where you can add any custom message to give additional insight about the type of monitor, downtime event, etc. This is also where you would tag the users who should be notified about the event using the @ symbol. Below are screenshots of the two completed downtime requests.
+
+* One that silences it from 7pm to 9am daily on M-F
+
+Weeknights downtime:
 ![weeknight downtime](screenshots/weeknight_downtime.png "Weeknight Downtime")
 
-* Weekend downtime:
+* And one that silences it all day on Sat-Sun
+
+Weekend downtime:
 ![weekend downtime](screenshots/weekend_downtime.png "Weekend Downtime")
 
-* Email notification for weeknight downtime:
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
+
+Email notification for weeknight downtime:
 ![weeknight email notification](screenshots/weeknight_email_downtime.png "Weeknight Email Notification")
 
 ## Collecting APM Data
