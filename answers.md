@@ -23,7 +23,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > 
 > ![vagrantfile](http://res.cloudinary.com/themostcommon/image/upload/v1535493899/Screen%20Shots/SS%20vagrantfile.png)
 > 
-From the command line within the  folder with the Vagrantfile, I ran 
+> From the command line within the  folder with the Vagrantfile, I ran 
 
 > ```$ vagrant up```
 
@@ -40,11 +40,78 @@ From the command line within the  folder with the Vagrantfile, I ran
 > The process for signing up for Datadog is painless and the instructions were very clear. Once I started my 14-day free trial, I was able to choose Ubunutu for my operating system and the command was a simple copy and paste to start downloading the Agent. The script even included my API key
 
 > ```DD_API_KEY=8<API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```
+> 
+> ![agent running](https://res.cloudinary.com/themostcommon/image/upload/v1535486511/Screen%20Shots/SS_DD_Agent_running.png)
 
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+- [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+> To create tags in the Datadog Agent v.6 configuration file, I had to locate the
+> 
+> ```/etc/datadog-agent/datadog.yaml```
+>
+> Since I didn’t have a text editor to update the yaml file, I discovered and installed Emacs in Linux. 
+>
+>```sudo apt-get install emacs```
+>
+> Once installed, it should be as simple as typing 
+>
+> ```emacs <file to be edited> ```
+>
+> And the terminal has become an editor BUT the file was *“not readable”*. In order to edit the file, it has to be closed and reopened with 
+>
+> ```sudo emacs /etc/datadog-agent/datadog.yaml```
+>
+> Following the [tagging documentation] (https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), I added these basic tags to the 
+> 
+> ![host tags](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_Host_Tags_yaml.png)
+> 
+Having only used templates to create YAML files in the past, I referenced this [Github] (https://github.com/Animosity/CraftIRC/wiki/Complete-idiot%27s-introduction-to-yaml) to make sure that I was keeping the correct syntax. A valuable lesson learned was that most of the configuration file is commented out with “#” leading the line so the # needs to be removed for the changes to be read. 
+
+> To save the changes with emacs, (Mac: control = ^) 
+> 
+> ```^-x, ^-s``` 
+> 
+> At the bottom of the screen, you will see will see: 
+> ```Wrote /etc/datadog-agent/datadog.yaml```
+> 
+> Then to close the document 
+> 
+> ```^-x, ^-c```
+> 
+> 
+> At first, I assumed that I could see the tag updates after a browser refresh, but they never appeared. And then I saw this note:
+> 
+> ![no agent responding](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_No_Agent_Reporting.png)
+> 
+> After reading the docs some more, I thought I needed to change the process_config so that it would also collect containers and processes.
+> 
+> ![process config](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_Process_config.png)
+> 
+> And after updating the config file, I started getting a new error. 
+> 
+> ![NTP error](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_NTP_Error.png)
+> 
+> After reading the docs on NTP and how to correct this issue, I finally discovered that I had a syntax error in the yaml config file and after correcting it, the warnings disappeared but I still had no tags. 
+> 
+> Unsure of what else to do at this point, I stopped Datadog service: 
+> 
+> ```sudo service datadog-agent stop```
+> 
+> And then restarted it 
+> 
+> ```sudo service datadog-agent restart```
+> 
+> On the Datadog UI, I went to Infrastructure > Host Map > jamessmith-solutions-engineer and voila, the tags were there!
+> 
+> ![host tags](https://res.cloudinary.com/themostcommon/image/upload/v1535498152/Screen%20Shots/SS_Host_with_Tags.png)
+> ![host tag closeup](https://res.cloudinary.com/themostcommon/image/upload/v1535497900/Screen%20Shots/SS_Host_tag_closeup.png)
+
+
+
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
