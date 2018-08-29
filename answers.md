@@ -174,7 +174,7 @@ If you've been following along with the random `my_metric` example you should re
 
 To schedule downtime for our monitors, navigate to **Monitors > Manage Downtime** and click the **Schedule Downtime** button on the top right. In it's most basic usage, this allows us to specify recurring times throughout the week to silence our monitors.
 
-1. **Choose what to silence:** Select which monitor we want to target for downtime.
+1. **Choose what to silence:** Select which monitor we want to target for downtime. There's also optional scoping for individual hosts or groups.
 2. **Schedule:** Choose whether it will be a one-time or recurring event, then specify date/time/duration/etc.
 3. **Add a Message:** This is where you can add any custom message to give additional insight about the type of monitor, downtime event, etc. This is also where you would tag the users who should be notified about the event using the @ symbol. Below are screenshots of the two completed downtime requests.
 
@@ -195,10 +195,26 @@ Email notification for weeknight downtime:
 
 ## Collecting APM Data
 
-I manually downloaded the trace agent from GitHub by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent` then `cd go/src/github.com/DataDog/datadog-trace-agent` and ran `make install`.
-I checked to confirm my trace agent had properly installed by looking for it in `/opt/datadog-agent/embedded/bin`.
+* To get started with integrating with APM I navigated to **APM > Docs** to familiarize myself with the implementation process using Python/Flask. The Python section under the **Getting Started** tab didn't yield a ton of front-loaded information so I clicked over to the **Docs** tab to dig deeper.
 
-Then I made sure to uncomment the agent APM settings in `datadog.yaml` so my app could be properly traced by the agent. I installed dd_trace and blinker via `pip install`. Then following the Flask trace docs [here](http://pypi.datadoghq.com/trace/docs/#) I added the necessary imports and pointed the tracer at my Flask app:
+* I watched the 2 minute video which gave a great high-level overview of the what and why for the Application Performance Monitoring service, but wasn't very helpful for my installation journey. I scrolled down to the links at the bottom and clicked on **Set up your Application to send traces to DataDog**. From there I had a basic overview of the steps I needed to take, primarily:
+1. Enable use of the Trace Agent and configure the environment in the `datadog.yaml` file
+2. Get the appropriate Trace Agent based on OS
+3. Instrument my chosen application
+
+* I followed the link to the [macOS Trace Agent documentation](https://github.com/DataDog/datadog-trace-agent#run-on-osx). Because I was using macOS it explained I'd need to run the trace agent manually alongside the main DataDog Agent. I attempted to follow the steps outlined there:  
+1. Download the latest OSX Trace Agent release `trace-agent-darwin-amd64-6.4.1`
+2. Run the Trace agent using the Datadog Agent configuration `./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml`
+
+* Downloading the Trace Agent was no problem, but when I ran the config command I got a `permission denied`. Appending `sudo` to it gave me a `command not found` message. So I did some document deep-diving and googling around looking for similar issues when I came across [this thread](https://github.com/DataDog/datadog-trace-agent/issues/397). One particular comment jumped out at me. It also matched up verbatim with the documentation on the [official repo](https://github.com/DataDog/datadog-trace-agent#run-on-osx) under the **Development** section:
+![go installation](screenshots/thread_go_comment.png "Go Installation")
+
+* I decided to give this method a *go* (ha) -- installed Go by following the steps in the provided [link](https://golang.org/dl/). Manually downloaded the trace agent from GitHub by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent` then `cd go/src/github.com/DataDog/datadog-trace-agent` and ran `make install`.
+I checked to confirm my trace agent had properly installed by finding it in `/opt/datadog-agent/embedded/bin` and in my go directory `go/bin/` as `trace-agent`.
+
+* Then going back to the original steps I had laid out for myself, I made sure to uncomment the agent APM settings in `datadog.yaml` so my app could be properly traced by the agent.
+
+* I setup a simple Flask app and pasted in the source code from the exercise as a starting point. Then referenced the advanced [Flask Trace docs]((http://pypi.datadoghq.com/trace/docs/#)), installing dd_trace and blinker via `pip install`. Then adding the necessary imports and pointing the tracer at my Flask app:
 
 ```from flask import Flask
 import blinker as _
@@ -234,7 +250,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-First I enabled the trace-agent with `go/bin/trace-agent`, then in a separate terminal window I navigated to my Flask app and started it with `python dd_flask_app.py`.
+Once I felt like I had made the required edits to my app, I enabled the trace-agent by running `go/bin/trace-agent`. Then in a separate terminal window I navigated to my Flask app and started it with `python dd_flask_app.py`.
 
 * I saw the following outputs from the trace-app:
 ![trace app output](screenshots/tracer_output.png "Trace App Output")
