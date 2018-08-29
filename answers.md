@@ -112,7 +112,41 @@ Having only used templates to create YAML files in the past, I referenced this [
 
 
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+- [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+> As I am most familiar with PostgreSQL, I chose to download it. 
+> 
+>     sudo apt update
+> 
+>     sudo apt install postgresql postgresql-contrib
+>
+> Integrating Postgres [instructions](https://app.datadoghq.com/account/settings) begins by creating a role for Datadog. 
+> 
+> ![dd role creation](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_connect_to_DD.png)
+> 
+> According to the directions, 
+> 
+>     Configure the Agent to connect to the PostgreSQL server 
+>     Edit conf.d/postgres.yaml
+>  
+> After looking in the `datadog-agent/conf.d` directory and found no file by that name to edit, I looked in the` postgres.d` directory and found the `conf.yaml.example `. After editing the file, I saved it and restarted the Agent and it *did not connect* to Postgres. 
+> 
+> Looking at the instructions, I realized that the file I was supposed to edit was supposed to be the conf.d directory and not buried further down so I created the file and added the configurations to the `conf.d` directory.
+> 
+> ![postgre yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_yaml.png)
+> 
+> I saved and closed the file. 
+> 
+> ```Wrote /etc/datadog-agent/conf.d/postgres.yaml```
+> 
+> And ran the `info command` which was confusing but was able to figure out that it was actually the status command 
+> 
+> ```sudo datadog-agent status```
+> 
+> And was happily greeted with success. 
+> 
+> ![postgres success](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_running.png)
+> 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
