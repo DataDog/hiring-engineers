@@ -209,12 +209,12 @@ Email notification for weeknight downtime:
 * Downloading the Trace Agent was no problem, but when I ran the config command I got a `permission denied`. Appending `sudo` to it gave me a `command not found` message. Since this was the only part of the documentation I could find referencing installation for the macOS Trace Agent, I began googling around looking for similar issues. I came across [this thread](https://github.com/DataDog/datadog-trace-agent/issues/397). In particular one comment jumped out at me because it matched up verbatim with the documentation on the [official repo](https://github.com/DataDog/datadog-trace-agent#run-on-osx) under the **Development** section, and was generally a well regarded solution by the community:
 ![go installation](screenshots/thread_go_comment.png "Go Installation")
 
-* I decided to give this method a *go* (ha) -- installed Go by following the steps in the provided [link](https://golang.org/dl/). Manually downloaded the trace agent from GitHub, and in terminal ran `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent`, then `cd go/src/github.com/DataDog/datadog-trace-agent` and `make install`.
+* I decided to give this method a *go* (ha) -- installed Go by following the steps in the provided [link](https://golang.org/dl/). Manually downloaded  and installed the trace agent from GitHub in terminal by running `go get github.com/DataDog/datadog-trace-agent/cmd/trace-agent`, then `cd go/src/github.com/DataDog/datadog-trace-agent` and `make install`.
 I checked to confirm my trace agent had properly installed by finding it in `/opt/datadog-agent/embedded/bin` and in my go directory `go/bin/` as `trace-agent`.
 
 * Then going back to the original steps I had laid out for myself, I made sure to uncomment the agent APM settings in `datadog.yaml` so my app could be properly traced by the agent.
 
-* I setup a simple Flask app called `dd_flask_app.py` and pasted in the source code from the exercise as a starting point. Then referenced the advanced [Flask Trace docs]((http://pypi.datadoghq.com/trace/docs/#)) for installing dd_trace and blinker via `pip install`. Then adding the necessary `blinker/tracer/TracMiddleware` imports and pointing the tracer middleware at my Flask app with `traced_app = TraceMiddleware(app, tracer, service="dd-flask-app", distributed_tracing=False)`:
+* I setup a simple Flask app called `dd_flask_app.py` and pasted in the source code from the exercise as a starting point. Then referenced the advanced [Flask Trace docs]((http://pypi.datadoghq.com/trace/docs/#)) for installing dd_trace and blinker via `pip install`. Then adding the necessary `blinker/tracer/TracMiddleware` imports and pointed the tracer middleware at my Flask app with `traced_app = TraceMiddleware(app, tracer, service="dd-flask-app", distributed_tracing=False)`. Below is the code for my fully instrumented app:
 
 ```from flask import Flask
 import blinker as _
@@ -250,7 +250,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-Once I felt like I had made the required edits to my app, I enabled the trace-agent via terminal by running `go/bin/trace-agent`. Then in a separate terminal window I navigated to the top level directory of my Flask app and started it with `python dd_flask_app.py`.
+Once I felt like I had made the required edits to my app, I started the trace-agent via terminal by running `go/bin/trace-agent`. Then in a separate terminal window I navigated to the top level directory of my Flask app and started it with `python dd_flask_app.py`.
 
 * I saw the following outputs from the trace-app:
 ![trace app output](screenshots/tracer_output.png "Trace App Output")
@@ -280,7 +280,7 @@ I had one of those all-too-common "Eureka! How could I be so dense?" moments, ge
 * I navigated to **Dashboards > New Dashboard** and selected **New Screenboard**. Then clicked and dragged down a **Graph** template and selected the `system.cpu.user` metric from the dropdown and clicked **Done** at the bottom to satisfy the infrastructure requirement. I then repeated the process but this time selected the `trace.flask.request.hits` from the dropdown for the APM metric requirement:
 ![apm screenboard](screenshots/APM_Infrastructure_Screenboard.png "APM Screenboard")
 
-I saved it and returned to **Dashboards > Dashboard List** to find my newly created Screenboard at the top of the list. Once inside the Screenboard display, I clicked on the settings cog icon in the top right and selected **Generate Public URL** in order to share this [link](https://p.datadoghq.com/sb/6417246f3-6ec7b41faf9c7dac9fc3c825176756a6). 
+I saved it and returned to **Dashboards > Dashboard List** to find my newly created Screenboard at the top of the list. Once inside the Screenboard display, I clicked on the settings cog icon in the top right and selected **Generate Public URL** in order to share this [link](https://p.datadoghq.com/sb/6417246f3-6ec7b41faf9c7dac9fc3c825176756a6).
 
 **Bonus Question:** What is the difference between a Service and a Resource?
 
