@@ -24,6 +24,12 @@ You can utilize any OS/host that you would like to complete this exercise.
 >I have installed MongoDB on my Windows machine. I created the user on mongodb
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/mongocreatuser.JPG" >
 
+>I added a mongo check on the agent
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/agentmongocheck.JPG" >
+
+>and Mongo info is now on the host dashboard!😁
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/mongodashboard.JPG" >
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
