@@ -73,4 +73,10 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
->Smart car parks!
+>Smart car parks! I have had a rather unfortunate year of visiting several different hospitals with different members of the family needing attention and by far the worst part of it all was the bloody car parks! There were always queues at peak visiting times and never any information on which lots had space or which to not bother with as they had been full all day and won't change anytime soon. With a system that can integrate with empty space sensors that some new car parks have (with the little green and red lights above spaces to show availability of the spaces). This would allow intelligent monitoring of the live space status and allow you to build trending data to start plotting usage and demand. You could then actively manage traffic flows to each car park and update signs for drivers with live data, so they avoid busy areas and head straight to available spaces. All saving stress and time but also having an environmental impact as cars wouldn't be sat running in queues for car parks. This could, of course, be implemented at any busy place with car parks so the potential customer base is very broad.  
+
+Thank you for taking the time to give me access and giving me the chance to play with the product. I really like what I see so far, although it is rather code heavy which, as we have discussed, is very out of my wheelhouse. I'm more than interested in learning much more on the code side but I think my strengths here would be the wide understanding of networks and what needs to be monitored. Along with the metrics and what looks out of place when reviewing performance. As I also mentioned I am very commercial too, so I would be more than happy speaking with any level of customer C level or the engineer/devops person that wants to talk technical deep dive. 
+
+Hopefully there is enough here for us to speak again!
+
+I look forward to hearing back. 
