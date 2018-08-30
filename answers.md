@@ -260,7 +260,7 @@ Once I felt like I had made the required edits to my app, I started the trace-ag
 
 Which indicated to me that the tracer had successfully connected to my service and was listening for activity based on this readout from the Tracer Agent:
 
-``` 2018-08-27 10:08:15 INFO (service_mapper.go:59) - total number of tracked services: 1
+```INFO (service_mapper.go:59) - total number of tracked services: 1
 ```
 
 As well as the debug log originating from my Flask app:
