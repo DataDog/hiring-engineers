@@ -42,9 +42,12 @@ https://docs.datadoghq.com/developers/agent_checks/
 >Here I can see the previous sections needs to be done and further scripting so I have instead used this time to have a play with dashboards, creating graphs, alerts and generally looking around.
 
 >I found that the dashboards look great and can easily be edited and clone for any user or view required. One thing that my previous employers product always struggled with was making their creat dashboards so easily customisable and also work on big screen which are commonly used in NOCs and SOCs.
->I also saw how easy it was to creat alerts from items you see in graphs from dashboards. I pick one and had an alert running in no time.
+
+>I also saw how easy it was to create alerts from items you see in graphs from dashboards. I picked one and had an alert running in no time.
+
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/alertsetup.JPG" >
->The alert email came through which is refreshing as email alerting is always a pig to setup on many monitoring systems but this was easy!
+
+>The alert email came through which is refreshing as email alerting is always a pig to setup on many monitoring systems and so much time onsite is wasted with such a simple thing but this was easy!
 
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/alertemail.JPG" >
 
@@ -69,3 +72,5 @@ https://docs.datadoghq.com/developers/agent_checks/
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+>Smart car parks!
