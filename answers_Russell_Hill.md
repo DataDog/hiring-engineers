@@ -11,7 +11,7 @@ You can utilize any OS/host that you would like to complete this exercise.
 
 # Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
->Answer I was having issues with the Ubuntu agent getting to the datadog.yaml to edit with permission denieds and I was using a new laptop at home so a lot of settings weren't playing ball with the VM terminal, so I switched to the Windows agent editor and this was much quicker and very easy to use. This is often the best way to work around issues while onsite with customers. You can spend time and resolve the issue at a later date but getting things moving along within the time alotted is often best for the customer. 
+>Answer I was having issues with the Ubuntu agent getting to the datadog.yaml to edit with permission denied and I was using a new laptop at home so a lot of settings weren't playing ball with the VM terminal, so I switched to the Windows agent editor and this was much quicker and very easy to use. This is often the best way to work around issues while onsite with customers. You can spend time and resolve the issue at a later date but getting things moving along within the time allotted is often best for the customer. 
 
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/setting%20tagwingui.JPG" />
 
@@ -31,11 +31,11 @@ You can utilize any OS/host that you would like to complete this exercise.
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/mongodashboard.JPG" >
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
 * Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
+>For all of the above points, I am no coder but I did find a very useful link on who all of this is done
+https://docs.datadoghq.com/developers/agent_checks/
+>This seems fairly straight forward for someone with coding skills but as it would take me a long time to run through it learning as I went I have left this for another time (should you give me the opportunity to get learning from within DataDog 😉)
 
 # Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
