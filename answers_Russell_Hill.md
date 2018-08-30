@@ -65,7 +65,7 @@ from flask import Flask
 import logging
 import sys
 
- # Have flask use stdout as the logger
+ #Have flask use stdout as the logger
  main_logger = logging.getLogger()
  main_logger.setLevel(logging.DEBUG)
  c = logging.StreamHandler(sys.stdout)
