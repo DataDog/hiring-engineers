@@ -43,8 +43,11 @@ https://docs.datadoghq.com/developers/agent_checks/
 >I found that the deshboards look great and can easily be edited and clone for any user or view required. One thing that my previous employers product always struggled with was making their creat dashboards so easily customisable and also work on big screen which are commonly used in NOCs and SOCs.
 >I also saw how easy it was to creat alerts from items you see in graphs from dashboards. I pick one and had an alert running in no time.
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/alertsetup.JPG" >
-
-
+>The alert email came through which is refreshing as email alerting is always a pig to setup on many monitoring systems but this was easy!
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/alertemail.JPG" >
+>Having the ability to set downtime on certain alerts or everything is also great, again quick to setup
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/downtime.JPG" >
+>
 
 
 # Final Question:
