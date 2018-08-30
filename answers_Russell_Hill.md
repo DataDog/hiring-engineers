@@ -40,6 +40,7 @@ https://docs.datadoghq.com/developers/agent_checks/
 # Visualizing Data:
 
 >Here I can see the previous sections needs to be done and further scripting so I have instead used this time to have a play with dashboards, creating graphs, alerts and generally looking around.
+
 >I found that the deshboards look great and can easily be edited and clone for any user or view required. One thing that my previous employers product always struggled with was making their creat dashboards so easily customisable and also work on big screen which are commonly used in NOCs and SOCs.
 >I also saw how easy it was to creat alerts from items you see in graphs from dashboards. I pick one and had an alert running in no time.
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/alertsetup.JPG" >
@@ -51,7 +52,9 @@ https://docs.datadoghq.com/developers/agent_checks/
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/processconfig.JPG" >
 This was great to see how quickly the data appeared in the monitoring tool and the detail included. I have been used to a soltuion that could only managed 5 minute updates to a collector and then bulk updates from collector to a dashboard. I assume this performance comes at an inpact on resourses required on the host running this? Good though for detailed troubleshooting when having an issue with a perticular machine.
 <img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/processdash.JPG" >
+
 >Before finishing off I saw the APM and Notebook features. APM is such a massive piece of monitoring now and it was completely missing from the product I've been selling. This meant that we couldn't compete in any monitoring opportunities that involved any kind of devops teams. This look to be a very feature rich area too so taking on the likes of Riverbed with their ARX/AIX features should be easy!
+
 >Lastly I really liked the notebook. This looks to be a great replacement for a warroom type situtation where people would have to all arrive in a small meeting room and troubleshoot a major issue. This wastes time with people walking around and usual limits people as they no longer have to comfort or kit they have at their own office/desk! It also looks to be very useful when creating evidenance for troublshootinf and handing an issue off to another team. They will be able to see what you have found with notes/comments added. Again, this is something that I had before but you couldn't create it within the tool itself but you had to screenshot graphs and build a long and usually oversized email to teams of people.
 
 
