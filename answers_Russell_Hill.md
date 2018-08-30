@@ -4,8 +4,8 @@ You can utilize any OS/host that you would like to complete this exercise.
 >Answer I am using both the Ubuntu via Vagrant and a Windows agent on my laptop so I can see the differences in setup and user experience.
 
 >I am impressed how easy this is with a single command 
-https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/setting%20tag_Win.JPG
-<img src="Datadogscreenshots/UbuntuAgentInstall.JPG" >
+
+<img src="hiring-engineers/UbuntuAgentInstall.JPG" >
   
 >The Windows agent was also very simple with a quick setup wizard asking for the API string. I think it is great that with this API your agents report straight into the correct place. Other tools I have used have taken a lot more messing around to get the agents reporting in to the correct place. Some require DNS entries which can delay installs and need to include change control etc.
 
