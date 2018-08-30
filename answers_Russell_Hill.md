@@ -21,7 +21,8 @@ You can utilize any OS/host that you would like to complete this exercise.
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
->I have installed MongoDB on my Windows machine.
+>I have installed MongoDB on my Windows machine. I created the user on mongodb
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/mongocreatuser.JPG" >
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
