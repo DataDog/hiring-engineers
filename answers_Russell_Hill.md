@@ -5,9 +5,9 @@ You can utilize any OS/host that you would like to complete this exercise.
 
 >I am impressed how easy this is with a single command 
 
-<img src="Datadogscreenshots/UbuntuAgentInstall.JPG" />
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/UbuntuAgentInstall.JPG" />
 
-    
+   
   
 >The Windows agent was also very simple with a quick setup wizard asking for the API string. I think it is great that with this API your agents report straight into the correct place. Other tools I have used have taken a lot more messing around to get the agents reporting in to the correct place. Some require DNS entries which can delay installs and need to include change control etc.
 
