@@ -17,7 +17,7 @@ You can utilize any OS/host that you would like to complete this exercise.
 
 
 
-<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/HostmapTags.JPG >
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/HostmapTags.JPG" >
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
