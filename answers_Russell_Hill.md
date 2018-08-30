@@ -3,8 +3,14 @@ Your answers to the questions go here.
 You can utilize any OS/host that you would like to complete this exercise. 
 >Answer I am using both the Ubuntu via Vagrant and a Windows agent on my laptop so I can see the differences in setup and user experience.
 
+I am impressed how easy this is with a single command 
+https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/UbuntuAgentInstall.JPG
+
+The Windows agent was also very simple with a quick setup wizard asking for the API string. I think it is great that with this API your agents report straight into the correct place. Other tools I have used have taken a lot more messing around to get the agents reporting in to the correct place. Some require DNS entries which can delay installs and need to include change control etc.
+
 # Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+>Answer I was having issues with the Ubuntu agent getting to the 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -58,47 +64,4 @@ Please configure the monitor’s message so that it will:
  And one that silences it all day on Sat-Sun.
  Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-# Collecting APM Data:
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-'''
-from flask import Flask
-import logging
-import sys
 
- #Have flask use stdout as the logger
- main_logger = logging.getLogger()
- main_logger.setLevel(logging.DEBUG)
- c = logging.StreamHandler(sys.stdout)
- formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
- c.setFormatter(formatter)
- main_logger.addHandler(c)
-
- app = Flask(__name__)
-
- @app.route('/')
- def api_entry():
-     return 'Entrypoint to the Application'
-
- @app.route('/api/apm')
- def apm_endpoint():
-     return 'Getting APM Started'
-
- @app.route('/api/trace')
- def trace_endpoint():
-     return 'Posting Traces'
-
- if __name__ == '__main__':
-     app.run(host='0.0.0.0', port='5050')
-'''
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-Bonus Question: What is the difference between a Service and a Resource?
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
-
-Final Question:
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
-Is there anything creative you would use Datadog for?
