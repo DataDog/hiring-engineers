@@ -5,7 +5,7 @@ You can utilize any OS/host that you would like to complete this exercise.
 
 >I am impressed how easy this is with a single command 
 
-<img src="Rusk-Hill/Datadogscreenshots/UbuntuAgentInstall.JPG">
+<img src="Rusk-Hill/Datadogscreenshots/UbuntuAgentInstall.JPG" />
 
     
   
