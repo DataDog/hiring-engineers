@@ -180,3 +180,162 @@ As mentioned above, to add a minimum interval for the agent check can be achieve
 
 
 ## Visualizing Data:
+From the guide at https://docs.datadoghq.com/api/?lang=python#timeboards we can get a template on how to create a time board using the API. 
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '<YOUR_API_KEY>',    # found here https://app.datadoghq.com/account/settings#api
+    'app_key': '<YOUR_APP_KEY>'     # create here https://app.datadoghq.com/account/settings#api by giving it a name and pressing the create application key
+}
+
+initialize(**options)
+
+title = "My Timeboard"                      # Name for new timeboard
+description = "An informative timeboard."   # Description of new timeboard
+graphs = [{
+    "definition": {                         #content of the graph https://docs.datadoghq.com/graphing/graphing_json/#grammar
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"          #name of graph 
+}]
+
+template_variables = [{        
+    "name": "host1",            #variable name
+    "prefix": "host",           #tag associated with variable
+    "default": "host:my-host"   #default value on dashboard load
+}]
+
+read_only = True        #sets screenboard to read only
+
+api.Timeboard.create(title=title,                               #takes title, description, graphs, template_variables and read_only defined above and creates a timeboard
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+for our requirement we need the following: 
+
+* Your custom metric scoped over your host.
+```
+{
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "my_metric_value{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My metric scoped over my host"          
+}
+```
+
+* Any metric from the Integration on your Database with the anomaly function applied.
+Randomly picked mysql.innodb.data_reads from https://docs.datadoghq.com/integrations/mysql/. Anomaly function guide can be found here https://docs.datadoghq.com/graphing/functions/algorithms/
+```
+{
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "anomalies(mysql.innodb.data_reads{*}, 'basic', 2)"}  #anomaly detection on the average data reads using the basic algorhitm with a standard deviation of 2
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Anomaly rate of data reads in MySQL"          
+}
+```
+
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Rollup docs here https://docs.datadoghq.com/graphing/functions/rollup/
+{
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "my_metric_value{*}.rollup(sum,3600)"}  # sum over 3600 seconds which is 1 hour
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My metric summed over an hour"          
+}
+
+*Combining it all together and creating custom_board.py in /etc/datadog-agent/ and running it. 
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
+    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+}
+
+initialize(**options)
+
+title = "My Challenge Timeboard"
+description = "A timeboard of randomness"
+graphs = [
+    {
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "my_metric_value{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My metric scoped over my host"          
+    },
+    {
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "anomalies(mysql.innodb.data_reads{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Anomaly rate of data reads in MySQL"          
+    },
+    {
+    "definition": {                        
+        "events": [],
+        "requests": [
+            {"q": "my_metric_value{*}.rollup(sum,3600)"} 
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My metric summed over an hour"          
+    }
+]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+Lastly, we just need to run the python script to create our timeboard
+```
+python3 custom_timeboard.py
+```
+
+
+* Set the Timeboard's timeframe to the past 5 minutes
+To do this it's very simple. Just left click on the graph and drag to select a five minute period.
+
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+Done
+
+* **Bonus Question**: What is the Anomaly graph displaying?
+The anomaly graph tries to give a prediction range of where the metric should be based on past data. The prediction also takes into account trends, seasonal day-of-week and time-of-day patterns. 
+
+
+
