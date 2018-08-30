@@ -15,7 +15,7 @@ You can utilize any OS/host that you would like to complete this exercise.
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 >Answer I was having issues with the Ubuntu agent getting to the datadog.yaml to edit with permission denieds, etc so I switched to the Windows agent editor and this was much quicker and very easy to use.
 
-<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/setting%20tagwingui.JPG" width 200 />
+<img src="https://github.com/Rusk-Hill/Datadogscreenshots/blob/master/setting%20tagwingui.JPG" width "200" />
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
