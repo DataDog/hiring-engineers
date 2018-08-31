@@ -267,8 +267,8 @@ Randomly picked mysql.innodb.data_reads from https://docs.datadoghq.com/integrat
 from datadog import initialize, api
 
 options = {
-    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
-    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+    'api_key': '<API_KEY>',
+    'app_key': '<APP_KEY>'
 }
 
 initialize(**options)
@@ -357,8 +357,8 @@ The anomaly graph tries to give a prediction range of where the metric should be
  from datadog import initialize, api
 
 options = {
-    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
-    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+    'api_key': '<API_KEY>',
+    'app_key': '<APP_KEY>'
 }
 
 initialize(**options)
@@ -384,8 +384,8 @@ We just have to add our own requirements to this template. The options object al
 from datadog import initialize, api
 
 options = {
-    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
-    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+    'api_key': '<API_KEY>',
+    'app_key': '<APP_KEY>'
 }
 
 initialize(**options)
@@ -437,6 +437,9 @@ $links http://0.0.0.0:5050/api/apm
 $links http://0.0.0.0:5050/api/trace
 $links http://0.0.0.0:5050/random
 ```
-* **Bonus Question** Resource vs. service
-A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume. An example of a webservice would be an API. 
+* **Bonus Question** Resource vs. Service
+A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume when requested. An example of a webservice would be an API. 
 A "Resource" is any information that is returned when querying a particular service. An example would a json object after a GET request to a service.
+
+
+## Final Question:
