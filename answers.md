@@ -10,3 +10,6 @@ Download Vagrant from [here](https://www.vagrantup.com/)
 Download VirtualBox from [here](https://www.virtualbox.org/).
 
 ![2](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/10.png)
+Download cmder from [here](http://cmder.net/)
+
+![3](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/30.png)
