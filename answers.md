@@ -136,7 +136,7 @@ sudo touch conf.yaml
 sudo vi conf.yaml
 ```
 
-I copied the supplied code snippet provided in the guide: <https://docs.datadoghq.com/integrations/mysql/>.  
+I copied the supplied code snippet provided in the guide: <https://docs.datadoghq.com/integrations/mysql/>. Permfomance schema however, kept giving me an error so I turned it off.
 
 ```markdown
   init_config:
