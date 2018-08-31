@@ -21,3 +21,5 @@ Install the above tools and locate the ubuntu image from [here](https://app.vagr
 **Step 3.**
 
 Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubuntu/xenial64" to copy the Ubuntu image to the local host. Once Vagrant finish copying the image, run "cd c:\Ubuntu" and "vagrant init ubuntu/xenial64" to generate the config files in c:\Ubuntu. Then run "vagrant up" to spin up the test environment.
+
+![5](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/50.png)
