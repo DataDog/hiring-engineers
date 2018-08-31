@@ -13,3 +13,8 @@ Download VirtualBox from [here](https://www.virtualbox.org/).
 Download cmder from [here](http://cmder.net/)
 
 ![3](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/30.png)
+**Step 2.**
+
+Install the above tools and locate the ubuntu image from [here](https://app.vagrantup.com/boxes/search)
+
+![4](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/40.png)
