@@ -415,8 +415,8 @@ The anomaly graph tries to give a prediction range of where the metric should be
 
  To monitor the data there are two approaches. One is to set up on the datadog website and the other is to use the API.
 
- Datadog website:
- -After logging in look towards the left or top for **Monitors> New Monitors**
+ Datadog website:  
+ -After logging in look towards the left or top for **Monitors> New Monitors**.  
  -Since we're monitoring metric, select metric as the monitor type.  
  -The previous step will bring you to a screen with 5 steps that needs to be filled out.  
 * Step 1: Since we're looking for an alert when the metric passes a certain value, I chose threshold alert
