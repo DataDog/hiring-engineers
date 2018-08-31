@@ -48,7 +48,12 @@ To start collecting metrics I had to install the agent on my virtual machine. Si
 DD_API_KEY=<API KEY HERE> bash -c "(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-I knew everything was running fine since I saw on both <https://app.datadoghq.com/signup/agent#ubuntu> and my terminal was saying that the agent is running properly.  
+I knew everything was running fine since I saw on both <https://app.datadoghq.com/signup/agent#ubuntu> and my terminal was saying that the agent is running properly. On DataDog's website I navigated to **Infrastructure > Host Map**, we should see a single hexagon representing our host.
+
+<details><summary>Host up and running</summary>
+<img src="./images/image.png"/>
+</details>
+<br>
 
 ### Assigning tags
 
@@ -211,7 +216,7 @@ instances:
     - min_collection_interval: 45
 ```
 
-my_metric.py
+my_metric.py:
 
 ```python
 import random
@@ -391,7 +396,7 @@ python3 custom_timeboard.py
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-To do this it's very simple. Just left click on the graph and drag to select a five minute period.
+To do this it's very simple. Just left click on a graph and drag to select a five minute period.
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -404,26 +409,25 @@ To do this it's very simple. Just left click on the graph and drag to select a f
 
 * **Bonus Question**: What is the Anomaly graph displaying?
   
-The anomaly graph tries to give a prediction range of where the metric should be based on past data. The prediction also takes into account trends, seasonal day-of-week, and time-of-day patterns.  
+The anomaly graph tries to give a prediction range of where the metric should be based on past data. The prediction also takes into account trends, seasonal day-of-week, and time-of-day patterns. The grey parts indicates the range. As long as the metric is within the range then it would be normal.
 
 ## Monitoring Data
 
  To monitor the data there are two approaches. One is to set up on the datadog website and the other is to use the API.
 
  Datadog website:
- -After logging in, look for the monitors tab on the left.  
- -Select new monitor.  
+ -After logging in look towards the left or top for **Monitors> New Monitors**
  -Since we're monitoring metric, select metric as the monitor type.  
  -The previous step will bring you to a screen with 5 steps that needs to be filled out.  
-* Step 1: since we're looking for an alert when the metric passes a certain value, I chose threshold alert
+* Step 1: Since we're looking for an alert when the metric passes a certain value, I chose threshold alert
 
-* Step 2: select the metric you want to monitor. In my case it's my_metric_value and I also picked my host
+* Step 2: Select the metric you want to monitor. In my case it's my_metric_value and I also picked my host from the drop down selection.
 
-* Step 3: this is where I specified the values for an alert and a warning alert. In my case I wanted to see when the metric is above the threshold on average during the last 5 minutes. My alert threshold is 800 and my warning threshold is 500. I also wanted an alert if no data is being sent. This can be achieved by changing "Do not notify" to "Notify" if data is missing. Changing it brings up an additional option to select for how long data needs to be missing before issuing an alert. In my case, it's 10 minutes.
+* Step 3: This is where I specified the values for an alert and a warning alert. In my case I wanted to see when the metric is above the threshold on average during the last 5 minutes. My alert threshold is 800 and my warning threshold is 500. I also wanted an alert if no data is being sent. This was achieved by changing "Do not notify" to "Notify" if data is missing. Changing it brings up an additional option to select for how long data needs to be missing before issuing an alert. In my case, it's 10 minutes.
   
-* Step 4: This is where I customized my alert messages. Following the guide here: <https://docs.datadoghq.com/monitors/notifications/>, I needed to create a message with {{#is_alert}}{{/is_alert}}, {{#is_warning}}{{/is_warning}} and {{#is_no_data}}{{/is_no_data}}. Also this alert requires a title. I also used {{host.ip}}, {{value}}, {{threshold}} and {{warn_threshold}} to see the value of metric, alert threshold and warning threshold respectively.
+* Step 4: This is where I customized my alert messages. Following the guide here: <https://docs.datadoghq.com/monitors/notifications/>, I needed to create a message with {{#is_alert}}, {{#is_warning}} and {{#is_no_data}}. Also this alert requires a title. I also used {{host.ip}}, {{value}}, {{threshold}} and {{warn_threshold}} to see the value of host ip, metric value, alert threshold and warning threshold respectively.
 
-* Step 5: This is where I set who to notify with these alerts and warnings. I can just set the name of the person I wanted to notify and it autofilled it. Once done I went ahead and press save to save the monitor. If all went well I should be receiving warning and alerts emails from DataDog.
+* Step 5: This is where I set who to notify with these alerts and warnings. I did that by typing in my name. Once done I went ahead and press save to save the monitor. If all went well I should be receiving warning and alerts emails from DataDog.
 
 <details><summary>Image of monitor setting using the DataDog GUI</summary>
 <img src="./images/image11.png"/>
@@ -459,7 +463,7 @@ api.Monitor.create(
 )
 ```
 
-I just added my requirements to this template. The options object already has the no data alert set to 20 minutes. I just had to change that to 10. The options object can also take the warning and the threshold values. I added that in as well. Now I just had to set the query parameters and the message. We're still monitoring my metric so the type should still be metric alert. My query was my_metric_value on average scoped over all the hosts in the last 5 minutes is greater than 800. In other words: avg(last_5m):avg:my_metric_value{*} > 800. I then needed to give it a name and a message. I added email notification using @INSERT@email.here. So putting it all together in a python file:  
+I just added my requirements to this template. The options object already has the no data alert set to 20 minutes. I just had to change that to 10. The options object can also take the warning and the threshold values. I added that in as well. Now I just had to set the query parameters and the message. We're still monitoring my metric so the type should still be metric alert. My query was my_metric_value on average scoped over my host in the last 5 minutes is greater than 800. In other words: avg(last_5m):avg:my_metric_value{host:ubuntu-xenial} > 800. I then needed to give it a name and a message. I added email notification using @INSERT@email.here. So putting it all together in a python file:  
 
 ```python
 from datadog import initialize, api
