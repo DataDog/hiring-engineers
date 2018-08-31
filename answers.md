@@ -554,7 +554,8 @@ links http://0.0.0.0:5050/random
 A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume when requested. An example of a web service would be an API.  
 A "Resource" is any information that is returned when querying a particular service. An example would a JSON object after a GET request for a service.
 
-## Final Question# Answers to the challenge
+## Final Question
 
+I come from a science background, so my answer would be related to that. I wonder if it would be a good idea to use the DataDog agent to track how much people use their electronic devices. If for example the agent can run on phones and computers, and send data when the user is actively using it (with their consent of course). We can then use the mass data collected, we can correlate that to certain diseases and see if the modern over-use of electronics has any effect on human health.
 
-
+As for the APM, I would use it to track resource traffic on a website. It sounds pretty boring, but this was an actual idea I once had. I would set up a website that provided resources for kids going to high-school and high schoolers going into college.  The resource would contain all the information needed for them to pursue the career that they wanted. For example, doctor prospects would need to take biology and chemistry courses, clinical hours and the MCAT. The website would have information about most careers and the requirements to pursue them. I would then track to see what kids these days are most interested in. By tracking this, I feel like it would be a good indication of the direction the future is heading towards.
