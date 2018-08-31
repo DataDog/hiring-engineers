@@ -6,4 +6,4 @@ Step 1.
 
 Download Vagrant from [here](https://www.vagrantup.com/)
 
-![1](hiring-engineers/screenshots/1.png)
+![1](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/1.png)
