@@ -419,7 +419,8 @@ api.Monitor.create(
 ```
 Same as how we created the timeboard, we just have to run this pyton file and the monitor will be created. 
 
-* **Bonus Question: Silencing the monitor **.   
+* **Bonus Question: Silencing the monitor**
+  
 Downtime on the monitor can be created on the DataDog website.
 In the monitor tab, we just have to select "Manage Downtime"
 Then click on schedule downtime which should bring up a menu with information we need to fill out
@@ -445,7 +446,8 @@ $links http://0.0.0.0:5050/api/apm
 $links http://0.0.0.0:5050/api/trace
 $links http://0.0.0.0:5050/random
 ```
-* **Bonus Question** Resource vs. Service
+* **Bonus Question:Resource vs. Service**
+  
 A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume when requested. An example of a web service would be an API. 
 A "Resource" is any information that is returned when querying a particular service. An example would a JSON object after a GET request for a service.
 
