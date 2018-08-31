@@ -236,7 +236,7 @@ for our requirement we need the following:
 ```
 
 * Any metric from the Integration on your Database with the anomaly function applied.
-Randomly picked mysql.innodb.data_reads from https://docs.datadoghq.com/integrations/mysql/. Anomaly function guide can be found here https://docs.datadoghq.com/graphing/functions/algorithms/
+Randomly picked mysql.innodb.data_reads from https://docs.datadoghq.com/integrations/mysql/. Anomaly function guide/template can be found here https://docs.datadoghq.com/graphing/functions/algorithms/
 ```
 {
     "definition": {                        
@@ -338,4 +338,76 @@ Done
 The anomaly graph tries to give a prediction range of where the metric should be based on past data. The prediction also takes into account trends, seasonal day-of-week and time-of-day patterns. 
 
 
+## Monitoring Data
+ To monitor the data there are two approaches. One is to set up on the datadog website and the other is to use the API.
+
+ Datadog website:
+ -After logging in, look for the monitors tab on the left
+ -Select new monitor
+ -Since we're monitoring metric, select metric as the monitor type
+ -The previous step will bring you to a screen with 5 steps that needs to be filled out
+ -Step 1: since we're looking for an alert when the metric passes a certain value, we can choose threshold alert
+ -step 2: select the metric you want to monitor. In our case it's my_metric_value
+ -step 3: this is where we specify the values for an alert and a warning alert. In our case we want to see when the metric is above the threshold on average during the last 5 minutes. Our alert threshold is 800 and our warning threshold is 500. We also want an alert if no data is being sent. This can be achieved by changing "Do not notify" to "Notify" if data is missing. Chaning it brings up an additional option to select for how long data needs to be missing before issuing an alert. In our case it's 10 minutes.
+ -step 4: This is where we can customize our alert messages. Following the guide here https://docs.datadoghq.com/monitors/notifications/, we need to create a message with {{#is_alert}}{{/is_alert}}, {{#is_warning}}{{/is_warning}} and {{#is_no_data}}{{/is_no_data}}. Also this alert requires a title. We can also use {{value}}, {{threshold}} and {{warn_threshold}} to see the value of metric, alert threshold and warning threshold respectively.
+ -step 5: This is where we set who to notify with these alert and warnings. We can just set the name of the person you want to notify and it should autofill it if it's found. Once done we can go ahead and press save to save the monitor. If all went well we should be receiving email warning and alerts from datadog.
+
+ Using the API(guide here https://docs.datadoghq.com/api/?lang=python#create-a-monitor):
+ ```
+ from datadog import initialize, api
+
+options = {
+    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
+    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+}
+
+initialize(**options)
+
+# Create a new monitor
+options = {
+    "notify_no_data": True,
+    "no_data_timeframe": 20
+}
+tags = ["app:webserver", "frontend"]
+api.Monitor.create(
+    type="metric alert",
+    query="avg(last_1h):sum:system.net.bytes_rcvd{host:host0} > 100",
+    name="Bytes received on host0",
+    message="We may need to add web hosts if this is consistently high.",
+    tags=tags,
+    options=options
+)
+ ```
+
+We just have to add our own requirements to this template. The options object already has the no data alert set to 20 minutes, so we just have to change that to 10. The options object can also take the warning and the threshold values, so we can just add that in aswell. Now we just have to set the query parameters and the message. We're still monitoring out metric so the type should still be metric alert. Our query should be my_metric_value on average scoped over all the hosts in the last 5 minutes is greater than 800. avg(last_5m):avg:my_metric_value{*} > 800. We then just need to give it a name and then the message. We can add email notification using @<EMAIL>. So putting it all together in a python file we have:
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '0d3ec981a0ea90d5983c547fc3169ddf',
+    'app_key': '9cf15dee3fa15d30e0421784a66336acaa271f41'
+}
+
+initialize(**options)
+
+# Create a new monitor
+options = {
+    "notify_no_data": True,
+    "no_data_timeframe": 10,
+    "thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+}
+tags = []
+api.Monitor.create(
+    type="metric alert",
+    query="avg(last_5m):avg:my_metric_value{*} > 800",
+    name="my_metric_monitor2",
+    message="{{#is_alert}}High Metric is too high on {{host.ip}} {{value}}>{{threshold}} {{/is_alert}}{{#is_warning}}High Metric is high {{value}} > {{warn_threshold}}{{/is_warning}}{{#is_no_data}}No Metric is best if not high{{/is_no_data}}. @steven_yuen05@hotmail.com",
+    tags=tags,
+    options=options
+)
+```
+Same as how we created the timeboard, we just have to run this pyton file and the monitor will be created. 
 
