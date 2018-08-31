@@ -417,13 +417,13 @@ api.Monitor.create(
 
 Same as how we created the timeboard, we just have to run this pyton file and the monitor will be created. 
 
-* **Bonus Question** Silencing the monitor.
+* **Bonus Question: Silencing the monitor** .  
 Downtime on the monitor can be created on the datadog website.  
 In the monitor tab we just have to select "Manage Downtime".  
 Then click on schedule downtime which should bring up a menu with information we need to fill out.  
-Step 1: we select which monitors we wanted to silence.  
-Step 2: we can set it to happen only for a timeframe or make it recurring. In our case I picked recurring. We then set the start date and select 1 week on the weekdays at 7:00pm and lasting for 14 hours and with no end date.  
-Step 3: here we can add a custom message for the down time.  
+* Step 1: we select which monitors we wanted to silence.  
+* Step 2: we can set it to happen only for a timeframe or make it recurring. In our case I picked recurring. We then set the start date and select 1 week on the weekdays at 7:00pm and lasting for 14 hours and with no end date.  
+* Step 3: here we can add a custom message for the down time.  
   
 As for silencing it over the weekend, we just have to follow the same steps as above and create a recurring downtime happening at 12.00 am on saturday and sunday that last for 1 day.  
 
