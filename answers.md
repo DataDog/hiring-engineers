@@ -338,7 +338,7 @@ To do this it's very simple. Just left click on the graph and drag to select a f
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 Done
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+* **Bonus Question**: What is the Anomaly graph displaying?  
 The anomaly graph tries to give a prediction range of where the metric should be based on past data. The prediction also takes into account trends, seasonal day-of-week and time-of-day patterns. 
 
 
@@ -350,11 +350,11 @@ The anomaly graph tries to give a prediction range of where the metric should be
  -Select new monitor .  
  -Since we're monitoring metric, select metric as the monitor type .  
  -The previous step will bring you to a screen with 5 steps that needs to be filled out .  
- -Step 1: since we're looking for an alert when the metric passes a certain value, we can choose threshold alert .  
- -step 2: select the metric you want to monitor. In our case it's my_metric_value .  
- -step 3: this is where we specify the values for an alert and a warning alert. In our case we want to see when the metric is above the threshold on average during the last 5 minutes. Our alert threshold is 800 and our warning threshold is 500. We also want an alert if no data is being sent. This can be achieved by changing "Do not notify" to "Notify" if data is missing. Chaning it brings up an additional option to select for how long data needs to be missing before issuing an alert. In our case it's 10 minutes.   
- -step 4: This is where we can customize our alert messages. Following the guide here https://docs.datadoghq.com/monitors/notifications/, we need to create a message with {{#is_alert}}{{/is_alert}}, {{#is_warning}}{{/is_warning}} and {{#is_no_data}}{{/is_no_data}}. Also this alert requires a title. We can also use {{value}}, {{threshold}} and {{warn_threshold}} to see the value of metric, alert threshold and warning threshold respectively.   
- -step 5: This is where we set who to notify with these alert and warnings. We can just set the name of the person you want to notify and it should autofill it if it's found. Once done we can go ahead and press save to save the monitor. If all went well we should be receiving email warning and alerts from datadog.   
+ * Step 1: since we're looking for an alert when the metric passes a certain value, we can choose threshold alert .  
+ * step 2: select the metric you want to monitor. In our case it's my_metric_value .  
+ * step 3: this is where we specify the values for an alert and a warning alert. In our case we want to see when the metric is above the threshold on average during the last 5 minutes. Our alert threshold is 800 and our warning threshold is 500. We also want an alert if no data is being sent. This can be achieved by changing "Do not notify" to "Notify" if data is missing. Chaning it brings up an additional option to select for how long data needs to be missing before issuing an alert. In our case it's 10 minutes.   
+ * step 4: This is where we can customize our alert messages. Following the guide here https://docs.datadoghq.com/monitors/notifications/, we need to create a message with {{#is_alert}}{{/is_alert}}, {{#is_warning}}{{/is_warning}} and {{#is_no_data}}{{/is_no_data}}. Also this alert requires a title. We can also use {{value}}, {{threshold}} and {{warn_threshold}} to see the value of metric, alert threshold and warning threshold respectively.   
+ * step 5: This is where we set who to notify with these alert and warnings. We can just set the name of the person you want to notify and it should autofill it if it's found. Once done we can go ahead and press save to save the monitor. If all went well we should be receiving email warning and alerts from datadog.   
 
  Using the API(guide here https://docs.datadoghq.com/api/?lang=python#create-a-monitor):
  ```
