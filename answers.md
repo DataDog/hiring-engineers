@@ -227,7 +227,7 @@ class MyCheck(AgentCheck):
         time.sleep(45)
 ```
 
-### Bonus
+* **Bonus Question**: Setting a minimum check interval.  
 
 As mentioned above, to add a minimum interval for the agent check can be achieved by editing the .yaml file inside the /etc/datadog-agent/conf.d. Each agent check file inside /etc/datadog-agent/checks.d has a corresponding .yaml file inside /etc/datadog-agent/conf.d that shares the same name. For example /etc/datadog-agent/checks.d/hello.py and /etc/datadog-agent/conf.d/hello.yaml. By adding min_collection_interval option to hello.yaml, I will only set a minimum interval collection for hello.py. All other checks inside the checks.d will be unaffected.  
 
