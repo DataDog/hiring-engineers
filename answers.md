@@ -536,16 +536,29 @@ I first needed to install both ddtrace and flask onto my virtual machine.
  pip install ddtrace --user
 ```
 
-Afterward, I created a file call logger.py with the script provided. I did, however, edit the file and changed the port number from a string to an integer. Afterward, I launched the script following the guide on <https://app.datadoghq.com/apm/install#>. I then hit each of the endpoints using a terminal browser on my virtual machine (I used links):
+Afterward, I created a file call logger.py with the script provided. I did, however, edit the file and changed the port number from a string to an integer. Afterward, I launched the script following the guide on <https://app.datadoghq.com/apm/install#>. I then hit each of the endpoints using a terminal browser in a new terminal window in my virtual machine (I used links):
 
 ```markdown
-ddtrace-run python3 my_app.py
+ddtrace-run python3 logger.py
+```
+
+```markdown
 sudo apt-get install links
 links http://0.0.0.0:5050/
 links http://0.0.0.0:5050/api/apm
 links http://0.0.0.0:5050/api/trace
 links http://0.0.0.0:5050/random
 ```
+
+On DataDog's website, I looked at the top for **APM>Services** and clicked on the flask service.
+
+<details><summary>Running ddtrace and APM Service on DataDog website</summary>
+<img src="./images/image19.png"/>
+<img src="./images/image20.png"/>
+</details>
+<br>
+
+To add APM graphs to our existing dashboards, I clicked the export button on the top right of each graph(square with arrow going up) and select which dashboard to add it to.
 
 <details><summary>APM graphs and integration into my dashboard</summary>
 <img src="./images/image17.png"/>
