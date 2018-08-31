@@ -24,3 +24,4 @@ Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubu
 
 ![5](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/50.PNG)
 ![6](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/60.PNG)
+![7](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/70.PNG)
