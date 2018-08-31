@@ -2,7 +2,7 @@ Your answers to the questions go here.
 
 ## Prerequisites - Setup the environment
 
-Summary:
+Summary:  
 For this part I decided to use Vagrant and Virtualbox. Following the guide I installed both Vagrant and Virtualbox. I'm currently using a mac, so I downloaded both of them for the mac (.dmg extension). Following the instructions that comes with the installers I installed both Vagrant and VirtualBox (Detailed explanation is listed at the end). 
 
 Once installation is completed I created a folder to hold all the work and then I went into the folder and set up vagrant with linux version 16.04. All vagrant boxes versions can be found here: https://app.vagrantup.com/boxes/search. ubuntu/xenial64 is 16.04, so I went with that. 
