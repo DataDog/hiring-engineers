@@ -419,4 +419,24 @@ Step 1: we select which monitors we wanted to silence
 Step 2: we can set it to happen only for a timeframe or make it recurring. In our case I picked recurring. We then set the start date and select 1 week on the weekdays at 7:00pm and lasting for 14 hours and with no end date
 Step 3: here we can add a custom message for the down time
 
-As for silencing it over the weekend, we just have to follow the same steps as above and create a recurring downtime going from friday 7:00pm to monday 9:00 am.
+As for silencing it over the weekend, we just have to follow the same steps as above and create a recurring downtime happening at 12.00 am on saturday and sunday that last for 1 day.
+
+
+## Collecting APM Data
+We first need to install both ddtrace and flask onto our virtual machine.
+```
+$ pip install flask --user
+$ pip install ddtrace --user
+```
+
+Afterwards, we create a file call logger.py with the script provided. I did however edit the file and changed the port number from a string to an integer. Afterwards, I launched the script following the guide on https://app.datadoghq.com/apm/install# and then I hit each of the end points using a terminal browser on my virtual machine (I used links):
+```
+$ddtrace-run python3 my_app.py
+$links http://0.0.0.0:5050/
+$links http://0.0.0.0:5050/api/apm
+$links http://0.0.0.0:5050/api/trace
+$links http://0.0.0.0:5050/random
+```
+* **Bonus Question** Resource vs. service
+A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume. An example of a webservice would be an API. 
+A "Resource" is any information that is returned when querying a particular service. An example would a json object after a GET request to a service.
