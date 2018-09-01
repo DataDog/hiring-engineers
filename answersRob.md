@@ -8,7 +8,7 @@
 
 3. Registering on the Datadog website I was then able to retrieved an API Key.
 
-4. In the container, an environment variable DD_API_KEY was created with the API Key used as the value. 
+4. In the container, I created an environment variable DD_API_KEY, using the API Key as the value. 
 
 5. The Datadog portal hostmap graph showed the container.
 <img src="https://image.ibb.co/eE5jnz/1_linux_docker_data_visible.png" />
@@ -35,9 +35,9 @@
 4. The agent tags are displaying correctly on the Datadog host map.
 <img src="https://image.ibb.co/gC84nz/photo_4_tags_added_to_linux_docker.png" />
 
-5. Install database on machine - I had MySQL already installed on my WINDOWS machine and so took the oppertunity to carryout the same steps above but for windows to understand any differences between the two setups.  I installed Agent 6 onto Windows and repeated the  steps listed above.  The custom agent tags were added to C:\ProgramData\Datadog\datadog.yaml for Windows.
+5. Install database on machine - I had MySQL already installed on my WINDOWS machine and so took the opportunity to carry out the same steps above but for windows to understand any differences between the two setups.  I installed Agent 6 onto Windows and repeated the steps listed above.  The custom agent tags were added to C:\ProgramData\Datadog\datadog.yaml for Windows.
 
-6. I created the datadog user in the MySQL server with the specified privaledges and replication rights.
+6. I created the datadog user in the MySQL server with the specified privileges and replication rights.
 
 7. I edited the conf.d/mysql.d/conf.yaml allowing Datadog to access to the MySQL server:-
 
@@ -50,7 +50,7 @@ instances:
     options:
       replication: 0 
           
-On an agent restart, Datadog then displayed the data collection of MySql metrics.
+On an agent restart, Datadog then displayed the data collection of MySQL metrics.
 <img src="https://image.ibb.co/mxrPnz/photo_mysql_installed.png"/>
 <img src="https://image.ibb.co/mO5TEe/photo_mysql_data_dashboard.png"/>
 
@@ -62,12 +62,12 @@ I imported the 'random' module into python, which enabled me to use the code: se
 I added the min_collection_interval metric at instance level (because it is Agent 6) and set the value to 45. 
 <img src="https://image.ibb.co/nosaue/photo_my_metric_yaml_code.png"/>
 
-10. Bonus Question - An additional approach to modifying the collection interval is programatically by importing the time module and placing time.sleep(45) above the self.gauge() call.
+10. Bonus Question - An additional approach to modifying the collection interval is programmatically by importing the time module and placing time.sleep(45) above the self.gauge() call.
 
 
 ## Visualizing Data
 
-1. To create the Timeboard via the Datadog API I first created an application key within the portal.
+1. To create the timeboard via the Datadog API I first created an application key within the portal.
 <img src="https://image.ibb.co/b0UzLK/photo_timeboard_api_application_key.png"/>
 
 2. I installed the datadog module via PIP, enabling my timeboard code to compile:
@@ -80,7 +80,7 @@ I added the min_collection_interval metric at instance level (because it is Agen
 timeboard.py contains three graphs objects:- 
 A. My_Metric
 B. My_Metric rollup  
-C. MySql number of connections
+C. MySQL number of connections
 
 from datadog import initialize, api
 
@@ -150,6 +150,13 @@ api.Timeboard.create(title=title,
 <img src="https://image.ibb.co/bxPoEe/photo_snapshot_of_dashboard.png"/>
 
 7. The anomaly graph shows the expected range of a selected metric, based on previous results. Any results that fall outside of this range are highlighted automatically, making it easier to spot and investigate anomalies.
+
+There are three different anomaly detection algorithms: 
+- Basic, can be used when data has no repeatable seasonal pattern.  The Basic algorithm is quick to execute and react because it uses less data by not considering longer trends.  An example business that would be best suited to the Basic algorithm is online gambling. 
+
+- Agile, can be used for data that contains seasonal trends and you want the algorithm to quickly react to level shifts.  The Agile algorithm only uses immediate past data and so won't consider anomalies with a longer duration making it potentially less robust.  The majority of retail businesses would best suit the Agile algorithm.
+
+- Robust, is best used for seasonal trend data that doesn't significantly fluctuate.  Robust will consider long lasting anomalies and so be slower to identify level shifts but produce stable predictions overtime.  Financial services and public sector websites would likely suit the Robust algorithm the most.
             
 
 ## Monitoring Data
@@ -211,9 +218,9 @@ My custom dashboard displaying both infrastructure and APM data can be seen belo
 
 8. Bonus Question
 
-A "Service" is the name of a set of processes that work together. It deals with data and returns information that other programs or apps can consume when requested. An example of a web service would be an API.
+A Service is a collection of processes that work together doing the same job.  Some service examples are; an API service, a database service and a web application service.  Datadog automatically assigns services one of four types; web, database, cache and custom.
 
-A "Resource" is any information that is returned when querying a particular service. An example would a JSON object after a GET request for a service.
+A Resource is a request for a particular action of a service to run.  A couple examples of a resource are; a query string for a database to execute, and a URL request of a web application service.
 
 ## Final Question 
 
