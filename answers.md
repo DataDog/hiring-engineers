@@ -35,7 +35,7 @@ Install the above tools and locate the ubuntu image from [here](https://app.vagr
 Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubuntu/xenial64" to copy the Ubuntu image to the local host. Once Vagrant finish copying the image, run "cd c:\Ubuntu" and "vagrant init ubuntu/xenial64" to generate the config files in c:\Ubuntu. Then run "vagrant up" to spin up the test environment.
 
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/50.png" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/50.PNG" width="750px" />
 </div>
 
 **Step 4.**
@@ -43,7 +43,7 @@ Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubu
 After input "vagrant up" through cmder.exe, a virtual machine will be generated in Virtualbox, once that has been confirmed, run cmd "vagrant ssh-config" through cmder to get the ssh login info and run the cmd "ssh vagrant@127.0.0.1 -p *port number* -i *location of the private key*" to login to the VM.
 
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/80.png" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/80.PNG" width="750px" />
 </div>
 
 **Step 5.**
@@ -51,5 +51,5 @@ After input "vagrant up" through cmder.exe, a virtual machine will be generated 
 Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and use “Datadog Recruiting Candidate” in the “Company” field.
 
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png" width="750px" />
 </div>
