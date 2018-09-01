@@ -218,7 +218,7 @@ My custom dashboard displaying both infrastructure and APM data can be seen belo
 
 8. Bonus Question
 
-A Service is a collection of processes that work together doing the same job.  Some service examples are; an API service, a database service and a web application service.  Datadog automatically assigns services one of four types; web, database, cache and custom.
+A Service is a collection of processes that work together to do the same job.  Some service examples are; an API service, a database service and a web application service.  Datadog automatically assigns services one of four types; web, database, cache and custom.
 
 A Resource is a request for a particular action of a service to run.  A couple examples of a resource are; a query string for a database to execute, and a URL request of a web application service.
 
