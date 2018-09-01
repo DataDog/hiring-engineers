@@ -181,8 +181,11 @@ Set min_collection_interval: 45, code is included in the previous screenshots.
 **Step 1.**
 
 Reference doc can be found in [here](https://docs.datadoghq.com/api/?lang=python#timeboards).👈
+
 Locate the api key and the app key from Integration -- APIs, need to generate the application key for the first time.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/320.PNG" width="750px" />
 </div>
+
+
 
