@@ -99,7 +99,7 @@ Install mysql on ubuntu by running cmd "apt-get install mysql-server", during th
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/180.PNG" width="750px" />
 </div>
 
-Follow the latest mysql integration doc from [here](https://docs.datadoghq.com/integrations/mysql/).
+Follow the latest mysql integration doc from [here](https://docs.datadoghq.com/integrations/mysql/).👈
 Login to mysql and Create the datadog user and give access:
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/190.PNG" width="750px" />
@@ -146,3 +146,22 @@ Return to datadog website and check the host, all mysql integration has been suc
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/260.png" width="750px" />
 </div>
+
+**Step 3.**
+
+Reference doc is [here](https://docs.datadoghq.com/developers/agent_checks/).👈
+Browse into /etc/datadog-agent/conf.d and create my_metric.yaml and edit as in the screenshot.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/280.PNG" width="750px" />
+</div>
+
+Browse into /etc/datadog-agent/checks.d and create my_metric.py as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/290.PNG" width="750px" />
+</div>
+
+Check my_metric by running cmd "datadog-agent check my_metric" and get the screenshot below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/300.PNG" width="750px" />
+</div>
+
