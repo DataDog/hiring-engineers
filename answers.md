@@ -99,4 +99,19 @@ Install mysql on ubuntu by running cmd "apt-get install mysql-server", during th
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/180.PNG" width="750px" />
 </div>
 
-Follow the latest doc from [here](https://docs.datadoghq.com/integrations/mysql/) 
+Follow the latest mysql integration doc from [here](https://docs.datadoghq.com/integrations/mysql/).
+Login to mysql and Create the datadog user and give access:
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/190.PNG" width="750px" />
+</div>
+
+Run the check cmds:
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/200.PNG" width="750px" />
+</div>
+
+Give access to performance_schema:
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/210.PNG" width="750px" />
+</div>
+
