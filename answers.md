@@ -130,7 +130,12 @@ Install the mysql integration from datadog website.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/250.png" width="750px" />
 </div>
+
+I got 3 warning message on mysql section when I run the "datadog-agent status" cmd😨, screenshot as below, and the fix as well😊
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/260.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/251.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/252.PNG" width="750px" />
 </div>
 
