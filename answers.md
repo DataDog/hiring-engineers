@@ -90,7 +90,11 @@ Run cmd "apt-get update" when you login as root and then run "reboot" to restart
 </div>
 
 **Step 2.**
-Install mysql on ubuntu by running cmd "apt-get install mysql-server"
+
+Install mysql on ubuntu by running cmd "apt-get install mysql-server", during the installation, mysql will ask for root password, input the password and hit ok. Once it finishs installing, run cmd "systemctl status mysql.service" to check the status, when you see the screenshot below, that means mysql has been installed successfully.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/170.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/180.PNG" width="750px" />
 </div>
