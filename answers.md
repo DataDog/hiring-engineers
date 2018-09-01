@@ -69,3 +69,12 @@ Once you see the below screenshot, that means the agent has been installed succe
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/120.PNG" width="750px" />
 </div>
+
+Move to the /etc/datadog-agent directory and edit datadog.yaml, update it as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/130.PNG" width="750px" />
+</div>
+
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/140.PNG" width="750px" />
+</div>
