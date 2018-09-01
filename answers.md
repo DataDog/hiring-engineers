@@ -12,16 +12,23 @@ Download Vagrant from [here](https://www.vagrantup.com/)
 
 Download VirtualBox from [here](https://www.virtualbox.org/).
 
-![2](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/10.png)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/10.png" width="750px" />
+</div>
+
 Download cmder from [here](http://cmder.net/)
 
-![3](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/30.png)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/30.png" width="750px" />
+</div>
 
 **Step 2.**
 
 Install the above tools and locate the ubuntu image from [here](https://app.vagrantup.com/boxes/search)
 
-![4](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/40.png)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/40.png" width="750px" />
+</div>
 
 **Step 3.**
 
