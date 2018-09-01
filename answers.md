@@ -65,9 +65,12 @@ Login to Shell through cmder as step 4 in the previous section and run the datad
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/110.PNG" width="750px" />
 </div>
 
-Once you see the below screenshot, that means the agent has been installed successfully.
+Once you see the below screenshot, that means the agent has been installed successfully. Also, the agent status will change to as in the screenshot below.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/120.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/93.png" width="750px" />
 </div>
 
 Move to the /etc/datadog-agent directory and edit datadog.yaml, update it as below.
