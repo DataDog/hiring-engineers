@@ -138,4 +138,11 @@ I got 3 warning message on mysql section when I run the "datadog-agent status" c
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/252.PNG" width="750px" />
 </div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/253.PNG" width="750px" />
+</div>
 
+Return to datadog website and check the host, all mysql integration has been successfully installed. 
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/260.png" width="750px" />
+</div>
