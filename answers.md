@@ -4,7 +4,7 @@ Answers : I use Vagrant and VirtualBox to setup the test environment. Since I am
 
 **Step 1.**
 
-Download Vagrant from <u>[here]</u>(https://www.vagrantup.com/)
+Download Vagrant from [here](https://www.vagrantup.com/)
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/1.png" width="750px" />
