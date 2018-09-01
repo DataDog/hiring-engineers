@@ -86,6 +86,6 @@ Run cmd "apt-get update" when you login as root and then run "reboot" to restart
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/81.PNG" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/160.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/160.png" width="750px" />
 </div>
 
