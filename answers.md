@@ -52,8 +52,14 @@ After input "vagrant up" through cmder.exe, a virtual machine will be generated 
 
 **Step 5.**
 
-Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and use “Datadog Recruiting Candidate” in the “Company” field.
+Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and use “Datadog Recruiting Candidate” in the “Company” field and login after creating the account.
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png" width="750px" />
 </div>
+
+# Collecting Metrics
+
+**Step 1.**
+
+
