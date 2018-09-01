@@ -4,7 +4,7 @@ Answers : I use Vagrant and VirtualBox to setup the test environment. Since I am
 
 **Step 1.**
 
-Download Vagrant from [here](https://www.vagrantup.com/)👈
+Download Vagrant (Windows 64bit) from [here](https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.msi)👈
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/1.png" width="750px" />
