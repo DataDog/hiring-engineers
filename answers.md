@@ -115,3 +115,10 @@ Give access to performance_schema:
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/210.PNG" width="750px" />
 </div>
 
+Create the conf.yaml in mysql.d directory and edit it as described in the doc.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/220.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/230.PNG" width="750px" />
+</div>
