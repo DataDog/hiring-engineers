@@ -169,7 +169,7 @@ Check my_metric by running cmd "datadog-agent check my_metric" and get the scree
 
 Set min_collection_interval: 45, code is included in the previous screenshots. And metric will be shown on the datadog website as below.
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/310.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/310.png" width="750px" />
 </div>
 
 **Bonus Question**
