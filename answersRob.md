@@ -78,9 +78,9 @@ I added the min_collection_interval metric at instance level (because it is Agen
 - python.exe timeboard.py
 
 timeboard.py contains three graphs objects:- 
-A. My_Metric
-B. My_Metric rollup  
-C. MySQL number of connections
+- My_Metric
+- My_Metric rollup  
+- MySQL number of connections
 
 from datadog import initialize, api
 
