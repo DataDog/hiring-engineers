@@ -214,6 +214,7 @@ Downtime was also setup as specified, one of the recieved emails is shown below.
 <img src="https://image.ibb.co/k8dgZe/photo_export_apm_graph_to_timeboard.png"/>
 
 My custom dashboard displaying both infrastructure and APM data can be seen below.
+https://app.datadoghq.com/dash/898727/my-custom-timeboard?live=true&page=0&is_auto=false&from_ts=1535200544582&to_ts=1535805344582&tile_size=m
 <img src="https://image.ibb.co/bWQTEe/photo_custom_dashboard_with_apm_data_added.png"/>
 
 8. Bonus Question
@@ -222,6 +223,25 @@ A Service is a collection of processes that work together to do the same job.  S
 
 A Resource is a request for a particular action of a service to run.  A couple examples of a resource are; a query string for a database to execute, and a URL request of a web application service.
 
+
 ## Final Question 
 
-To be updated.
+The continual advancement in technology excites me. And the emergence of the Internet of Things (IOT) now presents a plethora of monitoring possibilities! Nest Smart Thermostat, Alexa, Wearables, Connected Cars, home security systems, shipping, health care, the list is endless!
+
+These services use the internet to connect with endpoints and request and receive data. Those endpoints and the infrastructure they sit on will require monitoring. What would happen if hospital staff lose the ability to track assets — staff members, patients and hardware — throughout the building? Employee frustration, patient dissatisfaction, bad publicity, loss of data, loss of life... Ensuring adequate monitoring coverage can prevent bad situations like these from happening! Datadog monitoring can help keep customers happy, make businesses money and even save lives!
+
+These IOT services can also integrate with each other. For example, The Blink home security system can integrate with Alexa, users can now configure and arm their security systems through voice recognition. Pretty cool!
+
+So, businesses, in addition to their own monitoring, now need to consider monitoring their integrations. I’d advocate that both businesses have monitoring, policing the other business, ensuring they also provide a good service, particularly if there are SLA’s to consider. If an integration can be implemented in many different flavours, then the end user experience is also increasingly important.
+
+Understanding what the end user is experiencing from a range of different browsers, devices (is estimated that there will be 30 billion devices by 2020 world-wide)[1] and different GEO locations will enable the business to setup comprehensive testing, prioritising the devices and browsers that their users use the most.
+
+Synthetic or real user monitoring data would complement Datadog’s wealth of data. Synthetic and real user monitoring will provide insight into the end user experience, both from a UI and a ‘perception of performance’ perspective. Is this a back-end or front-end problem? Is a website slower on a particular browser/device? How many users are using this browser/device? How much revenue is this bad experience costing the business? How can this issue be fixed?
+
+It is also vital that businesses know about problems before their customers tell them. And with the use of anomaly detection algorithms, it is now possible to prevent problems from happening ahead of time by making use of collected historical data.
+
+So rather than a single, unique Datadog monitoring opportunity, I see limitless options, and as a Solutions Engineer, I’d love to sell Datadog to every single one!
+
+
+1. https://spectrum.ieee.org/tech-talk/telecom/internet/popular-internet-of-things-forecast-of-50-billion-devices-by-2020-is-outdated
+
