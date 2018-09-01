@@ -77,7 +77,15 @@ Move to the /etc/datadog-agent directory and edit datadog.yaml, update it as bel
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/130.PNG" width="750px" />
 </div>
-
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/140.PNG" width="750px" />
 </div>
+
+Run cmd "apt-get update" when you login as root and then run "reboot" to restart the VM. Then the tags are updated as in the screenshot.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/81.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/160.PNG" width="750px" />
+</div>
+
