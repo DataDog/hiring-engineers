@@ -1,220 +1,247 @@
-Your answers to the questions go here.
-# About Datadog
-Datadog is a data monitoring service for cloud-scale applications, bringing together data from servers, databases, tools, and services to present a unified view of an entire stack. These capabilities are provided on a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
+## Robert King - Solutions Engineer Exercise
 
-### Features
-* Observability - From infrastructure to apps, in any environment
-* Dashboards - Use instant, real-time boards or build your own
-* Infrastructure - From overview to deep details, fast
-* Analytics - Custom app metrics or business KPIs
-* Collaboration - Share data, discuss in context, solve issues quickly
-* Alerts - Avoid alert fatigue with smart, actionable alerts
-* API - Love infrastructure as code? You'll love Datadog's API
-* Machine Learning - Automatically detect outliers and temporal anomalies
-* APM - Monitor, optimize, and troubleshoot app performance
+## Prerequisites - Setup the Environment
 
-<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
+1. I downloaded and installed Docker and created a Linux, GNU container.
 
-I am here to apply for the support engineer at [Datadog](http://datadog.com) Sydney.
+2. I then downloaded Datadog Agent 6 and installed it into the container.
+
+3. Registering on the Datadog website I was then able to retrieved an API Key.
+
+4. In the container, I created an environment variable DD_API_KEY, using the API Key as the value. 
+
+5. The Datadog portal hostmap graph showed the container.
+<img src="https://image.ibb.co/eE5jnz/1_linux_docker_data_visible.png" />
+
+6. And the container metrics can be viewed on its dashboard.
+<img src="https://image.ibb.co/f7KASz/photo_2_custom_dashboard.png" />
 
 
-# The Challenge
+## Collecting Metrics
 
-## Questions
+1. I used Bash to run commands in the GNU docker container:
+- docker ps
+- docker exec -it [containerid] /bin/bash
 
-### Level 0 (optional) - Setup an Ubuntu VM
+2. Then downloaded and installed VI into the container:
+- apt-get update
+- apt-get install vim
 
-* While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
->Answer: I am using macOS Sierra Version 10.12.6 for this Challenge.
+3. The custom Agent tags were added to datadog.yaml
+- cd /etc/datadog-agent/
+- vi datadog.yaml
+<img src="https://image.ibb.co/j0MeLK/photo_3_linux_datadog_yaml.png" />
 
+4. The agent tags are displaying correctly on the Datadog host map.
+<img src="https://image.ibb.co/gC84nz/photo_4_tags_added_to_linux_docker.png" />
 
-### Level 1 - Collecting your Data
+5. Install database on machine - I had MySQL already installed on my WINDOWS machine and so took the opportunity to carry out the same steps above but for windows to understand any differences between the two setups.  I installed Agent 6 onto Windows and repeated the steps listed above.  The custom agent tags were added to C:\ProgramData\Datadog\datadog.yaml for Windows.
 
-* Sign up for Datadog (use "Datadog Recruiting Candidate" in the "Company" field), get the Agent reporting metrics from your local machine.
+6. I created the datadog user in the MySQL server with the specified privileges and replication rights.
 
->Answer: [Sign up here](https://www.datadoghq.com/#), get a datadog account for free for 14 days.
+7. I edited the conf.d/mysql.d/conf.yaml allowing Datadog to access to the MySQL server:-
 
->login, click on [_integration-Agent_](https://app.datadoghq.com/account/settings#agent/mac) in DataDog on the left column and follow the installation instructions for Mac OS X to install the Agent.
-
-> The datadog can be installed on OS X as easily as:
-```
-DD_API_KEY=63ab065b2982aed65fff538ba18a93ba bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
-```
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/Agent%20instalation%20and%20config.png" />
-
-* Bonus question: In your own words, what is the Agent?
-
->Answer: The Datadog agent is a full stack data monitoring platform/software which brings data from servers, databases, tools, and services to the Datadog web interface.
-
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-
->Answer: Change direction by type _cd ~/.datadog-agent_ in terminal, then type _emacs datadog.conf_ to open and edit the configuration file. 
-[reference](https://docs.datadoghq.com/guides/tagging/)
-
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20conf%20file.png" />
-
-After a few minutes refresh the Datadog, go to [_Infrastructure - Host Map_](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=none&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=false&palette=green_to_orange&paletteflip=false), the tags are now shown in there.
-
-
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/tagging%20in%20host%20map.png" />
-
-
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-
->Answer: I am using PostgreSQL for this part, for how to download and install the software PostgreSQL please refer to -> [Download PostgreSQL here](https://www.postgresql.org/download/)
-
->Find the PostgreSQL API under [_Integrations-Integrations_](https://app.datadoghq.com/account/settings), click _install_, then click on _Configuration_ tab.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/integration.png" />
-
->Create a read-only datadog user with proper access to your PostgreSQL Server.
-```
-create user datadog with password 'password_for_datadog';
-grant SELECT ON pg_stat_database to datadog;
-```
->Configure the Agent to connect to the PostgreSQL server 
->Edit _conf.d/postgres.yaml_
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgres_yaml.png" />
-
->Restart the Agent
-
->Type _datadog-agent info_ in Terminal to check states.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/postgreschecks.png" />
-
->Can also go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list) to check whether it is working or not.
-
-* Write a custom Agent check that samples a random value. Call this new metric: `test.support.random`
-
->Answer: Each check will have a configuration file that will be placed in the conf.d directory. Configuration is written using YAML. The file name should match the name of the check module (e.g. randomcheck.py and randomcheck.yaml).There are two places that you will need to add files for your check. 
-> The first is the checks.d folder, which lives in your Agent root. _~/.datadog-agent/checks.d/randomcheck.py_
-
-```
-import random
-from checks import AgentCheck
-class RandomCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('test.support.random', random.random())
-```
-
->The other folder is conf.d which lives in the Agent configuration root. _~/.datadog-agent/conf.d/randomcheck.yaml_
-
-```
 init_config:
+
 instances:
-    [{}]
-```
+  - server: 127.0.0.1
+    user: datadog
+    pass: bob
+    options:
+      replication: 0 
+          
+On an agent restart, Datadog then displayed the data collection of MySQL metrics.
+<img src="https://image.ibb.co/mxrPnz/photo_mysql_installed.png"/>
+<img src="https://image.ibb.co/mO5TEe/photo_mysql_data_dashboard.png"/>
 
-[reference](https://docs.datadoghq.com/guides/agent_checks/)
+8. To create the custom agent check I created my_metric.py in C:\ProgramData\Datadog\checks.d\
+I imported the 'random' module into python, which enabled me to use the code: self.gauge('my_metric', random.randint(0,1000)) to create the random value.
+<img src="https://image.ibb.co/jDgPnz/photo_my_metric_python_code.png"/>
 
-Here is a snippet that prints a random value in python:
+9. I then created the config yaml file, my_metric.yaml in C:\ProgramData\Datadog\conf.d\
+I added the min_collection_interval metric at instance level (because it is Agent 6) and set the value to 45. 
+<img src="https://image.ibb.co/nosaue/photo_my_metric_yaml_code.png"/>
 
-```python
-import random
-print(random.random())
-```
-
-### Level 2 - Visualizing your Data
-
-* Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your `test.support.random` metric from the custom Agent check.
-
->Answer: Go to [_Dashboard-Dashboard List_](https://app.datadoghq.com/dash/list), select [_Postgres_](https://app.datadoghq.com/dash/integration/postgresql?live=true&page=0&is_auto=false&from_ts=1508633477863&to_ts=1508637077863&tile_size=m) under _Integration Dashboards_, then click on _Clone Dashboard_ on the top right corner.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/clone%20dashboard.png" />
-
->Click on add new graph and type _test.support.random_ in the Get then click Save.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/new%20graph%20test_%20support_random.png" />
-
-[reference](https://docs.datadoghq.com/guides/templating/)
-
-* Bonus question: What is the difference between a timeboard and a screenboard?
-
->Answer: all graphs are always scoped to the same time in timeboard, but screenboard is flexible and more customisable, it can be created by drag and drop widgets.
-
-[reference](https://help.datadoghq.com/hc/en-us/articles/204580349-What-is-the-difference-between-a-ScreenBoard-and-a-TimeBoard-)
-
-* Take a snapshot of your `test.support.random` graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
-
->Answer: click on the camera icon on the top right of the graph will get you a screenshot of the current graph, draw a box on the graph and type mesage @your_email, then the screenshot will be sent to your email address.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/notification.png" />
+10. Bonus Question - An additional approach to modifying the collection interval is programmatically by importing the time module and placing time.sleep(45) above the self.gauge() call.
 
 
-### Level 3 - Alerting on your Data
+## Visualizing Data
 
-Since you've already caught your test metric going above 0.90 once, you don't want to have to continually watch this dashboard to be alerted when it goes above 0.90 again.  So let's make life easier by creating a monitor.
-* Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
+1. To create the timeboard via the Datadog API I first created an application key within the portal.
+<img src="https://image.ibb.co/b0UzLK/photo_timeboard_api_application_key.png"/>
 
->Answer: click on the [_setting icon - create Monitor_](https://app.datadoghq.com/monitors#create/metric?aggregator=avg&metric=test.support.random) on the top right of the graph
+2. I installed the datadog module via PIP, enabling my timeboard code to compile:
+- python -m pip install -u pip
+- python -m pip install datadog
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/create%20monitor.png" />
+3. I then ran the timeboard.py code I created:
+- python.exe timeboard.py
 
->1.Choose the detection method
+timeboard.py contains three graphs objects:- 
+- My_Metric
+- My_Metric rollup  
+- MySQL number of connections
 
->2.Select the metric and scope you want to monitor
+from datadog import initialize, api
 
->3.Select the alert grouping
+options = {
+    'api_key': '69e49857a99b3d228526cc96759369fc',
+    'app_key': '8c3524a94f62d31d1181c099744d4843eb27d7d6'
+}
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert.png" />
+initialize(**options)
 
-[reference](https://docs.datadoghq.com/guides/monitors/)
+title = "My Custom Timeboard"
+description = "Timeboard for Datadog hiring process"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+			{"q": "avg:my_metric{host:DESKTOP-P8I3SKT}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_metric (random numbers) timeseries"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+			{"q": "anomalies(avg:mysql.net.connections{*}, 'basic', 1)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL number of connections"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+			{"q": "avg:my_metric{host:DESKTOP-P8I3SKT}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_metric rollup(sum) over 1 hour"
+}]
 
-* Bonus points:  Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
 
->Answer: select _Multi Alert_ under 2-Define the metric, has been done in the previous step.
->A simple alert aggregates over all reporting sources,You will get one alert when the aggregated value meets the conditions set below. This works best to monitor a metric from a single host. A multi alert applies the alert to each source, according to your group parameters.
-
-* Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message).  Make sure that the monitor will notify you via email.
->Give the monitor a title. It is often useful to use a succinct explanation of the monitor so a notified team member can quickly understand what is going on.
-
->Enter a message for the monitor. This field allows standard markdown formatting as well as @your_email_address.
-
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/alert2.png" />
-
-
-* This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/email%20notif.png" />
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
 
 
-* Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+4. After running the code the custom dashboard then appeared in the Datadog dashboard list
+<img src="https://image.ibb.co/dgZoEe/photo_custom_dashboard_created_via_api.png"/>
 
->Answer: [_Monitors - Manage Downtime - Schedule Downtime_](https://app.datadoghq.com/monitors#downtime)
+<img src="https://image.ibb.co/cxpc7z/photo_custom_dashboard_all_metrics.png"/>
 
->1.Choose what to silence.
+5. The timeframe was set to the last 5 minutes by using the mouse to zoom in on the graph.
+<img src="https://image.ibb.co/gZpzLK/photo_custom_dashboard_over_5_minutes.png"/>
 
->2.Set a schedule.
+6. I took a snapshot of the graph and sent it to myself via an @ annotation by clicking on the graph's camera icon
+<img src="https://image.ibb.co/bxPoEe/photo_snapshot_of_dashboard.png"/>
 
->(optional)3-4.Add an optional message to notify your team
+7. The anomaly graph shows the expected range of a selected metric, based on previous results. Any results that fall outside of this range are highlighted automatically, making it easier to spot and investigate anomalies.
 
-<img src="https://github.com/jinmei612/datadog_screenshots/blob/master/upload/downtime.png" />
+There are three different anomaly detection algorithms: 
+- Basic, can be used when data has no repeatable seasonal pattern.  The Basic algorithm is quick to execute and react because it uses less data by not considering longer trends.  An example business that would be best suited to the Basic algorithm is online gambling. 
+
+- Agile, can be used for data that contains seasonal trends and you want the algorithm to quickly react to level shifts.  The Agile algorithm only uses immediate past data and so won't consider anomalies with a longer duration making it potentially less robust.  The majority of retail businesses would best suit the Agile algorithm.
+
+- Robust, is best used for seasonal trend data that doesn't significantly fluctuate.  Robust will consider long lasting anomalies and so be slower to identify level shifts but produce stable predictions overtime.  Financial services and public sector websites would likely suit the Robust algorithm the most.
+            
+
+## Monitoring Data
+
+The My_metric monitor was setup using the following configuration:
+<img src="https://image.ibb.co/fOP27z/photo_monitor_settings.png"/>
+
+And the custom email code is listed below:
+
+{{#is_alert}}
+ALERT! The metric has exceed the Alert Threshold
+Metric value was: {{value}} 
+Host IP: {{host.ip}}
+{{/is_alert}}
+
+{{#is_warning}}
+Warning! The metric has exceed the Warning Threshold
+{{/is_warning}}
+
+{{#is_no_data}}
+No data was received for my_metric
+{{/is_no_data}} 
+
+@loxwood7@googlemail.com @robert_king@email.com
+
+<img src="https://image.ibb.co/n2kvue/photo_email_from_alert.png"/>
+
+Downtime was also setup as specified, one of the recieved emails is shown below.
+
+<img src="https://image.ibb.co/dvgqSz/photo_email_for_downtime.png"/>
 
 
+## Collecting APM Data
 
-## Instructions
-If you have a question, create an issue in this repository.
+1. I first downloaded and installed the ddtrace module for Python:
+- python -m pip install ddtrace
 
-To submit your answers:
+2. I then did the same for the flask module:
+- python -m pip install flask
 
-1. Fork this repo.
-2. Answer the questions in `answers.md`
-3. Commit as much code as you need to support your answers.
-4. Submit a pull request.
-5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.
+3. Within flaskapp.py I changed the host IP to 127.0.0.1
 
-## References
+4. To get ddtrace-run to work in windows I added the ddtrace-run.exe path to my environment path.
+- C:\Users\rob\AppData\Local\Programs\Python\Python37-32\Scripts
 
-### How to get started with Datadog
+5. I could now run flaskapp.py via command line:
+- ddtrace-run python flaskapp.py
 
-* [Datadog overview](http://docs.datadoghq.com/overview/)
-* [Guide to graphing in Datadog](http://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](http://docs.datadoghq.com/guides/monitoring/)
+6. The APM was now listening for traces, to generate data I visited the three application endpoints via a browser.
+- 127.0.0.1:5050/
+- 127.0.0.1:5050/api/apm
+- 127.0.0.1:5050/api/trace
 
-### The Datadog Agent and Metrics
+7. To add the APM data to my custom dashboard, which already contained infrastructure data, I clicked on the export icon on graphs I wanted to add.
+<img src="https://image.ibb.co/k8dgZe/photo_export_apm_graph_to_timeboard.png"/>
 
-* [Guide to the Agent](http://docs.datadoghq.com/guides/basic_agent_usage/)
-* [Writing an Agent check](http://docs.datadoghq.com/guides/agent_checks/)
+My custom dashboard displaying both infrastructure and APM data can be seen below.
+https://app.datadoghq.com/dash/898727/my-custom-timeboard?live=true&page=0&is_auto=false&from_ts=1535200544582&to_ts=1535805344582&tile_size=m
+<img src="https://image.ibb.co/bWQTEe/photo_custom_dashboard_with_apm_data_added.png"/>
 
-### Other questions:
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+8. Bonus Question
 
-### About Me
-Mathematician, Computer Scientist, Barista, World Explorer
+A Service is a collection of processes that work together to do the same job.  Some service examples are; an API service, a database service and a web application service.  Datadog automatically assigns services one of four types; web, database, cache and custom.
 
-[My Linkedin](https://www.linkedin.com/in/mei-jin/)
+A Resource is a request for a particular action of a service to run.  A couple examples of a resource are; a query string for a database to execute, and a URL request of a web application service.
+
+
+## Final Question 
+
+The continual advancement in technology excites me. And the emergence of the Internet of Things (IOT) now presents a plethora of monitoring possibilities! Nest Smart Thermostat, Alexa, Wearables, Connected Cars, home security systems, shipping, health care, the list is endless!
+
+These services use the internet to connect with endpoints and request and receive data. Those endpoints and the infrastructure they sit on will require monitoring. What would happen if hospital staff lose the ability to track assets — staff members, patients and hardware — throughout the building? Employee frustration, patient dissatisfaction, bad publicity, loss of data, loss of life... Ensuring adequate monitoring coverage can prevent bad situations like these from happening! Datadog monitoring can help keep customers happy, make businesses money and even save lives!
+
+These IOT services can also integrate with each other. For example, The Blink home security system can integrate with Alexa, users can now configure and arm their security systems through voice recognition. Pretty cool!
+
+So, businesses, in addition to their own monitoring, now need to consider monitoring their integrations. I’d advocate that both businesses have monitoring, policing the other business, ensuring they also provide a good service, particularly if there are SLA’s to consider. If an integration can be implemented in many different flavours, then the end user experience is also increasingly important.
+
+Understanding what the end user is experiencing from a range of different browsers, devices (is estimated that there will be 30 billion devices by 2020 world-wide)[1] and different GEO locations will enable the business to setup comprehensive testing, prioritising the devices and browsers that their users use the most.
+
+Synthetic or real user monitoring data would complement Datadog’s wealth of data. Synthetic and real user monitoring will provide insight into the end user experience, both from a UI and a ‘perception of performance’ perspective. Is this a back-end or front-end problem? Is a website slower on a particular browser/device? How many users are using this browser/device? How much revenue is this bad experience costing the business? How can this issue be fixed?
+
+It is also vital that businesses know about problems before their customers tell them. And with the use of anomaly detection algorithms, it is now possible to prevent problems from happening ahead of time by making use of collected historical data.
+
+So rather than a single, unique Datadog monitoring opportunity, I see limitless options, and as a Solutions Engineer, I’d love to sell Datadog to every single one!
+
+
+1. https://spectrum.ieee.org/tech-talk/telecom/internet/popular-internet-of-things-forecast-of-50-billion-devices-by-2020-is-outdated
+
