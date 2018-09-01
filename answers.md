@@ -60,3 +60,7 @@ Install the datadog agent: click the "Get Started", then choose "Install an Agen
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/100.PNG" width="750px" />
 </div>
 
+Run the datadog install cmd in Shell.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/100.PNG" width="750px" />
+</div>
