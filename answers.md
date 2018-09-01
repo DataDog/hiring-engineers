@@ -4,19 +4,19 @@ Answers : I use Vagrant and VirtualBox to setup the test environment. Since I am
 
 **Step 1.**
 
-Download Vagrant (Windows 64 bit) from [here](https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.msi)👈
+Download Vagrant (Windows 64 bit) from [here](https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.msi).👈
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/1.png" width="750px" />
 </div>
 
-Download VirtualBox from [here](https://www.virtualbox.org/).
+Download VirtualBox from [here](https://download.virtualbox.org/virtualbox/5.2.18/VirtualBox-5.2.18-124319-Win.exe).👈
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/10.png" width="750px" />
 </div>
 
-Download cmder from [here](http://cmder.net/)
+Download cmder from [here](https://github.com/cmderdev/cmder/releases/download/v1.3.6/cmder.zip).👈
 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/30.png" width="750px" />
