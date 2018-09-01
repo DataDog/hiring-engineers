@@ -98,3 +98,5 @@ Install mysql on ubuntu by running cmd "apt-get install mysql-server", during th
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/180.PNG" width="750px" />
 </div>
+
+Follow the latest doc from [here](https://docs.datadoghq.com/integrations/mysql/) 
