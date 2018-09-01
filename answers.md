@@ -55,7 +55,7 @@ Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and
 
 **Step 1.**
 
-Install the datadog agent: click the "Get Started", then choose "Install an Agent" in the drop down list, then choose "Ubuntu" to get the install cmd as DD_API_KEY=b233617fcf6a0f29a9715078391b4716 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)".
+Install the datadog agent: click the "Get Started", then choose "Install an Agent" in the drop down list, then choose "Ubuntu" to get the install cmd as _DD_API_KEY=b233617fcf6a0f29a9715078391b4716 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"_.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/100.PNG" width="750px" />
 </div>
