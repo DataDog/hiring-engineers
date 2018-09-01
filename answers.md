@@ -42,9 +42,14 @@ Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubu
 
 After input "vagrant up" through cmder.exe, a virtual machine will be generated in Virtualbox, once that has been confirmed, run cmd "vagrant ssh-config" through cmder to get the ssh login info and run the cmd "ssh vagrant@127.0.0.1 -p *port number* -i *location of the private key*" to login to the VM.
 
-![8](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/80.PNG)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/80.png" />
+</div>
+
 **Step 5.**
 
 Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and use “Datadog Recruiting Candidate” in the “Company” field.
 
-![9](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png" />
+</div>
