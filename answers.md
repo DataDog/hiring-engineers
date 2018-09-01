@@ -37,8 +37,12 @@ Create a new folder as c:\Ubuntu, run cmder.exe and run cmd "vagrant box add ubu
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/50.png" width="750px" />
 </div>
-![6](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/60.PNG)
-![7](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/70.PNG)
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/60.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/70.png" width="750px" />
+</div>
 **Step 4.**
 
 After input "vagrant up" through cmder.exe, a virtual machine will be generated in Virtualbox, once that has been confirmed, run cmd "vagrant ssh-config" through cmder to get the ssh login info and run the cmd "ssh vagrant@127.0.0.1 -p *port number* -i *location of the private key*" to login to the VM.
