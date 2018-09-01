@@ -39,7 +39,7 @@ Create a new folder as c:\ubuntu, run cmder.exe and run cmd "vagrant box add ubu
 
 **Step 4.**
 
-After input "vagrant up" through cmder.exe, a virtual machine will be generated in Virtualbox, once that has been confirmed, run cmd "vagrant ssh-config" through cmder to get the ssh login info and run the cmd "ssh vagrant@127.0.0.1 -p *port number* -i *location of the private key*" to login to the VM.
+After input "vagrant up" through cmder.exe, a virtual machine will be generated in Virtualbox, once that has been confirmed, run cmd "vagrant ssh-config" through cmder to get the ssh login info and run the cmd "ssh vagrant@127.0.0.1 -p *port number* -i *location of the private key*" to login to the VM. (The third step only happens on the first login)
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/80.PNG" width="750px" />
 </div>
@@ -60,7 +60,12 @@ Install the datadog agent: click the "Get Started", then choose "Install an Agen
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/100.PNG" width="750px" />
 </div>
 
-Run the datadog install cmd in Shell.
+Login to Shell through cmder as step 4 in the previous section and run the datadog install cmd.
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/100.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/110.PNG" width="750px" />
+</div>
+
+Once you see the below screenshot, that means the agent has been installed successfully.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/120.PNG" width="750px" />
 </div>
