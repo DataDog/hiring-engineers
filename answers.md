@@ -105,12 +105,12 @@ Login to mysql and Create the datadog user and give access:
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/190.PNG" width="750px" />
 </div>
 
-Run the check cmds:
+Run the check cmds.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/200.PNG" width="750px" />
 </div>
 
-Give access to performance_schema:
+Give access to performance_schema.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/210.PNG" width="750px" />
 </div>
@@ -122,3 +122,15 @@ Create the conf.yaml in mysql.d directory and edit it as described in the doc.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/230.PNG" width="750px" />
 </div>
+
+Install the mysql integration from datadog website.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/240.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/250.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/260.PNG" width="750px" />
+</div>
+
