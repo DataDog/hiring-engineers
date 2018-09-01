@@ -128,7 +128,7 @@ Install the mysql integration from datadog website.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/240.PNG" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/250.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/250.png" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/260.PNG" width="750px" />
