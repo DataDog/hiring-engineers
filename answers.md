@@ -42,6 +42,35 @@ sudo start datadog-agent
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+> Answer: Edited "datadog.yaml" file to add tags `region:ap` `env:production` `role:database:mysql`
+> 
+> 1. Find "datadog.yaml" for Agent v6 configuration which is located in "/etc/datadog-agent/" for Linux(Ubuntu)
+>>```
+>>cd /etc/datadog-agent/
+>>```
+> 2. Use 'emacs' editor to add tags in "datadog.yaml" file
+>>```
+>>sudo emacs datadog.yaml
+>>```
+>See the form example for tagging in "datadog.yaml" file and add a line next to it
+
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_01_Tagging.png" />
+>
+> 3. Restart Datadog Agent for the applied changes
+>>``` 
+>>sudo service datadog-agent restart
+>>```
+
+> 4. See the updated tags on the Host Map page in Datadog
+>
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_02_Tags%20on%20Hostmap%20page.png" />
+
+> Link: [Host Map page](https://app.datadoghq.com/infrastructure/map?host=581392043&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
+
+>>https://app.datadoghq.com/infrastructure/map?host=581392043&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
+
+
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
