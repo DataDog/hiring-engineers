@@ -260,7 +260,7 @@ Screenshots of different messages depends on different status.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.png" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/4.png" width="750px" />
 </div>
 
 **Bonus Question**
@@ -286,6 +286,14 @@ Notification screenshots as below. (Time in the email is UTC)
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/480.png" width="750px" />
+</div>
+
+I change the downtime setting just to get the notification email as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/491.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/492.png" width="750px" />
 </div>
 
 # Collecting APM Data
