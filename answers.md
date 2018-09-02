@@ -259,9 +259,6 @@ Screenshots of different messages depends on different status.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.png" width="750px" />
 </div>
-<div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/4.png" width="750px" />
-</div>
 
 **Bonus Question**
 
