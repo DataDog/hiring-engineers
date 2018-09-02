@@ -294,4 +294,9 @@ Install Datadog Tracing library by running cmd "pip install ddtrace"
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/600.PNG" width="750px" />
 </div>
 
+Create a test.py under /etc/datadog-agent and attach the code as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/630.PNG" width="750px" />
+</div>
+
 
