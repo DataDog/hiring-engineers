@@ -48,6 +48,7 @@ sudo start datadog-agent
 >>```
 >>cd /etc/datadog-agent/
 >>```
+
 > 2. Use 'emacs' editor to add tags in "datadog.yaml" file
 >>```
 >>sudo emacs datadog.yaml
@@ -56,6 +57,7 @@ sudo start datadog-agent
 
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_01_Tagging.png" />
 >
+
 > 3. Restart Datadog Agent for the applied changes
 >>``` 
 >>sudo service datadog-agent restart
@@ -72,6 +74,41 @@ sudo start datadog-agent
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+> Answer: Installed MySQL on Ubuntu and Datadog intergration
+> 
+> 1. Install the MySQL server by using the Ubuntu package manager
+>>```
+>>sudo apt-get update
+>>sudo apt-get install mysql-server
+>>```
+> 2. Go to ['Intergrations-Intergrations'](https://app.datadoghq.com/account/settings#integrations) menu and Find the MySQL API
+> 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_03_Database_Intergrations_MySQL.png" />
+>
+> 3. Follow the instruction to create a datadog user with a password
+>>```
+>>sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'tlvJHD8WLk3@yMS8PVECliiU';"
+>>sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+>>```
+>
+> 4. Configure the Agent to connect to the MySQL  server 
+> Edit "mysql.yaml" file located in `/etc/datadog-agent/conf.d`
+>>``` 
+>>sudo emacs mysql.yaml
+>>```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_04_Database_Intergrations_MySQL_yaml.png" />
+
+> 5. Restart Datadog Agent for the applied changes
+>>``` 
+>>sudo service datadog-agent restart
+>>```
+
+> 6. Verify that the integration check has passed.
+>>``` 
+>>sudo datadog-agent status
+>>```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_05_Database_mysql_check_terminal.png" />
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
