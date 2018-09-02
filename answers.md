@@ -245,4 +245,10 @@ Choose "Monitors" -- "New Monitor", then choose "Metric", on the setup page, upd
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/450.png" width="750px" />
 </div>
 
+**Step 2.**
+
+Input the code showed below into "Say what's happening" section.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/460.png" width="750px" />
+</div>
 
