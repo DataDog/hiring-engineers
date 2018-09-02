@@ -269,3 +269,8 @@ This can setup through "Monitors" -- "Manage Downtime"
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/500.PNG" width="750px" />
 </div>
+
+Alert will be muted from 7 PM until 9 AM the next day from Mon to Fri every week.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/510.png" width="750px" />
+</div>
