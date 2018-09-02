@@ -257,7 +257,7 @@ Screenshots of different messages depends on different status.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/470.png" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.png" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
