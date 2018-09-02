@@ -1,3 +1,10 @@
+# Solutions Engineer Answers
+`Yoonhye Jung`
+`Sydney`
+`yoonhyej.jung@gmail.com`
+
+
+
 ## Questions
 
 Please provide screenshots and code snippets for all steps.
@@ -9,7 +16,28 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
+> Answer: Set up `Vagrant Ubuntu 14.04 LTS` for this exercise.
+
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+
+> Answer: Signed up and Installed "Datadog Agent v6" on Ubuntu
+> 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Setup_01_Agent%20installation.png" />
+
+> 1. Click 'Intergrations-Agent' button on the top drop-down menu  
+> 2. Find [Ubuntu](https://app.datadoghq.com/account/settings#agent/ubuntu) on the left-side menu
+> 3. Follow the instruction for installing Datadog Agent v6 on Ubuntu
+```
+DD_API_KEY=5d35ac69e9371611b7100041d2959ee9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Setup_02_Install%20agent%20on%20Ubuntu.png" />
+> Apply 'easy one-step install' in Ubuntu terminal
+
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Setup_03_Start%20agent%20on%20Ubuntu.png" />
+> Complete installation and start Datadog Agent
+```
+sudo start datadog-agent
+```
 
 ## Collecting Metrics:
 
@@ -107,17 +135,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
 
 ## References
 
