@@ -307,3 +307,7 @@ Run "ddtrace-run python test.py" cmd and then browse to datadog website, "APM" -
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/650.PNG" width="750px" />
 </div>
 
+The link to the dashboard with both APM and Infrastructure Metrics is [here](https://app.datadoghq.com/dash/904405/allens-timeboard-2-sep-2018-2136?live=true&page=0&is_auto=false&from_ts=1535885101126&to_ts=1535888701126&tile_size=m).👈 Screenshot as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/660.PNG" width="750px" />
+</div>
