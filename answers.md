@@ -220,7 +220,7 @@ Snapshot the graph as below and confirm the email as below
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/400.PNG" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/471.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/410.PNG" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/420.PNG" width="750px" />
@@ -257,7 +257,7 @@ Screenshots of different messages depends on different status.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/470.png" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/480.png" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/471.png" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
