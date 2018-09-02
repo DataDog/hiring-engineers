@@ -247,7 +247,7 @@ Choose "Monitors" -- "New Monitor", then choose "Metric", on the setup page, upd
 
 **Step 2.**
 
-Input the code showed below into "Say what's happening" section.
+Input the code showed below into "Say what's happening" section. (Since it's taking too long to get am alert on a 5 mins base, so I change to 1 min just to get the alert email).
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/461.png" width="750px" />
 </div>
@@ -257,7 +257,7 @@ Screenshots of different messages depends on different status.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/470.png" width="750px" />
 </div>
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/471.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.PNG" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
