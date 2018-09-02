@@ -279,3 +279,18 @@ Alert will be muted during Sat and Sun.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/520.png" width="750px" />
 </div>
+
+Notification screenshots as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/530.png" width="750px" />
+</div>
+
+# Collecting APM Data
+
+Reference can be found from [here](https://docs.datadoghq.com/tracing/setup/python/).👈
+Install Datadog Tracing library by running cmd "pip install ddtrace"
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/600.PNG" width="750px" />
+</div>
+
+
