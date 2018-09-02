@@ -311,3 +311,6 @@ The link to the dashboard with both APM and Infrastructure Metrics is [here](htt
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/660.png" width="750px" />
 </div>
+
+**Bonus Question**
+
