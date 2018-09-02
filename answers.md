@@ -8,6 +8,11 @@ For this part, I decided to use Vagrant and Virtualbox. Following the guide, I i
 <p>
 For Vagrant, I went to: https://www.vagrantup.com/downloads.html and downloaded the macOS 64-bit installer. Once it finished downloading, I double-clicked the downloaded file and then double-clicked the vagrant.pkg icon. At this point after clicking continue and then next, the installer proceeded and started installing into the computer. There will be a security prompt that pops up asking for your computer password to finish the installation. Once installed the downloaded file can be safely deleted.
 
+<details><summary>Image of virtualbox installation</summary>
+<img src="./images/image0.png"/>
+</details>
+<br>
+
 For VirtualBox, I went to: https://www.virtualbox.org/wiki/Downloads and downloaded the VirtualBox for OS X hosts. I repeated the steps listed above in the vagrant installation and installed the VirtualBox on my computer.
 </p>
 </details>
