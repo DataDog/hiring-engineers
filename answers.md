@@ -252,3 +252,13 @@ Input the code showed below into "Say what's happening" section.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/461.png" width="750px" />
 </div>
 
+Screenshots of different messages depends on different status.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/470.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/480.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
+</div>
