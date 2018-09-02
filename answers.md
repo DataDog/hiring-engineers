@@ -208,6 +208,23 @@ Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/380.png" width="750px" />
 </div>
 
+**Step 2.**
+
+On the "My Timeboard" webpage, hang ove the mouse to the current time on the graph, click and hold the mouse to drag it to the time point on the graph 5 mins ago. Scrrenshot as below.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/390.PNG" width="750px" />
+</div>
+
+Snapshot the graph as below and confirm the email as below
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/400.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/410.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/420.PNG" width="750px" />
+</div>
 
 
 
