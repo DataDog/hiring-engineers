@@ -205,7 +205,7 @@ Before run the cmd "python timeboard.py" in Shell, first run "apt install python
 
 Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards List", two graphs are created.
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/381.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/380.png" width="750px" />
 </div>
 
 
