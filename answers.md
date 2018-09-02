@@ -299,4 +299,11 @@ Create a test.py under /etc/datadog-agent and attach the code as below.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/630.PNG" width="750px" />
 </div>
 
+Run "ddtrace-run python test.py" cmd and then browse to datadog website, "APM" -- "Services".
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/640.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/650.PNG" width="750px" />
+</div>
 
