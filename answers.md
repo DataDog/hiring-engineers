@@ -230,7 +230,7 @@ class MyCheck(AgentCheck):
         time.sleep(45)
 ```
 
-### Bonus
+* **Bonus Question**: Setting a minimum check interval.  
 
 As mentioned above, to add a minimum interval for the agent check can be achieved by editing the .yaml file inside the /etc/datadog-agent/conf.d. Each agent check file inside /etc/datadog-agent/checks.d has a corresponding .yaml file inside /etc/datadog-agent/conf.d that shares the same name. For example /etc/datadog-agent/checks.d/hello.py and /etc/datadog-agent/conf.d/hello.yaml. By adding min_collection_interval option to hello.yaml, I will only set a minimum interval collection for hello.py. All other checks inside the checks.d will be unaffected.  
 
@@ -444,8 +444,8 @@ The anomaly graph tries to give a prediction range of where the metric should be
 
  To monitor the data there are two approaches. One is to set up on the datadog website and the other is to use the API.
 
- Datadog website:
- -After logging in look towards the left or top for **Monitors> New Monitors**
+ Datadog website:  
+ -After logging in look towards the left or top for **Monitors> New Monitors**.  
  -Since we're monitoring metric, select metric as the monitor type.  
  -The previous step will bring you to a screen with 5 steps that needs to be filled out.  
 * Step 1: Since we're looking for an alert when the metric passes a certain value, I chose threshold alert
