@@ -262,3 +262,10 @@ Screenshots of different messages depends on different status.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
 </div>
+
+**Bonus Question**
+
+This can setup through "Monitors" -- "Manage Downtime"
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/500.PNG" width="750px" />
+</div>
