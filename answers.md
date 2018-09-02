@@ -3,9 +3,18 @@
 ## Prerequisites - Setup the environment
 
 Summary:
-For this part, I decided to use Vagrant and Virtualbox. Following the guide, I installed both Vagrant and Virtualbox. I'm currently using a mac, so I downloaded both of them for the mac (.dmg extension). Following the instructions that come with the installers, I installed both Vagrant and VirtualBox (Detailed explanation is listed at the end).  
+For this part, I decided to use Vagrant and Virtualbox. Following the guide, I installed both Vagrant and Virtualbox. I'm currently using a mac, so I downloaded both of them for the mac (.dmg extension). Following the instructions that come with the installers, I installed both Vagrant and VirtualBox.  
+<details><summary>Detailed installation of VirtualBox and Vagrant</summary>
+<p>
+For Vagrant, I went to: https://www.vagrantup.com/downloads.html and downloaded the macOS 64-bit installer. Once it finished downloading, I double-clicked the downloaded file and then double-clicked the vagrant.pkg icon. At this point after clicking continue and then next, the installer proceeded and started installing into the computer. There will be a security prompt that pops up asking for your computer password to finish the installation. Once installed the downloaded file can be safely deleted.
+
+For VirtualBox, I went to: https://www.virtualbox.org/wiki/Downloads and downloaded the VirtualBox for OS X hosts. I repeated the steps listed above in the vagrant installation and installed the VirtualBox on my computer.
+</p>
+</details>
+<br>
 
 Once the installation is completed I created a folder to hold all the work and then I went into the folder and set up vagrant with Linux version 16.04. All vagrant boxes versions can be found here: <https://app.vagrantup.com/boxes/search>. Ubuntu/xenial64 is 16.04, so I went with that.  
+
 
 ```markdown
 vagrant init ubuntu/xenial64
@@ -32,13 +41,7 @@ At this point, my user on my terminal changed to "vagrant@ubuntu-xenial" so I kn
 
 I registered for a 14-day trial account here: <https://www.datadoghq.com/> and clicked the "get started free" button on the upper right. Once registered I skipped the part where I describe my stack.
 
-<details><summary>Detailed installation of VirtualBox and Vagrant</summary>
-<p>
-For Vagrant, I went to: <https://www.vagrantup.com/downloads.html> and downloaded the macOS 64-bit installer. Once it finished downloading, I double-clicked the downloaded file and then double-clicked the vagrant.pkg icon. At this point after clicking continue and then next, the installer proceeded and started installing into the computer. There will be a security prompt that pops up asking for your computer password to finish the installation. Once installed the downloaded file can be safely deleted.
 
-For VirtualBox, I went to: <https://www.virtualbox.org/wiki/Downloads> and downloaded the VirtualBox for OS X hosts. I repeated the steps listed above in the vagrant installation and installed the VirtualBox on my computer.
-</p>
-</details>
 
 ## Collecting Metrics
 
@@ -273,9 +276,28 @@ api.Timeboard.create(title=title,                               #takes title, de
                      read_only=read_only)
 ```
 
-for my requirement I needed the following:  
+For generation of graphs I passed my requirements into the graph array:
 
-* Your custom metric scoped over your host.  
+```python
+graphs = [{
+    "definition": {                        
+        "events": [
+            {"q": "search query"}                                                    #Overlay any event from Datadog
+        ],
+        "requests": [
+            {"q": "function(aggregation method:metric{scope} [by {group}])"}         #What the graph displays
+        ],
+        "viz": "visualization type of the graph"                                     #Time Series, Heatmap, Distribution, Toplist, Change, Hostmap
+    },
+    "title": "Name of graph"
+}]
+```
+
+Following the guide <https://docs.datadoghq.com/graphing/graphing_json/#grammar>, I added my requirements to the request object. For my requirement I needed the following:  
+
+* Your custom metric scoped over your host.
+
+For this one I didn't need a function, an aggregation method or grouping on my_metric_value over my host.
 
 ```python
 {
@@ -292,14 +314,14 @@ for my requirement I needed the following:
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-Randomly picked mysql.innodb.data_reads from: <https://docs.datadoghq.com/integrations/mysql/>. Anomaly function guide/template can be found here: <https://docs.datadoghq.com/graphing/functions/algorithms/>
+I randomly picked mysql.innodb.data_reads from: <https://docs.datadoghq.com/integrations/mysql/>. Anomaly function guide/template can be found here: <https://docs.datadoghq.com/graphing/functions/algorithms/>. For this graph I needed an anomaly function, no aggregation method on mysql.innodb.data_reads over my host. The anomaly function required two additional parameters which are algorithm(basic, agile, or robust) and bounds(integer).
 
 ```python
 {
     "definition": {                        
         "events": [],
         "requests": [
-            {"q": "anomalies(mysql.innodb.data_reads{host:ubuntu-xenial}, 'basic', 2)"}  #anomaly detection on the average data reads using the basic algorhitm with a standard deviation of 2
+            {"q": "anomalies(mysql.innodb.data_reads{host:ubuntu-xenial}, 'basic', 2)"}  
         ],
         "viz": "timeseries"
     },
@@ -307,7 +329,7 @@ Randomly picked mysql.innodb.data_reads from: <https://docs.datadoghq.com/integr
 }
 ```
 
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Rollup docs here: <https://docs.datadoghq.com/graphing/functions/rollup/>
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Rollup docs here: <https://docs.datadoghq.com/graphing/functions/rollup/>.
 
 ```python
 {
@@ -396,10 +418,17 @@ python3 custom_timeboard.py
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-To do this it's very simple. Just left click on a graph and drag to select a five minute period.
+To do this it's very simple. I navigated to the newly generated timeboard on DataDog's website and **Dashboards> Dashboard list** and picked my newly generated dashboard. To select 5 minutes time frame, I just left click on a graph and drag to select a five minute period.
+
+<details><summary>Image of created timeboard with a time frame of 5 minutes</summary>
+<img src="./images/image21.png"/>
+</details>
+<br>
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+On the dashboard, I picked the graph I wanted to send to email and on the upper right, I pressed the camera button. This brought up a text box which I used to email myself using the @ notation (@steven_yuen05@hotmail.com).
   
 <details><summary>Image of timeboard over the last 5 minutes emailed to myself</summary>
 <img src="./images/image9.png"/>
@@ -425,7 +454,7 @@ The anomaly graph tries to give a prediction range of where the metric should be
 
 * Step 3: This is where I specified the values for an alert and a warning alert. In my case I wanted to see when the metric is above the threshold on average during the last 5 minutes. My alert threshold is 800 and my warning threshold is 500. I also wanted an alert if no data is being sent. This was achieved by changing "Do not notify" to "Notify" if data is missing. Changing it brings up an additional option to select for how long data needs to be missing before issuing an alert. In my case, it's 10 minutes.
   
-* Step 4: This is where I customized my alert messages. Following the guide here: <https://docs.datadoghq.com/monitors/notifications/>, I needed to create a message with {{#is_alert}}, {{#is_warning}} and {{#is_no_data}}. Also this alert requires a title. I also used {{host.ip}}, {{value}}, {{threshold}} and {{warn_threshold}} to see the value of host ip, metric value, alert threshold and warning threshold respectively.
+* Step 4: This is where I customized my alert messages. Following the guide here: <https://docs.datadoghq.com/monitors/notifications/>, I needed to create a message with ```{{#is_alert}}```, ```{{#is_warning}}``` and ```{{#is_no_data}}```. Also this alert requires a title. I also used ```{{host.ip}}```, ```{{value}}```, ```{{threshold}}``` and ```{{warn_threshold}}``` to see the value of host ip, metric value, alert threshold and warning threshold respectively.
 
 * Step 5: This is where I set who to notify with these alerts and warnings. I did that by typing in my name. Once done I went ahead and press save to save the monitor. If all went well I should be receiving warning and alerts emails from DataDog.
 
