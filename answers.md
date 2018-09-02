@@ -212,7 +212,7 @@ Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards
 
 On the "My Timeboard" webpage, hang ove the mouse to the current time on the graph, click and hold the mouse to drag it to the time point on the graph 5 mins ago. Scrrenshot as below.
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/390.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/390.png" width="750px" />
 </div>
 
 Snapshot the graph as below and confirm the email as below
@@ -226,7 +226,23 @@ Snapshot the graph as below and confirm the email as below
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/420.PNG" width="750px" />
 </div>
 
+**Bonus Question**
 
+Grey area on the graph is what datadog consider as the normal range and the red section indicates not normal usage.
 
+# Monitoring Data
+
+**Step 1.**
+
+Choose "Monitors" -- "New Monitor", then choose "Metric", on the setup page, update the arguments as requested.
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/430.PNG" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/440.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/450.png" width="750px" />
+</div>
 
 
