@@ -322,3 +322,8 @@ The link to the dashboard with both APM and Infrastructure Metrics is [here](htt
 
 **Bonus Question**
 
+A Resource is a particular action for the service. For example, a database is a service, a query is a resource.
+
+# Final Question
+
+Hmmm, can't really call this creative, but monitor IoT sounds cool, you can remotely check like what's happening at your home and prepare what needs to be done in advance. 
