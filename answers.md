@@ -280,9 +280,12 @@ Alert will be muted during Sat and Sun.
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/520.png" width="750px" />
 </div>
 
-Notification screenshots as below.
+Notification screenshots as below. (Time in the email is UTC)
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/530.png" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/490.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/480.png" width="750px" />
 </div>
 
 # Collecting APM Data
