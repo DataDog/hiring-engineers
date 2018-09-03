@@ -105,7 +105,7 @@ https://app.datadoghq.com/dash/904267
 
 Is there anything creative you would use Datadog for?
 
-I visit the Adirondacks every Summer, which has hiking trails that are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The state could build an app that allows consumers to see parking availability in real-time, and allow them to identify trails or parks that are hidden gems not overrun by visitors.
+I visit the Adirondacks every Summer, which has hiking trails that are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. They could deploy more personnel to locations under peak conditions, or develop better plans to maintain the trail at the appropriate frequency, or develop a more informed strategy for parking concerns. The State could build an app that allows consumers to see parking availability in real-time, and allow them to identify trails or parks that are hidden gems not overrun by visitors.
 
 Separately, cable companies or power companies could use devices with Datadog agent to proactively identify outages and respond to them without having to rely on individuals reporting outages. Notifications would be used to let consumers know when an outage has occurred and when it has been restored.
 
