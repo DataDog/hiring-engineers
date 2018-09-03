@@ -31,6 +31,7 @@ Datadog is a data monitoring service for cloud-scale applications, bringing toge
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 #### Answer: Find it at InitialHostmap.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialHostmap.png
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -124,6 +125,7 @@ curl  -X POST -H "Content-type: application/json" \
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 #### Find this at 5min graph.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/5min%20graph.png
 
 Bonus Question: What is the Anomaly graph displaying?
 #### not sure, if this question is really meant this straight forward...
@@ -140,6 +142,8 @@ Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 #### See at metric monitor1.png and metric monitor2.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor2.png
 
 Please configure the monitor’s message so that it will:
 
@@ -152,6 +156,7 @@ Include the metric value that caused the monitor to trigger and host ip when the
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 #### see at warningAlert.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/WarningAlert.png
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -160,14 +165,20 @@ And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification
 
 #### see at Silenced MonitorUI1.png, Silenced Monitor Mail 1.png, resp the versions with the 2
+https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI1.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI2.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%201.png
+https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%202.png
 
 ### Level 4 - Collecting APM Data
 
 #### see at Combined APM and Infrastructure.png
-#### will link work?
+https://github.com/GerdPlewka/hiring-engineers/blob/master/Combined%20APM%20and%20Infrastructure.png
+
 #### https://app.datadoghq.com/dash/904666/gerds-api-timeboard?live=true&page=0&is_auto=false&from_ts=1535957036725&to_ts=1535971436725&tile_size=m
 
 Bonus Question: What is the difference between a Service and a Resource?
+##### A "service" is a set of processes, whereas a "resource" is anz data that is returned, when querying a "service" 
 
 ### Level 5 - Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -179,7 +190,7 @@ Is there anything creative you would use Datadog for?
 #### see, if I can get hold of a multisensor (GPS, GSM, acceleration, temp, humid...) to get more into the field of IoT
 
 
-#### A "service" is a set of processes, whereas a "resource" is anz data that is returned, when querying a "service" 
+
 
 ## Instructions
 If you have a question, create an issue in this repository.
