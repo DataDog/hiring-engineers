@@ -56,6 +56,9 @@ Here's the snapshot of a graph on the Timeboard (scoped to last 5 minutes) that 
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-snapshot-sent-to-self.png">
 
+My dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
+https://app.datadoghq.com/dash/905077
+
 **Bonus Question** What is the Anomaly graph displaying?
 
 * For my Postgres integration, I initially chose the metric named postgresql.max_connections. Since I did nothing more than start one database and leave it alone, the Anomaly graph doesn't yield any useful insights. That's because the value of my metric is 100 at all times. If the value had fluctuated over time, I would have seen a gray band around the usual results, indicating an expected "normal" range. Since the metric postgresql.max_connections wasn't useful, I scrolled through the remaining metrics for postgres but I couldn't find a metric that showed the gray band in a satisfying way. I suppose I could take some actions on the Postgres environment that would result in a more satisying graph, but I don't think that's the point of this exercise. The point is to be able to correctly interpret the graphs.
