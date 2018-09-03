@@ -1,4 +1,4 @@
-PS: Please enlarge the whole webpage to check the screenshots.😉
+PS: Please zoom out the whole webpage a little bit to check the screenshots.😉
 
 # Prerequisites - Setup the environment
 
