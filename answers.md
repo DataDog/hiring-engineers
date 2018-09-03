@@ -30,6 +30,13 @@ After changing my check's collection interval to submit the metric once every 45
 
 The script that I've used to create my Timeboard is <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">here</a>.
 
+Here's a screenshot of the Timeboard that I created via API:
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-timeboard-created-via-api.png">
+
+Here's the snapshot of a graph on the Timeboard (scoped to last 5 minutes) that I sent to myself:
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-snapshot-sent-to-self.png">
+
+
 ## Section 3: Monitoring Data
 
 ## Section 4: Collecting APM Data
