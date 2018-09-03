@@ -189,7 +189,7 @@ Locate the api key and the app key from Integration -- APIs, need to generate th
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/320.PNG" width="750px" />
 </div>
 
-Create a timeboard.py file under /etc/datadog-agent and attach the code as below.
+Create a timeboard.py file under /etc/datadog-agent and attach the code as below. [timeboard.py](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/timeboard.py).👈
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/370.PNG" width="750px" />
 </div>
