@@ -329,4 +329,4 @@ A Resource is a particular action for the service. For example, a database is a 
 
 # Final Question
 
-Hmmm, can't really call this creative, but monitor IoT sounds cool, you can remotely check like what's happening at your home and prepare what needs to be done in advance. 
+Hmmm😑, can't really say this is creative, but monitor IoT sounds cool, you can remotely check like what's happening at your home and prepare what needs to be done in advance. 😁
