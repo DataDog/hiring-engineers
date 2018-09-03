@@ -27,7 +27,7 @@ graphs = [{
   ],
         "viz": "timeseries"
     },
-    "title": "Average of postgresql.bgwriter.buffers_alloc over * with anomaly function applied"
+    "title": "Average of postgresql.bgwriter.buffers_alloc on host precise64 * with anomaly function applied"
 },
 
 {
