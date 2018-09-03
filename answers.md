@@ -16,9 +16,25 @@ I installed the Postgres integration in Datadog:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-postgresql-installed.png">
 
-My custom Agent check that submits a metric named my_metric with a random value between 0 and 1000:
+My custom Agent check that submits a metric named my_metric with a random value between 0 and 1000, in checks.d/hello.py:
 
-<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-my_metric-py.png">
+```
+import random
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('hello.world', 1)
+        self.gauge('my_metric', random.randint(0,1001))
+```
+
+Here's where I adjusted the interval, in conf.d/hello.yaml:
+
+```
+init_config:
+
+instances:
+   - min_collection_interval: 45
+```
 
 After changing my check's collection interval to submit the metric once every 45 seconds, the data points occur less frequently on the graph as expected:
 
