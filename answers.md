@@ -74,14 +74,14 @@ Screenshot of the email sent to me by my monitor:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-email-notification.png">
 
-**Bonus Question** Two downtimes.
+**Bonus Question** Setup two Downtimes.
 
-First one silences the monitor from 7pm to 9am daily on M-F. Email notification received:
+The first Downtime silences the monitor from 7pm to 9am daily on M-F. Email notification received:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-downtime-notification.png">
 
 
-Second one silences the monitor all day on Sat-Sun, and I set it to begin next weekend. Email notification received:
+The second Downtime silences the monitor all day on Sat-Sun, and I set it to begin next weekend. Email notification received:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-downtime-notification-weekend.png">
 
