@@ -13,6 +13,7 @@ sudo service postgresql start
 ```
 
 I installed the Postgres integration in Datadog:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-postgresql-installed.png">
 
 My custom Agent check that submits a metric named my_metric with a random value between 0 and 1000:
