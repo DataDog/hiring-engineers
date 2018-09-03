@@ -80,6 +80,7 @@ Drilling down into the service, I can scroll down and see specifics on the vario
 **Bonus Question** What is the difference between a Service and a Resource?
 
 A Service is a higher-level entity that can be traced, such as a web resource or a database. A Service may have several Resources. For example, a web application is a Service, and the various http endpoints that it supports are among its Resources. I deployed the given Flask app, which is a Service. Each HTTP route that it defines is a Resource.
+
 For the official definitions of Service and Resource, see the documentation here: https://docs.datadoghq.com/tracing/visualization/
 
 
@@ -87,7 +88,7 @@ For the official definitions of Service and Resource, see the documentation here
 
 Is there anything creative you would use Datadog for?
 
-I visit the Adirondacks every summer, which has hiking trails which are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The state could build an app that allows consumers to see parking availability in real-time, and maybe identify trails or parks that are hidden gems and not overrun by other people.
+I visit the Adirondacks every Summer, which has hiking trails that are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The state could build an app that allows consumers to see parking availability in real-time, and allow them to identify trails or parks that are hidden gems not overrun by visitors.
 
 Separately, cable companies or power companies could use devices with Datadog agent to proactively identify outages and respond to them without having to rely on individuals reporting outages. Notifications would be used to let consumers know when an outage has occurred and when it has been restored.
 
