@@ -23,7 +23,8 @@ After changing my check's collection interval to submit the metric once every 45
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-my_metric-interval-increased.png">
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-My Custom check inherits from Agent check. Rather than modifying the interval in my file, I could edit the process interval in Datadog.yaml.
+
+* My Custom check inherits from Agent check. Rather than modifying the interval in my file, I could edit the process interval in Datadog.yaml.
 
 ## Section 2: Visualizing Data
 
