@@ -17,9 +17,11 @@ I installed the Postgres integration in Datadog:
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-postgresql-installed.png">
 
 My custom Agent check that submits a metric named my_metric with a random value between 0 and 1000:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-my_metric-py.png">
 
 After changing my check's collection interval to submit the metric once every 45 seconds, the data points occur less frequently on the graph as expected:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-my_metric-interval-increased.png">
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -31,9 +33,11 @@ After changing my check's collection interval to submit the metric once every 45
 The script that I've used to create my Timeboard is <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">here</a>.
 
 Here's a screenshot of the Timeboard that I created via API:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-timeboard-created-via-api.png">
 
 Here's the snapshot of a graph on the Timeboard (scoped to last 5 minutes) that I sent to myself:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-snapshot-sent-to-self.png">
 
 **Bonus Question** What is the Anomaly graph displaying?
@@ -65,9 +69,14 @@ Second one silences the monitor all day on Sat-Sun, and I set it to begin next w
 
 ## Section 4: Collecting APM Data
 
-Before tracing the Flask app, I enabled networking in my Vagrantfile:
+First, I enabled networking in my Vagrantfile by exposing the VM's port 5050 on the host port 8081:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-enabling-networking.png">
+
+I used ddtrace-run instead of manually instrumenting the Python Flask app. The How-To for manual instrumentation can be found in the docs <a href="https://docs.datadoghq.com/tracing/advanced_usage/?tab=python#manual-instrumentation">here</a>.
+
+I used the Flask app that was provided in the instructions, and I included it <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/flask-app.py">here</a>.
+
 
 Then I opened up my browser and hit the various endpoints (resources) to generate some results. Consequently my Flask service appeared in Datadog APM:
 
@@ -82,6 +91,14 @@ Drilling down into the service, I can scroll down and see specifics on the vario
 A Service is a higher-level entity that can be traced, such as a web resource or a database. A Service may have several Resources. For example, a web application is a Service, and the various http endpoints that it supports are among its Resources. I deployed the given Flask app, which is a Service. Each HTTP route that it defines is a Resource.
 
 For the official definitions of Service and Resource, see the documentation here: https://docs.datadoghq.com/tracing/visualization/
+
+Screenshot of dashboard showing both APM and Infra metrics:
+
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-dashboard-both-apm-and-infra.png">
+
+Link to dashboard showing both APM and Infra metrics:
+https://app.datadoghq.com/dash/904267
+
 
 
 ## Final Question
