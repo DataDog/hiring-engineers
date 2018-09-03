@@ -46,7 +46,7 @@ After cmd "vagrant up" is completed, a virtual machine will be generated in Virt
 
 **Step 5.**
 
-Signup a free datadog trail account from [here](https://www.datadoghq.com/#) and use “Datadog Recruiting Candidate” in the “Company” field and login after creating the account.
+Signup a free datadog trail account from [here](https://www.datadoghq.com/#) 👈and use “Datadog Recruiting Candidate” in the “Company” field and login after creating the account.
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/90.png" width="750px" />
 </div>
