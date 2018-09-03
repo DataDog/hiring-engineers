@@ -409,10 +409,20 @@ api.Timeboard.create(title=title,
 ```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_app.py -->
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyCustomTimeboard.png"/>
 
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyMetricTimeboard"/>
 
+Setting Timeboard's timeframe to the past 5 minutes: This is done by selecting the last 5min timeframe in the graph:
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyCustomTimeboard.png"/>
+
+Taking a snapshot of this graph and using the @ notation to send it to yourself:
+
+- Taking a snapshot
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/snapshot.png"/>
+
+- Email received
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/email_snapshot.png"/>
 
 * BONUS QUESTION:
 --> The anomaly graph is displaying the expected behavior of the metric based on its past collected values.
@@ -421,14 +431,21 @@ In our case, the algorithm choosen is basic, it uses small amount of data to det
 
 # Monitoring Data
 
-Please check attached screenshots (Screenshots/notification_config.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_config.png).
-Notification annotation (Screenshots/email_annotation.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/email_annotation.png)
+In order to create the monitor, I have had to go through this [documentation](https://docs.datadoghq.com/monitors/).
 
+The monitor was created through the front end
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_config.png"/>
+
+
+
+and the following alerting template were used to create the notification emails, I wrote it after going through this [documentation](https://docs.datadoghq.com/monitors/notifications/).
 
 
 Alerting message template:
 
 ***************************
+```
 Hello team,
 
 {{#is_alert}}
@@ -450,9 +467,57 @@ Please be warned that no data was collected on {{host.name}} ({{host.ip}}), for 
 {{/is_no_data}}
 
 Regards, @safa.el.kafsi@gmail.com
+```
 ***************************
 
-Mails received (Screenshots/notification_warn: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_warn.png)
+These are the different emails that were received:
+
+- Alert email
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/Alert.png"/>
+
+- Warning email:
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/Alert.png"/>
+
+
+
+* BONUS QUESTION
+
+
+I have created the Maintenance Periods through datadog front end, and have followed this [documentation](https://docs.datadoghq.com/monitors/downtimes/) in order to do so.
+
+These are the scheduled downtimes I have created:
+
+
+- A scheduled downtime that silences MyMetric from 7pm to 9am on weekdays
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MaintenancePeriod_weekdays.png"/>
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekdays2.png"/>
+
+- A schedule downtime that that silences it all day during the weekend
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend.png"/>
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend2.png"/>
+
+These are the notifications I have received:
+
+- Scheduled downtime starting on weekdays
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekday_start.png"/>
+
+- Scheduled downtime ending on weekdays
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekday_end.png"/>
+
+- Scheduled downtime starting on weekend
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend_start.png"/>
+
+- Scheduled downtime ending on weekend
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend_end.png"/>
+
 
 
 ** Adding maintenance periods:
