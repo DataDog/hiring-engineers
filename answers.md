@@ -1,3 +1,5 @@
+PS: Please enlarge the whole webpage to check the screenshots.😉
+
 # Prerequisites - Setup the environment
 
 Answers : I use Vagrant and VirtualBox to setup the test environment. Since I am working on a windows PC, I choose cmder as the console emulator for Shell.
