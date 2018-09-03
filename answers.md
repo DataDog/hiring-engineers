@@ -111,7 +111,7 @@ sudo start datadog-agent
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 > 
 > Answer: Each check has a YAML configuration file and the check module with the same name as YAML file (e.g.: mycheck.py and mycheck.yaml)
-  I created the two files in each folder as explained below.
+> I created the two files in each folder as explained below.
 
 > 1. Add a simple configuration file named "mycheck.yaml" in `/etc/datadog-agent/conf.d` folder
 >>```
@@ -130,11 +130,26 @@ sudo start datadog-agent
 >> sudo datadog-agent status
 >>```
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_07_Custom%20Agent%20Check_mycheck.png" />
-
-
+>
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+> Answer:   Added a line `min_collection_interval: 45` at the instances level for Agent 6 in the YAML file
+>
+>>```
+>>init_config:
+>>
+>>instances:
+>>    - min_collection_interval: 45
+>>```
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+> Answer:   Change the collection interval on the Metrics page in Datadog
+> 1. Click 'Metrics-Summary' button on the top drop-down menu  
+> 2. Find 'my_metric' on the left-side menu and click
+> 3. Click on the 'Metadata' Edit icon and insert interval value and save
+>
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_08_Custom%20Agent%20Check_metadata.png" />
+
 
 ## Visualizing Data:
 
