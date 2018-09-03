@@ -21,7 +21,7 @@ Download cmder from [here](https://github.com/cmderdev/cmder/releases/download/v
 
 **Step 2.**
 
-Install the above tools and locate the ubuntu image from [here](https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q=ubuntu)👈
+Install the above tools and locate the ubuntu image (16.04) from [here](https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q=ubuntu).👈
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/40.png" width="750px" />
 </div>
