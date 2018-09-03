@@ -254,12 +254,15 @@ Input the code showed below into "Say what's happening" section. (Since it's tak
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/461.png" width="750px" />
 </div>
 
-Screenshots of different messages depends on different status.
+Screenshots of different messages depends on different status. (Screenshot of no data is from my other datadog test account, I don't have the chance to trigger the no data email in this account. Setting are the same, just the context is different.)
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/470.png" width="750px" />
 </div>
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/473.png" width="750px" />
+</div>
+<div align="center">
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/670.png" width="750px" />
 </div>
 
 **Bonus Question**
