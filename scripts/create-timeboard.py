@@ -7,7 +7,7 @@ options = {
 
 initialize(**options)
 
-title = "David's Timeboard created via API"
+title = "David's Timeboard created via API!"
 description = "David's custom informative timeboard."
 graphs = [{
     "definition": {

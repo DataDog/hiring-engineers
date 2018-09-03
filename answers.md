@@ -48,18 +48,48 @@ Just for fun, changing the metric on my Anomaly graph to "my_metric", results in
 ## Section 3: Monitoring Data
 
 Screenshot of the email sent to me by my monitor:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-email-notification.png">
 
 **Bonus Question** Two downtimes.
 
 First one silences the monitor from 7pm to 9am daily on M-F. Email notification received:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-downtime-notification.png">
 
 
-Second one silences the monitor all day on Sat-Sun: Email notification received:
+Second one silences the monitor all day on Sat-Sun, and I set it to begin next weekend. Email notification received:
+
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/3-downtime-notification-weekend.png">
 
 
 ## Section 4: Collecting APM Data
 
+Before tracing the Flask app, I enabled networking in my Vagrantfile:
+
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-enabling-networking.png">
+
+Then I opened up my browser and hit the various endpoints (resources) to generate some results. Consequently my Flask service appeared in Datadog APM:
+
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-apm-service-flask.png">
+
+Drilling down into the service, I can scroll down and see specifics on the various Resources:
+
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-apm-service-flask-details.png">
+
+**Bonus Question** What is the difference between a Service and a Resource?
+
+A Service is a higher-level entity that can be traced, such as a web resource or a database. A Service may have several Resources. For example, a web application is a Service, and the various http endpoints that it supports are among its Resources. I deployed the given Flask app, which is a Service. Each HTTP route that it defines is a Resource.
+
 ## Final Question
+
+Is there anything creative you would use Datadog for?
+
+I visit the Adirondacks every summer, which has hiking trails which are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The data could be used by consumers to identify trails or parks that are hidden gems and not overrun by other people.
+
+Separately, cable companies or power companies could use devices with Datadog agent to proactively identify outages and respond to them without having to rely on individuals reporting outages. Notifications would be used to let consumers know when an outage has occurred and when it has been restored.
+
+## Links to dashboards
+
+https://app.datadoghq.com/dash/904267/davids-timeboard-created-via-api
+
