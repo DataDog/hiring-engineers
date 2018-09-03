@@ -82,7 +82,7 @@ Then I opened up my browser and hit the various endpoints (resources) to generat
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-apm-service-flask.png">
 
-Drilling down into the service, I can scroll down and see specifics on the various Resources:
+Drilling down into the service, I can scroll down and see how many requests have occurred on the various Resources:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/4-apm-service-flask-details.png">
 
@@ -112,6 +112,7 @@ Separately, cable companies or power companies could use devices with Datadog ag
 ## Links to dashboards
 
 My dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
-
 https://app.datadoghq.com/dash/905077/davids-timeboard-created-via-api
 
+Link to dashboard showing both APM and Infra metrics:
+https://app.datadoghq.com/dash/904267
