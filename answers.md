@@ -28,6 +28,8 @@ After changing my check's collection interval to submit the metric once every 45
 
 ## Section 2: Visualizing Data
 
+The script that I've used to create my Timeboard is <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">here</a>.
+
 ## Section 3: Monitoring Data
 
 ## Section 4: Collecting APM Data
