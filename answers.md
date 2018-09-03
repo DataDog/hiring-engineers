@@ -112,7 +112,7 @@ Separately, cable companies or power companies could use devices with Datadog ag
 ## Links to dashboards
 
 My dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
-https://app.datadoghq.com/dash/905077/davids-timeboard-created-via-api
+https://app.datadoghq.com/dash/905077
 
 Link to dashboard showing both APM and Infra metrics:
 https://app.datadoghq.com/dash/904267
