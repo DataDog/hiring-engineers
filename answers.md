@@ -79,7 +79,8 @@ Drilling down into the service, I can scroll down and see specifics on the vario
 
 **Bonus Question** What is the difference between a Service and a Resource?
 
-A Service is a higher-level entity that can be traced, such as a web resource or a database. A Service may have several Resources. For example, a web application is a Service, and the various http endpoints that it supports are among its Resources. I deployed the given Flask app, which is a Service. Each HTTP route that it defines is a Resource.
+A Service is a higher-level entity that can be traced, such as a web resource or a database. A Service may have several Resources. For example, a web application is a Service, and the various http endpoints that it supports are among its Resources. I deployed the given Flask app, which is a Service. Each HTTP route that it defines is a Resource. For the official definitions of Service and Resource, see the offical docs here: https://docs.datadoghq.com/tracing/visualization/
+
 
 ## Final Question
 
