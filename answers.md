@@ -1,156 +1,85 @@
 Your answers to the questions go here.
 
 
-Datadog link: 
+## Prerequisites - Setup the environment
 
-1- Setting Up the environment:
+I have started a linux VM via vagrant.
+To do so, I have followed the tutorial in [this link]( 
+https://www.vagrantup.com/intro/getting-started/via)
 
-* Create a Vagrantfile to start a VM machine with Ubuntu 16.0.4
+However, to start a Ubuntu 16.04 VM, since this is the minimum required, I have used the following [link](https://gist.github.com/maxivak/c318fd085231b9ab934e631401c876b1)
 
-Vagrant.configure("2") do |config|
+This is the content of the vagrant file
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/Vagrantfile -->
+Vagrant.configure(2) do |config|
+
   config.vm.box = "ubuntu/xenial64"
+
+  config.vm.provider "virtualbox" do |vb|
+    #   # Display the VirtualBox GUI when booting the machine
+    #   vb.gui = true
+    #
+    #   # Customize the amount of memory on the VM:
+    vb.memory = "1524"
+  end
+
+
 end
+<!-- <<<<<< END INCLUDED FILE (code_block): SOURCE Scripts/Vagrantfile  -->
 
-(Check the file in the attached documents: Scripts/Vagrantfile)
+I have used the following [link] (https://www.datadoghq.com/#) to get a free datadog account for 14 days.
 
-* Start the machine 
-vagrant up
+To liaise the new environnement with Datadog, I have installed the agent on the VM, by following the steps related to Ubuntu in the Datadog GUI, Integrations > API > Ubuntu.
 
-* Access the machine
-vagrant ssh 
-
-
-Hosts MAP Link: 
-https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/setting_agent.png" />
 
 
-2- Collecting Metrics
+
+## Collecting Metrics
 
 
-* Adding tags in the agent file:
+# Adding tags in the agent file:
 
-in /etc/datadog/datadog.yaml, add the follwing lines:
+The tags were created by adding the following lines in /etc/datadog/datadog.yaml file:
 
-tags:
-   - env:prod
-   - host:ubuntu
-   - name:precise64
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/datadog.yaml -->
 
-(check the config file in the attached documents Scripts/datadogyaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/datadog.yaml)
+tags: env:test, host:ubuntu, name:xenial, region:france
 
-Check screenshot of the added tags on Host monitor 
-(Screenshots/adding_tags.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/adding_tags.png, 
-Screenshots/hostmap_tags.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/hostmap_tags.png).
+<!-- <<<<<< END INCLUDED FILE (code_block): SOURCE Scripts/datadog.yaml  -->
 
-Host Map tags link: https://app.datadoghq.com/infrastructure/map?host=543861600&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
+A restart of the datadog agent is then done.
 
-* Installing a database:
+The documentation used can be found [here](https://docs.datadoghq.com/tagging/)
 
-Mysql is included in the datadog package as per the documentation
-https://docs.datadoghq.com/integrations/mysql/
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/adding_tags_xenial.png" />
 
-** Setting mysql:
+## Installing a database
 
---> Logs:
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ vi conf.yaml.example
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ ll
-total 16
-drwxr-xr-x  2 dd-agent dd-agent 4096 Aug  6 21:06 ./
-drwxr-xr-x 97 dd-agent dd-agent 4096 Aug  5 21:31 ../
--rw-r--r--  1 dd-agent dd-agent 5000 Aug  1 20:29 conf.yaml.example
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo cp conf.yaml.example  conf.yaml
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ chmod 755 conf.yaml
-chmod: changing permissions of 'conf.yaml': Operation not permitted
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo chmod 755 conf.yaml
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo vi conf.yaml
-***************************
+To install mysql on the VM, I have followed this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04)
 
+# Setting the datadog-mysql integration:
 
-** Installing mysql server on the same machine 
+I have followed the steps in this [link](https://docs.datadoghq.com/integrations/mysql/)
 
---> Logs:
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo apt-get update
-Hit:1 http://security.ubuntu.com/ubuntu xenial-security InRelease
-Hit:2 http://archive.ubuntu.com/ubuntu xenial InRelease
-Hit:3 http://archive.ubuntu.com/ubuntu xenial-updates InRelease
-Hit:4 http://archive.ubuntu.com/ubuntu xenial-backports InRelease
-Ign:5 https://apt.datadoghq.com stable InRelease
-Hit:6 https://apt.datadoghq.com stable Release
-Reading package lists... Done
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo apt-get install mysql-server
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-The following additional packages will be installed:
-  libaio1 libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.0-5 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
-  liblwp-mediatypes-perl libtimedate-perl liburi-perl mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server-5.7 mysql-server-core-5.7
-Suggested packages:
-  libdata-dump-perl libipc-sharedcache-perl libwww-perl mailx tinyca
-The following NEW packages will be installed:
-  libaio1 libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.0-5 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
-  liblwp-mediatypes-perl libtimedate-perl liburi-perl mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server mysql-server-5.7 mysql-server-core-5.7
-0 upgraded, 21 newly installed, 0 to remove and 2 not upgraded.
-Need to get 19.4 MB of archives.
-After this operation, 162 MB of additional disk space will be used.
-Do you want to continue? [Y/n] Y
-***************************
+First step is to create a user 'datadog'
 
-** Setting the datadog-Mysql integration
-
---> Logs:
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo mysql -u root --password=Kenza1608
-mysql: [Warning] Using a password on the command line interface can be insecure.
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 8
-Server version: 5.7.23-0ubuntu0.16.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'Hello00';
-ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
-mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'Hello1234';
+```
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'XXXXXXXX';
 Query OK, 0 rows affected (0.00 sec)
+```
 
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ mysql -u datadog --password="Hello1234" -e "show status" | \
+```
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ mysql -u datadog --password="XXXXXXXX" -e "show status" | \
 > grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
 > echo -e "\033[0;31mCannot connect to MySQL\033[0m";
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Uptime  714
 Uptime_since_flush_status       714
 MySQL user - OK
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ mysql -u datadog --password="Hello1234" -e "show slave status" && \
-> echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
-> echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
-mysql: [Warning] Using a password on the command line interface can be insecure.
-ERROR 1227 (42000) at line 1: Access denied; you need (at least one of) the SUPER, REPLICATION CLIENT privilege(s) for this operation
-Missing REPLICATION CLIENT grant
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo mysql -u datadog --password="Hello1234" -e "show slave status" && echo -e "\033[0;32mMySQL grant - OK\033[0m" || echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
-mysql: [Warning] Using a password on the command line interface can be insecure.
-ERROR 1227 (42000) at line 1: Access denied; you need (at least one of) the SUPER, REPLICATION CLIENT privilege(s) for this operation
-Missing REPLICATION CLIENT grant
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ sudo mysql -u root --password=Kenza1608
-mysql: [Warning] Using a password on the command line interface can be insecure.
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 13
-Server version: 5.7.23-0ubuntu0.16.04.1 (Ubuntu)
+```
 
-Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
+```
 mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
@@ -169,19 +98,24 @@ mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 
 mysql>
+```
 
-** Updating mysql config file:
+A restart of the agent is then neeeded. 
 
-init_config:
+
+# Mysql files updates:
+
+* Updating mysql init_config file:
 
 This is how is written the conf.yaml file in /etc/datadog/check.d/mysql.d
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
 instances:
     # NOTE: Even if the server name is "localhost", the agent will connect to MySQL using TCP/IP, unless you also
     # provide a value for the sock key (below).
   - server: 127.0.0.1
-     user: dataidog
-     pass: Hello1234
+     user: datadog
+     pass: XXXXXXXX
      port: 3306             # Optional
     # sock: /path/to/sock    # Connect via Unix Socket
     # defaults_file: my.cnf  # Alternate configuration mechanism
@@ -199,36 +133,14 @@ instances:
        extra_performance_metrics: true
        schema_size_metrics: false
        disable_innodb_metrics: false
-***************************
+
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
 
-The file can be found within the attached documents (Scripts/conf.yaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/conf.yaml).
+* Updating my.cnf file
+mysql logs were set and enabled on my.cnf
 
-
-** Mettre à jour le fichier my.cnf
-
---> Logs:
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$ cat /etc/mysql/my.cnf
-#
-# The MySQL database server configuration file.
-#
-# You can copy this to one of:
-# - "/etc/mysql/my.cnf" to set global options,
-# - "~/.my.cnf" to set user-specific options.
-#
-# One can use all long options that the program supports.
-# Run program with --help to get a list of available options and with
-# --print-defaults to see which it would actually understand and use.
-#
-# For explanations see
-# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
-
-#
-# * IMPORTANT: Additional settings that can override those from this file!
-#   The files must end with '.cnf', otherwise they'll be ignored.
-#
-
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my.cnf -->
 !includedir /etc/mysql/conf.d/
 !includedir /etc/mysql/mysql.conf.d/
 
@@ -241,25 +153,13 @@ log_error=/var/log/mysql/mysql_error.log
 slow_query_log = on
 slow_query_log_file = /var/log/mysql/mysql-slow.log
 long_query_time = 2
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$
-***************************
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my.cnf -->
 
 
-The file can be found within the attached documents. (Scripts/my.cnf: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my.cnf)
+* enabling mysql logs in datadog conf file:
+The following lines were enabled in conf.d/mysql.d/conf.yaml
 
-
-** enabling mysql logs in datadog conf file:
-
-
---> Logs:
-***************************
-    # - type : (mandatory) type of log input source (tcp / udp / file)
-    #   port / path : (mandatory) Set port if type is tcp or udp. Set path if type is file
-    #   service : (mandatory) name of the service owning the log
-    #   source : (mandatory) attribute that defines which integration is sending the logs
-    #   sourcecategory : (optional) Multiple value attribute. Can be used to refine the source attribtue
-    #   tags: (optional) add tags to each logs collected
-
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
      - type: file
        path: /var/log/mysql/mysql_error.log
@@ -277,66 +177,227 @@ The file can be found within the attached documents. (Scripts/my.cnf: https://gi
        path: /var/log/mysql/mysql.log
        source: mysql
        sourcecategory: database
+
        service: myapplication
-***************************
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
 Agent restart was done after each change
 
-* Creating custom metric
+# Creating custom metric
+
+
+To set the custom metric, I have had to go through the documentation in this [link](https://docs.datadoghq.com/developers/agent_checks/) first.
 
 In order to create a new metric, two files needs to be created:
 - /etc/datadog-agent/conf.d/my_metric.yaml
- (Scripts/my_metric.yaml: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my_metric.yaml)
 
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$ cat my_metric.yaml
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
 init_config:
-
 instances:
- - min_collection_interval: 45
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$
-***************************
-
-min_collection_interval: 45 was added to enable the check every 45s
+    [{}]
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
 
 
 - /etc/datadog-agent/check.d/my_metric.py 
-(Scripts/my_metric.py: https://github.com/GafsiS/hiring-engineers/blob/master/Scripts/my_metric.py)
 
-***************************
-vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ cat my_metric.py
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_metric.py -->
+
+```
 from checks import AgentCheck
 import random
 
 class my_check(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric',random.randint(0,1000))
-vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$
-***************************
+```
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.py -->
 
 and then then restart agent.
 
-BONUS QUESTION:
+
+To make the check run every 45s, I have updated the my_metric.yaml file as follows:
+
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
+init_config:
+
+instances:
+ - min_collection_interval: 45
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
+
+min_collection_interval: 45 was added to enable the check every 45s
+
+# BONUS QUESTION:
 The change of the check interval is done on the config file, thus, no need to modify the python script.
 
-Check the attached screenshot for the my_metric graph.
- (Screenshots/my_metric_interval_45.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_interval_45.png
-Screenshots/last_5_min.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/last_5_min.png)
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_interval_45.png" />
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/last_5_min.png" />
 
 
-3- Visualizing data
+## Visualizing data
 
+To create timeboard using Datadog API, I have followed datadog documentation in this [link](https://docs.datadoghq.com/api/?lang=bash#timeboards)
 
-First step is setting the api_key and app_key 
+First step was to create environement variables (api_key and app_key) with the datadog API keys values.
+I got these keys values from Datadog GUI, Integrations > APIs > API Keys and Application Keys
 
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/api_key.png" />
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/app_key.png" />
+
+```
 vagrant@ubuntu-xenial:/etc/datadog-agent$ export app_key=bdfabec3f3baa57a44f6514d1d302fa3bed5e69a
 vagrant@ubuntu-xenial:/etc/datadog-agent$ export api_key=e527bbb476b605db8ad1044e94ce2b3a
 vagrant@ubuntu-xenial:/etc/datadog-agent$ echo $app_key
 bdfabec3f3baa57a44f6514d1d302fa3bed5e69a
 vagrant@ubuntu-xenial:/etc/datadog-agent$ echo $api_key
 e527bbb476b605db8ad1044e94ce2b3a
-vagrant@ubuntu-xenial:/etc/datadog-agent$
+```
 
+To have an idea about the content of the script that I need to use, I have generated a timeboard with the three asked graphs and have checked the json script generated.
+
+- My custom metric scoped over my host:
+```
+ "q": "avg:my_metric{*}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+```
+
+- A metric from the Integration with the Database with the anomaly function applied.
+```
+"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+
+```
+
+- My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+```
+      "q": "avg:my_metric{*}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+```
+
+This is the content of the json script generated on the front end:
+
+```
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "avg:my_metric{*}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    },
+    {
+      "q": "avg:my_metric{*}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true
+}
+```
+
+This is the python script used to create the timeboard:
+<!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_app.py -->
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'e527bbb476b605db8ad1044e94ce2b3a',
+    'app_key': 'bdfabec3f3baa57a44f6514d1d302fa3bed5e69a'
+}
+
+initialize(**options)
+
+title = "My Custom Timeboard"
+description = "A dashboard created with API."
+viz = "timeseries",
+status = "done"
+graphs = [{
+           "title": "MyMetric Timeboard",
+         "definition": {
+         "events": [],
+         "requests": [
+         {
+                "q": "avg:my_metric{host:ubuntu}",
+                "type": "line",
+                "style": {
+                        "palette": "dog_classic",
+                        "type": "solid",
+                        "width": "normal"
+                        },
+                "conditional_formats": [],
+                "aggregator": "avg"
+        },
+        {
+        "q": "anomalies(avg:mysql.performance.cpu_time{host:ubuntu}, 'basic', 2)",
+        "type": "line",
+        "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+                }
+        },
+        {
+        "q": "avg:my_metric{host:ubuntu}.rollup(sum, 3600)",
+        "type": "line",
+        "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+                }
+        }
+        ]
+}
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:xenial"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+
+```
+<!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_app.py -->
 
 The insertion of the anomalies graph did not work:
 
