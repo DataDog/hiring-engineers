@@ -85,11 +85,13 @@ A Service is a higher-level entity that can be traced, such as a web resource or
 
 Is there anything creative you would use Datadog for?
 
-I visit the Adirondacks every summer, which has hiking trails which are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The data could be used by consumers to identify trails or parks that are hidden gems and not overrun by other people.
+I visit the Adirondacks every summer, which has hiking trails which are heavily used. There is limited parking near the trailheads and on the sides of the road. I could imagine IoT devices (with Datadog agent installed) deployed to these areas that report on the occupancy of parking spots. This data could be analyzed by the State to better understand the demand on their parks and trails. The state could build an app that allows consumers to see parking availability in real-time, and maybe identify trails or parks that are hidden gems and not overrun by other people.
 
 Separately, cable companies or power companies could use devices with Datadog agent to proactively identify outages and respond to them without having to rely on individuals reporting outages. Notifications would be used to let consumers know when an outage has occurred and when it has been restored.
 
 ## Links to dashboards
 
-https://app.datadoghq.com/dash/904267/davids-timeboard-created-via-api
+My dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
+
+https://app.datadoghq.com/dash/905077/davids-timeboard-created-via-api
 
