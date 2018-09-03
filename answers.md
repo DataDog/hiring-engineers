@@ -60,7 +60,7 @@ Install the datadog agent: When login for the first time, datadog will ask to se
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/92.png" width="750px" />
 </div>
 
-Login to Shell through cmder as step 4 in the previous section and run the datadog install cmd.
+Login to Shell through cmder as step 4 in the previous section and run the datadog install cmd. ("sudo su" is for switching to root account)
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/110.PNG" width="750px" />
 </div>
