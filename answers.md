@@ -11,6 +11,7 @@ However, to start a Ubuntu 16.04 VM, since this is the minimum required, I have 
 
 This is the content of the vagrant file
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/Vagrantfile -->
+```
 Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/xenial64"
@@ -23,8 +24,8 @@ Vagrant.configure(2) do |config|
     vb.memory = "1524"
   end
 
-
 end
+```
 <!-- <<<<<< END INCLUDED FILE (code_block): SOURCE Scripts/Vagrantfile  -->
 
 I have used the following [link] (https://www.datadoghq.com/#) to get a free datadog account for 14 days.
@@ -44,8 +45,10 @@ The tags were created by adding the following lines in /etc/datadog/datadog.yaml
 
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/datadog.yaml -->
 
+```
 tags: env:test, host:ubuntu, name:xenial, region:france
 
+```
 <!-- <<<<<< END INCLUDED FILE (code_block): SOURCE Scripts/datadog.yaml  -->
 
 A restart of the datadog agent is then done.
@@ -109,7 +112,7 @@ A restart of the agent is then neeeded.
 
 This is how is written the conf.yaml file in /etc/datadog/check.d/mysql.d
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
-
+```
 instances:
     # NOTE: Even if the server name is "localhost", the agent will connect to MySQL using TCP/IP, unless you also
     # provide a value for the sock key (below).
@@ -133,7 +136,7 @@ instances:
        extra_performance_metrics: true
        schema_size_metrics: false
        disable_innodb_metrics: false
-
+```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
 
@@ -141,6 +144,7 @@ instances:
 mysql logs were set and enabled on my.cnf
 
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my.cnf -->
+```
 !includedir /etc/mysql/conf.d/
 !includedir /etc/mysql/mysql.conf.d/
 
@@ -153,6 +157,7 @@ log_error=/var/log/mysql/mysql_error.log
 slow_query_log = on
 slow_query_log_file = /var/log/mysql/mysql-slow.log
 long_query_time = 2
+```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my.cnf -->
 
 
@@ -160,7 +165,7 @@ long_query_time = 2
 The following lines were enabled in conf.d/mysql.d/conf.yaml
 
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
-
+```
      - type: file
        path: /var/log/mysql/mysql_error.log
        source: mysql
@@ -179,6 +184,7 @@ The following lines were enabled in conf.d/mysql.d/conf.yaml
        sourcecategory: database
 
        service: myapplication
+```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/conf.yaml -->
 
 Agent restart was done after each change
@@ -192,9 +198,11 @@ In order to create a new metric, two files needs to be created:
 - /etc/datadog-agent/conf.d/my_metric.yaml
 
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
+```
 init_config:
 instances:
     [{}]
+```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
 
 
@@ -218,10 +226,12 @@ and then then restart agent.
 To make the check run every 45s, I have updated the my_metric.yaml file as follows:
 
 <!-- >>>>>> BEGIN INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
+```
 init_config:
 
 instances:
  - min_collection_interval: 45
+```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.yaml -->
 
 min_collection_interval: 45 was added to enable the check every 45s
@@ -399,109 +409,21 @@ api.Timeboard.create(title=title,
 ```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_app.py -->
 
-The insertion of the anomalies graph did not work:
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyCustomTimeboard.png"/>
 
-agrant@ubuntu-xenial:/etc/datadog-agent$ curl  -X POST -H "Content-type: application/json" -d '{
-  "title" : "MyMetric Dashboard",
-  "description" : "A dashboard created with API.",
-  "viz": "timeseries",
-  "status": "done",
-  "graphs": [{
-        "title": "MyMetric Timeboard",
-         "definition": {
-         "events": [],
-         "requests": [
-         {
-                "q": "avg:my_metric{*}",
-                "type": "line",
-                "style": {
-                        "palette": "dog_classic",
-                        "type": "solid",
-                        "width": "normal"
-                        },
-                "conditional_formats": [],
-                "aggregator": "avg"
-        },
-        {
-        "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
-        "type": "line",
-        "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"
-                }
-        },
-        {
-        "q": "avg:my_metric{*}.rollup(sum, 3600)",
-        "type": "line",
-        "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"
-                }
-        }
-        ]
-}
-}],
-  "autoscale": true
-}' "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
-{"errors": ["Error parsing query: unable to parse anomalies(avg:mysql.performance.cpu_time{*}, basic, 2): Rule 'scope_expr' didn't match at ', 2)' (line 1, column 51)."]}vagrant@ubuntu-xenial:/etc/datadog-agent$
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyMetricTimeboard"/>
 
 
-The other graphs were created:
-
-vagrant@ubuntu-xenial:/etc/datadog-agent$ curl  -X POST -H "Content-type: application/json" -d '{
-  "title" : "MyMetric Dashboard",
-  "description" : "A dashboard created with API.",
-  "viz": "timeseries",
-  "status": "done",
-  "graphs": [{
-        "title": "MyMetric Timeboard",
-         "definition": {
-         "events": [],
-         "requests": [
-         {
-                "q": "avg:my_metric{*}",
-                "type": "line",
-                "style": {
-                        "palette": "dog_classic",
-                        "type": "solid",
-                        "width": "normal"
-                        },
-                "conditional_formats": [],
-                "aggregator": "avg"
-        },
-        {
-        "q": "avg:my_metric{*}.rollup(sum, 3600)",
-        "type": "line",
-        "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"
-                }
-        }
-        ]
-}
-}],
-  "autoscale": true
-}' "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
-{"dash":{"read_only":false,"graphs":[{"definition":{"requests":[{"q":"avg:my_metric{*}","aggregator":"avg","style":{"width":"normal","palette":"dog_classic","type":"solid"},"type":"line","conditional_formats":[]},{"q":"avg:my_metric{*}.rollup(sum, 3600)","style":{"width":"normal","palette":"dog_classic","type":"solid"},"type":"line"}],"events":[]},"title":"MyMetric Timeboard"}],"description":"A dashboard created with API.","title":"MyMetric Dashboard","created":"2018-08-22T20:52:15.892313+00:00","id":895669,"created_by":{"disabled":false,"handle":"safa.el.kafsi@gmail.com","name":"Safa Gafsi","is_admin":true,"role":null,"access_role":"adm","verified":true,"email":"safa.el.kafsi@gmail.com","icon":"https://secure.gravatar.com/avatar/45be402fe79dc57b1ddaa5fc8651dcb0?s=48&d=retro"},"modified":"2018-08-22T20:52:15.906881+00:00"},"url":"/dash/895669/mymetric-dashboard","resource":"/api/v1/dash/895669"}vagrant@ubuntu-xenial:/etc/datadog-agent$
-Please check also the attached screenshots (Screenshots/MyDashboard.png, Screenshots/MyTimeboard.png, Screenshots/anomalie.png).
-
-Timeboard screenshot: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/API_Graph.png
-
-Timeboard link: https://app.datadoghq.com/dash/895669/mymetric-dashboard?live=false&page=0&is_auto=false&from_ts=1535057639133&to_ts=1535057952140&tile_size=m
-
-BONUS QUESTION:
+* BONUS QUESTION:
 --> The anomaly graph is displaying the expected behavior of the metric based on its past collected values.
+In our case, the algorithm choosen is basic, it uses small amount of data to determine next value, but has a small range and can't determine long period behavior.
 
 
-4- Monitoring Data
+# Monitoring Data
 
 Please check attached screenshots (Screenshots/notification_config.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/notification_config.png).
 Notification annotation (Screenshots/email_annotation.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/email_annotation.png)
 
-Monitor link: https://app.datadoghq.com/monitors/5825551
 
 
 Alerting message template:
