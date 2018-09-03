@@ -203,7 +203,7 @@ Before run the cmd "python timeboard.py" in Shell, first run "apt install python
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/350.PNG" width="750px" />
 </div>
 
-Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards List", two graphs are created.
+Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards List", two graphs are created. The First graph contains the same metric in different format as displayed in the screenshot at the bottom, pink is the one with the rollup function and the other one is the normal my_metric. 
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/380.png" width="750px" />
 </div>
@@ -247,7 +247,7 @@ Choose "Monitors" -- "New Monitor", then choose "Metric", on the setup page, upd
 
 **Step 2.**
 
-Input the code showed below into "Say what's happening" section. (Since it's taking too long to get am alert on a 5 mins base, so I change to 1 min just to get the alert email).
+Input the code showed below into "Say what's happening" section. (Since it's taking too long to get an alert on a 5 mins base, so I change to 1 min just to get the alert email).
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/461.png" width="750px" />
 </div>
