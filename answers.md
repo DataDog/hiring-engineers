@@ -3,8 +3,6 @@
 `Sydney`
 `yoonhyej.jung@gmail.com`
 
-
-
 ## Questions
 
 Please provide screenshots and code snippets for all steps.
@@ -16,11 +14,11 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
-> Answer: Set up `Vagrant Ubuntu 14.04 LTS` for this exercise.
+> Answer:   Set up `Vagrant Ubuntu 14.04 LTS` for this exercise.
 
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-> Answer: Signed up and Installed "Datadog Agent v6" on Ubuntu
+> Answer:   Signed up and Installed "Datadog Agent v6" on Ubuntu
 > 
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Setup_01_Agent%20installation.png" />
 
@@ -42,7 +40,7 @@ sudo start datadog-agent
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-> Answer: Edited "datadog.yaml" file to add tags `region:ap` `env:production` `role:database:mysql`
+> Answer:   Edited "datadog.yaml" file to add tags `region:ap` `env:production` `role:database:mysql`
 > 
 > 1. Find "datadog.yaml" for Agent v6 configuration which is located in "/etc/datadog-agent/" for Linux(Ubuntu)
 >>```
@@ -72,9 +70,9 @@ sudo start datadog-agent
 >>https://app.datadoghq.com/infrastructure/map?host=581392043&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
 
 
-
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-> Answer: Installed MySQL on Ubuntu and Datadog intergration
+
+> Answer:   Installed MySQL on Ubuntu and Datadog intergration
 > 
 > 1. Install the MySQL server by using the Ubuntu package manager
 >>```
@@ -84,7 +82,7 @@ sudo start datadog-agent
 > 2. Go to ['Intergrations-Intergrations'](https://app.datadoghq.com/account/settings#integrations) menu and Find the MySQL API
 > 
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_03_Database_Intergrations_MySQL.png" />
->
+
 > 3. Follow the instruction to create a datadog user with a password
 >>```
 >>sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'tlvJHD8WLk3@yMS8PVECliiU';"
@@ -108,8 +106,33 @@ sudo start datadog-agent
 >>sudo datadog-agent status
 >>```
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_05_Database_mysql_check_terminal.png" />
+>
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+> 
+> Answer: Each check has a YAML configuration file and the check module with the same name as YAML file (e.g.: mycheck.py and mycheck.yaml)
+  I created the two files in each folder as explained below.
+
+> 1. Add a simple configuration file named "mycheck.yaml" in `/etc/datadog-agent/conf.d` folder
+>>```
+>>init_config:
+>>
+>>instances:
+>>    [{}]
+>>```
+
+> 2. Add "mycheck.py" in `/etc/datadog-agent/checks.d` folder
+> 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_06_Custom%20Agent%20Check_py.png" />
+>
+> check the applied custom check in Datadog-agent status
+>>```
+>> sudo datadog-agent status
+>>```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20Metrics_07_Custom%20Agent%20Check_mycheck.png" />
+
+
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
