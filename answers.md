@@ -48,6 +48,9 @@ After changing my check's collection interval to submit the metric once every 45
 
 The script that I've used to create my Timeboard is <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">here</a>.
 
+Here's the link to that dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
+https://app.datadoghq.com/dash/905077
+
 Here's a screenshot of the Timeboard that I created via API:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-timeboard-created-via-api.png">
@@ -55,9 +58,6 @@ Here's a screenshot of the Timeboard that I created via API:
 Here's the snapshot of a graph on the Timeboard (scoped to last 5 minutes) that I sent to myself:
 
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/2-snapshot-sent-to-self.png">
-
-My dashboard created via API (by executing <a href="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/scripts/create-timeboard.py">create-timeboard.py</a>):
-https://app.datadoghq.com/dash/905077
 
 **Bonus Question** What is the Anomaly graph displaying?
 
