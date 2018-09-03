@@ -8,8 +8,9 @@ Screenshot of my host and its tags on the Host Map page in Datadog:
 
 I installed a Postgres database and started it:
 
-`sudo service postgresql start`
-
+```
+sudo service postgresql start
+```
 
 I installed the Postgres integration in Datadog:
 <img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/1-postgresql-installed.png">
