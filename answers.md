@@ -176,7 +176,7 @@ Set min_collection_interval: 45, code is included in the previous screenshots. A
 
 **Bonus Question**
 
-Set min_collection_interval: 45, code is included in the previous screenshots.
+My first approach is to set "-min_collection_interval: 45" under "instances" in the my_metric.yaml, and by running multiple check cmd to confirm it's running every 45 secs. It just solves the bonus question at the same time. If I am going to only modify the my_metric.py to make it work, I think I will use the time.sleep() function. 
 
 # Visualizing Data
 
@@ -230,7 +230,7 @@ Snapshot the graph as below and confirm the email as below
 
 **Bonus Question**
 
-Grey area on the graph is what datadog consider as the normal range and the red section indicates not normal usage.
+Grey area on the graph is what datadog consider as the normal range and the red section indicates anomalies that spike out of the normal range of values. Since I've used the "basic" algorithms, it does not incorporate the repeating, seasonal pattern into its predicted range of values.
 
 # Monitoring Data
 
@@ -330,7 +330,7 @@ The link to the dashboard with both APM and Infrastructure Metrics is [here](htt
 
 **Bonus Question**
 
-A Resource is a particular action for the service. For example, a database is a service, a query is a resource.
+A "Service" is the name of a set of processes that work together to provide a feature set. A Resource is a particular action for the service. For example, a database is a service, a query is a resource.
 
 # Final Question
 
