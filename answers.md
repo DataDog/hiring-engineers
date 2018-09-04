@@ -323,7 +323,7 @@ Run "ddtrace-run python test.py" cmd and then browse to datadog website, "APM" -
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/651.png" width="750px" />
 </div>
 
-The link to the dashboard with both APM and Infrastructure Metrics is [here](https://app.datadoghq.com/dash/904405/allens-timeboard-2-sep-2018-2136?live=true&page=0&is_auto=false&from_ts=1535885101126&to_ts=1535888701126&tile_size=m).👈 Screenshot as below.
+The link to the dashboard with both APM and Infrastructure Metrics is [here](https://app.datadoghq.com/dash/904405/allens-timeboard-2-sep-2018-2136?live=true&page=0&is_auto=false&from_ts=1535885101126&to_ts=1535888701126&tile_size=m).👈 Screenshot as below. (The link could have no data because I turned off the VM)
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/660.png" width="750px" />
 </div>
@@ -334,4 +334,4 @@ A "Service" is the name of a set of processes that work together to provide a fe
 
 # Final Question
 
-Hmmm😑, can't really say this is creative, but monitor IoT sounds cool, you can remotely check like what's happening at your home and prepare what needs to be done in advance. 😁
+Hmmm😑, can't really say this is creative, but monitor IoT sounds cool, you can remotely check like what's happening at your home and prepare what needs to be done in advance. 😁 It can alos be used to trace any ticket system, like NBA or a concert, locate where are these request ip address come from, so they will know where are these customer coming from and then advtisement can be broadcast in any special target area to let more people know the event. That's all I can think about so far, if we use the monitor data properly, it can generate benifit and profit. 
