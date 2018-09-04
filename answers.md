@@ -191,7 +191,7 @@ Locate the api key and the app key from Integration -- APIs, need to generate th
 
 Create a timeboard.py file under /etc/datadog-agent and attach the code as below. [timeboard.py](https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/timeboard.py).👈
 <div align="center">
-<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/370.PNG" width="750px" />
+<img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/1010.PNG" width="750px" />
 </div>
 
 Before running the cmd "python timeboard.py" in Shell, first run "apt install python-minimal", "apt install python-pip" and "pip install datadog"
