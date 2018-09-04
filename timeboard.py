@@ -14,7 +14,7 @@ graph1 = {
         "events": [],
         "requests": [
             {"q": "my_metric{*}"},
-            {"q": "my_metric{*}.rollup(avg, 3600)"}
+            {"q": "my_metric{*}.rollup(sum, 3600)"}
         ],
         "viz": "timeseries"
     },
