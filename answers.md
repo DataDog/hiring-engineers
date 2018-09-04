@@ -205,7 +205,7 @@ Before running the cmd "python timeboard.py" in Shell, first run "apt install py
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/350.PNG" width="750px" />
 </div>
 
-Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards List", two graphs are created. The First graph contains the same metric in different format as displayed in the screenshot at the bottom, pink is the one with the rollup (1 hour) function and the blue one is the normal my_metric. 
+Then run the "python timeboard.py" cmd and check the "Dashboards" -- "Dashboards List", two graphs are created. The First graph combines the first two graphs requested in this test as displayed in the screenshot at the bottom, pink is the one with the rollup (1 hour) function and the blue one is the normal my_metric. (The my_metric grpah screenshot was captured right after I generated the timeboard, so the one with the rollup function will only be display as a dot on the graph )
 <div align="center">
 <img src="https://github.com/allenz16/hiring-engineers/blob/solutions-engineer/screenshots/380.png" width="750px" />
 </div>
