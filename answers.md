@@ -2,8 +2,9 @@ Applying as a solutions engineer at Datadog I do feel at the right spot right no
 
 ...and yes, I learnt a lot about Datadog...
 
-![View from my desk](https://github.com/GerdPlewka/hiring-engineers/blob/master/current_view_from_my_desk.jpg)
+...and here is the current view from my desk ;*) ...
 
+<img src=https://github.com/GerdPlewka/hiring-engineers/blob/master/current_view_from_my_desk.jpg width="500"> 
 
 
 # So let's get going - Gerd Plewka, Germany...
@@ -233,4 +234,4 @@ I do think here about integrating Network security, Intrusion detection and (Web
 
 
 ### About Me
-Physicist, evangelist, technical all-rounder, curious, eager learning...
+Physicist, evangelist, technical all-rounder, curious, eager learner...
