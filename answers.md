@@ -142,7 +142,7 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 *I liked the @ notification, especially the preconfigured selection list...*
 
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/5min%20graph.png" width="750" alt="5 minute graph">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/5min%20graph.png" width="500" alt="5 minute graph">
 
 * **Bonus Question:** What is the Anomaly graph displaying?
 
@@ -177,13 +177,13 @@ Please configure the monitor’s message so that it will:
 *you can see this configuration on the first monitor snapshot, attached here once again
 Have a look at the **Message Section***
 
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png" width="750" alt="Have a look at the Message section">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png" width="500" alt="Have a look at the Message section">
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 *that went smoothly*
 
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/WarningAlert.png" width="750" alt="Warning Alert from my mail">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/WarningAlert.png" width="500" alt="Warning Alert from my mail">
 
 * **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -195,13 +195,13 @@ When this monitor sends you an email notification, take a screenshot of the emai
 
 *start with the definition*
 
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI1.png" width="750">
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI2.png" width="750">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI1.png" width="500">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI2.png" width="500">
 
 *and here are the confirmation emails*
 
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%201.png" width="750">
-<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%202.png" width="750">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%201.png" width="500">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%202.png" width="500">
 
 ### Collecting APM Data
 
