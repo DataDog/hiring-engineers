@@ -33,7 +33,6 @@ Linux precise64 3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012 x86
 
 <a href="https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host" title="Initial Hostmap">
 <img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialHostmap.png" width="750" alt="Initial Hostmap"></a>
-![Initial Hostmap](https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialHostmap.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -134,14 +133,16 @@ curl  -X POST -H "Content-type: application/json" \
 }' \
 "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
-![Initial Timeboard](https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialTimeboard.png)
+
+<a href="https://app.datadoghq.com/dash/904666/gerds-api-timeboard?live=true&page=0&is_auto=false&from_ts=1536152782224&to_ts=1536167182224&tile_size=m" title="Initial Timeboard">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialTimeboard.png" width="750" alt="Initial Timeboard"></a>
 
 * Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 *I liked the @ notification, especially the preconfigured selection list...*
 
-![5 minute graph](https://github.com/GerdPlewka/hiring-engineers/blob/master/5min%20graph.png)
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/5min%20graph.png" width="750" alt="5 minute graph">
 
 * **Bonus Question:** What is the Anomaly graph displaying?
 
@@ -160,9 +161,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 *...well, that was easy...*
 
-![Metric monitor 1](https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png)
-![Metric monitor 2](https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor2.png)
-
+<a href="https://app.datadoghq.com/monitors/6198785" title="Metric Monitor">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png" width="750" alt="Metric Monitor"></a>
+<a href="https://app.datadoghq.com/monitors/6198785" title="Metric Monitor">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor2.png" width="750" alt="Metric Monitor"></a>
 
 Please configure the monitor’s message so that it will:
 
@@ -175,13 +177,13 @@ Please configure the monitor’s message so that it will:
 *you can see this configuration on the first monitor snapshot, attached here once again
 Have a look at the **Message Section***
 
-![Have a look at the Message section](https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png)
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/metric%20monitor1.png" width="750" alt="Have a look at the Message section">
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 *that went smoothly*
 
-![Warning Alert from my mail](https://github.com/GerdPlewka/hiring-engineers/blob/master/WarningAlert.png)
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/WarningAlert.png" width="750" alt="Warning Alert from my mail">
 
 * **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -193,14 +195,13 @@ When this monitor sends you an email notification, take a screenshot of the emai
 
 *start with the definition*
 
-![](https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI1.png)
-![](https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI2.png)
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI1.png" width="750">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20UI2.png" width="750">
 
 *and here are the confirmation emails*
 
-![](https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%201.png)
-![](https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%202.png)
-
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%201.png" width="750">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Silenced%20Monitor%20Mail%202.png" width="750">
 
 ### Collecting APM Data
 
@@ -214,8 +215,9 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 *...a little bit clunky, could be more beautifully integrate, but it shows the trick...*
 
-![](https://github.com/GerdPlewka/hiring-engineers/blob/master/Combined%20APM%20and%20Infrastructure.png)
-[](https://app.datadoghq.com/dash/904666/gerds-api-timeboard?live=true&page=0&is_auto=false&from_ts=1535957036725&to_ts=1535971436725&tile_size=m)
+<a href="https://app.datadoghq.com/dash/904666/gerds-api-timeboard?live=true&page=0&is_auto=false&from_ts=1535957036725&to_ts=1535971436725&tile_size=m" title="Combined Timeboard">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/Combined%20APM%20and%20Infrastructure.png" width="750" alt="Combined Timeboard"></a>
+
 
 
 * **Bonus Question:** What is the difference between a Service and a Resource?
