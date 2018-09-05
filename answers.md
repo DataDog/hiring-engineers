@@ -1,3 +1,7 @@
+
+
+# So let's get going - Gerd Plewka, Germany...
+
 Applying as a solutions engineer at Datadog I do feel at the right spot right now...
 
 ...and yes, I learnt a lot about Datadog...
@@ -5,9 +9,6 @@ Applying as a solutions engineer at Datadog I do feel at the right spot right no
 ...and here is the current view from my desk ;*) ...
 
 <img src=https://github.com/GerdPlewka/hiring-engineers/blob/master/current_view_from_my_desk.jpg width="500"> 
-
-
-# So let's get going - Gerd Plewka, Germany...
 
 
 # The Exercise
@@ -229,7 +230,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-* **2 things immediately come to my mind:** * 
+**2 things immediately come to my mind:** * 
 
 * *Look into what can be done in terms of aggregating data for security personnel (I am holding a CISSP)
 I do think here about integrating Network security, Intrusion detection and (Web-)application data. Bz doing so, the value of an integrated APM and Infrastructure monitoring would become visible to customers with relevant security requirements*
