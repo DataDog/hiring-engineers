@@ -232,8 +232,8 @@ Is there anything creative you would use Datadog for?
 
 **2 things immediately come to my mind:** * 
 
-* *Look into what can be done in terms of aggregating data for security personnel (I am holding a CISSP)
-I do think here about integrating Network security, Intrusion detection and (Web-)application data. Bz doing so, the value of an integrated APM and Infrastructure monitoring would become visible to customers with relevant security requirements*
+* *Look into what can be done in terms of aggregating data for security (I am holding a CISSP)
+I do think about integrating Network security, Intrusion detection and (Web-)application data. By doing so, the value of an integrated APM and Infrastructure monitoring would become visible to customers with relevant security requirements. Security is a **hot** topic.*
 * *see, if I can buy a multisensor [Bosch xdk](http://xdk.bosch-connectivity.com/overview) or [Thingsee One](https://thingsee.com/thingsee-one/), bring it to work and generate some valuable IoT data and visualize them with Datadog, in order to have a good example for the use of Datadog in IoT (small devices to show, and visualizations are **always** catching interest*
 
 
