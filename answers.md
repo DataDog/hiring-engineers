@@ -31,6 +31,8 @@ Linux precise64 3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012 x86
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+<a href="https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host" title="Initial Hostmap">
+<img src="https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialHostmap.png" width="750" alt="Initial Hostmap"></a>
 ![Initial Hostmap](https://github.com/GerdPlewka/hiring-engineers/blob/master/InitialHostmap.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
