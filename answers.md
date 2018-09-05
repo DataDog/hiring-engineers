@@ -520,114 +520,101 @@ These are the notifications I have received:
 
 
 
-** Adding maintenance periods:
-
-Maintenance period link: https://app.datadoghq.com/monitors#downtime?id=358240967
-
-
-Check attached screenshots 
-(Screenshots/maintenance_weekend.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend.png, 
-Screenshots/MaintenancePeriod.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MaintenancePeriod.png, 
-Screenshots/weekend_maintenance.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/weekend_maintenance.png, 
-Screenshots/weekday_maintenance.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/weekday_maintenance.png)
-
-5- Collecting APM Data
+# Collecting APM Data
 
 * Installing flask and ddtrace:
 
-APM Services link: https://app.datadoghq.com/apm/service/flask/flask.request?start=1533591120928&end=1533677520928&env=prod&paused=false
+For this section, I have followed the [APM](https://docs.datadoghq.com/tracing/setup/) documentation.
 
---> Logs:
-***************************
-root@ubuntu-xenial:~# pip install flask
-Collecting flask
-  Downloading https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl (91kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 92kB 2.1MB/s
-Collecting Jinja2>=2.10 (from flask)
-  Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl (126kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 133kB 2.2MB/s
-Collecting itsdangerous>=0.24 (from flask)
-  Downloading https://files.pythonhosted.org/packages/dc/b4/a60bcdba945c00f6d608d8975131ab3f25b22f2bcfe1dab221165194b2d4/itsdangerous-0.24.tar.gz (46kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 51kB 2.3MB/s
-Collecting Werkzeug>=0.14 (from flask)
-  Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 327kB 891kB/s
-Collecting click>=5.1 (from flask)
-  Downloading https://files.pythonhosted.org/packages/34/c1/8806f99713ddb993c5366c362b2f908f18269f8d792aff1abfd700775a77/click-6.7-py2.py3-none-any.whl (71kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 71kB 2.0MB/s
-Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->flask)
-  Downloading https://files.pythonhosted.org/packages/4d/de/32d741db316d8fdb7680822dd37001ef7a448255de9699ab4bfcbdf4172b/MarkupSafe-1.0.tar.gz
-Building wheels for collected packages: itsdangerous, MarkupSafe
-  Running setup.py bdist_wheel for itsdangerous ... done
-  Stored in directory: /root/.cache/pip/wheels/2c/4a/61/5599631c1554768c6290b08c02c72d7317910374ca602ff1e5
-  Running setup.py bdist_wheel for MarkupSafe ... done
-  Stored in directory: /root/.cache/pip/wheels/33/56/20/ebe49a5c612fffe1c5a632146b16596f9e64676768661e4e46
-Successfully built itsdangerous MarkupSafe
-Installing collected packages: MarkupSafe, Jinja2, itsdangerous, Werkzeug, click, flask
-Successfully installed Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 click-6.7 flask-1.0.2 itsdangerous-0.24
-You are using pip version 8.1.1, however version 18.0 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.
-root@ubuntu-xenial:~# cd /etc/datadog-agent/APM/
-root@ubuntu-xenial:/etc/datadog-agent/APM#  ddtrace-run python my_app.py
-ddtrace-run: command not found
-root@ubuntu-xenial:/etc/datadog-agent/APM# pip install ddtrace
-Collecting ddtrace
-  Downloading https://files.pythonhosted.org/packages/9d/48/c59c5fb0df206bcb744ae9ed72d0fc5a523d52df18f879a92a24c236cfbb/ddtrace-0.12.1.tar.gz (93kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 102kB 1.6MB/s
-Collecting wrapt (from ddtrace)
-  Downloading https://files.pythonhosted.org/packages/a0/47/66897906448185fcb77fc3c2b1bc20ed0ecca81a0f2f88eda3fc5a34fc3d/wrapt-1.10.11.tar.gz
-Collecting msgpack-python (from ddtrace)
-  Downloading https://files.pythonhosted.org/packages/8a/20/6eca772d1a5830336f84aca1d8198e5a3f4715cd1c7fc36d3cc7f7185091/msgpack-python-0.5.6.tar.gz (138kB)
-    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 143kB 2.0MB/s
-Building wheels for collected packages: ddtrace, wrapt, msgpack-python
-  Running setup.py bdist_wheel for ddtrace ... done
-  Stored in directory: /root/.cache/pip/wheels/4b/38/40/1a7038e5586b14716aa16ad635c5eb7e49ca695f0ef2acea6e
-  Running setup.py bdist_wheel for wrapt ... done
-  Stored in directory: /root/.cache/pip/wheels/48/5d/04/22361a593e70d23b1f7746d932802efe1f0e523376a74f321e
-  Running setup.py bdist_wheel for msgpack-python ... done
-  Stored in directory: /root/.cache/pip/wheels/d5/de/86/7fa56fda12511be47ea0808f3502bc879df4e63ab168ec0406
-Successfully built ddtrace wrapt msgpack-python
-Installing collected packages: wrapt, msgpack-python, ddtrace
-Successfully installed ddtrace-0.12.1 msgpack-python-0.5.6 wrapt-1.10.11
-You are using pip version 8.1.1, however version 18.0 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.
-***************************
+The APM enabling requires installing ddtrace.
 
-* Running the my_app.py
+I have chosen to monitor flask services by APM, and used the provided python script to launch APM.
+I have followed these two links in order to do so:
+- [link 1] (https://docs.datadoghq.com/tracing/setup/python/#installation-and-getting-started) 
+- [link 2](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 
---> Logs:
-***************************
-root@ubuntu-xenial:/etc/datadog-agent/APM# ddtrace-run python my_app.py
-DEBUG:ddtrace.contrib.flask.middleware:flask: initializing trace middleware
-2018-08-06 22:26:03,036 - ddtrace.contrib.flask.middleware - DEBUG - flask: initializing trace middleware
-DEBUG:ddtrace.writer:resetting queues. pids(old:None new:6181)
-2018-08-06 22:26:03,039 - ddtrace.writer - DEBUG - resetting queues. pids(old:None new:6181)
-DEBUG:ddtrace.writer:starting flush thread
-2018-08-06 22:26:03,041 - ddtrace.writer - DEBUG - starting flush thread
-DEBUG:ddtrace.contrib.flask.middleware:please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
-2018-08-06 22:26:03,042 - ddtrace.contrib.flask.middleware - DEBUG - please install blinker to use flask signals. http://flask.pocoo.org/docs/0.11/signals/
- * Serving Flask app "my_app" (lazy loading)
- * Environment: production
-   WARNING: Do not use the development server in a production environment.
-   Use a production WSGI server instead.
- * Debug mode: off
-INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
-2018-08-06 22:26:03,057 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
-DEBUG:ddtrace.api:reported 1 services
-2018-08-06 22:26:04,054 - ddtrace.api - DEBUG - reported 1 services
-***************************
 
-Please check the attached screenshots 
-(Screenshots/apm_enabled.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_enabled.png, 
-Screenshots/APMvsCPULoad.png: https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/APMvsCPULoad.png)
+So I have started by installing flask on the VM by running 
+```
+pip install flask
+```
 
-Timeboard System vs APM metrics: https://app.datadoghq.com/dash/880157/apm-vs-system-timeboard?live=true&page=0&is_auto=false&from_ts=1533673962051&to_ts=1533677562051&tile_size=m
+Then I have installed ddtrace:
+```
+pip install ddtrace
+```
+
+And finally, I have created a script my_app.py (using the script provided in the exercise) in /etc/datadog/APM, and have started ddtrace against it.
+```
+ddtrace-run python my_app.py
+```
+
+Then I have added the my_app.py script in /etc/datadog/APM
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Then APM was started:
+```
+ddtrace-run python my_app.py
+```
+
+- Run the app using curl commands:
+```
+curl http://0.0.0.0:5050
+```
+
+- Start the API trace
+```
+curl http://0.0.0.0:5050/api/trace
+```
+
+- Start the API APM
+```
+curl http://0.0.0.0:5050/api/trace
+```
+
+The services are then detected and the traces are being collected.
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_trace.png"/>
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_service.png"/>
 
 
 BONUS QUESTION
 Service: a process/set of processes that can provide a feature, these are being defined by the user.
 Resource: A query to a service to return certain data, we can have multiple resources attached to a service, for multiple type of data requested.
 
+I have created a dashboard with timeboards of System metrics and APM metrics
+
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_enabled.png"/>
 
 6- Final Question:
 
