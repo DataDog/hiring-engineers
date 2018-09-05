@@ -200,7 +200,7 @@ Having only used templates to create YAML files in the past, I referenced this [
 Utilize the Datadog API to create a Timeboard that contains:
 
 - [x] Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
+- [x] Any metric from the Integration on your Database with the anomaly function applied.
 - [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 > Initially, I tried using the Ruby integration to write the code for creating the timeboard. Reading through the [Ruby Client for Datadog API](https://github.com/DataDog/dogapi-rb) docs, I installed the gem: 
@@ -322,8 +322,11 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [x] Set the Timeboard's timeframe to the past 5 minutes
+- [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![5 min snapshot](https://res.cloudinary.com/themostcommon/image/upload/v1536115704/Screen%20Shots/SS_annotated_snapshot.png) 
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
@@ -332,22 +335,59 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- [x] Warning threshold of 500
+- [x] Alerting threshold of 800
+- [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+- [x] Send you an email whenever the monitor triggers.
+- [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+- [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+```
+curl -X POST \
+  'https://api.datadoghq.com/api/v1/monitor?api_key=8ab45aa2722f65a5198cd6abee513541&application_key=c868f13fbcf5c70bbdfcb5aecf98762542dfe2dd' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: e280a582-4bc6-4306-b163-a47edf9aa365' \
+  -d '{
+	"name": "My_Metric load is high on {{host.name}} : {{value}} ",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:jamessmith-solutions-engineer} > 800",
+	"message": "{{#is_alert}}. my-metric average is above 800: {{value}} on {{host.ip}} for the previous 5 minutes   {{/is_alert}}\n{{#is_warning}}. my-metric average is above 500 : {{value}} for the previous 5 minutes   {{/is_warning}}\n{{#is_no_data}}. my-metric data is missing for more than 10 minutes  {{/is_no_data}}\n\n@jamesesmith1009@gmail.com ",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+
+![my_metric warn](https://res.cloudinary.com/themostcommon/image/upload/v1536119734/Screen%20Shots/SS_monitor_warn.png)
+
+- [x] **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![offline weekends](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_weekends.png)
+
+![offline daily](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_daily.png)
 
 ## Collecting APM Data:
 
