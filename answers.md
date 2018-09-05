@@ -199,9 +199,124 @@ Having only used templates to create YAML files in the past, I referenced this [
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-* Your custom metric scoped over your host.
+- [x] Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+> Initially, I tried using the Ruby integration to write the code for creating the timeboard. Reading through the [Ruby Client for Datadog API](https://github.com/DataDog/dogapi-rb) docs, I installed the gem: 
+> 
+> ``` # on ubuntu e.g.
+$ sudo apt-get install ruby-dev```
+
+> Then created a timeline.rb file in the shared directory. 
+> 
+
+![timeline.rb](https://res.cloudinary.com/themostcommon/image/upload/v1536099792/Screen%20Shots/SS_timeline_rb.png)
+> Which seemed very straight forward from the [Datadog API](https://docs.datadoghq.com/api/?lang=bash#create-a-timeboard) docs; however, I struggled with actually getting to a point where the file was being read and implemented.  After exhausting my abilities, I took a step back and looked at the curl option. After a successful GET operation with the correct end points, I tried the example in the docs and it worked! 
+> 
+> Using Postman, I was able to set up the POST request and use the clipboard to properly format the call. 
+
+```curl -X POST \
+  'https://api.datadoghq.com/api/v1/dash?api_key=8ab45aa2722f65a5198cd6abee513541&application_key=c868f13fbcf5c70bbdfcb5aecf98762542dfe2dd' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: a09aa851-2360-4cdb-8ce3-a96cdfe698d7' \
+  -d '{
+      "graphs" : [{
+          "title": "My First Metics",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}" 
+                    
+                  }
+                 
+              ]
+          },
+          "viz": "timeseries"
+      }, 
+      {
+          "title": "My First Metics Rollup",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)" 
+                    
+                  }
+                 
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "My Metrics",
+      "description" : "A dashboard with my metric info.",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:jamessmith-solutions-engineer"
+      }],
+      "read_only": "True"
+}'
+```
+> And to create the hourly rollup based on the docs [here](https://docs.datadoghq.com/graphing/functions/rollup/) and [here](https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time), I could [Update the Timeboard](https://docs.datadoghq.com/api/?lang=bash#update-a-timeboard) with the additional graph.
+> 
+> PUT for rollup 
+
+```curl -X PUT \
+  'https://api.datadoghq.com/api/v1/dash/906289?api_key=8ab45aa2722f65a5198cd6abee513541&application_key=c868f13fbcf5c70bbdfcb5aecf98762542dfe2dd' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: f7cd9182-e5ee-497b-8d93-685fba893ea7' \
+  -d '{
+      "graphs" : [{
+          "title": "My First Metics",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}" 
+                    
+                  }
+                 
+              ]
+          },
+          "viz": "timeseries"
+      }, 
+      {
+          "title": "My First Metics Rollup",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)" 
+                    
+                  }
+                 
+              ]
+          },
+          "viz": "timeseries"
+      }],
+      "title" : "My Metrics",
+      "description" : "A dashboard with my metric info.",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:jamessmith-solutions-engineer"
+      }],
+      "read_only": "True"
+}
+```
+To add a graph for an anomaly within PostgresQL, based on the [Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) docs, I updated the PUT request with this code: 
+
+
+	"title": "PostgresQL Anomaly",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.max_connections{host:jamessmith-solutions-engineer},'basic', 2)" }
+              ]
+          },
+          "viz": "timeseries" 
+          
+          
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
