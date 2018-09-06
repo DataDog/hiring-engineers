@@ -186,12 +186,12 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > My output did not produce errors or warnings: 
 > 
 >     network (1.6.0)
-> 	---------------
-> 	Total Runs: 78
-> 	Metric Samples: 26, Total: 2028
-> 	Events: 0, Total: 0
-> 	Service Checks: 0, Total: 0
-> 	Average Execution Time : 0ms* 
+> 		---------------
+> 		Total Runs: 78
+> 		Metric Samples: 26, Total: 2028
+> 		Events: 0, Total: 0
+> 		Service Checks: 0, Total: 0
+> 		Average Execution Time : 0ms* 
 >      
 
 > [View Host Map](https://app.datadoghq.com/infrastructure/map?host=571252200&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
@@ -474,7 +474,7 @@ Please include your fully instrumented app in your submission, as well.
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-- [x]Is there anything creative you would use Datadog for?
+- [x] Is there anything creative you would use Datadog for?
 
 >One of my passion projects that I've been working on since I started learning to be a developer is an app I call "A or Nay" which uses the NYC Open Data from the Health Department and is essentially a Yelp-like app with addition of health grades and violations history. (Since the time I started building this, Yelp has added grades but still not violation history.) I think Datadog could be a valuable tool to get click-through rates for restaurants based on grades. Being able to use the metrics that are gathered, I could market to restaurants depending on their health grade. So we could validate follow through (i.e. reservations, phone calls, mapping) based on the impact of their health grade and for "A" restaurants show how they can better capitalize on their commitment to health and safety and for "B" restaurants, we can identify people who don't seem to be affected by the health grade as much. And if they have a "C" or lower... well, I can recommend a good P.R. company and a cleaning crew! 
 
