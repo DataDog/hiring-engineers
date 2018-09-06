@@ -186,18 +186,18 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > My output did not produce errors or warnings: 
 > 
 >     network (1.6.0)
-	---------------
-	Total Runs: 78
-	Metric Samples: 26, Total: 2028
-	Events: 0, Total: 0
-	Service Checks: 0, Total: 0
-	Average Execution Time : 0ms* 
-     
+> 	---------------
+> 	Total Runs: 78
+> 	Metric Samples: 26, Total: 2028
+> 	Events: 0, Total: 0
+> 	Service Checks: 0, Total: 0
+> 	Average Execution Time : 0ms* 
+>      
 
 > [View Host Map](https://app.datadoghq.com/infrastructure/map?host=571252200&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
 > 
       
-**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+- [x] **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 > I actually updated the collection interval in the config file so, yes, you can! 
 > 
@@ -323,7 +323,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ![5 min snapshot](https://res.cloudinary.com/themostcommon/image/upload/v1536115704/Screen%20Shots/SS_annotated_snapshot.png) 
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+- [x] **Bonus Question**: What is the Anomaly graph displaying?
 
 > According to [Introducing Anomaly Detection in Datadog](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/), "By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends." By recognizing where the data is inconsistent, it can help provide a valuable view into what's happening and even better, anomalies are excluded from changing or adjusting historical trends. 
 
@@ -458,7 +458,7 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+- [x] **Bonus Question**: What is the difference between a Service and a Resource?
 
 > Accordiung to the [Getting Started with APM docs](https://docs.datadoghq.com/tracing/visualization/), Services are "a set of processes that do the same job" and Resources are "a particular action for a service". To break it down further, I found this [example](https://dotnetsoul.wordpress.com/2011/08/16/difference-between-services-and-resources-related-to-webservice-and-rest/) which had this approach to defining them. 
 > 
