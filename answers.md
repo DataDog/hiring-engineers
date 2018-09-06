@@ -15,11 +15,11 @@ Please provide screenshots and code snippets for all steps.
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-- [x] You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
+#### - [x] You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 
-> Being as I was unfamiliar with linux or even using a virtual machine, I read through the [Vagrant documentation] (https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) and after watching some YouTube videos, I attempted to make sense of everything and actually downloaded Vagrant, VirtualBox and Ubuntu 18.04 LTS and followed the [tutorial](https://www.youtube.com/watch?v=3AnlvTgsoYM&t=175s) to start the VM. 
+> Since I was unfamiliar with linux or using a virtual machine, I read through the [Vagrant documentation] (https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) and after watching some YouTube videos, I attempted to make sense of everything and downloaded Vagrant, VirtualBox and Ubuntu 18.04 LTS and followed the [tutorial](https://www.youtube.com/watch?v=3AnlvTgsoYM&t=175s) to start the VM. 
 
-> The first thing was to create a Vagrantfile, which is a config file written in Ruby which configures and provisions the VM.  
+> I created a Vagrantfile, which is a config file written in Ruby, which configures and provisions the VM.  
 > 
 > ![vagrantfile](http://res.cloudinary.com/themostcommon/image/upload/v1535493899/Screen%20Shots/SS%20vagrantfile.png)
 > 
@@ -35,7 +35,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > ```$ vagrant ssh```
 
 
-- [x] Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+#### - [x] Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 > The process for signing up for Datadog is painless and the instructions were very clear. Once I started my 14-day free trial, I was able to choose Ubunutu for my operating system and the command was a simple copy and paste to start downloading the Agent. The script even included my API key
 
@@ -46,7 +46,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 ## Collecting Metrics:
 
-- [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+#### - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 > To create tags in the Datadog Agent v.6 configuration file, I had to locate the
 > 
@@ -68,13 +68,13 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > 
 > ![host tags](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_Host_Tags_yaml.png)
 > 
-Having only used templates to create YAML files in the past, I referenced this [Github] (https://github.com/Animosity/CraftIRC/wiki/Complete-idiot%27s-introduction-to-yaml) to make sure that I was keeping the correct syntax. A valuable lesson learned was that most of the configuration file is commented out with “#” leading the line so the # needs to be removed for the changes to be read. 
+I have only used templates to create YAML files, so I referenced this [Github] (https://github.com/Animosity/CraftIRC/wiki/Complete-idiot%27s-introduction-to-yaml) to make sure that I was keeping the correct syntax. A valuable lesson I learned was that most of the configuration file is commented out with “#” leading the line so the # needs to be removed for the changes to be read. 
 
 > To save the changes with emacs, (Mac: control = ^) 
 > 
 > ```^-x, ^-s``` 
 > 
-> At the bottom of the screen, you will see will see: 
+> At the bottom of the screen, you will see: 
 > ```Wrote /etc/datadog-agent/datadog.yaml```
 > 
 > Then to close the document 
@@ -82,21 +82,21 @@ Having only used templates to create YAML files in the past, I referenced this [
 > ```^-x, ^-c```
 > 
 > 
-> At first, I assumed that I could see the tag updates after a browser refresh, but they never appeared. And then I saw this note:
+> At first, I assumed I could see the tag updates after a browser refresh, but they never appeared. And then I saw this note:
 > 
 > ![no agent responding](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_No_Agent_Reporting.png)
 > 
-> After reading the docs some more, I thought I needed to change the process_config so that it would also collect containers and processes.
+> After reading the docs some more, I thought I needed to change the process_config so it would also collect containers and processes.
 > 
 > ![process config](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_Process_config.png)
 > 
-> And after updating the config file, I started getting a new error. 
+> And after updating the config file, I got a new error. 
 > 
 > ![NTP error](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_NTP_Error.png)
 > 
-> After reading the docs on NTP and how to correct this issue, I finally discovered that I had a syntax error in the yaml config file and after correcting it, the warnings disappeared but I still had no tags. 
+> After reading the docs on NTP and how to correct this issue, I discovered I had a syntax error in the yaml config file. And after correcting it, the warnings disappeared but I still had no tags. 
 > 
-> Unsure of what else to do at this point, I stopped Datadog service: 
+> I was unsure what to do next, so I stopped Datadog service: 
 > 
 > ```sudo service datadog-agent stop```
 > 
@@ -112,9 +112,9 @@ Having only used templates to create YAML files in the past, I referenced this [
 
 
 
-- [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+#### - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-> As I am most familiar with PostgreSQL, I chose to download it. 
+> Since I am most familiar with PostgreSQL, I downloaded it. 
 > 
 >     sudo apt update
 > 
@@ -129,9 +129,9 @@ Having only used templates to create YAML files in the past, I referenced this [
 >     Configure the Agent to connect to the PostgreSQL server 
 >     Edit conf.d/postgres.yaml
 >  
-> After looking in the `datadog-agent/conf.d` directory and found no file by that name to edit, I looked in the` postgres.d` directory and found the `conf.yaml.example `. After editing the file, I saved it and restarted the Agent and it *did not connect* to Postgres. 
+> I looked in the `datadog-agent/conf.d` directory but did not find a file by that name to edit, so I looked in the` postgres.d` directory and found the `conf.yaml.example `. After editing the file, I saved it and restarted the Agent and it *did not connect* to Postgres. 
 > 
-> Looking at the instructions, I realized that the file I was supposed to edit was supposed to be the conf.d directory and not buried further down so I created the file and added the configurations to the `conf.d` directory.
+> Looking at the instructions, I realized the file I was supposed to edit was supposed to be the conf.d directory and not buried further down. As such, I created the file and added the configurations to the `conf.d` directory.
 > 
 > ![postgre yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_yaml.png)
 > 
@@ -143,7 +143,7 @@ Having only used templates to create YAML files in the past, I referenced this [
 > 
 > ```sudo datadog-agent status```
 > 
-> And was happily greeted with success. 
+> I was happily greeted with success. 
 > 
 > ![postgres success](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_running.png)
 > 
@@ -159,7 +159,7 @@ Having only used templates to create YAML files in the past, I referenced this [
 > ![randomvalue.py](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_random_py.png)
 > ![randvalue.yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_initial_config.png)
 
-- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#### - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 > To change the collection interval, I needed to update the randomvalue.yaml file with a min_collection_interval within the `instance` section 
 > 
@@ -183,27 +183,34 @@ Having only used templates to create YAML files in the past, I referenced this [
       Service Checks: 0, Total: 0
       Average Execution Time : 0ms
 > 
-> With my output producing no errors or warnings: 
+> My output did not produce errors or warnings: 
 > 
-> ```network (1.6.0)
-    	---------------
-      Total Runs: 78
-      Metric Samples: 26, Total: 2028
-      Events: 0, Total: 0
-      Service Checks: 0, Total: 0
-      Average Execution Time : 0ms* ```
+>     network (1.6.0)
+	---------------
+	Total Runs: 78
+	Metric Samples: 26, Total: 2028
+	Events: 0, Total: 0
+	Service Checks: 0, Total: 0
+	Average Execution Time : 0ms* 
+     
+
+> [View Host Map](https://app.datadoghq.com/infrastructure/map?host=571252200&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
+> 
       
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+> I actually updated the collection interval in the config file so, yes, you can! 
+> 
+
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+#### Utilize the Datadog API to create a Timeboard that contains:
 
-- [x] Your custom metric scoped over your host.
-- [x] Any metric from the Integration on your Database with the anomaly function applied.
-- [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+#### - [x] Your custom metric scoped over your host.
+#### - [x] Any metric from the Integration on your Database with the anomaly function applied.
+#### - [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-> Initially, I tried using the Ruby integration to write the code for creating the timeboard. Reading through the [Ruby Client for Datadog API](https://github.com/DataDog/dogapi-rb) docs, I installed the gem: 
+> Initially, I used the Ruby integration to write the code for creating the timeboard. Reading through the [Ruby Client for Datadog API](https://github.com/DataDog/dogapi-rb) docs, I installed the gem: 
 > 
 > ``` # on ubuntu e.g.
 $ sudo apt-get install ruby-dev```
@@ -212,10 +219,10 @@ $ sudo apt-get install ruby-dev```
 > 
 
 ![timeline.rb](https://res.cloudinary.com/themostcommon/image/upload/v1536099792/Screen%20Shots/SS_timeline_rb.png)
-> Which seemed very straight forward from the [Datadog API](https://docs.datadoghq.com/api/?lang=bash#create-a-timeboard) docs; however, I struggled with actually getting to a point where the file was being read and implemented.  After exhausting my abilities, I took a step back and looked at the curl option. After a successful GET operation with the correct end points, I tried the example in the docs and it worked! 
+> Which seemed very straight forward from the [Datadog API](https://docs.datadoghq.com/api/?lang=bash#create-a-timeboard) docs; however, I struggled with getting to a point where the file was being read and implemented. After exhausting my efforts, I took a step back and looked at the curl option. After a successful GET operation with the correct end points, I tried the example in the docs and it worked!
 > 
 > Using Postman, I was able to set up the POST request and use the clipboard to properly format the call. 
-
+>
 ```curl -X POST \
   'https://api.datadoghq.com/api/v1/dash?api_key=8ab45aa2722f65a5198cd6abee513541&application_key=c868f13fbcf5c70bbdfcb5aecf98762542dfe2dd' \
   -H 'Cache-Control: no-cache' \
@@ -227,11 +234,9 @@ $ sudo apt-get install ruby-dev```
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "avg:my_metric{*}" 
-                    
-                  }
-                 
-              ]
+                  {"q": "avg:my_metric{*}"                   
+                  }              
+                ]
           },
           "viz": "timeseries"
       }, 
@@ -240,11 +245,8 @@ $ sudo apt-get install ruby-dev```
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "avg:my_metric{*}.rollup(sum, 3600)" 
-                    
-                  }
-                 
-              ]
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)"                   
+                  }]
           },
           "viz": "timeseries"
       }],
@@ -261,7 +263,7 @@ $ sudo apt-get install ruby-dev```
 > And to create the hourly rollup based on the docs [here](https://docs.datadoghq.com/graphing/functions/rollup/) and [here](https://docs.datadoghq.com/graphing/#rollup-to-aggregate-over-time), I could [Update the Timeboard](https://docs.datadoghq.com/api/?lang=bash#update-a-timeboard) with the additional graph.
 > 
 > PUT for rollup 
-
+>
 ```curl -X PUT \
   'https://api.datadoghq.com/api/v1/dash/906289?api_key=8ab45aa2722f65a5198cd6abee513541&application_key=c868f13fbcf5c70bbdfcb5aecf98762542dfe2dd' \
   -H 'Cache-Control: no-cache' \
@@ -273,11 +275,8 @@ $ sudo apt-get install ruby-dev```
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "avg:my_metric{*}" 
-                    
-                  }
-                 
-              ]
+                  {"q": "avg:my_metric{*}" }
+                ]
           },
           "viz": "timeseries"
       }, 
@@ -286,10 +285,7 @@ $ sudo apt-get install ruby-dev```
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "avg:my_metric{*}.rollup(sum, 3600)" 
-                    
-                  }
-                 
+                  {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
               ]
           },
           "viz": "timeseries"
@@ -306,7 +302,7 @@ $ sudo apt-get install ruby-dev```
 ```
 To add a graph for an anomaly within PostgresQL, based on the [Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) docs, I updated the PUT request with this code: 
 
-
+>
 	"title": "PostgresQL Anomaly",
           "definition": {
               "events": [],
@@ -316,18 +312,20 @@ To add a graph for an anomaly within PostgresQL, based on the [Anomaly Detection
           },
           "viz": "timeseries" 
           
-          
+> [View Datadog Dashboard](https://app.datadoghq.com/dash/906289/my-metrics?live=true&page=0&is_auto=false&from_ts=1536230377775&to_ts=1536233977775&tile_size=m)          
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-- [x] Set the Timeboard's timeframe to the past 5 minutes
-- [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
+#### - [x] Set the Timeboard's timeframe to the past 5 minutes
+#### - [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 ![5 min snapshot](https://res.cloudinary.com/themostcommon/image/upload/v1536115704/Screen%20Shots/SS_annotated_snapshot.png) 
 
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+> According to [Introducing Anomaly Detection in Datadog](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/), "By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends." By recognizing where the data is inconsistent, it can help provide a valuable view into what's happening and even better, anomalies are excluded from changing or adjusting historical trends. 
 
 ## Monitoring Data
 
@@ -335,16 +333,16 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-- [x] Warning threshold of 500
-- [x] Alerting threshold of 800
-- [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
+#### - [x] Warning threshold of 500
+#### - [x] Alerting threshold of 800
+#### - [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Please configure the monitor’s message so that it will:
 
-- [x] Send you an email whenever the monitor triggers.
-- [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-- [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-- [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+#### - [x] Send you an email whenever the monitor triggers.
+#### - [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+#### - [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+#### - [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ```
 curl -X POST \
@@ -424,9 +422,49 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+> Collecting APM data with the Flask app seemed relatively straight forward and after reading through some Python basics tutorials, I felt that I could figure things out. 
+> 
+> Based on the [ddtrace Flask docs](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask), the Flask app needed to be modified by adding the Blinker library and Datadog middleware and then create the middleware object. 
+> 
+> [APP.PY](https://github.com/notthemostcommon/hiring-engineers/blob/JamesSmith_Solutions_Engineer/app.py)
+> 
+> Next, I installed the Python integration 
+> 
+> ```sudo pip install datadog```
+> 
+> Then I installed the Data Tracing library
+> 
+> ```sudo pip install ddtrace```
+> 
+> And then I started Flask app 
+> 
+> ```ddtrace-run python app.py```
+> 
+> "Once you’ve completed this step, return to [this page](https://app.datadoghq.com/apm/docs#). Your traces should be available shortly."
+> 
+> And because I'm no stranger to failure, there was no surprise when I returned to find there was no data. 
+> 
+> I made sure that the Datadog.yaml file was properly configured
+> 
+>     apm_config:
+>       enabled: true
+> 
+> After restarting the agent, nothing changed so I used Postman to hit the endpoint and found that I wasn't returning any data. I realized that the Flask app host was different than the VM host and after updating them, there was data! 
+> 
+> ![apm data](https://res.cloudinary.com/themostcommon/image/upload/v1536194680/Screen%20Shots/SS_apm_integration.png)
+> 
+> ![apm dashboard](https://res.cloudinary.com/themostcommon/image/upload/v1536194680/Screen%20Shots/SS_apm_dashboard.png)
+ 
+
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+> Accordiung to the [Getting Started with APM docs](https://docs.datadoghq.com/tracing/visualization/), Services are "a set of processes that do the same job" and Resources are "a particular action for a service". To break it down further, I found this [example](https://dotnetsoul.wordpress.com/2011/08/16/difference-between-services-and-resources-related-to-webservice-and-rest/) which had this approach to defining them. 
+> 
+	A “Service” is defined by a verb ( For example, “validate customer’s credit score”, which describes the business function it implements.)
+	A resource is defined by a noun for example, “doctor’s appointment” that describes the data provided by the resource.
+>   
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -436,7 +474,12 @@ Please include your fully instrumented app in your submission, as well.
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+#### Is there anything creative you would use Datadog for?
+
+>One of my passion projects that I've been working on since I started learning to be a developer is an app I call "A or Nay" which uses the NYC Open Data from the Health Department and is essentially a Yelp-like app with addition of health grades and violations history. (Since the time I started building this, Yelp has added grades but still not violation history.) I think Datadog could be a valuable tool to get click-through rates for restaurants based on grades. Being able to use the metrics that are gathered, I could market to restaurants depending on their health grade. So we could validate follow through (i.e. reservations, phone calls, mapping) based on the impact of their health grade and for "A" restaurants show how they can better capitalize on their commitment to health and safety and for "B" restaurants, we can identify people who don't seem to be affected by the health grade as much. And if they have a "C" or lower... well, I can recommend a good P.R. company and a cleaning crew! 
+
+
+
 
 ## Instructions
 
