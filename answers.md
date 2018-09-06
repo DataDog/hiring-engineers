@@ -15,9 +15,9 @@ Please provide screenshots and code snippets for all steps.
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-#### - [x] You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
+- [x] You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 
-> Since I was unfamiliar with linux or using a virtual machine, I read through the [Vagrant documentation] (https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) and after watching some YouTube videos, I attempted to make sense of everything and downloaded Vagrant, VirtualBox and Ubuntu 18.04 LTS and followed the [tutorial](https://www.youtube.com/watch?v=3AnlvTgsoYM&t=175s) to start the VM. 
+> Since I was unfamiliar with linux or using a virtual machine, I read through the [Vagrant documentation](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) and after watching some YouTube videos, I attempted to make sense of everything and downloaded Vagrant, VirtualBox and Ubuntu 18.04 LTS and followed this [tutorial](https://www.youtube.com/watch?v=3AnlvTgsoYM&t=175s) to start the VM. 
 
 > I created a Vagrantfile, which is a config file written in Ruby, which configures and provisions the VM.  
 > 
@@ -35,7 +35,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 > ```$ vagrant ssh```
 
 
-#### - [x] Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+- [x] Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 > The process for signing up for Datadog is painless and the instructions were very clear. Once I started my 14-day free trial, I was able to choose Ubunutu for my operating system and the command was a simple copy and paste to start downloading the Agent. The script even included my API key
 
@@ -46,7 +46,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 ## Collecting Metrics:
 
-#### - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+- [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 > To create tags in the Datadog Agent v.6 configuration file, I had to locate the
 > 
@@ -64,11 +64,11 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 >
 > ```sudo emacs /etc/datadog-agent/datadog.yaml```
 >
-> Following the [tagging documentation] (https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), I added these basic tags to the 
+> Following the [tagging documentation](https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files), I added these basic tags to the 
 > 
 > ![host tags](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_Host_Tags_yaml.png)
 > 
-I have only used templates to create YAML files, so I referenced this [Github] (https://github.com/Animosity/CraftIRC/wiki/Complete-idiot%27s-introduction-to-yaml) to make sure that I was keeping the correct syntax. A valuable lesson I learned was that most of the configuration file is commented out with “#” leading the line so the # needs to be removed for the changes to be read. 
+>I have only used templates to create YAML files, so I referenced this [Github](https://github.com/Animosity/CraftIRC/wiki/Complete-idiot%27s-introduction-to-yaml) to make sure that I was keeping the correct syntax. A valuable lesson I learned was that most of the configuration file is commented out with “#” leading the line so the "#" needs to be removed for the changes to be read. 
 
 > To save the changes with emacs, (Mac: control = ^) 
 > 
@@ -94,7 +94,7 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 > 
 > ![NTP error](https://res.cloudinary.com/themostcommon/image/upload/v1535486510/Screen%20Shots/SS_NTP_Error.png)
 > 
-> After reading the docs on NTP and how to correct this issue, I discovered I had a syntax error in the yaml config file. And after correcting it, the warnings disappeared but I still had no tags. 
+> After reading the docs on NTP and how to correct this issue, I ultimately discovered I had a syntax error in the yaml config file. And after correcting it, the warnings disappeared BUT I still had no tags. 
 > 
 > I was unsure what to do next, so I stopped Datadog service: 
 > 
@@ -112,7 +112,7 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 
 
 
-#### - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+- [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 > Since I am most familiar with PostgreSQL, I downloaded it. 
 > 
@@ -131,7 +131,7 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 >  
 > I looked in the `datadog-agent/conf.d` directory but did not find a file by that name to edit, so I looked in the` postgres.d` directory and found the `conf.yaml.example `. After editing the file, I saved it and restarted the Agent and it *did not connect* to Postgres. 
 > 
-> Looking at the instructions, I realized the file I was supposed to edit was supposed to be the conf.d directory and not buried further down. As such, I created the file and added the configurations to the `conf.d` directory.
+> Looking at the instructions, I realized the file I was supposed to edit was supposed to be in the conf.d directory and not buried further down. As such, I created the file and added the configurations to the `conf.d` directory.
 > 
 > ![postgre yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535542971/Screen%20Shots/SS_postgres_yaml.png)
 > 
@@ -151,15 +151,15 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 
 > The process to create a custom check involves creating 2 files
 > 
-*   a config yaml file in the `conf.d` directory
-*   a python file in the `checks.d` directory
+>*   a config yaml file in the `conf.d` directory
+>*   a python file in the `checks.d` directory
 
 > To create a random value, I referenced this [tutorial](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/) and created the files. 
 > 
 > ![randomvalue.py](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_random_py.png)
 > ![randvalue.yaml](https://res.cloudinary.com/themostcommon/image/upload/v1535560590/Screen%20Shots/SS_check_initial_config.png)
 
-#### - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 > To change the collection interval, I needed to update the randomvalue.yaml file with a min_collection_interval within the `instance` section 
 > 
@@ -173,7 +173,7 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 > 
 > 	"On Agent v6, a properly configured integration will be displayed under “Running Checks” with no warnings or errors, as seen below:"
 > 
-	Running Checks
+	 Running Checks
 	==============
 	network (1.6.0)
 	---------------
@@ -204,16 +204,16 @@ I have only used templates to create YAML files, so I referenced this [Github] (
 
 ## Visualizing Data:
 
-#### Utilize the Datadog API to create a Timeboard that contains:
+Utilize the Datadog API to create a Timeboard that contains:
 
-#### - [x] Your custom metric scoped over your host.
-#### - [x] Any metric from the Integration on your Database with the anomaly function applied.
-#### - [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- [x] Your custom metric scoped over your host.
+- [x] Any metric from the Integration on your Database with the anomaly function applied.
+- [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 > Initially, I used the Ruby integration to write the code for creating the timeboard. Reading through the [Ruby Client for Datadog API](https://github.com/DataDog/dogapi-rb) docs, I installed the gem: 
 > 
-> ``` # on ubuntu e.g.
-$ sudo apt-get install ruby-dev```
+>      # on ubuntu e.g.
+>      $ sudo apt-get install ruby-dev
 
 > Then created a timeline.rb file in the shared directory. 
 > 
@@ -318,8 +318,8 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-#### - [x] Set the Timeboard's timeframe to the past 5 minutes
-#### - [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [x] Set the Timeboard's timeframe to the past 5 minutes
+- [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 ![5 min snapshot](https://res.cloudinary.com/themostcommon/image/upload/v1536115704/Screen%20Shots/SS_annotated_snapshot.png) 
 
@@ -333,16 +333,16 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-#### - [x] Warning threshold of 500
-#### - [x] Alerting threshold of 800
-#### - [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- [x] Warning threshold of 500
+- [x] Alerting threshold of 800
+- [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Please configure the monitor’s message so that it will:
 
-#### - [x] Send you an email whenever the monitor triggers.
-#### - [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-#### - [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-#### - [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+- [x] Send you an email whenever the monitor triggers.
+- [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+- [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ```
 curl -X POST \
@@ -383,9 +383,9 @@ curl -X POST \
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![offline weekends](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_weekends.png)
-
-![offline daily](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_daily.png)
+>![offline weekends](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_weekends.png)
+>
+>![offline daily](https://res.cloudinary.com/themostcommon/image/upload/v1536120552/Screen%20Shots/SS_offline_daily.png)
 
 ## Collecting APM Data:
 
@@ -474,7 +474,7 @@ Please include your fully instrumented app in your submission, as well.
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-#### Is there anything creative you would use Datadog for?
+- [x]Is there anything creative you would use Datadog for?
 
 >One of my passion projects that I've been working on since I started learning to be a developer is an app I call "A or Nay" which uses the NYC Open Data from the Health Department and is essentially a Yelp-like app with addition of health grades and violations history. (Since the time I started building this, Yelp has added grades but still not violation history.) I think Datadog could be a valuable tool to get click-through rates for restaurants based on grades. Being able to use the metrics that are gathered, I could market to restaurants depending on their health grade. So we could validate follow through (i.e. reservations, phone calls, mapping) based on the impact of their health grade and for "A" restaurants show how they can better capitalize on their commitment to health and safety and for "B" restaurants, we can identify people who don't seem to be affected by the health grade as much. And if they have a "C" or lower... well, I can recommend a good P.R. company and a cleaning crew! 
 
