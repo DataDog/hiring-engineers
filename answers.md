@@ -163,11 +163,11 @@ I took a snapshot of the graph by clicking on the camera icon, and select my ema
 <img src="screens/mail.png"></img>
 
 ### Bonus Question: What is the Anomaly graph displaying?
-The highlighted area in the graph represent the expexted range of the metric based on previous values, so anything outside that range is an anomaly.
+The highlighted area in the graph represent the expected range of the metric based on previous values, so anything outside that range is an anomaly.
 
 ## Monitoring Data:
 
-I created a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+I created a new Metric Monitor that watches the average of the custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
 Alerting threshold of 800
@@ -243,6 +243,17 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run()
  ```
+ Link of a Dashboard : https://app.datadoghq.com/apm/service/flask/flask.request?start=1536299777594&end=1536303377594&paused=false&env=prod
+ 
+ <img src="screens/APM.png"></img>
+ 
 ### Bonus Question: What is the difference between a Service and a Resource?
 A service is a set of processes that work together.
 A resource is a software artifact supporting specific data used by a service.
+
+## Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+The first thing that comes to my mind is healthcare, the public are already generating and sharing huge amounts of personal health data through consumer devices such as smart watches and wristbands that monitor sleeping patterns, exercise, heart rate, calorie consumption and more.
