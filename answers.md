@@ -1,5 +1,5 @@
 
-# Nawfel Mestoui - DataDog Technical Test
+# Nawfel Mestoui - Solutions Engineer Exercise
 
 ## Prerequisites - Setup the environment
 I am using my current OS Ubuntu 17.10 to complete this exercise.
@@ -190,3 +190,59 @@ One that silences it from 7pm to 9am daily on M-F
 
 And one that silences it all day on Sat-Sun.
 <img src="screens/monitoring2.png"></img>
+
+## Collecting APM Data:
+Tracing Python Applications using Ddtrace:
+The Flask trace middleware will track request timings and templates. It requires the Blinker library, which Flask uses for signalling.
+
+To install the middleware, add:
+```
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+```
+and create a TraceMiddleware object:
+```
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+```
+<a href="http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask">See Web Frameworks documentation </a>
+
+Final Flask App code:
+```
+from flask import Flask
+import logging
+import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+# instrumenting DD APM for Flask
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run()
+ ```
+### Bonus Question: What is the difference between a Service and a Resource?
+A service is a set of processes that work together.
+A resource is a software artifact supporting specific data used by a service.
