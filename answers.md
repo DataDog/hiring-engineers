@@ -249,6 +249,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 ![enter image description here](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_downtime_weekend_email.png)
 
+![downtime_monitor_overview](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_downtime_schedule_overview.png)
+
 
 ## 5. Collecting APM Data
 ### 5.1 APM setup
