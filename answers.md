@@ -5,7 +5,7 @@
 I am using my current OS Ubuntu 17.10 to complete this exercise.
 <img src="screens/os-version.png"></img>
 ### Installing Datadog agent
-After sign in to Datadog, I did <a href="https://app.datadoghq.com/account/settings#agent/ubuntu">install Datadog agent</a> for Ubuntu:
+After sign in to Datadog, I <a href="https://app.datadoghq.com/account/settings#agent/ubuntu">installed Datadog agent</a> for Ubuntu:
 <img src="screens/install-agent.png"></img>
 
 ## [](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer#collecting-metrics)Collecting Metrics:
@@ -15,7 +15,7 @@ After updating the configuration file `/etc/datadog-agent/datadog.yaml`, we can 
 <img src="screens/agent-tags.png"></img>
 
 ### Installing Datadog integration for MongoDB
-In my current machine I have already MongoDB Community Edition v3.6.6, <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"> here are instructions to install it on Ubuntu</a>
+In my current machine I have already MongoDB Community Edition v3.6.6 installed, <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"> here are instructions to install it on Ubuntu</a>
 
 To check if the database is active:
 `service mongod status`
