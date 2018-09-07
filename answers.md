@@ -5,7 +5,7 @@ Your answers to the questions go here.
 
 I have started a linux VM via vagrant.
 To do so, I have followed the tutorial in [this link]( 
-https://www.vagrantup.com/intro/getting-started/via)
+https://www.vagrantup.com/intro/getting-started/)
 
 However, to start a Ubuntu 16.04 VM, since this is the minimum required, I have used the following [link](https://gist.github.com/maxivak/c318fd085231b9ab934e631401c876b1)
 
@@ -220,8 +220,6 @@ class my_check(AgentCheck):
 ```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_metric.py -->
 
-and then then restart agent.
-
 
 To make the check run every 45s, I have updated the my_metric.yaml file as follows:
 
@@ -236,12 +234,11 @@ instances:
 
 min_collection_interval: 45 was added to enable the check every 45s
 
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_interval_45.png" />
+
 # BONUS QUESTION:
 The change of the check interval is done on the config file, thus, no need to modify the python script.
 
-
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_interval_45.png" />
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/last_5_min.png" />
 
 
 ## Visualizing data
@@ -409,12 +406,13 @@ api.Timeboard.create(title=title,
 ```
 <!-- >>>>>> END INCLUDED FILE (code_block): SOURCE Scripts/my_app.py -->
 
+This is the Timeboard that was generated:
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyMetricTimeboard"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyMetricTimeboard.png"/>
 
 Setting Timeboard's timeframe to the past 5 minutes: This is done by selecting the last 5min timeframe in the graph:
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyCustomTimeboard.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/my_metric_last_5min.png"/>
 
 Taking a snapshot of this graph and using the @ notation to send it to yourself:
 
@@ -476,7 +474,7 @@ These are the different emails that were received:
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/Alert.png"/>
 
 - Warning email:
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/Alert.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/Warn.png"/>
 
 
 
@@ -496,7 +494,7 @@ These are the scheduled downtimes I have created:
 
 - A schedule downtime that that silences it all day during the weekend
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenancePeriod_weekend.png"/>
 
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend2.png"/>
 
@@ -522,6 +520,8 @@ These are the notifications I have received:
 
 # Collecting APM Data
 
+I have choosen to apply the APM monitoring to a flask application, to do so, I had to install flask and ddtrace.
+
 * Installing flask and ddtrace:
 
 For this section, I have followed the [APM](https://docs.datadoghq.com/tracing/setup/) documentation.
@@ -530,7 +530,7 @@ The APM enabling requires installing ddtrace.
 
 I have chosen to monitor flask services by APM, and used the provided python script to launch APM.
 I have followed these two links in order to do so:
-- [link 1] (https://docs.datadoghq.com/tracing/setup/python/#installation-and-getting-started) 
+- [link 1](https://docs.datadoghq.com/tracing/setup/python/#installation-and-getting-started) 
 - [link 2](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 
 
@@ -618,7 +618,6 @@ I have created a dashboard with timeboards of System metrics and APM metrics
 
 6- Final Question:
 
-It can be used to help blinded people cross streets by monitoring red/green lights in their way.
-
-
+In some Gym Centers, once there, you can assist to fitness courses only if there's an available spot.
+It will be good if an online pre-inscription is required, and if datadog is then used to monitor availables spots and their numbers, and display this in colors, so you have the information before going to the Gym.
 
