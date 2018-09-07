@@ -243,7 +243,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run()
  ```
- Link of a Dashboard : https://app.datadoghq.com/apm/service/flask/flask.request?start=1536299777594&end=1536303377594&paused=false&env=prod
+ Link of dashboard : https://app.datadoghq.com/apm/service/flask/flask.request?start=1536299777594&end=1536303377594&paused=false&env=prod
  
  <img src="screens/APM.png"></img>
  
