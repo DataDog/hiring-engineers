@@ -219,7 +219,10 @@ Please configure the monitor’s message so that it will:
 > Answer:   Set email Notification by using message template variables for a multi-alert in the Edit field
 > 
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_04_Create%20Message.png" />
->https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_05_Email%20Alert.png
+>
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_05_Email%20Alert.png" />
+>
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -229,11 +232,15 @@ Please configure the monitor’s message so that it will:
 > Answer:  Go to ['Manage Downtime'](https://app.datadog.com/monitors#/downtime) page 
 > 1. Click 'Manage Downtime' button in the 'Monitor' top drop-down menu  
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_06_Downtime%20menu.png" />
+>
 > 2. Select'my_metric' on the monitor menu in the first step 'Choose what to slience'
 > 3. Set Schedule for a specific times by selecting 'Recurring' tab for this excercise 
 > 4. Set Repeat Every: 1 'weeks' in the second field
+>
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_07_Manage%20Downtime.png" />
+>
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_08_Set%20Downtime%20schedule.png" />
+>
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_09_Downtime%20email.png" />
 
 ## Collecting APM Data:
