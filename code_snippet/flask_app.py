@@ -18,8 +18,6 @@ trace = tracer.trace("request", "web")
 def api_entry():
     return 'Entrypoint to the Application'
 
-trace.finish()
-
 @app.route('/api/apm')
 def apm_endpoint():
     return 'Getting APM Started'
@@ -27,6 +25,8 @@ def apm_endpoint():
 @app.route('/api/trace')
 def trace_endpoint():
     return 'Posting Traces'
+
+trace.finish()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
