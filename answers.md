@@ -160,4 +160,33 @@ api.Timeboard.create(title=title,
 I took a snapshot of the graph by clicking on the camera icon, and select my email using @ notation and send it to myself.
 <img src="screens/snap.png"></img>
 
+<img src="screens/mail.png"></img>
+
 ### Bonus Question: What is the Anomaly graph displaying?
+The highlighted area in the graph represent the expexted range of the metric based on previous values, so anything outside that range is an anomaly.
+
+## Monitoring Data:
+
+I created a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+<img src="screens/monitoring01.png"></img>
+
+Send you an email whenever the monitor triggers.
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+<img src="screens/monitoring2.png"></img>
+
+### Bonus Question:
+Set up two scheduled downtimes for this monitor:
+Scheduled downtimes are set up from this <a href="https://app.datadoghq.com/monitors#/downtime">page</a>
+
+One that silences it from 7pm to 9am daily on M-F
+<img src="screens/monitoring01.png"></img>
+
+And one that silences it all day on Sat-Sun.
+<img src="screens/monitoring2.png"></img>
