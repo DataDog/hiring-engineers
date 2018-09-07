@@ -158,24 +158,56 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+>
+> Answer:  
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Timeboard.png" />
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+> Answer:   Added a rollup function and set the timeframe of 5 minutes to the timeseries graph
+> 1. Click pencil button to edit on the top-right corner of the timeboard  
+> 2. Add a fuction by clicking + button and select rollup-avg
+> 3. Set a timeframe in seconds in the period field. (5 mins = 300)
+> 4. Click on Save 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_02_Timeframe_5mins.png" />
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+> Answer:   
+> 1. click a graph’s snapshot icon.
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_03_notation.png" />
+>
+> 2. Mark the interesting region, and tell everyone what’s happening.
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_04_notation%20updated.png" />
+>
+> 3. Receive an email with real-time annotations.
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_05_notation%20email.png" />
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+> Answer:   Anomaly graph shows normal trends as well as abnormal metric trends with different color when a metric is behaving differently than it has in the past. It provides deeper context for dynamic metrics by analyzing a metric’s historical behavior.
+
+
 
 ## Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+> Answer:   Created a new monitor in the selected timeframe against a given threshold through 'Threshold alert' method.
+> 1. Click setting button on the top-right corner of the timeboard  
+> 2. Select 'Create Monitor' in drop-down and click
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_01_Create%20Monitor.png" />
+> 3. Choose 'Threshold alert' method 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_02_Set%20Alert.png" />
 
 * Warning threshold of 500
 * Alerting threshold of 800
+> 4. Set alert conditons 
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+> 5. Select 'Notify'for No Data condition field
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_03_Set%20Alert.png" />
 
 Please configure the monitor’s message so that it will:
 
@@ -184,11 +216,25 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+> Answer:   Set email Notification by using message template variables for a multi-alert in the Edit field
+> 
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_04_Create%20Message.png" />
+>https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_05_Email%20Alert.png
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification. 
+> Answer:  Go to ['Manage Downtime'](https://app.datadog.com/monitors#/downtime) page 
+> 1. Click 'Manage Downtime' button in the 'Monitor' top drop-down menu  
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_06_Downtime%20menu.png" />
+> 2. Select'my_metric' on the monitor menu in the first step 'Choose what to slience'
+> 3. Set Schedule for a specific times by selecting 'Recurring' tab for this excercise 
+> 4. Set Repeat Every: 1 'weeks' in the second field
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_07_Manage%20Downtime.png" />
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_08_Set%20Downtime%20schedule.png" />
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Monitoring%20Data_09_Downtime%20email.png" />
 
 ## Collecting APM Data:
 
@@ -225,12 +271,12 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+> Answer:   A "Service" is the name of a set of processes that work together to provide a feature set, while a "Resource" is a particular query to a service. For instance, a simple web application may consist of two services: a single webapp service and a single database service. For a SQL database service, a resource would be the SQL of the query itself like `select * from users where id = ?`
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
 Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
@@ -239,6 +285,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+> Answer:   House electricity monitoring system which can monitor electricity consumption by device, time and space. Intergrated devices, such as electricity Usage Monitor, power meter and smart plug can be used for this monitoring system.
 
 ## References
 
