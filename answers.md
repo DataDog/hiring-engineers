@@ -408,7 +408,7 @@ api.Timeboard.create(title=title,
 
 This is the Timeboard that was generated:
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyMetricTimeboard.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MyCustomTimeboard.png"/>
 
 Setting Timeboard's timeframe to the past 5 minutes: This is done by selecting the last 5min timeframe in the graph:
 
@@ -422,7 +422,7 @@ Taking a snapshot of this graph and using the @ notation to send it to yourself:
 - Email received
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/email_snapshot.png"/>
 
-* BONUS QUESTION:
+## BONUS QUESTION:
 --> The anomaly graph is displaying the expected behavior of the metric based on its past collected values.
 In our case, the algorithm choosen is basic, it uses small amount of data to determine next value, but has a small range and can't determine long period behavior.
 
@@ -478,7 +478,7 @@ These are the different emails that were received:
 
 
 
-* BONUS QUESTION
+## BONUS QUESTION
 
 
 I have created the Maintenance Periods through datadog front end, and have followed this [documentation](https://docs.datadoghq.com/monitors/downtimes/) in order to do so.
@@ -490,11 +490,11 @@ These are the scheduled downtimes I have created:
 
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/MaintenancePeriod_weekdays.png"/>
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekdays2.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekday2.png"/>
 
 - A schedule downtime that that silences it all day during the weekend
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenancePeriod_weekend.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend.png"/>
 
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekend2.png"/>
 
@@ -506,7 +506,7 @@ These are the notifications I have received:
 
 - Scheduled downtime ending on weekdays
 
-<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/maintenance_weekday_end.png"/>
+<img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/weekday_downtime_end.png"/>
 
 - Scheduled downtime starting on weekend
 
@@ -608,7 +608,7 @@ The services are then detected and the traces are being collected.
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_service.png"/>
 
 
-BONUS QUESTION
+## BONUS QUESTION
 Service: a process/set of processes that can provide a feature, these are being defined by the user.
 Resource: A query to a service to return certain data, we can have multiple resources attached to a service, for multiple type of data requested.
 
@@ -616,7 +616,7 @@ I have created a dashboard with timeboards of System metrics and APM metrics
 
 <img src="https://github.com/GafsiS/hiring-engineers/blob/master/Screenshots/apm_enabled.png"/>
 
-6- Final Question:
+# Final Question:
 
 In some Gym Centers, once there, you can assist to fitness courses only if there's an available spot.
 It will be good if an online pre-inscription is required, and if datadog is then used to monitor availables spots and their numbers, and display this in colors, so you have the information before going to the Gym.
