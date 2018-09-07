@@ -33,6 +33,7 @@ I am here to apply for the support engineer at [Datadog](https://www.datadoghq.c
 ```
 DD_API_KEY=<you_api_key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
 ```
+
 ![Datadog agent on my macOS](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/1_host_agent.png)
 
 ## 2. Collecting Metrics:
@@ -41,14 +42,18 @@ DD_API_KEY=<you_api_key> bash -c "$(curl -L https://raw.githubusercontent.com/Da
 
 > Open ~/.datadog-agent/datadog.yaml, uncomment tag block and add your own tags to the host.  
 [Reference: Applying Tags](https://docs.datadoghq.com/tagging/#applying-tags)
+
 ![config_tags](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/2_host_tags_config_file.png)
+
 ![Apply tags on infrastructure](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/2_host_tags.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 > I used PostgreSQL to complete this section, for how to install Postgresql on your host, you can check its official docs.
 > [Reference: Postgre integrations](https://docs.datadoghq.com/integrations/postgres/)
+
 ![psql intergration instrcution](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/2_postgresql_integration_instruction.png)
+
 ```sql
 -- Step1
 -- Create a read-only datadog user with proper access to your PostgreSQL Server. Start psql on your PostgreSQL database and run
@@ -89,11 +94,10 @@ $ ...
 ![psql metrics](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/2_postgresql_integration_metrics.png)
 
 
-
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 > Each check has a YAML configuration file that is placed in the conf.d directory. The file name should match the name of the check module (e.g.: haproxy.py and haproxy.yaml).
->
-[Reference - Sending metrics](https://docs.datadoghq.com/developers/agent_checks/#sending-metrics)
+> [Reference - Sending metrics](https://docs.datadoghq.com/developers/agent_checks/#sending-metrics)
+
 ```python
 # python script goes into ~/.datadog-agent/checks.d/mycheck.py
 from random import randrange
@@ -113,7 +117,9 @@ instances:
 
 I checked it by using command line.
 ![cli-check](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_my_metric_check.png)
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
 ```yaml
 # we modify config file to set up collection interval
 init_config:
@@ -124,6 +130,7 @@ instances:
 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
 ```yaml
 # we can use the same approach shown in the last question
 init_config:
@@ -146,6 +153,7 @@ After successfully put the code at the right place, you should be able to find '
 ![my_metrics](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_my_metric.png)
 
 * Any metric from the Integration on your Database with the anomaly function applied.
+
 ```python
     # graph2: database with anomaly function
     {"definition": {
@@ -180,8 +188,11 @@ The red line in the first graph is my_metric rollup sum while the line in blue s
 
 * Set the Timeboard's timeframe to the past 5 minutes
 > Let mouse hover over your graph, click and drag crusor to the desired time duration.
+
 ![5_min_timeframe](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_dashboard_5mins_update.png)
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
 ![snapshot_send_notification](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_snapshot_notification_update.png)
 
 ![snapshot_received](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_snapshot_notification_email_update.png)
@@ -201,6 +212,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 ![create_new_monitor](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_create_monitor.png)
 
 ![enter image description here](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_set_threshold_value.png)
+
 ### 4.2 Create Notification message
 * Send you an email whenever the monitor triggers.
 
@@ -213,6 +225,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 ![enter image description here](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_message.png)
 
 > During the test, I found it a bit tricky to trigger ALERT condition, so I add host.ip and triggered_value in WARNING notification message, the details can be found in the screenshot below.
+
 ![warning_trigger](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_warning_email.png)
 
 ![no_data](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_no_data.png)
@@ -226,6 +239,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 #### 4.3.1 Weekday Schedule
 ![new_downtime_schedule](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_create_downtime_schedule.png)
+
 ![weekday_schedule](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_downtime_weekday_schedule.png)
 
 ![weekday_schedule_email](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_downtime_weekday_email.png)
@@ -247,6 +261,7 @@ I need to manually install trace-agent according to the instruction [here](https
 
 #### 5.1.2 Enable trace collection for the Datadog Agent
 > To enable trace collection for your Agent, update the apm_config key in your Agent datadog.yaml main configuration file
+
 ```yaml
 # modify configuration file: ~/.datadog-agent/datadog.yaml
 
@@ -272,6 +287,7 @@ $ ddtrace-run python flask_app.py
 
 
 After implementing the above procedures successfully, you should be able the web app running without showing ERROR info.
+
 ![trace_agent_installation](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/5_install_trace_agent.png)
 
 
