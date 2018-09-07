@@ -135,3 +135,22 @@ https://app.datadoghq.com/dash/905077
 
 Link to dashboard showing both APM and Infra metrics:
 https://app.datadoghq.com/dash/904267
+
+
+## Feedback/Insights
+
+Since I had never used Datadog before, I saw the exercise through the eyes of a first-time customer who wanted to get up and running quickly, and I was very pleased with the simplicity in doing that.
+
+When you're new to a product, the documentation matters a lot. There's nothing sexy about documentation, but it is often overlooked or undervalued when considering the customer's experience. I thought the documentation was clear and flexible, giving me predictive hints/links along the way. I particularly liked the pop-over style example here:
+
+<img src="https://github.com/512ddhelg/hiring-engineers/blob/solutions-engineer/images/documentation-hint.png">
+
+At Red Hat our documentation is much more static and siloed. So I appreciated that most pages offered 3-4 links at the bottom that suggested next logical topics.
+
+The user interface is attractive and intuitive.
+
+When asked to set the timeframe to 5 minutes, I was expecting the ability to type that duration into the input box. It took me a little longer than I was expecting to discover the small icon for keyboard shortcuts that described what I was looking for.
+
+The only slowdown that I experienced in the exercise came when I wasn't able to install ddtrace in my vagrant box due to outdated python/pip. In my zeal for getting started, I missed the hint that the Ubuntu should be above a certain level. I researched the issue (googling/stacktrace), identified the root cause, updated my vagrant box, and continued on my merry way.
+
+Overall, the exercise gives one a good taste of the high level offerings. More importantly, I realized I was only seeing and doing the tip of the iceberg, which is a good thing. For example, we looked at only one function, the graphs were pretty simple use cases, and there wasn't any heavy-lifting when it came to analysis. So that left me feeling intrigued by all that's left to explore and practice.
