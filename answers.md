@@ -257,3 +257,5 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 The first thing that comes to my mind is healthcare, the public are already generating and sharing huge amounts of personal health data through consumer devices such as smart watches and wristbands that monitor sleeping patterns, exercise, heart rate, calorie consumption and more.
+
+### Thank you Datadog for this interesting and fun exercise :)
