@@ -180,7 +180,7 @@ After successfully put the code at the right place, you should be able to find '
     },
 ```
 
-### 3.2 Change timeframe
+### 3.2 Change timeframe, Snapshot notification
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 The red line in the first graph is my_metric rollup sum while the line in blue shows the trend of my\_metric.
 ![enter image description here](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_dashboard.png)
@@ -227,7 +227,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 ![warning_trigger](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_warning_email.png)
 
-![no_data](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_no_data.png)
+![no_data](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/4_monitor_no_data_update.png)
 
 
 ### 4.3 Set up downtime
