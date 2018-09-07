@@ -264,8 +264,6 @@ I need to manually install trace-agent according to the instruction [here](https
 > To enable trace collection for your Agent, update the apm_config key in your Agent datadog.yaml main configuration file
 
 ```yaml
-# modify configuration file: ~/.datadog-agent/datadog.yaml
-
 # Trace Agent Specific Settings
 apm_config:
   enabled: true
