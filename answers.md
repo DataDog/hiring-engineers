@@ -2,7 +2,7 @@
 # Nawfel Mestoui - DataDog Technical Test
 
 ## Prerequisites - Setup the environment
-I am using my current OS, Ubuntu 17.10 to complete this exercise.
+I am using my current OS Ubuntu 17.10 to complete this exercise.
 <img src="screens/os-version.png"></img>
 ### Installing Datadog agent
 After sign in to Datadog, I did <a href="https://app.datadoghq.com/account/settings#agent/ubuntu">install Datadog agent</a> for Ubuntu:
@@ -15,7 +15,7 @@ After updating the configuration file `/etc/datadog-agent/datadog.yaml`, we can 
 <img src="screens/agent-tags.png"></img>
 
 ### Installing Datadog integration for MongoDB
-In my current machine I have already MongoDB Community Edition v3.6.6, <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/">here are instructions to install it on Ubuntu</a>
+In my current machine I have already MongoDB Community Edition v3.6.6, <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"> here are instructions to install it on Ubuntu</a>
 
 To check if the database is active:
 `service mongod status`
@@ -38,7 +38,7 @@ And also if we check the <a href="https://app.datadoghq.com/dashboard/lists">das
 <img src="screens/mongo-list.png"></img>
 
 ### Creating a custom Agent check
-To have a custom Agent check, I have to create 2 files: `my_check.yaml` in `/etc/datadog-agent/conf.d/` and the pyhton script `my_check.py` in `/etc/datadog-agent/checks.d/`
+To have a custom Agent check, I create 2 files: `my_check.yaml` in `/etc/datadog-agent/conf.d/` and the pyhton script `my_check.py` in `/etc/datadog-agent/checks.d/`
 
 #### my_check.yaml
 ```
@@ -55,6 +55,7 @@ from checks import AgentCheck
 
 import random
 
+
 class HelloCheck(AgentCheck):
 
     def check(self, instance):
@@ -68,10 +69,17 @@ The check class inherits from AgentCheck and send a gauge of a random number for
 ## Visualizing Data:
 The first step was to get an Application key from the <a href="https://app.datadoghq.com/account/settings#api">APIs page</a>
 <img src="screens/apikey.png"></img>
+
 The new timeboard will contain:
-	-the new metric : 'my_metric'
-	-'my_metric' with the rollup function applied to sum up all the points for the past hour into one bucket
-	-MongoDb Total number of connections created
+
+the new metric: my_metric
+
+'my_metric' with the rollup function applied to sum up all the points for the past hour into one bucket
+
+MongoDb Total number of connections created
+	
+Find more about Timeboard creation <a href="https://docs.datadoghq.com/api/?lang=python#create-a-timeboard">here</a>
+
 ```
 from datadog import initialize, api
 
@@ -113,7 +121,7 @@ graphs = [{
       			"style": {
         			"palette": "dog_classic",
         			"type": "solid",
-        		"width": "normal"
+        			"width": "normal"
       		  	},
       		"conditional_formats": [],
       		"aggregator": "avg"
@@ -148,4 +156,8 @@ api.Timeboard.create(title=title,
                      graphs=graphs,
                      read_only=read_only)
 ```
+### Taking a snapshot of the graph
+I took a snapshot of the graph by clicking on the camera icon, and select my email using @ notation and send it to myself.
+<img src="screens/snap.png"></img>
 
+### Bonus Question: What is the Anomaly graph displaying?
