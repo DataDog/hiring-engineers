@@ -283,7 +283,41 @@ $ pip install ddtrace
 $ ddtrace-run python flask_app.py
 ```
 
+```python
+# instrumented flask_app.py
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
 
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+trace = tracer.trace("request", "web")
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+trace.finish()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
 
 After implementing the above procedures successfully, you should be able the web app running without showing ERROR info.
 
