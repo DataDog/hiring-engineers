@@ -1,22 +1,8 @@
-Your answers to the questions go here.
+# Alex Rong's Answers to Solution Engineer Challenge
 
-# Datadog Overview
+## 0. Datadog Overview
 Datadog is a monitoring service for cloud-scale applications, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
 
-### Features
-* Observability - From infrastructure to apps, in any environment
-* Dashboards - Use instant, real-time boards or build your own
-* Infrastructure - From overview to deep details, fast
-* Analytics - Custom app metrics or business KPIs
-* Collaboration - Share data, discuss in context, solve issues quickly
-* Alerts - Avoid alert fatigue with smart, actionable alerts
-* API - Love infrastructure as code? You'll love Datadog's API
-* Machine Learning - Automatically detect outliers and temporal anomalies
-* APM - Monitor, optimize, and troubleshoot app performance
-
-I am here to apply for the support engineer at [Datadog](https://www.datadoghq.com/careers/detail/?gh_jid=1160573) Sydney.
-
-# The Challenge
 
 ## 1. Prerequisites - Setup the environment
 * What is my environment setting?
