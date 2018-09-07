@@ -1,6 +1,6 @@
 ### My name is Zachary Groves and I am applying for the Solutions Engineer Role.
 
-### The links to my dashboards are included inline but also here(screenshots are inline):
+### The links to my dashboards are included in-line but also here(screenshots are in-line):
  <a href="https://app.datadoghq.com/dash/907404/timeboard-of-mymetric-and-database-anomalies?live=true&page=0&is_auto=false&from_ts=1536263564164&to_ts=1536349964164&tile_size=m">Timeboard of my_metric and database anomalies</a>. <a href="https://app.datadoghq.com/dash/909618/flask-mymetric-and-database-anomalies?live=true&page=0&is_auto=false&from_ts=1536346566652&to_ts=1536350166652&tile_size=m"> Timeboard of Flask app APM data and infrastucture.</a>
 
  ### Project Layout
