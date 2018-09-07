@@ -99,7 +99,7 @@ $ ...
 > [Reference - Sending metrics](https://docs.datadoghq.com/developers/agent_checks/#sending-metrics)
 
 ```python
-# python script goes into ~/.datadog-agent/checks.d/mycheck.py
+# python script goes into ~/.datadog-agent/checks.d/my_metric.py
 from random import randrange
 from checks import AgentCheck
 
@@ -108,14 +108,13 @@ class RandomCheck(AgentCheck):
         self.gauge('my_metric', randrange(0, 1001))
 ```
 ```yaml
-# configuration file goes into ~/.datadog-agent/conf.d/mycheck.yaml
+# configuration file goes into ~/.datadog-agent/conf.d/my_metric.yaml
 init_config:
 
 instances:
     [{}]
 ```
 
-I checked it by using command line.
 ![cli-check](https://raw.githubusercontent.com/southpolemonkey/hiring-engineers/AlexRong-solution-engineer/datadog_screenshot/3_my_metric_check.png)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
