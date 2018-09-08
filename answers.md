@@ -619,5 +619,5 @@ I have created a dashboard with timeboards of System metrics and APM metrics
 # Final Question:
 
 In some Gym Centers, once there, you can assist to fitness courses only if there's an available spot.
-It will be good if an online pre-inscription is required, and if datadog is then used to monitor availables spots and their numbers, and display this in colors, so you have the information before going to the Gym.
+It will be good if an online pre-inscription is required, and if datadog is then used to monitor availables spots and their numbers, and display this in colors (for example: Alert in red if no availables spots, warn in orange if less than 5 and green if there are more than 5 available spots), so you have the information before going to the Gym.
 
