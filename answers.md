@@ -186,10 +186,10 @@ Set up two scheduled downtimes for this monitor:
 Scheduled downtimes are set up from this <a href="https://app.datadoghq.com/monitors#/downtime">page</a>
 
 One that silences it from 7pm to 9am daily on M-F
-<img src="screens/monitoring01.png"></img>
+<img src="screens/downtime01.png"></img>
 
 And one that silences it all day on Sat-Sun.
-<img src="screens/monitoring2.png"></img>
+<img src="screens/downtime2.png"></img>
 
 ## Collecting APM Data:
 Tracing Python Applications using Ddtrace:
