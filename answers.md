@@ -3,25 +3,27 @@ Your answers to the questions go here.
 # Solutions Engineer - Jerome Klodzinski - jp.klodzinski (at) gmail (dot) com - Company "Datadog Recruiting Candidate"
 
 # Level Zero    - Prerequisites
+
 Setup is a nested environment (based on non-free Vagrant Service-Provider for VMware Fusion)
-`MacOS HighSierra 10.13.6 - Fusion 10.1.3 - Ubuntu 18.04.1 LTS - Vagrant 2.0.2 with VirtualBox 5.2.10 - precise64 or xenial64 with datadog agent 6.4.2`
+> `MacOS HighSierra 10.13.6 - Fusion 10.1.3` 
+>> `Ubuntu 18.04.1 LTS - Vagrant 2.0.2 with VirtualBox 5.2.10`  
+>>> `precise64 or xenial64 with datadog agent 6.4.2`
 
 # Level One     - Collecting Metrics
-1) Tags got added into the dadadog.yaml see:
-
-    <img src="http://tmp.gdwb.de/SC01.png" />
-
-    Second screenshot shows the attached tags to the system in Host Map
+1) Tags got added into the `datadog.yaml` see:
 
     <img src="http://tmp.gdwb.de/SC04.png" />
 
-    Additional the metric view on Host Map for the app apache:
+    Second screenshot shows the attached tags to the system in Host Map
+
+    <img src="http://tmp.gdwb.de/SC01.png" />
+
+    Additional the metric view on Host Map for the app `apache`:
 
     <img src="http://tmp.gdwb.de/SC05.png" />
 
     `Question:`
-    Tags of Apps are not inherited towards agent tags. How to filter Host by app related tags inside host map? Like for my "app-infra:apache2" inside of app "apache"? Apache integration got installed
-
+    >Tags of Apps are not inherited towards agent tags. How to filter Host by app related tags inside host map? Like for my "app-infra:apache2" inside of app "apache"? Apache integration got installed
 
 2) Installed and configured mongodb on host and integration got installed in datadog
 
