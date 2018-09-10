@@ -2,19 +2,19 @@ Your answers to the questions go here.
 
 # Solutions Engineer - Jerome Klodzinski - jp.klodzinski (at) gmail (dot) com - Company "Datadog Recruiting Candidate"
 
-# Level Zero    - Prerequisites
+## Level Zero    - Prerequisites
 
 Setup is a nested environment (based on non-free Vagrant Service-Provider for VMware Fusion)
 > `MacOS HighSierra 10.13.6 - Fusion 10.1.3` 
 >> `Ubuntu 18.04.1 LTS - Vagrant 2.0.2 with VirtualBox 5.2.10`  
 >>> `precise64 or xenial64 with datadog agent 6.4.2`
 
-# Level One     - Collecting Metrics
+## Level One     - Collecting Metrics
 1) Tags got added into the `datadog.yaml` see:
 
     <img src="http://tmp.gdwb.de/SC04.png" />
 
-    Second screenshot shows the attached tags to the system in Host Map
+    Following screenshot shows the attached tags to the agent in Host Map
 
     <img src="http://tmp.gdwb.de/SC01.png" />
 
@@ -25,112 +25,115 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
     `Question:`
     >Tags of Apps are not inherited towards agent tags. How to filter Host by app related tags inside host map? Like for my "app-infra:apache2" inside of app "apache"? Apache integration got installed
 
-2) Installed and configured mongodb on host and integration got installed in datadog
+
+2) Installed and configured mongodb on host ... 
 
     <img src="http://tmp.gdwb.de/SC08.png" />
 
-    See the installed integration:
+    ...integration got installed into datadog:
 
     <img src="http://tmp.gdwb.de/SC10.png" />
 
-    See the datadog-agent status output related to mongodb
+    Additional see the datadog-agent status output related to the monitored mongodb
     
     <img src="http://tmp.gdwb.de/SC06.png" />
 
     `Marginalia:` 
-    In datadog.yaml the log collection got enabled and for both apps apache and mongodb configured.
+    In datadog.yaml the log collection got enabled and for both apps `apache` and `mongodb` configured.
 
     <img src="http://tmp.gdwb.de/SC07.png" />
 
 
-3) To creat a custom agent script you need to add to files into /etc/datadog.
-In ../conf.d/ a my_metic.yaml which looks like
-----
-init_config:
+3) To create a custom agent script you need to add two files into `/etc/datadog`.
+    In `../conf.d/` a `my_metic.yaml` which looks like
+    >```
+    >init_config:
+    >
+    >instances:
+    >    [{}]
+    >```
 
-instances:
-    [{}]
-----
+    In `../check.d/` a `my_metric.py` which looks like:
+    >```
+    >from random import randint
+    >from checks import AgentCheck
+    >class my_metric(AgentCheck):
+    >    def check(self, instance):
+    >        self.gauge('my_metric', randint(0,1000))
+    >```
+    See: 
 
-In ../check.d/ a my_metric.py which looks like:
-----
-from random import randint
-from checks import AgentCheck
-class my_metric(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric', randint(0,1000))
-----
-See: 
-<img src="http://tmp.gdwb.de/SC09.png" />
+    <img src="http://tmp.gdwb.de/SC09.png" />
+
 
 4) To adjust the interval you first need to know the version of the agent, the responsible yaml in conf.d need the setting.
-Since v6 the option "min_collection_interval : 45" is only possible on instance level with a v5 agent you could even set it globally.
+    Since `v6` of the agent the option `min_collection_interval : 45` is only possible on instance level with a `v5` agent you could even set it globally.
 
 
+5)`Bonus Question:` 
+    >For sure I guess the collection period can get adjusted globally within datadog.yaml. 
 
-5)Bonus Question: For sure I guess the collection period can get adjusted globally within datadog.yaml. 
 
-
-# Level Two     - Visualizing Data
+## Level Two     - Visualizing Data
 First of all you have to create new application key to get the required full access to API for named user.
 <img src="http://tmp.gdwb.de/SC13.png" />
 
 Based on my script I did had a "parsing error" when the graph for anomaly was integrated. Honestly, didn't figured out what is the cause.
 Commenting out this graph and the api called dashboard creation went well.
-----
-api_key=adf64ae91539d6f3260aed9f3db50b47
-app_key=34ad9f0b15824c83b53b5445f691bc756bd5b672
-
-curl  -X POST -H "Content-type: application/json" \
--d '{
-        "title" : "JPK Timeboard",
-        "description" : "JPK timeboard created by API.",
-        "template_variables" : 
-		[{
-                "name": "host1",
-                "prefix": "host",
-                "default": "precise64"
-        	}],
-        "graphs" : 
-		[{
-                "title": "my_metric for host:precise64",
-                "definition": 
-			{
-                        "events": [],
-                        "requests": 
-				[
-            			{"q": "my_metric{host:precise64}"}
-                        	],
-                        "viz": "timeseries"
-                	}
-        	},
-#                {
-#                "title": "Anomaly for MongoDB",
-#                "definition": 
-#			{
-#                        "events": [],
-#                        "requests": 
-#				[
-#				{"q": "avg(last_4h):anomalies(avg:mongodb.backgroundflushing.last_ms{host:precise64}, 'basic', 3, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1" }
-#                        	],
-#                        "viz": "timeseries"
-#                 	}
-#        	},
-               {
-                "title": "my_metric SUM-UP",
-                "definition": 
-			{
-                        "events": [],
-                        "requests": 
-				[
-                                {"q": "my_metric{host:precise64}.rollup(sum,3600)"}
-                        	],
-                        "viz": "query_value"
-                	}
-        	}]
-}' \
-"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
-----
+>```
+>api_key=adf64ae91539d6f3260aed9f3db50b47
+>app_key=34ad9f0b15824c83b53b5445f691bc756bd5b672
+>
+>curl  -X POST -H "Content-type: application/json" \
+>-d '{
+>        "title" : "JPK Timeboard",
+>        "description" : "JPK timeboard created by API.",
+>        "template_variables" : 
+>		[{
+>                "name": "host1",
+>                "prefix": "host",
+>                "default": "precise64"
+>        	}],
+>        "graphs" : 
+>		[{
+>                "title": "my_metric for host:precise64",
+>                "definition": 
+>			{
+>                        "events": [],
+>                        "requests": 
+>				[
+>            			{"q": "my_metric{host:precise64}"}
+>                        	],
+>                        "viz": "timeseries"
+>                	}
+>        	},
+>#                {
+>#                "title": "Anomaly for MongoDB",
+>#                "definition": 
+>#			{
+>#                        "events": [],
+>#                        "requests": 
+>#				[
+>#				{"q": "avg(last_4h):anomalies(avg:mongodb.backgroundflushing.last_ms{host:precise64}, 'basic', 3, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1" }
+>#                        	],
+>#                        "viz": "timeseries"
+>#                 	}
+>#        	},
+>               {
+>                "title": "my_metric SUM-UP",
+>                "definition": 
+>			{
+>                        "events": [],
+>                        "requests": 
+>				[
+>                                {"q": "my_metric{host:precise64}.rollup(sum,3600)"}
+>                        	],
+>                        "viz": "query_value"
+>                	}
+>        	}]
+>}' \
+>"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+>```
 I guess it is some minor typo but I didn't found the cause. Screenshot attached
 <img src="http://tmp.gdwb.de/SC11.png" />
 
