@@ -2,11 +2,11 @@ Your answers to the questions go here.
 
 # Solutions Engineer - Jerome Klodzinski - jp.klodzinski (at) gmail (dot) com - Company "Datadog Recruiting Candidate"
 
-# Level Zero - Prerequisites
+# Level Zero    - Prerequisites
 Setup is a nested environment (based on non-free Vagrant Service-Provider for VMware Fusion)
-'MacOS HighSierra 10.13.6 - Fusion 10.1.3 - Ubuntu 18.04.1 LTS - Vagrant 2.0.2 with VirtualBox 5.2.10 - precise64 or xenial64 with datadog agent 6.4.2'
+`MacOS HighSierra 10.13.6 - Fusion 10.1.3 - Ubuntu 18.04.1 LTS - Vagrant 2.0.2 with VirtualBox 5.2.10 - precise64 or xenial64 with datadog agent 6.4.2`
 
-# Level One - Collecting Metrics
+# Level One     - Collecting Metrics
 1) Tags got added into the dadadog.yaml see:
 
     <img src="http://tmp.gdwb.de/SC01.png" />
@@ -19,21 +19,26 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
 
     <img src="http://tmp.gdwb.de/SC05.png" />
 
-    Question: 
+    `Question:`
     Tags of Apps are not inherited towards agent tags. How to filter Host by app related tags inside host map? Like for my "app-infra:apache2" inside of app "apache"? Apache integration got installed
 
 
 2) Installed and configured mongodb on host and integration got installed in datadog
-<img src="http://tmp.gdwb.de/SC08.png" />
 
-See the installed integration:
-<img src="http://tmp.gdwb.de/SC10.png" />
+    <img src="http://tmp.gdwb.de/SC08.png" />
 
-See the datadog-agent status output related to mongodb
-<img src="http://tmp.gdwb.de/SC06.png" />
+    See the installed integration:
 
-Site note in datadog.yaml the log collection got enabled and for both apps apache and mongodb configured.
-<img src="http://tmp.gdwb.de/SC07.png" />
+    <img src="http://tmp.gdwb.de/SC10.png" />
+
+    See the datadog-agent status output related to mongodb
+    
+    <img src="http://tmp.gdwb.de/SC06.png" />
+
+    `Marginalia:` 
+    In datadog.yaml the log collection got enabled and for both apps apache and mongodb configured.
+
+    <img src="http://tmp.gdwb.de/SC07.png" />
 
 
 3) To creat a custom agent script you need to add to files into /etc/datadog.
@@ -64,7 +69,7 @@ Since v6 the option "min_collection_interval : 45" is only possible on instance 
 5)Bonus Question: For sure I guess the collection period can get adjusted globally within datadog.yaml. 
 
 
-# Level Two - Visualizing Data
+# Level Two     - Visualizing Data
 First of all you have to create new application key to get the required full access to API for named user.
 <img src="http://tmp.gdwb.de/SC13.png" />
 
@@ -142,7 +147,7 @@ Based on the selected algorithm the anomaly graph is learning of historic behavi
 One example for this would be a high load on AD service every day at 8-9 am based on shift change would get marked as normal.
 A sudden high load on AD service at 2pm would be a anomaly.
 
-# Level Three - Monitoring Data
+# Level Three   - Monitoring Data
 1) Created a metric monitor to check the value of my_metric
 <img src="http://tmp.gdwb.de/SC22.png" />
 
@@ -156,7 +161,7 @@ See the following screenshots of the maintenance windows created for this monito
 <img src="http://tmp.gdwb.de/SC18.png" />
 <img src="http://tmp.gdwb.de/SC19.png" />
 
-# Level Four - Collecting APM Data
+# Level Four    - Collecting APM Data
 See the APM view and the Dashboard with an APM and an host graph
 <img src="http://tmp.gdwb.de/SC24.png" />
 <img src="http://tmp.gdwb.de/SC25.png" />
@@ -178,7 +183,7 @@ if __name__ == "__main__":
 Bonus Question:
 A Service is the sum of all process mandatory to provide the output/the data/files etc also called the "resources" towards the user of the app.
 
-# Level Five - Final Question
+# Level Five    - Final Question
 There are two topics coming straight in my mind. First of all would be smarthome. Based on different smarthome products
 like www.hom.ee collecting all sensor output/logs etc. And combining this with anomaly behavior to determin if this is working as expect
 or if there are misbehaviors...might even as an smart way of alarm system
