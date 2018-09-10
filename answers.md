@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 
 # Solutions Engineer - Jerome Klodzinski 
-## jp.klodzinski (at) gmail (dot) com - Company used "Datadog Recruiting Candidate"
+`jp.klodzinski (at) gmail (dot) com - Company used "Datadog Recruiting Candidate"`
 
 ## Level Zero - Prerequisites
 
@@ -30,14 +30,14 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
     ...integration got installed into datadog:
     <img src="http://tmp.gdwb.de/SC10.png" />
 
-    Additional see the datadog-agent status output related to the monitored mongodb  
+    Additional see the datadog-agent status output related to the monitored mongodb:  
     <img src="http://tmp.gdwb.de/SC06.png" />
 
     `Marginalia:` 
     > In datadog.yaml the log collection got enabled and for both apps `apache` and `mongodb` configured.
     <img src="http://tmp.gdwb.de/SC07.png" />
 
-3) To create a custom agent script you need to add two files into `/etc/datadog`.
+3) To create a custom agent script you need to add two files into subfolders of `/etc/datadog`.
     In `../conf.d/` a `my_metic.yaml` which looks like:
 
     >```
@@ -154,10 +154,10 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
 1) Created a metric monitor to check the value of my_metric
     <img src="http://tmp.gdwb.de/SC22.png" />
 
-    Additional you can see the notification for initial creation of monitor ....
+    Additional you can see the notification for initial creation of the monitor ....
     <img src="http://tmp.gdwb.de/SC23.png" />
 
-    ...and for the alarm (or more correct for the warning as it looks like I'm not getting an alarm:
+    ...and for the alarm (or more correct for the warning as it looks like I'm not getting an alarm):
     <img src="http://tmp.gdwb.de/SC21.png" />
 
 2) `Bonus Question:`
@@ -167,11 +167,11 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
     >....and second the one for the weekend.
     ><img src="http://tmp.gdwb.de/SC19.png" />
 
-    >`Question:
+    >`Question:`
     >> Looks like for the variable usage I missed one point because it is not taking the variable like `host.ip`. Even I "copied" the template.
 
 ## Level Four - Collecting APM Data
-1) See the APM view .....
+1) Please see the APM view .....
     <img src="http://tmp.gdwb.de/SC24.png" />
 
     ....and the Dashboard with an APM and an host graph.
