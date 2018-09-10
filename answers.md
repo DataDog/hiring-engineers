@@ -1,6 +1,7 @@
 Your answers to the questions go here.
 
-# Solutions Engineer - Jerome Klodzinski - jp.klodzinski (at) gmail (dot) com - Company "Datadog Recruiting Candidate"
+# Solutions Engineer - Jerome Klodzinski 
+## jp.klodzinski (at) gmail (dot) com - Company used "Datadog Recruiting Candidate"
 
 ## Level Zero - Prerequisites
 
@@ -56,11 +57,11 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
     >        self.gauge('my_metric', randint(0,1000))
     >```
     
-    Take a look at following graph: 
+    Take a look at the following graph: 
 
     <img src="http://tmp.gdwb.de/SC09.png" />
 
-4) To adjust the interval you first need to know the version of the agent, the responsible yaml in conf.d need the setting.
+4) To adjust the interval you first need to know the version of the agent, second the responsible yaml in conf.d need the setting.
     Since `v6` of the agent the option `min_collection_interval : 45` is only possible on instance level with a `v5` agent you could even set it globally.
 
 
@@ -129,61 +130,72 @@ Setup is a nested environment (based on non-free Vagrant Service-Provider for VM
     >"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
     >```
 
-    I guess it is some minor typo but I didn't found the cause. Screenshot of the executed shell script attached
+    I guess it is some minor typo but I didn't found the cause. 'jpk_timeboard_2.sh` looks exactly like the code snippet above. Screenshot of the executed shell script attached
     <img src="http://tmp.gdwb.de/SC11.png" />
 
-    Thus current dashboard without anomaly graph (which of cause could get added through GUI, but I want to stay "clean")
+    Thus current dashboard without anomaly graph (which of cause could get added through GUI, but I want to stay "clean").
     <img src="http://tmp.gdwb.de/SC14.png" />
 
 2) Next step you can see the 5min graph in "fullscreen"
     <img src="http://tmp.gdwb.de/SC15.png" />
 
-3) And afterwards the 5min timeframe while taking a snapshot with @notation and the related event.
+    And afterwards the 5min timeframe while taking a snapshot with @notation ....
     <img src="http://tmp.gdwb.de/SC16.png" />
+
+    ....and the related event.
     <img src="http://tmp.gdwb.de/SC17.png" />
 
-4) `Bonus Question:`
+3) `Bonus Question:`
     >Based on the selected algorithm the anomaly graph is learning of historic behavior if an upcoming value is inside historic normal behavior or not.
     >One example for this would be a high load on AD service every day at 8-9 am based on shift change would get marked as normal.
     >A sudden high load on AD service at 2pm would be a anomaly.
 
-# Level Three   - Monitoring Data
+# Level Three - Monitoring Data
 1) Created a metric monitor to check the value of my_metric
-<img src="http://tmp.gdwb.de/SC22.png" />
+    <img src="http://tmp.gdwb.de/SC22.png" />
 
-Additional you can see the notification for initial creation of monitor and for the alarm (or more correct for the warning as it looks like I'm not getting an alarm:
-<img src="http://tmp.gdwb.de/SC23.png" />
-<img src="http://tmp.gdwb.de/SC21.png" />
+    Additional you can see the notification for initial creation of monitor ....
+    <img src="http://tmp.gdwb.de/SC23.png" />
 
-Bonus Question:
-See the following screenshots of the maintenance windows created for this monitor:
+    ...and for the alarm (or more correct for the warning as it looks like I'm not getting an alarm:
+    <img src="http://tmp.gdwb.de/SC21.png" />
 
-<img src="http://tmp.gdwb.de/SC18.png" />
-<img src="http://tmp.gdwb.de/SC19.png" />
+2) `Bonus Question:`
+    >See the following screenshots of the maintenance windows created for this monitor. Where the first is the one for the out of office hours...
+    ><img src="http://tmp.gdwb.de/SC18.png" />
+    >
+    >....and second the one for the weekend.
+    ><img src="http://tmp.gdwb.de/SC19.png" />
 
-# Level Four    - Collecting APM Data
-See the APM view and the Dashboard with an APM and an host graph
-<img src="http://tmp.gdwb.de/SC24.png" />
-<img src="http://tmp.gdwb.de/SC25.png" />
-As the goal was to just have an app running and I had some issues with pip on precise related to https not supported and no newer version direct awailable, I set up a second vagrant VM with Xenial64. There the following flask app got started:
-----
-from flask import Flask, Response
+    >`Question:
+    >> Looks like for the variable usage I missed one point because it is not taking the variable like `host.ip`. Even I "copied" the template.
 
+## Level Four - Collecting APM Data
+1) See the APM view .....
+    <img src="http://tmp.gdwb.de/SC24.png" />
 
-app = Flask(__name__)
+    ....and the Dashboard with an APM and an host graph.
+    <img src="http://tmp.gdwb.de/SC25.png" />
 
-@app.route("/")
-def index():
-    return Response("It works!"), 200
+    As the goal was to just have an app running and I had some issues with pip on precise related to https not supported and no newer version direct awailable, I set up a second vagrant VM with Xenial64. There the following flask app got started:
+    >``` 
+    >from flask import Flask, Response
+    >
+    >
+    >app = Flask(__name__)
+    >
+    >@app.route("/")
+    >def index():
+    >    return Response("It works!"), 200
+    >
+    >if __name__ == "__main__":
+    >    app.run(debug=True)
+    >```
 
-if __name__ == "__main__":
-    app.run(debug=True)
-----
+2) `Bonus Question:`
+    > A Service is the sum of all process mandatory to provide the output/the data/files etc also called the "resources" towards the user of the app.
 
-Bonus Question:
-A Service is the sum of all process mandatory to provide the output/the data/files etc also called the "resources" towards the user of the app.
-
-# Level Five    - Final Question
+## Level Five - Final Question
 There are two topics coming straight in my mind. First of all would be smarthome. Based on different smarthome products
 like www.hom.ee collecting all sensor output/logs etc. And combining this with anomaly behavior to determin if this is working as expect
 or if there are misbehaviors...might even as an smart way of alarm system
