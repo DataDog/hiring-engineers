@@ -5,7 +5,7 @@ For this open source exercise I'm running Ubuntu 16.04 on my device. Before inst
 
 Download the Datadog Agent in terminal.
 ```
-DD_API_KEY=f3a6ab39d4e712b846b54ad0ccaa2083 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/agent_ok.png" />
 
@@ -99,8 +99,8 @@ My python file contains the necessary code to show:
 from datadog import initialize, api
 
 options = {
-    'api_key': 'f3a6ab39d4e712b846b54ad0ccaa2083',
-    'app_key': '31893e08273890e9112e329dce77bc27ff89e44f'
+    'api_key': 'YOUR API KEY',
+    'app_key': 'YOUR APP KEY'
 }
 
 initialize(**options)
