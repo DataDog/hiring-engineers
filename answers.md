@@ -56,9 +56,11 @@ MySQL is shown to be configured and can be seen on the dashboard:
 ### Adding a custom Agent check
 Again, I spent alot of time reading through the agent_check documentation. From the guidelines and example .py and .yaml files in that document, I created two files, one python file named my_metric.py which was placed in directory /etc/datadog-agent/checks.d/my_metric.py. The other files, my_metric.yaml was placed in directory /etc/datadog-agent/conf.d/my_metric.yaml.
 My my_metric.py:
+
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_py.png" />
 
-My my_metric.yaml
+My my_metric.yaml:
+
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_yaml.png" />
 
 Also remember to restart the Agent so that the metrics can be updated. 
