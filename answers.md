@@ -48,6 +48,7 @@ To see that MySQL is sucessfully running its metrics, restart the Datadog agent 
 sudo datadog-agent status
 ```
 This shows that my metric is running successfully:
+
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/check_sql.png" />
 
 MySQL is shown to be configured and can be seen on the dashboard:
