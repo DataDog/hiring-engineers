@@ -78,5 +78,87 @@ my_metric.yaml now looks like this with a collection interval time of 45 seconds
 Yes, I can change the interval by editing my my_metric.yaml file and setting ```min_collection_interval``` to 45. 
 
 
+## Visualizing Data
+
+### Creating a Timeboard
+
+To approach this problem, I started reading about the basics of Dashboards which is a strong gateway into learning about the specifics of a Timeboard. In addition, since the Timeboard will be requesting data, I learned I will need an APP and API key.
+First we need to install the python Datadog module onto our machine. 
+
+```
+pip install datadog
+```
+Next our API key can be found in the integrations tab under APIs on our event page. As such, we can also generate our new APP key from this tab too.
+
+In my ```/etc/datadog-agent``` I created my python file, ```my_timeboard.py``` for my Timeboard.
+My python file contains the necessary code to show:
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'f3a6ab39d4e712b846b54ad0ccaa2083',
+    'app_key': '31893e08273890e9112e329dce77bc27ff89e44f'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "An informative timeboard."
+graphs = [{
+#custom metric scoped over host 
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{host:kiwi-HP-15-Notebook-PC}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Your custom metric scoped over your host."
+},
+#any metric(in this case, MySQL) with anomaly function
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.queries{*}, 'basic', 1)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL metric with anomaly function"
+},
+#custom metric with rollup function
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "custom metric with the rollup function"
+}]
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+As you can see here, you can access your Timeboard from the dashboard list in the dashboard tab. Looking at mine for reference, you should've created three graphs to show the metrics.  
+
+(insert dashboard_timeboard)
+
+
+
 
 
