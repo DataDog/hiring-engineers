@@ -48,28 +48,28 @@ To see that MySQL is sucessfully running its metrics, restart the Datadog agent 
 sudo datadog-agent status
 ```
 This shows that my metric is running successfully:
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/check_mysql.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/check_sql.png" />
 
 MySQL is shown to be configured and can be seen on the dashboard:
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/mysql_dashboard.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/mysql_dashboard.png" />
 
 ### Adding a custom Agent check
 Again, I spent alot of time reading through the agent_check documentation. From the guidelines and example .py and .yaml files in that document, I created two files, one python file named my_metric.py which was placed in directory /etc/datadog-agent/checks.d/my_metric.py. The other files, my_metric.yaml was placed in directory /etc/datadog-agent/conf.d/my_metric.yaml.
 My my_metric.py:
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_py.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_py.png" />
 
 My my_metric.yaml
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_yaml.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_yaml.png" />
 
 Also remember to restart the Agent so that the metrics can be updated. 
 
 We are now creating random numbers between 0-1000 as seen on my dashboard.
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_dash.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_dash.png" />
 
 To change my checks collection interval so that it only submits once every 45 seconds is done by changing my_metric.yaml. Now according to the checks_agent documentation, the ```min_collection_interval``` is defaulted to 0 seconds when it is not added. 
 my_metric.yaml now looks like this with a collection interval time of 45 seconds:
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/interval_my_metric.png" />
-https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/collection_metric.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/interval_my_metric.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/collection_metric.png" />
 
 *Can you change the collection interval without modifying the Python check file you created?*
 Yes, I can change the interval by editing my my_metric.yaml file and setting ```min_collection_interval``` to 45. 
