@@ -234,6 +234,9 @@ To schedule a downtime for this monitor, I navigated to the Manage Downtime tab.
 Once you have created your downtimes, you should receive an email notifying you of your scheduled downtimes. 
 
 
+## Collecting APM Data
+
+
 
 
 
