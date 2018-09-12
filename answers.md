@@ -160,7 +160,29 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 >
 > Answer:  
+> - Created a Timeboard by utilizing API 
+> 1. Create `timeboard.py` file
+
+>> create a graph for 'my_metric'
+>><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Timeboard%20script%201.png" />
+
+>>  create a graph for 'my_metric' sum up for the past hour
+>><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Timeboard%20script%202.png" />
+
+>>  create a graph for 'mysql' database with the anomaly function applied
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Timeboard%20script%203.png" />
+
+> 2. Run `timeboard.py` file to utilize API 
+>>```
+>>sudo python timeboard.py
+>>```
+
+> 3. See a new dashboard added in Datadog
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Dashboard%20list.png" />
+
+> - Created a Timeboard by using Datadog UI
 ><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Visualizing%20Data_01_Timeboard.png" />
+>
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -279,6 +301,69 @@ if __name__ == '__main__':
 ```
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other. 
+
+> Answer:   I used the given Flask app for collecting APM data 
+>           (I upgraded to Ubuntu 16.04 for this excercise as I faced errors in Ubuntu 14.04)
+> 
+>  Link: [APM Monitor for my flask app] https://app.datadoghq.com/apm/service/flask/flask.request?start=1536713774564&end=1536717374564&env=production&paused=false(https://app.datadoghq.com/apm/service/flask/flask.request?start=1536713774564&end=1536717374564&env=production&paused=false)
+>
+>
+> 1. Set up Flask in Ubuntu
+>> Install `python-virtualenv ` to create virtual environment for Python projects
+>>>```
+>>>cd ~
+>>>sudo apt-get install python-virtualenv 
+>>>sudo apt-get install python-pip
+>>>```
+> >Create `flask-application` folder for the Flask app 
+>>>```
+>>>mkdir flask-application
+>>>cd flask-application
+>>>```
+>
+>> Create a virtual environment for flask `flask-env`and activate it
+>>>```
+>>>mkdir flask-application
+>>>cd flask-application
+>>>source flask-env/bin/activate
+>>>```
+>
+>>> Install Flask in the flask-env
+>>>```
+>>>(flask-env) vagrant@ubuntu-xenial:~/flask-application$ pip install Flask
+>>>```
+>
+> 2. Add `flaskapp.py` in the flask-env
+> 
+>>```
+>>(flask-env) vagrant@ubuntu-xenial:~/flask-application$ emacs flaskapp.py
+>>```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20APM%20Data_03_app.png" />
+
+> 3. Install the Datadog Tracing library `ddtrace` using pip
+>>```
+>>sudo pip install ddtrace
+>>```
+>
+> 4. Enable APM trace colletion in `datadog.yaml`
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20APM%20Data_01_Config.png" />
+>
+
+> 5. Instrument the Flask application by using `ddtrace-run`
+>>``` 
+>>(flask-env) vagrant@ubuntu-xenial:~/flask-application$ ddtrace-run python flaskapp.py
+>>```
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20APM%20Data_02_run.png" />
+
+> 6. Open another terminal window in Ubuntu and send a HTTP request using cURL
+>>``` 
+>>$ curl 'http://127.0.0.1'
+>>```
+
+> 7. Traces are available to see on [APM](https://app.datadoghq.com/apm/) page in Datadog
+
+><img src="https://github.com/Yoonhye/hiring-engineers/blob/Yoonhye_Solutions_Engineer/Screenshots_Yoonhye%20Jung_Solutions_Engineer/Collecting%20APM%20Data_04_APM%20page.png" />
+>
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 > Answer:   A "Service" is the name of a set of processes that work together to provide a feature set, while a "Resource" is a particular query to a service. For instance, a simple web application may consist of two services: a single webapp service and a single database service. For a SQL database service, a resource would be the SQL of the query itself like `select * from users where id = ?`
