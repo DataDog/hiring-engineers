@@ -4,6 +4,7 @@
 For this open source exercise I'm running Ubuntu 16.04 on my device. Before installing the agent, I read through the documentation located at the bottom of the assignment in order to gain an understanding of the Datadog agent.  
 
 Download the Datadog Agent in terminal.
+You will be given your own API key(DO NOT show your API key to the public)
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
@@ -74,7 +75,7 @@ my_metric.yaml now looks like this with a collection interval time of 45 seconds
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/interval_my_metric.png" />
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/collection_metric.png" />
 
-*Can you change the collection interval without modifying the Python check file you created?*
+*Bonus: Can you change the collection interval without modifying the Python check file you created?*
 Yes, I can change the interval by editing my my_metric.yaml file and setting ```min_collection_interval``` to 45. 
 
 
@@ -90,7 +91,7 @@ pip install datadog
 ```
 Next our API key can be found in the integrations tab under APIs on our event page. As such, we can also generate our new APP key from this tab too.
 
-In my ```/etc/datadog-agent``` I created my python file, ```my_timeboard.py``` for my Timeboard.
+In my ```/etc/datadog-agent``` directory I created my python file, ```my_timeboard.py``` for my Timeboard.
 My python file contains the necessary code to show:
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
@@ -99,7 +100,7 @@ My python file contains the necessary code to show:
 from datadog import initialize, api
 
 options = {
-    'api_key': 'YOUR API KEY',
+    'api_key': 'YOUR API KEY', 
     'app_key': 'YOUR APP KEY'
 }
 
@@ -123,11 +124,11 @@ graphs = [{
     "definition": {
         "events": [],
         "requests": [
-            {"q": "anomalies(avg:mysql.performance.queries{*}, 'basic', 1)"}
+            {"q": "anomalies(avg:mysql.performance.threads_running{*}, 'basic', 2)"}
         ],
         "viz": "timeseries"
     },
-    "title": "MySQL metric with anomaly function"
+    "title": "MySQL metric, mysql.performance.threads_running, with anomaly function"
 },
 #custom metric with rollup function
 {
@@ -154,9 +155,66 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
+Execute the python script.
+
+```
+python my_timeboard.py
+```
+
+Restart the datadog Agent.
+
 As you can see here, you can access your Timeboard from the dashboard list in the dashboard tab. Looking at mine for reference, you should've created three graphs to show the metrics.  
 
 (insert dashboard_timeboard)
+
+Link to [my Timeboard](https://app.datadoghq.com/dash/913060/my-timeboard?live=true&page=0&is_auto=false&from_ts=1536704020478&to_ts=1536707620478&tile_size=m)
+
+### Set the Timeboard frame to the past 5 minutes
+
+Manually highlight the time interval I would like to observe. Improving the custom interval option with seconds, minutes, and hours would be easier on the user. 
+
+Below is my Timeboard metrics from the last 5 minutes:
+(insert tiemboard_five)
+
+I also sent a snapshot of my_metric to my feed using the camera icon in the top right corner of the desired graph I wanted to send:
+(insert graph_notation)
+
+
+*Bonus: What is the Anomaly graph displaying?*
+Based on the Anomaly documenation, the Anomaly graph is designed to show its user any anomalies that the metric encounters. It does this by comparing previous data with the current data. If there's a drastic change, the graph will spike and show the anomaly with a red graph line. It's a great way to alert its users that the metric might be trending in the wrong direction. 
+
+For my example, my chosen MySQL metric stayed constant, but since I'm only using it for this assignment right now, the same size is small, but with huge amounts of the data there will be inconsistencies that its user will need to report.  
+
+
+### Monitoring Data
+In this step, I want to create a new Monitor that will alert if it’s above the following values over the past 5 minutes:
+1. Warning threshold of 500
+2. Alerting threshold of 800
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+I created a new metric Monitor in the Monitors tab after reading about [the metric monitor documentation](https://docs.datadoghq.com/monitors/monitor_types/metric/). These are the steps I took in creating the new metric Monitor:
+
+(insert met_mon1,2,3)
+
+Once I created the metric Monitor, notifications were sent to my email. Here is my warning:
+
+(insert alert_email)
+
+
+*Bonus:  Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
+*One that silences it from 7pm to 9am daily on M-F,*
+*And one that silences it all day on Sat-Sun.*
+*Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
+
+To schedule a downtime for this monitor, I navigated to the Manage Downtime tab. From there I scheduled a downtime for my Monitor for the weekend and weekdays:
+
+(insert weekday_alert 1,2)
+(insert weekday_notify)
+
+(insert weekend_alert 1,2)
+(insert weekend_notify)
+
+Once you have created your downtimes, you should receive an email notifying you of your scheduled downtimes. 
 
 
 
