@@ -244,13 +244,16 @@ Once you have created your downtimes, you should receive an email notifying you 
 Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. 
 For fantasy basketball I would:
 ```
-
+Use the Agent's collector to collect metrics on individual players stats such as fg%, ft%, TO's, Rebounds, Points scored.
+If a player performs unusually well, have Datadog send an anomaly alert to the user.
 ```
 
 For fantasy football I would:
 ```
+Use the Agent's collector to collect metrics on individual players stats such as total yards, TD's scored, fumbles.
+Notify me when a players production dips to 0 due to injury. 
 ```
-
+With Datadog's product, users can record and analyze huge amounts of data applied to an array of topics. Using them for fantasy applications is only a fraction of what we could use Datadog for. 
 
 
 
