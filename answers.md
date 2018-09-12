@@ -238,5 +238,21 @@ Once you have created your downtimes, you should receive an email notifying you 
 
 
 
+## Final Question
+
+*Is there anything creative you would use Datadog for?*
+Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. 
+For fantasy basketball I would:
+```
+
+```
+
+For fantasy football I would:
+```
+```
+
+
+
+
 
 
