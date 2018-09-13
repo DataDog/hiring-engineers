@@ -152,5 +152,17 @@ Please configure the monitor’s message so that it will:
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+
+<img src="img/weekdays.png" />
+
+
   * And one that silences it all day on Sat-Sun.
+
+<img src="img/weekends.png" />
+
+
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+<img src="img/weekday_email.png" />
+
+<img src="img/weekend_email.png" />
