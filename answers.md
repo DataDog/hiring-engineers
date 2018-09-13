@@ -354,6 +354,12 @@ Now I also added the APM metrics and infrastructure metrics to my new Dashboard 
 
 The link to my Dashboard in real time can be accessed [here](https://app.datadoghq.com/dash/914487/apm--metric-dashboard?live=true&page=0&is_auto=false&from_ts=1536801800142&to_ts=1536805400142&tile_size=m).
 
+*Bonus Question: What is the difference between a Service and a Resource?*
+
+A service is a set of processes that work together to achieve the same goal/job. An example of a service is a simple web application that has a web service and a database service which coinside with each other to create a web application.
+
+A resource is a particular query to a service. For the web application example a handler function is a resource. 
+
 
 ## Final Question
 
