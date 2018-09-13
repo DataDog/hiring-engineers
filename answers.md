@@ -3,6 +3,8 @@
 ## Setup
 For this open source exercise I'm running Ubuntu 16.04 on my device. Before installing the agent, I read through the documentation located at the bottom of the assignment in order to gain an understanding of the Datadog agent.  
 
+Finish the Datadog Agent setup by following the instructions on how to create a 14 day trial account on Datadog.
+
 Download the Datadog Agent in terminal.
 You will be given your own API key(DO NOT show your API key to the public)
 ```
@@ -10,7 +12,6 @@ DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/Dat
 ```
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/agent_ok.png" />
 
-Finish by following the instructions on how to create a 14 day trial account on Datadog.
 
 ## Collecting Metrics
 Tagging gives the user a method of aggregating data across a number of hosts. This is useful because users can then compare and observe how metrics behave across a number of hosts or collection of systems. 
