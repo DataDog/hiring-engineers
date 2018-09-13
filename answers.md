@@ -45,8 +45,9 @@ to install MySQL, run:
 sudo apt-get update
 sudo apt-get install mysql-server
 ```
-After installation, configure it with Datadog. 
-First I create a datadog user with replication rights in my MySQL server. Then I add the full metrics. 
+After installation, configure it with Datadog.
+First I create a datadog user with replication rights in my MySQL server. Then I add the full metrics found in the Datadog integration page. These configurations can be found [here](https://app.datadoghq.com/account/settings#integrations/mysql).
+
 Next I edit ```mysql.yaml``` in the directory ```/etc/datadog-agent/conf.d/```
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/mysql_yaml.png" />
