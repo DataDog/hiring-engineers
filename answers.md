@@ -68,3 +68,37 @@ See image above.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 You change the .yaml file.
+
+
+## Visualizing Data:
+
+Utilize the Datadog API to create a Timeboard that contains:
+
+
+* Your custom metric scoped over your host.
+
+Sources: [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/),
+[API](https://docs.datadoghq.com/api/?lang=python#timeboards)
+
+<img src="img/timeboard.png" />
+
+
+* Any metric from the Integration on your Database with the anomaly function applied.
+
+Source: [Anomaly Detection](https://docs.datadoghq.com/api/?lang=python#create-a-monitor)
+https://docs.datadoghq.com/graphing/functions/algorithms/
+
+
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Source: [Rollup Function](https://docs.datadoghq.com/graphing/functions/rollup/)
+
+
+
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+* **Bonus Question**: What is the Anomaly graph displaying?
