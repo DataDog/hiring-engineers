@@ -16,7 +16,7 @@ Once the Agent was successfully installed, I received the commands on how to sta
 
 
 ## Collecting Metrics
-Tagging gives the user a method of aggregating data across a number of hosts. This is useful because users can then compare and observe how metrics behave across a number of hosts or collection of systems. 
+Tagging gives the user a method of aggregating data across a number of hosts. This is useful because users can then compare and observe how metrics behave across a number of hosts or collection of systems. This documentation can be found [here](https://docs.datadoghq.com/tagging/)
 
 Navigate to Datadog directory via terminal or any other unix interface of your choosing. 
 
@@ -70,13 +70,13 @@ MySQL is shown to be configured and can be seen on the dashboard:
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/mysql_dashboard.png" />
 
 ### Adding a custom Agent check
-Again, I spent alot of time reading through the agent_check documentation. From the guidelines and example .py and .yaml files in that document, I need to create two files, one python file named my_metric.py which was placed in directory /etc/datadog-agent/checks.d/my_metric.py. The other files, my_metric.yaml was placed in directory ```/etc/datadog-agent/conf.d/my_metric.yaml```
+Again, I spent alot of time reading through the [agent_check documentation](https://docs.datadoghq.com/developers/agent_checks/). From the guidelines and example .py and .yaml files in that document, I need to create two files, one python file named ```my_metric.py``` which was placed in directory ```/etc/datadog-agent/checks.d/```. The other files, ```my_metric.yaml``` was placed in directory ```/etc/datadog-agent/conf.d/```
 
-My my_metric.py:
+My ```my_metric.py```:
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_py.png" />
 
-My my_metric.yaml:
+My ```my_metric.yaml```:
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_yaml.png" />
 
@@ -86,7 +86,7 @@ We are now creating random numbers between 0-1000 as seen on my dashboard:
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_dash.png" />
 
-To change my checks collection interval so that it only submits once every 45 seconds is done by changing ```my_metric.yaml```. Now according to the checks_agent documentation, the ```min_collection_interval``` is defaulted to 0 seconds when it is not added. 
+The Agent collector collects metrics every 15 seconds by default. To change my checks collection interval so that it only submits once every 45 seconds is done by changing ```my_metric.yaml```. Now according to the checks_agent documentation, the ```min_collection_interval``` is defaulted to 0 seconds when it is not added. 
 ```my_metric.yaml``` now looks like this with a collection interval time of 45 seconds:
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/interval_my_metric.png" />
@@ -113,7 +113,7 @@ pip install datadog
 Next our API key can be found in the integrations tab under APIs on our event page. As such, we can also generate our new APP key from this tab too.
 
 
-Taking the sample code from the Timeboard documentation, I navigated to my ```/etc/datadog-agent``` directory and created a python file, ```my_timeboard.py``` for my Timeboard. I added two definitions to ```my_timeboard.py``` so that I could display the anomaly and roll-up functions. 
+Taking the sample code from the [Timeboard documentation](https://docs.datadoghq.com/api/?lang=python#timeboards), I navigated to my ```/etc/datadog-agent``` directory and created a python file, ```my_timeboard.py``` for my Timeboard. I added two definitions to ```my_timeboard.py``` so that I could display the anomaly and roll-up functions. 
 My python file contains the necessary code to show:
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
