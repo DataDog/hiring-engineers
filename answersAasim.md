@@ -171,8 +171,8 @@ embedded code, as I could not find the @ notation to send it to myself. I have p
 * Bonus Question: What is the Anomaly graph displaying?
 
 >Answer: The anomaly graph is displaying the predictable patterns within the graph. Though anomaly 
-detection requires a large amount of data in order to function. Also, if we look specifically 
-at the anomalies within the graph for my_metric we can see the gray background which is begining to display the anomalies, but as the data grows the trends could change. 
+detection requires a large amount of data in order to function.  If we look specifically 
+at the anomalies within the graph for my_metric we can see the gray background which is beginning to display the anomalies, but as the data grows the trends could change. 
 
  
 ### Level 3 - Monitoring Data
@@ -192,6 +192,7 @@ Bonus: I went on tab for Managing Downtime for Monitors and I was able to config
 <img src="./images/downtime_monitor_weekend" alt="Email sent to me by the monitoring downtime alert for the weekend"/>
 
 ### Level 4 - Collecting APM Data 
+
 
 
 
