@@ -365,7 +365,7 @@ A resource is a particular query to a service. For the web application example a
 
 *Is there anything creative you would use Datadog for?*
 
-Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. Typically, participants make their changes in their fantasy lineup because they are watching the game live or they are notified from a sports application such as Bleacher Report, ESPN, or NFL network which usually takes at least a half hour before reporters report the information. With data collected from Datadog's Agent collector, users can be notified instantly, allowing them to have a competitive advantage over their peers. 
+Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for the fantasy sports community. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those, but it could be used for all sports. Typically, participants make changes in their fantasy lineup because they know a fact about an aspect in it, whether they are watching the game live or being notified from a sports application such as Bleacher Report, ESPN, or NFL network. Being notified through a sports media channel usually takes at least a half hour after the fact till the reporters report the information. With data collected from Datadog's Agent collector, users can be notified instantly, allowing them to have a competitive advantage over their peers. 
 
 For fantasy basketball I would:
 ```
