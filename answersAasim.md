@@ -22,19 +22,19 @@
 > The command for installing DataDog was 
 <!-- DD_API_KEY=ba43f5ff300b9342eb4d993e32500157 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)" -->
 
-<img src="./images/display" alt="Installation and Configuration completion" />
+<img src="./images/display.png" alt="Installation and Configuration completion" />
 
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 >Answer: Within the terminal change your directory to the DataDog Agent by typing _cd ~/.datadog-agent_ , then I used my text editor to make changes to the configuration file (datadog.yaml). 
 
-<img src="./images/tags" alt="Tags being uncommented in text editor" />
+<img src="./images/tags.png" alt="Tags being uncommented in text editor" />
 
 Refresh your DataDog page, and use the navigation bar to go to the Infrastructure tab followed by the Host Map, and here you should be able to see your tags if you search in the "Filter By" column.
 
 
-<img src="./images/display_tags" alt="All of the tags I have created" />
+<img src="./images/display_tags.png" alt="All of the tags I have created" />
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -43,7 +43,7 @@ Refresh your DataDog page, and use the navigation bar to go to the Infrastructur
 
 >Initially, I went to the Integrations tab and there I was able to see the configurations needed to integrate the DataDog Agent with PostgreSQL. 
 
-<img src="./images/psql" alt="Terminal installing datadog as a user" />
+<img src="./images/psql.png" alt="Terminal installing datadog as a user" />
 
 >Create a read-only datadog user with proper access to your PostgreSQL Server.
 
@@ -54,17 +54,17 @@ grant SELECT ON pg_stat_database to datadog;
 >Configure the Agent to connect to the PostgreSQL server 
 >Edit _conf.d/postgres.yaml_
 
-<img src="./images/postgresconnection" alt="PostgreSQL connection OK" />
+<img src="./images/postgresconnection.png" alt="PostgreSQL connection OK" />
 
 >You need to restart the agent in order for the integration to take place. 
 
 >I ran a test using 'datadog-agent check postgres', and it gave me confirmation that the integration was working correctly.
 
-<img src="./images/psql_check" alt="PSQL Check" />
+<img src="./images/psql_check.png" alt="PSQL Check" />
 
 >Followed by this I checked on the dashboard within DataDog and was able to confirm that the PSQL metrics were displaying
 
-<img src="./images/PSQL_metrics" alt="PSQL Metrics on DataDog Dash" />
+<img src="./images/PSQL_metrics.png" alt="PSQL Metrics on DataDog Dash" />
 
 * Write a custom Agent check that samples a random value. Call this new metric: `my_metric`
 
@@ -92,8 +92,8 @@ instances:
     [{}]
 ```
 
-<img src="./images/gui" alt="Check for Custom Metric" />
-<img src="./images/bash" alt="Check within Command Line" />
+<img src="./images/gui.png" alt="Check for Custom Metric" />
+<img src="./images/bash.png" alt="Check within Command Line" />
 
 
 Bonus Question: Can you change the collection interval without modifying the Python check file you created?
@@ -134,7 +134,7 @@ over the host, and if you look in initializeTimeboard3.curl it shows the CURL co
   ],
 }
 
-<img src="./images/custom_metrics" alt="All of the custom metrics within the dashboard discovery"/>
+<img src="./images/custom_metrics.png" alt="All of the custom metrics within the dashboard discovery"/>
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
@@ -146,8 +146,8 @@ embedded code, as I could not find the @ notation to send it to myself. I have p
 
 <iframe src="https://app.datadoghq.com/graph/embed?token=259c7d8e2e1ca75617b9351f5102af8144898c8790f9e301117ff334baf3b9ea&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
 
-<img src="./images/custom_met_5min" alt="All of the custom metrics within the dashboard discovery"/>
-<img src="./images/embedded_graph" alt="All of the custom metrics within the dashboard discovery"/>
+<img src="./images/custom_met_5min.png" alt="All of the custom metrics within the dashboard discovery"/>
+<img src="./images/embedded_graph.png" alt="All of the custom metrics within the dashboard discovery"/>
 
 * Bonus Question: What is the Anomaly graph displaying?
 
@@ -164,24 +164,24 @@ Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-<img src="./images/metric_monitor" alt="Made an alert based on the custom metric created by myself"/>
-<img src="./images/metric_alert" alt="Email sent to me by the monitoring alert"/>
+<img src="./images/metric_monitor.png" alt="Made an alert based on the custom metric created by myself"/>
+<img src="./images/metric_alert.png" alt="Email sent to me by the monitoring alert"/>
 
 Bonus: I went on tab for Managing Downtime for Monitors and I was able to configure the alerts for the weekdays between 7:00pm and 9:00am, as well as turning the monitor off for the weekend. 
 
-<img src="./images/downtime_monitor_week" alt="Made a downtime alert for the week"/>
-<img src="./images/downtime_monitor_weekend" alt="Email sent to me by the monitoring downtime alert for the weekend"/>
+<img src="./images/downtime_monitor_week.png" alt="Made a downtime alert for the week"/>
+<img src="./images/downtime_monitor_weekend.png" alt="Email sent to me by the monitoring downtime alert for the weekend"/>
 
 ### Level 4 - Collecting APM Data 
 
 >Answer: This was definitely very interesting to complete. I definitely found this to be the most challenging to configure on macOSX, and I think having to run the Trace Agent in a virtual environment was the rewarding part because initially I thought I could run it on my local machine.
 I was able to collect metrics and connect the ddtracer with the APM agent, and even though I had configured the APM YAML file to be activated this took a few extra steps. The first trying to install to ddtrace into the local machine and setup a path for this, and it kept denying me permission. Finally, I followed along using flask's tutorial to setup a virtual environment and run the flask application. After running the APM, I was unable to get the data to load into the dashboard I would try to setup a new dashboard and graph the APM events but the loading symbol would come up and stay on for several minutes. When, I checked the Collectors in the GUI I was able to see that the apm was setup and collecting metrics. I wanted just a simple 'hello world' with an integer of 1 to be collected, but it would not display this. 
 
-<img src="./images/gui_collector_check" alt="Made a downtime alert for the week"/>
-<img src="./images/graph_editor_loading" alt="APM Event Graph stuck at loading"/>
-<img src="./images/apm_check" alt="APM check in GUI coming back successful"/>
-<img src="./images/virtualenv_trace_agent" alt=" The virtualenv is running the Flask App while the Trace Agent is being run to connect to the APM"/>
-<img src="./images/trace_agent_success" alt="Initial success with trace agent."/>
+<img src="./images/gui_collector_check.png" alt="Made a downtime alert for the week"/>
+<img src="./images/graph_editor_loading.png" alt="APM Event Graph stuck at loading"/>
+<img src="./images/apm_check.png" alt="APM check in GUI coming back successful"/>
+<img src="./images/virtualenv_trace_agent.png" alt=" The virtualenv is running the Flask App while the Trace Agent is being run to connect to the APM"/>
+<img src="./images/trace_agent_success.png" alt="Initial success with trace agent."/>
 
 Bonus Question: What is the difference between a Service and a Resource?
 
