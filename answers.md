@@ -85,17 +85,21 @@ Sources: [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/)
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-Source: [Anomaly Detection](https://docs.datadoghq.com/api/?lang=python#create-a-monitor)
-https://docs.datadoghq.com/graphing/functions/algorithms/
+Sources:
+[Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), how to create a [monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor), how to write the [query](https://docs.datadoghq.com/graphing/functions/algorithms/)
 
+<img src="img/anomaly.png" />
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
 
 Source: [Rollup Function](https://docs.datadoghq.com/graphing/functions/rollup/)
 
 
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+[Timeboard Script](timeboard.py), [Anomaly Script](anomaly.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
