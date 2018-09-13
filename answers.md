@@ -10,6 +10,8 @@ You will be given your own API key(DO NOT show your API key to the public)
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+Once the Agent was successfully installed, I received the commands on how to start and stop the Agent.
+
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/agent_ok.png" />
 
 
