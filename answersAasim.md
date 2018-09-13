@@ -1,27 +1,8 @@
-Your answers to the questions go here.
-# About Datadog
-Datadog is a data monitoring service for cloud-scale applications, bringing together data from servers, databases, tools, and services to present a unified view of an entire stack. These capabilities are provided on a SaaS-based data analytics platform. [Wiki](https://en.wikipedia.org/wiki/Datadog)
-
-### Features
-* Observability - From infrastructure to apps, in any environment
-* Dashboards - Use instant, real-time boards or build your own
-* Infrastructure - From overview to deep details, fast
-* Analytics - Custom app metrics or business KPIs
-* Collaboration - Share data, discuss in context, solve issues quickly
-* Alerts - Avoid alert fatigue with smart, actionable alerts
-* API - Love infrastructure as code? You'll love Datadog's API
-* Machine Learning - Automatically detect outliers and temporal anomalies
-* APM - Monitor, optimize, and troubleshoot app performance
-
-<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
-
-
 # The Challenge
 
 ## Questions
 
-### Level 0 (optional) - Setup an Ubuntu VM
+### - Setup an Ubuntu VM
 
 * While it is not required, we recommend that you spin up a fresh linux VM via Vagrant or other tools so that you don't run into any OS or dependency issues. [Here are instructions for setting up a Vagrant Ubuntu 12.04 VM.](https://www.vagrantup.com/docs/getting-started/)
 
@@ -193,6 +174,14 @@ Bonus: I went on tab for Managing Downtime for Monitors and I was able to config
 
 ### Level 4 - Collecting APM Data 
 
+This was definitely very interesting to complete. I definitely found this to be the most challenging to configure on macOSX, and I think having to run the Trace Agent in a virtual environment was the rewarding part because initially I thought I could run it on my local machine.
+I was able to collect metrics and connect the ddtracer with the APM agent, and even though I had configured the APM YAML file to be activated this took a few extra steps. The first trying to install to ddtrace into the local machine and setup a path for this, and it kept denying me permission. Finally, I followed along using flask's tutorial to setup a virtual environment and run the flask application. After running the APM, I was unable to get the data to load into the dashboard I would try to setup a new dashboard and graph the APM events but the loading symbol would come up and stay on for several minutes. When, I checked the Collectors in the GUI I was able to see that the apm was setup and collecting metrics. I wanted just a simple 'hello world' with an integer of 1 to be collected, but it would not display this. 
+
+<img src="./images/gui_collector_check" alt="Made a downtime alert for the week"/>
+<img src="./images/graph_editor_loading" alt="APM Event Graph stuck at loading"/>
+<img src="./images/apm_check" alt="APM check in GUI coming back successful"/>
+<img src="./images/virtualenv_trace_agent" alt=" The virtualenv is running the Flask App while the Trace Agent is being run to connect to the APM"/>
+<img src="./images/trace_agent_success" alt="Initial success with trace agent."/>
 
 
 
@@ -202,7 +191,7 @@ If you have a question, create an issue in this repository.
 To submit your answers:
 
 1. Fork this repo.
-2. Answer the questions in `answers.md`
+2. Answer the questions in `answersAasim.md`
 3. Commit as much code as you need to support your answers.
 4. Submit a pull request.
 5. Don't forget to include links to your dashboard(s), even better links *and* screenshots.  We recommend that you include your screenshots inline with your answers.
