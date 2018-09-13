@@ -47,7 +47,23 @@ mv conf.yaml.example conf.yaml
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+<img src="img/metric.png" />
+Sources: [Agent Check](https://docs.datadoghq.com/developers/agent_checks/),  [Random Value](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
+
+
+```
+touch ~.datadog-agent/conf.d/my_metric.yaml ~.datadog-agent/checks.d/my_metric.py
+datadog-agent check my_metric
+```
+
+<img src="img/metric_check.png" />
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+<img src="img/interval.png" />
+
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+You change the .yaml file.
