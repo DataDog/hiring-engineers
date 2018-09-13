@@ -337,7 +337,7 @@ http://0.0.0.0:5050
 http://0.0.0.0:5050/api/apm
 http://0.0.0.0:5050/api/trace
 ```
-Your terminal should now be interacting with the application:
+Your terminal show that the application is connecting with Datadog's APM:
 
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/apm_terminal.png" />
 
