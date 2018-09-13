@@ -30,8 +30,24 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+```
+create user datadog with password '(generated password)';
+
+grant SELECT ON pg_stat_database to datadog;
+
+psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" &&
+echo -e "\e[0;32mPostgres connection - OK\e[0m" ||
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+
+~.datadog-agent/conf.d/postgres.d/conf.yaml.example
+
+mv conf.yaml.example conf.yaml
+```
 <img src="img/postgres.png" />
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
