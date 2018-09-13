@@ -8,7 +8,7 @@ You will be given your own API key(DO NOT show your API key to the public)
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/agent_ok.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/agent_ok.png" />
 
 
 ## Collecting Metrics
@@ -23,7 +23,7 @@ Open Datadog.yaml:
 sudo vim Datadog.yaml
 ```
 Configure your .yaml file and change the tags to your preference. These are my tags:
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/tags.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/tags.png" />
 
 Restart the agent:
 ```
@@ -31,7 +31,7 @@ sudo service datadog-agent restart
 ```
 Navigate to Host Map page in Data dog. Reload the page if your new tags do not appear.
 Here is my Host Page map for reference.
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/Host_page.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/Host_page.png" />
 
 ### Install a database. For this part, I went ahead with MySQL.
 to install MySQL, run:
@@ -42,7 +42,7 @@ sudo apt-get install mysql-server
 After installation, configure it with Datadog. 
 First I create a datadog user with replication rights in my MySQL server. Then I add the full metrics. 
 Next I edit conf.d/mysql.yaml.
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/mysql_yaml.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/mysql_yaml.png" />
 
 To see that MySQL is sucessfully running its metrics, restart the Datadog agent then type, 
 ```
@@ -50,30 +50,30 @@ sudo datadog-agent status
 ```
 This shows that my metric is running successfully:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/check_sql.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/check_sql.png" />
 
 MySQL is shown to be configured and can be seen on the dashboard:
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/mysql_dashboard.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/mysql_dashboard.png" />
 
 ### Adding a custom Agent check
 Again, I spent alot of time reading through the agent_check documentation. From the guidelines and example .py and .yaml files in that document, I created two files, one python file named my_metric.py which was placed in directory /etc/datadog-agent/checks.d/my_metric.py. The other files, my_metric.yaml was placed in directory /etc/datadog-agent/conf.d/my_metric.yaml.
 My my_metric.py:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_py.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_py.png" />
 
 My my_metric.yaml:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_yaml.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_yaml.png" />
 
 Also remember to restart the Agent so that the metrics can be updated. 
 
 We are now creating random numbers between 0-1000 as seen on my dashboard.
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/my_metric_dash.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/my_metric_dash.png" />
 
 To change my checks collection interval so that it only submits once every 45 seconds is done by changing my_metric.yaml. Now according to the checks_agent documentation, the ```min_collection_interval``` is defaulted to 0 seconds when it is not added. 
 my_metric.yaml now looks like this with a collection interval time of 45 seconds:
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/interval_my_metric.png" />
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/collection_metric.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/interval_my_metric.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/collection_metric.png" />
 
 *Bonus: Can you change the collection interval without modifying the Python check file you created?*
 Yes, I can change the interval by editing my my_metric.yaml file and setting ```min_collection_interval``` to 45. 
@@ -165,7 +165,7 @@ Restart the datadog Agent.
 
 As you can see here, you can access your Timeboard from the dashboard list in the dashboard tab. Looking at mine for reference, you should've created three graphs to show the metrics.  
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/dashboard_timeboard.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/dashboard_timeboard.png" />
 
 Link to [my Timeboard](https://app.datadoghq.com/dash/913060/my-timeboard?live=true&page=0&is_auto=false&from_ts=1536704020478&to_ts=1536707620478&tile_size=m)
 
@@ -175,11 +175,11 @@ Manually highlight the time interval I would like to observe. Improving the cust
 
 Below is my Timeboard metrics from the last 5 minutes:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/timeboard_five.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/timeboard_five.png" />
 
 I also sent a snapshot of my_metric to my feed using the camera icon in the top right corner of the desired graph I wanted to send:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/graph_notation.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/graph_notation.png" />
 
 *Bonus: What is the Anomaly graph displaying?*
 Based on the Anomaly documenation, the Anomaly graph is designed to show its user any anomalies that the metric encounters. It does this by comparing previous data with the current data. If there's a drastic change, the graph will spike and show the anomaly with a red graph line. It's a great way to alert its users that the metric might be trending in the wrong direction. 
@@ -195,15 +195,15 @@ In this step, I want to create a new Monitor that will alert if it’s above the
 
 I created a new metric Monitor in the Monitors tab after reading about [the metric monitor documentation](https://docs.datadoghq.com/monitors/monitor_types/metric/). These are the steps I took in creating the new metric Monitor:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/met_mon1.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/met_mon1.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/met_mon2.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/met_mon2.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/met_mon3.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/met_mon3.png" />
 
 Once I created the metric Monitor, notifications were sent to my email. Here is my warning:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/alert_email.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/alert_email.png" />
 
 
 *Bonus:  Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
@@ -215,20 +215,20 @@ To schedule a downtime for this monitor, I navigated to the Manage Downtime tab.
 
 #### My weekday downtimes and notification:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekday_alert1.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekday_alert1.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekday_alert2.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekday_alert2.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekday_notify.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekday_notify.png" />
 
 
 #### My weekend downtimes and notification:
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekend_alert1.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekend_alert1.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekend_alert2.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekend_alert2.png" />
 
-<img src="https://github.com/alexandera9996/hiring-engineers/blob/master/datadog_screenshots/datadog_screenshots2/weekend_notify.png" />
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots2/weekend_notify.png" />
 
 
 Once you have created your downtimes, you should receive an email notifying you of your scheduled downtimes. 
@@ -255,7 +255,7 @@ pip install blinker
 In order to use our APM trace collection for our Agent, we need to update the ```apm_config``` key in ```datadog.yaml```
 Here is my ```datadog.yaml``` file for reference:
 
-(insert apm_config)
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/apm_config.png" />
 
 Once you have reconfigured your agent, restart the Agent service.
 
@@ -316,19 +316,19 @@ http://0.0.0.0:5050/api/trace
 ```
 Your terminal should now be interacting with our application:
 
-(insert apm_terminal)
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/apm_terminal.png" />
 
 Looks like Datadog has received the traces and the data can be viewed!
 
-(insert datadog_flask)
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/datadog_flask.png" />
 
 Under the APM tab, select the traces option to view traces like this:
 
-(insert apm_traces)
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/trace_search.png" />
 
 Now I also added the APM metrics and infrastructure metrics to my new Dashboard by adding metric graphs:
 
-(insert apm_dash)
+<img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/datadog_screenshots3/apm_dash.png" />
 
 The link to my Dashboard in real time can be accessed [here](https://app.datadoghq.com/dash/914487/apm--metric-dashboard?live=true&page=0&is_auto=false&from_ts=1536801800142&to_ts=1536805400142&tile_size=m).
 
