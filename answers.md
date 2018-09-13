@@ -235,13 +235,105 @@ Once you have created your downtimes, you should receive an email notifying you 
 
 
 ## Collecting APM Data
+I would recommend re-looking over [the APM tracing setup](https://docs.datadoghq.com/tracing/setup/python/) and then further reading about [flask](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) and then about [blinker](https://pythonhosted.org/blinker/).
 
+### Using Datadog's APM code:
+
+I already had Flask installed, but to install Flask:
+```
+pip install Flask
+```
+Now install the Datadog Tracing library, ddtrace:
+```
+pip install ddtrace
+```
+If you're using the Flask trace middleware to track request timings, it requires the Blinker library
+```
+pip install blinker
+```
+
+In order to use our APM trace collection for our Agent, we need to update the ```apm_config``` key in ```datadog.yaml```
+Here is my ```datadog.yaml``` file for reference:
+
+(insert apm_config)
+
+Once you have reconfigured your agent, restart the Agent service.
+
+Now to analyze the performance of my application I will create my python file ```my_apm.py```
+Here is the script of my python file:
+
+```
+from flask import Flask
+import logging
+import sys
+
+#~~~~~~~~~~~~~~~~
+import blinker as _
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+#~~~~~~~~~~~~~~~
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+#~~~~~~~~~~~~~~
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+#~~~~~~~~~~~~~~
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+I ran my script with:
+```
+python my_apm.py
+```
+
+Test the https link in your web browser:
+```
+http://0.0.0.0:5050
+http://0.0.0.0:5050/api/apm
+http://0.0.0.0:5050/api/trace
+```
+Your terminal should now be interacting with our application:
+(insert apm_terminal)
+
+Looks like Datadog has received the traces and the data can be viewed!
+(insert datadog_flask)
+
+Under the APM tab, select the traces option to view traces like this:
+(insert apm_traces)
+
+Now I also added the APM metrics and infrastructure metrics to my new Dashboard by adding metric graphs:
+(insert apm_dash)
+
+The link to my Dashboard in real time can be accessed [here](https://app.datadoghq.com/dash/914487/apm--metric-dashboard?live=true&page=0&is_auto=false&from_ts=1536801800142&to_ts=1536805400142&tile_size=m).
 
 
 ## Final Question
 
 *Is there anything creative you would use Datadog for?*
-Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. 
+Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. Typically, participants make their changes in their fantasy lineup because they are watching the game live or they are notified from a sports application such as Bleacher Report, ESPN, or NFL network which usually takes at least a half hour before reporters report the information. With data collected from Datadog's Agent collector, users can be notified instantly, allowing them to have a competitive advantage over their peers. 
+
 For fantasy basketball I would:
 ```
 Use the Agent's collector to collect metrics on individual players stats such as fg%, ft%, TO's, Rebounds, Points scored.
