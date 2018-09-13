@@ -9,7 +9,7 @@ Don’t forget to read the [References](https://github.com/DataDog/hiring-engine
 
 Please provide screenshots and code snippets for all steps.
 
-## Prerequisites - Setup the environment
+## Prerequisites - Setting up the environment
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
