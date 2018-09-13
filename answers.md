@@ -14,7 +14,10 @@ Finish by following the instructions on how to create a 14 day trial account on 
 
 ## Collecting Metrics
 Tagging gives the user a method of aggregating data across a number of hosts. This is useful because users can then compare and observe how metrics behave across a number of hosts or collection of systems. 
-navigate to Datadog directory
+
+Navigate to Datadog directory via terminal or any other unix interface of your choosing. 
+
+#### Almost everything in this exercise will be executed through your unix command-line.
 
 ```
 cd /etc/datadog-agent
