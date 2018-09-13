@@ -55,8 +55,8 @@ curl  -X PUT -H "Content-type: application/json" \
 -d '{
 {
   "requests": [
-    {
-      avg(last_1h):anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1,
+    { "q": "avg:system.mem.free{*}"
+      "avg(last_1h)": "anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1,"
       "type": "line",
       "style": {
         "palette": "dog_classic",
