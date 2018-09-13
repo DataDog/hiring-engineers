@@ -110,7 +110,7 @@ pip install datadog
 Next our API key can be found in the integrations tab under APIs on our event page. As such, we can also generate our new APP key from this tab too.
 
 
-Taking the sample code from the Timeboard documentation, I navigated to my ```/etc/datadog-agent``` directory I created my python file, ```my_timeboard.py``` for my Timeboard. I then added two functions using the given definition template and altered it so that I could display the anomaly and roll-up functions. 
+Taking the sample code from the Timeboard documentation, I navigated to my ```/etc/datadog-agent``` directory and created a python file, ```my_timeboard.py``` for my Timeboard. I added two definitions to ```my_timeboard.py``` so that I could display the anomaly and roll-up functions. 
 My python file contains the necessary code to show:
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
