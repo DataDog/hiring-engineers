@@ -104,5 +104,15 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+<img src="img/last_5.png" />
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+I couldn't see an option for a snapshot on this graph and the anomaly isn't showing up on my Timeboard graph.
+
+<img src="img/anomaly_graph.png" />
+
+<img src="img/snapshot_email.png" />
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+The graph displays the metric (line) and the bounds (grey band) within a given timeframe.
