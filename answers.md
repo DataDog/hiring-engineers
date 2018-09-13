@@ -315,15 +315,19 @@ http://0.0.0.0:5050/api/apm
 http://0.0.0.0:5050/api/trace
 ```
 Your terminal should now be interacting with our application:
+
 (insert apm_terminal)
 
 Looks like Datadog has received the traces and the data can be viewed!
+
 (insert datadog_flask)
 
 Under the APM tab, select the traces option to view traces like this:
+
 (insert apm_traces)
 
 Now I also added the APM metrics and infrastructure metrics to my new Dashboard by adding metric graphs:
+
 (insert apm_dash)
 
 The link to my Dashboard in real time can be accessed [here](https://app.datadoghq.com/dash/914487/apm--metric-dashboard?live=true&page=0&is_auto=false&from_ts=1536801800142&to_ts=1536805400142&tile_size=m).
@@ -332,6 +336,7 @@ The link to my Dashboard in real time can be accessed [here](https://app.datadog
 ## Final Question
 
 *Is there anything creative you would use Datadog for?*
+
 Yes, there are many things I would love to use Datadog for. One such idea I would use Datadog for is for fantasy basketball, football, baseball, and/or hockey. I'm a fan of fantasy basketball and football so this idea would go more in-depth about those. Typically, participants make their changes in their fantasy lineup because they are watching the game live or they are notified from a sports application such as Bleacher Report, ESPN, or NFL network which usually takes at least a half hour before reporters report the information. With data collected from Datadog's Agent collector, users can be notified instantly, allowing them to have a competitive advantage over their peers. 
 
 For fantasy basketball I would:
