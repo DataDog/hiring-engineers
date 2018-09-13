@@ -70,7 +70,7 @@ MySQL is shown to be configured and can be seen on the dashboard:
 <img src="https://github.com/alexandera9996/hiring-engineers/blob/Alexander_Angelidis_Solutions_Engineer/datadog_screenshots/mysql_dashboard.png" />
 
 ### Adding a custom Agent check
-Again, I spent alot of time reading through the [agent_check documentation](https://docs.datadoghq.com/developers/agent_checks/). From the guidelines and example .py and .yaml files in that document, I need to create two files, one python file named ```my_metric.py``` which was placed in directory ```/etc/datadog-agent/checks.d/```. The other files, ```my_metric.yaml``` was placed in directory ```/etc/datadog-agent/conf.d/```
+Again, I spent alot of time reading through the [Agentcheck documentation](https://docs.datadoghq.com/developers/agent_checks/). From the guidelines and example .py and .yaml files in that document, I need to create two files, one python file named ```my_metric.py``` which was placed in directory ```/etc/datadog-agent/checks.d/```. The other files, ```my_metric.yaml``` was placed in directory ```/etc/datadog-agent/conf.d/```
 
 My ```my_metric.py```:
 
