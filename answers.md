@@ -238,8 +238,18 @@ I changed the port in the app itself to 8126. I get a 404 error message, but if 
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
 The difference is that a service is "a set of processes," but a resource is "a particular action for a service." [Source](https://docs.datadoghq.com/tracing/visualization/)
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
+
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+I think that colleges and universities could use Datadog for monitoring the campus parking situation, peak library usage, or even which classes need more sections offered.
