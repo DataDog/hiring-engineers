@@ -219,8 +219,10 @@ Activate the environment ```. venv/bin/activate```
 
 Install Flask ```pip install Flask```
 
-```python -m pip install ddtrace
 ```
+python -m pip install ddtrace
+```
+
 Run server ```ddtrace-run python app.py```
 
 Received error message:
@@ -236,7 +238,7 @@ I changed the port in the app itself to 8126. I get a 404 error message, but if 
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
-
+The difference is that a service is "a set of processes," but a resource is "a particular action for a service." [Source](https://docs.datadoghq.com/tracing/visualization/)
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
