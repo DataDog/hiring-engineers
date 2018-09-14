@@ -209,12 +209,14 @@ Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [A
 
 Configure ```datadog.yaml```
 
-<img src="img/apm_config" />
+<img src="img/apm_config.png" />
 
 Install virtualenv ```python -m pip install virtualenv```
+
 Run ```virtualenv venv```
-Activate the environment ```. venv/bin/activate
-```
+
+Activate the environment ```. venv/bin/activate```
+
 Install Flask ```pip install Flask```
 
 ```python -m pip install ddtrace
