@@ -205,15 +205,36 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-Source: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation)
+Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/)
+
+Configure ```datadog.yaml```
+
+<img src="img/apm_config" />
+
 Install virtualenv ```python -m pip install virtualenv```
 Run ```virtualenv venv```
 Activate the environment ```. venv/bin/activate
 ```
 Install Flask ```pip install Flask```
-Run server ```flask run --host=0.0.0.0```
+
+```python -m pip install ddtrace
+```
+Run server ```ddtrace-run python app.py```
+
+Received error message:
+
+<img src="img/error_message.png" />
+
+I changed the port in the app itself to 8126. I get a 404 error message, but if I go to the local host, it's connected.
+
+<img src="img/error_404.png" />
+
+<img src="img/entrypoint.png" />
+
+
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
