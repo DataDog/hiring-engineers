@@ -15,9 +15,16 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 
+Installed Vagrant and VirtualBox.
+
 <img src="img/vagrant.png" />
 
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+
+Installed Agent.
+
+```DD_API_KEY=ef6beb34bcb4b05c3ddca8d92b616d99 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+```
 
 <img src="img/network.png" />
 
@@ -26,12 +33,24 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+Source: [Tags](https://docs.datadoghq.com/tagging/)
+
+I followed the tags in the config file for this exercise.
+
 <img src="img/tags.png" />
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-```
-create user datadog with password '(generated password)';
+I already have MongoDB and PostgreSQL installed. I decided to use PostgreSQL for this exercise.
+
+Followed instructions from [Integrations](https://docs.datadoghq.com/integrations/postgres/):
+
+I could see that I needed a database named ```pg_stat_database```
+
+```createdb pg_stat_database```.
+
+
+```create user datadog with password '(generated password)';
 
 grant SELECT ON pg_stat_database to datadog;
 
@@ -47,14 +66,17 @@ mv conf.yaml.example conf.yaml
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-<img src="img/metric.png" />
-
 Sources: [Agent Check](https://docs.datadoghq.com/developers/agent_checks/),  [Random Value](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
 
-
+```touch ~.datadog-agent/conf.d/my_metric.yaml ~.datadog-agent/checks.d/my_metric.py
 ```
-touch ~.datadog-agent/conf.d/my_metric.yaml ~.datadog-agent/checks.d/my_metric.py
-datadog-agent check my_metric
+
+Modified 'Your First Check' code.
+
+<img src="img/metric.png" />
+
+
+```datadog-agent check my_metric
 ```
 
 <img src="img/metric_check.png" />
@@ -62,7 +84,7 @@ datadog-agent check my_metric
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-See image above.
+I started with ```min_collection_interval``` set at 20, following the Configuration directions, so I just changed it to 45. See image above.
 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -78,7 +100,9 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 
 Sources: [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/),
-[API](https://docs.datadoghq.com/api/?lang=python#timeboards)
+[API](https://docs.datadoghq.com/api/?lang=python#timeboards),  [JSON](https://docs.datadoghq.com/graphing/graphing_json/)
+
+Modified sample code.
 
 <img src="img/timeboard.png" />
 
@@ -88,13 +112,16 @@ Sources: [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/)
 Sources:
 [Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), how to create a [monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor), how to write the [query](https://docs.datadoghq.com/graphing/functions/algorithms/)
 
+Modified the anomaly query sample code.
+
 <img src="img/anomaly.png" />
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 
-Source: [Rollup Function](https://docs.datadoghq.com/graphing/functions/rollup/)
+Source: [Rollup Function](https://docs.datadoghq.com/graphing/functions/rollup/), [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
 
+Since the graphs are an array of objects, I added to the array with a graph object containing the rollup function. See screenshot above.
 
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
@@ -108,6 +135,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 <img src="img/last_5.png" />
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
 I couldn't see an option for a snapshot on this graph and the anomaly isn't showing up on my Timeboard graph.
 
 <img src="img/anomaly_graph.png" />
@@ -116,7 +144,7 @@ I couldn't see an option for a snapshot on this graph and the anomaly isn't show
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
->The graph displays the metric (line) and the bounds (grey band) within a given timeframe.
+The graph displays the metric (line) and the bounds (grey band) within a given timeframe.
 
 
 ## Monitoring Data
@@ -128,6 +156,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Warning threshold of 500
 
 * Alerting threshold of 800
+
+Used the GUI to create monitor.
 
 <img src="img/thresholds.png" />
 
@@ -154,7 +184,6 @@ Please configure the monitor’s message so that it will:
   * One that silences it from 7pm to 9am daily on M-F,
 
 <img src="img/weekdays.png" />
-
 
   * And one that silences it all day on Sat-Sun.
 
@@ -205,9 +234,10 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/)
+Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/),
+[Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/)
 
-Configure ```datadog.yaml```
+Enable trace collection for the DataDog Agent ```datadog.yaml```
 
 <img src="img/apm_config.png" />
 
@@ -229,11 +259,17 @@ Received error message:
 
 <img src="img/error_message.png" />
 
-I changed the port in the app itself to 8126. I get a 404 error message, but if I go to the local host, it's connected.
+If I go to the local host, it's connected.
 
-<img src="img/error_404.png" />
+<img src="img/error_61.png" />
 
 <img src="img/entrypoint.png" />
+
+Tried adding receiver port to the config file.
+
+<img src="img/receiver_port.png"
+
+Restart Agent. Still receiving error message.
 
 
 
