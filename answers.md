@@ -49,11 +49,13 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
     I could see that I needed a database named ```pg_stat_database```
 
-    ```createdb pg_stat_database
+    ```
+    createdb pg_stat_database
     ```
     Used code from instructions.
 
-    ```create user datadog with password '(generated password)';
+    ```
+    create user datadog with password '(generated password)';
 
     grant SELECT ON pg_stat_database to datadog;
 
@@ -97,7 +99,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-    I started with ```min_collection_interval``` set at 20, following the Configuration directions, so I just changed it to 45. See image above.
+    I started with min_collection_interval set at 20, following the Configuration directions, so I just changed it to 45. See image above.
 
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -254,7 +256,7 @@ if __name__ == '__main__':
     Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/),
     [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/)
 
-    Enable trace collection for the DataDog Agent ```datadog.yaml```
+    Enable trace collection for the Datadog Agent ```datadog.yaml```
 
     <img src="img/apm_config.png" />
 
@@ -278,16 +280,23 @@ if __name__ == '__main__':
 
     If I go to the local host, it's connected.
 
-    <img src="img/error_61.png" />
-
     <img src="img/entrypoint.png" />
 
     Tried adding receiver port to the config file.
 
-    <img src="img/receiver_port.png"
+    <img src="img/receiver_port.png" />
 
     Restart Agent. Still receiving error message.
 
+    Tried adding middleware, instead of using ```ddtrace-run```.
+
+    Received error message:
+
+    <img src="img/middleware_error.png" />
+
+    Still nothing in the GUI.
+
+    <img src="img/gui.png" />
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
