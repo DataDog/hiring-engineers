@@ -44,5 +44,22 @@ Once completed the Agent status can be seen with the command ``datadog-agent sta
 
 ### Collecting Metrics:
 
+**1. Add tags**
 
+To add tag we need to edit the ``datadog.yaml`` file under ``/etc/datadog-agent`` which is the default directory of Datadog agent.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/add_tags_yaml.jpg" />
+</div>
+
+Simply add the tags in ``key:value`` format.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/host_tags.jpg" />
+</div>
+
+Once done, dont forget to restart the agent using commad ``systemctl restart datadog-agent``
+
+Now the freshly added tags are seen in the Datadog Host Map page.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/DD_hostmap_full.jpg" />
+</div>
 
