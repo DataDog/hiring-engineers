@@ -18,6 +18,7 @@ Now that the account has been created, the first landing page after login to the
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Datadog_agent_page.jpg" />
 </div>
+
 The next page will provide a command to run in the OS:
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Datadog_Ubuntu_agent_page.jpg" />
@@ -30,13 +31,13 @@ Simply run the commad and the agent will be installed automatically.
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_ins_start.jpg" />
 </div>
+
 Below massage will be shown upon successful installation:
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_ins_fin.jpg" />
 </div>
-Once completed the Agent status can be seen with the command 
-`datadogagent status`
-in the command window.
+
+Once completed the Agent status can be seen with the command **datadogagent status** in the command window.
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_status.jpg" />
 </div>
