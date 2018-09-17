@@ -6,4 +6,5 @@ I have used Ubuntu on top of VMware for this. Skipping the walkthrough of that p
 ### Datadog agent setup
 
 ** Step 1. **
+
 Signup free trail account 
