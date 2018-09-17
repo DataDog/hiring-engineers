@@ -1,4 +1,0 @@
-## Prerequisites - Setup the environment
-
-I am using Ubuntu on top of VMware 
-
