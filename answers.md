@@ -34,8 +34,9 @@ Below massage will be shown upon successful installation:
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_ins_fin.jpg" />
 </div>
-Once completed the Agent status can be seen with the command `datadogagent status` in the command window.
-Use `git status` to list all new or modified files that haven't yet been committed.
+Once completed the Agent status can be seen with the command 
+`datadogagent status`
+in the command window.
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_status.jpg" />
 </div>
