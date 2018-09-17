@@ -125,7 +125,7 @@ Host Map page now has Postgresql metrics available.
 
 **3. Custom Agent check**
 
-To create agent check, we need to create two files with same name but different extension in two location.
+To create the required agent check, we need to create two files with same name but different extension in two location.
 
 - Create ``mycheck_random.yaml`` file in directory ``/etc/datadog-agent/conf.d`` having below lines:
 
@@ -146,6 +146,101 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', randint(0,1000))
 ```
+
+Once the agent is restarted the metric will be available in Datadog GUI.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/dd_my_metric.jpg" />
+</div>
+
+**4. Changing collection interval**
+
+Collection interval can be changed simply by adding ``min_collection_interval:`` parameter in the ``mycheck_random.yaml`` file. The new file entry will be:
+
+```
+init_config:
+        min_collection_interval: 45
+
+instances:
+    [{}]
+```
+
+Reference [here]( https://docs.datadoghq.com/developers/agent_checks/ "Agent Check")
+
+**Bonus Question: Changing collection interval without changing the Python file**
+
+Yes it is possible, you'd know that by now if you were giving concentration.
+
+### Visualizing Data:
+
+**1. Creating Timeboard using API**
+
+- For this we need to prepare a script as per the Datadog API documentation given [here]( https://docs.datadoghq.com/api/?lang=python#timeboards "Timeboard API"). First we need API and APP key. We can find or create keys in below location of the Datadog consol.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/DD_API_GUI.jpg" />
+</div>
+
+- Next we prepare the script. The API provided in the documentation is already structured. Further we can find the documentation on rollup function [here]( https://docs.datadoghq.com/graphing/#aggregate-and-rollup "Rollup function") and Anomaly function here]( https://docs.datadoghq.com/monitors/monitor_types/anomaly/ "Anomaly function"). Taking all these into account below is the final Python script to fire the API.
+
+```Python
+from datadog import initialize, api
+
+options = {
+    'api_key': '02f734414a40cee6e9861fa0cee0fb3a',
+    'app_key': '04a248ce38eeb00900e4528122c6e337e4468e0a'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "An informative timeboard."
+graphs = [
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Custom metric"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{*}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "custom metric rollup"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:postgresql.percent_usage_connections{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "anomalies postgresql connections percentage"
+}
+]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+```
+
 
 
 
