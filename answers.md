@@ -179,7 +179,7 @@ Yes it is possible, you'd know that by now if you were giving concentration.
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/DD_API_GUI.jpg" />
 </div>
 
-- Next we prepare the script. The API provided in the documentation is already structured. Further we can find the documentation on rollup function [here]( https://docs.datadoghq.com/graphing/#aggregate-and-rollup "Rollup function") and Anomaly function here]( https://docs.datadoghq.com/monitors/monitor_types/anomaly/ "Anomaly function") . Taking all these into account below is the final Python script to fire the API.
+- Next we prepare the script. The API provided in the documentation is already structured. Further we can find the documentation on rollup function [here]( https://docs.datadoghq.com/graphing/#aggregate-and-rollup "Rollup function") and Anomaly function [here]( https://docs.datadoghq.com/monitors/monitor_types/anomaly/ "Anomaly function"). Taking all these into account below is the final Python script to fire the API.
 
 ```Python
 from datadog import initialize, api
@@ -241,7 +241,7 @@ api.Timeboard.create(title=title,
 
 ```
 
-
+- 
 
 
 
