@@ -1,7 +1,7 @@
 ## Prerequisites - Setup the environment
 
 ### OS setup
-I have used Ubuntu on top of VMware for this. Skipping the walkthrough of that part because we have bigger concern here.
+I have used Ubuntu on top of VMware for this. Skipping the walkthrough of that part because i am sure we have bigger concerns here other than that.
 
 ### Datadog agent setup
 
