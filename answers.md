@@ -34,7 +34,7 @@ Below massage will be shown upon successful installation:
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_ins_fin.jpg" />
 </div>
-Once completed the Agent status can be seen with the command `datadog-agent status` in the command window.
+Once completed the Agent status can be seen with the command `datadogagent status` in the command window.
 <div align="center">
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/Agent_status.jpg" />
 </div>
