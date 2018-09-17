@@ -168,7 +168,7 @@ Reference [here]( https://docs.datadoghq.com/developers/agent_checks/ "Agent Che
 
 **Bonus Question: Changing collection interval without changing the Python file**
 
-Yes it is possible, you'd know that by now if you were giving concentration.
+Yes it is possible, let me repeat, set the value for min_collection_interval.
 
 ### Visualizing Data:
 
@@ -443,4 +443,4 @@ Service is set of process or commands that can accomplish any given objective. W
 
 ### Final Question:
 
-The most vital marketing tool is now a days is Human behavior analysis or prediction. Datadog can be used to analysis and trace human expenses patern. For example, mobile operators can use this tool to analysis their customer mobile expenses trend and based on that they can plan their product promotion and desired subscriber base.
+The most vital marketing tool now a days is Human behavior analysis or prediction. Datadog can be used to analysis and trace human expenses patern. For example, mobile operators can use this tool to analysis their large number of customer mobile expenses trend and based on that they can plan their product promotion and desired subscriber base.
