@@ -63,3 +63,26 @@ Now the freshly added tags are seen in the Datadog Host Map page.
 <img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/DD_hostmap_full.jpg" />
 </div>
 
+**2. Datadog integration for database**
+
+Fist we need to install postgresql database. Its easy in Ubuntu, just need to run a single commad and sit back.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/postgresql_ins_start.jpg" />
+</div>
+
+Once that done, we need to go to Integration page of Datadog site.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/integration.jpg" />
+</div>
+
+And find PostgreSQL there. Clicking on it provides us all the commands required to configure agent for the database.
+<div align="center">
+<img src="https://github.com/Tosrif/Tosrif-hiring-engineers/blob/solutions-engineer/files/DD_postgresql_config.jpg" />
+</div>
+
+Login to the postgresql database and run the first SQL there to create datadog user and grant in permission.
+
+```
+create user datadog with password 'nD7kgb57p06o34cwTfDV30ww';
+grant SELECT ON pg_stat_database to datadog;
+```
