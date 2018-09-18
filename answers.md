@@ -1,12 +1,16 @@
 Your answers to the questions go here.
 
-##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+This the first time I have worked with a Virtual Machine and using Linux operating system. I have been taking an Udemy class on Linux before starting this challenge to get used to the operating system. It was challenging and exciting using the Virtual Machine, I learned quite a bit in a short amount of time (which I always love doing) and I can see how with more practice I would be an expert in no time. 
 
-installed curl on my linux command line. then installed datadog package using Ubuntu. successful installation:
+To get started I installed curl on my linux command line. then installed Datadog package using Ubuntu. 
+
+Successful installation:
 
 ![](images/success1.png)
 
 ![install](images/success2.png)
+
+##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Since this is the first time working with the Ubuntu environment, I had to look up some basic commands to get to the config file for Linux. Once I found how to access and edit my yaml file through the command: 
 
@@ -259,4 +263,8 @@ if __name__ == '__main__':
 ```
 
 ##Final Question:
+
 Is there anything creative you would use Datadog for?
+
+I've always been interested in climate science, especially recently with Hurricane Florence hitting my home state of North Carolina, I feel like Datadog would be an incredible way to start monitor climate data and weather events. With the ability to alert, monitor data and see real time information over time I think that climate scientists in particular would be able to store their data. Specifically regarding the last few natural disasters from Hurricanes, where flooding became the number one issue. 
+I think that using Datadog to input metrics regarding different rivers, areas prone to flooding and rain fall totals would be an interesting way to have a more predictive alert system set up. With using foreshadowing and anomaly alerting systems I believe you could alert people faster to let them know when there is going to be a catastrophic flood event in their area and that they need to evacuate. With the notification system in place it would be easy for people to receive this information before it happens. It would also be useful to study the data after a flood event to better be prepared in the future.
