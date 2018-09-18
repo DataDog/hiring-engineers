@@ -6,39 +6,82 @@ Please provide screenshots and code snippets for all steps.
 
 ### Environment Setup
 #### Step 1- Download and install Vagrant
-![Download Vagrant Image](./data-dog-solutions-eng-screenshots/01-environment-setup/01-dl-vagrant.JPG)  
+![Download Vagrant Image](./data-dog-solutions-eng-screenshots/01-environment-setup/01-dl-vagrant.JPG)
 
 #### Step 2- Download and install Vitural Box
-![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/02-dl-virtual-box.JPG)  
+![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/02-dl-virtual-box.JPG)
 
 #### Step 3- Make a directory to house Vagrantfile
-![mkdir Image](./data-dog-solutions-eng-screenshots/01-environment-setup/03-mkdir-datadog-challenge-box.JPG) 
+![mkdir Image](./data-dog-solutions-eng-screenshots/01-environment-setup/03-mkdir-datadog-challenge-box.JPG)
 
 #### Step 4- Download Vagrant Box Base File
-![Add Vagrant Box File Image](./data-dog-solutions-eng-screenshots/01-environment-setup/04-vagrant-box-add.JPG) 
+![Add Vagrant Box File Image](./data-dog-solutions-eng-screenshots/01-environment-setup/04-vagrant-box-add.JPG)
 
 #### Step 5- Add Vagrantfile snippet as directed for box
-![Add Vagrantfile Snippet Image](./data-dog-solutions-eng-screenshots/01-environment-setup/05-adding-snippet-to-vagrantfile.JPG) 
+![Add Vagrantfile Snippet Image](./data-dog-solutions-eng-screenshots/01-environment-setup/05-adding-snippet-to-vagrantfile.JPG)
 
 #### Step 6- Run `vagrant up`
-![vagrant up Image](./data-dog-solutions-eng-screenshots/01-environment-setup/06-vagrant-up.JPG) 
+![vagrant up Image](./data-dog-solutions-eng-screenshots/01-environment-setup/06-vagrant-up.JPG)
 
 #### Step 7- SSH into vagrant box that is setup
-![vagrant ssh Image](./data-dog-solutions-eng-screenshots/01-environment-setup/07-vagrant-ssh.JPG) 
+![vagrant ssh Image](./data-dog-solutions-eng-screenshots/01-environment-setup/07-vagrant-ssh.JPG)
 
 #### Step 8- Look at Virtual Box GUI to show vagrant box being setup
-![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/08-virtual-box-gui.JPG) 
+![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/08-virtual-box-gui.JPG)
 
 #### Step 9- Sign up for Datadog
-![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/09-datadog-signup.JPG) 
+![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/09-datadog-signup.JPG)
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+#### Step 1 - Add tags in agent config file
+![Add Tags in Agent File Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/03-add-tags-to-datadog-yaml.JPG)
+
+#### Step 2 - Inspect tags in hostmap view
+**Tags showed after restarting services and rebooting**  
+![Hostmap Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/04-inspect-tags-in-host-map.JPG)  
+![Infrastructure List Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/05-inspect-tags-in-infrastructure-list.JPG)
+
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+#### Step 1 - Install PostgreSQL
+![PostgreSQL Install Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/06-install-postgresql.JPG)  
+![PostgreSQL Status Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/07-service-postgresql-status.JPG)  
+
+#### Step 2 - Grant Table Permissions to user datadog
+![PostgreSQL Grant Table Permissions Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/08-permission-granting-on-tables.JPG)  
+
+#### Step 3 - Confirm Database is setup correctly
+![PostgreSQL Installation Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/09-postgres-check-command.JPG)  
+![PostgreSQL Installation Check Results Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/10-result-of-postgres-check.JPG)  
+![Datadog Agent Service PostgreSQL Status Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/12-restart-and-check-agent.JPG)  
+![Datadog Agent PostgreSQL Status Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/13-datadog-agent-status.JPG)  
+
+#### Step 4 - Install integration on datadog site
+![PostgreSQL Integration Install on Datadog Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/14-install-integration-on-datadog-site.JPG)  
+![Verify PostgreSQL Integration on Hostmap Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/15-verifying-postgres-on-host-map.JPG)  
+
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+#### Step 1 - Create `my_metric.py` file under `etc/checks.d`
+![Create my_metric.py file Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/16-create-my-metric-py.JPG)  
+![Create my_metric.py content Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/17-my-metric-py-content.JPG)  
+
+#### Step 2 - Create `my_metric.yaml` under `etc/conf.d`
+![Create my_metric.yaml file Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/18-create-my-metric-yaml.JPG)  
+
+#### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Modified `my_metric.yaml` to the following**  
+![Create my_metric.yaml content Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/19-my-metric-yaml-content.JPG)  
+
+A timeout function could also be written in the python file under `checks.d` to ensure metrics are sent only once every 45 seconds.  
+**Checked that my_metrics were being recorded on the datadog site**  
+**Had to restart datadog agent service and reboot server in order for my_metric to show up in metrics page**  
+![Verify my_metric in Metric Explorer](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/21-my-metric-in-metric-explorer.JPG)  
+
+### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+By including the property `min_collection_interval` in the yaml file, we've ensured that reporting is done as often as once every 45 seconds.  
+According to the documentation, this doesn't mean that the metric is collected once every 45 seconds, but rather that it could be collected as often as once every 45 seconds.  
+I assume that this would mean that setting the time in the python file would be more accurate.  
 
 ## Visualizing Data:
 
