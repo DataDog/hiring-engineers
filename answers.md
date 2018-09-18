@@ -132,7 +132,10 @@ The Monitor definition for this exercise can be found [here](https://app.datadog
 ![monitor-warning](img/monitor-alert.png)
 
 #### b. Bonus Question: Set up two scheduled downtimes
-I created the monitor last night after 19:00, meaning I haven't received a downtime email yet.
+~~I created the monitor last night after 19:00, meaning I haven't received a downtime email yet.~~
+
+UPDATE: Here's an email I've since received:
+![downtime-enabled](img/monitor-downtime-enabled.png)
 
 ![monitor-downtime](img/monitor-downtime.png)
 
