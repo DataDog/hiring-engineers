@@ -3,8 +3,10 @@ Your answers to the questions go here.
 ##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 installed curl on my linux command line. then installed datadog package using Ubuntu. successful installation:
-![install](https://imgur.com/a/r7hct6U)
-![install](https://imgur.com/a/Dx7uRs7)
+
+![](images/success1.png)
+
+![install](images/success2.png)
 
 Since this is the first time working with the Ubuntu environment, I had to look up some basic commands to get to the config file for Linux. Once I found how to access and edit my yaml file through the command: 
 
@@ -12,8 +14,8 @@ sudo nano /etc/datadog-agent/datadog.yaml 
 
 I edited the config file on my terminal, however when I saved the file the agent would stop running, and would then would fail to run. I realized later my mistake and that was the syntax of my tags. Once I got the hang of editing the yaml files and understanding to only use the space bar and not tabs, I was able to go back and edit the datadog.yaml file to have tags coming from that as well. Before I realized this I used the GUI tag editing on my host map. So the final host map has GUI tags and tags from my yaml file.
 
-Screenshot of first GUI tags- ![tags](https://imgur.com/a/pf5C4eD)
-Screenshot of final tags included from yaml file- ![finaltags](https://imgur.com/a/tL1Pes2)
+Screenshot of first GUI tags- ![tags](images/GroupdbytagnamesGUI.png)
+Screenshot of final tags included from yaml file- ![finaltags](images/finaltags.png)
 
 After successfully editing the Postgres config file and after doing some troubleshooting/research, I think my error of Datadog agent failing to run came from not waiting long enough between stopping/starting/restarting the agent through the command.  Now that I understand that Datadog takes time to restart and run again, hopefully this will prevent failures due to editing the config files in the future.
 
@@ -21,11 +23,11 @@ After successfully editing the Postgres config file and after doing some trouble
 
 Here I have installed and connected PostgreSQL to Datadog following the integration setup and editing the config file. I had some initial trouble with the agent failing to run after restarting it, but after digging around I found again people have mentioned that it takes time for the agent to start up. After about 10 minutes I ran a status check on my agent and sure enough it was running. Looks like a successful integration with PostgreSQL.
 
-![postgres](https://imgur.com/a/y1N3c6K)
+![postgres](images/postgrescheck.png)
 
 ##Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-I started this off by reading a few documents on Linux command line creation of files and movement between directories. As I am proficient in using terminal in Mac OSX I was happy to see that the commands are the same and movement between files follows the same commands. I carefully read the instructions in the docs for creating my first custom Agent check. I had seen a few people note online as well to be sure you watch which files you put your .yaml and .py files in as that can lead to errors. When I attempted to create a new yaml file in the conf.d directory I got a Permission Denied error. After consulting with with Kevin, he helped me to determine that you need to include 'sudo touch <filename>'. Because I am in an administrative file I need to include sudo. Please see my blog post regarding using sudo in Linux commands, why we use it and other useful commands. [kate'sblogpost](https://medium.com/@schlunzk/some-helpful-linux-commands-2060de6f7314)
+I started this off by reading a few documents on Linux command line creation of files and movement between directories. As I am proficient in using terminal in Mac OSX I was happy to see that the commands are the same and movement between files follows the same commands. I carefully read the instructions in the docs for creating my first custom Agent check. I had seen a few people note online as well to be sure you watch which files you put your .yaml and .py files in as that can lead to errors. When I attempted to create a new yaml file in the conf.d directory I got a Permission Denied error. After consulting with with Kevin, he helped me to determine that you need to include 'sudo touch <filename>'. Because I am in an administrative file I need to include sudo. Please see my blog post regarding using sudo in Linux commands, why we use it and other useful commands. [kate's blogpost](https://medium.com/@schlunzk/some-helpful-linux-commands-2060de6f7314)
 
 I first followed the example set up using 'hello.world' as a metric to make sure I could get this running before I proceeded. At first the metric I created in the my_metric.py file using:
 ```
@@ -34,7 +36,9 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('hello.world', 1)
 ```
-However, this was not showing up, I did some careful reading of the docs and realized that there was an important, Note: YAML files must use spaces instead of tabs. So I went back and rewrote both my config yaml file and my .py file and removed tabs. Now I have the hello.world metric running! ![helloworld](https://imgur.com/a/hhY6Ho9)
+However, this was not showing up, I did some careful reading of the docs and realized that there was an important, Note: YAML files must use spaces instead of tabs. So I went back and rewrote both my config yaml file and my .py file and removed tabs. Now I have the hello.world metric running! 
+
+![helloworld](images/helloworld.png)
 
 Now that I have my hello.world metric running, I will edit the file to reflect 'my_metric' as the metric name and a random integer. For this I had to do some digging regarding python, since my file is my_metric.py I found that you need to import the random module and then use random.randint(0,1000) as the integer randomizer. Here is my .py file code
 
@@ -46,7 +50,7 @@ class HelloCheck(AgentCheck):
       self.gauge('my_metric', random.randint(0,1000))
 ```
 Since this was the first time I have used Python I wanted to check to make sure that my random.randint(0,1000) was working in a Python repl:
-![repl](https://imgur.com/a/oEBnJr7)
+![repl](images/repl.png)
 
 ##Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -69,7 +73,7 @@ I edited my_metric.yaml as the docs say to do to change the check interval. "min
 
 [dashboard](https://app.datadoghq.com/dash/916834/kates-dashboard?live=true&page=0&is_auto=false&from_ts=1537189173197&to_ts=1537192773197&tile_size=m)
 
-![scopedOverHost](https://imgur.com/a/BjPJcYt)
+![scopedOverHost](images/my_metricHost.png)
 
 ###Any metric from the Integration on your Database with the anomaly function applied.
 
@@ -180,7 +184,7 @@ Instance #initialization[ERROR]:{"Core Check Loader":"Check timeboard not found 
 I once again attempted to install "pip install datadog" because since the import error states there is no module named datadog. I could never quite figure out why my timeboard did not work after I edited my file with adding the specified graphs. It worked when I initially set up the timeboard yet never showed on my GUI dashboard list as the correct title.
 
 ##Once this is created, access the Dashboard from your Dashboard List in the UI:
-![dashboardgraph](https://imgur.com/a/Z7V7Fa7)
+![dashboardgraph](images/postgresana.png)
 
 ##Bonus Question:
 What is the Anomaly graph displaying? In the monitor that I set up, it shows that the ave: my_metric the values have had more than 2 deviations from the predicted values. It compares the past behavior to the present behavior in the form of an algorithm, if you had a sudden drop or uptick anywhere this would pick it up and alert the user.
@@ -188,12 +192,13 @@ What is the Anomaly graph displaying? In the monitor that I set up, it shows tha
 ##Monitoring Data
 I changed the Warning threshold of 500 Alerting threshold of 800
 Here is the email I received in regards to my monitor:
-![email](https://imgur.com/a/2VbzOpL)
+![email](images/emailalert.png)
 
 ##Bonus Question:
 Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-![downtime1](https://imgur.com/a/WO8rPwy)
-![downtime2](https://imgur.com/a/Gj0Z6ED)
+![downtime1](images/downtime1.png)
+
+![downtime2](images/downtime2.png)
 
 
 ##Collecting APM Data:
@@ -201,10 +206,11 @@ Since this monitor is going to alert pretty often, you don't want to be alerted 
 
 ###Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-![trace](https://imgur.com/a/uVQf8IX)
-![APMdashboard](https://imgur.com/a/7ADJJc6)
+![trace](images/traces.png)
 
-[linktoAPMDashboard](https://app.datadoghq.com/dash/916834/kates-dashboard?live=true&page=0&is_auto=false&from_ts=1537275306287&to_ts=1537278906287&tile_size=m)
+![APMdashboard](images/myflaskappAPM.png)
+
+[link toA APM Dashboard](https://app.datadoghq.com/dash/916834/kates-dashboard?live=true&page=0&is_auto=false&from_ts=1537275306287&to_ts=1537278906287&tile_size=m)
 
 ##Bonus Question:
 What is the difference between a Service and a Resource?
