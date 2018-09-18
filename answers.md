@@ -259,9 +259,11 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-    Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/),
-    [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/), [APM FAQ](https://docs.datadoghq.com/tracing/faq/),
-    [Web Integrations](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask)
+    Sources: [APM Install](https://app.datadoghq.com/apm/install), [APM Setup](https://docs.datadoghq.com/tracing/setup/), [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/), [First Class Dimensions](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/),
+    [APM FAQ](https://docs.datadoghq.com/tracing/faq/), [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation),
+    [Web Integrations](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask),
+    [Datadog Trace Agent](https://github.com/DataDog/datadog-trace-agent)
+
 
     Enabled trace collection for the Datadog Agent ```datadog.yaml```
 
@@ -305,7 +307,7 @@ if __name__ == '__main__':
 
     Commented out receiver port in the config file.
 
-    Changeed the port in ```app.py``` to 8126.
+    Changeed the port to 8126.
 
     <img src="img/port.png" />
 
@@ -321,7 +323,7 @@ if __name__ == '__main__':
 
     <img src="img/gui.png" />
 
-    I've also Googled the error messages (exactly and variations), but I was unable to find a solution. This is the point that I would normally ask for help.
+    I downloaded the latest Datadog Trace Agent release, but it I couldn't get it run with ```./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml```. I've also Googled the error messages (exactly and variations), but I was unable to find a solution. This is the point that I would normally ask for help.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
