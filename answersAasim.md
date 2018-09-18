@@ -66,19 +66,33 @@ You will need to go open your terminal. Once you have opened your terminal enter
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
->Answer: Within the terminal change your directory to the DataDog Agent by typing _cd ~/.datadog-agent_ , then I used my text editor to make changes to the configuration file (datadog.yaml). 
+>Note: In order to navigate to the Agent config file you would need to utilize the docs.
+        - Personally, I utilized the following link: https://docs.datadoghq.com/agent/
+          basic_agent_usage/osx/?tab=agentv6
+        - Under the section called Configuration you will see the path for YAML
+          files containing agent files and folders, as well as a path for the configuration for each of the integrations
+        - Each of these paths will allow you to make changes to the DataDog agent
+        - They contain the configurations for the various integrations, as well as allow 
+          the user to write their own custom checks verifying the integrations
+
+>Answer: 
+
+Within the terminal change your directory to the DataDog Agent by typing 'cd ~/.datadog-agent', then use your text editor (I have created a sublime shortcut so I typed 'sublime .' once I was in the correct path) to make the following changes to the configuration file (datadog.yaml): 
+    - On line 35 - 39, you can see that the tags section is commented out because of the
+      '#' sign at the front of each line. 
+    - You will need to uncomment these lines in order to make sure that the DataDog agent is 
+      able to collect information on these tags. 
 
 <img src="./images/tags.png" alt="Tags being uncommented in text editor" />
 
-Refresh your DataDog page, and use the navigation bar to go to the Infrastructure tab followed by the Host Map, and here you should be able to see your tags if you search in the "Filter By" column.
-
+Go back to your browser, and make sure you are logged into DataDog. Then refresh your DataDog home page, and use the navigation bar to go to the Infrastructure tab. Once you are on the infrastructure tab click on the Host Map, and here you should be able to see your tags if you search in the "Filter By" column.
 
 <img src="./images/display_tags.png" alt="All of the tags I have created" />
 
-
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
->Answer: I utilized PSQL database integration as an example for this part of the excercise. 
+>Answer: 
+I utilized PSQL database integration as an example for this part of the excercise. 
 
 >Initially, I went to the Integrations tab and there I was able to see the configurations needed to integrate the DataDog Agent with PostgreSQL. 
 
