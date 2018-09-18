@@ -43,7 +43,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-    I already have MongoDB and PostgreSQL installed. I decided to use PostgreSQL for this exercise.
+    I already have MongoDB and PostgreSQL installed. I used PostgreSQL for this exercise.
 
     Followed instructions from [Integrations](https://docs.datadoghq.com/integrations/postgres/):
 
@@ -62,7 +62,10 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
     psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" &&
     echo -e "\e[0;32mPostgres connection - OK\e[0m" ||
     echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+    ```
+    Response: ```\e[0;32mPostgres connection - OK\e[0m```
 
+    ```
     ~.datadog-agent/conf.d/postgres.d/conf.yaml.example
     ```
 
@@ -71,6 +74,9 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
     ```
     mv conf.yaml.example conf.yaml
     ```
+    Ran ```datadog-agent status``` to check status.
+
+    Response:
 
     <img src="img/postgres.png" />
 
@@ -86,7 +92,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
     <img src="img/metric.png" />
 
-    Checked metric.
+    Check metric.
 
     ```
     datadog-agent check my_metric
@@ -117,7 +123,7 @@ Utilize the Datadog API to create a Timeboard that contains:
     Sources: [Timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/),
     [API](https://docs.datadoghq.com/api/?lang=python#timeboards),  [JSON](https://docs.datadoghq.com/graphing/graphing_json/)
 
-    Modified sample code. See script below.
+    Modified sample code. See [Timeboard Script](timeboard.py).
 
     Response:
 
@@ -129,7 +135,7 @@ Utilize the Datadog API to create a Timeboard that contains:
     Sources:
     [Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), how to create a [monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor), how to write the [query](https://docs.datadoghq.com/graphing/functions/algorithms/)
 
-    Modified the anomaly query sample code. See script below.
+    Modified the anomaly query sample code. See [Anomaly Script](anomaly.py).
 
     Response:
 
@@ -145,7 +151,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-  [Timeboard Script](timeboard.py), [Anomaly Script](anomaly.py)
+  See scripts above.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -176,7 +182,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 * Alerting threshold of 800
 
-    Used the GUI to create monitor.
+  Used GUI to create monitors.
 
     <img src="img/thresholds.png" />
 
@@ -257,21 +263,21 @@ if __name__ == '__main__':
     [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/), [APM FAQ](https://docs.datadoghq.com/tracing/faq/),
     [Web Integrations](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask)
 
-    Enable trace collection for the Datadog Agent ```datadog.yaml```
+    Enabled trace collection for the Datadog Agent ```datadog.yaml```
 
     <img src="img/apm_config.png" />
 
-    Install virtualenv ```python -m pip install virtualenv```
+    Installed virtualenv ```python -m pip install virtualenv```
 
-    Run ```virtualenv venv```
+    Ran ```virtualenv venv```
 
-    Activate the environment ```. venv/bin/activate```
+    Activated the environment ```. venv/bin/activate```
 
-    Install Flask ```pip install Flask```
+    Installed Flask ```pip install Flask```
 
-    Install ddtrace ```python -m pip install ddtrace```
+    Installed ddtrace ```python -m pip install ddtrace```
 
-    Run server ```ddtrace-run python app.py```
+    Ran server ```ddtrace-run python app.py```
 
     Received error message:
 
@@ -285,7 +291,7 @@ if __name__ == '__main__':
 
     <img src="img/receiver_port.png" />
 
-    Restart Agent. Still receiving error message.
+    Restarted Agent. Still received error message.
 
     Tried adding middleware, instead of using ```ddtrace-run```.
 
@@ -299,11 +305,11 @@ if __name__ == '__main__':
 
     Commented out receiver port in the config file.
 
-    Change the port in app.py to 8126.
+    Changeed the port in ```app.py``` to 8126.
 
     <img src="img/port.png" />
 
-    Restart Agent. Received new error message:
+    Restarted Agent. Received new error message:
 
     <img src="img/error_404.png" />
 
@@ -311,11 +317,11 @@ if __name__ == '__main__':
 
     <img src="img/entrypoint_8126.png" />
 
-    GUI remains the same.
+    GUI remained the same.
 
     <img src="img/gui.png" />
 
-    I've also Googled the error message (exactly and variations), but I was unable to find a solution. This is the point that I would normally ask for help.
+    I've also Googled the error messages (exactly and variations), but I was unable to find a solution. This is the point that I would normally ask for help.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -324,9 +330,9 @@ if __name__ == '__main__':
     [Source](https://docs.datadoghq.com/tracing/visualization/)
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-
 Please include your fully instrumented app in your submission, as well.
+
+    Please see errors above.
 
 
 ## Final Question:
@@ -335,4 +341,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I think that colleges and universities could use Datadog for monitoring the campus parking situation, peak library usage, or even which classes need more sections offered.
+    I think that colleges and universities could use Datadog for monitoring the campus parking situation, peak library usage, or even which classes need more sections offered.
