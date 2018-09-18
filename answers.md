@@ -2,15 +2,20 @@ Prerequisites - Setup the Environment
 
 Downloaded Ubuntu, Downloaded DD Agent
 
-I used vagrant. See Vagrantfile.
-
 <img width="572" alt="ubuntudownload" src="https://user-images.githubusercontent.com/26099421/45600855-bc1b2880-b9d1-11e8-96cc-61c9eeec7f55.png">
 <img width="1024" alt="ubuntudownload1" src="https://user-images.githubusercontent.com/26099421/45600862-d35a1600-b9d1-11e8-8bfd-0d15266f7921.png">
 
-The datadog agent is a piece of software that runs on your hosts, which in turn will display metrics and then you will be able to monitor everything you need. To install the agent on your machine (we will use Ubuntu for this example), simply run the script  on your machine, which has the api key included in it that you received when you signed up for datadog. 
-- DD_API_KEY=5f2ec4a8761c36c75db5cb1a21eae420 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-This will install the APT packages for the Datadog agent, and it will then ask you for your password. If you want to install the Agent and not have it start up automatically, prepend the script above with DD_INSTALL_ONLY=true. 
-Once you have the Datadog Agent up and running, you should be able to see your machine pop up on the GUI within a few moments. 
+The datadog agent is an application that will collect metrics of the applications running on your computer, send those metrics todatadog, and then will display them in charts on a website that you can look at and monitor. 
+To install the agent on your computer (we will use Ubuntu for this example), run this script in your terminal, which has the api key included in it that you received when you signed up for datadog:
+    - API key "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+This will install the (APT) packages for the Datadog agent
+Note: If you want to install the Agent and not have it start up automatically, add this before the script above:
+    - DD_INSTALL_ONLY=true 
+Once you have the Datadog Agent up and running, you should be able to see your computer pop up on the datadog website  within a
+few moments.
+You can also launch the website (GUI) through this command in your terminal:
+    - datadog-agent launch-gui 
+
 A few good commands to know once you get the Datadog Agent up and running:
     - Start agent as a service                 sudo service datadog-agent start
     - Stop agent as a serivce                  sudo service datadog-agent stop
@@ -19,16 +24,18 @@ A few good commands to know once you get the Datadog Agent up and running:
     - Send flare			       sudo datadog-agent flare
     - Display command usage		       sudo datadog-agent help
     - Run a check			       sudo -u dd-agent -- datadog agent check <check_name>
+
 All of the configuration files and folders for the Agent are located in /etc/datadog-agent/datadog.yaml
-The Configuration files for integrations are located in 
-    /etc/datadog-agent/conf.d/
+The Configuration files for integrations are located in /etc/datadog-agent/conf.d/
 
 The link for the commands is https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/
 The link for the datadog agent is https://app.datadoghq.com/account/settings#agent/ubuntu
 
-Once you get your Datadog Agent up and running, if you go to the GUI, under the Infrastructure dropdown, and click on Host Map,  you should see your machine pop up (with whatever the name is, mine is trusty64).
-Once you click on your machine, click on the dashboard link, which will then take you to a breakdown of your machine. There will
-be a chart that names all of the current processes running (ex; agent, puppet, mysql, ruby, etc).
+Once you get your Datadog Agent up and running, you will want to see where your computer is on the website. If you go to the 
+website, under the Infrastructure dropdown, and click on Host Map, you should see your machine pop up (mine is trusty64).
+After you see your computer show up, click on the dashboard link (located to the right of your computer name), which will then
+take you to a breakdown of what is on your computer. There will be a chart that names all of the current processes running
+(example: agent, puppet, Mysql, ruby, etc).
 
 <img width="1024" alt="agentsetup3" src="https://user-images.githubusercontent.com/26099421/45601039-57150200-b9d4-11e8-9dc5-68941c9b7baa.png">
 
@@ -41,20 +48,22 @@ You can also navigate around your host map to see the CPU usage, load averages, 
 
 Added tags in the .yaml file.
 https://docs.datadoghq.com/tagging/
-https://docs.datadoghq.com/graphing/infrastructure/hostmap/   This page includes an example on tags for hostmap aws
+https://docs.datadoghq.com/graphing/infrastructure/hostmap/  
+This page includes an example on tags for hostmap aws
 
-Once you have poked around your Host Map, you may want to add agent tags to make it easier to look at containers.
+Once you have looked around your Host Map, you may want to add agent tags to make it easier to look at containers the processes
+that are running. Tagging is a method to help you look at specific individual processes you choose as a whole.
 "Tags are key to  modern monitoring because they allow you to aggregate metrics across your infrastructure at any level you
 choose" 
 This example is for adding tags to the host map.
 https://www.datadoghq.com/blog/the-power-of-tagged-metrics/
-One way to add tags into your host map is to edit the datadog.yaml file
-This is under #set up the hosts tags (optional)
+One way to add tags into your host map is to edit the datadog.yaml file, which is located at /etc/datadog-agent/datadog.yaml
+Editing this specific part of the datadog.yaml file is under #set up the hosts tags (optional).
 
 <img width="1024" alt="tagsetup1" src="https://user-images.githubusercontent.com/26099421/45600977-5b8ceb00-b9d3-11e8-84c4-881ab06e07a8.png">
  
-You can add any tags you need based on your system and which metrics are needed to be monitored. Here are a few ideas and best 
-practices for creating tags.
+You can add any tags you need based on your system and which metrics are needed to be monitored.
+Here are a few ideas for creating tags:
     - Tags must start with a letter, and after that they can contain: alphanumerics, underscores, minuses, colons, periods, and        slashes. Any other special characters will be converted into an underscore. Please note, that a tag cannot end with a 
       colon (ex. tag:)
     - Tags can be up to 200 characters long and support unicode
@@ -70,7 +79,9 @@ Tags that I inputted  are christinastahovec, env:prod, mysql, role:database, hos
 
 
 To integrate datadog with mysql - this example will be from MySQL
-Navigate to the conf.yaml file which is found in conf.d/mysql/conf.d. Here you will want to turn on instances, edit the server,  user, port, and pass. Then under options (also in the conf.yaml file) you will want to edit as so:
+Navigate to the conf.yaml file in your terminal which is found in /etc/datadog-agent/ conf.d/mysql/conf.d.
+Here you will want to make some changes that will allow Datadog to help with your database.
+Then, under options (also in the conf.yaml file) you will want to edit as so:
     - replication:0
     - galera_cluster: 1
     - extra_status_metrics: true
@@ -81,7 +92,7 @@ Navigate to the conf.yaml file which is found in conf.d/mysql/conf.d. Here you w
 
 <img width="914" alt="sqlsetup4" src="https://user-images.githubusercontent.com/26099421/45601076-de627580-b9d4-11e8-995b-b913ef1632bc.png">
 
-The MySQL metrics and logs will start to be collected right away.
+The MySQL metrics and logs will start to be collected within a few minutes of editing the conf.yaml file.
 The instructions to prepare MySQL for DataDog if you are not familiar can be found here:
 https://docs.datadoghq.com/integrations/mysql/ 
 Also, a screenshot of this process
@@ -92,10 +103,13 @@ Also, a screenshot of this process
 Create a custom agent check that submits a metric named my_metric with a random value between 0 and 1000. 
 Change checks collection interval so that it only submits the metric once every 45 seconds.
 
-Suppose you want this to happen. Follow these steps
+This example is to create a metric that records a value generated by a custom application. 
+These metrics will be submitted to Datadog.
+Note: you will have two new files for a custom agent check.
+Suppose you want this to happen. Follow these steps:
 Navigate to your conf.d directory. For this example it is located in etc/datadog-agent/conf.d
-Create a new config file for the agent check. Name the file checkvalue.yaml. Input this script (this is the one I created not 
-the example located at https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+Create a new configuration file for the agent check. Name the file checkvalue.yaml.
+Input this script:
 
 <code>
 init_config:
@@ -106,7 +120,6 @@ instances:
 </code>
 
 Then navigate to the checks.d directory, which is located at /etc/datadog-agent/checks.d
-Note: you will have two new files for a custom agent check
 Create a new file called checkvalue.py, and insert the following:
 
  <code>
@@ -119,8 +132,10 @@ class HelloCheck(AgentCheck):
     self.gauge('my_metric', random.randint(1,1000))
 </code>
 
-Within a few minutes, there should be a new metric in the metric summary called my_metric. This is located in the DataDog GUI    
-under metrics. Then click on summary and search for my_metric.
+Another reference: https://datadog.github.io/summit-training-session/handson/customagentcheck/
+
+Within a few minutes, there should be a new metric in the metric summary called my_metric. This is located in the DataDog 
+website under metrics. Then click on summary and search for my_metric.
 Collection intervals can be specified for each instance using a min_collection_interval
 (In datadog prior to this release, min_collection_interval was a global)
 
@@ -129,8 +144,10 @@ Collection intervals can be specified for each instance using a min_collection_i
 
 Creating a datadog timeboard
 
-Suppose you want to create a custom timeboard that utilizes datadogs API. For this example we will create a timeboard with the   new metric we set up called my_metric.  
-Depending on what you need or which visualization you would like to have, you can choose from 
+Create a custom timeboard that uses datadogs API. The API makes it easy to get data in and out of Datadog
+
+For this example we will create a timeboard with the  new metric we set up called my_metric.  
+Depending on what you need or which visualization you would like to have, you can choose from: 
     - Timeseries
     - Query Value
     - Heat Map
@@ -153,13 +170,15 @@ Bonus: the anomaly graph is displaying the results along with the expected norma
 
 
 Creating a new metric monitor
+
 Suppose you want to be alerted if your new timeboard is too high, too low, or not responding. For this example we will create a 
 new metric monitor that watches the average of my_metric, and will alert if it is above the following values over the past five
 minutes:
     - Warning threshold of 500, alerting threshold of 800, and to also notify if there is no data over the past 10 minutes.
 If you want to configure a new monitor, go under monitors, and new monitor. 
-Step 1: specify what sort of detection method you want. For this example we are using the Threshold Alert, which means an alert
-is triggered whenever a metric crosses a threshold
+
+Step 1: Specify what sort of detection method you want. For this example we are using the Threshold Alert, which means an alert
+is triggered whenever a metric crosses a specified threshold.
 
 <img width="1024" alt="metricsetup" src="https://user-images.githubusercontent.com/26099421/45601292-eae8cd00-b9d8-11e8-99ee-0c012e6e84e9.png">
 
@@ -201,8 +220,8 @@ set the schedule for a specific time by selecting the recurring tab, set repeat 
 
 Flask and APM
 
-Suppose you want to integrate a Flask app to use DataDogs APM solution, which is found under APM in the gui. This will be an 
-example of tracing applications written in Python.  
+Suppose you want to integrate a Flask app to use DataDogs APM solution, which is found under APM tab in the website.
+This will be an example of tracing applications written in Python.  
 First you have to install the Datadog tracing library, ddtrace, using pip. 
     - pip install ddtrace
 Then to instrument your Python application use the included ddtrace-run command.
