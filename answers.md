@@ -145,7 +145,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-    [Timeboard Script](timeboard.py), [Anomaly Script](anomaly.py)
+  [Timeboard Script](timeboard.py), [Anomaly Script](anomaly.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -178,7 +178,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
     Used the GUI to create monitor.
 
-      <img src="img/thresholds.png" />
+    <img src="img/thresholds.png" />
 
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
@@ -254,7 +254,8 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
     Sources: [Flask](http://flask.pocoo.org/docs/1.0/installation/#installation), [APM Setup](https://docs.datadoghq.com/tracing/getting_further/first_class_dimensions/),
-    [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/)
+    [Tracing Python Apps](https://docs.datadoghq.com/tracing/setup/python/), [APM FAQ](https://docs.datadoghq.com/tracing/faq/),
+    [Web Integrations](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask)
 
     Enable trace collection for the Datadog Agent ```datadog.yaml```
 
@@ -268,9 +269,7 @@ if __name__ == '__main__':
 
     Install Flask ```pip install Flask```
 
-    ```
-    python -m pip install ddtrace
-    ```
+    Install ddtrace ```python -m pip install ddtrace```
 
     Run server ```ddtrace-run python app.py```
 
@@ -298,12 +297,34 @@ if __name__ == '__main__':
 
     <img src="img/gui.png" />
 
+    Commented out receiver port in the config file.
+
+    Change the port in app.py to 8126.
+
+    <img src="img/port.png" />
+
+    Restart Agent. Received new error message:
+
+    <img src="img/error_404.png" />
+
+    Checked on localhost:
+
+    <img src="img/entrypoint_8126.png" />
+
+    GUI remains the same.
+
+    <img src="img/gui.png" />
+
+    I've also Googled the error message (exactly and variations), but I was unable to find a solution. This is the point that I would normally ask for help.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-    The difference is that a service is "a set of processes," but a resource is "a particular action for a service." [Source](https://docs.datadoghq.com/tracing/visualization/)
+    The difference is that a service is "a set of processes" that do the same thing, but a resource is "a particular action for a service."
+
+    [Source](https://docs.datadoghq.com/tracing/visualization/)
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
 
 Please include your fully instrumented app in your submission, as well.
 
