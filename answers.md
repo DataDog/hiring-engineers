@@ -139,8 +139,8 @@ print(datadog_time_board)
 ```
 
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
-**Timeboard showing two graphs and the rollup function**
-[Timeboard link](https://app.datadoghq.com/dash/919881/my-timeboard-5?live=false&page=0&is_auto=false&from_ts=1537334014353&to_ts=1537334314353&tile_size=m)
+**Timeboard showing two graphs and the rollup function**  
+[Timeboard link](https://app.datadoghq.com/dash/919881/my-timeboard-5?live=false&page=0&is_auto=false&from_ts=1537334014353&to_ts=1537334314353&tile_size=m)  
 ![Timeboard Image](./data-dog-solutions-eng-screenshots/03-visualizing-data/01-timeboard.JPG) 
 
 ### Set the Timeboard's timeframe to the past 5 minutes
@@ -169,8 +169,9 @@ The graph would have been showing normal values represented by gray areas with l
 Set the triggered values and message on the datadog website:
 ![Monitor Thresholds Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/01-monitor-values.JPG)  
 ![Monitor Message Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/02-monitor-message.JPG)  
+[Link to Monitor Management](https://app.datadoghq.com/monitors/manage)  
 
-Received the following email when monitor is triggered:
+Received the following email when monitor is triggered:  
 ![Email Received for Alert Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/05-my-metric-triggered.JPG)  
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -179,18 +180,22 @@ Received the following email when monitor is triggered:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Setting downtime values on the website:
+Setting downtime values on the website:  
 ![MF Downtime Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/03-mf-downtime.JPG)
 ![Weekend Downtime Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/04-weekend-downtime.JPG)  
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+ran `pip install dd-trace`  
+ran `pip install flask`  
 
-```python
+#### included following flask app under `etc/datadog-agent`  
+
+```
 from flask import Flask
 import logging
 import sys
+from ddtrace import tracer
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -202,9 +207,12 @@ main_logger.addHandler(c)
 
 app = Flask(__name__)
 
+trace = tracer.trace("request", "web")
+
 @app.route('/')
 def api_entry():
     return 'Entrypoint to the Application'
+    trace.finish()
 
 @app.route('/api/apm')
 def apm_endpoint():
@@ -218,56 +226,17 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
 * **Bonus Question**: What is the difference between a Service and a Resource?
+According to the datadog forums:
+> A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.  
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Resource  
+> A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ? The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
 
-Please include your fully instrumented app in your submission, as well.
+### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+[Link to APM Dashboard](https://app.datadoghq.com/apm/service/web/request?start=1537336326648&end=1537339926648&paused=false&env=prod)
+![APM Dashboard Image](./data-dog-solutions-eng-screenshots/05-collecting-apm-data/01-collected-apm-data.JPG)  
 
 ## Final Question:
-
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
-Is there anything creative you would use Datadog for?
-
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+### Is there anything creative you would use Datadog for?
+Hiring Challenges are often fairly time consuming. Perhaps Datadog could be utlized for unique hooks to gauge the amount of time used by each candidate for each section of challenges.
