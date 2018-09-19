@@ -85,65 +85,132 @@ Within the terminal change your directory to the DataDog Agent by typing 'cd ~/.
 
 <img src="./images/tags.png" alt="Tags being uncommented in text editor" />
 
-Go back to your browser, and make sure you are logged into DataDog. Then refresh your DataDog home page, and use the navigation bar to go to the Infrastructure tab. Once you are on the infrastructure tab click on the Host Map, and here you should be able to see your tags if you search in the "Filter By" column.
+Go back to your browser, and make sure you are logged into DataDog. Then refresh your DataDog home page, and use the navigation bar to go to the Infrastructure tab. Once you are on the infrastructure tab click on the Host Map, and here you should be able to see your tags if you search in the "Filter By" column. This will display your tags within the host map. 
 
 <img src="./images/display_tags.png" alt="All of the tags I have created" />
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 >Answer: 
-I utilized PSQL database integration as an example for this part of the excercise. 
 
->Initially, I went to the Integrations tab and there I was able to see the configurations needed to integrate the DataDog Agent with PostgreSQL. 
+We will utilize the integration of PostgreSQL for this excercise. We will want to integrate the 
+Datadog Agent and your PSQL within your machine. Now, we will need to confirm that you have PSQL
+installed in your computer, and we can confirm this by typing the 'psql' command in your terminal. This command will display your version number and that will confirm that  you have PSQL installed.
+Now, once you have confirmed that PSQL is installed we will need to go back to the DataDog website, and once you have logged back in you will see a puzzle piece in the navigation tab.
+The puzzle piece will be followed by a drop-down menu and you will be able to click on the Integrations tab. Here, you can either browse by the titles available or enter PSQL into the search bar. 
 
+You will need to click the install button to add this integration to your DataDog account via the website, but there are additional steps in adding PSQL for your DataDog Agent to track. You will also need to keep your browser open with the Integrations page open to complete this. 
+These are the following steps to complete within your terminal and browser: 
+    - Open your browser back to the Integrations tab on the Datadog page 
+    - Open the integrations for PSQL and click on the configurations tab next to the overview.
+    - Now, in your browser there should be a button to generate the automatic password, so click
+      on that button to create this password. 
+    - Open your Terminal.
+    - Start PSQL within your terminal with the command 'psql'. 
+    - Enter the following command 'create user datadog with password 'Given By DataDog';
+      grant SELECT ON pg_stat_database to datadog;'.
+    - You should see the words CREATE and GRANT in all capital letters if you completed the query
+      successfully. 
+    - Once you have completed the creation of the account as well as granting access enter the 
+      command '/q' to quit PSQL.
+    
 <img src="./images/psql.png" alt="Terminal installing datadog as a user" />
 
->Create a read-only datadog user with proper access to your PostgreSQL Server.
+Now, we will need to configure the agent files to connect to PostgreSQL in your machine. This will
+enable the database to be tracked by the Datadog Agent and allow you to measure metrics around PSQL. You will need to do the following to make sure the configurations are setup in your DD-Agent:
+    - Open your terminal shell and once again go to the directory housing the
+      DataDog Agent (Here is the path: 'cd ~/.datadog-agent/'). 
+    - Next utilize your text editor to open this directory.
+    - Following opening the directory you should see the 'conf.d' directory 
+    - Here you should see another folder called 'postgres.d'
+    - Initially, everything within the sample example configuration file will contain the
+      integrations you will need and the integrations will be commented out within the code 
+    - You will need to make a new file by going back to your terminal and navigating 
+      to 'cd ~/.datadog-agent/conf.d/postgres.d' followed by the command 'touch postgres.yaml'.
+    - Once the file is created go back to your text editor, and you should see the new file in the 
+      'postgres.d' folder.
+    - Finally, take the following code below from your sample file, place it in your new file, 
+      and uncomment the code. 
 
-```
-create user datadog with password 'Given By DataDog';
-grant SELECT ON pg_stat_database to datadog;
-```
->Configure the Agent to connect to the PostgreSQL server 
->Edit _conf.d/postgres.yaml_
+>Note: You will need to make sure you have your password which was generated from the PSQL installation on the DataDog website.
+
+    Code Snippet: 
+
+   <!--  
+    init_config:
+
+    instances:
+       host: localhost
+       port: 5432
+       username: datadog
+       password: <generated during PSQL Integration setup>
+       tags:
+            - optional_tag1
+            - optional_tag2
+     -->
 
 <img src="./images/postgresconnection.png" alt="PostgreSQL connection OK" />
 
->You need to restart the agent in order for the integration to take place. 
-
->I ran a test using 'datadog-agent check postgres', and it gave me confirmation that the integration was working correctly.
+Once you have input the new code be sure to save your changes in order for them to occur. You will need to restart the agent in order for the integration to take place. 
+To restart your agent: 
+    - Go into your terminal and enter the following command to stop the agent 
+      'launchctl stop com.datadoghq.agent'
+    - Next, you will enter this command to restart your agent 
+      'launchctl start com.datadoghq.agent' 
+    - In order to confirm that you have your DataDog Agent running, 
+      you can either go to your browser and enter the address associated with 
+      your local agent (i.e 'http://127.0.0.1:5002/').
+    - Now, we can also run a command within the terminal 'datadog-agent check postgres'
+      and this commands will run checks on the integrations and the name of the check is listed after the command 'check', so this will also be how we run custom checks later on.
 
 <img src="./images/psql_check.png" alt="PSQL Check" />
 
->Followed by this I checked on the dashboard within DataDog and was able to confirm that the PSQL metrics were displaying
+Following up on the dashboard gives us assurance that the data is traveling to DataDog: 
+    - Go to your browser and proceed to log into your DataDog dashboard 
+    - When you have logged in you will be able to go to the tab with the graph representing 
+      dashboards. 
+    - Go to the Dashboard List tab in the drop-down menu
+    - Here, we should see Postgres - Metrics and Postgres - Overview pop up in the
+      dashboard list
+    - If we click on either of these we should be able to see metrics and our overview around
+      the PSQL integration.
 
 <img src="./images/PSQL_metrics.png" alt="PSQL Metrics on DataDog Dash" />
 
 * Write a custom Agent check that samples a random value. Call this new metric: `my_metric`
 
->Answer: Both of these check files will need to be placed in two directories. First, we will need to navigate into the datadog agent directory. There we will need to add a my_metric.py for our check followed by a yaml file in the conf.d. 
+>Answer: 
 
-> First we would place a file within the Checks directory in Datadog (~/.datadog-agent/checks.d). 
+First, we will need to navigate into the datadog agent directory. There we will need to add a 
+my_metric.py for the check itself followed by a yaml file for configuring the check in the conf.d  folder. 
+    - Navigate to the datadog agent in your terminal (Here is the path: 'cd ~/.datadog-agent/').
+    - Change your directory to the 'cd checks.d' and add the file 'touch my_metric.py'
+    - Get back out of this directory 'cd ..' then go into the configurations file 'cd conf.d'
+    - Create a folder to house your metric 'mkdir my_metric.d' the change into that directory 
+      'cd my_metric.d' and add the yaml configuration file 'touch my_metric.yaml'
 
-```
-from random import randint
-random_number = randint(0,1000)
-print random_number
+Following the previous steps, we would open the DataDog agent with a text-editor and edit the 'my_metric.py' file that we created to have the code snippet below. Now, we are importing the random function within python and creating a variable that generates a random value between 0 and 1000.
 
-from checks import AgentCheck
-class RandomCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric', random_number)
+    Code Snippet: 
 
-```
+    <!-- from random import randint
+            random_number = randint(0,1000)
+            print random_number
 
->Second the other directory which we would be placing the YAML file in would be the Conf.d or the configuration portion where there would also be explicit instances being described. I understood that we could add minimum intervals here but it was quite challenging. Unfortunately, my instances area often would give me an error. (~/.datadog-agent/conf.d/my_metric.yaml)
+        from checks import AgentCheck
+        class RandomCheck(AgentCheck):
+            def check(self, instance):
+                self.gauge('my_metric', random_number) -->
 
-```
-init_config:
-instances:
-    [{}]
-```
+Now, we will need to go back to the DataDog Agent in the terminal, and you will open
+the 'conf.d' folder (path: 'cd ~/.datadog-agent/conf.d'). After you have entered into this directory create a file you have created called my_metric.yaml and open this file in a text editor. When you are in this file you will make the configurations for the custom metric (my_metric) utilizing the DataDog documentation online. Below you will find the code snippet for the custom metric configuration template. 
+
+    Code Snippet:
+
+    <!-- init_config:
+    instances:
+        [{}] -->
+
 
 <img src="./images/gui.png" alt="Check for Custom Metric" />
 <img src="./images/bash.png" alt="Check within Command Line" />
@@ -248,7 +315,7 @@ Links:
 ### Final Question 
 Is there anything creative you would use Datadog for?
 
->Answer: Absolutely, I would love to use Datadog to do analysis on blockchain technologies. I feel that the efficacy of Solidity contracts as well as working to see how gas fees influx due to increase in resources (i.e. miners) would be really interesting. Seeing how the backend or devop technologies in the Blockchain world could really help find the inequities within the system as well as solve inefficiences relatively quickly, plus it would increase business value for a lot of blockchain projects that are struggling to have analytics on which of their tech is taking over their development. Another place I thought it would be very intersting to use Datadog would be to monitor hospital bed availability or ER wait times because I know that often people travel long distance to find that they are trapped without the resources they need, as well as using the montoring to increase overall effectiveness in the healthcare system. 
+>Answer: Absolutely, I would love to use Datadog to do analysis on blockchain technologies. I feel that the efficacy of Solidity contracts as well as working to see how gas fees influx due to increase in resources (i.e. miners) would be really interesting. Seeing how the backend or devop technologies in the Blockchain world could really help find the inequities within the system as well as solve inefficiences relatively quickly, plus it would increase business value for a lot of blockchain projects that are struggling to have analytics on which of their tech is taking over their development. Another place I thought it would be very intersting to use Datadog would be to monitor hospital bed availability or ER wait times because I know that often people travel long distances to find that they are trapped without the resources they need, as well as using the montoring to increase overall effectiveness in the healthcare system. 
 
 ## Instructions
 If you have a question, create an issue in this repository.
