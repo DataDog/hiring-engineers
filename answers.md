@@ -76,7 +76,7 @@ Please provide screenshots and code snippets for all steps.
 A timeout function could also be written in the python file under `checks.d` to ensure metrics are sent only once every 45 seconds.  
 **Checked that my_metrics were being recorded on the datadog site**  
 **Had to restart datadog agent service and reboot server in order for my_metric to show up in metrics page**  
-![Verify my_metric in Metric Explorer](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/21-my-metric-in-metric-explorer.JPG)  
+![Verify my_metric in Metric Explorer Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/21-my-metric-in-metric-explorer.JPG)  
 
 ### **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 By including the property `min_collection_interval` in the yaml file, we've ensured that reporting is done as often as once every 45 seconds.  
@@ -141,11 +141,11 @@ print(datadog_time_board)
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
 **Timeboard showing two graphs and the rollup function**
 [Timeboard link](https://app.datadoghq.com/dash/919881/my-timeboard-5?live=false&page=0&is_auto=false&from_ts=1537334014353&to_ts=1537334314353&tile_size=m)
-![Timeboard](./data-dog-solutions-eng-screenshots/03-visualizing-data/01-timeboard.JPG) 
+![Timeboard Image](./data-dog-solutions-eng-screenshots/03-visualizing-data/01-timeboard.JPG) 
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 ### Take a snapshot of this graph and use the @ notation to send it to yourself.
-![Email Received](./data-dog-solutions-eng-screenshots/03-visualizing-data/02-email-metrics.JPG)  
+![Email Received Image](./data-dog-solutions-eng-screenshots/03-visualizing-data/02-email-metrics.JPG)  
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 Since Postgresql wasn't running for this section, I looked up some examples.  
@@ -153,26 +153,35 @@ The graph would have been showing normal values represented by gray areas with l
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Please configure the monitor’s message so that it will:
+### Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+Set the triggered values and message on the datadog website:
+![Monitor Thresholds Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/01-monitor-values.JPG)  
+![Monitor Message Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/02-monitor-message.JPG)  
+
+Received the following email when monitor is triggered:
+![Email Received for Alert Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/05-my-metric-triggered.JPG)  
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Setting downtime values on the website:
+![MF Downtime Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/03-mf-downtime.JPG)
+![Weekend Downtime Image](./data-dog-solutions-eng-screenshots/04-monitoring-data/04-weekend-downtime.JPG)  
 
 ## Collecting APM Data:
 
