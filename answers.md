@@ -85,19 +85,71 @@ I assume that this would mean that setting the time in the python file would be 
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+### Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+### Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Installed python, pip, and pip datadog on to the virtual box.  
+Ran the following script  
+```
+from datadog import initialize, api
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+options = {
+    'api_key': '<REDACTED>',
+    'app_key': '<REDACTED>'
+}
+
+initialize(**options)
+
+title = "My Timeboard 5"
+description = "An informative timeboard."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{*}"},
+	    {"q": "my_metric{*}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:postgresql.total_size.user_time{*}, 'basic', 3)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Postgresql Total Size"
+}]
+
+read_only = True
+datadog_time_board = api.Timeboard.create(title=title,
+                                          description=description,
+                                          graphs=graphs,
+                                          read_only=read_only)
+
+print(datadog_time_board)
+```
+
+### Once this is created, access the Dashboard from your Dashboard List in the UI:
+**Timeboard showing two graphs and the rollup function**
+[Timeboard link](https://app.datadoghq.com/dash/919881/my-timeboard-5?live=false&page=0&is_auto=false&from_ts=1537334014353&to_ts=1537334314353&tile_size=m)
+![Timeboard](./data-dog-solutions-eng-screenshots/03-visualizing-data/01-timeboard.JPG) 
+
+### Set the Timeboard's timeframe to the past 5 minutes
+### Take a snapshot of this graph and use the @ notation to send it to yourself.
+![Email Received](./data-dog-solutions-eng-screenshots/03-visualizing-data/02-email-metrics.JPG)  
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+Since Postgresql wasn't running for this section, I looked up some examples.  
+The graph would have been showing normal values represented by gray areas with lines in it, and red lines with peaks that represent the anomalies that are, in my case, 3 standard deviations away from normal values.  
 
 ## Monitoring Data
 
