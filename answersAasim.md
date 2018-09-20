@@ -374,10 +374,33 @@ Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+If you would like to create an alert that notifies you based on when a particular metric is varying from your expected use you can use a Metric Monitor. Now, the Metric Monitor can be created using the DataDog web interface, and you will need to be logged in to do so. 
+    - First, once you have logged in within the navigation bar look for the stop sign icon 
+      with an exclamation point in it.
+    - Click on this icon and select the New Monitor tab and click on Metric as your monitor type.
+    - You will see that the first step is already configured to Threshold Alert.
+    - We will need to define the metric in this case you are monitoring your custom metric,
+      so in the second step type in the custom metric you would like to monitor (my_metric).
+    - After this the third step automatically open up the ability to add an Alert threshold 
+      (Set to 800), Warning threshold (Set to 500), and the ability to change the 'Do Not Notify'
+      of the 'if Data is missing' to 'Notify' to get notifications when the monitor is not getting data from the metric.
+    - Next, in the fourth section of the Metric Monitor you can actually set messages to be sent
+      based on the various thresholds being set, and the messages for each of these thresholds can vary. 
+    - There is also a layout of being able to add tags such as the ip address to the message
+    - Also, the ability to display the metric value that triggered the alert by using {{value}}  
+      tag within the message for the alert. 
+    - Finally, in the last section you can select users to send this alert or Metric Monitor 
+      via email to these selected individuals whenever the listed thresholds are reached.
+
 <img src="./images/metric_monitor.png" alt="Made an alert based on the custom metric created by myself"/>
 <img src="./images/metric_alert.png" alt="Email sent to me by the monitoring alert"/>
 
-Bonus: I went on tab for Managing Downtime for Monitors and I was able to configure the alerts for the weekdays between 7:00pm and 9:00am, as well as turning the monitor off for the weekend. 
+Bonus: 
+
+Now, in order to restrict the alert to not be triggered at off-hours along with not disturbing individuals on the weekend. Also, you would probably need an email notification when scheduled downtime is coming into play. You will be able to make these changes directly within your Datadog web interface by navigating to the Monitors tab via the navigation bar, and you would navigate to the tab called Managing Downtime, and on the right hand side of the page you will find a yellow
+button stating 'Schedule Downtime' with an icon of a wrench. Once you have clicked on this button you will be able to first select the monitor to schedule downtime for. Following this you would set the schedule which can either be a one-time occurance or in our case reoccuring when you need to set it for particular days of the week this is advantageous. We can select repeat every week instead of days to select the days of the week which we want the monitor to have downtime, and you would then set the time when the downtime would begin as well as how long you would want it to last for these days (7:00pm and 9:00am), and we can create a second downtime turning the monitor off for the weekend. 
+
+Attached below are screenshots of the downtime monitor being made, as well as the alert sent via email for the weekend downtime. 
 
 <img src="./images/downtime_monitor_week.png" alt="Made a downtime alert for the week"/>
 <img src="./images/downtime_monitor_weekend.png" alt="Email sent to me by the monitoring downtime alert for the weekend"/>
