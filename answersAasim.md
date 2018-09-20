@@ -224,50 +224,141 @@ Bonus Question: Can you change the collection interval without modifying the Pyt
 
 * Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Your custom metric scoped over your host. Any metric from the Integration on your Database with the anomaly function applied. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+>Note: The API commands for Timeboards are listed within the DataDog documentation here: 
+       (https://docs.datadoghq.com/api/?lang=python#timeboards). You can adjust based on the language you are using.
 
->Answer: This part was interesting I found it quite straight forward to map the Timeboard 
-over the host, and if you look in initializeTimeboard3.curl it shows the CURL commands I used to initiate the Timeboard. The next portion I tackled was the rollup function applied to the sum of allpoints I utilized the following requests within the graph. 
+>Answer: 
 
-{
-  "requests": [
-    {
-      "q": "avg:my_metric{*}.rollup(sum, 60)",
-      },
-      "conditional_formats": []
-    }
-  ],
-}
+Now, in order to utilize the DataDog API to create a Timeboard you will need to ensure you know how a timeboard is different from a screenboard. When lookign at the documentation, you will see that there are three main frameworks to be used. This example will demonstrate utilizing the terminal in order to execute these API calls. Though we can utilize Ruby and Python as scripting languages to execute these API calls, and there are certain pieces of these commands which relate to your account. Specifically, the API key and APP key you will need to execute these commands chich you will obtain by completing the steps below. 
+    - Log into your DataDog account 
+    - Hover over the Integration tab 
+    - Once you see the API tab pop-up in the Integration drop-down menu, click on it 
+    - Now, you should see your API key or if you do not see one you can click 'Create API key'
+    - Also, you will need the Application key which you can generate by clicking the 
+     'Create Applicaion Key'
 
-> Finally, I applied the anonmaly function to the PSQL Row's Returned metric. I was able to do this with the following query. 
+Once you obtain your API and Application key you can enter adjust the command below to 
+be tailored to your information in order to create your timeboard. 
 
-{
-  "requests": [
-    {
-      "q": "avg:my_metric{*}.rollup(sum, 60)",
-      },
-      "conditional_formats": []
-    }
-  ],
-}
+    Code Snippet: 
+        
+        api_key=ba43f5ff300b9342eb4d993e32500157
+        app_key=631a76043f9c6825b5913e5d10b97e5c697409ac
+
+        curl  -X POST -H "Content-type: application/json" \
+        -d '{
+              "graphs" : [{
+                  "title": "Metrics Combined",
+                  "definition": {
+                      "events": [],
+                      "requests": [
+                          {  "q": "avg:my_metric{*}, anomalies(avg:postgresql.rows_returned{*}, 'basic', 2), avg:my_metric{*}.rollup(sum, 60)",
+                          "type": "line",
+                          "style": {
+                          "palette": "dog_classic",
+                          "type": "solid",
+                          "width": "normal"
+                          }
+                           "conditional_formats": []
+                      ]
+                  },
+                  "viz": "timeseries",
+                  "autoscale": true
+              }],
+              "title" : "All Metrics",
+              "description" : "A dashboard with my custom metric, rollup function, and anomaly detection.",
+              "template_variables": [{
+                  "name": "host1",
+                  "prefix": "host",
+                  "default": "host:my-host"
+              }],
+              "read_only": "True"
+        }' \
+        "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+
+Now, there are a few steps within the CURL command that need to be discussed because we need to make graphs for each respective aspect for the query. The first graph is for the custom metric (my_metric) mapped over the host. We can adjust the request portion of the Timeboard object within the API request to reflect the queries we want displayed in a graph. We can also adjust the type of graph that we want displayed. 
+
+Below, we can see each of the queries for the requests we want a graph for listed. The query is represented in object formatting where the string q is the key, and the actual query is the value in string format. 
+
+>Note: None of these queries are listed explicitly in the documentation, and have to be discovered by utilizing the graph tool in JSON setting. 
+
+The first code snippet demonstrates the average of my_metric displayed over the host. 
+
+        Code Snippet:
+
+        {
+          "requests": [
+            {
+              "q": "avg:my_metric{*}",
+              },
+              "conditional_formats": []
+            }
+          ],
+        } 
+
+The second code snippet shows the anomaly function applied to the PSQL metric of rows being returned.
+
+        Code Snippet: 
+
+        {
+          "requests": [
+            {
+              "q": "anomalies(avg:postgresql.rows_returned{*}",
+              },
+              "conditional_formats": []
+            }
+          ],
+        }
+ 
+Finally, the last snipped shows the custom metric with the rollup function applied to it over the sum of the past hour. 
+
+        Code Snippet:
+
+        {
+          "requests": [
+            {
+              "q": "avg:my_metric{*}.rollup(sum, 60)",
+              },
+              "conditional_formats": []
+            }
+          ],
+        }
 
 <img src="./images/custom_metrics.png" alt="All of the custom metrics within the dashboard discovery"/>
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+*Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-The Timeboard's timeframe is set to 5 minutes, and it is displaying the correct metrics. 
-Regarding the snapshot of the graph, I have went into the share tab within the graph and created 
-embedded code, as I could not find the @ notation to send it to myself. I have provided the code below:
+The Timeboard's timeframe is set to five minutes, and you can confirm this by logging into Datadog's web interface. Here we will be able to navigate to the Dashboard from the navigation bar with the graph icon representing the dashboard. You will need to select the correct Dashboard (Custom Metrics, Rollups, and Anomalies) from a list of dashboards and we can confirm we have a timeboard because next to the star icon there will be a stopwatch icon representing a timeboard. Once you have opened the specific dashboard for the Timeboard we are able to see that each of the graphs are set to a five minute interval. 
 
-<iframe src="https://app.datadoghq.com/graph/embed?token=259c7d8e2e1ca75617b9351f5102af8144898c8790f9e301117ff334baf3b9ea&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
+
+Regarding the snapshot of the graph, once you are in the dashboard of the timeboard you have created you are able to capture a screenshot of any position within the graph that you find pertaining to your analysis.
+    - First, you will need to log into your Datadog account 
+    - Navigate to the dashboard of your choice by going to the graph icon representing 
+      dashboards then select one from your dashboard list.
+    - You must have some graphs already or create one in order to have a snapshot of particular 
+      data. 
+    - Next, within the graph of your choice as you hover over this graph with your mouse
+      you are able to see a small icon of a camera pop up allowing you to take a screenshot.
+    - When you take the screenshot of the graph it can be of that entire period or of a certain 
+      portion relating to the analysis you are doing.
+    - Once you have taken the screenshot you will see a box below that allows you to tag
+      team memebers, as well as make a note around why you highlighted this portion of the graph.
+    - Use the @ symbol to tag teammates and type in your message within the textbox that appears 
+      beneath your snapshot. 
+
+Below are some screenshots of the snapshot of the graph, along with an example of how to tag your teammates within the graph. Also, there is a screenshot of how the message would appear within your teammates email.  
+
 
 <img src="./images/custom_met_5min.png" alt="All of the custom metrics within the dashboard discovery"/>
-<img src="./images/embedded_graph.png" alt="All of the custom metrics within the dashboard discovery"/>
+<img src="./images/snapshot_graph.png" alt="All of the custom metrics within the dashboard discovery"/>
+<img src="./images/5_min_interval.png" alt="System metrics with 5 min interval"/>
+<img src="./images/selecting_graphscreenshot.png" alt="After selecting snapshot of graph"/>
+<img src="./images/tagging_team_in_snapshot.png" alt="Tagging myself and adding a message to send using @ feature"/>
+<img src="./images/message_viaemail.png" alt="Message received via email of snapshot"/>
 
 * Bonus Question: What is the Anomaly graph displaying?
 
@@ -275,8 +366,7 @@ embedded code, as I could not find the @ notation to send it to myself. I have p
 detection requires a large amount of data in order to function.  If we look specifically 
 at the anomalies within the graph for my_metric we can see the gray background which is beginning to display the anomalies, but as the data grows the trends could change. 
 
- 
-### Level 3 - Monitoring Data
+ ### Level 3 - Monitoring Data
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
