@@ -71,9 +71,9 @@ Finished setup on [GUI](https://app.datadoghq.com/help/quick_start#mac): "You ha
 
 ## Collecting Metrics
 
-Read documentation on tags, including [getting started with tags](https://docs.datadoghq.com/tagging/), [assigning tags](https://docs.datadoghq.com/tagging/), and [using tags](https://docs.datadoghq.com/tagging/using_tags/).
+Read documentation on tags, including [getting started](https://docs.datadoghq.com/tagging/) with tags, [assigning](https://docs.datadoghq.com/tagging/) tags, and [using](https://docs.datadoghq.com/tagging/using_tags/) tags.
 
-Found how to [assign tags]((https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
+Found how to [assign tags](https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
 
 Found how to [locate](https://app.datadoghq.com/account/settings#agent/mac) the Agent config file.
 
@@ -98,8 +98,20 @@ Uncommented out "tags" section, assigned tags.
 
 Host Map does not show tags.
 
-Restart Agent.
+Restarted Agent.
 
 Tags listed in "Stream."
 
 <img src="img/1/stream.png"/>
+
+Went to "Open Web UI" in the Datadog Agent.
+
+Located "Datadog Agent Manager" in "Settings."
+
+<img src="img/1/datadog_agent_manager.png"/>
+
+Added an extra line between commented out line and "tags" to save.
+
+Restarted Agent, checked Host Map.
+
+<img src="img/1/host_map.png"/>
