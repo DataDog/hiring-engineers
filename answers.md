@@ -49,3 +49,12 @@ vagrant up
 Reviewed instructions, added SSH: ```vagrant ssh```
 
 <img src="img/0/vagrant_ssh.png"/>
+
+### Datadog Setup
+
+Went to Datadog [website](https://datadoghq.com/), signed up for a free trial, put "Datadog Recruiting Candidate" in "Company" field, skipped the "Tell us about your stack" option.
+
+Installed the [Agent](https://app.datadoghq.com/signup/agent) for OS X by typing provided code in Command Line: ```DD_API_KEY=ecbbdce5a2bc9bb8dc9145af1e490e3a bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+```
+
+<img src="img/0/agent_installed.png"/>
