@@ -374,6 +374,8 @@ Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+>Answer:
+
 If you would like to create an alert that notifies you based on when a particular metric is varying from your expected use you can use a Metric Monitor. Now, the Metric Monitor can be created using the DataDog web interface, and you will need to be logged in to do so. 
     - First, once you have logged in within the navigation bar look for the stop sign icon 
       with an exclamation point in it.
@@ -407,7 +409,26 @@ Attached below are screenshots of the downtime monitor being made, as well as th
 
 ### Level 4 - Collecting APM Data 
 
->Answer: This was definitely very interesting to complete. I definitely found this to be the most challenging to configure on macOSX, and I think having to run the Trace Agent in a virtual environment was the rewarding part because initially I thought I could run it on my local machine.
+>Answer: 
+
+The Datadog APM provides application performance from automatically generated dashboards 
+that will monitor key metrics. The first thing we will need to do is configure the Datadog Agent
+YAML configuration file. 
+        - First, open your terminal and navigate to the directory containing the Datadog Agent 
+        - After you have arrived at the agent open the directory in a text editor 
+        - Next, you will need to edit the 'datadog.yaml' file 
+        - Once you are in the 'datadog.yaml' file you will uncomment the 'apm_config' as well as
+          the enabled section to 'true' that way we have enabled this configuration.
+        - The next step would be to go to the 'apm.yaml.default' file within the Datadog Agent
+          and uncomment the instances as well as the bin path 
+        - You will need the path in the apm.yaml.default to point towards the 
+          'datadog.yaml' file (i.e. /opt/datadog-agent/etc/datadog.yaml)
+
+Next, you will need to go to the documentation based upon the scripting language you will utilize. You will receive the respective commands that are necessary to install ddtrace which will trace the application which you would like data on. Also, ddtrace acts like a middleware so the documentation suggests either utilizing middleware or using ddtrace with the agent. Now, since you will be using a virtual environment that was previously setup you will not deal with dependency issues. Now, for this example Python is the utilized scripting language. Though you will need to install and configure 'pip' which is a package manager for Python. Now, once you have installed 'pip' use the command 'pip install ddtrace'. After the installation of 'ddtrace' you can utilize the command 'ddtrace-run python <nameofapp.py>' and this will execute the file while also simultaneously running the metrics using the agent via the APM integration previously setup.  
+
+Finally, if you face some dependency challenges with the previous steps along with your application being in flask you may need to create a separate virtual environment such as the one listed in the flask documentation called virtualenv (http://flask.pocoo.org/docs/1.0/cli/#environment-variables-from-virtualenv) , as well as confirm that the application is actively being executed while ddtrace is running.    
+
+>Note: This was definitely very interesting to complete. I definitely found this to be the most challenging to configure on macOSX, and I think having to run the Trace Agent in a virtual environment was the rewarding part because initially I thought I could run it on my local machine.
 I was able to collect metrics and connect the ddtracer with the APM agent, and even though I had configured the APM YAML file to be activated this took a few extra steps. The first trying to install to ddtrace into the local machine and setup a path for this, and it kept denying me permission. Finally, I followed along using flask's tutorial to setup a virtual environment and run the flask application. After running the APM, I was unable to get the data to load into the dashboard I would try to setup a new dashboard and graph the APM events but the loading symbol would come up and stay on for several minutes. When, I checked the Collectors in the GUI I was able to see that the apm was setup and collecting metrics. I wanted just a simple 'hello world' with an integer of 1 to be collected, but it would not display this. 
 
 <img src="./images/gui_collector_check.png" alt="Made a downtime alert for the week"/>
