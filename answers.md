@@ -70,3 +70,36 @@ Finished setup on [GUI](https://app.datadoghq.com/help/quick_start#mac): "You ha
 <img src="img/0/agent_reporting.png" />
 
 ## Collecting Metrics
+
+Read documentation on tags, including [getting started with tags](https://docs.datadoghq.com/tagging/), [assigning tags](https://docs.datadoghq.com/tagging/), and [using tags](https://docs.datadoghq.com/tagging/using_tags/).
+
+Found how to [assign tags]((https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
+
+Found how to [locate](https://app.datadoghq.com/account/settings#agent/mac) the Agent config file.
+
+Located the Agent config file:
+
+```
+cd ../../opt/datadog-agent/etc/conf.d
+```
+
+Could not find ```datadog.yaml``` in directory.
+
+```
+cd ..
+ls
+```
+
+Found ```datadog.yaml``` located in ```etc``` directory.
+
+Uncommented out "tags" section, assigned tags.
+
+<img src="img/1/tags.png"/>
+
+Host Map does not show tags.
+
+Restart Agent.
+
+Tags listed in "Stream."
+
+<img src="img/1/stream.png"/>
