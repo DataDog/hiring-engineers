@@ -71,19 +71,21 @@ Finished setup on [GUI](https://app.datadoghq.com/help/quick_start#mac): "You ha
 
 ## Collecting Metrics
 
+### Tags
+
 Read documentation on tags, including [getting started](https://docs.datadoghq.com/tagging/) with tags, [assigning](https://docs.datadoghq.com/tagging/) tags, and [using](https://docs.datadoghq.com/tagging/using_tags/) tags.
 
 Found how to [assign tags](https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
 
 Found how to [locate](https://app.datadoghq.com/account/settings#agent/mac) the Agent config file.
 
-Located the Agent config file:
+Changed directories to locate the Agent config file:
 
 ```
 cd ../../opt/datadog-agent/etc/conf.d
 ```
 
-Could not find ```datadog.yaml``` in directory.
+Could not find ```datadog.yaml``` in directory. Went up a level to see which files were located there.
 
 ```
 cd ..
@@ -112,6 +114,28 @@ Located "Datadog Agent Manager" in "Settings."
 
 Added an extra line between commented out line and "tags" to save.
 
-Restarted Agent, checked Host Map.
+Restarted Agent, checked Host Map, shows tags.
 
 <img src="img/1/host_map.png"/>
+
+
+### PostgreSQL
+
+Read documentation on [installing](https://www.postgresql.org/download/macosx/) PostgreSQL, and installing [Homebrew](https://brew.sh/) packages.
+
+Installed Homebrew from Command Line:
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Response:
+>Installation successful!
+
+Installed PostgreSQL using [Homebrew](https://formulae.brew.sh/formula/postgresql):
+
+```
+brew install postgresql
+```
+
+Response:
+>Pouring postgresql-10.5.high_sierra.bottle.1.tar.gz
