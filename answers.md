@@ -15,7 +15,7 @@ tags:
   - region:ohioValley
   - database:mongo
 ```
-_Screenshot showing custom tags -_
+*Screenshot showing custom tags*
 ![Host Map with Tags](host%20map%20with%20tags.png)
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -66,14 +66,14 @@ _(See mycheck.yaml snippet above)_
 _Yes, you can change the collection interval without modifying the Python code.  The collection interval is set via the yaml configuration file._
 
 
-#Visualizing Data:
-##Utilize the Datadog API to create a Timeboard that contains:
-###* Your custom metric scoped over your host.
-###* Any metric from the Integration on your Database with the anomaly function applied.
-###* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+# Visualizing Data:
+## Utilize the Datadog API to create a Timeboard that contains:
+### Your custom metric scoped over your host.
+### Any metric from the Integration on your Database with the anomaly function applied.
+### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
  
  
-Script used to create this Timeboard.
+*Script used to create this Timeboard.*
 ```python 
 from datadog import initialize, api
  
@@ -118,7 +118,8 @@ print (result)
 ``` 
  
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
-###* Set the Timeboard's timeframe to the past 5 minutes
+
+### Set the Timeboard's timeframe to the past 5 minutes
 _I wasn't able to set the time-frame to the last 5 minutes via the drop-down, 1 hour was the shortest increment._
 ![MyTimeboard 1hr](MyTimeboard1.png)
 
@@ -135,28 +136,28 @@ _Hmmm, not much.  I have anomaly detection on MongoDB Uptime... not much to dete
 # Monitoring Data
 ## Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 ## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-###* Warning threshold of 500
-###* Alerting threshold of 800
-###* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+  ### Warning threshold of 500
+  ### Alerting threshold of 800
+  ### And also ensure that it will notify you if there is No Data for this query over the past 10m.
 ![Monitor](monitor.png)
 
 ##Please configure the monitor’s message so that it will:
-###* Send you an email whenever the monitor triggers.
-###* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-###* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-###* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+  ### Send you an email whenever the monitor triggers.
+  ### Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+  ### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+  ### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ![Alert](alert.png)
 
 
 ## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-###* One that silences it from 7pm to 9am daily on M-F,
+### One that silences it from 7pm to 9am daily on M-F,
 _Reading between the lines, the Ops team doesn't want notifications on weekends, before 9AM on Workdays or after 7PM on workdays.  To achieve this you need to include Sundays to prevent alerts on Mondays from Midnight to 9AM Monday mornings._
 ![Downtime weekdays](downtime.png)
 
-###* And one that silences it all day on Sat-Sun.
+### And one that silences it all day on Sat-Sun.
 ![Downtime weekends](downtime2.png)
 
-###* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ![Schedule Downtime Email](schedDowntime.png)
 
 # Collecting APM Data:
@@ -214,7 +215,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-#Final Question:
-##Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-##Is there anything creative you would use Datadog for?
+# Final Question:
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+## Is there anything creative you would use Datadog for?
 _One of the first spaces that came to mind was the IoT space.  In my home I could easily see how I could use DD to monitor a number of IoT devices in my home including z-Wave sensors, lights and even a Raspberry PI I'm setting up to monitor and control my sump pumps.  Easy deployment coupled with a scripable configuration and control makes DD an ideal candidate for the massive scale required for an IoT deployment._
