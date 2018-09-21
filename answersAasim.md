@@ -417,14 +417,14 @@ YAML configuration file.
         - First, open your terminal and navigate to the directory containing the Datadog Agent 
         - After you have arrived at the agent open the directory in a text editor 
         - Next, you will need to edit the 'datadog.yaml' file 
-        - Once you are in the 'datadog.yaml' file you will uncomment the 'apm_config' as well as
-          the enabled section to 'true' that way we have enabled this configuration.
+        - Once you are in the 'datadog.yaml' file you will uncomment the 'apm_config' as well as 
+          change the enabled section to 'true' that way we have enabled this configuration.
         - The next step would be to go to the 'apm.yaml.default' file within the Datadog Agent
           and uncomment the instances as well as the bin path 
         - You will need the path in the apm.yaml.default to point towards the 
           'datadog.yaml' file (i.e. /opt/datadog-agent/etc/datadog.yaml)
 
-Next, you will need to go to the documentation based upon the scripting language you will utilize. You will receive the respective commands that are necessary to install ddtrace which will trace the application which you would like data on. Also, ddtrace acts like a middleware so the documentation suggests either utilizing middleware or using ddtrace with the agent. Now, since you will be using a virtual environment that was previously setup you will not deal with dependency issues. Now, for this example Python is the utilized scripting language. Though you will need to install and configure 'pip' which is a package manager for Python. Now, once you have installed 'pip' use the command 'pip install ddtrace'. After the installation of 'ddtrace' you can utilize the command 'ddtrace-run python <nameofapp.py>' and this will execute the file while also simultaneously running the metrics using the agent via the APM integration previously setup.  
+Next, you will need to go to the documentation based upon the scripting language you will utilize. You will receive the respective commands that are necessary to install ddtrace which will trace the application which you would like data on. Also, ddtrace acts like a middleware so the documentation suggests either utilizing middleware or using ddtrace with the agent. Now, since you will be using a virtual environment that was previously setup you will not deal with dependency issues. Now, for this example Python is the utilized scripting language. Though you will need to install and configure 'pip' which is a package manager for Python. Furthermore, if you require assistance with installing this package manager utilize this link (https://pip.pypa.io/en/stable/installing/) and follow the steps as instructed within your terminal. Now, once you have installed 'pip' use the command 'pip install ddtrace'. After the installation of 'ddtrace' you can utilize the command 'ddtrace-run python <nameofapp.py>' and this will execute the file while also simultaneously running the metrics using the agent via the APM integration previously setup.  
 
 Finally, if you face some dependency challenges with the previous steps along with your application being in flask you may need to create a separate virtual environment such as the one listed in the flask documentation called virtualenv (http://flask.pocoo.org/docs/1.0/cli/#environment-variables-from-virtualenv) , as well as confirm that the application is actively being executed while ddtrace is running.    
 
