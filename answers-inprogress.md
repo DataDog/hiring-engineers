@@ -20,14 +20,15 @@ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then inst
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-gent check is:  mymetric.py
+Agent check is here: <a href=https://github.com/robdanz/hiring-engineers/blob/master/mymetric.py>mymetric.py</a>
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 <p><img src="http://spaceneedle.tancow.net/datadog/img5a.png">
 <p><img src="http://spaceneedle.tancow.net/datadog/img5b.png" width="500" height="332">
     
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-I did this by setting the min_collection_interval to 45 in the mymetric.yaml file.
+I did this by setting the min_collection_interval to 45 in the <a href=https://github.com/robdanz/hiring-engineers/blob/master/mymetric.yaml>mymetric.yaml</a> file.
+
 
 Visualizing Data:
 
@@ -41,12 +42,13 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Link to dashboard:
 https://app.datadoghq.com/dash/923684
 
-Script is createTimeboard.py
+Script is here:  <a href=https://github.com/robdanz/hiring-engineers/blob/master/createTimeboard.py>createTimeboard.py</a
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 <p><img src="http://spaceneedle.tancow.net/datadog/img6.png" width="500" height="332">
+    
 Bonus Question: What is the Anomaly graph displaying?
     Anomaly graph is automatically highlighting in red the data points are out of bounds of the typical historical measurements for this monitor.
 <p><img src="http://spaceneedle.tancow.net/datadog/img7.png">
@@ -92,5 +94,8 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <p><img src="http://spaceneedle.tancow.net/datadog/img11.png" width="500" height="332">
    
 Please include your fully instrumented app in your submission, as well.
-   instrumentedApp.py 
-   I did this by manually inserting the Middleware
+   I did this by manually inserting the Middleware into the provided Flask app, which you can find here:
+   
+   <a href=https://github.com/robdanz/hiring-engineers/blob/master/instrumentedApp.py>instrumentedApp.py</a>
+   
+   
