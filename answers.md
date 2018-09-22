@@ -69,11 +69,11 @@ A similar verification can be found on the Integrations page along with some met
 ### Creating a custom agent check
 Most of this section was done by referencing this [page](https://docs.datadoghq.com/developers/agent_checks/).
 
-Here's the code used to submit my_metric with the assistance of the random standard library.
+Here's the code used to submit my_metric with the assistance of the random standard library. The check file can be found in /etc/datadog-agent/checks.d. 
 
 ![](img/2_6.PNG?raw=true)
 
-For the .yaml file, this was what I used to change the check's collection interval so that I would not need to edit the Python file anymore.
+For the .yaml file, this was what I used to change the check's collection interval so that I would not need to edit the Python file anymore. The .yaml file can be found in /etc/datadog-agent/conf.d. Make sure the name of hte .yaml is the same as the check.  
 
 ![](img/2_7.PNG?raw=true)
 
