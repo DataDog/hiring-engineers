@@ -202,3 +202,15 @@ echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 
 Response:
 >\e[0;32mPostgres connection - OK\e[0m
+
+Changed directories to configure the Agent to connect to the PostgreSQL server:
+
+```
+cd ~/../../opt/datadog-agent/etc/conf.d/postgres.d
+mv conf.yaml.example conf.yaml
+atom .
+```
+
+Edited ```postgres.d/conf.yaml``` file, restarted Agent:
+
+<img src="img/1/edit_conf.png"/>
