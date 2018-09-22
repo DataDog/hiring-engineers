@@ -72,6 +72,8 @@ Finished setup on [GUI](https://app.datadoghq.com/help/quick_start#mac): "You ha
 ## Collecting Metrics
 
 ### Tags
+Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
 
 Read documentation on tags, including [getting started](https://docs.datadoghq.com/tagging/) with tags, [assigning](https://docs.datadoghq.com/tagging/) tags, and [using](https://docs.datadoghq.com/tagging/using_tags/) tags.
 
@@ -119,7 +121,11 @@ Restarted Agent, checked Host Map, shows tags.
 <img src="img/1/host_map.png"/>
 
 
-### PostgreSQL
+### Database Integration
+Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+
+<b>Part 1: Install Database</b>
 
 Read documentation on [installing](https://www.postgresql.org/download/macosx/) PostgreSQL, and installing [Homebrew](https://brew.sh/) packages.
 
@@ -140,7 +146,7 @@ brew install postgresql
 Response:
 >Pouring postgresql-10.5.high_sierra.bottle.1.tar.gz
 
-Checked PostgreSQL
+Checked PostgreSQL.
 
 ```
 psql -l
@@ -165,7 +171,8 @@ psql -l
 <img src="img/1/psql.png" />
 
 
-### Integrations
+
+<b>Part 2: Install Integration</b>
 
 Read documentation on [Integrations](https://docs.datadoghq.com/integrations/postgres/) and, specifically, configuring [PostgreSQL](https://app.datadoghq.com/account/settings#integrations/postgres).
 
@@ -218,3 +225,10 @@ Edited ```postgres.d/conf.yaml``` file, restarted Agent, ran ```datadog-agent st
 <img src="img/1/agent_status.png"/>
 
 <img src="img/1/integration_installed.png"/>
+
+
+### Agent Check
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+
+Read documentation on [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/), researched how to generate a [random number in Python](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
