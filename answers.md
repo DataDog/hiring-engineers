@@ -429,20 +429,20 @@ Read documentation on [alerting](https://docs.datadoghq.com/monitors/), though i
 
 Went to "Monitors" on GUI menu, chose "New Monitor."
 
-    <img src="img/2/monitor_1.png"/>
+<img src="img/2/monitor_1.png"/>
 
 Selected "Metric" to create a new metric monitor.
 
-    <img src="img/2/monitor_2.png"/>
+<img src="img/2/monitor_2.png"/>
 
 Chose "Threshold" as the detection method, defined "my_metric" as the metric.
 
-    <img src="img/2/monitor_3.png"/>
+<img src="img/2/monitor_3.png"/>
 
 Set alert conditions with a "warning threshold" of 500, an "alerting threshold" of 800.
 
-    <img src="img/2/monitor_4.png"/>
+<img src="img/2/monitor_4.png"/>
 
 Set alert to notify if there is no data for 10 minutes.
 
-    <img src="img/2/monitor_5.png"/>
+<img src="img/2/monitor_5.png"/>
