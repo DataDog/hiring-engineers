@@ -5,13 +5,19 @@
 
 This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. I went with VirtualBox instead of Vagrant because I am more familiar with it. 
 
+![](img/1_1.PNG?raw=true)
+
 As I am on Ubuntu, I used this command to install the agent. 
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 This message shows that the installation was successful. 
 
+![](img/1_2.PNG?raw=true)
+
 This can be verified by visiting the DataDog welcome screen.
+
+![](img/1_3.PNG?raw=true)
 
 ## Collecting Metrics
 ### Addings tags
