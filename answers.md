@@ -228,7 +228,8 @@ Edited ```postgres.d/conf.yaml``` file, restarted Agent, ran ```datadog-agent st
 
 
 ### Agent Check
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+<b>Part 1: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</b>
 
 
 Read documentation on [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/), researched how to generate a [random number in Python](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
@@ -263,3 +264,14 @@ Checked metric: ```datadog-agent check my_metric```
 Response:
 
 <img src="img/1/check_metric.png"/>
+
+
+<b>Part 2: Change your check's collection interval so that it only submits the metric once every 45 seconds.</b>
+
+Changed min_collection_interval from 20 to 45.
+
+<img src="img/1/my_metric_yaml_45.png"/>
+
+<b>Bonus Question: Can you change the collection interval without modifying the Python check file you created?</b>
+
+The collection interval is modified in the configuration file ```my_metric.yaml```.
