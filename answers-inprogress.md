@@ -64,24 +64,22 @@ When this monitor sends you an email notification, take a screenshot of the emai
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
-<img>
+<img10a>
 And one that silences it all day on Sat-Sun.
-<img>
+<img10b>
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-<img>
+<img10c>
 
 Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-
-<img>
 
 Bonus Question: What is the difference between a Service and a Resource?
    Service is how things are done.  Resource is the "what".
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
    https://app.datadoghq.com/dash/923358/
-   <img>
+   <img11>
    
 Please include your fully instrumented app in your submission, as well.
    instrumentedApp.py 
