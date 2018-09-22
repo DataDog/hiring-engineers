@@ -5,7 +5,7 @@
 
 This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. I went with VirtualBox instead of Vagrant because I am more familiar with it. 
 
-![](img/1_1.png?raw=true)
+![](img/1_1.PNG?raw=true)
 
 As I am on Ubuntu, I used this command to install the agent. 
 ```
