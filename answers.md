@@ -394,7 +394,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 <b>Part 1:</b> Set the Timeboard's timeframe to the past 5 minutes
 
-Discovered that the Timeboard cursor changed when hovered over, tried dragging the time to set for the past 5 minutes. Successful.
+Discovered that the cursor changed when hovering over the graph, tried dragging the time to set for the past 5 minutes. Successful.
 
 <img src="img/2/timeboard_5.png"/>
 
@@ -413,3 +413,36 @@ The graph displays the metric (line) and the bounds (grey band) within a given t
 
 
 <img src="img/2/anomaly_graph.png"/>
+
+
+## Monitoring Data
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Read documentation on [alerting](https://docs.datadoghq.com/monitors/), though it was easy to figure it out on the GUI.
+
+### Create Monitor
+
+Went to "Monitors" on GUI menu, chose "New Monitor."
+
+    <img src="img/2/monitor_1.png"/>
+
+Selected "Metric" to create a new metric monitor.
+
+    <img src="img/2/monitor_2.png"/>
+
+Chose "Threshold" as the detection method, defined "my_metric" as the metric.
+
+    <img src="img/2/monitor_3.png"/>
+
+Set alert conditions with a "warning threshold" of 500, an "alerting threshold" of 800.
+
+    <img src="img/2/monitor_4.png"/>
+
+Set alert to notify if there is no data for 10 minutes.
+
+    <img src="img/2/monitor_5.png"/>
