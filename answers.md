@@ -163,3 +163,42 @@ psql -l
 ```
 
 <img src="img/1/psql.png" />
+
+
+### Integrations
+
+Read documentation on [Integrations](https://docs.datadoghq.com/integrations/postgres/) and, specifically, configuring [PostgreSQL](https://app.datadoghq.com/account/settings#integrations/postgres).
+
+<img src="img/1/postgres_gui.png"/>
+
+Created a database for integration:
+
+```
+createdb pg_stat_database
+psql pg_stat_database
+```
+
+>psql (10.5)
+Type "help" for help.
+pg_stat_database=#
+
+Created a read-only "datadog" user with access to PostgreSQL:
+
+```
+pg_stat_database=# create user datadog with password 'O10a8OAheqedH8jD9AG9NKb0';
+CREATE ROLE
+pg_stat_database=# grant SELECT ON pg_stat_database to datadog;
+GRANT
+pg_stat_database=# \q
+```
+
+Verified permissions:
+
+```
+psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && \
+echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+```
+
+Response:
+>\e[0;32mPostgres connection - OK\e[0m
