@@ -211,6 +211,10 @@ mv conf.yaml.example conf.yaml
 atom .
 ```
 
-Edited ```postgres.d/conf.yaml``` file, restarted Agent:
+Edited ```postgres.d/conf.yaml``` file, restarted Agent, ran ```datadog-agent status```, installed integration button:
 
 <img src="img/1/edit_conf.png"/>
+
+<img src="img/1/agent_status.png"/>
+
+<img src="img/1/integration_installed.png"/>
