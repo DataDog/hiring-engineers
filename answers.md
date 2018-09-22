@@ -284,6 +284,7 @@ The collection interval is modified in the configuration file, ```my_metric.yaml
 Read documentation on [timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/), the [Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards), and graphing using [JSON](https://docs.datadoghq.com/graphing/graphing_json/).
 
 Utilize the Datadog API to create a Timeboard that contains:
+
 <b>Part 1:</b> Your custom metric scoped over your host.
 
 Read documentation on [authentication](https://docs.datadoghq.com/api/?lang=python#authentication), which says that access the API requires an application key and the API key. Used [link](https://app.datadoghq.com/account/settings#api) to generate application key.
@@ -351,4 +352,21 @@ Response:
 <img src="img/2/timeboard.png"/>
 
 <b>Part 2:</b> Any metric from the Integration on your Database with the anomaly function applied.
+
+Read documentation on [anomaly detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), how to [create a monitor](https://docs.datadoghq.com/api/?lang=python#create-a-monitor), how to [write the query](https://docs.datadoghq.com/graphing/functions/algorithms/).
+
+Modified code from "[Anomaly Monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api)":
+
+```
+time_aggr(eval_window_length):anomalies(space_aggr:metric{tags}, 'basic/agile/robust', deviation_number, direction='both/above/below', alert_window='alert_window_length', interval=seconds, count_default_zero='true') >= threshold_value
+```
+
+and the example:
+
+```
+avg(last_1h):anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1
+```
+
+[Anomaly Script](anomaly.py)
+
 <b>Part 3:</b> Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
