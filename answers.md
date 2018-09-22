@@ -387,3 +387,29 @@ Checked that everything works on the GUI.
 <img src="img/2/my_metric_gui.png"/>
 
 <img src="img/2/anomaly_detection.png"/>
+
+### Dashboard
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+<b>Part 1:</b> Set the Timeboard's timeframe to the past 5 minutes
+
+Discovered that the Timeboard cursor changed when hovered over, tried dragging the time to set for the past 5 minutes. Successful.
+
+<img src="img/2/timeboard_5.png"/>
+
+
+<b>Part 2:</b> Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Discovered camera icon by hovering over graph, took snapshot, used @ notation to email it.
+
+<img src="img/2/snapshot.png"/>
+
+<img src="img/2/email.png"/>
+
+<b>Bonus Question:</b> What is the Anomaly graph displaying?
+
+The graph displays the metric (line) and the bounds (grey band) within a given timeframe.
+
+
+<img src="img/2/anomaly_graph.png"/>
