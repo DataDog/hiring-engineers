@@ -13,7 +13,11 @@ DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/
 ```
 This message shows that the installation was successful. 
 
+![](img/1_2.PNG?raw=true)
+
 This can be verified by visiting the DataDog welcome screen.
+
+![](img/1_3.PNG?raw=true)
 
 ## Collecting Metrics
 ### Addings tags
