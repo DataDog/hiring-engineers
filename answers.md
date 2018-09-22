@@ -96,9 +96,17 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <p><img src="http://spaceneedle.tancow.net/datadog/img11.png" width="500" height="332">
    
 Please include your fully instrumented app in your submission, as well.
+
    I did this by manually inserting the Middleware into the provided Flask app, which you can find here:
    
    <a href=https://github.com/robdanz/hiring-engineers/blob/master/instrumentedApp.py>instrumentedApp.py</a>
-   
+
+Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+In my own home automation environment, it'd be interesting for example to use Datadog to pull event data and external data sources (like weather) and from The Energy Detective to enhance my routines.  I do a lot of this today with webCore and Smartthings, but have no visualization of historical data. 
    
    
