@@ -229,7 +229,7 @@ Edited ```postgres.d/conf.yaml``` file, restarted Agent, ran ```datadog-agent st
 
 ### Agent Check
 
-<b>Part 1: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</b>
+<b>Part 1:</b> Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 
 Read documentation on [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/), researched how to generate a [random number in Python](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
@@ -266,12 +266,89 @@ Response:
 <img src="img/1/check_metric.png"/>
 
 
-<b>Part 2: Change your check's collection interval so that it only submits the metric once every 45 seconds.</b>
+<b>Part 2:</b> Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 Changed min_collection_interval from 20 to 45.
 
 <img src="img/1/my_metric_yaml_45.png"/>
 
-<b>Bonus Question: Can you change the collection interval without modifying the Python check file you created?</b>
+<b>Bonus Question:</b> Can you change the collection interval without modifying the Python check file you created?
 
-The collection interval is modified in the configuration file ```my_metric.yaml```.
+The collection interval is modified in the configuration file, ```my_metric.yaml```.
+
+
+## Visualizing Data
+
+### Timeboard
+
+Read documentation on [timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/), the [Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards), and graphing using [JSON](https://docs.datadoghq.com/graphing/graphing_json/).
+
+Utilize the Datadog API to create a Timeboard that contains:
+<b>Part 1:</b> Your custom metric scoped over your host.
+
+Read documentation on [authentication](https://docs.datadoghq.com/api/?lang=python#authentication), which says that access the API requires an application key and the API key. Used [link](https://app.datadoghq.com/account/settings#api) to generate application key.
+
+<img src="img/2/app_key.png"/>
+
+Modified code from "[Create a Timeboard](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)":
+
+
+[Timeboard Script](timeboard.py)
+
+Response:
+>python timeboard.py
+Traceback (most recent call last):
+File "timeboard.py", line 1, in <module>
+from datadog import initialize, api
+ImportError: No module named datadog
+
+
+Researched "datadog module python," read documentation on [Python](https://docs.datadoghq.com/integrations/python/) integration.
+
+```
+pip install datadog
+```
+
+Response:
+>-bash: pip: command not found
+
+
+Researched "pip python," read documentation on installing [pip 18.0](https://pip.pypa.io/en/stable/installing/).
+
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+Response:
+>Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/pip'
+Consider using the `--user` option or check the permissions.
+
+
+```
+python get-pip.py --user
+pip install datadog
+```
+
+Response:
+>-bash: pip: command not found
+
+Read documentation on [Installing Python Modules](https://docs.python.org/3/installing/index.html).
+
+```
+python -m pip install datadog
+```
+
+Response:
+>Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/decorator.py'
+Consider using the `--user` option or check the permissions.
+
+```
+python -m pip install datadog --user
+python timeboard.py
+```
+
+Response:
+<img src="img/2/timeboard.png"/>
+
+<b>Part 2:</b> Any metric from the Integration on your Database with the anomaly function applied.
+<b>Part 3:</b> Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
