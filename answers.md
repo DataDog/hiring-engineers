@@ -42,7 +42,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Link to dashboard:
 https://app.datadoghq.com/dash/923684
 
-Script is here:  <a href=https://github.com/robdanz/hiring-engineers/blob/master/createTimeboard.py>createTimeboard.py</a
+Script is here:  <a href=https://github.com/robdanz/hiring-engineers/blob/master/createTimeboard.py>createTimeboard.py</a>
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
