@@ -232,3 +232,34 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 
 
 Read documentation on [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/), researched how to generate a [random number in Python](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/).
+
+Noted in "[Agent Check Interface](https://docs.datadoghq.com/developers/agent_checks/#agentcheck-interface)" that:
+>All custom Agent checks inherit from the AgentCheck class found in checks/__init__.py and require a check() method that takes one argument, instance which is a dict having the configuration of a particular instance. The check method is run once per instance defined in the check configuration (discussed later).
+
+Also, found that:
+>the function signature of the metric senders are
+```
+gauge(self, name, value, tags=None, hostname=None, device_name=None)
+```
+
+Followed the "[Your First Check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check)" directions and created a YAML configuration file in the ```conf.d``` directory, as well as a check in the ```checks.d``` directory.
+
+```
+touch conf.d/my_metric.yaml checks.d/my_metric.py
+atom .
+```
+
+Followed [configuration](https://docs.datadoghq.com/developers/agent_checks/#configuration) directions to configure the YAML file.
+
+<img src="img/1/my_metric_yaml.png"/>
+
+
+Modified the "Hello World" example with code from "[Your First Check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check)" and "[How to Generate a Random Number in Python](https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/)."
+
+<img src="img/1/my_metric_py.png"/>
+
+Checked metric: ```datadog-agent check my_metric```
+
+Response:
+
+<img src="img/1/check_metric.png"/>
