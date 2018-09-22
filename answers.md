@@ -75,9 +75,9 @@ Finished setup on [GUI](https://app.datadoghq.com/help/quick_start#mac): "You ha
 
 Read documentation on tags, including [getting started](https://docs.datadoghq.com/tagging/) with tags, [assigning](https://docs.datadoghq.com/tagging/) tags, and [using](https://docs.datadoghq.com/tagging/using_tags/) tags.
 
-Found how to [assign tags](https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
+Read how to [assign tags](https://docs.datadoghq.com/tagging/assigning_tags/#assigning-tags-using-the-configuration-files) in the Agent config file.
 
-Found how to [locate](https://app.datadoghq.com/account/settings#agent/mac) the Agent config file.
+Read how to [locate](https://app.datadoghq.com/account/settings#agent/mac) the Agent config file.
 
 Changed directories to locate the Agent config file:
 
@@ -98,7 +98,7 @@ Uncommented out "tags" section, assigned tags.
 
 <img src="img/1/tags.png"/>
 
-Host Map does not show tags.
+Host Map did not show tags.
 
 Restarted Agent.
 
@@ -139,3 +139,27 @@ brew install postgresql
 
 Response:
 >Pouring postgresql-10.5.high_sierra.bottle.1.tar.gz
+
+Checked PostgreSQL
+
+```
+psql -l
+```
+
+Response:
+>psql: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+
+Read PostgreSQL installation instructions in Command Line.
+>To have launchd start postgresql now and restart at login:
+  brew services start postgresql
+Or, if you don't want/need a background service you can just run:
+  pg_ctl -D /usr/local/var/postgres start
+
+```
+pg_ctl -D /usr/local/var/postgres start
+psql -l
+```
+
+<img src="img/1/psql.png" />
