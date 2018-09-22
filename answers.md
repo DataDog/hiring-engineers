@@ -29,4 +29,4 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 		- API key given: b4371073b027d86e3174258d84d52b8a
 
 
-		![](datadog_installation_ubuntu.png)
+![](datadog_installation_ubuntu.png)
