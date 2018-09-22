@@ -380,4 +380,10 @@ Read documentation on [rollup](https://docs.datadoghq.com/graphing/functions/rol
 
 Added a graph object containing the rollup function to the graphs array.
 
-<img src="img/2/rollup/png"/>
+<img src="img/2/rollup.png"/>
+
+Checked that everything works on the GUI.
+
+<img src="img/2/my_metric_gui.png"/>
+
+<img src="img/2/anomaly_detection.png"/>
