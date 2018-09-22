@@ -369,4 +369,15 @@ avg(last_1h):anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, direct
 
 [Anomaly Script](anomaly.py)
 
+Response:
+
+<img src="img/2/anomaly.png"/>
+
 <b>Part 3:</b> Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Read documentation on [rollup](https://docs.datadoghq.com/graphing/functions/rollup/), noted:
+>The function takes two parameters, method and time: .rollup(method,time). The method can be sum/min/max/count/avg and time is in seconds. You can use either one individually, or both together like .rollup(sum,120). We impose a limit of 350 points per time range. For example, if you’re requesting .rollup(20) for a month-long window, we return data at a rollup far greater than 20 seconds in order to prevent returning a gigantic number of points.
+
+Added a graph object containing the rollup function to the graphs array.
+
+<img src="img/2/rollup/png"/>
