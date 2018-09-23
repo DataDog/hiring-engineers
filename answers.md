@@ -1,10 +1,10 @@
 Your answers to the questions go here.
 
-##You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+#You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-##You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-##You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-##Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+#You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
+#You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+#Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 
 
@@ -33,7 +33,7 @@ Your answers to the questions go here.
 	-Starting datadog through the VM
 ![](datadog_ubuntu.png)
 
-##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+#Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 	-tags added in the datadog.yaml file
 
@@ -43,13 +43,13 @@ Your answers to the questions go here.
 ![](datadog_tags_ui.png)
 
 
-##Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+#Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 	-I decided to instal MySQL server on my local osx machine and run the service
 
 ![](sql_integration.png)
 
 
-##Create custom agent
+#Create custom agent
 
 	-Ran the mysql service and ran the following commands to create user
 
@@ -61,46 +61,43 @@ Your answers to the questions go here.
 	-Metric collected using the following commands:
 		mysql> show databases like 'performance_schema';
 
+	-Also, I configured the conf file under mysql.d to connect to datadog
+![](mysql_conf.png)
+
 ![](schema.png)
 
 
-##Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+#Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 	-Metric collection in mysql.d/conf.yaml in local osx machine
 
-	
-init_config:
-
-instances:
-    # NOTE: Even if the server name is "localhost", the agent will connect to MySQL using TCP/IP, unless you also
-    # provide a value for the sock key (below).
-  - server: localhost
-     user: root
-     pass: root
-     port: 3306             # Optional
-     sock: /path/to/sock    # Connect via Unix Socket
-     defaults_file: my.cnf  # Alternate configuration mechanism
-     connect_timeout: None  # Optional integer seconds
-    # tags:                  # Optional
-    #   - optional_tag1
-    #   - optional_tag2
-     options:               # Optional
-       replication: false
-       replication_channel: channel_1  # If using multiple sources, the channel name to monitor
-       replication_non_blocking_status: false  # grab slave count in non-blocking manner (req. performance_schema)
-       galera_cluster: false
-       extra_status_metrics: true
-       extra_innodb_metrics: true
-       extra_performance_metrics: true
-       schema_size_metrics: false
-       disable_innodb_metrics: false
-    #
 
 
+![](metrics_conf.png)
 
+	-In the conf.d folder, I created checkvalue.yaml
+	-in checkvalue.yaml, I added the following code
 
+			init_config:
 
+			instances:
+  				[{}]
+  	-In checks.d, I created a checkvalue.py file and inserted the following python code:
 
+  		from checks import AgentCheck
+			class HelloCheck(AgentCheck):
+  				def check(self, instance):
+   					self.gauge('my_metric', 1)
+
+   -Below are the metrics summary. hello.world has been created
+
+![](my_metric.png)
+
+#Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+	-In the checks.yaml file put the following statments:
+![](collection.png)
 
 
 
