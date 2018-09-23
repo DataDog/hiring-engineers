@@ -620,3 +620,5 @@ Response:
 
 
 ### Ruby
+
+Read "[Tracing Ruby Applications](https://docs.datadoghq.com/tracing/setup/ruby/)" and "[Datadog Trace Client](http://gems.datadoghq.com/trace/docs/)" documentation.
