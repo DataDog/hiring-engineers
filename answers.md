@@ -3,7 +3,7 @@
 
 ## Setting up the Environment
 
-This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. I went with VirtualBox instead of Vagrant because I am more familiar with it. 
+This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. I went with VirtualBox instead of Vagrant because I am more familiar with this software. 
 
 ![](img/1_1.PNG?raw=true)
 
@@ -26,9 +26,11 @@ The agent config file was accessed with the command:
 sudo nano /etc/datadog-agent/datadog.yaml
 ```
 
-I added two tags which are shown on the website after restarting the agent.
+I added two tags within this file. 
 
 ![](img/2_1.PNG?raw=true)
+
+Here's those same tags displayed on the website. 
 
 ![](img/2_3.PNG?raw=true)
 
