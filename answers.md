@@ -174,3 +174,7 @@ Here was an email for that.
 ![](img/4_6.PNG?raw=true)
 
 ## Collecting APM Data
+ 
+## Final Question
+
+I use the app Robinhood for buying and selling stocks. Using datadog to notify me when big spikes or dips in stock prices occur can help me gain an advantage on others. The anomaly function would probably be key here. 
