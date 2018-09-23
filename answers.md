@@ -36,11 +36,11 @@ Your answers to the questions go here.
 #Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 	-tags added in the datadog.yaml file
-
-![](tags.png)
+![](tags_yaml.png)
 
 	-tags also added to the datadog UI
-![](datadog_tags_ui.png)
+
+![](tags.png)
 
 
 #Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -74,7 +74,7 @@ Your answers to the questions go here.
 
 
 ![](metrics_conf.png)
-
+```
 	-In the conf.d folder, I created checkvalue.yaml
 	-in checkvalue.yaml, I added the following code
 
@@ -82,25 +82,104 @@ Your answers to the questions go here.
 
 			instances:
   				[{}]
-  	-In checks.d, I created a checkvalue.py file and inserted the following python code:
+```
 
+  	-In checks.d, I created a checkvalue.py file and inserted the following python code:
+```
   		from checks import AgentCheck
+  		import random
 			class HelloCheck(AgentCheck):
   				def check(self, instance):
-   					self.gauge('my_metric', 1)
+   					self.gauge('my_metric2', random.randint(1,1000))
+```
+   -Below are the metrics summary. my_metric2 has been created
 
-   -Below are the metrics summary. hello.world has been created
-
-![](my_metric.png)
+![](my_metrics2.png)
 
 #Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-	-In the checks.yaml file put the following statments:
+	-In the yaml file put the following statments:
 ![](collection.png)
 
 
+#https://api.datadoghq.com/api/v1/dash?api_key=b4371073b027d86e3174258d84d52b8a&application_key=8a76ab889a96ef312cb024a9147b2e15500eb58d
 
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'b4371073b027d86e3174258d84d52b8a',
+    'app_key': '8a76ab889a96ef312cb024a9147b2e15500eb58d'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "An informative timeboard."
+
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"
+    },{
+
+
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 3)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "SQL Anomaly"
+    },{
+
+
+
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{host:precise64}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric2 SUM UP"
+
+
+    },
+]
+
+
+
+
+
+
+template_variables = [{
+
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+print(api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                    read_only=read_only))
+
+
+
+
+
+
+```
 
 
 
