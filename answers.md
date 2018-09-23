@@ -152,15 +152,16 @@ No Data: my_metric has not registered a value for the last 10 minutes on IP {{ho
 @email@provider.com
 ```
 
-Here was the email for that.
+Here was an email alerting me that my_metric has exceeded the warning threshold. 
 
 ![](img/4_2.PNG?raw=true)
 
+Downtime can be setup by navigating the sidebar like this: Monitors -> Manage Downtime. 
 These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
 
 ![](img/4_3.PNG?raw=true)
 
-Here was the email for that.
+Here was an email for that.
 
 ![](img/4_4.PNG?raw=true)
 
@@ -168,7 +169,7 @@ These were my options for setting up a monitor to mute alerts on weekends.
 
 ![](img/4_5.PNG?raw=true)
 
-Here was the email for that. 
+Here was an email for that. 
 
 ![](img/4_6.PNG?raw=true)
 
