@@ -89,3 +89,47 @@ sudo -u dd-agent -- datadog-agent check my_check
 
 ![](img/2_8.PNG?raw=true)
 
+Here's what the check looked like plotted on a graph. 
+
+![](img/2_9.PNG?raw=true)
+
+## Visualizing Data
+
+In trying to create my script, I had to install the datadog Python library with pip on my VM. These were the commands to do that:
+```
+sudo apt install python-pip
+pip install datadog
+```
+
+I got a setuptools error during this section so I used this command after installing pip:
+```
+pip install --upgrade setuptools
+```
+
+Through referencing the API documentation, I created a script called create_timeboard.py that has been included in this repository. Replace '<YOUR_API_KEY>' and '<YOUR_APP_KEY>' in lines 4 and 5 of the script with the corresponding api and app keys respectively.
+
+Run with:
+```
+python create_timeboard.py
+```
+
+Here's that timeboard produced on the site.
+
+The time dropdowns does not include an option for the past five minutes but it can still be done by highlighting the graph so that it only shows data from the last five minutes. 
+
+Using the @ notation gave me an email that looked like this.
+
+The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
+
+## Monitoring Data
+I created a monitor by navigating the sidebar like this: Monitors -> New Monitor. 
+
+These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
+
+Here was the email for that.
+
+These were my options for setting up a monitor to mute alerts on weekends.
+
+Here was the email for that. 
+
+## Collecting APM Data
