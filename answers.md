@@ -39,4 +39,9 @@ And here is the alerting maintenance window emails received:
 https://s3.amazonaws.com/datadoganswers/datadog_downtime_alert.png
 
 ## Collecting APM Data:
-I did not complete this exercise.
+I did not complete this exercise. I attempted to use ddtrace with a MySQL python connector, but was unsuccessful. Here is the script I was running that was a simple connect:
+https://s3.amazonaws.com/datadoganswers/APM_python_mysql.png
+I am 100% sure I am missing something here, but I'd need some more time to figure it out.
+
+## Final Question:
+I think an interesting use-case for Datadog would be to actively monitor and report location data during events like concerts, festivals, or street fairs. This would help organizers identify hotspots and organize future events better and also react in real-time to open areas to alleviate crowd traffic. 
