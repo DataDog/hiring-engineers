@@ -429,20 +429,70 @@ Read documentation on [alerting](https://docs.datadoghq.com/monitors/), though i
 
 Went to "Monitors" on GUI menu, chose "New Monitor."
 
-<img src="img/2/monitor_1.png"/>
+<img src="img/3/monitor_1.png"/>
 
 Selected "Metric" to create a new metric monitor.
 
-<img src="img/2/monitor_2.png"/>
+<img src="img/3/monitor_2.png"/>
 
 Chose "Threshold" as the detection method, defined "my_metric" as the metric.
 
-<img src="img/2/monitor_3.png"/>
+<img src="img/3/monitor_3.png"/>
 
 Set alert conditions with a "warning threshold" of 500, an "alerting threshold" of 800.
 
-<img src="img/2/monitor_4.png"/>
+<img src="img/3/monitor_4.png"/>
 
 Set alert to notify if there is no data for 10 minutes.
 
-<img src="img/2/monitor_5.png"/>
+<img src="img/3/monitor_5.png"/>
+
+### Create Messages
+
+Please configure the monitor’s message so that it will:
+
+Send you an email whenever the monitor triggers.
+
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+<img src="img/3/monitor_alert_warning.png"/>
+
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+<img src="img/3/monitor_email.png" />
+
+<b>Bonus Question:</b> Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+    * One that silences it from 7pm to 9am daily on M-F,
+    * And one that silences it all day on Sat-Sun.
+    * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Read documentation on [downtimes](https://docs.datadoghq.com/monitors/downtimes/), though, it was easy to see it in the GUI, went to "Manage Downtime," and "Schedule Downtime."
+
+<img src="img/3/message_1.png"/>
+
+<img src="img/3/message_2.png"/>
+
+Scheduled downtime for 7pm to 9am weekdays, added email notification.
+
+<b>1.</b>
+<img src="img/3/message_weekday_1.png"/>
+
+<b>2.</b>
+<img src="img/3/message_weekday_2.png"/>
+
+<b>3.</b>
+<img src="img/3/message_weekday_3.png"/>
+
+Scheduled downtime for weekends, added email notification.
+
+<b>1.</b>
+<img src="img/3/message_weekend_1.png"/>
+
+<b>2.</b>
+<img src="img/3/message_weekend_2.png"/>
+
+<b>3.</b>
+<img src="img/3/message_weekend_3.png"/>
