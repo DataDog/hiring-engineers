@@ -419,9 +419,9 @@ The graph displays the metric (line) and the bounds (grey band) within a given t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+    * Warning threshold of 500
+    * Alerting threshold of 800
+    * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Read documentation on [alerting](https://docs.datadoghq.com/monitors/), though it was easy to figure it out on the GUI.
 
@@ -451,15 +451,15 @@ Set alert to notify if there is no data for 10 minutes.
 
 Please configure the monitor’s message so that it will:
 
-Send you an email whenever the monitor triggers.
+    Send you an email whenever the monitor triggers.
 
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+    * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+    * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 <img src="img/3/monitor_alert_warning.png"/>
 
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+    * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 <img src="img/3/monitor_email.png" />
 
@@ -496,3 +496,6 @@ Scheduled downtime for weekends, added email notification.
 
 <b>3.</b>
 <img src="img/3/message_weekend_3.png"/>
+
+
+## Collecting APM Data
