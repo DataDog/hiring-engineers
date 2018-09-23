@@ -115,21 +115,61 @@ python create_timeboard.py
 
 Here's that timeboard produced on the site.
 
+![](img/3_1.PNG?raw=true)
+
 The time dropdowns does not include an option for the past five minutes but it can still be done by highlighting the graph so that it only shows data from the last five minutes. 
 
+![](img/3_2.PNG?raw=true)
+
 Using the @ notation gave me an email that looked like this.
+
+![](img/3_4.PNG?raw=true)
 
 The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
 
 ## Monitoring Data
 I created a monitor by navigating the sidebar like this: Monitors -> New Monitor. 
 
-These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
+These were my options for setting up a monitor to notify if my_metric has exceeded 500 (warning), 800 (alert), or has no data for the past 10 minutes (no data). 
+
+![](img/4_1.PNG?raw=true)
+
+I used these lines for the "Say what's happening" section.
+
+```
+{{#is_warning}}
+Warning: my_metric at {{value}} has registered over the warning threshold of {{warn_threshold}}  on IP {{host.ip}} for {{host.name}}!
+{{/is_warning}}
+
+{{#is_alert}}
+Alert: my_metric at {{value}} has registered over the alert threshold of {{threshold}}  on IP {{host.ip}} for {{host.name}}!
+{{/is_alert}}
+
+{{#is_no_data}}
+No Data: my_metric has not registered a value for the last 10 minutes on IP {{host.ip}} for {{host.name}}!
+{{/is_no_data}} 
+
+@email@provider.com
+```
 
 Here was the email for that.
 
+![](img/4_2.PNG?raw=true)
+
+These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
+
+![](img/4_3.PNG?raw=true)
+
+Here was the email for that.
+
+![](img/4_4.PNG?raw=true)
+
 These were my options for setting up a monitor to mute alerts on weekends.
 
+![](img/4_5.PNG?raw=true)
+
 Here was the email for that. 
+
+![](img/4_6.PNG?raw=true)
 
 ## Collecting APM Data
