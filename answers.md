@@ -87,5 +87,5 @@ Run the check with:
 sudo -u dd-agent -- datadog-agent check my_check
 ```
 
-![](img/2_1.PNG?raw=true)
+![](img/2_8.PNG?raw=true)
 
