@@ -12,14 +12,14 @@ Here was my virtual machine after installation of Linux Mint.
 
 ![](img/1_1.PNG?raw=true)
 
-After installation, I updated the repositories on my Linux machine so that all the current software was up to date. This was done with the commands:
+After installation, I updated the repositories on my Linux machine so that all the current software was up to date. This was done by entering these commands into the terminal:
 
 ```
 sudo apt update
 sudo apt upgrade
 ```
 
-I followed the install instructions for Ubuntu on the DataDog installation page which resulting in pasting this command into the terminal:
+Note that throughout this exercise, I will evoke "sudo" to obtain root privileges which are necessary for things to work. I followed the install instructions for Ubuntu on the DataDog installation page which resulting involved pasting this command into the terminal:
 
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -64,21 +64,21 @@ After the agent restart, I navigated to the Host Map page (Infrastructure -> Hos
 
 ### Installing a database
 
-The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) as a reference. MySQL is the database I am most familiar with and is very popular so it is easy to find documentation online on any problems that may occur. For a TLDR:
+The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) as a reference. MySQL is the database I am most familiar with and is very popular so it is easy to find documentation online for any problems that may occur. For an installation TLDR:
 
 ```
 sudo apt install mysql-server
 sudo mysql_secure_installation
 ```
 
-I followed the onscreen prompts and then added a datadog user onto my MySQL server.
+I followed the onscreen prompts and then added a datadog user onto my MySQL server. I used these commands:
 
 ```
 sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'DZIGDtX2FsbFMQU0oY,vCUAf';"
 sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
 ```
 
-The next step was creating a mysql.yaml file in the /etc/datadog-agent/conf.d folder. To speed things up, I used this command to access the directory and create the file in one line:
+The next step was creating a mysql.yaml file in the /etc/datadog-agent/conf.d folder. To speed things up, I skipped the cd command to access the directory and created the file with one line:
 
 ```
 sudo nano /etc/datadog-agent/conf.d/mysql.yaml
@@ -140,7 +140,7 @@ It is imperative for both the .py and .yaml files to have the same name for the 
 
 ![](img/2_10.PNG?raw=true)
 
-The problem here was that I did not specifiy a collection interval. Remove the last line "[{}]" and add a line to specify a collection interval of 45 seconds. Here is that line and the full .yaml file. 
+The problem here was that I did not specifiy a collection interval. Remove the last line "[{}]" and add a line to specify a collection interval of 45 seconds. This submits a new value of my_metric every 45 seconds. Here is how to do that along with the full .yaml file. 
 
 ![](img/2_7.PNG?raw=true)
 
@@ -199,7 +199,7 @@ Using the @ notation in the comments box and tagging myself gave me this email s
 ![](img/3_3.PNG?raw=true)
 
 ### Bonus
-The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
+The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert. Any deviance from normality will be alerted by the anomaly function. 
 
 ## Monitoring Data
 I created a monitor by navigating the sidebar like this: Monitors -> New Monitor. 
@@ -235,7 +235,7 @@ These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM.
 
 ![](img/4_3.PNG?raw=true)
 
-Here was an email for the weekday downtime. 
+Here was an email for the weekday downtime along with my message that I added. 
 
 ![](img/4_4.PNG?raw=true)
 
@@ -272,7 +272,7 @@ gave this result.
 
 As such, I was not able to view traces from the website. 
 
-My next effort was to manually insert the Middleware as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). I needed the blinker library which was installed with pip using this command:
+My next effort was to manually insert the Middleware as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). I needed the blinker library which once again called upon pip with this command:
 
 ```
 pip install blinker
@@ -295,18 +295,18 @@ Unfortunately, this created more questions than answers as I was given a long li
 lsof -i :5050
 ```
 
-No process was shown. I experimented with more ports and other host addresses but I got the same error still.  
+No process was shown. I experimented with more ports and other host addresses but I got the same error still. Hosts that I tried: localhost, 0.0.0.0, 127.0.0.1. Ports that I tried: 8000, 8080, 5050, 8126 (apm listener port)
 
 ![](img/5_4.PNG?raw=true)
 
-I tried killing any processes that was using Python with these commands where PID is the process ID from the grep:
+Another thing I tried was looking at active processes and killing any that used Python. 
 
 ```
 ps -fA | grep python
 sudo kill -9 pid
 ```
 
-However, this did nothing as I was not shown anything from the grep. At this moment, I ran out of options as I could not get past this error so that the following screen could display something other than "Once you’ve completed this step, return to this page. Your traces should be available shortly."
+However, this did nothing as the socket error remained. At this moment, I ran out of options as I could not get past this error so that the following screen could display something other than "Once you’ve completed this step, return to this page. Your traces should be available shortly." With more time, I would have liked to try this in another language. 
 
 ![](img/5_5.PNG?raw=true)
 
