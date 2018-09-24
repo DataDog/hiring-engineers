@@ -1,17 +1,25 @@
 # Solutions Engineer Exercise - Shuo Jin
 
-
 ## Setting up the Environment
 
-This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. My computer already had VirtualBox installed so that was what I used to complete this exercise. The download for VirtualBox can be found [here](https://www.virtualbox.org/wiki/Downloads). 
+This exercise was done using a virtual machine. A virtual machine is defined as "a software computer that, like a physical computer, runs an operating system and applications." For this exercise, I used an application called VirtualBox to set up my virtual machine. The download for VirtualBox can be found [here](https://www.virtualbox.org/wiki/Downloads). The operating system I used was Linux Mint, a flavor of Ubuntu 18.04. 
 
 ![](img/1_1.PNG?raw=true)
 
-I followed the install instructions for Ubuntu which resulting in pasting this command into the terminal:
+After installation, I updated the repositories on my Linux machine so that all the current software was up to date. This was done with the commands:
+
+```
+sudo apt update
+sudo apt upgrade
+```
+
+I followed the install instructions for Ubuntu on the DataDog installation page which resulting in pasting this command into the terminal:
+
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
-Here was a confirmation that the installation was successful.  
+
+Here was a confirmation that the installation of the agent was successful.  
 
 ![](img/1_2.PNG?raw=true)
 
@@ -22,24 +30,56 @@ Further verification could be found on the DataDog welcome screen which now show
 ## Collecting Metrics
 ### Addings tags
 
-The agent config file was accessed with the command:
+The agent config file is located in /etc/datadog-agent. I accessed this directory with the command:
+
 ```
-sudo nano /etc/datadog-agent/datadog.yaml
+cd /etc/datadog-agent/
 ```
 
-I added two tags to the file. Make sure to scroll to the bottom past the comments to write the tags. 
+Due to permission errors, the datadog.yaml file cannot be opened in a regular text editor. Instead, elevated privileges are required to open this file and that was done with this command:
+
+```
+sudo nano datadog.yaml
+```
+
+Nano was the text editor I used, although vim works as well. I added the tags at the bottom of the file past all of the comments. I saved the file with CTRL+X and restarted the agent with the command:
+
+```
+sudo service datadog-agent restart
+```
+
+This is what the datadog.yaml file looked like after adding two tags. 
 
 ![](img/2_1.PNG?raw=true)
 
-Here are those same tags displayed on the website. 
+After the agent restart, I navigated to the Host Map page (Infrastructure -> Host Map) to see if my tags were there and here was what that looked like. 
 
 ![](img/2_3.PNG?raw=true)
 
 ### Installing a database
 
-The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) as a reference. 
+The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) as a reference. MySQL is the database I am most familiar with and is very popular so it is easy to find documentation online on any problems that may occur. For a TLDR:
 
-The next step was creating a mysql.yaml file in the /etc/datadog-agent/conf.d folder. Per instructions, here's what that file contained.
+```
+sudo apt install mysql-server
+sudo mysql_secure_installation
+```
+
+I followed the onscreen prompts and then added a datadog user onto my MySQL server.
+
+```
+sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'DZIGDtX2FsbFMQU0oY,vCUAf';"
+sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+```
+
+The next step was creating a mysql.yaml file in the /etc/datadog-agent/conf.d folder. To speed things up, I used this command to access the directory and create the file in one line:
+
+```
+sudo nano /etc/datadog-agent/conf.d/mysql.yaml
+```
+
+The instructions for installing the DataDog MySQL integration involved copying these lines into the mysql.yaml. CTRL+X to save.
+
 ```
 init_config:
 
@@ -55,15 +95,17 @@ instances:
         galera_cluster: 1
 ```
 
-Checking the status with the command
+Checking the status of the agent with the command
+
 ```
 sudo datadog-agent status
 ```
+
 should show this after a successful integration. 
 
 ![](img/2_2.PNG?raw=true)
 
-A similar verification can be found on the Integrations page along with some metrics that have been gathered. 
+A similar verification can be found on the Integrations page (Integrations -> Integrations) along with some metrics that have been gathered. 
 
 ![](img/2_4.PNG?raw=true)
 
@@ -72,64 +114,85 @@ A similar verification can be found on the Integrations page along with some met
 ### Creating a custom agent check
 Most of this section was done by referencing this [page](https://docs.datadoghq.com/developers/agent_checks/).
 
-Here was the code used to submit my_metric with the assistance of Python's random standard library. The check file was created and stored in /etc/datadog-agent/checks.d. 
+A custom agent check requires a Python .py file and a .yaml file. The .py file needs to be placed in the directory /etc/datadog-agent/checks.d and the .yaml file needs to be placed in the directory /etc/datadog-agent/conf.d. I created the Python file my_check.py with the command:
+
+```
+sudo nano /etc/datadog-agent/checks.d/my_check.py
+```
+
+Here was the code used to submit my_metric with the assistance of Python's random standard library.
 
 ![](img/2_6.PNG?raw=true)
 
-For the .yaml file, this was what I used to change the collection interval so that I would not need to edit the Python file anymore. The .yaml file is located in /etc/datadog-agent/conf.d. Make sure the name of the .yaml is the same as the check.  
+I created the .yaml file with the command:
+
+```
+sudo nano /etc/datadog-agent/conf.d/my_check.yaml
+```
+
+It is imperative for both the .py and .yaml files to have the same name for the check to work. Here was my initial code for the .yaml file.
+
+![](img/2_10.PNG?raw=true)
+
+The problem here was that I did not specifiy a collection interval. Remove the last line "[{}]" and add a line to specify a collection interval of 45 seconds. Here is that line and the full .yaml file. 
 
 ![](img/2_7.PNG?raw=true)
 
-I restarted the agent with
+I restarted the agent with:
+
 ```
 sudo service datadog-agent restart
 ```
 
-And ran the check with
+And ran the check with:
+
 ```
 sudo -u dd-agent -- datadog-agent check my_check
 ```
 
 ![](img/2_8.PNG?raw=true)
 
-Here's what that check looked like plotted on a graph. 
+I created a timeboard on the website to view the results of my check on a graph. This was done by accessing the Dashboards tab and then New Dashboard. Here's what that check looked like plotted on a graph. 
 
 ![](img/2_9.PNG?raw=true)
 
 ## Visualizing Data
-
-In trying to create my script, I had to install pip and then install the datadog Python library. These were the commands used to accomplish that:
+### Preliminary actions
+A timeboard is useful for displaying metrics in an easy to read way. I needed a timeboard that showed the values of my_metric, a metric of the MySQL integration with the anomaly function applied, and my_metric with the rollup function applied to sum up all the points for the past hour. Before writing any code, I had to obtain my API and APP keys. I did this on the DataDog website by navigating to the Integrations tab and then APIs. I had an API key but not an APP Key so I clicked Create Application Key. The next step was installing pip, a package manager for Python. Pip was necessary for installing the datadog Python library to allow my script to function. These were the commands used to accomplish that:
 
 ```
 sudo apt install python-pip
 pip install datadog
 ```
 
-I got a setuptools error during installation so I used this command after installing pip to resolve the issue:
+I got hit with a setuptools error when trying to install datadog so I used this command to resolve the issue before installing datadog again:
 
 ```
 pip install --upgrade setuptools
 ```
 
-Through referencing the API documentation, I created a script called create_timeboard.py that has been included in this repository. Of course, I replaced '<YOUR_API_KEY>' and '<YOUR_APP_KEY>' in lines 4 and 5 of the script with the corresponding api and app keys respectively.
+### Putting it together
+
+Through referencing the [API documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard), I created a script called create_timeboard.py that has been included in this repository. I replaced '<YOUR_API_KEY>' and '<YOUR_APP_KEY>' in lines 4 and 5 of the script with the corresponding API and APP keys obtained earlier respectively. 
 
 I ran the timeboard with this command:
 ```
 python create_timeboard.py
 ```
 
-Here's that same timeboard produced on the website. 
+Here was my custom timeboard shown on the website. 
 
 ![](img/3_1.PNG?raw=true)
 
-The time dropdowns in the menu bar did not include an option for the past five minutes but I was able to get this portion of the data by highlighting the last five minutes on the graph manually. 
+I clicked the first graph to get a set of points from the last five minutes. The time dropdowns in the menu bar did not include an option for the past five minutes but I was able to circumvent this by highlighting the last five minutes on the graph manually. Here was what that looked like. 
 
 ![](img/3_2.PNG?raw=true)
 
-Using the @ notation gave me an email that looked like this.
+Using the @ notation in the comments box and tagging myself gave me this email shortly afterwards.
 
 ![](img/3_4.PNG?raw=true)
 
+### Bonus
 The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
 
 ## Monitoring Data
@@ -139,7 +202,7 @@ These were my options for setting up a monitor to notify if my_metric has exceed
 
 ![](img/4_1.PNG?raw=true)
 
-I used these lines to fill out the "Say what's happening" section.
+I used these lines to fill out the "Say what's happening" section. Note the @email at the bottom tells DataDog to send me an email when any of these alerts happen. 
 
 ```
 {{#is_warning}}
@@ -161,8 +224,8 @@ Here was an email alerting me that my_metric has exceeded the warning threshold.
 
 ![](img/4_2.PNG?raw=true)
 
-Downtime can be set up by navigating the sidebar like this: Monitors -> Manage Downtime. 
-These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
+Downtime was set up by navigating the sidebar like this: Monitors -> Manage Downtime. 
+These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. I added a message at the bottom reminding me of the downtime schedule. 
 
 ![](img/4_3.PNG?raw=true)
 
