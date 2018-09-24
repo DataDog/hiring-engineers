@@ -104,7 +104,12 @@ Your answers to the questions go here.
 
 
 #https://api.datadoghq.com/api/v1/dash?api_key=b4371073b027d86e3174258d84d52b8a&application_key=8a76ab889a96ef312cb024a9147b2e15500eb58d
+Utilize the Datadog API to create a Timeboard that contains:
 
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 ```
 from datadog import initialize, api
@@ -185,15 +190,45 @@ print(api.Timeboard.create(title=title,
 
 
 
+![](timeboard.png)
+
+
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![](mention.png)
+Bonus Question: What is the Anomaly graph displaying?
+
+The Anomaly graph is showing the performance of the mysql database.
 
 
 
 
 
 
+![](metric_monitor.png)
 
 
 
+Below is the email I received when the threshold has been reached
+
+
+
+![](thresh_monitor.png)
+
+
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Collecting APM Data:
+
+
+
+![](downtime.png)
 
 
 
