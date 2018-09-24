@@ -3,40 +3,41 @@
 
 ## Setting up the Environment
 
-This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. I went with VirtualBox instead of Vagrant because I am more familiar with this software. 
+This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. My computer already had VirtualBox installed so that was what I used to complete this exercise. The download for VirtualBox can be found [here](https://www.virtualbox.org/wiki/Downloads). 
 
 ![](img/1_1.PNG?raw=true)
 
-As I am on Ubuntu, I used this command to install the agent. 
+I followed the install instructions for Ubuntu which resulting in pasting this command into the terminal. 
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
-This message shows that the installation was successful. 
+A confirmation that the installation was a success. 
 
 ![](img/1_2.PNG?raw=true)
 
-This can be verified by visiting the DataDog welcome screen.
+Further verification can be found on the DataDog welcome screen which now shows a hexagon with my host. 
 
 ![](img/1_3.PNG?raw=true)
 
 ## Collecting Metrics
 ### Addings tags
+
 The agent config file was accessed with the command:
 ```
 sudo nano /etc/datadog-agent/datadog.yaml
 ```
 
-I added two tags within this file. 
+I added two tags to the file. Make sure to scroll to the bottom past the comments to write the tags. 
 
 ![](img/2_1.PNG?raw=true)
 
-Here's those same tags displayed on the website. 
+Here are those same tags displayed on the website. 
 
 ![](img/2_3.PNG?raw=true)
 
 ### Installing a database
 
-The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) to assist me.
+The database I went with was MySQL using [this resource](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) as a reference. 
 
 The next step was creating a mysql.yaml file in the /etc/datadog-agent/conf.d folder. Per instructions, here's what that file contained.
 ```
@@ -54,7 +55,7 @@ instances:
         galera_cluster: 1
 ```
 
-Checking the status with the command:
+Checking the status with the command
 ```
 sudo datadog-agent status
 ```
@@ -71,55 +72,57 @@ A similar verification can be found on the Integrations page along with some met
 ### Creating a custom agent check
 Most of this section was done by referencing this [page](https://docs.datadoghq.com/developers/agent_checks/).
 
-Here's the code used to submit my_metric with the assistance of the random standard library. The check file can be found in /etc/datadog-agent/checks.d. 
+Here was the code used to submit my_metric with the assistance of Python's random standard library. The check file was created and stored in /etc/datadog-agent/checks.d. 
 
 ![](img/2_6.PNG?raw=true)
 
-For the .yaml file, this was what I used to change the check's collection interval so that I would not need to edit the Python file anymore. The .yaml file can be found in /etc/datadog-agent/conf.d. Make sure the name of hte .yaml is the same as the check.  
+For the .yaml file, this was what I used to change the collection interval so that I would not need to edit the Python file anymore. The .yaml file is located in /etc/datadog-agent/conf.d. Make sure the name of the .yaml is the same as the check.  
 
 ![](img/2_7.PNG?raw=true)
 
-Restart the agent with:
+I restarted the agent with
 ```
 sudo service datadog-agent restart
 ```
 
-Run the check with:
+And ran the check with
 ```
 sudo -u dd-agent -- datadog-agent check my_check
 ```
 
 ![](img/2_8.PNG?raw=true)
 
-Here's what the check looked like plotted on a graph. 
+Here's what that check looked like plotted on a graph. 
 
 ![](img/2_9.PNG?raw=true)
 
 ## Visualizing Data
 
-In trying to create my script, I had to install the datadog Python library with pip on my VM. These were the commands to do that:
+In trying to create my script, I had to install pip and then install the datadog Python library. These were the commands used to accomplish that:
+
 ```
 sudo apt install python-pip
 pip install datadog
 ```
 
-I got a setuptools error during this section so I used this command after installing pip:
+I got a setuptools error during installation so I used this command after installing pip to resolve the issue:
+
 ```
 pip install --upgrade setuptools
 ```
 
-Through referencing the API documentation, I created a script called create_timeboard.py that has been included in this repository. Replace '<YOUR_API_KEY>' and '<YOUR_APP_KEY>' in lines 4 and 5 of the script with the corresponding api and app keys respectively.
+Through referencing the API documentation, I created a script called create_timeboard.py that has been included in this repository. Of course, I replaced '<YOUR_API_KEY>' and '<YOUR_APP_KEY>' in lines 4 and 5 of the script with the corresponding api and app keys respectively.
 
-Run with:
+I ran the timeboard with this command:
 ```
 python create_timeboard.py
 ```
 
-Here's that timeboard produced on the site.
+Here's that same timeboard produced on the website. 
 
 ![](img/3_1.PNG?raw=true)
 
-The time dropdowns does not include an option for the past five minutes but it can still be done by highlighting the graph so that it only shows data from the last five minutes. 
+The time dropdowns in the menu bar did not include an option for the past five minutes but I was able to get this portion of the data by highlighting the last five minutes on the graph manually. 
 
 ![](img/3_2.PNG?raw=true)
 
@@ -136,7 +139,7 @@ These were my options for setting up a monitor to notify if my_metric has exceed
 
 ![](img/4_1.PNG?raw=true)
 
-I used these lines for the "Say what's happening" section.
+I used these lines to fill out the "Say what's happening" section.
 
 ```
 {{#is_warning}}
@@ -158,12 +161,12 @@ Here was an email alerting me that my_metric has exceeded the warning threshold.
 
 ![](img/4_2.PNG?raw=true)
 
-Downtime can be setup by navigating the sidebar like this: Monitors -> Manage Downtime. 
+Downtime can be set up by navigating the sidebar like this: Monitors -> Manage Downtime. 
 These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. 
 
 ![](img/4_3.PNG?raw=true)
 
-Here was an email for that.
+Here was an email for the weekday downtime. 
 
 ![](img/4_4.PNG?raw=true)
 
@@ -171,7 +174,7 @@ These were my options for setting up a monitor to mute alerts on weekends.
 
 ![](img/4_5.PNG?raw=true)
 
-Here was an email for that. 
+Here was an email for the weekend downtime. 
 
 ![](img/4_6.PNG?raw=true)
 
