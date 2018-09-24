@@ -568,38 +568,38 @@ Response:
 >-bash: ddtrace-run: command not found
 
 
-    Read Flask documentation on "[virtual environments](http://flask.pocoo.org/docs/1.0/installation/#virtual-environments)."
+Read Flask documentation on "[virtual environments](http://flask.pocoo.org/docs/1.0/installation/#virtual-environments)."
 
-    1. Installed virtualenv:
+1. Installed virtualenv:
 
-    ```
-    sudo python -m pip install virtualenv
-    ```
+```
+sudo python -m pip install virtualenv
+```
 
-    Response:
-    >Successfully installed virtualenv-16.0.0
+Response:
+>Successfully installed virtualenv-16.0.0
 
-    2. Created an environment:
+2. Created an environment:
 
-    ```
-    mkdir datadog-flask-app
-    mv app.py datadog-flask-app/
-    cd datadog-flask-app/
-    python -m virtualenv venv
-    ```
+```
+mkdir datadog-flask-app
+mv app.py datadog-flask-app/
+cd datadog-flask-app/
+python -m virtualenv venv
+```
 
-    Response:
-    >New python executable in /Users/tiffanymonroe/dev/datadog-flask-app/venv/bin/python
-    Installing setuptools, pip, wheel...done.
+Response:
+>New python executable in /Users/tiffanymonroe/dev/datadog-flask-app/venv/bin/python
+Installing setuptools, pip, wheel...done.
 
-    3. Activated the environment:
+3. Activated the environment:
 
-    ```
-    . venv/bin/activate
-    ```
+```
+. venv/bin/activate
+```
 
-    Response:
-    >(venv) tiffanymonroe: datadog-flask-app
+Response:
+>(venv) tiffanymonroe: datadog-flask-app
 
 ```
 python -m pip install ddtrace --user
@@ -619,6 +619,126 @@ Response:
 <img src="img/4/error.png"/>
 
 
-### Ruby
+### Ruby on Rails
 
 Read "[Tracing Ruby Applications](https://docs.datadoghq.com/tracing/setup/ruby/)" and "[Datadog Trace Client](http://gems.datadoghq.com/trace/docs/)" documentation.
+
+Read APM [introduction](https://app.datadoghq.com/apm/intro) on GUI, chose "Ruby," followed instructions.
+
+Installed the Ruby client.
+
+<b>Part 1: Install ddtrace</b>
+
+`gem install ddtrace`
+
+Instrumented application.
+
+```
+touch config/initializers/datadog-tracer.rb
+atom .
+Datadog.configure do |c|
+  c.use :rails, service_name: 'my-rails-app'
+end
+```
+
+Started Rails Server.
+
+`rails s`
+
+Checked Agent status.
+
+`datadog-agent status`
+
+Response:
+
+<img src="img/4/agent_status.png"/>
+>Logs Agent is not running
+
+Researched "datadog logs collection not running," read [troubleshooting guide](https://docs.datadoghq.com/logs/faq/log-collection-troubleshooting-guide/).
+
+Checked `datadog.yaml` for configuration issues. Could not find `logs_enabled: true`. Added it to config file, restarted Agent.
+
+`datadog-agent status`
+
+Response:
+Logs Agent no longer says not running. APM error remains the same.
+
+Checked for [errors](https://docs.datadoghq.com/logs/faq/log-collection-troubleshooting-guide/#check-for-errors-in-the-logs) in the logs.
+
+`sudo cat /var/log/datadog/agent.log | grep logs`
+
+Response:
+>2018-09-23 12:13:00 PDT | INFO | (logs.go:47 in Start) | Starting logs-agent
+
+Read "[Quickstart for Rails Applications](https://docs.datadoghq.com/tracing/setup/ruby/)," changed configuration, restarted Agent.
+
+```
+mv datadog-tracer.rb datadog.rb
+atom .
+Datadog.configure do |c|
+  c.use :rails
+end
+```
+
+Checked status, opened GUI.
+
+`datadog-agent status`
+
+Response:
+>Core Check Loader:
+        Could not configure check APM Agent: APM agent disabled through main configuration file
+
+Reviewed "[APM Setup](https://docs.datadoghq.com/tracing/setup/)" documentation.
+>Install the Datadog Agent: Install and configure the latest Datadog Agent. (On macOS, install and run the [Trace Agent](https://github.com/DataDog/datadog-trace-agent#run-on-osx) in addition to the Datadog Agent. See the macOS Trace Agent documentation for more information).
+
+Downloaded and installed latest [OSX Trace Agent](https://github.com/DataDog/datadog-trace-agent/releases/tag/6.5.0) release and [Go 1.1](https://golang.org/dl/) for MacOS, restarted Terminal.
+
+Response:
+>Go: installation successful!
+
+```
+go get -u github.com/DataDog/datadog-trace-agent/...
+cd $GOPATH/src/github.com/DataDog/datadog-trace-agent
+```
+
+Response:
+>-bash: cd: /src/github.com/DataDog/datadog-trace-agent: No such file or directory
+
+
+The problem seems to be with the installation of the Trace Agent. Returned to OSX directions, instead of "Development" directions.
+
+`./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml`
+
+Response:
+>-bash: ./trace-agent-darwin-amd64-X.Y.Z: No such file or directory
+Realized the file downloaded has a different name.
+
+`./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml`
+
+Response:
+>-bash: ./trace-agent-darwin-amd64-6.5.0: Permission denied
+
+`sudo: ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml`
+
+Response:
+>sudo: ./trace-agent-darwin-amd64-6.5.0: command not found
+
+Checked various directories to locate Trace Agent. Found in `/Users/tiffanymonroe/go/src/github.com/DataDog/datadog-trace-agent`!
+
+`make install`
+
+Response:
+># generate versioning information and installing the binary.
+go generate ./info
+go install ./cmd/trace-agent
+
+```
+go generate ./info
+go install ./cmd/trace-agent
+$GOPATH/bin/trace-agent
+```
+
+Response:
+>-bash: /bin/trace-agent: No such file or directory
+
+Restarted Agent.
