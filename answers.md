@@ -190,7 +190,7 @@ Next, I used pip to install ddtrace with this command:
 pip install ddtrace
 ```
 
-Running the Flask app code copied from the technical exercise with this command
+Running the Flask app code from the technical exercise with the command
 
 ```
 ddtrace-run python apm_collector.py
@@ -202,7 +202,7 @@ gave this result.
 
 As such, I was not able to view traces from the website. 
 
-My next effort was to manually insert the Middleware as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). I needed the blinker library which was installed with, you guessed it:
+My next effort was to manually insert the Middleware as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). I needed the blinker library which was installed with pip using this command:
 
 ```
 pip install blinker
@@ -215,7 +215,7 @@ export FLASK_APP = apm_collector.py
 flask run
 ```
 
-The output I recieved. 
+Here was the output I recieved. 
 
 ![](img/5_3.PNG?raw=true)
 
@@ -225,12 +225,14 @@ Unfortunately, this created more questions than answers as I was given a long li
 lsof -i :5050
 ```
 
+No process was shown. 
+
 ![](img/5_4.PNG?raw=true)
 
-No result was produced from that command so I am unsure of how to move past this issue and continue forward. 
+At this moment, I tried researching other solutions to fix possible errors and could not work towards a resolution. 
 
-To close things out, a service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
+To close this section out, a service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
  
 ## Final Question
 
-In many competitive online games, patches can shift the metagame allowing what was weak a chance to become strong. Using DataDog to access the APIs of many of these games, I can generate data on shifts in power so that I can stay ahead of the curve. 
+In many competitive online games, patches can shift the metagame allowing what was weak a chance to become strong. One such game is League of Legends where players control one "champion" out of a roster of over 100. Using DataDog to access the API from League of Legends, I can see spikes in winrates of champions after a patch to see where shifts of power are occuring. The anomaly function from earlier can be a great application for this! This way I can pick the champions that are strong before other players know that they are strong allowing me to stay ahead of the curve. 
