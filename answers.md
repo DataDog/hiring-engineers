@@ -4,7 +4,7 @@
 
 This exercise was done using a virtual machine. A virtual machine is defined as "a software computer that, like a physical computer, runs an operating system and applications." For this exercise, I used an application called VirtualBox to set up my virtual machine. The download for VirtualBox can be found [here](https://www.virtualbox.org/wiki/Downloads). The operating system I used was Linux Mint, a flavor of Ubuntu 18.04. 
 
-I clicked Create Machine and used these settings:
+I created my machine with these settings:
 
 ![](img/1_0.PNG?raw=true)
 
@@ -294,7 +294,7 @@ Unfortunately, this created more questions than answers as I was given a long li
 lsof -i :5050
 ```
 
-No process was shown. 
+No process was shown. I experimented with the ports and host addresses but I got the same error still.  
 
 ![](img/5_4.PNG?raw=true)
 
