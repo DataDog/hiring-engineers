@@ -176,6 +176,15 @@ Here was an email for that.
 ![](img/4_6.PNG?raw=true)
 
 ## Collecting APM Data
+
+As per the documentation, the first step was enabling trace collection for the DataDog agent. This was done by accessing the datadog.yaml file from the adding tags section with the addition of two lines at the bottom like this.
+
+Next, I used pip to install ddtrace and blinker as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). 
+
+```
+pip install ddtrace
+pip install blinker
+```
  
 ## Final Question
 
