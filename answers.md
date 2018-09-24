@@ -478,23 +478,29 @@ Read documentation on [downtimes](https://docs.datadoghq.com/monitors/downtimes/
 Scheduled downtime for 7pm to 9am weekdays, added email notification.
 
 <b>1.</b>
+
 <img src="img/3/message_weekday_1.png"/>
 
 <b>2.</b>
+
 <img src="img/3/message_weekday_2.png"/>
 
 <b>3.</b>
+
 <img src="img/3/message_weekday_3.png"/>
 
 Scheduled downtime for weekends, added email notification.
 
 <b>1.</b>
+
 <img src="img/3/message_weekend_1.png"/>
 
 <b>2.</b>
+
 <img src="img/3/message_weekend_2.png"/>
 
 <b>3.</b>
+
 <img src="img/3/message_weekend_3.png"/>
 
 
@@ -514,110 +520,13 @@ datadog-agent status
 
 Response:
 
-<img src="img/4/loading_error.png"/>
+<img src="img/4/loading_errors.png"/>
 
 From [Quick Start](https://app.datadoghq.com/help/quick_start) on GUI, noticed that Python wasn't installed as an Integration, chose "installed integration" option.
 
 ### Flask App
 
-<b>Part 1: Install ddtrace</b>
-
-Read APM [introduction](https://app.datadoghq.com/apm/intro) on GUI, chose "Python," followed instructions.
-
-Installed the Python client.
-
-```
-python -m pip install ddtrace
-```
-
-Response:
->Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/wrapt'
-Consider using the `--user` option or check the permissions.
-
-```
-python -m pip install ddtrace --user
-```
-
-Response:
->Successfully installed ddtrace-0.14.0 msgpack-python-0.5.6 wrapt-1.10.11
-
-<b>Part 2: Install Flask</b>
-
-Researched [Flask](http://flask.pocoo.org/), downloaded latest [version](https://pypi.org/project/Flask/1.0.2/), read [documentation](http://flask.pocoo.org/docs/1.0/) and "[Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#module-ddtrace.contrib.flask)".
-
-```
-python -m pip install Flask==1.0.2
-```
-
-Response:
->Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/markupsafe'
-Consider using the `--user` option or check the permissions.
-
-```
-python -m pip install Flask==1.0.2 --user
-```
-
-Response:
->Successfully installed Flask-1.0.2 Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 click-6.7 itsdangerous-0.24
-
-```
-ddtrace-run python app.py
-```
-
-Response:
->-bash: ddtrace-run: command not found
-
-
-Read Flask documentation on "[virtual environments](http://flask.pocoo.org/docs/1.0/installation/#virtual-environments)."
-
-1. Installed virtualenv:
-
-```
-sudo python -m pip install virtualenv
-```
-
-Response:
->Successfully installed virtualenv-16.0.0
-
-2. Created an environment:
-
-```
-mkdir datadog-flask-app
-mv app.py datadog-flask-app/
-cd datadog-flask-app/
-python -m virtualenv venv
-```
-
-Response:
->New python executable in /Users/tiffanymonroe/dev/datadog-flask-app/venv/bin/python
-Installing setuptools, pip, wheel...done.
-
-3. Activated the environment:
-
-```
-. venv/bin/activate
-```
-
-Response:
->(venv) tiffanymonroe: datadog-flask-app
-
-```
-python -m pip install ddtrace --user
-```
-
-Response:
->Can not perform a '--user' install. User site-packages are not visible in this virtualenv.
-
-```
-python -m pip install Flask==1.0.2
-python -m pip install ddtrace
-ddtrace-run python app.py
-```
-
-Response:
-
-<img src="img/4/error.png"/>
-
+[Troubleshooting](flask.md) notes before switching to a Rails app.
 
 ### Ruby on Rails
 
@@ -658,7 +567,9 @@ Researched "datadog logs collection not running," read [troubleshooting guide](h
 
 Checked `datadog.yaml` for configuration issues. Could not find `logs_enabled: true`. Added it to config file, restarted Agent.
 
-`datadog-agent status`
+```
+datadog-agent status
+```
 
 Response:
 Logs Agent no longer says not running. APM error remains the same.
@@ -682,7 +593,9 @@ end
 
 Checked status, opened GUI.
 
-`datadog-agent status`
+```
+datadog-agent status
+```
 
 Response:
 >Core Check Loader:
@@ -691,7 +604,7 @@ Response:
 Reviewed "[APM Setup](https://docs.datadoghq.com/tracing/setup/)" documentation.
 >Install the Datadog Agent: Install and configure the latest Datadog Agent. (On macOS, install and run the [Trace Agent](https://github.com/DataDog/datadog-trace-agent#run-on-osx) in addition to the Datadog Agent. See the macOS Trace Agent documentation for more information).
 
-Downloaded and installed latest [OSX Trace Agent](https://github.com/DataDog/datadog-trace-agent/releases/tag/6.5.0) release and [Go 1.1](https://golang.org/dl/) for MacOS, restarted Terminal.
+Downloaded and installed latest [OSX Trace Agent](https://github.com/DataDog/datadog-trace-agent/releases/tag/6.5.0) release and [Go 1.1](https://golang.org/dl/) for MacOS (based on the "Developer" directions), restarted Terminal.
 
 Response:
 >Go: installation successful!
@@ -707,28 +620,35 @@ Response:
 
 The problem seems to be with the installation of the Trace Agent. Returned to OSX directions, instead of "Development" directions.
 
-`./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml`
+```
+./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml
+```
 
 Response:
 >-bash: ./trace-agent-darwin-amd64-X.Y.Z: No such file or directory
 Realized the file downloaded has a different name.
 
-`./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml`
+```
+./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
+```
 
 Response:
 >-bash: ./trace-agent-darwin-amd64-6.5.0: Permission denied
 
-`sudo: ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml`
+```
+sudo: ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
+```
 
 Response:
 >sudo: ./trace-agent-darwin-amd64-6.5.0: command not found
 
 Checked various directories to locate Trace Agent. Found in `/Users/tiffanymonroe/go/src/github.com/DataDog/datadog-trace-agent`!
 
-`make install`
+```make install
+```
 
 Response:
-># generate versioning information and installing the binary.
+>generate versioning information and installing the binary.
 go generate ./info
 go install ./cmd/trace-agent
 
@@ -739,6 +659,8 @@ $GOPATH/bin/trace-agent
 ```
 
 Response:
->-bash: /bin/trace-agent: No such file or directory
+>-bash: /bin/trace-agent: No such file or directory.
 
-Restarted Agent.
+Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. Looked at `go` directory in Finder and opened Trace Agent by double-clicking icon. Tracer started.
+
+<img src="img/4/tracer_started.png"/>
