@@ -15,7 +15,7 @@ Here was a confirmation that the installation was successful.
 
 ![](img/1_2.PNG?raw=true)
 
-Further verification can be found on the DataDog welcome screen which now shows a hexagon with my host. 
+Further verification could be found on the DataDog welcome screen which now showed a hexagon with my host. 
 
 ![](img/1_3.PNG?raw=true)
 
