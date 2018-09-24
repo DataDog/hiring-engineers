@@ -243,7 +243,7 @@ These were my options for setting up a monitor to mute alerts on weekends.
 
 ![](img/4_5.PNG?raw=true)
 
-Here was an email for the weekend downtime. 
+Here was an email for the weekend downtime. As before, make sure to add a message along with the corresponding emails to notify them. 
 
 ![](img/4_6.PNG?raw=true)
 
