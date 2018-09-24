@@ -7,11 +7,11 @@ This exercise was done using a flavor of Ubuntu 18.04 called Linux Mint. My comp
 
 ![](img/1_1.PNG?raw=true)
 
-I followed the install instructions for Ubuntu which resulting in pasting this command into the terminal. 
+I followed the install instructions for Ubuntu which resulting in pasting this command into the terminal:
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
-A confirmation that the installation was a success. 
+Here was a confirmation that the installation was successful.  
 
 ![](img/1_2.PNG?raw=true)
 
