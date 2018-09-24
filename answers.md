@@ -5,7 +5,7 @@ Solutions Engineer Applicant
 2. [Collecting Metrics](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#collecting-metrics)
 3. [Visualizing Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#visualizing-data)
 4. [Monitoring Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#monitoring-data)
-5. [Collecting APM Data](Collecting APM Data)
+5. [Collecting APM Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#collecting-apm-data)
 6. [Final Question](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#final-question)
 
 ## Prerequisites - Setting up the environment
@@ -571,11 +571,12 @@ datadog-agent status
 Response:
 
 <img src="img/4/agent_status.png"/>
+
 >Logs Agent is not running
 
 Researched "datadog logs collection not running," read [troubleshooting guide](https://docs.datadoghq.com/logs/faq/log-collection-troubleshooting-guide/).
 
-Checked `datadog.yaml` for configuration issues. Could not find `logs_enabled: true`. Added it to config file, restarted Agent.
+Checked `datadog.yaml` for configuration issues, could not find `logs_enabled: true`, added it to config file, restarted Agent.
 
 ```
 datadog-agent status
@@ -674,14 +675,18 @@ $GOPATH/bin/trace-agent
 Response:
 >-bash: /bin/trace-agent: No such file or directory.
 
-Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. Looked at `go` directory in Finder and opened Trace Agent by double-clicking icon. Tracer started.
+Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. Looked at `go` directory in Finder and opened Trace Agent by double-clicking icon.
+
+Tracer started:
 
 <img src="img/4/apm_3.png"/>
+
+Tracer tracking:
 
 <img src="img/4/apm_4.png"/>
 
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+**Bonus Question**: What is the difference between a Service and a Resource?
 
     The difference is that a service is "a set of processes" that do the same thing, but a resource is "a particular action for a service."
 
@@ -693,7 +698,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
-[Disneyland Decoded API](https://github.com/tiffanymonroe/disneyland_decoded_backend)
+[Disneyland Decoded API](https://github.com/tiffanymonroe/disneyland_decoded_backend/tree/datadog)
 
 ## Final Question:
 
