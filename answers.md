@@ -140,7 +140,7 @@ It is imperative for both the .py and .yaml files to have the same name for the 
 
 ![](img/2_10.PNG?raw=true)
 
-The problem here was that I did not specifiy a collection interval. Remove the last line "[{}]" and add a line to specify a collection interval of 45 seconds. This submits a new value of my_metric every 45 seconds. Here is how to do that along with the full .yaml file. 
+The problem here was that I did not specifiy a collection interval. Therefore, I removed the last line "[{}]" and added a line to specify a collection interval of 45 seconds. Every 45 seconds a new value for my_metric would be sent to DataDog. Here was how I did that along with the full .yaml file. 
 
 ![](img/2_7.PNG?raw=true)
 
