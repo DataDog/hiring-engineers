@@ -4,6 +4,12 @@
 
 This exercise was done using a virtual machine. A virtual machine is defined as "a software computer that, like a physical computer, runs an operating system and applications." For this exercise, I used an application called VirtualBox to set up my virtual machine. The download for VirtualBox can be found [here](https://www.virtualbox.org/wiki/Downloads). The operating system I used was Linux Mint, a flavor of Ubuntu 18.04. 
 
+I clicked Create Machine and used this settings:
+
+![](img/1_0.PNG?raw=true)
+
+Here was my virtual machine after installation of Linux Mint. 
+
 ![](img/1_1.PNG?raw=true)
 
 After installation, I updated the repositories on my Linux machine so that all the current software was up to date. This was done with the commands:
@@ -190,7 +196,7 @@ I clicked the first graph to get a set of points from the last five minutes. The
 
 Using the @ notation in the comments box and tagging myself gave me this email shortly afterwards.
 
-![](img/3_4.PNG?raw=true)
+![](img/3_3.PNG?raw=true)
 
 ### Bonus
 The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. For instance, if the database was growing in size by a constant rate, and that rate dropped off or fell unexpectedly, the anomaly monitor would alert.
