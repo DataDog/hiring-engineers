@@ -185,7 +185,9 @@ Next, I used pip to install ddtrace and blinker as per instructions from [this r
 pip install ddtrace
 pip install blinker
 ```
+
+A service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
  
 ## Final Question
 
-I use the app Robinhood for buying and selling stocks. Using datadog to notify me when big spikes or dips in stock prices occur can help me gain an advantage on others. The anomaly function would probably be key here. 
+In many competitive online games, patches can shift the metagame allowing what was weak a chance to become strong. Using DataDog to access the APIs of many of these games, I can generate data on shifts in power so that I can stay ahead of the curve. 
