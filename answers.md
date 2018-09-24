@@ -6,6 +6,7 @@ Solutions Engineer Applicant
 3. [Visualizing Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#visualizing-data)
 4. [Monitoring Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#monitoring-data)
 5. [Collecting APM Data](Collecting APM Data)
+6. [Final Question](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#final-question)
 
 ## Prerequisites - Setting up the environment
 
@@ -675,9 +676,9 @@ Response:
 
 Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. Looked at `go` directory in Finder and opened Trace Agent by double-clicking icon. Tracer started.
 
-<img src="img/4/tracer_3.png"/>
+<img src="img/4/apm_3.png"/>
 
-<img src="img/4/tracer_4.png"/>
+<img src="img/4/apm_4.png"/>
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -688,7 +689,7 @@ Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. L
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-<img src="img/4/tracer_5.png"/>
+<img src="img/4/apm_5.png"/>
 
 Please include your fully instrumented app in your submission, as well.
 
