@@ -229,7 +229,7 @@ No process was shown.
 
 ![](img/5_4.PNG?raw=true)
 
-At this moment, I tried researching other solutions to fix possible errors and could not work towards a resolution. 
+At this moment, I tried researching other solutions to fix possible errors but could not work towards a resolution. 
 
 To close this section out, a service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
  
