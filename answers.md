@@ -180,16 +180,56 @@ Here was an email for the weekend downtime.
 
 ## Collecting APM Data
 
-As per the documentation, the first step was enabling trace collection for the DataDog agent. This was done by accessing the datadog.yaml file from the adding tags section with the addition of two lines at the bottom like this.
+As per the documentation, the first step was enabling trace collection for the DataDog agent. This was done by accessing the same datadog.yaml file from the adding tags section with the addition of two lines at the bottom like this:
 
-Next, I used pip to install ddtrace and blinker as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). 
+![](img/5_1.PNG?raw=true)
+
+Next, I used pip to install ddtrace with this command:
 
 ```
 pip install ddtrace
+```
+
+Running the Flask app code copied from the technical exercise with this command
+
+```
+ddtrace-run python apm_collector.py
+```
+
+gave this result. 
+
+![](img/5_2.PNG?raw=true)
+
+As such, I was not able to view traces from the website. 
+
+My next effort was to manually insert the Middleware as per instructions from [this resource](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). I needed the blinker library which was installed with, you guessed it:
+
+```
 pip install blinker
 ```
 
-A service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
+I made an updated script called apm_collector.py, which has been added to this respository, and ran it with these commands:
+
+```
+export FLASK_APP = apm_collector.py
+flask run
+```
+
+The output I recieved. 
+
+![](img/5_3.PNG?raw=true)
+
+Unfortunately, this created more questions than answers as I was given a long list of errors. I saw that I got a socket error saying the address was already in use which I troubleshooted with the following command to see if another process was listening on the port that I chose. 
+
+```
+lsof -i :5050
+```
+
+![](img/5_4.PNG?raw=true)
+
+No result was produced from that command so I am unsure of how to move past this issue and continue forward. 
+
+To close things out, a service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
  
 ## Final Question
 
