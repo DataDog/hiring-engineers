@@ -208,7 +208,7 @@ These were my options for setting up a monitor to notify if my_metric has exceed
 
 ![](img/4_1.PNG?raw=true)
 
-I used these lines to fill out the "Say what's happening" section. Note the @email at the bottom tells DataDog to send me an email when any of these alerts happen. 
+I used these lines to fill out the "Say what's happening" section. I wanted the message to be different depending on the type of alert and intuitive enough to tell me the host and ip on the problem. Note the @email at the bottom tells DataDog to send me an email when any of these alerts happen. 
 
 ```
 {{#is_warning}}
@@ -230,7 +230,7 @@ Here was an email alerting me that my_metric has exceeded the warning threshold.
 
 ![](img/4_2.PNG?raw=true)
 
-Downtime was set up by navigating the sidebar like this: Monitors -> Manage Downtime. 
+Downtime was set up by navigating the sidebar to Monitors and then Manage Downtime. 
 These were my options for setting up a monitor to mute alerts from 7 PM to 9 AM. I added a message at the bottom reminding me of the downtime schedule. 
 
 ![](img/4_3.PNG?raw=true)
@@ -253,9 +253,10 @@ As per the documentation, the first step was enabling trace collection for the D
 
 ![](img/5_1.PNG?raw=true)
 
-Next, I used pip to install ddtrace with this command:
+Next, I used pip to install flask and then ddtrace with these commands:
 
 ```
+pip install flask
 pip install ddtrace
 ```
 
@@ -288,17 +289,26 @@ Here was the output I recieved.
 
 ![](img/5_3.PNG?raw=true)
 
-Unfortunately, this created more questions than answers as I was given a long list of errors. I saw that I got a socket error saying the address was already in use which I troubleshooted with the following command to see if another process was listening on the port that I chose. 
+Unfortunately, this created more questions than answers as I was given a long list of errors. I saw that I got a socket error number 98 saying the address was already in use which I troubleshooted with the following command to see if another process was listening on the port that I chose. 
 
 ```
 lsof -i :5050
 ```
 
-No process was shown. I experimented with the ports and host addresses but I got the same error still.  
+No process was shown. I experimented with more ports and other host addresses but I got the same error still.  
 
 ![](img/5_4.PNG?raw=true)
 
-At this moment, I tried researching other solutions to fix possible errors but could not work towards a resolution. 
+I tried killing any processes that was using Python with these commands where PID is the process ID from the grep:
+
+```
+ps -fA | grep python
+sudo kill -9 pid
+```
+
+However, this did nothing as I was not shown anything from the grep. At this moment, I ran out of options as I could not get past this error so that the following screen could display something other than "Once you’ve completed this step, return to this page. Your traces should be available shortly."
+
+![](img/5_5.PNG?raw=true)
 
 To close this section out, a service consists of a collection of methods that together form a feature. An example of a service is a database for a web application. A resource is a data access mechanism for a service. These serve as a form of input and can be defined by a URL or a handler function. 
  
