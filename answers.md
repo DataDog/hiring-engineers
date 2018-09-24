@@ -1,6 +1,12 @@
 ## Tiffany Monroe
 Solutions Engineer Applicant
 
+1. [Prerequisites](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#prerequisites---setting-up-the-environment)
+2. [Collecting Metrics](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#collecting-metrics)
+3. [Visualizing Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#visualizing-data)
+4. [Monitoring Data](https://github.com/tiffanymonroe/hiring-engineers/blob/Tiffany_Monroe_Solutions_Engineer_Revised/answers.md#monitoring-data)
+5. [Collecting APM Data](Collecting APM Data)
+
 ## Prerequisites - Setting up the environment
 
 Used MacBook Pro OS High Sierra 10.13.4
@@ -534,6 +540,8 @@ Read "[Tracing Ruby Applications](https://docs.datadoghq.com/tracing/setup/ruby/
 
 Read APM [introduction](https://app.datadoghq.com/apm/intro) on GUI, chose "Ruby," followed instructions.
 
+<img src="img/4/apm_1.png" />
+
 Installed the Ruby client.
 
 <b>Part 1: Install ddtrace</b>
@@ -550,13 +558,14 @@ Datadog.configure do |c|
 end
 ```
 
-Started Rails Server.
+<img src="img/4/apm_2.png" />
 
-`rails s`
+Started Rails server, checked Agent status.
 
-Checked Agent status.
-
-`datadog-agent status`
+```
+rails s
+datadog-agent status
+```
 
 Response:
 
@@ -573,6 +582,8 @@ datadog-agent status
 
 Response:
 Logs Agent no longer says not running. APM error remains the same.
+
+<img src="img/4/loading_errors.png"/>
 
 Checked for [errors](https://docs.datadoghq.com/logs/faq/log-collection-troubleshooting-guide/#check-for-errors-in-the-logs) in the logs.
 
@@ -642,9 +653,10 @@ sudo: ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.ya
 Response:
 >sudo: ./trace-agent-darwin-amd64-6.5.0: command not found
 
-Checked various directories to locate Trace Agent. Found in `/Users/tiffanymonroe/go/src/github.com/DataDog/datadog-trace-agent`!
+Checked various directories to locate Trace Agent. Found in `/Users/tiffanymonroe/go/src/github.com/DataDog/datadog-trace-agent`.
 
-```make install
+```
+make install
 ```
 
 Response:
@@ -663,4 +675,29 @@ Response:
 
 Noticed the `go` directory in Finder, after exiting out of Agent and Terminal. Looked at `go` directory in Finder and opened Trace Agent by double-clicking icon. Tracer started.
 
-<img src="img/4/tracer_started.png"/>
+<img src="img/4/tracer_3.png"/>
+
+<img src="img/4/tracer_4.png"/>
+
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+    The difference is that a service is "a set of processes" that do the same thing, but a resource is "a particular action for a service."
+
+    [Source](https://docs.datadoghq.com/tracing/visualization/)
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+<img src="img/4/tracer_5.png"/>
+
+Please include your fully instrumented app in your submission, as well.
+
+[Disneyland Decoded API](https://github.com/tiffanymonroe/disneyland_decoded_backend)
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+I think that colleges and universities could use Datadog for monitoring the campus parking situation, peak library usage, or even which classes need more sections offered.
