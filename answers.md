@@ -232,7 +232,101 @@ The Anomaly graph is showing the performance of the mysql database.
 
 
 
+### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+  - For this portion, I chose the middlewhere
+
+  - did a pip install for necessary dependencies when running the script
+```
+pip install flask
+pip install ddtrace
+```
+  - below is the configured code for the flask application
+
+```
+from flask import Flask
+import logging
+import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
 
 
 
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='8126')
+
+```
+
+  - when I checked my apm settings, it looks like it loaded incorrectly
+
+
+![](apm_error.png)
+
+
+  - I also configured my datadog.yaml file as seen below:
+
+```
+
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if none is applied here
+  env: none
+#   The port that the Receiver should listen on
+  receiver_port: 8126
+#   Whether the Trace Agent should listen for non local traffic
+#   Only enable if Traces are being sent to this Agent from another host/container
+  apm_non_local_traffic: false
+#   Extra global sample rate to apply on all the traces
+#   This sample rate is combined to the sample rate from the sampler logic, still promoting interesting traces
+#   From 1 (no extra rate) to 0 (don't sample at all)
+  extra_sample_rate: 1.0
+#   Maximum number of traces per second to sample.
+#   The limit is applied over an average over a few minutes ; much bigger spikes are possible.
+#   Set to 0 to disable the limit.
+  max_traces_per_second: 10
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+#   ignore_resources: []
+
+
+
+
+
+```
+
+### Bonus Question: What is the difference between a Service and a Resource?
+
+  - A service is a script that runs a specific part of an application depending on what the service is and where is is located. It acts more of a dependency for the application. It is needed for the application to run depeding on how the business is ran.
+  - A resource acts more an add-on for the application.
+
+
+### Is there anything creative you would use Datadog for?
+  - Since datadog is an anyltics based application, it can be used to track SLA's within a company.
