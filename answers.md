@@ -1,10 +1,10 @@
 Your answers to the questions go here.
 
-#You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+### You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-#You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-#You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-#Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+### You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
+### You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+### Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 
 
@@ -33,7 +33,7 @@ Your answers to the questions go here.
 	-Starting datadog through the VM
 ![](datadog_ubuntu.png)
 
-#Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 	-tags added in the datadog.yaml file
 ![](tags_yaml.png)
@@ -43,13 +43,13 @@ Your answers to the questions go here.
 ![](tags.png)
 
 
-#Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 	-I decided to instal MySQL server on my local osx machine and run the service
 
 ![](sql_integration.png)
 
 
-#Create custom agent
+### Create custom agent
 
 	-Ran the mysql service and ran the following commands to create user
 
@@ -67,7 +67,7 @@ Your answers to the questions go here.
 ![](schema.png)
 
 
-#Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 	-Metric collection in mysql.d/conf.yaml in local osx machine
 
@@ -96,14 +96,14 @@ Your answers to the questions go here.
 
 ![](my_metrics2.png)
 
-#Change your check's collection interval so that it only submits the metric once every 45 seconds.
-#Bonus Question Can you change the collection interval without modifying the Python check file you created?
+### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 	-In the yaml file put the following statments:
 ![](collection.png)
 
 
-#https://api.datadoghq.com/api/v1/dash?api_key=b4371073b027d86e3174258d84d52b8a&application_key=8a76ab889a96ef312cb024a9147b2e15500eb58d
+### https://api.datadoghq.com/api/v1/dash?api_key=b4371073b027d86e3174258d84d52b8a&application_key=8a76ab889a96ef312cb024a9147b2e15500eb58d
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -211,7 +211,7 @@ The Anomaly graph is showing the performance of the mysql database.
 
 
 
-Below is the email I received when the threshold has been reached
+# Below is the email I received when the threshold has been reached
 
 
 
@@ -219,12 +219,12 @@ Below is the email I received when the threshold has been reached
 
 
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-Collecting APM Data:
+### One that silences it from 7pm to 9am daily on M-F,
+### And one that silences it all day on Sat-Sun.
+### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+### Collecting APM Data:
 
 
 
