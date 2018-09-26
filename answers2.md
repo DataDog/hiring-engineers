@@ -262,7 +262,7 @@ The first Downtime silences the monitor from 7pm to 9am daily on M-F. Here are t
 
 Here's the email notification that I received after saving the Downtime:
 
-![alt text](images2/4-downtime-notification-0.PNG "Downtime notification email")
+![alt text](images2/4-downtime-notification-0.png "Downtime notification email")
 
 The second Downtime silences the monitor all day on Sat-Sun, recurring weekly. Here are the inputs that I made:
 
@@ -312,7 +312,7 @@ Success:
 
 Next I needed to enable my vagrant environment to receive http requests issued in the web browser on my locahost. I stopped my vagrant environment, then I enabled networking in my Vagrantfile by exposing the VM's port 5050 on the host port 8081:
 
-![alt text](images2/5-vagrantfile-1.PNG "Exposing the VM's port")
+![alt text](images2/5-vagrantfile-1.png "Exposing the VM's port")
 
 Then I opened up my browser and hit the various endpoints (resources) several times in order to generate some tracing results.
 
