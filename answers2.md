@@ -2,7 +2,7 @@ Submitted by: David Oslander
 
 ## Introduction
 
-My previous submission did not reflect my best work. I don't like to walk away from a challenge or from an opportunity to redeem myself. Ultimately you are my customers, and in my work I strive to ensure customer satisfaction. So I have re-submitted this exercise in order to demonstrate significant improvement in the areas of thoroughness/detail of steps, commentary, and creativity (I created memes!).
+My previous submission did not reflect my best work. I don't like to walk away from a challenge or from an opportunity to redeem myself. In the recruiting process, you are my customers, and in my work I strive to ensure customer satisfaction. So I have re-submitted this exercise in order to demonstrate significant improvement in the areas of thoroughness/detail of steps, commentary, and creativity (I created memes!).
 
 ## Section 1: Prerequisites - Setup the environment
 I started from scratch for this submission.
@@ -368,7 +368,7 @@ https://app.datadoghq.com/dash/904267/davids-timeboard-showing-both-apm-and-infr
 
 My favorite meme on the internet features the father and son from the American reality TV show, American Choppers. Those hard-headed guys fought regularly on the show, and the meme features five panels of them arguing back and forth. And a chair is thrown!
 
-For the first meme, I imagined them as opposing forces in the Dev vs. Ops battles of the past. Thanks to the rise of DevOps culture, practices, and tooling such as the world-class monitoring solution, Datadog, we can reduce the friction between these teams and enable them to become highly effective.
+For the first meme, I imagined them as opposing forces in the midst of operational struggles. Thanks to the rise of DevOps culture, practices, and tooling such as the world-class monitoring solution, Datadog, we can reduce the friction between these teams and enable them to become highly effective.
 
 First meme:
 
@@ -376,7 +376,7 @@ First meme:
 
 Of course, Datadog was founded shortly thereafter, in 2010.
 
-For the second meme, I designed it to finish with one of the major value propositions of Datadog.
+For the second meme, it's a Dev vs. Ops battle that I designed to finish with one of the major value propositions of Datadog.
 
 Second meme:
 
