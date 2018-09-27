@@ -6,7 +6,7 @@ After struggling with mystery network connectivity issues when using Vagrant, I 
 So, I've signed up for Datadog and spun up an Amazon Linux virtual machine in EC2. I'm ready to collect some metrics. 
 
 ## Collecting Metrics:
-After installing datadog via the one-step shell script with curl command, I started to edit hte config files in order to add tags for my host.
+After installing datadog via the one-step shell script with curl command, I started to edit the config files in order to add tags for my host.
 
 ![Agentconfigfile](https://s3.amazonaws.com/datadoganswers/tags_datadog.yaml.png)
 
