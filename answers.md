@@ -13,7 +13,7 @@ Setting this up involves the following steps:
 3. Follow the initialization instructions for a Ubuntu 16.04 virtual machine at https://app.vagrantup.com/bento/boxes/ubuntu-16.04
 4. SSH into the virtual machine and follow the instructions for installing the agent on Ubuntu provided on the Datadog "Get started" page. 
     * To get there, simply sign up for the Datadog service online, and click the "Get started" tab at the top of the UI. Select your appropriate platform.
-    * Set up is very straightforward for a Ubuntu machine. Just copy the command provided on the page that alredy includes your API key, and run it on your SSH'd virtual machine. 
+    * Set up is very straightforward for a Ubuntu machine. Just copy the command provided on the page that already includes your API key, and run it on your SSH'd virtual machine. 
 ![setup snapshot](imgs/setupSnapshot.png)
 
 5. Your Datadog agent is now installed on your vagrant host.
