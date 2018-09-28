@@ -1,4 +1,3 @@
-This is [Girish Nair](https://www.linkedin.com/in/girish-nair-cissp-9b4847/). Please find my answers below...
 
 
 ## The Solutions
@@ -8,6 +7,6 @@ This is [Girish Nair](https://www.linkedin.com/in/girish-nair-cissp-9b4847/). Pl
 
 View of my Macbook Pro with tags.
 
-<img src="./images/host_map.jpeg" width="500" height="332" alt="Host Map">
+<img src="./images/host_map.jpeg" width="700" height="500" alt="Host Map">
 
 
