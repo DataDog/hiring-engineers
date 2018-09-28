@@ -6,67 +6,140 @@ Please provide screenshots and code snippets for all steps.
 
 ### Environment Setup
 #### Step 1- Download and install Vagrant
+In the browser, navigate to Vagrant's main page and download the latest version corresponding to the current operating system.  
+For this coding challenge, the OS that it'll be running on will be Windows 10.  
+[link to Vagrant download](https://www.vagrantup.com/downloads.html)  
+
 ![Download Vagrant Image](./data-dog-solutions-eng-screenshots/01-environment-setup/01-dl-vagrant.JPG)
 
-#### Step 2- Download and install Vitural Box
+#### Step 2- Download and install Virtual Box
+In order to successfully complete the challenge, we'll need to download virtual box to setup the linux environment datadog will be collecting metrics from.  
+Navigate to Virtual Box's website and download the latest version.  
+For this coding challenge, we will again be downloading the Windows 10 version.  
+[link to Virtual Box download](https://www.virtualbox.org/wiki/Downloads)  
+
 ![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/02-dl-virtual-box.JPG)
 
 #### Step 3- Make a directory to house Vagrantfile
+In order to setup our Virtual Box server easily, we'll need to create a Vagrantfile.  
+This directory will house our Vagrantfile.  
+Run the following command in the terminal to create the directory `mkdir datadog-challenge-box`.  
 ![mkdir Image](./data-dog-solutions-eng-screenshots/01-environment-setup/03-mkdir-datadog-challenge-box.JPG)
 
 #### Step 4- Download Vagrant Box Base File
+In order to have an ubuntu image to work with, we'll need to download the vagrant box base image.  
+Run the following command in the terminal to download the base file `vagrant box add ubuntu/xenial64`.  
+This will install the base file of ubuntu 16.04.   
 ![Add Vagrant Box File Image](./data-dog-solutions-eng-screenshots/01-environment-setup/04-vagrant-box-add.JPG)
 
 #### Step 5- Add Vagrantfile snippet as directed for box
+Navigate into the directory we've created previously by running the command `cd datadog-challenge-box`.  
+Inside of the directory, create the Vagrantfile by running the command `touch Vagrantfile`.  
+Then paste the following snippet inside the Vagrantfile.  
+```
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/xenial64"
+end
+```
 ![Add Vagrantfile Snippet Image](./data-dog-solutions-eng-screenshots/01-environment-setup/05-adding-snippet-to-vagrantfile.JPG)
 
 #### Step 6- Run `vagrant up`
+To make sure we've installed the correct box, run the following command `vagrant box list`.  
+This will provide a list of vagrant box images that are installed onto the machine.  
+As we can see from the screenshot, our ubuntu box image has been successfully added to Vagrant.  
+Run the command `vagrant up` to bring up the server.  
 ![vagrant up Image](./data-dog-solutions-eng-screenshots/01-environment-setup/06-vagrant-up.JPG)
 
 #### Step 7- SSH into vagrant box that is setup
+To ensure that our box is up and running, we'll now ssh into the server that's been setup.  
+Run the command `vagrant ssh` to ssh into our box.  
 ![vagrant ssh Image](./data-dog-solutions-eng-screenshots/01-environment-setup/07-vagrant-ssh.JPG)
 
 #### Step 8- Look at Virtual Box GUI to show vagrant box being setup
+To further verify that our server has been brought up correctly, we can bring up the Virtual Box GUI and visually see that our server is up and running.  
 ![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/08-virtual-box-gui.JPG)
 
 #### Step 9- Sign up for Datadog
+In the final step of setting up our environment, we'll be signing up for a datadog account.  
+[link to sign up for a datadog account](https://www.datadoghq.com/)
 ![Download Virtual Box Image](./data-dog-solutions-eng-screenshots/01-environment-setup/09-datadog-signup.JPG)
 
 ## Collecting Metrics:
 
 ### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+In order to start collecting our first metrics, we'll need to setup datadog on our brand new ubuntu server.  
+While ssh'ed into our ubuntu server, run `sudo su` to gain root privileges.  
+Then run the convenient easy one step install command provided on the Agent setup page.  
+Once the terminal shows the message `Your Agent is running and functioning properly.`, our datadog agent is successfully installed, and we my proceed with the following steps.  
+
 #### Step 1 - Add tags in agent config file
+Navigate to `/etc/datadog-agent` on the server.  
+Create the `datadog.yaml` file in the the directory by running `touch datadog.yaml`  
+We'll be using vim to edit the yaml file created.  
+Type `vim datadog.yaml` in the console.  
+Then provide the tags that you'd like to have.  
+Our tags are shown in the screenshot below.  
+Please note that multi-line tags do NOT work.  
 ![Add Tags in Agent File Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/03-add-tags-to-datadog-yaml.JPG)
 
 #### Step 2 - Inspect tags in hostmap view
 **Tags showed after restarting services and rebooting**  
+Navigate back to the datadog web portal.  
+As we can see in the hostmap and infrastructure list, our tags are cleanly listed.   
 ![Hostmap Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/04-inspect-tags-in-host-map.JPG)  
 ![Infrastructure List Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/05-inspect-tags-in-infrastructure-list.JPG)
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 #### Step 1 - Install PostgreSQL
+We'll be installing a PostgreSQL database on our server.  
+Run the following command `apt-get install postgresql`.  
 ![PostgreSQL Install Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/06-install-postgresql.JPG)  
+
+Once the message shows that PostgreSQL is successfully installed, we in make sure that the install and process is successful by running the command `service postgresql status`.  
 ![PostgreSQL Status Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/07-service-postgresql-status.JPG)  
 
 #### Step 2 - Grant Table Permissions to user datadog
+We now need to allow datadog to use the database we installed.  
+Under the PostgreSQL integrations on the datadog website, convenient instructions are provided.  
+Run ` sudo -i -u postgres` to sudo under the postgres role.  
+Then, run `psql` to get into our database console.  
+Following further instructions, create our datadog user.  
 ![PostgreSQL Grant Table Permissions Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/08-permission-granting-on-tables.JPG)  
 
 #### Step 3 - Confirm Database is setup correctly
+Paste in the following command to ensure that our database has installed correctly.  
+```
+psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && \
+echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+```
 ![PostgreSQL Installation Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/09-postgres-check-command.JPG)  
-![PostgreSQL Installation Check Results Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/10-result-of-postgres-check.JPG)  
+
+As long as we see columns and not `Cannot connect to Postgres`, we are good to go.  
+![PostgreSQL Installation Check Results Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/10-result-of-postgres-check.JPG)
+
+Checking on the status of our PostgreSQL database, services should be green.  
 ![Datadog Agent Service PostgreSQL Status Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/12-restart-and-check-agent.JPG)  
 ![Datadog Agent PostgreSQL Status Check Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/13-datadog-agent-status.JPG)  
 
 #### Step 4 - Install integration on datadog site
+Following the instructions provided under the integration, create the `postgres.yaml` file under `conf.d`.  
 ![PostgreSQL Integration Install on Datadog Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/14-install-integration-on-datadog-site.JPG)  
+After the integration is successfully installed, we should see postgresql in our hostmap.  
 ![Verify PostgreSQL Integration on Hostmap Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/15-verifying-postgres-on-host-map.JPG)  
 
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 #### Step 1 - Create `my_metric.py` file under `etc/checks.d`
+Under `checks.d`, run the command `touch my_metric.py` to create a python file.  
+This python file will generate random metrics to post onto datadog.  
 ![Create my_metric.py file Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/16-create-my-metric-py.JPG)  
+
+The code that was written is showing the the image below.  
 ![Create my_metric.py content Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/17-my-metric-py-content.JPG)  
 
 #### Step 2 - Create `my_metric.yaml` under `etc/conf.d`
+Next, we'll be configuring the intervals in which our python file is run.  
+Under conf.d, run the following command, `touch my_metric.yaml`.  
 ![Create my_metric.yaml file Image](./data-dog-solutions-eng-screenshots/02-Collecting-Metrics/18-create-my-metric-yaml.JPG)  
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -93,8 +166,12 @@ I assume that this would mean that setting the time in the python file would be 
 
 ### Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Installed python, pip, and pip datadog on to the virtual box.  
-Ran the following script  
+We'll install python, pip, and pip datadog on to the virtual box.  
+`apt install python`  
+`apt install python-pip`  
+`pip install datadog`  
+
+After installing the previous packages, we'll run the following script to visualize our data.  
 ```
 from datadog import initialize, api
 
