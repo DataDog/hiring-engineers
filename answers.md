@@ -17,7 +17,7 @@ Here is a view of my Macbook Pro with tags.
 
 I added a custom metric "girish.random" to display a random number between 0 and 1000.
 
- The customer metric files are [random_num.py](./opt/datadog-agent/etc/checks.d/random_num.py) and [random_num.yaml](./opt/datadog-agent/etc/conf.d/random_num.yaml). The `min_collection_interval` has been set to `45`.
+ The customer metric files are [random_num.py](./opt/datadog-agent/etc/checks.d/random_num.py) and [random_num.yaml](./opt/datadog-agent/etc/conf.d/random_num.yaml). The `min_collection_interval` has been set to `45 seconds`.
 
 Here is a view of my custom metric dashboard. 
 
