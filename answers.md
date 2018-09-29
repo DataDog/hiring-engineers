@@ -9,7 +9,7 @@ I use the following [Datadog config](./opt/datadog-agent/etc/datadog.yaml) file 
 
 Here is a view of my Macbook Pro with tags.
 
-<img src="./images/host_map.jpeg" width="700" height="500" alt="Host Map">
+![Host Map](./images/host_map.jpeg)
 
 
 
@@ -17,11 +17,10 @@ Here is a view of my Macbook Pro with tags.
 
 I added a custom metric "girish.random" to display a random number between 0 and 1000.
 
- The customer metric files are [random_num.py](./opt/datadog-agent/etc/conf.d/random_num.py) and [random_num.yaml](./opt/datadog-agent/etc/checks.d/random_num.yaml).
+ The customer metric files are [random_num.py](./opt/datadog-agent/etc/checks.d/random_num.py) and [random_num.yaml](./opt/datadog-agent/etc/conf.d/random_num.yaml). The `min_collection_interval` has been set to `45`.
 
 Here is a view of my custom metric dashboard. 
 
-<img src="./images/custom_metric.jpeg" width="700" height="250" alt="Custom Metric">
 
 ![Custom Metric](./images/custom_metric.jpeg)
 
