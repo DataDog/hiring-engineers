@@ -544,12 +544,12 @@ container_collect_all: true
 
 # Process agent specific settings
 #
-# process_config:
+process_config:
 #   A string indicating the enabled state of the Process Agent.
 #   If "false" (the default) it will only collect containers.
 #   If "true" it will collect containers and processes.
 #   If "disabled" it will be disabled altogether and won't start.
-#   enabled: "true"
+  enabled: "true"
 #   The full path to the file where process-agent logs will be written.
 #   log_file:
 #   The interval, in seconds, at which we will run each check. If you want consistent
@@ -577,9 +577,9 @@ container_collect_all: true
 
 # Trace Agent Specific Settings
 #
-# apm_config:
+apm_config:
 #   Whether or not the APM Agent should run
-#   enabled: true
+  enabled: true
 #   The environment tag that Traces should be tagged with
 #   Will inherit from "env" tag if none is applied here
 #   env: none
