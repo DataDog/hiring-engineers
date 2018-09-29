@@ -1,9 +1,9 @@
 
 
-## The Solutions
+## Collecting Metrics
 
 
-### Solution 1 
+### Exercise 1 
 
 I use the following [Datadog config](./opt/datadog-agent/etc/datadog.yaml) file for my Macbook Pro agent.
 
@@ -12,8 +12,15 @@ Here is a view of my Macbook Pro with tags.
 ![Host Map](./images/host_map.jpeg)
 
 
+### Exercise 2
 
-### Solution 2
+The Datadog MongoDB agent is setup to monitor on the local workstation.
+
+![MongoDB Metrics](./images/mongo_metrics.jpeg)
+
+
+
+### Exercise 3
 
 I added a custom metric "girish.random" to display a random number between 0 and 1000.
 
@@ -23,6 +30,7 @@ Here is a view of my custom metric dashboard.
 
 
 ![Custom Metric](./images/custom_metric.jpeg)
+
 
 
 

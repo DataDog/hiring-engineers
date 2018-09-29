@@ -1,3 +1,5 @@
+__version__ = "1.0.0"
+
 from checks import AgentCheck
 from random import randint
 
