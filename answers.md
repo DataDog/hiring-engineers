@@ -57,14 +57,20 @@ It sends custom messages as defined below.
 ![Monitor Message](./images/monitor_message.jpeg)
 
 
+Here is a sample email message that I receive.
+
+![Monitor Email](./images/monitor_email_notification.jpeg)
+
+
 I added two downtimes:
 
- - prevent notification after hours daily from 7 pm to 9 am
+ - prevent notification after hours - daily from 7 pm to 9 am
 ![Scheduled Downtime 1](./images/monitor_downtime_1.jpeg)
 
- - and another for weekend. 
+ - another for weekend 
 ![Scheduled Downtime 1](./images/monitor_downtime_2.jpeg)
 
+** NOTE: I didn't get a chance to test that these downtimes work correctly **
 
 
 ## APM
