@@ -50,11 +50,20 @@ Here is a view of my custom metric dashboard.
 
 I created a custom monitor that triggers alert/warning messages based on the following threshold.
 
-![Monitor Threshold](.images/monitor_threshold.jpeg)
+![Monitor Threshold](./images/monitor_threshold.jpeg)
 
 It sends custom messages as defined below.
 
-![Monitor Message](.images/monitor_message.jpeg)
+![Monitor Message](./images/monitor_message.jpeg)
+
+
+I added two downtimes:
+
+ - prevent notification after hours daily from 7 pm to 9 am
+![Scheduled Downtime 1](./images/monitor_downtime_1.jpeg)
+
+ - and another for weekend. 
+![Scheduled Downtime 1](./images/monitor_downtime_2.jpeg)
 
 
 
