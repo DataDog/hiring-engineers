@@ -19,7 +19,7 @@ The integration with AWS was a breeze. Here is a view of one of my EC2 instances
 
 ### Exercise 2
 
-The Datadog MongoDB agent is setup to monitor on the local workstation.
+The Datadog MongoDB agent is setup to monitor on my local workstation.
 
 ![MongoDB Metrics](./images/mongo_metrics.jpeg)
 
@@ -38,11 +38,23 @@ Here is a view of my custom metric dashboard.
 
 ### Exercise 4
 
-I was intrigued by the Process view and wanted to see it in action. For some reason, I could not get it to work on my Macbook. I finally tried it on Ubuntu and got it working with the following [process config](./opt/datadog-agent/etc/conf.d/process.yaml). In the process, I found out that Mac agent is hard to troubleshoot as the log output is not very good. 
+I was intrigued by the Process view and wanted to see it in action. I could not get it to work on my Macbook. I therefore tried it on Ubuntu and found out that I was missing a valid instance configuration. I finally got it working with the following [process config](./opt/datadog-agent/etc/conf.d/process.yaml). I came to the realization that  Mac agent is hard to troubleshoot as the log output is not very good. 
 
 Here is a view of my custom metric dashboard. 
 
 ![Processes View](./images/processes_view.jpeg)
+
+
+
+## Monitoring Data
+
+I created a custom monitor that triggers alert/warning messages based on the following threshold.
+
+![Monitor Threshold](.images/monitor_threshold.jpeg)
+
+It sends custom messages as defined below.
+
+![Monitor Message](.images/monitor_message.jpeg)
 
 
 
