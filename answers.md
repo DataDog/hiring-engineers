@@ -28,9 +28,16 @@ I added a custom metric "girish.random" to display a random number between 0 and
 
 Here is a view of my custom metric dashboard. 
 
-
 ![Custom Metric](./images/custom_metric.jpeg)
 
+
+### Exercise 4
+
+I was intrigued by the Process view and wanted to see it in action. For some reason, I could not get it to work on my Macbook. I finally tried it on Ubuntu and got it working with the following [process config](./opt/datadog-agent/etc/checks.d/process.yaml). In the process, I found out that Mac agent is hard to troubleshoot as the log output is not very good. 
+
+Here is a view of my custom metric dashboard. 
+
+![Processes View](./images/processes_view.jpeg)
 
 
 

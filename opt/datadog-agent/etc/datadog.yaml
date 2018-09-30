@@ -204,15 +204,18 @@ tags:
 # DogStatsd
 #
 # If you don't want to enable the DogStatsd server, set this option to false
-# use_dogstatsd: true
+use_dogstatsd: true
+
 #
 # Make sure your client is sending to the same UDP port
-# dogstatsd_port: 8125
+dogstatsd_port: 8125
+
 #
 # The host to bind to receive external metrics (used only by the dogstatsd
 # server for now). For dogstatsd this is ignored if
 # 'dogstatsd_non_local_traffic' is set to true
-# bind_host: localhost
+bind_host: localhost
+
 #
 # Dogstatsd can also listen for metrics on a Unix Socket (*nix only).
 # Set to a valid filesystem path to enable.
@@ -549,7 +552,7 @@ process_config:
 #   If "false" (the default) it will only collect containers.
 #   If "true" it will collect containers and processes.
 #   If "disabled" it will be disabled altogether and won't start.
-    enabled: true
+    enabled: "true"
 
 #   The full path to the file where process-agent logs will be written.
 #   log_file:
@@ -584,9 +587,9 @@ apm_config:
 
 #   The environment tag that Traces should be tagged with
 #   Will inherit from "env" tag if none is applied here
-    env: none
+#   env: none
 #   The port that the Receiver should listen on
-    receiver_port: 8126
+#   receiver_port: 8126
 #   Whether the Trace Agent should listen for non local traffic
 #   Only enable if Traces are being sent to this Agent from another host/container
     apm_non_local_traffic: true
