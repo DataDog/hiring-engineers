@@ -5,11 +5,16 @@
 
 ### Exercise 1 
 
-I use the following [Datadog config](./opt/datadog-agent/etc/datadog.yaml) file for my Macbook Pro agent.
+I use the following [Datadog config](./opt/datadog-agent/etc/datadog.yaml) file for my Macbook Pro agent. **I also experimented with Ubuntu Linux and Windows agents.** 
 
 Here is a view of my Macbook Pro with tags.
 
 ![Host Map](./images/host_map.jpeg)
+
+
+The integration with AWS was a breeze. Here is a view of one of my EC2 instances.
+
+![AWS EC2 Instance](./images/aws_ec2_metrics.jpeg)
 
 
 ### Exercise 2
@@ -33,7 +38,7 @@ Here is a view of my custom metric dashboard.
 
 ### Exercise 4
 
-I was intrigued by the Process view and wanted to see it in action. For some reason, I could not get it to work on my Macbook. I finally tried it on Ubuntu and got it working with the following [process config](./opt/datadog-agent/etc/checks.d/process.yaml). In the process, I found out that Mac agent is hard to troubleshoot as the log output is not very good. 
+I was intrigued by the Process view and wanted to see it in action. For some reason, I could not get it to work on my Macbook. I finally tried it on Ubuntu and got it working with the following [process config](./opt/datadog-agent/etc/conf.d/process.yaml). In the process, I found out that Mac agent is hard to troubleshoot as the log output is not very good. 
 
 Here is a view of my custom metric dashboard. 
 
