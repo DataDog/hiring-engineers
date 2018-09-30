@@ -45,6 +45,7 @@ Here is a view of my custom metric dashboard.
 ![Processes View](./images/processes_view.jpeg)
 
 
+---
 
 ## Monitoring Data
 
@@ -56,8 +57,9 @@ It sends custom messages as defined below.
 
 ![Monitor Message](./images/monitor_message.jpeg)
 
+** TODO: The variable `{{host.name}}` or `{{host.ip}}` doesn't work. ***
 
-Here is a sample email message that I receive.
+Here is a sample email message that I received.
 
 ![Monitor Email](./images/monitor_email_notification.jpeg)
 
@@ -72,6 +74,8 @@ I added two downtimes:
 
 ** NOTE: I didn't get a chance to test that these downtimes work correctly **
 
+
+---
 
 ## APM
 
