@@ -47,6 +47,22 @@ Here is a view of my custom metric dashboard.
 
 ---
 
+## Visualizing Data
+
+
+### Exercise 5
+
+The Datadog API is simple and elegant. I was quickly able to create a ![python script](./scripts/create_timeboard.py) to create a custom metric Timeboard as shown below.
+
+![Custom Metric Timeboard](./images/custom_metric_timeboard.jpeg)
+
+
+### TODO 2
+
+
+
+---
+
 ## Monitoring Data
 
 I created a custom monitor that triggers alert/warning messages based on the following threshold.
@@ -57,7 +73,7 @@ It sends custom messages as defined below.
 
 ![Monitor Message](./images/monitor_message.jpeg)
 
-** TODO: The variable `{{host.name}}` or `{{host.ip}}` doesn't work. ***
+**TODO: The variables `{{host.name}}` or `{{host.ip}}` doesn't work.**
 
 Here is a sample email message that I received.
 
@@ -72,7 +88,7 @@ I added two downtimes:
  - another for weekend 
 ![Scheduled Downtime 1](./images/monitor_downtime_2.jpeg)
 
-** NOTE: I didn't get a chance to test that these downtimes work correctly **
+**NOTE: I didn't get a chance to test that these downtimes work correctly.**
 
 
 ---
@@ -86,3 +102,5 @@ I ran the Spring Petclinic application with the following command:
 ```
 java -javaagent:datadog/dd-java-agent-0.16.0.jar -jar ./target/spring-petclinic-1.5.1.jar
 ```
+
+### TODO
