@@ -52,12 +52,16 @@ Here is a view of my custom metric dashboard.
 
 ### Exercise 5
 
-The Datadog API is simple and elegant. I was quickly able to create a ![python script](./scripts/create_timeboard.py) to create a custom metric Timeboard as shown below.
+The Datadog API is simple and elegant. I was able to quickly create a ![python script](./scripts/create_timeboard.py) to create a custom metric Timeboard as shown below.
 
 ![Custom Metric Timeboard](./images/custom_metric_timeboard.jpeg)
 
 
 ### TODO 2
+
+
+
+**BONUS: The anomaly graphs displays the expected range of data so that it is easy to identify outliers**
 
 
 
@@ -95,12 +99,43 @@ I added two downtimes:
 
 ## APM
 
+**Problem: The trace agent (port 8126) wouldn't start on Mac, so I had to use Ubuntu Linux**
+
+
+### Python Agent
+
+I used the provided sample ![Flask app](./app/flask_app.py) to instrument with Python Agent. The steps to setup the agent:
+
+```
+pip install Flask
+pip install ddtrace
+ddtrace-run python flask_app.py
+```
+
 ### Java Agent
 
-I ran the Spring Petclinic application with the following command:
+I instrumented a Tomcat container with Datadog Java agent. The steps to setup the agent:
 
 ```
-java -javaagent:datadog/dd-java-agent-0.16.0.jar -jar ./target/spring-petclinic-1.5.1.jar
+export JAVA_OPTS="java -javaagent:datadog/dd-java-agent-0.16.0.jar" 
 ```
 
-### TODO
+The resulting APM data were as follows:
+
+#####APM Services
+![APM Services](./images/apm_services.jpeg)
+
+#####APM Traces
+![APM Traces](./images/apm_traces.jpeg)
+
+
+**Bonus: The Services are various layers of the applications that provide a funciton. The Resources are assets like files, images, endpoints, etc.**
+
+
+---
+
+## Final Question/Answer
+
+I read the blogs on using Datadog to monitor NYC Subway System and Pokemon Go. A practical use that I can think of is to monitor home water usage to identify excessive water bill due to leaky faucets, toilets, sprinkler system, etc.
+
+
