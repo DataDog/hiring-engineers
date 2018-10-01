@@ -52,13 +52,19 @@ Here is a view of my custom metric dashboard.
 
 ### Exercise 5
 
-The Datadog API is simple and elegant. I was able to quickly create a ![python script](./scripts/create_timeboard.py) to create a custom metric Timeboard as shown below.
+The Datadog API is simple and elegant. I was able to quickly create a ![python script](./scripts/create_timeboard.py) to display a Timeboard that shows the following:
+
+1. The custom metric that is based on random numbers.
+
+2. The anomaly function applied over the custom metric. (NOTE: I did not intentionally use a Database metric, as it is powerful to see these graphs side-by-side with the same metric.)
+
+3. The rollup function applied to sum the custom metric for the past hour. 
+
 
 ![Custom Metric Timeboard](./images/custom_metric_timeboard.jpeg)
 
 
 ### Exercise 6
-TODO: Any metric from the Integration on your Database with the anomaly function applied.
 
 
 ### Exercise 7

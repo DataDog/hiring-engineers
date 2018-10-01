@@ -33,7 +33,7 @@ graphs = [{
         "requests": [
             {"q": "avg:girish.random{*}.rollup(sum, 3600)"}
         ],
-        "viz": "timeseries"
+        "viz": "query_value"
     },
     "title": "Girish's rollup"
 }]
