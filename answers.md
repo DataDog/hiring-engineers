@@ -64,14 +64,6 @@ The Datadog API is simple and elegant. I was able to quickly create a ![python s
 ![Custom Metric Timeboard](./images/custom_metric_timeboard.jpeg)
 
 
-### Exercise 6
-
-
-### Exercise 7
-TODO: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket 
-
-
-
 **BONUS: The anomaly graphs displays the expected range of data so that it is easy to identify outliers**
 
 
@@ -88,7 +80,7 @@ It sends custom messages as defined below.
 
 ![Monitor Message](./images/monitor_message.jpeg)
 
-**TODO: The variables `{{host.name}}` or `{{host.ip}}` doesn't work.**
+**TODO: The variables `{{host.name}}` or `{{host.ip}}` do not work.**
 
 Here is a sample email message that I received.
 
