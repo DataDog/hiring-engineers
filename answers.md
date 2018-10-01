@@ -19,7 +19,7 @@ The integration with AWS was a breeze. Here is a view of one of my EC2 instances
 
 ### Exercise 2
 
-The Datadog MongoDB agent is setup to monitor on my local workstation.
+The Datadog MongoDB agent is setup to monitor MongoDB running on my Macbook.
 
 ![MongoDB Metrics](./images/mongo_metrics.jpeg)
 
@@ -57,7 +57,12 @@ The Datadog API is simple and elegant. I was able to quickly create a ![python s
 ![Custom Metric Timeboard](./images/custom_metric_timeboard.jpeg)
 
 
-### TODO 2
+### Exercise 6
+TODO: Any metric from the Integration on your Database with the anomaly function applied.
+
+
+### Exercise 7
+TODO: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket 
 
 
 
@@ -117,25 +122,25 @@ ddtrace-run python flask_app.py
 I instrumented a Tomcat container with Datadog Java agent. The steps to setup the agent:
 
 ```
-export JAVA_OPTS="java -javaagent:datadog/dd-java-agent-0.16.0.jar" 
+export JAVA_OPTS="-javaagent:datadog/dd-java-agent-0.16.0.jar" 
 ```
 
 The resulting APM data were as follows:
 
-#####APM Services
+####APM Services
 ![APM Services](./images/apm_services.jpeg)
 
-#####APM Traces
+####APM Traces
 ![APM Traces](./images/apm_traces.jpeg)
 
 
-**Bonus: The Services are various layers of the applications that provide a funciton. The Resources are assets like files, images, endpoints, etc.**
+**Bonus: The Services are various layers of the applications that provide a function. The Resources are assets like files, images, endpoints, etc.**
 
 
 ---
 
 ## Final Question/Answer
 
-I read the blogs on using Datadog to monitor NYC Subway System and Pokemon Go. A practical use that I can think of is to monitor home water usage to identify excessive water bill due to leaky faucets, toilets, sprinkler system, etc.
+I read the blogs on using Datadog to monitor NYC Subway System and Pokemon Go. Another practical use could be to monitor home water usage to identify excessive water usage due to leaky faucets, toilets, sprinkler system, etc. If you have ever experienced one, you could end up with a hefty bill.
 
 

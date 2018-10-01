@@ -16,6 +16,26 @@ graphs = [{
         "viz": "timeseries"
     },
     "title": "Girish's random number"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:girish.random{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Girish's anomaly"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:girish.random{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Girish's rollup"
 }]
 
 template_variables = [{
