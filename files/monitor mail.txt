@@ -1,0 +1,16 @@
+{{#is_alert}}
+Light up the Bat signal!
+my_metric of **{{host.ip}}** has reached **{{value}}** . Threshold value is **{{threshold}}**
+You can run for your life or login to **{{host.name}}** and do your magic.
+{{/is_alert}}
+
+{{#is_warning}}
+Its just a warning, no need to wake up. Just read the text and go back to sleep.
+my_metric of **{{host.ip}}** has reached **{{value}}** . Threshold value is **{{warn_threshold}}**
+{{/is_warning}}
+
+{{#is_no_data}}
+Where is The Food!
+{{/is_no_data}}
+
+@tosrif@gmail.com
