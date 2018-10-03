@@ -1,3 +1,3 @@
 Your answers to the questions go here.
-#test2
-#Test
+#Collecting Metrics: 
+![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot.png)
