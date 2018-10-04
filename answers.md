@@ -30,6 +30,43 @@ For the tags to take effect, agent is restarted:
 ![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot.png)
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+Follow instructions here to install MongoDB on Ubuntu: (https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04)
+
+Configure mongodb for datadog: 
+
+Follow instructions here to create a read-only user for the Datadog Agent in the admin database.
+(https://docs.datadoghq.com/integrations/mongo/)
+
+`sudo vi conf.d/mongo.d/conf.yaml`
+
+```
+init_config:
+
+instances:
+  # Specify the MongoDB URI, with database to use for reporting (defaults to "admin")
+  - server: mongodb://datadog:password@localhost:27017/admin
+    additional_metrics:
+      - collection
+      - metrics.commands
+      - tcmalloc
+      - top
+```
+
+Enable logs: 
+
+```
+logs:
+
+  - type: file
+    path: /var/log/mongodb/mongod.log
+    service: mongo
+    source: mongodb
+```
+
+Run the mongo check to verify that the check works properly: 
+`sudo -u dd-agent -- datadog-agent check mongo`
+
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 `my_metric.py`
@@ -45,8 +82,15 @@ class my_metric(AgentCheck):
         self.gauge('my_metric', myrand)
 ```
 
-
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+Contents of `my_metric.yaml`
+```
+init_config:
+
+instances:
+    - min_collection_interval: 45
+```
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 
@@ -95,6 +139,9 @@ graphs = [{
 ]
 ```
 
+- Timeboard showing past 4 hours: 
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_past4hours.png)
+
 - Set the Timeboard's timeframe to the past 5 minutes
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_createappkey.png)
 
@@ -134,3 +181,50 @@ And one that silences it all day on Sat-Sun:
 
 
 # Collecting APM Data
+
+First install ddtrace.
+
+`pip3 install ddtrace`
+
+Create flask_app.py
+```
+```
+
+Enable APM monitoring in datadog.yml
+```
+# Trace Agent Specific Settings
+#
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+```
+
+Run the application using ddtrace-run
+
+`ddtrace-run python3 flask_app.py`
+
+Then make some calls to the app's endpoints: 
+
+`wget 127.0.0.1:5050/api/trace`
+`wget 127.0.0.1:5050/api/apm`
+`wget 127.0.0.1:5050/`
+
+The trace is listed here for my flask app in the APM tab:
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/apm_list.png)
+
+Here is the dashboard automatically created showing APM information for my flask app: 
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/apm_flask_dashboard.png)
+
+- Bonus Question: What is the difference between a Service and a Resource?
+
+- Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+[Public Link to Dashboard](https://p.datadoghq.com/sb/63f58bd46-e7e11a63ecc57b7d1dc1e0679f020707)
+
+There can be multiple services such as a database, webapp, or api service. The collection of services together work to run a website with a backend database, for example. A resource is an individual action for a service such as the /api/trace endpoint. A resource could also be the query statement for a database service.
+
+# Final Question
+- Is there anything creative you would use Datadog for?
+
+I would use Datadog to collect metrics from my smart watch (or from cloud service) about my exercising statistics such as heart rate, calories burned, miles ran, etc. It would be interesting to capture trends over time. It would also allow me to create graphs to quickly spot areas where I am not exercising enough or too much.
+
+
