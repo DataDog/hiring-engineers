@@ -21,7 +21,7 @@ Before we delve into using DataDog we're going to need to set up a fresh virtual
 5. Follower the installer
 6. Open up your terminal
 7. run `vagrant -v` 
-![vagrant version](media/vagrantVersion.png)
+![Oh WOW! it's such a shame that you're looking at the alt text field for this image. This image was really something special. Too bad you can't see it. I mean really just eat your heart out. What an image. What. an. image.](media/vagrantVersion.png)
 8. We can now create a new Vagrant environment for Ubuntu 16.04. Run the follower: `vagrant init ubuntu/xenial64`
 9. Let's try starting our vagrant environment: `vagrant up`
 
