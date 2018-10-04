@@ -1,4 +1,4 @@
-This is Michael Hawley's submission for a Sales Engineer/Solutions engineer role. I decided for the sake of originality to make a sudo (hah get it?) tutorial, to help outline the steps I took for this challenge and present it in a way that a potential end user could follow easily.
+This is Michael Hawley's submission for a Sales Engineer role. I decided for the sake of originality to make a sudo (hah get it?) tutorial, to help outline the steps I took for this challenge and present it in a way that a potential end user could follow easily.
 
 ## Environment
 
@@ -14,7 +14,7 @@ Start the machine with `vagrant up --provision`, and access the CLI with `vagran
 
 ## Visualizing Data
 
-Within `/etc/datadog-agent/datadog.yaml`, under tags, you can specify what the machine is going to be tagged under for quick access on the Datadog platform. Likewise, multiple machines, like kubernetes clusters for example, can be grouped together under the same tags if they are running similar processes or working for the same service.
+Within `/etc/datadog-agent/datadog.yaml`, under tags, you can specify what the machine is going to be tagged under for quick access on the Datadog platform. Likewise, multiple machines, like kubernetes clusters, can be grouped together under the same tags if they are running similar processes or working for the same service.
 
 ```
 tags:
