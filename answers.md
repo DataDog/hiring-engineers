@@ -26,34 +26,37 @@ Edit conf.d/mysql.yaml
             - optional_tag2
            options:
             replication: 0
-            galera_cluster: 1 ```
+            galera_cluster: 1 
+```
 Then restart the Agent.
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 This was especially interesting and fun.  To accomplish this there needs to be a configuration file and the check script.  Naming matters and so I named my script customcheck.py and therefore the configuration file was named customcheck.yaml .  Here is the contents of customcheck.py:
 
-  import random
-  from checks import AgentCheck
-  class HelloCheck(AgentCheck):
+```import random
+   from checks import AgentCheck
+   class HelloCheck(AgentCheck):
       def check(self, instance):
           x= random.randint(1,1000)
           self.gauge('Hello.CustomMetric', x)
-
+```
 In customcheck.py we import the random library for python.  This will be the source for our custom metric.  We import the AgentCheck 
 object from checks and use it to create our metric.  We pick a random number between 1 and 1000 and print it.
 
 For the configuration file, customcheck.yaml:
-  instances:
+```
+instances:
     - {}
-
+```
 This worked and produced a random number between 1 and 1000.
 
 *  Change your check's collection interval so that it only submits the metric once every 45 seconds.
 To change the collection interval, all that was needed was modifying customcheck.yaml with the following:
+  ```
   instances:
     - {}
     - min_collection_interval: 45
-
+```
 **Visualizing Data:**
 
 
