@@ -9,3 +9,18 @@ Follow the [Vagrant Getting Started](https://www.vagrantup.com/intro/getting-sta
 To install the necessary packages, copy [bootstrap.sh](./bootstrap.sh).
 
 In your Vagrantfile, add the line: `config.vm.provision :shell, path: "bootstrap.sh"` to provision the machine with the packages you'll need for this exercise.
+
+Start the machine with `vagrant up --provision`, and access the CLI with `vagrant ssh`.
+
+## Visualizing Data
+
+Within `/etc/datadog-agent/datadog.yaml`, under tags, you can specify what the machine is going to be tagged under for quick access on the Datadog platform. Likewise, multiple machines, like kubernetes clusters for example, can be grouped together under the same tags if they are running similar processes or working for the same service.
+
+```
+tags:
+    - dd-tag:se-tag
+    - env:sandbox
+    - role:database
+```
+
+Start the Datadog agent with `sudo datadog-agent service start` and view the [tagged machine](./tags.png), in the hostmap.
