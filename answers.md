@@ -4,7 +4,8 @@ Thank you for giving me the opportunity to be considered for the sales engineer 
 **Collecting Metrics**.
 *   Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 This could be accomplished through the web ui by going to the infrastructure list section and clicking on inspect next to your host.
-(https://ibb.co/fzbcYe)
+
+<a href="https://ibb.co/fzbcYe"><img src="https://preview.ibb.co/g82HYe/addingtag.png" alt="addingtag" border="0"></a><br />
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I installed MySQL and followed the following steps to integrate with Datadog.
