@@ -1,10 +1,12 @@
 # Prerequisites - Setup the environment
 
 - Install vagrant and Virtualbox on Mac 
--Start Vagrant with Ubuntu v. 16.04
-`vagrant init ubuntu/xenial64`
-`vagrant up`
-`vagrant ssh`
+- Start Vagrant with Ubuntu v. 16.04
+```
+vagrant init ubuntu/xenial64
+vagrant up
+vagrant ssh
+```
 
 - Sign up for a Datadog account
 - Install the Datadog agent using the provided command with unique api key:
