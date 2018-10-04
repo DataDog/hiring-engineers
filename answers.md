@@ -16,18 +16,17 @@ Create a datadog user with replication rights in your MySQL server
 After creating the datadog user and providing the appropriate privileges, I had to configure the agent to connect to MySql.
 
 Edit conf.d/mysql.yaml
-  init_config:
-
-  instances:
-    - server: localhost
-      user: datadog
-      pass: q7COu>Y98kQwAdzSUJVnre5l
-      tags:
-          - optional_tag1
-          - optional_tag2
-      options:
-          replication: 0
-          galera_cluster: 1
+```        init_config:
+          instances:
+          - server: localhost
+          user: datadog
+          pass: 1234566
+          tags:
+            - optional_tag1
+            - optional_tag2
+           options:
+            replication: 0
+            galera_cluster: 1 ```
 Then restart the Agent.
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
