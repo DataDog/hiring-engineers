@@ -1,6 +1,18 @@
-Your answers to the questions go here.
-## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+# Prerequisites - Setup the environment
+
+- Install vagrant and Virtualbox on Mac 
+-Start Vagrant with Ubuntu v. 16.04
+`vagrant init ubuntu/xenial64`
+`vagrant up`
+`vagrant ssh`
+
+- Sign up for a Datadog account
+- Install the Datadog agent using the provided command with unique api key:
+
+`DD_API_KEY=<MYAPIKEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
+
 # Collecting Metrics
+- Add tags in the Agent config file and show a screenshot of your host and its tags on the Host Map page in Datadog.
 
 `vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo vi datadog.yaml`
 Set the host tags to the following: 
@@ -12,14 +24,13 @@ tags:
    - aliciatest
    - role:server
 ```
-![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot.png)
-
 For the tags to take effect, agent is restarted: 
 `sudo service datadog-agent restart`
 
+![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot.png)
 
-## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+- Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 `my_metric.py`
 ```
@@ -35,8 +46,8 @@ class my_metric(AgentCheck):
 ```
 
 
-## Change your check's collection interval so that it only submits the metric once every 45 seconds.
-## Bonus Question Can you change the collection interval without modifying the Python check file you created?
+- Change your check's collection interval so that it only submits the metric once every 45 seconds.
+- Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 
 # Visualizing Data
@@ -84,18 +95,22 @@ graphs = [{
 ]
 ```
 
-Set the Timeboard's timeframe to the past 5 minutes
+- Set the Timeboard's timeframe to the past 5 minutes
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_createappkey.png)
 
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+- Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-Bonus Question: What is the Anomaly graph displaying?
+I highlighted the area of the graph with the anomaly and then sent a notification to myself: 
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_create_snapshot.png)
+I received an email from Datadog with the snapshot annotation that I had created for the anomaly graph: 
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/snapshot_email.png)
+
+- Bonus Question: What is the Anomaly graph displaying?
 The anomaly graph shows a distinction between normal and abnormal trends in a series of data points. In this graph we can see that historically there has not been much acitvity in MongoDB requests, however there is an abnormal spike at 1.46 requests per second around the 15:25:36 timestamp.
-
 
 # Monitoring
 
-## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes.
+- Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes.
 
 Email showing monitor alert triggered when value breached 500: 
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_alert_email.png)
@@ -107,7 +122,7 @@ Email showing monitor alert triggered when value had No Data:
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_nodata_email.png)
 
 
-## Bonus Question - Setup scheduled downtimes
+- Bonus Question - Setup scheduled downtimes
 
 Silence from 7pm to 9am daily on M-F:
 
