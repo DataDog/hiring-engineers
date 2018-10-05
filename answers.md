@@ -60,7 +60,73 @@ To change the collection interval, all that was needed was modifying customcheck
 ```
 **Visualizing Data:**
 
+* Your custom metric scoped over your host.
+I used the following script to generate:
 
+```
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
+from datadog import initialize, api
+
+options = {
+    'api_key': 'fa3e7d1079ac399b03a05d799705a732',
+    'app_key': 'b3e0248e1f8009e94f72005d5f9f6cbe4cce2e6b'
+}
+
+initialize(**options)
+
+title = "My Timeboard from API"
+description = "Generated through script using Datadog API."
+graphs = [
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"
+   },
+{
+    "definition": {
+        "viz": "querie_value",
+        "status": "done",
+        "events": [],
+        "requests": [
+            {"q": "avg:Hello.CustomMetric{*}"},
+
+        ],
+        "conditional_formats":[],
+        "aggregator": "last"
+    },
+    "title": "My custom Metric - updated every 45 seconds"
+
+
+},
+
+
+
+
+
+
+]
+
+template_variables = [{
+    "name": "KA",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+This resulted in the following basic timeboard:
+<a href="https://ibb.co/dkSsKK"><img src="https://preview.ibb.co/kDziRz/timeboard.png" alt="timeboard" border="0"></a>
 
 
 
