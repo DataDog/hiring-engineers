@@ -122,5 +122,13 @@ api.Timeboard.create(title=title,
 This resulted in the following basic timeboard:
 <a href="https://ibb.co/dkSsKK"><img src="https://preview.ibb.co/kDziRz/timeboard.png" alt="timeboard" border="0"></a>
 
+**Monitoring Data**
+I created a new Monitor with the following settings:
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+<a href="https://ibb.co/jo35pK"><img src="https://preview.ibb.co/dXhbwz/Data_Dog_Alert_Custom_Metric.png" alt="Data_Dog_Alert_Custom_Metric" border="0"></a>
 
+Now I created overnight Downtime for EST timezone.
+<a href="https://ibb.co/jJTfpK"><img src="https://preview.ibb.co/m6U9ie/overnight_Downtime.png" alt="overnight_Downtime" border="0"></a>
 
