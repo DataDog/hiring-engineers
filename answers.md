@@ -297,3 +297,23 @@ A particular query to a service. For a web application, some examples might be a
 <p>
 More information on these <a href="https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-">here.</a>
 
+<br />
+<h1>Final Question:</h1>
+<p>
+Is there anything creative you would use Datadog for?
+
+<br><b>Solution:</b></br>
+<p>
+The immediate problem that comes to my mind is something similar to "Restroom Hacks". But instead of checking restroom availability, I would monitor how crowded our office kitchen is at any given time.
+<br />
+<br />
+Oftentimes when I go for lunch in the kitchen, I find it so crowded that there is queue everywhere - for using the fridge, the ovens or even the sink, and on top of that all the chairs are occupied. This becomes even more annoying when we are a group of two or three people wanting to have our lunches together. 
+<br />
+<br />
+So, I would take inspiration from your blog post on "Restroom Hacks" and try to implement a similar solution to check the frequency of fridge usage per minute (by averaging door open/close counter over a minute), then monitoring the frequency of oven usage and counting the empty seats at the dining area (like the way empty parking spots are calculated in hospitals/shopping malls). However, since chairs can be moved around, it may be a bit difficult to figure out how many chairs are empty at any given time. In that case, I will probably figure out a way to calculate the foot-traffic in the kitchen area and come up with a probability score for empty seats. I have heard that shopping malls like Westfield calculates foot-traffic within their premises and uses that data for decision making such as what type of shops to be placed in low/high foot-traffic area or what the rent adjustment would be for low foot-traffic area etc.
+
+<h1>Note:</h1>
+<p>
+I was not able answer the bonus question in collecting metrics section - "Can you change the collection interval without modifying the Python check file you created?"
+
+
