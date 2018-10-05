@@ -1,6 +1,6 @@
-### Monitoring Data
+# Monitoring Data
 
-Define thresholds on metrics to monitor and send corresponding alert through email.
+### Define thresholds on metrics to monitor and send corresponding alert through email.
 
 1. Navigate the Datadog interface: Monitors > New Monitor
 2. Select Metric in the side menu.
@@ -44,11 +44,11 @@ Define thresholds on metrics to monitor and send corresponding alert through ema
     
     **Note:** Different messages are sent based on whether the monitor is in an Alert, Warning, or No Data state.
     
-Sample Notification:
+    Sample Notification:
 
-![Alt text](../images/3_alert_sample.png?raw=true "Sample Notification")
+    ![Alt text](../images/3_alert_sample.png?raw=true "Sample Notification")
 
-**Note:** Metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state are indicated.
+    **Note:** Metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state are indicated.
 
 ### Set up two scheduled downtimes
 
