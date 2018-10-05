@@ -4,7 +4,7 @@ Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on Virtu
 
 1. Download and install VirtualBox [here](https://www.virtualbox.org/).
 2. Download and install Vagrant [here](https://www.vagrantup.com/docs/installation/).
-3. Set config.vm.box in Vagrantfile as follows:
+3. Set config.vm.box in the Vagrantfile as follows:
     ```
     Vagrant.configure("2") do |config|
       config.vm.box = "bento/ubuntu-16.04"
@@ -15,14 +15,20 @@ Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on Virtu
     ```
     $ vagrant up
     ```
+    You can check your Ubuntu 16.04 installation using:
+    ```
+    $ lsb_release -a
+    ```
 
-5. SSH into the your fresh VM using the following command:
+5. SSH into the your fresh VM using:
     ```
     $ vagrant ssh
     ```
 
-6. Install the Datadog agent by running the one-step command:
+6. Install the Datadog agent by running:
     ```
     $ DD_API_KEY=2726c4e30cc681d3f0dc01b8bc1a931d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
     ```
     More details [here](https://app.datadoghq.com/account/settings#agent/ubuntu).
+
+If you have finished until 6, then you've finished installing your first Datadog Agent. Congratulations!
