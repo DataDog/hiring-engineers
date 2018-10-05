@@ -1,6 +1,6 @@
 # Visualizing Data
 
-Create a timeboard that displays the metrics collected. Expected result:
+Create a timeboard that displays the metrics collected.
 
 ### Custom metric scoped on host:vagrant
 
@@ -33,6 +33,8 @@ Create a timeboard that displays the metrics collected. Expected result:
     }
     ```
     JSON config [here](../scripts/average_check.json).
+
+    Output:
     
     ![Alt text](../images/2_metric_avg.png?raw=true "Custom metric scoped on host:vagrant")
 
@@ -61,6 +63,8 @@ Create a timeboard that displays the metrics collected. Expected result:
     }
     ```
     JSON config [here](../scripts/anomaly_db.json).
+
+    Output:
     
     ![Alt text](../images/2_anomaly.png?raw=true "Anomaly detection on postgresql.percent_usage_connections")
 
@@ -91,6 +95,8 @@ Sums up all the points for the past hour into one bucket.
     }
     ```
     JSON config [here](../scripts/rolledup_check.json).
+
+    Output:
     
     ![Alt text](../images/2_rolledup.png?raw=true "Using Rollup function on the custom metric")
 
