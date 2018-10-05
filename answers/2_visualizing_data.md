@@ -103,10 +103,14 @@ Sums up all the points for the past hour into one bucket.
 ### Setting the Timeboard's timeframe to the past 5 minutes
 To set the timeframe to the last 5 minutes, drag on the map directly and select the last 5 minutes.
 
+Output:
+
 ![Alt text](../images/2_five_minutes.png?raw=true "Set the Timeboard's timeframe to the past 5 minutes")
 
 ### Taking a snapshot of a graph and using the @ notation to notify someone
 To send a snapshot, click on the camera button on top of the graph. Use the @ notation to indicate the recipient of the notification.
+
+Interface:
 
 ![Alt text](../images/2_at_notation.png?raw=true "Taking a snapshot of a graph and using the @ notation to notify someone")
 
