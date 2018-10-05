@@ -9,11 +9,12 @@ This could be accomplished through the web ui by going to the infrastructure lis
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I installed MySQL and followed the following steps to integrate with Datadog.
-Create a datadog user with replication rights in your MySQL server
+```Create a datadog user with replication rights in your MySQL server
   sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'q7COu>Y98kQwAdzSUJVnre5l';"
   sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
   sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
   sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+  ```
 After creating the datadog user and providing the appropriate privileges, I had to configure the agent to connect to MySql.
 
 Edit conf.d/mysql.yaml
