@@ -45,7 +45,7 @@ Install and configure Application Performance Monitoring (APM) on the VM and a F
     if __name__ == '__main__':
         app.run(host='0.0.0.0', port='5050')
     ```
-    Link to app [here]().
+    Link to app [here](../scripts/app.py).
     
 3. Modify run permission:
     ```
