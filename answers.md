@@ -17,6 +17,7 @@ vagrant ssh
 - Add tags in the Agent config file and show a screenshot of your host and its tags on the Host Map page in Datadog.
 
 `vagrant@ubuntu-xenial:/etc/datadog-agent$ sudo vi datadog.yaml`
+
 Set the host tags to the following: 
 
 ```
@@ -40,6 +41,8 @@ Configure mongodb for datadog:
 Follow instructions here to create a read-only user for the Datadog Agent in the admin database.
 (https://docs.datadoghq.com/integrations/mongo/)
 
+Edit the configuration yaml file for MongoDB in /etc/datadog-agent/conf.d:
+
 `sudo vi conf.d/mongo.d/conf.yaml`
 
 ```
@@ -55,7 +58,7 @@ instances:
       - top
 ```
 
-Enable logs: 
+Edit conf.yaml to enable logs for MongoDB: 
 
 ```
 logs:
@@ -71,7 +74,8 @@ Run the mongo check to verify that the check works properly:
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-`my_metric.py`
+Create the custom check in /etc/datadog-agent/checks.d/
+Contents of `my_metric.py`
 ```
 import random
 from checks import AgentCheck
@@ -99,7 +103,9 @@ instances:
 # Visualizing Data
 
 1. Create an app key
+
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_createappkey.png)
+
 2. Install datadog python library
 `pip install datadog`
 
@@ -145,13 +151,16 @@ graphs = [{
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_past4hours.png)
 
 - Set the Timeboard's timeframe to the past 5 minutes
-![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_createappkey.png)
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_5mingraphs.png)
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 I highlighted the area of the graph with the anomaly and then sent a notification to myself: 
+
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/timeboard_create_snapshot.png)
+
 I received an email from Datadog with the snapshot annotation that I had created for the anomaly graph: 
+
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/snapshot_email.png)
 
 - Bonus Question: What is the Anomaly graph displaying?
@@ -162,10 +171,10 @@ The anomaly graph shows a distinction between normal and abnormal trends in a se
 - Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes.
 
 Email showing monitor alert triggered when value breached 500: 
-![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_alert_email.png)
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_warning_email.png)
 
 Email showing monitor alert triggered when value breached 800: 
-![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_warning_email.png)
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_alert_email.png)
 
 Email showing monitor alert triggered when value had No Data: 
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_nodata_email.png)
