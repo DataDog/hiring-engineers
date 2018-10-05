@@ -1,0 +1,18 @@
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "avg:my_check{host:vagrant}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true
+}
