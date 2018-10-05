@@ -36,3 +36,7 @@ Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on Virtu
     More details [here](https://app.datadoghq.com/account/settings#agent/ubuntu).
 
 If you have finished until 7, then you've finished installing your first Datadog Agent. Congratulations!
+
+[Next: Collecting Metrics](./1_collecting_metrics.md)
+
+[Back to Index](../answers.md)
