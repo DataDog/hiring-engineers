@@ -14,10 +14,10 @@ None(?)
 Before we delve into using DataDog we're going to need to set up a fresh virtual machine environment. This guide will be using Vagrant with Ubuntu `v.16.04`. If you've got a different virtual machine installed congratulations you've tripped at the first hurdle. Anyway, battling on:
 
 
-1. Download VirtualBox for *OS X hosts*: https://www.virtualbox.org/wiki/Downloads
+1. Download VirtualBox for [OS X hosts](https://www.virtualbox.org/wiki/Downloads)
 2. Install the .dmg
 3. Follower the installer
-4. Download Vagrant for *macOS*: https://www.vagrantup.com/downloads.html
+4. Download Vagrant for [macOS](https://www.vagrantup.com/downloads.html)
 5. Follower the installer
 6. Open up your terminal
 7. run `vagrant -v` 
@@ -29,7 +29,7 @@ Congratulations! You have a working virtual machine. Try ssh'ing into it with `v
 
 ###1.3 DataDog sign up
 
-1. Head over to https://app.datadoghq.com/signup
+1. Head over to [DataDog to sign up](https://app.datadoghq.com/signup)
 2. Enter *Datadog Recruiting Candidate* in the *Company* field
 3. Once you arrive at the *Agent Setup* page, click *Mac OS X*
 4. Follow the instructions on the page
@@ -51,5 +51,14 @@ A *tag* enables for finer granularity of your metrics. For instance you could gr
 6. Click on the third dropdown on the navbar, then click heatmap
 7. Your tags and host should now be visible:<br>![tags and host](media/tagsAndHost.png)
 
-###2.2 Installing a Database on your machine
+###2.2 Installing PostgreSQL on your machine
+
+1. Get started by downloading the [Postgres.app for macOS](https://postgresapp.com/) and installing it.
+
+###2.3 Installing PostgreSQL intergration on DataDog
+1. Head back over to the DataDog portal
+2. Click on the jigsaw on the navbar
+3. Enter *Postgres* in the searchbar
+4. 
+
 
