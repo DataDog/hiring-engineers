@@ -30,7 +30,7 @@ tags:
 For the tags to take effect, agent is restarted: 
 `sudo service datadog-agent restart`
 
-![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot.png)
+![Tags Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/host_tags_screenshot2.png)
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
