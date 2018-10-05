@@ -99,7 +99,7 @@
 
         - Hi @marc*****@gmail.com, This is a scheduled downtime. FYI.
 
-3. Sample Notifation:
+3. Sample Notification:
 
 ![Alt text](../images/3_downtime.png?raw=true "Sample Notification")
 
