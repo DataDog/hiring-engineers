@@ -15,23 +15,24 @@ Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on Virtu
     ```
     $ vagrant up
     ```
-    You can check your Ubuntu 16.04 installation using:
-    ```
-    $ lsb_release -a
-    ```
 
 5. SSH into the your fresh VM using:
     ```
     $ vagrant ssh
     ```
+    
+    You can check your Ubuntu 16.04 installation using:
+    ```
+    $ lsb_release -a
+    ```
 
 6. Follow the instructions for getting started with Datadog, and create a Datadog account [here](https://docs.datadoghq.com/).
 
 
-7. Install the Datadog agent by running:
+7. Install the Datadog agent for Ubuntu 16.04 by running:
     ```
     $ DD_API_KEY=2726c4e30cc681d3f0dc01b8bc1a931d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
     ```
     More details [here](https://app.datadoghq.com/account/settings#agent/ubuntu).
 
-If you have finished until 6, then you've finished installing your first Datadog Agent. Congratulations!
+If you have finished until 7, then you've finished installing your first Datadog Agent. Congratulations!

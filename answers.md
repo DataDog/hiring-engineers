@@ -6,15 +6,15 @@
 
 1. [Collecting Metrics](./answers/1_collecting_metrics.md)
     
-    Configure the collection of basic and user-defined metrics from the VM.
+    Configure the collection of basic and user-defined metrics from the Ubuntu 16.04 VM.
 
 2. [Visualizing Data](./answers/2_visualizing_data.md)
     
-    Create a timeboard that displays the metrics collected.
+    Create a timeboard that displays the collected metrics.
 
 3. [Monitoring Data](./answers/3_monitoring_data.md)
     
-    Define thresholds on metrics to monitor and send corresponding alert through email.
+    Define thresholds on metrics to monitor and send corresponding email alerts.
 
 4. [Collecting APM Data](./answers/4_collecting_apm_data.md)
     
