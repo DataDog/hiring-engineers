@@ -89,6 +89,9 @@ class my_metric(AgentCheck):
 ```
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
+- Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+I changed the collection interval for my_metric to 45 seconds by setting it in the check's yaml file.
 
 Contents of `my_metric.yaml`
 ```
@@ -97,8 +100,6 @@ init_config:
 instances:
     - min_collection_interval: 45
 ```
-- Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
 
 # Visualizing Data
 
@@ -254,15 +255,15 @@ wget 127.0.0.1:5050/
 The trace is listed here for my flask app in the APM tab:
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/apm_list.png)
 
-Here is the dashboard automatically created showing APM information for my flask app: 
+Here is the page showing APM metrics for my flask app: 
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/apm_flask_dashboard.png)
 
 - Bonus Question: What is the difference between a Service and a Resource?
 
+There can be multiple services such as a database, webapp, or api service. The collection of services together work to run a website with a backend database, for example. A resource is an individual action for a service such as the /api/trace endpoint. A resource could also be the query statement for a database service.
+
 - Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 [Public Link to Dashboard](https://p.datadoghq.com/sb/63f58bd46-e7e11a63ecc57b7d1dc1e0679f020707)
-
-There can be multiple services such as a database, webapp, or api service. The collection of services together work to run a website with a backend database, for example. A resource is an individual action for a service such as the /api/trace endpoint. A resource could also be the query statement for a database service.
 
 # Final Question
 - Is there anything creative you would use Datadog for?
