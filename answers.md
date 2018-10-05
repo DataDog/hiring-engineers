@@ -39,4 +39,17 @@ Congratulations! You have a working virtual machine. Try ssh'ing into it with `v
 That was definitely the easiest part of the set up so far
 
 ##2. Collecting Metrics 
+###2.1 Tags
+
+A *tag* enables for finer granularity of your metrics. For instance you could group the CPUs of all your hosts across different regions, and then filter by that region.
+
+1. Let's add some tags to our DataDog config file. Our DataDog confile file can be found at `/opt/datadog-agent/etc/datadog.yaml`
+2. Open that file up with your editor of choice (vim, VS Code, Sublime, nano, Microsoft Word, etc)
+3. Navigate to line 43 and add some tags<br>![datadog tags](media/dataDogTags.png)Caveat: For the `datadog.yaml` config file only an inline dictionary with list of values is valid.
+4. Restart your agent to apply the changes. (Click *Restart* on the bone in the taskbar)
+5. Navigate to [the datadog portal](https://app.datadoghq.com/)
+6. Click on the third dropdown on the navbar, then click heatmap
+7. Your tags and host should now be visible:<br>![tags and host](media/tagsAndHost.png)
+
+###2.2 Installing a Database on your machine
 
