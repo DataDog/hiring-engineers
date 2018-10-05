@@ -1,9 +1,9 @@
 # Monitoring Data
 
-### Define thresholds on metrics to monitor and send corresponding alert through email.
+### Define thresholds on metrics to monitor and send corresponding email alerts.
 
 1. Navigate the Datadog interface: Monitors > New Monitor
-2. Select Metric in the side menu.
+2. Select Metric on the side menu.
 3. Choose Threshold Alert as the detection method.
 4. Define the metric as follows:
     - Metric = **my_check**
@@ -55,13 +55,14 @@
 1. Downtime from 7pm to 9am daily on Mondays-Fridays
 
     a. Navigate to Monitors > Manage Downtime.
+
     b. Choose what to silence:
 
         - By monitor name
         - Monitor = <INSERT MONITOR NAME>
         - Group scope = host:vagrant
 
-    c. Specify Schedule:
+    c. Specify the schedule:
 
         - Recurring
         - Start Date = 2018/10/06
@@ -78,13 +79,14 @@
 2. Downtime on Saturday and Sunday
 
     a. Navigate to Monitors > Manage Downtime.
+
     b. Choose what to silence:
 
         - By monitor name
         - Monitor = <INSERT MONITOR NAME>
         - Group scope = host:vagrant
 
-    c. Specify Schedule:
+    c. Specify a schedule:
 
         - Recurring
         - Start Date = 2018/10/06
@@ -101,7 +103,7 @@
 
 3. Sample Notification:
 
-![Alt text](../images/3_downtime.png?raw=true "Sample Notification")
+    ![Alt text](../images/3_downtime.png?raw=true "Sample Notification")
 
 [Next: Collecting APM Data](./4_collecting_apm_data.md)
 
