@@ -104,12 +104,6 @@ graphs = [
 
 
 },
-
-
-
-
-
-
 ]
 
 template_variables = [{
