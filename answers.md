@@ -29,7 +29,6 @@ Start the Datadog agent with `sudo datadog-agent service start` and view the [ta
 
 Learn more about tagging [here](https://docs.datadoghq.com/tagging/)!
 
-
 ### Creating an Agent Check
 
 In the `/etc/datadog-agent` directory are two folders `checks.d` and `conf.d`.
@@ -59,3 +58,5 @@ instances:
 Next we'll see how it looks in Datadog!
 
 ### Visualizing Data
+
+With Datadog's public API we can send our custom metric, collected based on the interval, to the platform for data visualization.
