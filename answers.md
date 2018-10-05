@@ -175,7 +175,7 @@ Email showing monitor alert triggered when value breached 500:
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_warning_email.png)
 
 Email showing monitor alert triggered when value breached 800: 
-![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_alert_email.png)
+![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_alert_email2.png)
 
 Email showing monitor alert triggered when value had No Data: 
 ![Screenshot](https://github.com/agallav/hiring-engineers/blob/draft/screenshots/monitor_nodata_email.png)
