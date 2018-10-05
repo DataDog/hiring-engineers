@@ -128,9 +128,13 @@ To submit your answers:
 * Submit a pull request.
 * Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
 
-## References
+If you want to apply as an engineer at [Datadog](http://datadog.com) you are in the right spot. 
+<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
+<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
-### How to get started with Datadog
+# Why work at Datadog?
+
+We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
 
 * [Datadog overview](https://docs.datadoghq.com/)
 * [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
