@@ -57,27 +57,19 @@
     a. Navigate to Monitors > Manage Downtime.
     b. Choose what to silence:
 
-        - **By monitor name**
-
-        - Monitor = **<INSERT MONITOR NAME>**
-
-        - Group scope = **host:vagrant**
+        - By monitor name
+        - Monitor = <INSERT MONITOR NAME>
+        - Group scope = host:vagrant
 
     c. Specify Schedule:
 
-        - **Recurring**
-
-        - Start Date = **2018/10/06**
-
-        - Time Zone = **Asia/Tokyo**
-
-        - Repeat Every = **1 days**
-
-        - Beginning = **19:00**
-
-        - Duration = **14 hours**
-
-        - Repeat Until = **No end date**
+        - Recurring
+        - Start Date = 2018/10/06
+        - Time Zone = Asia/Tokyo
+        - Repeat Every = 1 days
+        - Beginning = 19:00
+        - Duration = 14 hours
+        - Repeat Until = No end date
 
     d. Add a message:
 
@@ -88,32 +80,23 @@
     a. Navigate to Monitors > Manage Downtime.
     b. Choose what to silence:
 
-        - **By monitor name**
-
-        - Monitor = **<INSERT MONITOR NAME>**
-
-        - Group scope = **host:vagrant**
+        - By monitor name
+        - Monitor = <INSERT MONITOR NAME>
+        - Group scope = host:vagrant
 
     c. Specify Schedule:
 
-        - **Recurring**
-
-        - Start Date = **2018/10/06**
-
-        - Time Zone = **Asia/Tokyo**
-
-        - Repeat Every = **1 weeks**
-
+        - Recurring
+        - Start Date = 2018/10/06
+        - Time Zone = Asia/Tokyo
+        - Repeat Every = 1 weeks
         - Repeat On = Sun, Sat
-
-        - Beginning = **00:00**
-
-        - Duration = **24 hours**
-
-        - Repeat Until = **No end date**
+        - Beginning = 00:00
+        - Duration = 24 hours
+        - Repeat Until = No end date
 
     d. Add a message:
-    
+
         - Hi @marc*****@gmail.com, This is a scheduled downtime. FYI.
 
 3. Sample Notifation:
