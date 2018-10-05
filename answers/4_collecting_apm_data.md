@@ -47,9 +47,9 @@ Install and configure Application Performance Monitoring (APM) on the VM and a F
     ```
     Link to app [here](../scripts/app.py).
     
-3. Modify run permission:
+3. Modify run permission: (If necessary.)
     ```
-    chmod +x app.py 
+    $ chmod +x app.py 
     ```
 4. Modify Vagrantfile to add config.vm.network settings
     ```
@@ -68,7 +68,7 @@ Install and configure Application Performance Monitoring (APM) on the VM and a F
     ddtrace-run python app.py
     ```
 
-7. Call the API on the browser by entering any of the three:
+7. Call the API on the browser by accessing any of the three:
     - http://localhost:8080/
     - http://localhost:8080/api/trace
     - http://localhost:8080/api/apm
@@ -77,12 +77,12 @@ Install and configure Application Performance Monitoring (APM) on the VM and a F
 
 ![Alt text](../images/4_dashboard.png?raw=true "Dashboard with both APM and Infrastructure Metrics")
 
-Dashboard [Link](https://p.datadoghq.com/sb/2e47b5f5a-afe1712cab4cc351692f099418799c25) (This won't show any data because most of the time, the whole system is down.)
+[Link to dashboard](https://p.datadoghq.com/sb/2e47b5f5a-afe1712cab4cc351692f099418799c25) (This won't show any data because the VM is turned off.)
 
 ### Service versus Resource
-A service is a set of processes that do the same job. For instance, a simple web application may consist of two services: A single webapp service and a single database service.
+A **Service** is a set of processes that do the same job. For instance, a simple web application may consist of two services: A single webapp service and a single database service.
 
-A Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home (often referred to as “routes” in MVC frameworks). For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
+A **Resource** is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home (often referred to as “routes” in MVC frameworks). For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
 
 For more information, check the guide [here](https://docs.datadoghq.com/tracing/visualization/).
 
