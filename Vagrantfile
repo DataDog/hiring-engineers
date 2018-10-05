@@ -84,10 +84,7 @@ Vagrant.configure("2") do |config|
       echo "Installing build-essential..."
       apt-get -qq install build-essential > /dev/null
       echo "Installing Python related packages..."
-      apt-get -qq install \
-        python3 \  # Should already be installed by default, but just in case.
-        python3-venv \
-        python3-pip \
+      apt-get -qq install python3 python3-venv python3-pip \
         > /dev/null
       echo "Installing MongoDB..."
       apt-get install -qq mongodb-org > /dev/null
