@@ -1,0 +1,18 @@
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "anomalies(avg:postgresql.percent_usage_connections{host:vagrant}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true,
+  "status": "done"
+}
