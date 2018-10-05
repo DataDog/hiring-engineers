@@ -132,3 +132,14 @@ And also ensure that it will notify you if there is No Data for this query over 
 Now I created overnight Downtime for EST timezone.
 <a href="https://ibb.co/jJTfpK"><img src="https://preview.ibb.co/m6U9ie/overnight_Downtime.png" alt="overnight_Downtime" border="0"></a>
 
+
+**Final Question:
+Is there anything creative you would use Datadog for?***
+I can give you two:
+
+Datadog could be very useful to a group moving to DevOps.  If a company wants to give it's users the ability to stand up test environments in 2 or more clouds, Datadog could be used to monitor all this activity by placing agents on the continous integration/continous deployment tool (CI/CD), thereby monitorinng all deployment activity.  The installation of the agent could be part of the CI/CD deployment pipeline on the test applications themselves.  This way you would have Datadog Agents reporting from the testing stack and reporting from the CI/CD tool.  This would give you cross deploymenet environment monitoring and DevOps activity monitoring.
+
+My second example would be for a broadcast facility.  Most broadcast equipment runs on common operating systems like Linux and Windows.  A company like HBO will have many servers, basically serving up HBO playlists for the different markets they serve.  HBO also maintains several levels of DR, including one on Azure.  Datadog Agents could run on all their main production playout systems and also on the DR sites, thereby giving a single point from which admins could monitor and visualize all of their video delivery infrastructure both on prem and in Azure.
+
+I hope those are good examples.  I found this exercise very interesting.  It has made me appreciate your technology even more than before.  I believe I can learn much more, the possibilities seem endless.  I would very much like to join your team.  I sincerely hope we can move forward.
+
