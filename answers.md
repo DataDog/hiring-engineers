@@ -1,4 +1,4 @@
-### Intro to Datadog
+# Introduction to Datadog
 
 0. [Setting the Environment (prerequisite)](./answers/0_setting_the_environment.md)
     Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on VirtualBox and Vagrant

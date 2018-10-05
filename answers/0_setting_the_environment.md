@@ -1,4 +1,4 @@
-### Setting the Environment (prerequisite)
+# Setting the Environment (prerequisite)
 
 Setup the Datadog Agent on an Ubuntu 16.04 virtual machine (VM) running on VirtualBox and Vagrant
 

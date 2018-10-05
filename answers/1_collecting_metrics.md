@@ -1,8 +1,8 @@
-### Collecting Metrics
+# Collecting Metrics
 
 Configure the collection of basic and user-defined metrics from the VM.
 
-###### Adding tags in the Agent config file
+### Adding tags in the Agent config file
 
 1. Enter the Vagrant VM setup in [Section 0](./0_setting_the_environment.md) using the following command:
     ```
@@ -27,4 +27,4 @@ Configure the collection of basic and user-defined metrics from the VM.
 
 4. Tags can be viewed by navigating the Datadog interface: Infrastructure > Host Map
 
-![Alt text](../images/1_tags.png?raw=true "Viewing Tags")
+    ![Alt text](../images/1_tags.png?raw=true "Viewing Tags")
