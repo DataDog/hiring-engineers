@@ -74,4 +74,6 @@ Change the check's collection interval so that it only submits the metric once e
         [{}]
     ```
 
+[Next: Visualizing Data](./2_visualizing_data.md)
 
+[Back to Index](../answers.md)

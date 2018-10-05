@@ -85,3 +85,7 @@ A service is a set of processes that do the same job. For instance, a simple web
 A Resource is a particular action for a service. For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home (often referred to as “routes” in MVC frameworks). For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
 
 For more information, check the guide [here](https://docs.datadoghq.com/tracing/visualization/).
+
+[Next: Applying Datadog (Final Question)](./5_applying_datadog.md)
+
+[Back to Index](../answers.md)

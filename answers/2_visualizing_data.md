@@ -125,3 +125,7 @@ The Anomaly graph displays the results of Datadog's Anomaly detection feature.
 Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
 
 For more information, read about Anomaly detection [here](https://docs.datadoghq.com/monitors/monitor_types/anomaly/).
+
+[Next: Monitoring Data](./3_monitoring_data.md)
+
+[Back to Index](../answers.md)

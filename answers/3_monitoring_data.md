@@ -103,3 +103,6 @@
 
 ![Alt text](../images/3_downtime.png?raw=true "Sample Notification")
 
+[Next: Collecting APM Data](./4_collecting_apm_data.md)
+
+[Back to Index](../answers.md)
