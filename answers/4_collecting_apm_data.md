@@ -77,6 +77,8 @@ Install and configure Application Performance Monitoring (APM) on the VM and a F
 
 ![Alt text](../images/4_dashboard.png?raw=true "Dashboard with both APM and Infrastructure Metrics")
 
+Dashboard [Link](https://p.datadoghq.com/sb/2e47b5f5a-afe1712cab4cc351692f099418799c25) (This won't show any data because most of the time, the whole system is down.)
+
 ### Service versus Resource
 A service is a set of processes that do the same job. For instance, a simple web application may consist of two services: A single webapp service and a single database service.
 
