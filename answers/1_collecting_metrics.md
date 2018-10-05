@@ -27,4 +27,4 @@ Configure the collection of basic and user-defined metrics from the VM.
 
 4. Tags can be viewed by navigating the Datadog interface: Infrastructure > Host Map
 
-![Alt text](./images/1_tags.png?raw=true "Viewing Tags")
+![Alt text](../images/1_tags.png?raw=true "Viewing Tags")
