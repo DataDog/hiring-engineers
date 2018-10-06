@@ -33,15 +33,83 @@ Here is a screenshot of the partial result:
 
 ![partial output](screenshots/partial-vagrant-output.png?raw=true)
 
+4. The next step I took was to sign up for Datadog and once logged in I was
+    able to use the one step install script.
 
-## Prerequisites - Setup the environment
+    `DD_API_KEY=KEY_GOES_HERE bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+5. After the script runs I double-check to make sure the agent is in fact
+    active with `systemctl status datadog-agent`.
+    
+    I get the folllowing output:
 
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+    ![datadog-agent-enabled](screenshots/datadog-systemd-service-running.png?raw=true)
 
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+Now I can move onto collecting metrics on my instance.
+
+### Collecting Metrics - Answer
+
+* Tags can be added in four ways according to the Datadog Docs on [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/).
+
+    * Inherited from an integration
+    
+    * In the configuration
+
+    * In the UI (host-level only)
+
+    * Using the API (host-level only)
+
+* Config files for Datadog can be found here: `/etc/datadog-agent/conf.d`
+
+    * The main config file for the agent is `/etc/datadog-agent/datadog.yaml`
+    and this is where I added my tags underneath the example for adding tags.
+
+    * Below are the tags I added in `datadog.yaml`:
+
+        `tags: env:test, role:database, vboxhost`
+
+* I had MongoDB installed as part of my provisioning step. Now I check to make sure `mongod` is running:
+
+    ```
+    systemctl status mongod.service
+    sudo systemctl enable mongod.service
+    sudo systemctl start mongod.service
+    systemctl status mongod.service
+    ```
+
+    Now that `mongod` is running I can follow the documentation on [installing the integration](https://docs.datadoghq.com/integrations/mongo/).
+
+    1. I was able to create the Datadog user, and running the verification command received:
+        `datadog user - OK`.
+    
+    2. I copied the default configuration given to me and used it for `conf.d/conf.yaml`, as read on the [integrations page for Mongo](https://docs.datadoghq.com/integrations/mongo/).
+
+    TODO: Add screenshots.
+
+    3. I executed the following command `sudo datadog-agent status` which I found on the agent information [page](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6#agent-information). This helped me make sure the YAML file had no errors.
+
+    4. I finally clicked Install on the integration page.
+
+    5. I then ran `sudo datadog-agent check mongo` to [check](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6) that the integration installation was
+        successful, and got the following partial output:
+
+        ```
+        =========
+        Collector
+        =========
+
+            Running Checks
+            ==============
+            
+                mongo (1.6.1)
+                -------------
+                    Instance ID: mongo:9114c3a27cadd32f [OK]
+                    Total Runs: 1
+                    Metric Samples: 336, Total: 336
+                    Events: 0, Total: 0
+                    Service Checks: 1, Total: 1
+                    Average Execution Time : 32ms
+        ```
 
 ## Collecting Metrics:
 
