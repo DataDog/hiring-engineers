@@ -1,4 +1,4 @@
-I would like to start off my saying, this is the more interesting and intuitive techinal hiring exercise I have taken. Thanks much for give the opportunity.
+I would like to start off by saying, this is the most interesting and intuitive techinal hiring exercise I have taken. Thanks much for give the opportunity.
 
 Note: All the screenshots are in the Screenshots Folder. And the scripts are in the folder Code.
 
