@@ -16,25 +16,25 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
   - Created custom tags for both the agents  
   - Observed both the agents reporting on the Host Map page on Datadog website.
     
-  - `Both the hosts on the Host Map page`
+  - __`Both the hosts on the Host Map page`__
     
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png">
     
-  - `Host with custom tags`
+  - __`Host with custom tags`__
   
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap_with_tags.png">
   
   
   - Installed Postgres database and installed the respective integration from the Integrations page in Datadog.
   
-  - `Postgres agent reporting to the datadog`
+  - __`Postgres agent reporting to the datadog`__
   
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Database%20inegration%20-postgres.png"> 
   
   - Created a custom agent check python file in the /datadog-agent/checks.d/ and its respective config file with the custom interval in the /datadog-agent/conf.d/
   - Verified that the agent config file is good by running "datadog-agent configcheck"
     
-  - `Screenshot for the config check` 
+  - __`Screenshot for the config check`__ 
     
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric%20with%20interval.png">
     
@@ -60,14 +60,14 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
     
   - Verfied that the custom metric created reports the value to the datadog collection, on the datadog Host Map page.
     
-  - Screenshot for the above from Datadog page
+  - __`Screenshot for the above from Datadog page`__
     
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric.png">
     
     
   - Bonus Question: Can you change the collection interval without modifying the Python check file you created?
       
-        - Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/
+      __`Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/`__
        
        
        
