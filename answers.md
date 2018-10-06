@@ -15,24 +15,55 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
   - Installed Datadog agent on both the VM's
   - Created custom tags for both the agents  
   - Observed both the agents reporting on the Host Map page on Datadog website.
-    <a title ="Both hosts on the HostMap"> <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png"></a>
     
-  - Screenshot 2 - Host with custom tags created in the datadog.yaml file
-    ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap_with_tags.png)  
+  - `Both the hosts on the Host Map page`
+    
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png">
+    
+  - `Host with custom tags`
+  
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap_with_tags.png">
+  
   
   - Installed Postgres database and installed the respective integration from the Integrations page in Datadog.
-  - Screenshot 3 - postgres agent reporting to the datadog
-    ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Database%20inegration%20-postgres.png)  
+  
+  - `Postgres agent reporting to the datadog`
+  
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Database%20inegration%20-postgres.png"> 
   
   - Created a custom agent check python file in the /datadog-agent/checks.d/ and its respective config file with the custom interval in the /datadog-agent/conf.d/
   - Verified that the agent config file is good by running "datadog-agent configcheck"
-    Screenshot for the above is in the file (hiring-engineers/Screenshots/Custom_metric with interval.png)
-    The python code and the configuration yaml file is in (hiring-engineers/Code/my_metric.py) and (hiring-engineers/Code/my_metric.yaml)
+    
+  - `Screenshot for the config check` 
+    
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric%20with%20interval.png">
+    
+  - The python code for the check file 
+    ```python
+    #!/usr/bin/env python
+    __version__="1.0.0.1"
+
+    from checks import AgentCheck
+    from random import randint
+    class MyMetricCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0, 1000))```
+        
+  - The configuration yaml file for the same
+    ```yaml
+    init_config:
+
+    instances:
+      - min_collection_interval: 45```
+  
   - Verfied that the custom metric created reports the value to the datadog collection, on the datadog Host Map page.
-    Screenshot for the above is in the file (hiring-engineers/Screenshots/Custom_metric.png)
+    
+  - Screenshot for the above from Datadog page
+    
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric.png>
     
     
-    Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+  - Bonus Question: Can you change the collection interval without modifying the Python check file you created?
       
         - Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/
        
