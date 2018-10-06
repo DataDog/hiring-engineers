@@ -119,7 +119,7 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   
   - __`The python script for all three timeboards`__ 
     ```python
-    #!/usr/bin/env python3.6
+    #!/usr/bin/env python
 
     from datadog import initialize, api
 
@@ -294,6 +294,8 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   The code for the app in python
   
   ```python
+  #!/usr/bin/env python
+  
   from flask import Flask
   import logging
   import sys
