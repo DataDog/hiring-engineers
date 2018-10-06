@@ -32,7 +32,8 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
     
     
     Bonus Question: Can you change the collection interval without modifying the Python check file you created?
-      - Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/
+      
+        - Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/
        
        
        
@@ -54,8 +55,9 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
       - Screenshot with the snapshot to myself (hiring-engineers/Screenshots/Snapshot_to_self.png)
 
     Bonus Question: What is the Anomaly graph displaying?
-      - The anamoly graph displays any deviation of metrics from the normal average. In my case, I used the Postgres checkpoint function as input, it perform a check between the data file and write ahead log every five minutes. So we got a graph that spikes every five minutes. And it is caught as a anomaly by the graph.
-      
+    
+        - The anamoly graph displays any deviation of metrics from the normal average. In my case, I used the Postgres checkpoint function as input, it perform a check between the data file and write ahead log every five minutes. So we got a graph that spikes every five minutes. And it is caught as a anomaly by the graph.
+
       
 
 ### Monitoring Data
@@ -76,10 +78,10 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
        - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
       
-     The above was achieved by creating the downtime schedule. Screenshots attached for the same.
-     
-       Screenshot for downtime schedule for weekends and weekdays are in (hiring-engineers/Screenshots/Monitor_downtime_datadog.png) and (hiring-engineers/Screenshots/Monitor_downtime_datadog1.png)
-       Screenshot for email notification of the schedule change and start of the schedule are in files (hiring-engineers/Screenshots/Downtime_email_notification_weekdays.png) and (hiring-engineers/Screenshots/Downtime_email_notification_weekends.png)
+        The above was achieved by creating the downtime schedule. Screenshots attached for the same.
+
+         Screenshot for downtime schedule for weekends and weekdays are in (hiring-engineers/Screenshots/Monitor_downtime_datadog.png) and (hiring-engineers/Screenshots/Monitor_downtime_datadog1.png)
+         Screenshot for email notification of the schedule change and start of the schedule are in files (hiring-engineers/Screenshots/Downtime_email_notification_weekdays.png) and (hiring-engineers/Screenshots/Downtime_email_notification_weekends.png)
        
        
        
@@ -99,4 +101,15 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
         Resource are elements required for a service to run. Like memory, cpu and or even a config file.
 
 
-  
+
+### Final Question
+
+
+   
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+    - Use it to visualize JIRA's, to see bug reports and areas of most bugs. Would be really nice to have.
+    - I would like to use the street parking data to create an information map on what is available.
+     
