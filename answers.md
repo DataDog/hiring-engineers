@@ -90,7 +90,7 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
 
     Bonus Question: What is the Anomaly graph displaying?
     
-        - The anamoly graph displays any deviation of metrics from the normal average. In my case, I used the Postgres checkpoint function as input, it perform a check between the data file and write ahead log every five minutes. So we got a graph that spikes every five minutes. And it is caught as a anomaly by the graph.
+       __`The anamoly graph displays any deviation of metrics from the normal average. In my case, I used the Postgres checkpoint function as input, it perform a check between the data file and write ahead log every five minutes. So we got a graph that spikes every five minutes. And it is caught as a anomaly by the graph.`__
 
       
 
