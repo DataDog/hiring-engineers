@@ -13,15 +13,17 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
 ### Collecting Metrics
 
   - Installed Datadog agent on both the VM's
-  - Created custom tags for both the agents 
+  - Created custom tags for both the agents  
   - Observed both the agents reporting on the Host Map page on Datadog website.
-  - Screenshot 1 - Both hosts on the HostMap (hiring-engineers/Screenshots/HostMap.png)
-  - Screenshot 2 - Host with custom tags created in the datadog.yaml file (hiring-engineers/Screenshots/HostMap_with_tags.png)
-      
+  - Screenshot 1 - Both hosts on the HostMap
+    ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png)
+    
+  - Screenshot 2 - Host with custom tags created in the datadog.yaml file
+    ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap_with_tags.png)  
   
   - Installed Postgres database and installed the respective integration from the Integrations page in Datadog.
-  - Screenshot 3 - postgres agent reporting to the datadog (hiring-engineers/Screenshots/Database inegration -postgres.png)
-      
+  - Screenshot 3 - postgres agent reporting to the datadog
+    ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Database%20inegration%20-postgres.png)  
   
   - Created a custom agent check python file in the /datadog-agent/checks.d/ and its respective config file with the custom interval in the /datadog-agent/conf.d/
   - Verified that the agent config file is good by running "datadog-agent configcheck"
@@ -113,3 +115,30 @@ Is there anything creative you would use Datadog for?
     - Use it to visualize JIRA's, to see bug reports and areas of most bugs. Would be really nice to have.
     - I would like to use the street parking data to create an information map on what is available.
      
+
+
+The final datadog config file used
+```yaml
+dd_url: https://app.datadoghq.com
+
+api_key: b95c8e083ceec42accc4af841d80187d
+
+skip_ssl_validation: false
+
+hostname: AishVM-Vagrant
+
+tags:
+  - env:Mac_Vagrant(VB)
+  - os:Ubuntu_Xenial
+  -
+
+
+procfs_path: /proc
+
+
+process_config:
+  enabled: "true"
+
+apm_config:
+  enabled: true
+```
