@@ -113,11 +113,12 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
 
   - Time board with name Aishwarya_TimeBoard with required content was created.
   
-  - Screenshot for the Timeboard from the Datadog page
+  - __`Screenshot for the Timeboard from the Datadog page`__
     
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Timeboard.png">
   
   - __`The python script for all three timeboards`__ 
+    
     ```python
     #!/usr/bin/env python
 
@@ -204,7 +205,7 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
  
  - __`Screenshot of Timeboard with 5 mins timeframe`__ 
   
-    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Timeboard_5mins.png">
+   <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Timeboard_5mins.png">
       
   
   - __`Screenshot with the Email to myself`__ 
@@ -232,7 +233,7 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
       
   - __`Screenshot of the monitor config`__
    
-   <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Metric_config.png">  
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Metric_config.png">  
       
   - __`Screenshot for monitoring warning event notification sent to Email`__ 
       
@@ -257,19 +258,19 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
 
   - __`Screenshot for downtime schedule for weekends and weekdays are`__ 
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Monitor_downtime_datadog.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Monitor_downtime_datadog.png">
   
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Monitor_downtime_datadog1.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Monitor_downtime_datadog1.png">
   
   
   
   - __`Screenshot for email notification for the change of schedule and start of the schedule are`__ 
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Downtime_email_notification_weekdays.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Downtime_email_notification_weekdays.png">
   
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Downtime_email_notification_weekends.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Downtime_email_notification_weekends.png">
        
      
      
@@ -283,12 +284,12 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   
   - __`Screenshot for curl commands`__ 
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/app_curl.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/app_curl.png">
   
   
   - __`Screenshot of APP metrics in the APM page in Datadog`__ 
 
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/app_apm_page.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/app_apm_page.png">
 
 
   The code for the app in python
@@ -330,7 +331,7 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   
   - __`Screenshot of the Dashboard with both APM and infrastructure metrics`__
   
-  <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Dashboard_with_APM.png">
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Dashboard_with_APM.png">
   
   
   
