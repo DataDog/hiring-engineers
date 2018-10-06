@@ -2,6 +2,8 @@ I would like to start off by saying, this is the most interesting and intuitive 
 
 Note: All the screenshots are in the Screenshots Folder. And the scripts are in the folder Code.
 
+
+
 ### Setup the environment
 
   I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
@@ -36,6 +38,7 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
     enabled: true
   ```
 
+  
   
   
   
@@ -94,12 +97,16 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric.png">
     
     
+    
+    
   - *__Bonus Question:__ Can you change the collection interval without modifying the Python check file you created?*
       
       __`Yes, it possible to change the collection interval in the configuration file in the /datadog-agent/conf.d/`__
        
        
-       
+    
+    
+    
        
 ### Visualizing Data
 
@@ -205,11 +212,16 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Snapshot_to_self.png">
 
   
+  
+  
   - *__Bonus Question:__ What is the Anomaly graph displaying?*
     
       __`The anamoly graph displays any deviation of metrics from the normal average. In my case, I used the Postgres checkpoint function as input, it perform a check between the data file and write ahead log every five minutes. So we got a graph that spikes every five minutes. And it is caught as a anomaly by the graph.`__
 
-      
+   
+   
+   
+   
 
 ### Monitoring Data
 
@@ -231,6 +243,8 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
       
     <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Metric_monitor_event_warn.png">  
       
+  
+  
   
   - *__Bonus Question:__ Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
 
@@ -257,7 +271,10 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   
   <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Downtime_email_notification_weekends.png">
        
-       
+     
+     
+     
+     
        
 ### Collecting APM Data
 
@@ -314,10 +331,16 @@ Note: All the screenshots are in the Screenshots Folder. And the scripts are in 
   <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Dashboard_with_APM.png">
   
   
+  
+  
   - *__Bonus Question:__ What is the difference between a Service and a Resource?*
       
       __`Service is a process that is run to accomplish a particular objective. A service is dependant on resources.
         Resource are elements required for a service to run. Like memory, cpu and or even a config file.`__
+
+
+
+
 
 
 
