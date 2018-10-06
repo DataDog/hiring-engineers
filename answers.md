@@ -47,20 +47,22 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
     from random import randint
     class MyMetricCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('my_metric', randint(0, 1000))```
-        
+        self.gauge('my_metric', randint(0, 1000))
+    ```
+    
   - The configuration yaml file for the same
     ```yaml
     init_config:
 
     instances:
-      - min_collection_interval: 45```
-  
+      - min_collection_interval: 45
+    ```
+    
   - Verfied that the custom metric created reports the value to the datadog collection, on the datadog Host Map page.
     
   - Screenshot for the above from Datadog page
     
-    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric.png>
+    <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/Custom_metric.png">
     
     
   - Bonus Question: Can you change the collection interval without modifying the Python check file you created?
