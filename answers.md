@@ -94,13 +94,38 @@ Our YAML file needs to contain two sections: an `init_config` section and an `in
 
 ###2.4.1 my_metric.yaml
 1. Let's start off our first check by passing in some very simple information to our yaml file. <br>
-![image of what to paste into yaml file](media/myMetricYaml1.png)
+2. 
+```yaml
+	init_config:
+
+	instances:
+		[{}]
+```
+
 
 ###2.4.2 my_metric.py
 1. We'll create a pretty barebones check file to start off. All our check will do is send a random value between 0 and 1000 every 45 seconds.
-2. Copy the follow values into your `my_metric.py` <br> ![an image of what to paste into the python check file](media/myPythonCheck1.png). Our first line will import `AgentCheck` from the `checks` module, our second will import the `random` function which will use later on. We then simply define a class (`my_metric`) which our AgentCheck module is passed into. Our `check` function is what is called by DataDog, and our `self.gauge(...)` is used  to send a gauge metric with name `my_metric` and a random value between 1 and 1000 (inclusive) :).
-3. Let's test our new check! Restart the agent and run `sudo -u dd-agent -- datadog-agent check my_metric` and you should see output similar to below: <br> ![check test screenshot](media/checkTest.png)
-4. Start your agent back up if it's off and head over to your Datadog portal. On the sidebar go to *Metrics* > *Explorer* > and type *my_metric* into the *graph* searchbar. You should now see our metric graph moving at 15 second intervals between 1 and 1000. <br>![metric graph screenshot](media/metricsGraph.png)
-5. Look let's just cut straight to it here. You're a beginniner. 15 seconds might be a little bit *too* fast for you and hey that's fine. Let's slow it down to a lazy 45 second interval. 
-6. Edit the `conf.d/my_metric.yaml` file and add `min_collection_interval: 45` to it<br> ![45second interval vim](media/confInterval45.png)
-7. Restart your client and voilà!<br> ![45 seconds interval graph](media/confInterval45Graph.png)
+2. Copy the follow values into your `my_metric.py`.
+3. 
+```python
+from checks import AgentCheck
+import random
+	class my_metric(AgentCheck);
+		def check(self, instance):
+			self.gauge(‘my_metric’, str(random.randint(1,1001)))
+```
+
+ Our first line will import `AgentCheck` from the `checks` module, our second will import the `random` function which will use later on. We then simply define a class (`my_metric`) which our AgentCheck module is passed into. Our `check` function is what is called by DataDog, and our `self.gauge(...)` is used  to send a gauge metric with name `my_metric` and a random value between 1 and 1000 (inclusive) :).
+4. Let's test our new check! Restart the agent and run `sudo -u dd-agent -- datadog-agent check my_metric` and you should see output similar to below: <br> ![check test screenshot](media/checkTest.png)
+5. Start your agent back up if it's off and head over to your Datadog portal. On the sidebar go to *Metrics* > *Explorer* > and type *my_metric* into the *graph* searchbar. You should now see our metric graph moving at 15 second intervals between 1 and 1000. <br>![metric graph screenshot](media/metricsGraph.png)
+6. Look let's just cut straight to it here. You're a beginniner. 15 seconds might be a little bit *too* fast for you and hey that's fine. Let's slow it down to a lazy 45 second interval. 
+7. Edit the `conf.d/my_metric.yaml` file and add `min_collection_interval: 45` to it
+
+```yaml
+	init_config:
+
+	instances:
+		- min_collection_interval: 45
+```
+Restart your client and voilà!<br> ![45 seconds interval graph](media/confInterval45Graph.png)
+
