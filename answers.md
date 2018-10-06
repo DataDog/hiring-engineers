@@ -15,7 +15,7 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
   - Installed Datadog agent on both the VM's
   - Created custom tags for both the agents  
   - Observed both the agents reporting on the Host Map page on Datadog website.
-    (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png "Both hosts on the HostMap")
+    <a title ="Both hosts on the HostMap"> <img src="https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap.png"></a>
     
   - Screenshot 2 - Host with custom tags created in the datadog.yaml file
     ![alt text] (https://github.com/aish241093/hiring-engineers/blob/AishwaryaG_Solutions_Engineer/Screenshots/HostMap_with_tags.png)  
