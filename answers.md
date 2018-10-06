@@ -71,9 +71,9 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
       
     Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the   office. Set up two scheduled downtimes for this monitor:
 
-           - One that silences it from 7pm to 9am daily on M-F,
-           - And one that silences it all day on Sat-Sun.
-           - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+       - One that silences it from 7pm to 9am daily on M-F,
+       - And one that silences it all day on Sat-Sun.
+       - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
       
      The above was achieved by creating the downtime schedule. Screenshots attached for the same.
@@ -94,8 +94,9 @@ I had setup two Ubuntu 16.04 enviroments just to see variations in the setup.
   The code for the app is included in the Code folder here (hiring-engineers/Code/apm_app.py)
 
   Bonus Question: What is the difference between a Service and a Resource?
-    - Service is a process that is run to accomplish a particular objective. A service is dependant on resources.
-      Resource are elements required for a service to run. Like memory, cpu and or even a config file.
+      
+      - Service is a process that is run to accomplish a particular objective. A service is dependant on resources.
+        Resource are elements required for a service to run. Like memory, cpu and or even a config file.
 
 
   
