@@ -1,0 +1,19 @@
+{
+  "viz": "timeseries",
+  "status": "done",
+  "requests": [
+    {
+      "q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{host:AishVM-Vagrant}.as_count(), 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true,
+  "xaxis": {}
+}
