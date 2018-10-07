@@ -49,6 +49,8 @@ Now I can move onto collecting metrics on my instance.
 
 ### Collecting Metrics - Answer
 
+#### Adding tags and setting up MongoDB configuration.
+
 * Tags can be added in four ways according to the Datadog Docs on [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/).
 
     * Inherited from an integration
@@ -67,6 +69,10 @@ Now I can move onto collecting metrics on my instance.
     * Below are the tags I added in `datadog.yaml`:
 
         `tags: env:test, role:database, vboxhost`
+    
+    Here are my host and tags in the Host Map view:
+
+    ![host-map-tags](screenshots/vm-host-tags.png?raw=true)
 
 * I had MongoDB installed as part of my provisioning step. Now I check to make sure `mongod` is running:
 
@@ -84,7 +90,7 @@ Now I can move onto collecting metrics on my instance.
     
     2. I copied the default configuration given to me and used it for `conf.d/conf.yaml`, as read on the [integrations page for Mongo](https://docs.datadoghq.com/integrations/mongo/).
 
-    TODO: Add screenshots.
+        The configuration I used can be found in `conf_files/mongo_conf.yaml` minus authentication credentials.
 
     3. I executed the following command `sudo datadog-agent status` which I found on the agent information [page](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6#agent-information). This helped me make sure the YAML file had no errors.
 
@@ -110,6 +116,52 @@ Now I can move onto collecting metrics on my instance.
                     Service Checks: 1, Total: 1
                     Average Execution Time : 32ms
         ```
+
+        And here is what the MongoDB service looks like in the host map view on Datadog:
+
+        ![mongodb-in-host-map](screenshots/mongodb-in-host-map.png?raw=true)
+
+#### Writing a custom Agent Check
+
+Following the developer documentation on [agent checks](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6#your-first-check), I found the following information:
+
+* Checks live in `/etc/datadog-agent/checks.d/`.
+
+* Checks need a corresponding configuration file, which lives in `/etc/datadog-agent/conf.d`.
+
+* If I write `hello.py` as a check, then I have to name my configuration `hello.yaml`.
+
+Please view the checks I wrote in `checks_files` and `conf_files` in my repository for the code.
+
+Here is the output I get after running `sudo datadog-agent check hello` for the `hello` check:
+
+![hello-check](screenshots/hello-check.png?raw=true)
+
+Now I am ready to write `my_metric`, and the `.py` and `.yaml` files for it can be
+found in `checks_files` and `conf_files` respectively.
+
+I restarted the agent and checked the status with `sudo systemctl status datadog-agent`.
+
+The check for `my_metric` is running:
+
+![my-metric-status](screenshots/my-metric-status.png?raw=true)
+
+I can also see it online in the UI:
+
+![my-metric-UI](screenshots/my-metric-UI.png?raw=true)
+
+When I take a look at the Host Map view, `my_metric` shows up, without a namespace.
+
+![my-metric-graph](screenshots/my-metric-graph.png?raw=true)
+
+When I view the graph of `my_metric` and compare it against the graph for `hello` I notice two things:
+
+1. Just like the documentation says, if there is no **minimum collection interval** set,
+then the metric will be collected at the same interval as the rest of the integrations on the
+Agent, and the collector runs every 15-20 seconds.
+Looking at the graph for `hello` shows that the data is being updated once every 20 seconds.
+
+2. I have set `min_collection_interval` to 45 in `my_metric.yaml`. It is not being gathered every 20 seconds, but on the next collection when it has been 45 seconds or more since last collection.
 
 ## Collecting Metrics:
 
