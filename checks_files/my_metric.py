@@ -1,3 +1,7 @@
+# Author: Abdullah Khan
+
+__version__ = "0.0.1"
+
 from checks import AgentCheck
 from random import SystemRandom
 
