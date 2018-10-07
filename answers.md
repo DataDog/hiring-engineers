@@ -5,7 +5,6 @@ Alright Reader buckle in because you're about to bear witness to my magnum opus 
 
 ##1. Prerequisites 
 
-
 ###1.2 Setting up VirtualBox and Vagrant
 
 Before we delve into using DataDog we're going to need to set up a fresh virtual machine environment. This guide will be using Vagrant with Ubuntu `v.16.04`. If you've got a different virtual machine installed congratulations you've tripped at the first hurdle. Anyway, battling on:
@@ -129,3 +128,253 @@ import random
 ```
 Restart your client and voilà!<br> ![45 seconds interval graph](media/confInterval45Graph.png)
 
+##3. Visualising Data
+
+###3.1 Creating our Python client
+
+Before we begin delving into the wonderful world of RESTful services we're going to need to create a client capable of making API callouts. Let's leverage the `datadog` python library to help us out with this.
+
+1. Create a new directory for our program: `mkdir -p ~/dataDog/client`, `cd ~/dataDog/client`
+2. Install Python's package mananger (pip): `sudo apt install python-pip`
+3. Now to install the Datadog python library: `pip install datadog`
+4. Let's make our app's entry point: `touch app.py`
+
+Great! We're now ready to create our first Timeboard
+
+###3.2 Creating a Timeboard
+
+###3.2.1 Creating a graph of *my_metric*
+Paste this into your `app.py` file
+
+```python
+from datadog import initialize, api # import our modules from data dog
+
+# set our api and app keys so we can authorise with datadog
+# you can get these values from the Integrations > API section of the datadog dashboard
+options = {
+    'api_key': '<your api key>',
+    'app_key': '<your app key>'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+# let's pass through the options for our timeboard
+title = 'My First Timeboard'
+description = 'A Timeboard is a dashboard of graphs. These graphs enable you to visualise your data over some scope of time.'
+graphs = [{
+    'title': 'my_metric graph',
+    'definition': {
+        'requests': [
+            {'q': 'avg:my_metric{host:ubuntu-xenial}'} # our custom metric's average on our host
+        ],
+        'viz': 'timeseries'
+    },
+}]
+#let's call Timeboard.create() with those options to create it on Datadog
+resp = api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs)
+
+print resp # let's print our response
+```
+If you then run the file with our python interpreter using `python app.js` you should see the following output:
+
+```
+{'dash': {'read_only': False, 'description': 'A Timeboard is a dashboard of graphs. These graphs enable you to visualise your data over some scope of time.', 'created': '2018-10-07T02:07:58.055591+00:00', 'title': 'My First Timeboard', 'modified': '2018-10-07T02:07:58.083989+00:00', 'created_by': {'handle': 'edmundcong1@gmail.com', 'name': 'Edmund Cong', 'access_role': 'adm', 'verified': True, 'disabled': False, 'is_admin': True, 'role': None, 'email': 'edmundcong1@gmail.com', 'icon': 'https://secure.gravatar.com/avatar/057515f2f8b8a623ea74e5128edf5451?s=48&d=retro'}, 'graphs': [{'definition': {'viz': 'timeseries', 'requests': [{'q': 'avg:my_metric{host:ubuntu-xenial}'}]}, 'title': 'my_metric graph'}], 'id': 939124}, 'url': '/dash/939124/my-first-timeboard', 'resource': '/api/v1/dash/939124'}
+```
+This response has some useful metadata in it. For instance it responds with when it was created, who created it, whether or not that person was an admin, the endpoint you hit, and more.
+
+If you navigate back to your Datadog portal, and then go *Dashboards* > *Dashboard List* you should see a Timeboard called *My First Timeboard*. Click on that to see your new graph. You can see our average if you click on the enlarge icon, alternatively you can click on the pencil then on *Query Value*.  
+
+###3.2.2 Expand this to include database integration metrics
+1. Wouldn't it be nice to have a graph showing the number of rows inserted by query in our Postgres database (that we totally have *not* forgotten about)? Why don't we do that?
+2. Before we get started creating a Timeboard for that we're going to need to set up a python file which periodically inserts rows into a database. We'll also need to make it so there's a bit of variance in the amount of rows it'll insert.
+3. Let's create a new file called `insertRows.py`
+4. We'll need to install `psycopg2`. Psycogp2 allows us to interact with PostgreSQL from Python. Go ahead and run `pip install psycopg2`
+5. Next we'll need to create a new database to muck around with. Let's log into our `postgres` user to do this. Run `sudo -i -u postgres`
+6. Next run `psql`, then `CREATE DATABASE timeboard;` 
+7. We now need to switch to that database: `\c timeboard`
+8. Next we'll create a very simple table in the database that we'll insert rows into: `CREATE TABLE numbers(NUMBER INT NOT NULL);`
+9. Let's try it out! `INSERT INTO numbers (number) values (10);`
+10. Running `SELECT * FROM NUMBERS;` should return a single row with `id=1` and `number=10` 
+11. Have you noticed that we've been dancing around using the `postgres` user's password? Why are we doing that? Let's reassign it from the mysterious default password to something we know. This will come in handy later when we need to connect to it via our python program. While we're still inside our `psql` terminal run `ALTER USER postgres PASSWORD '<some password>;`
+12. ctrl+d to exit the postgres user's terminal
+13. Create a new file called `database.ini` and fill it the following information:
+
+
+```ini
+[postgresql]
+host=localhost
+database=timeboard
+user=postgres
+password=<postgres user's password>
+```
+Next paste this code into your `insertRows.py` file:
+
+```python
+#!/usr/bin/python
+import schedule
+import time
+import psycopg2
+import random
+from configparser import ConfigParser  # module to read our config file
+
+
+def config(filename='database.ini', section='postgresql'):
+    parser = ConfigParser()  # create our parser
+    parser.read(filename)  # parse database.ini
+    db = {}
+    if parser.has_section(section):
+        params = parser.items(section)
+        for param in params:
+            db[param[0]] = param[1]  # populate our db config object
+    else:
+        raise Exception(
+            'section {0} not found in {1}'.format(section, filename))
+    return db
+ count = 1
+
+ def connect():
+     conn = None
+     try:
+         # read in our config obj
+         params = config()
+         conn = psycopg2.connect(**params) # connect to our db
+         # create our db cursor
+         cur = conn.cursor()
+         rnd = random.randint(1,1001) # number to insert as our value
+         rows = random.randint(1,11) # amount of rows to insert
+         global count # so we can use count as a global variable
+         if (count == 50):
+             rows = 200 # every 50th run let's add A LOT of rows
+         # insert a random nmber into our numbers table
+        for i in range(rows):
+            cur.execute("INSERT INTO numbers VALUES (%s)", (rnd,))
+         count += 1 # increment our counter
+         conn.commit() # commit our transaction
+     except (Exception, psycopg2.DatabaseError) as error:
+         conn.rollback() # rollback since we've had an error
+         print(error)
+     finally:
+         if conn is not None:
+             conn.close() # close our connection
+             print('Database connection closed.')
+
+schedule.every(30).seconds.do(connect)
+
+ # only run if we're not importing this into a different module
+ if __name__ == '__main__':
+     while True:
+         schedule.run_pending()
+         time.sleep(1)
+```
+
+After running `pip install schedule` and `pip install configparser` go ahead and run the script with `python insertRows.py`. Now we'll need to return to our `app.py` to create a new graph for our *number of rows inserted* metric.
+
+```python
+from datadog import initialize, api  # import our modules from data dog
+
+# set our api and app keys so we can authorise with datadog
+options = {
+        'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
+        'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+# let's create our timeboard
+
+title = 'My First Timeboard with an anomaly monitor, and rollup sum'
+description = 'A Timeboard is a dashboard of graphs. These graphs enable you to visualise your data over some scope of time.'
+graphs = [{
+    'title': 'my_metric graph',
+    'definition': {
+        'requests': [
+            # our custom metric's average on our host
+            {'q': 'avg:my_metric{host:ubuntu-xenial}'}
+        ],
+         'viz': 'timeseries'
+    },
+},
+{
+    'title': 'rows inserted',
+    'definition': {
+        'requests': [
+            # get the anomalies using the basic detection algorithm with a deviation of 2
+            {'q': 'anomalies(top(avg:postgresql.rows_inserted{host:ubuntu-xenial}, 10, \'mean\', \'desc\'), \'basic\', 2)'}
+        ],
+        'viz': 'timeseries'
+    }
+},
+}]
+
+resp = api.Timeboard.create(title=title,
+                            description = description,
+                            graphs = graphs)
+
+print resp  # let's print our response
+
+```
+
+###3.2.3 Expand our Timeboard to include a rollup sum of my_metric over the past hour
+
+1. This will be very similar to our first graph, the only different being that we'll append a `.rollup(sum,36000)` to the end of our query to get the sum of all data points over the past hour
+
+```python
+from datadog import initialize, api  # import our modules from data dog
+
+# set our api and app keys so we can authorise with datadog
+options = {
+        'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
+        'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+# let's create our timeboard
+
+title = 'My First Timeboard with an anomaly monitor, and rollup sum'
+description = 'A Timeboard is a dashboard of graphs. These graphs enable you to visualise your data over some scope of time.'
+graphs = [{
+    'title': 'my_metric graph',
+    'definition': {
+        'requests': [
+            # our custom metric's average on our host
+            {'q': 'avg:my_metric{host:ubuntu-xenial}'}
+        ],
+         'viz': 'timeseries'
+    },
+},
+{
+    'title': 'rows inserted',
+    'definition': {
+        'requests': [
+            # get the anomalies using the basic detection algorithm with a deviation of 2
+            {'q': 'anomalies(top(avg:postgresql.rows_inserted{host:ubuntu-xenial}, 10, \'mean\', \'desc\'), \'basic\', 2)'}
+        ],
+        'viz': 'timeseries'
+    }
+},
+{
+    'title': 'sum of my_metric over the past hour',
+    'definition': {
+        'requests': [
+            # our average, then sum all over the past hour (3600 seconds)
+            {'q': 'avg:my_metric{host:ubuntu-xenial}.rollup(sum,3600)'}
+        ],
+        'viz': 'timeseries'
+    }
+}]
+
+resp = api.Timeboard.create(title=title,
+                            description = description,
+                            graphs = graphs)
+
+print resp  # let's print our response
+```
+
+
+##Notes:
+* (If ssh'd into your vagrant machine) Making vim + python tolerable: https://realpython.com/vim-and-python-a-match-made-in-heaven
+* Datadog logs for python: https://app.datadoghq.com/logs/onboarding/server
+* Datadog graphing with JSON: https://docs.datadoghq.com/graphing/graphing_json/
