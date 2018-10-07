@@ -1,6 +1,6 @@
 # Answers.md
 
-Alright Reader buckle in because you're about to bear witness to my magnum opus AND learn how to use DataDog. If I've done my job right then by the end of this you'll find yourself a *big dog* at DataDog. Let's dive right into this
+Alright Reader buckle in because you're about to bear witness to my magnum opus AND learn how to use DataDog. If I've done my job right then by the end of this you'll find yourself a *big dog* at DataDog. 
 
 
 ##1. Prerequisites 
@@ -29,7 +29,7 @@ Congratulations! You have a working virtual machine. Try ssh'ing into it with `v
 2. Enter *Datadog Recruiting Candidate* in the *Company* field
 3. Once you arrive at the *Agent Setup* page, click *Ubuntu*
 4. Follow the instructions on the page
-5. The DataDog Agent report will take around a minute or two to complete so while that's toiling away maybe go make yourself a cup of- oh cool okay it's done.
+5. The DataDog Agent report will take around a minute or two to complete so while that's toiling away maybe go make yourself a cup of te- oh cool okay it's done.
 6. Click Finish
 7. We can make our life easier down the line by sorting our group permissions now. Let's create a new group:`sudo groupadd ddGroup`
 8. Now let's add our vagrant user and dd-agent to it: run `sudo usermod -a -G ddGroup ubuntu` and `sudo usermod -a -G ddGroup dd-agent`
@@ -143,7 +143,7 @@ Great! We're now ready to create our first Timeboard
 
 ###3.2 Creating a Timeboard
 
-###3.2.1 Creating a graph of *my_metric*
+####3.2.1 Creating a graph of *my_metric*
 Paste this into your `app.py` file
 
 ```python
@@ -186,7 +186,7 @@ This response has some useful metadata in it. For instance it responds with when
 
 If you navigate back to your Datadog portal, and then go *Dashboards* > *Dashboard List* you should see a Timeboard called *My First Timeboard*. Click on that to see your new graph. You can see our average if you click on the enlarge icon, alternatively you can click on the pencil then on *Query Value*.  
 
-###3.2.2 Expand this to include database integration metrics
+####3.2.2 Expand this to include database integration metrics
 1. Wouldn't it be nice to have a graph showing the number of rows inserted by query in our Postgres database (that we totally have *not* forgotten about)? Why don't we do that?
 2. Before we get started creating a Timeboard for that we're going to need to set up a python file which periodically inserts rows into a database. We'll also need to make it so there's a bit of variance in the amount of rows it'll insert.
 3. Let's create a new file called `insertRows.py`
@@ -246,7 +246,7 @@ def config(filename='database.ini', section='postgresql'):
          rows = random.randint(1,11) # amount of rows to insert
          global count # so we can use count as a global variable
          if (count == 50):
-             rows = 200 # every 50th run let's add A LOT of rows
+             rows = 200 # at our 50th call to this function let's add A LOT of rows
          # insert a random nmber into our numbers table
         for i in range(rows):
             cur.execute("INSERT INTO numbers VALUES (%s)", (rnd,))
@@ -276,8 +276,8 @@ from datadog import initialize, api  # import our modules from data dog
 
 # set our api and app keys so we can authorise with datadog
 options = {
-        'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
-        'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+        'api_key': '<your api key>',
+        'app_key': '<your app key>'
 }
 # pass in our options dictionary object
 initialize(**options)
@@ -316,7 +316,7 @@ print resp  # let's print our response
 
 ```
 
-###3.2.3 Expand our Timeboard to include a rollup sum of my_metric over the past hour
+####3.2.3 Expand our Timeboard to include a rollup sum of my_metric over the past hour
 
 1. This will be very similar to our first graph, the only different being that we'll append a `.rollup(sum,36000)` to the end of our query to get the sum of all data points over the past hour
 
@@ -325,8 +325,8 @@ from datadog import initialize, api  # import our modules from data dog
 
 # set our api and app keys so we can authorise with datadog
 options = {
-        'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
-        'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+        'api_key': '<your api key>',
+        'app_key': '<your app key>'
 }
 # pass in our options dictionary object
 initialize(**options)
@@ -372,7 +372,147 @@ resp = api.Timeboard.create(title=title,
 
 print resp  # let's print our response
 ```
+###3.3 What is the Anomaly graph displaying?
 
+![anomaly graph](media/anomaly.png)
+<br>The above anomaly graph highlights in red the points where our average number of row insertions per second are above or below a deviation of 2, which is calculated using our [basic](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) algorithm. For instance at 18:16 we can clearly see a datapoint which is well above the predicted average, while at around 14:14:20 we can see a datapoint which is far below the predicted average.
+
+##4. Monitoring Data
+
+###4.1 Creating a new Metric Monitor
+
+Let's create a *Metric Monitor* that will watch the average of *my_metric* and alert us if there's anything odd going on with it. We'll start off by having our metric monitor sending us a warning at a threshold of 500, alerting us at 800, and notifying us if there's been *No Data for this query* over the past 10 minutes.
+
+1. `touch monitor.py`
+2. Paste the following into your `monitor.py` file:
+
+```python
+from datadog import initialize, api # import our modules from data dog
+
+# set our api and app keys so we can authorise with datadog
+options = {
+    'api_key': '<your api key>',
+    'app_key': '<your app key>'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+monitor_options = {
+    "name": "STATUS EMAIL: my_metric",
+        "type": "metric alert",
+        "query": "avg(last_5m):avg:my_metric{host:ubuntu-xenial} >= 800",
+        "message": "{{#is_alert}}\nALERT: my_metric has had a sustained value of 800 or above over the past 5 minutes!\n{{/is_alert}} \n\n{{#is_warning}}\nWARNING: my_metric has had a sustained value of 500 or above over the past 5 minutes.\n{{/is_warning}} \n\n{{#is_no_data}}\nmy_metric has had no data for the 10 minutes.\n{{/is_no_data}} @edmundcong1@gmail.com",
+        "tags": [],
+        "options": {
+                    "notify_audit": False,
+                    "locked": False,
+                    "timeout_h": 0,
+                    "new_host_delay": 300,
+                    "require_full_window": True,
+                    "notify_no_data": True,
+                    "renotify_interval": "0",
+                    "escalation_message": "",
+                    "no_data_timeframe": 10,
+                    "include_tags": False,
+                    "thresholds": {
+                                    "critical": 800,
+                                    "warning": 500
+                                }
+                }
+}
+
+resp = api.Monitor.create(**monitor_options)
+
+print resp
+
+```
+Make sure your DataDog agent is still running and fire off the script: `python monitor.py`. Since this might take a few minutes why don't you take this as a chance to go make yourself that cup of tea I suggested a few sections ag-
+![you're never going to get a beverage](media/monitorAlertEmail.png)
+oh nevermind.
+
+###4.2 Scheduling downtimes for the monitor
+
+Let's now modify our monitor to not alert us when we're outside of the office. We'll need to schedule two downtimes for this monitor:
+
+* One that silences it from 7pm-9am Monday to Friday,
+* On that silences it all day on Satuday and Sunday
+
+Like our previous alerts, these will follow the same format with the only difference being the options object, endpoint method we're using and that the start and end date for each scheduled downtime will be the epoch time of their next occurence date:
+
+### Weekday
+```python
+from datadog import initialize, api # import our modules from data dog
+import time
+
+# set our api and app keys so we can authorise with datadog
+options = {
+    'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
+    'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+recurrence = {
+    'type': 'weeks',
+    'period': 1,
+    'week_days': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+}
+
+start = 1538985600 # monday 7th of october 19:00:00
+finish = 1539036000 # tuesday 8th of october 09:00:00
+message = 'There will be scheduled downtime of alerts from 7pm to 9am each weekday. @edmundcong1@gmail.com'
+
+resp = api.Downtime.create(
+    scope='host:ubuntu-xenial',
+    start=start,
+    message=message,
+    end=finish,
+    timezone='Australia/NSW',
+    monitor_id=6611157,
+    recurrence=recurrence
+)
+```
+![weekend downtime email](media/weekdaydowntimeEmail.png)
+
+Note: the email comments are in UTC not GMT+11. The downtimes themselves are configured for *Australia/NSW*
+
+### Weekend
+```python
+from datadog import initialize, api # import our modules from data dog
+import time
+
+# set our api and app keys so we can authorise with datadog
+options = {
+    'api_key': 'de80ad2a1bffe3273e4765ac1b8a85d7',
+    'app_key': '490954065d91b99b46fc59efc4a748141fae365b'
+}
+# pass in our options dictionary object
+initialize(**options)
+
+recurrence = {
+    'type': 'weeks',
+    'period': 1,
+    'week_days': ['Sat', 'Sun'],
+}
+
+start = 1539349199 # friday the 12th of october at 11:59:59pm gmt+11
+finish = 1539521999 # sunday the 14th of october at 11:59:59pm gmt+11
+message = 'There will be scheduled downtime of alerts from 11:59:59pm friday to 11:59:59pm sunday. @edmundcong1@gmail.com'
+
+resp = api.Downtime.create(
+    scope='host:ubuntu-xenial',
+    start=start,
+    end=finish,
+    message=message,
+    monitor_id=6611157,
+    timezone='Australia/NSW',
+    recurrence=recurrence
+)
+
+```
+![weekend downtime email](media/weekendDowntimeEmail.png)
+
+Note: the email comments are in UTC not GMT+11. The downtimes themselves are configured for *Australia/NSW*
 
 ##Notes:
 * (If ssh'd into your vagrant machine) Making vim + python tolerable: https://realpython.com/vim-and-python-a-match-made-in-heaven
