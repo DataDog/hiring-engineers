@@ -26,7 +26,7 @@ Definition of new Tags based on the DataDog documentation on tags ([Datadog Tagg
 
 Configured the tags within the ```Datadog Agent Manager``` 
 
-<img src="img/install_mac_os.png"/>
+<img src="img/Datadog_Agent_Manager.png"/>
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Both machines got there individual Tags. The first mac got the tags in the first Picture
@@ -36,6 +36,15 @@ Both machines got there individual Tags. The first mac got the tags in the first
 The next one is fort he second mac
 
 <img src="img/tags_demo_agent.png"/>
+
+The Host map with all Tags (seperated by Agent)
+
+1. Agent 1:
+<img src="img/Agent_1.png"/>
+
+2. Agent 2:
+<img src="img/Agent_2.png"/>
+
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
