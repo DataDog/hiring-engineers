@@ -70,19 +70,6 @@ With that change it was possible to add the database to the Datadog Agent (secon
 
 Create wiht help of "[Your First Check](https://docs.datadoghq.com/developers/agent_checks/#your-first-check)" documentation a YAML configuration file in the ```conf.d``` directory and a check File in the ```checks.d``` directory.
 
-```
-touch conf.d/my_metric.yaml checks.d/my_metric.py
-atom .
-```
-
-Followed [configuration](https://docs.datadoghq.com/developers/agent_checks/#configuration) directions to configure the YAML file.
-
-
-
-
-
-
-- Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Created two different files.
 
 1.	my_metric.yaml – this files contains the generell call and definition. This file is stored under /opt/datadog-agent/etc/config.d 
@@ -95,6 +82,9 @@ Created two different files.
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
 <img src="img/my_metric_py.png"/>
+
+
+#### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d as below:
