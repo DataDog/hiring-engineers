@@ -627,13 +627,13 @@ Populate fields with the target information.
 
 *A downtime scheduled that silences it from 7pm to 9am daily on M-F
 
-![](images/31.png)
+![](images/32.png)
 
 <br>
 
 *A downtime schedulde that silences it all day on Sat-Sun.
 
-![](images/32.png)
+![](images/31.png)
 
 <br>
 
