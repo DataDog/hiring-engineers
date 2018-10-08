@@ -472,7 +472,7 @@ resp = api.Downtime.create(
     recurrence=recurrence
 )
 ```
-![weekend downtime email](media/weekdaydowntimeEmail.png)
+![weekend downtime email](media/weekdayDowntimeEmail.png)
 
 Note: the email comments are in UTC not GMT+11. The downtimes themselves are configured for *Australia/NSW*
 
