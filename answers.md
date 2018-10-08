@@ -14,7 +14,7 @@ For the exercise two DataDog Agent where installed on two different MacBooks.
 -	MacBook Pro (Retina 15', Mitte 2014) - 2,5GHz Intel Core i7
 
 Installation was done using the installer script provieded in the Agent Sector.
-(DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+```(DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)```
 On both machines the Agents where insalled without any issue
 <img src="img/DATADOG-AGENT.png"/>
 The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
