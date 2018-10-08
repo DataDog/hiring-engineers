@@ -514,6 +514,56 @@ resp = api.Downtime.create(
 
 Note: the email comments are in UTC not GMT+11. The downtimes themselves are configured for *Australia/NSW*
 
+#5. Collecting APM Data
+
+This was the first time where `datadog-agent` being run in my vagrant environment gave me some issues. My agent was giving me a TLS handshaking issue whenever my Python script's trace information was trying to be sent out. <br>Datadog agent's output: `018-10-07 13:29:36 UTC | ERROR | (log.go:179 in Printf) | http: TLS handshake error from 127.0.0.1:59096: tls: first record does not look like a TLS handshake`<br>
+I tried alternating between the middleware and ddtrace-run, hardcoding values into the `ddtrace.writer` class, changing values which looked promising in `datadog.yaml`, running `ddtrace_run` with the `DATADOG_TRACE_DEBUG=true`, and even tried from the ground up on a Windows machine. I thought a Docker approach might be fruitful because [this](https://docs.datadoghq.com/tracing/faq/why-am-i-getting-errno-111-connection-refused-errors-in-my-application-logs/) FAQ page talked about how you may run into issues *using* a Docker container, so naturally I decided to *use* Docker (a bit counter-intuitive there, Ed). With that being said we'll need to exit the land of virtualisation and take a journey into containerisation so exit your vagrant machine cause we're going to start using Docker.
+
+1. Let's create a new folder called ddTracers: `mkdir ~/ddTracers` and then cd into it: `cd ddTracers`
+2. If you haven't got [Python](https://www.python.org/downloads/mac-osx/) and [pip](https://stackoverflow.com/questions/17271319/how-do-i-install-pip-on-macos-or-os-x) installed go ahead and install them on your host os. 
+3. Let's install `virtualenv`. It does a lot of neat things like create a create virtual environment for avoiding dependencies and versioning issues and allows us to modify Python modules without access to the global istallation -- however we'll be using it to easily install Flask: `pip install virtualenv`. We'll then create a virtualenv for our current directory: `virtualenv .` We then need to turn on virtualenv: `source bin/activate`. Now we can install Flask with no issues! `pip install flask`. See below for a before and after of venv:
+![venv marketing](media/virtualEnvToTheRescue.png)
+4. We'll also need to install the `ddtrace` library to trace our requests: `pip install ddtrace`
+3. Now let's copy in the sample Flask API a file `app.py`:
+
+```python
+from flask import Flask
+import logging
+import sys
+#Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port='5050')
+```
+5. The last thing we need to install is [Docker]()
+6. Once you've got Docker up and running we need to create a container for our datadog-agent since we're no longer using our vagrant environment to host it. Run this command: `docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<api-key> -e DD_APM_ENABLED=true datadog/agent:latest`<br> What this does is create a new docker container called dd-agent, mounts a some files and a socket to it, passes in your api key and a flag to enable us to use our agent for APM, and finally tells docker to pull the latest datadog agent image.
+7. Now that our agent is running we need to run our Flask API: `ddtrace-run python app.py`
+8. Finally if you post in any of the following our APM dashboard will pick up on the requests and visualise our traces:
+  <br> `curl -X GET http://0.0.0.0:5050/ `<br>`curl -X GET http://0.0.0.0:5050/api/trace `<br> `curl -X GET http://0.0.0.0:5050/api/apm`
+9. Now if we go to the APM section on our Datadog dashboard we should see some cool metrics and graphs:
+
+[Here's a link to my APM and Infrastrcture Screenboard as an example](https://p.datadoghq.com/sb/a34d3d959-3579b887024535849e662ba18f7f80ef)
+![screenboard apm and infrastructure](media/screenboard.png)
+
 ##Notes:
 * (If ssh'd into your vagrant machine) Making vim + python tolerable: https://realpython.com/vim-and-python-a-match-made-in-heaven
 * Datadog logs for python: https://app.datadoghq.com/logs/onboarding/server
