@@ -786,5 +786,5 @@ With life always making us too busy even for each other, a phone application cou
 Maybe a bit too ambitious?
 
 
-
+Please see the [scripts](cripts/) directory for all files edited and used while creating this document.
 
