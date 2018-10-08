@@ -1,4 +1,4 @@
-<br> **<h1> Datadog Challenge <h1>** 
+**<h1> Datadog Challenge <h1>** 
 
 <sub>
 
@@ -7,78 +7,72 @@ Author: Paul Ployvisut
 Position Target: Solutions Engineer
 
 </sub>
-<br>
+
 
 **<h1> The Environment <h1>**
 
-<sub>
+
 
 The challenge environment was created on ubuntu 16.04 in conjunction with Vagrant (Box bento/ubuntu-16.04) which uses Oracle’s VirtualBox as the hosted hypervisor.
 
-<br>
+
 
 
 **Note:** The machine used is a Windows 10 operating system with MinGW to emulate the Linux host environment. 
 
 
-<br>
+
 
 
 **1. Download and install [VirtualBox](https://www.virtualbox.org/).**
 
-<br>
+
 
 **2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html) 64-bit.**
 
-<br>
+
 
 After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/intro/index.html)” tab on the website to follow instructions on how to install a box (OS images from Vagrant). You will be able to SSH to your new Linux environment at completion.
 
-<br>
+
 
 **3.	Configuring Vagrant for the project**
 
-<br>
+
 
 Navigate to your directory you wish to install your Vagrant box to via terminal and create a Vagrantfile (Configures a specified Vagrant VM).
 
-<br>
 
 ```
 vagrant init
 ```
-<br>
 
 Add a box from Vagrant, we are using bento/ubuntu-16.04 but there are many available here. 
 
-<br>
+
 
 ```
 $ vagrant box add bento/ubuntu-16.04
 ```
-<br>
 
 Select the provider you would like. For this project we have chosen to use VirtualBox.
 
-<br>
+
 
 *Expected output
 
-<br>
 
 ![](images/1.png)
 
-<br>
 
 Edit the Vagrantfile we created earlier with a text editor like Notepad++ and add the name of the box you added. This tells Vagrant to use the specified box as a base.
 
-<br>
+
 
 
 ![](images/2.png)
 
 
-<br>
 
 Boot your Vagrant environment up and connect to it via SSH.
 
@@ -91,8 +85,7 @@ $ vagrant ssh
 We have now created our own environment with Vagrant using a version of Ubuntu as the operating system. Further configuration can be done but for now this will do but for more information see [here](https://www.vagrantup.com/intro/getting-started/index.html).
 
 
-<br>
-<br>
+
 
 **4. Installing the Datadog agent.**
 
@@ -100,17 +93,15 @@ After creating an account on Datadog [here](https://www.datadoghq.com/), You can
 
 In the “Integrations” tab, select “Agent” which will give you a list of different Linux distributions and operating systems. Select the applicable version and follow the steps to install the agent.
 
-<br>
+
 
 ![](images/3.png)
 
-<br>
+
 
 **Important! Keep your keys private!** 
 
-<br>
 
-<br>
 
 **5.	Ubuntu Installation**
 
@@ -118,62 +109,59 @@ Connected to your Vagrant box via SSH and perform a fresh install of the Datadog
 
 **Note:** It is a good idea to run an update of your box before making changes.
 
-<br>
+
 
 ```
 apt-get update
 ```
-<br>
+
 
 Don’t forget to install CURL so we can transport data over the various types of TCI/IP protocols.
 
-<br>
+
 
 ```
 apt-get install curl
 ```
-<br>
+
 
 Fresh install syntax for the Agent:
-<br>
 
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ```
-<br>
 
 When the following message will print in the terminal after some lines. The Agent has successfully been installed.
 
-<br>
+
 
 ![](images/4.png)
 
-<br>
+
 
 Check if the Datadog Agent is collecting and transmitting metrics.
 
-<br>
+
 
 ```
 sudo datadog-agent status
 ```
 
-<br>
+
 
 **Note:** This syntax will also give you a lot of useful information about the Agent e.g. where the configuration file is located. 
 
-<br>
 
 Check your Datadog dashboard to see if metrics are being received by Datadog. 
 
 On the left-hand pane of the Datadog dashboard, select “Infrastructure” and select “Infrastructure List” from the sub menu. You will be able to see the status of all hosts connected. 
 
-<br>
+
 
 ![](images/5.png)
 
-<br>
+
 
 </sub>
 
