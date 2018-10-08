@@ -320,9 +320,9 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 **Option:** Enable performance schema Quick Start, more information [here](https://dev.mysql.com/doc/refman/5.7/en/performance-schema-quick-start.html).
 
 <br>
+<br>
 
-
-Back to the Agent directory, enable the Agent to collect metrics from the MySQL instance by editing the conf.yaml file located in:
+*Back to the Agent directory*, enable the Agent to collect metrics from the MySQL instance by editing the conf.yaml file located in:
 
 etc/datadog-agent/conf.d/mysql.d/
 
@@ -383,10 +383,13 @@ The Agent is now taking metrics from the MySQL instance.
 
 Two files must be created for the custom Agent check:
 
+<br>
+
 •	The module file my_metric.py in the check.d directory.
 
 •	The configuration for the module my_metric.yaml in the conf.d directory. 
 
+<br>
 
 **Optional:** A subfolder can be created in the conf.d directory to house the configuration file e.g. /conf.d/my_metric.d/my_metric.yaml.
 
@@ -419,7 +422,7 @@ After this is completed, place in the directory /conf.d/ or /conf.d/my_metric.d/
 
 <br>
 
-Restart the Datadog Agent.
+*Restart the Datadog Agent.*
 
 <br>
 
@@ -428,7 +431,7 @@ Restart the Datadog Agent.
 In the infrastructure/host map tab, we can select the metric we created in the app section.
 
 
-![](images/16.png)
+![](images/17.png)
 
 <br>
 
@@ -477,21 +480,22 @@ It also creates a monitor that prints a message when the threshold is reached Wh
 
 *Expected output (In terminal)
 
+![](images/18.png)
 <br>
 
-![](images/17.png)
+![](images/19.png)
 
 <br>
 
 Check the Datadog dashboard to see what has been created. The Timeboard is in the “Dashboards” tab.
 
-![](images/18.png)
+![](images/20.png)
 
 <br>
 
 The new monitor will be in the “Monitors” tab.
 
-![](images/19.png)
+![](images/21.png)
 
 For more information on Timeboard’s please see [here](https://docs.datadoghq.com/graphing/dashboards/timeboard/).
 
@@ -505,7 +509,7 @@ For more information on Timeboard’s please see [here](https://docs.datadoghq.c
 Hover over the graph and grab (left click) the last 5 minutes of a graph and drag it across and release. This will freeze the last the time frame grabbed (5 minutes) for viewing.
 
 
-![](images/20.png)
+![](images/22.png)
 
 Press the play button to resume monitoring. 
 
@@ -518,16 +522,16 @@ Press the play button to resume monitoring.
 
 At the top right there is a “camera” icon which is used to annotate the graph along with a snap shot.
 
-![](images/21.png)
+![](images/23.png)
 
-![](images/22.png)
+![](images/24.png)
 
 <br>
 
 Doing this will notify the user on the event list with the message and snapshot of the graph.
 
 
-![](images/23.png)
+![](images/25.png)
 
 <br>
 <br>
@@ -540,7 +544,7 @@ Data: SQL SELECT statements processed.
 
 
 
-![](images/24.png)
+![](images/26.png)
 
 <br>
 <br>
@@ -557,19 +561,19 @@ At the Datadog Dashboard, on the “Monitors” tab, select “New Monitor” an
 
 Choose threshold alert.
 
-![](images/25.png)
+![](images/27.png)
 
 <br>
 
 The metric we are using is my_metric from the Vagrant host, leave the rest default.
 
-![](images/26.png)
+![](images/28.png)
 
 <br>
 
 Warning threshold of 500, alerting threshold of 800 and ensure that it will notify recipient if there is No Data for this query over the past 10 minutes. Leave the rest default.
 
-![](images/27.png)
+![](images/29.png)
 
 <br>
 
@@ -589,7 +593,7 @@ Configure the monitor’s message with these details:
 Use the triggers to specify alerts and variables, als add a recipient email to receive the emails.
 
 
-![](images/28.png)
+![](images/30.png)
 
 
 <br>
@@ -597,7 +601,7 @@ Use the triggers to specify alerts and variables, als add a recipient email to r
 Email received:
 
 
-![](images/29.png)
+![](images/31.png)
 
 <br>
 
@@ -614,7 +618,7 @@ Email received:
 At the top of the Monitors menu, select the “Manage Downtime” tab at the top of the screen and select “Schedule Downtime”.
 
 
-![](images/29.png)
+![](images/32.png)
 
 
 Populate fields with the target information.
@@ -623,19 +627,19 @@ Populate fields with the target information.
 
 *A downtime scheduled that silences it from 7pm to 9am daily on M-F
 
-![](images/30.png)
+![](images/33.png)
 
 <br>
 
 *A downtime schedulde that silences it all day on Sat-Sun.
 
-![](images/31.png)
+![](images/34.png)
 
 <br>
 
 Return the Manage Downtime tab to see an overview.
 
-![](images/31.png)
+![](images/35.png)
 
 <br>
 <br>
@@ -653,7 +657,7 @@ The setting will be located towards the bottom of the datdog.yaml file and will 
 
 Set enable to true and save the file, restart the Agent.
 
-![](images/32.png)
+![](images/36.png)
 
 
 <br>
@@ -691,7 +695,7 @@ Take note of the port for the application at the bottom as this will need to be 
 
 Vagrantfile: (Port forwarding to guest was added earlier)
 
-![](images/33.png)
+![](images/37.png)
 
 <br>
 
@@ -717,28 +721,28 @@ Sudo ddtrace-run python app.py
 
 *Expected output
 
-![](images/34.png)
+![](images/38.png)
 
 <br>
 
 While connected, make a few API calls that are specified in the solution in a browser and our local host port e.g. http://localhost:8080/ 
 
 
-![](images/34.png)
+![](images/39.png)
 
-![](images/35.png)
+![](images/40.png)
 
 <br>
 
 Logs in your terminal.
 
-![](images/36.png)
+![](images/41.png)
 
 <br>
 
 Check in the Datadog dashboard in the APM tab that it is receiving traces.
 
-![](images/37.png)
+![](images/42.png)
 
 <br>
 <br>
@@ -751,13 +755,13 @@ In the Datadog dashboard, navigate to the custom dashboard we created and add an
 
 Drag and drop the Timeseries widget and fill in the details for the appropriate metric. 
 
-![](images/38.png)
+![](images/43.png)
 
 <br>
 
 Dashboard with the trace metrics.
 
-![](images/38.png)
+![](images/44.png)
 
 <br>
 
