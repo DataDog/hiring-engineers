@@ -18,7 +18,7 @@ Installation was done using the installer script provieded in the Agent Sector.
 (DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)
 ```
 On both machines the Agents where insalled without any issue
-<img src="img/Datadog_Agent_Manager.png"/>
+<img src="img/DATADOG-AGENT.png"/>
 The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
 
 ## Collecting Metrics
@@ -26,7 +26,7 @@ Definition of new Tags based on the DataDog documentation on tags ([Datadog Tagg
 
 Configured the tags within the ```Datadog Agent Manager``` 
 
-<img src="img/DATADOG-AGENT.png"/>
+<img src="img/install_mac_os.png"/>
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Both machines got there individual Tags. The first mac got the tags in the first Picture
