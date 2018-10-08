@@ -483,19 +483,19 @@ It also creates a monitor that prints a message when the threshold is reached Wh
 ![](images/18.png)
 <br>
 
-![](images/19.png)
+
 
 <br>
 
 Check the Datadog dashboard to see what has been created. The Timeboard is in the “Dashboards” tab.
 
-![](images/20.png)
+![](images/19.png)
 
 <br>
 
 The new monitor will be in the “Monitors” tab.
 
-![](images/21.png)
+![](images/16.png)
 
 For more information on Timeboard’s please see [here](https://docs.datadoghq.com/graphing/dashboards/timeboard/).
 
@@ -509,7 +509,7 @@ For more information on Timeboard’s please see [here](https://docs.datadoghq.c
 Hover over the graph and grab (left click) the last 5 minutes of a graph and drag it across and release. This will freeze the last the time frame grabbed (5 minutes) for viewing.
 
 
-![](images/22.png)
+![](images/20.png)
 
 Press the play button to resume monitoring. 
 
@@ -522,16 +522,16 @@ Press the play button to resume monitoring.
 
 At the top right there is a “camera” icon which is used to annotate the graph along with a snap shot.
 
-![](images/23.png)
+![](images/21.png)
 
-![](images/24.png)
+![](images/22.png)
 
 <br>
 
 Doing this will notify the user on the event list with the message and snapshot of the graph.
 
 
-![](images/25.png)
+![](images/23.png)
 
 <br>
 <br>
@@ -544,7 +544,7 @@ Data: SQL SELECT statements processed.
 
 
 
-![](images/26.png)
+![](images/24.png)
 
 <br>
 <br>
@@ -561,19 +561,19 @@ At the Datadog Dashboard, on the “Monitors” tab, select “New Monitor” an
 
 Choose threshold alert.
 
-![](images/27.png)
+![](images/25.png)
 
 <br>
 
 The metric we are using is my_metric from the Vagrant host, leave the rest default.
 
-![](images/28.png)
+![](images/26.png)
 
 <br>
 
 Warning threshold of 500, alerting threshold of 800 and ensure that it will notify recipient if there is No Data for this query over the past 10 minutes. Leave the rest default.
 
-![](images/29.png)
+![](images/27.png)
 
 <br>
 
@@ -593,7 +593,7 @@ Configure the monitor’s message with these details:
 Use the triggers to specify alerts and variables, als add a recipient email to receive the emails.
 
 
-![](images/30.png)
+![](images/28.png)
 
 
 <br>
@@ -601,7 +601,7 @@ Use the triggers to specify alerts and variables, als add a recipient email to r
 Email received:
 
 
-![](images/31.png)
+![](images/29.png)
 
 <br>
 
@@ -618,7 +618,7 @@ Email received:
 At the top of the Monitors menu, select the “Manage Downtime” tab at the top of the screen and select “Schedule Downtime”.
 
 
-![](images/32.png)
+![](images/30.png)
 
 
 Populate fields with the target information.
@@ -627,19 +627,19 @@ Populate fields with the target information.
 
 *A downtime scheduled that silences it from 7pm to 9am daily on M-F
 
-![](images/33.png)
+![](images/31.png)
 
 <br>
 
 *A downtime schedulde that silences it all day on Sat-Sun.
 
-![](images/34.png)
+![](images/32.png)
 
 <br>
 
 Return the Manage Downtime tab to see an overview.
 
-![](images/35.png)
+![](images/33.png)
 
 <br>
 <br>
@@ -657,7 +657,7 @@ The setting will be located towards the bottom of the datdog.yaml file and will 
 
 Set enable to true and save the file, restart the Agent.
 
-![](images/36.png)
+![](images/34.png)
 
 
 <br>
@@ -695,7 +695,7 @@ Take note of the port for the application at the bottom as this will need to be 
 
 Vagrantfile: (Port forwarding to guest was added earlier)
 
-![](images/37.png)
+![](images/35.png)
 
 <br>
 
@@ -721,28 +721,28 @@ Sudo ddtrace-run python app.py
 
 *Expected output
 
-![](images/38.png)
+![](images/36.png)
 
 <br>
 
 While connected, make a few API calls that are specified in the solution in a browser and our local host port e.g. http://localhost:8080/ 
 
 
-![](images/39.png)
+![](images/37.png)
 
-![](images/40.png)
+![](images/38.png)
 
 <br>
 
 Logs in your terminal.
 
-![](images/41.png)
+![](images/39.png)
 
 <br>
 
 Check in the Datadog dashboard in the APM tab that it is receiving traces.
 
-![](images/42.png)
+![](images/40.png)
 
 <br>
 <br>
@@ -755,13 +755,13 @@ In the Datadog dashboard, navigate to the custom dashboard we created and add an
 
 Drag and drop the Timeseries widget and fill in the details for the appropriate metric. 
 
-![](images/43.png)
+![](images/41.png)
 
 <br>
 
 Dashboard with the trace metrics.
 
-![](images/44.png)
+![](images/42.png)
 
 <br>
 
