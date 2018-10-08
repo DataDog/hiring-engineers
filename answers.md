@@ -564,6 +564,29 @@ if __name__ == '__main__':
 [Here's a link to my APM and Infrastrcture Screenboard as an example](https://p.datadoghq.com/sb/a34d3d959-3579b887024535849e662ba18f7f80ef)
 ![screenboard apm and infrastructure](media/screenboard.png)
 
+###Bonus Question: *What is the difference between a Service and a Resource?*
+
+A service is a process which is a discrete part of your system, while a resource is a particular query to that service. You can think of a resource as a child to a service.
+
+For instance if we had a web app which ran Express on the backend and Postgres as its database we could categorise it as the following:
+
+Services:
+- Our backend Express application
+- Our Database layer<br>
+Resource:
+- An http request to Express
+- A database query in Postgres
+
+#Final Question
+
+I used to play World of Warcraft fairly religiously, especially whenever a large content patch or expansion came out. I'd rush home from school or uni to enjoy the fruits of Blizzard's labour when suddenly: *your server is currently full: your position in queue is 1148th*. All that wasted energy spent rushing home and clearing my schedule when I could have invested that energy in creating a Datadog monitor.
+
+Similar to the Pokomon GO monitoring article I could create a client which hits [Blizzard OAuth api for my region](https://dev.battle.net/docs/read/oauth) to get a gage on the latency of my requests. I could then apply an anomaly function to my metric to visualise if there's an increased amount of traffic. If I didn't want to manually check the Datadog dashboard then I could set up a scheduler email to alert me when it's looking like there's a large queue of people waiting to login.
+
+####I'd just like to say thanks for giving me the opportunity to apply and considering me. Over the past few days I've enjoyed being able to play around on the platform, and it's pretty gratifying seeing your programs visualised and metrics listed. I hope you've enjoyed reading this.
+<br>
+####Edmund
+
 ##Notes:
 * (If ssh'd into your vagrant machine) Making vim + python tolerable: https://realpython.com/vim-and-python-a-match-made-in-heaven
 * Datadog logs for python: https://app.datadoghq.com/logs/onboarding/server
