@@ -16,28 +16,30 @@ For the exercise two DataDog Agent where installed on two different MacBooks.
 Installation was done using the installer script provieded in the Agent Sector.
 (DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
 On both machines the Agents where insalled without any issue
+<img src="img/DATADOG-AGENT.png"/>
 The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
 
-## Collecting Metrics:
-•	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-•	Both machines got there individual Tags. The first mac got the tags in the first Picture.
-•	  
-<img src="img/0/agent_installed.png"/>
+## Collecting Metrics
+Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+Both machines got there individual Tags. The first mac got the tags in the first Picture
+<img src="img/tags_exercise_agent.png"/>
 
-•	The next one is fort he second mac.
-•	 
+The next one is fort he second mac
+<img src="img/tags_demo_agent.png"/>
 
-•	Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-•	MySQL on a NAS was used as a Database. I decided against a local installation. I was intersted if there are some additional issues regarding accessing via Network.
+MySQL on a NAS was used as a Database. I decided against a local installation. I was intersted if there are some additional issues regarding accessing via Network.
 First step was to create a user like described in the Dokumentation (https://docs.datadoghq.com/integrations/mysql/)
 With the following parameter
-•	CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>'
-o	Also all rights and so on where created like discriped.
-o	The issue was that the database could not be reached because this was a local user only. So changed the right for the user to have access from everywhere
+
+- ```CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>'```
+ - Also all rights and so on where created like discriped.
+ - The issue was that the database could not be reached because this was a local user only. So changed the right for the user to have access from everywhere
+ <img src="img/mySQL_Settings.png"/>
  
-•	With that change it was possible to add the database to the Datadog Agent (second mac was used)
-•	 
+With that change it was possible to add the database to the Datadog Agent (second mac was used)
+•	 <img src="img/mysql.png"/>
  
 •	All default metrics could be seen and reported.
 •	
@@ -48,6 +50,8 @@ Created two different files.
 2.	my_metric.py – this file contains the current code. Stored under: /opt/datadog-agent/etc/checks.d	
 •	 
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
+
+<img src="img/my_metric.png"/>
  
 •	 
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
