@@ -116,14 +116,14 @@ The first part of the Script contains first of all the initial and the api libar
 All requests to Datadog’s API must be authenticated. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key.
 ```
 
-``
+```
 from datadog import initialize, api
 
 options = {
     'api_key': '<api key>',
     'app_key': '<app key>'
 }
-``
+```
 The API keys are unique to the organization. An API key is required by the Datadog Agent to submit metrics and events to Datadog. This key is automatic generated. If needed a seperate key could be created.
 
 Application keys, in conjunction with the org's API key, give full access to Datadog's programmatic API. Application keys are associated with the user account that created them and can be named. The application key is used to log all requests made to the API. These keys have to create manually.
@@ -135,6 +135,30 @@ This will be done by
 ```
 pip install datadog
 ````
+To be able to run this commant it is essential that pip is installed.
+if it is not installed there will be the error:
+-> -bash: pip: command not found
+
+To be able to use pip follow the instruction how to [install pip python](https://pip.pypa.io/en/stable/installing/)
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+To be able to run the script it is essential that the user has rights to the install folder.
+After installing pip it is possible to run the first line again
+```
+pip install datadog
+````
+depending on the environment it could be needed to run the installation with the follwing comand:
+```
+python -m pip install datadog
+```
+
+After installing the created Timeboard Script could be executed:
+```
+python timeboard.py
+```
+
 Created the script to create the Timeboard with needed metric
 Xx
 Xx
