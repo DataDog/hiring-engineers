@@ -22,9 +22,11 @@ The test account i created already 3 weeks ago. So there is no “Datadog Recrui
 ## Collecting Metrics
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Both machines got there individual Tags. The first mac got the tags in the first Picture
+
 <img src="img/tags_exercise_agent.png"/>
 
 The next one is fort he second mac
+
 <img src="img/tags_demo_agent.png"/>
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -36,14 +38,17 @@ With the following parameter
 - ```CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>'```
  - Also all rights and so on where created like discriped.
  - The issue was that the database could not be reached because this was a local user only. So changed the right for the user to have access from everywhere
+ 
  <img src="img/mySQL_Settings.png"/>
  
 With that change it was possible to add the database to the Datadog Agent (second mac was used)
+
 •	 <img src="img/mysql.png"/>
  
 •	All default metrics could be seen and reported.
 •	
-•	Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
 •	Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Created two different files.
 1.	my_metric.yaml – this files contains the generell call and definition. This file is stored under /opt/datadog-agent/etc/config.d 
