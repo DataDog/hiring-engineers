@@ -82,7 +82,9 @@ Created two different files.
 
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
-<img src="img/my_metric.png"/>
+Position: <img src="img/Status_Collector.png"/>
+
+Result: <img src="img/my_metric.png"/>
 
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -103,6 +105,36 @@ Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d 
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 - Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+With help of different DataDog help pages a script for creating a Timeboard was created. Used help pages where the documentation on [timeboards](https://docs.datadoghq.com/graphing/dashboards/timeboard/), the [Datadog API - Section Timeboard](https://docs.datadoghq.com/api/?lang=python#timeboards) description, and Graphing Primer using [JSON](https://docs.datadoghq.com/graphing/graphing_json/).
+
+The Script contains 3 metrics as described above.
+
+The first part of the Script contains first of all the initial and the api libary needed. The second part contains the access to the authentication. See [authentication](https://docs.datadoghq.com/api/?lang=python#authentication)
+```
+### Authentication
+All requests to Datadog’s API must be authenticated. Requests that write data require reporting access and require an API key. Requests that read data require full access and also require an application key.
+```
+
+``
+from datadog import initialize, api
+
+options = {
+    'api_key': '<api key>',
+    'app_key': '<app key>'
+}
+``
+The API keys are unique to the organization. An API key is required by the Datadog Agent to submit metrics and events to Datadog. This key is automatic generated. If needed a seperate key could be created.
+
+Application keys, in conjunction with the org's API key, give full access to Datadog's programmatic API. Application keys are associated with the user account that created them and can be named. The application key is used to log all requests made to the API. These keys have to create manually.
+
+<img src="img/auth.png"/>
+
+To be able to use a python script the Python integration must be installed.
+This will be done by 
+```
+pip install datadog
+````
 Created the script to create the Timeboard with needed metric
 Xx
 Xx
@@ -136,6 +168,7 @@ o	And one that silences it all day on Sat-Sun.
 o	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+```
 from flask import Flask
 import logging
 import sys
@@ -164,6 +197,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+    ```
 •	Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 •	Bonus Question: What is the difference between a Service and a Resource?
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
