@@ -46,7 +46,9 @@ With that change it was possible to add the database to the Datadog Agent (secon
 •	 <img src="img/mysql.png"/>
  
 •	All default metrics could be seen and reported.
-•	
+
+•	<img src="img/MySql_Status.png"/>
+
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 •	Change your check's collection interval so that it only submits the metric once every 45 seconds.
