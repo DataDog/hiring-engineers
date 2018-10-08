@@ -1,0 +1,17 @@
+
+dd_url: https://app.datadoghq.com
+
+
+api_key: YOUR_API_KEY
+
+
+tags:
+  - role:database
+  - role:database:mysql
+  - custom:random_metric
+
+
+
+apm_config:
+  enabled: true
+
