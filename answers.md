@@ -3,9 +3,9 @@
 Alright Reader buckle in because you're about to bear witness to my magnum opus AND learn how to use DataDog. If I've done my job right then by the end of this you'll find yourself a *big dog* at DataDog. 
 
 
-##1. Prerequisites 
+## 1. Prerequisites 
 
-###1.2 Setting up VirtualBox and Vagrant
+### 1.2 Setting up VirtualBox and Vagrant
 
 Before we delve into using DataDog we're going to need to set up a fresh virtual machine environment. This guide will be using Vagrant with Ubuntu `v.16.04`. If you've got a different virtual machine installed congratulations you've tripped at the first hurdle. Anyway, battling on:
 
@@ -23,7 +23,7 @@ Before we delve into using DataDog we're going to need to set up a fresh virtual
 
 Congratulations! You have a working virtual machine. Try ssh'ing into it with `vagrant ssh`. Alternative you can destroy it with `vagrant destroy`. The remainder of this guide will take place within the Vagrant environment so go ahead and make sure you've run `vagrant ssh`!
 
-###1.3 DataDog sign up
+### 1.3 DataDog sign up
 
 1. Head over to [DataDog to sign up](https://app.datadoghq.com/signup)
 2. Enter *Datadog Recruiting Candidate* in the *Company* field
@@ -36,8 +36,8 @@ Congratulations! You have a working virtual machine. Try ssh'ing into it with `v
 9. Finally let's see the permissions for our datadog-agent directory. Run `sudo chgrp -R ddGroup /etc/datadog-agent/` to change the group ownership to our new group, and then run `sudo chmod -R 770 /etc/datadog-agent/` to only allow users within our group to read,write, and execute it
 
 
-##2. Collecting Metrics 
-###2.1 Tags
+## 2. Collecting Metrics 
+### 2.1 Tags
 
 A *tag* enables for finer granularity of your metrics. For instance you could group the CPUs of all your hosts across different regions, and then filter by that region.
 
@@ -50,7 +50,7 @@ A *tag* enables for finer granularity of your metrics. For instance you could gr
 6. Click on the third dropdown on the navbar, then click host map
 7. Your tags and host should now be visible, however if they're not then give the agent a few minutes to deliver the new payload to Datadog:<br>![tags and host](media/tagsAndHost.png)
  
-###2.2 Installing our Database (Postgres)
+### 2.2 Installing our Database (Postgres)
 
 1. Let's refresh our package list: `sudo apt-get update`
 2. Now for the main event: `sudo apt-get install postgresql postgresql-contrib`
@@ -63,7 +63,7 @@ A *tag* enables for finer granularity of your metrics. For instance you could gr
 9. Execute your `.bashrc` by running `source ~/.bashrc` (otherwise it won't 'refresh' until your next shell instance)
 
 
-###2.3 Installing PostgreSQL intergration on DataDog
+### 2.3 Installing PostgreSQL intergration on DataDog
 1. Head back over to the DataDog portal
 2. Click on the jigsaw on the navbar
 3. Enter *Postgres* in the searchbar
@@ -80,7 +80,7 @@ echo -e "\e[0;31mCannot connect to Postgres\e[0m"`
 12. Restart your datadog agent.
 13. Verify that the integration has been completed by running `datadog-agent status` and scrolling to the postgres section. Alternatively just run `datadog-agent status | grep postgres`. It should say `instance ID: postgres:<some id> [OK]`.
 
-###2.4 Creating a custom Agent check
+### 2.4 Creating a custom Agent check
 
 Creating an *Agent* allows for the collection of metrics from custom application or unique systems. 
 
@@ -91,7 +91,7 @@ Creating an *Agent* allows for the collection of metrics from custom application
 
 Our YAML file needs to contain two sections: an `init_config` section and an `instances` section. The `init_config` section allows for global configuration options which can be access within `my_metric.py`. The `instances` section lists the instances which the check will run against.
 
-###2.4.1 my_metric.yaml
+### 2.4.1 my_metric.yaml
 1. Let's start off our first check by passing in some very simple information to our yaml file. <br>
 2. 
 ```yaml
@@ -102,7 +102,7 @@ Our YAML file needs to contain two sections: an `init_config` section and an `in
 ```
 
 
-###2.4.2 my_metric.py
+### 2.4.2 my_metric.py
 1. We'll create a pretty barebones check file to start off. All our check will do is send a random value between 0 and 1000 every 45 seconds.
 2. Copy the follow values into your `my_metric.py`.
 3. 
@@ -128,9 +128,9 @@ import random
 ```
 Restart your client and voilà!<br> ![45 seconds interval graph](media/confInterval45Graph.png)
 
-##3. Visualising Data
+## 3. Visualising Data
 
-###3.1 Creating our Python client
+### 3.1 Creating our Python client
 
 Before we begin delving into the wonderful world of RESTful services we're going to need to create a client capable of making API callouts. Let's leverage the `datadog` python library to help us out with this.
 
@@ -141,9 +141,9 @@ Before we begin delving into the wonderful world of RESTful services we're going
 
 Great! We're now ready to create our first Timeboard
 
-###3.2 Creating a Timeboard
+### 3.2 Creating a Timeboard
 
-####3.2.1 Creating a graph of *my_metric*
+#### 3.2.1 Creating a graph of *my_metric*
 Paste this into your `app.py` file
 
 ```python
@@ -372,14 +372,14 @@ resp = api.Timeboard.create(title=title,
 
 print resp  # let's print our response
 ```
-###3.3 What is the Anomaly graph displaying?
+### 3.3 What is the Anomaly graph displaying?
 
 ![anomaly graph](media/anomaly.png)
 <br>The above anomaly graph highlights in red the points where our average number of row insertions per second are above or below a deviation of 2, which is calculated using our [basic](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) algorithm. For instance at 18:16 we can clearly see a datapoint which is well above the predicted average, while at around 14:14:20 we can see a datapoint which is far below the predicted average.
 
-##4. Monitoring Data
+## 4. Monitoring Data
 
-###4.1 Creating a new Metric Monitor
+### 4.1 Creating a new Metric Monitor
 
 Let's create a *Metric Monitor* that will watch the average of *my_metric* and alert us if there's anything odd going on with it. We'll start off by having our metric monitor sending us a warning at a threshold of 500, alerting us at 800, and notifying us if there's been *No Data for this query* over the past 10 minutes.
 
@@ -430,7 +430,7 @@ Make sure your DataDog agent is still running and fire off the script: `python m
 ![you're never going to get a beverage](media/monitorAlertEmail.png)
 oh nevermind.
 
-###4.2 Scheduling downtimes for the monitor
+### 4.2 Scheduling downtimes for the monitor
 
 Let's now modify our monitor to not alert us when we're outside of the office. We'll need to schedule two downtimes for this monitor:
 
@@ -514,7 +514,7 @@ resp = api.Downtime.create(
 
 Note: the email comments are in UTC not GMT+11. The downtimes themselves are configured for *Australia/NSW*
 
-#5. Collecting APM Data
+# 5. Collecting APM Data
 
 This was the first time where `datadog-agent` being run in my vagrant environment gave me some issues. My agent was giving me a TLS handshaking issue whenever my Python script's trace information was trying to be sent out. <br>Datadog agent's output: `018-10-07 13:29:36 UTC | ERROR | (log.go:179 in Printf) | http: TLS handshake error from 127.0.0.1:59096: tls: first record does not look like a TLS handshake`<br>
 I tried alternating between the middleware and ddtrace-run, hardcoding values into the `ddtrace.writer` class, changing values which looked promising in `datadog.yaml`, running `ddtrace_run` with the `DATADOG_TRACE_DEBUG=true`, and even tried from the ground up on a Windows machine. I thought a Docker approach might be fruitful because [this](https://docs.datadoghq.com/tracing/faq/why-am-i-getting-errno-111-connection-refused-errors-in-my-application-logs/) FAQ page talked about how you may run into issues *using* a Docker container, so naturally I decided to *use* Docker (a bit counter-intuitive there, Ed). With that being said we'll need to exit the land of virtualisation and take a journey into containerisation so exit your vagrant machine cause we're going to start using Docker.
@@ -564,7 +564,7 @@ if __name__ == '__main__':
 [Here's a link to my APM and Infrastrcture Screenboard as an example](https://p.datadoghq.com/sb/a34d3d959-3579b887024535849e662ba18f7f80ef)
 ![screenboard apm and infrastructure](media/screenboard.png)
 
-###Bonus Question: *What is the difference between a Service and a Resource?*
+### Bonus Question: *What is the difference between a Service and a Resource?*
 
 A service is a process which is a discrete part of your system, while a resource is a particular query to that service. You can think of a resource as a child to a service.
 
@@ -577,17 +577,17 @@ Resource:
 - An http request to Express
 - A database query in Postgres
 
-#Final Question
+# Final Question
 
 I used to play World of Warcraft fairly religiously, especially whenever a large content patch or expansion came out. I'd rush home from school or uni to enjoy the fruits of Blizzard's labour when suddenly: *your server is currently full: your position in queue is 1148th*. All that wasted energy spent rushing home and clearing my schedule when I could have invested that energy in creating a Datadog monitor.
 
 Similar to the Pokomon GO monitoring article I could create a client which hits [Blizzard OAuth api for my region](https://dev.battle.net/docs/read/oauth) to get a gage on the latency of my requests. I could then apply an anomaly function to my metric to visualise if there's an increased amount of traffic. If I didn't want to manually check the Datadog dashboard then I could set up a scheduler email to alert me when it's looking like there's a large queue of people waiting to login.
 
-####I'd just like to say thanks for giving me the opportunity to apply and considering me. Over the past few days I've enjoyed being able to play around on the platform, and it's pretty gratifying seeing your programs visualised and metrics listed. I hope you've enjoyed reading this.
+#### I'd just like to say thanks for giving me the opportunity to apply and considering me. Over the past few days I've enjoyed being able to play around on the platform, and it's pretty gratifying seeing your programs visualised and metrics listed. I hope you've enjoyed reading this.
 <br>
-####Edmund
+#### Edmund
 
-##Notes:
+## Notes:
 * (If ssh'd into your vagrant machine) Making vim + python tolerable: https://realpython.com/vim-and-python-a-match-made-in-heaven
 * Datadog logs for python: https://app.datadoghq.com/logs/onboarding/server
 * Datadog graphing with JSON: https://docs.datadoghq.com/graphing/graphing_json/
