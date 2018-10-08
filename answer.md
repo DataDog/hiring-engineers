@@ -7,13 +7,15 @@ Author: Paul Ployvisut
 Position Target: Solutions Engineer
 
 </sub>
+
 <br>
 
 **<h1> The Environment <h1>**
 
 <sub>
 
-The challenge environment was created on ubuntu 16.04 in conjunction with Vagrant (Box bento/ubuntu-16.04) which uses Oracle’s VirtualBox as the hosted hypervisor.
+The challenge environment was created on ubuntu 16.04 in conjunction with Vagrant (Box bento/ubuntu-16.04) which uses Oracle’s 
+VirtualBox as the hosted hypervisor.
 
 <br>
 
@@ -32,7 +34,8 @@ The challenge environment was created on ubuntu 16.04 in conjunction with Vagran
 
 <br>
 
-After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/intro/index.html)” tab on the website to follow instructions on how to install a box (OS images from Vagrant). You will be able to SSH to your new Linux environment at completion.
+After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/intro/index.html)” tab on the website to follow 
+instructions on how to install a box (OS images from Vagrant). You will be able to SSH to your new Linux environment at completion.
 
 <br>
 
@@ -40,7 +43,8 @@ After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/
 
 <br>
 
-Navigate to your directory you wish to install your Vagrant box to via terminal and create a Vagrantfile (Configures a specified Vagrant VM).
+Navigate to your directory you wish to install your Vagrant box to via terminal and create a Vagrantfile (Configures a specified Vagrant 
+VM).
 
 <br>
 
@@ -70,7 +74,8 @@ Select the provider you would like. For this project we have chosen to use Virtu
 
 <br>
 
-Edit the Vagrantfile we created earlier with a text editor like Notepad++ and add the name of the box you added. This tells Vagrant to use the specified box as a base.
+Edit the Vagrantfile we created earlier with a text editor like Notepad++ and add the name of the box you added. This tells Vagrant to 
+use the specified box as a base.
 
 <br>
 
@@ -88,7 +93,8 @@ $ vagrant up
 $ vagrant ssh
 ```
 
-We have now created our own environment with Vagrant using a version of Ubuntu as the operating system. Further configuration can be done but for now this will do but for more information see [here](https://www.vagrantup.com/intro/getting-started/index.html).
+We have now created our own environment with Vagrant using a version of Ubuntu as the operating system. Further configuration can be 
+done but for now this will do but for more information see [here](https://www.vagrantup.com/intro/getting-started/index.html).
 
 
 <br>
@@ -96,9 +102,11 @@ We have now created our own environment with Vagrant using a version of Ubuntu a
 
 **4. Installing the Datadog agent.**
 
-After creating an account on Datadog [here](https://www.datadoghq.com/), You can log into your dashboard that will be your monitoring hub. 
+After creating an account on Datadog [here](https://www.datadoghq.com/), You can log into your dashboard that will be your monitoring 
+hub. 
 
-In the “Integrations” tab, select “Agent” which will give you a list of different Linux distributions and operating systems. Select the applicable version and follow the steps to install the agent.
+In the “Integrations” tab, select “Agent” which will give you a list of different Linux distributions and operating systems. Select the 
+applicable version and follow the steps to install the agent.
 
 <br>
 
@@ -114,7 +122,8 @@ In the “Integrations” tab, select “Agent” which will give you a list of 
 
 **5.	Ubuntu Installation**
 
-Connected to your Vagrant box via SSH and perform a fresh install of the Datadog Agent. There is also an option to perform a manual install [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6#one-step-install).
+Connected to your Vagrant box via SSH and perform a fresh install of the Datadog Agent. There is also an option to perform a manual 
+install [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6#one-step-install).
 
 **Note:** It is a good idea to run an update of your box before making changes.
 
@@ -167,7 +176,8 @@ sudo datadog-agent status
 
 Check your Datadog dashboard to see if metrics are being received by Datadog. 
 
-On the left-hand pane of the Datadog dashboard, select “Infrastructure” and select “Infrastructure List” from the sub menu. You will be able to see the status of all hosts connected. 
+On the left-hand pane of the Datadog dashboard, select “Infrastructure” and select “Infrastructure List” from the sub menu. You will be 
+able to see the status of all hosts connected. 
 
 <br>
 
@@ -192,7 +202,8 @@ Use preferred text editor to edit the “tags” section of the configuration fi
 
 <br>
 
-**Note:** Datadog recommended creating tags in a **key:value** format for better representations, read about it more [here](https://docs.datadoghq.com/tagging/assigning_tags/#further-reading).
+**Note:** Datadog recommended creating tags in a **key:value** format for better representations, read about it more [here]
+(https://docs.datadoghq.com/tagging/assigning_tags/#further-reading).
 
 <br>
 
@@ -234,7 +245,9 @@ While connected to your Vagrant instance via SSH, install a MySQL database.
 
 
 
-**Note:** We will just need a basic installation for now but for more information please see [here](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) for Ubuntu installation or the official MySQL [website](https://dev.mysql.com/doc/refman/5.7/en/adding-users.html).
+**Note:** We will just need a basic installation for now but for more information please see [here]
+(https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) for Ubuntu installation or the official MySQL 
+[website](https://dev.mysql.com/doc/refman/5.7/en/adding-users.html).
 
 <br>
 
@@ -316,7 +329,8 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 <br>
 
-**Option:** Enable performance schema Quick Start, more information [here](https://dev.mysql.com/doc/refman/5.7/en/performance-schema-quick-start.html).
+**Option:** Enable performance schema Quick Start, more information [here](https://dev.mysql.com/doc/refman/5.7/en/performance-schema-
+quick-start.html).
 
 <br>
 
@@ -387,16 +401,19 @@ Two files must be created for the custom Agent check:
 •	The configuration for the module my_metric.yaml in the conf.d directory. 
 
 
-**Optional:** A subfolder can be created in the conf.d directory to house the configuration file e.g. /conf.d/my_metric.d/my_metric.yaml.
+**Optional:** A subfolder can be created in the conf.d directory to house the configuration file e.g. 
+/conf.d/my_metric.d/my_metric.yaml.
 
 
-**Note:** Both files must conform to the same name, for more information on creating custom Agent checks please see [here](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6#configuration).
+**Note:** Both files must conform to the same name, for more information on creating custom Agent checks please see [here]
+(https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6#configuration).
 
 <br>
 <br>
 <br>
 
-**Create the configuration file (my_metric.yaml) and specify the collection interval to 45.** This is very similar to the conf.yaml file we configured earlier for MySQL.
+**Create the configuration file (my_metric.yaml) and specify the collection interval to 45.** This is very similar to the conf.yaml file 
+we configured earlier for MySQL.
 
 After this is completed, place in the directory /conf.d/ or /conf.d/my_metric.d/.
 
