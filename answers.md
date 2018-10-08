@@ -3,7 +3,7 @@
 Alright Reader buckle in because you're about to bear witness to my magnum opus AND learn how to use DataDog. If I've done my job right then by the end of this you'll find yourself a *big dog* at DataDog. 
 
 
-##1. Prerequisites 
+## 1. Prerequisites 
 
 ###1.2 Setting up VirtualBox and Vagrant
 
