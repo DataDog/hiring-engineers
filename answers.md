@@ -14,12 +14,20 @@ For the exercise two DataDog Agent where installed on two different MacBooks.
 -	MacBook Pro (Retina 15', Mitte 2014) - 2,5GHz Intel Core i7
 
 Installation was done using the installer script provieded in the Agent Sector.
-```(DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)```
+```
+(DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)
+```
 On both machines the Agents where insalled without any issue
-<img src="img/DATADOG-AGENT.png"/>
+<img src="img/Datadog_Agent_Manager.png"/>
 The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
 
 ## Collecting Metrics
+Definition of new Tags based on the DataDog documentation on tags ([Datadog Tagging](https://docs.datadoghq.com/tagging/), [using](https://docs.datadoghq.com/tagging/using_tags/)).
+
+Configured the tags within the ```Datadog Agent Manager``` 
+
+<img src="img/DATADOG-AGENT.png"/>
+
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Both machines got there individual Tags. The first mac got the tags in the first Picture
 
@@ -72,10 +80,10 @@ Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d 
 ## Visualizing Data
 ### Utilize the Datadog API to create a Timeboard that contains:
 
-•	Your custom metric scoped over your host.
-•	Any metric from the Integration on your Database with the anomaly function applied.
-•	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-•	Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 Created the script to create the Timeboard with needed metric
 Xx
 Xx
