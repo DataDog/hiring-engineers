@@ -54,18 +54,24 @@ With that change it was possible to add the database to the Datadog Agent (secon
 •	Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Created two different files.
 1.	my_metric.yaml – this files contains the generell call and definition. This file is stored under /opt/datadog-agent/etc/config.d 
+
+<img src="img/my_metric_yaml_init.png"/>
+
 2.	my_metric.py – this file contains the current code. Stored under: /opt/datadog-agent/etc/checks.d	
 •	 
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
-<img src="img/my_metric.png"/>
+<img src="img/my_metric_py.png"/>
  
 •	 
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d as below:
-•	 
-Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
+
+•	 <img src="img/my_metric_yaml_param.png"/>
+
+## Visualizing Data
+### Utilize the Datadog API to create a Timeboard that contains:
+
 •	Your custom metric scoped over your host.
 •	Any metric from the Integration on your Database with the anomaly function applied.
 •	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
