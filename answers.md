@@ -585,6 +585,7 @@ Similar to the Pokomon GO monitoring article I could create a client which hits 
 
 #### I'd just like to say thanks for giving me the opportunity to apply and considering me. Over the past few days I've enjoyed being able to play around on the platform, and it's pretty gratifying seeing your programs visualised and metrics listed. I hope you've enjoyed reading this.
 <br>
+
 #### Edmund
 
 ## Notes:
