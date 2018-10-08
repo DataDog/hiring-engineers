@@ -79,15 +79,20 @@ Created two different files.
 2.	my_metric.py – this file contains the current code. Stored under: /opt/datadog-agent/etc/checks.d	
  
 <img src="img/my_metric_py.png"/> 
+
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
-<img src="img/my_metric_py.png"/>
+<img src="img/my_metric.png"/>
 
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+Changed min_collection_interval to 45 by editing my_check.yaml
+
+<img src="img/my_metric_yaml_param.png"/>
+
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d as below:
+Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d as below: 
 
 •	 <img src="img/my_metric_yaml_param.png"/>
 
