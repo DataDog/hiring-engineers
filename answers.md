@@ -58,7 +58,7 @@ With the following parameter
  - Also all rights and so on where created like discriped.
  - The issue was that the database could not be reached because this was a local user only. So changed the right for the user to have access from everywhere
  
- <img src="img/mySQL_Settings.png"/>
+ <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/mySQL_Settings.png"/>
  
 With that change it was possible to add the database to the Datadog Agent (second mac was used)
 
@@ -161,21 +161,34 @@ After installing the created Timeboard Script could be executed:
 python timeboard.py
 ```
 
-Created the script to create the Timeboard[Timeboard](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard.py) with needed metric
+Created the script to create the [Timeboard](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard.py) with needed metric 
 
 Script seems to run without any problem but did not created any Timeboard. 
 The next step was that i tried to analyse the process and let the script directly in an python environment running. Now i could see, that the first part oft he scritp was running without any issues. The part where the Timeboard was created was stoped with an error (see screen). 
 I tried to find out what this problem could cause but could not find anything so far.
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+I also tried an alternative script that did also not solve the issue (see [Timeboard_V2](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard_V2.py))
+
+### Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Based on the problem with loading i created a simular Dashboard to go on with the following steps.
+Dashboard with defined Metrics
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Timeboard_Dashboard.png"/>
 
-- Set the Timeboard's timeframe to the past 5 minutes
+### Set the Timeboard's timeframe to the past 5 minutes
 
 - Setting timeframe can be done on different ways. Depending on the time period it could be done by selection the correct time selector (e.g. xxx-days).
 - To select 5 Minutes it is easy to set on the smallest time selector and than just markt he needed time frame.
-- Take a snapshot of this graph and use the @ notation to send it to yourself.
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Timeboard_Dashboard5.png"/>
+
+### Take a snapshot of this graph and use the @ notation to send it to yourself.
+To do so just one element of the full dashboard was selected.
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Time_DB_Selected.png"/>
+By clicking on the camera Symbol it is possible to add comment and also send the Graph per mail.
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Trend_mail.png"/>
+
+
 - Screen
+
 #### Bonus Question: What is the Anomaly graph displaying?
 An anamaly graph shows next to normal trends also an expection band that shows the expection horizont (e.g. number of user acces, CPU usage and so on) Next to these „normal“ expected numbers the graph shows also all numbers that are above or below the expection band (e.g. RAM usage is normaly between 30% and 75%. If it rises above 75% it will be shown and marked as anomaly.
 An anomaly graph in combination with a defined monitoring / alerting can help reducing issues that are caused by an anomaly. For example if a new patch on a Server is installed and suddenly the number of errors rises dramatical an allert will directly inform that something is happen. That means that a user (e.g Admin) can directly have a look at the data and resolve the issue before even and end user will find out that there is something happening.
@@ -191,9 +204,9 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 ```
 ### Monitor
 Creating Monitors could be easy done within the GUI. To create a new Monitor choose "Monitor" and than "New Monitor".
-<img src="img/New_Monitor.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/New_Monitor.png"/>
 The following Screen would allow different Monitors to be created. The focus here is to create a Monitor for a Metric. Therefore "Metric" will be selected.
-<img src="img/Metric.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Metric.png"/>
 
 The definition will be based on "Threashold Alert" and the selected metric will be "my_metric".
 
@@ -212,7 +225,7 @@ Please configure the monitor’s message so that it will:
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 ```
 Within the same view the output mail container can be defined. Based on predefined parameter it is possible to create one mail container with different content regarding the event that took place (Alert, Warning and so on).
- <img src="img/threshold_msg.png"/>
+ <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/threshold_msg.png"/>
 
 ```
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
@@ -249,7 +262,7 @@ Mail content
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/down_msg_we.png"/>
 
 Outcome Mail
-<img src="img/down.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/down.png"/>
 
 
 ##### Overview Screen
