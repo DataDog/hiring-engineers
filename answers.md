@@ -218,14 +218,14 @@ Please configure the monitor’s message so that it will:
 <img src="img/notify.png"/>
 <img src="img/threshold_definition.png"/>
 <img src="img/threshold_msg.png"/>
-<img src="img/weekend_down_conf.png"/>
-<img src="img/weekly_down_conf.png"/>
 
 ### Mail
 ```
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
-<img src="img/my_metric.png"/>
+<img src="img/threshold_mail.png"/>
+
+
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
 ```
@@ -234,6 +234,14 @@ When this monitor sends you an email notification, take a screenshot of the emai
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ```
+
+Weekly down
+<img src="img/weekly_down_conf.png"/>
+
+Weekend Down
+<img src="img/weekend_down_conf.png"/>
+
+<img src="img/weekend_alert.png"/>
 
 
 ## Collecting APM Data:
