@@ -1,7 +1,7 @@
 <sub>
  
  
-**<h1> Datadog Excerise <h1>**
+**<h1> Datadog Excerise <h1>
 
 
 Author: Paul Ployvisut
@@ -12,7 +12,7 @@ Position Target: Solutions Engineer
 
 <br>
 
-**<h1> The Environment <h1>**
+**<h1> The Environment <h1>
 
 
 
@@ -21,17 +21,17 @@ The challenge environment was created on ubuntu 16.04 in conjunction with Vagran
 <br>
 
 
-**Note:** The machine used is a Windows 10 operating system with MinGW to emulate the Linux host environment. 
+Note: The machine used is a Windows 10 operating system with MinGW to emulate the Linux host environment. 
 
 
 <br>
 
 
-**1. Download and install [VirtualBox](https://www.virtualbox.org/).**
+**1. Download and install [VirtualBox](https://www.virtualbox.org/).
 
 <br>
 
-**2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html) 64-bit.**
+**2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html) 64-bit.
 
 <br>
 
@@ -39,7 +39,7 @@ After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/
 
 <br>
 
-**3.	Configuring Vagrant for the project**
+**3.	Configuring Vagrant for the project
 
 <br>
 
@@ -97,7 +97,7 @@ We have now created our own environment with Vagrant using a version of Ubuntu a
 <br>
 <br>
 
-**4. Installing the Datadog agent.**
+**4. Installing the Datadog agent.
 
 After creating an account on Datadog [here](https://www.datadoghq.com/), You can log into your dashboard that will be your monitoring hub. 
 
@@ -109,17 +109,17 @@ In the “Integrations” tab, select “Agent” which will give you a list of 
 
 <br>
 
-**Important! Keep your keys private!** 
+**Important! Keep your keys private!
 
 <br>
 
 <br>
 
-**5.	Ubuntu Installation**
+**5.	Ubuntu Installation
 
 Connected to your Vagrant box via SSH and perform a fresh install of the Datadog Agent. There is also an option to perform a manual install [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6#one-step-install).
 
-**Note:** It is a good idea to run an update of your box before making changes.
+**Note: It is a good idea to run an update of your box before making changes.
 
 <br>
 
@@ -164,7 +164,7 @@ sudo datadog-agent status
 
 <br>
 
-**Note:** This syntax will also give you a lot of useful information about the Agent e.g. where the configuration file is located. 
+**Note: This syntax will also give you a lot of useful information about the Agent e.g. where the configuration file is located. 
 
 <br>
 
@@ -186,7 +186,7 @@ On the left-hand pane of the Datadog dashboard, select “Infrastructure” and 
 
 
 
-**1.	Add tags in the Agent configuration file.**
+**1.	Add tags in the Agent configuration file.
 
 <br>
 
@@ -209,9 +209,9 @@ sudo nano /etc/datadog-agent/datadog.yaml
 
 <br>
 
-**Note:** There will be examples already present, we can just add onto these by uncommenting out the tags indicated without a #.
+**Note: There will be examples already present, we can just add onto these by uncommenting out the tags indicated without a #.
 
-After changes have been made, save the file with **CTRL o** and exit with **CTRL x**.
+After changes have been made, save the file with CTRL o and exit with CTRL x.
 
 Restart the Agent to initialise the changes.
 
@@ -231,13 +231,13 @@ Check the Datadog browser via the host map to see if the Agent has transmitted t
 
 <br>
 
-**2.	Install a database instance.**
+**2.	Install a database instance.
 
 While connected to your Vagrant instance via SSH, install a MySQL database.
 
 
 
-**Note:** We will just need a basic installation for now but for more information please see [here](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) for Ubuntu installation or the official MySQL [website](https://dev.mysql.com/doc/refman/5.7/en/adding-users.html).
+**Note: We will just need a basic installation for now but for more information please see [here](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) for Ubuntu installation or the official MySQL [website](https://dev.mysql.com/doc/refman/5.7/en/adding-users.html).
 
 <br>
 
@@ -262,12 +262,12 @@ sudo systemctl status mysql.service
 
 <br>
 
-**3.	Install Datadog integration with MySQL**
+**3.	Install Datadog integration with MySQL
 
 Head back to the Datadog dashboard and navigate to the “Integrations” tab to find and install the MySQL integration.
 Follow through the configuration tab to see all the steps.
 
-**Optional:** Generate a complex password and use this for the later steps.
+**Optional: Generate a complex password and use this for the later steps.
 
 <br>
 
@@ -275,12 +275,12 @@ Follow through the configuration tab to see all the steps.
 
 <br>
 
-After configuration the **arrowed** area will let you know that the integration is working.
+After configuration the arrowed area will let you know that the integration is working.
 
 <br>
 
 
-**4.	Configuring the integration.**
+**4.	Configuring the integration.
 
 Create a Datadog user for the Agent on the SQL server.
 
@@ -319,7 +319,7 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 <br>
 
-**Option:** Enable performance schema Quick Start, more information [here](https://dev.mysql.com/doc/refman/5.7/en/performance-schema-quick-start.html).
+**Option: Enable performance schema Quick Start, more information [here](https://dev.mysql.com/doc/refman/5.7/en/performance-schema-quick-start.html).
 
 <br>
 <br>
@@ -328,7 +328,7 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 etc/datadog-agent/conf.d/mysql.d/
 
-**Note:** Edit the example file and uncomment the required settings and save as the master file of conf.yaml.
+**Note: Edit the example file and uncomment the required settings and save as the master file of conf.yaml.
 
 <br>
 
@@ -379,7 +379,7 @@ The Agent is now taking metrics from the MySQL instance.
 
 <br>
 
-**5.	Create a custom Agent check.**
+**5.	Create a custom Agent check.
 
 <br>
 
@@ -393,10 +393,10 @@ Two files must be created for the custom Agent check:
 
 <br>
 
-**Optional:** A subfolder can be created in the conf.d directory to house the configuration file e.g. /conf.d/my_metric.d/my_metric.yaml.
+**Optional: A subfolder can be created in the conf.d directory to house the configuration file e.g. /conf.d/my_metric.d/my_metric.yaml.
 
 
-**Note:** Both files must conform to the same name, for more information on creating custom Agent checks please see [here](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6#configuration).
+**Note: Both files must conform to the same name, for more information on creating custom Agent checks please see [here](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6#configuration).
 
 <br>
 <br>
@@ -410,17 +410,17 @@ After this is completed, place in the directory /conf.d/ or /conf.d/my_metric.d/
 
 ![](images/14.png)
 
-**Note:** Changed to the collection interval can be changed here so there is no need to keep changing the module code.
+**Note: Changed to the collection interval can be changed here so there is no need to keep changing the module code.
 
 <br>
 
-**Create a new python file in a text editor named my_metric.py add a metric that submits a random value between 1 and 1000.**
+**Create a new python file in a text editor named my_metric.py add a metric that submits a random value between 1 and 1000.
 
 <br>
 
 ![](images/15.png)
 
-**Note**: I have added to import the random library so I can use the random int feature in Python.
+**Note: I have added to import the random library so I can use the random int feature in Python.
 
 <br>
 
@@ -428,7 +428,7 @@ After this is completed, place in the directory /conf.d/ or /conf.d/my_metric.d/
 
 <br>
 
-**Check that the custom Agent is transmitting metrics on the Datadog Dashboard.**
+**Check that the custom Agent is transmitting metrics on the Datadog Dashboard.
 
 In the infrastructure/host map tab, we can select the metric we created in the app section.
 
@@ -444,11 +444,11 @@ We can see the metrics are being received by Datadog between a range of 1 and 10
 
 <br>
 
-**<h1>Visualizing Data<h1>**
+**<h1>Visualizing Data<h1>
 
 <br>
 
-**1.	Create a script that will create a Timeboard for the Datadog dashboard.**
+**1.	Create a script that will create a Timeboard for the Datadog dashboard.
 
 We can create a script using Python to create a Timeboard through Datadog’s API. A base script can be found [here](https://docs.datadoghq.com/api/?lang=python#create-a-screenboard).
 
@@ -456,7 +456,7 @@ We can create a script using Python to create a Timeboard through Datadog’s AP
 
 [Timeboard Script](scripts/safe_my_timeboard.py)
 
-**Note:** An application key must be created and used "to give full access to Datadog’s programmatic API”.
+**Note: An application key must be created and used "to give full access to Datadog’s programmatic API”.
 
 <br>
 
@@ -466,11 +466,11 @@ It also creates a monitor that prints a message when the threshold is reached Wh
 <br>
 
 
-**2.	Use the API to create the Timeboard be executing your script through your Vagrant box.**
+**2.	Use the API to create the Timeboard be executing your script through your Vagrant box.
 
 <br>
 
-**Note:** Installation of Python modules may be required, please see the applicable information links.
+**Note: Installation of Python modules may be required, please see the applicable information links.
 
 [Python Integration](https://docs.datadoghq.com/integrations/python/)
 
@@ -504,7 +504,7 @@ For more information on Timeboard’s please see [here](https://docs.datadoghq.c
 
 <br>
 
-**3.	Setting the Timeboard’s timeframe manually.**
+**3.	Setting the Timeboard’s timeframe manually.
 
 <br>
 
@@ -518,7 +518,7 @@ Press the play button to resume monitoring.
 <br>
 
 
-**4.	Snapshot a graph and @ annotate a user.**
+**4.	Snapshot a graph and @ annotate a user.
 
 <br>
 
@@ -538,7 +538,7 @@ Doing this will notify the user on the event list with the message and snapshot 
 <br>
 <br>
 
-**5.	The Anomaly Graph.**
+**5.	The Anomaly Graph.
 
 The graph shows the metric received by Datadog (Blue line) and the threshold (Grey area)  that is defined by analysing historical metric behaviour.
 
@@ -551,11 +551,11 @@ Data: SQL SELECT statements processed.
 <br>
 <br>
 
-**<h1>Monitoring Data<h1>**
+**<h1>Monitoring Data<h1>
 
 <br>
 
-**1.	Creating a new monitor using the average of my_metric.**
+**1.	Creating a new monitor using the average of my_metric.
 
 <br>
 
@@ -607,7 +607,7 @@ Email received:
 
 <br>
 
-**2.	 Schedule down time for the following:**
+**2.	 Schedule down time for the following:
 
 <br>
 
@@ -627,7 +627,7 @@ Populate fields with the target information.
 
 <br>
 
-*A downtime scheduled that silences it from 7pm to 9am daily on M-F
+*A downtime scheduled that silences it from 7pm to 9am daily on M-F.
 
 ![](images/32.png)
 
@@ -646,11 +646,11 @@ Return the Manage Downtime tab to see an overview.
 <br>
 <br>
 
-**<h1>Collecting APM Data<h1>**
+**<h1>Collecting APM Data<h1>
 
 <br>
 
-**1.Enable APM (Application performance monitoring).**
+**1.Enable APM (Application performance monitoring).
 
 
 We must first enable it on the Agent in the datadog.yaml file. For more information please see [here](https://docs.datadoghq.com/tracing/setup/).
@@ -664,7 +664,7 @@ Set enable to true and save the file, restart the Agent.
 
 <br>
 
-**3.	Install the Datadog tracing library (ddtrace).**
+**3.	Install the Datadog tracing library (ddtrace).
 
 <br>
 
@@ -687,7 +687,7 @@ Please see here for more information on [Flask](https://docs.datadoghq.com/traci
 
 <br>
 
-**5.	Create the Python file with the Datadog APM solution code.**
+**5.	Create the Python file with the Datadog APM solution code.
 
 <br>
 
@@ -749,7 +749,7 @@ Check in the Datadog dashboard in the APM tab that it is receiving traces.
 <br>
 <br>
 
-**7.	Add APM to our custom Timeboard with the infrastructure metrics.**
+**7.	Add APM to our custom Timeboard with the infrastructure metrics.
 
 <br>
 
@@ -768,7 +768,7 @@ Dashboard with the trace metrics.
 <br>
 
 
-**8.	The difference between Services and resources?**
+**8.	The difference between Services and resources?
 
 A service is a set of processes that work in conjunction with each other to perform a task/s.
 
@@ -781,7 +781,7 @@ For more details [here](https://docs.datadoghq.com/tracing/visualization/#servic
 <br>
 <br>
 
-**<h1>What else can Datadog be used for?<h1>**
+**<h1>What else can Datadog be used for?<h1>
 
 With life always making us too busy even for each other, a phone application could be developed for monitoring on the go. Not really a new idea but with this is mind, an integration could be created for home applications and or systems. Condition alerts could be set up with maybe a Datadog Agent hub that device could be connected to.
 
