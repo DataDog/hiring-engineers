@@ -211,21 +211,14 @@ Please configure the monitor’s message so that it will:
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 ```
-<img src="img/down_msg.png"/>
-<img src="img/down_msg_we.png"/>
-<img src="img/mgt_downtime.png"/>
-<img src="img/down_list.png"/>
-<img src="img/notify.png"/>
-<img src="img/threshold_definition.png"/>
-<img src="img/threshold_msg.png"/>
+Within the same view the output mail container can be defined. Based on predefined parameter it is possible to create one mail container with different content regarding the event that took place (Alert, Warning and so on).
+ <img src="img/threshold_msg.png"/>
 
-### Mail
 ```
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
+Depending on the event different mails will triggert. As an example there is a screenshot of a warning message. This message is triggered when the metric is above 500.
 <img src="img/threshold_mail.png"/>
-
-
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
 ```
@@ -234,15 +227,39 @@ When this monitor sends you an email notification, take a screenshot of the emai
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ```
+Like the definition of the monitor itselfe it is also easy possible to create within the GUI different downtimes. A downtime will be defined under "Manage Downtime" and "Schedule Downtime". 
+<img src="img/mgt_downtime.png"/>
+
+
+
 
 ##### Setup for Weekly down time
+Configuration
 <img src="img/weekly_down_conf.png"/>
 
+Mail content
+
+
 ##### Setup for Weekend down time
+Configuration
 <img src="img/weekend_down_conf.png"/>
+<img src="img/down_msg.png"/>
+
+Mail content
+<img src="img/down_msg_we.png"/>
+
 
 ##### down time mail message
 <img src="img/weekend_alert.png"/>
+
+
+
+<img src="img/down_list.png"/>
+
+<img src="img/notify.png"/>
+
+<img src="img/threshold_definition.png"/>
+
 
 
 ## Collecting APM Data:
