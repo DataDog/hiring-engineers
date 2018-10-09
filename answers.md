@@ -308,15 +308,25 @@ if __name__ == '__main__':
 •	Bonus Question: What is the difference between a Service and a Resource?
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 Please include your fully instrumented app in your submission, as well.
-Final Question:
+
+## Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 Is there anything creative you would use Datadog for?
-Instructions
-If you have a question, create an issue in this repository.
-To submit your answers:
-•	Fork this repo.
-•	Answer the questions in answers.md
-•	Commit as much code as you need to support your answers.
-•	Submit a pull request.
-•	Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
 
+I think DataDog can be used in different ways. These could be nearly anything from a serious business (like monitoring a Insurance, support a BI Tool, Monitoring a production "street" at a car company) up to more fun or play solutions (like monitoring a house automation, monitoring usage of streaming services - e.g inhouse).
+#### Seriouse isse
+````
+- Support of BI Tool
+````
+A BI Tool (e.g. like MicroStrategy, Cognos or Tableau) has to setup different Hardware for e.g. POC, production or other environment. Often it is hard to measure how big dedicatet Servers have to be. 
+Typical issues are:
+- Number of concurrent user
+- peak access times
+- Ram / HW usage
+- How to scale
+Most BI Tools have tools to make rought estimation how big a server or server environment has to be. But these are more or less number based on experience that has been collected over time.
+With DataDog it would be possible to itentify all of these aspects. That would help to identify the real need on Server, Network and other issues. E.g. if a Insurance company starts in one company with 30.000 User and will expand to an other Area it is hard to measure. Of course it is possible to make a genereall calculation and than multiply the numbers (per user) by the number of new users. More precise would be to have the real numbers and also the bottleneck. Based on this number a correct Hardware size could be calculated (and also monitored). 
+On the long term i could think of building up partnerships with different BI Vendors to give the Companies more benifit.
+
+#### Fun Solution
+- Monitoring e.g. a home automation solution. Checking how many users are using what kind of elektronic device
