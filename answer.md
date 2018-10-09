@@ -118,7 +118,8 @@ Connected to your Vagrant box via SSH and perform a fresh install of the Datadog
 
 ##### Note: It is a good idea to run an update of your box before making changes.
 
-<br>
+
+
 
 ```
 apt-get update
@@ -127,7 +128,6 @@ apt-get update
 
 Don’t forget to install CURL so we can transport data over the various types of TCI/IP protocols.
 
-<br>
 
 ```
 apt-get install curl
@@ -136,7 +136,7 @@ apt-get install curl
 
 Fresh install syntax for the Agent:
 
-<br>
+
 
 ```
 DD_API_KEY=YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
