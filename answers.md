@@ -217,7 +217,7 @@ Within the same view the output mail container can be defined. Based on predefin
 ```
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
-Depending on the event different mails will triggert. As an example there is a screenshot of a warning message. This message is triggered when the metric is above 500.
+Depending on current event, different mails will be triggert. As an example there is a screenshot of a warning message. This message is triggered when the metric is above 500.
 <img src="img/threshold_mail.png"/>
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
@@ -238,29 +238,26 @@ Configuration
 <img src="img/weekly_down_conf.png"/>
 
 Mail content
+<img src="img/down_msg.png"/>
 
 
 ##### Setup for Weekend down time
 Configuration
 <img src="img/weekend_down_conf.png"/>
-<img src="img/down_msg.png"/>
 
 Mail content
 <img src="img/down_msg_we.png"/>
 
-
-##### down time mail message
-<img src="img/weekend_alert.png"/>
-
+Outcome Mail
+<img src="img/down.png"/>
 
 
+##### Overview Screen
+All downtime definition can be seen in the overview screen. From that screen every entry can be edit or deleted.
 <img src="img/down_list.png"/>
 
-<img src="img/notify.png"/>
-
-<img src="img/threshold_definition.png"/>
-
-
+Outcome Mail
+<img src="img/weekend_alert.png"/>
 
 ## Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
