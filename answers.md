@@ -211,7 +211,15 @@ Please configure the monitor’s message so that it will:
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 ```
-<img src="img/hreshold_msg.png"/>
+<img src="img/down_msg.png"/>
+<img src="img/down_msg_we.png"/>
+<img src="img/mgt_downtime.png"/>
+<img src="img/down_list.png"/>
+<img src="img/notify.png"/>
+<img src="img/threshold_definition.png"/>
+<img src="img/threshold_msg.png"/>
+<img src="img/weekend_down_conf.png"/>
+<img src="img/weekly_down_conf.png"/>
 
 ### Mail
 ```
