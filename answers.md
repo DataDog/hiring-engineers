@@ -267,7 +267,12 @@ How to use [APM](https://docs.datadoghq.com/tracing/) the [APM](https://docs.dat
 Enabled trace collection by updating the ```apm_config``` key in the ```datadog.yaml```, restarted the Agent, and checked status.
 
 <img src="img/tags_demo_agent.png"/>
+Configuration change was done on both Agents. 
 Even after 
+<img src="img/APM_error.png"/>
+<img src="img/APM_error_GUI.png"/>
+I found in some other documentation that python should be installed as Integration. But even after doing so the error still resists.
+From Quick Start on GUI, noticed that Python wasn't installed as an Integration, chose "installed integration" option.
 
 ```
 from flask import Flask
