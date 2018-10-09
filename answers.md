@@ -20,7 +20,7 @@ Installation was done using the installer script provieded in the Agent Sector.
 (DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)
 ```
 On both machines the Agents where insalled without any issue
-<img src="img/DATADOG-AGENT.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/DATADOG-AGENT.png"/>
 The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
 
 ## Collecting Metrics
@@ -28,12 +28,12 @@ Definition of new Tags based on the DataDog documentation on tags ([Datadog Tagg
 
 Configured the tags within the ```Datadog Agent Manager``` 
 
-<img src="img/Datadog_Agent_Manager.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Datadog_Agent_Manager.png"/>
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Both machines got there individual Tags. The first mac got the tags in the first Picture
 
-<img src="img/tags_exercise_agent.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/tags_exercise_agent.png"/>
 
 The next one is fort he second mac
 
@@ -42,10 +42,10 @@ The next one is fort he second mac
 The Host map with all Tags (seperated by Agent)
 
 1. Agent 1:
-<img src="img/Agent_1.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Agent_1.png"/>
 
 2. Agent 2:
-<img src="img/Agent_2.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Agent_2.png"/>
 
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -62,11 +62,11 @@ With the following parameter
  
 With that change it was possible to add the database to the Datadog Agent (second mac was used)
 
-•	 <img src="img/mysql.png"/>
+•	 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/mysql.png"/>
  
 •	All default metrics could be seen and reported.
 
-•	<img src="img/MySql_Status.png"/>
+•	<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/MySql_Status.png"/>
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -76,29 +76,29 @@ Created two different files.
 
 1.	my_metric.yaml – this files contains the generell call and definition. This file is stored under /opt/datadog-agent/etc/config.d 
 
-<img src="img/my_metric_yaml_init.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric_yaml_init.png"/>
 
 2.	my_metric.py – this file contains the current code. Stored under: /opt/datadog-agent/etc/checks.d	
  
-<img src="img/my_metric_py.png"/> 
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric_py.png"/> 
 
 After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
-Position: <img src="img/Status_Collector.png"/>
+Position: <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Status_Collector.png"/>
 
-Result: <img src="img/my_metric.png"/>
+Result: <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric.png"/>
 
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 Changed min_collection_interval to 45 by editing my_check.yaml
 
-<img src="img/my_metric_yaml_param.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric_yaml_param.png"/>
 
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Yes this can be done by changing the my_check.yaml in /etc/datadog-agent/conf.d as below: 
 
-•	 <img src="img/my_metric_yaml_param.png"/>
+•	 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric_yaml_param.png"/>
 
 ## Visualizing Data
 ### Utilize the Datadog API to create a Timeboard that contains:
@@ -130,7 +130,7 @@ The API keys are unique to the organization. An API key is required by the Datad
 
 Application keys, in conjunction with the org's API key, give full access to Datadog's programmatic API. Application keys are associated with the user account that created them and can be named. The application key is used to log all requests made to the API. These keys have to create manually.
 
-<img src="Auth.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/Auth.png"/>
 
 To be able to use a python script the Python integration must be installed.
 This will be done by 
@@ -161,10 +161,8 @@ After installing the created Timeboard Script could be executed:
 python timeboard.py
 ```
 
-Created the script to create the Timeboard with needed metric
-Xx
-Xx
-Xx
+Created the script to create the Timeboard[Timeboard](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard.py) with needed metric
+
 Script seems to run without any problem but did not created any Timeboard. 
 The next step was that i tried to analyse the process and let the script directly in an python environment running. Now i could see, that the first part oft he scritp was running without any issues. The part where the Timeboard was created was stoped with an error (see screen). 
 I tried to find out what this problem could cause but could not find anything so far.
@@ -201,9 +199,9 @@ The definition will be based on "Threashold Alert" and the selected metric will 
 
 Alert condition will be set for "warning threshold" to 500, an for "alerting threshold" to 800.
 
-<img src="img/threshold_definition.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/threshold_definition.png"/>
 Also the alert notify for no data will be set to 10 minutes.
-<img src="img/notify.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/notify.png"/>
 
 
 ### Message
@@ -220,7 +218,7 @@ Within the same view the output mail container can be defined. Based on predefin
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
 Depending on current event, different mails will be triggert. As an example there is a screenshot of a warning message. This message is triggered when the metric is above 500.
-<img src="img/threshold_mail.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/threshold_mail.png"/>
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
 ```
@@ -230,25 +228,25 @@ Depending on current event, different mails will be triggert. As an example ther
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ```
 Like the definition of the monitor itselfe it is also easy possible to create within the GUI different downtimes. A downtime will be defined under "Manage Downtime" and "Schedule Downtime". 
-<img src="img/mgt_downtime.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/mgt_downtime.png"/>
 
 
 
 
 ##### Setup for Weekly down time
 Configuration
-<img src="img/weekly_down_conf.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/weekly_down_conf.png"/>
 
 Mail content
-<img src="img/down_msg.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/down_msg.png"/>
 
 
 ##### Setup for Weekend down time
 Configuration
-<img src="img/weekend_down_conf.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/weekend_down_conf.png"/>
 
 Mail content
-<img src="img/down_msg_we.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/down_msg_we.png"/>
 
 Outcome Mail
 <img src="img/down.png"/>
@@ -256,10 +254,10 @@ Outcome Mail
 
 ##### Overview Screen
 All downtime definition can be seen in the overview screen. From that screen every entry can be edit or deleted.
-<img src="img/down_list.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/down_list.png"/>
 
 Outcome Mail
-<img src="img/weekend_alert.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/weekend_alert.png"/>
 
 ## Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
@@ -268,11 +266,11 @@ How to use [APM](https://docs.datadoghq.com/tracing/) the [APM](https://docs.dat
 
 Enabled trace collection by updating the ```apm_config``` key in the ```datadog.yaml```, restarted the Agent, and checked status.
 
-<img src="img/tags_demo_agent.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/tags_demo_agent.png"/>
 Configuration change was done on both Agents. 
 Even after 
-<img src="img/APM_error.png"/>
-<img src="img/APM_error_GUI.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/APM_error.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/APM_error_GUI.png"/>
 I found in some other documentation that python should be installed as Integration. But even after doing so the error still resists.
 From Quick Start on GUI, noticed that Python wasn't installed as an Integration, chose "installed integration" option.
 But even after installing Python as an integration the error still occurs.
