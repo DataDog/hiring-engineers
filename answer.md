@@ -5,11 +5,11 @@
 Author: Paul Ployvisut
 Position Target: Solutions Engineer
 
-<br>
+
 
 <h1> The Environment <h1>
 
-<br>
+
 
 The challenge environment was created on ubuntu 16.04 in conjunction with Vagrant (Box bento/ubuntu-16.04) which uses Oracle’s VirtualBox as the hosted hypervisor.
 
