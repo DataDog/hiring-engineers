@@ -346,7 +346,7 @@ Sudo /etc/datadog-agent/conf.d/mysql.d# nano conf.yaml.example
 
 <br>
 
-Edit that conf.yaml file.
+Edit the conf.yaml file.
 
 
 ![](images/11.png)
