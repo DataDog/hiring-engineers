@@ -193,7 +193,7 @@ Use preferred text editor to edit the “tags” section of the configuration fi
 
 <br>
 
-Note: Datadog recommended creating tags in a key:value format for better representations, read about it more [here](https://docs.datadoghq.com/tagging/assigning_tags/#####further-reading).
+Note: Datadog recommended creating tags in a key:value format for better representations, read about it more [here](https://docs.datadoghq.com/tagging/assigning_tags/#further-reading).
 
 <br>
 
@@ -207,7 +207,7 @@ sudo nano /etc/datadog-agent/datadog.yaml
 
 <br>
 
-##### Note: There will be examples already present, we can just add onto these by uncommenting out the tags indicated without a #####.
+##### Note: There will be examples already present, we can just add onto these by uncommenting out the tags indicated without a #.
 
 After changes have been made, save the file with CTRL o and exit with CTRL x.
 
