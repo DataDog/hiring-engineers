@@ -128,7 +128,7 @@ The API keys are unique to the organization. An API key is required by the Datad
 
 Application keys, in conjunction with the org's API key, give full access to Datadog's programmatic API. Application keys are associated with the user account that created them and can be named. The application key is used to log all requests made to the API. These keys have to create manually.
 
-<img src="auth.png"/>
+<img src="Auth.png"/>
 
 To be able to use a python script the Python integration must be installed.
 This will be done by 
