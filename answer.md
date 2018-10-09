@@ -9,7 +9,7 @@ Position Target: Solutions Engineer
 
 <br>
 
-### The Environment
+## The Environment
 
 <br>
 
@@ -24,11 +24,11 @@ The challenge environment was created on ubuntu 16.04 in conjunction with Vagran
 <br>
 
 
-##### 1. Download and install [VirtualBox](https://www.virtualbox.org/).
+#### 1. Download and install [VirtualBox](https://www.virtualbox.org/).
 
 <br>
 
-##### 2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html) 64-bit.
+#### 2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html) 64-bit.
 
 <br>
 
@@ -36,7 +36,7 @@ After installing Vagrant, follow the “[Get Started](https://www.vagrantup.com/
 
 <br>
 
-##### 3.	Configuring Vagrant for the project
+#### 3.	Configuring Vagrant for the project
 
 <br>
 
@@ -94,7 +94,7 @@ We have now created our own environment with Vagrant using a version of Ubuntu a
 <br>
 <br>
 
-##### 4. Installing the Datadog agent.
+#### 4. Installing the Datadog agent.
 
 After creating an account on Datadog [here](https://www.datadoghq.com/), You can log into your dashboard that will be your monitoring hub. 
 
@@ -106,13 +106,13 @@ In the “Integrations” tab, select “Agent” which will give you a list of 
 
 <br>
 
-##### Important! Keep your keys private!
+#### Important! Keep your keys private!
 
 <br>
 
 <br>
 
-##### 5.	Ubuntu Installation
+#### 5.	Ubuntu Installation
 
 Connected to your Vagrant box via SSH and perform a fresh install of the Datadog Agent. There is also an option to perform a manual install [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6#one-step-install).
 
@@ -184,7 +184,7 @@ On the left-hand pane of the Datadog dashboard, select “Infrastructure” and 
 
 
 
-##### 1.	Add tags in the Agent configuration file.
+#### 1.	Add tags in the Agent configuration file.
 
 <br>
 
@@ -229,7 +229,7 @@ Check the Datadog browser via the host map to see if the Agent has transmitted t
 
 <br>
 
-##### 2.	Install a database instance.
+#### 2.	Install a database instance.
 
 While connected to your Vagrant instance via SSH, install a MySQL database.
 
@@ -254,13 +254,13 @@ sudo systemctl status mysql.service
 ```
 <br>
 
-### Expected output
+Expected output
 
 ![](images/8.png)
 
 <br>
 
-##### 3.	Install Datadog integration with MySQL
+#### 3.	Install Datadog integration with MySQL
 
 Head back to the Datadog dashboard and navigate to the “Integrations” tab to find and install the MySQL integration.
 Follow through the configuration tab to see all the steps.
@@ -278,7 +278,7 @@ After configuration the arrowed area will let you know that the integration is w
 <br>
 
 
-##### 4.	Configuring the integration.
+#### 4.	Configuring the integration.
 
 Create a Datadog user for the Agent on the SQL server.
 
@@ -298,6 +298,7 @@ mysql> SHOW CREATE USER 'datadog'@'localhost'\G
 ```
 
 <br>
+
 Expected output
 
 ![](images/10.png)
@@ -322,7 +323,9 @@ mysql> GRANT PROCESS ON #.# TO 'datadog'@'localhost';
 <br>
 <br>
 
-##### Back to the Agent directory.
+#### Back to the Agent directory.
+
+<br>
 
 enable the Agent to collect metrics from the MySQL instance by editing the conf.yaml file located in:
 
@@ -380,7 +383,7 @@ The Agent is now taking metrics from the MySQL instance.
 
 <br>
 
-##### 5.	Create a custom Agent check.
+#### 5.	Create a custom Agent check.
 
 <br>
 
@@ -451,7 +454,7 @@ We can see the metrics are being received by Datadog between a range of 1 and 10
 <br>
 
 
-##### 1.	Create a script that will create a Timeboard for the Datadog dashboard.
+#### 1.	Create a script that will create a Timeboard for the Datadog dashboard.
 
 
 We can create a script using Python to create a Timeboard through Datadog’s API. A base script can be found [here](https://docs.datadoghq.com/api/?lang=python#create-a-screenboard).
@@ -472,7 +475,7 @@ It also creates a monitor that prints a message when the threshold is reached Wh
 <br>
 
 
-##### 2.	Use the API to create the Timeboard be executing your script through your Vagrant box.
+#### 2.	Use the API to create the Timeboard be executing your script through your Vagrant box.
 
 <br>
 
@@ -511,7 +514,7 @@ For more information on Timeboard’s please see [here](https://docs.datadoghq.c
 
 <br>
 
-##### 3.	Setting the Timeboard’s timeframe manually.
+#### 3.	Setting the Timeboard’s timeframe manually.
 
 <br>
 
@@ -525,7 +528,7 @@ Press the play button to resume monitoring.
 <br>
 
 
-##### 4.	Snapshot a graph and @ annotate a user.
+#### 4.	Snapshot a graph and @ annotate a user.
 
 
 <br>
@@ -546,7 +549,7 @@ Doing this will notify the user on the event list with the message and snapshot 
 <br>
 <br>
 
-##### 5.	The Anomaly Graph.
+#### 5.	The Anomaly Graph.
 
 
 The graph shows the metric received by Datadog (Blue line) and the threshold (Grey area)  that is defined by analysing historical metric behaviour.
@@ -616,7 +619,7 @@ Email received:
 
 <br>
 
-##### 2.	 Schedule down time for the following:
+#### 2.	 Schedule down time for the following:
 
 <br>
 
@@ -659,7 +662,7 @@ Return the Manage Downtime tab to see an overview.
 
 <br>
 
-##### 1.Enable APM (Application performance monitoring).
+#### 1.Enable APM (Application performance monitoring).
 
 
 We must first enable it on the Agent in the datadog.yaml file. For more information please see [here](https://docs.datadoghq.com/tracing/setup/).
@@ -673,7 +676,7 @@ Set enable to true and save the file, restart the Agent.
 
 <br>
 
-##### 3.	Install the Datadog tracing library (ddtrace).
+#### 3.	Install the Datadog tracing library (ddtrace).
 
 <br>
 
@@ -683,7 +686,7 @@ Sudo pip install ddtrace
 
 <br>
 
-##### 4.	Install Flask (framework to work with ddtrace).
+#### 4.	Install Flask (framework to work with ddtrace).
 
 <br>
 
@@ -696,7 +699,7 @@ Please see here for more information on [Flask](https://docs.datadoghq.com/traci
 
 <br>
 
-##### 5.	Create the Python file with the Datadog APM solution code.
+#### 5.	Create the Python file with the Datadog APM solution code.
 
 <br>
 
@@ -720,7 +723,7 @@ Vagrant reload
 <br>
 <br>
 
-##### 6.	Connect back to the Vagrant box and execute the solution code in the terminal with ddtrace.
+#### 6.	Connect back to the Vagrant box and execute the solution code in the terminal with ddtrace.
 
 <br>
 
@@ -758,7 +761,7 @@ Check in the Datadog dashboard in the APM tab that it is receiving traces.
 <br>
 <br>
 
-##### 7.	Add APM to our custom Timeboard with the infrastructure metrics.
+#### 7.	Add APM to our custom Timeboard with the infrastructure metrics.
 
 <br>
 
@@ -777,7 +780,7 @@ Dashboard with the trace metrics.
 <br>
 
 
-##### 8.	The difference between Services and resources?
+#### 8.	The difference between Services and resources?
 
 A service is a set of processes that work in conjunction with each other to perform a task/s.
 
