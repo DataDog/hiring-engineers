@@ -189,14 +189,35 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 •	Alerting threshold of 800
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
 ```
+### Monitor
+Creating Monitors could be easy done within the GUI. To create a new Monitor choose "Monitor" and than "New Monitor".
+<img src="img/New_Monitor.png"/>
+The following Screen would allow different Monitors to be created. The focus here is to create a Monitor for a Metric. Therefore "Metric" will be selected.
+<img src="img/Metric.png"/>
 
+The definition will be based on "Threashold Alert" and the selected metric will be "my_metric".
+
+Alert condition will be set for "warning threshold" to 500, an for "alerting threshold" to 800.
+
+<img src="img/threshold_definition.png"/>
+Also the alert notify for no data will be set to 10 minutes.
+<img src="img/notify.png"/>
+
+
+### Message
 Please configure the monitor’s message so that it will:
 ```
 •	Send you an email whenever the monitor triggers.
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-•	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
+<img src="img/hreshold_msg.png"/>
+
+### Mail
+```
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+```
+<img src="img/my_metric.png"/>
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
 ```
