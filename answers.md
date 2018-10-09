@@ -203,9 +203,35 @@ Changed my Timeboard to reflect the last 5min and took a snapshot.
 
 ![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/reflecting-last-5min.JPG?raw=true)
 
--------
-# Monitoring Data (STILL TODO)
--------
+
+# Monitoring Data
+Configured the monitor
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/monitoring-configuration.JPG?raw=true)
+
+Changed my check to report 801 and waited 5 min
+```
+from checks import AgentCheck
+   class HelloCheck(AgentCheck):
+      def check(self, instance):
+      self.gauge('farid.check', 900)
+```
+
+After I changed my check I saw the monitor alerting in the dashboard 
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/monitoring1.JPG?raw=true)
+
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/Monitoring2.JPG?raw=true)
+
+Receive first alert email after 5min.
+
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/monitoring3-email.JPG?raw=true)
+
+And second follow up email 5 min after the first one.
+
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/monitoring3-2nd-email.JPG?raw=true)
+
+I turned off my docker container to not send any data and below is the NO-DATA alert I received in my mail. 
+
+![](https://github.com/datadogchallenge/hiring-engineers/blob/solutions-engineer/monitoring-no-data.JPG?raw=true)
 
 
 # Collecting APM Data (FlaskApp):
