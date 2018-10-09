@@ -177,24 +177,35 @@ Based on the problem with loading i created a simular Dashboard to go on with th
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 - Screen
 #### Bonus Question: What is the Anomaly graph displaying?
-n Anamaly graph shows next to normal trends also an expection band that shows the expection horizont (e.g. number of user acces, CPU usage and so on) Next to these „normal“ expected numbers the graph shows also all numbers that are above or below the expection band (e.g. RAM usage is normaly between 30% and 75%. If it rises above 75% it will be shown and marked as anomaly.
+An anamaly graph shows next to normal trends also an expection band that shows the expection horizont (e.g. number of user acces, CPU usage and so on) Next to these „normal“ expected numbers the graph shows also all numbers that are above or below the expection band (e.g. RAM usage is normaly between 30% and 75%. If it rises above 75% it will be shown and marked as anomaly.
 An anomaly graph in combination with a defined monitoring / alerting can help reducing issues that are caused by an anomaly. For example if a new patch on a Server is installed and suddenly the number of errors rises dramatical an allert will directly inform that something is happen. That means that a user (e.g Admin) can directly have a look at the data and resolve the issue before even and end user will find out that there is something happening.
 
 ## Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. 
+So let’s make life easier by creating a monitor.
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+```
 •	Warning threshold of 500
 •	Alerting threshold of 800
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+```
+
 Please configure the monitor’s message so that it will:
+```
 •	Send you an email whenever the monitor triggers.
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-•	Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-o	One that silences it from 7pm to 9am daily on M-F,
-o	And one that silences it all day on Sat-Sun.
-o	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+```
+
+#### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
+```
+- Set up two scheduled downtimes for this monitor:
+- One that silences it from 7pm to 9am daily on M-F,
+- And one that silences it all day on Sat-Sun.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+```
+
 
 ## Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
