@@ -37,7 +37,7 @@ Both machines got there individual Tags. The first mac got the tags in the first
 
 The next one is fort he second mac
 
-<img src="img/tags_demo_agent.png"/>
+<img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/tags_demo_agent.png"/>
 
 The Host map with all Tags (seperated by Agent)
 
