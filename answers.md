@@ -261,6 +261,14 @@ Outcome Mail
 
 ## Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+How to use [APM](https://docs.datadoghq.com/tracing/) the [APM](https://docs.datadoghq.com/tracing/) documentation could be used a basic. Additional there is a [setup](https://docs.datadoghq.com/tracing/setup/) guide.
+
+Enabled trace collection by updating the ```apm_config``` key in the ```datadog.yaml```, restarted the Agent, and checked status.
+
+<img src="img/tags_demo_agent.png"/>
+Even after 
+
 ```
 from flask import Flask
 import logging
