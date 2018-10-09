@@ -1,4 +1,4 @@
-# Datadog Excerise
+# Datadog Exerise
 
 <br>
 
