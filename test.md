@@ -221,7 +221,7 @@ sudo service datadog-agent restart
 
 <br>
 
-Check the Datadog browser via the host map to see if the Agent has transmitted the changes. Notice the #####tags#####.
+Check the Datadog browser via the host map to see if the Agent has transmitted the changes. Notice the tags.
 
 <br>
 
@@ -309,10 +309,10 @@ Grant the “datadog” user the following permissions.
 <br>
 
 ```
-mysql> GRANT REPLICATION CLIENT ON #####.##### TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+mysql> GRANT REPLICATION CLIENT ON #.# TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 
 
-mysql> GRANT PROCESS ON #####.##### TO 'datadog'@'localhost';
+mysql> GRANT PROCESS ON #.# TO 'datadog'@'localhost';
 ```
 
 <br>
@@ -336,7 +336,7 @@ etc/datadog-agent/conf.d/mysql.d/
 Sudo cd /etc/datadog-agent/conf.d/mysql.d/
 
 
-Sudo /etc/datadog-agent/conf.d/mysql.d##### nano conf.yaml.example
+Sudo /etc/datadog-agent/conf.d/mysql.d# nano conf.yaml.example
 
 ```
 
@@ -454,7 +454,7 @@ We can see the metrics are being received by Datadog between a range of 1 and 10
 ##### 1.	Create a script that will create a Timeboard for the Datadog dashboard.
 
 
-We can create a script using Python to create a Timeboard through Datadog’s API. A base script can be found [here](https://docs.datadoghq.com/api/?lang=python#####create-a-screenboard).
+We can create a script using Python to create a Timeboard through Datadog’s API. A base script can be found [here](https://docs.datadoghq.com/api/?lang=python#create-a-screenboard).
 
 <br>
 
@@ -481,7 +481,7 @@ It also creates a monitor that prints a message when the threshold is reached Wh
 
 [Python Integration](https://docs.datadoghq.com/integrations/python/)
 
-[API with Python, Ruby, Curl](https://docs.datadoghq.com/api/?lang=python#####overview)
+[API with Python, Ruby, Curl](https://docs.datadoghq.com/api/?lang=python#overview)
 
 [Python Modules](https://docs.python.org/3/installing/index.html)
 
@@ -784,7 +784,7 @@ A service is a set of processes that work in conjunction with each other to perf
 A resource is a specific action used by the service.
 In relation to monitoring metrics, we would monitor the MySQL service and tag the resources the service uses (queries etc.). 
 
-For more details [here](https://docs.datadoghq.com/tracing/visualization/#####services).
+For more details [here](https://docs.datadoghq.com/tracing/visualization/#services).
 
 <br>
 <br>
