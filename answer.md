@@ -1,7 +1,7 @@
 <sub>
  
  
-**<h1> Datadog Excersie <h1>**
+**<h1> Datadog Excerise <h1>**
 
 
 Author: Paul Ployvisut
