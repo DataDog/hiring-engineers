@@ -235,12 +235,13 @@ When this monitor sends you an email notification, take a screenshot of the emai
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 ```
 
-Weekly down
+##### Setup for Weekly down time
 <img src="img/weekly_down_conf.png"/>
 
-Weekend Down
+##### Setup for Weekend down time
 <img src="img/weekend_down_conf.png"/>
 
+##### down time mail message
 <img src="img/weekend_alert.png"/>
 
 
