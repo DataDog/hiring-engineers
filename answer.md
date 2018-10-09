@@ -707,7 +707,7 @@ Take note of the port for the application at the bottom as this will need to be 
 
 [Datadog’s APM Solution](scripts/app.py)
 
-Vagrantfile: (Port forwarding to guest was added earlier)
+Vagrantfile: (Port forwarding to local host was added earlier)
 
 ![](images/35.png)
 
