@@ -273,7 +273,9 @@ Even after
 <img src="img/APM_error_GUI.png"/>
 I found in some other documentation that python should be installed as Integration. But even after doing so the error still resists.
 From Quick Start on GUI, noticed that Python wasn't installed as an Integration, chose "installed integration" option.
+But even after installing Python as an integration the error still occurs.
 
+Saving the follwing script in a file apm_test.py
 ```
 from flask import Flask
 import logging
@@ -304,10 +306,32 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
-•	Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-•	Bonus Question: What is the difference between a Service and a Resource?
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-Please include your fully instrumented app in your submission, as well.
+Executing the script with folloing command:
+
+```ddtrace-run python apm_test.py```
+This process was running, but causes at the end a error:
+```
+INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2018-10-09 13:57:55,992 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+ERROR:ddtrace.writer:cannot send services to localhost:8126: [Errno 61] Connection refused
+2018-10-09 13:57:56,987 - ddtrace.writer - ERROR - cannot send services to localhost:8126: [Errno 61] Connection refused
+```
+Therefore no Dashboard was created. 
+
+#### Bonus Question: What is the difference between a Service and a Resource?
+See help: [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name- )
+##### Service
+
+A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
+
+##### Resource
+
+A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like
+
+web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
+
+The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
+
 
 ## Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
