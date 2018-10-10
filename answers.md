@@ -3,7 +3,7 @@
 for a formatted version please use the following link: https://github.com/Hostombe/hiring-engineers/blob/master/answers.md
 
 Additional to the pure Answers of the Exercise a possible PPT for handing out to a customer was added. This PPT is based on the exercise. The focus is less on technical than more on how a consumer can see what Datadog can do to help issues. 
-See PPT Exercise [PPT Exercise](https://github.com/Hostombe/hiring-engineers/blob/master/Exercise.pptx) 
+See PPT Exercise [PPT Exercise](https://github.com/Hostombe/hiring-engineers/blob/master/Exercise.pptx) (File has to be downloaded!)
 
 ## Datadog Exercise:
 
