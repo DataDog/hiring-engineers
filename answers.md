@@ -1,6 +1,6 @@
 # André Hostombe
 
-for a formated version please use the following link: https://github.com/Hostombe/hiring-engineers/blob/master/answers.md
+for a formatted version please use the following link: https://github.com/Hostombe/hiring-engineers/blob/master/answers.md
 
 ## Datadog Exercise:
 
@@ -15,13 +15,13 @@ For the exercise two DataDog Agent where installed on two different MacBooks.
 -	MacBook Pro (13-inch, 2017) - 2,3 GHz Intel Core i5
 -	MacBook Pro (Retina 15', Mitte 2014) - 2,5GHz Intel Core i7
 
-Installation was done using the installer script provieded in the Agent Sector.
+Installation was done using the installer script provided in the Agent Sector.
 ```
 (DD_API_KEY=efd6d9433248935024bd9ea0a28fca3d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)
 ```
-On both machines the Agents where insalled without any issue
+On both machines the Agents where installed without any issue
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/DATADOG-AGENT.png"/>
-The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically the registration when prety stright foreward.
+The test account i created already 3 weeks ago. So there is no “Datadog Recruiting Candidate” in my „Company“ Field. But basically, the registration when pretty straight forward
 
 ## Collecting Metrics
 Definition of new Tags based on the DataDog documentation on tags ([Datadog Tagging](https://docs.datadoghq.com/tagging/), [using](https://docs.datadoghq.com/tagging/using_tags/)).
@@ -31,15 +31,15 @@ Configured the tags within the ```Datadog Agent Manager```
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Datadog_Agent_Manager.png"/>
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-Both machines got there individual Tags. The first mac got the tags in the first Picture
+Both machines got their individual Tags. The first mac got the tags in the first Picture
 
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/tags_exercise_agent.png"/>
 
-The next one is fort he second mac
+The next one is fort the second mac
 
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/tags_demo_agent.png"/>
 
-The Host map with all Tags (seperated by Agent)
+The Host map with all Tags (separated by Agent)
 
 1. Agent 1:
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Agent_1.png"/>
@@ -50,12 +50,12 @@ The Host map with all Tags (seperated by Agent)
 
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-MySQL on a NAS was used as a Database. I decided against a local installation. I was intersted if there are some additional issues regarding accessing via Network.
-First step was to create a user like described in the Dokumentation (https://docs.datadoghq.com/integrations/mysql/)
+MySQL on a NAS was used as a Database. I decided against a local installation. I was interested if there are some additional issues regarding accessing via Network. 
+First step was to create a user like described in the Documentation (https://docs.datadoghq.com/integrations/mysql/)
 With the following parameter
 
 - ```CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>'```
- - Also all rights and so on where created like discriped.
+ - •	Also, all rights and so on where created like descried.
  - The issue was that the database could not be reached because this was a local user only. So changed the right for the user to have access from everywhere
  
  <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/mySQL_Settings.png"/>
@@ -82,7 +82,7 @@ Created two different files.
  
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/my_metric_py.png"/> 
 
-After a restard oft he DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
+After a restarting the DataDog-Agent the new metric can be reported. It will also be displayed in the datadog-agent Manager under Status -> Collector 
 
 Position: <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Status_Collector.png"/>
 
@@ -126,7 +126,7 @@ options = {
     'app_key': '<app key>'
 }
 ```
-The API keys are unique to the organization. An API key is required by the Datadog Agent to submit metrics and events to Datadog. This key is automatic generated. If needed a seperate key could be created.
+The API keys are unique to the organization. An API key is required by the Datadog Agent to submit metrics and events to Datadog. This key is automatic generated. If needed a separate key could be created.
 
 Application keys, in conjunction with the org's API key, give full access to Datadog's programmatic API. Application keys are associated with the user account that created them and can be named. The application key is used to log all requests made to the API. These keys have to create manually.
 
@@ -137,7 +137,7 @@ This will be done by
 ```
 pip install datadog
 ````
-To be able to run this commant it is essential that pip is installed.
+To be able to run this command it is essential that pip is installed.
 if it is not installed there will be the error:
 -> -bash: pip: command not found
 
@@ -151,7 +151,7 @@ After installing pip it is possible to run the first line again
 ```
 pip install datadog
 ````
-depending on the environment it could be needed to run the installation with the follwing comand:
+depending on the environment it could be needed to run the installation with the following command:
 ```
 python -m pip install datadog
 ```
@@ -163,35 +163,32 @@ python timeboard.py
 
 Created the script to create the [Timeboard](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard.py) with needed metric 
 
-Script seems to run without any problem but did not created any Timeboard. 
-The next step was that i tried to analyse the process and let the script directly in an python environment running. Now i could see, that the first part oft he scritp was running without any issues. The part where the Timeboard was created was stoped with an error (see screen). 
+Script seems to run without any problem but did not created any Timeboard. The next step was that I tried to analyze the process and let the script directly in a python environment running. Now I could see, that the first part of the script was running without any issues. The part where the Timeboard was created was stopped with an error (see screen).
 I tried to find out what this problem could cause but could not find anything so far.
 I also tried an alternative script that did also not solve the issue (see [Timeboard_V2](https://github.com/Hostombe/hiring-engineers/blob/master/Files/timeboard_V2.py))
 
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Based on the problem with loading i created a simular Dashboard to go on with the following steps.
+Based on the problem with loading i created a similar Dashboard to go on with the following steps.
 Dashboard with defined Metrics
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Timeboard_Dashboard.png"/>
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 
 - Setting timeframe can be done on different ways. Depending on the time period it could be done by selection the correct time selector (e.g. xxx-days).
-- To select 5 Minutes it is easy to set on the smallest time selector and than just markt he needed time frame.
+- To select 5 Minutes it is easy to set on the smallest time selector and then just market he needed time frame.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Timeboard_Dashboard5.png"/>
 
 ### Take a snapshot of this graph and use the @ notation to send it to yourself.
 To do so just one element of the full dashboard was selected.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Time_DB_Selected.png"/>
-By clicking on the camera Symbol it is possible to add comment and also send the Graph per mail.
+By clicking on the camera Symbol, it is possible to add comment and also send the Graph per mail.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Trend_mail.png"/>
 
 
-- Screen
-
 #### Bonus Question: What is the Anomaly graph displaying?
-An anamaly graph shows next to normal trends also an expection band that shows the expection horizont (e.g. number of user acces, CPU usage and so on) Next to these „normal“ expected numbers the graph shows also all numbers that are above or below the expection band (e.g. RAM usage is normaly between 30% and 75%. If it rises above 75% it will be shown and marked as anomaly.
-An anomaly graph in combination with a defined monitoring / alerting can help reducing issues that are caused by an anomaly. For example if a new patch on a Server is installed and suddenly the number of errors rises dramatical an allert will directly inform that something is happen. That means that a user (e.g Admin) can directly have a look at the data and resolve the issue before even and end user will find out that there is something happening.
+An anomaly graph shows next to normal trends also an exception band that shows the exception horizon (e.g. number of user access, CPU usage and so on) Next to these „normal“ expected numbers the graph shows also all numbers that are above or below the exception band (e.g. RAM usage is normally between 30% and 75%. If it rises above 75% it will be shown and marked as anomaly. 
+An anomaly graph in combination with a defined monitoring / alerting can help reducing issues that are caused by an anomaly. For example, if a new patch on a Server is installed and suddenly the number of errors rises dramatical an alert will directly inform that something is happen. That means that a user (e.g. Admin) can directly have a look at the data and resolve the issue before even and end user will find out that there is something happening.
 
 ## Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. 
@@ -203,7 +200,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
 ```
 ### Monitor
-Creating Monitors could be easy done within the GUI. To create a new Monitor choose "Monitor" and than "New Monitor".
+Creating Monitors could be easily done within the GUI. To create a new Monitor, choose "Monitor" and then "New Monitor". 
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/New_Monitor.png"/>
 The following Screen would allow different Monitors to be created. The focus here is to create a Monitor for a Metric. Therefore "Metric" will be selected.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/Metric.png"/>
@@ -213,7 +210,7 @@ The definition will be based on "Threashold Alert" and the selected metric will 
 Alert condition will be set for "warning threshold" to 500, an for "alerting threshold" to 800.
 
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/threshold_definition.png"/>
-Also the alert notify for no data will be set to 10 minutes.
+Also, the alert notify for no data will be set to 10 minutes.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/notify.png"/>
 
 
@@ -230,7 +227,7 @@ Within the same view the output mail container can be defined. Based on predefin
 ```
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ```
-Depending on current event, different mails will be triggert. As an example there is a screenshot of a warning message. This message is triggered when the metric is above 500.
+Depending on current event, different mails will be trigger. As an example, there is a screenshot of a warning message. This message is triggered when the metric is above 500.
 <img src="https://github.com/Hostombe/hiring-engineers/blob/master/img/threshold_mail.png"/>
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
@@ -288,7 +285,8 @@ I found in some other documentation that python should be installed as Integrati
 From Quick Start on GUI, noticed that Python wasn't installed as an Integration, chose "installed integration" option.
 But even after installing Python as an integration the error still occurs.
 
-Saving the follwing script in a file apm_test.py
+Saving the following script in a file apm_test.py
+
 ```
 from flask import Flask
 import logging
@@ -351,19 +349,21 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 I think DataDog can be used in different ways. These could be nearly anything from a serious business (like monitoring a Insurance, support a BI Tool, Monitoring a production "street" at a car company) up to more fun or play solutions (like monitoring a house automation, monitoring usage of streaming services - e.g inhouse).
-#### Seriouse isse
+
+#### Serious issue
 ````
 - Support of BI Tool
 ````
-A BI Tool (e.g. like MicroStrategy, Cognos or Tableau) has to setup different Hardware for e.g. POC, production or other environment. Often it is hard to measure how big dedicatet Servers have to be. 
+A BI Tool (e.g. like MicroStrategy, Cognos or Tableau) has to setup different Hardware for e.g. POC, production or another environment. Often it is hard to measure how big dedicated Servers have to be. 
 Typical issues are:
-- Number of concurrent user
+- Number of concurrent users
 - peak access times
 - Ram / HW usage
 - How to scale
-Most BI Tools have tools to make rought estimation how big a server or server environment has to be. But these are more or less number based on experience that has been collected over time.
-With DataDog it would be possible to itentify all of these aspects. That would help to identify the real need on Server, Network and other issues. E.g. if a Insurance company starts in one company with 30.000 User and will expand to an other Area it is hard to measure. Of course it is possible to make a genereall calculation and than multiply the numbers (per user) by the number of new users. More precise would be to have the real numbers and also the bottleneck. Based on this number a correct Hardware size could be calculated (and also monitored). 
-On the long term i could think of building up partnerships with different BI Vendors to give the Companies more benifit.
+
+Most BI Tools have tools to make rough estimation how big a server or server environment has to be. But these are more or less number based on experience that has been collected over time. 
+With DataDog it would be possible to identify all of these aspects. That would help to identify the real need on Server, Network and other issues. E.g. if an Insurance company starts in one company with 30.000 User and will expand to another Area it is hard to measure. Of course, it is possible to make a general calculation and then multiply the numbers (per user) by the number of new users. More precise would be to have the real numbers and also the bottleneck. Based on this number a correct Hardware size could be calculated (and also monitored). 
+On the long term i could think of building up partnerships with different BI Vendors to give the Companies more benefit.
 
 #### Fun Solution
-- Monitoring e.g. a home automation solution. Checking how many users are using what kind of elektronic device
+- Monitoring e.g. a home automation solution. Checking how many users are using what kind of electronic device
