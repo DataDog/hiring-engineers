@@ -14,7 +14,7 @@ That should do for this exercise.
 
 ## Adding tags
 
-To modify config file of the agent, the first thing you should know is, of course, the default location of config file. It was relatively easy to guess the config file is located at `/etc/datadog-agent/datadog.yaml` from the output of agent installation, but I was also able to find the official documentation [here](https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6).
+To modify config file of the agent, the first thing you should know is, of course, the default location of config file. It was relatively easy to guess the config file is located at `/etc/datadog-agent/datadog.yaml` from the output of agent installation, but I was also able to find the official documentation [here](https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6).
 
 After fiding the location of config file, I modified the following part of config file to add some tags: `DatadogTechExcersie`, `foo01`, `bar01` and then restart the agent by `sudo service datadog-agent restart`.
 
@@ -30,7 +30,7 @@ Here's the screenshot of Host Map page:
 
 <img src="dd_exercise-assets/02_hostmapWithTags.png">
 
-## Database integration
+## Database integration
 
 First, I decided to go with MySQL for this and simply did `sudo apt install mysql-server` to install it on my Ubuntu instance. The Ubuntu's official documentaion on MySQL is available [here](https://help.ubuntu.com/lts/serverguide/mysql.html.en).
 
@@ -42,7 +42,7 @@ Below is the screenshot of MySQL dashboard after installing the integration:
 
 ## Custom agnet check
 
-After taking a look at [Writing an Agnet check](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6), I created `my_metric.yaml` in /etc/datadog-agent/conf.d/ and `my_metric.py` in /etc/datadog-agent/checks.d/.
+After taking a look at [Writing an Agnet check](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6), I created `my_metric.yaml` in /etc/datadog-agent/conf.d/ and `my_metric.py` in /etc/datadog-agent/checks.d/.
 
 my_metric.yaml
 ```
@@ -89,7 +89,7 @@ However to change the interval without modifying niether of those files, I think
 
 ## Creating a Timeboard utilizing the API
 
-First, for this section I had to get familiar with how to utilize Datadog API. By taking a look at the [API reference](https://docs.datadoghq.com/api/), I figured that all requests to the API must be authenticated. This can be done with an API key, and also an application key if the request requires reading data. 
+First, for this section I had to get familiar with how to utilize Datadog API. By taking a look at the [API reference](https://docs.datadoghq.com/api/), I figured that all requests to the API must be authenticated. This can be done with an API key, and also an application key if the request requires reading data. 
 
 I've noticed, by now, that API key is stated in datadog-agent's main configuration file. So I used that for the API key. Next thing I needed to do was to obtain an application key. I was able to do it by going to `APIs` page from the left menu on Datadog console and clicking `Create Appliction key`.
 
