@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
 -----
 Assets:
-[screenshot1]: /homework-assets/images/screenshot1 "Screenshot1"
+[screenshot1]: /homework-assets/images/screenshot1.png "Screenshot1"
 [screenshot2]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 [screenshot3]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 [screenshot4]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
