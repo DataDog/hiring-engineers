@@ -186,3 +186,25 @@ https://www.dropbox.com/s/3fypovfvv9sdvan/Screenshot%202018-10-11%2002.48.42.png
 - A Service is a higher level construct identifying the combination of a number of Resources (Applications, Databases, etc...).
 - A Resource is a lower level construct such as a web app request path (e.g. `/api/trace`), or a SQL query or similar.
 
+# Final Final question: What creative uses can you envision using Datadog for?
+First solution I envision is leveraging Datadog for edge level monitoring of Cash Registers and retail components within a retail ecosystem.
+Retail stores often have unique requirements around network, accessibility, reliability.
+
+I propose the following solution:
+Registers (and any edge type devices, smart displays, etc...) receive (if possible) the datadog agent installation. This allows you to collect a variety of system and integration metrics. 
+
+Following on that, your backend store infrastructure/server(s) would also get the agent, and can also potentially serve a s proxy endpoint to aggregate the data for submission to the Datadog cloud. This is often necessary due to poor network connectivity to the internet from stores.
+
+Some of the benefits of this solution:
+- full visibility into the hardware performance
+- accessibility to logs which can be used for both system awareness, as well as configured for a SIEM (Security information and event management tool) solution.
+- uptime and availability of a given resource
+- client hooks to allow advanced operations (service restart, etc...)
+
+You can also use this platform in the following way:
+1. if the agent can't be installed, you could do custom metrics from the devices direct to the backend server
+1. by leveraging this model, you can get awareness into potentials for containerize your devices and applications
+1. total system/infrastructure visiblity into your farthest edges
+
+Screenshot outlining example:
+![Screenshot retail store diagram](/homework-assets/images/register-server-datadog-diagram.png)
