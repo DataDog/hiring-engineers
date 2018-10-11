@@ -18,10 +18,10 @@ vagrant@ubuntu-xenial:~$ sudo systemctl status datadog-agent
 # 1 - Collecting Metrics
 - Screenshot to agent host config with tags:
 
-    - ![Screenshot Host config w/tags](/images/screenshot1.png)
+    - ![Screenshot Host config w/tags](/homework-assets/images/screenshot1.png)
 
     ![alt text][screenshot1]
-    
+
      https://www.dropbox.com/s/dvvc65ywnpp21gj/Screenshot%202018-10-10%2022.55.47.png?dl=0
 - Screenshot of postgresql integration enabled and collecting metrics automatically:
     - https://www.dropbox.com/s/40cbmpafrh970u7/Screenshot%202018-10-10%2023.53.47.png?dl=0
@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
 -----
 Assets:
-[screenshot1]: images/screenshot1 "Screenshot1"
+[screenshot1]: /homework-assets/images/screenshot1 "Screenshot1"
 [screenshot2]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 [screenshot3]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 [screenshot4]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
