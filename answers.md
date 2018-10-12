@@ -140,6 +140,16 @@ The next step was to schedule downtime for the alerting. Here is a screenshot co
 
 ## Collecting APM Data:
 
+Update datadog.yaml file to allow for APM metrics:
+
+```yaml
+
+apm_config:
+  enabled: true
+  
+  
+  ```
+
 I did not complete this exercise. I attempted to use ddtrace with a MySQL python connector, but was unsuccessful. Here is the script I was running that was a simple connect: 
 
 ![apm_python](https://s3.amazonaws.com/datadoganswers/APM_python_mysql.png)
