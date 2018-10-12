@@ -1,0 +1,37 @@
+{% load i18n pages_tags %}
+
+{% if on_home %}
+<li>{% trans "Home" %}</li>
+{% else %}
+{% for page in page_branch %}
+
+
+
+    {% if page.is_current_or_ascendant %}
+    {% if page.is_current %}
+    <li id="breadcrumb-menu-{{ page.html_id }}"
+        class="active">
+            {% if page.title == "AWS" %}Home
+            {% elif page.title == "Basic" %} アプリケーションエンジニア向け
+            {% elif page.title == "Intermediate" %} オンプレミスエンジニア向け
+            {% elif page.title == "Advanced" %} AWSエンジニア向け
+            {% else %} {{ page.title }}
+            {% endif %}
+    </li>
+    {% else %}
+    <li id="breadcrumb-menu-{{ page.html_id }}">
+        <a href="{{ page.get_absolute_url }}">
+            {% if page.title == "AWS" %}Home
+            {% elif page.title == "Basic" %} アプリケーションエンジニア向け
+            {% elif page.title == "Intermediate" %} オンプレミスエンジニア向け
+            {% elif page.title == "Advanced" %} AWSエンジニア向け
+            {% else %} {{ page.title }}
+            {% endif %}
+        </a>
+    </li>
+    {% endif %}
+    {% if page.has_children %}{% page_menu page %}{% endif %}
+    {% endif %}
+
+{% endfor %}
+{% endif %}

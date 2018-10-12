@@ -1,0 +1,36 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags pages_tags i18n %}
+
+{% block main %}{{ block.super }}
+
+<div class="col-md-12" style="background-color: ghostwhite; padding : 20px ; margin-bottom : 5px ;">
+{% editable page.richtextpage.content %}
+{{ page.richtextpage.content|richtext_filters }}
+{% endeditable %}
+</div>
+{% block blog_post_previous_next %}
+<ul class="pager">
+{% with page.get_previous_by_publish_date as previous %}
+{% if previous %}
+<li class="previous">
+    <a href="{{ previous.get_absolute_url }}">&larr; {{ previous.title }}</a>
+</li>
+{% endif %}
+{% endwith %}
+{% with page.get_next_by_publish_date as next %}
+{% if next %}
+<li class="next">
+    <a href="{{ next.get_absolute_url }}">{{ next.title }} &rarr;</a>
+</li>
+{% endif %}
+{% endwith %}
+</ul>
+
+{% endblock %}
+{% endblock %}
+{% block side_widget %}
+{% set_short_url_for page %}
+<a class="btn btn-sm share-twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ page.short_url|urlencode }}&amp;text={{ page.title|urlencode }}">{% trans "Share on Twitter" %}</a>
+<a class="btn btn-sm share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">{% trans "Share on Facebook" %}</a>
+{% endblock %}

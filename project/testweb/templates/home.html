@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n pages_tags %}
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}
+AWS Step by Step
+    <small class="text-muted"><small>
+        実際に使えるAWS構築手法や運用のベストプラクティスをを紹介するサイトです。
+    </small></small>
+{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block main %}
+{% comment "Ideally Iterate" %}
+Ideally iterate page.title, but not work. Refer Readme for detail.
+This comment block cannot be inserted between blocktrans.
+{% endcomment %}
+{% blocktrans %}
+
+                <div class="col-md-4">
+                    <a href="/aws/basic/">AWSをはじめる</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/tutorial/ec2/">チュートリアル１</a></ul>
+                    <ul><a href="/aws/tutorial/sg/">チュートリアル２</a></ul>
+                    <ul><a href="/aws/tutorial/rds/">チュートリアル３</a></ul>
+                    <ul><a href="/aws/tutorial/afterward/">チュートリアル後にすべき事</a></ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/aws/intermediate/">AWSを活用する</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/design/">シンプルな設計</a></ul>
+                    <ul><a href="/aws/implementation/">規約に沿った構築</a></ul>
+                    <ul><a href="/aws/maintenance/">最小限の運用</a></ul>
+                    <ul><a href="/aws/practice/">クラウドな文化の形成</a></ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/aws/advanced/">AWSの開発を進める</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/teamwork/">チームワークへの投資</a></ul>
+                    <ul><a href="/aws/automation/">自動化の実践</a></ul>
+                    <ul><a href="/aws/mindset/">マインドセット</a></ul>
+                    <ul><a href="/aws/development/">「システム開発」の進め方</a></ul>
+                    </p>
+                </div>
+{% endblocktrans %}
+{% endblock %}

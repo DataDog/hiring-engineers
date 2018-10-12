@@ -1,0 +1,42 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags i18n %}
+
+{% block extra_head %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block main %}
+{{ block.super }}
+{% if request.GET.sent %}
+    {% editable page.form.response %}
+    {{ page.form.response|richtext_filters }}
+    {% endeditable %}
+{% else %}
+    {% with page.form as page_form %}
+    {% editable page_form.content %}
+    {{ page_form.content|richtext_filters }}
+    {% endeditable %}
+    {% endwith %}
+
+    {% errors_for form %}
+
+    <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% fields_for form %}
+        <div class="form-actions">
+            <input class="btn btn-primary btn-lg" type="submit"
+                value="{% if page.form.button_text %}{{ page.form.button_text }}{% else %}{% trans "Submit" %}{% endif %}">
+        </div>
+    </form>
+{% endif %}
+
+{% endblock %}
+
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(function() {$('.mezzanine-form :input:visible:enabled:first').focus();});
+</script>
+{% endblock %}
