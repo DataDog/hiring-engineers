@@ -1,0 +1,16 @@
+FROM datadog/agent:latest
+
+###Set Environmental Variables
+ENV NGINX_HOST=${NGINX_HOST} 
+
+###Install Envsubst
+RUN apt-get update && apt-get install gettext-base
+
+###Copy Datadog config files
+COPY datadog/conf.d /conf.d/
+
+### Start Datadog Agent
+COPY datadog/docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/init"]
+

@@ -1,0 +1,4 @@
+init_config:
+
+instances:
+  - nginx_status_url: http://${NGINX_HOST}:81/nginx_status/
