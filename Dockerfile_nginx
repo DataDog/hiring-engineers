@@ -1,0 +1,29 @@
+FROM nginx:mainline-alpine
+
+###Associate args with container os envs
+ENV NGINX_HOST=${NGINX_HOST} \
+    NGINX_PORT=${NGINX_PORT} \
+    APP_HOST=${APP_HOST} \
+    APP_PORT=${APP_PORT}
+
+##Copy Static Files
+RUN set -x && mkdir -p /usr/share/nginx/static
+COPY project/testweb/static /usr/share/nginx/static
+
+##Copy custom config templates
+COPY nginx/mysite.template /etc/nginx/conf.d/mysite.template
+
+##Copy http stub status conf for Datadog 
+COPY nginx/status.template /etc/nginx/conf.d/
+
+##Copy Nginx root conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+### Start Nginx
+COPY nginx/docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx"]
