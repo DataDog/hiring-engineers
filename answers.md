@@ -16,11 +16,11 @@ Installation Complete!
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
-Using the DataDog Agent Web UI, I configured the hostname and tags in the Settings Tab.
+Using the DataDog Agent GUI, I configured the hostname and tags in the Settings Tab.
 
 <img Tags/>
 
-After saving the configurations and restarting the DataDog Agent Web UI, I navigated to the Infrastructure Tab --> Host Map Tab in the DataDog Application in my browser.
+After saving the configurations and restarting the DataDog Agent GUI, I navigated to the Infrastructure Tab --> Host Map Tab in the DataDog Application in my browser.
 
 <img HostMap/>
 
@@ -32,12 +32,28 @@ I edited the conf.d/postgres.yaml file.
 
 <img configurations/>
 
-I added the postgreSQL check to my Checks --> Manage Checks Tab in the Web UI for future configurations.
+I added the postgreSQL check to my Checks --> Manage Checks Tab in the GUI for future configurations.
 
-I ran a status check and PostgreSQL integration check passed!
+I ran a status check and PostgreSQL integration check was successful.
 
 <img PostgreSQL integration check />
 
-After configuration, I proceeded to install the integration onto the DataDog plaform
+After configuration, I proceeded to install the integration onto the DataDog platform
 
 <img PostgreSQL download />  
+
+
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Writing an Agent check requires the creation of two files:
+1) A Check file
+2) A YAML configuration file
+
+I created a my_metric.py and my_metric.yaml file and placed them in the checks.d and conf.d folders respectively.
+
+<img Checkfile/>
+<img YAML file/>
+
+I restarted the DataDog Agent GUI and my_metric check is successfully being executed and ran.
+
+<img mymetriccheck running/> 
