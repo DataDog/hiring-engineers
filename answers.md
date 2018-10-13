@@ -64,4 +64,9 @@ The minimal collection interval can be defined in the my_metric.yaml file at the
 
 <img YAML interval />
 
-Using a stopwatch, I started the timer when the total run count incremented by 1 and refreshed the GUI constantly until the count incremented again. The metric was indeed submitting every 45 seconds. 
+Using a stopwatch, I started the timer when the total run count incremented by 1 and refreshed the GUI constantly until the count incremented again. The metric was indeed submitting every 45 seconds.
+
+
+## Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+As shown in the previous step, the collection interval was changed in the my_metric.yaml file which didn't touch the Python check file (my_metric.py).
