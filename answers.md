@@ -54,6 +54,14 @@ I created a my_metric.py and my_metric.yaml file and placed them in the checks.d
 <img Checkfile/>
 <img YAML file/>
 
-I restarted the DataDog Agent GUI and my_metric check is successfully being executed and ran.
+I restarted the DataDog Agent GUI and my_metric check is successfully being submitted.
 
-<img mymetriccheck running/> 
+<img mymetriccheck running/>
+
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+The minimal collection interval can be defined in the my_metric.yaml file at the instance level because of Agent 6.
+
+<img YAML interval />
+
+Using a stopwatch, I started the timer when the total run count incremented by 1 and refreshed the GUI constantly until the count incremented again. The metric was indeed submitting every 45 seconds. 
