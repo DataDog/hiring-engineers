@@ -252,7 +252,9 @@ I created a new Metric Monitor that watches the average of the custom metric (my
 
     ![alerting_threshold](screenshots/my_metric_alert.png)
 
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* And also ensure that it will notify me if there is No Data for this query over the past 10m.
+
+    ![no_data](screenshots/no_data.png)
 
 I have configured the monitor’s message so that it will:
 
