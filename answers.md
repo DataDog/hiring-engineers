@@ -113,8 +113,12 @@ Once the script has been successfully ran, the new Timeboard can be viewed under
 
 To set the scope your Timeboard there are a few options, you can view large periods of time, i.e. the last hour, last 4 hours, last day. If you want to create a smaller scope, like the last 5 minutes for example, you can change the parameters in the URL itself. These parameters are `from_ts` and `to_ts` and create an offset of 5 minutes in milliseconds, which is 300000 ms.
 
-An example can be viewed [here](./Timeboard - Last 5 mins). You can also tag your team members using the `@USERNAME` syntax to send them an [email](./Email notification from snapshot) notification.
+An example can be viewed [here](./Timeboard - Last 5 mins.png). You can also tag your team members using the `@USERNAME` syntax to send them an [email](./Email notification from snapshot,png) notification.
 
 #### Anomaly Graph
 
-The anomaly function we see in the above Python script create a monitor to analyze a range of metrics and alert users when a value is detected outside of that range, indicating an anomaly.
+The anomaly function we see in the above Python script create a monitor to analyze a range of metrics (calculated by a 'basic' algorithm in the example) and alert users when a value is detected outside of that range, indicating an anomaly.
+
+[Here](./Anomaly.png) is a sample anomaly of a DB connection with the alert highlighted in red.
+
+### 
