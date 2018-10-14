@@ -163,29 +163,80 @@ Looking at the graph for `hello` shows that the data is being updated once every
 
 2. I have set `min_collection_interval` to 45 in `my_metric.yaml`. It is not being gathered every 20 seconds, but on the next collection when it has been 45 seconds or more since last collection.
 
-## Collecting Metrics:
+    **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+    My understanding is that there isn't a way to hard-code a collection interval in the Python check files you write. At least not in Agent v6 when I was reading the documentation.
 
-## Visualizing Data:
+    If you want to change the collection interval, you should do it via the configuration file in YAML.
+    
+    However, I do see that in the Metadata section of a given metric, when you click to edit the metadata, you can change the `statsd` interval, however I cannot find more info in the docs
+    about this.
 
-Utilize the Datadog API to create a Timeboard that contains:
+## Visualizing Data - Answer:
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please view [my script for creating the timeboard](timeboard_script/create_dashboard.py).
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+I used the documentation on [Graphing JSON](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+as a guide for defining graphs.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Creating a sample Timeboard in the UI provides options for what you want to
+display. In my case, I was interested in the mini doc that shows up as you
+choose functions to apply, specifically the `anomalies` function:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+```
+anomalies
+
+    algorithm: Methodology used to detect anomalies
+    bounds: Relative width of the anomaly bounds
+
+Compare expected values to observed values in order to highlight anomalies
+
+    anomalies(avg:system.load.1{*}, 'robust', 2)
+```
+
+I can now apply this to the metric `mongodb.connections.totalcreated` for example.
+
+Next is the `rollup` function:
+
+```
+rollup
+
+    method: The rollup method
+    period: The rollup period in seconds
+
+Roll up the metric by the sum of values in the specified time period.
+
+    system.load.1{*}.rollup(sum)
+    system.load.1{*}.rollup(sum, 600)
+```
+
+Below are the graphs I have obtained after creating the dashboard and creating a snapshot, using 
+the @ notation to send it to myself.
+
+Here is a link to the snapshot of my [Timeboard](https://app.datadoghq.com/dash/946688/mymetric-mongodbconnectionstotalcreated?page=0&is_auto=false&from_ts=1539475592419&to_ts=1539475892419&tile_size=xl&tile_focus=374148042). Though you won't be able to view it if you aren't a member of my team.
+
+my_metric scoped over the host, ubuntu-xenial:
+
+![my_metric_scope_host](screenshots/my_metric_scope_host.png)
+
+Anomaly Graph of mongodb.connections.totalcreated:
+
+![basic_anomaly_graph](screenshots/basic_anomaly_graph.png)
+
+Rollup of my_metric with the sum of the values in a time period of one hour:
+
+![rollup_my_metric1hr.png](screenshots/rollup_my_metric1hr.png)
+
+**Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly function returns the result of the query with an expected "normal range".
+
+Since I am working in a vagrant VM, which has been mostly offline so far,
+the number of total connections to my MongoDB instance has been low, until
+now that I have left the VM running for a few hours. The number of connections
+has been updating every time the Agent updates, since today the VM has been on
+for a few hours, this is not normal, so much of the line being graphed is
+shown in red as it rises above the expected range.
 
 ## Monitoring Data
 
