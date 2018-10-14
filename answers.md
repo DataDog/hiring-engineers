@@ -55,8 +55,66 @@ instances:
     - min_collection_interval: 45
 ```
 
+__NOTE:__ Make sure the name of the files you create in the `checks.d` and `conf.d` are the same. Example: `my_metric.py` and `my_metric.yaml`.
+
 Next we'll see how it looks in Datadog!
 
 ### Visualizing Data
 
-With Datadog's public API we can send our custom metric, collected based on the interval, to the platform for data visualization.
+With Datadog's public API we can send our custom metric, collected based on the interval we created in `conf.d`, to the platform for data visualization.
+
+To make the POST call to Datadog, you'll first need you API key and app key, both of which can be found under the __APIs__ tab in the  __Integrations__ menu of Datadog.
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'MY_API_KEY',
+    'app_key': 'MY_APP_KEY'
+}
+
+initialize(**options)
+
+title = "Timeboard - Random Value Metric"
+description = "An informative timeboard."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:random_val{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Avg. Random Value"
+    },
+    {
+        "definition": {
+            "events": [],
+            "requests": [
+                {"q": "anomalies(avg:postgresql.percent_usage_connections{*}, 'basic', 2)"}
+            ],
+            "viz": "timeseries",
+         },
+         "title": "Avg. DB Connection Usage"
+    },
+    {
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:random_val{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries",
+     },
+     "title": "Rollup Avg. Random Val"
+}]
+```
+
+Once the script has been successfully ran, the new Timeboard can be viewed under the Dashboards list.
+
+To set the scope your Timeboard there are a few options, you can view large periods of time, i.e. the last hour, last 4 hours, last day. If you want to create a smaller scope, like the last 5 minutes for example, you can change the parameters in the URL itself. These parameters are `from_ts` and `to_ts` and create an offset of 5 minutes in milliseconds, which is 300000 ms.
+
+An example can be viewed [here](./Timeboard - Last 5 mins). You can also tag your team members using the `@USERNAME` syntax to send them an [email](./Email notification from snapshot) notification.
+
+#### Anomaly Graph
+
+The anomaly function we see in the above Python script create a monitor to analyze a range of metrics and alert users when a value is detected outside of that range, indicating an anomaly.
