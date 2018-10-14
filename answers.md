@@ -9,23 +9,23 @@
 
 [Prerequisites](#prerequisites)
 
-[Setting up your Environment](#setting-up-your-environment)
-&ensp;&ensp;&ensp;&ensp;[- Getting your API Key](#getting-your-api-key)
+[Setting up your Environment](#setting-up-your-environment)<br/>
+&ensp;&ensp;&ensp;&ensp;[- Getting your API Key](#getting-your-api-key)<br/>
 &ensp;&ensp;&ensp;&ensp;[- Setting up the Container](#setting-up-the-container)
 
-[Collecting Metrics](#collecting-metrics)
-&ensp;&ensp;&ensp;&ensp;[- Adding Tags to Hosts](#adding-tags-to-hosts)
-&ensp;&ensp;&ensp;&ensp;[- Installing MySQL](#installing-mysql)
-&ensp;&ensp;&ensp;&ensp;[- Creating a Custom Agent Check](#creating-a-custom-agent-check)
+[Collecting Metrics](#collecting-metrics)<br/>
+&ensp;&ensp;&ensp;&ensp;[- Adding Tags to Hosts](#adding-tags-to-hosts)<br/>
+&ensp;&ensp;&ensp;&ensp;[- Installing MySQL](#installing-mysql)<br/>
+&ensp;&ensp;&ensp;&ensp;[- Creating a Custom Agent Check](#creating-a-custom-agent-check)<br/>
 &ensp;&ensp;&ensp;&ensp;[- Changing an Agent Check's Interval](#changing-an-agent-checks-interval)
 
-[Visualising Data](#visualising-data)
+[Visualising Data](#visualising-data)<br/>
 &ensp;&ensp;&ensp;&ensp;[- Creating a Timeboard](#creating-a-timeboard)
 
-[Monitoring Data](#monitoring-data)
+[Monitoring Data](#monitoring-data)<br/>
 &ensp;&ensp;&ensp;&ensp;[- Setting up a Monitor with Alerts](#setting-up-a-monitor-with-alerts)
 
-[Collecting APM Data](#collecting-apm-data)
+[Collecting APM Data](#collecting-apm-data)<br/>
 &ensp;&ensp;&ensp;&ensp;[- Instrumenting a Basic Python App](#instrumenting-a-basic-python-app)
 
 [Final Question](#final-question)
@@ -375,6 +375,7 @@ Fill out the monitor form as shown in the pictures:
 ![](https://lh6.googleusercontent.com/p22LuFbCvve9PseaKWg5P97_I32s6-Bc25J3Yommv_bT5H67tiz3cwOiRLu64BnfauE-tmH1ru_fWV91v7G-wmqreskc8Wp75GFNdIrOvHvqwqWHj-hIwBzuE5Rw2iUifqVZOzmm)
 
 The alerting email:
+
 ![](https://lh3.googleusercontent.com/sFUbPJvyNHnbsYMxCzKIe8g2Dy1ugPqvgUv7JC0UBX4ntZEAZfitRoWRn6xLdTq3E-VVzomqgOO-953bkSW2X1H0ViMvbgshLU7EQPmt7_St8nytblMFv79cbd7SrFegEdZUIE4p)
 
 ## Collecting APM Data
@@ -483,3 +484,4 @@ Note: Sydney is not UTC
 
 4. *What is the difference between a Service and a Resource?*
 A service is the name of a set of processes that work together to provide a feature set (e.g. a web server service and a database service) whereas a resource is just a query to a service (e.g. a URL would be a resource to a web server service and the SQL of a query would be the resource to a database service).
+
