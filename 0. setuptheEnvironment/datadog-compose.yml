@@ -1,0 +1,37 @@
+version: '3.2'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - docknet
+    environment:
+      POSTGRES_PASSWORD: datadog
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8181:8080
+    networks:
+      - docknet
+
+  datadog:
+    image: datadog/agent:latest
+    environment:
+     - API_KEY=54464b588c296912a22ab3aba82e94f9
+    networks:
+      - docknet
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/mounts:/host/proc/mounts:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+
+networks:
+    docknet:
+        external: true
+
+volumes:
+  dbdata:
+    external: true
