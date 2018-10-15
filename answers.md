@@ -19,7 +19,9 @@ What I build
 ------------
  - I used a containerized approach as it is easy to setup and consumes less laptop resources
  - I used the following dockerfile for spining up the necessary machines for this test:
-    + 
+    + Postgres (Database Machine)
+    + Adminer (Managing Database)
+    + Datadog Agent (Monitoring Agent)
  
  If you don't have [Python](https://www.python.org/downloads/) or [Pygame](http://www.pygame.org/download.shtml) installed, you can simply double click the .exe file to play the game.
    **Note:** *The .exe file needs to stay in the same directory as the sounds, images, and font folders.*
