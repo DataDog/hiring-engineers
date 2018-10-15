@@ -356,7 +356,7 @@ if __name__ == '__main__':
     However you can also hard-code the middleware and you can
     find how that looks by viewing [app_middleware.py](apm_app/app_middleware.py).
 
-    I do not see a difference between the two other than `app_middleware.py` being "quieter."
+    I do not see a difference between the two.
 
     Terminal view of running with `dd-trace`:
 
