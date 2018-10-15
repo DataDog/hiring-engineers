@@ -1,0 +1,6 @@
+init_config:
+
+
+instances:
+  - check_name: my_metric
+    min_collection_interval: 45
