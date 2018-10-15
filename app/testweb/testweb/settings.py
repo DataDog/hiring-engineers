@@ -162,14 +162,14 @@ DATABASES = {
 # PATHS #
 #########
 
-# Full filesystem path to the project.
+# Full filesystem path to the app.
 PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
 PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 
 # Every cache key will get prefixed with this value - here we set it to
-# the name of the directory the project is in to try and use something
-# project specific.
+# the name of the directory the app is in to try and use something
+# app specific.
 CACHE_MIDDLEWARE_KEY_PREFIX = PROJECT_APP
 
 # URL prefix for static files.
@@ -194,7 +194,7 @@ MEDIA_URL = STATIC_URL + "media/"
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
-# Package/module name to import the root urlpatterns from for the project.
+# Package/module name to import the root urlpatterns from for the app.
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
 
 TEMPLATES = [
@@ -250,8 +250,7 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    # "mezzanine.accounts",
-    # "mezzanine.mobile",
+    "ddtrace.contrib.django",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -340,3 +339,14 @@ else:
 
 
 SITE_TITLE = "AWS Step by Step"
+
+
+####################
+# DATADOG SETTINGS #
+####################
+DATADOG_TRACE = {
+    'AGENT_HOSTNAME': os.getenv('DD_HOST'),
+    'DEFAULT_SERVICE': 'testweb',
+    'TAGS': {'env': 'apm'},
+}
+

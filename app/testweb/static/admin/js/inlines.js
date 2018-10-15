@@ -9,7 +9,7 @@
  * Copyright (c) 2009, Stanislaus Madueke
  * All rights reserved.
  *
- * Spiced up with Code from Zain Memon's GSoC project 2009
+ * Spiced up with Code from Zain Memon's GSoC app 2009
  * and modified for Django by Jannis Leidel, Travis Swicegood and Julien Phalip.
  *
  * Licensed under the New BSD License
