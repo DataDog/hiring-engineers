@@ -83,8 +83,7 @@ instances:
     - min_collection_interval: 45
 ```
 　　
-　　
-####  I could change the collection interval by modifying YAML file.   
+I could change the collection interval by modifying YAML file.   
 　　
 　　
 ## Visualizing Data:
