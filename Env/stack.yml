@@ -1,6 +1,7 @@
-version: '3.2'
+version: '2'
 
 services:
+  # Postgres Container
   db:
     image: postgres
     restart: always
@@ -8,21 +9,23 @@ services:
       - docknet
     environment:
       POSTGRES_PASSWORD: datadog
-
+    
+  # Database Adminer Container    
   adminer:
     image: adminer
     restart: always
     ports:
       - 8181:8080
     networks:
-      - docknet
+      - docknet 
 
+  # Datadog Agent Container    
   datadog:
     image: datadog/agent:latest
     environment:
-     - API_KEY=54464b588c296912a22ab3aba82e94f9
+     - DD_API_KEY=54464b588c296912a22ab3aba82e94f9
     networks:
-      - docknet
+      - docknet # Ensures datadog container can connect to postgres container
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - /proc/mounts:/host/proc/mounts:ro
@@ -31,7 +34,3 @@ services:
 networks:
     docknet:
         external: true
-
-volumes:
-  dbdata:
-    external: true
