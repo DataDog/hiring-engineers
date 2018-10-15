@@ -280,7 +280,7 @@ weeknight downtime:
 weekend downtime:
 ![weekend_downtime](screenshots/weekend_downtime.png)
 
-## Collecting APM Data:
+## Collecting APM Data - Answer:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -317,11 +317,54 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+    On my virtual host, I created a Python virtual environment for the above Flask app,
+    and installed `ddtrace` via `pip`. After that I ran `ddtrace-run python app.py`
+    to begin tracing the app.
+
+    I can view the trace list in the Datadog web UI:
+
+    ![apm_trace_list](screenshots/apm_trace_list.png)
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+    **Services**: as defined in the [docs](https://docs.datadoghq.com/tracing/visualization/#pagetitle),
+    a service is a set of processes that do the same job.
 
-Please include your fully instrumented app in your submission, as well.
+    **Resources**: resources are defined to be a particular action for a service.
+
+    The difference being, services are a set of processes that work to do the same job
+    and resources are particular actions that services can take.
+
+    For example, in the Flask app above, `flask` is our service, however the resources (actions)
+    available are the functions and routes defined in the application, like `trace_endpoint`.
+
+    These URIs on their own `/api/trace` are not enough to be a service, as they are not processes in themselves.
+
+    Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+    Screenshot:
+    ![apm_screenboard](screenshots/apm_screenboard.png)
+
+    Click [here](https://p.datadoghq.com/sb/ff808873e-b3a947139cd5b576bb58c029721ee6bf) for the screenboard.
+
+    Please include your fully instrumented app in your submission, as well.
+
+    The app can be viewed [here](apm_app/app.py). The app is instrumented by running:
+
+    `ddtrace-run python app.py`.
+    
+    However you can also hard-code the middleware and you can
+    find how that looks by viewing [app_middleware.py](apm_app/app_middleware.py).
+
+    I do not see a difference between the two other than `app_middleware.py` being "quieter."
+
+    Terminal view of running with `dd-trace`:
+
+    ![ddtrace_screenshot](screenshots/ddtrace_screenshot.png)
+
+    Terminal view of the manually instrumented `app_middleware.py`:
+
+    ![app_middleware_screenshot](screenshots/app_middleware_screenshot.png)
 
 ## Final Question:
 
