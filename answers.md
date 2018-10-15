@@ -372,42 +372,17 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-## Instructions
+I have read the blog posts on the three projects mentioned above,
+and they are all very interesting. I particularly liked the screenboard for
+the NYC Subway System. This one reminded me of a project I attempted after
+I graduated from college, [Citysnapshot](https://github.com/ak9999/citysnapshot).
 
-If you have a question, create an issue in this repository.
+My goal with Citysnapshot was to visualize the NYC 311 dataset available from [NYC Open Data](https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)
 
-To submit your answers:
+The web application showed a heatmap, but with Datadog, you can collect and monitor the data
+as it is updated, and show the "health" of the city.
 
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+Resolved cases vs open cases, compare the number of cases of a certain type
+versus the number last week or last month to measure a trend.
 
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/agent_checks/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+I think that would be a very interesting use case.
