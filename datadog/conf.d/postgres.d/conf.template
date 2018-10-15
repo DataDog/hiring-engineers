@@ -1,0 +1,22 @@
+init_config:
+
+instances:
+  - host: ${DB_HOST}
+    port: 5432
+    username: postgres
+    password: Test1Pass
+    dbname: testweb
+    tags:
+      - project:testweb
+      - role:db
+      - env:dev
+    custom_metrics:
+    - # Active queries
+      relation: false
+      metrics:
+        sum(CASE WHEN state='active' THEN 1 ELSE 0 END): [postgresql.active_queries, GAUGE]
+        sum(CASE WHEN state='active' THEN 0 ELSE 1 END): [postgresql.inactive_queries, GAUGE]
+      descriptors:
+        - [ datname, db ]
+      query: "select datname, %s from pg_stat_activity_allusers group by datname;"
+    collect_function_metrics: True
