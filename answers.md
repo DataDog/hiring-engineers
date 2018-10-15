@@ -362,20 +362,20 @@ Fill out the monitor form as shown in the pictures.
 Note: you can copy and paste this code for the message:
 
 ```
-{{#is_alert}}ALERT!{{/is_alert}}{{#is_warning}}Warning!{{/is_warning}}{{^is_no_data}} Because my_metric has a value of {{value}} from the host {{host.ip}} which is over {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}}{{/is_no_data}}
+{{#is_alert}}ALERT!{{/is_alert}}{{#is_warning}}Warning!{{/is_warning}}{{^is_no_data}} Because my_metric has a value of {{value}} from the host {{host.name}} which is over {{#is_alert}}{{threshold}}!{{/is_alert}}{{#is_warning}}{{warn_threshold}}!{{/is_warning}} Please not that trying to get the host IP from Docker does not work - there should be a value here: {{host.ip}}.{{/is_no_data}}
 {{#is_no_data}}Data has been MISSING for more than 10 minutes :O{{/is_no_data}}
 ```
 
+Another Note: Notice that the 'host.ip' template variable is available, yet in the notification email it comes up blank.
+![](https://lh5.googleusercontent.com/cT4YhPsdHkIxYfCtNJhfhsxtcnE-1lfgDDIqnWI8VS_l85wK6C9sQhEMDipoquE0fWc5J5yPaCFaCw5Riqmgmfu3CYaicKvQLKCPzFKWdyoMhA6TMrS0L0S7l2MDbM_-mCBOyE6O)
 
-![](https://lh3.googleusercontent.com/7NCTdYsNpC-QzfLPiJaZKKTbeBuv18aGjC9JSf7-iDeHAryl_on82HRdXg3vFIOWuZqM48Mm5z10nc5w3tp3dbXFTMaflmaJHYwcY09hnH7rT5w3JVUIIf6oHaQLcauPjKIhHrT2)
-
-![](https://lh4.googleusercontent.com/1iqlPkbjJA_GeoOamNf8RK4WoodNd7qjBswtCUH1ZixDMJPsBn5uHjfbOG56Xoxy3vaODdJVT1-wUveFfrAZUAocUwYaxKOIGnaKvIVW6-u5ixN8J0KOGA1rbbe7ODZmOT4WbS3C)
+![](https://lh6.googleusercontent.com/boub7lC-ANnvHgEN-FtvogjftG_WPidtpEmpD1jEi8PpwB21ZSLzMKRy0XUlOCBCW51_TNfEO8SX0rZjYLpdnIDnd_HxrDPNGvUNvkhBuEpN5KIJ0S4p9P5w1yNsmxANWb7kgbK4)
 
 ![](https://lh6.googleusercontent.com/p22LuFbCvve9PseaKWg5P97_I32s6-Bc25J3Yommv_bT5H67tiz3cwOiRLu64BnfauE-tmH1ru_fWV91v7G-wmqreskc8Wp75GFNdIrOvHvqwqWHj-hIwBzuE5Rw2iUifqVZOzmm)
 
 The alerting email:
 
-![](https://lh3.googleusercontent.com/sFUbPJvyNHnbsYMxCzKIe8g2Dy1ugPqvgUv7JC0UBX4ntZEAZfitRoWRn6xLdTq3E-VVzomqgOO-953bkSW2X1H0ViMvbgshLU7EQPmt7_St8nytblMFv79cbd7SrFegEdZUIE4p)
+![](https://lh5.googleusercontent.com/5Xkm9ooZa1_zR_sARTK70gUP12MR_YcAr_Zd93B-FvnbR-Hqfwp8bwX-vwyrtVRkRtuqJOWbxXGvlB4aYH_ey0GhHzVK67ORScNebV83znd6EQ7sRoexNrJwTkL3KvIOMFxtU1pb)
 
 ## Collecting APM Data
 In this section we’ll instrument a simple python application with Datadog’s Application Performance Monitoring (APM).
