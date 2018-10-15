@@ -35,7 +35,18 @@ Here is a screenshot of Bamboo01 in Infrastructure list and Host Map
 1. Created "datadog" user on MySQL and granted privileges.  
 2. Created /etc/datadog-agent/conf.d/mysql.yaml
 ```yaml
-※あとでコピー
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: xxx
+    tags:
+        - optional_tag1
+        - optional_tag2
+    options:
+        replication: 0
+        galera_cluster: 1
 ```
 3. Restarted datadog-agent  
 　　
@@ -45,7 +56,12 @@ Here is a screenshot of Bamboo01 in Infrastructure list and Host Map
 1. Created /etc/datadog-agent/checks.d/my_metric.py
 
 ```python
-※あとでコピー
+import random
+
+from checks import AgentCheck
+class MyCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric',random.uniform(0,1000))
 ```
 
 2. Created /etc/datadog-agent/conf.d/my_metric.yaml
@@ -59,9 +75,12 @@ instances:
 
 3. Restarted datadog-agent
 
-Changed my check's collection by modifying /etc/datadog-agent/conf.d/my_metric.yaml
+#### Changed my check's collection by modifying /etc/datadog-agent/conf.d/my_metric.yaml
 ```yaml
-※あとでコピー
+init_config:
+
+instances:
+    - min_collection_interval: 45
 ```
 　　
 　　
