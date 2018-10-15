@@ -115,3 +115,52 @@ Using the camera icon, I'm able to snapshot the graph and send it to my email.
 ## Bonus Question: What is the Anomaly graph displaying?
 
 The Amonaly graph is displaying the number of transactions that have been committed in the PostgreSQL database while indicating whether there is any abnormal behavior. Red points indicate abnormal behavior and values outside the expected range of values. The range of values is represented by the grey background behind the data points. In my graph, any points below 0.018 transactions/second or higher than 0.020 transactions/second are anomalies.
+
+
+# Monitoring Data
+
+## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+## Warning threshold of 500
+## Alerting threshold of 800
+## And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+A monitor can be created through two ways:
+1) Navigating to the Monitors --> New Monitor --> Metric Tab on the left.
+2) Hover over the graph you want to monitor, click the settings (cog icon) and click create new monitor
+
+Once completed, I filled out the necessary information to meet the desired requirements
+<img metric monitor conditions 1 />
+
+
+## Please configure the monitor’s message so that it will:
+
+## Send you an email whenever the monitor triggers.
+
+## Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+## Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+<img monitor conditions 2/>
+
+## When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+<img monitor warn email />
+
+## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+## One that silences it from 7pm to 9am daily on M-F,
+## And one that silences it all day on Sat-Sun.
+
+
+Monitors can be scheduled to have downtime by navigating to Monitors --> Manage Downtime.
+
+This was done twice, one for weekdays and one for weekends. The images below illustrate the conditions used in the forms.
+
+<img monitor weekday conditions/>
+<img monitor weekends conditions/>
+
+## Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+<img monitor weekday emails/>
+<img monitor weekends emails/>
