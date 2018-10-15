@@ -1,4 +1,4 @@
-#Answer for Recuiting Challenge
+# Answer for Recuiting Challenge
 I took the docker-containerized approach to complete the Challenge.  
 You can reproduce the environment by docker-compose with a deploy script.  
 ```DD_API_KEY="<DatadogAPIKEY>" YOUR_LOCAL_IP="<LOCAL_HOST_IP>" sh deploy_local.sh```  
@@ -12,7 +12,7 @@ Following is the flow for containers to launch.
 ```
 ---
 # 1. Collecting Metrics
-###Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 * [x] Agent cofing file: [datadog.yaml](datadog/datadog.yaml)  
 ```yaml
 tags:
@@ -24,7 +24,7 @@ tags:
   ![Host Map 2](screenshots/1-config.png)
 
 ---
-###Install a database on your machine and then install the Datadog integration for that database.
+### Install a database on your machine and then install the Datadog integration for that database.
 
 * [x] Integration file: [conf.d/postgres.d/conf.yaml](datadog/conf.d/postgres.d/conf.yaml)  
 ```yaml
@@ -45,7 +45,7 @@ instances:
   ![pSQL Integration](screenshots/1-install-db.png)  
   ![pSQL Integration 2](screenshots/1-postgres-integration.png)
   
-###Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 * [x] Agentcheck for process: [checks.d/test_check.py](datadog/checks.d/test_check.py)  
 ```python
@@ -67,7 +67,7 @@ instances:
 ```
 
 
-###Question
+### Question
 * [x] Answer
 ```python
 Your code here
@@ -75,4 +75,4 @@ Your code here
 * [x] Screenshots
   ![comment](screenshots/1-install-db.png)  
 
-###Question
+### Question
