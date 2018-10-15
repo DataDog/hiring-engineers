@@ -11,6 +11,7 @@ ConfigureNginx () {
           envsubst '$$NGINX_HOST$$NGINX_PORT$$APP_HOST$$APP_PORT' < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf 
           envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/status.template > /etc/nginx/conf.d/status.conf
           cat  /etc/nginx/conf.d/default.conf
+          cat  /etc/nginx/conf.d/status.conf
         else
           /bin/echo "ERROR: application port is missing, please define APP_PORT environment variable."
         fi

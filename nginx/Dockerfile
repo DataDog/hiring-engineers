@@ -14,7 +14,7 @@ ENV NGINX_HOST=$NGINX_HOST \
 
 ##Copy Static Files
 RUN set -x && mkdir -p /usr/share/nginx/static
-COPY ../project/testweb/static /usr/share/nginx/static
+COPY app/testweb/static /usr/share/nginx/static
 
 ##Copy custom config templates
 COPY nginx/mysite.template /etc/nginx/conf.d/mysite.template

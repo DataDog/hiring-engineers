@@ -14,6 +14,7 @@ MYPGUSER="postgres"
 MYPGPASSWD=""
 MYPGHOST=""
 MYPGPORT="5432"
+DD_HOST="172.19.0.1"
 
 ConfigureSsmtp () {
   # Customizing sstmp
@@ -104,15 +105,12 @@ DATABASES = {
         "PASSWORD": "${MYPGPASSWD}",
         "HOST": "${MYPGHOST}",
         "PORT": "${MYPGPORT}",
+        'OPTIONS': {
+            'application_name': 'testweb'
+        }
     }
 }
 EOF
-#          /bin/sed -i "s|\s*\"ENGINE\"\s*:\s*\"django.db.backends.\",|\ \ \ \ \ \ \ \ \"ENGINE\":\ \"django.db.backends.postgresql_psycopg2\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/ettings.py
-#          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"HOST\":\ \"${MYPGHOST}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-#          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PORT\":\ \"${MYPGPORT}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-#          /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-#          /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-#          /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
               else
                 /bin/echo "ERROR: DEBUG config is missing, please define DEBUG environment variable."
               fi
@@ -139,6 +137,7 @@ EOF
 ConfigureUser
 ConfigureSsmtp
 ConfigurePostgres
+echo "DD_host's IP address is:"${DD_HOST}
 
 if [ "$1" = 'mezzanine' ]; then
   if [ -n "${DOCKMEZPRT}" ]; then
@@ -157,7 +156,7 @@ if [ "$1" = 'mezzanine' ]; then
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py collectstatic --noinput
   fi
-   exec /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
+   exec /sbin/su-exec "${MYUSER}" ddtrace-run gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
 fi
 
 exec "$@"

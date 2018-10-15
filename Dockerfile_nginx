@@ -1,20 +1,21 @@
 FROM nginx:mainline-alpine
+LABEL maintainer "Yuya Ushijima <github:ushijimay>"
 
-###Associate args with container os envs
+##Set environmental variables
 ENV NGINX_HOST=${NGINX_HOST} \
     NGINX_PORT=${NGINX_PORT} \
     APP_HOST=${APP_HOST} \
     APP_PORT=${APP_PORT}
 
-##Copy Static Files
+##Copy static files
 RUN set -x && mkdir -p /usr/share/nginx/static
-COPY project/testweb/static /usr/share/nginx/static
+COPY app/testweb/static /usr/share/nginx/static
 
-##Copy custom config templates
+##Copy original nginx config template
 COPY nginx/mysite.template /etc/nginx/conf.d/mysite.template
 
-##Copy http stub status conf for Datadog 
-COPY nginx/status.template /etc/nginx/conf.d/
+##Copy http stub status config template for Datadog 
+COPY nginx/status.template /etc/nginx/conf.d/status.template
 
 ##Copy Nginx root conf
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

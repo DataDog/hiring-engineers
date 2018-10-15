@@ -1,12 +1,17 @@
 #!/bin/bash
+
+echo "##### Check environment varialbes #####"
 if [ ! -n "${YOUR_LOCAL_IP}" ]; then
   echo "export YOUR_LOCAL_IP"
-elif [ ! -n "${YOUR_DD_API_KEY}" ]; then
-  echo "export YOUR_DD_API_KEY"
+elif [ ! -n "${DD_API_KEY}" ]; then
+  echo "export DD_API_KEY"
 else
 
-  echo ${YOUR_LOCAL_IP}
-  echo "##### Build container images #####"
+  echo "##### Confirm local IP #####"
+  echo "Your Local IP address is : ${YOUR_LOCAL_IP}"
+
+  echo "##### Exporting Environemt Valiables #####"
+  export DOCKER_DEFAULT_GATEWAY="172.19.0.1"       #Might change to 172.17.0.1 or else to fit to your environment
   export NGINX_HOST=${YOUR_LOCAL_IP}
   export NGINX_PORT=80
   export APP_HOST=${YOUR_LOCAL_IP}
@@ -14,35 +19,42 @@ else
   export DB_HOST=${YOUR_LOCAL_IP}
   export DB_PORT=5432
 
-  echo "##### Build container images #####"
+  echo "##### Building container images #####"
   docker-compose build
-  echo "##### Start DB container first #####"
-  docker-compose up -d db
-  echo "##### Wait for db to start #####"
-  sleep 5
-  PGPASSWORD=Test1Pass psql -U postgres -h localhost -c "create user datadog with password 'Test1Pass';"
-  PGPASSWORD=Test1Pass psql -U postgres -h localhost -c "grant SELECT ON pg_stat_database to datadog;"
-  PGPASSWORD=Test1Pass psql -U postgres -h localhost -d testweb  -c \
-         "select * from pg_stat_database LIMIT(1);" \
-         && echo -e "\e[0;32mPostgres connection - OK\e[0m" \
-         || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 
-  echo "##### Start db migrate #####"
+  echo "##### Startng DB datadog containers first #####"
+  docker-compose up -d db datadog
+
+  echo "##### Waiting for their services to be up #####"
+  sleep 5
+
+  echo "##### Creating postgres user for Datadog #####"
+  PGPASSWORD=Test1Pass psql -U postgres -h ${DB_HOST} -c "create user datadog with password 'Test1Pass';"
+  PGPASSWORD=Test1Pass psql -U postgres -h ${DB_HOST} -c "grant SELECT ON pg_stat_database to datadog;"
+   ##Cannot Moved to Dockerfile_postgres because it starts to create a user before postgres starts, which fails.
+
+  echo "##### Starting db migration for app #####"
   docker run -it \
-    -e DOCKPGHOST=$YOUR_LOCAL_IP  \
+    -e DOCKPGHOST=${YOUR_LOCAL_IP}  \
     -e DOCKPGPORT=5432 \
     -e DOCKPGDB=testweb \
     -e DOCKPGUSER=postgres \
-    -e SECRET_KEY=adf7sgEF93E33 \
-    -e NEVERCACHE_KEY=adfkaafadsfad97093gawegsdg \
+    -e SECRET_KEY=Example5ecretKey \
+    -e NEVERCACHE_KEY=Example2evercacheKey \
     -e DOCKPGPASSWD=Test1Pass \
-    -e DEBUG=True \
+    -e DEBUG=False \
+    -e DD_AGENT_PORT_8126_TCP_ADDR=${YOUR_LOCAL_IP} \
+    -e DD_HOST=${DOCKER_DEFAULT_GATEWAY}  \
     testweb_app:test \
     /usr/bin/python3 /project/testweb/manage.py migrate # db migrate to postgres container
-  echo "##### Start APP and WEB containers #####"
+
+  echo "##### Starting APP and WEB containers #####"
   docker-compose up -d
   sleep 3
+
+  echo "##### Local Deploy Result  #####"
   docker ps
-  echo "##### CMD to stop all containers #####"
+
+  echo "##### Command to stop all containers #####"
   echo "docker-compose down"
 fi
