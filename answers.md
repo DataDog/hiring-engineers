@@ -68,41 +68,41 @@ Copy the API Key to be used in our Docker command:
 ### Setting up the Container
 Complete the following docker command by filling in your API key:
 ```
-	docker run \
-	-d --name dd-agent-v6 \
-	-p 3000:3000 \  
-	-v /var/run/docker.sock:/var/run/docker.sock:ro \  
-	-v /proc/:/host/proc/:ro \  
-	-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \  
-	-e DD_API_KEY=<span color='red'>{your_api_key_here}</span> \  
-	-e SD_BACKEND=docker \  
-	-e NON_LOCAL_TRAFFIC=false \  
-	datadog/agent:latest
+docker run \
+-d --name dd-agent-v6 \
+-p 3000:3000 \
+-v /var/run/docker.sock:/var/run/docker.sock:ro \
+-v /proc/:/host/proc/:ro \
+-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+-e DD_API_KEY={your_api_key_here} \
+-e SD_BACKEND=docker \
+-e NON_LOCAL_TRAFFIC=false \
+datadog/agent:latest
 ```
 And then run the command in a docker terminal:
 
-![](https://lh6.googleusercontent.com/BUU17MJf7FEjwJb2sUT0D-ek54cEDBMdpRjQI6IFqcgpcJD4VI4DwBWc-UFHVZKhMvrCRvcgSegOx4uykILXM1ld0NtHW8vGWA5sxQTvXQ1hkjjf0KuDNiTE_W_yf6DdBVm1TVhP)  
+![](https://lh4.googleusercontent.com/iKaFOCeo2lw3baShoG2j2kbqgrvnig6jovXPgprMvS07rl2K_p5bE9nVjiPFepp1iQLGPrfNrPfI0qNoP4-foMcQ2A6S7S9XD3D4yLCAKVUEOg_2XhkkeKBcg0YvwtwAKid0n6X4) 
   
 
 Check that the container started successfully by typing:
 ```
-	docker container ls
+docker container ls
 ```
 ![](https://lh6.googleusercontent.com/jagLpXVwxVOIhtvcRv3xv2oRCAlkOPN_e6Bw57tze28ZOr6NHOgTyNmeO39NKE4yfKnTOpF_oND1_9pJw6xuU4RgS95bwPG7itVcAlUzIMe4O2RUS1_NJrRBc88yxV23IzB4pzZB)
 Note: if the container status is not ‘Up’ you can check the logs to see what the error is with:
 ```
-	docker logs {container_id_here}
+docker logs {container_id_here}
 ```
 Now that the container is running, we’ll connect into it to finish setting up our environment. Run the command:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 And install vim tiny so that we can edit text files:
 ```
-	apt-get update
+apt-get update
 ```
 ```
-	apt-get install vim-tiny
+apt-get install vim-tiny
 ```
 
 ## Collecting Metrics
@@ -119,32 +119,34 @@ In this section we’ll be doing a few things, we’ll:
 ### Adding Tags to Hosts
 There are several ways to add tags to your hosts, but we’ll do it by editing the main Datadog Agent configuration file. Make sure you are in a terminal connected to the host. If not you can connect with:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 Open the main configuration file to edit::
 ```
-	vim.tiny /etc/datadog-agent/datadog.yaml
+vim.tiny /etc/datadog-agent/datadog.yaml
 ```
 Add tags to the bottom of the file and save it. Remember in vim you need to press `i` to start inserting text and when you're finished press `esc` and then `:wq!` to save the file. You can use any key:value pair you like:
 ```
-	i
+i
 ```
 ```
-	tags: please:hire-me, i-need:money
+tags: please:hire-me, i-need:money
 ```
 ```
-	esc
+esc
 ```
 ```
-	:wq!
+:wq!
 ```
 
-![](https://lh4.googleusercontent.com/4eOSQdSGW5JpGodYl7toLYtcG7Sxd-o8zwd2p4ZvPhHNjRB4RLTQ_-sFBGEcYtr2yZMngbX5Fctgk7zBQzRsGIYqtXGgVV4PXMkQNbBG8XT_o_zO_Ijkx_8jwyVxHQNpHloo_ibR)
+The final file should look like this:
+
+![](https://lh5.googleusercontent.com/SUfm3kVrngANJ_kydbfyzST2MEUJA-owtp1f-15nZ2anLnAagAvPVkLIUE2FFHz0CU9SEyOQOfSp5JkWb82Ysv28y-7BKC7kGhPuYTlRNW_oiAW0KNluuxZxNXXjRwTwLiD4HYMv)
 
 Disconnect from the container by holding `ctrl` and then pressing `P + Q`.
 Restart the container so that the config changes take effect:
 ```
-	docker restart {container_id_here}
+docker restart {container_id_here}
 ```
 Check that the tags have been added back in the Datadog web application. Hover over ‘Infrastructure’ in the left navigation bar and then click on ‘Host Map’.
   
@@ -161,19 +163,19 @@ You should now be able to see the tags on your host.
 ### Installing MySQL
 Make sure you are in a terminal connected to our host. If not you can connect with:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 To install MySQL run:
 ```
-	apt-get install default-mysql-server
+apt-get install default-mysql-server
 ```
 Start MySQL:
 ```
-	service start mysql
+service start mysql
 ```
 Install sudo so that we can follow the instructions on the Datadog web application:
 ```
-	apt-get install sudo
+apt-get install sudo
 ```
 Follow the instructions on how to setup a MySQL integration on the Datadog web application:
 
@@ -190,7 +192,7 @@ Click on configuration:
 Follow all of the instructions and click on ‘Install Integration’ at the bottom of the page.
 Note: you’ll need to create the configuration file:
 ```
-	vim.tiny /etc/datadog-agent/conf.d/mysql.yaml
+vim.tiny /etc/datadog-agent/conf.d/mysql.yaml
 ```
   
 ![](https://lh5.googleusercontent.com/NTLYC6cNLagZcxXKzERAAJuejJo2HVIpWl3gKd_8MtgG01vdu3CUZAO-qvT97YOIoJBuo-K5W7JqArW-9IUz5GHpQ2JUEJUgglpLB9VtQwR7zB9639b5yFUgsWYw6-5sisKh1eTq)
@@ -198,45 +200,45 @@ Note: you’ll need to create the configuration file:
 ### Creating a Custom Agent Check
 Creating a custom Agent check is easy! All we need to do is create two files (that must both have the same name), the first one will be the Agent check’s python code. Make sure you are in a terminal connected to the host. If not you can connect with:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 And then type:
 ```
-	vim.tiny /etc/datadog-agent/checks.d/mymetric.py
+vim.tiny /etc/datadog-agent/checks.d/mymetric.py
 ```
 Insert the following text and save the file:
 ```
-	from checks import AgentCheck
-	import random
+from checks import AgentCheck
+import random
 
-	class MyMetric(AgentCheck):
+class MyMetric(AgentCheck):
 	def check(self, instance):
-	self.gauge('my_metric', random.randint(1, 1000))
+		self.gauge('my_metric', random.randint(1, 1000))
 ```
 The second file is the configuration for the check:
 ```
-	vim.tiny /etc/datadog-agent/conf.d/mymetric.yaml
+vim.tiny /etc/datadog-agent/conf.d/mymetric.yaml
 ```
 Insert the following text and save the file:
 ```
-	init_config:
+init_config:
 
-	instances:
-	  - name: myservice
+instances:
+  - name: myservice
 ```
 
 ### Changing an Agent Check's Interval
 We’ll change the collection interval to be every 45 seconds instead of the default 15 seconds. To do this we’ll need to edit the config file for the check:
 ```
-	vim.tiny /etc/datadog-agent/conf.d/mymetric.yaml
+vim.tiny /etc/datadog-agent/conf.d/mymetric.yaml
 ```
 The new file should read:
 ```
-	init_config:
+init_config:
 
-	instances:
-	  - name: myservice
-	    min_collection_interval: 45
+instances:
+  - name: myservice
+    min_collection_interval: 45
 ```
 ## Visualising Data
 In this section we’ll create a Timeboard using the Datadog API. To do this we’re going to create a very basic python application and also configure some settings in the Datadog web application.
@@ -244,82 +246,72 @@ In this section we’ll create a Timeboard using the Datadog API. To do this we�
 ### Creating a Timeboard
 Make sure you are in a terminal connected to our host. If not you can connect with:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 Install Datadog’s API client library through with the Agent’s embedded python runtime:
 ```
-	pip install datadog
+pip install datadog
 ```
 Create the python application file, anywhere will do but I’ve chosen root.
 ```
-	vim.tiny /createVisualisations.py
+vim.tiny /createVisualisations.py
 ```
 You can create an App Key on the same page you retrieved your API Key from in the Datadog web application in the 'Getting Your API Key' part of this guide. Fill the createVisualisations.py with the following text:
 ```
-	from datadog import initialize, api
-	options = {
-		'api_key': {your_api_key_here},
-		'App_key': {your_app_key_here}
-	}
+from datadog import initialize, api
+options = {
+  'api_key': '{your_api_key_here}',
+  'App_key': '{your_app_key_here}'
+}
 
-	initialize(**options)
-	title = "My Timeboard"
-	description = "This is totally gonna show off my mad skillz."
-	graphs = [{
-			"definition": {
-				"events": [],
-				"requests": [
-					{"q": "avg:my_metric{i-need:money}"}
-				],
-				"viz": "timeseries"
-			},
-			"title": "Avg of my_metric over i-need:money"
-		},
-		{
-			"definition": {
-				"events": [],
-				"requests": [
-					{"q": "avg:mysql.innodb.data_reads{*}"}
-				],
-				"viz": "timeseries"
-				},
-			"title": "Avg of mysql.innodb.data_reads over all hosts"
-		},
-		{
-			"definition": {
-				"events": [],
-				"requests": [
-					{"q": "avg:my_metric{i-need:money}.rollup(sum, 3600)"}
-				],
-				"viz": "timeseries"
-				},
-			"title": "Sum rollup of last hour of Avg of my_metric over i-need:money"
-		}] 
-	read_only = True
-	api.Timeboard.create(title=title,
-						 description=description,
-						 graphs=graphs,
-						 read_only=read_only)
-	# Create a new monitor
-	monitor_options = {
-		"notify_no_data": False,
-		"no_data_timeframe": 20
-	}
-	tags = ["database"]
-	api.Monitor.create(
-		type="metric alert",
-		query="avg(last_1h):anomalies(avg:mysql.innodb.data_reads{*}, 
-			  'basic', 
-			  3, 
-			  direction='above', 
-			  alert_window='last_5m', 
-			  interval=20, 
-			  count_default_zero='true') >= 1",
-		name="MySql Reads on the only host we have",
-		message="Just doing this as per instructed.",
-		tags=tags,
-		options=monitor_options
-	)
+initialize(**options)
+title = "My Timeboard"
+description = "This is totally gonna show off my mad skillz."
+graphs = [{
+    "definition": {
+      "events": [],
+      "requests": [
+        {"q": "avg:my_metric{i-need:money}"}
+      ],
+      "viz": "timeseries"
+    },
+    "title": "Avg of my_metric over i-need:money"
+  },
+  {
+    "definition": {
+      "events": [],
+      "requests": [
+        {"q": "avg:mysql.innodb.data_reads{*}"}
+      ],
+      "viz": "timeseries"
+      },
+    "title": "Avg of mysql.innodb.data_reads over all hosts"
+  },
+  {
+    "definition": {
+      "events": [],
+      "requests": [
+        {"q": "avg:my_metric{i-need:money}.rollup(sum, 3600)"}
+      ],
+      "viz": "timeseries"
+      },
+    "title": "Sum rollup of last hour of Avg of my_metric over i-need:money"
+  }] 
+read_only = True
+api.Timeboard.create(title=title,
+            description=description,
+            graphs=graphs,
+            read_only=read_only)
+# Create a new monitor
+monitor_options = {
+  "notify_no_data": False,
+  "no_data_timeframe": 20
+}
+tags = ["database"]
+api.Monitor.create(
+  type="metric alert",
+  query="avg(last_1h):anomalies(avg:mysql.innodb.data_reads{*}, 'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1", name="MySql Reads on the only host we have", message="Just doing this as per instructed.", tags=tags, options=monitor_options
+)
 ```
 There’s a lot in this piece of code, but we’re just using it for demonstration. If you’d like to go deeper and pick it apart, you can read up on the python library here:
 [https://datadogpy.readthedocs.io/en/latest/](https://datadogpy.readthedocs.io/en/latest/)
@@ -366,11 +358,18 @@ In the top right corner of the page click on ‘New Monitor +’:
 
 ![](https://lh4.googleusercontent.com/m871z-LAYjLV_QQULb53MJw9IzIWiBNl6RTGGp2B_1_pbbnz3lBgDEsYoXqtOJQO3SU5RYtxeAy5vJRpVH1aD4eGLkxp8vM19Mu_O3oj8i6qAY_QhHE_TTm_Zirp8cQdxgFa3OBL)
 
-Fill out the monitor form as shown in the pictures:
+Fill out the monitor form as shown in the pictures.
+Note: you can copy and paste this code for the message:
 
-![](https://lh6.googleusercontent.com/_6UMs-uBQaJ6rQFUa1ObDTjMSRIPSkYfK7UgrXEyRzfGMhKn0pc4iYKVg5-X-5kOvge5Drd2SE6qgymYyJ7DeAXmGvZBzYGiG1kIf7qqHTODn1XjWkvtSVRLb6cSHasKMI5jYIbh)
+```
+{{#is_alert}}ALERT!{{/is_alert}}{{#is_warning}}Warning!{{/is_warning}}{{^is_no_data}} Because my_metric has a value of {{value}} from the host {{host.ip}} which is over {{#is_alert}}{{threshold}}{{/is_alert}}{{#is_warning}}{{warn_threshold}}{{/is_warning}}{{/is_no_data}}
+{{#is_no_data}}Data has been MISSING for more than 10 minutes :O{{/is_no_data}}
+```
 
-![](https://lh3.googleusercontent.com/LCxiWYlZBAK7ztysMP284H6rrU-W_xJMRssq83qQaTJbAGitNWamwM5wd72XktO1n3FpOHjbFeTtYxCIHi1n4zn1WRqL6XU2HvqSl7j2_l_-IMEcNs2whFDq7zZA51YKrvcsO0qr)
+
+![](https://lh3.googleusercontent.com/7NCTdYsNpC-QzfLPiJaZKKTbeBuv18aGjC9JSf7-iDeHAryl_on82HRdXg3vFIOWuZqM48Mm5z10nc5w3tp3dbXFTMaflmaJHYwcY09hnH7rT5w3JVUIIf6oHaQLcauPjKIhHrT2)
+
+![](https://lh4.googleusercontent.com/1iqlPkbjJA_GeoOamNf8RK4WoodNd7qjBswtCUH1ZixDMJPsBn5uHjfbOG56Xoxy3vaODdJVT1-wUveFfrAZUAocUwYaxKOIGnaKvIVW6-u5ixN8J0KOGA1rbbe7ODZmOT4WbS3C)
 
 ![](https://lh6.googleusercontent.com/p22LuFbCvve9PseaKWg5P97_I32s6-Bc25J3Yommv_bT5H67tiz3cwOiRLu64BnfauE-tmH1ru_fWV91v7G-wmqreskc8Wp75GFNdIrOvHvqwqWHj-hIwBzuE5Rw2iUifqVZOzmm)
 
@@ -384,73 +383,73 @@ In this section we’ll instrument a simple python application with Datadog’s 
 ### Instrumenting a Basic Python App
 Make sure you are in a terminal connected to our host. If not you can connect with:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 Install flask:
 ```
-	pip install flask
+pip install flask
 ```
 Create a file in root to be the app server:
 ```
-	vim.tiny /app.py
+vim.tiny /app.py
 ```
 Fill the file with the following text:
 ```
-	from flask import Flask  
-	import logging  
-	import sys  
-	  
-	# Have flask use stdout as the logger  
-	main_logger = logging.getLogger()  
-	main_logger.setLevel(logging.DEBUG)  
-	c = logging.StreamHandler(sys.stdout)  
-	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
-	c.setFormatter(formatter)  
-	main_logger.addHandler(c)  
-	  
-	app = Flask(__name__)  
-	  
-	@app.route('/')  
-	def api_entry():  
-		return 'Entrypoint to the Application'  
-	  
-	@app.route('/api/apm')  
-	def apm_endpoint():  
-		return 'Getting APM Started'  
-	  
-	@app.route('/api/trace')  
-	def trace_endpoint():  
-		return 'Posting Traces'  
-	  
-	if __name__ == '__main__':  
-		app.run(host='0.0.0.0', port='3000')
+from flask import Flask  
+import logging  
+import sys  
+  
+# Have flask use stdout as the logger  
+main_logger = logging.getLogger()  
+main_logger.setLevel(logging.DEBUG)  
+c = logging.StreamHandler(sys.stdout)  
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
+c.setFormatter(formatter)  
+main_logger.addHandler(c)  
+  
+app = Flask(__name__)  
+  
+@app.route('/')  
+def api_entry():  
+  return 'Entrypoint to the Application'  
+  
+@app.route('/api/apm')  
+def apm_endpoint():  
+  return 'Getting APM Started'  
+  
+@app.route('/api/trace')  
+def trace_endpoint():  
+  return 'Posting Traces'  
+  
+if __name__ == '__main__':  
+  app.run(host='0.0.0.0', port='3000')
 ```
 Install ddtrace with:
 ```
-	pip install ddtrace
+pip install ddtrace
 ```
 Edit the datadog.yaml config file to enable trace reporting:
 ```
-	vim.tiny /etc/datadog-agent/datadog.yaml
+vim.tiny /etc/datadog-agent/datadog.yaml
 ```
 Under `apm_config:` change `enabled` from `false` to `true`
 
 Disconnect from the container by holding `ctrl` and then pressing `P + Q`.
 Restart the container so that the config changes take effect:
 ```
-	docker restart {container_id_here}
+docker restart {container_id_here}
 ```
 Connect back to the container again:
 ```
-	docker exec -it {container_id_here} /bin/bash
+docker exec -it {container_id_here} /bin/bash
 ```
 Run the python application with:
 ```
-	ddtrace-run python app.py
+ddtrace-run python app.py
 ```
 Visit the application in your browser by navigating to:
 ```
-	192.168.99.100:3000
+192.168.99.100:3000
 ```
   
 The APM traces will now be available in the Datadog web app!
