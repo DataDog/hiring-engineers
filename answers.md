@@ -121,4 +121,58 @@ The anomaly function we see in the above Python script create a monitor to analy
 
 [Here](./Anomaly.png) is a sample anomaly of a DB connection with the alert highlighted in red.
 
-### 
+### Monitoring Data
+
+Now that there's metrics coming in and we've seen there are ways to check for anomalies in the data, it's time to get notices when your application is behaving out of normal parameters.
+
+⋅⋅⋅Create a new [monitor](https://app.datadoghq.com/monitors#/create).
+
+⋅⋅⋅Select your metric. In this example, the chosen metric is the random value check generated from our agent. [View the graph and choose your metric.](./CreateMonitor1.png)
+
+⋅⋅⋅Set your [alert condition and threshold](./CreateMonitor2.png). When the metric goes over a certain limit over a period of time, an email alert will be sent out. This threshold can also be sent as a warning as well, outside of the tolerance but not an immediate concern.
+
+⋅⋅⋅Lastly, set the body of your [alert message and the recipients.](./CreateMonitor3.png)
+
+#### Monitor Downtime
+
+Not everyone wants to take work home with them, therefore it's important to manage when alerts are being sent.
+
+Any of your alerts can be [silenced, scheduled](./CreateDowntime1.png), and given a [message](./CreateDowntime2.png) notifying users when downtime is beginning.
+
+### Collecting APM Data
+
+```
+from flask import Flask
+import time
+import blinker as _
+import logging
+import sys
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+        return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+        return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+        return 'Posting Traces'
+
+if __name__ == '__main__':
+        app.run(host='10.0.2.15', port='5050')
+```
