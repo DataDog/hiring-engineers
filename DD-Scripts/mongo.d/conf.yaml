@@ -1,0 +1,6 @@
+init_config:
+instances:
+      -   server: mongodb://datadog:FtfA8WjYLFzpNGUpVRJyu6Fo@localhost:27017
+          tags:
+              - mongodbinstance:kroon1
+              - mongoenv:prod
