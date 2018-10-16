@@ -39,7 +39,7 @@ Yes ! By using min_collection_interval in the config yaml file .
 https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6
 
 
-Visualizing Data:
+# Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -69,7 +69,7 @@ The Anomaly function is a statistical function used to determine if there are ch
 
 In my example I am using a fairly stable Mongodb metric so you will not see anomalies however you can see the dynamic threshold as a grey band around the timeseries data 
 
-Monitoring Data
+# Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -100,7 +100,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-2.png)
 
-Collecting APM Data:
+# Collecting APM Data:
 
 Bonus Question: What is the difference between a Service and a Resource?
 
@@ -115,7 +115,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 https://app.datadoghq.com/apm/traces?start=1539665960635&end=1539680360635&paused=false&env=production&traceID=10947544349931412619&spanID=17974173657378931260
 
-Final Question:
+# Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
