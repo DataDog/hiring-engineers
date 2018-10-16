@@ -1,7 +1,7 @@
 
 # Collecting Metrics:
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+**Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-1.png)
       
@@ -28,7 +28,7 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-Python check config - check_random.yaml](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.yaml)
+[Python check config - check_random.yaml](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.yaml)
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
 
