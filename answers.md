@@ -23,6 +23,9 @@ https://app.datadoghq.com/screen/integration/13/mongodb---overview?page=0&is_aut
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+[Python check script - check_random](../DD-scripts/check_random.py)
+
+
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
@@ -69,7 +72,7 @@ The Anomaly function is a statistical function used to determine if there are ch
 
 In my example I am using a fairly stable Mongodb metric so you will not see anomalies however you can see the dynamic threshold as a grey band around the timeseries data 
 
-# Monitoring Data
+# Monitoring Data:
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
