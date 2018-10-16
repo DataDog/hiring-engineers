@@ -99,38 +99,40 @@ instances:
   ![comment](screenshots/1-install-db.png)  
 
 # 3. Monitoring Data
-### Create a new Metric Monitor that watches the average of your custom metric (my_metric) 
+* [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) 
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-* [x] Warning threshold of 500
-* [x] Alerting threshold of 800
-* [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* [x] Send you an email whenever the monitor triggers.  
+  ![comment](screenshots/1-install-db.png)  
+  
+* [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.  
+  ![comment](screenshots/1-install-db.png)  
 
-* [x] Send you an email whenever the monitor triggers.
-* [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.  
+  ![comment](screenshots/1-install-db.png)  
+
 * [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-* [x] Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-* [x] One that silences it from 7pm to 9am daily on M-F,
-* [x] And one that silences it all day on Sat-Sun.
-* [x] Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  ![comment](screenshots/1-install-db.png)  
 
+* [x] Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* One that silences it from 7pm to 9am daily on M-F,
+  ![comment](screenshots/1-install-db.png)  
+* And one that silences it all day on Sat-Sun.
+  ![comment](screenshots/1-install-db.png)  
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  ![comment](screenshots/1-install-db.png)  
 
 ---
 
 # 4. Collecting APM Data:
 
-* [x] Answer
-```python
-#Your code here
-```
-* [x] Screenshots  
-  ![comment](screenshots/1-install-db.png)  
 ### Bonus Question: What is the difference between a Service and a Resource?
 * [x] Answer
 ```text
 
 ```
-
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 * [x] Answer
 ```python
