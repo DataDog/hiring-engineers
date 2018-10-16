@@ -148,6 +148,10 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 **Answer:**
 
+I used the supplied Python app an instrumented using Dynamic instrumentation 
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingAPMData-2.png)
+
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingAPMData-1.png)
 
 https://app.datadoghq.com/apm/traces?start=1539665960635&end=1539680360635&paused=false&env=production&traceID=10947544349931412619&spanID=17974173657378931260
