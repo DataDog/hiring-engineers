@@ -7,6 +7,8 @@ To the evaluator , please feel free to contact me via Alexa Shanahan if you need
 
 **Answer:**
 
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-4.png)
+
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-1.png)
       
 
