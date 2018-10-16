@@ -227,7 +227,21 @@ I used Postman to create the payload below and test the datadog API.
 - Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+DONE :D
+
 **Bonus Question: What is the Anomaly graph displaying?**
+
+Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+
+For example, anomaly detection can help you discover when your web traffic is unusually low on a weekday afternoon—even though that same level of traffic would be perfectly normal later in the evening. Or consider a metric measuring the number of logins to your steadily-growing site. As the number is increasing every day, any threshold would be quickly outdated, whereas anomaly detection can quickly alert you if there is an unexpected drop—potentially indicating an issue with the login system.
+
+There is an anomalies function in the Datadog query language. When you apply this function to a series, it returns the usual results along with an expected “normal” range.
+
+Anomaly detection monitors provide both “Historical Context” so that you can see how the metric behaved in the past, as well as a separate “Evaluation Window” that is longer than the alerting window to provide you some immediate context. This should provide some insight into what the anomalies algorithm takes into account when calculating the bounds.
+
+Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results.
+
+
 
 Monitoring Data
 ---------------
