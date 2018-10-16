@@ -1,9 +1,9 @@
 
 # Collecting Metrics:
 
-**Q:Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
+**Question:Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
-**A:**
+**Answer:**
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-1.png)
       
