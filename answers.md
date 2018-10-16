@@ -64,6 +64,9 @@ Any metric from the Integration on your Database with the anomaly function appli
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+[Python script to create timeboard ](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/createTimeBoard.py)
+
+
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-1.png)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
