@@ -114,6 +114,10 @@ In my example I am using a fairly stable Mongodb metric so you will not see anom
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-1.png)
 
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-3.png)
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-4.png)
+
 https://app.datadoghq.com/monitors/6717201
 
 **Question: Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
@@ -125,6 +129,11 @@ Make sure that your email is notified when you schedule the downtime and take a 
 **Answer:**
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-2.png)
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-5.png)
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-6.png)
+
 
 # Collecting APM Data:
 
@@ -156,6 +165,6 @@ I think IOT monitoring in particular and renewable energy devices .
 For example Solar panel power out-put , rain water collection , Heating and cooling efficency to build energy efficency profiles for buildings . I am especiallhy interested in this 
 as I live in a country where we have issues around conservation of water and energy .
 
-I believe these types of devices hooked up to sensors on raspbery PI or Arduino using DD to crunch the statistics could really be a game changer .
+I believe these types of devices hooked up to sensors on raspbery PI or Arduino using DD to crunch the statistics could really be a game changer to measure and affect the uptake of renewables.
 
 
