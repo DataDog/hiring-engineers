@@ -23,10 +23,12 @@ https://app.datadoghq.com/screen/integration/13/mongodb---overview?page=0&is_aut
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-[Python check script - check_random](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.py)
+[Python check script - check_random.py](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.py)
 
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+Python check config - check_random.yaml](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.yaml)
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
 
