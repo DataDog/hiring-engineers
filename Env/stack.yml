@@ -17,7 +17,7 @@ services:
     ports:
       - 8181:8080
     networks:
-      - docknet 
+      - docknet
       
 networks:
     docknet:
