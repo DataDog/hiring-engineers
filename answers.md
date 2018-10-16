@@ -3,7 +3,7 @@ Collecting Metrics:
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-![alt text](images/CollectingMetrics-1.jpeg)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-1.png)
       
 
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host
