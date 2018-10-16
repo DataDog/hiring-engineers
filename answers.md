@@ -17,6 +17,8 @@ https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=
 
 **Answer:**
 
+[MongoDB config file](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/mongo.d/conf.yaml)
+
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-2.1.png)
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-2.2.png)
