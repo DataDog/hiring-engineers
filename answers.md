@@ -13,7 +13,7 @@ About Me
 Add information about me here.... Love for gaming, running, reading, technology :D
 
 <img src="http://i.imgur.com/u2mss8o.png" width="360" height="300" />
-<img src="http://i.imgur.com/mR81p5O.png" width="360" height="300"/>
+
 
 What I build
 ------------
@@ -21,7 +21,6 @@ What I build
  - I used the following dockerfile for spining up the necessary machines for this test:
     + Postgres (Database Machine)
     + Adminer (Managing Database)
-    + Datadog Agent (Monitoring Agent)
  
  If you don't have [Python](https://www.python.org/downloads/) or [Pygame](http://www.pygame.org/download.shtml) installed, you can simply double click the .exe file to play the game.
    **Note:** *The .exe file needs to stay in the same directory as the sounds, images, and font folders.*
@@ -33,49 +32,293 @@ python spaceinvaders.py
  ```
  **Note:** If you're using Python 3, replace the command "python" with "python3"
 
+
+Prerequisites - Setup the environment
+-------------------------------------
+I used the Containerized approach with Docker for Linux. It is the simplest in terms of infrastructure. Nevertheless I tested everything in a vagrant
+
+Here is the docker compose file (stack.yml):
+
+```
+version: '2'
+
+services:
+  # Postgres Container
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - docknet
+    environment:
+      POSTGRES_PASSWORD: datadog
+    
+  # Database Adminer Container    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8181:8080
+    networks:
+      - docknet 
+      
+networks:
+    docknet:
+        external: true
+```
+
+I created a container for Postgres Database sharing the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
+<center>
+<img src="https://i.imgur.com/U6rA3kM.png" width="350" height="300" />
+</center>
+**(CHANGE THIS LINKS)**Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://www.mysql.com/downloads/), [PostgreSQL](https://www.mysql.com/downloads/), [SQLite](https://www.mysql.com/downloads/), [MS SQL](https://www.mysql.com/downloads/), [Oracle](https://www.mysql.com/downloads/), [Firebird](https://www.mysql.com/downloads/), [SimpleDB](https://www.mysql.com/downloads/), 
+[Elasticsearch](https://www.mysql.com/downloads/), [MongoDB](https://www.mysql.com/downloads/).
+
+This way I can quickly spin up other databases and manage it from a central endpoint (http://localhost:8181 - I mapped a local port to the management port). Check the enablement commands necessary for the side of the Postgres Integration:
+
+<img src="https://i.imgur.com/DmrDiyt.png" width="350" height="300" />
+<img src="https://i.imgur.com/RUeR4oK.png" width="350" height="300" />
+
+
+
+I signup for a free trial account at datadoghq.com 
+
+
+
+
+ and our dockerized Datadog Agent image.
+Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+
+
+
+
 Demo
 ----
 [![Space Invaders](http://img.youtube.com/vi/_2yUP3WMDRc/0.jpg)](http://www.youtube.com/watch?v=_2yUP3WMDRc)
-
-Notable Forks
-----
-- [AI research project where four types of agents control the ship and play the game](https://github.com/scott-pickthorn/Space_Invaders)
-- [NEAT program that evolves to beat the game](https://github.com/lairsonm/neat-in-space-invaders)
-
 
 
 
 Collecting Metrics:
 -------------------
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+I added several tags in the datadog.yaml file (located in /etc/datadog-agent/ folder)
+
+```
+tags:
+    - region:ireland
+    - region:dublin
+    - application:database
+    - database:postgres
+    - role:dummy_test
+```
+**explain tags here from ebook**
+
+**[Screenshot here]**
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+I installed PostgreSQL. Check the screenshots below. I also added to the container vim and curl.
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, we recommend that you write an Integration.**
 
-- Bonus Question: Can you change the collection interval without modifying the Python check file you created?
-Yes, from the agent code we can see the following:
+Add information about the check and the gauge...(different ways besides gauge)
 
-try:
-                min_collection_interval = instance.get('min_collection_interval', self.min_collection_interval)
+**/etc/datadog-agent/checks.d/mycheck.py**
 
-                now = time.time()
-                if now - self.last_collection_time[i] < min_collection_interval:
-                    self.log.debug("Not running instance #{0} of check {1} as it ran less than {2}s ago".format(i, self.name, min_collection_interval))
-                    continue
+```
+from checks import AgentCheck
+from random import randint
 
-If it is greater than the interval time for the Agent collector, a line is added to the log stating that collection for this script was skipped. The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds.
+class my_metricCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0, 1000))
+```
 
-The collector runs every 15-20 seconds depending on how many integrations are enabled. If the interval on this Agent happens to be every 20 seconds, then the Agent collects and includes the Agent check. The next time it collects 20 seconds later, it sees that 20 is less than 30 and doesn’t collect the custom Agent check. The next time it sees that the time since last run was 40 which is greater than 30 and therefore the Agent check is collected.
+**/etc/datadog-agent/conf.d/mycheck.yaml**
+
+```
+init_config:
+
+instances:
+    [{}]
+```
+
+A custom Agent check
+
+examples of others checks - https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a (useful)
 
 
+**- Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
+I changed the *mycheck.yaml* file with the min_connection_interval equal to 45. Has I do not have multiple instances of this check, it simply goes like the code below. I could also add the min_collection_interval at the init_config level:
+
+```
+init_config:
+
+instances:
+    [{
+        min_collection_interval: 45
+    }]
+```
+**- Bonus Question: Can you change the collection interval without modifying the Python check file you created?**
+
+[check better this response] ?Yes?, You can change the collection interval at the init_config level or at the instance level in the Python check file
+
+Visualizing Data:
+-----------------
+- Utilize the Datadog API to create a Timeboard that contains:
+
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+
+
+All of the seasonal algorithms may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. I used the basic one due to that...
+
+
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+I used Postman to create the payload below and test the datadog API.
+
+```
+{
+      "graphs" : [
+      	{
+          "title": "My Metric",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{*}"}
+              ]
+          },
+          "viz": "My Metric timeseries"
+    	} , { 
+        "title": "My Postgres Metric - Anomaly Function",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{*},'basic',2)"}
+              ]
+          },
+          "viz": "Postgres BGWriter timeseries"
+      } , {
+      "title": "My Metric - Rollup Function",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "my_metric{*}.rollup(sum,100)"}
+              ]
+          },
+          "viz": "My Metric Rollup timeseries"
+      }],
+      "title" : "My Awesome Metric Timeboard",
+      "description" : "Timeboard that contains: - My custom metric scoped over my host. - Any metric from the Integration on your Database with the anomaly function applied. - My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket",
+      "template_variables": [{
+          "name": "postgres",
+          "prefix": "host",
+          "default": "host:postgres"
+      }],
+      "read_only": "True"
+    }
+
+```
+
+- Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+- Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+**Bonus Question: What is the Anomaly graph displaying?**
+
+Monitoring Data
+---------------
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+Please configure the monitor’s message so that it will:
+
+Send you an email whenever the monitor triggers.
+
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Collecting APM Data:
+--------------------
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```    
+    
+Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Please include your fully instrumented app in your submission, as well.
+
+Final Question:
+---------------
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+- Check the status of the coffee machine each morning before getting there
+- Dashboard for Music Concert management, number of people, status of all the systems, alerts if something fails
+- Check the online status of your team and the physical status (if they are at the office or working from home)
+- Monitoring home automation System with Alexa and cameras
+- Monitor the automatic feeding machine for my daughters fish
+- Monitor the presence of boss in the headqarters.
+- Monitor the backup/restore process of different machines
+- Check hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael)
 
 Contact
-----
-Thanks for checking out my game and I hope you enjoy it! Feel free to contact me.
+-------
+Thanks for checking out my responses. Hope you have as much fun as did answering them.
 
-- Lee Robinson
-- lrobinson2011@gmail.com
+- Rui Lamy
+- rui.lamy@gmail.com
+
+
+
+

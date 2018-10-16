@@ -18,19 +18,7 @@ services:
       - 8181:8080
     networks:
       - docknet 
-
-  # Datadog Agent Container    
-  datadog:
-    image: datadog/agent:latest
-    environment:
-     - DD_API_KEY=54464b588c296912a22ab3aba82e94f9
-    networks:
-      - docknet # Ensures datadog container can connect to postgres container
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - /proc/mounts:/host/proc/mounts:ro
-     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
-
+      
 networks:
     docknet:
         external: true
