@@ -161,10 +161,9 @@ Is there anything creative you would use Datadog for?
 **Answer:**
 
 Yes , in a simalar fashion to the above mentioned use cases ,
-I think IOT monitoring in particular and renewable energy devices .
-For example Solar panel power out-put , rain water collection , Heating and cooling efficency to build energy efficency profiles for buildings . I am especiallhy interested in this 
-as I live in a country where we have issues around conservation of water and energy .
+I think IOT monitoring , in particular renewable energy devices .
+For example Solar panel power out-put , rain water collection measurement, Heating and cooling efficency (to build energy efficency profiles for buildings) . I am especially interested in this topic as I live in a country where we have challenges around conservation of water and energy .
 
-I believe these types of devices hooked up to sensors on raspbery PI or Arduino using DD to crunch the statistics could really be a game changer to measure and affect the uptake of renewables.
+I believe these types of devices hooked up to sensors on raspberry PI or Arduino using DataDog to crunch the statistics could really be a game changer (to measure and affect the uptake of renewables) and influence climate change.
 
 
