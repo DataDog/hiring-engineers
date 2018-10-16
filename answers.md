@@ -11,9 +11,9 @@ https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/CollectingMetrics-2.1.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-2.1.png)
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/CollectingMetrics-2.2.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-2.2.png)
 
 https://app.datadoghq.com/account/settings#integrations/mongodb
 
@@ -25,7 +25,7 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/CollectingMetrics-3-4.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
 
 https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1539676325551&to_ts=1539679925551&tile_size=m&exp_metric=my_metric&exp_scope=&exp_agg=avg&exp_row_type=metric
 
@@ -34,7 +34,7 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 
 Yes ! By using min_collection_interval in the config yaml file .
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/CollectingMetricsBonus.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetricsBonus.png)
 
 https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6
 
@@ -48,20 +48,20 @@ Any metric from the Integration on your Database with the anomaly function appli
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/VisualizingData-1.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-1.png)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Set the Timeboard's timeframe to the past 5 minutes
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/VisualizingData-2.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-2.png)
 
 
 https://app.datadoghq.com/dash/948267/visualizing-data-timeboard?live=false&page=0&is_auto=false&from_ts=1539666024608&to_ts=1539666324608&tile_size=m
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/VisualizingData-3.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-3.png)
 
 Bonus Question: What is the Anomaly graph displaying?
 
@@ -88,7 +88,7 @@ Include the metric value that caused the monitor to trigger and host ip when the
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/MonitoringData-1.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-1.png)
 
 https://app.datadoghq.com/monitors/6717201
 
@@ -98,7 +98,7 @@ One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/MomitoringData-2.png)
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-2.png)
 
 Collecting APM Data:
 
@@ -111,7 +111,7 @@ A resource can be a URL or method in the service that helps facilitate this func
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-![alt text](https://github.com/DogPound777/hiring-engineers/DD-Screenshots/CollectingAPMData-1.png)
+![alt text](hhttps://github.com/grantker/hiring-engineers/blob/master/images/CollectingAPMData-1.png)
 
 https://app.datadoghq.com/apm/traces?start=1539665960635&end=1539680360635&paused=false&env=production&traceID=10947544349931412619&spanID=17974173657378931260
 
