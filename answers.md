@@ -29,6 +29,8 @@ https://app.datadoghq.com/screen/integration/13/mongodb---overview?page=0&is_aut
 
 **Answer:**
 
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
+
 [Python check script - check_random.py](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.py)
 
 
@@ -38,7 +40,6 @@ https://app.datadoghq.com/screen/integration/13/mongodb---overview?page=0&is_aut
 
 [Python check config - check_random.yaml](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/check_random.yaml)
 
-![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/CollectingMetrics-3-4.png)
 
 https://app.datadoghq.com/metric/explorer?live=true&page=0&is_auto=false&from_ts=1539676325551&to_ts=1539679925551&tile_size=m&exp_metric=my_metric&exp_scope=&exp_agg=avg&exp_row_type=metric
 
