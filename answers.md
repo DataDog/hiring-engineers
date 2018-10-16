@@ -115,6 +115,8 @@ In my example I am using a fairly stable Mongodb metric so you will not see anom
 
 **Answer:**
 
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-7.png)
+
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-1.png)
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/MonitoringData-3.png)
