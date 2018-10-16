@@ -67,9 +67,9 @@ networks:
 ```
 
 I created a container for Postgres Database sharing the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
-<center>
-<img src="https://i.imgur.com/U6rA3kM.png" width="350" height="300" />
-</center>
+
+<img src="https://i.imgur.com/U6rA3kM.png" align="middle"/>
+
 **(CHANGE THIS LINKS)**Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://www.mysql.com/downloads/), [PostgreSQL](https://www.mysql.com/downloads/), [SQLite](https://www.mysql.com/downloads/), [MS SQL](https://www.mysql.com/downloads/), [Oracle](https://www.mysql.com/downloads/), [Firebird](https://www.mysql.com/downloads/), [SimpleDB](https://www.mysql.com/downloads/), 
 [Elasticsearch](https://www.mysql.com/downloads/), [MongoDB](https://www.mysql.com/downloads/).
 
@@ -166,18 +166,25 @@ instances:
 
 Visualizing Data:
 -----------------
-- Utilize the Datadog API to create a Timeboard that contains:
+Utilize the Datadog API to create a Timeboard that contains:
 
 - Your custom metric scoped over your host.
+ 
 - Any metric from the Integration on your Database with the anomaly function applied.
-
 
 All of the seasonal algorithms may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. I used the basic one due to that...
 
 
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-I used Postman to create the payload below and test the datadog API.
+I used Postman(use it extensively...) to create the payload below and test the datadog API.
+I downloaded the Datadog Postman Collection (pre-configured API call templates, available for [download here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
+
+<img  src="https://cl.ly/1t39190x0A0p/Screen%252520Recording%2525202018-08-03%252520at%25252008.58%252520AM.gif" align="middle"/>
+
+
+Just changed the body of the [Screenshot 2018-10-17 at 00.33.32]
+
 
 ```
 {
