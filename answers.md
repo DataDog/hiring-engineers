@@ -66,6 +66,13 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 [Python script to create timeboard ](https://github.com/grantker/hiring-engineers/blob/master/DD-Scripts/createTimeBoard.py)
 
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-4.png)
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-5.png)
+
+![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-6.png)
+
+
 
 ![alt text](https://github.com/grantker/hiring-engineers/blob/master/images/VisualizingData-1.png)
 
