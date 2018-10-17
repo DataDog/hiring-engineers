@@ -130,15 +130,15 @@ Here is a sample anomaly of a DB connection with the alert highlighted in red.
 
 Now that there's metrics coming in and we've seen there are ways to check for anomalies in the data, it's time to get notices when your application is behaving out of normal parameters.
 
-⋅⋅⋅Create a new [monitor](https://app.datadoghq.com/monitors#/create).
+Create a new [monitor](https://app.datadoghq.com/monitors#/create).
 
-⋅⋅⋅Select your metric. In this example, the chosen metric is the random value check generated from our agent. View the graph and choose your metric.
+Select your metric. In this example, the chosen metric is the random value check generated from our agent. View the graph and choose your metric.
 ![alt text](./CreateMonitor1.png)
 
-⋅⋅⋅Set your [alert condition and threshold]. When the metric goes over a certain limit over a period of time, an email alert will be sent out. This threshold can also be sent as a warning as well, outside of the tolerance but not an immediate concern.
+Set your [alert condition and threshold]. When the metric goes over a certain limit over a period of time, an email alert will be sent out. This threshold can also be sent as a warning as well, outside of the tolerance but not an immediate concern.
 ![alt text](./CreateMonitor2.png)
 
-⋅⋅⋅Lastly, set the body of your alert message and the recipients.
+Lastly, set the body of your alert message and the recipients.
 ![alt text](./CreateMonitor3.png)
 
 When the Monitor is alerted, it will notify you and your team by email.
