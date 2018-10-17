@@ -59,7 +59,7 @@ __NOTE:__ Make sure the name of the files you create in the `checks.d` and `conf
 
 Next we'll see how it looks in Datadog!
 
-### Visualizing Data
+## Visualizing Data
 
 With Datadog's public API we can send our custom metric, collected based on the interval we created in `conf.d`, to the platform for data visualization.
 
@@ -119,14 +119,14 @@ Here is an example.
 You can also tag your team members using the `@USERNAME` syntax to send them an email notification.
 ![alt text](./Email notification from snapshot.png)
 
-#### Anomaly Graph
+### Anomaly Graph
 
 The anomaly function we see in the above Python script create a monitor to analyze a range of metrics (calculated by a 'basic' algorithm in the example) and alert users when a value is detected outside of that range, indicating an anomaly.
 
 Here is a sample anomaly of a DB connection with the alert highlighted in red.
 ![alt text](./Anomaly.png)
 
-### Monitoring Data
+## Monitoring Data
 
 Now that there's metrics coming in and we've seen there are ways to check for anomalies in the data, it's time to get notices when your application is behaving out of normal parameters.
 
@@ -155,7 +155,7 @@ Any of your alerts can be silenced, scheduled, and given a message notifying use
 And emails look like the following:
 ![alt text](./DowntimeAlert.png)
 
-### Collecting APM Data
+## Collecting APM Data
 
 For Getting Started with setting up the APM, review the documentation found [here](https://docs.datadoghq.com/tracing/setup/).
 
@@ -209,6 +209,6 @@ You can also include your APM metrics into your Timeboards, to get an overall vi
 
 Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
 
-### Creative Uses for Datadog
+## Creative Uses for Datadog
 
 In a busy city like Boston, it's often a challenge getting around. Having a car is useful but can be expensive in an already pricy city. I personally use public transportation to get most places I need to go, friend's houses, work, the grocery store, The issue with public transit is that apps for tracking buses and trains can be unreliable from time to time, which can be costly to people on the go in both time and money. I would use Datadog and geolocation services (like Google Maps APIs) to pinpoint bus locations, measure traffic, and get a much more accurate view into when buses will arrive. If there is a delay, a monitor can be setup and notifications can be sent out. There are a few application like this already, but most of them are for drivers, none are that reliable to public transit commuters.
