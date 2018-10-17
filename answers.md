@@ -99,7 +99,7 @@ instances:
   ![comment](screenshots/1-install-db.png)  
 
 # 3. Monitoring Data
-* [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) 
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
@@ -116,7 +116,7 @@ instances:
 * [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
   ![comment](screenshots/1-install-db.png)  
 
-* [x] Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 * One that silences it from 7pm to 9am daily on M-F,
   ![comment](screenshots/1-install-db.png)  
 * And one that silences it all day on Sat-Sun.
