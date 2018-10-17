@@ -29,6 +29,14 @@ Start the Datadog agent with `sudo datadog-agent service start` and view the [ta
 
 Learn more about tagging [here](https://docs.datadoghq.com/tagging/)!
 
+### Setting up a Database
+
+In our data-driven world, it's always valuable to have a system in place to keep track of it. It's the source from which information flows into our applications, so to speak.
+
+Common databases these days include MongoDB, MySQL, and Postgres. The PostgreSQL package is included in the packaged bootstrap commands so let's walk through that set up.
+
+Among Datadog's numerous [integrations](https://app.datadoghq.com/account/settings), select PostgresSQl. Follow the steps to create a user and grant access to that user profile to the Datadog platform. Under `Metrics`, this is the information that is tracked within the database and can be queried to bring those metrics to the forefront to build out the overall view of your application's performance.
+
 ### Creating an Agent Check
 
 In the `/etc/datadog-agent` directory are two folders `checks.d` and `conf.d`.
@@ -140,6 +148,8 @@ Set your [alert condition and threshold]. When the metric goes over a certain li
 Lastly, set the body of your alert message and the recipients.
 ![alt text](./CreateMonitor3.png)
 
+Mine can be viewed at: https://app.datadoghq.com/monitors/6743861
+
 When the Monitor is alerted, it will notify you and your team by email.
 ![alt text](./AlertEmail.png)
 
@@ -153,6 +163,9 @@ Any of your alerts can be silenced, scheduled, and given a message notifying use
 
 And emails look like the following:
 ![alt text](./DowntimeAlert.png)
+
+M-F Downtime: https://app.datadoghq.com/monitors#downtime?id=405518935
+Weekend Downtime: https://app.datadoghq.com/monitors#downtime?id=405518935
 
 ## Collecting APM Data
 
@@ -205,6 +218,7 @@ Once activity has been detected, a trace list will posted to under the APM page 
 
 You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like
 ![alt text](./TimeboardAPM.png) https://app.datadoghq.com/dash/893375/timeboard---random-value-metric?live=true&page=0&is_auto=false&from_ts=1539735360368&to_ts=1539738960368&tile_size=m
+My Dashboard: https://app.datadoghq.com/dash/893375/timeboard---random-value-metric?live=true&page=0&is_auto=false&from_ts=1539815410040&to_ts=1539819010040&tile_size=m
 
 Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
 
