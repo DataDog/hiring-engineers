@@ -60,7 +60,7 @@ class HelloCheck(AgentCheck):
 ```
 
 ### Configure Agent check's interval to every 45 seconds.
-* [x] Agent check config : [conf.d/test_check.yaml](datadog/conf.d/test_check.yaml)  
+* [x] Agent check config : [test_check.yaml](datadog/conf.d/test_check.yaml)  
 ```yaml
 init_config:
 
@@ -71,23 +71,23 @@ instances:
   ![comment](screenshots/1-install-db.png)  
 
 ### Configure the Agent check's interval without modifying the Python check file. (Bonus)
-* [x] Agent check config : [conf.d/test_check.yaml](datadog/conf.d/test_check.yaml)  
+* [x] Agent check config : [test_check.yaml](datadog/conf.d/test_check.yaml)  
 ```yaml
 init_config:
 
 instances:
   - min_collection_interval: 45
 ```
-* [x] Screenshots
+* [x] Screenshots  
   ![comment](screenshots/1-install-db.png)  
 
 ---
 # 2. Visualizing Data:
 ###  To create a Timeboard that contains:
 * [x] My custom metric scoped over your host.  
-```python
-#YOUR CODE HERE
-```  
+  ```python
+  #YOUR CODE HERE
+  ```  
   ![comment](screenshots/1-install-db.png)  
 
 * [x] The metric from the Integration on Database with the anomaly function applied.  
@@ -111,16 +111,18 @@ instances:
   ![comment](screenshots/1-install-db.png)  
 
 * [x] What is the Anomaly graph displaying? (Bonus)  
-  ![comment](screenshots/1-install-db.png)  
+  ```text
+  #YOUR CODE HERE
+  ```  
 
 ---
 # 3. Monitoring Data
 ### Metric Monitor settings for my custom metric.
-* [x] Notify as "Warning" with threshold of 500 over the past 5 minutes
+* [x] Notify as "Warning" with threshold of 500 over the past 5 minutes  
   ![comment](screenshots/1-install-db.png)  
 * [x] Notify as "Alert" with threshold of 800 over the past 5 minutes  
   ![comment](screenshots/1-install-db.png)  
-* [x] Notify myself if there is No Data for this query over the past 10m
+* [x] Notify myself if there is No Data for this query over the past 10m  
   ![comment](screenshots/1-install-db.png)  
 
 ### Metric Monitor message for my custom metric.
@@ -131,11 +133,14 @@ instances:
 * [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.  
   ![comment](screenshots/1-install-db.png)  
 
-* [x] The metric value that caused the monitor to trigger and host ip in the Alert state.  
-  ![comment](screenshots/1-install-db.png)  
+* [x] The metric value and the host ip in the Alert message.  
+  ![metric valu](screenshots/1-install-db.png)  
+  ![host ip](screenshots/1-install-db.png)  
 
 * [x] A screenshot of the email notification.  
-  ![comment](screenshots/1-install-db.png)  
+  ![warning](screenshots/1-install-db.png)  
+  ![alert](screenshots/1-install-db.png)  
+  ![nodata](screenshots/1-install-db.png)  
 
 ###  Two scheduled downtimes for this monitor: (Bonus)
 * [x] One that silences it from 7pm to 9am daily on M-F.  
@@ -147,7 +152,10 @@ instances:
 
 ---
 # 4. Collecting APM Data:
-### My application settings for Datadog’s APM solution
+### My application settings for APM
+```python
+#Your code here
+```
 ```python
 #Your code here
 ```
@@ -156,7 +164,6 @@ instances:
   [Dockerfile](screenshots/1-install-db.png)  
 
 ### Difference between a Service and a Resource (Bonus)
-* [x] Answer
 ```text
 
 ```
@@ -172,3 +179,19 @@ instances:
 ```
   [comment](screenshots/1-install-db.png)  
 
+---
+# Extra. Various Integrations:
+I have implemented the following integrations to show my interest for Datadog.  
+* [x] AWS  
+  ![comment](screenshots/1-install-db.png)  
+* [x] Nginx  
+  ![comment](screenshots/1-install-db.png)  
+* [x] Slack  
+  ![comment](screenshots/1-install-db.png)  
+* [x] Jira  
+  ![comment](screenshots/1-install-db.png)  
+* [x] Docker  
+  ![comment](screenshots/1-install-db.png)  
+
+
+Happy when you could vote Yes for me.
