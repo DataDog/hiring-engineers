@@ -26,7 +26,6 @@ tags:
   ![Host Map](screenshots/1-hostmap.png)  
   ![Host Map 2](screenshots/1-config.png)
 
----
 ### Datadog Agent integration for postgresql.
 
 * [x] Agent config file: [postgres.d/conf.yaml](datadog/conf.d/postgres.d/conf.yaml)  
@@ -48,7 +47,7 @@ instances:
   ![pSQL Integration](screenshots/1-install-db.png)  
   ![pSQL Integration 2](screenshots/1-postgres-integration.png)
 
----
+
 ### A custom Agent check with a random value between 0 and 1000.
 
 * [x] Agent check python: [test_check.py](datadog/checks.d/test_check.py)  
@@ -63,7 +62,6 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', some_num, tags=['test_check'])
 ```
 
----
 ### Configure Agent check's interval to every 45 seconds.
 * [x] Agent check config : [conf.d/test_check.yaml](datadog/conf.d/test_check.yaml)  
 ```yaml
@@ -118,6 +116,7 @@ instances:
 * [x] What is the Anomaly graph displaying? (Bonus)  
   ![comment](screenshots/1-install-db.png)  
 
+---
 # 3. Monitoring Data
 ### Metric Monitor settings for my custom metric.
 * [x] Notify as "Warning" with threshold of 500 over the past 5 minutes
@@ -150,7 +149,6 @@ instances:
   ![comment](screenshots/1-install-db.png)  
 
 ---
-
 # 4. Collecting APM Data:
 ### My application settings for Datadog’s APM solution
 ```python
@@ -169,6 +167,7 @@ instances:
 * [x] Screenshots  
   ![comment](screenshots/1-install-db.png)  
 
+---
 # 5. Final Question:
 ### Is there anything creative you would use Datadog for?
 ```python
