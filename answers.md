@@ -141,9 +141,12 @@ Not everyone wants to take work home with them, therefore it's important to mana
 
 Any of your alerts can be [silenced, scheduled](./CreateDowntime1.png), and given a [message](./CreateDowntime2.png) notifying users when downtime is beginning.
 
+Emails notifying users of the scheduled downtime come in [this](./DowntimeAlert.png) form.
+
 ### Collecting APM Data
 
-The documentation found on
+The documentation found on: http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask
+has great information on the libraries required to instrument your application down to the resource layer. Given that information a sample Flask app will look something like the following:
 
 ```
 from flask import Flask
@@ -180,3 +183,9 @@ def trace_endpoint():
 if __name__ == '__main__':
         app.run(host='10.0.2.15', port='5050')
 ```
+
+Once activity has been detected, a [trace list](./TraceList.png) will posted to under the APM page for viewing.
+
+You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like [here](./Timeboard w/ APM.png)
+
+Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
