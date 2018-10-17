@@ -1,4 +1,4 @@
-This is Michael Hawley's submission for a Sales Engineer role. I decided for the sake of originality to make a sudo (hah get it?) tutorial, to help outline the steps I took for this challenge and present it in a way that a potential end user could follow easily.
+This is Michael Hawley's submission for a Sales Engineer role. I decided for the sake of originality to make an abridged tutorial, to help outline the steps I took for this challenge and present it in a way that a potential end user could follow easily.
 
 ## Setting Up Your Environment
 
@@ -16,7 +16,7 @@ Start the machine with `vagrant up --provision`, and access the CLI with `vagran
 
 ### Adding Tags
 
-Within `/etc/datadog-agent/datadog.yaml`, under tags, you can specify what the machine is going to be tagged under for quick access on the Datadog platform. Likewise, multiple machines, like kubernetes clusters, can be grouped together under the same tags if they are running similar processes or working for the same service.
+Within `/etc/datadog-agent/datadog.yaml`, under tags, specify what the machine is going to be tagged under for quick access on the Datadog platform. Likewise, multiple machines, like kubernetes clusters, can be grouped together under the same tags if they are running similar processes or working for the same service.
 
 ```
 tags:
@@ -113,13 +113,18 @@ Once the script has been successfully ran, the new Timeboard can be viewed under
 
 To set the scope your Timeboard there are a few options, you can view large periods of time, i.e. the last hour, last 4 hours, last day. If you want to create a smaller scope, like the last 5 minutes for example, you can change the parameters in the URL itself. These parameters are `from_ts` and `to_ts` and create an offset of 5 minutes in milliseconds, which is 300000 ms.
 
-An example can be viewed [here](./Timeboard - Last 5 mins.png). You can also tag your team members using the `@USERNAME` syntax to send them an [email](./Email notification from snapshot,png) notification.
+Here is an example.
+![alt text](./Timeboard - Last 5 mins.png). 
+
+You can also tag your team members using the `@USERNAME` syntax to send them an email notification.
+![alt text](./Email notification from snapshot.png)
 
 #### Anomaly Graph
 
 The anomaly function we see in the above Python script create a monitor to analyze a range of metrics (calculated by a 'basic' algorithm in the example) and alert users when a value is detected outside of that range, indicating an anomaly.
 
-[Here](./Anomaly.png) is a sample anomaly of a DB connection with the alert highlighted in red.
+Here is a sample anomaly of a DB connection with the alert highlighted in red.
+![alt text](./Anomaly.png)
 
 ### Monitoring Data
 
@@ -127,25 +132,35 @@ Now that there's metrics coming in and we've seen there are ways to check for an
 
 ⋅⋅⋅Create a new [monitor](https://app.datadoghq.com/monitors#/create).
 
-⋅⋅⋅Select your metric. In this example, the chosen metric is the random value check generated from our agent. [View the graph and choose your metric.](./CreateMonitor1.png)
+⋅⋅⋅Select your metric. In this example, the chosen metric is the random value check generated from our agent. View the graph and choose your metric.
+![alt text](./CreateMonitor1.png)
 
-⋅⋅⋅Set your [alert condition and threshold](./CreateMonitor2.png). When the metric goes over a certain limit over a period of time, an email alert will be sent out. This threshold can also be sent as a warning as well, outside of the tolerance but not an immediate concern.
+⋅⋅⋅Set your [alert condition and threshold]. When the metric goes over a certain limit over a period of time, an email alert will be sent out. This threshold can also be sent as a warning as well, outside of the tolerance but not an immediate concern.
+![alt text](./CreateMonitor2.png)
 
-⋅⋅⋅Lastly, set the body of your [alert message and the recipients.](./CreateMonitor3.png)
+⋅⋅⋅Lastly, set the body of your alert message and the recipients.
+![alt text](./CreateMonitor3.png)
 
-When the Monitor is alerted, it will notify you and your team by email, pictured [here](./AlertEmail.png)
+When the Monitor is alerted, it will notify you and your team by email.
+![alt text](./AlertEmail.png)
 
 #### Monitor Downtime
 
 Not everyone wants to take work home with them, therefore it's important to manage when alerts are being sent.
 
-Any of your alerts can be [silenced, scheduled](./CreateDowntime1.png), and given a [message](./CreateDowntime2.png) notifying users when downtime is beginning.
+Any of your alerts can be silenced, scheduled, and given a message notifying users when downtime is beginning.
+![alt text](./CreateDowntime1.png)
+![alt text](./CreateDowntime2.png)
+
 
 Emails notifying users of the scheduled downtime come in [this](./DowntimeAlert.png) form.
 
 ### Collecting APM Data
 
-The documentation found on: http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask
+For Getting Started with setting up the APM, review the documentation found [here](https://docs.datadoghq.com/tracing/setup/).
+
+The documentation found on:
+http://pypi.datadoghq.com/trace/docs/web_integrations.html
 has great information on the libraries required to instrument your application down to the resource layer. Given that information a sample Flask app will look something like the following:
 
 ```
@@ -184,8 +199,16 @@ if __name__ == '__main__':
         app.run(host='10.0.2.15', port='5050')
 ```
 
-Once activity has been detected, a [trace list](./TraceList.png) will posted to under the APM page for viewing.
+__NOTE__: Keep in mind that when using Vagrant, make sure that your VM is able to communicate to the outside network, in the event of an error, try adding `config.vm.network :forwarded_port, guest: 5050, host: 5050` to your Vagrantfile.
 
-You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like [here](./Timeboard w/ APM.png)
+Once activity has been detected, a trace list will posted to under the APM page for viewing.
+![alt text](./TraceList.png)
+
+You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like
+![alt text](./Timeboard w/ APM.png)
 
 Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
+
+### Creative Uses for Datadog
+
+In a busy city like Boston, it's often a challenge getting around. Having a car is useful but can be expensive in an already pricy city. I personally use public transportation to get most places I need to go, friend's houses, work, the grocery store, The issue with public transit is that apps for tracking buses and trains can be unreliable from time to time, which can be costly to people on the go in both time and money. I would use Datadog and geolocation services (like Google Maps APIs) to pinpoint bus locations, measure traffic, and get a much more accurate view into when buses will arrive. If there is a delay, a monitor can be setup and notifications can be sent out. There are a few application like this already, but most of them are for drivers, none are that reliable to public transit commuters.
