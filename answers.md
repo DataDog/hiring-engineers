@@ -204,7 +204,7 @@ Once activity has been detected, a trace list will posted to under the APM page 
 ![alt text](./TraceList.png)
 
 You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like
-![alt text](./TimeboardAPM.png https://app.datadoghq.com/dash/893375/timeboard---random-value-metric?live=true&page=0&is_auto=false&from_ts=1539735360368&to_ts=1539738960368&tile_size=m)
+![alt text](./TimeboardAPM.png) https://app.datadoghq.com/dash/893375/timeboard---random-value-metric?live=true&page=0&is_auto=false&from_ts=1539735360368&to_ts=1539738960368&tile_size=m
 
 Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
 
