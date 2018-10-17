@@ -113,10 +113,10 @@ Once the script has been successfully ran, the new Timeboard can be viewed under
 
 To set the scope your Timeboard there are a few options, you can view large periods of time, i.e. the last hour, last 4 hours, last day. If you want to create a smaller scope, like the last 5 minutes for example, you can change the parameters in the URL itself. These parameters are `from_ts` and `to_ts` and create an offset of 5 minutes in milliseconds, which is 300000 ms.
 
-![alt text](./'Timeboard - Last 5 mins.png').
+![alt text](./TimeboardLast5mins.png).
 
 You can also tag your team members using the `@USERNAME` syntax to send them an email notification.
-![alt text](./'Email notification from snapshot.png')
+![alt text](./SnapshotEmailNotification.png)
 
 ### Anomaly Graph
 
@@ -204,7 +204,7 @@ Once activity has been detected, a trace list will posted to under the APM page 
 ![alt text](./TraceList.png)
 
 You can also include your APM metrics into your Timeboards, to get an overall view of your application and infrastructure, like
-![alt text](./Timeboard w/ APM.png)
+![alt text](./Timeboard w/ APM.png https://app.datadoghq.com/dash/893375/timeboard---random-value-metric?live=true&page=0&is_auto=false&from_ts=1539735360368&to_ts=1539738960368&tile_size=m)
 
 Given this, our instrumented service can take many forms. Ultimately, a service is just a method of returning information, whether it's a web application, database, or API. The activity being monitored comes in the form of a user or application hitting our resource, one part of the overall service, i.e the `'/api/apm'` or `/api/trace` resource paths.
 
