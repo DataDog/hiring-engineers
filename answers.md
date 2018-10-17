@@ -1,15 +1,18 @@
 # Answer for Recuiting Challenge
 I took the docker-containerized approach to complete the Challenge.  
 You can reproduce the environment by docker-compose with a deploy script.  
-**```DD_API_KEY="<DatadogAPIKEY>" YOUR_LOCAL_IP="<LOCAL_HOST_IP>" sh deploy_local.sh```  **
+**```DD_API_KEY="<DatadogAPIKEY>" YOUR_LOCAL_IP="<LOCAL_HOST_IP>" sh deploy_local.sh```  **  
 The script launches four containers (web, app, db, and datadog-agent) in your computer with `YOUR_LOCAL IP`.  
 Following is the flow for containers to launch.
 ```
-1. Postgres db starts with datadog user.
+1. Postgres db starts with datadog user to be monitored.
 2. Datadog agent starts with configured yaml files inside.
-3. Django app starts as backend after database migration.
+3. Django app starts with APM config after database migration.
+    #Docker host ip is 172.19.0.1. Change if needed.
 4. Nginx starts http web service as frontend.
 ```
+ Access http://`YOUR_LOCAL_IP`, which works with all the configs mentioned in the answer.
+
 ---
 # 1. Collecting Metrics
 ### Tags in the Agent config file and a screenshot of the Host Map page.
@@ -56,7 +59,7 @@ from checks import AgentCheck
 import random
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        some_num = random.randint(0,1001)
+        some_num = random.randint(0,1001) #Return random integers from low (inclusive) to high (exclusive)
         self.gauge('my_metric', some_num, tags=['test_check'])
 ```
 
