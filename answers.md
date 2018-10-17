@@ -133,6 +133,8 @@ Now that there's metrics coming in and we've seen there are ways to check for an
 
 ⋅⋅⋅Lastly, set the body of your [alert message and the recipients.](./CreateMonitor3.png)
 
+When the Monitor is alerted, it will notify you and your team by email, pictured [here](./AlertEmail.png)
+
 #### Monitor Downtime
 
 Not everyone wants to take work home with them, therefore it's important to manage when alerts are being sent.
@@ -140,6 +142,8 @@ Not everyone wants to take work home with them, therefore it's important to mana
 Any of your alerts can be [silenced, scheduled](./CreateDowntime1.png), and given a [message](./CreateDowntime2.png) notifying users when downtime is beginning.
 
 ### Collecting APM Data
+
+The documentation found on
 
 ```
 from flask import Flask
