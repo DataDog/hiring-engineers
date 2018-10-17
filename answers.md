@@ -164,3 +164,47 @@ This was done twice, one for weekdays and one for weekends. The images below ill
 
 <img monitor weekday emails/>
 <img monitor weekends emails/>
+
+# Collecting APM Data:
+
+For this section, I used the Flask app provided.
+Because I was on Mac OS X, I had to install the APM agent (Trace Agent) and manually run it.
+
+Using the datadog-trace-agent repository and its README.md, I followed the instructions:
+
+1) I downloaded the latest OSX Trace Agent release.
+
+2) In order to run the Trace Agent using the Datadog Agent configuration, the trace agent has to have permission to execute it. The command below was executed in the terminal.
+
+chmod 755 trace-agent-darwin-amd64-6.5.0  
+
+3) Now the Trace Agent can be started and run in the background.
+
+./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml
+
+4) Enable trace collection for the Trace Agent and configure the environment. Setting my environment to none causes it to inherit from "env" tag which is production.
+
+<img apm config/>
+
+5) Instrumenting the application involves a few steps:
+    a. Store the given Flask app inside a file --> I called it app.py
+    b. pip install flask
+    c. pip install ddtrace
+    d. run ddtrace-run python app.py in the terminal
+
+6) I made several calls to the API to test the performance of the flask application.
+
+## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+https://p.datadoghq.com/sb/f25fcfec0-6d54b4bd3a28890f4b85b2f5379a1a1e
+<img apm/>
+
+
+## Please include your fully instrumented app in your submission, as well.
+<link flask app/>
+
+## Bonus Question: What is the difference between a Service and a Resource?
+
+A Service is comprised of a set of processes that work together to provide a feature set or perform a certain task. A web application is a good example that can be broken down into many services such as webapp services, admin services, database services, and query services.
+
+A Resource is a request or query to a service. An example would be a SQL query or a request to access a specific route or piece of data/information of an application.   
