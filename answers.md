@@ -1,11 +1,13 @@
 # Answer for Recuiting Challenge
 I took the docker-containerized approach to complete the Challenge.  
 You can reproduce the environment by docker-compose with a deploy script.  
+
 **```DD_API_KEY="<DatadogAPIKEY>" YOUR_LOCAL_IP="<LOCAL_HOST_IP>" sh deploy_local.sh```  **  
+
 The script launches four containers (web, app, db, and datadog-agent), which work with all the configs mentioned in the answer.  
 
 After launching, access http://localhost to see the app working.   
-  ** Containers cannot cooperate when`YOUR_LOCAL_IP` = 127.0.0.1, so it has to be like 192.168.0.5 or 10.4.167.168.  
+  ** Containers cannot cooperate when`YOUR_LOCAL_IP` = 127.0.0.1, so it shuold be a private address like 192.168.0.5 or 10.4.167.168.  
   ** Docker host ip for APM is configured as 172.19.0.1. Export `Docker_Default_GW` if needed.  
 
 ---
