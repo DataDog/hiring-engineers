@@ -13,7 +13,7 @@ docker exec -it env_adminer_1 /bin/bash
 docker images
 docker ps -a
 docker inspect e47c589b5151
-docker inspect mysql_1 | grep IPAddress
+docker inspect env_db_1 | grep IPAddress
 
 # TO DELETE ALL DOCKER IMAGES
 Docker images -q | xargs sudo docker rmi -f

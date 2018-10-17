@@ -254,11 +254,12 @@ Monitoring Data
 ---------------
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+- Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- Warning threshold of 500
+- Alerting threshold of 800
+- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 Please configure the monitor’s message so that it will:
 
 Send you an email whenever the monitor triggers.
@@ -313,6 +314,8 @@ if __name__ == '__main__':
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
+check this link: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 

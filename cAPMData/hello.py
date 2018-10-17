@@ -3,7 +3,6 @@ import logging
 import sys
 from ddtrace import *
 
-
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)

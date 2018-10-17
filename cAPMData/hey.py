@@ -21,7 +21,6 @@ app = Flask(__name__)
 
 traced_app = TraceMiddleware(app, tracer, service="my-hey-app", distributed_tracing=False)
 
-
 @app.route('/')
 def api_entry_hey():
     return "hello world"
