@@ -114,7 +114,7 @@ Once the script has been successfully ran, the new Timeboard can be viewed under
 To set the scope your Timeboard there are a few options, you can view large periods of time, i.e. the last hour, last 4 hours, last day. If you want to create a smaller scope, like the last 5 minutes for example, you can change the parameters in the URL itself. These parameters are `from_ts` and `to_ts` and create an offset of 5 minutes in milliseconds, which is 300000 ms.
 
 Here is an example.
-![alt text](./Timeboard - Last 5 mins.png). 
+![alt text](./Timeboard - Last 5 mins.png).
 
 You can also tag your team members using the `@USERNAME` syntax to send them an email notification.
 ![alt text](./Email notification from snapshot.png)
@@ -152,8 +152,8 @@ Any of your alerts can be silenced, scheduled, and given a message notifying use
 ![alt text](./CreateDowntime1.png)
 ![alt text](./CreateDowntime2.png)
 
-
-Emails notifying users of the scheduled downtime come in [this](./DowntimeAlert.png) form.
+And emails look like the following:
+![alt text](./DowntimeAlert.png)
 
 ### Collecting APM Data
 
