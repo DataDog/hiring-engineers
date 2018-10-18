@@ -501,23 +501,16 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 > 
 > My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
 > 
-> |     | Timeboards        | Screenboards  |
-| ------------- |:-------------:| -----:|
-| Time Scope      | All graphs share same time scope	   |   All graphs can have individual time scope|
-| Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
-| Can Share Graphs Individually	        | Yes    |   No|
-| Can Share the Entire Dashboard	        | **No**    |   Yes|
-| Sharing can be Read-Only	        | Yes    |   Yes|
-> Screenboard
->
->> 
 > | 			     | Timeboards        | Screenboards  |
 > | ------------- |:-------------:| -----:|
-> | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope
-|
-> | Layout        | middleware    |   6060|
-> 
+> | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope|
+> | Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
+> | Can Share Graphs Individually	    | Yes   |   No|
+> | Can Share the Entire Dashboard	    | **No**   |   Yes|
+> | Sharing can be Read-Only	    | Yes   |   Yes|
+> Screenboard
 >
+
 ![Screeboard](https://i.imgur.com/7fTooqb.png)
 > 
 > Timeboard 
