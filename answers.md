@@ -468,11 +468,11 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
 > The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So I needed to:
-
+>
 > - Have the OSX Datadog Agent.
-
+>
 > - Download the latest OSX Trace Agent release.
-
+>
 > - Run the Trace Agent using the Datadog Agent configuration.
 
 ```
