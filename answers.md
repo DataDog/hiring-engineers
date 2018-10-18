@@ -476,7 +476,7 @@ if __name__ == '__main__':
 
 Bonus Question: What is the difference between a Service and a Resource?
 > **Service**
-
+>
 > A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
 >
 > These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
@@ -509,6 +509,14 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 | Can Share the Entire Dashboard	        | **No**    |   Yes|
 | Sharing can be Read-Only	        | Yes    |   Yes|
 > Screenboard
+>
+>> 
+> | 			     | Timeboards        | Screenboards  |
+> | ------------- |:-------------:| -----:|
+> | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope
+|
+> | Layout        | middleware    |   6060|
+> 
 >
 ![Screeboard](https://i.imgur.com/7fTooqb.png)
 > 
