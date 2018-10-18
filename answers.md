@@ -7,8 +7,8 @@ You can reproduce the environment by docker-compose with a deploy script.
 The [deploy_local.sh](deploy_local.sh) launches four containers (web, app, db, and datadog-agent), which work with all the configs mentioned in the answer.  
 
 After launching, access http://localhost to see the app working.   
-  ** Containers cannot cooperate when`YOUR_LOCAL_IP` = 127.0.0.1, so it shuold be your real private IP like 192.168.0.5 or 10.4.167.168.  
-  ** Docker host ip for APM is configured as 172.17.0.1. Export `Docker_Default_GW` if needed.  
+  ** Containers cannot cooperate if`YOUR_LOCAL_IP` = 127.0.0.1. It should be your real private IP like 192.168.0.5 or 10.4.167.168.  
+  ** Docker host ip for APM is configured to 172.17.0.1 as default. Export `Docker_Default_GW` if needed.  
 
 ---
 # 1. Collecting Metrics
@@ -181,7 +181,10 @@ instances:
 
 ### Difference between a Service and a Resource (Bonus)
 ```text
-
+A service is a set of processes that do the same job. A Resource is a particular action for a service.
+For example, a typical web application consists of three services; web, application, database.
+A web/app service has resources such as a canonical URL and a handler function.
+The query is also categoried as a resource for the SQL database service.
 ```
 ### A screenshot of a Dashboard with both APM and Infrastructure Metrics.
   ![APM_dashboard](screenshots/4-APM-infra-metrics.png)  
