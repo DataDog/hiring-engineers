@@ -530,17 +530,6 @@ Please include your fully instrumented app in your submission, as well.
 > 
 > [hey.py](../solutions-engineer/python/hey.py)
 
-
-Looking at the traces from both apps I noticed that the *hey.py* and the middleware method had lower latency in terms of the service.
-
-
-> **APM Invaders Video**
-
-> Example of ddtrace trace.wrap() code instrumentation in a cool game. 
-> **Click thumbnail for video**
-
-[![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
-
 Final Question:
 ---------------
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -584,36 +573,44 @@ Suggestions & Feedback:
 ![BugsShirt](https://i.imgur.com/JCEHo2Dm.png)
 </center>
 
+> I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are this limitations on the trial or a random feature?
+> 
+
 ![Bug](https://i.imgur.com/hnA4KOU.png)
 
+![Bug](https://i.imgur.com/Ip6Y66a.png)
 
-- Mobile monitoring - BYOD
-- Responsive design
-- Mobile native app
-
+> I missed some features like:
+>
+> - Responsive design on the website so I could check on a mobile device
+> - Mobile native app for on the go monitoring
+> - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
+> - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
 
 About Me
 --------
 
-rui.lamy@gmail.com
+<a href="mailto:rui.lamy@gmail.com">rui.lamy@gmail.com</a>
 
-Add information about me here.... Love for gaming, running, reading, technology :D
+
+I Love gaming, running, reading, technology :D
 
 <p align="center">
 <img src="https://i.imgur.com/nUqjr07.jpg" width="200" height="300" align="middle"/>
   <img />
 </p>
 
-Hope to be part of the team!
-<p align="center">
+> **APM Invaders Video**
+
+- Example of ddtrace trace.wrap() code instrumentation in a cool game. **Click thumbnail for video**
+
+<center>
+[![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
+
+<H1>Hope to be part of the team! </H1>
 <img src="https://pocket-image-cache.com/direct?url=https%3A%2F%2Fdatadog-prod.imgix.net%2Fimg%2Fblog%2Fengineering%2Fbeing-a-solutions-engineer-at-datadog%2Fse_group.jpg%3Fauto%3Dformat%26fit%3Dmax%26w%3D847&resize=w1408
 " width="600" height="300" align="middle"/>
-  <img />
-</p>
-
-Thanks for checking out my responses. Hope you have as much fun as did answering them ;)
+</center>
 
 
-
-
-
+Thanks for checking out my responses. Hope you have as much fun as I did answering them ;)
