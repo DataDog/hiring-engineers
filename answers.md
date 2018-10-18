@@ -54,7 +54,7 @@ networks:
 >
 > Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://mariadb.org/download/), [PostgreSQL](https://www.postgresql.org/download/), [SQLite](https://www.sqlite.org/download.html), [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [Oracle](https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html), [Firebird](https://www.firebirdsql.org/en/server-packages/), [SimpleDB](https://aws.amazon.com/simpledb/), 
 [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [MongoDB](https://www.mongodb.com/download-center).
-
+>
 > This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
 
 - Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
@@ -276,7 +276,7 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 > Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results.
 
 
-Monitoring Data - Done (review)
+Monitoring Data
 -------------------------------
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -498,10 +498,6 @@ Thinking about which systems produce useful work, and which resources support th
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 > [Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694)
-
-> I also added one iframe just for live updating and fun...
-> 
-<iframe src="https://app.datadoghq.com/graph/embed?token=77538740a7060177f19c9d6dabd5ac5fdeefe2947c931eda8870438a7392cd69&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
 > 
 > My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
 > 
@@ -598,7 +594,7 @@ I Love gaming, running, reading, technology :D
 
 [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
-<H1>Hope to be part of the team! </H1>
+Hope to be part of the team!
 ![Team](https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2)
 
 
