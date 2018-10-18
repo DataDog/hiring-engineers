@@ -15,7 +15,7 @@ Prerequisites - Setup the environment
 >  + Postgres (Database Machine)
 >  + Adminer (Managing Database)
 >
-> Here is the docker compose file ([stack.yml](../docker/stack.yml)):
+> Here is the docker compose file ([stack.yml](../solutions-engineer/docker/stack.yml)):
 
 ```
 version: '2'

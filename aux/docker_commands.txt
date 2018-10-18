@@ -1,6 +1,4 @@
-Standalone
-========
-
+# BUILD MACHINES
 docker-compose up
 docker-compose -f stack.yml up
 
@@ -21,14 +19,7 @@ Docker images -q | xargs sudo docker rmi -f
 # TO DELETE ALL DOCKER CONTAINERS
 docker ps -aq | xargs sudo docker rm -f
 
-# THE FOLLOWING COMMANDS USE PATHS RELATIVE TO THE FOLDER CONTAINING THIS FILE
-
-# CREATE MYSQL DATA VOLUME
-sudo docker create --name mysqldata_1 -v ${PWD}/volumes/mysqldata busybox
-
-# ACCESS POSTGRES'S CONTAINER
-sudo docker exec -it 0setuptheenvironment_db_1 bash
-
 # GET POSTGRES SERVER IP ADDRESS
-sudo docker inspect 0setuptheenvironment_db_1 | grep IPAddress
+sudo docker inspect env_db_1 | grep IPAddress
 
+# change container id env_db_1 for the one you use
