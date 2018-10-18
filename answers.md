@@ -1,9 +1,9 @@
 My Answers
 ==========
 > First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
-
+> 
 > I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
-
+>
 > Let's dive into it...
 
 
