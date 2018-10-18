@@ -14,7 +14,7 @@ MYPGUSER="postgres"
 MYPGPASSWD=""
 MYPGHOST=""
 MYPGPORT="5432"
-DD_HOST="172.19.0.1"
+
 
 ConfigureSsmtp () {
   # Customizing sstmp
@@ -137,7 +137,7 @@ EOF
 ConfigureUser
 ConfigureSsmtp
 ConfigurePostgres
-echo "DD_host's IP address is:"${DD_HOST}
+echo "DD_host's IP address is: ${DOCK_DEFAULT_GW}"
 
 if [ "$1" = 'mezzanine' ]; then
   if [ -n "${DOCKMEZPRT}" ]; then

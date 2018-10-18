@@ -6,18 +6,27 @@ if [ ! -n "${YOUR_LOCAL_IP}" ]; then
 elif [ ! -n "${DD_API_KEY}" ]; then
   echo "export DD_API_KEY"
 else
-
-  echo "##### Confirm local IP #####"
-  echo "Your Local IP address is : ${YOUR_LOCAL_IP}"
+  if [ ! -n "${DOCK_DEFAULT_GW}" ]; then
+    export DOCK_DEFAULT_GW="172.18.0.1"  #Change to 172.17.0.1 or else to fit to your environment
+  fi
 
   echo "##### Exporting Environemt Valiables #####"
-  export DOCKER_DEFAULT_GATEWAY="172.19.0.1"       #Might change to 172.17.0.1 or else to fit to your environment
   export NGINX_HOST=${YOUR_LOCAL_IP}
   export NGINX_PORT=80
   export APP_HOST=${YOUR_LOCAL_IP}
   export APP_PORT=8000
   export DB_HOST=${YOUR_LOCAL_IP}
   export DB_PORT=5432
+
+  echo "##### Confirm local IP #####"
+  echo "Your local IP address : ${YOUR_LOCAL_IP}"
+  echo "Your Docker Default Gateway : ${DOCK_DEFAULT_GW}"
+  echo "NGINX_HOST: ${NGINX_HOST}"
+  echo "NGINX_PORT: ${NGINX_PORT}"
+  echo "APP_HOST: ${APP_HOST}"
+  echo "APP_PORT: ${APP_PORT}"
+  echo "DB_HOST: ${DB_HOST}"
+  echo "DB_PORT: ${DB_PORT}"
 
   echo "##### Building container images #####"
   docker-compose build
@@ -44,7 +53,7 @@ else
     -e DOCKPGPASSWD=Test1Pass \
     -e DEBUG=False \
     -e DD_AGENT_PORT_8126_TCP_ADDR=${YOUR_LOCAL_IP} \
-    -e DD_HOST=${DOCKER_DEFAULT_GATEWAY}  \
+    -e DOCK_DEFAULT_GW=${DOCK_DEFAULT_GW}  \
     testweb_app:test \
     /usr/bin/python3 /project/testweb/manage.py migrate # db migrate to postgres container
 

@@ -31,6 +31,7 @@ services:
       SECRET_KEY:           Example5ecretKey     #local usage only
       NEVERCACHE_KEY:       Example2evercacheKey #local usage only
       DD_APM_HOST:          ${YOUR_LOCAL_IP}
+      DOCK_DEFAULT_GW:      ${DOCK_DEFAULT_GW}
   db:
     build:
       context:              .

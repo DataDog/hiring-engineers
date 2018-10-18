@@ -345,8 +345,8 @@ SITE_TITLE = "AWS Step by Step"
 # DATADOG SETTINGS #
 ####################
 DATADOG_TRACE = {
-    'AGENT_HOSTNAME': os.getenv('DD_HOST'),
+    'AGENT_HOSTNAME': os.getenv('DOCK_DEFAULT_GW'),
     'DEFAULT_SERVICE': 'testweb',
-    'TAGS': {'env': 'apm'},
+    'TAGS': {'env': 'dev'},
 }
 
