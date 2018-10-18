@@ -8,7 +8,7 @@ The [deploy_local.sh](deploy_local.sh) launches four containers (web, app, db, a
 
 After launching, access http://localhost to see the app working.   
   ** Containers cannot cooperate when`YOUR_LOCAL_IP` = 127.0.0.1, so it shuold be your real private IP like 192.168.0.5 or 10.4.167.168.  
-  ** Docker host ip for APM is configured as 172.19.0.1. Export `Docker_Default_GW` if needed.  
+  ** Docker host ip for APM is configured as 172.17.0.1. Export `Docker_Default_GW` if needed.  
 
 ---
 # 1. Collecting Metrics
@@ -59,7 +59,7 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', some_num, tags=['test_check'])
 ```
 
-### Configure Agent check's interval to every 45 seconds.
+### Configure Agent check's interval to 45 seconds without modifying the Python check file
 * [x] Agent check config : [test_check.yaml](datadog/conf.d/test_check.yaml)  
 ```yaml
 init_config:
@@ -68,40 +68,74 @@ instances:
   - min_collection_interval: 45
 ```
 * [x] Screenshots  
-  ![comment](screenshots/1-install-db.png)  
-
-### Configure the Agent check's interval without modifying the Python check file. (Bonus)
-* [x] Agent check config : [test_check.yaml](datadog/conf.d/test_check.yaml)  
-```yaml
-init_config:
-
-instances:
-  - min_collection_interval: 45
-```
-* [x] Screenshots  
-  ![comment](screenshots/1-install-db.png)  
+  ![comment](screenshots/1-agent-check-interval.png)  
 
 ---
 # 2. Visualizing Data:
 ###  To create a Timeboard that contains:
-* [x] My custom metric scoped over your host.  
-  ```python
-  #YOUR CODE HERE
+* [x] My custom metric scoped over host.  
+
+https://github.com/ushijimay/hiring-engineers/blob/f347123a38faa1a673c91eb1bc8751bf339b1ae5/datadog/scripts/create_my_custom_dashboard.py#L17
+
+  ```json
+  { "definition": {
+        "events": [],
+        "requests": [
+            {
+                "q": "top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'last', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'max', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'min', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'mean', 'desc')",
+                "style": {
+                    "palette": "dog_classic",
+                    "type": "solid",
+                    "width": "normal"
+                },
+                "conditional_formats": []
+            }
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Data for my_metric over host."
+  }
   ```  
   ![comment](screenshots/1-install-db.png)  
 
 * [x] The metric from the Integration on Database with the anomaly function applied.  
-  ```python
-  #YOUR CODE HERE
+  ```json
+  { "definition": { 
+        "events": [],
+        "requests": [
+            {
+                "q": "anomalies(avg:postgresql.buffer_hit{role:db}, 'basic', 2)",
+                "type": "line",
+                "style": {
+                    "palette": "dog_classic",
+                    "type": "solid",
+                    "width": "normal"
+                },
+                "conditional_formats": [],
+                "aggregator": "avg"
+            }
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Avg of postgresql.buffer_hit w/ anomaly function applied"
+  }
   ```  
   ![comment](screenshots/1-install-db.png)  
 
 * [x] My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
-  ```python
-  #YOUR CODE HERE
+  ```json
+  { "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Rollup of my_metric for past hour"
+  }
   ```  
 * [x] The whole script to create the Timeboard  
-  [create_timeboard,py](datadog/scripts/create_timeboard.py) 
+  [create_my_custom_timeboard,py](datadog/scripts/create_my_custom_timeboard.py) 
 
 ### Dashboard screenshots
 * [x] Set the Timeboard's timeframe to the past 5 minutes  
@@ -162,7 +196,7 @@ instances:
 ### Fully instrumented application 
   [Application](screenshots/1-install-db.png)  
   [Dockerfile](screenshots/1-install-db.png)  
-  [Docker-compose](screenshots/1-install-db.png)  
+  [docker-compose](screenshots/1-install-db.png)  
 
 ### Difference between a Service and a Resource (Bonus)
 ```text
@@ -176,7 +210,7 @@ instances:
 # 5. Final Question:
 ### Is there anything creative you would use Datadog for?
 ```python
-#Your code here
+#Your Sentence here
 ```
   [comment](screenshots/1-install-db.png)  
 
