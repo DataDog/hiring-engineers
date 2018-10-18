@@ -137,7 +137,7 @@ EOF
 ConfigureUser
 ConfigureSsmtp
 ConfigurePostgres
-echo "DD_host's IP address is: ${DOCK_DEFAULT_GW}"
+echo "DOCK_DEFAULT_GW IP address is: ${DOCK_DEFAULT_GW}"
 
 if [ "$1" = 'mezzanine' ]; then
   if [ -n "${DOCKMEZPRT}" ]; then
