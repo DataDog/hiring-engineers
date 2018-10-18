@@ -51,11 +51,11 @@ networks:
 > I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
 
 ![Adminer](https://i.imgur.com/U6rA3kM.png)
-
+>
 > Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://mariadb.org/download/), [PostgreSQL](https://www.postgresql.org/download/), [SQLite](https://www.sqlite.org/download.html), [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [Oracle](https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html), [Firebird](https://www.firebirdsql.org/en/server-packages/), [SimpleDB](https://aws.amazon.com/simpledb/), 
 [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [MongoDB](https://www.mongodb.com/download-center).
 
-> This way I can quickly spin up other databases for testing and manage it from a central endpoint (http://localhost:8181 - I mapped a local port to the management port). 
+> This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
 
 - Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
@@ -299,7 +299,7 @@ Please configure the monitor’s message so that it will:
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![Messagesnotification] (https://i.imgur.com/YBVTxlI.png)
+![Messages notification](https://i.imgur.com/YBVTxlI.png)
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
@@ -368,15 +368,13 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 > - tracing of requests: trace requests through middleware and back
 > - distributed tracing: trace requests across application boundaries
 > - automatic error tagging: spans will be marked with any errors that occur
-
+>
 > I created two simple apps based on Flask. One will use the ddtrace-run and the other will use the middleware.
-<center>
 > 
 > | App Name    | method        | port  |
-| ------------- |:-------------:| -----:|
-| hello.py      | ddtrace-run   |   5050|
-| hey.py        | middleware    |   6060|
-</center>
+> | ------------- |:-------------:| -----:|
+> | hello.py      | ddtrace-run   |   5050|
+> | hey.py        | middleware    |   6060|
 > 
 > For the sake of having some traffic in these 2 apps I used the following commands:
 
@@ -506,7 +504,6 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <iframe src="https://app.datadoghq.com/graph/embed?token=77538740a7060177f19c9d6dabd5ac5fdeefe2947c931eda8870438a7392cd69&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
 > 
 > My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
-> <center>
 > 
 > |     | Timeboards        | Screenboards  |
 | ------------- |:-------------:| -----:|
@@ -515,7 +512,6 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 | Can Share Graphs Individually	        | Yes    |   No|
 | Can Share the Entire Dashboard	        | **No**    |   Yes|
 | Sharing can be Read-Only	        | Yes    |   Yes|
-</center>
 > Screenboard
 >
 ![Screeboard](https://i.imgur.com/7fTooqb.png)
@@ -568,12 +564,9 @@ Links and important stuff:
 
 Suggestions & Feedback:
 -----------------------
-<center>
 ![BugsShirt](https://i.imgur.com/JCEHo2Dm.png)
-</center>
 
 > I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are this limitations on the trial or a random feature?
-> 
 
 ![Bug](https://i.imgur.com/hnA4KOU.png)
 
@@ -601,13 +594,12 @@ I Love gaming, running, reading, technology :D
 
 > **APM Invaders Video**
 
-- Example of ddtrace trace.wrap() code instrumentation in a cool game. **Click thumbnail for video**
+- Example of ddtrace trace.wrap() code instrumentation in a cool game. 
 
 [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
 <H1>Hope to be part of the team! </H1>
-<img src="https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2
-" width="600" height="300" align="middle"/>
+![Team](https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2)
 
 
 Thanks for checking out my responses. Hope you have as much fun as I did answering them ;)
