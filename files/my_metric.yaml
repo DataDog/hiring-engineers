@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+    - username: anthony
+      password: 12345
+      min_collection_interval: 45
+
+
+      

@@ -1,15 +1,17 @@
+# Anthony Lam -- Solutions Engineer Answers
+
 # Prerequisites - Setup the environment
 
 The operating system used to complete this exercise was MacOS High Sierra Version 10.13.4.
 
 After signing up for an account, I navigated to the Integrations Tab --> Agent Tab --> Mac OS X Tab.
-<img MacOS X/>
+![Datadog Agent Mac OSX](DataDog_Agent_MacOSX.png)
 
 
 I ran the one-line installation given to install the Datadog Agent in my terminal.
 
 Installation Complete!  
-<img Installation/>
+![Datadog Agent Installation](DataDog_Agent_Installation.png)
 
 
 # Collecting Metrics
@@ -18,29 +20,29 @@ Installation Complete!
 
 Using the Datadog Agent GUI, I configured the hostname and tags in the Settings Tab.
 
-<img Tags/>
+![DataDog_Agent_Tags](DataDog_Agent_Tags.png)
 
-After saving the configurations and restarting the Datadog Agent GUI, I navigated to the Infrastructure Tab --> Host Map Tab in the Datadog Application in my browser.
+After saving the configurations and restarting the Datadog Agent GUI, I navigated to Infrastructure  --> Host Map in the Datadog Application in my browser.
 
-<img HostMap/>
+![DataDog_Agent_HostMap](DataDog_Agent_HostMap.png)
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I chose PostgreSQL for my database. I navigated to the Integrations Tab, found the PostgreSQL integration, and followed the configuration steps displayed.
+I chose PostgreSQL for my database and downloaded it from their site. I navigated to the Integrations Tab, found the PostgreSQL integration, and followed the configuration steps displayed.
 
 I edited the conf.d/postgres.yaml file.
 
-<img configurations/>
+![PostgreSQL_Configurations](PostgreSQL_Configurations.png)
 
 I added the postgreSQL check to my Checks --> Manage Checks Tab in the GUI for future configurations.
 
 I ran a status check and the PostgreSQL integration check was successful.
 
-<img PostgreSQL integration check />
+![PostgreSQL_Integration_Check](PostgreSQL_Integration_Check.png)
 
 After configuration, I proceeded to install the integration onto the Datadog platform
 
-<img PostgreSQL download />  
+![PostgreSQL_Installed](PostgreSQL_Installed.png)  
 
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -51,18 +53,18 @@ Writing an Agent check requires the creation of two files:
 
 I created a my_metric.py and my_metric.yaml file and placed them in the checks.d and conf.d folders respectively.
 
-<img Checkfile/>
-<img YAML file/>
+![my_metric_py](my_metric_py.png)
+![my_metric_yaml_initial](my_metric_yaml_initial.png)
 
 I restarted the Datadog Agent GUI and my_metric check is successfully being submitted.
 
-<img mymetriccheck running/>
+![my_metric_check_running](my_metric_check_running.png)
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 The minimal collection interval can be defined in the my_metric.yaml file at the instance level because of Agent 6.
 
-<img YAML interval />
+![my_metric_yaml_interval_45s](my_metric_yaml_interval_45s.png)
 
 Using a stopwatch, I started the timer when the total run count incremented by 1 and refreshed the GUI constantly until the count incremented again. The metric was indeed submitting every 45 seconds.
 
@@ -80,21 +82,26 @@ As shown in the previous step, the collection interval was changed in the my_met
 
 In order to create a Timeboard while utilizing the Datadog API with Python, the Datadog package for Python has to be installed using Python's package management system called pip.
 
-Pip can be installed using the command: sudo easy_install pip
+Pip can be installed using the command:
+
+`sudo easy_install pip`
+
 With pip installed, the datadog package can be installed as well.
 
-<img datadog pip install/>
+`pip install datadog`
+
+![pip_install_datadog](pip_install_datadog.png)
 
 Utilizing Datadog's API documentation, Datadog Docs for anomalies and graphing, the timeboard script was created and written using Python. It can be found here: <link to timeboard/>
 
 
 The document was executed using python in the terminal. It was successfully created as shown in the Dashboard List.
 
-<img dashboard list/>
+![dashboard_list](dashboard_list.png)
 
 When the timeboard is clicked, the platform displays the 3 graphs that are needed.
 
-<img timeboard overview/>
+![timeboard_overview](./screenshots/timeboard_overview.png)
 
 ## Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -176,11 +183,11 @@ Using the datadog-trace-agent repository and its README.md, I followed the instr
 
 2) In order to run the Trace Agent using the Datadog Agent configuration, the trace agent has to have permission to execute it. The command below was executed in the terminal.
 
-chmod 755 trace-agent-darwin-amd64-6.5.0  
+`chmod 755 trace-agent-darwin-amd64-6.5.0`  
 
 3) Now the Trace Agent can be started and run in the background.
 
-./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml
+`./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml`
 
 4) Enable trace collection for the Trace Agent and configure the environment. Setting my environment to none causes it to inherit from "env" tag which is production.
 
@@ -192,7 +199,7 @@ chmod 755 trace-agent-darwin-amd64-6.5.0
     c. pip install ddtrace
     d. run ddtrace-run python app.py in the terminal
 
-6) I made several calls to the API to test the performance of the flask application.
+6) I made several calls to the API to test the performance of the flask application by going through each of the routes on http://localhost:5050/.
 
 ## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -205,6 +212,15 @@ https://p.datadoghq.com/sb/f25fcfec0-6d54b4bd3a28890f4b85b2f5379a1a1e
 
 ## Bonus Question: What is the difference between a Service and a Resource?
 
-A Service is comprised of a set of processes that work together to provide a feature set or perform a certain task. A web application is a good example that can be broken down into many services such as webapp services, admin services, database services, and query services.
+A Service is comprised of a set of processes that work together to provide a feature set or perform a certain task. A web application is a good example that can be broken down into many services such as webapp services, admin services, database services, and query services. These services provide resources to help the user obtain information.
 
-A Resource is a request or query to a service. An example would be a SQL query or a request to access a specific route or piece of data/information of an application.   
+A Resource is a request or query to a service. An example would be a SQL query or a request to access a specific route or piece of data/information of an application.
+
+
+# Final Question:
+
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+## Is there anything creative you would use Datadog for?
+
+Anyone who has lived in NYC has experienced a rodent problem. Over the last decade, these furry creatures have become smarter and harder to get rid of. Although it'll take extensive work and preparation with sensors and detectors, Datadog can be used to analyze their behavior when you're not home or you're sleeping. You might find that they like to be in a certain area at a specific time or even discover entry points you weren't aware of. After an initial sampling of the situation, solutions or protocols can be implemented for a set period of time to analyze how effective they work and how the behavior of the rodents change.
