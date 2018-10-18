@@ -48,8 +48,8 @@ After configuration, I proceeded to install the integration onto the Datadog pla
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Writing an Agent check requires the creation of two files:
-1) A Check file
-2) A YAML configuration file
+1. A Check file
+2. A YAML configuration file
 
 I created a [my_metric.py](./files/my_metric.py) and [my_metric.yaml](./files/my_metric.yaml) file and placed them in the checks.d and conf.d folders respectively.
 
@@ -78,9 +78,9 @@ As shown in the previous step, the collection interval was changed in the my_met
 # Visualizing Data
 
 ## Utilize the Datadog API to create a Timeboard that contains:
--> Your custom metric scoped over your host.
--> Any metric from the Integration on your Database with the anomaly function applied.
--> Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 In order to create a Timeboard while utilizing the Datadog API with Python, the Datadog package for Python has to be installed using Python's package management system called pip.
 
@@ -132,13 +132,13 @@ The Amonaly graph is displaying the number of transactions that have been commit
 
 ## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
--> Warning threshold of 500
--> Alerting threshold of 800
--> And also ensure that it will notify you if there is No Data for this query over the past 10m.
+1. Warning threshold of 500
+2. Alerting threshold of 800
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 A monitor can be created through two ways:
-1) Navigating to the Monitors --> New Monitor --> Metric Tab on the left.
-2) Hover over the graph you want to monitor, click the settings (cog icon) and click create new monitor
+1. Navigating to the Monitors --> New Monitor --> Metric Tab on the left.
+2. Hover over the graph you want to monitor, click the settings (cog icon) and click create new monitor
 
 Once completed, I filled out the necessary information to meet the desired requirements
 ![Monitor_Conditions_1](./screenshots/Monitor_Conditions_1.png)
@@ -146,29 +146,34 @@ Once completed, I filled out the necessary information to meet the desired requi
 
 ## Please configure the monitor’s message so that it will:
 
--> Send you an email whenever the monitor triggers.
--> Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
--> Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+1. Send you an email whenever the monitor triggers.
+2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 ![Monitor_Conditions_2](./screenshots/Monitor_Conditions_2.png)
 
 ## When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 Warn Email
+
 ![Monitor_Warn_Email](./screenshots/Monitor_Warn_Email.png)
 
+
 Alert Email
+
 ![Monitor_Alert_Email](./screenshots/Monitor_Alert_Email.png)
 
+
 No Data Email
+
 ![Monitor_NoData_Email](./screenshots/Monitor_NoData_Email.png)
 
 
 
 ## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
--> One that silences it from 7pm to 9am daily on M-F,
--> And one that silences it all day on Sat-Sun.
+1. One that silences it from 7pm to 9am daily on M-F,
+2. And one that silences it all day on Sat-Sun.
 
 
 Monitors can be scheduled to have downtime by navigating to Monitors --> Manage Downtime.
@@ -191,27 +196,27 @@ Because I was on Mac OS X, I had to install the APM agent (Trace Agent) and manu
 
 Using the datadog-trace-agent repository and its README.md, I followed the instructions:
 
-1) I downloaded the latest OSX Trace Agent release.
+1. I downloaded the latest OSX Trace Agent release.
 
-2) In order to run the Trace Agent using the Datadog Agent configuration, the trace agent has to have permission to execute it. The command below was executed in the terminal.
+2. In order to run the Trace Agent using the Datadog Agent configuration, the trace agent has to have permission to execute it. The command below was executed in the terminal.
 
 `chmod 755 trace-agent-darwin-amd64-6.5.0`  
 
-3) Now the Trace Agent can be started and run in the background.
+3. Now the Trace Agent can be started and run in the background.
 
 `./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml`
 
-4) Enable trace collection for the Trace Agent and configure the environment. Setting my environment to none causes it to inherit from "env" tag which is production.
+4. Enable trace collection for the Trace Agent and configure the environment. Setting my environment to none causes it to inherit from "env" tag which is production.
 
 ![APM_Config](./screenshots/APM_Config.png)
 
-5) Instrumenting the application involves a few steps:
-    a. Store the given Flask app inside a file --> I called it [app.py](./files/app.py)
-    b. `pip install flask`
-    c. `pip install ddtrace`
-    d. run `ddtrace-run python app.py` in the terminal
+5. Instrumenting the application involves a few steps:
+    1. Store the given Flask app inside a file --> I called it [app.py](./files/app.py)
+    2. `pip install flask`
+    3. `pip install ddtrace`
+    4. run `ddtrace-run python app.py` in the terminal
 
-6) I made several calls to the API to test the performance of the flask application by going through each of the routes on http://localhost:5050/.
+6. I made several calls to the API to test the performance of the flask application by going through each of the routes on http://localhost:5050/.
 
 ## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
