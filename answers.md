@@ -155,7 +155,7 @@ instances:
 
 **- Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
-> I changed the *mycheck.yaml* file with the min*_*connection*_*interval equal to 45. As I do not have multiple instances of this check, it simply goes like the code below. I could also add the min*_*collection*_*interval at the init_config level:
+> I changed the *mycheck.yaml* file with the min_connection_interval equal to 45. As I do not have multiple instances of this check, it simply goes like the code below. I could also add the min_collection_interval at the init_config level:
 
 ```
 init_config:
