@@ -369,7 +369,7 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 > - distributed tracing: trace requests across application boundaries
 > - automatic error tagging: spans will be marked with any errors that occur
 >
-> I created two simple apps based on Flask. One will use the ddtrace-run and the other will use the middleware.
+> I created two simple apps based on the Flask example. One will use the ddtrace-run and the other will use the middleware.
 > 
 > | App Name    | method        | port  |
 > | ------------- |:-------------:| -----:|
@@ -467,7 +467,18 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
-> In terms of execution I run the following commands:
+> The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So I needed to:
+
+> - Have the OSX Datadog Agent.
+
+> - Download the latest OSX Trace Agent release.
+
+> - Run the Trace Agent using the Datadog Agent configuration.
+
+```
+sudo ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
+```
+> In terms of execution I ran the following commands:
 
 ```
 → ddtrace-run python hello.py
@@ -491,15 +502,10 @@ Thinking about which systems produce useful work, and which resources support th
 > The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
 >
 > These resources can be found after clicking on a particular service.
->
-> check this link: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
-> check more info on the ebook I'm reading!
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-> [Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694)
-> 
-> My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
+> [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694) - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
 > 
 > | 			     | Timeboards        | Screenboards  |
 > | ------------- |:-------------:| -----:|
