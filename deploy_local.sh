@@ -52,7 +52,6 @@ else
     -e NEVERCACHE_KEY=Example2evercacheKey \
     -e DOCKPGPASSWD=Test1Pass \
     -e DEBUG=False \
-    -e DD_AGENT_PORT_8126_TCP_ADDR=${YOUR_LOCAL_IP} \
     -e DOCK_DEFAULT_GW=${DOCK_DEFAULT_GW}  \
     testweb_app:test \
     /usr/bin/python3 /project/testweb/manage.py migrate # db migrate to postgres container
