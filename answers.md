@@ -65,7 +65,6 @@ networks:
 
 ```
 docker exec -it env_db_1 /bin/bash
-
 ```
 > I also installed the following packages inside the container:
 
@@ -85,17 +84,19 @@ Collecting Metrics:
 
 > I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
 
->```
+```
 DD_API_KEY=54464b588c296912a22ab3aba82e94f9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 > vi datadog.yaml
-![vi datadog.yaml](https://i.imgur.com/VzUocPv.png)
+
+![vidatadog.yaml](https://i.imgur.com/VzUocPv.png)
 
 >Tag Configuration
+
 ![Configuration](https://i.imgur.com/vZG7cap.png)
 
->```
+```
 tags:
     - region:ireland
     - region:dublin
@@ -104,6 +105,7 @@ tags:
     - role:dummy_test
 ```
 >Host map
+
 ![Host with Tags](https://i.imgur.com/ZPalogT.png)
 
 > Modern infrastructure is constantly in flux. Auto-scaling servers die as quickly as they’re spawned, and containers come and go with even greater frequency. With all of these transient changes, the signal-to-noise ratio in monitoring data can be quite low.
@@ -125,7 +127,7 @@ tags:
 > Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, it's recommended to write an Integration.
 > 
 > In this case I created a simple python app (The Datadog Agent installation has its own embedded copy of Python) and a configuration file in yaml following the steps in this [link](https://docs.datadoghq.com/developers/agent_checks/).
-
+>
 > **/etc/datadog-agent/checks.d/mycheck.py**
 
 ```
@@ -171,7 +173,7 @@ Visualizing Data:
 - Utilize the Datadog API to create a Timeboard that contains:
  
 > I used Postman(already use it extensively...) to create the payload below and test the datadog API.
- 
+>
 > I downloaded the Datadog Postman Collection (pre-configured API call templates, available [here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
 
 ![postman](https://cl.ly/1t39190x0A0p/Screen%252520Recording%2525202018-08-03%252520at%25252008.58%252520AM.gif)
@@ -240,7 +242,7 @@ Visualizing Data:
 
 
 > All of the seasonal algorithms (robust and agile) may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. As I did not have such amount of data I used the basic. Basic uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends.
-
+>
 > anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}, 'basic', 2)"
 
 ![](https://i.imgur.com/MlN6gmV.png)
@@ -264,15 +266,14 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 - Bonus Question: What is the Anomaly graph displaying?
 
 > Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
-
+>
 > For example, anomaly detection can help you discover when your web traffic is unusually low on a weekday afternoon—even though that same level of traffic would be perfectly normal later in the evening. Or consider a metric measuring the number of logins to your steadily-growing site. As the number is increasing every day, any threshold would be quickly outdated, whereas anomaly detection can quickly alert you if there is an unexpected drop—potentially indicating an issue with the login system.
-
+>
 > There is an anomalies function in the Datadog query language. When you apply this function to a series, it returns the usual results along with an expected “normal” range.
-
+>
 > Anomaly detection monitors provide both “Historical Context” so that you can see how the metric behaved in the past, as well as a separate “Evaluation Window” that is longer than the alerting window to provide you some immediate context. This should provide some insight into what the anomalies algorithm takes into account when calculating the bounds.
-
+>
 > Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results.
-
 
 
 Monitoring Data - Done (review)
@@ -287,7 +288,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 > I just created a metric monitor from the UI with the following parameters:
  
-![Metric Monitor](https://i.imgur.com/KM6vzfs.png)
+![MetricMonitor](https://i.imgur.com/KM6vzfs.png)
 
 Please configure the monitor’s message so that it will:
 
@@ -298,7 +299,7 @@ Please configure the monitor’s message so that it will:
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![Messages notification] (https://i.imgur.com/YBVTxlI.png)
+![Messagesnotification] (https://i.imgur.com/YBVTxlI.png)
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
@@ -364,9 +365,9 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 
 > ddtrace provides tracing support for many Python web frameworks. For each framework ddtrace supports:
 >
-- tracing of requests: trace requests through middleware and back
-- distributed tracing: trace requests across application boundaries
-- automatic error tagging: spans will be marked with any errors that occur
+> - tracing of requests: trace requests through middleware and back
+> - distributed tracing: trace requests across application boundaries
+> - automatic error tagging: spans will be marked with any errors that occur
 
 > I created two simple apps based on Flask. One will use the ddtrace-run and the other will use the middleware.
 <center>
@@ -428,8 +429,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
->
-**hey.py -> Insert Middleware**
+> **hey.py -> Insert Middleware**
 
 ```
 from flask import Flask
@@ -480,20 +480,20 @@ Bonus Question: What is the difference between a Service and a Resource?
 > **Service**
 
 > A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
-
+>
 > These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
-
+>
 > **Resource**
-
+>
 > Most of the components of your infrastructure can be thought of as resources. At the highest levels, each of your systems that produces useful work likely relies on other systems. For instance, the Apache server in a LAMP stack relies on a MySQL database as a resource to support its work of serving requests. One level down, MySQL has unique resources that the database uses to do its work, such as the finite pool of client connections. At a lower level still are the physical resources of the server running MySQL, such as CPU, memory, and disks.
 Thinking about which systems produce useful work, and which resources support that work, can help you to efficiently get to the root of any issues that surface. When an alert notifies you of a possible problem, the following process will help you to approach your investigation systematically.
-
+>
 > A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
-
+>
 > The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
-
+>
 > These resources can be found after clicking on a particular service.
-
+>
 > check this link: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 > check more info on the ebook I'm reading!
 
@@ -503,7 +503,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 > I also added one iframe just for live updating and fun...
 > 
-> <iframe src="https://app.datadoghq.com/graph/embed?token=77538740a7060177f19c9d6dabd5ac5fdeefe2947c931eda8870438a7392cd69&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
+<iframe src="https://app.datadoghq.com/graph/embed?token=77538740a7060177f19c9d6dabd5ac5fdeefe2947c931eda8870438a7392cd69&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
 > 
 > My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
 > <center>
@@ -517,7 +517,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 | Sharing can be Read-Only	        | Yes    |   Yes|
 </center>
 > Screenboard
-
+>
 ![Screeboard](https://i.imgur.com/7fTooqb.png)
 > 
 > Timeboard 
@@ -526,7 +526,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
-> [hello.py](../solutions-engineer/python/hey.py)
+> [hello.py](../solutions-engineer/python/hello.py)
 > 
 > [hey.py](../solutions-engineer/python/hey.py)
 
@@ -554,18 +554,17 @@ Links and important stuff:
 
 - [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694)
 
-
 - [Datadog APM agent - macosx additional steps](https://github.com/DataDog/datadog-trace-agent#run-on-osx)
 
-- [Agent checks] (https://docs.datadoghq.com/developers/agent_checks/)
+- [Agent checks](https://docs.datadoghq.com/developers/agent_checks/)
 
-- [Tracing Python Apps - APM] (https://docs.datadoghq.com/tracing/setup/python/)
+- [Tracing Python Apps - APM](https://docs.datadoghq.com/tracing/setup/python/)
 
-- [Integrations] (https://docs.datadoghq.com/integrations/)
+- [Integrations](https://docs.datadoghq.com/integrations/)
 
-- [Tagging] (https://docs.datadoghq.com/tagging/)
+- [Tagging](https://docs.datadoghq.com/tagging/)
 
-- [API] (https://docs.datadoghq.com/api/?lang=python#overview)
+- [API](https://docs.datadoghq.com/api/?lang=python#overview)
 
 Suggestions & Feedback:
 -----------------------
@@ -604,13 +603,11 @@ I Love gaming, running, reading, technology :D
 
 - Example of ddtrace trace.wrap() code instrumentation in a cool game. **Click thumbnail for video**
 
-<center>
 [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
 <H1>Hope to be part of the team! </H1>
-<img src="https://pocket-image-cache.com/direct?url=https%3A%2F%2Fdatadog-prod.imgix.net%2Fimg%2Fblog%2Fengineering%2Fbeing-a-solutions-engineer-at-datadog%2Fse_group.jpg%3Fauto%3Dformat%26fit%3Dmax%26w%3D847&resize=w1408
+<img src="https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2
 " width="600" height="300" align="middle"/>
-</center>
 
 
 Thanks for checking out my responses. Hope you have as much fun as I did answering them ;)
