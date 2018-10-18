@@ -1,38 +1,21 @@
 My Answers
 ==========
+> First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
 
-[![Language](https://img.shields.io/badge/language-python-blue.svg?style=flat
-)](https://www.python.org)
-[![Solutions Engineer](https://img.shields.io/badge/module-pygame-brightgreen.svg?style=flat
-)](http://www.pygame.org/news.html)
-[![Release](https://img.shields.io/badge/release-v1.0-orange.svg?style=flat
-)](http://www.leejamesrobinson.com/space-invaders.html)
+> I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
 
-
-What I build
-------------
- - I used a containerized approach as it is easy to setup and consumes less laptop resources
- - I used a docker compose file to generate my container/images and spin up the necessary machines for this test:
-    + Postgres (Database Machine)
-    + Adminer (Managing Database)
- 
- If you don't have [Python](https://www.python.org/downloads/) or [Pygame](http://www.pygame.org/download.shtml) installed, you can simply double click the .exe file to play the game.
-  
-   **Note:** *The .exe file needs to stay in the same directory as the sounds, images, and font folders.*
-   
- - If you have the correct version of Python and Pygame installed, you can run the program in the command prompt / terminal.
- ``` bash
-cd SpaceInvaders
-python spaceinvaders.py
- ```
- **Note:** If you're using Python 3, replace the command "python" with "python3"
+> Let's dive into it...
 
 
 Prerequisites - Setup the environment
 -------------------------------------
-I used the Containerized approach with Docker for Linux. It is the simplest in terms of infrastructure. Nevertheless I tested everything in a vagrant
+> I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
+> I used a docker compose file to generate my container/images and spin up the necessary machines for this test. Mainly I have two machines in docker:
+> 
+>  + Postgres (Database Machine)
+>  + Adminer (Managing Database)
 
-Here is the docker compose file (stack.yml):
+> Here is the docker compose file (stack.yml):
 
 ```
 version: '2'
@@ -548,6 +531,9 @@ Is there anything creative you would use Datadog for?
 - Smart City 
 - Monitor the backup/restore process of different cloud/on-prem machines
 - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
+
+Links and important stuff:
+--------------------------
 
 
 Suggestions & Feedback:
