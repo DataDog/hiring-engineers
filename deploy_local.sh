@@ -38,8 +38,8 @@ else
   sleep 5
 
   echo "##### Creating postgres user for Datadog #####"
-  PGPASSWORD=Test1Pass psql -U postgres -h ${DB_HOST} -c "create user datadog with password 'Test1Pass';"
-  PGPASSWORD=Test1Pass psql -U postgres -h ${DB_HOST} -c "grant SELECT ON pg_stat_database to datadog;"
+  docker run -it -e PGPASSWORD=Test1Pass postgres:9.6-alpine  psql -U postgres -h ${DB_HOST} -c "create user datadog with password 'Test1Pass';"
+  docker run -it -e PGPASSWORD=Test1Pass postgres:9.6-alpine  psql -U postgres -h ${DB_HOST} -c "grant SELECT ON pg_stat_database to datadog;"
    ##Cannot Moved to Dockerfile_postgres because it starts to create a user before postgres starts, which fails.
 
   echo "##### Starting db migration for app #####"
