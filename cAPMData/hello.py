@@ -19,10 +19,12 @@ def api_entry_hello():
     return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
+@tracer.wrap()
 def apm_endpoint():
     return 'Getting APM Started'
 
 @app.route('/api/trace')
+@tracer.wrap()
 def trace_endpoint():
     return 'Posting Traces'
 

@@ -8,7 +8,6 @@ import blinker as _
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
 
-
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
