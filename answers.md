@@ -44,39 +44,46 @@ networks:
         external: true
 ```
 
-Docker compose to the rescue..
+> Docker compose to the rescue...
 
 ![Docker Compose](https://i.imgur.com/GmdSD7s.png)
 
-I created a container for Postgres Database sharing the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
+> I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
 
 ![Adminer](https://i.imgur.com/U6rA3kM.png)
 
+> Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://mariadb.org/download/), [PostgreSQL](https://www.postgresql.org/download/), [SQLite](https://www.sqlite.org/download.html), [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [Oracle](https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html), [Firebird](https://www.firebirdsql.org/en/server-packages/), [SimpleDB](https://aws.amazon.com/simpledb/), 
+[Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [MongoDB](https://www.mongodb.com/download-center).
 
+> This way I can quickly spin up other databases for testing and manage it from a central endpoint (http://localhost:8181 - I mapped a local port to the management port). 
 
+- Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-**(CHANGE THIS LINKS)**Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://www.mysql.com/downloads/), [PostgreSQL](https://www.mysql.com/downloads/), [SQLite](https://www.mysql.com/downloads/), [MS SQL](https://www.mysql.com/downloads/), [Oracle](https://www.mysql.com/downloads/), [Firebird](https://www.mysql.com/downloads/), [SimpleDB](https://www.mysql.com/downloads/), 
-[Elasticsearch](https://www.mysql.com/downloads/), [MongoDB](https://www.mysql.com/downloads/).
+![local_machine](https://i.imgur.com/YgSmlRt.png)
 
-This way I can quickly spin up other databases and manage it from a central endpoint (http://localhost:8181 - I mapped a local port to the management port). Check the enablement commands necessary for the side of the Postgres Integration:
+> I use the following command to get into the docker container (Postgres):
 
+```
+docker exec -it env_db_1 /bin/bash
 
+```
+> I also installed the following packages inside the container:
 
-
-
-I signup for a free trial account at datadoghq.com 
-
-
-
-
- and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+```
+apt-get update
+apt-get install vim # cannot live without it...
+apt-get install python
+apt-get install pip
+apt-get install curl
+pip install flask
+```
+> Now let's tackle the questions!
 
 Collecting Metrics:
 -------------------
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-> I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate the point.
+> I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
 
 >```
 DD_API_KEY=54464b588c296912a22ab3aba82e94f9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -99,29 +106,31 @@ tags:
 >Host map
 ![Host with Tags](https://i.imgur.com/ZPalogT.png)
 
-
-**explain tags here from ebook**
-
-**[Screenshot here]**
+> Modern infrastructure is constantly in flux. Auto-scaling servers die as quickly as they’re spawned, and containers come and go with even greater frequency. With all of these transient changes, the signal-to-noise ratio in monitoring data can be quite low.
+> Tagging your metrics enables you to reorient your monitoring along any lines you choose. By adding tags to your metrics you can observe and alert on metrics from different availability zones, instance types, software versions, services, roles—or any other level you may require.
+> **Tags** allow you to filter and group your datapoints to generate exactly the view of your data that matters most. They also allow you to aggregate you metrics on the fly, without changing how they are reported and collected.
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-> I installed PostgreSQL. Check the screenshots below. I also added to the container vim and curl.**APT COMMANDS HERE**
+> I installed and configured PostgreSQL and the respective integration. Really simple and easy following the instructions.
+ 
+![PostgresIntegration](https://i.imgur.com/4zQUJ2Y.png)
 
-> ![database configuration - user creation](https://i.imgur.com/YAUCjAa.png)
+![database configuration - user creation](https://i.imgur.com/YAUCjAa.png)
 ![database configuration - user grants](https://i.imgur.com/LfVUUVP.png)
 ![database validation](https://i.imgur.com/zBgwsf1.png)
-> 
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-**Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, we recommend that you write an Integration.**
+> Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, it's recommended to write an Integration.
+> 
+> In this case I created a simple python app (The Datadog Agent installation has its own embedded copy of Python) and a configuration file in yaml following the steps in this [link](https://docs.datadoghq.com/developers/agent_checks/).
 
-Add information about the check and the gauge...(different ways besides gauge)
-
-**/etc/datadog-agent/checks.d/mycheck.py**
+> **/etc/datadog-agent/checks.d/mycheck.py**
 
 ```
+__version__ = "1"
+
 from checks import AgentCheck
 from random import randint
 
@@ -130,7 +139,7 @@ class my_metricCheck(AgentCheck):
         self.gauge('my_metric', randint(0, 1000))
 ```
 
-**/etc/datadog-agent/conf.d/mycheck.yaml**
+> **/etc/datadog-agent/conf.d/mycheck.yaml**
 
 ```
 init_config:
@@ -139,14 +148,12 @@ instances:
     [{}]
 ```
 
-A custom Agent check
-
-examples of others checks - https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a (useful)
+> I also found useful information on custom checks (like checking for available licenses) in this [link](https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a).
 
 
 **- Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
-I changed the *mycheck.yaml* file with the min_connection_interval equal to 45. Has I do not have multiple instances of this check, it simply goes like the code below. I could also add the min_collection_interval at the init_config level:
+> I changed the *mycheck.yaml* file with the min*_*connection*_*interval equal to 45. As I do not have multiple instances of this check, it simply goes like the code below. I could also add the min*_*collection*_*interval at the init_config level:
 
 ```
 init_config:
@@ -157,28 +164,29 @@ instances:
     }]
 ```
 **- Bonus Question: Can you change the collection interval without modifying the Python check file you created?**
-
-[check better this response] ?Yes?, You can change the collection interval at the init_config level or at the instance level in the Python check file
+> Yes?, You can change the collection interval at the init_config level or at the instance level in the Python check file
 
 Visualizing Data:
 -----------------
-Utilize the Datadog API to create a Timeboard that contains:
+- Utilize the Datadog API to create a Timeboard that contains:
  
 > I used Postman(already use it extensively...) to create the payload below and test the datadog API.
  
 > I downloaded the Datadog Postman Collection (pre-configured API call templates, available [here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
-> 
 
-> ![postman](https://cl.ly/1t39190x0A0p/Screen%252520Recording%2525202018-08-03%252520at%25252008.58%252520AM.gif)
+![postman](https://cl.ly/1t39190x0A0p/Screen%252520Recording%2525202018-08-03%252520at%25252008.58%252520AM.gif)
 
 > Example of usage of the API - Get all Active metrics
+ 
 ![activemetrics](https://i.imgur.com/sCPKdt2.png)
->
-> For creating the Timeboard I used the Create a Timeboard API:
-> ![](https://i.imgur.com/uyE3Aox.png)
-> 
+
+> For creating the Timeboard I used the "Create a Timeboard" POST method as you see below:
+
+![](https://i.imgur.com/uyE3Aox.png)
+ 
 > And I changed the body of the request with the following code:
->![bodychangeAPI](https://i.imgur.com/qqrWnVm.png)
+
+![bodychangeAPI](https://i.imgur.com/qqrWnVm.png)
 
 - Your custom metric scoped over your host.
 
@@ -188,7 +196,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 > Below is the body of the JSON payload I used to create the timeboard via API:
 
-> ```
+```
 {
       "graphs" : [
       	{
@@ -234,23 +242,24 @@ Utilize the Datadog API to create a Timeboard that contains:
 > All of the seasonal algorithms (robust and agile) may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. As I did not have such amount of data I used the basic. Basic uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends.
 
 > anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}, 'basic', 2)"
-> ![](https://i.imgur.com/MlN6gmV.png)
-> ![](https://i.imgur.com/vDl1vJL.png)
+
+![](https://i.imgur.com/MlN6gmV.png)
+![](https://i.imgur.com/vDl1vJL.png)
 > 
 > Rollup custom metric 
->![rollup custom metric](https://i.imgur.com/Izx1vWi.png)
->![](https://i.imgur.com/NhJZD7S.png)
 
+![rollup custom metric](https://i.imgur.com/Izx1vWi.png)
+![my_metric](https://i.imgur.com/NhJZD7S.png)
 
 - Once this is created, access the Dashboard from your Dashboard List in the UI:
 
->![Dashboard List](https://i.imgur.com/9trlWGH.png)
+![Dashboard List](https://i.imgur.com/9trlWGH.png)
 
 - Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
->![@notation for sharing](https://i.imgur.com/YCCCFB5.png)
->![email received](https://i.imgur.com/iHYjpRV.png)
+![@notation for sharing](https://i.imgur.com/YCCCFB5.png)
+![email received](https://i.imgur.com/iHYjpRV.png)
 
 - Bonus Question: What is the Anomaly graph displaying?
 
@@ -275,9 +284,10 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 > I just created a metric monitor from the UI with the following parameters:
-> 
-> ![Metric Monitor](https://i.imgur.com/KM6vzfs.png)
+ 
+![Metric Monitor](https://i.imgur.com/KM6vzfs.png)
 
 Please configure the monitor’s message so that it will:
 
@@ -288,24 +298,31 @@ Please configure the monitor’s message so that it will:
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-> ![Messages notification] (https://i.imgur.com/YBVTxlI.png)
+![Messages notification] (https://i.imgur.com/YBVTxlI.png)
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-> ![](https://i.imgur.com/iKkKBcR.png)
+
+![email](https://i.imgur.com/iKkKBcR.png)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 - One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 
+> Evening Weekdays
 
-> Evening Weekdays![Weekdays](https://i.imgur.com/jO2vWX5.png)
-> Weekend![Weekend](https://i.imgur.com/9eNHux1.png)
-> Manage Downtime![Downtime](https://i.imgur.com/WQlfTGi.png)
+![Weekdays](https://i.imgur.com/jO2vWX5.png)
+>Weekend
+
+![Weekend](https://i.imgur.com/9eNHux1.png)
+
+>Manage Downtime
+
+![Downtime](https://i.imgur.com/WQlfTGi.png)
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-> ![Adminer](https://i.imgur.com/lbUzPnD.png)
+![Adminer](https://i.imgur.com/lbUzPnD.png)
 ![Adminer](https://i.imgur.com/FQeb2Rx.png)
 
 Collecting APM Data:
@@ -452,7 +469,12 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
+> In terms of execution I run the following commands:
 
+```
+→ ddtrace-run python hello.py
+→ python hey.py
+```
 
 Bonus Question: What is the difference between a Service and a Resource?
 > **Service**
@@ -479,10 +501,8 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 > [Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694)
 
-> I also added 2 iframes for 2 metrics just for live updating and fun...
+> I also added one iframe just for live updating and fun...
 > 
-> <iframe src="https://app.datadoghq.com/graph/embed?token=260c22df6edaa941c55112fac992af6673033bf19cd441ddf686fd8906092992&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
-
 > <iframe src="https://app.datadoghq.com/graph/embed?token=77538740a7060177f19c9d6dabd5ac5fdeefe2947c931eda8870438a7392cd69&height=200&width=400&legend=true" width="400" height="200" frameborder="0"></iframe>
 > 
 > My dashboard - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
@@ -497,16 +517,21 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 | Sharing can be Read-Only	        | Yes    |   Yes|
 </center>
 > Screenboard
-> ![Screeboard](https://i.imgur.com/7fTooqb.png)
+
+![Screeboard](https://i.imgur.com/7fTooqb.png)
 > 
-> Timeboard
-> ![Timeboard](https://i.imgur.com/S9j6Col.png)
+> Timeboard 
+
+![Timeboard](https://i.imgur.com/S9j6Col.png)
 
 Please include your fully instrumented app in your submission, as well.
 
-{GIT LINK HERE}
+> [hello.py](../solutions-engineer/python/hey.py)
+> 
+> [hey.py](../solutions-engineer/python/hey.py)
 
-Looking at the traces from both apps I noticed that 
+
+Looking at the traces from both apps I noticed that the *hey.py* and the middleware method had lower latency in terms of the service.
 
 
 > **APM Invaders Video**
@@ -514,7 +539,7 @@ Looking at the traces from both apps I noticed that
 > Example of ddtrace trace.wrap() code instrumentation in a cool game. 
 > **Click thumbnail for video**
 
-> [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
+[![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
 Final Question:
 ---------------
@@ -534,11 +559,31 @@ Is there anything creative you would use Datadog for?
 
 Links and important stuff:
 --------------------------
+- [Docker useful commands](../solutions-engineer/aux/docker_commands.txt)
 
+- [Tracing and testing commands](../solutions-engineer/aux/tracing_commands.txt)
+
+- [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694)
+
+
+- [Datadog APM agent - macosx additional steps](https://github.com/DataDog/datadog-trace-agent#run-on-osx)
+
+- [Agent checks] (https://docs.datadoghq.com/developers/agent_checks/)
+
+- [Tracing Python Apps - APM] (https://docs.datadoghq.com/tracing/setup/python/)
+
+- [Integrations] (https://docs.datadoghq.com/integrations/)
+
+- [Tagging] (https://docs.datadoghq.com/tagging/)
+
+- [API] (https://docs.datadoghq.com/api/?lang=python#overview)
 
 Suggestions & Feedback:
 -----------------------
-[BUGS]
+<center>
+![BugsShirt](https://i.imgur.com/JCEHo2Dm.png)
+</center>
+
 ![Bug](https://i.imgur.com/hnA4KOU.png)
 
 
@@ -549,6 +594,9 @@ Suggestions & Feedback:
 
 About Me
 --------
+
+rui.lamy@gmail.com
+
 Add information about me here.... Love for gaming, running, reading, technology :D
 
 <p align="center">
@@ -562,11 +610,9 @@ Hope to be part of the team!
 " width="600" height="300" align="middle"/>
   <img />
 </p>
-Contact
--------
+
 Thanks for checking out my responses. Hope you have as much fun as did answering them ;)
 
-- rui.lamy@gmail.com
 
 
 

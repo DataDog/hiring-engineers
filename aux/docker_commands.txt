@@ -4,7 +4,6 @@ docker-compose -f stack.yml up
 
 # TO EXECUTE COMMANDS INSIDE OF CONTAINER
 docker exec -it env_db_1 /bin/bash
-docker exec -it env_datadog_1 /bin/bash
 docker exec -it env_adminer_1 /bin/bash
 
 # TO INSPECT DATA IN  DOCKER IMAGES
