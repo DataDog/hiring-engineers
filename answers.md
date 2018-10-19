@@ -535,13 +535,14 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 >
-1. Monitor the status of the office coffee machine each morning before getting in or the vending machine for a Coke...
-- Monitor my wife's plants in the house and suggest water them
-- Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) **[TAKE PICTURE]**
-- Dashboard for Music Concert management, number of people, status of all the systems, alerts if something fails and rock on
-- Check the online/physical status of your team (if they are at the office or working from home), overlay in a map
-- Monitoring home automation System with Alexa for example and live feed video, fire and intrusion alarms or others - **IoT feeds**
-- Smart City 
+1. Monitor the status of the office coffee machine each morning before getting in(water, coffee beans, filters, milk or others) or the vending machine for a Coke...![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
+- Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
+![aquarium](https://i.imgur.com/CLZHJftm.jpg)
+- Monitor my wife's plants in the house and suggest water them...
+- Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
+- Check the online/physical status of your team (if they are at the office or working from home), overlaid in a map (can you do that 
+- Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others - **IoT feeds**
+- Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
 - Monitor the backup/restore process of different cloud/on-prem machines
 - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
 
@@ -581,6 +582,7 @@ Suggestions & Feedback:
 > - Mobile native app for on the go monitoring
 > - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
 > - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
+> - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map. In more complex scenarios you could even see ping times or other metrics between data centers for example.
 
 About Me
 --------
@@ -588,7 +590,7 @@ About Me
 <a href="mailto:rui.lamy@gmail.com">rui.lamy@gmail.com</a>
 
 
-I Love gaming, running, reading, technology :D
+I Love gaming, running, learning, reading, technology and my family of course(they made me write it...) :D
 
 <p align="center">
 <img src="https://i.imgur.com/nUqjr07.jpg" width="200" height="300" align="middle"/>

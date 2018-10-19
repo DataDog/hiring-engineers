@@ -9,6 +9,9 @@ services:
       - docknet
     environment:
       POSTGRES_PASSWORD: datadog
+
+              RUN apt-get update && apt-get install -y stress
+
     
   # Database Adminer Container    
   adminer:
@@ -22,3 +25,7 @@ services:
 networks:
     docknet:
         external: true
+
+
+ENTRYPOINT ["/usr/bin/stress", "--verbose"]
+CMD []
