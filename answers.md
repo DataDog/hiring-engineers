@@ -384,8 +384,8 @@ Ddtrace provides tracing support for many Python web frameworks. For each framew
  
  | App Name    | method        | port  |
  | ------------- |:-------------:| -----:|
- | hello.py      | ddtrace-run   |   5050|
- | hey.py        | middleware    |   6060|
+ | [hello.py](../solutions-engineer/python/hello.py)     | ddtrace-run   |   5050|
+ | [hey.py](../solutions-engineer/python/hello.py)        | middleware    |   6060|
  
 For the sake of having some traffic in these 2 apps I used the following commands:
 
@@ -402,7 +402,7 @@ For the sake of having some traffic in these 2 apps I used the following command
 ```
 ![](https://i.imgur.com/1GpKK4N.png)
 
- **hello.py - ddtrace-run** 
+ **[hello.py - ddtrace-run](../solutions-engineer/python/hello.py)** 
 
 ```
 from flask import Flask
@@ -438,7 +438,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
- **hey.py - Insert Middleware**
+ **[hey.py - Insert Middleware](../solutions-engineer/python/hey.py)**
 
 ```
 from flask import Flask
@@ -514,13 +514,13 @@ At a very basic level we can think of resources as the units of work that provid
 
  [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694) - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
  
- > | 			     | Timeboards        | Screenboards  |
- > | ------------- |:-------------:| -----:|
- > | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope|
- > | Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
-> | Can Share Graphs Individually	    | Yes   |   No|
-> | Can Share the Entire Dashboard	    | **No**   |   Yes|
-> | Sharing can be Read-Only	    | Yes   |   Yes|
+| 			     | Timeboards        | Screenboards  |
+| ------------- |:-------------:| -----:|
+| Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope|
+| Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
+| Can Share Graphs Individually	    | Yes   |   No|
+| Can Share the Entire Dashboard	    | **No**   |   Yes|
+| Sharing can be Read-Only	    | Yes   |   Yes|
 
  Screenboard
 
