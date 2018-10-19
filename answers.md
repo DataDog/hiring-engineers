@@ -90,7 +90,7 @@ Collecting Metrics:
   
   [x] Bonus Question: Can you change the collection interval without modifying the Python check file you created?
     
-##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
 
@@ -323,7 +323,7 @@ Monitoring Data
  
 ![MetricMonitor](https://i.imgur.com/KM6vzfs.png)
 
-##Please configure the monitor’s message so that it will:
+## Please configure the monitor’s message so that it will:
 
 - Send you an email whenever the monitor triggers.
 
@@ -354,7 +354,7 @@ Manage Downtime
 ![Downtime](https://i.imgur.com/WQlfTGi.png)
 I could have used the API to define [Downtime](https://docs.datadoghq.com/api/?lang=python#downtimes) also.
 
-# Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+## Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ![Adminer](https://i.imgur.com/lbUzPnD.png)
 ![Adminer](https://i.imgur.com/FQeb2Rx.png)
@@ -613,7 +613,7 @@ I Love gaming, running, learning, reading, technology and my family of course(th
 
 [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
-##Hope to be part of the team!
+## Hope to be part of the team!
 ![Team](https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2)
 
 
