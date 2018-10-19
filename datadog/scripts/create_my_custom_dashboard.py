@@ -1,8 +1,8 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '50124dda46d1303b859f2d75d83beea2',
-    'app_key': 'a3c67a67eaebcbc3755f82d5d07217b59ae2a321'
+    'api_key': '',
+    'app_key': ''
 }
 
 initialize(**options)
@@ -13,7 +13,7 @@ graphs = [
 { "definition": {
         "events": [],
         "requests": [
-            {"q": "top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'last', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'max', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'min', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'mean', 'desc')"}
+            {"q": "top(max:my_metric{*} by {host}, 10, 'last', 'desc'), top(max:my_metric{*} by {host}, 10, 'max', 'desc'), top(max:my_metric{*} by {host}, 10, 'min', 'desc'), top(max:my_metric{*} by {host}, 10, 'mean', 'desc')"}
         ],
         "viz": "timeseries"
     },
@@ -22,7 +22,7 @@ graphs = [
 { "definition": { 
         "events": [],
         "requests": [
-            {"q": "anomalies(avg:postgresql.buffer_hit{role:db}, 'basic', 2)"}
+            {"q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"}
         ],
         "viz": "timeseries"
     },
