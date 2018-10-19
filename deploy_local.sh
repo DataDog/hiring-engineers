@@ -7,7 +7,7 @@ elif [ ! -n "${DD_API_KEY}" ]; then
   echo "export DD_API_KEY"
 else
   if [ ! -n "${DOCK_DEFAULT_GW}" ]; then
-    export DOCK_DEFAULT_GW="172.17.0.1"  #Change to 172.18.0.1 or else to fit to your environment
+    export DOCK_DEFAULT_GW="172.19.0.1"  #Change to 172.18.0.1 or else to fit to your environment
   fi
 
   echo "##### Exporting Environemt Valiables #####"

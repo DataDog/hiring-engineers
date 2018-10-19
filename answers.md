@@ -39,6 +39,17 @@ instances:
       - role:db
       - env:dev
 ```  
+```text
+postgres (2.2.2)
+----------------
+    Instance ID: postgres:de2362ecea868019 [OK]
+    Total Runs: 28
+    Metric Samples: 29, Total: 377
+    Events: 0, Total: 0
+    Service Checks: 1, Total: 28
+    Average Execution Time : 15ms
+```
+
 * [x] Postgresql integration on the Integration Page  
   ![postgres Integration](screenshots/1-install-postgres.png)  
   ![postgres Integration 2](screenshots/1-postgres-integration.png)
@@ -66,9 +77,14 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
-* [x] Screenshots  
-  ![agent_check](screenshots/1-agent-check-interval.png)  
-
+```text
+2018-10-19 04:46:11 UTC | INFO | (scheduler.go:63 in Schedule) | Scheduling check test_check
+2018-10-19 04:46:11 UTC | INFO | (scheduler.go:76 in Enter) | Scheduling check test_check with an interval of 45s
+2018-10-19 04:46:12 UTC | INFO | (runner.go:258 in work) | Running check test_check
+2018-10-19 04:46:12 UTC | INFO | (runner.go:324 in work) | Done running check test_check
+2018-10-19 04:46:57 UTC | INFO | (runner.go:258 in work) | Running check test_check
+2018-10-19 04:46:57 UTC | INFO | (runner.go:324 in work) | Done running check test_check
+```
 ---
 # 2. Visualizing Data:
 ###  To create a Timeboard that contains:
@@ -135,21 +151,18 @@ instances:
 # 3. Monitoring Data
 ### Metric Monitor settings for my custom metric.
 * [x] "Warning" with threshold of 500 over the past 5 minutes.  
-  ![warn](screenshots/3-monitor-warning.png)  
 * [x] "Alert" with threshold of 800 over the past 5 minutes.  
-  ![alert](screenshots/3-monitor-alert.png)  
+  ![warning_alert](screenshots/3-monitor-warning-alert.png)  
 * [x] Notify myself if there is No Data over the past 10 minutes.  
   ![nodata](screenshots/3-monitor-nodata.png)  
 
 ### Metric Monitor message for my custom metric.
 
-* [x] Send you an email whenever the monitor triggers.  
-  ![triggerd_email](screenshots/3-trigger-email.png)  
-  
+* [x] Send you an email whenever the monitor triggers.    
 * [x] Create different messages depending on the monitor status.  
-  ![messages](screenshots/3-status-messages.png)  
-
 * [x] The metric value and the host ip in the Alert message.  
+  ![custom_messages](screenshots/3-status-messages-1.png)  
+  ![email_notice](screenshots/3-status-messages-2.png)  
   ![custom_alert_message](screenshots/3-value-and-ip.png)  
 
 * [x] A screenshot of the email notification.  
@@ -159,9 +172,11 @@ instances:
 
 ###  Two scheduled downtimes for this monitor: (Bonus)
 * [x] One that silences it from 7pm to 9am daily on M-F.  
-  ![weekely_downtime](screenshots/3-weekely-downtime.png)  
+  ![weekly_downtime](screenshots/3-weekly-downtime-1.png)  
+  ![weekly_downtime](screenshots/3-weekly-downtime-2.png)  
 * [x] The other that silences it all day on Sat-Sun.  
-  ![weekend_downtime](screenshots/3-weekend-downtime.png)  
+  ![weekend_downtime](screenshots/3-weekend-downtime-1.png)  
+  ![weekend_downtime_2](screenshots/3-weekend-downtime-2.png)  
 * [x] A screenshot of the email notification.   
   ![downtime_notice](screenshots/3-downtime-notice.png)  
 
