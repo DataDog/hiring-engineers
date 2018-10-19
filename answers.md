@@ -193,6 +193,10 @@ instances:
 ```Dockerfile
 pip3 --no-cache-dir install mezzanine==4.3.1 psycopg2-binary==2.7.5 gunicorn==19.9.0 ddtrace setproctitle
 ```
+[docker-entrypoint.sh](app/docker-entrypoint.sh)  
+```python
+   exec /sbin/su-exec "${MYUSER}" ddtrace-run gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" -n testweb "${MYPROJECT}".wsgi
+```
 [Application_setting](app/testweb/testweb/settings.py )
 ```python
 DATADOG_TRACE = {
