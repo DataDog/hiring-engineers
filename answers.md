@@ -229,7 +229,8 @@ DD_APM_ENABLED=true
 ```
 
 ### Fully instrumented application 
-  [Application](app)  
+  [Application](app) 
+  http://testweb.cloud-steps.com (deployed to AWS)
 
 ### Difference between a Service and a Resource (Bonus)
 ```text
@@ -241,6 +242,8 @@ A SQL database service's resource is the query itself.
 ### A link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
   https://p.datadoghq.com/sb/dd9566751-7d9276b04920e50def2e02d7f7f25257  
   ![APM_dashboard_1](screenshots/4-APM-infra-metrics.png)  
+  The metrics in the graph reflect the access to the application URL (http://testweb.cloud-steps.com)
+
 
 
 ---
