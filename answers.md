@@ -255,7 +255,7 @@ dirty the room was when the cleaning job has been done. The user can switch the 
 because the agent tells its weakened status.
 
   All the metrics mentioned above can be collected and monitored through one simple website "Datadog."
-The user sees the metrics wherever/whenever s/he is and is able to set up specific tasks to get housework to be done.
+The user sees the metrics wherever/whenever s/he is and is able to set up specific strategies to get housework to be done.
 Thanks to controlling the home more comfortably, the Agent would get the quality of life to be higher.
 ```
 
