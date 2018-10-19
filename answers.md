@@ -247,20 +247,21 @@ A SQL database service's resource is the query itself.
 # 5. Final Question:
 ### Is there anything creative you would use Datadog for?
 ```text
-  I  amazing monitoring product to connect to IoT network in the home electric appliances.
+  I suggest the amazing monitoring product to connect to the IoT network in home electric appliances.
 If Datadog Agent is installed into a washing machine, for instance, It can notify the user when the washing
-job has been done.The Agent even can send an alert to the user when its metrics suggest the machine is about
+job has been done. The Agent even can send an alert to the user when its metrics suggest the machine is about
 to be broken. When installed into a robot vacuum cleaner, the Agent can have statistical metrics about how
 dirty the room was when the cleaning job has been done. The user can switch the light bulb before it expires
 because the agent tells its weakened status.
 
   All the metrics mentioned above can be collected and monitored through one simple website "Datadog."
-The user sees the metrics wherever/whenever s/he is; the quality of life of the user become much higher thanks to controlling the home more comfortably.
+The user sees the metrics wherever/whenever s/he is and is able to set up specific tasks to get housework to be done.
+Thanks to controlling the home more comfortably, the Agent would get the quality of life to be higher.
 ```
 
 ---
 # Extra. Various Integrations:
-I have implemented the following integrations for my extra work.  
+I have implemented the following integrations for the extra work.  
 * [x] AWS  
   ![aws_integration](screenshots/ex-monitor-aws.png)  
 * [x] Nginx  
