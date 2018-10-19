@@ -25,7 +25,7 @@ tags:
 
 ### Datadog Agent integration for postgresql.
 
-* [x] Agent config file: [postgres.d/conf.yaml](datadog/conf.d/postgres.d/conf.yaml)  
+* [x] Agent config file: [postgres.d/conf.template](datadog/conf.d/postgres.d/conf.template)  
 ```yaml
 init_config:
 
@@ -134,7 +134,7 @@ instances:
   ![metric_rolledup](screenshots/2-metric-rolledup.png)  
   
 * [x] The whole script to create the Timeboard  
-  [create_my_custom_timeboard,py](datadog/scripts/create_my_custom_dashboard.py) 
+  [create_my_custom_timeboard.py](datadog/scripts/create_my_custom_dashboard.py) 
 
 ### Dashboard screenshots
 * [x] Set the Timeboard's timeframe to the past 5 minutes  
@@ -146,9 +146,9 @@ instances:
 * [x] What is the Anomaly graph displaying? (Bonus)  
   ```text
   The anomaly graph displays two kinds of values; "natural" and "abnormal."
-  "Natural" values fall within the usual range based on the culmitive data flow.
-  "Abnormal" values are judged as warning because it doesn't fit in the routine data flow.
-  In my case below, the anomaly graph displays when the postgres buffer hit is extremly high.
+  "Natural" values fall within the usual range based on the cumulative dataflow.
+  "Abnormal" values are judged as warning because they don't fit in the routine dataflow.
+  In my case below, the anomaly graph displays when the postgres buffer hit is extremely high.
   ```  
   ![metric_anomaly_2](screenshots/2-anomaly-graph.png)  
 ---
@@ -188,16 +188,34 @@ instances:
 
 ---
 # 4. Collecting APM Data:
-### My application settings for APM
+### My application settings for APM  
+[Dockerfile](Dockerfile)  
 ```Dockerfile
 pip3 --no-cache-dir install mezzanine==4.3.1 psycopg2-binary==2.7.5 gunicorn==19.9.0 ddtrace setproctitle
 ```
+[Application_setting](app/testweb/testweb/settings.py )
 ```python
 DATADOG_TRACE = {
     'AGENT_HOSTNAME': os.getenv('DOCK_DEFAULT_GW'),
     'DEFAULT_SERVICE': 'testweb',
     'TAGS': {'env': 'dev'},
 }
+```
+[docker-compose](docker-compose.yml)  
+```yaml
+  datadog:
+    build:
+      context:              .
+      dockerfile:           Dockerfile_datadog
+    image:                  testweb_datadog:test
+    ports:
+     - 0.0.0.0:8126:8126/tcp
+    links:
+     - web                                       # ensures that nginx web is up for monitoring
+     - app                                       # ensures that python app is up for monitoring
+     - db                                        # ensures that postgres db is up for monitoring
+    environment:
+      DD_APM_ENABLED:       "true"
 ```
 ```text
 # docker ps
@@ -211,9 +229,7 @@ DD_APM_ENABLED=true
 ```
 
 ### Fully instrumented application 
-  [Dockerfile](Dockerfile)  
   [Application](app)  
-  [docker-compose](docker-compose.yml)  
 
 ### Difference between a Service and a Resource (Bonus)
 ```text
@@ -222,34 +238,29 @@ For example, a typical web application consists of three services; web, applicat
 A web/app service has resources such as a canonical URL and a handler function.
 A SQL database service's resource is the query itself.
 ```
-### A screenshot of a Dashboard with both APM and Infrastructure Metrics.
+### A link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+  https://p.datadoghq.com/sb/dd9566751-7d9276b04920e50def2e02d7f7f25257  
   ![APM_dashboard_1](screenshots/4-APM-infra-metrics.png)  
 
-https://p.datadoghq.com/sb/dd9566751-7d9276b04920e50def2e02d7f7f25257
 
 ---
 # 5. Final Question:
 ### Is there anything creative you would use Datadog for?
 ```text
-      I would definitely urge the amazing monitoring product to connect to IoT network in the home electric appliances.
-    if Datadog Agent is installed into a washing machine, for instance, It can notify the user when the washing job has been done.
-    The Agent even can send an alert to the user when its metrics suggest the machine is about to be broken.
-    When installed into a robot vacuum cleaner, the Agent can have statistical metrics about how dirty the room was when the cleaning job has been done.
-    The user can switch the light bulb before it expires because the agent tells its weakened status.
-      All the metrics mentioned above can be collected and monitored through one simple website "Datadog."
-    The user sees the metrics wherever/whenever s/he is; the quality of life of the user become much higher thanks to controlling the home more comfortably.
-	  Talking about profitability, the company can earn its revenue through the Agent license installed in the appliances.
-	However, most people are not willing to pay dozens of dollars a month for electric appliances.
-	The target should be those who are extremely rich such as living in the luxury apartment in New York downtown.
-	In other words, it is  those who are rich enough to save more time by spending more money.
-	Although the Datadog is not a home electricity company, I assume it is important that the Agent keeps to be familiar with the IoT,
-	which would generate a big opportunity in the near future.
-	
+  I  amazing monitoring product to connect to IoT network in the home electric appliances.
+If Datadog Agent is installed into a washing machine, for instance, It can notify the user when the washing
+job has been done.The Agent even can send an alert to the user when its metrics suggest the machine is about
+to be broken. When installed into a robot vacuum cleaner, the Agent can have statistical metrics about how
+dirty the room was when the cleaning job has been done. The user can switch the light bulb before it expires
+because the agent tells its weakened status.
+
+  All the metrics mentioned above can be collected and monitored through one simple website "Datadog."
+The user sees the metrics wherever/whenever s/he is; the quality of life of the user become much higher thanks to controlling the home more comfortably.
 ```
 
 ---
 # Extra. Various Integrations:
-I have implemented the following integrations for the extra work.  
+I have implemented the following integrations for my extra work.  
 * [x] AWS  
   ![aws_integration](screenshots/ex-monitor-aws.png)  
 * [x] Nginx  
