@@ -12,7 +12,6 @@ Prerequisites - Setup the environment
   
   [x] Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-
 I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless, I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
 I used a docker compose file to generate my container/images and spin up the necessary machines for this test. I have two machines in docker:
  
