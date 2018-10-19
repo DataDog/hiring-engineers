@@ -14,17 +14,17 @@ main_logger.addHandler(c)
 app = Flask(__name__)
 
 @app.route('/')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="hello", resource="hello")
 def api_entry_hello():
     return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="apm", resource="apm")
 def apm_endpoint():
     return 'Getting APM Started'
 
 @app.route('/api/trace')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="trace", resource="trace")
 def trace_endpoint():
     return 'Posting Traces'
 

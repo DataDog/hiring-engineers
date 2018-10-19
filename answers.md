@@ -421,17 +421,17 @@ main_logger.addHandler(c)
 app = Flask(__name__)
 
 @app.route('/')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="hello", resource="hello")
 def api_entry_hello():
     return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="apm", resource="apm")
 def apm_endpoint():
     return 'Getting APM Started'
 
 @app.route('/api/trace')
-@tracer.wrap()
+@tracer.wrap(name="endpoints", service="trace", resource="trace")
 def trace_endpoint():
     return 'Posting Traces'
 
@@ -478,6 +478,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
+
 The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So, I needed to:
 
  - Have the OSX Datadog Agent.
@@ -495,6 +496,8 @@ In terms of execution I ran the following commands:
 → ddtrace-run python hello.py
 → python hey.py
 ```
+![flask](https://i.imgur.com/bzLyjLW.png)
+![flask](https://i.imgur.com/9md1Diu.png)
 
 ## Bonus Question: What is the difference between a Service and a Resource?
  **Service**
