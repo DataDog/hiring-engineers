@@ -1,8 +1,8 @@
 My Answers
 ==========
- First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
+First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
  
- I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
+I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
 
 Prerequisites - Setup the environment
 -------------------------------------
@@ -13,10 +13,10 @@ Prerequisites - Setup the environment
   [x] Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 
-I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
-I used a docker compose file to generate my container/images and spin up the necessary machines for this test. Mainly I have two machines in docker:
+I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless, I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
+I used a docker compose file to generate my container/images and spin up the necessary machines for this test. I have two machines in docker:
  
-   + Postgres (Database Machine)
+  + Postgres (Database Machine)
   + Adminer (Managing Database)
 
 Here is the docker compose file ([stack.yml](../solutions-engineer/docker/stack.yml)):
@@ -48,15 +48,15 @@ networks:
         external: true
 ```
 
- Docker compose to the rescue...
+Docker compose to the rescue...
 
 ![Docker Compose](https://i.imgur.com/GmdSD7s.png)
 
- I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
+I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consists of a single file ready to deploy to the target server. 
 
 ![Adminer](https://i.imgur.com/U6rA3kM.png)
 
- This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
+This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
 
 ![local_machine](https://i.imgur.com/YgSmlRt.png)
 
@@ -115,9 +115,9 @@ Host map
 ![Host with Tags](https://i.imgur.com/ZPalogT.png)
 
  Modern infrastructure is constantly in flux. Auto-scaling servers die as quickly as they’re spawned, and containers come and go with even greater frequency. With all of these transient changes, the signal-to-noise ratio in monitoring data can be quite low.
- Tagging your metrics enables you to reorient your monitoring along any lines you choose. By adding tags to your metrics you can observe and alert on metrics from different availability zones, instance types, software versions, services, roles—or any other level you may require.
+ Tagging your metrics enables you to reorient your monitoring along any lines you choose. By adding tags to your metrics, you can observe and alert on metrics from different availability zones, instance types, software versions, services, roles—or any other level you may require.
  
- **Tags** allow you to filter and group your datapoints to generate exactly the view of your data that matters most. They also allow you to aggregate you metrics on the fly, without changing how they are reported and collected.
+ **Tags** allow you to filter and group your datapoints to generate exactly the view of your data that matters most. They also allow you to aggregate your metrics on the fly, without changing how they are reported and collected.
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -174,7 +174,7 @@ instances:
 ```
 ## Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
- Yes. You can change it easily in the configuration file .yml of the same name. Similar to what I did. For Agent 6, min_collection_interval must be added at an instance level, and can be configured individually for each instance.
+ Yes. You can change it easily in the configuration file .yml of the same name. Similar to what I did. For Agent 6, min_collection_interval must be added at an instance level and can be configured individually for each instance.
 
 Visualizing Data:
 -----------------
@@ -194,7 +194,7 @@ Visualizing Data:
   
 ## Utilize the Datadog API to create a Timeboard that contains:
  
- I used Postman(already use it extensively...) to create the payload below and test the datadog API.
+ I used Postman (already use it extensively...) to create the payload below and test the datadog API.
 
  I downloaded the Datadog Postman Collection (pre-configured API call templates, available [here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
 
@@ -286,15 +286,15 @@ Visualizing Data:
 
 ## Bonus Question: What is the Anomaly graph displaying?
 
- Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, considering trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
 
 
- In my case I used the "postgresql.bgwriter.checkpoints_timed". This
+In my case I used the "postgresql.bgwriter.checkpoints_timed". This
 measures the number of scheduled checkpoints that were performed. Checkpoints are periodic maintenance operations the database performs to make sure that everything it’s been caching in memory has been synchronized with the disk. As I did not have much traffic going into the database the result is very constant and not deviating from the periodic bursts.
 
 ![anomaly](https://i.imgur.com/Zq1FmkM.png)
 
- Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results, in my case I used a basic approach.
+Keep in mind that anomalies use the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results, in my case I used a basic approach.
 
 
 Monitoring Data
@@ -478,7 +478,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
-The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So I needed to:
+The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So, I needed to:
 
  - Have the OSX Datadog Agent.
 
@@ -544,14 +544,14 @@ Final Question:
 
 ![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
 
- - Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
+ - Monitor the automatic feeding machine for my daughter's aquarium (this one will be awesome to decrease the mortality rate...) :) 
 
 ![aquarium](https://i.imgur.com/CLZHJftm.jpg)
 
  - Monitor my wife's plants in the house and suggest water them...
  - Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
  - Check the online/physical status of your team (if they are at the office or working from home), overlaid that in a map. 
- - Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
+ - Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. - **IoT feeds**
  - Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
  - Monitor the backup/restore process of different cloud/on-prem machines
  - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
@@ -580,7 +580,7 @@ Suggestions & Feedback:
 -----------------------
 ![BugsShirt](https://i.imgur.com/JCEHo2Dm.png)
 
- I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are this limitations on the trial or a random feature?
+ I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are these limitations on the trial or a random feature?
 
 ![Bug](https://i.imgur.com/hnA4KOU.png)
 
@@ -592,7 +592,7 @@ Suggestions & Feedback:
  - Mobile native app for on the go monitoring
  - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
  - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
- - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map(connected with openmaps or google maps geoAPI). In more complex scenarios you could even see ping times or other metrics between data centers for example.
+ - Define maps or other images as the background of a graph. In the case of maps, it could be a tag on the server on-prem and I could see my infra in a map(connected with open maps or google maps geoAPI). In more complex scenarios you could even see ping times or other metrics between data centers for example.
 
 About Me
 --------
@@ -617,4 +617,4 @@ I Love gaming, running, learning, reading, technology and my family of course(th
 ![Team](https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2)
 
 
-Thanks for checking out my responses. Hope you have as much fun as I did answering them ;)
+Thanks for checking out my responses. Hope you have as much fun as I did answer them ;)
