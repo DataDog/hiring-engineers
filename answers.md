@@ -148,35 +148,38 @@ instances:
   The anomaly graph displays two kinds of values; "natural" and "abnormal."
   "Natural" values fall within the usual range based on the culmitive data flow.
   "Abnormal" values are judged as warning because it doesn't fit in the routine data flow.
-  In my case above, the anomaly graph displays when the postgres buffer hit is extremly high or low.
+  In my case below, the anomaly graph displays when the postgres buffer hit is extremly high.
   ```  
+  ![metric_anomaly_2](screenshots/2-anomaly-graph.png)  
 ---
 # 3. Monitoring Data
 ### Metric Monitor settings for my custom metric.
-* [x] "Warning" with threshold of 500 over the past 5 minutes.  
 * [x] "Alert" with threshold of 800 over the past 5 minutes.  
+* [x] "Warning" with threshold of 500 over the past 5 minutes.  
   ![warning_alert](screenshots/3-monitor-alert-warning.png)  
 * [x] Notify myself if there is No Data over the past 10 minutes.  
   ![nodata](screenshots/3-monitor-nodata.png)  
 
 ### Metric Monitor message for my custom metric.
 * [x] Send you an email whenever the monitor triggers.    
-  ![custom_messages](screenshots/3-notify-team.png)  
+  ![notify_team](screenshots/3-notify-team.png)  
 
 * [x] Create different messages depending on the monitor status.  
   ![custom_messages](screenshots/3-status-messages.png)  
 
 * [x] The metric value and the host ip in the Alert message.  
+  ![value_ip](screenshots/3-value-ip.png)  
+  
+* [x] A screenshot of the email notification.
+  (Alert, warning, nodata triggers)  
   ![alert](screenshots/3-notice-alert.png)  
-
-* [x] A screenshot of the email notification.  
   ![warning](screenshots/3-notice-warning.png)  
   ![nodata](screenshots/3-notice-nodata.png)  
 
 ###  Two scheduled downtimes for this monitor: (Bonus)
 * [x] One that silences it from 7pm to 9am daily on M-F.  
   ![weekly_downtime](screenshots/3-weekly-downtime-1.png)  
-  ![weekly_downtime](screenshots/3-weekly-downtime-2.png)  
+  ![weekly_downtime_2](screenshots/3-weekly-downtime-2.png)  
 * [x] The other that silences it all day on Sat-Sun.  
   ![weekend_downtime](screenshots/3-weekend-downtime-1.png)  
   ![weekend_downtime_2](screenshots/3-weekend-downtime-2.png)  
@@ -209,7 +212,9 @@ A web/app service has resources such as a canonical URL and a handler function.
 A SQL database service's resource is the query itself.
 ```
 ### A screenshot of a Dashboard with both APM and Infrastructure Metrics.
-  ![APM_dashboard](screenshots/4-APM-infra-metrics.png)  
+  ![APM_dashboard_1](screenshots/4-APM-infra-metrics.png)  
+
+https://p.datadoghq.com/sb/dd9566751-7d9276b04920e50def2e02d7f7f25257
 
 ---
 # 5. Final Question:
@@ -217,7 +222,6 @@ A SQL database service's resource is the query itself.
 ```text
 #Your Sentence here
 ```
-  [full_text](screenshots/5-answer.txt)  
 
 ---
 # Extra. Various Integrations:
