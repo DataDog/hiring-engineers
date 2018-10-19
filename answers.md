@@ -20,7 +20,8 @@ tags:
   - env:dev
 ```  
 * [x]  Screenshots (Host Map)  
-  ![Host Map](screenshots/1-host-map.png)  
+  ![Host Map](screenshots/1-host-map-1.png)  
+  ![Host Map](screenshots/1-host-map-2.png)  
 
 ### Datadog Agent integration for postgresql.
 
@@ -39,6 +40,7 @@ instances:
       - role:db
       - env:dev
 ```  
+* [x] Datadog-agent status
 ```text
 postgres (2.2.2)
 ----------------
@@ -51,7 +53,6 @@ postgres (2.2.2)
 ```
 
 * [x] Postgresql integration on the Integration Page  
-  ![postgres Integration](screenshots/1-install-postgres.png)  
   ![postgres Integration 2](screenshots/1-postgres-integration.png)
 
 
@@ -69,7 +70,7 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', some_num, tags=['test_check'])
 ```
 
-### Configure Agent check's interval to 45 seconds without modifying the Python check file
+### Configure Agent check's interval to 45 seconds 
 * [x] Agent check config : [test_check.yaml](datadog/conf.d/test_check.yaml)  
 ```yaml
 init_config:
@@ -85,6 +86,8 @@ instances:
 2018-10-19 04:46:57 UTC | INFO | (runner.go:258 in work) | Running check test_check
 2018-10-19 04:46:57 UTC | INFO | (runner.go:324 in work) | Done running check test_check
 ```
+### Configure Agent check's interval to 45 seconds without modifying the Python check file (Bonus)
+* [x] Achieved in the question right before this one
 ---
 # 2. Visualizing Data:
 ###  To create a Timeboard that contains:
@@ -93,7 +96,7 @@ instances:
   { "definition": {
         "events": [],
         "requests": [
-            {"q": "top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'last', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'max', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'min', 'desc'), top(max:my_metric{host:i-0ee8948d804858200} by {host}, 10, 'mean', 'desc')"}
+            {"q": "top(max:my_metric{*} by {host}, 10, 'last', 'desc'), top(max:my_metric{*} by {host}, 10, 'max', 'desc'), top(max:my_metric{*} by {host}, 10, 'min', 'desc'), top(max:my_metric{*} by {host}, 10, 'mean', 'desc')"}
         ],
         "viz": "timeseries"
     },
@@ -107,7 +110,7 @@ instances:
   { "definition": { 
         "events": [],
         "requests": [
-            {"q": "anomalies(avg:postgresql.buffer_hit{role:db}, 'basic', 2)"}
+            {"q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"}
         ],
         "viz": "timeseries"
     },
@@ -152,23 +155,23 @@ instances:
 ### Metric Monitor settings for my custom metric.
 * [x] "Warning" with threshold of 500 over the past 5 minutes.  
 * [x] "Alert" with threshold of 800 over the past 5 minutes.  
-  ![warning_alert](screenshots/3-monitor-warning-alert.png)  
+  ![warning_alert](screenshots/3-monitor-alert-warning.png)  
 * [x] Notify myself if there is No Data over the past 10 minutes.  
   ![nodata](screenshots/3-monitor-nodata.png)  
 
 ### Metric Monitor message for my custom metric.
-
 * [x] Send you an email whenever the monitor triggers.    
+  ![custom_messages](screenshots/3-notify-team.png)  
+
 * [x] Create different messages depending on the monitor status.  
+  ![custom_messages](screenshots/3-status-messages.png)  
+
 * [x] The metric value and the host ip in the Alert message.  
-  ![custom_messages](screenshots/3-status-messages-1.png)  
-  ![email_notice](screenshots/3-status-messages-2.png)  
-  ![custom_alert_message](screenshots/3-value-and-ip.png)  
+  ![alert](screenshots/3-notice-alert.png)  
 
 * [x] A screenshot of the email notification.  
-  ![warning](screenshots/3-warning-notice.png)  
-  ![alert](screenshots/3-alert-notice.png)  
-  ![nodata](screenshots/3-nodata-notice.png)  
+  ![warning](screenshots/3-notice-warning.png)  
+  ![nodata](screenshots/3-notice-nodata.png)  
 
 ###  Two scheduled downtimes for this monitor: (Bonus)
 * [x] One that silences it from 7pm to 9am daily on M-F.  
@@ -178,28 +181,32 @@ instances:
   ![weekend_downtime](screenshots/3-weekend-downtime-1.png)  
   ![weekend_downtime_2](screenshots/3-weekend-downtime-2.png)  
 * [x] A screenshot of the email notification.   
-  ![downtime_notice](screenshots/3-downtime-notice.png)  
+  ![downtime_notice](screenshots/3-notice-downtime.png)  
 
 ---
 # 4. Collecting APM Data:
 ### My application settings for APM
-```python
-#Your code here
+```Dockerfile
+pip3 --no-cache-dir install mezzanine==4.3.1 psycopg2-binary==2.7.5 gunicorn==19.9.0 ddtrace setproctitle
 ```
 ```python
-#Your code here
+DATADOG_TRACE = {
+    'AGENT_HOSTNAME': os.getenv('DOCK_DEFAULT_GW'),
+    'DEFAULT_SERVICE': 'testweb',
+    'TAGS': {'env': 'dev'},
+}
 ```
 ### Fully instrumented application 
-  [Application](app)  
   [Dockerfile](Dockerfile)  
+  [Application](app)  
   [docker-compose](docker-compose.yml)  
 
 ### Difference between a Service and a Resource (Bonus)
 ```text
-A service is a set of processes that do the same job. A Resource is a particular action for a service.
-For example, a typical web application consists of three services; web, application, database.
+A service is a cluster of processes that do the same task. A Resource is a particular action for a service.
+For example, a typical web application consists of three services; web, application, SQL database.
 A web/app service has resources such as a canonical URL and a handler function.
-The query is also categoried as a resource for the SQL database service.
+A SQL database service's resource is the query itself.
 ```
 ### A screenshot of a Dashboard with both APM and Infrastructure Metrics.
   ![APM_dashboard](screenshots/4-APM-infra-metrics.png)  
