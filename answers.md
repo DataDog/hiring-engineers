@@ -537,16 +537,21 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 >
-1. Monitor the status of the office coffee machine each morning before getting in(water, coffee beans, filters, milk or others) or the vending machine for a Coke...![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
-- Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
-![aquarium](https://i.imgur.com/CLZHJftm.jpg)
-- Monitor my wife's plants in the house and suggest water them...
-- Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
-- Check the online/physical status of your team (if they are at the office or working from home), overlaid in a map (can you do that 
-- Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
-- Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
-- Monitor the backup/restore process of different cloud/on-prem machines
-- Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
+- Monitor the status of the office coffee machine each morning before getting in(water, coffee beans, filters, milk or others) or the vending machine for a Coke...
+>
+>![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
+>
+> - Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
+>
+>![aquarium](https://i.imgur.com/CLZHJftm.jpg)
+>
+> - Monitor my wife's plants in the house and suggest water them...
+> - Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
+> - Check the online/physical status of your team (if they are at the office or working from home), overlaid that in a map. 
+> - Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
+> - Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
+> - Monitor the backup/restore process of different cloud/on-prem machines
+> - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
 
 Links and important stuff:
 --------------------------
