@@ -52,7 +52,7 @@ postgres (2.2.2)
     Average Execution Time : 15ms
 ```
 
-* [x] Postgresql integration on the Integration Page  
+* [x] Postgresql integration metrics  
   ![postgres Integration 2](screenshots/1-postgres-integration.png)
 
 
@@ -134,7 +134,7 @@ instances:
   ![metric_rolledup](screenshots/2-metric-rolledup.png)  
   
 * [x] The whole script to create the Timeboard  
-  [create_my_custom_timeboard,py](datadog/scripts/create_my_custom_timeboard.py) 
+  [create_my_custom_timeboard,py](datadog/scripts/create_my_custom_dashboard.py) 
 
 ### Dashboard screenshots
 * [x] Set the Timeboard's timeframe to the past 5 minutes  
@@ -157,7 +157,7 @@ instances:
 * [x] "Alert" with threshold of 800 over the past 5 minutes.  
 * [x] "Warning" with threshold of 500 over the past 5 minutes.  
   ![warning_alert](screenshots/3-monitor-alert-warning.png)  
-* [x] Notify myself if there is No Data over the past 10 minutes.  
+* [x] Notify if there is No Data over the past 10 minutes.  
   ![nodata](screenshots/3-monitor-nodata.png)  
 
 ### Metric Monitor message for my custom metric.
@@ -171,7 +171,7 @@ instances:
   ![value_ip](screenshots/3-value-ip.png)  
   
 * [x] A screenshot of the email notification.
-  (Alert, warning, nodata triggers)  
+  (Alert, Warning, Nodata triggers)  
   ![alert](screenshots/3-notice-alert.png)  
   ![warning](screenshots/3-notice-warning.png)  
   ![nodata](screenshots/3-notice-nodata.png)  
@@ -199,6 +199,17 @@ DATADOG_TRACE = {
     'TAGS': {'env': 'dev'},
 }
 ```
+```text
+# docker ps
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS                    PORTS                              NAMES
+9dd7eb490f8c        testweb_datadog:test   "/docker-entrypoint.…"   15 minutes ago      Up 15 minutes (healthy)   8125/udp, 0.0.0.0:8126->8126/tcp   hiring-engineers_datadog_1
+9ca24c8cd096        testweb_app:test       "/docker-entrypoint.…"   15 minutes ago      Up 15 minutes             0.0.0.0:8000->8000/tcp             hiring-engineers_app_1
+bba471dab883        testweb_web:test       "/docker-entrypoint.…"   15 minutes ago      Up 15 minutes             0.0.0.0:80-81->80-81/tcp           hiring-engineers_web_1
+6f0feea712a6        testweb_db:9.6         "docker-entrypoint.s…"   15 minutes ago      Up 15 minutes             0.0.0.0:5432->5432/tcp             hiring-engineers_db_1
+# docker exec -it 9dd env | grep APM
+DD_APM_ENABLED=true
+```
+
 ### Fully instrumented application 
   [Dockerfile](Dockerfile)  
   [Application](app)  
@@ -220,7 +231,20 @@ https://p.datadoghq.com/sb/dd9566751-7d9276b04920e50def2e02d7f7f25257
 # 5. Final Question:
 ### Is there anything creative you would use Datadog for?
 ```text
-#Your Sentence here
+      I would definitely urge the amazing monitoring product to connect to IoT network in the home electric appliances.
+    if Datadog Agent is installed into a washing machine, for instance, It can notify the user when the washing job has been done.
+    The Agent even can send an alert to the user when its metrics suggest the machine is about to be broken.
+    When installed into a robot vacuum cleaner, the Agent can have statistical metrics about how dirty the room was when the cleaning job has been done.
+    The user can switch the light bulb before it expires because the agent tells its weakened status.
+      All the metrics mentioned above can be collected and monitored through one simple website "Datadog."
+    The user sees the metrics wherever/whenever s/he is; the quality of life of the user become much higher thanks to controlling the home more comfortably.
+	  Talking about profitability, the company can earn its revenue through the Agent license installed in the appliances.
+	However, most people are not willing to pay dozens of dollars a month for electric appliances.
+	The target should be those who are extremely rich such as living in the luxury apartment in New York downtown.
+	In other words, it is  those who are rich enough to save more time by spending more money.
+	Although the Datadog is not a home electricity company, I assume it is important that the Agent keeps to be familiar with the IoT,
+	which would generate a big opportunity in the near future.
+	
 ```
 
 ---
