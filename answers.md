@@ -1,21 +1,25 @@
 My Answers
 ==========
-> First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
-> 
-> I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
->
-> Let's dive into it...
-
+ First, let me thank you this opportunity. I had fun answering the questions and learning a bit more about Datadog. It also gave me a chance to play Space Invaders again :)
+ 
+ I used a simple straightforward approach to each challenge and learn that component deep enough to be able to give an educated guess while using some of the tooling I already know *(ex.: docker, python, postman and others).*
 
 Prerequisites - Setup the environment
 -------------------------------------
-> I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
-> I used a docker compose file to generate my container/images and spin up the necessary machines for this test. Mainly I have two machines in docker:
-> 
->  + Postgres (Database Machine)
->  + Adminer (Managing Database)
->
-> Here is the docker compose file ([stack.yml](../solutions-engineer/docker/stack.yml)):
+### Tasks required
+
+  [x] Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+  
+  [x] Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+
+
+I used a containerized approach as this is easy to setup and consumes less laptop resources. Nevertheless I tested everything in Vagrant/Puppet. If you want I can provide the scripts and information regarding that.
+I used a docker compose file to generate my container/images and spin up the necessary machines for this test. Mainly I have two machines in docker:
+ 
+   + Postgres (Database Machine)
+  + Adminer (Managing Database)
+
+Here is the docker compose file ([stack.yml](../solutions-engineer/docker/stack.yml)):
 
 ```
 version: '2'
@@ -44,29 +48,24 @@ networks:
         external: true
 ```
 
-> Docker compose to the rescue...
+ Docker compose to the rescue...
 
 ![Docker Compose](https://i.imgur.com/GmdSD7s.png)
 
-> I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
+ I created a container for Postgres Database and I shared the same network with the Database Adminer image. Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. 
 
 ![Adminer](https://i.imgur.com/U6rA3kM.png)
->
-> Adminer is available for [MySQL](https://www.mysql.com/downloads/), [MariaDB](https://mariadb.org/download/), [PostgreSQL](https://www.postgresql.org/download/), [SQLite](https://www.sqlite.org/download.html), [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [Oracle](https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html), [Firebird](https://www.firebirdsql.org/en/server-packages/), [SimpleDB](https://aws.amazon.com/simpledb/), 
-[Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [MongoDB](https://www.mongodb.com/download-center).
->
-> This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
 
-- Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+ This way I can quickly spin up other databases for testing and manage it from a central endpoint (localhost:8181 - I mapped a local port to the management port). 
 
 ![local_machine](https://i.imgur.com/YgSmlRt.png)
 
-> I use the following command to get into the docker container (Postgres):
+ I use the following command to get into the docker container (Postgres):
 
 ```
 → docker exec -it env_db_1 /bin/bash
 ```
-> I also installed the following packages inside the container:
+ I also installed the following packages inside the container:
 
 ```
 → apt-get update
@@ -76,23 +75,30 @@ networks:
 → apt-get install curl
 → pip install flask
 ```
-> Now let's tackle the questions!
 
 Collecting Metrics:
 -------------------
-- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Tasks required
 
-> I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
+  [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
+  
+  [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.    
+  
+  [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+  [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+  
+  [x] Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+    
+##Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
 
 ```
 → DD_API_KEY=54464b588c296912a22ab3aba82e94f9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-> vi datadog.yaml
-
-![vidatadog.yaml](https://i.imgur.com/VzUocPv.png)
-
->Tag Configuration
+Tag Configuration
 
 ![Configuration](https://i.imgur.com/vZG7cap.png)
 
@@ -104,17 +110,18 @@ tags:
     - database:postgres
     - role:dummy_test
 ```
->Host map
+Host map
 
 ![Host with Tags](https://i.imgur.com/ZPalogT.png)
 
-> Modern infrastructure is constantly in flux. Auto-scaling servers die as quickly as they’re spawned, and containers come and go with even greater frequency. With all of these transient changes, the signal-to-noise ratio in monitoring data can be quite low.
-> Tagging your metrics enables you to reorient your monitoring along any lines you choose. By adding tags to your metrics you can observe and alert on metrics from different availability zones, instance types, software versions, services, roles—or any other level you may require.
-> **Tags** allow you to filter and group your datapoints to generate exactly the view of your data that matters most. They also allow you to aggregate you metrics on the fly, without changing how they are reported and collected.
+ Modern infrastructure is constantly in flux. Auto-scaling servers die as quickly as they’re spawned, and containers come and go with even greater frequency. With all of these transient changes, the signal-to-noise ratio in monitoring data can be quite low.
+ Tagging your metrics enables you to reorient your monitoring along any lines you choose. By adding tags to your metrics you can observe and alert on metrics from different availability zones, instance types, software versions, services, roles—or any other level you may require.
+ 
+ **Tags** allow you to filter and group your datapoints to generate exactly the view of your data that matters most. They also allow you to aggregate you metrics on the fly, without changing how they are reported and collected.
 
-- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-> I installed and configured PostgreSQL and the respective integration. Really simple and easy following the instructions.
+ I installed and configured PostgreSQL and the respective integration. Really simple and easy following the instructions.
  
 ![PostgresIntegration](https://i.imgur.com/4zQUJ2Y.png)
 
@@ -122,13 +129,13 @@ tags:
 ![database configuration - user grants](https://i.imgur.com/LfVUUVP.png)
 ![database validation](https://i.imgur.com/zBgwsf1.png)
 
-- Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
 
-> Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, it's recommended to write an Integration.
-> 
-> In this case I created a simple python app (The Datadog Agent installation has its own embedded copy of Python) and a configuration file in yaml following the steps in this [link](https://docs.datadoghq.com/developers/agent_checks/).
->
-> **/etc/datadog-agent/checks.d/mycheck.py**
+ Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, it's recommended to write an Integration.
+ 
+ In this case I created a simple python app (The Datadog Agent installation has its own embedded copy of Python) and a configuration file in yaml following the steps in this [link](https://docs.datadoghq.com/developers/agent_checks/).
+
+/etc/datadog-agent/checks.d/mycheck.py
 
 ```
 __version__ = "1"
@@ -141,7 +148,7 @@ class my_metricCheck(AgentCheck):
         self.gauge('my_metric', randint(0, 1000))
 ```
 
-> **/etc/datadog-agent/conf.d/mycheck.yaml**
+ /etc/datadog-agent/conf.d/mycheck.yaml
 
 ```
 init_config:
@@ -150,13 +157,13 @@ instances:
     [{}]
 ```
 
-> I also found useful information on custom checks (like checking for available licenses) in this [link](https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a).
+ I also found useful information on custom checks (like checking for available licenses) in this [link](https://blog.devopscomplete.com/writing-a-custom-datadog-agent-check-7367c98ffc5a).
 
 
-**- Change your check's collection interval so that it only submits the metric once every 45 seconds.**
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-> I changed the *mycheck.yaml* file with the min_connection_interval equal to 45. As I do not have multiple instances of this check, it simply goes like the code below. I could also add the min_collection_interval at the init_config level:
-
+ I changed the *mycheck.yaml* file with the min_connection_interval equal to 45. As I do not have multiple instances of this check, it simply goes like the code below. 
+ 
 ```
 init_config:
 
@@ -165,38 +172,53 @@ instances:
         min_collection_interval: 45
     }]
 ```
-**- Bonus Question: Can you change the collection interval without modifying the Python check file you created?**
-> Yes?, You can change the collection interval at the init_config level or at the instance level in the Python check file
+## Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+
+ Yes. You can change it easily in the configuration file .yml of the same name. Similar to what I did. For Agent 6, min_collection_interval must be added at an instance level, and can be configured individually for each instance.
 
 Visualizing Data:
 -----------------
-- Utilize the Datadog API to create a Timeboard that contains:
+### Tasks required
+
+  [x] Utilize the Datadog API to create a Timeboard that contains - Your custom metric scoped over your host.
+  
+  [x] Any metric from the Integration on your Database with the anomaly function applied.
+  
+  [x] Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+  
+ [x] Once this is created, access the Dashboard from your Dashboard List in the UI
  
-> I used Postman(already use it extensively...) to create the payload below and test the datadog API.
->
-> I downloaded the Datadog Postman Collection (pre-configured API call templates, available [here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
+ [x] Set the Timeboard's timeframe to the past 5 minutes Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+ [x] Bonus Question: What is the Anomaly graph displaying? 
+  
+## Utilize the Datadog API to create a Timeboard that contains:
+ 
+ I used Postman(already use it extensively...) to create the payload below and test the datadog API.
+
+ I downloaded the Datadog Postman Collection (pre-configured API call templates, available [here](https://help.datadoghq.com/hc/en-us/article_attachments/360002499303/datadog_collection.json).  
 
 ![postman](https://cl.ly/1t39190x0A0p/Screen%252520Recording%2525202018-08-03%252520at%25252008.58%252520AM.gif)
 
-> Example of usage of the API - Get all Active metrics
+ Example of usage of the API - Get all Active metrics
  
 ![activemetrics](https://i.imgur.com/sCPKdt2.png)
 
-> For creating the Timeboard I used the "Create a Timeboard" POST method as you see below:
+ For creating the Timeboard I used the "Create a Timeboard" POST method as you see below:
 
 ![](https://i.imgur.com/uyE3Aox.png)
  
-> And I changed the body of the request with the following code:
+ And I changed the body of the request with the following code:
 
 ![bodychangeAPI](https://i.imgur.com/qqrWnVm.png)
 
-- Your custom metric scoped over your host.
+## Your custom metric scoped over your host.
 
 - Any metric from the Integration on your Database with the anomaly function applied.
 
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-> Below is the body of the JSON payload I used to create the timeboard via API:
+ Below is the body of the JSON payload I used to create the timeboard via API:
 
 ```
 {
@@ -241,60 +263,67 @@ Visualizing Data:
 ```
 
 
-> All of the seasonal algorithms (robust and agile) may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. As I did not have such amount of data I used the basic. Basic uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends.
->
-> anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}, 'basic', 2)"
+ All of the seasonal algorithms (robust and agile) may use up to a couple of months of historical data when calculating a metric’s expected normal range of behavior. By using a significant amount of past data, the algorithms are able to avoid giving too much weight to abnormal behavior that might have occurred in the recent past. As I did not have such amount of data I used the basic. Basic uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends.
+
+ anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}, 'basic', 2)"
 
 ![](https://i.imgur.com/MlN6gmV.png)
 ![](https://i.imgur.com/vDl1vJL.png)
-> 
-> Rollup custom metric 
+ 
+ Rollup custom metric 
 
 ![rollup custom metric](https://i.imgur.com/Izx1vWi.png)
 ![my_metric](https://i.imgur.com/NhJZD7S.png)
 
-- Once this is created, access the Dashboard from your Dashboard List in the UI:
+## Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ![Dashboard List](https://i.imgur.com/9trlWGH.png)
 
-- Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+## Set the Timeboard's timeframe to the past 5 minutes. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 ![@notation for sharing](https://i.imgur.com/YCCCFB5.png)
 ![email received](https://i.imgur.com/iHYjpRV.png)
 
-- Bonus Question: What is the Anomaly graph displaying?
+## Bonus Question: What is the Anomaly graph displaying?
 
-> Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
->
-> For example, anomaly detection can help you discover when your web traffic is unusually low on a weekday afternoon—even though that same level of traffic would be perfectly normal later in the evening. Or consider a metric measuring the number of logins to your steadily-growing site. As the number is increasing every day, any threshold would be quickly outdated, whereas anomaly detection can quickly alert you if there is an unexpected drop—potentially indicating an issue with the login system.
->
-> To provide deeper context for dynamic metrics like these, there is an anomaly detection in Datadog. By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. 
->
-> Check the example below:
-> ![anomaly](https://i.imgur.com/Bd5HOm1.png)
-> As the service deviated a lot(more than 2 deviations) from the expected behavior, it triggered the alert.
->
-> Anomaly detection monitors provide both “Historical Context” so that you can see how the metric behaved in the past, as well as a separate “Evaluation Window” that is longer than the alerting window to provide you some immediate context. This should provide some insight into what the anomalies algorithm takes into account when calculating the bounds.
->
-> Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results.
+ Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+
+
+ In my case I used the "postgresql.bgwriter.checkpoints_timed". This
+measures the number of scheduled checkpoints that were performed. Checkpoints are periodic maintenance operations the database performs to make sure that everything it’s been caching in memory has been synchronized with the disk. As I did not have much traffic going into the database the result is very constant and not deviating from the periodic bursts.
+
+![anomaly](https://i.imgur.com/Zq1FmkM.png)
+
+ Keep in mind that anomalies uses the past to predict what is expected in the future, so using anomalies on a new metric, for which you have just started collecting data, may yield poor results, in my case I used a basic approach.
 
 
 Monitoring Data
 -------------------------------
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+### Tasks required
 
-- Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+  [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-- Warning threshold of 500
-- Alerting threshold of 800
-- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+  [x] Warning threshold of 500
+  [x] Alerting threshold of 800
+  [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
+  
+  [x] Please configure the monitor’s message so that it will send you an email whenever the monitor triggers.
 
-> I just created a metric monitor from the UI with the following parameters:
+  [x] Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+  
+  [x] Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+  
+  [x] When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+  [x] Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun.
+
+ I created a metric monitor from the UI with the following parameters:
+ 
+![status and history monitor](https://i.imgur.com/Jodp9UH.png)
  
 ![MetricMonitor](https://i.imgur.com/KM6vzfs.png)
 
-Please configure the monitor’s message so that it will:
+##Please configure the monitor’s message so that it will:
 
 - Send you an email whenever the monitor triggers.
 
@@ -305,82 +334,60 @@ Please configure the monitor’s message so that it will:
 
 ![Messages notification](https://i.imgur.com/YBVTxlI.png)
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+# When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![email](https://i.imgur.com/iKkKBcR.png)
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
+# Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 - One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 
-> Evening Weekdays
+Evening Weekdays
 
 ![Weekdays](https://i.imgur.com/jO2vWX5.png)
->Weekend
+Weekend
 
 ![Weekend](https://i.imgur.com/9eNHux1.png)
 
->Manage Downtime
+Manage Downtime
 
 ![Downtime](https://i.imgur.com/WQlfTGi.png)
+I could have used the API to define [Downtime](https://docs.datadoghq.com/api/?lang=python#downtimes) also.
 
-- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+# Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ![Adminer](https://i.imgur.com/lbUzPnD.png)
 ![Adminer](https://i.imgur.com/FQeb2Rx.png)
 
 Collecting APM Data:
 --------------------
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+### Tasks required
 
-```
-from flask import Flask
-import logging
-import sys
+  [x] Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution.
+  
+  [x] Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+  
+  [x] Bonus Question: What is the difference between a Service and a Resource?
+  
+  [x] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+  
+  [x] Please include your fully instrumented app in your submission, as well.
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
 
-app = Flask(__name__)
+Ddtrace provides tracing support for many Python web frameworks. For each framework ddtrace supports:
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+ - tracing of requests: trace requests through middleware and back
+ - distributed tracing: trace requests across application boundaries
+ - automatic error tagging: spans will be marked with any errors that occur
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```    
-    
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
-> ddtrace provides tracing support for many Python web frameworks. For each framework ddtrace supports:
->
-> - tracing of requests: trace requests through middleware and back
-> - distributed tracing: trace requests across application boundaries
-> - automatic error tagging: spans will be marked with any errors that occur
->
-> I created two simple apps based on the Flask example. One will use the ddtrace-run and the other will use the middleware.
-> 
-> | App Name    | method        | port  |
-> | ------------- |:-------------:| -----:|
-> | hello.py      | ddtrace-run   |   5050|
-> | hey.py        | middleware    |   6060|
-> 
-> For the sake of having some traffic in these 2 apps I used the following commands:
+ I created two simple apps based on the Flask example. One will use the ddtrace-run and the other will use the middleware.
+ 
+ | App Name    | method        | port  |
+ | ------------- |:-------------:| -----:|
+ | hello.py      | ddtrace-run   |   5050|
+ | hey.py        | middleware    |   6060|
+ 
+For the sake of having some traffic in these 2 apps I used the following commands:
 
 ```
  (one app) 
@@ -395,7 +402,7 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 ```
 ![](https://i.imgur.com/1GpKK4N.png)
 
-> **hello.py -> ddtrace-run** 
+ **hello.py - ddtrace-run** 
 
 ```
 from flask import Flask
@@ -431,7 +438,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
-> **hey.py -> Insert Middleware**
+ **hey.py - Insert Middleware**
 
 ```
 from flask import Flask
@@ -471,87 +478,83 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='6060')
 ```
-> The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So I needed to:
->
-> - Have the OSX Datadog Agent.
->
-> - Download the latest OSX Trace Agent release.
->
-> - Run the Trace Agent using the Datadog Agent configuration.
+The APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needs to be run manually on the side. So I needed to:
+
+ - Have the OSX Datadog Agent.
+
+ - Download the latest OSX Trace Agent release.
+
+ - Run the Trace Agent using the Datadog Agent configuration.
 
 ```
 → sudo ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
 ```
-> In terms of execution I ran the following commands:
+In terms of execution I ran the following commands:
 
 ```
 → ddtrace-run python hello.py
 → python hey.py
 ```
 
-Bonus Question: What is the difference between a Service and a Resource?
-> **Service**
->
-> A "Service" is the name of a set of processes that work together to provide a feature set. For example, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
->
-> These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
->
-> **Resource**
->
-> Most of the components of your infrastructure can be thought of as resources. At the highest levels, each of your systems that produces useful work likely relies on other systems. For instance, the Apache server in a LAMP stack relies on a MySQL database as a resource to support its work of serving requests. One level down, MySQL has unique resources that the database uses to do its work, such as the finite pool of client connections. At a lower level still are the physical resources of the server running MySQL, such as CPU, memory, and disks.
-Thinking about which systems produce useful work, and which resources support that work, can help you to efficiently get to the root of any issues that surface. When an alert notifies you of a possible problem, the following process will help you to approach your investigation systematically.
->
-> A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
->
-> The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
->
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+## Bonus Question: What is the difference between a Service and a Resource?
+ **Service**
 
-> [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694) - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
-> 
-> | 			     | Timeboards        | Screenboards  |
-> | ------------- |:-------------:| -----:|
-> | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope|
-> | Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
+ A "Service" is the name of a set of processes that work together to provide a feature set. For example, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
+
+ These services are defined/tagged by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
+
+ **Resource**
+
+ Most of the components of an infrastructure can be thought of as resources. At the highest levels, each of your systems that produces useful work likely relies on other systems. For instance, the Apache server in a LAMP stack relies on a MySQL database as a resource to support its work of serving requests. One level down, MySQL has unique resources that the database uses to do its work, such as the finite pool of client connections. At a lower level still are the physical resources of the server running MySQL, such as CPU, memory, and disks.
+Thinking about which systems produce useful work, and which resources support that work, can help identify the root of any issues that surface. 
+
+At a very basic level we can think of resources as the units of work that provide a service or when you drill down a service you get the resources that help that service run.
+
+## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+ [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694) - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
+ 
+ > | 			     | Timeboards        | Screenboards  |
+ > | ------------- |:-------------:| -----:|
+ > | Time Scope    | All graphs share same time scope   |   All graphs can have individual time scope|
+ > | Layout        | Graphs appear in a fixed grid	    |   Graphs are placed anywhere you like on the canvas|
 > | Can Share Graphs Individually	    | Yes   |   No|
 > | Can Share the Entire Dashboard	    | **No**   |   Yes|
 > | Sharing can be Read-Only	    | Yes   |   Yes|
->
-> Screenboard
->
+
+ Screenboard
+
 ![Screeboard](https://i.imgur.com/7fTooqb.png)
-> 
-> Timeboard 
+ 
+ Timeboard 
 
 ![Timeboard](https://i.imgur.com/S9j6Col.png)
 
 Please include your fully instrumented app in your submission, as well.
 
-> [hello.py](../solutions-engineer/python/hello.py)
-> 
-> [hey.py](../solutions-engineer/python/hey.py)
+ [hello.py](../solutions-engineer/python/hello.py)
+ 
+ [hey.py](../solutions-engineer/python/hey.py)
 
 Final Question:
 ---------------
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-Is there anything creative you would use Datadog for?
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
->
-- Monitor the status of the office coffee machine each morning before getting in(water, coffee beans, filters, milk or others) or the vending machine for a Coke...
->
->![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
->
-> - Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
->
->![aquarium](https://i.imgur.com/CLZHJftm.jpg)
->
-> - Monitor my wife's plants in the house and suggest water them...
-> - Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
-> - Check the online/physical status of your team (if they are at the office or working from home), overlaid that in a map. 
-> - Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
-> - Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
-> - Monitor the backup/restore process of different cloud/on-prem machines
-> - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
+ - Monitor the status of the office coffee machine each morning before getting in(water, coffee beans, filters, milk or others) or the vending machine for a Coke...
+
+![coffee machine](https://i.imgur.com/hnl5OEBm.jpg)
+
+ - Monitor the automatic feeding machine for my daughters aquarium (this one will be awesome to decrease the mortality rate...) :) 
+
+![aquarium](https://i.imgur.com/CLZHJftm.jpg)
+
+ - Monitor my wife's plants in the house and suggest water them...
+ - Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
+ - Check the online/physical status of your team (if they are at the office or working from home), overlaid that in a map. 
+ - Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
+ - Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
+ - Monitor the backup/restore process of different cloud/on-prem machines
+ - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
 
 Links and important stuff:
 --------------------------
@@ -577,19 +580,19 @@ Suggestions & Feedback:
 -----------------------
 ![BugsShirt](https://i.imgur.com/JCEHo2Dm.png)
 
-> I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are this limitations on the trial or a random feature?
+ I had a strange occurence when I was scheduling the downtime. Even if I scheduled a recurring downtime with no end date there is a date that my two scheduled downtimes were disable. Are this limitations on the trial or a random feature?
 
 ![Bug](https://i.imgur.com/hnA4KOU.png)
 
 ![Bug](https://i.imgur.com/Ip6Y66a.png)
 
-> I missed some features like:
->
-> - Responsive design on the website so I could check on a mobile device
-> - Mobile native app for on the go monitoring
-> - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
-> - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
-> - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map(connected with openmaps or google maps geoAPI). In more complex scenarios you could even see ping times or other metrics between data centers for example.
+ I missed some features like:
+
+ - Responsive design on the website so I could check on a mobile device
+ - Mobile native app for on the go monitoring
+ - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
+ - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
+ - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map(connected with openmaps or google maps geoAPI). In more complex scenarios you could even see ping times or other metrics between data centers for example.
 
 About Me
 --------
@@ -604,13 +607,13 @@ I Love gaming, running, learning, reading, technology and my family of course(th
   <img />
 </p>
 
-> **APM Invaders Video**
+ **APM Invaders Video**
 
 - Example of ddtrace trace.wrap() code instrumentation in a cool game. 
 
 [![APM Invaders](https://i.ytimg.com/vi/Wj-zdkiwo2Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Wj-zdkiwo2Q&t=2s)
 
-Hope to be part of the team!
+##Hope to be part of the team!
 ![Team](https://datadog-prod.imgix.net/img/blog/engineering/being-a-solutions-engineer-at-datadog/se_group.jpg?auto=format&fit=max&w=847&dpr=2)
 
 
