@@ -8,7 +8,7 @@ The [deploy_local.sh](deploy_local.sh) launches four containers (web, app, db, a
 
 After launching, access http://localhost to see the app working.   
   ** Containers cannot cooperate if`YOUR_LOCAL_IP` = 127.0.0.1. It should be your real private IP like 192.168.0.5 or 10.4.167.168.  
-  ** Docker host ip for APM is configured to 172.17.0.1 as default. Export `Docker_Default_GW` if needed.  
+  ** Docker host ip for APM is configured to 172.17.0.1 as default. Export `DOCK_DEFAULT_GW` if needed.  
 
 ---
 # 1. Collecting Metrics
