@@ -64,17 +64,17 @@ networks:
 > I use the following command to get into the docker container (Postgres):
 
 ```
-docker exec -it env_db_1 /bin/bash
+→ docker exec -it env_db_1 /bin/bash
 ```
 > I also installed the following packages inside the container:
 
 ```
-apt-get update
-apt-get install vim # cannot live without it...
-apt-get install python
-apt-get install pip
-apt-get install curl
-pip install flask
+→ apt-get update
+→ apt-get install vim # cannot live without it...
+→ apt-get install python
+→ apt-get install pip
+→ apt-get install curl
+→ pip install flask
 ```
 > Now let's tackle the questions!
 
@@ -85,7 +85,7 @@ Collecting Metrics:
 > I installed the datadog agent directly in the postgres machine using the curl command. Could have generated a docker image with the agent and gather the metrics/traces remotely but I figured that this way would be easier and could demonstrate my point.
 
 ```
-DD_API_KEY=54464b588c296912a22ab3aba82e94f9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+→ DD_API_KEY=54464b588c296912a22ab3aba82e94f9 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 > vi datadog.yaml
@@ -269,7 +269,11 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 >
 > For example, anomaly detection can help you discover when your web traffic is unusually low on a weekday afternoon—even though that same level of traffic would be perfectly normal later in the evening. Or consider a metric measuring the number of logins to your steadily-growing site. As the number is increasing every day, any threshold would be quickly outdated, whereas anomaly detection can quickly alert you if there is an unexpected drop—potentially indicating an issue with the login system.
 >
-> There is an anomalies function in the Datadog query language. When you apply this function to a series, it returns the usual results along with an expected “normal” range.
+> To provide deeper context for dynamic metrics like these, there is an anomaly detection in Datadog. By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends. 
+>
+> Check the example below:
+> ![anomaly](https://i.imgur.com/Bd5HOm1.png)
+> As the service deviated a lot(more than 2 deviations) from the expected behavior, it triggered the alert.
 >
 > Anomaly detection monitors provide both “Historical Context” so that you can see how the metric behaved in the past, as well as a separate “Evaluation Window” that is longer than the alerting window to provide you some immediate context. This should provide some insight into what the anomalies algorithm takes into account when calculating the bounds.
 >
@@ -379,14 +383,14 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 > For the sake of having some traffic in these 2 apps I used the following commands:
 
 ```
-> (one app) 
-> → ab -n 10000 -c 100 'http://127.0.0.1:5050/api/trace'
+ (one app) 
+ → ab -n 10000 -c 100 'http://127.0.0.1:5050/api/trace'
 
-> (both apps) 
-> → ab -n 10000 -c 100 'http://127.0.0.1:5050/' | ab -n 10000 -c 100 'http://127.0.0.1:6060/'
+ (both apps) 
+ → ab -n 10000 -c 100 'http://127.0.0.1:5050/' | ab -n 10000 -c 100 'http://127.0.0.1:6060/'
 
-> (execute 10 times both apps) 
-> → repeat 10 {ab -n 10000 -c 100 'http://127.0.0.1:5050/' | ab -n 10000 -c 100 'http://127.0.0.1:6060/'; sleep 5}
+ (execute 10 times both apps) 
+ → repeat 10 {ab -n 10000 -c 100 'http://127.0.0.1:5050/' | ab -n 10000 -c 100 'http://127.0.0.1:6060/'; sleep 5}
 
 ```
 ![](https://i.imgur.com/1GpKK4N.png)
@@ -476,7 +480,7 @@ if __name__ == '__main__':
 > - Run the Trace Agent using the Datadog Agent configuration.
 
 ```
-sudo ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
+→ sudo ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yaml
 ```
 > In terms of execution I ran the following commands:
 
@@ -488,7 +492,7 @@ sudo ./trace-agent-darwin-amd64-6.5.0 -config /opt/datadog-agent/etc/datadog.yam
 Bonus Question: What is the difference between a Service and a Resource?
 > **Service**
 >
-> A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
+> A "Service" is the name of a set of processes that work together to provide a feature set. For example, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
 >
 > These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
 >
@@ -501,8 +505,6 @@ Thinking about which systems produce useful work, and which resources support th
 >
 > The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
 >
-> These resources can be found after clicking on a particular service.
-
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 > [My Dashboard](https://p.datadoghq.com/sb/271985619-b37dd043701a21f66b0975d7ee572694) - I had to create a screenboard in order to generate the public url for sharing. I could not use the Timeboard I had previously created. Check table below.
@@ -541,7 +543,7 @@ Is there anything creative you would use Datadog for?
 - Monitor my wife's plants in the house and suggest water them...
 - Dashboard for Music Concert management, number of people, status of all the systems, with alerts if something fails (PA, lights, pyro or other)
 - Check the online/physical status of your team (if they are at the office or working from home), overlaid in a map (can you do that 
-- Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others - **IoT feeds**
+- Monitoring home automation Systems with Alexa for example and live feed video, fire and intrusion alarms or others. This can be extremely important for people with hearing disabilities to receive a phone notification if anything is wrong and their at home for example - **IoT feeds**
 - Smart City sensors like parking, garbage collection, public lighting - **IoT feeds** 
 - Monitor the backup/restore process of different cloud/on-prem machines
 - Monitor hazard areas, delayed flights, affected areas, police reports and social media reports (ex.: Hurricane Michael) - **Social feeds**
@@ -582,7 +584,7 @@ Suggestions & Feedback:
 > - Mobile native app for on the go monitoring
 > - Mobile monitoring: BYOD as part of the infrastructure, Datadog agent in the mobile
 > - Easier way to delete the dashboard created using the API, I should be able to delete the dashboard inside of "himself" instead of jumping to the dashboard list
-> - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map. In more complex scenarios you could even see ping times or other metrics between data centers for example.
+> - Define maps or other images as the background of a graph. In the case of maps it could be a tag on the server on-prem and I could see my infra in a map(connected with openmaps or google maps geoAPI). In more complex scenarios you could even see ping times or other metrics between data centers for example.
 
 About Me
 --------
