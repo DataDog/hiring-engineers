@@ -398,6 +398,9 @@ For the sake of having some traffic in these 2 apps I used the following command
 
  (execute 10 times both apps) 
  → repeat 10 {ab -n 10000 -c 100 'http://127.0.0.1:5050/' | ab -n 10000 -c 100 'http://127.0.0.1:6060/'; sleep 5}
+ 
+ (execute 10 times just hello and the different endpoints)
+ → repeat 10 {ab -n 100 -c 100 'http://127.0.0.1:5050/' | ab -n 100 -c 100 'http://127.0.0.1:5050/api/apm' | ab -n 100 -c 100 'http://127.0.0.1:5050/api/trace'; sleep 5}
 
 ```
 ![](https://i.imgur.com/1GpKK4N.png)
