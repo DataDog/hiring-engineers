@@ -385,7 +385,7 @@ Ddtrace provides tracing support for many Python web frameworks. For each framew
  | App Name    | method        | port  |
  | ------------- |:-------------:| -----:|
  | [hello.py](../solutions-engineer/python/hello.py)     | ddtrace-run   |   5050|
- | [hey.py](../solutions-engineer/python/hello.py)        | middleware    |   6060|
+ | [hey.py](../solutions-engineer/python/hey.py)        | middleware    |   6060|
  
 For the sake of having some traffic in these 2 apps I used the following commands:
 
