@@ -203,7 +203,7 @@ Fortunately, we can schedule downtimes that make sense per each monitor.
 Infrastructure monitoring is a great start down the path of improving your overall performance. Application performance monitoring is the other half of the picture. Datadog completes your full monitoring solution with it’s final key piece: APM. 
 
 To fully realize these values, we need to instrument Datadog’s APM solution on an application. 
-We will use a simple Python app to post data to our MySQL server: 
+We will use a simple Python app to post data to our MySQL server. find this app's code at: 
 
 in bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
 
