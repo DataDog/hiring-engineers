@@ -63,3 +63,4 @@ My 2 cent: I totally miss end user monitoring. This is the only point where you 
 
 If you include real user monitoring to the monitoring stack, you can answer this question quite easily. Because if you collect the performance from the enduser perspective, you can directly the see when the user engagement drops. And when the user engagement drops, metrics like bounce rate, conversion rate, revenue, etc. will change dramatically. If you look at the following chart, you can see that with higher load times less people (page views) using the page (blue line). And if you correlate this with a business metric, like bounce rate or conversion rate, you can see how this increase (bounce rate) or decrease (counvesion rate) with higher load times. Here is you can see a direct correlation. And if you know where you your users are happy, you know how your infrastructure, apps and services have to perform.
 
+![Load Time Business Metric Correlation](ddimg5.png)
