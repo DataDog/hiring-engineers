@@ -1,0 +1,102 @@
+api_key=ffc569bfd80d03e7c81eff56223e49bc
+app_key=4cb2bc3be5a304ab9e2a32d9ee0e08f9d6b195af
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "graphs" : [
+        {
+          "title": "My_Metric Timeline",
+          "definition": {
+            "events": [],
+            "requests": [
+            {
+              "q": "anomalies(sum:mysql.performance.queries{tech-exercise,host:ubuntu-xenial}, 'basic', 2)",
+              "type": "line",
+              "conditional_formats": [],
+              "aggregator": "avg"
+            }
+            ],
+            "viz": "timeseries"
+          }
+        }
+      ],
+      "title" : "test1Tech Exercise Timeboard",
+      "description" : "Showing off some great monitoring!",
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+
+
+{"q": "anomalies(sum:mongodb.opcounters.queryps{database:mongodb}, 'basic', 2)"}
+
+
+curl  -X POST -H "Content-type: application/jcurl" \
+-d '{
+      "graphs" : [
+        {
+          "title": "Average Memory Free",
+          "definition": {
+              "events": [],
+              "requests": [
+                      {
+                        "q": "anomalies(avg:mysql.performance.cpu_time{tech-exercise,host:ubuntu-xenial}, 'basic', 2)",
+                        "type": "bars",
+                        "style": {
+                          "palette": "cool",
+                          "type": "solid",
+                          "width": "normal"
+                        },
+                        "conditional_formats": [],
+                        "aggregator": "avg"
+                      }
+              ],
+                    "viz": "timeseries",
+                    "autoscale": true,
+                    "xaxis": {}
+          }
+        }
+      ],
+      "title" : "SG-Test_timeboard",
+      "description" : "A Sample Timeboard for Testing",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+
+
+
+
+
+
+
+//this works in GUI!
+{
+  "requests": [
+    {
+      "q": "anomalies(avg:mysql.performance.cpu_time{tech-exercise,host:ubuntu-xenial}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true,
+  "xaxis": {}
+}
+
+
+
+anomalies(avg:mysql.performance.cpu_time{tech-exercise,host:ubuntu-xenial}, 'Basic', 2)
+
+
+{\n  \"graphs\" : [{\n      \"title\": \"My metric by host\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"sum:my_metric{host:gcp.dev}\", \"type\": \"bars\"}\n          ]\n      },\n      \"viz\": \"timeseries\"\n  },{\n      \"title\": \"Queries p/second to the MongoDB, with anomaly detection in place\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"anomalies(sum:mongodb.opcounters.queryps{database:mongodb}, 'basic', 2)\", \"type\": \"line\"}\n          ]\n      },\n      \"viz\": \"timeseries\"\n  },{\n      \"title\": \"My metric rolled up and summed by the past hour\",\n      \"definition\": {\n          \"events\": [],\n          \"requests\": [\n              {\"q\": \"sum:my_metric{host:gcp.dev}.rollup(sum, 3600)\", \"type\": \"line\"}\n          ]\n      },\n      \"viz\": \"query_value\",\n      \"autoscale\": \"true\"\n  }],\n  \"title\" : \"Data Visual Timeboard (postman)\",\n  \"description\" : \"An informative timeboard of the metric 'My Metric'.\",\n  \"read_only\": \"True\"\n}
+
