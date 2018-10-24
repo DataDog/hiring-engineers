@@ -5,12 +5,17 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
 ## Table of Contents: 
 - [Datadog Overview](#datadog-overview)
 - [Set Up the Environment](#set-up-the-environment)
-- Collecting Metrics
+- [Collecting Metrics](#collecting-metrics)
   - [Add tags to Agent Config](#add-tags-to-agent-config)
-  - Install a database
-  - Create a custom Agent check
-  - Change check's collection interval
-  - Bonus Question
+  - [Install a database](#first-we-install-mysql)
+  - [Create a custom Agent check](#create-a-custom-agent-check)
+  - [Change check's collection interval](#adjust-collection-interval-and-bonus)
+  - [Bonus Question](#adjust-collection-interval-and-bonus)
+ - [Visualizing Data](#visualizing-data)
+  - [Create Timeboard via API](#create-timeboard-via-api)
+  - [API payload for Timeboard](#payload)
+  - Adjust Timeboard View and Snapshot
+  - Bonus
 
 
 ### Datadog Overview
@@ -28,7 +33,7 @@ To start, we request a trial instance of Data dog and set up a fresh Ubuntu serv
 
 >Note: You can request a [free trial instance here](https://www.datadoghq.com/lpg6/) and much of our set up is covered nicely in the introductory wizard
 
-###### Set Up the Environment
+#### Set Up the Environment
 ```
 vagrant init ubuntu/xenial64
 
@@ -42,20 +47,22 @@ DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog
 Immediately, you can see this host alongside any other hosts in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags in key:value format to the new agent so we can easily reference it later: 
 ###### Add tags to Agent config
 ![alt text](/images/hosts_gif.gif "")
-![alt text](/images/ubuntu_host_tag.jpg "filter by tag for sinlge host")
+![alt text](/images/ubuntu_host_tag.png "filter by tag for sinlge host")
 
-
+#### Collecting Metrics
 Now, this is fun, but we want more data! 
-
 
 Let’s set up a MySQL db to show how easy it is to integrate with common applications, and some agent checks to show what it’s like to gather data from custom applications. 
 
-First we install MySQL:
+![alt text](/images/collect_all_the_datas.jpg)
+
+##### First we install MySQL:
 sudo apt-get install mysql-server
 To capture metrics from MySQL we: 
 1. set up a MySQL user for Datadog (mainly as a security precaution to limit what is accessible) with permissions from https://app.datadoghq.com/account/settings#integrations/mysql
 2. make a config file at /etc/datadog-agent/conf.d/mysql.yaml with contents from: https://app.datadoghq.com/account/settings#integrations/mysql
 
+##### Create a custom Agent check
 Then, let’s create a simple Agent check. Ours will consist of two files: 
 my_agent.py:
 from checks import AgentCheck
@@ -68,20 +75,23 @@ init_config:
 instances:
   - name: my_metric
     min_collection_interval: 45
-
+###### Adjust collection interval and bonus
 Now, as soon as we restart the Datadog agent, the new configs will be picked up and metrics will start to be collected every 15-20 seconds by default. However, we adjusted our custom check to slow that specific collection down to every 45 seconds. This was done by adding a modifier line to the instance definition in the .yaml configuration. This simple agent check is self-contained, but it outlines where you could easily make calls out to your custom applications. This, coupled with all the available methods, shows that you have complete control over what metrics to collect and when. 
 
 note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
 
 A quick agent restart and "datadog-agent status” shows that our metrics are being captured. 
-[insert ddagent gif]
+![alt-text](images/ddagent_status_metrics_terminal.gif)
 
+### Visualizing Data
 Collecting data is nice, but the real value is provided by effectively visualizing the data. This is what enables organizations to make intelligent business decisions. 
-[insert drucker quote]
+![alt-text](images/drucker_quote.png)
 
 To visualize our data, we could of course go into the UI and create dashboards, but that’s too easy! Let’s instead see what your DevOps teams will grow accustomed to - creating dashboards made up of multiple graphs via the Datadog API. 
 
-I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=ffc569bfd80d03e7c81eff56223e49bc&application_key=4cb2bc3be5a304ab9e2a32d9ee0e08f9d6b195af
+##### Create Timeboard via API
+I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>
+####### Payload
 ```
 {
       "graphs" : [{
@@ -142,8 +152,8 @@ I’ve pulled and manipulated one of the code snippets from our API documentatio
 }
 ```
 
-[insert api_to_dashboard.gif]
-[insert created dasboard image]
+![alt-text](/images/apit_to_dashboard.gif)
+![alt-text](/images/create_dashboard.png)
 
 Voila, we have a dashboard with three unique graphs: 
 1. CPU performance of our MySQL Server, tracked within bounds created by an intelligent anomaly algorithm
