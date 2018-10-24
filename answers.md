@@ -12,6 +12,6 @@ Postgres and integration installed.
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-See file 
+[See source](my_agent_check.py)
 
 
