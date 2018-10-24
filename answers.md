@@ -37,6 +37,7 @@ Didnt change the Python, configured it via YAML (min_collection_interval: 45) st
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 ![Dashboard](ddimg2.png)
+![Email](ddimg3.png)
 
 
 * Bonus Question: What is the Anomaly graph displaying?
