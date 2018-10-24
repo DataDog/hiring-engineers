@@ -51,3 +51,15 @@ Second: Since the database is fresh and not used the data generator does not del
 
 ![Monitor config](ddimg4.png)
 
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+## Final Question:
+* Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+* Is there anything creative you would use Datadog for?
+
+My 2 cent: I totally miss end user monitoring. This is the only point where you can decide if a performance is bad and business critical. Question: Why is 800ms a good threshold for an alert? And 500ms for a warning? Based on what are these thresholds defined? On gut feeling? Baselining? 
+
+If you include real user monitoring to the monitoring stack, you can answer this question quite easily. Because if you collect the performance from the enduser perspective, you can directly the see when the user engagement drops. And when the user engagement drops, metrics like bounce rate, conversion rate, revenue, etc. will change dramatically. If you look at the following chart, you can see that with higher load times less people (page views) using the page (blue line). And if you correlate this with a business metric, like bounce rate or conversion rate, you can see how this increase (bounce rate) or decrease (counvesion rate) with higher load times. Here is you can see a direct correlation. And if you know where you your users are happy, you know how your infrastructure, apps and services have to perform.
+
