@@ -4,7 +4,7 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-![Answer1](ddimg1.png)
+![Host Map](ddimg1.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -34,8 +34,10 @@ Didnt change the Python, configured it via YAML (min_collection_interval: 45) st
 
 * Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
-
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![Dashboard](ddimg2.png)
+
 
 * Bonus Question: What is the Anomaly graph displaying?
 
