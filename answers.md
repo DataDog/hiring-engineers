@@ -48,3 +48,6 @@ Second: Since the database is fresh and not used the data generator does not del
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+![Monitor config](ddimg4.png)
+
