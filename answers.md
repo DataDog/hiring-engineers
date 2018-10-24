@@ -64,6 +64,15 @@ Second: Since the database is fresh and not used the data generator does not del
 
 ![Email Downtime](ddimg7.png)
 
+## Collecting APM Data:
+
+
+The app is not instrumented manually, i used DDTrace to get monitoring data:
+ddtrace-run python __init__.py
+
+I did some curls on the web app to generate some data:
+![APM Monitor](ddimg8.png)
+
 
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
