@@ -54,14 +54,13 @@ Second: Since the database is fresh and not used the data generator does not del
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-
 ![Monitor config](ddimg6.png)
+![Email Alert](ddimg8.png)
 
 * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 * One that silences it from 7pm to 9am daily on M-F,
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
 ![Email Downtime](ddimg7.png)
 
 ## Collecting APM Data:
