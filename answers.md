@@ -6,6 +6,12 @@
 
 ![Answer1](ddimg1.png)
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog.
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+Postgres and integration installed.
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+See file 
 
 
