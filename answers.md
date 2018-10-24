@@ -27,7 +27,7 @@ Through this process, we will be introduces to the key areas of Datadog, from Ag
 
 To start, we set up a fresh Ubuntu server with Vagrant and install the Datadog Agent:
 
-##### Set Up the Environment
+###### Set Up the Environment
 ```
 vagrant init ubuntu/xenial64
 
@@ -39,7 +39,7 @@ DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog
 ```
 
 Immediately, you can see this host, alongside any other hosts, in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags to the new agent so we can easily reference it later: 
-#### Add tags to Agent config
+###### Add tags to Agent config
 ![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/hosts_gif.gif)
 
 [insert host dashboard]
@@ -82,6 +82,7 @@ Collecting data is nice, but the real value is provided by effectively visualizi
 To visualize our data, we could of course go into the UI and create dashboards, but that’s too easy! Let’s instead see what your DevOps teams will grow accustomed to - creating dashboards made up of multiple graphs via the Datadog API. 
 
 I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=ffc569bfd80d03e7c81eff56223e49bc&application_key=4cb2bc3be5a304ab9e2a32d9ee0e08f9d6b195af
+```
 {
       "graphs" : [{
       "title": "MySQL Performance Timeline",
@@ -139,6 +140,7 @@ I’ve pulled and manipulated one of the code snippets from our API documentatio
       "description" : "Showing off some great monitoring!",
       "read_only": "True"
 }
+```
 
 [insert api_to_dashboard.gif]
 [insert created dasboard image]
