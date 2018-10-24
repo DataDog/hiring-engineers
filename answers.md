@@ -55,6 +55,8 @@ Second: Since the database is fresh and not used the data generator does not del
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+![Monitor config](ddimg6.png)
+
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 * Is there anything creative you would use Datadog for?
