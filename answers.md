@@ -189,7 +189,8 @@ aaand pretty soon after you realize you have them alerting way too often.. like 
 ![alt-text](/images/thatdbegreat.jpg)
 
 Fortunately, we can schedule downtimes that make sense per each monitor. 
-![alt-text](/images/downtime_wizard_screenshot.png) ![alt-text](/images/downtime_summary_screenshot.png)
+![alt-text](/images/downtime_wizard_screenshot.png) 
+![alt-text](/images/downtime_summary_screenshot.png)
 [insert downtime summary]
 [insert downtime email]
 
