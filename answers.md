@@ -1,8 +1,5 @@
 Your answers to the questions go here.
 
-![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/infinityGauntlet.gif "Logo Title Text 1")
-
-
 ![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/Screen%20Shot%202018-10-23%20at%205.40.23%20AM.png)
 
 
@@ -20,7 +17,7 @@ Table of Contents:
 Datadog Overview
 In today’s modern application world, customer experience is what makes or breaks businesses. Application Performance can be the most critical factor to progressing or impeding customer experience. As such, your DevOps teams will do everything in their power to build highly performant apps. But, with their scope being bounded (rightfully so, per modern architecture practices), these teams will be unable to view and control all factors of overall performance. Datadog focuses on enabling your organization to: collect the wealth of data that’s already available from servers, VMs, container hosts, and the applications running on them, then visualize that data through customizable graphs to discover problems, and then set up alerts and monitors to be made aware of ongoing problems. Or to put it simply.. if your applications are like Infinity Stones, then Datadog enables you to become Thanos. 
 https://media.giphy.com/media/148UUZYlMontEkkNoW/giphy.gif
-[insert thanos gif]
+![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/infinityGauntlet.gif)
 
 Let’s discover just how Datadog helps you collect, visualize, and monitor your systems with an example together.
 Note: You can request a free trial instance here and much of our set up is covered nicely in the introductory wizard
