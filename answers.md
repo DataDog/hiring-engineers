@@ -65,7 +65,9 @@ Second: Since the database is fresh and not used the data generator does not del
 ![Email Downtime](ddimg7.png)
 
 ## Collecting APM Data:
-
+* Bonus Question: What is the difference between a Service and a Resource?
+* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+* Please include your fully instrumented app in your submission, as well.
 
 The app is not instrumented manually, i used DDTrace to get monitoring data:
 ddtrace-run python __init__.py
@@ -73,6 +75,14 @@ ddtrace-run python __init__.py
 I did some curls on the web app to generate some data:
 ![APM Monitor](ddimg8.png)
 
+* Bonus Question: What is the difference between a Service and a Resource?
+Service:
+A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
+These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
+
+Resource:
+A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
+The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources. 
 
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
