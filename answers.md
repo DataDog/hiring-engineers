@@ -18,14 +18,15 @@ In today’s modern application world, customer experience is what makes or brea
   
 Or to put it simply.. if your applications are like Infinity Stones, then Datadog enables you to become Thanos for monitoring. 
 
-![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/infinityGauntlet.gif)
+![alt text](/images/infinityGauntlet.gif "the first thing we all would do with powers")
 
 Let’s discover just how Datadog helps you collect, visualize, and monitor your systems with an example together.
->Note: You can request a [free trial instance here](https://www.datadoghq.com/lpg6/) and much of our set up is covered nicely in the introductory wizard
 
 Through this process, we will be introduces to the key areas of Datadog, from Agents that collect data, to dashboards that visualize the data, and alerts that monitor the data. 
 
-To start, we set up a fresh Ubuntu server with Vagrant and install the Datadog Agent:
+To start, we request a trial instance of Data dog and set up a fresh Ubuntu server with Vagrant then install the Datadog Agent:
+
+>Note: You can request a [free trial instance here](https://www.datadoghq.com/lpg6/) and much of our set up is covered nicely in the introductory wizard
 
 ###### Set Up the Environment
 ```
@@ -38,11 +39,10 @@ vagrant ssh
 DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-Immediately, you can see this host, alongside any other hosts, in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags to the new agent so we can easily reference it later: 
+Immediately, you can see this host alongside any other hosts in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags in key:value format to the new agent so we can easily reference it later: 
 ###### Add tags to Agent config
-![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/hosts_gif.gif)
-
-[insert host dashboard]
+![alt text](/images/hosts_gif.gif "")
+![alt text](/images/ubuntu_host_tag.jpg "filter by tag for sinlge host")
 
 
 Now, this is fun, but we want more data! 
