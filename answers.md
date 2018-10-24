@@ -4,7 +4,7 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
 
 ## Table of Contents: 
 - [Datadog Overview](#datadog-overview)
-- Set Up the Environment
+- [Set Up the Environment](#set-up-the-environment)
 - Collecting Metrics
   - Add tags to Agent config
   - Install a database
@@ -23,12 +23,16 @@ Let’s discover just how Datadog helps you collect, visualize, and monitor your
 
 Through this process, we will experience an introduction to the key areas of Datadog, from Agents that collect data, to dashboards to visualize the data, and alerts to monitor the data. 
 
+##### Set Up the Environment
 To start, we set up a fresh Ubuntu server with Vagrant and install the Datadog Agent:
+
+```
 vagrant init ubuntu/xenial64
 
 vagrant up 
 
 vagrant ssh
+```
 
 DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
