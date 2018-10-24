@@ -6,7 +6,7 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
 - [Datadog Overview](#datadog-overview)
 - [Set Up the Environment](#set-up-the-environment)
 - Collecting Metrics
-  - Add tags to Agent config
+  - [Add tags to Agent Config](#add-tags-to-agent-config)
   - Install a database
   - Create a custom Agent check
   - Change check's collection interval
@@ -14,7 +14,9 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
 
 
 ### Datadog Overview
-In today’s modern application world, customer experience is what makes or breaks businesses. Application Performance can be the most critical factor to progressing or impeding customer experience. As such, your DevOps teams will do everything in their power to build highly performant apps. But, with their scope being bounded (rightfully so, per modern architecture practices), these teams will be unable to view and control all factors of overall performance. Datadog focuses on enabling your organization to: collect the wealth of data that’s already available from servers, VMs, container hosts, and the applications running on them, then visualize that data through customizable graphs to discover problems, and then set up alerts and monitors to be made aware of ongoing problems. Or to put it simply.. if your applications are like Infinity Stones, then Datadog enables you to become Thanos. 
+In today’s modern application world, customer experience is what makes or breaks businesses. Application Performance can be the most critical factor to progressing or impeding customer experience. As such, your DevOps teams will do everything in their power to build highly performant apps. But, with their scope being bounded (rightfully so, per modern architecture practices), these teams will be unable to view and control all factors of overall performance. Datadog focuses on enabling your organization to: collect the wealth of data that’s already available from servers, VMs, container hosts, and the applications running on them, then visualize that data through customizable graphs to discover problems, and then set up alerts and monitors to be made aware of ongoing problems. 
+  
+Or to put it simply.. if your applications are like Infinity Stones, then Datadog enables you to become Thanos for monitoring. 
 
 ![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/infinityGauntlet.gif)
 
@@ -37,6 +39,7 @@ DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog
 ```
 
 Immediately, you can see this host, alongside any other hosts, in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags to the new agent so we can easily reference it later: 
+#### Add tags to Agent config
 ![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/hosts_gif.gif)
 
 [insert host dashboard]
