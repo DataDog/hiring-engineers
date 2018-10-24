@@ -57,6 +57,12 @@ Second: Since the database is fresh and not used the data generator does not del
 
 ![Monitor config](ddimg6.png)
 
+* Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* One that silences it from 7pm to 9am daily on M-F,
+* And one that silences it all day on Sat-Sun.
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 * Is there anything creative you would use Datadog for?
