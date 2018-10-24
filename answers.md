@@ -30,3 +30,4 @@ Didnt change the Python, configured it via YAML (min_collection_interval: 45) st
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 * Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+[APICallScript]curlapi.sh
