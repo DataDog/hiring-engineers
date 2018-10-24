@@ -41,5 +41,10 @@ Didnt change the Python, configured it via YAML (min_collection_interval: 45) st
 
 * Bonus Question: What is the Anomaly graph displaying?
 For a not native speaker it is sometimes to understand the meaning of a question. Is here now an explanation of what is anomaly detection in general? Or what is shown here?
-First: With anomaly detection you try to identify and rate rare event to differ them significantly from the majority of historical data.
-Second: Since the 
+First: With anomaly detection you try to identify and rate rare events to differ them significantly from the majority of historical data.
+Second: Since the database is fresh and not used the data generator does not deliver datadog with much data. Based on the existing data, it shouldnt show an anomaly since there is not enough data to rate.
+
+## Monitoring Data
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
