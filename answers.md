@@ -10,13 +10,18 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
   - [Install a database](#first-we-install-mysql)
   - [Create a custom Agent check](#create-a-custom-agent-check)
   - [Change check's collection interval](#adjust-collection-interval-and-bonus)
-  - [Bonus Question](#adjust-collection-interval-and-bonus)
+  - [Bonus Question - Collection Interval](#adjust-collection-interval-and-bonus)
  - [Visualizing Data](#visualizing-data)
   - [Create Timeboard via API](#create-timeboard-via-api)
   - [API payload for Timeboard](#payload)
   - [Adjust Timeboard View and Snapshot](#adjust-timeboard-and-snapshot)
-  - [Bonus](#bonus)
+  - [Bonus - Anomaly](#bonus-anomaly)
 - [Monitoring Data](#monitoring-data)
+  - [Create Metric Monitor](#create-metric-monitor)
+  - [Customize Monitor's Notification Messages]
+  - [Bonus - Downtimes]
+- [Application Performance Monitoring](#application-performance-monitoring)
+  - 
 
 
 ### Datadog Overview
@@ -169,7 +174,7 @@ If the anomaly is in fact something that requires action, you’ll want to let t
 
 ![alt-text](/images/alert_snapshot_email.png)
 
-###### Bonus
+###### Bonus Anomaly
 Now we can see that from the “last hour” window down to the “last five minutes” window, the anomaly threshold has changed and updated. This is because the anomaly feature is actually an algorithm that continuously updates according to that specific metrics behavior. This intelligent detection algorithm is based on established statistical trends like 
 “Seasonal Autoregressive Integrated Moving Average”. The feature will notice and pick up varying patterns like: service request lulls on the weekends or seasonal spikes. 
 
@@ -186,17 +191,20 @@ And pretty soon.. we start getting the glorious automatic alert emails!
 ![alt-text](/images/alert_snapshot_email.png)
 
 aaand pretty soon after you realize you have them alerting way too often.. like in the middle of actually solving the problem or.. the middle of the night.  we really don’t need this many emails telling us: 
+
 ![alt-text](/images/thatdbegreat.jpg)
 
 Fortunately, we can schedule downtimes that make sense per each monitor. 
 ![alt-text](/images/downtime_wizard_screenshot.png) 
 ![alt-text](/images/downtime_summary_screenshot.png)
-[insert downtime summary]
-[insert downtime email]
+![alt-text](/images/downtime_email.png)
 
-Infrastructure monitoring is a great start down the path of improving your overall performance. Application performance monitoring is the other half of the picture. Datadog provides a complete monitoring solutions with it’s final key piece: APM. 
+### Application Performance Monitoring
+Infrastructure monitoring is a great start down the path of improving your overall performance. Application performance monitoring is the other half of the picture. Datadog completes your full monitoring solution with it’s final key piece: APM. 
 
 To fully realize these values, we need to instrument Datadog’s APM solution on an application. 
+We will use a simple Python app to post data to our MySQL server: 
+
 in bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
 
 
