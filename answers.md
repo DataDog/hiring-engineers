@@ -21,23 +21,24 @@ In today’s modern application world, customer experience is what makes or brea
 Let’s discover just how Datadog helps you collect, visualize, and monitor your systems with an example together.
 >Note: You can request a [free trial instance here](https://www.datadoghq.com/lpg6/) and much of our set up is covered nicely in the introductory wizard
 
-Through this process, we will experience an introduction to the key areas of Datadog, from Agents that collect data, to dashboards to visualize the data, and alerts to monitor the data. 
+Through this process, we will be introduces to the key areas of Datadog, from Agents that collect data, to dashboards that visualize the data, and alerts that monitor the data. 
 
-##### Set Up the Environment
 To start, we set up a fresh Ubuntu server with Vagrant and install the Datadog Agent:
 
+##### Set Up the Environment
 ```
 vagrant init ubuntu/xenial64
 
 vagrant up 
 
 vagrant ssh
-```
 
 DD_API_KEY=<APIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
 
-Immediately, you can see this host, alongside any other hosts, in your Datadog instance. Additionally, system-resource metrics have already begun to track: 
-[insert hosts gif]
+Immediately, you can see this host, alongside any other hosts, in your Datadog instance. Additionally, system-resource metrics have already begun to track. To help isolate and organize all of your metrics and scenarios, datadog supports tagging in many areas. Here we add tags to the new agent so we can easily reference it later: 
+![alt text](https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/images/hosts_gif.gif)
+
 [insert host dashboard]
 
 
