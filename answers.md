@@ -62,6 +62,8 @@ Second: Since the database is fresh and not used the data generator does not del
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+![Email Downtime](ddimg7.png)
+
 
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
