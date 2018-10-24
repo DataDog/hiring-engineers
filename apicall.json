@@ -10,7 +10,7 @@ curl  -X POST -H "Content-type: application/json" \
             "events": [],
             "requests": [
             {
-              "q": "anomalies(sum:mongodb.opcounters.queryps{database:mongodb}, 'basic', 2)",
+              "q": "anomalies(sum:mysql.performance.queries{tech-exercise,host:ubuntu-xenial}, 'basic', 2)",
               "type": "line",
               "conditional_formats": [],
               "aggregator": "avg"

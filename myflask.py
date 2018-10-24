@@ -1,79 +1,156 @@
-from flask import Flask
-import logging
-import sys
-import mysql.connector
-from random import randint
+from datadog import initialize, api
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+options = {
+    'api_key': 'ffc569bfd80d03e7c81eff56223e49bc',
+    'app_key': '4cb2bc3be5a304ab9e2a32d9ee0e08f9d6b195af'
+}
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="CAdemo123!",
-  database="name_and_quote"
-)
+initialize(**options)
 
-app = Flask(__name__)
+title = "Tech-Exercise Timeboard"
+description = "Showing off all our awesome data"
+graphs = [{
+      "title": "MySQL Performance Timeline",
+      "definition": {
+        "events": [],
+        "requests": [
+        {
+          "q": "anomalies(avg:mysql.performance.cpu_time{tech-exercise,host:ubuntu-xenial}, 'basic', 2)",
+          "type": "line",
+          "conditional_formats": [],
+          "aggregator": "avg"
+        }
+        ],
+        "viz": "timeseries"
+      }
+},{    
+      "title": "My Metric - Agent Check",
+      "definition": {
+        "events": [],
+        "requests": [
+            {
+                "q": "avg:samir{host:ubuntu-xenial}",
+                "type": "bars",
+                "style": {
+                  "palette": "cool",
+                  "type": "solid",
+                  "width": "normal"
+                },
+                "conditional_formats": [],
+                "aggregator": "avg"
+            }
+        ],
+        "viz": "timeseries",
+        "autoscale": True,
+        "xaxis": {}
+      }
+},{
+      "title": "My_Metric Rollup Over Last Hour",
+      "definition": {
+        "events": [],
+        "viz": "timeseries",
+        "requests": [{
+            "q": "my_metric{host:ubuntu-xenial}.rollup(count,3600)",
+            "type": "bars",
+            "style": {
+                "palette": "grey",
+                "type": "solid",
+                "width": "normal"
+            }
+        }],
+        "autoscale": True
+      }  
+}]
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+template_variables = [{
+}]
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-#@app.route("/hello/<string:name>")
-@app.route("/hello/<string:name>/")
-def hello(name):
-#    return name
-    quotes = [ "'If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.' -- John Louis von Neumann ",
-               "'Computer science is no more about computers than astronomy is about telescopes' --  Edsger Dijkstra ",
-               "'To understand recursion you must first understand recursion..' -- Unknown",
-               "'You look at things that are and ask, why? I dream of things that never were and ask, why not?' -- Unknown",
-               "'Mathematics is the key and door to the sciences.' -- Galileo Galilei",
-               "'Not everyone will understand your journey. Thats fine. Its not their journey to make sense of. Its yours.' -- Unknown"  ]
-    randomNumber = randint(0,len(quotes)-1)
-    quote = quotes[randomNumber]
-
-    mycursor = mydb.cursor()
-
-    sql = "INSERT INTO main_name_quote (name, quote) VALUES (%s, %s)"
-    val = (name, quote)
-    mycursor.execute(sql, val)
-
-    mydb.commit()
-
-    return "hello %s" % (name)    
-
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
-
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
 '''
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "my_metric{host:ubuntu-xenial}.rollup(count,3600)",
+      "type": "bars",
+      "style": {
+        "palette": "grey",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true,
+  "xaxis": {},
+  "status": "done"
+}
 
-from flask import Flask, flash, redirect, render_template, request, session, abort
-from random import randint
-
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return "Flask App!"
 
 
+{
+      "title": "My_Metric Timeline",
+      "definition": {
+        "events": [],
+        "requests": [
+        {
+        "viz": "timeseries",
+  "requests": [
+    {
+      "q": "my_metric{host:ubuntu-xenial}.rollup(count,3600)",
+      "type": "bars",
+      "style": {
+        "palette": "grey",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }
+  ],
+  "autoscale": true,
+  "xaxis": {},
+  "status": "done"
+      }
+},{
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
+"graphs" : [
+        {
+          "title": "Average Memory Free",
+          "definition": {
+              "events": [],
+              "requests": [
+                      {
+                        "q": "avg:samir{host:ubuntu-xenial}",
+                        "type": "bars",
+                        "style": {
+                          "palette": "cool",
+                          "type": "solid",
+                          "width": "normal"
+                        },
+                        "conditional_formats": [],
+                        "aggregator": "avg"
+                      }
+              ],
+                    "viz": "timeseries",
+                    "autoscale": true,
+                    "xaxis": {}
+          }
+        }
+      ],
+      "title" : "SG-Test_timeboard",
+      "description" : "A Sample Timeboard for Testing",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:my-host"
+      }],
+      "read_only": "True"
 
-'''
+      '''
