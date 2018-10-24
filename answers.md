@@ -14,8 +14,9 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
  - [Visualizing Data](#visualizing-data)
   - [Create Timeboard via API](#create-timeboard-via-api)
   - [API payload for Timeboard](#payload)
-  - Adjust Timeboard View and Snapshot
-  - Bonus
+  - [Adjust Timeboard View and Snapshot](#adjust-timeboard-and-snapshot)
+  - [Bonus](#bonus)
+- [Monitoring Data](#monitoring-data)
 
 
 ### Datadog Overview
@@ -80,7 +81,7 @@ Now, as soon as we restart the Datadog agent, the new configs will be picked up 
 
 note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
 
-A quick agent restart and "datadog-agent status” shows that our metrics are being captured. 
+A quick agent restart and `datadog-agent status` shows that our configuration is successful and our metrics are being captured. 
 ![alt-text](images/ddagent_status_metrics_terminal.gif)
 
 ### Visualizing Data
@@ -90,8 +91,8 @@ Collecting data is nice, but the real value is provided by effectively visualizi
 To visualize our data, we could of course go into the UI and create dashboards, but that’s too easy! Let’s instead see what your DevOps teams will grow accustomed to - creating dashboards made up of multiple graphs via the Datadog API. 
 
 ##### Create Timeboard via API
-I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=<api_key>&application_key=<app_key>
-####### Payload
+I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=api_key&application_key=app_key
+###### Payload
 ```
 {
       "graphs" : [{
@@ -152,7 +153,7 @@ I’ve pulled and manipulated one of the code snippets from our API documentatio
 }
 ```
 
-![alt-text](/images/apit_to_dashboard.gif)
+![alt-text](/images/api_to_dashboard.gif)
 ![alt-text](/images/create_dashboard.png)
 
 Voila, we have a dashboard with three unique graphs: 
@@ -160,30 +161,35 @@ Voila, we have a dashboard with three unique graphs:
 2. A broad of datapoints from our previously created custom metric “my_metric"
 3. A full summation of all the “my_metric” entries over the last hour
 
-It’s important to note that, although this dashboard was created via API, we can still interact with it as normal. For example, say a big spike just occurred and we want to isolate it, we can easily adjust the time window to show only the last five minutes. 
-[]insert last_five gif]
+###### Adjust Timeboard and Snapshot
+It’s important to note that although this dashboard was created via API, we can still interact with it as normal. For example, say a big spike just occurred and we want to isolate it, we can quickly adjust the time window to show only the last five minutes. 
+![alit-text](/images/last_five_mins.gif)
 
-If the anomaly is in fact something that requires action, you’ll want to let the appropriate groups know immediately. For this reason, you can easily annotate a graph and have a snapshot sent directly to the engineer’s email. 
+If the anomaly is in fact something that requires action, you’ll want to let the appropriate groups know immediately. For this reason, you can annotate graphs and have snapshots sent directly to engineers. 
 
-[insert snapshot email]
+![alt-text](/images/alert_snapshot_email.png)
 
+###### Bonus
 Now we can see that from the “last hour” window down to the “last five minutes” window, the anomaly threshold has changed and updated. This is because the anomaly feature is actually an algorithm that continuously updates according to that specific metrics behavior. This intelligent detection algorithm is based on established statistical trends like 
 “Seasonal Autoregressive Integrated Moving Average”. The feature will notice and pick up varying patterns like: service request lulls on the weekends or seasonal spikes. 
 
-So, now that we have our data captured, and visualized, we were able to watch for outstanding scenarios and find issues faster. However, what’s even faster and much more accurate than us watching these screens (not to mention, way less annoying) is to create monitors that will alert us when certain thresholds are hit.
+### Monitoring Data
+Now that we have our data captured and visualized, we are able to *watch* for outstanding scenarios and find issues faster. However, what is even faster and much more efficient than us watching these screens is to create monitors that will alert us when certain thresholds are hit (way less annoying too :thumbsup:).
 
-We will stick with the same theme and our custom metric to watch for a certain threshold, and then alert us as soon as that is hit. 
-This is done via the “Monitors” section of the UI. We will set a Metric Monitor to watch the average of our metric, warn if over 500 and alert if over 800 and send us custom messages based on the scenario. This is accomplished by leveraging the message template variable that are available within the “Say what’s happening” field. Also, to be notified almost immediately after a spike, we will set the threshold to watch over the last five minutes. 
-[insert my_metric alert gif]
+To show this, let's stick with the same theme and our custom metric to monitor for a certain threshold, and then alert us as soon as it is triggered. 
+
+##### Create a Metric Monitor
+This is done via the “Monitors” section of the UI. We will set a Metric Monitor to watch the average of our metric, *warn if over 500* and *alert if over 800* and *send us custom messages based on the scenario*. This is accomplished by leveraging the message template variable that are available within the “Say what’s happening” field. Also, to be notified almost immediately after a spike, we will set the *threshold to watch over the last five minutes*. 
+![alt-text](/images/my_metric_monitor_alert.gif)
 
 And pretty soon.. we start getting the glorious automatic alert emails!
-[insert alert email]
+![alt-text](/images/alert_snapshot_email.png)
 
 aaand pretty soon after you realize you have them alerting way too often.. like in the middle of actually solving the problem or.. the middle of the night.  we really don’t need this many emails telling us: 
-[insert thatdbegreat]
+![alt-text](/images/thatdbegreat.jpg)
 
 Fortunately, we can schedule downtimes that make sense per each monitor. 
-[insert monitor wizard]
+![alt-text](/images/downtime_wizard_screenshot.png) ![alt-text](/images/downtime_summary_screenshot.png)
 [insert downtime summary]
 [insert downtime email]
 
