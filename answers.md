@@ -63,12 +63,18 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+Monitor trigger configuration:
 ![Monitor config](ddimg4.png)
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Monitor alert notification configuration:
 ![Monitor config](ddimg6.png)
+
+Email screenshot:
 ![Email Alert](ddimg9.png)
 
 * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
