@@ -187,6 +187,7 @@ Now that we have our data captured and visualized, we are able to *watch* for ou
 To show this, let's stick with the same theme and our custom metric to monitor for a certain threshold, and then alert us as soon as it is triggered. 
 
 ##### Create a Metric Monitor
+##### Customize Alert Messages
 This is done via the “Monitors” section of the UI. We will set a Metric Monitor to watch the average of our metric, *warn if over 500* and *alert if over 800* and *send us custom messages based on the scenario*. This is accomplished by leveraging the message template variable that are available within the “Say what’s happening” field. Also, to be notified almost immediately after a spike, we will set the *threshold to watch over the last five minutes*. 
 ![alt-text](/images/my_metric_monitor_alert.gif)
 
@@ -197,6 +198,7 @@ aaand pretty soon after you realize you have them alerting way too often.. like 
 
 ![alt-text](/images/thatdbegreat.jpg)
 
+##### Bonus-Downtimes
 Fortunately, we can schedule downtimes that make sense per each monitor. 
 ![alt-text](/images/downtime_wizard_screenshot.png) 
 ![alt-text](/images/downtime_summary_screenshot.png)
