@@ -52,9 +52,10 @@ Email Notification:
 ![Email](ddimg3.png)
 
 * Bonus Question: What is the Anomaly graph displaying?
-For a not native speaker it is sometimes to understand the meaning of a question. Is here now an explanation of what is anomaly detection in general? Or what is shown here?
+
+Please specify: Is here now an explanation of what is anomaly detection in general expected? Or what is shown here?
 First: With anomaly detection you try to identify and rate rare events to differ them significantly from the majority of historical data.
-Second: Since the database is fresh and not used the data generator does not deliver datadog with much data. Based on the existing data, it shouldnt show an anomaly since there is not enough data to rate.
+Second: Since the database is fresh and not used the integration does not deliver datadog with much data. Based on the existing data, it shouldnt show an anomaly since there is not enough data to rate.
 
 ## Monitoring Data
 * Warning threshold of 500
