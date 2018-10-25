@@ -82,7 +82,6 @@ class MyCheck(AgentCheck):
     def check(self, instance):
         self.gauge(instance['name'],randint(1,1000))
 ```
-> We only use the agent to send back a random interval, but there is a robust set of methods available to gather and send exactly the data you're looking for. 
 
 **my_agent.yaml**:
 ```
@@ -93,9 +92,9 @@ instances:
 ```
 
 ###### Adjust collection interval and bonus
-As soon as we restart the Datadog agent, the new configs will be picked up and metrics would start to be collected every 15-20 seconds by default. However, we adjusted our custom check to slow that specific collection down to every 45 seconds. This was done by adding a modifier line to the instance definition in the .yaml configuration. This simple agent check is self-contained, but it outlines where you could easily make calls out to your custom applications. This, coupled with all the available methods, this shows that you have complete control over what metrics to collect.
+As soon as we restart the Datadog agent, the new configs will be picked up and metrics would start to be collected every 15-20 seconds by default. However, we adjusted our custom check to slow that specific collection down to every 45 seconds. This was done by adding a modifier line to the instance definition in the .yaml configuration. This simple agent check is self-contained, but it outlines where you could easily make calls out to your custom applications. Coupled with a robust set of available methods, this shows that you have complete control over what metrics to collect.
 
->note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
+>Note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
 
 A quick agent restart and `datadog-agent status` shows that our configuration is successful and our metrics are being captured. 
 ![alt-text](images/ddagent_status_metrics_terminal.gif)
