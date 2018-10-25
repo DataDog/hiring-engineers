@@ -1,0 +1,62 @@
+init_config:
+
+instances:
+  #
+  # The Spark check can retrieve metrics from Standalone Spark, YARN and
+  # Mesos. All methods require the `spark_url` to be configured.
+  #
+  # For Spark Standalone, `spark_url` must be set to the Spark master's web
+  # UI. This is "http://localhost:8080" by default.
+  #
+  # For YARN, `spark_url` must be set to YARN's resource manager address. The
+  # ResourceManager host name can be found in the yarn-site.xml conf file
+  # under the `property yarn.resourcemanager.address` The ResourceManager port
+  # can be found in the yarn-site.xml conf file under the property
+  # `yarn.resourcemanager.webapp.address`. This is "http://localhost:8088"
+  # by default.
+  #
+  # For Mesos, `spark_url` must be set to the Mesos master's web UI. This is
+  # "http://<master_ip>:5050" by default, where `<master_ip>` is the IP
+  # address or resolvable host name for the Mesos master.
+  #
+  # The use of `resourcemanager_uri` has been deprecated, but is still functional.
+  - spark_url: http://localhost:8088
+
+    # A Required friendly name for the cluster.
+    # cluster_name: MySparkCluster
+
+    # To enable monitoring of a Standalone Spark cluster, the spark cluster
+    # mode must be set. Uncomment the cluster mode that applies.
+    # spark_cluster_mode: spark_yarn_mode
+    # spark_cluster_mode: spark_standalone_mode
+    # spark_cluster_mode: spark_mesos_mode
+
+    # If you're using multiple frameworks with Mesos, you can specify which
+    # port(s) the Spark Web UI runs on and the check will filter out the frameworks
+    # whose port don't match. If the check attempts to connect to a framework that
+    # requires authentication it will fail; this is to prevent that.
+    # spark_ui_ports:
+    #   - 4040
+    #   - 4041
+
+    # To use an older (versions prior to 2.0) Standalone Spark cluster,
+    # the 'spark_pre_20_mode' must be set
+    # spark_pre_20_mode: true
+    #
+    # If you have enabled the spark UI proxy, you may set this to `true`
+    # spark_proxy_enabled: false
+
+    # Optional tags to be applied to every emitted metric.
+    # tags:
+    #   - key:value
+    #   - instance:production
+
+    # If your service uses basic HTTP authentication, you can optionally
+    # specify a username and password that will be used in the check.
+    # username: user
+    # password: pass
+
+    # SSL configuration.
+    # ssl_verify: false
+    # ssl_cert: /path/to/cert.pem
+    # ssl_key: /path/to/cert.key

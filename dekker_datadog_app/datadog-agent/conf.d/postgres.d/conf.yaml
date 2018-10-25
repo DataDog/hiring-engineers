@@ -1,0 +1,28 @@
+init_config:
+
+instances:
+  - host: localhost
+    port: 5432
+    username: datadog
+    password: <PASSWORD>
+    dbname: dekker_db
+    ssl: False
+    use_psycopg2: False
+    tags:
+    - postgres
+    collect_count_metrics: False
+  
+
+logs:
+  - type: file
+    path: /var/log/postgres_log/postgres.log   
+    source: postgresql
+    sourcecategory: database
+    service: myapp
+    #To handle multi line that starts with yyyy-mm-dd use the following pattern
+    #log_processing_rules:
+    #  - type: multi_line
+    #    pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+    #    name: new_log_start_with_date
+
+ 
