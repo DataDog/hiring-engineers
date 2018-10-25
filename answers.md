@@ -1,6 +1,6 @@
 # Answers
 
-I am presenting this technical exercise as if presenting Datadog to a client or student. As such, please use the table of contents to find specific answers. 
+I am presenting this technical exercise as if presenting Datadog to a client or student. As such, please use the table of contents as anchors to find specific answers. 
 
 ## Table of Contents: 
 - [Datadog Overview](#datadog-overview)
