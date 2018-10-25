@@ -21,7 +21,10 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
   - [Customize Monitor's Notification Messages]
   - [Bonus - Downtimes]
 - [Application Performance Monitoring](#application-performance-monitoring)
-  - 
+  -[Trace an Application](#trace-an-application)
+  -[Bonus - Service vs Resource](#bonus-services-and-resources)
+  -[Dashboard with APM and Infrastructure Metrics](#dashboard-with-apm-and-infrastructure-metrics)
+- [Final Question](#final-question)
 
 
 ### Datadog Overview
@@ -201,7 +204,7 @@ Fortunately, we can schedule downtimes that make sense per each monitor.
 
 ### Application Performance Monitoring
 Infrastructure monitoring is a great start down the path of improving your overall performance. Application performance monitoring is the other half of the picture. Datadog completes your full monitoring solution with it’s final key piece: APM. 
-
+##### Trace an Application
 To fully realize these values, we need to instrument Datadog’s APM solution on an application. 
 We will use a simple Python app to post data to our MySQL server. find this app's code at: https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/code/flaskapp.py
 
@@ -209,20 +212,23 @@ Setting up a trace on this app is as easy as any of the other steps so far, we s
 ```
 ddtrace-run python app.py
 ```
+
 Because this app interacts with our MySQL db, you will see two services in the APM GUI and can even follow traces to see just how long every part of each request takes.
 ![alt-text](/images/apm_trace_list.png)
 
-###### Bonus
+###### Bonus Services and Resources
 Additionally, in the "Trace Search" view you can see the services (a set of processes that work toward the same goal) that are being traced, and the resources (specific actions/endpoints that are part of the service) that are being requested from those services.
 
 ![alt-text](/images/apim_trace_search.png)
 
+##### Dashboard with APM and Infrastructure Metrics
 And the best part.. we can add metrics from our service into our previously created timeboard as if it was any of our other agents or integrations.
 
 ![alt-text](/images/final_dashboard.png)
 
 And now, after showing how to collect metrics, then visualize them, and finally, how to monitor those metric, whether from your infrastructure or applications.. we are able to acheive the ultimate goal.. restore balance by eliminating half the population with a snap!.. no no, the real ultimate goal: seeing all of our data, from all of our systems in one holistic view so that we can truly see bottlenecks, understand trends, and make performance enhancing decisions. 
 
+### Final Question
 This whole process helps us realize how powerful it is to have all this data at our fingertips. Going back to customer experience being critical to our business and performance making or breaking that experience.. Datadog's solution for overall monitoring and analysis gives your organization a fighting chance! This makes me think back to customer's I have worked with in the past that I *know* could have benefitted tremendously. One in particular is a state lottery. They came to us with a challenge: their systems could not handle tremendous spikes in traffic. When the lottery jackpot valuation would reach a certain amount, it would generate so much public attention and traffic as a result that it would crash their systems. Regardless of the fact they prepared with tests and  additional infrastructure. So, think about it, not only did their systems crash, but it would only happen at the *worst* possible point. At the time, I showed them how caching responses intelligently would dramatically reduce backend load. However, after learning more about Datadog, I see this challenge in a new light. How cool would it be to go back to that system, and put in agents, integrations, and traces.. we could get so much insight into that increased load. Insights like: 1. how does additional load impact the performance of the systems, 2. what is the critical threshold that is a sign for crash 3. what is the exact piece of the system that may be a bottleneck 4. and then, going above and beyond into actual business cases, how does the size of a jackpot correllate to additional traffic they see. With this type of information, the Lottery group could be so much more efficient in their infrastructure costs! Perhaps they move to an auto-scale/scalable infrastructure. If not that, then at least they would have so much more insight to just how much infrastructure they need, and when! 
 
 This use case is extremely relevant to that organization, but I believe these same questions and insights could be applied to *any* organization that deals with varying traffic, seasonal peaks, or spikes in load. Retail stores of course (Black Friday), Government groups during elections, first responders during emergencies, marketing organizations and TV stations playing ads.. the list goes on and on. NICE!
