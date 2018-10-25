@@ -219,17 +219,10 @@ Additionally, in the "Trace Search" view you can see the services (a set of proc
 
 And the best part.. we can add metrics from our service into our previously created timeboard as if it was any of our other agents or integrations.
 
-!
+![alt-text](/images/final_dashboard.png)
 
 And now, after showing how to collect metrics, then visualize them, and finally, how to monitor those metric, whether from your infrastructure or applications.. we are able to acheive the ultimate goal.. restore balance by eliminating half the population with a snap!.. no no, the real ultimate goal: seeing all of our data, from all of our systems in one holistic view so that we can truly see bottlenecks, understand trends, and make performance enhancing decisions. 
 
+This whole process helps us realize how powerful it is to have all this data at our fingertips. Going back to customer experience being critical to our business and performance making or breaking that experience.. Datadog's solution for overall monitoring and analysis gives your organization a fighting chance! This makes me think back to customer's I have worked with in the past that I *know* could have benefitted tremendously. One in particular is a state lottery. They came to us with a challenge: their systems could not handle tremendous spikes in traffic. When the lottery jackpot valuation would reach a certain amount, it would generate so much public attention and traffic as a result that it would crash their systems. Regardless of the fact they prepared with tests and  additional infrastructure. So, think about it, not only did their systems crash, but it would only happen at the *worst* possible point. At the time, I showed them how caching responses intelligently would dramatically reduce backend load. However, after learning more about Datadog, I see this challenge in a new light. How cool would it be to go back to that system, and put in agents, integrations, and traces.. we could get so much insight into that increased load. Insights like: 1. how does additional load impact the performance of the systems, 2. what is the critical threshold that is a sign for crash 3. what is the exact piece of the system that may be a bottleneck 4. and then, going above and beyond into actual business cases, how does the size of a jackpot correllate to additional traffic they see. With this type of information, the Lottery group could be so much more efficient in their infrastructure costs! Perhaps they move to an auto-scale/scalable infrastructure. If not that, then at least they would have so much more insight to just how much infrastructure they need, and when! 
 
-
-
-n bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
-
-
-*basically this exercise is an  
-
-and one of the most critical factors to impact your customer’s experience today is the performance of your application. 
-
+This use case is extremely relevant to that organization, but I believe these same questions and insights could be applied to *any* organization that deals with varying traffic, seasonal peaks, or spikes in load. Retail stores of course (Black Friday), Government groups during elections, first responders during emergencies, marketing organizations and TV stations playing ads.. the list goes on and on. NICE!
