@@ -4,6 +4,7 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+The hos map:
 ![Host Map](ddimg1.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -33,7 +34,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 * Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-[APICallScript](curlapi.sh) This curl script is not working properly. It throws an error with the anomaly function. This is an open issue, ticket:#176636.
+[APICallScript](curlapi.sh) 
+This curl script is not working properly. It throws an error with the anomaly function. This is an open issue, ticket:#176636.
 
 * Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
