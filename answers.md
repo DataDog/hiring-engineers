@@ -205,8 +205,20 @@ Infrastructure monitoring is a great start down the path of improving your overa
 To fully realize these values, we need to instrument Datadog’s APM solution on an application. 
 We will use a simple Python app to post data to our MySQL server. find this app's code at: https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/code/flaskapp.py
 
+Setting up a trace on this app is as easy as any of the other steps so far, we simple start our app with:
+```
+ddtrace-run python app.py
+```
+Because this app interacts with our MySQL db, you will see two services in the APM GUI and can even follow traces to see just how long every part of each request takes.
+![alt-text](/images/apm_trace_list.png)
 
-in bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
+###### Bonus
+Additionally, in the "Trace Search" view you can see the services (a set of processes that work toward the same goal) that are being traced, and the resources (specific actions/endpoints that are part of the service) that are being requested from those services.
+
+![alt-text](/images/apim_trace_search.png
+
+
+n bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
 
 
 *basically this exercise is an  
