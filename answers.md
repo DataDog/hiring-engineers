@@ -12,7 +12,10 @@ Postgres and integration installed.
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Here is the source code of the custom check:
+
 [Python](mycheck.py)
+
 [YAML](mycheck.-yaml)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
