@@ -18,8 +18,8 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
   - [Bonus - Anomaly](#bonus-anomaly)
 - [Monitoring Data](#monitoring-data)
   - [Create Metric Monitor](#create-metric-monitor)
-  - [Customize Monitor's Notification Messages]
-  - [Bonus - Downtimes]
+  - [Customize Monitor's Notification Messages](#customize-alert-messages)
+  - [Bonus - Downtimes](#bonus-downtimes)
 - [Application Performance Monitoring](#application-performance-monitoring)
   -[Trace an Application](#trace-an-application)
   -[Bonus - Service vs Resource](#bonus-services-and-resources)
