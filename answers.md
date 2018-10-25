@@ -17,7 +17,7 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
   - [Adjust Timeboard View and Snapshot](#adjust-timeboard-and-snapshot)
   - [Bonus - Anomaly](#bonus-anomaly)
 - [Monitoring Data](#monitoring-data)
-  - [Create Metric Monitor](#create-metric-monitor)
+  - [Create Metric Monitor](#create-a-metric-monitor)
   - [Customize Monitor's Notification Messages](#customize-alert-messages)
   - [Bonus - Downtimes](#bonus-downtimes)
 - [Application Performance Monitoring](#application-performance-monitoring)
@@ -28,17 +28,17 @@ I am presenting this technical exercise as if presenting Datadog to a client or 
 
 
 ### Datadog Overview
-In today’s modern application world, customer experience is what makes or breaks businesses. Application Performance can be the most critical factor to progressing or impeding customer experience. As such, your DevOps teams will do everything in their power to build highly performant apps. But, with their scope being bounded (rightfully so, per modern architecture practices), these teams will be unable to view and control all factors of overall performance. Datadog focuses on enabling your organization to: collect the wealth of data that’s already available from servers, VMs, container hosts, and the applications running on them, then visualize that data through customizable graphs to discover problems, and then set up alerts and monitors to be made aware of ongoing problems. 
+In today’s modern application world, customer experience is what makes or breaks businesses. And, application Performance can be the most critical factor to progressing or impeding customer experience. DevOps teams will do everything in their power to build highly performant apps. But, with their scope being bounded (rightfully so, per modern architecture practices), these teams will be unable to view and control all factors of overall performance. Datadog focuses on enabling your organization to: collect the wealth of data that’s already available from servers, VMs, container hosts, and the applications running on them, then visualize that data through customizable graphs to discover problems, and then set up alerts and monitors to be made aware of ongoing problems. 
   
 Or to put it simply.. if your applications are like Infinity Stones, then Datadog enables you to become Thanos for monitoring. 
 
 ![alt text](/images/infinityGauntlet.gif "the first thing we all would do with powers")
 
-Let’s discover just how Datadog helps you collect, visualize, and monitor your systems with an example together.
+Let’s discover just how Datadog helps you collect, visualize, and monitor your systems with a demonstration.
 
-Through this process, we will be introduces to the key areas of Datadog, from Agents that collect data, to dashboards that visualize the data, and alerts that monitor the data. 
+Through this process, we'll be introduced to the key areas of Datadog, from Agents that collect data, to dashboards that visualize the data, and alerts that monitor the data. 
 
-To start, we request a trial instance of Data dog and set up a fresh Ubuntu server with Vagrant then install the Datadog Agent:
+To start, we: 1. request a trial instance of Data dog 2. set up a fresh Ubuntu server with Vagrant then 3. install the Datadog Agent:
 
 >Note: You can request a [free trial instance here](https://www.datadoghq.com/lpg6/) and much of our set up is covered nicely in the introductory wizard
 
@@ -61,33 +61,41 @@ Immediately, you can see this host alongside any other hosts in your Datadog ins
 #### Collecting Metrics
 Now, this is fun, but we want more data! 
 
-Let’s set up a MySQL db to show how easy it is to integrate with common applications, and some agent checks to show what it’s like to gather data from custom applications. 
+Let’s set up a MySQL db to show how easy it is to integrate with common applications, and some Agent checks to show what it’s like to gather data from custom applications. 
 
 ![alt text](/images/collect_all_the_datas.jpg)
 
 ##### First we install MySQL:
+```
 sudo apt-get install mysql-server
+```
 To capture metrics from MySQL we: 
-1. set up a MySQL user for Datadog (mainly as a security precaution to limit what is accessible) with permissions from https://app.datadoghq.com/account/settings#integrations/mysql
-2. make a config file at /etc/datadog-agent/conf.d/mysql.yaml with contents from: https://app.datadoghq.com/account/settings#integrations/mysql
+1. Set up a MySQL user for Datadog (mainly as a security precaution to limit what is accessible) with permissions per https://app.datadoghq.com/account/settings#integrations/mysql
+2. Make a config file at /etc/datadog-agent/conf.d/mysql.yaml with contents from: https://app.datadoghq.com/account/settings#integrations/mysql
 
 ###### Create a custom Agent check
-Then, let’s create a simple Agent check. Ours will consist of two files: 
-my_agent.py:
-from checks import AgentCheck
+Then, let’s create a simple Agent check to define what data that gets sent back. Ours will consist of two files: 
+**my_agent.py**:
+```from checks import AgentCheck
 from random import randint
 class MyCheck(AgentCheck):
     def check(self, instance):
         self.gauge(instance['name'],randint(1,1000))
-my_agent.yaml
+```
+> We only use the agent to send back a random interval, but there is a robust set of methods available to gather and send exactly the data you're looking for. 
+
+**my_agent.yaml**:
+```
 init_config:
 instances:
   - name: my_metric
     min_collection_interval: 45
-###### Adjust collection interval and bonus
-Now, as soon as we restart the Datadog agent, the new configs will be picked up and metrics will start to be collected every 15-20 seconds by default. However, we adjusted our custom check to slow that specific collection down to every 45 seconds. This was done by adding a modifier line to the instance definition in the .yaml configuration. This simple agent check is self-contained, but it outlines where you could easily make calls out to your custom applications. This, coupled with all the available methods, shows that you have complete control over what metrics to collect and when. 
+```
 
-note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
+###### Adjust collection interval and bonus
+As soon as we restart the Datadog agent, the new configs will be picked up and metrics would start to be collected every 15-20 seconds by default. However, we adjusted our custom check to slow that specific collection down to every 45 seconds. This was done by adding a modifier line to the instance definition in the .yaml configuration. This simple agent check is self-contained, but it outlines where you could easily make calls out to your custom applications. This, coupled with all the available methods, this shows that you have complete control over what metrics to collect.
+
+>note: Regarding Bonus - The configuration for collection interval was done through the .yaml file rather than directly in the Python check. Also I assume there must be a way to configure global collection interval as well, but I did not see this in agent config file. 
 
 A quick agent restart and `datadog-agent status` shows that our configuration is successful and our metrics are being captured. 
 ![alt-text](images/ddagent_status_metrics_terminal.gif)
