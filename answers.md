@@ -14,9 +14,9 @@ Postgres and integration installed.
 
 Here is the source code of the custom check:
 
-[Python](mycheck.py)
+[Python Check](mycheck.py)
 
-[YAML](mycheck.-yaml)
+[YAML Config](mycheck.-yaml)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
