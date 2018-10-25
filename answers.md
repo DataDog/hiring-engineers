@@ -42,7 +42,13 @@ This curl script is not working properly. It throws an error with the anomaly fu
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+Dashboard: Last 5min:
+![Dashboard](ddimg10.png)
+
+Dashboard: Longer time frame:
 ![Dashboard](ddimg2.png)
+
+Email Notification:
 ![Email](ddimg3.png)
 
 * Bonus Question: What is the Anomaly graph displaying?
