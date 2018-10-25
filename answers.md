@@ -86,11 +86,9 @@ Email notification. The monitor/alert is configured on CET.
 ![Email Downtime](ddimg7.png)
 
 ## Collecting APM Data:
-* Bonus Question: What is the difference between a Service and a Resource?
-* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-* Please include your fully instrumented app in your submission, as well.
+* Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-The app is not instrumented manually, i used DDTrace to get monitoring data:
+The app is not instrumented manually, I used DDTrace to get monitoring data:
 ddtrace-run python __init__.py
 
 I did some curls on the web app to generate some data:
@@ -104,6 +102,12 @@ These services are defined by the user when instrumenting their application with
 Resource:
 A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
 The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources. 
+
+* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+![Unified Dashboard](ddimg11.png)
+
+URL:
+https://p.datadoghq.com/sb/298ba9a7a-3c1bb65dfc5865281edce954a4601b74
 
 ## Final Question:
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
