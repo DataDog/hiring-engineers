@@ -81,6 +81,8 @@ Email screenshot:
 * One that silences it from 7pm to 9am daily on M-F,
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Email notification. The monitor/alert is configured on CET.
 ![Email Downtime](ddimg7.png)
 
 ## Collecting APM Data:
