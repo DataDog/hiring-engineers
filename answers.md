@@ -215,7 +215,15 @@ Because this app interacts with our MySQL db, you will see two services in the A
 ###### Bonus
 Additionally, in the "Trace Search" view you can see the services (a set of processes that work toward the same goal) that are being traced, and the resources (specific actions/endpoints that are part of the service) that are being requested from those services.
 
-![alt-text](/images/apim_trace_search.png
+![alt-text](/images/apim_trace_search.png)
+
+And the best part.. we can add metrics from our service into our previously created timeboard as if it was any of our other agents or integrations.
+
+!
+
+And now, after showing how to collect metrics, then visualize them, and finally, how to monitor those metric, whether from your infrastructure or applications.. we are able to acheive the ultimate goal.. restore balance by eliminating half the population with a snap!.. no no, the real ultimate goal: seeing all of our data, from all of our systems in one holistic view so that we can truly see bottlenecks, understand trends, and make performance enhancing decisions. 
+
+
 
 
 n bon infrastructure that you don’t have to main realize Aristotle’s “the whole is greater than the sum of it’s parts”. 
