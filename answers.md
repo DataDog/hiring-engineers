@@ -71,7 +71,7 @@ To capture metrics from MySQL we:
 1. set up a MySQL user for Datadog (mainly as a security precaution to limit what is accessible) with permissions from https://app.datadoghq.com/account/settings#integrations/mysql
 2. make a config file at /etc/datadog-agent/conf.d/mysql.yaml with contents from: https://app.datadoghq.com/account/settings#integrations/mysql
 
-##### Create a custom Agent check
+###### Create a custom Agent check
 Then, let’s create a simple Agent check. Ours will consist of two files: 
 my_agent.py:
 from checks import AgentCheck
@@ -98,7 +98,7 @@ Collecting data is nice, but the real value is provided by effectively visualizi
 
 To visualize our data, we could of course go into the UI and create dashboards, but that’s too easy! Let’s instead see what your DevOps teams will grow accustomed to - creating dashboards made up of multiple graphs via the Datadog API. 
 
-##### Create Timeboard via API
+###### Create Timeboard via API
 I’ve pulled and manipulated one of the code snippets from our API documentation. And if we include our API key and App key, we can then POST this payload to instantly create the customized dashboard. Post to: https://api.datadoghq.com/api/v1/dash?api_key=api_key&application_key=app_key
 ###### Payload
 ```
@@ -177,7 +177,7 @@ If the anomaly is in fact something that requires action, you’ll want to let t
 
 ![alt-text](/images/alert_snapshot_email.png)
 
-###### Bonus Anomaly
+###### Bonus-Anomaly
 Now we can see that from the “last hour” window down to the “last five minutes” window, the anomaly threshold has changed and updated. This is because the anomaly feature is actually an algorithm that continuously updates according to that specific metrics behavior. This intelligent detection algorithm is based on established statistical trends like 
 “Seasonal Autoregressive Integrated Moving Average”. The feature will notice and pick up varying patterns like: service request lulls on the weekends or seasonal spikes. 
 
@@ -186,8 +186,8 @@ Now that we have our data captured and visualized, we are able to *watch* for ou
 
 To show this, let's stick with the same theme and our custom metric to monitor for a certain threshold, and then alert us as soon as it is triggered. 
 
-##### Create a Metric Monitor
-##### Customize Alert Messages
+###### Create a Metric Monitor
+###### Customize Alert Messages
 This is done via the “Monitors” section of the UI. We will set a Metric Monitor to watch the average of our metric, *warn if over 500* and *alert if over 800* and *send us custom messages based on the scenario*. This is accomplished by leveraging the message template variable that are available within the “Say what’s happening” field. Also, to be notified almost immediately after a spike, we will set the *threshold to watch over the last five minutes*. 
 ![alt-text](/images/my_metric_monitor_alert.gif)
 
@@ -206,7 +206,7 @@ Fortunately, we can schedule downtimes that make sense per each monitor.
 
 ### Application Performance Monitoring
 Infrastructure monitoring is a great start down the path of improving your overall performance. Application performance monitoring is the other half of the picture. Datadog completes your full monitoring solution with it’s final key piece: APM. 
-##### Trace an Application
+###### Trace an Application
 To fully realize these values, we need to instrument Datadog’s APM solution on an application. 
 We will use a simple Python app to post data to our MySQL server. find this app's code at: https://github.com/samirgandhi19/hiring-engineers/blob/samir-test/code/flaskapp.py
 
