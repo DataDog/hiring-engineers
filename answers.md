@@ -20,7 +20,7 @@ Editing the the datadog.yaml, I found the tag dictionaries, saved the file, and 
 I confirmed that the tags showed up by looking at the UI of my host map instance:
 
 #### (screenshot)
-<img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/1/1/1.png" />
+<img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/1/1/2.png" />
 
 ### b) Install Datadog integration for my DB
 Used the docs here: <a href="https://docs.datadoghq.com/integrations/postgres/">https://docs.datadoghq.com/integrations/postgres/</a>
