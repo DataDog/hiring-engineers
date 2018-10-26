@@ -9,79 +9,79 @@ I used Vagrant (Ubuntu) to complete the exercise. My Datadog host map also inclu
 
 #1) Collecting Metrics
 
-	Everything in this section was self-explainable and found the docs easy to understand.
+Everything in this section was self-explainable and found the docs easy to understand.
 
-	Note: The dd-agent status command helped me out A LOT through this particular exercise.
+Note: The dd-agent status command helped me out A LOT through this particular exercise.
 
-	a) Adding Tags
-	Used the docs here: https://docs.datadoghq.com/tagging/assigning_tags/?tab=hostmap
+a) Adding Tags
+Used the docs here: https://docs.datadoghq.com/tagging/assigning_tags/?tab=hostmap
 
-	Editing the the datadog.yaml, I found the tag dictionaries, saved the file, and restarted the dd agent:
+Editing the the datadog.yaml, I found the tag dictionaries, saved the file, and restarted the dd agent:
 
-	![Alt text](images/1/1/1.png?raw=true "Title")
+![Alt text](https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/1/1/1.png)
 
-	I confirmed that the tags showed up by looking at the UI of my host map instance:
-
-
-	b) Install Datadog integration for my DB
-	Used the docs here: https://docs.datadoghq.com/integrations/postgres/
-
-	I installed Postgres on my machine and went through the steps of setting up the Postgres user for datadog and edited the Postgres.d/conf.yaml.
-
-	After restarting the dd-agent, I ran the agent status and received an “ok” from the status check:
-
-	(screenshot)
-
-	After confirming confirming an “ok” from my status check, I went back to the UI to confirm it was showing up:
-
-	(screenshot)
+I confirmed that the tags showed up by looking at the UI of my host map instance:
 
 
-	c) Custom Agent called “my_metric”
-	Used the docs here: https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6
+b) Install Datadog integration for my DB
+Used the docs here: https://docs.datadoghq.com/integrations/postgres/
 
-	Created a file called my_metric.py and my_metric.yaml. Confirmed that the metric was showing up as well:
+I installed Postgres on my machine and went through the steps of setting up the Postgres user for datadog and edited the Postgres.d/conf.yaml.
 
-	(screenshot)
+After restarting the dd-agent, I ran the agent status and received an “ok” from the status check:
 
-	(screenshot)
+(screenshot)
 
-	Note: I have to admit that this was the first time writing Python and I used the library “random” to generate the random number to send. I hadn’t downloaded the necessary library to use that (your docs told me to but I was just being lazy).
+After confirming confirming an “ok” from my status check, I went back to the UI to confirm it was showing up:
+
+(screenshot)
+
+
+c) Custom Agent called “my_metric”
+Used the docs here: https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6
+
+Created a file called my_metric.py and my_metric.yaml. Confirmed that the metric was showing up as well:
+
+(screenshot)
+
+(screenshot)
+
+Note: I have to admit that this was the first time writing Python and I used the library “random” to generate the random number to send. I hadn’t downloaded the necessary library to use that (your docs told me to but I was just being lazy).
 
 Again, this is where the dd-agent status command helped me out. Running the command let me know that that library wasn’t there and I needed to pull it in.
 
-	d) Send the metric every 45 seconds
+d) Send the metric every 45 seconds
 
-	I used my my_metric.yaml to set the min_collection_interval to 45, looked at my map in the UI and looked like it was sending every 45 seconds
+I used my my_metric.yaml to set the min_collection_interval to 45, looked at my map in the UI and looked like it was sending every 45 seconds
 
-	(screenshot)
+(screenshot)
 
 2) Visualizing Data
 
-	Using the API
-	a) created my custom metric
-	b) anomoly function with my db metric (I used “postgresql.max_connections”)
-	c) roll up from with my custom metric
+Using the API
+a) created my custom metric
+b) anomoly function with my db metric (I used “postgresql.max_connections”)
+c) roll up from with my custom metric
 
-	I used these docs:
-		API Timeboards: https://docs.datadoghq.com/api/?lang=python#timeboards
-		Anomaly: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
-		Rollup: https://docs.datadoghq.com/graphing/functions/rollup/
+I used these docs:
+	API Timeboards: https://docs.datadoghq.com/api/?lang=python#timeboards
+	Anomaly: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+	Rollup: https://docs.datadoghq.com/graphing/functions/rollup/
 
 Note: Used a ruby script
 
-require 'dogapi'
-require 'byebug'
+  require 'dogapi'
+  require 'byebug'
 
-api_key = '' # left these out bc the repo is public
-app_key = ''
+  api_key = '' # left these out bc the repo is public
+  app_key = ''
 
-dog = Dogapi::Client.new(api_key, app_key)
+  dog = Dogapi::Client.new(api_key, app_key)
 
-# Create a timeboard.
-title = 'My Metric 4'
-description = 'Scope over my host'
-graphs = [{
+  # Create a timeboard.
+  title = 'My Metric 4'
+  description = 'Scope over my host'
+  graphs = [{
     "definition" => {
         "events" => [],
         "requests" => [
@@ -92,44 +92,44 @@ graphs = [{
         "viz" => "timeseries"
     },
     "title" => "My Metric Scoped over Ubuntu Xenial"
-}]
-template_variables = [{
+  }]
+  template_variables = [{
     "name" => "ubuntu-xenial",
     "prefix" => "ubuntu-xenial",
     "default" => "host:ubuntu-xenial"
-}]
+  }]
 
-dog.create_dashboard(title, description, graphs, template_variables)
+  dog.create_dashboard(title, description, graphs, template_variables)
 
-	d) Accessing in the UI and sending to myself using @ notation
+d) Accessing in the UI and sending to myself using @ notation
 
-	(screenshot)
+(screenshot)
 
-	Bonus: Noticed that my anomaly function was pretty dead, so it’s technically not detecting anything. I a real working db, it would be displaying an algorithmic function to detect an unusual amount of max connections
+Bonus: Noticed that my anomaly function was pretty dead, so it’s technically not detecting anything. I a real working db, it would be displaying an algorithmic function to detect an unusual amount of max connections
 
 3) Monitoring Data
 
-	I used the UI: https://app.datadoghq.com/monitors#create/metric
+I used the UI: https://app.datadoghq.com/monitors#create/metric
 
-	a) Create warning, alerting, no data thresholds
-	(screenshot)
+a) Create warning, alerting, no data thresholds
+(screenshot)
 
-	b) Different messages
-	(screenshot)
+b) Different messages
+(screenshot)
 
-	c) Send an email
-	(screenshot)
+c) Send an email
+(screenshot)
 
-	Bonus:
-	(screenshot)
+Bonus:
+(screenshot)
 
 4) Collecting APM Data:
 
-	I used the flask app example and the docs for the APM setup:
+I used the flask app example and the docs for the APM setup:
 
-	(screenshot)
+(screenshot)
 
-	Dashboard: https://app.datadoghq.com/dash/959266/my-metric-4
+Dashboard: https://app.datadoghq.com/dash/959266/my-metric-4
 
 5) Final Question:
 
