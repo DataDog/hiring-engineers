@@ -65,8 +65,11 @@ I used my my_metric.yaml to set the min_collection_interval to 45, looked at my 
 Completed Dashboard: <a href="https://app.datadoghq.com/dash/959266/my-metric-4">https://app.datadoghq.com/dash/959266/my-metric-4</a>
 
 ### Using the API
+
 a) created my custom metric
+
 b) anomoly function with my db metric (I used “postgresql.max_connections”)
+
 c) roll up from with my custom metric
 
 I used these docs:
@@ -150,7 +153,7 @@ Bonus:
 I used the flask app example and the docs for the APM setup:
 
 #### (screenshot)
-<img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/3/bonus/Screen Shot 2018-10-25 at 5.11.05 PM" />
+<img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/4/1.png" />
 
 Dashboard: <a href="https://app.datadoghq.com/dash/959266/my-metric-4">https://app.datadoghq.com/dash/959266/my-metric-4</a>
 
