@@ -1,4 +1,3 @@
-Your answers to the questions go here.
 
 # Prerequisites - Setup the environment
 
@@ -12,12 +11,11 @@ Agent reporting metrics from my local machine:
 
 
 
-
 # Collecting Metrics
 
 ### Agent Tags
 
-I added tags to the Agent configuration file via the UI.
+I added tags to the Agent configuration file.
 Screenshot of host and its tags on the Host Map page:
 
 <img width="872" alt="host_and_tags" src="https://user-images.githubusercontent.com/10853262/47468486-68f67b80-d7b0-11e8-8b45-36c55e0b8eca.png">
@@ -111,7 +109,7 @@ Original Timeboard created with Postgres Metrics:
 
 <img width="547" alt="timeboard_metrics" src="https://user-images.githubusercontent.com/10853262/47396372-47798f00-d6df-11e8-8acd-de3ee0a12372.png">
 
-Just for fun and because the above graph wasn’t as visually interesting as time progressed, I input a different metric (system.cpu.user) to show off the Anomaly function more clearly. 
+Because the above graph wasn’t as visually interesting as time progressed, I input a different metric (system.cpu.user) to show off the Anomaly function more clearly. 
 Text file: [curl_second_timeboard.txt](https://github.com/dmcdekker/hiring-engineers/files/2508391/curl_second_timeboard.txt)
 
 Second Timeboard created with CPU Metrics:
@@ -156,9 +154,6 @@ Screenshot of the email I received from the Monitor:
 
 <img width="783" alt="alert_over_800_email" src="https://user-images.githubusercontent.com/10853262/47396636-80663380-d6e0-11e8-94ed-0b0114f84f42.png">
 
-
-**Neato!**  :+1:
-
 I then set up two scheduled downtimes for this monitor:
 
 -   One that silences it from 7pm to 9am daily on M-F
@@ -196,5 +191,3 @@ A Service is a distinct series of processes that form a service set; users can d
 # Final Question
 **How would I use Datadog?** 
 As a chef who obsesses over cooking things perfectly, I’d connect a smart thermometer to Datadog, specifically to measure the internal temperature of meat while it cooks. A few minutes of over or undercooking can make a huge difference in flavor and vital to avoid foodborne illness. Additionally, heat is lost when the door is open and closed; having a well placed thermometer that can be monitored externally would be amazing!
-
-> Written with [StackEdit](https://stackedit.io/).
