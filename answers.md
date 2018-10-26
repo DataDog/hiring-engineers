@@ -5,7 +5,7 @@ I used Vagrant (Ubuntu) to complete the exercise. My Datadog host map also inclu
 
 ## 1) Collecting Metrics
 
-Everything in this section was self-explainable and found the docs easy to understand.
+Everything in this section was self-explanatory and found the docs easy to understand.
 
 Note: The dd-agent status command helped me out A LOT through this particular exercise.
 
@@ -41,7 +41,7 @@ After confirming confirming an “ok” from my status check, I went back to the
 ### c) Custom Agent called “my_metric”
 Used the docs here: <a href="https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6">https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6</a>
 
-Created a file called my_metric.py and my_metric.yaml. Confirmed that the metric was showing up as well:
+Created a file called my_metric.py and my_metric.yaml. Confirmed that the metric was showing up:
 
 #### (screenshot)
 <img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/1/3/1.png" />
@@ -49,7 +49,7 @@ Created a file called my_metric.py and my_metric.yaml. Confirmed that the metric
 #### (screenshot)
 <img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/1/3/2.png" />
 
-Note: I have to admit that this was the first time writing Python and I used the library “random” to generate the random number to send. I hadn’t downloaded the necessary library to use that (your docs told me to but I was just being lazy).
+Note: I have to admit that this was the first time writing Python and I used the library “random” to generate the random number to send. I hadn’t downloaded the necessary library (your docs told me to but I was just being lazy).
 
 Again, this is where the dd-agent status command helped me out. Running the command let me know that that library wasn’t there and I needed to pull it in.
 
@@ -118,7 +118,7 @@ Note: I used a ruby script
 #### (screenshot)
 <img src="https://github.com/kfike/hiring-engineers/blob/solutions-engineer/images/2/snapshot email.png" />
 
-Bonus: Noticed that my anomaly function was pretty empty, so it’s technically not detecting anything. I a real working db, it would be displaying an algorithmic function to detect an unusual amount of max connections
+Bonus: Noticed that my anomaly function was pretty empty, so it’s technically not detecting anything. If I had a db receiving inputs, it would be displaying an algorithmic function to detect an unusual amount of max connections
 
 ## 3) Monitoring Data
 
@@ -159,6 +159,4 @@ Dashboard: <a href="https://app.datadoghq.com/dash/959266/my-metric-4">https://a
 
 ## 5) Final Question:
 
-My wife and I just had a baby and he sleeps in another room. We use a baby monitor at night to listen to see if we wakes up. One of the problems is trying to figure out if he’s actually awake and needs to be fed or he’s a little upset and will go back to sleep. I’ve thought a lot of about frequency within monitors and measuring the consistency/frequency height to figure out if he’s actually awake. There’s many circumstances where he starts crying, I walk across the house to get him, and right before I open his door, he quits crying and falls back asleep.
-
-My solution involving Datadog would be to send frequency data, monitor it, and use an alert that could tell if he’s awake or not.
+I'd love to use Datadog to measure baby monitor frequency data. The monitor could send frequency to datadog so that it could monitor consistency. Ideally, Datadog would be able to tell if a baby woke up and alert parents.
