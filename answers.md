@@ -129,3 +129,37 @@ Finally the email notifying of the downtimes is shown here:
 
 <img src="http://www.thomatos.org/datadog/email-scheduled.png">
 
+Collecting APM Data
+===================
+Using the skeleton of the Flask Python app, the following modules had to be installed as extra modules to use for instrumenting:
+
+<ol>
+  <li>sudo /opt/datadog-agent/embedded/bin/pip install ddtrace
+  <li>sudo /opt/datadog-agent/embedded/bin/pip install ddtrace[opentracing]
+  <li>sudo /opt/datadog-agent/embedded/bin/pip install blinker
+  <li>sudo /opt/datadog-agent/embedded/bin/pip install pymssql
+</ol>
+
+The relevant module statements for the Python Flask app are shown:
+
+<ol>
+  <li>import blinker as _
+  <li>from ddtrace import tracer
+  <li>from ddtrace.contrib.flask import TraceMiddleware
+</ol>
+
+The Flask app was updated to also leverage the embedded MySQL database installed earlier. The pymysql module was imported so when the Flask app runs, depending on which route handler decorator is used, a SQL query against the installed MySQL database is made to add some load to the script and the Vagrant VM and thus show metrics on the graph. 
+
+To help automate the load making, a flask tester script (fchecker) was created to automate sending lots of requests to the Flask app simulating usage to make the graph interesting.
+
+The dashboard showing the combined APM and infrastructure metrics is shown here:
+
+<img src="http://www.thomatos.org/datadog/apm-dash.png">
+
+The Flask load generator script was simply this:
+
+<img src="http://www.thomatos.org/datadog/flask-checker.png">
+
+BONUS Service versus Resource
+=============================
+A service is a set of processes that do the same job. A resource is a particular action for a service such as the URL in the web Flask app service.
