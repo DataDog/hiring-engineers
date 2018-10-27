@@ -25,7 +25,7 @@ Within the Ubuntu shell the command from the web page was provided as:
 First 'curl' had to be installed using 
 sudo apt-get install curl
 
-DD_API_KEY=9fcece82deb81b6846ad9d9b85893fda bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=my_key_was_here bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 The datadog-agent yaml file was updated and my tiny, infant, little dog started to bark.
 
@@ -36,7 +36,7 @@ Collecting Metrics
 
 Add tags
 --------
-Tags were added to the datadog.yaml file.
+Tags were added by editing the datadog.yaml file.
 
 <img src="http://www.thomatos.org/datadog/tags-yaml.png">
 
