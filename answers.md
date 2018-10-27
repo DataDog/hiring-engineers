@@ -67,10 +67,6 @@ sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
 
 Custom Agent check with my_metric
 ---------------------------------
-The embedded Python pip utility was used to install missing modules for the check.
-
-sudo /opt/datadog-agent/embedded/bin/pip install datadog
-
 The Python script was added into the checks.d directory and used the random module.
 
 <img src="http://www.thomatos.org/datadog/myagentcheck.png">
@@ -83,4 +79,30 @@ The collection interval was changed to 45 seconds using the yaml file in conf.d 
 
 <img src="http://www.thomatos.org/datadog/myagentcollectiongraph.png">
 
+Visualizing Data
+================
+A timeboard was created using the API. The embedded Python pip utility was used to install missing modules for the agent.
+sudo /opt/datadog-agent/embedded/bin/pip install datadog
 
+The relevant Python lines of code were acquired by creating a timeboard manually and reverse engineering the syntax to use in the Python code by looking at the JSON output.
+
+The embedded Python pip utility was used to install missing modules for the check.
+"q": "avg:my_metric{*}",
+"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+"q": "avg:my_metric{*}.rollup(sum, 3600)",
+
+The anomanyl function setting:
+
+<img src="http://www.thomatos.org/datadog/anomaly.png">
+
+The email showing the 5 minute timeframe was sent using @et@thomatos.org
+
+<img src="http://www.thomatos.org/datadog/email-anomaly.png">
+
+A screenshot of the dashboard with my_metric, a MySQL metric and the 1 hour rollup shown here.
+
+<img src="http://www.thomatos.org/datadog/timeboard-anomaly.png">
+
+BONUS Anomaly
+-------------
+The anomaly function is used to highlight data points above or below a gray zone of normal behaviour showing any anomalies or deviations from a normal pattern.
