@@ -163,3 +163,7 @@ The Flask load generator script was simply this:
 BONUS Service versus Resource
 =============================
 A service is a set of processes that do the same job. A resource is a particular action for a service such as the URL in the web Flask app service.
+
+Final Question
+==============
+The number of out-of-the-box integrations available within Datadog is impressive and exciting. I've recently embarked on home automations such as Nest and looking into Ring. I'm also in the middle of an oil-to-gas conversion project. I wonder if Datadog could produce integrations that leverage utility company APIs, such as in the NY/NJ metro area, integrating with National Grid and PSE&G or ConEd to import my customer home use metrics. Perhaps using a Timeboard to see my electric and gas meter metrics and then combine with Nest data showing my behaviour and where it can be changed to exploit rate changes with the utilities.
