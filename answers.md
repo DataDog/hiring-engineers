@@ -8,4 +8,7 @@ Link: https://app.datadoghq.com/account/settings#integrations
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-In order to create a custom Agent check, I read the documentation and created 
+In order to create a custom Agent check, I read the documentation and created the directory checks.d and has a file called custom_check.py. I also created a custom_check.yaml
+As you can see in the screenshot for the code, I generated a random value between 0 and 1000 using self.gauge to sample the metric. 
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+As you can see in the code that I used the sleep method imported from the time module, I changed the Python script to change the collection interval of 'my_metric' every 45 seconds.

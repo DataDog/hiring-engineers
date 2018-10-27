@@ -3,6 +3,6 @@ from random import randint
 import time
 class CustomAgentCheck(AgentCheck):
   def check(self, instance):
-    random_num = randint(0, 1000)
-    self.gauge('my_metric', random_num)
+    random_int = randint(0, 1000)
+    self.gauge('my_metric', random_int)
     time.sleep(45)
