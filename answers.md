@@ -71,13 +71,15 @@ The Python script was added into the checks.d directory and used the random modu
 
 <img src="http://www.thomatos.org/datadog/myagentcheck.png">
 
+The my_metric custom agent check coming in at 45 seconds.
+
+<img src="http://www.thomatos.org/datadog/myagentcollectiongraph.png">
+
 BONUS Custom interval
 ---------------------
 The collection interval was changed to 45 seconds using the yaml file in conf.d for the agent as shown below as well as a screenshot of the my_metric custom metric from the agent.
 
 <img src="http://www.thomatos.org/datadog/myagentcollectioninterval.png">
-
-<img src="http://www.thomatos.org/datadog/myagentcollectiongraph.png">
 
 Visualizing Data
 ================
@@ -106,3 +108,24 @@ A screenshot of the dashboard with my_metric, a MySQL metric and the 1 hour roll
 BONUS Anomaly
 -------------
 The anomaly function is used to highlight data points above or below a gray zone of normal behaviour showing any anomalies or deviations from a normal pattern.
+
+Monitoring Data
+===============
+The webpage used to set up monitors was used with these settings:
+
+<img src="http://www.thomatos.org/datadog/monitor-settings.png">
+
+An email sent during a warning is shown here to @et@et.thomatos.org:
+
+<img src="http://www.thomatos.org/datadog/email-warning.png">
+
+BONUS Scheduled Downtimes
+-------------------------
+The monitor downtimes were set up as shown here:
+
+<img src="http://www.thomatos.org/datadog/monitor-downtimes.png">
+
+Finally the email notifying of the downtimes is shown here:
+
+<img src="http://www.thomatos.org/datadog/email-scheduled.png">
+
