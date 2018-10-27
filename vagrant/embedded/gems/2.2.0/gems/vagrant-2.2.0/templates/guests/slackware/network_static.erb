@@ -1,0 +1,13 @@
+#VAGRANT-BEGIN
+# Config for eth<%= i %>
+IPADDR[<%= i %>]="<%= options[:ip] %>"
+NETMASK[<%= i %>]="<%= options[:ip] %>"
+USE_DHCP[<%= i %>]=""
+DHCP_HOSTNAME[<%= i %>]=""
+
+<% if options[:gateway] -%>
+GATEWAY="<%= options[:gateway] %>"
+<% end -%>
+
+DEBUG_ETH_UP="no"
+#VAGRANT-END

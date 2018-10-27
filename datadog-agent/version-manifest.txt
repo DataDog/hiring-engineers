@@ -1,0 +1,32 @@
+agent 6.6.0
+
+Component                    Installed Version                    Version GUID                                                              
+--------------------------------------------------------------------------------------------------------------------------------------------
+bzip2                        1.0.6                                sha256:a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd   
+cacerts                      latest                               sha256:86695b1be9225c3cf882d283f05c944e3aabbc1df6428a4424269a93e997dc65   
+datadog-agent                6.6.0                                
+datadog-agent-finalize       1.0.0                                
+datadog-agent-integrations   6.6.x                                git:d6144119906faff151aca2e0d613178a11e57223                              
+datadog-agent-mac-app        6.6.0                                
+datadog-agent-prepare        1.0.0                                
+datadog-pip                  trishankatdatadog/18.1.tuf-in-toto   git:ac03eb0ffa43273d87d3f73283f69940f3662348                              
+datadog-process-agent        6.6.0                                
+datadog-trace-agent          6.6.0                                git:24d4c766c03f408d2182b0aed52d7c41e4c1d2c0                              
+jmxfetch                     0.21.0                               sha256:4feb19275604c275b2c1a3b42f788525bb8bcbb3ec14ef62fe26dca1a58c4f99   
+libgcc                       0.0.1                                
+libiconv                     1.14                                 md5:e34509b1623cec449dfeb73d7ce9c6c6                                      
+libsqlite3                   3.7.7.1                              git:56786cab18673a14c64bf4a04e38eef70f692b73                              
+makedepend                   1.0.5                                md5:efb2d7c7e22840947863efaedc175747                                      
+ncurses                      5.9                                  md5:8cb9c412e5f2d96bc6f459aa8c6282a1                                      
+net-snmp-lib                 5.7.3                                sha256:12ef89613c7707dc96d13335f153c1921efc9d61d3708ef09f3fc4a7014fb4f0   
+openssl                      1.0.2o                               sha256:ec3f5c9714ba0fd45cb4e087301eb1336c317e0d20b575a125050470e8089e4d   
+pip                          10.0.1                               sha256:2c39367b8529f50746b399d7e4563df48a148b8558ae6f7236b51c155359365a   
+pkg-config                   0.28                                 md5:aa3c86e67551adc3ac865160e34a2a0d                                      
+protobuf-py                  3.5.1                                sha256:13d3c15ebfad8c28bee203dd4a0f6e600d2a7d2243bac8b5d0e517466500fcae   
+python                       2.7.15                               sha256:18617d1f15a380a919d517630a9cd85ce17ea602f9bbdc58ddc672df4b0239db   
+setuptools                   28.8.0                               sha256:d3b2c63a5cb6816ace0883bc3f6aca9e7890c61d80ac0d608a183f85825a7cc0   
+six                          1.11.0                               
+util-macros                  1.19.0                               md5:40e1caa49a71a26e0aa68ddd00203717                                      
+version-manifest             0.0.1                                
+xproto                       7.0.27                               md5:f04f535b090f3fd05073370740e99193                                      
+zlib                         1.2.11                               sha256:c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1   

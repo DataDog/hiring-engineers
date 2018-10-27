@@ -1,0 +1,47 @@
+require "shellwords"
+
+module VagrantPlugins
+  module CommunicatorWinRM
+    module CommandFilters
+      # Converts a *nix 'rm' command to a PowerShell equivalent
+      class Rm
+        def filter(command)
+          # rm -Rf /some/dir
+          # rm -R /some/dir
+          # rm -R -f /some/dir
+          # rm -f /some/dir
+          # rm /some/dir
+          cmd_parts = Shellwords.split(command.strip)
+
+          # Figure out if we need to do this recursively
+          recurse = false
+          cmd_parts.each do |k|
+            argument = k.downcase
+            if argument == '-r' || argument == '-rf' || argument == '-fr'
+              recurse = true
+              break
+            end
+          end
+
+          # Figure out which argument is the path
+          dir = cmd_parts.pop
+          while !dir.nil? && dir.start_with?('-')
+            dir = cmd_parts.pop
+          end
+
+          ret_cmd = ''
+          if recurse
+            ret_cmd = "if (Test-Path \"#{dir}\") {Remove-Item \"#{dir}\" -force -recurse}"
+          else
+            ret_cmd = "if (Test-Path \"#{dir}\") {Remove-Item \"#{dir}\" -force}"
+          end
+          return ret_cmd
+        end
+
+        def accept?(command)
+          command.start_with?('rm ')
+        end
+      end
+    end
+  end
+end

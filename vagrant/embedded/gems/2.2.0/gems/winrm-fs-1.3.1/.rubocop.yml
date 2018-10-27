@@ -1,0 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
+Naming/FileName:
+  Exclude:
+    - 'lib/winrm-fs.rb'
+
+Style/Encoding:
+  Enabled: true
+
+Layout/EndOfLine:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  Max: 25

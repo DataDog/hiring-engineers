@@ -1,0 +1,12 @@
+prefix=/opt/vagrant/embedded
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+
+Name: libxslt
+Version: 1.1.32
+Description: XSLT library version 2.
+Requires: libxml-2.0
+Libs: -L${libdir} -lxslt -L/opt/vagrant/embedded/lib -lxml2 -lz -lpthread -liconv -lm  
+Cflags: -I${includedir}

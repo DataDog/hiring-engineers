@@ -1,0 +1,17 @@
+Style/FileName:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+ClassLength:
+  Max: 250
+
+Metrics/AbcSize:
+  Max: 25

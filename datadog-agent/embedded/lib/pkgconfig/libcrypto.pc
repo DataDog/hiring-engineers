@@ -1,0 +1,13 @@
+prefix=/opt/datadog-agent/embedded
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+enginesdir=${libdir}/engines
+
+Name: OpenSSL-libcrypto
+Description: OpenSSL cryptography library
+Version: 1.0.2o
+Requires: 
+Libs: -L${libdir} -lcrypto
+Libs.private: -L/opt/datadog-agent/embedded/lib  -L/opt/datadog-agent/embedded/lib -lz
+Cflags: -I${includedir} 

@@ -5,3 +5,5 @@ Link: https://app.datadoghq.com/infrastructure/map?host=652858656&fillby=avg%3Ac
 
 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 Link: https://app.datadoghq.com/account/settings#integrations
+
+3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.

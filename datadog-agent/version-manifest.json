@@ -1,0 +1,275 @@
+{
+  "manifest_format": 2,
+  "software": {
+    "cacerts": {
+      "locked_version": "latest",
+      "locked_source": {
+        "url": "https://curl.haxx.se/ca/cacert.pem",
+        "sha256": "86695b1be9225c3cf882d283f05c944e3aabbc1df6428a4424269a93e997dc65"
+      },
+      "source_type": "url",
+      "described_version": "latest",
+      "license": "Unspecified"
+    },
+    "libgcc": {
+      "locked_version": "0.0.1",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "0.0.1",
+      "license": "Unspecified"
+    },
+    "ncurses": {
+      "locked_version": "5.9",
+      "locked_source": {
+        "url": "http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz",
+        "md5": "8cb9c412e5f2d96bc6f459aa8c6282a1",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "5.9",
+      "license": "Unspecified"
+    },
+    "zlib": {
+      "locked_version": "1.2.11",
+      "locked_source": {
+        "sha256": "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
+        "url": "https://zlib.net/zlib-1.2.11.tar.gz",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "1.2.11",
+      "license": "Unspecified"
+    },
+    "xproto": {
+      "locked_version": "7.0.27",
+      "locked_source": {
+        "url": "http://xorg.freedesktop.org/releases/individual/proto/xproto-7.0.27.tar.gz",
+        "md5": "f04f535b090f3fd05073370740e99193",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "7.0.27",
+      "license": "Unspecified"
+    },
+    "util-macros": {
+      "locked_version": "1.19.0",
+      "locked_source": {
+        "url": "http://xorg.freedesktop.org/releases/individual/util/util-macros-1.19.0.tar.gz",
+        "md5": "40e1caa49a71a26e0aa68ddd00203717",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "1.19.0",
+      "license": "Unspecified"
+    },
+    "libiconv": {
+      "locked_version": "1.14",
+      "locked_source": {
+        "url": "http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz",
+        "md5": "e34509b1623cec449dfeb73d7ce9c6c6",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "1.14",
+      "license": "Unspecified"
+    },
+    "pkg-config": {
+      "locked_version": "0.28",
+      "locked_source": {
+        "md5": "aa3c86e67551adc3ac865160e34a2a0d",
+        "url": "http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "0.28",
+      "license": "Unspecified"
+    },
+    "makedepend": {
+      "locked_version": "1.0.5",
+      "locked_source": {
+        "url": "http://xorg.freedesktop.org/releases/individual/util/makedepend-1.0.5.tar.gz",
+        "md5": "efb2d7c7e22840947863efaedc175747",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "1.0.5",
+      "license": "Unspecified"
+    },
+    "openssl": {
+      "locked_version": "1.0.2o",
+      "locked_source": {
+        "url": "https://www.openssl.org/source/openssl-1.0.2o.tar.gz",
+        "extract": "lax_tar",
+        "sha256": "ec3f5c9714ba0fd45cb4e087301eb1336c317e0d20b575a125050470e8089e4d"
+      },
+      "source_type": "url",
+      "described_version": "1.0.2o",
+      "license": "OpenSSL"
+    },
+    "bzip2": {
+      "locked_version": "1.0.6",
+      "locked_source": {
+        "url": "https://s3.amazonaws.com/dd-agent/bzip2/bzip2-1.0.6.tar.gz",
+        "sha256": "a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd"
+      },
+      "source_type": "url",
+      "described_version": "1.0.6",
+      "license": "Unspecified"
+    },
+    "libsqlite3": {
+      "locked_version": "56786cab18673a14c64bf4a04e38eef70f692b73",
+      "locked_source": {
+        "git": "git://github.com/LuaDist/libsqlite3.git"
+      },
+      "source_type": "git",
+      "described_version": "3.7.7.1",
+      "license": "Unspecified"
+    },
+    "python": {
+      "locked_version": "2.7.15",
+      "locked_source": {
+        "url": "http://python.org/ftp/python/2.7.15/Python-2.7.15.tgz",
+        "sha256": "18617d1f15a380a919d517630a9cd85ce17ea602f9bbdc58ddc672df4b0239db"
+      },
+      "source_type": "url",
+      "described_version": "2.7.15",
+      "license": "Unspecified"
+    },
+    "net-snmp-lib": {
+      "locked_version": "5.7.3",
+      "locked_source": {
+        "sha256": "12ef89613c7707dc96d13335f153c1921efc9d61d3708ef09f3fc4a7014fb4f0",
+        "url": "https://dd-agent.s3.amazonaws.com/net-snmp/net-snmp-5.7.3.tar.gz",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "5.7.3",
+      "license": "Unspecified"
+    },
+    "datadog-agent": {
+      "locked_version": null,
+      "locked_source": {
+        "path": ".."
+      },
+      "source_type": "path",
+      "described_version": null,
+      "license": "Apache-2.0"
+    },
+    "setuptools": {
+      "locked_version": "28.8.0",
+      "locked_source": {
+        "url": "https://github.com/pypa/setuptools/archive/v28.8.0.tar.gz",
+        "sha256": "d3b2c63a5cb6816ace0883bc3f6aca9e7890c61d80ac0d608a183f85825a7cc0",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "28.8.0",
+      "license": "Unspecified"
+    },
+    "pip": {
+      "locked_version": "10.0.1",
+      "locked_source": {
+        "url": "https://github.com/pypa/pip/archive/10.0.1.tar.gz",
+        "sha256": "2c39367b8529f50746b399d7e4563df48a148b8558ae6f7236b51c155359365a",
+        "extract": "seven_zip"
+      },
+      "source_type": "url",
+      "described_version": "10.0.1",
+      "license": "Unspecified"
+    },
+    "datadog-pip": {
+      "locked_version": "ac03eb0ffa43273d87d3f73283f69940f3662348",
+      "locked_source": {
+        "git": "https://github.com/DataDog/pip.git"
+      },
+      "source_type": "git",
+      "described_version": "trishankatdatadog/18.1.tuf-in-toto",
+      "license": "Unspecified"
+    },
+    "six": {
+      "locked_version": "1.11.0",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "1.11.0",
+      "license": "Unspecified"
+    },
+    "protobuf-py": {
+      "locked_version": "3.5.1",
+      "locked_source": {
+        "url": "https://github.com/protocolbuffers/protobuf/releases/download/v3.5.1/protobuf-python-3.5.1.tar.gz",
+        "sha256": "13d3c15ebfad8c28bee203dd4a0f6e600d2a7d2243bac8b5d0e517466500fcae"
+      },
+      "source_type": "url",
+      "described_version": "3.5.1",
+      "license": "Unspecified"
+    },
+    "datadog-agent-prepare": {
+      "locked_version": "1.0.0",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "1.0.0",
+      "license": "Apache-2.0"
+    },
+    "datadog-agent-integrations": {
+      "locked_version": "d6144119906faff151aca2e0d613178a11e57223",
+      "locked_source": {
+        "git": "https://github.com/DataDog/integrations-core.git"
+      },
+      "source_type": "git",
+      "described_version": "6.6.x",
+      "license": "Unspecified"
+    },
+    "jmxfetch": {
+      "locked_version": "0.21.0",
+      "locked_source": {
+        "sha256": "4feb19275604c275b2c1a3b42f788525bb8bcbb3ec14ef62fe26dca1a58c4f99",
+        "url": "https://dd-jmxfetch.s3.amazonaws.com/jmxfetch-0.21.0-jar-with-dependencies.jar"
+      },
+      "source_type": "url",
+      "described_version": "0.21.0",
+      "license": "Unspecified"
+    },
+    "datadog-trace-agent": {
+      "locked_version": "24d4c766c03f408d2182b0aed52d7c41e4c1d2c0",
+      "locked_source": {
+        "git": "https://github.com/DataDog/datadog-trace-agent.git"
+      },
+      "source_type": "git",
+      "described_version": "6.6.0",
+      "license": "Unspecified"
+    },
+    "datadog-process-agent": {
+      "locked_version": "6.6.0",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "6.6.0",
+      "license": "Unspecified"
+    },
+    "datadog-agent-mac-app": {
+      "locked_version": null,
+      "locked_source": {
+        "path": "/Users/builder/go/src/github.com/DataDog/datadog-agent/omnibus/files/datadog-agent-mac-app"
+      },
+      "source_type": "path",
+      "described_version": null,
+      "license": "Unspecified"
+    },
+    "version-manifest": {
+      "locked_version": "0.0.1",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "0.0.1",
+      "license": "Apache-2.0"
+    },
+    "datadog-agent-finalize": {
+      "locked_version": "1.0.0",
+      "locked_source": null,
+      "source_type": "project_local",
+      "described_version": "1.0.0",
+      "license": "Unspecified"
+    }
+  },
+  "build_version": "6.6.0",
+  "build_git_revision": "6f2d901aeb19f0c0a4e09f149c7cc5a084d2f708",
+  "license": "Unspecified"
+}

@@ -1,0 +1,196 @@
+#!/usr/bin/env ruby
+
+# Trap interrupts to quit cleanly. This will be overridden at some point
+# by Vagrant. This is made to catch any interrupts while Vagrant is
+# initializing which have historically resulted in stack traces.
+Signal.trap("INT") { abort }
+
+# Disable exception reporting by default if available
+if Thread.respond_to?(:report_on_exception=)
+  Thread.report_on_exception = false
+end
+
+# Split arguments by "--" if its there, we'll recombine them later
+argv = ARGV.dup
+argv_extra = []
+
+# These will be the options that are passed to initialize the Vagrant
+# environment.
+opts = {}
+
+if idx = argv.index("--")
+  argv_extra = argv.slice(idx+1, argv.length-2)
+  argv = argv.slice(0, idx)
+end
+
+# Fast path the version of Vagrant
+if argv.include?("-v") || argv.include?("--version")
+  require_relative "../lib/vagrant/version"
+  puts "Vagrant #{Vagrant::VERSION}"
+  exit 0
+end
+
+# Disable plugin loading for commands where plugins are not required. This will
+# also disable loading of the Vagrantfile if it available as the environment
+# is not required for these commands
+argv.each_index do |i|
+  arg = argv[i]
+
+  if !arg.start_with?("-")
+    if arg == "box" && argv[i+1] == "list"
+      opts[:vagrantfile_name] = ""
+      ENV['VAGRANT_NO_PLUGINS'] = "1"
+    end
+
+    # Do not load plugins when performing plugin operations
+    if arg == "plugin"
+      if argv.none?{|a| a == "--local" } && !ENV["VAGRANT_LOCAL_PLUGINS_LOAD"]
+        opts[:vagrantfile_name] = ""
+      end
+      ENV['VAGRANT_NO_PLUGINS'] = "1"
+      # Only initialize plugins when listing installed plugins
+      if argv[i+1] != "list"
+        ENV['VAGRANT_DISABLE_PLUGIN_INIT'] = "1"
+      end
+    end
+
+    break
+  end
+end
+
+# Set logging level to `debug`. This is done before loading 'vagrant', as it
+# sets up the logging system.
+if argv.include?("--debug")
+  argv.delete("--debug")
+  ENV["VAGRANT_LOG"] = "debug"
+end
+
+# Enable log timestamps if requested
+if argv.include?("--timestamp")
+  argv.delete("--timestamp")
+  ENV["VAGRANT_LOG_TIMESTAMP"] = "1"
+end
+
+# Convenience flag to enable debug with timestamps
+if argv.include?("--debug-timestamp")
+  argv.delete("--debug-timestamp")
+  ENV["VAGRANT_LOG"] = "debug"
+  ENV["VAGRANT_LOG_TIMESTAMP"] = "1"
+end
+
+# Stdout/stderr should not buffer output
+$stdout.sync = true
+$stderr.sync = true
+
+env = nil
+begin
+  require 'log4r'
+  require 'vagrant'
+  require 'vagrant/bundler'
+  require 'vagrant/cli'
+  require 'vagrant/util/platform'
+
+  # Schedule the cleanup of things
+  at_exit(&Vagrant::Bundler.instance.method(:deinit))
+
+  # Create a logger right away
+  logger = Log4r::Logger.new("vagrant::bin::vagrant")
+  logger.info("`vagrant` invoked: #{ARGV.inspect}")
+
+  # Disable color in a few cases:
+  #
+  #   * --no-color is anywhere in our arguments
+  #   * STDOUT is not a TTY
+  #   * The terminal doesn't support colors (Windows)
+  #
+  if argv.include?("--no-color") || ENV["VAGRANT_NO_COLOR"]
+    # Delete the argument from the list so that it doesn't
+    # cause any invalid arguments down the road.
+    argv.delete("--no-color")
+
+    opts[:ui_class] = Vagrant::UI::Basic
+  elsif !Vagrant::Util::Platform.terminal_supports_colors?
+    opts[:ui_class] = Vagrant::UI::Basic
+  elsif !$stdout.tty? && !Vagrant::Util::Platform.cygwin?
+    # Cygwin always reports STDOUT is not a TTY, so we only disable
+    # colors if its not a TTY AND its not Cygwin.
+    opts[:ui_class] = Vagrant::UI::Basic
+  end
+
+  # Also allow users to force colors.
+  if argv.include?("--color") || ENV["VAGRANT_FORCE_COLOR"]
+    argv.delete("--color")
+    opts[:ui_class] = Vagrant::UI::Colored
+  end
+
+  # Highest precedence is if we have enabled machine-readable output
+  if argv.include?("--machine-readable")
+    argv.delete("--machine-readable")
+    opts[:ui_class] = Vagrant::UI::MachineReadable
+  end
+
+  # Default to colored output
+  opts[:ui_class] ||= Vagrant::UI::Colored
+
+  # Recombine the arguments
+  if !argv_extra.empty?
+    argv << "--"
+    argv += argv_extra
+  end
+
+  # Create the environment, which is the cwd of wherever the
+  # `vagrant` command was invoked from
+  logger.debug("Creating Vagrant environment")
+  env = Vagrant::Environment.new(opts)
+
+  # If we are running with the Windows Subsystem for Linux do
+  # some extra setup to allow access to Vagrant managed machines
+  # outside the subsystem
+  if Vagrant::Util::Platform.wsl?
+    recreate_env = Vagrant::Util::Platform.wsl_init(env, logger)
+    if recreate_env
+      logger.info("Re-creating Vagrant environment due to WSL modifications.")
+      env = Vagrant::Environment.new(opts)
+    end
+  end
+
+  if !Vagrant.in_installer? && !Vagrant.very_quiet?
+    # If we're not in the installer, warn.
+    env.ui.warn(I18n.t("vagrant.general.not_in_installer") + "\n", prefix: false)
+  end
+
+  begin
+    # Execute the CLI interface, and exit with the proper error code
+    exit_status = env.cli(argv)
+  ensure
+    # Unload the environment so cleanup can be done
+    env.unload
+  end
+
+  # Exit with the exit status from our CLI command
+  exit(exit_status)
+rescue Exception => e
+  # It is possible for errors to happen in Vagrant's initialization. In
+  # this case, we don't have access to this class yet, so we check for it.
+  raise if !defined?(Vagrant) || !defined?(Vagrant::Errors)
+  raise if !e.is_a?(Vagrant::Errors::VagrantError)
+
+  require 'log4r'
+  logger = Log4r::Logger.new("vagrant::bin::vagrant")
+  logger.error("Vagrant experienced an error! Details:")
+  logger.error(e.inspect)
+  logger.error(e.message)
+  logger.error(e.backtrace.join("\n"))
+
+  if env
+    opts = { prefix: false }
+    env.ui.error e.message, opts if e.message
+    env.ui.machine("error-exit", e.class.to_s, e.message.to_s)
+  else
+    $stderr.puts "Vagrant failed to initialize at a very early stage:\n\n"
+    $stderr.puts e.message
+  end
+
+  exit e.status_code if e.respond_to?(:status_code)
+  exit 255 # An error occurred with no status code defined
+end

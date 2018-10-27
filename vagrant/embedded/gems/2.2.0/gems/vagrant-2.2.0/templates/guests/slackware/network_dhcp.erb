@@ -1,0 +1,11 @@
+#VAGRANT-BEGIN
+# Config for eth<%= i %>
+USE_DHCP[<%= i %>]="yes"
+DHCP_HOSTNAME[<%= i %>]=""
+
+<% if options[:gateway] -%>
+GATEWAY="<%= options[:gateway] %>"
+<% end -%>
+
+DEBUG_ETH_UP="no"
+#VAGRANT-END

@@ -1,0 +1,978 @@
+agent 6.6.0 license: "Unspecified"
+
+
+
+
+
+This product bundles bzip2 1.0.6,
+which is available under a "Unspecified" License.
+
+This product bundles cacerts latest,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-agent ,
+which is available under a "Apache-2.0" License.
+For details, see:
+/opt/datadog-agent/LICENSES/datadog-agent-LICENSE
+
+This product bundles datadog-agent-finalize 1.0.0,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-agent-integrations 6.6.x,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-agent-mac-app ,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-agent-prepare 1.0.0,
+which is available under a "Apache-2.0" License.
+For details, see:
+/opt/datadog-agent/LICENSES/datadog-agent-prepare-LICENSE
+
+This product bundles datadog-pip trishankatdatadog/18.1.tuf-in-toto,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-process-agent 6.6.0,
+which is available under a "Unspecified" License.
+
+This product bundles datadog-trace-agent 6.6.0,
+which is available under a "Unspecified" License.
+
+This product bundles jmxfetch 0.21.0,
+which is available under a "Unspecified" License.
+
+This product bundles libgcc 0.0.1,
+which is available under a "Unspecified" License.
+
+This product bundles libiconv 1.14,
+which is available under a "Unspecified" License.
+
+This product bundles libsqlite3 3.7.7.1,
+which is available under a "Unspecified" License.
+
+This product bundles makedepend 1.0.5,
+which is available under a "Unspecified" License.
+
+This product bundles ncurses 5.9,
+which is available under a "Unspecified" License.
+
+This product bundles net-snmp-lib 5.7.3,
+which is available under a "Unspecified" License.
+
+This product bundles openssl 1.0.2o,
+which is available under a "OpenSSL" License.
+For details, see:
+/opt/datadog-agent/LICENSES/openssl-LICENSE
+
+This product bundles pip 10.0.1,
+which is available under a "Unspecified" License.
+
+This product bundles pkg-config 0.28,
+which is available under a "Unspecified" License.
+
+This product bundles protobuf-py 3.5.1,
+which is available under a "Unspecified" License.
+
+This product bundles python 2.7.15,
+which is available under a "Unspecified" License.
+
+This product bundles setuptools 28.8.0,
+which is available under a "Unspecified" License.
+
+This product bundles six 1.11.0,
+which is available under a "Unspecified" License.
+
+This product bundles util-macros 1.19.0,
+which is available under a "Unspecified" License.
+
+This product bundles version-manifest 0.0.1,
+which is available under a "Apache-2.0" License.
+For details, see:
+/opt/datadog-agent/LICENSES/version-manifest-LICENSE
+
+This product bundles xproto 7.0.27,
+which is available under a "Unspecified" License.
+
+This product bundles zlib 1.2.11,
+which is available under a "Unspecified" License.
+
+
+
+
+This product includes bitbucket.org_ww_goautoneg 75cd24fc2f2c2a2088577d12123ddee5f54e0675
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+
+
+This product includes github.com_CharlyF_custom-metrics-apiserver 56ec6921a4cfec971e5a8c89d5f4629c17cbb21a
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_CharlyF_custom-metrics-apiserver-56ec6921a4cfec971e5a8c89d5f4629c17cbb21a-LICENSE
+
+This product includes github.com_DataDog_agent-payload 4.7.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_DataDog_agent-payload-4.7.1-LICENSE
+
+This product includes github.com_DataDog_gohai 508b4f7bfc834501c944ab00e99b6f0e760f5ea7
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_DataDog_gohai-508b4f7bfc834501c944ab00e99b6f0e760f5ea7-LICENSE
+
+This product includes github.com_DataDog_mmh3 2cfb68475274527a10701355c739f31dd404718c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+
+
+This product includes github.com_DataDog_zstd v1.3.4
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_DataDog_zstd-v1.3.4-LICENSE
+
+This product includes github.com_Microsoft_go-winio v0.4.8
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_Microsoft_go-winio-v0.4.8-LICENSE
+
+This product includes github.com_NYTimes_gziphandler v1.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_NYTimes_gziphandler-v1.0.1-LICENSE
+
+This product includes github.com_PuerkitoBio_purell v1.1.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_PuerkitoBio_purell-v1.1.0-LICENSE
+
+This product includes github.com_PuerkitoBio_urlesc de5bf2ad457846296e2031421a34e2568e304e35
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_PuerkitoBio_urlesc-de5bf2ad457846296e2031421a34e2568e304e35-LICENSE
+
+This product includes github.com_StackExchange_wmi 5d049714c4a64225c3c79a7cf7d02f7fb5b96338
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_StackExchange_wmi-5d049714c4a64225c3c79a7cf7d02f7fb5b96338-LICENSE
+
+This product includes github.com_StackExchange_wmi ea383cf3ba6ec950874b8486cd72356d007c768f
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_StackExchange_wmi-ea383cf3ba6ec950874b8486cd72356d007c768f-LICENSE
+
+This product includes github.com_aws_aws-sdk-go v1.12.79
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_aws_aws-sdk-go-v1.12.79-LICENSE.txt
+
+This product includes github.com_beevik_ntp cb3dae3a7588ae35829eb5724df611cd75152fba
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_beevik_ntp-cb3dae3a7588ae35829eb5724df611cd75152fba-LICENSE
+
+This product includes github.com_beorn7_perks 3a771d992973f24aa725d07868b467d1ddfceafb
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_beorn7_perks-3a771d992973f24aa725d07868b467d1ddfceafb-LICENSE
+
+This product includes github.com_cenkalti_backoff v2.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_cenkalti_backoff-v2.0.0-LICENSE
+
+This product includes github.com_cihub_seelog v2.6
+which is a 'go_dep' dependency of 'agent', 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_cihub_seelog-v2.6-LICENSE.txt
+
+This product includes github.com_clbanning_mxj v1.8
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_clbanning_mxj-v1.8-LICENSE
+
+This product includes github.com_coreos_etcd v3.2.23
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_coreos_etcd-v3.2.23-LICENSE
+
+This product includes github.com_coreos_go-semver v0.2.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_coreos_go-semver-v0.2.0-LICENSE
+
+This product includes github.com_coreos_go-systemd v16
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_coreos_go-systemd-v16-LICENSE
+
+This product includes github.com_coreos_pkg v4
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_coreos_pkg-v4-LICENSE
+
+This product includes github.com_davecgh_go-spew v1.1.0
+which is a 'go_dep' dependency of 'agent', 'agent',
+and which is available under a 'ISC' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_davecgh_go-spew-v1.1.0-LICENSE
+
+This product includes github.com_docker_distribution 83389a148052d74ac602f5f1d62f86ff2f3c4aa5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_docker_distribution-83389a148052d74ac602f5f1d62f86ff2f3c4aa5-LICENSE
+
+This product includes github.com_docker_docker v1.13.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_docker_docker-v1.13.1-LICENSE
+
+This product includes github.com_docker_go-connections v0.3.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_docker_go-connections-v0.3.0-LICENSE
+
+This product includes github.com_docker_go-units v0.3.3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_docker_go-units-v0.3.3-LICENSE
+
+This product includes github.com_docker_spdystream bc6354cbbc295e925e4c611ffe90c1f287ee54db
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_docker_spdystream-bc6354cbbc295e925e4c611ffe90c1f287ee54db-LICENSE
+
+This product includes github.com_dsnet_compress cc9eb1d7ad760af14e8f918698f745e80377af4f
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_dsnet_compress-cc9eb1d7ad760af14e8f918698f745e80377af4f-LICENSE.md
+
+This product includes github.com_dustin_go-humanize 9f541cc9db5d55bce703bd99987c9d5cb8eea45e
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_dustin_go-humanize-9f541cc9db5d55bce703bd99987c9d5cb8eea45e-LICENSE
+
+This product includes github.com_elazarl_go-bindata-assetfs v1.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-2-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_elazarl_go-bindata-assetfs-v1.0.0-LICENSE
+
+This product includes github.com_emicklei_go-restful v2.7.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_emicklei_go-restful-v2.7.1-LICENSE
+
+This product includes github.com_emicklei_go-restful-swagger12 1.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_emicklei_go-restful-swagger12-1.0.1-LICENSE
+
+This product includes github.com_evanphx_json-patch v3.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_evanphx_json-patch-v3.0.0-LICENSE
+
+This product includes github.com_fatih_color v1.7.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_fatih_color-v1.7.0-LICENSE.md
+
+This product includes github.com_fsnotify_fsnotify v1.4.7
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_fsnotify_fsnotify-v1.4.7-LICENSE
+
+This product includes github.com_geoffgarside_ber 0b763e6b6fb1cb7422c29cd9195a3abf625651fb
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_geoffgarside_ber-0b763e6b6fb1cb7422c29cd9195a3abf625651fb-LICENSE
+
+This product includes github.com_ghodss_yaml v1.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_ghodss_yaml-v1.0.0-LICENSE
+
+This product includes github.com_go-ini_ini v1.37.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-ini_ini-v1.37.0-LICENSE
+
+This product includes github.com_go-ini_ini v1.25.2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-ini_ini-v1.25.2-LICENSE
+
+This product includes github.com_go-ole_go-ole v1.2.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-ole_go-ole-v1.2.1-LICENSE
+
+This product includes github.com_go-ole_go-ole de8695c8edbf8236f30d6e1376e20b198a028d42
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+
+
+This product includes github.com_go-openapi_jsonpointer 3a0015ad55fa9873f41605d3e8f28cd279c32ab2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-openapi_jsonpointer-3a0015ad55fa9873f41605d3e8f28cd279c32ab2-LICENSE
+
+This product includes github.com_go-openapi_jsonreference 3fb327e6747da3043567ee86abd02bb6376b6be2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-openapi_jsonreference-3fb327e6747da3043567ee86abd02bb6376b6be2-LICENSE
+
+This product includes github.com_go-openapi_spec bcff419492eeeb01f76e77d2ebc714dc97b607f5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-openapi_spec-bcff419492eeeb01f76e77d2ebc714dc97b607f5-LICENSE
+
+This product includes github.com_go-openapi_swag 811b1089cde9dad18d4d0c2d09fbdbf28dbd27a5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_go-openapi_swag-811b1089cde9dad18d4d0c2d09fbdbf28dbd27a5-LICENSE
+
+This product includes github.com_gogo_protobuf v1.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_gogo_protobuf-v1.0.0-LICENSE
+
+This product includes github.com_gogo_protobuf d76fbc1373015ced59b43ac267f28d546b955683
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_gogo_protobuf-d76fbc1373015ced59b43ac267f28d546b955683-LICENSE
+
+This product includes github.com_golang_glog 23def4e6c14b4da8ac2ed8007337bc5eb5007998
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_golang_glog-23def4e6c14b4da8ac2ed8007337bc5eb5007998-LICENSE
+
+This product includes github.com_golang_groupcache 24b0969c4cb722950103eed87108c8d291a8df00
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_golang_groupcache-24b0969c4cb722950103eed87108c8d291a8df00-LICENSE
+
+This product includes github.com_golang_protobuf v1.1.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_golang_protobuf-v1.1.0-LICENSE
+
+This product includes github.com_golang_protobuf 1e59b77b52bf8e4b449a57e6f79f21226d571845
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_golang_protobuf-1e59b77b52bf8e4b449a57e6f79f21226d571845-LICENSE
+
+This product includes github.com_golang_snappy 2e65f85255dbc3072edf28d6b5b8efc472979f5a
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_golang_snappy-2e65f85255dbc3072edf28d6b5b8efc472979f5a-LICENSE
+
+This product includes github.com_google_btree 4030bb1f1f0c35b30ca7009e9ebd06849dd45306
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_google_btree-4030bb1f1f0c35b30ca7009e9ebd06849dd45306-LICENSE
+
+This product includes github.com_google_gofuzz 24818f796faf91cd76ec7bddd72458fbced7a6c1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_google_gofuzz-24818f796faf91cd76ec7bddd72458fbced7a6c1-LICENSE
+
+This product includes github.com_googleapis_gnostic v0.2.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_googleapis_gnostic-v0.2.0-LICENSE
+
+This product includes github.com_gorilla_context v1.1.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_gorilla_context-v1.1.1-LICENSE
+
+This product includes github.com_gorilla_mux v1.6.2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_gorilla_mux-v1.6.2-LICENSE
+
+This product includes github.com_gregjones_httpcache 9cad4c3443a7200dd6400aef47183728de563a38
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_gregjones_httpcache-9cad4c3443a7200dd6400aef47183728de563a38-LICENSE.txt
+
+This product includes github.com_hashicorp_consul v1.0.7
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_consul-v1.0.7-LICENSE
+
+This product includes github.com_hashicorp_go-cleanhttp d5fe4b57a186c716b0e00b8c301cbd9b4182694d
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_go-cleanhttp-d5fe4b57a186c716b0e00b8c301cbd9b4182694d-LICENSE
+
+This product includes github.com_hashicorp_go-rootcerts 6bb64b370b90e7ef1fa532be9e591a81c3493e00
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_go-rootcerts-6bb64b370b90e7ef1fa532be9e591a81c3493e00-LICENSE
+
+This product includes github.com_hashicorp_golang-lru 0fb14efe8c47ae851c0034ed7a448854d3d34cf3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_golang-lru-0fb14efe8c47ae851c0034ed7a448854d3d34cf3-LICENSE
+
+This product includes github.com_hashicorp_hcl ef8a98b0bbce4a65b5aa4c368430a80ddc533168
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_hcl-ef8a98b0bbce4a65b5aa4c368430a80ddc533168-LICENSE
+
+This product includes github.com_hashicorp_serf v0.8.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MPL-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hashicorp_serf-v0.8.1-LICENSE
+
+This product includes github.com_hectane_go-acl 7f56832555fc229dad908c67d65ed3ce6156b70c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_hectane_go-acl-7f56832555fc229dad908c67d65ed3ce6156b70c-LICENSE.txt
+
+This product includes github.com_imdario_mergo v0.3.5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_imdario_mergo-v0.3.5-LICENSE
+
+This product includes github.com_inconshreveable_mousetrap v1.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_inconshreveable_mousetrap-v1.0-LICENSE
+
+This product includes github.com_jmespath_go-jmespath 0b12d6b5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_jmespath_go-jmespath-0b12d6b5-LICENSE
+
+This product includes github.com_json-iterator_go v1.1.5
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_json-iterator_go-v1.1.5-LICENSE
+
+This product includes github.com_k-sone_snmpgo v3.2.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_k-sone_snmpgo-v3.2.0-LICENSE
+
+This product includes github.com_kardianos_osext ae77be60afb1dcacde03767a8c37337fad28ac14
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_kardianos_osext-ae77be60afb1dcacde03767a8c37337fad28ac14-LICENSE
+
+This product includes github.com_lxn_walk 02935bac0ab8448d5f9bf72ebeeb7ca0d5553f9b
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_lxn_walk-02935bac0ab8448d5f9bf72ebeeb7ca0d5553f9b-LICENSE
+
+This product includes github.com_lxn_win 7e1250ba2e7749fb9eb865da9ee93fb5a2fe73f1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_lxn_win-7e1250ba2e7749fb9eb865da9ee93fb5a2fe73f1-LICENSE
+
+This product includes github.com_magiconair_properties v1.8.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_magiconair_properties-v1.8.0-LICENSE
+
+This product includes github.com_mailru_easyjson 3fdea8d05856a0c8df22ed4bc71b3219245e4485
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mailru_easyjson-3fdea8d05856a0c8df22ed4bc71b3219245e4485-LICENSE
+
+This product includes github.com_mattn_go-colorable v0.0.9
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mattn_go-colorable-v0.0.9-LICENSE
+
+This product includes github.com_mattn_go-isatty v0.0.3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mattn_go-isatty-v0.0.3-LICENSE
+
+This product includes github.com_matttproud_golang_protobuf_extensions v1.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_matttproud_golang_protobuf_extensions-v1.0.1-LICENSE
+
+This product includes github.com_mholt_archiver 26cf5bb32d07aa4e8d0de15f56ce516f4641d7df
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mholt_archiver-26cf5bb32d07aa4e8d0de15f56ce516f4641d7df-LICENSE
+
+This product includes github.com_mitchellh_go-homedir 3864e76763d94a6df2f9960b16a20a33da9f9a66
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mitchellh_go-homedir-3864e76763d94a6df2f9960b16a20a33da9f9a66-LICENSE
+
+This product includes github.com_mitchellh_mapstructure bb74f1db0675b241733089d5a1faa5dd8b0ef57b
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mitchellh_mapstructure-bb74f1db0675b241733089d5a1faa5dd8b0ef57b-LICENSE
+
+This product includes github.com_mitchellh_reflectwalk 63d60e9d0dbc60cf9164e6510889b0db6683d98c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_mitchellh_reflectwalk-63d60e9d0dbc60cf9164e6510889b0db6683d98c-LICENSE
+
+This product includes github.com_modern-go_concurrent 1.0.3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_modern-go_concurrent-1.0.3-LICENSE
+
+This product includes github.com_modern-go_reflect2 1.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_modern-go_reflect2-1.0.1-LICENSE
+
+This product includes github.com_nwaples_rardecode e06696f847aeda6f39a8f0b7cdff193b7690aef6
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-2-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_nwaples_rardecode-e06696f847aeda6f39a8f0b7cdff193b7690aef6-LICENSE
+
+This product includes github.com_opencontainers_go-digest v1.0.0-rc1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+
+
+This product includes github.com_openshift_api v3.9.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_openshift_api-v3.9.0-LICENSE
+
+This product includes github.com_patrickmn_go-cache v2.1.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_patrickmn_go-cache-v2.1.0-LICENSE
+
+This product includes github.com_pborman_uuid v1.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_pborman_uuid-v1.1-LICENSE
+
+This product includes github.com_pelletier_go-toml v1.2.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_pelletier_go-toml-v1.2.0-LICENSE
+
+This product includes github.com_petar_GoLLRB 53be0d36a84c2a886ca057d34b6aa4468df9ccb4
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_petar_GoLLRB-53be0d36a84c2a886ca057d34b6aa4468df9ccb4-LICENSE
+
+This product includes github.com_peterbourgon_diskv v2.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_peterbourgon_diskv-v2.0.1-LICENSE
+
+This product includes github.com_pierrec_lz4 v2.0.3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_pierrec_lz4-v2.0.3-LICENSE
+
+This product includes github.com_pkg_errors v0.8.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-2-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_pkg_errors-v0.8.0-LICENSE
+
+This product includes github.com_pmezard_go-difflib v1.0.0
+which is a 'go_dep' dependency of 'agent', 'agent',
+and which is available under a 'BSD 3-clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_pmezard_go-difflib-v1.0.0-LICENSE
+
+This product includes github.com_prometheus_client_golang v0.8.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_prometheus_client_golang-v0.8.0-LICENSE
+
+This product includes github.com_prometheus_client_model 99fa1f4be8e564e8a6b613da7fa6f46c9edafc6c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_prometheus_client_model-99fa1f4be8e564e8a6b613da7fa6f46c9edafc6c-LICENSE
+
+This product includes github.com_prometheus_common 89d80287644767070914e30199b4d959e491bd3d
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_prometheus_common-89d80287644767070914e30199b4d959e491bd3d-LICENSE
+
+This product includes github.com_prometheus_procfs 7d6f385de8bea29190f15ba9931442a0eaef9af7
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_prometheus_procfs-7d6f385de8bea29190f15ba9931442a0eaef9af7-LICENSE
+
+This product includes github.com_samuel_go-zookeeper c4fab1ac1bec58281ad0667dc3f0907a9476ac47
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_samuel_go-zookeeper-c4fab1ac1bec58281ad0667dc3f0907a9476ac47-LICENSE
+
+This product includes github.com_sbinet_go-python f976f61134dc6f5b4920941eb1b0e7cec7e4ef4c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_sbinet_go-python-f976f61134dc6f5b4920941eb1b0e7cec7e4ef4c-LICENSE
+
+This product includes github.com_shirou_gopsutil v2.18.05
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_shirou_gopsutil-v2.18.05-LICENSE
+
+This product includes github.com_shirou_gopsutil v2.17.01
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_shirou_gopsutil-v2.17.01-LICENSE
+
+This product includes github.com_shirou_w32 bb4de0191aa41b5507caa14b0650cdbddcd9280b
+which is a 'go_dep' dependency of 'agent', 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_shirou_w32-bb4de0191aa41b5507caa14b0650cdbddcd9280b-LICENSE
+
+This product includes github.com_spf13_afero v1.1.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_afero-v1.1.1-LICENSE.txt
+
+This product includes github.com_spf13_cast v1.2.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_cast-v1.2.0-LICENSE
+
+This product includes github.com_spf13_cobra v0.0.3
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_cobra-v0.0.3-LICENSE.txt
+
+This product includes github.com_spf13_jwalterweatherman 7c0cea34c8ece3fbeb2b27ab9b59511d360fb394
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_jwalterweatherman-7c0cea34c8ece3fbeb2b27ab9b59511d360fb394-LICENSE
+
+This product includes github.com_spf13_pflag v1.0.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_pflag-v1.0.1-LICENSE
+
+This product includes github.com_spf13_viper v1.0.2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_spf13_viper-v1.0.2-LICENSE
+
+This product includes github.com_stretchr_objx v0.1.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_stretchr_objx-v0.1.1-LICENSE
+
+This product includes github.com_stretchr_testify v1.2.2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_stretchr_testify-v1.2.2-LICENSE
+
+This product includes github.com_stretchr_testify v1.2.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_stretchr_testify-v1.2.1-LICENSE
+
+This product includes github.com_ugorji_go 8c0409fcbb70099c748d71f714529204975f6c3f
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_ugorji_go-8c0409fcbb70099c748d71f714529204975f6c3f-LICENSE
+
+This product includes github.com_ulikunitz_xz v0.5.4
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_ulikunitz_xz-v0.5.4-LICENSE
+
+This product includes github.com_urfave_negroni v0.3.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_urfave_negroni-v0.3.0-LICENSE
+
+This product includes golang.org_x_crypto a49355c7e3f8fe157a85be2f77e6e269a0f89602
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_crypto-a49355c7e3f8fe157a85be2f77e6e269a0f89602-LICENSE
+
+This product includes golang.org_x_mobile bceb7ef27cc623473a5b664d2a3450576dddff0f
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_mobile-bceb7ef27cc623473a5b664d2a3450576dddff0f-LICENSE
+
+This product includes golang.org_x_net 97aa3a539ec716117a9d15a4659a911f50d13c3c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_net-97aa3a539ec716117a9d15a4659a911f50d13c3c-LICENSE
+
+This product includes golang.org_x_sys 7138fd3d9dc8335c567ca206f4333fb75eb05d56
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_sys-7138fd3d9dc8335c567ca206f4333fb75eb05d56-LICENSE
+
+This product includes golang.org_x_sys 8f0908ab3b2457e2e15403d3697c9ef5cb4b57a9
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_sys-8f0908ab3b2457e2e15403d3697c9ef5cb4b57a9-LICENSE
+
+This product includes golang.org_x_text v0.3.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_text-v0.3.0-LICENSE
+
+This product includes golang.org_x_time fbb02b2291d28baffd63558aa44b4b56f178d650
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-golang.org_x_time-fbb02b2291d28baffd63558aa44b4b56f178d650-LICENSE
+
+This product includes google.golang.org_genproto ff3583edef7de132f219f0efc00e097cabcc0ec0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-google.golang.org_genproto-ff3583edef7de132f219f0efc00e097cabcc0ec0-LICENSE
+
+This product includes google.golang.org_grpc v1.13.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-google.golang.org_grpc-v1.13.0-LICENSE
+
+This product includes gopkg.in_Knetic_govaluate.v3 v3.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_Knetic_govaluate.v3-v3.0.0-LICENSE
+
+This product includes gopkg.in_inf.v0 v0.9.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_inf.v0-v0.9.1-LICENSE
+
+This product includes gopkg.in_natefinch_lumberjack.v2 v2.1
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_natefinch_lumberjack.v2-v2.1-LICENSE
+
+This product includes gopkg.in_square_go-jose.v2 v2.1.9
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_square_go-jose.v2-v2.1.9-LICENSE
+
+This product includes gopkg.in_yaml.v2 d670f9405373e636a5a2765eea47fac0c9bc91a4
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_yaml.v2-d670f9405373e636a5a2765eea47fac0c9bc91a4-LICENSE
+
+This product includes gopkg.in_yaml.v2 cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_yaml.v2-cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b-LICENSE
+
+This product includes gopkg.in_zorkian_go-datadog-api.v2 v2.12.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'BSD-3-Clause' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-gopkg.in_zorkian_go-datadog-api.v2-v2.12.0-LICENSE
+
+This product includes k8s.io_api 4e7be11eab3ffcfc1876898b8272df53785a9504
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_api-4e7be11eab3ffcfc1876898b8272df53785a9504-LICENSE
+
+This product includes k8s.io_apiextensions-apiserver b499623aa7a31f7c85b37017e068b21206a68e25
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_apiextensions-apiserver-b499623aa7a31f7c85b37017e068b21206a68e25-LICENSE
+
+This product includes k8s.io_apimachinery def12e63c512da17043b4f0293f52d1006603d9f
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_apimachinery-def12e63c512da17043b4f0293f52d1006603d9f-LICENSE
+
+This product includes k8s.io_apiserver d296c96c12b7d15d7fb5fea7a05fb165f8fd4014
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_apiserver-d296c96c12b7d15d7fb5fea7a05fb165f8fd4014-LICENSE
+
+This product includes k8s.io_client-go f2f85107cac6fe04c30435ca0ac0c3318fd1b94c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_client-go-f2f85107cac6fe04c30435ca0ac0c3318fd1b94c-LICENSE
+
+This product includes k8s.io_kube-openapi b742be413d0a6f781c123bed504c8fb39264c57d
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_kube-openapi-b742be413d0a6f781c123bed504c8fb39264c57d-LICENSE
+
+This product includes k8s.io_kubernetes v1.11.2
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_kubernetes-v1.11.2-LICENSE
+
+This product includes k8s.io_metrics 972ef826b8401c180b89cefc7457daa2d116daa9
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_metrics-972ef826b8401c180b89cefc7457daa2d116daa9-LICENSE
+
+This product includes k8s.io_utils cd34563cd63c2bd7c6fe88a73c4dcf34ed8a67cb
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-k8s.io_utils-cd34563cd63c2bd7c6fe88a73c4dcf34ed8a67cb-LICENSE
+
+This product includes github.com_DataDog_datadog-agent 92733ff01547103d5286afc9e272d501cb18f761
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'Apache-2.0' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_DataDog_datadog-agent-92733ff01547103d5286afc9e272d501cb18f761-LICENSE
+/opt/datadog-agent/LICENSES/go_dep-github.com_DataDog_datadog-agent-92733ff01547103d5286afc9e272d501cb18f761-LICENSE
+
+This product includes github.com_DataDog_datadog-go a9c7a9896c1847c9cc2b068a2ae68e9d74540a5d
+which is a 'go_dep' dependency of 'agent',
+and which is available under a '' License.
+For details, see:
+
+
+This product includes github.com_philhofer_fwd v1.0.0
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_philhofer_fwd-v1.0.0-LICENSE.md
+
+This product includes github.com_tinylib_msgp 362bfb3384d53ae4d5dd745983a4d70b6d23628c
+which is a 'go_dep' dependency of 'agent',
+and which is available under a 'MIT' License.
+For details, see:
+/opt/datadog-agent/LICENSES/go_dep-github.com_tinylib_msgp-362bfb3384d53ae4d5dd745983a4d70b6d23628c-LICENSE
+

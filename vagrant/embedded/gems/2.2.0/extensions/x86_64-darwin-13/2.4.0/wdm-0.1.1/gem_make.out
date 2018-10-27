@@ -1,0 +1,11 @@
+current directory: /opt/vagrant/embedded/gems/2.2.0/gems/wdm-0.1.1/ext/wdm
+/opt/vagrant/embedded/bin/ruby -r ./siteconf20181016-656-duwyry.rb extconf.rb
+
+current directory: /opt/vagrant/embedded/gems/2.2.0/gems/wdm-0.1.1/ext/wdm
+make "DESTDIR=" clean
+
+current directory: /opt/vagrant/embedded/gems/2.2.0/gems/wdm-0.1.1/ext/wdm
+make "DESTDIR="
+
+current directory: /opt/vagrant/embedded/gems/2.2.0/gems/wdm-0.1.1/ext/wdm
+make "DESTDIR=" install

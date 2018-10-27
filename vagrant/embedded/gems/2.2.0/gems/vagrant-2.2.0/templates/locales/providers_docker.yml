@@ -1,0 +1,242 @@
+en:
+  docker_provider:
+    already_built: |-
+      Image is already built from the Dockerfile. `vagrant reload` to rebuild.
+    build_image_destroy: |-
+      Removing built image...
+    build_image_destroy_in_use: |-
+      Build image couldn't be destroyed because the image is in use. The
+      image must be destroyed manually in the future if you want to remove
+      it.
+    build_image_invalid: |-
+      Build image no longer exists. Rebuilding...
+    building: |-
+      Building the container from a Dockerfile...
+    building_git_repo: |-
+      Building the container from the git repository: %{repo}...
+    building_named_dockerfile: |-
+      Building the container from the named Dockerfile: %{file}...
+    building_git_repo_named_dockerfile: |-
+      Building the container from the named Dockerfile: %{file} in the git repository: %{repo}...
+    creating: |-
+      Creating the container...
+    created: |-
+      Container created: %{id}
+    host_machine_disabling_folders: |-
+      Removing synced folders...
+    host_machine_forwarded_ports: |-
+      Warning: When using a remote Docker host, forwarded ports will NOT be
+      immediately available on your machine. They will still be forwarded on
+      the remote machine, however, so if you have a way to access the remote
+      machine, then you should be able to access those ports there. This is
+      not an error, it is only an informational message.
+    host_machine_needed: |-
+      Docker host is required. One will be created if necessary...
+    host_machine_ready: |-
+      Docker host VM is already ready.
+    host_machine_starting: |-
+      Vagrant will now create or start a local VM to act as the Docker
+      host. You'll see the output of the `vagrant up` for this VM below.
+    host_machine_syncing_folders: |-
+      Syncing folders to the host VM...
+    logging_in: |-
+      Logging in to Docker server...
+    logs_host_state_unknown: |-
+      This container requires a host VM, and the state of that VM
+      is unknown. Run `vagrant up` to verify that the container and
+      its host VM is running, then try again.
+    not_created_skip: |-
+      Container not created. Skipping.
+    not_docker_provider: |-
+      Not backed by Docker provider. Skipping.
+    pull: |-
+      Pulling image '%{image}'...
+    run_command_required: |-
+      `vagrant docker-run` requires a command to execute. This command
+      must be specified after a `--` in the command line. This is used
+      to separate possible machine names and options from the actual
+      command to execute. An example is shown below:
+
+        vagrant docker-run web -- rails new .
+
+    running: |-
+      Container is starting. Output will stream in below...
+    running_detached: |-
+      Container is started detached.
+    ssh_through_host_vm: |-
+      SSH will be proxied through the Docker virtual machine since we're
+      not running Docker natively. This is just a notice, and not an error.
+    synced_folders_changed: |-
+      Vagrant has noticed that the synced folder definitions have changed.
+      With Docker, these synced folder changes won't take effect until you
+      destroy the container and recreate it.
+    waiting_for_running: |-
+      Waiting for container to enter "running" state...
+
+    messages:
+      destroying: |-
+        Deleting the container...
+      not_created: |-
+        The container hasn't been created yet.
+      not_created_original: |-
+        The original container hasn't been created yet. Run `vagrant up`
+        for this machine first.
+      not_running: |-
+        The container is not currently running.
+      preparing: |-
+        Preparing to start the container...
+      provision_no_ssh: |-
+        Provisioners will not be run since container doesn't support SSH.
+      will_not_destroy: |-
+        The container will not be destroyed, since the confirmation was declined.
+      starting: |-
+        Starting container...
+      stopping: |-
+        Stopping container...
+      container_ready: |-
+        Container started and ready for use!
+
+    status:
+      host_state_unknown: |-
+        The host VM for the Docker containers appears to not be running
+        or is currently inaccessible. Because of this, we can't determine
+        the state of the containers on that host. Run `vagrant up` to
+        bring up the host VM again.
+      not_created: |-
+        The environment has not yet been created. Run `vagrant up` to
+        create the environment. If a machine is not created, only the
+        default provider will be shown. So if a provider is not listed,
+        then the machine is not created for that environment.
+      preparing: |-
+        Vagrant is preparing to start this Docker container. Run `vagrant up`
+        to continue.
+      running: |-
+        The container is created and running. You can stop it using
+        `vagrant halt`, see logs with `vagrant docker-logs`, and
+        kill/destroy it with `vagrant destroy`.
+      stopped: |-
+        The container is created but not running. You can run it again
+        with `vagrant up`. If the container always goes to "stopped"
+        right away after being started, it is because the command being
+        run exits and doesn't keep running.
+
+    errors:
+      compose_lock_timeout: |-
+        Vagrant encountered a timeout waiting for the docker compose driver
+        to become available. Please try to run your command again. If you
+        continue to experience this error it may be resolved by disabling
+        parallel execution.
+      docker_compose_not_installed: |-
+        Vagrant has been instructed to use to use the Compose driver for the
+        Docker plugin but was unable to locate the `docker-compose` executable.
+        Ensure that `docker-compose` is installed and available on the PATH.
+      not_created: |-
+        The container hasn't been created yet.
+      not_running: |-
+        The container is not currently running.
+      communicator_non_docker: |-
+        The "docker_hostvm" communicator was specified on a machine that
+        is not provided by the Docker provider. This is a bug with your
+        Vagrantfile. Please contact the creator of your Vagrant environment
+        and notify them to not use this communicator for anything except the
+        "docker" provider.
+      config:
+        both_build_and_image_and_git: |-
+          Only one of "build_dir", "git_repo" or "image" can be set
+        build_dir_invalid: |-
+          "build_dir" must exist and contain a Dockerfile
+        git_repo_invalid: |-
+          "git_repo" must be a valid repository URL
+        build_dir_or_image: |-
+          One of "build_dir", "git_repo" or "image" must be set
+        compose_configuration_hash: |-
+          "compose_configuration" must be a hash
+        compose_force_vm: |-
+          Docker compose is not currently supported from within proxy VM.
+        git_repo_invalid: |-
+          "git_repo" must be a valid git URL
+        create_args_array: |-
+          "create_args" must be an array
+        invalid_link: |-
+          Invalid link (should be 'name:alias'): "%{link}"
+        invalid_vagrantfile: |-
+          "vagrant_vagrantfile" must point to a Vagrantfile that exists.
+      docker_provider_nfs_without_privileged: |-
+        You've configured a NFS synced folder but didn't enable privileged
+        mode for the container. Please set the `privileged` option to true
+        on the provider block from your Vagrantfile, recreate the container
+        and try again.
+      docker_provider_image_not_configured: |-
+        The base Docker image has not been set for the '%{name}' VM!
+      execute_error: |-
+        A Docker command executed by Vagrant didn't complete successfully!
+        The command run along with the output from the command is shown
+        below.
+
+        Command: %{command}
+
+        Stderr: %{stderr}
+
+        Stdout: %{stdout}
+      exec_command_required: |-
+        The "docker-exec" command requires a command to execute. This command
+        must be specified after a "--" in the command line. This is used to
+        separate machine name and options from the actual command to execute.
+        An example is show below:
+
+          $ vagrant docker-exec -t nginx -- bash
+
+      host_vm_communicator_not_ready: |-
+        The Docker provider was able to bring up the host VM successfully
+        but the host VM is still reporting that SSH is unavailable. This
+        sometimes happens with certain providers due to bugs in the
+        underlying hypervisor, and can be fixed with a `vagrant reload`.
+        The ID for the host VM is shown below for convenience.
+
+        If this does not fix it, please verify that the host VM provider
+        is functional and properly configured.
+
+        Host VM ID: %{id}
+      package_not_supported: |-
+        The "package" command is not supported with the Docker provider.
+        If you'd like to commit or push your Docker container, please SSH
+        into the host VM (if there is one), and run `docker commit` and
+        so on manually.
+      state_not_running: |-
+        The container never entered the "running" state, or entered it
+        briefly but reverted back to another state. Please verify that
+        the configuration of the container is correct.
+
+        If you meant for this container to not remain running, please
+        set the Docker provider configuration "remains_running" to "false":
+
+          config.vm.provider "docker" do |d|
+            d.remains_running = false
+          end
+
+      state_stopped: |-
+        The container started either never left the "stopped" state or
+        very quickly reverted to the "stopped" state. This is usually
+        because the container didn't execute a command that kept it running,
+        and usually indicates a misconfiguration.
+
+        If you meant for this container to not remain running, please
+        set the Docker provider configuration "remains_running" to "false":
+
+          config.vm.provider "docker" do |d|
+            d.remains_running = false
+          end
+
+      suspend_not_supported: |-
+        The "suspend" command is not supported with the Docker provider.
+        Docker containers don't natively support suspend. If you're using
+        a host machine, you can suspend the host machine by finding it
+        in `vagrant global-status` and using `vagrant suspend <id>`.
+      synced_folder_non_docker: |-
+        The "docker" synced folder type can't be used because the  provider
+        in use is not Docker. This synced folder type only works with the
+        Docker provider. The provider this machine is using is: %{provider}
+      vagrantfile_not_found: |-
+        The configured host VM Vagrantfile could not be found. Please fix
+        the Vagrantfile for this Docker environment to point to a valid
+        host VM.

@@ -1,0 +1,23 @@
+en:
+  vagrant_windows:
+    errors:
+      public_key_directory_failure: |-
+        Vagrant failed to properly discover the correct paths for the
+        temporary directory and user profile directory on the Windows
+        guest. Please ensure the guest is properly configured.
+      network_winrm_required: |-
+        Configuring networks on Windows requires the communicator to be
+        set to WinRM. To do this, add the following to your Vagrantfile:
+
+          config.vm.communicator = "winrm"
+
+        Note that the Windows guest must be configured to accept insecure
+        WinRM connections, and the WinRM port must be forwarded properly from
+        the guest machine. This is not always done by default.
+      rename_computer_failed: |-
+        Renaming the Windows guest failed. Most often this is because you've
+        specified a FQDN instead of just a host name.
+
+        Ensure the new guest name is properly formatted. Standard names may
+        contain letters (a-z, A-Z), numbers (0-9), and hyphens (-), but no
+        spaces or periods (.). The name may not consist entirely of digits.

@@ -1,0 +1,34 @@
+have_library: checking for -lstdc++... -------------------- yes
+
+"clang -o conftest -I/opt/vagrant/embedded/include/ruby-2.4.0/x86_64-darwin13 -I/opt/vagrant/embedded/include/ruby-2.4.0/ruby/backward -I/opt/vagrant/embedded/include/ruby-2.4.0 -I. -I/opt/vagrant/embedded/include -I/opt/vagrant/embedded/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -I/opt/vagrant/embedded/include -fno-common -pipe conftest.c  -L. -L/opt/vagrant/embedded/lib -L/opt/vagrant/embedded/lib -L. -L/opt/vagrant/embedded/lib -fstack-protector -L/usr/local/lib -L/opt/vagrant/embedded/lib     -lruby.2.4.4  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"clang -o conftest -I/opt/vagrant/embedded/include/ruby-2.4.0/x86_64-darwin13 -I/opt/vagrant/embedded/include/ruby-2.4.0/ruby/backward -I/opt/vagrant/embedded/include/ruby-2.4.0 -I. -I/opt/vagrant/embedded/include -I/opt/vagrant/embedded/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -I/opt/vagrant/embedded/include -fno-common -pipe conftest.c  -L. -L/opt/vagrant/embedded/lib -L/opt/vagrant/embedded/lib -L. -L/opt/vagrant/embedded/lib -fstack-protector -L/usr/local/lib -L/opt/vagrant/embedded/lib     -lruby.2.4.4 -lstdc++  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: 
+14: int t(void) { ; return 0; }
+/* end */
+
+--------------------
+

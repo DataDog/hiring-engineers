@@ -1,0 +1,35 @@
+Host <%= host_key %>
+  HostName <%= ssh_host %>
+  User <%= ssh_user %>
+  Port <%= ssh_port %>
+<% if ! verify_host_key || verify_host_key == :never -%>
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+<% end -%>
+  PasswordAuthentication no
+<% if private_key_path -%>
+<% private_key_path.each do |path| %>
+<% if path.include?(" ") -%>
+  IdentityFile "<%= path %>"
+<% else -%>
+  IdentityFile <%= path %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% if keys_only -%>
+  IdentitiesOnly yes
+<% end -%>
+<% if log_level -%>
+  LogLevel <%= log_level %>
+<% else -%>
+  LogLevel FATAL
+<% end -%>
+<% if forward_agent -%>
+  ForwardAgent yes
+<% end -%>
+<% if forward_x11 -%>
+  ForwardX11 yes
+<% end -%>
+<% if proxy_command -%>
+  ProxyCommand <%= proxy_command %>
+<% end -%>

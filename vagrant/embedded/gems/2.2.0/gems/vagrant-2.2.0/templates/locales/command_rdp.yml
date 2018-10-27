@@ -1,0 +1,25 @@
+en:
+  vagrant_rdp:
+    detecting: |-
+      Detecting RDP info...
+    connecting: |-
+      Vagrant will now launch your RDP client with the connection parameters
+      above. If the connection fails, verify that the information above is
+      correct. Additionally, make sure the RDP server is configured and
+      running in the guest machine (it is disabled by default on Windows).
+      Also, verify that the firewall is open to allow RDP connections.
+
+    errors:
+      host_unsupported: |-
+        Vagrant doesn't support running an RDP client on your
+        host OS.
+
+        If you wish for the OS you're running to support launching
+        an RDP client, please contribute this functionality back
+        into Vagrant. At the very least, open an issue on how it
+        could be done and we can handle the integration.
+      rdp_undetected: |-
+        RDP connection information for this machine could not be
+        detected. This is typically caused when we can't find the IP
+        or port to connect to for RDP. Please verify you're forwarding
+        an RDP port and that your machine is accessible.

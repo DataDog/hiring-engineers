@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+-   url: https://google.com
+
+-   url: http://httpbin.org/status/400
