@@ -93,7 +93,7 @@ The embedded Python pip utility was used to install missing modules for the chec
 "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
 "q": "avg:my_metric{*}.rollup(sum, 3600)",
 
-The anomanyl function setting:
+The anomaly function setting:
 
 <img src="http://www.thomatos.org/datadog/anomaly.png">
 
@@ -107,7 +107,7 @@ A screenshot of the dashboard with my_metric, a MySQL metric and the 1 hour roll
 
 BONUS Anomaly
 -------------
-The anomaly function is used to highlight data points above or below a gray zone of normal behaviour showing any anomalies or deviations from a normal pattern.
+The anomaly function is used to highlight any data points part of time series data, that are observed to be anomalies or deviations from a set of data points that are considered normal behaviour.
 
 Monitoring Data
 ===============
@@ -115,7 +115,7 @@ The webpage used to set up monitors was used with these settings:
 
 <img src="http://www.thomatos.org/datadog/monitor-settings.png">
 
-An email sent during a warning is shown here to @et@et.thomatos.org:
+An email sent during a warning is shown here sent to @et@et.thomatos.org where the metric went slightly over the 500 warning threshold:
 
 <img src="http://www.thomatos.org/datadog/email-warning.png">
 
@@ -125,9 +125,17 @@ The monitor downtimes were set up as shown here:
 
 <img src="http://www.thomatos.org/datadog/monitor-downtimes.png">
 
-Finally the email notifying of the downtimes is shown here:
+Email notifying of the downtimes is shown here:
 
 <img src="http://www.thomatos.org/datadog/email-scheduled.png">
+
+Email showing downtime schedules being rescheduled for the start of the weekend:
+
+<img src="http://www.thomatos.org/datadog/monitor-rescheduled-downtime.png">
+
+Email showing monitoring recovering from an alert after the metric had went over the 800 threshold:
+
+<img src="http://www.thomatos.org/datadog/monitor-recovering-from-alert.png">
 
 Collecting APM Data
 ===================
@@ -147,6 +155,10 @@ The relevant module statements for the Python Flask app are shown:
   <li>from ddtrace import tracer
   <li>from ddtrace.contrib.flask import TraceMiddleware
 </ol>
+
+The datadog yaml file had to also be updated to enable the apm feature.
+
+<img src="http://www.thomatos.org/datadog/datadog-apm-yaml.png">
 
 The Flask app was updated to also leverage the embedded MySQL database installed earlier. The pymysql module was imported so when the Flask app runs, depending on which route handler decorator is used, a SQL query against the installed MySQL database is made to add some load to the script and the Vagrant VM and thus show metrics on the graph. 
 
