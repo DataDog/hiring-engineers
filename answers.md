@@ -168,8 +168,9 @@ The dashboard showing the combined APM and infrastructure metrics is shown here:
 
 <img src="http://www.thomatos.org/datadog/apm-dash.png">
 
-The dashboard URL:
-https://app.datadoghq.com/dash/959329/my-hiring-test-custom-timeboard?live=true&page=0&is_auto=false&from_ts=1540577745109&to_ts=1540592145109&tile_size=s
+The dashboard URL: 
+
+<a href="https://app.datadoghq.com/dash/959329/my-hiring-test-custom-timeboard?live=true&page=0&is_auto=false&from_ts=1540577745109&to_ts=1540592145109&tile_size=s">E.T. APM/Infra Dashboard</a>
 
 The Flask load generator script was simply this:
 
