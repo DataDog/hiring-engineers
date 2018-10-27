@@ -54,7 +54,7 @@ sudo apt-get install mysql-client
 The root user password was saved and next the datadog user had to be configured on the MySQL server which involved these steps:
 
 1. Create a datadog user with replication rights in your MySQL server
-sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'BG/ALNNK3KCWdbR1mkTSUMlP';"
+sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'a_key_was_here';"
 sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
 sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
 sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
@@ -94,14 +94,17 @@ The embedded Python pip utility was used to install missing modules for the chec
 "q": "avg:my_metric{*}.rollup(sum, 3600)",
 
 The anomaly function setting:
+-----------------------------
 
 <img src="http://www.thomatos.org/datadog/anomaly.png">
 
 The email showing the 5 minute timeframe was sent using @et@thomatos.org
+------------------------------------------------------------------------
 
 <img src="http://www.thomatos.org/datadog/email-anomaly.png">
 
 A screenshot of the dashboard with my_metric, a MySQL metric and the 1 hour rollup shown here.
+----------------------------------------------------------------------------------------------
 
 <img src="http://www.thomatos.org/datadog/timeboard-anomaly.png">
 
@@ -126,6 +129,7 @@ The monitor downtimes were set up as shown here:
 <img src="http://www.thomatos.org/datadog/monitor-downtimes.png">
 
 Email notifying of the downtimes is shown here:
+-----------------------------------------------
 
 <img src="http://www.thomatos.org/datadog/email-scheduled.png">
 
@@ -139,7 +143,7 @@ Email showing monitoring recovering from an alert after the metric had went over
 
 Collecting APM Data
 ===================
-Using the skeleton of the Flask Python app, the following modules had to be installed as extra modules to use for instrumenting:
+Using the skeleton of the Flask Python app, the following modules had to be installed as extra modules to use for instrumenting. Using Python and the Flask app was preferred as it is easy to run and easy to update to showcase metrics for monitoring and instrumentation:
 
 <ol>
   <li>sudo /opt/datadog-agent/embedded/bin/pip install ddtrace
@@ -157,6 +161,7 @@ The relevant module statements for the Python Flask app are shown:
 </ol>
 
 The datadog yaml file had to also be updated to enable the apm feature.
+-----------------------------------------------------------------------
 
 <img src="http://www.thomatos.org/datadog/datadog-apm-yaml.png">
 
