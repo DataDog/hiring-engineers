@@ -15,4 +15,20 @@ As you can see in the code that I used the sleep method imported from the time m
 
 Bonus Question:
 Can you change the collection interval without modifying the Python check file you created?
-In order to set the interval without modifying the python check file, you would just modify the custom_check.yaml file adding the min_collection_interval
+In order to set the interval without modifying the python check file, you would just modify the custom_check.yaml file adding the min_collection_interval.
+
+
+## Visualizing Data
+Utilize the Datadog API to create a Timeboard that contains:
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+-- look at the screenshot
+-- also screenshot of the timeBoard file.
+
+Bonus Question: What is the Anomaly graph displaying?
+Answer: The Anomaly function shows there are unusual trends outside of the normal range of values.
+The unusual trends are represented by red peaks and troughs on the graphs whereas the normal ranges are outlined in blue.
+
+
+## Monitoring
