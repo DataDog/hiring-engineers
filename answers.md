@@ -81,3 +81,10 @@ For instructions on how to set up tracing; the link is https://docs.datadoghq.co
 
 Here is a link to the Github Rails app I used to install the detrace gem and config datadog.rb
 https://github.com/LShiHuskies/SpaceShooterBack/blob/master/config/initializers/datadog.rb
+
+
+## Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+As an individual who loves to watch basketball games, I would say monitoring the most ideal times to watch the sales and prices of NBA games. Such as monitoring the best times for the best seats as well as the most popular games.
