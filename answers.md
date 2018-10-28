@@ -90,3 +90,86 @@ I ran a status check by running `sudo datadog-agent status` and the PostgreSQL i
 After configuration, I proceeded to install the integration onto the Datadog platform
 
 ![PostgreSQL_Installed](./screenshots/PostgreSQL_Installed.png)  
+
+
+Writing an Agent check requires the creation of two files:
+1. A Check file
+2. A YAML configuration file
+
+Using the terminal and the `touch` command, I created and editted a [my_metric.py](./files/my_metric.py) and [my_metric.yaml](./files/my_metric.yaml) file using `nano` and placed them in the checks.d and conf.d folders respectively.
+
+![my_metric_py](./screenshots/my_metric_py.png)
+![my_metric_yaml_initial](./screenshots/my_metric_yaml_initial.png)
+
+I restarted the Datadog Agent using using `sudo service datadog-agent restart`. my_metric check is successfully being submitted after checking with `sudo datadog-agent status`.
+
+![my_metric_check_running](./screenshots/my_metric_check_running.png)
+
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+The minimal collection interval can be defined in the my_metric.yaml file at the instance level because of Agent 6.
+
+![my_metric_yaml_interval_45s](./screenshots/my_metric_yaml_interval_45s.png)
+
+Using a stopwatch, I started the timer when the total run count incremented by 1 and checked the Agent status constantly until the count incremented again. The metric was indeed submitting every 45 seconds.
+
+
+## Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+As shown in the previous step, the collection interval was changed in the my_metric.yaml file which didn't touch the Python check file (my_metric.py).
+
+
+
+# Visualizing Data
+
+## Utilize the Datadog API to create a Timeboard that contains:
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+In order to create a Timeboard while utilizing the Datadog API with Python, the Datadog package for Python has to be installed using Python's package management system called pip.
+
+Pip can be installed using the command:
+
+`sudo apt-get install python-pip`
+
+With pip installed, the datadog package can be installed as well.
+
+`pip install datadog`
+
+These steps may take a while.
+
+Generate an application key to use before creating the timeboard:
+![ApplicationKey](./screenshots/ApplicationKey.png)
+
+Utilizing Datadog's ![API documentation](https://docs.datadoghq.com/api/?lang=python#timeboards) on Timeboards, Datadog Docs for ![anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and ![graphing](https://docs.datadoghq.com/graphing/), and ![PostgreSQL](https://docs.datadoghq.com/integrations/postgres/) the timeboard script was created and written using Python. It can be found ![here](./files/timeboard.py):
+
+
+The document was executed using python in the terminal. It was successfully created as shown in the Dashboard List.
+
+![dashboard_list](./screenshots/dashboard_list.png)
+
+When the timeboard is clicked, the platform displays the 3 graphs that are needed.
+
+![timeboard_overview](./screenshots/timeboard_overview.png)
+
+
+## Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+## Set the Timeboard's timeframe to the past 5 minutes
+
+Although 5 minutes isn't a dropdown option for the Show section, it can be manually selected by selecting a start point on the graph, holding the click, and dragging it until there's approximately 5 minutes worth of selected data. The end result is displayed:
+
+![timeboard_overview_5_minutes](./screenshots/timeboard_overview_5_minutes.png)
+
+## Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+When I hover my cursor on a graph, I can click on the camera icon to snapshot the graph and send it to my email.
+
+![timeboard_camera_snapshot](./screenshots/timeboard_camera_snapshot.png)
+![timeboard_email_graph](./screenshots/timeboard_email_graph.png)
+
+
+## Bonus Question: What is the Anomaly graph displaying?
+
+The Amonaly graph is displaying the maximum number of client connections allowed to the PostgreSQL database while indicating whether there is any abnormal behavior. Red points indicate abnormal behavior and values outside the expected range of values. The range of values is represented by a grey background behind the data points. In my graph, there aren't any red points, only blue ones so there aren't any anomalies present.
