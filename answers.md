@@ -66,11 +66,11 @@ Include the metric value that caused the monitor to trigger and host ip when the
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 Answer:
-(show the screenshots place)
 
-
-
-
+![MonitorAlert](./assets/MonitorAlert.png)
+![MonitorAlert](./assets/MonitorAlert2.png)
+![newMetricJSON](./assets/newMetricJSON.png)
+![new_metric_alert_email](./assets/new_metric_alert_email.png)
 
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
