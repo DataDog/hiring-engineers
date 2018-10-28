@@ -31,6 +31,7 @@ Bonus Question:
 Can you change the collection interval without modifying the Python check file you created?
 In order to set the interval without modifying the python check file, you would just modify the custom_check.yaml file adding the min_collection_interval.
 
+![Min Interval Bonus Question](./assets/MinIntervalBonusQuestion.png)
 
 ## Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
