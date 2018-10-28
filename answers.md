@@ -81,7 +81,12 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 Answer: Using the User Interface, on the Monitors Page, I clicked on the Manage Downtime page and scheduled recurring silences of the Monitors for specific time periods.
 One of them was the all day for Saturday and Sunday and the other one was from Monday through Friday at 7PM til 9PM.
-(list the screen shots below)
+
+![weekday Schedule Silencing](./assets/weekdayScheduleSilencing.png)
+![weekday Schedule Silencing Email](./assets/weekdayScheduleSilencingEmail.png)
+
+![weekend Schedule Silencing](./assets/weekendScheduleSilencing.png)
+![weekend Schedule Silencing Email](./assets/weekendScheduleSilencingEmail.png)
 
 
 ## Collecting APM Data
