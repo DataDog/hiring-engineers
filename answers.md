@@ -6,8 +6,8 @@ The operating system used to complete this exercise was MacOS High Sierra Versio
 A Linux Ubuntu VM was created using Vagrant and VirtualBox.
 
 Download links:
-1. ![Vagrant](https://www.vagrantup.com/downloads.html)
-2. ![VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+1. [Vagrant](https://www.vagrantup.com/downloads.html)
+2. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 After installing these two programs, run the following commands:
 Create a Ubuntu 16.04 VM:
@@ -19,32 +19,29 @@ Start the VM:
 Use the VM:
 3. `vagrant ssh`
 
-After these steps, sign up for a Datadog account ![here](https://www.datadoghq.com/#)
+After these steps, sign up for a Datadog account [here](https://www.datadoghq.com/#)
 
 
-The Datadog Agent is software that runs on your hosts and collects their events & metrics for you to utilize. More info can be found ![here](https://docs.datadoghq.com/agent/).
+The Datadog Agent is software that runs on your hosts and collects their events & metrics for you to utilize. More info can be found [here](https://docs.datadoghq.com/agent/).
 
 Navigate to the Agent Tab under the Integrations Tab and install the Datadog Agent for Ubuntu.
-
-![Datadog Agent Mac OSX](./screenshots/DataDog_Agent_MacOSX.png)
-
 
 Install the Datadog Agent in the terminal by running the command in the one-step install. This may take some time.
 
 `DD_API_KEY={YOUR_API_KEY} bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
 Installation Complete!  
-![Datadog Agent Installation](./screenshots/DataDog_Agent_Installation.png)
+![Datadog_Agent_Installation](./screenshots/Datadog_Agent_Installation.png)
 
 The browser looks like this now. Click Finish to proceed.
-![Datadog Agent Proceed]()
+![Datadog_Agent_Proceed](./screenshots/Datadog_Agent_Proceed.png)
 
 
 # Collecting Metrics
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
-Tags are assigned to hosts and integrations and are very important when it comes to presenting data on dashboards. Tags can represent sizes, roles, and locations. This will be useful for more granular metrics on our dashboards. More info can be found ![here](https://docs.datadoghq.com/tagging/).
+Tags are assigned to hosts and integrations and are very important when it comes to presenting data on dashboards. Tags can represent sizes, roles, and locations. This will be useful for more granular metrics on our dashboards. More info can be found [here](https://docs.datadoghq.com/tagging/).
 
 
 1. Using the terminal, navigate to the main directory(`:/`) of the VM.
@@ -67,7 +64,7 @@ I chose PostgreSQL for my database and downloaded it using the following command
 1. `sudo apt-get update`
 2. `sudo apt-get install postgresql postgresql-contrib`
 
-More in-depth use past the installation step can be found ![here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04).
+More in-depth use past the installation step can be found [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04).
 
 
 I navigated to the Integrations Tab, found the PostgreSQL integration, and followed the configuration steps displayed.
@@ -99,7 +96,7 @@ Writing an Agent check requires the creation of two files:
 Using the terminal and the `touch` command, I created and editted a [my_metric.py](./files/my_metric.py) and [my_metric.yaml](./files/my_metric.yaml) file using `nano` and placed them in the checks.d and conf.d folders respectively.
 
 ![my_metric_py](./screenshots/my_metric_py.png)
-![my_metric_yaml_initial](./screenshots/my_metric_yaml_initial.png)
+![my_metric_yaml](./screenshots/my_metric_yaml.png)
 
 I restarted the Datadog Agent using using `sudo service datadog-agent restart`. my_metric check is successfully being submitted after checking with `sudo datadog-agent status`.
 
@@ -142,7 +139,7 @@ These steps may take a while.
 Generate an application key to use before creating the timeboard:
 ![ApplicationKey](./screenshots/ApplicationKey.png)
 
-Utilizing Datadog's ![API documentation](https://docs.datadoghq.com/api/?lang=python#timeboards) on Timeboards, Datadog Docs for ![anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and ![graphing](https://docs.datadoghq.com/graphing/), and ![PostgreSQL](https://docs.datadoghq.com/integrations/postgres/) the timeboard script was created and written using Python. It can be found ![here](./files/timeboard.py):
+Utilizing Datadog's [API documentation](https://docs.datadoghq.com/api/?lang=python#timeboards) on Timeboards, Datadog Docs for [anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and [graphing](https://docs.datadoghq.com/graphing/), and [PostgreSQL](https://docs.datadoghq.com/integrations/postgres/) the timeboard script was created and written using Python. It can be found [here](./files/timeboard.py):
 
 
 The document was executed using python in the terminal. It was successfully created as shown in the Dashboard List.
