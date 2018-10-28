@@ -65,3 +65,19 @@ Make sure that your email is notified when you schedule the downtime and take a 
 Answer: Using the User Interface, on the Monitors Page, I clicked on the Manage Downtime page and scheduled recurring silences of the Monitors for specific time periods.
 One of them was the all day for Saturday and Sunday and the other one was from Monday through Friday at 7PM til 9PM.
 (list the screen shots below)
+
+
+## Collecting APM Data
+
+For instructions on how to set up tracing; the link is https://docs.datadoghq.com/tracing/setup/
+
+1. I installed the agent.
+2. I then bundle install the ddtrace gem into an existing rails app of my choice.
+3. I then created the datadog.rb file under config/initializers/datadog.rb file
+4. I downloaded the tracing agent.
+5. I set the APM in datadog.yaml enabled: true
+(include the enabled true in datadog.yaml)
+6. I started the rails app
+
+Here is a link to the Github Rails app I used to install the detrace gem and config datadog.rb
+https://github.com/LShiHuskies/SpaceShooterBack/blob/master/config/initializers/datadog.rb
