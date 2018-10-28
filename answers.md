@@ -146,15 +146,59 @@ Update datadog.yaml file to allow for APM metrics:
 
 apm_config:
   enabled: true
-  
-  
+  receiver_port:8126
+
   ```
+Added python script, install python, flask.
 
-I did not complete this exercise. I attempted to use ddtrace with a MySQL python connector, but was unsuccessful. Here is the script I was running that was a simple connect: 
+```python
 
-![apm_python](https://s3.amazonaws.com/datadoganswers/APM_python_mysql.png)
+from flask import Flask
+import logging
+import sys
 
-I am 100% sure I am missing something here, but I'd need some more time to figure it out.
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+    
+```
+
+The next step was to curl the endpoints to get data reporting:
+
+```bash
+
+[root@ip-172-31-21-6 ~]# curl http://127.0.0.1:5050/api/trace
+
+```
+
+#### Bonus Question
+
+The difference between a service and a resource is that a service is something that is running on the host or resource. So, in the example above our flask python app is a service and the EC2 instance it is running on is the underlying resource. 
+
+
+Here is a screenshot of APM + infra metrics reporting.
+![apm_infra](https://s3.amazonaws.com/datadoganswers/infra_apm.png)
 
 ## Final Question:
 
