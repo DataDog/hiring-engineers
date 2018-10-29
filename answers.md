@@ -12,12 +12,8 @@ Download links:
 After installing these two programs, run the following commands:
 Create a Ubuntu 16.04 VM:
 1. `vagrant init ubuntu/xenial64`
-
-Start the VM:
-2. `vagrant up`
-
-Use the VM:
-3. `vagrant ssh`
+2. `vagrant up` to start the VM
+3. `vagrant ssh` to use the VM
 
 After these steps, sign up for a Datadog account [here](https://www.datadoghq.com/#)
 
@@ -49,7 +45,7 @@ Tags are assigned to hosts and integrations and are very important when it comes
 3. Open the file using an editor. Vim and nano are built in if you do not wish to install one. It can be opened using `sudo nano datadog.yaml`.
 
 Here are the tags I created. Remember to remove the `#`.  
-![DataDog_Agent_Tags](./screenshots/DataDog_Agent_Tags.png)
+![DataDog_Agent_Tags](./screenshots/Datadog_Agent_Tags.png)
 
 After saving the configurations and restarting the Datadog Agent using `sudo service datadog-agent restart`, I navigated to Host Map tab under Infrastructure in the Datadog Application in my browser.
 
@@ -88,7 +84,7 @@ After configuration, I proceeded to install the integration onto the Datadog pla
 
 ![PostgreSQL_Installed](./screenshots/PostgreSQL_Installed.png)  
 
-
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Writing an Agent check requires the creation of two files:
 1. A Check file
 2. A YAML configuration file
@@ -170,3 +166,63 @@ When I hover my cursor on a graph, I can click on the camera icon to snapshot th
 ## Bonus Question: What is the Anomaly graph displaying?
 
 The Amonaly graph is displaying the maximum number of client connections allowed to the PostgreSQL database while indicating whether there is any abnormal behavior. Red points indicate abnormal behavior and values outside the expected range of values. The range of values is represented by a grey background behind the data points. In my graph, there aren't any red points, only blue ones so there aren't any anomalies present.
+
+
+
+# Monitoring Data
+
+## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+1. Warning threshold of 500
+2. Alerting threshold of 800
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Monitors are important in checking metrics constantly, notifying us on unexpected or undesired behavior, and to check endpoints and integrations. More information on setting up monitors can be found [here](https://docs.datadoghq.com/monitors/)
+
+
+A monitor can be created through two ways:
+1. Navigating to the Monitors --> New Monitor --> Metric Tab on the left.
+2. Hover over the graph you want to monitor, click the settings (cog icon) and click create new monitor
+
+Once completed, I filled out the necessary information to meet the desired requirements
+![Monitor_Conditions_1](./screenshots/Monitor_Conditions_1.png)
+
+
+## Please configure the monitor’s message so that it will:
+
+1. Send you an email whenever the monitor triggers.
+2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![Monitor_Conditions_2](./screenshots/Monitor_Conditions_2.png)
+
+## When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Warn Email
+
+![Monitor_Warn_Email](./screenshots/Monitor_Warn_Email.png)
+
+
+No Data Email
+
+![Monitor_NoData_Email](./screenshots/Monitor_NoData_Email.png)
+
+
+## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+1. One that silences it from 7pm to 9am daily on M-F,
+2. And one that silences it all day on Sat-Sun.
+
+
+Monitors can be scheduled to have downtime by navigating to Monitors --> Manage Downtime.
+
+This was done twice, one for weekdays and one for weekends. The images below illustrate the conditions used in the forms.
+
+![Monitor_Weekdays_Conditions](./screenshots/Monitor_Weekdays_Conditions.png)
+![Monitor_Weekends_Conditions](./screenshots/Monitor_Weekends_Conditions.png)
+
+
+## Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![Monitor_Weekdays_Email](./screenshots/Monitor_Weekdays_Email.png)
+![Monitor_Weekends_Email](./screenshots/Monitor_Weekends_Email.png)
