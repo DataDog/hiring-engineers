@@ -3,18 +3,18 @@ Working on this exercise was definitely an insightful journey. This made me lear
 I decided to implement this exersice on my local environment (Windows 10). I did run into some dependency issues here and there but I was able to overcome them to successfully complete all the steps in the exercise. My findings are below:
 
 ## Collecting Metrics
-The installation of the Datadog Agent itself was very straight forward. It is worth noting that the Agent itself has everything embedded inside of it. All the checks, integrations, python interpreter, etc. Yet the Agent is very lightweight. Small code snippet of the Datadog yaml file is below which shows the 3 tags I created. Followed by a screenshot of the Host Map in the Datadog UI.
+The installation of the Datadog Agent itself was very straight forward. It is worth noting that the Agent itself has everything embedded inside of it. All the checks, integrations, python interpreter, etc. Yet the Agent is very lightweight. Small code snippet of the Datadog yaml file is below which shows the 3 tags I created. Followed by a screenshot of the Host Map in the Datadog UI. By adding tags to your metrics you can observe and alert on metrics from different hardware profiles, software versions, availability zones, services, roles or any other level you may require. Tags give you the flexibility to add infrastructural metadata to your metrics on the fly without modifying the way your metrics are collected.
 
 *Tags in the Datado.yaml file*
 
     tags:
-      - prac_env:cpu
-      - prac_env:disk
-      - prac_env:mem
+      - env:windows
+      - host:HIBBJQHEQJ
+      - regin:AMS
     use_dogstatsd: true
 
 *Datadog Host View Map Screenshot*    
-![Alt text](https://github.com/shahmoa/DD-Challenge-Exercise/blob/master/HostMapView.png)
+![Alt text](https://github.com/shahmoa/DD-Challenge-Exercise/blob/master/HostMapView1.png)
 
 The tags reside in the Datadog's Agent yaml file. However, it is not necessary to open the yaml file every time to make a change to the configuration. The changes can also be made by derectly launching the Datadog Agent Manager UI and navigating to the settings tab. The settings tab displays the yaml file and changes can be made directly there and saved. Once the changes are made, restart the Agent for the changes to take effect.
 
