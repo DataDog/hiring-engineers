@@ -105,6 +105,7 @@ I already handled the custom check interval using the yaml definition without ch
 ```
 ## Access Dashboard
 * I opened the Dashboard in the DD GUI and set the timeframe to the past 4 hours in order to see some data in the rollup graph
+![Dashboard](https://github.com/jg8810/hiring-engineers/blob/master/dashboard.png)
 * It took me a couple of minutes in order to set the timeframe to the past 5 minutes.
   * After checking the keyboard shortcuts, it seems like German keyboards are not supported in order to Zoom out/in time frame using 
 ```
@@ -113,7 +114,9 @@ or
 Alt + ]
 ```
   * So I switched to an English keyboard layout and now it worked :)
+![Dashboard 5 minutes timeframe](https://github.com/jg8810/hiring-engineers/blob/master/dashboard5m.png)
 * I created a snapshot and sent it to myself using the @-notation
+![Snapshot via email](https://github.com/jg8810/hiring-engineers/blob/master/snapshot.png)
 ## Bonus Question
 In my case the anomaly graph for the database metric is not displaying any relevant anomalies, because the database is not used at all. In theory you would see any outliers that deviate from the collected patterns
 
