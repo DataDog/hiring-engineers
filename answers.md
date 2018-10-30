@@ -123,17 +123,24 @@ In my case the anomaly graph for the database metric is not displaying any relev
 # Monitoring Data
 ## Create Metric Monitor
 * I created a new Metric Monitor with the properties as requested in the instructions - in order to have some host properties available within the email text I had to define the to be monitored metric "my_check" by host (last parameter)
+![Monitor Definition](https://github.com/jg8810/hiring-engineers/blob/master/monitor1.png)
 * I used message template variables in order to distinguish alerts, warnings and the case of not receiving data:
+![Monitor notification content](https://github.com/jg8810/hiring-engineers/blob/master/monitor2.png)
 * After a couple of minutes I received my first warning via email
+![Warning notification](https://github.com/jg8810/hiring-engineers/blob/master/warning.png)
 * In order to also see the alert emails I changed the custom agent check to generate random numbers between 900 and 1000
 * And here is a screenshot of the received alert and the host IP:
+![Alert notification](https://github.com/jg8810/hiring-engineers/blob/master/alert.png)
 
 ## Bonus Question
 * I crated two different Scheduled Downtimes for my monitor
 * The first downtime is defined as weekly running from Monday-Friday beginning at 7PM and running for 14hrs (so the monitor is active again at 9AM the next day) and has a custom message that is sent to myself once it's activated
+![Scheduled Downtime definition](https://github.com/jg8810/hiring-engineers/blob/master/downtime1.png)
 * The second downtime is planned for weekends - running from 0:00 for 1 day (duration) and repeated on Saturday and Sunday
+![Scheduled Downtime definition](https://github.com/jg8810/hiring-engineers/blob/master/downtime2.png)
 * In order to test my scheduled downtimes I changed the start time of the first one to fit into my day :)
 * Once it got activated I received an Email notification
+![Downtime notification](https://github.com/jg8810/hiring-engineers/blob/master/downtimenotification.png)
 
 # Collecting APM Data
 * First I had to install pip in order to install  Flask on my ec2 instance
@@ -174,6 +181,7 @@ DEBUG:ddtrace.api:reported 1 traces in 0.00094s
 trace.flask.request.hits.by_http_status
 ```
 * I also added infrastructure related system load metrics to another graph
+![APM and Infrastructure Dashboard](https://github.com/jg8810/hiring-engineers/blob/master/dashboardapm.png)
 
 ## My Flask app - almost unchanged since I used ddtrace
 ```
