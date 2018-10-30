@@ -6,7 +6,7 @@
 ## Host Map Page
 * Based on datadog.yaml.example file in /etc/datadog-agent/ and the online documentation https://docs.datadoghq.com/tagging/ I created tags for my sample ec2 instance in the datadog.yaml for the local agent
 * After a restart of the agent I checked the Host Map page in DD
-<Screenshot of Host Map page>
+![DD Host Map](https://github.com/jg8810/hiring-engineers/blob/master/HostMap.png)
 
 ## DataDog integration for a database
 
