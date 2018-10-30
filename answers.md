@@ -59,7 +59,7 @@ I already handled the custom check interval using the yaml definition without ch
 * For interacting with DD via the API I had to create an Application Key first
 * To get a better understanding how the Timeboards are created and can be customized I created my very first Timeboard using the DD GUI
 * After that I put together the json representation of the Timeboard that I wanted to create using Postman. 
-* The REST API provides an easy to use way to provide Dashboards as code, put Dashboards under version control and share common Dashboards with other teams. Furthermore you can work with template variables in order to have one single point of change.
+* The REST API provides an easy to use way to provide Dashboards as code, put Dashboards under version control and share common Dashboards with other teams. Furthermore you can work with template variables in order to benefit from reusability and better maintenance.
 * After sending the POST request to the REST API endpoint I retrieved a successful response (http status 200 and json payload) so the Dashboard has been created successfully
 * json Payload of the POST request:
 ```
@@ -133,17 +133,19 @@ In my case the anomaly graph for the database metric is not displaying any relev
 ![Alert notification](https://github.com/jg8810/hiring-engineers/blob/master/alert.png)
 
 ## Bonus Question
-* I crated two different Scheduled Downtimes for my monitor
+* I created two different Scheduled Downtimes for my monitor
 * The first downtime is defined as weekly running from Monday-Friday beginning at 7PM and running for 14hrs (so the monitor is active again at 9AM the next day) and has a custom message that is sent to myself once it's activated
+
 ![Scheduled Downtime definition](https://github.com/jg8810/hiring-engineers/blob/master/downtime1.png)
 * The second downtime is planned for weekends - running from 0:00 for 1 day (duration) and repeated on Saturday and Sunday
+
 ![Scheduled Downtime definition](https://github.com/jg8810/hiring-engineers/blob/master/downtime2.png)
 * In order to test my scheduled downtimes I changed the start time of the first one to fit into my day :)
 * Once it got activated I received an Email notification
 ![Downtime notification](https://github.com/jg8810/hiring-engineers/blob/master/downtimenotification.png)
 
 # Collecting APM Data
-* First I had to install pip in order to install  Flask on my ec2 instance
+* First I had to install pip in order to install Flask on my ec2 instance
 ```
 easy_install pip
 pip install flask
@@ -153,7 +155,7 @@ pip install flask
 * I installed the DD Tracing Library according to https://docs.datadoghq.com/tracing/setup/python/ 
 * I enabled apm traces for the DD agent in datadog.yaml
 * I decided to use the ddtrace-run option in order not to have to change an existing application code (which could be a scenario for a customer, e.g. because of compliance). 
-* I started application using:
+* I started the sample application using:
 ```
 ddtrace-run python sampleapp.py
 ```
@@ -174,7 +176,7 @@ INFO:werkzeug:91.231.22.226 - - [30/Oct/2018 11:16:52] "GET /api/trace HTTP/1.1"
 2018-10-30 11:16:52,895 - werkzeug - INFO - 91.231.22.226 - - [30/Oct/2018 11:16:52] "GET /api/trace HTTP/1.1" 200 -
 DEBUG:ddtrace.api:reported 1 traces in 0.00094s
 ```
-## Creat a dashboard with both APM and infrastructure metrics
+## Create a dashboard with both APM and infrastructure metrics
 * I created a dashboard called "Flask Dashboard"
 * I added graphs that show APM related data coming from ddtrace
 ```
