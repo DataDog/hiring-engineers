@@ -104,7 +104,7 @@ I already handled the custom check interval using the yaml definition without ch
 }
 ```
 ## Access Dashboard
-* I opened the Dashboard in the DD GUI and set the timeframe to the past 4 hours in order to see some data in the rollup graph
+* I opened the Dashboard in the DD GUI and set the timeframe to the past 4 hours in order to see some data in the rollup graph - [Link to my Dashboard](https://app.datadoghq.com/dash/964418/jrgens-dashboard)
 ![Dashboard](https://github.com/jg8810/hiring-engineers/blob/master/dashboard.png)
 * It took me a couple of minutes in order to set the timeframe to the past 5 minutes.
   * After checking the keyboard shortcuts, it seems like German keyboards are not supported in order to Zoom out/in time frame using 
@@ -177,7 +177,7 @@ INFO:werkzeug:91.231.22.226 - - [30/Oct/2018 11:16:52] "GET /api/trace HTTP/1.1"
 DEBUG:ddtrace.api:reported 1 traces in 0.00094s
 ```
 ## Create a dashboard with both APM and infrastructure metrics
-* I created a dashboard called "Flask Dashboard"
+* I created a dashboard called "Flask Dashboard" - [link to my Flask Dashboard](https://app.datadoghq.com/dash/964596/flask-dashboard?live=true&page=0&is_auto=false&from_ts=1540906073864&to_ts=1540909673864&tile_size=m)
 * I added graphs that show APM related data coming from ddtrace
 ```
 trace.flask.request.hits.by_http_status
