@@ -38,7 +38,7 @@ Once the configuration is set, I restarted the DataDog Agent. To view if DataDog
 *Postgres Status Screenshot*    
 ![Alt text](https://github.com/shahmoa/DD-Challenge-Exercise/blob/master/PostgresStatus.png)
 
-Creating custom agent check is actually a very nifty task. However, a multitude of integrations are offered OOTB but it is simple to write a check to montior something if it is not offered OOTB. Writing a custom python integration script to integrate it with DataDog just shows how flexible its opensource architecture is. It is very simple yet very powerful. A few things need to be kept in mind however while creating a custom agent check. For example, both .yaml and .py files must be of same name, otherwise DataDog will not pick up the configuration of the check. I created a separate folder in the conf.d folder called 'my_metric.d' where I stored the my_metric.yaml file. Next, I created the my_metric.py file to store it in the 'checks.d' folder embedded within the DataDog Agent folder. Below is the code for my_metric.yaml and my_metric.py to implement the custom agent check.
+Creating custom agent check is actually a very nifty task. However, a multitude of integrations are offered OOTB but it is simple to write a check to monitor something if it is not offered OOTB. Writing a custom python integration script to integrate it with DataDog just shows how flexible its opensource architecture is. It is very simple yet very powerful. A few things need to be kept in mind however while creating a custom agent check. For example, both .yaml and .py files must be of same name, otherwise DataDog will not pick up the configuration of the check. I created a separate folder in the conf.d folder called 'my_metric.d' where I stored the my_metric.yaml file. Next, I created the my_metric.py file to store it in the 'checks.d' folder embedded within the DataDog Agent folder. Below is the code for my_metric.yaml and my_metric.py to implement the custom agent check.
 
 *my_metric.yaml*
     
@@ -144,7 +144,7 @@ DataDog's Timeboard is a useful utility when it comes to visualizing data. The T
                      template_variables=tv,
                      read_only=read_only)
 
-Also, I have posted the screenshot below of the anomaly snapshot taken of the 5 mintue timeframe from the custom Timeboard graph.
+Also, I have posted the screenshot below of the anomaly snapshot taken of the 5 minute timeframe from the custom Timeboard graph.
 
 *Anomaly Snapshot of 5 Mins Time Lapse Screenshot*    
 ![Alt text](https://github.com/shahmoa/DD-Challenge-Exercise/blob/master/PostgresAnomaly5minsGraph.png)
@@ -153,7 +153,7 @@ Also, I have posted the screenshot below of the anomaly snapshot taken of the 5 
 The Anomaly graph is displaying the Postgres max_connections metric with an unusual spike that is outside of the standard deviation bounds.
 
 ## Monitoring Data
-It is always good to know how overall infrastructure and applications are doing in terms of performance. Especially if they are critical to the business. Applications that generate a lot of revenue for an organization should be monitored very closely and of course the infrastructure the application is sitting on as well. DataDog's monitoring capabilities make it very simple and intuitive for anyone to start monitoring the metrics around the infrastructure and application. The monitor configurations also allow for users to schedule downtimes for alerts if the user does not want to be disturbed off hours for example; or notify on the spot if the data has gone missing for a few consecutive minutes. Please find the screenshots below:
+It is always good to know how overall infrastructure and applications are doing in terms of performance. Especially if they are critical to the business. Applications that generate a lot of revenue for an organization should be monitored very closely and of course the infrastructure where the application is sitting as well. DataDog's monitoring capabilities make it very simple and intuitive for anyone to start monitoring the metrics around the infrastructure and application. The monitor configurations also allow for users to schedule downtimes for alerts if the user does not want to be disturbed off hours for example; or notify on the spot if the data has gone missing for a few consecutive minutes. Please find the screenshots below:
 
 *Screenshot below of creating and configuring the monitors*    
 ![Alt text](https://github.com/shahmoa/DD-Challenge-Exercise/blob/master/CreatingMonitors.png)
