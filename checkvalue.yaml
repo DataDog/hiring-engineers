@@ -1,0 +1,7 @@
+init_config:
+
+instances:
+  - username: john
+    password: te5tus3r
+    min_collection_interval: 45
+    tags:  env:testing, proj:solutioneng

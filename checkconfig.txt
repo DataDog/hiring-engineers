@@ -1,0 +1,91 @@
+root@ubuntu-xenial:/etc/datadog-agent/conf.d/checkvalue.d# datadog-agent configcheck
+
+=== checkvalue check ===
+Source: File
+Instance ID: checkvalue:ab57118b43edaba9
+min_collection_interval: 45
+tags: env:testing, proj:solutioneng
+~
+===
+
+=== cpu check ===
+Source: File
+Instance ID: cpu:d884b5186b651429
+{}
+~
+===
+
+=== disk check ===
+Source: File
+Instance ID: disk:e5dffb8bef24336f
+use_mount: false
+~
+===
+
+=== file_handle check ===
+Source: File
+Instance ID: file_handle:d884b5186b651429
+{}
+~
+===
+
+=== io check ===
+Source: File
+Instance ID: io:d884b5186b651429
+{}
+~
+===
+
+=== load check ===
+Source: File
+Instance ID: load:d884b5186b651429
+{}
+~
+===
+
+=== memory check ===
+Source: File
+Instance ID: memory:d884b5186b651429
+{}
+~
+===
+
+=== mongo check ===
+Source: File
+Instance ID: mongo:4d81f423a8359742
+server: mongodb://datadog:7LlBgNauShcQ2iy4YZVCVOsn@localhost:27016
+tags:
+- mytag1
+- mytag2
+~
+Instance ID: mongo:c0ca1141e8851c31
+server: mongodb://datadog:7LlBgNauShcQ2iy4YZVCVOsn@localhost:27017
+tags:
+- mytag1
+- mytag2
+~
+===
+
+=== network check ===
+Source: File
+Instance ID: network:2a218184ebe03606
+collect_connection_state: false
+excluded_interfaces:
+- lo
+- lo0
+~
+===
+
+=== ntp check ===
+Source: File
+Instance ID: ntp:b4579e02d1981c12
+offset_threshold: 60
+~
+===
+
+=== uptime check ===
+Source: File
+Instance ID: uptime:d884b5186b651429
+{}
+~
+===
