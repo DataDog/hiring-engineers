@@ -5,4 +5,4 @@ I started the project by spinning up a ubuntu 16.04 linux box using vagrant. The
 
 # Collecting Metrics
 Once the datadog agent was running. I didnt realize that the agent config file was the /etc/datadog-agent/datadog.yaml file initially. I was able to add tags via the gui. While working on the APM section I realized where I was supposed to initially do the tags so I went back and changed them in the datadog.yaml file. 
-[tagged host](https://github.com/jmeagheriv/hiring-engineers/blob/master/HostTagged.JPG)
+![tagged host](https://github.com/jmeagheriv/hiring-engineers/blob/master/HostTagged.JPG)
