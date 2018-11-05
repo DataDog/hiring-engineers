@@ -22,7 +22,7 @@ Originally I had changed my python file to have a `sleep(45)` line but after res
 
 ### Visualizing Data
 
-This was probably the hardest part of the project for me to wrap my head around. The documentation on the api has the outline I needed to use but the word snapshot in the documentation made me second guess that I was in the right place. When I think of snapshot, I think of a still image of the current state of the graphs and not a dashboard of updating metrics. I eventually looked back at the example and realized that I could use that to create the dashboard. There wasn't a dropdown option for less than 1 hour displayed of the metrics in the dashboard but you click and drag to change the timespan for the whole dashboard. This was touched on in the datadog101 youtube series in the [dashboards video](https://youtu.be/U5RmKDmGZM4)
+This was probably the hardest part of the project for me to wrap my head around. The documentation on the api has the outline I needed to use but the word snapshot in the documentation made me second guess that I was in the right place. When I think of snapshot, I think of a still image of the current state of the graphs and not a dashboard of updating metrics. I eventually looked back at the example and realized that I could use that to create the dashboard. There wasn't a dropdown option for less than 1 hour displayed of the metrics in the dashboard but you click and drag to change the timespan for the whole dashboard. This was touched on in the datadog101 youtube series in the [dashboards video](https://youtu.be/U5RmKDmGZM4).
 I configured my anomaly graph to show current mongodb connections since there isn't anything being stored in the database the other things didn't seem to be as interesting to me. The graph will show if there are an unusual amount of connections. If I were to create a bunch of mongodb sessions concurrently and end them abruptly, the anomaly graph will color in that spike red. If I left those sessions running for a long time eventually the graph will normalize that number of connections and it will no longer be red. It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph. 
 [timeboard.py](https://github.com/jmeagheriv/hiring-engineers/blob/master/timeboard.py)
 ![metric](https://github.com/jmeagheriv/hiring-engineers/blob/master/Rollup.JPG)
@@ -36,12 +36,22 @@ I have experience with creating monitors in Zabbix so this part was pretty strai
 ![MetricMonitor2](https://github.com/jmeagheriv/hiring-engineers/blob/master/Monitor2.JPG)
 ![monitor triggered email](https://github.com/jmeagheriv/hiring-engineers/blob/master/MonitorEmail.JPG)
 
-#### Bonus!
+### Monitoring Data bonus: Downtime scheduled
 
 ![M-F](https://github.com/jmeagheriv/hiring-engineers/blob/master/M-F%20Downtime.JPG)
 ![Weekends](https://github.com/jmeagheriv/hiring-engineers/blob/master/Sat-Sun%20Downtime.JPG)
 
-###
+### Collecting APM Data
+
+I installed the ddtrace and flask using pip. `pip install ddtrace` and `pip install flask` respectively. Using the `ddtrace-run python flask_app.py` command on the provided file I had the flask app running with datadog tracing the app. I opened a second window and made the api calls as well as few that I knew would fail. I updated the metric dashboard from the visualizing data section. The APM_int screen cap was taken the next day from the others so the data doesn't match up. While researching the bonus question I found this [link](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-) that specifically answers the question. A service is set of processes that make a feature and resource is a single query to a  service
+![apm1](https://github.com/jmeagheriv/hiring-engineers/blob/master/APM.JPG)
+![apm2](https://github.com/jmeagheriv/hiring-engineers/blob/master/APM_Trace_PostingTraces.JPG)
+![apm3](https://github.com/jmeagheriv/hiring-engineers/blob/master/APM_Dashboard_update.JPG)
+![apm4](https://github.com/jmeagheriv/hiring-engineers/blob/master/APM_int.JPG) 
+
+### Final Question
+
+I work on cloud infrastructure for a telecommunications company. One of the interesting things with telecommunication applications is that there is a global standard for mobile systems. This standard makes the inputs and outputs of the radio functions the same across countries and companies. Each function has set inputs and outputs that are the same across all networks. Which is nice for cross compatibility. However when it comes to monitoring these systems, the differences in the applications become very clear. Every application has its own unique infrastructure, hosted on different hardwares, using different processes, different databases but ultimately giving the same outputs. Integrating in datadog would be very helpful to untangle this sort of mess. 
 
 
 
