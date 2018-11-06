@@ -152,6 +152,6 @@ To submit your answers:
 
 * [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
 
-### Other questions:
+### Other questions
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
