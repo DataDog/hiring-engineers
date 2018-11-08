@@ -4,12 +4,33 @@ Your answers to the questions go here.
 
 ### Prerequisites - Setup the environment
 
-I started the project by spinning up a ubuntu 16.04 linux box using vagrant. The specific box that I used was "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box" which I found on vagrantbox.es. Originally I tried to create my own vm using virtualbox but I was having trouble with the datadog agent integration. Once I switched over to the vagrant box the datadog agent integration went smoothly. 
+To begin this project I installed vagrant on PC. Using the windows 64 bit installer from the vagrant [downloads page](https://www.vagrantup.com/downloads.html). I used the default options for the installation. Once installed you can use vagrant commands in the command line. You can add prebuilt vagrant machines to your system by using the `vagrant box add <url>` command. The specific box that I used was "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box" which I found on vagrantbox.es. It is a ubuntu 16.04 linux box. Once the box is added to your system you can bring it online by using the `vagrant up` command. After about a minute or so your vm will be online at which point you you can access it using `vagrant ssh <vm name>`. I kept my VM named default in vagrant. This following screenshot shows my setup coming online.
+![vagrant](https://github.com/jmeagheriv/hiring-engineers/blob/master/vagrant.JPG)
+
+
 
 ### Collecting Metrics
+I went to the datadoghq.com website and signed up for my own account following the instruction prompts. On the first login I followed the getting started instructions to install the agent. It is very easy to get the agent started as there is a one step install command for ubuntu. This screenshot shows the final output of the agent installation finishing up and begin reporting.
 
-Once the datadog agent was running. I didnt realize that the agent config file was the /etc/datadog-agent/datadog.yaml file initially. I was able to add tags via the gui. While working on the APM section I realized where I was supposed to initially do the tags so I went back and changed them in the datadog.yaml file. 
+![agent](https://github.com/jmeagheriv/hiring-engineers/blob/master/agent%20installed.JPG)
+
+Once I ran the command on my vm, metrics started reporting to the dashboard. The default metrics report on datadog itself as well as system outputs such as cpu.idle time, ntp offset, and system disk used. The agent configuration file is the /etc/datadog-agent/datadog.yaml. Here you can set special configuration for your agent and add things like host tags to identify this specific agent.
+
+![agenttags](https://github.com/jmeagheriv/hiring-engineers/blob/master/datadogtags.JPG)
+
+After changing this file the agent needs to be restarted with `systemctl restart datadog-agent`. Once it's restarted you can see the tags appear in your dashboard. Here are my tags showing in the dashboard.
+
 ![tagged host](https://github.com/jmeagheriv/hiring-engineers/blob/master/HostTagged.JPG)
+
+The next step is to install the database. I went with mongodb community edition, the instrutions are [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Once the install from `apt-get` command finished, mongodb was started with this `sudo service mongod start` command. To integrate mongodb with datadog you need to run go to the configuration section of the mongodb integration. This section adds a datadog user to mongodb, and configures the mongodb server in the conf.d/mongo.d/conf.yaml file.
+
+![ddusermongo](https://github.com/jmeagheriv/hiring-engineers/blob/master/MongoDB_DDuser%20setup.JPG?raw=true)
+
+
+
+
+
+
 
 I installed mongodb community edition using the instructions for ubuntu xenial 16.04 from [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). I configured a datadog user based on the  integration for mongodb, configuration tab in the datadoghq. Upon restarting the agent, the mongodb metrics started to report in. [CheckConfig Output](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkconfig.txt)
 ![mongodb integration](https://github.com/jmeagheriv/hiring-engineers/blob/master/MongoDBIntegration.JPG)
