@@ -1,11 +1,10 @@
 # Application as 'Biblical Sales Engineer' at Datadog
 
 
- ...I'm sorry, but Senior is no longer the right term for me! :trollface:
+ ...I'm sorry, but Senior is no longer the right element within a job title for me!! :trollface:
 
 
-
-## Who the hack is 'The Logfather'
+## So, who the hack is 'The Logfather'
 
 This nickname was given to me by former colleagues at Splunk. Although my focus goes far beyond simple log files, I still carry this name with a certain pride.
 
