@@ -7,9 +7,19 @@
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 ![mysql](https://user-images.githubusercontent.com/768821/48231498-30839f80-e363-11e8-93d2-606a71c4a5d9.png)
+- [x] Create a custom Agent check that submits a metric named `my_metric` with a random value between 0 and 1000.
 
-- [] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-- [] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+![my_metric](https://user-images.githubusercontent.com/768821/48236179-f2dc4200-e375-11e8-99a9-7fe118a09864.png)
+- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+File `/conf.d/random_check.yaml`:
+```
+init_config:
+
+ instances:
+    - min_collection_interval: 45
+```
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
