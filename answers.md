@@ -89,3 +89,7 @@ Or you use the only true approach for seasoned men within the datadog.yaml file.
 Don't forget to save the file and restart the agent after the changes have been made.  
 
 ![datadog_tags_config](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tags_config.png)
+
+From now on you can start to group, search and filter by tags.
+
+![hosts](https://github.com/simuvid/hiring-engineers/blob/master/images/hosts.png)
