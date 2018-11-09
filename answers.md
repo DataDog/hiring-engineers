@@ -22,12 +22,12 @@ I'm rather the type of nerd who loves to successfully bring the ingenious ideas 
 My thanks go to Lee Farrar and Datadog for their interest in me and for giving me the opportunity to apply as a Sales Engineer.
 
 
-![And the Oscar goes to....](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_oscar_goes_to.jpeg)
+![And the Oscar goes to....](/images/ddatadog_oscar_goes_to.jpeg)
 
 
-## Following now all my official answers, in a Github Fork. 
+## Following now all my answers. 
 
-For everyone's information, the cloud also contains my original, individual version: https://spark.adobe.com/page/DtglP7uGh51BG/
+For everyone's information, the cloud also contains another, very individual version of the answers: https://spark.adobe.com/page/DtglP7uGh51BG/
 
 
 ### Starting with Datadog - Setup the environment
