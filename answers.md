@@ -36,9 +36,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-- [ ] Set the Timeboard's timeframe to the past 5 minutes
-- [ ] Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [x] Set the Timeboard's timeframe to the past 5 minutes
+- [x] Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![screenshot of snapshot notification](https://user-images.githubusercontent.com/768821/48292335-c5070400-e42e-11e8-99e6-d12cda8cadeb.png)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly is looking for values outside of a standard deviation over the specified time period. In this case, highlight when the metric falls outside of 'expected' values. In this example, having more than one connection to the MySQL DB will generate an anomaly.
 
 ## Monitoring Data
 
