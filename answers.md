@@ -39,7 +39,7 @@ First things first I created a new user account on https://www.datadoghq.com/.
 
 From there on I decided to download and run a standalone agent on my macos system, instead of using a VM or Docker approach.   
 
-![datadog_account.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_1.png)   
+![datadog_install_1.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_1.png)   
 
 Instead of downloading and running a DMG file on MAC you can simply download and start the installation of the agent buy the use of a simple command line in your terminal:
 
@@ -49,10 +49,16 @@ I ran the DMG package and updated the datadog.yaml file with the API key provide
 datadog.yaml config file refers to the path: /opt/datadog-agent/etc/  
 
 
-![datadog.yaml](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_3.png)
+![datadog_install_3.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_3.png)
 
 After installing the Datadog agent you can always check the actual status by running following command:
 
 `datadog-agent status`
 
+After successfully installing your agent you will see a message within the Datadog webpage!
 
+![datadog_install_4.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_4.png)
+
+And from now on you will be able to see first results in the Datadog App!
+
+![datadog_install_5.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_5.png)
