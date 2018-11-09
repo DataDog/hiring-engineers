@@ -20,9 +20,9 @@ instances:
     - min_collection_interval: 45
 ```
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+- [x] **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-- [x] According to the [documentation](https://docs.datadoghq.com/developers/integrations/new_check_howto/#metadata-csv), an integration has a CSV metadata field for `interval` that can control the collection interval. 
+> According to the [documentation](https://docs.datadoghq.com/developers/integrations/new_check_howto/#metadata-csv), an integration has a CSV metadata field for `interval` that can control the collection interval. 
 
 ## Visualizing Data:
 
