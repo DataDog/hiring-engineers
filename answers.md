@@ -22,6 +22,8 @@ instances:
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+- [x] According to the [documentation](https://docs.datadoghq.com/developers/integrations/new_check_howto/#metadata-csv), an integration has a CSV metadata field for `interval` that can control the collection interval. 
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -41,7 +43,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ![screenshot of snapshot notification](https://user-images.githubusercontent.com/768821/48292335-c5070400-e42e-11e8-99e6-d12cda8cadeb.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+- [x] **Bonus Question**: What is the Anomaly graph displaying?
 
 > The anomaly is looking for values outside of a standard deviation over the specified time period. In this case, highlight when the metric falls outside of 'expected' values. In this example, having more than one connection to the MySQL DB will generate an anomaly.
 
