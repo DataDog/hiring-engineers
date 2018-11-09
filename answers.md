@@ -158,3 +158,6 @@ After copying the files into the appropriate directories like shown earlier, we 
 ### Step 3: Run the Agent check  
 
 After successfully testing the check we can restart the Agent and after a few moments we see in the Datadog App our new metric!
+
+![CPU Metric](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_logfather_cpu_metric.png)  
+
