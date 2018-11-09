@@ -66,7 +66,7 @@ Oh my! {{#is_alert}} We've hit an Alert! IP {{host.ip}} reported: **{{value}}** 
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-
+![alert notification email](https://user-images.githubusercontent.com/768821/48278769-52ccfa00-e403-11e8-8a7d-45a065008361.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
