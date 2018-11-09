@@ -316,3 +316,22 @@ In the past I was EMT for about ten years. From a paramedic's point of view, the
 
 * **Resources**: These are the technical tools available to an EMT. It makes an enormous difference whether the paramedic goes to the scene of action with an ambulance or even with a helicopter. In this case, the resource determines the time to arrival or the speed of transport to a necessary clinic.  
 
+The difference between service and resource within Datadog can also be described clearly and simply:  
+
+* **Service**: A service consists of a collection of different processes that are directly related to each other. Like the paramedic, a service uses different capabilities to perform a specific task. So different web applications, servers and databases can be combined to one service.  
+
+* **Resource**: Unlike the EMT example, within Datadog a resource is not hardware, like the ambulance, but rather something like an action that is necessary to perform a service. For a web application, for example, this would be the canonical URL. Or in a connected SQL database: a certain query, like SQL statements ( SELECT * )  
+  
+  
+  
+  
+## _**CONCLUSION**_: 
+
+Datadog is different! The Logfather is different.
+
+If you are looking for a Sales Engineer who dives deep into code and configuration,...   
+
+...if for you the ideal Sales Engineer is self-absorbed and technology-loving, sitting in a quiet room and otherwise avoiding the sunlight,...  
+
+...then dear folks, I am for certain, definitely and perfectly sure not your guy.  
+
