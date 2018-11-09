@@ -22,7 +22,7 @@ After changing this file the agent needs to be restarted with `systemctl restart
 
 ![tagged host](https://github.com/jmeagheriv/hiring-engineers/blob/master/HostTagged.JPG)
 
-The next step is to install the database. I went with mongodb community edition, the instrutions are [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Once the install from `apt-get` command finished, mongodb was started with this `sudo service mongod start` command. To integrate mongodb with datadog you need to run go to the configuration section of the mongodb integration. This section adds a datadog user to mongodb, and configures the mongodb server in the conf.d/mongo.d/conf.yaml file.
+The next step is to install the database. I went with mongodb community edition, the instrutions are [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Once the install from `apt-get` command finished, mongodb was started with this `sudo service mongod start` command. To integrate mongodb with datadog you need to run go to the configuration section of the mongodb integration. This section adds a datadog user to mongodb, and configures the mongodb server in the conf.d/mongo.d/conf.yaml file. You can check the status of integrations on your system using the `datadog-agent checkconfig` command. My output for this command is [here](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkconfig.txt).
 
 ![ddusermongo](https://github.com/jmeagheriv/hiring-engineers/blob/master/MongoDB_DDuser%20setup.JPG?raw=true)
 
@@ -32,8 +32,7 @@ The next step is to install the database. I went with mongodb community edition,
 
 
 
-I installed mongodb community edition using the instructions for ubuntu xenial 16.04 from [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). I configured a datadog user based on the  integration for mongodb, configuration tab in the datadoghq. Upon restarting the agent, the mongodb metrics started to report in. [CheckConfig Output](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkconfig.txt)
-![mongodb integration](https://github.com/jmeagheriv/hiring-engineers/blob/master/MongoDBIntegration.JPG)
+
 
 To create my_metric I created a checkvalue.d directory in the /etc/datadog-agent/conf.d directory. This is where I created a checkvalue.yaml. I created the checkvalue.py in the /etc/datadog-agent/checks.d directory. I followed along with the instructions [here](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6) and changed the files to fit this metric.
 [checkvalue.yaml](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkvalue.yaml)
