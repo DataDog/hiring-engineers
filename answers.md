@@ -335,3 +335,20 @@ If you are looking for a Sales Engineer who dives deep into code and configurati
 
 ...then dear folks, I am for certain, definitely and perfectly sure not your guy.  
 
+**But...**  
+
+If in your eyes a sales engineer is  
+
+... extroverted ...  
+
+... he can inspire by his appearance ...  
+
+... he has his true joy on big stages ...  
+
+... he can nevertheless represent, present, implement and configure a product with technical expertise...  
+
+... he can build up a deep customer relationship through his positive personality ...  
+
+... he is a team player who can think not only in terms of features but also in terms of sales ...  
+
+## **... then I am the man!**
