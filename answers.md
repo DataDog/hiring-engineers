@@ -134,3 +134,13 @@ The SQL DB Server now appears as a new host in our Datadog environment.
 Integration vs. Agent Check
 
 Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, we recommend that you write an Integration.
+  
+### Step 1: Create your files
+<Your_Project>.py within opt⁩ ▸ ⁨datadog-agent⁩ ▸ ⁨etc⁩ ▸ ⁨checks.d⁩
+<Your_Project>.yaml within opt⁩ ▸ ⁨datadog-agent⁩ ▸ ⁨etc⁩ ▸ ⁨conf.d⁩ ▸ ⁨<your_project>.d⁩  
+
+For my example I decided to create an Agent check which simulates a CPU usage metric, means a random value between 1 and 99 percent usage.  
+  
+![Agent Python](https://github.com/simuvid/hiring-engineers/blob/master/images/logfather.py.png)  
+    
+![Agent Config](https://github.com/simuvid/hiring-engineers/blob/master/images/logfather.yaml.png)  
