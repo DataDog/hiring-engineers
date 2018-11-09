@@ -44,27 +44,24 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- [x] Warning threshold of 500
+- [x] Alerting threshold of 800
+- [x] And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-![alerts](https://user-images.githubusercontent.com/768821/48268085-e93ff200-e3e8-11e8-8490-716438b85b6d.png)
+![Monitor](https://user-images.githubusercontent.com/768821/48278294-fd441d80-e401-11e8-8883-00d1a6bf7df4.png)
 
 Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- [x] Send you an email whenever the monitor triggers.
+- [x] Create different messages based on whether the monitor is in an **Alert**, **Warning**, or **No Data** state.
+- [x] Include the metric **value** that caused the monitor to trigger and **host ip** when the Monitor triggers an Alert state.
 
 ```
-Oh my!
+Ahoy @osowskit@gmail.com :wave:
 
-{{#is_alert}} We've hit an Alert! IP {{host.ip}} reported: `{{value}}`   {{/is_alert}}
-{{#is_no_data}} Do data present? {{/is_no_data}}
-{{#is_warning}} OOO - Getting close it's warning time. {{/is_warning}}
-
-
-this is crazy @osowskit@gmail.com
+Oh my! {{#is_alert}} We've hit an Alert! IP {{host.ip}} reported: **{{value}}**   {{/is_alert}}
+{{#is_no_data}} No data present? {{/is_no_data}}
+{{#is_warning}} Oooo - Host {{host.name}} with IP {{host.ip}} is acting up. Getting close - it's warning time. {{/is_warning}} 
 ```
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
@@ -74,8 +71,11 @@ this is crazy @osowskit@gmail.com
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  - [x] And one that silences it all day on Sat-Sun.
+  - [x] Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+![downtime](https://user-images.githubusercontent.com/768821/48278582-cc181d00-e402-11e8-9460-a194ba3449da.png)
+
 
 ## Collecting APM Data:
 
