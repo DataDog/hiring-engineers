@@ -43,7 +43,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly is looking for values outside of a standard deviation over the specified time period. In this case, highlight when the metric falls outside of 'expected' values. In this example, having more than one connection to the MySQL DB will generate an anomaly.
+> The anomaly is looking for values outside of a standard deviation over the specified time period. In this case, highlight when the metric falls outside of 'expected' values. In this example, having more than one connection to the MySQL DB will generate an anomaly.
 
 ## Monitoring Data
 
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+- [ ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
 
