@@ -4,8 +4,8 @@ require 'dogapi'
 # Find your keys here:
 # https://app.datadoghq.com/account/settings#api
 
-api_key = '719d714d7132af72ce6e1f2d8b67b618' 
-app_key = 'ad4336c11c87bab29da8da02b46921f83314c922' 
+api_key = '****************************************' 
+app_key = '****************************************' 
 
 # To bark really loud, you need an impressive dog!
 chihuahua = Dogapi::Client.new(api_key, app_key) 
