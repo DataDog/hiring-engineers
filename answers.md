@@ -126,3 +126,11 @@ In the postgres.d/conf.yaml file in the conf.d directory a few adjustments have 
 The SQL DB Server now appears as a new host in our Datadog environment.
 
 ![PSQL Integration](https://github.com/simuvid/hiring-engineers/blob/master/images/postgre_host.png)  
+  
+  
+## Custom agents
+### Chicken or Egg?  
+
+Integration vs. Agent Check
+
+Agent checks are a great way to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service or open source project, we recommend that you write an Integration.
