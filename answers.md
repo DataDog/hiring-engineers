@@ -167,9 +167,32 @@ Admittedly that wasn't the big challenge now, but it demonstrates how easy it is
 
 ## Bonus question:..
 
-_Can you change the collection interval without modifying the Python check file you created?-  
+_Can you change the collection interval without modifying the Python check file you created?_  
 
 To be honest, this question seems a bit confusing to me, as we have already shown that the collection interval is defined in the yaml configuration file.
 
 But this answer only concerns the people who asked this question and I am always open for discussions!
 
+## Visualizing Data  
+
+Lets start with the visualization of our newly captured data within a new timeboard  
+
+### Step 1: Create a timeboard  
+
+For my example I wrote a Python script that describes a simplified timeboard.  
+
+![Coonfig timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_timeboard_step1.png)  
+
+### Step 2: Review the Timeboard  
+
+After executing the python script the new Timeboard appears immediately within my Datadog App.  
+
+![New timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_new_timeboard_1.png)  
+
+### Step 3: Add more graphs and functions  
+
+As the next step in evoluting my Timeboard I integrated an anomalie detection on the number of open Connections to my PostgreSQL DB
+
+![Extended timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_timeboard_step2.png)  
+
+### Step 3 a: Anomaly detection for CPU usage  
