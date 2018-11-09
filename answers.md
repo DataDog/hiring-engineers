@@ -26,21 +26,17 @@ The next step is to install the database. I went with mongodb community edition,
 
 ![ddusermongo](https://github.com/jmeagheriv/hiring-engineers/blob/master/MongoDB_DDuser%20setup.JPG?raw=true)
 
-
-
-
-
-
-
-
-
-To create my_metric I created a checkvalue.d directory in the /etc/datadog-agent/conf.d directory. This is where I created a checkvalue.yaml. I created the checkvalue.py in the /etc/datadog-agent/checks.d directory. I followed along with the instructions [here](https://docs.datadoghq.com/developers/agent_checks/?tab=agentv6) and changed the files to fit this metric.
-[checkvalue.yaml](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkvalue.yaml)
-[checkvalues.py](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkvalues.py)
-
-Originally I had changed my python file to have a `sleep(45)` line but after researching to solve the bonus question I found the min_collection_interval would be better and changed the checkvalue.yaml file. 
+To create a custom agent check there are two parts. The first part is a yaml file which needs to be located in the /etc/datadog-agent/conf.d to standardize this all of the other agent checks are located inside of their own subdirectories but datadog-agent is able to read any yaml file as long as it is within the conf.d directory. I created a checkvalue.d subdirectory for my [checkvalue.yaml](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkvalue.yaml) file. The second portion of the custom agent check is the actual script the agent will run to perform the check. This file must be located in /etc/datadog-agent/checks.d, that is where my [checkvalues.py](https://github.com/jmeagheriv/hiring-engineers/blob/master/checkvalues.py) file is located. This file will by default be run by the agent every 15s and report the result to datadog. There are two methods to change this 15s value. You can change the script or the yaml file. In the script you can include a line that waits for before submitting the metric or you can change the yaml file to contain a min_collection_interval which is what I went with. 
 
 ### Visualizing Data
+There are two ways to create timeboards. For this challenge I am using the API, for which documentation can be found [here](https://docs.datadoghq.com/api/?lang=python#overview). The specific section of the documentation that I used to create my timeboard.py file is the "Graph Snapshot" section. I was a bit confused that first time I read it as I thought that it wouldn't be a timeboard but would rather take a single snapshot of a graph. 
+
+
+
+
+
+
+
 
 This was probably the hardest part of the project for me to wrap my head around. The documentation on the api has the outline I needed to use but the word snapshot in the documentation made me second guess that I was in the right place. When I think of snapshot, I think of a still image of the current state of the graphs and not a dashboard of updating metrics. I eventually looked back at the example and realized that I could use that to create the dashboard. There wasn't a dropdown option for less than 1 hour displayed of the metrics in the dashboard but you click and drag to change the timespan for the whole dashboard. This was touched on in the datadog101 youtube series in the [dashboards video](https://youtu.be/U5RmKDmGZM4).
 I configured my anomaly graph to show current mongodb connections since there isn't anything being stored in the database the other things didn't seem to be as interesting to me. The graph will show if there are an unusual amount of connections. If I were to create a bunch of mongodb sessions concurrently and end them abruptly, the anomaly graph will color in that spike red. If I left those sessions running for a long time eventually the graph will normalize that number of connections and it will no longer be red. It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph. 
