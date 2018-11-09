@@ -71,8 +71,10 @@ And from now on you will be able to see first results in the Datadog App!
 
 Tags are key to Datadog because they allow you to aggregate metrics across your infrastructure at any level you choose while they decouple collection and reporting. Tags can be used to dynamically add additional dimensions to monitoring and analysis. The more unknown levels, areas and entities there are in a monitored environment, the more unmanageable a naming scheme becomes.
 
-Hostnames i.e. can be automatically or manually tagged.
+Hostnames i.e. can be automatically or manually tagged.  
+
 ![datadog_tagging_2.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tagging_2.png)
 
-Tagging different assets helps you to sort which hosts are located in a specific federal state.
+Tagging different assets helps you to sort which hosts are located in a specific federal state.  
+
 ![datadog_tagging_3.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tagging_3.png)
