@@ -48,6 +48,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+![alerts](https://user-images.githubusercontent.com/768821/48244798-43669600-e39c-11e8-8aa2-8084a2f03fe3.png)
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
