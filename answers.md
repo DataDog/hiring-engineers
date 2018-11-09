@@ -22,7 +22,7 @@ I'm rather the type of nerd who loves to successfully bring the ingenious ideas 
 My thanks go to Lee Farrar and Datadog for their interest in me and for giving me the opportunity to apply as a Sales Engineer.
 
 
-![And the Oscar goes to....](/images/ddatadog_oscar_goes_to.jpeg)
+![And the Oscar goes to....](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_oscar_goes_to.jpeg)
 
 
 ## Following now all my answers. 
@@ -36,3 +36,4 @@ For everyone's information, the cloud also contains another, very individual ver
 First things first I created a new user account on https://www.datadoghq.com/.
 
 From there on I decided to download and run a standalone agent on my macos system, instead of using a VM or Docker approach.
+
