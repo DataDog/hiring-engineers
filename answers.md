@@ -77,4 +77,15 @@ Hostnames i.e. can be automatically or manually tagged.
 
 Tagging different assets helps you to sort which hosts are located in a specific federal state.  
 
-![datadog_tagging_3.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tagging_3.png)
+![datadog_tagging_3.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tagging_3.png)  
+
+### Create a new tag  
+Tagging is made very easy within Datadog by the ability to create new tags or assign tags to different assets.  
+
+![datadogs_tagging_4](https://github.com/simuvid/hiring-engineers/blob/master/images/datadogs_tagging_4.png)
+
+Or you use the only true approach for seasoned men within the datadog.yaml file.  
+
+Don't forget to save the file and restart the agent after the changes have been made.  
+
+![datadog_tags_config](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_tags_config.png)
