@@ -53,6 +53,6 @@ datadog.yaml config file refers to the path: /opt/datadog-agent/etc/
 
 After installing the Datadog agent you can always check the actual status by running following command:
 
-```datadog-agent status````
+`datadog-agent status`
 
 
