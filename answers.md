@@ -271,3 +271,29 @@ Additional I want to get an immediate notification if CPU data is missing for lo
 
 ![Monitor Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_monitor_notification_1.png)  
 
+The monitor reacts as expected and from now on immediately sends email notifications about the event as desired.  
+
+![Monitor Alert Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_monitor_alert_message.png)  
+
+Note that you can schedule downtime for your monitoring and notifications. After all, you should be able to spend your free time in peace!  
+
+![Schedule downtime Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_schedule_downtime_per_night.png)  
+
+Maybe you just want the monitor to be silent on weekends?  
+
+![Schedule downtime Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_schedule_downtime_per_weekend.png)  
+
+Of course you will get notified about any changes on your schedules.  
+
+![Schedule downtime Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_schedule_downtime_notification_1.png)  
+
+## Instrumenting an application  
+
+To illustrate the simplicity of application instrumentation, I use a relatively simple Flask web server.
+
+What you need to do to automatically instrument the app is to add some parameters to the start of your app:
+
+`FLASK_APP=datadog_flask.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999`
+
+Note: I have changed the default flask port from `5000` to `4999`, as my Datadog Agent is already using Port `5000`.  
+
