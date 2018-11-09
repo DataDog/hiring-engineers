@@ -44,9 +44,11 @@ In order to change the timeframe for the timeboard you can select a value from t
   In the 4th section I have set up the messages sent for the monitor. This section uses markdown so I able to put in conditions. The conditions will change the message the monitor displays depending on its status. I have also set up the monitor to notify me when it gets triggered. You can also check on triggered monitors from the dashboard in the "Triggered Monitors" dropdown.
 ![monitor triggered email](https://github.com/jmeagheriv/hiring-engineers/blob/master/MonitorEmail.JPG)
 ![MetricMonitor2](https://github.com/jmeagheriv/hiring-engineers/blob/master/Monitor2.JPG)
-  Some monitors might only be significant during certain time periods so you are able to schedule downtime in the "Manage Downtime" dropdown section. I have set up downtime so my monitor will only trigger during business hours. The downtime starts each weekday at 7pm until 9am the next day. I have also configured the monitor to be off on weekends. When downtime is scheduled you can include a notification for team members. The following screenshots show the different downtimes I have created as well as the email notification that can be configured.
+  Some monitors might only be significant during certain time periods so you are able to schedule downtime in the "Manage Downtime" dropdown section. I have set up downtime so my monitor will only trigger during business hours. The downtime starts each weekday at 7pm until 9am the next day. I have also configured the monitor to be off on weekends. The following screenshots show the downtimes that are scheduled.
 ![M-F](https://github.com/jmeagheriv/hiring-engineers/blob/master/M-F%20Downtime.JPG)
 ![Weekends](https://github.com/jmeagheriv/hiring-engineers/blob/master/Sat-Sun%20Downtime.JPG)
+
+When downtime is scheduled you can include a notification for team members that the monitor will down. Here is the email notification that will be sent to them.
 ![downtime](https://github.com/jmeagheriv/John_Meagher_Solution_Engineer/blob/master/DowntimeEmail.JPG)
   
 
