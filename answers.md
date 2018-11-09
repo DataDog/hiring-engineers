@@ -143,4 +143,18 @@ For my example I decided to create an Agent check which simulates a CPU usage me
   
 ![Agent Python](https://github.com/simuvid/hiring-engineers/blob/master/images/logfather.py.png)  
     
+Each check has a YAML configuration file that is placed in the conf.d directory. The file name should match the name of the check module (e.g.: logfather.py and logfather.yaml).  
+    
 ![Agent Config](https://github.com/simuvid/hiring-engineers/blob/master/images/logfather.yaml.png)  
+
+### Step 2: Deploy and test the files  
+
+After copying the files into the appropriate directories like shown earlier, we can test our Agent checks before using them by running following command:  
+
+`Logfather$ datadog-agent check logfather` 
+
+![Agent Check](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_AgentCheck_Test.png)
+
+### Step 3: Run the Agent check  
+
+After successfully testing the check we can restart the Agent and after a few moments we see in the Datadog App our new metric!
