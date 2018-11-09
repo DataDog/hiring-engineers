@@ -33,12 +33,7 @@ For everyone's information, the cloud also contains another, very individual ver
 ### Starting with Datadog - Setup the environment
 
 
-First things first I created a new user account on https://www.datadoghq.com/.  
-  
-  
-  
-  
-  
+First things first I created a new user account on https://www.datadoghq.com/.
 
 ![datadog_account.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_account.png)
 
@@ -46,14 +41,6 @@ From there on I decided to download and run a standalone agent on my macos syste
 
 ![datadog_account.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_1.png)   
 
-Instead or downloading and running a DMG file on MAC you can simply download and start the installation of the agent with a simple command line in your Terminal:
+Instead of downloading and running a DMG file on MAC you can simply download and start the installation of the agent buy the use of a simple command line in your terminal:
 
 DD_API_KEY=719d714d7132af72ce6e1f2d8b67b618 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
-       
-       
-       
-       
-       
-       
-       
-Was
