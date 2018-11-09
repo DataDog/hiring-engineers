@@ -39,3 +39,4 @@ First things first I created a new user account on https://www.datadoghq.com/.
 
 From there on I decided to download and run a standalone agent on my macos system, instead of using a VM or Docker approach.
 
+![datadog_account.png](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_1.png)
