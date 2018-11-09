@@ -93,3 +93,15 @@ Don't forget to save the file and restart the agent after the changes have been 
 From now on you can start to group, search and filter by tags.
 
 ![hosts](https://github.com/simuvid/hiring-engineers/blob/master/images/hosts.png)
+
+## Integrations
+
+Datadog offers out of the box more than 200 integrations in every imaginable environment:
+  
+- AWS
+- Azure
+- Google
+- Cloud
+- OS & Systems
+- Database
+and way more....
