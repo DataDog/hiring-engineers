@@ -16,7 +16,7 @@ File `/conf.d/random_check.yaml`:
 ```
 init_config:
 
- instances:
+instances:
     - min_collection_interval: 45
 ```
 
