@@ -121,3 +121,8 @@ So at next we have to define a new Datadog user within PostgreSQL, like shown on
 In the postgres.d/conf.yaml file in the conf.d directory a few adjustments have to be made. Then restart the agent.
 
 ![config PSQL](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_postgre_conf.png)  
+
+### Step 3: Watch the new host
+The SQL DB Server now appears as a new host in our Datadog environment.
+
+![PSQL Integration](https://github.com/simuvid/hiring-engineers/blob/master/images/postgre_host.png)  
