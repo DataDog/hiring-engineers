@@ -208,4 +208,13 @@ Maybe it doesn't make perfect sense, but in the next step I added the sum of the
 
 ![Anomaly timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_rollup_function.png)  
 
+#### Let's go back....  
+#### ....way back....  
+#### ....back into times!  
 
+You will already have noticed that the user is of course able to view the individual graphs time-dependently, i.e. to define the display and analysis period.
+
+To do so, predefined values are available in the dropdown list. Or you simply use the possibility to determine certain time periods within the graphs by dragging with the mouse.
+
+![Dive into timeframe](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_choose_timeframe.png)  
+![Anomaly timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_past_5_minutes_timeboard.png)  
