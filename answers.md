@@ -23,7 +23,7 @@ I'm rather the type of nerd who loves to successfully bring the ingenious ideas 
 ### And the Oscar goes to....
 ![And the Oscar goes to....](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_oscar_goes_to.jpeg)
 
-My thanks go to * **Lee Farrar** * and Datadog for their interest in me and for giving me the opportunity to apply as a Sales Engineer.
+My thanks go to _**Lee Farrar**_ and Datadog for their interest in me and for giving me the opportunity to apply as a Sales Engineer.
 
 ## Following now all my answers. 
 
