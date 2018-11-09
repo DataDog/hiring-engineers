@@ -297,3 +297,22 @@ What you need to do to automatically instrument the app is to add some parameter
 
 Note: I have changed the default flask port from `5000` to `4999`, as my Datadog Agent is already using Port `5000`.  
 
+![Schedule downtime Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_code_flask_sample_app.png)  
+
+It is as easy as that!
+
+Immediately you will see first metrics coming in!  
+
+![Schedule downtime Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/instrumented_metrics.png)  
+
+## A final bonus question!  
+  
+  
+### What is the difference between a Service and a Resource?  
+
+In the past I was EMT for about ten years. From a paramedic's point of view, the answer to the bonus question is very simple:
+
+* **Service**: Individual skills, knowledge and personal experience determine the ability of an EMT to sustain or save a person's life.  
+
+* **Resources**: These are the technical tools available to an EMT. It makes an enormous difference whether the paramedic goes to the scene of action with an ambulance or even with a helicopter. In this case, the resource determines the time to arrival or the speed of transport to a necessary clinic.  
+
