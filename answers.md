@@ -242,3 +242,32 @@ Anomaly detection is based on algorithmic models with which it can be determined
 Automated anomaly detection in a dataset is a complex task involving areas such as machine learning, statistics, and data mining. The nature of the data, the information available, the nature of the anomaly and the expected result determine the choice of algorithm to be used.
 
 Anomaly detection is defined as searching for unknown structures in a dataset that do not behave as expected.  
+  
+  
+## Monitoring data  
+  
+It's time to define custom monitors to automatically monitor values and react quickly if violations of the defined limits occur during monitoring.  
+  
+### Step 1: Create a new Metric Monitor  
+
+Use the UI for that task.
+
+`https://app.datadoghq.com/monitors#create/metric` 
+  
+![Metric Monitor](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_create_metric_1.png)  
+
+### Step 2: Define thresholds  
+
+For my CPU usage I want to set thresholds for:
+
+- Warning: If CPU usage exceeds 75%  
+- Alert: If CPU usage exceeds 90%  
+
+Additional I want to get an immediate notification if CPU data is missing for longer then past 10 minutes  
+  
+![Metric Monitor](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_create_metric_2.png)  
+  
+### Step 3: Configure the monitor’s message  
+
+![Monitor Notification](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_monitor_notification_1.png)  
+
