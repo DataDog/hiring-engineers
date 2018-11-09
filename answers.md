@@ -103,5 +103,21 @@ Datadog offers out of the box more than 200 integrations in every imaginable env
 - Google
 - Cloud
 - OS & Systems
-- Database
+- Databases
 and way more....
+  
+As an example for an integration I decided to build one for my PostgreSQL DB.
+
+### Step 1: Create a user  
+
+Thankfully we have already deployed an agent on my system that already runs a PostgreSQL DB.
+
+So at next we have to define a new Datadog user within PostgreSQL, like shown on the left, to grant appropriate access for the agent to PSQL.
+
+![create an user in PSQL](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_postgre_user.png)
+
+### Step 2: Configure the Datadog agent   
+
+In the postgres.d/conf.yaml file in the conf.d directory a few adjustments have to be made. Then restart the agent.
+
+![config PSQL](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_postgre_conf.png)  
