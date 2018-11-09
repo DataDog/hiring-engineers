@@ -1,0 +1,23 @@
+{
+  "title": true,
+  "title_size": 16,
+  "title_align": "left",
+  "title_text": "My Anomoly",
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "anomalies(max:mysql.net.connections{*}, 'basic', 4)",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": [],
+        "aggregator": "avg"
+      }
+    ],
+    "autoscale": true
+  }
+}

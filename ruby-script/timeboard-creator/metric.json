@@ -1,0 +1,42 @@
+{
+  "title": true,
+  "title_size": 16,
+  "title_align": "left",
+  "title_text": "My Metric",
+
+  "definition" : {
+    "viz": "query_value",
+    "requests": [
+      {
+        "q": "avg:my_metric{host:ubuntu}",
+        "type": null,
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": [
+          {
+            "comparator": ">",
+            "palette": "white_on_red",
+            "value": null
+          },
+          {
+            "comparator": ">=",
+            "palette": "white_on_yellow",
+            "value": null
+          },
+          {
+            "comparator": "<",
+            "palette": "white_on_green",
+            "value": null
+          }
+        ],
+        "aggregator": "last"
+      }
+    ],
+    "custom_unit": null,
+    "autoscale": true,
+    "precision": "0"
+  }
+}

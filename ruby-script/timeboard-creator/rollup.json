@@ -1,0 +1,42 @@
+{
+  "title": true,
+  "title_size": 16,
+  "title_align": "left",
+  "title_text": "My Rollup",
+  "viz": "query_value",
+  "definition": {
+    "viz": "query_value",
+    "requests": [
+      {
+        "q": "avg:my_metric{*}.rollup(sum, 60)",
+        "type": null,
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": [
+          {
+            "palette": "white_on_red",
+            "comparator": ">",
+            "value": null
+          },
+          {
+            "palette": "white_on_yellow",
+            "comparator": ">=",
+            "value": null
+          },
+          {
+            "palette": "white_on_green",
+            "comparator": "<",
+            "value": null
+          }
+        ],
+        "aggregator": "sum"
+      }
+    ],
+    "autoscale": true,
+    "custom_unit": null,
+    "precision": "0"
+  }
+}
