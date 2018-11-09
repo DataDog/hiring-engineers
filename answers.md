@@ -26,16 +26,18 @@ instances:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- [x] Your custom metric, `my_metric`, scoped over your host. [JSON](ruby-script/timeboard-creator/metric.json)
+- [x] Any metric from the Integration on your Database with the anomaly function applied. [JSON](ruby-script/timeboard-creator/anomaly.json)
+- [x] Your custom metric, `my_metric`, with the rollup function applied to sum up all the points for the past hour into one bucket [JSON](ruby-script/timeboard-creator/rollup.json)
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+- [x] Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+[Ruby Script](ruby-script/timeboard-creator/run_it.rb)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+- [ ] Set the Timeboard's timeframe to the past 5 minutes
+- [ ] Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
