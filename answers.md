@@ -161,3 +161,15 @@ After successfully testing the check we can restart the Agent and after a few mo
 
 ![CPU Metric](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_logfather_cpu_metric.png)  
 
+Admittedly that wasn't the big challenge now, but it demonstrates how easy it is to get started with Datadog. Our self-generated agent check now creates and sends a CPU metric continuously. In order not to overload our resources in a real production case, the agent should only send the metric every 45 seconds. This again only requires a small intervention in our configuration file.  
+
+![Collection Intervall](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_collection_intervall.png) 
+
+## Bonus question:..
+
+_Can you change the collection interval without modifying the Python check file you created?-  
+
+To be honest, this question seems a bit confusing to me, as we have already shown that the collection interval is defined in the yaml configuration file.
+
+But this answer only concerns the people who asked this question and I am always open for discussions!
+
