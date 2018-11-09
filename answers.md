@@ -34,20 +34,7 @@ There are two ways to create timeboards. For this challenge I am using the API, 
 In order to change the timeframe for the timeboard you can select a value from the dropdown menu. However the shortest timeframe is 1 hour. In order to display short time frames you can click and drag on the graph itself and it will change the timeframe for all graphs on the timeboard. When you select a shorter time frame you are able to send a snapshot of it via email notification by tagging a person in the comment section.
 ![metric_email](https://github.com/jmeagheriv/John_Meagher_Solution_Engineer/blob/master/MetricEmail.JPG)
 ![metric5m](https://github.com/jmeagheriv/hiring-engineers/blob/master/5m%20interval.JPG)
-In this picture, the timeframe is only 5 minutes. The 5 minute interval selected doesnt encapsulate the rollup function value. The way this rollup function is configured, once per hour it will display the sum of my_metric over the course of that hour. If timeframe doesn't contain the moment the value is added up it won't show on the graph. The second graph also doesn't seem very interesting despite having the anomaly function applied. 
-
-
-
-
-
-
-
-This was probably the hardest part of the project for me to wrap my head around. The documentation on the api has the outline I needed to use but the word snapshot in the documentation made me second guess that I was in the right place. When I think of snapshot, I think of a still image of the current state of the graphs and not a dashboard of updating metrics. I eventually looked back at the example and realized that I could use that to create the dashboard. There wasn't a dropdown option for less than 1 hour displayed of the metrics in the dashboard but you click and drag to change the timespan for the whole dashboard. This was touched on in the datadog101 youtube series in the [dashboards video](https://youtu.be/U5RmKDmGZM4).
-I configured my anomaly graph to show current mongodb connections since there isn't anything being stored in the database the other things didn't seem to be as interesting to me. The graph will show if there are an unusual amount of connections. If I were to create a bunch of mongodb sessions concurrently and end them abruptly, the anomaly graph will color in that spike red. If I left those sessions running for a long time eventually the graph will normalize that number of connections and it will no longer be red. It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph. 
-[timeboard.py](https://github.com/jmeagheriv/hiring-engineers/blob/master/timeboard.py)
-![metric](https://github.com/jmeagheriv/hiring-engineers/blob/master/Rollup.JPG)
-![metric5m](https://github.com/jmeagheriv/hiring-engineers/blob/master/5m%20interval.JPG)
-![metric snapshot](https://github.com/jmeagheriv/hiring-engineers/blob/master/MetricSnapshot.JPG)
+In this picture, the timeframe is only 5 minutes. The 5 minute interval selected doesnt encapsulate the rollup function value. The way this rollup function is configured, once per hour it will display the sum of my_metric over the course of that hour. If timeframe doesn't contain the moment the value is added up it won't show on the graph. The second graph also doesn't seem very interesting despite having the anomaly function applied. The graph will show if there are an unusual amount of connections. If I were to create a bunch of mongodb sessions concurrently and end them abruptly, the anomaly graph will color in that spike red. If I left those sessions running for a long time eventually the graph will normalize that number of connections and it will no longer be red. It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph. The first graph to me is actually the least interesting since it is a simple time series graph so it will graph the values of the metric without doing anything special. 
 
 ### Monitoring Data
 
