@@ -43,4 +43,4 @@ From there on I decided to download and run a standalone agent on my macos syste
 
 Instead or dowmloading and running a DMG file on MAC you can simply download and start the installation of the agent with a simple command line in your Terminal:
 
-DD_API_KEY=719d714d7132af72ce6e1f2d8b67b618 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+"DD_API_KEY=719d714d7132af72ce6e1f2d8b67b618 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)""
