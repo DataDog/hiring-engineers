@@ -153,7 +153,7 @@ After copying the files into the appropriate directories like shown earlier, we 
 
 `Logfather$ datadog-agent check logfather` 
 
-![Agent Check](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_AgentCheck_Test.png)
+![Agent Check](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_AgentChech_Test.png)
 
 ### Step 3: Run the Agent check  
 
