@@ -217,4 +217,28 @@ You will already have noticed that the user is of course able to view the indivi
 To do so, predefined values are available in the dropdown list. Or you simply use the possibility to determine certain time periods within the graphs by dragging with the mouse.
 
 ![Dive into timeframe](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_choose_timeframe.png)  
-![Anomaly timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_past_5_minutes_timeboard.png)  
+![5 minute timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_past_5_minutes_timeboard.png)  
+
+## Notations  
+
+Imagine you are looking at something unusual in your monitoring and want to share this information immediately with others?
+
+![Notation](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_notation.png)  
+  
+This is another outstanding feature, the possibility to forward comments and hints from current observations on the fly directly to affected colleagues, employees or customers. Datadog offers the possibility to send information directly from a graph.
+
+### What's our anomaly graph displaying?  
+
+In the previously seen anomaly graph we look at a time-based line of the average values of our CPU utilization on the one hand and on the other hand at a gray area that defines the min and max utilization at the same time, i.e. the area in which the CPU utilization moves in the past in a range learned as normal. As red markers the events and/or values are highlighted which are outside a range anticipated as normal.
+
+### Why anomaly detection?  
+
+People say "to err is human", but even machines sometimes make mistakes! In every production, controls must be carried out to detect deviations or errors early on.
+
+For example, a carpenter will check his newly manufactured chair for grinding errors, while a manufacturer of electric cables will check whether they conduct electricity well. Both are looking for possible anomalies.
+
+Anomaly detection is based on algorithmic models with which it can be determined when a key figure behaves differently than in the past. The key figures to be monitored are influenced by various factors, such as seasonal trends, on certain days of the week or at special times of the day. Anomaly detection is particularly effective when static alarm limits fail.
+
+Automated anomaly detection in a dataset is a complex task involving areas such as machine learning, statistics, and data mining. The nature of the data, the information available, the nature of the anomaly and the expected result determine the choice of algorithm to be used.
+
+Anomaly detection is defined as searching for unknown structures in a dataset that do not behave as expected.  
