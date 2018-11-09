@@ -51,3 +51,8 @@ datadog.yaml config file refers to the path: /opt/datadog-agent/etc/
 
 ![datadog.yaml](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_install_3.png)
 
+After installing the Datadog agent you can always check the actual status by running following command:
+
+```datadog-agent status````
+
+
