@@ -35,5 +35,7 @@ For everyone's information, the cloud also contains another, very individual ver
 
 First things first I created a new user account on https://www.datadoghq.com/.
 
+https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_account.png
+
 From there on I decided to download and run a standalone agent on my macos system, instead of using a VM or Docker approach.
 
