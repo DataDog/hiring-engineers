@@ -206,6 +206,6 @@ As a further step in evoluting my timeboard and make it more meaningful I added 
 
 Maybe it doesn't make perfect sense, but in the next step I added the sum of the CPU values to my CPU graph as another line using the rollup function.  
 
-![Anomaly timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_rollup_functions.png)  
+![Anomaly timeboard](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_rollup_function.png)  
 
 
