@@ -121,6 +121,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -128,6 +129,11 @@ if __name__ == '__main__':
 - [ ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
+
+Datadog's agent will start recording events when Running the above application with `ddtrace-run`. Alternatively, Datadog provides a [Flask trace middleware](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) that will automatically record and report traces.
+
+- [x] [Python App](python_script/apm_sample.py) - using the flask trace middleware
+
 
 ## Final Question:
 
