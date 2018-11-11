@@ -141,6 +141,19 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+> > Datadog's alerting, graphing, and event recording allows for countless uses. Any existing data stream can be input into Datadog to recreate existing graphs and dashboards.
+
+* **Personal Health** - take health devices that expose data as an API to feed into a Dashboard to track weight, daily activity (ala fitbit), or medical monitoring devices ( heart rates or glucose levels).
+  - Track weekly high-low
+  - Send weekly summary to medical professional
+  - Add alerts for high/low, anomolys, and/or rising value
+  - Positive reinforcement alerts/notifications for goals reached
+  
+* **Personal Wealth Management** - hook up your portfolio (stocks, bonds, checking, banking) to keep track of your wealth.
+   - Monitor stocks and alert on anomolies in the stock price :money_with_wings:
+   - Monitor Credit Card spending patterns and add payment notifications
+
+
 ## Instructions
 
 If you have a question, create an issue in this repository.
