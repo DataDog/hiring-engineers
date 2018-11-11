@@ -45,7 +45,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - [x] **Bonus Question**: What is the Anomaly graph displaying?
 
-> The anomaly is looking for values outside of a standard deviation over the specified time period. In this case, highlight when the metric falls outside of 'expected' values. In this example, having more than one connection to the MySQL DB will generate an anomaly.
+> The anomaly is looking for values outside of a standard deviation based on historical data. In this case, the graph will highlight when the metric falls outside of 'expected' values - having more than one connection to the MySQL DB.
 
 ## Monitoring Data
 
