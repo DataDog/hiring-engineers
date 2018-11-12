@@ -90,40 +90,6 @@ Oh my! {{#is_alert}} We've hit an Alert! IP {{host.ip}} reported: **{{value}}** 
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-```python
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
-
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
 - [x] **Bonus Question**: What is the difference between a Service and a Resource?
 
 > A **Resource** is a specific endpoint/route/data object that is returned to a request. A **Service** is an application or process that is being traced/monitored that provides various Resources. [reference](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
@@ -151,9 +117,9 @@ Is there anything creative you would use Datadog for?
 * **Personal Health** - take health devices that expose data as an API to feed into a Dashboard to track weight, daily activity (ala fitbit), or medical monitoring devices ( heart rates or glucose levels).
   - Track weekly high-low
   - Send weekly summary to medical professional
-  - Add alerts for high/low, anomolys, and/or rising value
+  - Add alerts for high/low, anomalies, and/or rising value
   - Positive reinforcement alerts/notifications for goals reached
   
 * **Personal Wealth Management** - hook up your portfolio (stocks, bonds, checking, banking) to keep track of your wealth.
-   - Monitor stocks and alert on anomolies in the stock price :money_with_wings:
+   - Monitor stocks and alert on anomalies in the stock price :money_with_wings:
    - Monitor Credit Card spending patterns and add payment notifications
