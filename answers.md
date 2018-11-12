@@ -3,6 +3,7 @@
 
 ### Prerequisites - Setup the environment
 To start, I downloaded Vagrant and created a VM on my macbook of type Ubuntu Xenial 16.04 64 bit.  I then entered `vagrant up` in the command line and `vagrant ssh`.  You can see me connecting locally to my Ubuntu machine in vagrant here:
+
 ![Image of Vagrant](https://github.com/jtbarker/hiring-engineers/blob/master/vagrant.png)
 
 ### Collecting Metrics
