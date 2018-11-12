@@ -124,16 +124,19 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+- [x] **Bonus Question**: What is the difference between a Service and a Resource?
 
-- [ ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+> A resource is a specific endpoint/route/data object that is returned to a request. A Service is an application that is being traced/monitored that provides various Resources.
+
+- [x] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+[APM and Infrastructure Dashboard](https://user-images.githubusercontent.com/768821/48358323-5d7bcf00-e64f-11e8-9140-bbade2002875.png)
 
 Please include your fully instrumented app in your submission, as well.
 
-Datadog's agent will start recording events when Running the above application with `ddtrace-run`. Alternatively, Datadog provides a [Flask trace middleware](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) that will automatically record and report traces.
+> Datadog's agent will start recording events when Running the above application with `ddtrace-run`. Alternatively, Datadog provides a [Flask trace middleware](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) that will automatically record and report traces.
 
 - [x] [Python App](python_script/apm_sample.py) - using the flask trace middleware
-
 
 ## Final Question:
 
@@ -141,7 +144,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-> > Datadog's alerting, graphing, and event recording allows for countless uses. Any existing data stream can be input into Datadog to recreate existing graphs and dashboards.
+> Datadog's alerting, graphing, and event recording allows for flexible use cases. Any existing data-stream can be input into Datadog to recreate existing graphs and dashboards.
 
 * **Personal Health** - take health devices that expose data as an API to feed into a Dashboard to track weight, daily activity (ala fitbit), or medical monitoring devices ( heart rates or glucose levels).
   - Track weekly high-low
@@ -152,44 +155,3 @@ Is there anything creative you would use Datadog for?
 * **Personal Wealth Management** - hook up your portfolio (stocks, bonds, checking, banking) to keep track of your wealth.
    - Monitor stocks and alert on anomolies in the stock price :money_with_wings:
    - Monitor Credit Card spending patterns and add payment notifications
-
-
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
