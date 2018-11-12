@@ -35,11 +35,10 @@ https://github.com/jtbarker/hiring-engineers/blob/master/check_http.yaml
 You can create timeboards to visualize data two ways: via API or via the GUI in Dashboards -> New Dashboard -> Timeboard.  You can see my scripted solution for API generated timeboards here per these instructions https://docs.datadoghq.com/api/?lang=python#overview here:
 
 Check out my script for generating a timeboard with some key metrics here:
-![TimeboardGenerationViaAPI](https://github.com/jtbarker/hiring-engineers/blob/master/timeboard.py)
+https://github.com/jtbarker/hiring-engineers/blob/master/timeboard.py
 
 And here is a screenshot of a timeboard set up to display only the last five minutes of a metric:
-![LastFiveMinutesMetricTimeboard]
-(https://github.com/jtbarker/hiring-engineers/blob/master/lastfiveminutes.png)
+![LastFiveMinutesMetricTimeboard](https://github.com/jtbarker/hiring-engineers/blob/master/lastfiveminutes.png)
 
 ### Monitoring Data
 
