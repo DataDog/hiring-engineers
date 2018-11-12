@@ -126,11 +126,13 @@ if __name__ == '__main__':
 
 - [x] **Bonus Question**: What is the difference between a Service and a Resource?
 
-> A resource is a specific endpoint/route/data object that is returned to a request. A Service is an application that is being traced/monitored that provides various Resources.
+> A **Resource** is a specific endpoint/route/data object that is returned to a request. A **Service** is an application or process that is being traced/monitored that provides various Resources. [reference](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
 - [x] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-[APM and Infrastructure Dashboard](https://user-images.githubusercontent.com/768821/48358323-5d7bcf00-e64f-11e8-9140-bbade2002875.png)
+[Link to Dashboard](https://app.datadoghq.com/dash/981260/osowskit-api-generated)
+
+![APM and Infrastructure Dashboard](https://user-images.githubusercontent.com/768821/48358323-5d7bcf00-e64f-11e8-9140-bbade2002875.png)
 
 Please include your fully instrumented app in your submission, as well.
 
