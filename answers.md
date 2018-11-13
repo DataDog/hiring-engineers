@@ -2,11 +2,13 @@
 
 Datadog's documentation, examples, and partner integrations make capturing data for applications and their infrastructure a simple task that can be completed quickly and easily to instrument your running services. These products provide insight into running environments, from development to production services, that covers infrastructure health and application stablitity through monitoring and alerting.
 
-The maturity of the product is demonstrated through the broad support for [APM tracing](https://docs.datadoghq.com/tracing/setup/) across all modern languages and flexible data ingestion options, including [Rest API](https://docs.newrelic.com/docs/apis/rest-api-v2/getting-started/introduction-new-relic-rest-api-v2) support.
+The maturity of the product is demonstrated through the broad support for [APM tracing](https://docs.datadoghq.com/tracing/setup/) across all modern languages and flexible data ingestion options, including [Agent Tracing via API](https://docs.datadoghq.com/api/#tracing) support.
 
 The modern SDLC continues to accelerate how quickly code is released into production and expands what developers are responsible for and capable of. By utilizing application tracing, alerting/reporting, and infrastructure monitoring on a single platform; Security, Reliability, Quality, Support, and Engineering teams have the visibility into their production environments and provide secure/stable releases.
 
 ## Collecting Metrics:
+
+Agents are supported across a broad range of Operating Systems and provide a quick and reliable way of sending information to Datadog. Agents can help automatically identify machines, resources and services.
 
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -16,6 +18,8 @@ The modern SDLC continues to accelerate how quickly code is released into produc
 
 ![mysql](https://user-images.githubusercontent.com/768821/48231498-30839f80-e363-11e8-93d2-606a71c4a5d9.png)
 - [x] Create a custom Agent check that submits a metric named `my_metric` with a random value between 0 and 1000.
+
+[Python Script](osowskit/python_script/checks/random_check.py)
 
 ![my_metric](https://user-images.githubusercontent.com/768821/48236179-f2dc4200-e375-11e8-99a9-7fe118a09864.png)
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
