@@ -10,6 +10,10 @@ The modern SDLC continues to accelerate how quickly code is released into produc
 
 Agents are supported across a broad range of Operating Systems and provide a quick and reliable way of sending information to Datadog. Agents can help automatically identify machines, resources and services.
 
+Datadog provides an [installation script](https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh) via your [account settings page](https://app.datadoghq.com/account/settings#agent/ubuntu) to download and install the agent. The first post-installation task is getting familiar with the files in `/etc/datadog-agent/` which will include the agent configuration file `datadog.yaml` and files to support various [integrations](https://docs.datadoghq.com/integrations).
+
+Note that, while many integrations are supported for commonly uses services, it is straightforward to [create a custom Agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#custom-agent-check) and submit arbitrary data. Consider [creating an integration](https://docs.datadoghq.com/developers/integrations/new_check_howto/) for any Agent checks that may be more broadly used. 
+
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ![tags](https://user-images.githubusercontent.com/768821/48220655-bf34f400-e344-11e8-98c7-8f65130f5950.png)
@@ -38,12 +42,13 @@ instances:
 
 ## Visualizing Data:
 
+Datadog's timeboard are both powerful and flexible tools for visualizing data across your infrastructure that can combine services or applications and filter by tagged data. This provides a templated approach for sharing insights into reports and charts.
+
 Utilize the Datadog API to create a Timeboard that contains:
 
 - [x] Your custom metric, `my_metric`, scoped over your host. [JSON](ruby-script/timeboard-creator/metric.json)
 - [x] Any metric from the Integration on your Database with the anomaly function applied. [JSON](ruby-script/timeboard-creator/anomaly.json)
 - [x] Your custom metric, `my_metric`, with the rollup function applied to sum up all the points for the past hour into one bucket [JSON](ruby-script/timeboard-creator/rollup.json)
-
 - [x] Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 [Ruby Script](ruby-script/timeboard-creator/run_it.rb)
@@ -57,11 +62,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - [x] **Bonus Question**: What is the Anomaly graph displaying?
 
-> The anomaly is looking for values outside of a standard deviation based on historical data. In this case, the graph will highlight when the metric falls outside of 'expected' values - having more than one connection to the MySQL DB.
+The anomaly is looking for values outside of a standard deviation based on historical data. In this case, the graph will highlight when the metric falls outside of 'expected' values - having more than one connection to the MySQL DB.
 
 ## Monitoring Data
-
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
@@ -100,6 +103,11 @@ Oh my! {{#is_alert}} We've hit an Alert! IP {{host.ip}} reported: **{{value}}** 
 
 ## Collecting APM Data:
 
+Datadog's agent will start recording events when running the below application provided in the readme with `ddtrace-run`. Alternatively, Datadog provides a [Flask trace middleware](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) that will automatically record and report traces.
+
+Here is an example [Python App](python_script/apm_sample.py) using the flask trace middleware.
+
+
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 - [x] **Bonus Question**: What is the difference between a Service and a Resource?
@@ -113,8 +121,6 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 ![APM and Infrastructure Dashboard](https://user-images.githubusercontent.com/768821/48358323-5d7bcf00-e64f-11e8-9140-bbade2002875.png)
 
 Please include your fully instrumented app in your submission, as well.
-
-> Datadog's agent will start recording events when Running the above application with `ddtrace-run`. Alternatively, Datadog provides a [Flask trace middleware](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) that will automatically record and report traces.
 
 - [x] [Python App](python_script/apm_sample.py) - using the flask trace middleware
 
