@@ -1,3 +1,11 @@
+## Overview
+
+Datadog's documentation, examples, and partner integrations make capturing data for applications and their infrastructure a simple task that can be completed quickly and easily to instrument your running services. These products provide insight into running environments, from development to production services, that covers infrastructure health and application stablitity through monitoring and alerting.
+
+The maturity of the product is demonstrated through the broad support for [APM tracing](https://docs.datadoghq.com/tracing/setup/) across all modern languages and flexible data ingestion options, including [Rest API](https://docs.newrelic.com/docs/apis/rest-api-v2/getting-started/introduction-new-relic-rest-api-v2) support.
+
+The modern SDLC continues to accelerate how quickly code is released into production and expands what developers are responsible for and capable of. By utilizing application tracing, alerting/reporting, and infrastructure monitoring on a single platform; Security, Reliability, Quality, Support, and Engineering teams have the visibility into their production environments and provide secure/stable releases.
+
 ## Collecting Metrics:
 
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
