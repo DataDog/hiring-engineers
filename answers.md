@@ -1,1 +1,2 @@
-Your answers to the questions go here.
+Solutions Engineer
+Setting up the environment (Mac OS X)
