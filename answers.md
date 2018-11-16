@@ -22,12 +22,12 @@ To begin collecting metrics, the DataDog agent must be installed on the system. 
 
 **1.2** To install the MySQL database onto the Ubuntu vm, I ran `sudo apt-get -y install mysql-server`. The server should start automatically at the end of installing. To check run `service mysql status` Next to integrate the MySQL server to the DataDog agent, you have to add datadog as a user to the database and grant privileges. The following code shows how I did this.
 
-'''
+```
 sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<YOUR_PASSWORD>';"
 sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
 sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
 sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
-'''
+```
 
 The last step is to configure the database in the mysql configuration file located  at conf.d/mysql.d/mysql.yaml. ![mySQL config file](images/mysql-config.png) 
 
