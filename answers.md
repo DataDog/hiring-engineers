@@ -1,38 +1,44 @@
+## Solutions Engineer
 
-## The Exercise
-
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
-
-## Questions
-
-Please provide screenshots and code snippets for all steps.
-
-## Prerequisites - Setup the environment
-
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
-
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+## Prerequisites - Setup the environment (Mac OS/X)
+1. Get the Agent reporting metrics from your local machine.
+- I am using macOS Mojave Version 10.14 for this Challenge.
+<!-- 0 Image here -->
 
 ## Collecting Metrics:
+2. Add tags in the Agent config file
+<!-- 2 Image here  -->
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+Configured the host tags submitted by the Agent inside datadog.yaml.
+The host's tags
+tags:
+  - env:prod
+  - role:database
+
+3. Show us a screenshot of your host and its tags on the Host Map page in Datadog.
+<!-- 3 Image here  -->
+
+4. Install a database on your machine (MongoDB, MySQL, or PostgreSQL)
+- I am using PostgreSQL for this part.
+
+5. Install the respective Datadog integration for that database.
+<!-- 5, 5, 5, 5 Images here -->
+
+6. Create a custom Agent check that submits a metric named "my_metric" with a random value between 0 and 1000.
+<!-- The names of the configuration and check files must match. File is my_metric.py & my_metric.yaml. -->
+7. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+<!-- 6 image here -->
+<!-- 7 image here -->
+8. **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+- Someone could use the rollup() function and plug in the 45 seconds in the bin size constraint.  
 
 ## Visualizing Data:
-
 Utilize the Datadog API to create a Timeboard that contains:
-
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+9. Your custom metric scoped over your host.
+10. Any metric from the Integration on your Database with the anomaly function applied.
+11. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+12. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+- See "VISUALIZING my_metric TIMEBOARD" file
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 

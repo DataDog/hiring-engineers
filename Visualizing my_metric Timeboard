@@ -1,0 +1,34 @@
+{
+  "requests": [
+    {
+      "q": "avg:my_metric{host:Steven-Weiss}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    },
+    {
+      "q": "anomalies(avg:my_metric{host:Steven-Weiss}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "cool",
+        "type": "solid",
+        "width": "normal"
+      }
+    },
+    {
+      "q": "avg:my_metric{host:Steven-Weiss}.rollup(sum, 60)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "viz": "timeseries",
+  "autoscale": true
+}
