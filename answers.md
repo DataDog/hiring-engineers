@@ -17,10 +17,11 @@ For this exercise I spun up a new linux virtual machine using Vagrant. The box I
 
 To begin collecting metrics, the DataDog agent must be installed on the system. Following the steps on the DataDog website was quick and easy and after I registered, they provided a command that installs the Agent in one step through the Ubuntu command line. Once the agent is installed, metrics start flowing and you can begin customization. 
 
-1.1 I added tags to the datadog.yaml Agent configuration file located at /etc/datadog-agent. After restarting the agent, the tags appeared on the Host Map page on the Datadog UI (Infrastructure -> Host Map). 
+**1.1** I added tags to the datadog.yaml Agent configuration file located at /etc/datadog-agent. After restarting the agent, the tags appeared on the Host Map page on the Datadog UI (Infrastructure -> Host Map). 
 [hostmap](images/hostmap.png) 
 
-1.2 To install the MySQL database onto the Ubuntu vm, I ran `sudo apt-get -y install mysql-server`. The server should start automatically at the end of installing. To check run `service mysql status` Next to integrate the MySQL server to the DataDog agent, you have to add datadog as a user to the database and grant privileges. The following code shows how I did this. 
+**1.2** To install the MySQL database onto the Ubuntu vm, I ran `sudo apt-get -y install mysql-server`. The server should start automatically at the end of installing. To check run `service mysql status` Next to integrate the MySQL server to the DataDog agent, you have to add datadog as a user to the database and grant privileges. The following code shows how I did this.
+
 '''
 sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<YOUR_PASSWORD>';"
 sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
@@ -28,18 +29,18 @@ sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
 sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
 '''
 
-The last step is to configure the database in the mysql configuration file located  at conf.d/mysql.d/mysql.yaml. [mySQL config file](images/mysql-config.png) 
+The last step is to configure the database in the mysql configuration file located  at conf.d/mysql.d/mysql.yaml. ![mySQL config file](images/mysql-config.png) 
 
-1.3 Creating a custom Agent check happens in two parts: writing the check and writing the check’s configuration file. It is important to note that these two files must share the same name. For example, the check I created I used the name `my_check.py and my_check.yaml`. The following custom Agent check sends a random value between 0 and 1000, inclusive, for the metric my_check.
+**1.3** Creating a custom Agent check happens in two parts: writing the check and writing the check’s configuration file. It is important to note that these two files must share the same name. For example, the check I created I used the name `my_check.py and my_check.yaml`. The following custom Agent check sends a random value between 0 and 1000, inclusive, for the metric my_check.
 
-1.3.1 The check, located in /etc/datadog-agent/checks.d , as seen below uses the random library to produce the metric that is sent to datadog using the guage method. 9
-![my_heck code](images/mycheck.png)
+**1.3.1** The check, located in /etc/datadog-agent/checks.d , as seen below uses the random library to produce the metric that is sent to datadog using the guage method. 
+![my_check code](images/mycheck.png)
 
-1.3.2 The configuration file, located in /etc/datadog-agent/checks.d, as seen below does not contain much but needs a sequence called instances that contains at least one mapping.
+**1.3.2** The configuration file, located in /etc/datadog-agent/checks.d, as seen below does not contain much but needs a sequence called instances that contains at least one mapping.
 
 To change the check’s collection interval you can write in the python file for the submission to wait, however, if you had the question...
 Bonus Question: Can you change the collection interval without modifying the Python check file you created?
-The answer is, yes. Within the check's configuration file, you can use 'min_collection_interval' to modify the collection interval of the check. In DataDog version 6+, this has to be done within each instance of the check. This is the route I chose as seen by the code below which submits the metric once every 45 seconds: [screenshot of my_check.yaml](images/mycheck-config)
+The answer is, yes. Within the check's configuration file, you can use 'min_collection_interval' to modify the collection interval of the check. In DataDog version 6+, this has to be done within each instance of the check. This is the route I chose as seen by the code below which submits the metric once every 45 seconds: ![screenshot of my_check.yaml](images/mycheck-config)
 
 ### Visualizing Data
 
@@ -81,7 +82,10 @@ You can account for this by scheduling downtimes with the Monitor Downtime manag
 ### Collecting APM Data
 
 To use DataDog’s APM solution, an application is required. For this exercise, I will use the app, [flask-app.py](scripts/flask-app.py) given below. ![sample flask app](images/flaskapp.png)
-Since I am using Flask, I have to download Flask's microframework for Python. I do this using Python’s pip `pip install Flask`. Now that the app can run, we can use DataDog's Tracing library for Python to enable trace collection for the Agent. This is done by running `pip install ddtrace` as well as modifying the datadog Agent configuration file to allow for APM. See below sceenshot for an updated configuration file. ![datadog.yaml configuration](images/apm-config.png)
+
+Since I am using Flask, I have to download Flask's microframework for Python. I do this using Python’s pip `pip install Flask`. Now that the app can run, we can use DataDog's Tracing library for Python to enable trace collection for the Agent. This is done by running `pip install ddtrace` as well as modifying the datadog Agent configuration file to allow for APM. See below sceenshot for an updated configuration file. 
+
+![datadog.yaml configuration](images/apm-config.png)
 
 Once the setup is complete, the Flask app can be instrumented. This is done by running the app through the tracing library with the command `ddtrace-run python flask-app.py`. By doing this the app has started and the tracer can begin collecting data.  To do this I also had to open some ports so the vagrant box could communicate with the web app. After triggering the events to pick up the traces, I got the following results from the terminal and the traces as seen in the DataDog UI:
 
