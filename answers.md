@@ -160,13 +160,15 @@ if __name__ == '__main__':
 
 12. Bonus Question #3:
 
-Bonus Question:
-
 A service is a set of process that do the same job.
 Webapp and database are example services for a web application.
 
 A resource is a particualar action for a service. 
 For example a URL for a web application and a SQL query for a database service.
+
+13. Final Question:
+
+It would be great to use newly available smart beacons that can determine the number of people in a space/room to report this information for restaurants/bars.  Datadog could leverage this data and provide a dashboard.  This way customers can know if an establishment is too crowded or not crowded enough before making the trip to the restaurant/bar.
 
 
  
