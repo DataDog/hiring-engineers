@@ -1,8 +1,0 @@
-import random
-from checks import AgentCheck
-class HelloCheck(AgentCheck):
-  def check(self, instance):
-
-        x = random.randint(1, 1000)
-
-        self.gauge('random.number', x)
