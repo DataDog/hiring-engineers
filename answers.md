@@ -4,17 +4,17 @@
 
 ## Collecting Metrics:
 
-- [ x ] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+- [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ![alt text][logo]
 
 [logo]: ./images/host_map.png "Host map"
 
 
-- [ x ] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-- [ ] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-- [ x ] Change your check's collection interval so that it only submits the metric once every 45 seconds.
-- [ x ] Bonus Question Can you change the collection interval without modifying the Python check file you created?
+- [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+- [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+- [x] Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 ### Answer to bonus question:
 
