@@ -1,0 +1,4 @@
+It would be great to use newly available smart beacons that can determine the number of people
+in a space/room to report this information for restaurants/bars.  Datadog could leverage this data and
+provide a dashboard.  This way customers can know if an establishment is too crowded or not crowded 
+enough before making the trip to the restaurant/bar.

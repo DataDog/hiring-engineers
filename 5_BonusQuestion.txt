@@ -1,0 +1,2 @@
+You can change the check collection interval with the agent manager within Windows.(GUI)
+
