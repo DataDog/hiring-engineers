@@ -98,6 +98,7 @@ api.Timeboard.create(title=title,
  
  ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_2.JPG)
  
+ *Note graph is empty because of 5 minute window.  For full timeframe this graph shows ~40,000 for rollup value for past  60 minutes.  This is only taken every 60 minutes and therefore doesn't display on 5 minute window.
  ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_3.JPG)
  
  8. Bonus Question #2
