@@ -1,6 +1,0 @@
-The Anomaly graph is showing the expected range of the Mongo Heap Usage Metric based on historical patterns.
-
-This expected range range is based on our 'basic' algorithm choice.
-
-The 'gray' area shows the expected range while metrics outside of the expected area are represented with 'red'
-
