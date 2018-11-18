@@ -5,7 +5,7 @@
 ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/2_MongoDB_Instrumented.JPG)
 
 3. Custom_Agent_Random_Code.py
-
+<addr>
 import random
 from checks import AgentCheck
 class HelloCheck(AgentCheck):
@@ -14,3 +14,4 @@ class HelloCheck(AgentCheck):
         x = random.randint(1, 1000)
 
         self.gauge('random.number', x)
+</addr>
