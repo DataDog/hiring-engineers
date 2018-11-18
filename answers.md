@@ -37,40 +37,55 @@ Utilize the Datadog API to create a Timeboard that contains:
 9. Your custom metric scoped over your host.
 10. Any metric from the Integration on your Database with the anomaly function applied.
 11. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+<!-- 12 image here -->
+
 12. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 - See "VISUALIZING my_metric TIMEBOARD" file
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+13. Set the Timeboard's timeframe to the past 5 minutes
+14. Take a snapshot of this graph and use the @ notation to send it to yourself.
+<!-- 13 image here -->
+
+15. **Bonus Question**: What is the Anomaly graph displaying?
+- It graphs a metrics' normal context.  Often, our metrics can have a few peaks and valleys.  The anomalous function considers this, then graphs a chart to show the trend of the graph without the peaks and valleys.  
+
+For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, set the alarm.  The anomaly function is the zoologist's alarm analysis.  
 
 ## Monitoring Data
-
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- Step 1: Find 'my_metric' dashboard,
+- Step 2: Click 'widget' button -> Create Monitor
+- Step 3: Check if metric is defined, in this case I want 'my_metric' and 'Steven-Weiss' as host
+- Step 3a: Check threshold: in this case, 'average'
+- Step 4: Create thresholds and notifications
+
+16. Warning threshold of 500
+17. Alerting threshold of 800
+18. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+<!-- 15 image here -->
 
 Please configure the monitor’s message so that it will:
-
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
+- See "Monitor Message" file
+19. Send you an email whenever the monitor triggers.
+20. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+21. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+<!--  16 image here -->
+22. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<!-- 22 image here -->
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+23. One that silences it from 7pm to 9am daily on M-F,
+24. And one that silences it all day on Sat-Sun.
+25. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<!-- 25 image here
+26 image here  -->
 
 ## Collecting APM Data:
-
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 ```python
@@ -105,6 +120,17 @@ if __name__ == '__main__':
 ```
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+- $ sudo -H pip install ddtrace
+- $ sudo pip install flask
+- $ ./trace-agent-darwin-amd64-6.6.0 -config /opt/datadog-agent/etc/datadog.yaml
+- $ ddtrace-run python app.py
+- 
+
+
+
+27. Follow Instruction here for ddtrace:
+- https://docs.datadoghq.com/tracing/setup/?tab=agent630
+-
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
