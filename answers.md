@@ -24,4 +24,5 @@ class HelloCheck(AgentCheck):
 ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/3_4_Custom_Agent_My_Metric_45_Seconds.JPG
 
 5. Bonus Question:
-  You can change the check collection interval with the agent manager within Windows.(GUI)
+  You can change the check collection interval with the agent manager within Windows.(GUI).  Also potentially with API but I have yet to locate the example code for this on the Datadog API site.
+  
