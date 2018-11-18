@@ -21,7 +21,7 @@ class HelloCheck(AgentCheck):
 ```
 4. Custom Agent Metrics with 45 Second Interval:
 
-![alt text](https://github.com/cconerby/hiring-engineers/blob/master/3_4_Custom_Agent_My_Metric_45_Seconds.JPG
+![alt text](https://github.com/cconerby/hiring-engineers/blob/master/3_4_Custom_Agent_My_Metric_45_Seconds.JPG)
 
 5. Bonus Question #1:
 
@@ -94,11 +94,11 @@ api.Timeboard.create(title=title,
  ```
  7. 5 Minute Timeboard Screenshots
  
- ![alt text]https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_1.JPG
+ ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_1.JPG)
  
- ![alt text]https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_2.JPG
+ ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_2.JPG)
  
- ![alt text]https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_3.JPG
+ ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/9_10_5Minute_Timeboard_3.JPG)
  
  8. Bonus Question #2
  
@@ -106,13 +106,13 @@ api.Timeboard.create(title=title,
  
  9. Monitor Warning Email:
  
- ![alt text]https://github.com/cconerby/hiring-engineers/blob/master/11_Monitor_Email.JPG
+ ![alt text](https://github.com/cconerby/hiring-engineers/blob/master/11_Monitor_Email.JPG)
  
  10. Monitor Downtime Screenshots
 
-![alt text]https://github.com/cconerby/hiring-engineers/blob/master/12_Monitor_Downtime_email_weeknights.JPG
+![alt text](https://github.com/cconerby/hiring-engineers/blob/master/12_Monitor_Downtime_email_weeknights.JPG)
 
-![alt text]https://github.com/cconerby/hiring-engineers/blob/master/12_Monitor_Downtime_email_weekends.JPG
+![alt text](https://github.com/cconerby/hiring-engineers/blob/master/12_Monitor_Downtime_email_weekends.JPG)
 
 
  
@@ -120,7 +120,7 @@ api.Timeboard.create(title=title,
  
 Link:  https://app.datadoghq.com/dash/990988/my-metric-timeboard?live=true&page=0&is_auto=false&from_ts=1542570398925&to_ts=1542573998925&tile_size=s
 
-[alt text]https://github.com/cconerby/hiring-engineers/blob/master/13_APM_Dashboard.JPG
+[alt text](https://github.com/cconerby/hiring-engineers/blob/master/13_APM_Dashboard.JPG)
 
 APP Code Instrumented:
 ```
