@@ -16,7 +16,25 @@
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
 - [x] Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-### Answer to bonus question:
+- ##### Answer to bonus question:
+In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both must have the same name and be placed in the following folders:
+Config file: /etc/datadog-agent/conf.d/
+Python file: /etc/datadog-agent/checks.d/
+
+Within the configuration file, a dictionary of instances can be declared stating the min_collection_interval. In this case, 45 seconds.
+
+Syntax for configuration file content stating 45 seconds collection interval:
+
+> init_config:
+>
+>instances:
+>   - min_collection_interval: 45
+
+
+
+More information can be found here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+Yes, this can be done by navigating to the yaml file associated with the check. Found under /etc/datadog-agent/conf.d/<name>.yaml
+
 
 
 
@@ -80,3 +98,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 
+### References
+
+1. https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
