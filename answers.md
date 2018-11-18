@@ -1,1 +1,1 @@
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![alt text](https://github.com/cconerby/hiring-engineers/blob/master/1_Assigning_Tags.JPG)
