@@ -107,6 +107,16 @@ Make sure that your email is notified when you schedule the downtime and take a 
 [img]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 ## Collecting APM Data:
+### APM Dashboard
+![alt text][img]
+
+[img]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
+
+
+### APM Resource Stats
+![alt text][img]
+
+[img]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
 - [x] Bonus Question: What is the difference between a Service and a Resource?
 A **Service** is a **__set of processes__** that do the same job, while a **Resource** is a particular **__action__** for a service
