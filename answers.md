@@ -83,7 +83,7 @@ Metrics/situations where the query returns values outside the historical/establi
 
 ![alt text][img2d]
 
-[img2d]: ./images/anomalies.png "Timeboard - Highlighting the anomalies"
+[img2d]: ./images/anomalies_1.png "Timeboard - Highlighting the anomalies"
 
 ## Monitoring Data
 
@@ -115,9 +115,9 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 #### Monitor Alert 2 (No Data)
 
-![alt text][img3a]
+![alt text][img3b]
 
-[img3a]: ./images/no_data_alert.png "Monitor Alert 2 (No Data)"
+[img3b]: ./images/no_data_alert.png "Monitor Alert 2 (No Data)"
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
