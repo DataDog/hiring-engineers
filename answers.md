@@ -271,6 +271,8 @@ Once you start the application, and load is placed on the application, the trace
 
 **Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
 
+[Dashboard Link](https://app.datadoghq.com/dash/991232/flask-apm?page=0&is_auto=false&from_ts=1542553200000&to_ts=1542639600000&live=true)
+
 <a href="flask_apm_dashboard.PNG" title="The view from our roofdeck">
 <img src="flask_apm_dashboard.PNG" width="1000"></a>
 
