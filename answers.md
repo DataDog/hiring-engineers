@@ -242,7 +242,7 @@ Please configure the monitor's message so that it will:
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog™s APM solution:
+* Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog's APM solution:
 
 Since Flask is python based, to instrument the python code for tracing, you simply have to prepend the python command line with the supplied wrapper script, ddtrace-run located in the /opt/datadog-agent/embedded/bin directory. 
 
@@ -250,26 +250,42 @@ Since Flask is python based, to instrument the python code for tracing, you simp
  ./ddtrace-run python /opt/flaskr/flask_app.py
  
 ``` 
+Alternatively, you can instrument flask application by adding the following lines to the beginning of your python script.
+
+```from ddtrace import patch_all
+patch_all()
+
+```
+
+
 Once you start the application, trace data will appear in Datadog.
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service,
+
+A "Resource" is a particular query to a service. For example, for a SQL database, a resource would be the SQL of the query itself like select * from user. 
+
+A "Service" can have many resources 
 
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 <a href="flask_apm_dashboard.PNG" title="The view from our roofdeck">
 <img src="flask_apm_dashboard.PNG" width="1000"></a>
 
-Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. Weâ€™ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+* Datadog has been used in a lot of creative ways in the past. We've written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+* Is there anything creative you would use Datadog for?
 
+Datadog is an extensible monitoring platform that can collect data from any source and isn't limited to traditional IT resources to gain insights into critical business processes. Here are a few examples. 
 
+- Query business applications for transaction counts to understand when customers are using the system and if current infrastructure has enough capacity to handle seasonal demands. 
 
+- Monitor IOT devices such as people traffic sensors in retail locations to gain insight on how many customers are in a store and how it translates to sales data like from the previous example.   
 
+- Monitor exchange markets for data such currency exchange rates including Bitcoin to see how exchange rates are impacting foreign sales of services and goods. 
