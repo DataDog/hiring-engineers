@@ -195,6 +195,22 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
 [Fully instrumented app](./app1.py)
+Note: Instruemtation could be done either by installing ddtace:
+``` pip install ddtrace```
+
+
+
+and then running the application as follows:
+``` ddtrace-run python <app_name>.py```
+
+Or by including a middle ware into the script. For this, I used the Flask middleware and instrumented it as follows:
+``` 
+    from ddtrace.contrib.flask import TraceMiddleware
+    instrumented_app = TraceMiddleware(app, tracer, service="flask-app", distributed_tracing=False) 
+```
+
+
+
 
 ### Final Question:
 
@@ -215,3 +231,6 @@ Is there anything creative you would use Datadog for?
 
 [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
 [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+[Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+[What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+[Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
