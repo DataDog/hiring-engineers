@@ -1,0 +1,8 @@
+Bonus Question:
+
+A service is a set of process that do the same job.
+Webapp and database are example services for a web application.
+
+A resource is a particualar action for a service. 
+For example a URL for a web application and a SQL query for a database service.
+
