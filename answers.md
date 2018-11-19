@@ -31,6 +31,24 @@ tags:
 <!-- The names of the configuration and check files must match. File is my_metric.py & my_metric.yaml. -->
 <a href="my_metric.py">MY METRIC</a>
 
+```
+import random
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class RandomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0, 1000))
+```
+
 7. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 <img src="./images/6-my-metric-code.png">
 
