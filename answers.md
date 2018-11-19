@@ -274,7 +274,7 @@ Once you start the application, and load is placed on the application, the trace
 <img src="flask_apm_dashboard.PNG" width="1000"></a>
 
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+**Bonus Question**: What is the difference between a Service and a Resource?
 
 A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service,
 
@@ -289,7 +289,7 @@ A "Service" can have many resources
 
 * Datadog has been used in a lot of creative ways in the past. We've written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-* Is there anything creative you would use Datadog for?
+**Is there anything creative you would use Datadog for?**
 
 Datadog is an extensible monitoring platform that can collect data from any source and isn't limited to traditional IT resources to gain insights into critical business processes. Here are a few examples. 
 
