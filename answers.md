@@ -79,6 +79,8 @@ On the single graph, the rollup sum had values so high they couldn't be accomoda
 
 Metrics/situations where the query returns values outside the historical/established norm. (It highlights these areas in red as seen in the image below). for my example, it includes extreme/outlier values or areas of relatively minimal change. 
 
+#### Timeboard - Highlighting the anomalies
+
 ![alt text][img2d]
 
 [img2d]: ./images/anomalies.png "Timeboard - Highlighting the anomalies"
