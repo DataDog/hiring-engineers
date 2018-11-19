@@ -16,43 +16,39 @@
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
 - [x] Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-- ##### Answer to bonus question:
+- #### Answer to bonus question:
 In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both must have the same name and be placed in the following folders:
+```
 Config file: /etc/datadog-agent/conf.d/
 Python file: /etc/datadog-agent/checks.d/
+```
 
-Within the configuration file, a dictionary of instances can be declared stating the min_collection_interval. In this case, 45 seconds.
+Within the configuration file, a dictionary of instances can be declared stating the `min_collection_interval`. In this case, 45 seconds. The syntax for configuration file content stating 45 seconds collection interval is shown below:
 
-Syntax for configuration file content stating 45 seconds collection interval:
+```
+init_config:
 
-> init_config:
->
->instances:
->   - min_collection_interval: 45
+instances:
+    - min_collection_interval: 45
+```
 
-
-
-More information can be found here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
-Yes, this can be done by navigating to the yaml file associated with the check. Found under /etc/datadog-agent/conf.d/<name>.yaml
-
-
-
+More information can be found here on custom metrics and their configuration can be found in the relevant reference section below.
 
 
 ## Visualizing Data:
 
-- [ x ] Utilize the Datadog API to create a Timeboard that contains:
+[x] Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-- [ x ] Set the Timeboard's timeframe to the past 5 minutes
-- [ x ] Take a snapshot of this graph and use the @ notation to send it to yourself.
-- [ x ] Bonus Question: What is the Anomaly graph displaying?
+- Set the Timeboard's timeframe to the past 5 minutes
+- Take a snapshot of this graph and use the @ notation to send it to yourself.
+- Bonus Question: What is the Anomaly graph displaying?
 
 
 ## Monitoring Data
@@ -100,4 +96,4 @@ Is there anything creative you would use Datadog for?
 
 ### References
 
-1. https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+1. Creating and configuring custom metrics: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
