@@ -51,9 +51,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 #### Host Map
 
-![alt text][img]
+![alt text][img1]
 
-[img]: ./images/host_map.png "Host map"
+[img1]: ./images/host_map.png "Host map"
 
 
 ### Bonus Question: What is the Anomaly graph displaying?
@@ -84,9 +84,9 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![alt text][img1]
+![alt text][img2]
 
-[img1]: ./images/monitor_alert_log_1.png "Monitor alert 1"
+[img2]: ./images/monitor_alert_log_1.png "Monitor alert 1"
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -95,28 +95,28 @@ And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 #### Sat - Sun scheduled downtime notification
-![alt text][img]
+![alt text][img3]
 
-[img]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
+[img3]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
 
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
-![alt text][img]
+![alt text][img4]
 
-[img]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 ## Collecting APM Data:
 ### APM Dashboard
-![alt text][img]
+![alt text][img5]
 
-[img]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
+[img5]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
 
 
 ### APM Resource Stats
-![alt text][img]
+![alt text][img6]
 
-[img]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+[img6]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
 - [x] Bonus Question: What is the difference between a Service and a Resource?
 A **Service** is a **__set of processes__** that do the same job, while a **Resource** is a particular **__action__** for a service
