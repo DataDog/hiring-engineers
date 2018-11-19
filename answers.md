@@ -52,13 +52,26 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 #### Timeboard
 
-![alt text][img2]
+![alt text][img2a]
 
-[img2]: ./images/host_map.png "Time Board"
+[img2a]: ./images/host_map.png "Timeboard - single graph"
 
+
+
+![alt text][img2b]
+
+[img2b]: ./images/time_board_for_multiple_boards.png "Timeboard - multiple graphs"
+
+I also created a timeboard with multiple graphs out of curiosity. On the single graph, the rollup sum had numbers so high they couldn't be accomodated comfortably with the other graphs....either the details of the rollup sum would be clear and the otehr graphs will be so small they will seem like lines or the details of the other two pots will be clear and the rollup sum plot will be virtually non-existent (See the two graphs below). I have included the muliple graph timeboar above to show the roll up sum clearly. (I also depicted it as an area instead of a line).
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
+
+![alt text][img2c]
+
+[img2c]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
+
+### Bonus Question: What is the Anomaly graph displaying?
 
 
 
@@ -85,9 +98,23 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![alt text][img3]
 
-[img3]: ./images/monitor_alert_log_1.png "Monitor alert 1"
+#### Monitor alert 1 (Warning)
+![alt text][img3a]
+
+[img3a]: ./images/monitor_alert_log_1.png "Monitor alert 1 (Warning)"
+
+#### Monitor alert 1 (Error)
+
+![alt text][img3b]
+
+[img3b]: ./images/monitor_alert_log_1.png "Monitor alert 2 (Error)"
+
+
+
+![alt text][img3c]
+
+[img3b]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -117,7 +144,11 @@ Make sure that your email is notified when you schedule the downtime and take a 
 ### APM Resource Stats
 ![alt text][img7]
 
-[img7]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+[img7a]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+
+![alt text][img7b]
+
+[img7b]: ./images/individual_traces.png "Snapshot of APM - Individual Traces with Flame"
 
 - [x] Bonus Question: What is the difference between a Service and a Resource?
 A **Service** is a **__set of processes__** that do the same job, while a **Resource** is a particular **__action__** for a service
@@ -131,6 +162,8 @@ A **Service** is a **__set of processes__** that do the same job, while a **Reso
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+###
 
 
 ### References
