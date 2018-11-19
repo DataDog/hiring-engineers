@@ -155,16 +155,27 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 
 ## Collecting APM Data:
-### APM Resource Stats
+#### APM Dashboard
 ![alt text][img7a]
 
-[img7a]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+[img7a]: ./images/apm_board.png "Snapshot of APM Board"
 
-<br/><br/>
 
 ![alt text][img7b]
 
-[img7b]: ./images/individual_traces1.png "Snapshot of APM - Individual Traces with Flame"
+[img7b]: ./images/apm_dashboard_1.png "Snapshot of APM Dashboard-Services"
+
+
+### APM Resource Stats
+![alt text][img7c]
+
+[img7c]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+
+<br/><br/>
+
+![alt text][img7d]
+
+[img7d]: ./images/individual_traces1.png "Snapshot of APM - Individual Traces with Flame"
 
 
 https://app.datadoghq.com/apm/service/flask-app/flask.request?end=1542603832899&paused=false&start=1542517432899&env=prod
@@ -184,7 +195,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 
 ![alt text][img8b]
 
-[img8b]: ./images/apm_infr.png "Snapshot of APM - Individual Traces with Flame"
+[img8b]: ./images/apm_infr.png "Snapshot of APM - Individual Traces"
 
 
 
