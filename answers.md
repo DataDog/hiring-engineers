@@ -2,12 +2,14 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+To add tags, you have to add the following lines to the datadog.yaml file located in the /etc/datadog-agent directory. Tags can be key value pairs like in this example or a list of of tags.
+
 <a href="tags_yaml.PNG" title="The view from our roofdeck">
 <img src="tags_yaml.PNG" width="500"></a>
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Create a datadog user with replication rights in your MySQL server
+You first need to create a datadog user with replication rights in your MySQL server
 ```
 sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'LkWJbXrK60r4<mr545qkevCS';"
 sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
@@ -32,7 +34,8 @@ mysql -u datadog --password='LkWJbXrK60r4<mr545qkevCS' -e "SELECT * FROM INFORMA
 echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 ```
-Configure the Agent to connect to MySQL
+You then need to configure the Agent to connect to MySQL by creating a yaml file in the /etc/datadog-agent/conf.d/mysql.d directory with server and user credentials to access the MySQL database.
+
 ```
 [root@wordpress mysql.d]# pwd
 /etc/datadog-agent/conf.d/mysql.d
@@ -57,6 +60,8 @@ instances:
 
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+You first have to create two files. The python file which executes the check, and the yaml file that calls the python file. The files must have the same name with the respective file extension. In this example, both files are named checkvalue.
 ```
 [root@wordpress checks.d]# cat checkvalue.py
 
@@ -90,6 +95,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+The following python file creates a timeboard dashboard with 4 graphs; system.mem.free, mysql.performance.user_time, my_metric, and my_metric summed over an hour intervals.
 
 ```
 [root@wordpress bin]# cat ~/timeboard.py
@@ -164,6 +171,11 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 
 ```
+
+The following is a screenshot of the timeboard created
+
+<a href="timeboard_api.PNG" title="The view from our roofdeck">
+<img src="timeboard_api.PNG" width="500"></a>
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
