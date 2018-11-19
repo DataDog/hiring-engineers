@@ -30,7 +30,6 @@ tags:
 6. Create a custom Agent check that submits a metric named "my_metric" with a random value between 0 and 1000.
 <!-- The names of the configuration and check files must match. File is my_metric.py & my_metric.yaml. -->
 <a href="my_metric.py">MY METRIC</a>
-<a href="my_metric.py">MY METRIC</a>
 
 7. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 <img src="./images/6-my-metric-code.png">
@@ -41,9 +40,9 @@ tags:
 - Someone could use the rollup() function and plug in the 45 seconds in the bin size constraint.  
 
 ## Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
-9. Your custom metric scoped over your host.
-10. Any metric from the Integration on your Database with the anomaly function applied.
+Utilize the Datadog API to create a Timeboard that contains:  
+9. Your custom metric scoped over your host.  
+10. Any metric from the Integration on your Database with the anomaly function applied.  
 11. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 <img src="./images/12-my-metric-graph.png">
@@ -98,13 +97,14 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 15. **Bonus Question**: What is the Anomaly graph displaying?
 - It graphs a metrics' normal context.  Often, our metrics can have a few peaks and valleys.  The anomaly function considers this, then graphs a chart to show the trend of the graph without the peaks and valleys.  
 
-For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
+- For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
 
 ## Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
+- My Steps:
 - Step 1: Find 'my_metric' dashboard,
 - Step 2: Click 'widget' button -> Create Monitor
 - Step 3: Check if metric is defined, in this case I want 'my_metric' and 'Steven-Weiss' as host
@@ -118,7 +118,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 <img src="./images/15-monitor.png">
 
 Please configure the monitor’s message so that it will:
-- See "Monitor Message" file
+
 19. Send you an email whenever the monitor triggers.
 20. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 21. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -194,26 +194,31 @@ if __name__ == '__main__':
 ```
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
 ```
-- $ sudo -H pip install ddtrace
-- $ sudo pip install flask
-- $ ./trace-agent-darwin-amd64-6.6.0 -config /opt/datadog-agent/etc/datadog.yaml
-- $ ddtrace-run python app.py
+My Steps:
+$ sudo -H pip install ddtrace
+$ sudo pip install flask
+$ ./trace-agent-darwin-amd64-6.6.0 -config /opt/datadog-agent/etc/datadog.yaml
+$ ddtrace-run python app.py
+
+Then, followed ddtrace / 27 (next line)
 ```
 
 27. Follow Instruction here for ddtrace:
 - https://docs.datadoghq.com/tracing/setup/?tab=agent630
 
 28. * **Bonus Question**: What is the difference between a Service and a Resource?
-First, let's define a service and a resource.
 
-From the Datadog FAQ, a "Service" is the name of a set of processes that work together to provide a feature set.  In my working solution, the Flask app is an example of a service.  In general, a service would be any front-end built with functions or any backend algorithms.  
+- First, let's define a service and a resource.
 
-A "Resource" is the query to a service.  In apps, we see resources as 'routes'; in databases, we see resources in the form of database queries.  An example, a frontend user making a POST request to an app's backend to create a login account.  
+- From the Datadog FAQ, a "Service" is the name of a set of processes that work together to provide a feature set.  In my working solution, the Flask app is an example of a service.  In general, a service would be any front-end built with functions or any backend algorithms.  
 
-Since most programs can be distilled down to procedures, the differences are akin to the separation of concerns in the design of any procedure - we create the body of a procedure that describes the behavior and we call the procedure with a set of desired input.  In a procedure we 'blackbox' an action and and provide a thing.  
+- A "Resource" is the query to a service.  In apps, we see resources as 'routes'; in databases, we see resources in the form of database queries.  An example, a frontend user making a POST request to an app's backend to create a login account.  
 
-In terms of service and resource, a service is akin to a function/procedure that describes and embodies the desired behaviors of the program.  The resources are the calls and arguments that feed the functions.  While services and resources are not dependent on each other, that is, we can still have services designed without resources and resources designed without services, they are designed to know of each others existence.   
+- Since most programs can be distilled down to procedures, the differences are akin to the separation of concerns in the design of any procedure - we create the body of a procedure that describes the behavior and we call the procedure with a set of desired input.  In a procedure we 'blackbox' an action and and provide a thing.  
+
+- In terms of service and resource, a service is akin to a function/procedure that describes and embodies the desired behaviors of the program.  The resources are the calls and arguments that feed the functions.  While services and resources are not dependent on each other, that is, we can still have services designed without resources and resources designed without services, they are designed to know of each others existence.   
 
 29. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -228,7 +233,8 @@ In terms of service and resource, a service is akin to a function/procedure that
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 31. Is there anything creative you would use Datadog for?
-Companies, by and large, want great teams, but still recruit individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This owuld allow a company to recruit groups with less opaqueness.  
+
+- Companies, by and large, want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This owuld allow a company to recruit groups with less opaqueness.  
 
 ## Instructions
 If you have a question, create an issue in this repository.
