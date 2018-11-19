@@ -176,10 +176,10 @@ Is there anything creative you would use Datadog for?
 
 ### References
 
-1. [Creating and configuring custom metrics] (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
-2. [Creating time boards] (https://docs.datadoghq.com/api/?lang=python#timeboards)
-3. [Rollup] (https://docs.datadoghq.com/graphing/functions/rollup/)
-4. [Getting started with APM] (https://docs.datadoghq.com/tracing/visualization/)
+1. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+2. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+3. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
+4. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
 
 
-[Monitoring Docker - Datadog Training Site] (https://datadog.github.io/summit-training-session/handson/monitordocker/)
+[Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
