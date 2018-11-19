@@ -64,7 +64,7 @@ On the single graph, the rollup sum had values so high they couldn't be accomoda
 
 ![alt text][img2b]
 
-[img2b]: ./images/timeboard_over_4_hours.png "Single graph over 4 hours - to show the difference in values"
+[img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
 
 <br/>
 <br/>
@@ -143,12 +143,6 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 
 ## Collecting APM Data:
-### APM Dashboard
-![alt text][img6]
-
-[img6]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
-
-
 ### APM Resource Stats
 ![alt text][img7a]
 
