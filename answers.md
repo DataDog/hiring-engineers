@@ -11,14 +11,14 @@ Inbound:
     8126/tcp: port for the APM Receiver
 
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+**Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
-To add tags, you have to add the following lines to the datadog.yaml file located in the /etc/datadog-agent directory. Tags can be key value pairs like in this example or a list of of tags.
+Tags can be used to organize and filter devices within Datadog. To add tags, you have to add the following lines to the datadog.yaml file located in the /etc/datadog-agent directory. Tags can be key value pairs like in this example or a list of of tags.
 
 <a href="tags_yaml.PNG" title="The view from our roofdeck">
 <img src="tags_yaml.PNG" width="500"></a>
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+**Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 You first need to create a datadog user with replication rights in your MySQL server
 ```
@@ -70,7 +70,7 @@ instances:
 ```
 
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
 You first have to create two files. The python file which executes the check, and the yaml file that calls the python file. The files must have the same name with the respective file extension. In this example, both files are named checkvalue. Place the yaml file in the /etc/datadog-agent/conf.d directory or a sub directory within this directory with the same name as the check. Place the python custom check file in /etc/datadog-agent/check.d
 ```
@@ -85,7 +85,7 @@ class HelloCheck(AgentCheck):
     print value
     self.gauge('my_metric', value)
 ```
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
 ```
 [root@wordpress checkvalue.d]# cat checkvalue.yaml
@@ -101,7 +101,7 @@ instances:
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+**Utilize the Datadog API to create a Timeboard that contains:**
 
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
@@ -183,14 +183,12 @@ api.Timeboard.create(title=title,
 
 ```
 
-The following is a screenshot of the timeboard created
+The following is a screenshot of the timeboard created through the API with the script listed above.
 
 <a href="timeboard_api.PNG" title="The view from our roofdeck">
 <img src="timeboard_api.PNG" width="1000"></a>
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+**Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -201,13 +199,12 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph shows the value collected along with a baseline calculated by historical data. If the the collected value is outside the baseline, the graphline changes colors.
+The anomaly graph shows the value collected along with baseline range calculated by historical data. If the the collected value is outside the baseline, the graphline changes colors.
 
 ## Monitoring Data
 
-Since you've already caught your test metric going above 800 once, you donâ€™t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So letâ€™s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the following values over the past 5 minutes:
+**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the following values over the past 5 minutes:**
 
 * Warning threshold of 500
 * Alerting threshold of 800
@@ -216,7 +213,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 <a href="alert_config.PNG" title="The view from our roofdeck">
 <img src="alert_config.PNG" width="1000"></a>
 
-Please configure the monitor's message so that it will:
+**Please configure the monitor's message so that it will:**
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
@@ -233,17 +230,17 @@ Please configure the monitor's message so that it will:
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you donâ€™t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-  * One that silences it from 7pm to 9am daily on M-F,
+  **One that silences it from 7pm to 9am daily on M-F,**
   
   <a href="nightly_maintenance.PNG" title="The view from our roofdeck">
 <img src="nightly_maintenance.PNG" width="500"></a>
   
-  * And one that silences it all day on Sat-Sun.
+  **And one that silences it all day on Sat-Sun.**
   
   <a href="weekend_maintenance.PNG" title="The view from our roofdeck">
 <img src="weekend_maintenance.PNG" width="500"></a>
   
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  **Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
   
   <a href="nightly_maintenance_email.PNG" title="The view from our roofdeck">
 <img src="nightly_maintenance_email.PNG" width="500"></a>
@@ -253,7 +250,7 @@ Please configure the monitor's message so that it will:
 
 ## Collecting APM Data:
 
-* Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog's APM solution:
+**Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog's APM solution:**
 
 Since Flask is python based, to instrument the python code for tracing, you simply have to prepend the python command line with the supplied wrapper script, ddtrace-run located in the /opt/datadog-agent/embedded/bin directory. 
 
@@ -269,7 +266,12 @@ patch_all()
 ```
 
 
-Once you start the application, trace data will appear in Datadog.
+Once you start the application, and load is placed on the application, the trace data will appear in Datadog.
+
+**Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
+
+<a href="flask_apm_dashboard.PNG" title="The view from our roofdeck">
+<img src="flask_apm_dashboard.PNG" width="1000"></a>
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -281,10 +283,6 @@ A "Resource" is a particular query to a service. For example, for a SQL database
 A "Service" can have many resources 
 
 
-* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-<a href="flask_apm_dashboard.PNG" title="The view from our roofdeck">
-<img src="flask_apm_dashboard.PNG" width="1000"></a>
 
 
 ## Final Question:
