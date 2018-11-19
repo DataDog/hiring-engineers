@@ -175,7 +175,7 @@ api.Timeboard.create(title=title,
 The following is a screenshot of the timeboard created
 
 <a href="timeboard_api.PNG" title="The view from our roofdeck">
-<img src="timeboard_api.PNG" width="500"></a>
+<img src="timeboard_api.PNG" width="1000"></a>
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -183,30 +183,62 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+<a href="anomaly_graph.PNG" title="The view from our roofdeck">
+<img src="anomaly_graph.PNG" width="1000"></a>
+
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly graph shows the value collected along with a baseline calculated by historical data. If the the collected value is outside the baseline, the graphline changes colors.
 
 ## Monitoring Data
 
-Since youâ€™ve already caught your test metric going above 800 once, you donâ€™t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So letâ€™s make life easier by creating a monitor.
+Since you've already caught your test metric going above 800 once, you donâ€™t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So letâ€™s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if itâ€™s above the following values over the past 5 minutes:
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it's above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Please configure the monitorâ€™s message so that it will:
+<a href="alert_config.PNG" title="The view from our roofdeck">
+<img src="alert_config.PNG" width="1000"></a>
+
+Please configure the monitor's message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+<a href="alert_message_config.PNG" title="The view from our roofdeck">
+<img src="alert_message_config.PNG" width="1000"></a>
+
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+<a href="alert_message.PNG" title="The view from our roofdeck">
+<img src="alert_message.PNG" width="1000"></a>
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you donâ€™t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+  
+  <a href="nightly_maintenance.PNG" title="The view from our roofdeck">
+<img src="nightly_maintenance.PNG" width="500"></a>
+  
   * And one that silences it all day on Sat-Sun.
+  
+  <a href="weekend_maintenance.PNG" title="The view from our roofdeck">
+<img src="weekend_maintenance.PNG" width="500"></a>
+  
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+  <a href="nightly_maintenance_email.PNG" title="The view from our roofdeck">
+<img src="nightly_maintenance_email.PNG" width="500"></a>
+  
+  <a href="weekend_maintenance_email.PNG" title="The view from our roofdeck">
+<img src="weekend_maintenance_email.PNG" width="500"></a>
 
 ## Collecting APM Data:
 
