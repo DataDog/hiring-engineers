@@ -1,21 +1,69 @@
 ## Answers (Solutions Engineering Technical Exercise)
 #### Suzie Mae
 
+#### Set up
+For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is more light weight and would have used less of my system's (rather limited) resources.
 
-## Collecting Metrics:
+Installation instructions:
+I followed the installation instructions here. I included the .... as this was necessary to bind the host port to the docker port, thereby enabling communication between the two machines. So my container was run with:
+```
 
-- [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+```
 
-### Host Map
+Some important docker commands to unerstand the state of the cointainers can be found here.
+
+To edit the doocker files, there are two potential ways: 
+Step 1: Copy the file to the host, edit on the host and copy back.
+```
+  docker cp <container_name>:<container filepath> <local filepath>
+  vim <local filepath>
+  docker cp <local file path> <container_name>:<Container file path>
+
+```
+
+Step 2: or else log into the container ```docker exec -it <container_name> bash ``` 
+
+install the neccessary. In my case, on the debian version of linux, this was 
+
+```
+apt-get update
+apt-get install -y vim-tiny
+
+``` 
+
+I chose "vim-tiny" to minimize the space taken up by the program, and vim-tiiny had everything I needed to edit files.
+
+I found step 2 more convenient, so I went with it. HOwever, all teh commands run in the container can be run from outside the container by using:
+``` docker exec -it <container_name> <path to bin> <command>```
+
+For example, in the container, to check the agent status, run: ``` /opt/datadog-agent/bin/agent/agent status ```
+
+From the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
+
+Fun tip: If you mess up your configuration file (like I did), the container would not start with a corrupted configuration file. However, all isn't lost and you don't have to spin up a new container. Create a new configuration file and copy it into the system from the host file using Step 1 above.
+
+Running ```vim.tiny /etc/datadog-agent/datadog.yaml```, I added the following tags to my datadog.yaml file:
+```
+tags:
+  - host_tag
+  - env:prod
+  - role:database
+```
+
+#### Host map with added tags
+
 ![alt text][img1]
 
-[img1]: ./images/host_map.png "Host map"
+[img1]: ./images/host_map_1.png "Host map"
 
 
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
 - [x] Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+[Custom check python file](./my_check.py)
+[Custom check configuration file](./my_check.yaml)
 
 - #### Answer to bonus question:
 In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both must have the same name and be placed in the following folders:
@@ -33,7 +81,7 @@ instances:
     - min_collection_interval: 45
 ```
 
-More information can be found here on custom metrics and their configuration can be found in the relevant reference section below.
+More information can be found [here on custom metrics and their configuration](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). (Also listed in the reference section below.
 
 
 ## Visualizing Data:
