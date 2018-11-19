@@ -205,7 +205,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
-[Fully instrumented app](./app1.py)
+[Fully instrumented app](./app.py)
 Note: Instruemtation could be done either by installing ddtace:
 ``` pip install ddtrace```
 
@@ -219,8 +219,6 @@ Or by including a middle ware into the script. For this, I used the Flask middle
     from ddtrace.contrib.flask import TraceMiddleware
     instrumented_app = TraceMiddleware(app, tracer, service="flask-app", distributed_tracing=False) 
 ```
-
-
 
 
 ### Final Question:
@@ -244,5 +242,4 @@ Is there anything creative you would use Datadog for?
 [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
 [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
-
 [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
