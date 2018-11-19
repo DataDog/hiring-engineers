@@ -143,18 +143,27 @@ _*NB*: This alert occured during my scheduled downtime, so I didn't get a mailed
 
 
 ### APM Resource Stats
-![alt text][img7]
+![alt text][img7a]
 
 [img7a]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
 ![alt text][img7b]
 
-[img7b]: ./images/individual_traces.png "Snapshot of APM - Individual Traces with Flame"
+[img7b]: ./images/individual_traces1.png "Snapshot of APM - Individual Traces with Flame"
+
+
+https://app.datadoghq.com/apm/service/flask-app/flask.request?end=1542603832899&paused=false&start=1542517432899&env=prod
 
 [x] ### Bonus Question: What is the difference between a Service and a Resource?<br/><br/>
 A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database), while a **Resource** is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```[4]
 
 - [ x ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+![alt text][img8]
+
+[img8]: ./images/apm_infr.png "Snapshot of APM - Individual Traces with Flame"
+
+
+[link](https://app.datadoghq.com/apm/trace/1404380140091556782?spanID=6907584043438742536&env=dd_docker&sort=time&colorBy=service&graphType=span_list)
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
 
