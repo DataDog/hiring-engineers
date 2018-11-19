@@ -52,24 +52,39 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 #### Timeboard
 
+
 ![alt text][img2a]
 
-[img2a]: ./images/host_map.png "Timeboard - single graph"
+[img2a]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
 
 
 
 ![alt text][img2b]
 
-[img2b]: ./images/time_board_for_multiple_boards.png "Timeboard - multiple graphs"
+[img2b]: ./images/host_map.png "Timeboard - single graph"
 
-I also created a timeboard with multiple graphs out of curiosity. On the single graph, the rollup sum had numbers so high they couldn't be accomodated comfortably with the other graphs....either the details of the rollup sum would be clear and the otehr graphs will be so small they will seem like lines or the details of the other two pots will be clear and the rollup sum plot will be virtually non-existent (See the two graphs below). I have included the muliple graph timeboar above to show the roll up sum clearly. (I also depicted it as an area instead of a line).
 
-### Bonus Question: What is the Anomaly graph displaying?
+I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br>
+On the single graph, the rollup sum had values so high they couldn't be accomodated comfortably with the other graphs... either the details of the rollup sum would be clear and the other graphs will be too small to give useful information, or the details of the other two plots will be clear and the rollup sum plot will be virtually non-existent. The hourly buckets of the roll-up sum also contributes to this, making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below). I have included the muliple graph timeboar above to show the roll up sum clearly. (I also depicted rollup sum plot as an area instead of a line).
 
 
 ![alt text][img2c]
 
-[img2c]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
+[img2c]: ./images/timeboard_for_multiple_boards.png "Timeboard - multiple graphs"
+
+
+
+
+![alt text][img2d]
+
+[img2d]: ./images/timeboard_over_4_hours.png "Single graph over 4 hours - to show the difference in values"
+
+
+
+
+### Bonus Question: What is the Anomaly graph displaying?
+
+
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
