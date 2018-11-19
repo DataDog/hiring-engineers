@@ -77,9 +77,11 @@ On the single graph, the rollup sum had values so high they couldn't be accomoda
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
+Metrics/situations where the query returns values outside the historical/established norm. (It highlights these areas in red as seen in the image below). for my example, it includes extreme/outlier values or areas of relatively minimal change. 
 
+![alt text][img2d]
 
-
+[img2d]: ./images/anomalies.png "Timeboard - Highlighting the anomalies"
 
 ## Monitoring Data
 
@@ -106,9 +108,14 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 #### Monitor Alert 1 (Warning)
 ![alt text][img3a]
 
-[img3a]: ./images/monitor_alert_log_1.png "Monitor alert 1 (Warning)"
+[img3a]: ./images/monitor_alert_log_1.png "Monitor Alert 1 (Warning)"
 
 
+#### Monitor Alert 2 (No Data)
+
+![alt text][img3a]
+
+[img3a]: ./images/no_data_alert.png "Monitor Alert 2 (No Data)"
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -160,12 +167,25 @@ https://app.datadoghq.com/apm/service/flask-app/flask.request?end=1542603832899&
 A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database), while a **Resource** is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```[4]
 
 - [ x ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.<br/>
-![alt text][img8]
+#### Infrastructure and APM Metrics
 
-[img8]: ./images/apm_infr.png "Snapshot of APM - Individual Traces with Flame"
+
+![alt text][img8a]
+
+[img8a]: ./images/apm_infr1.png "Infrastructure and APM Metrics"
+
+#### Snapshot of APM - Individual Traces with Flame
+
+![alt text][img8b]
+
+[img8b]: ./images/apm_infr.png "Snapshot of APM - Individual Traces with Flame"
+
+
 
 
 [link](https://app.datadoghq.com/apm/trace/1404380140091556782?spanID=6907584043438742536&env=dd_docker&sort=time&colorBy=service&graphType=span_list)
+
+[Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
 
@@ -187,3 +207,4 @@ Is there anything creative you would use Datadog for?
 
 
 [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
+[Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
