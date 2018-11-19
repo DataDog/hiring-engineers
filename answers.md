@@ -298,6 +298,6 @@ Datadog is an extensible monitoring platform that can collect data from any sour
 
 - Query business applications for transaction counts to understand when customers are using the system and if current infrastructure has enough capacity to handle seasonal demands. 
 
-- Monitor IOT devices such as people traffic sensors in retail locations to gain insight on how many customers are in a store and how it translates to sales data like from the previous example.   
+- Monitor IOT devices such as people traffic sensors in retail locations to gain insight on how many customers are in a store and how it correlates to sales data like from the previous example.   
 
-- Monitor exchange markets for data such currency exchange rates including Bitcoin to see how exchange rates are impacting foreign sales of services and goods. 
+- Monitor exchange markets for data such currency exchange rates including Bitcoin through REST calls to see how exchange rates are impacting foreign sales of services and goods. 
