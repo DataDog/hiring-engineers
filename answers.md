@@ -118,7 +118,7 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 #### Monitor Alert 2 (No Data)
 ![alt text][img3c]
 
-[img3b]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
+[img3c]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
