@@ -87,6 +87,80 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+```
+[root@wordpress bin]# cat ~/timeboard.py
+from datadog import initialize, api
+
+options = {
+    'api_key': '998f056dac677bfb7e86a19a64ffb435',
+    'app_key': '8d48aae92a271e70b9a281aa1e497a26c2d1a894'
+}
+
+initialize(**options)
+
+title = "Toms Wordpress Timeboard"
+description = "Time board for technical exercise"
+graphs = [
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"
+},
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL CPU Time"
+},
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Custom Metric"
+},
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Hourly Sum of Custom Metric"
+}]
+
+
+template_variables = [{
+    "name": "wordpress",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+```
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
