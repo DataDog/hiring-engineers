@@ -189,7 +189,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 
 ![alt text][img8a]
 
-[img8a]: ./images/apm_infr1.png "Infrastructure and APM Metrics"
+[img8a]: ./images/apm_infr_1.png "Infrastructure and APM Metrics"
 
 #### Snapshot of APM - Individual Traces with Flame
 
