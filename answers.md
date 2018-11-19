@@ -51,7 +51,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 #### Timeboard
-
+Scripts:
+- [Script for creating a single graph timeboard](./create_timeboard_single.py)
+- [Script for creating a multiple graph timeboard](./create_timeboard_multiple.py)
 
 ![alt text][img2a]
 
@@ -60,7 +62,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 
 I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/>
-On the single graph, the rollup sum had values so high they couldn't be accomodated comfortably with the other graphs... either the details of the rollup sum would be clear and the other graphs will be too small to give useful information, or the details of the other two plots will be clear and the rollup sum plot will be virtually non-existent. The hourly buckets of the roll-up sum also contributes to this, making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below). I have included the muliple graph timeboar above to show the roll up sum clearly. (I also depicted rollup sum plot as an area instead of a line).
+On the single graph, the rollup sum had values so high they couldn't be accomodated comfortably with the other graphs... either the details of the rollup sum would be clear and the other graphs will be too small to give useful information, or the details of the other two plots will be clear and the rollup sum plot will be virtually non-existent. The hourly buckets of the roll-up sum also contributes to this, making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below). I have included the muliple graph timeboard above to show the rollup sum clearly. 
 
 ![alt text][img2b]
 
@@ -140,8 +142,16 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 ![alt text][img5]
 
-[img5]: ./images/scheduled_down_time_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img5a]: ./images/scheduled_down_time_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
+[img5b]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
+
+
+#### Expiration notification for 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+
+![alt text][img4b]
+
+[img4b]: ./images/downtime_expiry_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification""
 
 
 ## Collecting APM Data:
@@ -184,6 +194,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
+[Fully instrumented app](./app1.py)
 
 ### Final Question:
 
