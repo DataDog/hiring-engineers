@@ -6,9 +6,10 @@
 
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-![alt text][img]
+### Host Map
+![alt text][img1]
 
-[img]: ./images/host_map.png "Host map"
+[img1]: ./images/host_map.png "Host map"
 
 
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -49,11 +50,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-#### Host Map
+#### Timeboard
 
-![alt text][img1]
+![alt text][img2]
 
-[img1]: ./images/host_map.png "Host map"
+[img2]: ./images/host_map.png "Time Board"
 
 
 ### Bonus Question: What is the Anomaly graph displaying?
@@ -84,9 +85,9 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![alt text][img2]
+![alt text][img3]
 
-[img2]: ./images/monitor_alert_log_1.png "Monitor alert 1"
+[img3]: ./images/monitor_alert_log_1.png "Monitor alert 1"
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -95,28 +96,28 @@ And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 #### Sat - Sun scheduled downtime notification
-![alt text][img3]
+![alt text][img4]
 
-[img3]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
+[img4]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
 
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
-![alt text][img4]
+![alt text][img5]
 
-[img4]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img5]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 ## Collecting APM Data:
 ### APM Dashboard
-![alt text][img5]
+![alt text][img6]
 
-[img5]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
+[img6]: ./images/apm_dashboard.png "Snapshot of APM Dashboard"
 
 
 ### APM Resource Stats
-![alt text][img6]
+![alt text][img7]
 
-[img6]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
+[img7]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
 - [x] Bonus Question: What is the difference between a Service and a Resource?
 A **Service** is a **__set of processes__** that do the same job, while a **Resource** is a particular **__action__** for a service
