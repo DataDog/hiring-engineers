@@ -59,30 +59,19 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 
 
-![alt text][img2b]
-
-[img2b]: ./images/host_map.png "Timeboard - single graph"
-
-
-I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br>
+I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/>
 On the single graph, the rollup sum had values so high they couldn't be accomodated comfortably with the other graphs... either the details of the rollup sum would be clear and the other graphs will be too small to give useful information, or the details of the other two plots will be clear and the rollup sum plot will be virtually non-existent. The hourly buckets of the roll-up sum also contributes to this, making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below). I have included the muliple graph timeboar above to show the roll up sum clearly. (I also depicted rollup sum plot as an area instead of a line).
 
+![alt text][img2b]
+
+[img2b]: ./images/timeboard_over_4_hours.png "Single graph over 4 hours - to show the difference in values"
+
+<br/>
+<br/>
 
 ![alt text][img2c]
 
 [img2c]: ./images/timeboard_for_multiple_boards.png "Timeboard - multiple graphs"
-
-
-
-
-![alt text][img2d]
-
-[img2d]: ./images/timeboard_over_4_hours.png "Single graph over 4 hours - to show the difference in values"
-
-
-
-
-### Bonus Question: What is the Anomaly graph displaying?
 
 
 
