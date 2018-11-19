@@ -122,6 +122,7 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 [img4a]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
 
 
+#### Expiration notification for  Sat - Sun scheduled downtime notification
 ![alt text][img4b]
 
 [img4b]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
@@ -131,6 +132,8 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 ![alt text][img5]
 
 [img5]: ./images/scheduled_down_time_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+
+
 
 ## Collecting APM Data:
 ### APM Dashboard
