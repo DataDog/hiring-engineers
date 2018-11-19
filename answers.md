@@ -108,13 +108,6 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 [img3a]: ./images/monitor_alert_log_1.png "Monitor alert 1 (Warning)"
 
-#### Monitor Alert 2 (No Data)
-![alt text][img3b]
-
-[img3b]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
-
-_*NB*: This alert occured during my scheduled downtime, so I didn't get a mailed notification. However, I took an snapshot from my events stream_
-
 
 
 #### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -124,10 +117,14 @@ _*NB*: This alert occured during my scheduled downtime, so I didn't get a mailed
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 #### Sat - Sun scheduled downtime notification
-![alt text][img4]
+![alt text][img4a]
 
-[img4]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
+[img4a]: ./images/scheduled_down_time_1.png "Sat - Sun scheduled downtime notification"
 
+
+![alt text][img4b]
+
+[img4b]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
