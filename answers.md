@@ -1,6 +1,10 @@
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+<a href="tags_yaml.PNG" title="The view from our roofdeck">
+<img src="tags_yaml.PNG" width="500"></a>
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Create a datadog user with replication rights in your MySQL server
