@@ -2,6 +2,33 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+Create a datadog user with replication rights in your MySQL server
+```
+sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'LkWJbXrK60r4<mr545qkevCS';"
+sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+```
+If you'd like to get the full metrics catalog please also grant the following privileges:
+```
+sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
+sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+mysql -u datadog --password='LkWJbXrK60r4<mr545qkevCS' -e "show status" | \
+grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+mysql -u datadog --password='LkWJbXrK60r4<mr545qkevCS' -e "show slave status" && \
+echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+```
+If you have also granted additional privileges, verify them with:
+```
+mysql -u datadog --password='LkWJbXrK60r4<mr545qkevCS' -e "SELECT * FROM performance_schema.threads" && \
+echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing SELECT grant\033[0m"
+mysql -u datadog --password='LkWJbXrK60r4<mr545qkevCS' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
+echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing PROCESS grant\033[0m"
+```
+Configure the Agent to connect to MySQL
 ```
 [root@wordpress mysql.d]# pwd
 /etc/datadog-agent/conf.d/mysql.d
@@ -50,7 +77,7 @@ instances:
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Collection interval is controlled by the yaml configuration file and not the Python check file.
+    Collection interval is controlled by the yaml configuration file and not the Python check file.
 
 ## Visualizing Data:
 
