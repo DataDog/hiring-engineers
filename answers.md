@@ -108,19 +108,12 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 [img3a]: ./images/monitor_alert_log_1.png "Monitor alert 1 (Warning)"
 
-#### Monitor Alert 2 (Error)
-
+#### Monitor Alert 2 (No Data)
 ![alt text][img3b]
 
-[img3b]: ./images/monitor_alert_log_1.png "Monitor alert 2 (Error)"
+[img3b]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
 
-
-#### Monitor Alert 2 (No Data)
-![alt text][img3c]
-
-[img3c]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
-
-NB: This alert occured during my scheduled downtime, so I didn't get a mailed notification. However, I took an snapshot from my events stream
+_*NB*: This alert occured during my scheduled downtime, so I didn't get a mailed notification. However, I took an snapshot from my events stream_
 
 
 
@@ -158,8 +151,8 @@ NB: This alert occured during my scheduled downtime, so I didn't get a mailed no
 
 [img7b]: ./images/individual_traces.png "Snapshot of APM - Individual Traces with Flame"
 
-### [x]  Bonus Question: What is the difference between a Service and a Resource?<br/><br/>
-A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database), while a **Resource** is a particular **_action_** for a service. In the case of a database, this could be a query. For example: [```SELECT * FROM users WHERE id = ?```][4]
+[x] ### Bonus Question: What is the difference between a Service and a Resource?<br/><br/>
+A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database), while a **Resource** is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```[4]
 
 - [ x ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
