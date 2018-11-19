@@ -103,19 +103,19 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 
-#### Monitor alert 1 (Warning)
+#### Monitor Alert 1 (Warning)
 ![alt text][img3a]
 
 [img3a]: ./images/monitor_alert_log_1.png "Monitor alert 1 (Warning)"
 
-#### Monitor alert 1 (Error)
+#### Monitor Alert 2 (Error)
 
 ![alt text][img3b]
 
 [img3b]: ./images/monitor_alert_log_1.png "Monitor alert 2 (Error)"
 
 
-
+#### Monitor Alert 2 (No Data)
 ![alt text][img3c]
 
 [img3b]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
