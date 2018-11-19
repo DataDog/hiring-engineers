@@ -195,7 +195,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 
 ![alt text][img8b]
 
-[img8b]: ./images/apm_infr.png "Snapshot of APM - Individual Traces"
+[img8b]: ./images/apm_infr_2.png "Snapshot of APM - Individual Traces"
 
 
 
@@ -244,4 +244,5 @@ Is there anything creative you would use Datadog for?
 [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
 [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
 [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
