@@ -84,9 +84,9 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![alt text][img]
+![alt text][img1]
 
-[img]: ./images/monitor_alert_log_1.png "Monitor alert 1"
+[img1]: ./images/monitor_alert_log_1.png "Monitor alert 1"
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
