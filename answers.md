@@ -260,7 +260,8 @@ Since Flask is python based, to instrument the python code for tracing, you simp
 ``` 
 Alternatively, you can instrument flask application by adding the following lines to the beginning of your python script.
 
-```from ddtrace import patch_all
+```
+from ddtrace import patch_all
 patch_all()
 
 ```
