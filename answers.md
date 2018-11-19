@@ -1,5 +1,16 @@
 ## Collecting Metrics:
 
+When installing the agent, ensure the following ports are not being used by other processes or the agent will not start.
+
+Inbound:
+
+    5000/tcp: port for the go_expvar server
+    5001/tcp: port on which the IPC api listens
+    5002/tcp: port for the Agent browser GUI to be served
+    8125/udp: dogstatsd. Unless dogstatsd_non_local_traffic is set to true. This port is available on localhost:
+    8126/tcp: port for the APM Receiver
+
+
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 To add tags, you have to add the following lines to the datadog.yaml file located in the /etc/datadog-agent directory. Tags can be key value pairs like in this example or a list of of tags.
@@ -61,7 +72,7 @@ instances:
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-You first have to create two files. The python file which executes the check, and the yaml file that calls the python file. The files must have the same name with the respective file extension. In this example, both files are named checkvalue.
+You first have to create two files. The python file which executes the check, and the yaml file that calls the python file. The files must have the same name with the respective file extension. In this example, both files are named checkvalue. Place the yaml file in the /etc/datadog-agent/conf.d directory or a sub directory within this directory with the same name as the check. Place the python custom check file in /etc/datadog-agent/check.d
 ```
 [root@wordpress checks.d]# cat checkvalue.py
 
