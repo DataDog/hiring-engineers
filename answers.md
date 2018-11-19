@@ -120,11 +120,15 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 [img3c]: ./images/no_data_error.png "Monitor alert 2 (No Data)"
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+NB: This alert occured during my scheduled downtime, so I didn't get a mailed notification. However, I took an snapshot from my events stream
 
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+
+#### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+- One that silences it from 7pm to 9am daily on M-F,
+- And one that silences it all day on Sat-Sun.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 #### Sat - Sun scheduled downtime notification
 ![alt text][img4]
@@ -136,7 +140,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 ![alt text][img5]
 
-[img5]: ./images/host_map.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img5]: ./images/scheduled_down_time_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 ## Collecting APM Data:
 ### APM Dashboard
@@ -154,14 +158,15 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 [img7b]: ./images/individual_traces.png "Snapshot of APM - Individual Traces with Flame"
 
-- [x] Bonus Question: What is the difference between a Service and a Resource?
-A **Service** is a **__set of processes__** that do the same job, while a **Resource** is a particular **__action__** for a service
+- [x] Bonus Question: What is the difference between a Service and a Resource?<br/><br/>
+A **Service** is a **__set of processes__** that do the same job (for example a web application, or a database), while a **Resource** is a particular **__action__** for a service. IN the case of the database, this could be a query. For example:
+```SELECT * FROM users WHERE id = ?```[4]
 
 - [ x ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 - [ x ] Please include your fully instrumented app in your submission, as well.
 
-- [ x ] Final Question:
+### Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
@@ -175,6 +180,7 @@ Is there anything creative you would use Datadog for?
 1. Creating and configuring custom metrics: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 2. Creating time boards: https://docs.datadoghq.com/api/?lang=python#timeboards
 3. Rollup: https://docs.datadoghq.com/graphing/functions/rollup/
+4. Getting started with APM https://docs.datadoghq.com/tracing/visualization/
 
 
 Monitoring Docker - Datadog Training Site: https://datadog.github.io/summit-training-session/handson/monitordocker/
