@@ -171,10 +171,10 @@ The anomaly graph displays metrics/situations where the query returns values out
 ## Monitoring Data
 
 
-###### Metric Monitor Configuration
+#### Metric Monitor Configuration
 **Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (ver the last 5 minutes) as well as 'No data' (ocver 10 minutes), see the settings in the image below.
 
-#### Metric monitor configuration
+#### Metric monitor configuration snapshot
 
 ![alt text][img3]
 
