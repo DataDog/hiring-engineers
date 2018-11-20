@@ -57,9 +57,7 @@ tags:
 [img1]: ./images/host_map_1.png "Host map"
 
 
-- [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-- [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-- [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+#### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 [Custom check python file](./my_check.py) <br/>
 [Custom check configuration file](./my_check.yaml)
