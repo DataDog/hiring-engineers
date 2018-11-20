@@ -324,7 +324,7 @@ For my instrumentation, I used the Flask middleware and instrumented it as follo
 ```
 
 
-### Final Question:
+### Datadog: Creative Use:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
