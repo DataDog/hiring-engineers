@@ -1,7 +1,7 @@
 ## Answers (Solutions Engineering Technical Exercise)
 #### Suzie Mae
 
-### Environment Setup
+## Environment Setup
 
 For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is more light weight and would have used less of my system's (rather limited) resources.
 
@@ -23,6 +23,7 @@ docker run -d --name <container_name>
 Some important docker commands to unerstand the state of the cointainers can be found [here].
 
 To edit the docker files, there are two potential ways: <br/>
+
 **Method 1:** 
 - Copy the file to the host, edit on the host and copy back.
 ```
@@ -53,6 +54,7 @@ For example:
 
 > *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file on the host and copy it into the right folder of the container (```/etc/datadog-agetn/datadog.yaml  ```) from the host file using Method 1 above.
 
+## Collecting Metrics
 #### Tagging
 I added my tags to the agent configuration file by execting ```vim.tiny /etc/datadog-agent/datadog.yaml``` (within the container). Then, I added the following lines to my datadog.yaml file:
 ```
