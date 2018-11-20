@@ -85,10 +85,10 @@ tags:
 - [Custom check configuration file](./my_check.yaml)
 
 > **Note**: To ensure the custom check is running as expected, run: <br/>
-```/opt/datadog-agent/bin/agent/agent check <check_name>```
-
-The output should be mething like:
-```
+>```/opt/datadog-agent/bin/agent/agent check <check_name>```
+>
+> The output should be mething like:
+> ```
   Running Checks
   ==============
     
@@ -100,7 +100,7 @@ The output should be mething like:
         Events: 0, Total: 0
         Service Checks: 0, Total: 0
         Average Execution Time : 0s
-```
+> ```
 
 where ``` my_check ``` is the name of your custom check.
 
