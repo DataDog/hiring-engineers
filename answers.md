@@ -52,7 +52,7 @@ For example:
 - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
 - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
 
-> *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file on the host and copy it into the right folder of the container (```/etc/datadog-agetn/datadog.yaml  ```) from the host file using Method 1 above.
+> *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file (```datadog.yaml```) on the host and copy it, from the host, into the right folder of the container (```/etc/datadog-agent/```) from the host file using Method 1 above.
 
 ## Collecting Metrics
 #### Tagging
