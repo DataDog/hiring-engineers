@@ -1,7 +1,8 @@
 ## Answers (Solutions Engineering Technical Exercise)
 #### Suzie Mae
 
-#### Set up
+### Environment Setup
+
 For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is more light weight and would have used less of my system's (rather limited) resources.
 
 Installation instructions:
@@ -21,18 +22,21 @@ docker run -d --name <container_name>
 
 Some important docker commands to unerstand the state of the cointainers can be found [here].
 
-To edit the doocker files, there are two potential ways: 
-Step 1: Copy the file to the host, edit on the host and copy back.
+To edit the docker files, there are two potential ways: <br/>
+**Method 1:** 
+- Copy the file to the host, edit on the host and copy back.
 ```
   docker cp <container_name>:<container filepath> <local filepath>
   vim <local filepath>
   docker cp <local file path> <container_name>:<Container file path>
 
 ```
+**OR**
 
-Step 2: or else log into the container ```docker exec -it <container_name> bash ``` 
-
-install the neccessary. In my case, on the debian version of linux, this was 
+**Method 2:** <br/> 
+- Log into the container ```docker exec -it <container_name> bash ``` 
+- Install the neccessary editor. In my case, I chose "vim-tiny" to minimize the space taken up by the editor on docker. Also,  vim-tiny had everything I needed for basic editing. <br/>
+I installed this on the debian version of linux, by running the following commands: 
 
 ```
 apt-get update
@@ -40,18 +44,17 @@ apt-get install -y vim-tiny
 
 ``` 
 
-I chose "vim-tiny" to minimize the space taken up by the program, and vim-tiiny had everything I needed to edit files.
-
-I found step 2 more convenient, so I went with it. HOwever, all teh commands run in the container can be run from outside the container by using:
+**Note:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
 ``` docker exec -it <container_name> <path to bin> <command>```
 
-For example, in the container, to check the agent status, run: ``` /opt/datadog-agent/bin/agent/agent status ```
+For example:
+- To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
+- To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
 
-From the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
+> *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file on the host and copy it into the right folder of the container (```/etc/datadog-agetn/datadog.yaml  ```) from the host file using Method 1 above.
 
-Fun tip: If you mess up your configuration file (like I did), the container would not start with a corrupted configuration file. However, all isn't lost and you don't have to spin up a new container. Create a new configuration file and copy it into the system from the host file using Step 1 above.
-
-Running ```vim.tiny /etc/datadog-agent/datadog.yaml```, I added the following tags to my datadog.yaml file:
+#### Tagging
+I added my tags to the agent configuration file by execting ```vim.tiny /etc/datadog-agent/datadog.yaml``` (within the container). Then, I added the following lines to my datadog.yaml file:
 ```
 tags:
   - host_tag
@@ -88,7 +91,7 @@ The output should be mething like:
         Average Execution Time : 0s
 ```
 
-where ``` my_check ``` is hte name of your custom check.
+where ``` my_check ``` is the name of your custom check.
 
 #### Changing the collection interval without modifying the Python check file.
 
