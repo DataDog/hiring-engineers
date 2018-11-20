@@ -1,12 +1,14 @@
 ## Answers (Solutions Engineering Technical Exercise)
 #### Suzie Mae
 
+-----
 ## Environment Setup
+-----
+For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is lighter weight and would have used less of my system's (rather limited) resources.
 
-For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is more light weight and would have used less of my system's (rather limited) resources.
-
-Installation instructions:
-I followed the installation instructions here. I included the .... as this was necessary to bind the host port to the docker port, thereby enabling communication between the two machines. So my container was created with:
+**Installation:**
+I created by docker container (with the datadog agent) by running the command below. 
+**Note:**The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
 
 ```
 docker run -d --name <container_name>
@@ -54,7 +56,10 @@ For example:
 
 > *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file (```datadog.yaml```) on the host and copy it, from the host into the right folder of the container (```/etc/datadog-agent/```) using **Method 1** above.
 
+-----
 ## Collecting Metrics
+-----
+
 #### Tagging
 I added my tags to the agent configuration file by execting ```vim.tiny /etc/datadog-agent/datadog.yaml``` (within the container). Then, I added the following lines to my datadog.yaml file:
 ```
@@ -114,9 +119,9 @@ instances:
 
 More information can be found [here on custom metrics and their configuration](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). (Also listed in the reference section below.
 
-
+-----
 ## Visualizing Data:
-
+-----
 #### Timeboard
 Scripts:
 - [Script for creating a single graph timeboard](./create_timeboard_single.py)
@@ -255,8 +260,9 @@ No data: There has been no data on my_metric on:
 
 [img4d]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
-
+-----
 ## Collecting APM Data:
+-----
 
 #### APM Dashboard
 ![alt text][img7a]
