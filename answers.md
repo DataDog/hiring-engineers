@@ -292,12 +292,6 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 A **Resource**, on the other hand, is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```. In web applications, these could be canonical URLs (/users/status/) or handler functions/routes. On the APM interface, these resources can be found after clicking a particular service. (See image below). <br/>
 _NB: More information can be found in the Reference section_
 
-
-##### Examples of services and resources
-![alt text][img8a]
-
-[img8a]: ./images/service_resource_example_1.png "Examples of services and resources"
-
 #### Infrastructure and APM Metrics
 
 
