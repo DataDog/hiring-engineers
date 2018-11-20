@@ -134,7 +134,7 @@ I created a timeboard with multiple graphs in order to extract clearer details a
 - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots. IN other words, only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
-##### Timeboard - single graph (mulitple plots)
+##### Timeboard - single graphxs (mulitple plots)
 ![alt text][img2b]
 
 [img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
@@ -282,8 +282,6 @@ No data: There has been no data on my_metric on:
 [img7d]: ./images/individual_traces1.png "Snapshot of APM - Individual Traces with Flame"
 
 
-https://app.datadoghq.com/apm/service/flask-app/flask.request?end=1542603832899&paused=false&start=1542517432899&env=prod
-
 #### Service vs. Resource<br/>
 A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database). An example of a Service is my flask web application (shown as **flask-app** in the image below). <br/>
 
@@ -346,5 +344,6 @@ Is there anything creative you would use Datadog for?
 9. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 10. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
 11. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+12. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
 12. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
 13. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
