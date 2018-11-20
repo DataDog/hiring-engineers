@@ -84,7 +84,8 @@ tags:
 - [Custom check python file](./my_check.py) <br/>
 - [Custom check configuration file](./my_check.yaml)
 
-> **Note**: To ensure the custom check is running as expected, run: ```/opt/datadog-agent/bin/agent/agent check <check_name>```
+> **Note**: To ensure the custom check is running as expected, run: <br/>
+```/opt/datadog-agent/bin/agent/agent check <check_name>```
 
 The output should be mething like:
 ```
