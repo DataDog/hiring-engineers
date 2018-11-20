@@ -121,7 +121,7 @@ instances:
     - min_collection_interval: 45
 ```
 
-More information can be found [here on custom metrics and their configuration](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). (Also listed in the reference section below.
+More information can be found [here on custom metrics and their configuration](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). 
 
 -----
 ## Visualizing Data:
