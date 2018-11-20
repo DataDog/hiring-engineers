@@ -297,6 +297,12 @@ Just like we did with the previous monitor, edit the message to fit this monitor
 
 ![alt text][monitor2]
 
+Email alerts may look as follows:
+
+![alt text][alert-graph]
+![alt text][metrics-alert]
+![alt text][metrics-graph]
+
 ### Bonus
 These monitors will constantly be running and warning and alerting all the time. If we don't want to be notified during certain hours or time frames, we can schedule downtimes specifically to avoid this scenario and live life with more peace.
 
@@ -450,3 +456,6 @@ I think the hospitality industry could easily benefit from Datadog's product. Wh
 [host-map]: ./snapshots/host-map-tags-snapshot.png "datadog platform view of hosts and specific host's tags"
 [mysql-yaml]: ./snapshots/mysql-integration-config-snapshot.png "yaml file for mysql configuration to connect to datadog's agent"
 [mysql]: ./snapshots/mysql-snapshot.png "how the terminal will look when you type sudo mysql and you enter into a shell to communicate with its server"
+[alert-graph]: ./snapshots/datadog-alert-graph.jpg "datadog email graph of a metric as defined by a monitor previously created"
+[metrics-alert]: ./snapshots/datadog-metrics-alert.jpg "datadog email alert of metric errors as defined by the monitor"
+[metrics-graph]: ./snapshots/datadog-metrics-email.jpg "datadog email of when a user takes a snapshot of a graph on the platform and tags another user with it using @"
