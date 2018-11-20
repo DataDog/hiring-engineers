@@ -162,7 +162,7 @@ Thus, I created the multiple graph timeboard above to show the rollup sum clearl
 
 The anomaly graph displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my choice of metric, it includes extreme and/or outlier values as well as unexpected behaviour (the area of minimal change). 
 
-###### Timeboard - Highlighting the anomalies
+#### Timeboard - Highlighting the anomalies
 
 ![alt text][img2d]
 
@@ -172,7 +172,9 @@ The anomaly graph displays metrics/situations where the query returns values out
 
 
 ###### Metric Monitor Configuration
-Configure the monitor by choosing **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (ver the last 5 minutes) as well as 'No data' (ocver 10 minutes), see the settings in the image below.
+**Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (ver the last 5 minutes) as well as 'No data' (ocver 10 minutes), see the settings in the image below.
+
+#### Metric monitor configuration
 
 ![alt text][img3]
 
@@ -223,7 +225,7 @@ No data: There has been no data on my_metric on:
 ```
 
 #### Output
--  #### Monitor Alert 1 (Warning)
+- #### Monitor Alert 1 (Warning)
 ![alt text][img3a]
 
 [img3a]: ./images/monitor_alert_log_1.png "Monitor Alert 1 (Warning)"
