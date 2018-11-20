@@ -59,8 +59,8 @@ tags:
 
 #### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-[Custom check python file](./my_check.py) <br/>
-[Custom check configuration file](./my_check.yaml)
+- [Custom check python file](./my_check.py) <br/>
+- [Custom check configuration file](./my_check.yaml)
 
 
 #### Changing the collection interval without modifying the Python check file.
@@ -95,7 +95,7 @@ Scripts:
 [img2a]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
 
 
-** Note **
+**Note**
 I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
 On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. Either the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information or the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 
