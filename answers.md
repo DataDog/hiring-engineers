@@ -296,7 +296,7 @@ _NB: More information can be found in the Reference section_
 ##### Examples of services and resources
 ![alt text][img8a]
 
-[img8a]: ./images/service_resource_example.png "Examples of services and resources"
+[img8a]: ./images/service_resource_example_1.png "Examples of services and resources"
 
 #### Infrastructure and APM Metrics
 
