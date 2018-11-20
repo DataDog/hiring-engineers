@@ -248,10 +248,10 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 https://app.datadoghq.com/apm/service/flask-app/flask.request?end=1542603832899&paused=false&start=1542517432899&env=prod
 
-### Bonus Question: What is the difference between a Service and a Resource?<br/><br/>
+#### Service vs. Resource<br/>
 A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database), while a **Resource** is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```[4]
 
-- [ x ] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.<br/>
+
 #### Infrastructure and APM Metrics
 
 
