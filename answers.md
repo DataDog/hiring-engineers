@@ -336,9 +336,7 @@ For my instrumentation, I used the Flask middleware and instrumented it as follo
 
 ### Datadog - Creative Use:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
-Is there anything creative you would use Datadog for?
+Remembering how long I had to wait in line at a restaurant on a Thanksgiving weekend, it would be interesting to use Datadog to find out about traffic at my favorite restaurants. An extra benefit will be the predicitive aspect of datadog that could predict the pattern of traffic flow, and thus help me get in during the right window.
 
 ###
 
