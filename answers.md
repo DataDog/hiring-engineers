@@ -311,7 +311,7 @@ _NB: More information can be found in the Reference section_
 
 [Fully instrumented app](./app.py)<br/><br/>
 **Note:** Instrumentation could be done by either:
-- Installing ddtace and running the application as follows::
+- Installing ```ddtace``` and running the application as follows::
 
 ``` pip install ddtrace
     ddtrace-run python <app_name>.py
