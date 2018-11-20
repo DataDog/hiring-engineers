@@ -151,7 +151,7 @@ Thus, I created the multiple graph timeboard above to show the rollup sum clearl
 
 ### Anomaly Graph.
 
-The anomaly function/plot displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my choice of metric, it includes extreme/outlier values or areas of relatively minimal change. 
+The anomaly graph displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my choice of metric, it includes extreme and/or outlier values as well as unexpected behaviour (the area of minimal change). 
 
 ###### Timeboard - Highlighting the anomalies
 
@@ -161,24 +161,57 @@ The anomaly function/plot displays metrics/situations where the query returns va
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-[x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+###### Metric Monitor Configuration
+Configure the monitor by choosing **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (ver the last 5 minutes) as well as 'No data' (ocver 10 minutes), see the settings in the image below.
 
-- Warning threshold of 500
-- Alerting threshold of 800
-- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+![alt text][img3]
+
+[img3]: ./images/metric_monitor_config.png "Metric monitor configuration"
+
+#### Alert messages ####
+```
+{{#is_warning}}
+
+@xidornx@aol.com 
+
+Warning has been triggered on:
+
+- **Host Name**: {{host.name}} 
+- **IP Address**: {{host.ip}} 
+- **Trigger Value**: {{value}}
+
+{{/is_warning}}
 
 
-Please configure the monitor’s message so that it will:
 
-- Send you an email whenever the monitor triggers.
+{{#is_alert}}
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+@xidornx@aol.com 
 
-- Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+Alert: Has been triggered on:
 
-- When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+- **Host Name**: {{host.name}} 
+- **IP Address**: {{host.ip}} 
+- **Trigger Value**: {{value}}
+
+{{/is_alert}} 
+
+
+
+{{#is_no_data}}
+
+@xidornx@aol.com 
+
+No data: There has been no data on my_metric on:
+  
+- **Host Name**: {{host.name}} 
+- **IP Address**: {{host.ip}} 
+- **Trigger Value**: {{value}}
+
+{{/is_no_data}}
+
+```
 
 
 #### Monitor Alert 1 (Warning)
