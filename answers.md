@@ -97,8 +97,9 @@ Scripts:
 
 **Note:** 
 I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
-**Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. Either the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information or the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
-
+**Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. This means that either:
+-  the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information *or* 
+- the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 In additon, the hourly buckets of the rollup sum contribute to this by making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below).
 
 ###### "Timeboard - single graphs (mulitple plots)"
