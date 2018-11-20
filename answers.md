@@ -46,8 +46,6 @@ There are a couple of different pages referring to agent commands but I found [t
 
 Go ahead and use the start command **sudo service datadog-agent start** to start the Datadog agent--it will run in the background. 
 
-[vagrant-ssh]: ./snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM"
-
 # Collecting Metrics
 
 Let's add a tag to our host representing our VM. In order to do so let's navigate to the agent config file at */etc/datadog-agent*--you can do so with command **cd /etc/datadog-agent**. This will only work if you were in the root folder to start with--to go back to the root place **cd ~**.
@@ -56,11 +54,16 @@ Let's edit the *datadog.yaml* file to add the tags with **sudo vim datadog.yaml*
 
 Press *i* to allow yourself to edit and make changes to this file.
 
+![alt text][host-tags]
+
 Delete the *#* which comments out the line so it isn't run or interpreted by the computer. Then edit the sample tag to whatever you want to call it. They provide good examples of what you may want to name it among all your VMs and applications. This will allow you to keep track of everything without confusion--you could essentially have 10-100 of these VMs with the same environment, so referring to this VM as Ubuntu/Xenial will simply not do.
 
 Save the file when you're done by first pressing "Esc", and then by pressing **:wq** and then *Enter* to save and close out of the file.
 
 Restart the agent with **sudo service datadog-agent restart**.
+
+You'll be able to see it on Datadog's platform once it updates:
+![alt text][host-map]
 
 ## Step 1
 
@@ -70,9 +73,19 @@ Download and install MySQL into the VM with **sudo apt-get install mysql-server*
 
 Once that has been completed, you can enter the MySQL environment where you can communicate with its server and setup databases and whatnot with **sudo mysql**. You can exit by simply typing **exit**, and you'll know if you're in this environment by looking at the left-hand side--it should say *mysql>*.
 
+![alt text][mysql]
+
 ## Step 2
 
-Go to your account on the Datadog platform at www.datadoghq.com and click on *Integrations*. Find MySQL, or search for it in the above search bar and follow the instructions for *step 1* on how to integrate or configure MySQL in the VM to talk with the Datadog Agent so that you can collect certain metrics to be displayed in interactive and informative graphs. *Note that the scripts provided already take into consideration the mysql environment and so you shouldn't be in the mysql environment.*
+![alt text][integrations]
+
+Go to your account on the Datadog platform at www.datadoghq.com and click on *Integrations*. 
+
+![alt text][mysql-integration]
+
+Find MySQL, or search for it in the above search bar and follow the instructions for *step 1* on how to integrate or configure MySQL in the VM to talk with the Datadog Agent so that you can collect certain metrics to be displayed in interactive and informative graphs. *Note that the scripts provided already take into consideration the mysql environment and so you shouldn't be in the mysql environment.*
+
+![alt text][mysql-config]
 
 For the second step where you are configuring the mysql.yaml file, if you're lost as to where you are in the folder structure, go back to the root with **cd ~** and then navigate to the proper location with **cd /etc/datadog-agent/conf.d/mysql.d/**. Once there, you will have to create a new file--**sudo touch mysql.yaml**. Open up this file in your text editor--I used Vim instead, so I opened it up with **sudo vim mysql.yaml**. Then you can copy and paste the script they gave you in there.
 
@@ -84,6 +97,9 @@ extra_innodb_metrics: true
 extra_performance_metrics: true
 schema_size_metrics: false
 ```
+
+I copied the example provided and edited, but it looks as follows:
+![alt text][mysql-yaml]
 
 Restart the agent with **sudo service datadog-agent restart**. Then check to see how it is with **sudo service datadog-agent check mysql**.
 
@@ -110,6 +126,9 @@ class MyMetricCheck(AgentCheck):
    self.gauge('my_metric', random.randint(0, 1000))
 ```
 
+It would look as follows:
+![alt text][check-config]
+
 When you're finished pasting that in, press **:wq** to save and close out of the file.
 
 This will send a random number from 0 - 1000 with the check every time.
@@ -132,6 +151,9 @@ instances:
 ```
 
 *remmber you have to press **i** in order to edit inside Vim.*
+
+It's as simple at that:
+![alt text][metric-interval]
 
 Then save and close by once again pressing *Esc*, *:wq*, and then *Enter*. That's how you can create custom agent checks! 
 
@@ -156,6 +178,8 @@ app_key=
 ```
 
 You're declaring two variables to be used later on. Go to the Datadog GUI in the browser and go to *Integrations* which depending your view could be at the top or left-hand side. Then click on the *APIs* tab at the top (it may be in a different location based on your screen size and resolution).
+
+![alt text][keys]
 
 Copy and paste the respective keys into the file--you may have to create a key and you can do so by clicking the buttons there on the webpage. 
 
@@ -193,6 +217,8 @@ If you run into a permissions error, do this **chmod +x /test-timeboard.sh**. An
 ## Step 2
 
 We want to be able to detect anomalies right? We would like our systems and apps to be monitored and notify or alert us in case something is a bit unusual so we can come in, analyze and resolve the issue if there is one. Let's see how we can do this.
+
+![alt text][monitors]
 
 On the Datadog GUI in the browser, go to the Monitor section and click on a New Monitor for a metric.
 1. Choose the detection method--Anomaly Detection
@@ -249,6 +275,8 @@ curl -X POST -H "Content-type: application/json" -d '{
 }' "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
 
+![alt text][timeboard]
+
 You already have this timeboard created, so go ahead and delete it in the browser and then run this script again and you'll find you have a timeboard with 2 graphs now.
 
 ### Bonus
@@ -262,8 +290,12 @@ We have an anomaly detection monitor, but what other monitors can we have? Let's
 ## Step 2
 Let's do a warning threshold of 500 (it's in yellow). And an alerting threshold of 800 (in red). We can keep the rest of the default settings as is, but let's be notified if there's been no data for more than 10 minutes (3rd step, 3rd from the 4th step).
 
+![alt text][monitor1]
+
 ## Step 3
 Just like we did with the previous monitor, edit the message to fit this monitor and you can include the metric name and the metric values with 2 pairs of curly braces {{}}. *You can search for what you can use when you start with the opening curly brace {*.
+
+![alt text][monitor2]
 
 ### Bonus
 These monitors will constantly be running and warning and alerting all the time. If we don't want to be notified during certain hours or time frames, we can schedule downtimes specifically to avoid this scenario and live life with more peace.
@@ -272,13 +304,21 @@ You can do so by going to Monitor and then to Manage Downtime, or go towards the
 
 Click on *Schedule Downtime*. Find a metric you'd like to avoid hearing about during the evenings on weekdays. Select it and choose the start date to continue on forever. Let's say the evenings start at 7PM and it will go on till the following morning at 9am. Do this daily and that will work for us! 
 
+![alt text][downtime2]
+
 Let's also schedule another downtime for the weekends. You can do this by selecting to repeat every 1 week and check off Saturday and Sunday. And if you select a duration of 1 day, that should do the trick!
+
+![alt text][downtime1]
 
 # Collecting APM Data
 
 APM stands for Application Performance Management and it is just so, this allows you to track the performance or key metrics of your applications. Thereby allowing you to have a single souce to check all your systems and applications to debug, fix or pinpoint areas needing improvemnt.
 
+![alt text][apm]
+
 Go to the APM section on Datadog's platform in the browser. If you already have one setup, go to the docs section inside APM. Otherwise it will bring you to the docs page automatically as you need instructions to get started.
+
+![alt text][apm-docs]
 
 We'll be using Python but they have other docs available for other languages too.
 
@@ -291,6 +331,9 @@ You can do so by opening up the *datadog.yaml* file in */etc/datadog-agent* and 
 apm_config:
   enabled: true
 ```
+
+Mine looks like this:
+![alt text][apm-config]
 
 Uncomment these two lines out by deleting the *#*'s. Then save and close out of the file.
 
@@ -335,6 +378,9 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
+
+Should look like this:
+![alt text][python-app]
 
 Save and close out of the file.
 
@@ -381,3 +427,26 @@ Whereas a service is defined by the user/admin or person in charge of setting it
 # Final Question
 
 I think the hospitality industry could easily benefit from Datadog's product. Whether it comes to reservations, inventory, seating availability, ticket availability or managing all the applications, services, and infrastructure to keep it running efficiently and effectively.
+
+
+[vagrant-ssh]: ./snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM"
+[python-app]: ./snapshots/apm-python-app-snapshot.png "view of basic python app to get APM working with Datadog"
+[timeboard]: ./snapshots/create-timeboard-scripts-snapshot.png "view of syntax of writing a post curl request to create a timeboard with Datadog's API"
+[check-config]: ./snapshots/custom-check-config-snapshot.png "custom datadog agent check sending a random number from 0 - 1000"
+[metric-interval]: ./snapshots/custom-metric-config-snapshot.png "config setup for custom metric changing default collection interval from 30 to 45 seconds"
+[downtime1]: ./snapshots/custom-metric-monitor-downtime-snapshot.png "steps 1-2 preview on how I created my monitor downtime for the weekends"
+[downtime2]: ./snapshots/custom-metric-monitor-downtime-snapshot2.png "steps 1-2 preview on how I created my monitor downtime for weeknights"
+[monitor1]: ./snapshots/custom-metric-monitor-snapshot.png "metric monitor for thresholds to alert team in cases of potential threats or concerns"
+[monitor2]: ./snapshots/custom-metric-monitor-snapshot2.png "metric monitor syntax for including data in alerting email to team members"
+[apm-config]: ./snapshots/dd-agent-apm-config-snapshot.png "datadog.yaml datadog agent config file change to account for APM"
+[host-tags]: ./snapshots/dd-agent-tags-snapshot.png "virtual machine datadog agent config file host's tags"
+[keys]: ./snapshots/dd-api-keys-snapshot.png "datadog platform location for getting personal key information for the API and applications"
+[apm-docs]: ./snapshots/dd-apm-docs-snapshot.png "datadog apm python instructions to install agent package and connect the application with the agent configs"
+[apm]: ./snapshots/dd-apm-snapshot.png "datadog platform apm location"
+[mysql-integration]: ./snapshots/dd-integrations-mysql-snapshot.png "datadog platform integrations area for mysql"
+[integrations]: ./snapshots/dd-integrations-snapshot.png "datadog platform integration icon on navbar"
+[monitors]: ./snapshots/dd-monitors-snapshot.png "datadog platform monitors icon on navbar"
+[mysql-config]: ./snapshots/dd-mysql-integration-config-snapshot.png "mysql integration configuration to allow datadog to gain access and collect metrics"
+[host-map]: ./snapshots/host-map-tags-snapshot.png "datadog platform view of hosts and specific host's tags"
+[mysql-yaml]: ./snapshots/mysql-integration-config-snapshot.png "yaml file for mysql configuration to connect to datadog's agent"
+[mysql]: ./snapshots/mysql-snapshot.png "how the terminal will look when you type sudo mysql and you enter into a shell to communicate with its server"
