@@ -169,7 +169,7 @@ Configure the monitor by choosing **New Monitor** (under Monitors) ---> **Metric
 
 [img3]: ./images/metric_monitor_config.png "Metric monitor configuration"
 
-#### Alert messages ####
+#### Alert message configuration ####
 ```
 {{#is_warning}}
 
@@ -213,7 +213,7 @@ No data: There has been no data on my_metric on:
 
 ```
 
-
+#### Output
 #### Monitor Alert 1 (Warning)
 ![alt text][img3a]
 
