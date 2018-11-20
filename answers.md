@@ -107,7 +107,6 @@ In additon, the hourly buckets of the rollup sum contribute to the "adequate inf
 
 [img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
 
-
 ##### "Timeboard - multiple graphs"
 
 ![alt text][img2c]
