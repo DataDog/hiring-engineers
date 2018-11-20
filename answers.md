@@ -134,7 +134,7 @@ I created a timeboard with multiple graphs in order to extract clearer details a
 - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots. IN other words, only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
-##### Timeboard - single graphs (mulitple plots)
+##### Timeboard - single graph (mulitple plots)
 ![alt text][img2b]
 
 [img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
@@ -341,7 +341,7 @@ Is there anything creative you would use Datadog for?
 4. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
 5. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
 6. [Graphing](https://docs.datadoghq.com/graphing/)
-7. [JSON Graphin Primer](https://docs.datadoghq.com/graphing/graphing_json/)
+7. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
 8. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
 9. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 10. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
