@@ -100,7 +100,7 @@ I created a timeboard with multiple graphs in order to extract clearer details a
 **Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. This means that either:
 -  the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information *or* 
 - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
-In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below).
+In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots. IN other words, only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
 ###### "Timeboard - single graphs (mulitple plots)"
 ![alt text][img2b]
