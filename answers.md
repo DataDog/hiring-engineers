@@ -126,8 +126,7 @@ More information can be found [here on custom metrics and their configuration](h
 -----
 ## Visualizing Data:
 -----
-#### Timeboard
-Scripts:
+#### Timeboard Scripts:
 - [Script for creating a single graph timeboard](./create_timeboard_single.py)
 - [Script for creating a multiple graph timeboard](./create_timeboard_multiple.py)
 
