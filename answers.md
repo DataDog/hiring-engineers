@@ -309,8 +309,8 @@ _NB: More information can be found in the Reference section_
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
 
-[Fully instrumented app](./app.py)
-**Note:** Instrumetation could be done by either:
+[Fully instrumented app](./app.py)<br/><br/>
+**Note:** Instrumentation could be done by either:
 - Installing ddtace and running the application as follows::
 
 ``` pip install ddtrace
