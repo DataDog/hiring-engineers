@@ -306,23 +306,19 @@ _NB: More information can be found in the Reference section_
 [img8b]: ./images/apm_infr_2.png "Snapshot of APM - Individual Traces"
 
 
-
-
-[link](https://app.datadoghq.com/apm/trace/1404380140091556782?spanID=6907584043438742536&env=dd_docker&sort=time&colorBy=service&graphType=span_list)
-
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
 
 [Fully instrumented app](./app.py)
-Note: Instruemtation could be done either by installing ddtace:
-``` pip install ddtrace```
+**Note:** Instrumetation could be done by either:
+- Installing ddtace and running the application as follows::
 
-
-
-and then running the application as follows:
-``` ddtrace-run python <app_name>.py```
-
-Or by including a middle ware into the script. For this, I used the Flask middleware and instrumented it as follows:
+``` pip install ddtrace
+    ddtrace-run python <app_name>.py
+```
+**OR**
+- Including a middleware in the script. <br/>
+For my instrumentation, I used the Flask middleware and instrumented it as follows:
 ``` 
     from ddtrace.contrib.flask import TraceMiddleware
     instrumented_app = TraceMiddleware(app, tracer, service="flask-app", distributed_tracing=False) 
