@@ -300,7 +300,9 @@ Just like we did with the previous monitor, edit the message to fit this monitor
 Email alerts may look as follows:
 
 ![alt text][alert-graph]
+
 ![alt text][metrics-alert]
+
 ![alt text][metrics-graph]
 
 ### Bonus
