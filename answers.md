@@ -40,7 +40,7 @@ Create a [Datadog account](https://app.datadoghq.com/signup) if you already have
 
 Follow the instructions Datadog gives you after registering an account and ensure you're running the scripts provided in the **vagrant ssh** environment. You can tell if you're already inside said environment if you see *vagrant@ubuntu-xenial:* on the left-hand side of the terminal by the blinking cursor.
 
-![alt text](hiring-engineers/snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM")
+![alt text](./hiring-engineers/snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM")
 
 There are a couple of different pages referring to agent commands but I found [this one](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6) to be accurate and work for me.
 
