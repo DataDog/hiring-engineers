@@ -297,7 +297,7 @@ _NB: More information can be found in the Reference section_
 
 ![alt text][img8a]
 
-[img8a]: ./images/apm_infr_1.png "Infrastructure and APM Metrics"
+[img8a]: ./images/apm_infra_1.png "Infrastructure and APM Metrics"
 
 #### Snapshot of APM - Individual Traces with Flame
 
