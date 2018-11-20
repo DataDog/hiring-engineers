@@ -60,13 +60,14 @@ tags:
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
-- [x] Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-[Custom check python file](./my_check.py)
+[Custom check python file](./my_check.py) <br/>
 [Custom check configuration file](./my_check.yaml)
 
-- #### Answer to bonus question:
-In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both must have the same name and be placed in the following folders:
+
+#### Changing the collection interval without modifying the Python check file.
+
+In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both files must have the same name and be placed in the following folders:
 ```
 Config file: /etc/datadog-agent/conf.d/
 Python file: /etc/datadog-agent/checks.d/
@@ -86,18 +87,6 @@ More information can be found [here on custom metrics and their configuration](h
 
 ## Visualizing Data:
 
-[x] Utilize the Datadog API to create a Timeboard that contains:
-
-- Your custom metric scoped over your host.
-- Any metric from the Integration on your Database with the anomaly function applied.
-- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-- Set the Timeboard's timeframe to the past 5 minutes
-- Take a snapshot of this graph and use the @ notation to send it to yourself.
-
 #### Timeboard
 Scripts:
 - [Script for creating a single graph timeboard](./create_timeboard_single.py)
@@ -108,20 +97,28 @@ Scripts:
 [img2a]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
 
 
+** Note **
+I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
+On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. Either the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information or the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 
-I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/>
-On the single graph, the rollup sum had values so high they couldn't be accomodated comfortably with the other graphs... either the details of the rollup sum would be clear and the other graphs will be too small to give useful information, or the details of the other two plots will be clear and the rollup sum plot will be virtually non-existent. The hourly buckets of the roll-up sum also contributes to this, making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below). I have included the muliple graph timeboard above to show the rollup sum clearly. 
+In additon, the hourly buckets of the rollup sum contribute to this by making the rollup sum plot far more discrete than the average metric and postgresql plots (See the two graphs below).
 
+###### "Timeboard - single graphs (mulitple plots)"
 ![alt text][img2b]
 
 [img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
 
-<br/>
-<br/>
+
+###### "Timeboard - multiple graphs"
 
 ![alt text][img2c]
 
 [img2c]: ./images/timeboard_for_multiple_boards.png "Timeboard - multiple graphs"
+
+
+Thus, I created the multiple graph timeboard above to show the rollup sum clearly. 
+
+
 
 
 
