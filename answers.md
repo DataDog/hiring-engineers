@@ -342,10 +342,8 @@ Is there anything creative you would use Datadog for?
 2. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
 3. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
 4. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
-
-
-[Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
-[Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
-[Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
-[What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
-[Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
+5. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
+6. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+7. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+8. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+9. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
