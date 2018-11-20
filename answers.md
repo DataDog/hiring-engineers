@@ -46,7 +46,7 @@ There are a couple of different pages referring to agent commands but I found [t
 
 Go ahead and use the start command **sudo service datadog-agent start** to start the Datadog agent--it will run in the background. 
 
-[vagrant-ssh]: hiring-engineers/snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM"
+[vagrant-ssh]: ./snapshots/vagrant-ssh-snapshot.png "how to know you're in a SSH environment in a Vagrant VM"
 
 # Collecting Metrics
 
