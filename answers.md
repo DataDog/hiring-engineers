@@ -106,7 +106,7 @@ tags:
 
 #### Changing the collection interval without modifying the Python check file.
 
-In programattically creating a custom check, two files are involved, a python file (ending in .py) and a configuration file (ending in .yaml). Both files must have the same name and be placed in the following folders:
+In programattically creating a custom check, two files are involved, a python file (ending in ```.py```) and a configuration file (ending in ```.yaml```). Both files must have the same name and be placed in the following folders:
 ```
 Config file: /etc/datadog-agent/conf.d/
 Python file: /etc/datadog-agent/checks.d/
@@ -141,7 +141,7 @@ More information can be found [here on custom metrics and their configuration](h
 > **Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. This means that either:
 > -  the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information *or* 
 > - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
-> In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots. IN other words, only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
+> In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has far more spread out points than the average metric and postgresql plots -- only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
 #### Timeboard - single graph (mulitple plots)
 ![alt text][img2b]
@@ -154,7 +154,7 @@ More information can be found [here on custom metrics and their configuration](h
 
 [img2c]: ./images/timeboard_for_multiple_boards.png "Timeboard - multiple graphs"
 
-
+<br/>
 Thus, I created the multiple graph timeboard above to show the rollup sum clearly. 
 
 
