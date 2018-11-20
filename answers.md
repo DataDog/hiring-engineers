@@ -21,10 +21,15 @@ docker run -d --name <container_name>
               datadog/agent:latest
 
 ```
+Following this, I ran ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ``` to get information on my installation as well as to ensure my container was running without errors
+> **Side note:** Some important docker commands to understand the state of the cointainers can be found [here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
 
-Some important docker commands to unerstand the state of the cointainers can be found [here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
+-----
+## Collecting Metrics
+-----
+#### Tagging
 
-To edit the docker files, there are two potential ways: <br/>
+To edit the files within docker (which include the datadog-agent configuration file), there are two potential ways: <br/>
 
 **Method 1:** 
 - Copy the file to the host, edit on the host and copy back.
@@ -38,8 +43,10 @@ To edit the docker files, there are two potential ways: <br/>
 
 **Method 2:** <br/> 
 - Log into the container ```docker exec -it <container_name> bash ``` 
-- Install the neccessary editor. In my case, I chose "vim-tiny" to minimize the space taken up by the editor on docker. Also,  vim-tiny had everything I needed for basic editing. <br/>
-I installed this on the debian version of linux, by running the following commands: 
+- Install the neccessary editor. 
+
+I chose to install ```vim-tiny``` over ```vim``` since it contains all I needed for a basic editor and occupies less space. Running the commands below enabled this installation.
+
 
 ```
 apt-get update
@@ -47,20 +54,18 @@ apt-get install -y vim-tiny
 
 ``` 
 
-**Note:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
+> **Side note:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
 ``` docker exec -it <container_name> <path to bin> <command>```
 
-For example:
-- To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
-- To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
+> For example:
+> - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
+> - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
 
 > *_Fun tip_*: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file (```datadog.yaml```) on the host and copy it, from the host into the right folder of the container (```/etc/datadog-agent/```) using **Method 1** above.
 
------
-## Collecting Metrics
------
 
-#### Tagging
+
+
 I added my tags to the agent configuration file by execting ```vim.tiny /etc/datadog-agent/datadog.yaml``` (within the container). Then, I added the following lines to my datadog.yaml file:
 ```
 tags:
