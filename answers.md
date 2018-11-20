@@ -53,8 +53,8 @@ apt-get update
 apt-get install -y vim-tiny
 
 ``` 
-
-> **Side note:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
+> **Side note 1:** The command when using ```vim-tiny``` to work with files is ```vim.tiny```
+> **Side note 2:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
 ``` docker exec -it <container_name> <path to bin> <command>```
 
 > For example:
@@ -294,7 +294,7 @@ No data: There has been no data on my_metric on:
 [img7d]: ./images/individual_traces1.png "Snapshot of APM - Individual Traces with Flame"
 
 
-#### Service vs. Resource<br/>
+#### Service vs. Resource <br/>
 A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database). An example of a Service , in this technical exercise,i s my flask web application (shown as **flask-app** in the image below). <br/>
 
 A **Resource**, on the other hand, is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```. In web applications, these could be canonical URLs (/users/status/) or handler functions/routes. On the APM interface, these resources can be found after clicking a particular service. (See image below). <br/>
