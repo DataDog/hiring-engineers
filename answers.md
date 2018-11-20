@@ -234,12 +234,12 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 [img7b]: ./images/apm_dashboard_1.png "Snapshot of APM Dashboard-Services"
 
 
-### Snapshot of APM Resource Stats
+#### Snapshot of APM Resource Stats
 ![alt text][img7c]
 
 [img7c]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
-### Snapshot of APM - Individual Traces with Flame
+#### Snapshot of APM - Individual Traces with Flame
 
 ![alt text][img7d]
 
