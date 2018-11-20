@@ -54,7 +54,7 @@ apt-get install -y vim-tiny
 
 ``` 
 > **Side note 1:** The command when using ```vim-tiny``` to work with files is ```vim.tiny```
-> **Side note 2:** Although I did most of my work form within the container, as this was more convient for me, all the commands run in the container can also be run from outside the container by using:<br/>
+> **Side note 2:** Although I did most of my work form within the container, as this was more convient for me, all the subcommands run within the container can also be run from outside the container by using:<br/>
 ``` docker exec -it <container_name> <path to bin> <command>```
 
 > For example:
@@ -345,17 +345,18 @@ Is there anything creative you would use Datadog for?
 ------
 ### References
 ------
-1. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
-2. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-3. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
-4. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
-5. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
-6. [Graphing](https://docs.datadoghq.com/graphing/)
-7. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
-8. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
-9. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
-10. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-11. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
-12. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
-12. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
-13. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+1. [Building a custom check agent(Hands on instructions)](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+2. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+3. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+4. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
+5. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
+6. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
+7. [Graphing](https://docs.datadoghq.com/graphing/)
+8. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
+9. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
+10. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+11. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+12. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+13. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
+14. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
+15. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
