@@ -88,7 +88,7 @@ The output should be mething like:
         Average Execution Time : 0s
 ```
 
-where ``my_check``` is hte name of your custom check.
+where ``` my_check ``` is hte name of your custom check.
 
 #### Changing the collection interval without modifying the Python check file.
 
