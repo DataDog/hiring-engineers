@@ -20,7 +20,7 @@ docker run -d --name <container_name>
 
 ```
 
-Some important docker commands to unerstand the state of the cointainers can be found [here].
+Some important docker commands to unerstand the state of the cointainers can be found [here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
 
 To edit the docker files, there are two potential ways: <br/>
 
@@ -228,9 +228,7 @@ No data: There has been no data on my_metric on:
 
 #### Scheduling Downtimes
 
-- One that silences it from 7pm to 9am daily on M-F,
-- And one that silences it all day on Sat-Sun.
-- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+**Path**: Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message.
 
 #### Sat - Sun scheduled downtime notification
 ![alt text][img4a]
@@ -339,12 +337,13 @@ Is there anything creative you would use Datadog for?
 1. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 2. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
 3. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
-4. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
-5. [Graphing](https://docs.datadoghq.com/graphing/)
-6. [JSON Graphin Primer](https://docs.datadoghq.com/graphing/graphing_json/)
-7. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
-8. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
-9. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-10. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
-11. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
-12. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+4. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
+5. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
+6. [Graphing](https://docs.datadoghq.com/graphing/)
+7. [JSON Graphin Primer](https://docs.datadoghq.com/graphing/graphing_json/)
+8. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
+9. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+10. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+11. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+12. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
+13. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
