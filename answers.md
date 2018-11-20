@@ -221,23 +221,25 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 
 ## Collecting APM Data:
+
 #### APM Dashboard
 ![alt text][img7a]
 
 [img7a]: ./images/apm_board_1.png "Snapshot of APM Board"
 
+#### Snapshot of APM Dashboard-Services"
 
 ![alt text][img7b]
 
 [img7b]: ./images/apm_dashboard_1.png "Snapshot of APM Dashboard-Services"
 
 
-### APM Resource Stats
+### Snapshot of APM Resource Stats
 ![alt text][img7c]
 
 [img7c]: ./images/apm_resource_stats.png "Snapshot of APM Resource Stats"
 
-<br/><br/>
+### Snapshot of APM - Individual Traces with Flame
 
 ![alt text][img7d]
 
@@ -270,7 +272,7 @@ A **Service** is a **_set of processes_** that do the same job (for example a we
 
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
-- [ x ] Please include your fully instrumented app in your submission, as well.
+
 [Fully instrumented app](./app.py)
 Note: Instruemtation could be done either by installing ddtace:
 ``` pip install ddtrace```
