@@ -214,19 +214,19 @@ No data: There has been no data on my_metric on:
 ```
 
 #### Output
-#### Monitor Alert 1 (Warning)
+-  #### Monitor Alert 1 (Warning)
 ![alt text][img3a]
 
 [img3a]: ./images/monitor_alert_log_1.png "Monitor Alert 1 (Warning)"
 
 
-#### Monitor Alert 2 (No Data)
+- #### Monitor Alert 2 (No Data)
 
 ![alt text][img3b]
 
 [img3b]: ./images/no_data_alert.png "Monitor Alert 2 (No Data)"
 
-#### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+#### Scheduling Downtimes
 
 - One that silences it from 7pm to 9am daily on M-F,
 - And one that silences it all day on Sat-Sun.
