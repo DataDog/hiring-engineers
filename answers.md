@@ -143,7 +143,7 @@ More information can be found [here on custom metrics and their configuration](h
 > - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 > In additon, the hourly buckets of the rollup sum contribute to the "adequate information issue" by making the rollup sum plot far more discrete than the average metric and postgresql plots. IN other words, only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
-##### Timeboard - single graphxs (mulitple plots)
+##### Timeboard - single graph (mulitple plots)
 ![alt text][img2b]
 
 [img2b]: ./images/timeboard_over_x_hours.png "Single graph over 4 hours - to show the difference in values"
