@@ -225,17 +225,23 @@ No data: There has been no data on my_metric on:
 ```
 
 #### Output
-- #### Monitor Alert 1 (Warning)
+- #### Monitor Notification 1 (Warning)
 ![alt text][img3a]
 
-[img3a]: ./images/monitor_alert_log_1.png "Monitor Alert 1 (Warning)"
+[img3a]: ./images/monitor_alert_log_1.png "Monitor Notification 1 (Warning)"
 
 
-- #### Monitor Alert 2 (No Data)
+- #### Monitor Notification 2 (Alert)
 
 ![alt text][img3b]
 
-[img3b]: ./images/no_data_alert.png "Monitor Alert 2 (No Data)"
+[img3b]: ./images/monitor_alert_log_2.png "Monitor Notification 2 (Alert)"
+
+- #### Monitor Notification 3 (No Data)
+
+![alt text][img3c]
+
+[img3c]: ./images/no_data_alert.png "Monitor Notification 2 (No Data)"
 
 #### Scheduling Downtimes
 
