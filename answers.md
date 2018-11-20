@@ -119,14 +119,11 @@ In additon, the hourly buckets of the rollup sum contribute to this by making th
 Thus, I created the multiple graph timeboard above to show the rollup sum clearly. 
 
 
+### Anomaly graph display.
 
+The anomaly function/plot displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my example, it includes extreme/outlier values or areas of relatively minimal change. 
 
-
-### Bonus Question: What is the Anomaly graph displaying?
-
-Metrics/situations where the query returns values outside the historical/established norm. (It highlights these areas in red as seen in the image below). for my example, it includes extreme/outlier values or areas of relatively minimal change. 
-
-#### Timeboard - Highlighting the anomalies
+###### Timeboard - Highlighting the anomalies
 
 ![alt text][img2d]
 
