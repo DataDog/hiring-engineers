@@ -5,12 +5,21 @@
 For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is more light weight and would have used less of my system's (rather limited) resources.
 
 Installation instructions:
-I followed the installation instructions here. I included the .... as this was necessary to bind the host port to the docker port, thereby enabling communication between the two machines. So my container was run with:
+I followed the installation instructions here. I included the .... as this was necessary to bind the host port to the docker port, thereby enabling communication between the two machines. So my container was created with:
+
 ```
+docker run -d --name <container_name>
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              -e DD_API_KEY=<YOUR_API_KEY> \
+              -e DD_APM_ENABLED=true \
+              -p 127.0.0.1:8126:8126/tcp \
+              datadog/agent:latest
 
 ```
 
-Some important docker commands to unerstand the state of the cointainers can be found here.
+Some important docker commands to unerstand the state of the cointainers can be found [here].
 
 To edit the doocker files, there are two potential ways: 
 Step 1: Copy the file to the host, edit on the host and copy back.
@@ -62,6 +71,24 @@ tags:
 - [Custom check python file](./my_check.py) <br/>
 - [Custom check configuration file](./my_check.yaml)
 
+***Note**: To ensure the custom sheck is running as expected, run: ```/opt/datadog-agent/bin/agent/agent check <check_name>```
+
+The output should be mething like:
+```
+  Running Checks
+  ==============
+    
+    my_check (1.0.0)
+    ----------------
+        Instance ID: my_check:5ba864f3937b5bad [OK]
+        Total Runs: 1
+        Metric Samples: 1, Total: 1
+        Events: 0, Total: 0
+        Service Checks: 0, Total: 0
+        Average Execution Time : 0s
+```
+
+where ``my_check``` is hte name of your custom check.
 
 #### Changing the collection interval without modifying the Python check file.
 

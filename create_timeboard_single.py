@@ -11,8 +11,8 @@ Reference: https://docs.datadoghq.com/api/?lang=python#timeboards
 """
 
 options = {
-    'api_key': '57bbb89561459466cccaaaeb4d356007',
-    'app_key': '4547384785b778295067b09598fc321e598ed2c8'
+    'api_key': '<API_KEY>',
+    'app_key': '<APP_KEY>'
 }
 
 initialize(**options)
