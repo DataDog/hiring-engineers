@@ -105,11 +105,17 @@ $ sudo systemctl stop datadog-agent
 
 To start it again:
 $ sudo systemctl start datadog-agent
+
+To check status // Very useful command.  This will tell you where there you have errors.  For example, I had the wrong spaces into my datadog.yaml configuration.  
+$ sudo datadog-agent status
 ```
 
 # Collecting Metrics:
 
 ## Step 1: Add tags in the Agent config file
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things .  
+
+<!-- image here -->
 <img src="./images/2-yaml-config.png">
 
 1. Go to Host Map.  You should see a hexagon representing your VM.  
@@ -133,11 +139,32 @@ The above commands opens up the Linux virtual editor.  [Using VIM](https://www.l
 $ sudo service datadog-agent restart
 ```
 
+6. Checking if it worked. Go to Host Map on the dashboard. MyTags should read 'my_test_tag'
+
 ## Step 2: Install a database & respective Datadog integration
+The goal here is to install a database and integrate the
 
-1. $ brew install post
+1. Go to the VM's root directory
+```
+$ cd
+```
+2. Install your database.  I used Postgresql.  
+```
+$ sudo apt-get update
+$ sudo apt-get install postgresql postgresql-contrib
+```
+3. Enter your database to see if it works.
+```
+$ sudo su - postgres
+$ psql
+```
+To exit
+```
+postgres=# \q (or Ctrl + D)
+```
+4. Install the respective Datadog integration for that database.
 
-5. Install the respective Datadog integration for that database.
+
 <img src="./images/5-check-postgresql-integration.png">
 <img src="./images/5-yaml-postgresql.png">
 <img src="./images/5-install-overview-postgresql.png">
