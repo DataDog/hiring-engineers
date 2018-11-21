@@ -384,7 +384,8 @@ A **Resource**, on the other hand, is a particular **action** for a service. In 
 **Note:** Instrumentation could be done by either:
 - Installing ```ddtace``` and running the application as follows::
 
-``` pip install ddtrace
+``` 
+    pip install ddtrace
     ddtrace-run python <app_name>.py
 ```
 **OR**
