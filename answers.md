@@ -400,7 +400,7 @@ For my instrumentation, I used the Flask middleware and instrumented it as follo
 
 ### Datadog - Creative Use:
 
-Remembering how long I had to wait in line at a restaurant on a Thanksgiving weekend, it would be interesting to use Datadog to find out about traffic at my favorite restaurants. An extra benefit will be the predicitive aspect of datadog that could predict the pattern of traffic flow, and thus help me get in during the right window.
+Remembering how long I had to wait in line at a restaurant on a Thanksgiving weekend, it would be interesting to use Datadog to find out about traffic at my favorite restaurants. An extra benefit will be the predicitive aspect of datadog that could predict the pattern of traffic flow, and thus help clients in organising their schedules and get in during a 'good' window.
 
 ###
 
