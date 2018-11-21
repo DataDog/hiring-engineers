@@ -123,18 +123,85 @@ A. I could not find thw way to change the timeframe to the value less than 1 hou
 
 A. It shows parts in a charts in where some graphs are show different movement.
 
+# Monitoring Data
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
+**Q10.Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following 
 
+values over the past 5 minutes:
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+Please configure the monitor’s message so that it will:
+Send you an email whenever the monitor triggers.
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+A. The Alert was detected properly but it seemed that @notification did not work as expected. 
+![Monitor1](https://github.com/jhhys/hiring-engineers/blob/master/Monitoring%20Data1.png)
+![Monitor2](https://github.com/jhhys/hiring-engineers/blob/master/Monitoring%20Data2.png)
 
+**Q11.Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Q. Bonus Question: What is the difference between a Service and a Resource?
+A. 
+![Downtime1](https://github.com/jhhys/hiring-engineers/blob/master/downtime1.png)
+![Downtime2](https://github.com/jhhys/hiring-engineers/blob/master/downtime2.png)
+
+# Collecting APM Data:
+**Q12.Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+A.
+![APM](https://github.com/jhhys/hiring-engineers/blob/master/APM-flask.png)
+
+**Q13.Bonus Question: What is the difference between a Service and a Resource?
+
 A. A service is an entry point of an application and a resource is a particular action for a given service.
 
-Q. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-https://app.datadoghq.com/apm/service/flask/flask.request?end=1542681849016&env=prod&paused=false&start=1542678249016
+**Q14. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+A.
+![Infra-APM](https://github.com/jhhys/hiring-engineers/blob/master/Infra-with-APMagent.png)
 
-Q. Is there anything creative you would use Datadog for?
+flaskApp.py 
+```
+
+rom flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+~                                          
+
+```
+
+# Final Question:
+**Q15. Is there anything creative you would use Datadog for?
+
 A. Availability of devices used for IoT
-
 
