@@ -298,7 +298,7 @@ I have included snapshots of the various required settings below:
 
 
 #### Sat - Sun scheduled downtime notification
-**Note:** I configured a one-off notification for this exercise)
+**Note:** I configured a one-off notification for this exercise)<br/>
 ![alt text][img4c]
 
 [img4c]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
