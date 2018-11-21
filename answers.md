@@ -133,17 +133,10 @@ Since I did not go via the ddtrace-run route, I had to change couple of things m
 
 Going into the /etc/datadog-agent/datadog.yaml file, I made the neccesary changes below:
 
---# Trace Agent Specific Settings
---#
 apm_config:
---#   Whether or not the APM Agent should run
-   enabled: true
-   env: test_sn
---#   The environment tag that Traces should be tagged with
---#   Will inherit from "env" tag if none is applied here
---#   env: none
---#   The port that the Receiver should listen on
-   receiver_port: 8126
+  enabled: true
+  env: test_sn
+  receiver_port: 8126   
 
 This allowed me to enable the trace agent manually, and next I needed to make sure my flask app could actually use this.
 
@@ -181,6 +174,7 @@ def trace_endpoint():
     return 'Posting Traces'
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+
 
 
 After restaring the agent, all I really had to do was run the following commands:
