@@ -357,9 +357,9 @@ I have included snapshots of the various required settings below:
 
 
 #### Service vs. Resource <br/>
-A **Service** is a **_set of processes_** that perform the same job (for example a web application, or a database). An example of a Service in this technical exercise is my flask web application (shown as **flask-app** in the image below). <br/>
+A **Service** is a **set of processes** that perform the same job (for example a web application, or a database). An example of a Service, in this technical exercise, is my flask web application (shown as **flask-app** in the image below). <br/>
 
-A **Resource**, on the other hand, is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```. In web applications, these could be canonical URLs (/users/status/) or handler functions/routes. On the APM interface, these resources can be found after clicking a particular service. (See image below). <br/>
+A **Resource**, on the other hand, is a particular **action** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```. In web applications, these could be canonical URLs (/users/status/) or handler functions/routes. On the APM interface, these resources can be found after clicking a particular service. (See image below). <br/>
 
 > _NB: More information can be found in the reference section_
 
