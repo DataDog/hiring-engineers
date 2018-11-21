@@ -134,7 +134,7 @@ tags:
 
 In programattically creating a custom check, two files are involved:
 - a python file (ending in ```.py```) and 
-- a configuration file (ending in ```.yaml```). 
+- a configuration file (ending in ```.yaml```) <br/>
 Both files must have the same name and be placed in the following folders:
 ```
 Config file: /etc/datadog-agent/conf.d/
