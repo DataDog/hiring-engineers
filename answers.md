@@ -206,7 +206,7 @@ The anomaly graph displays metrics/situations where the query returns values out
 
 #### Metric Monitor Configuration
 **Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. <br/>
-For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), see the settings in the image below.
+For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), the configuration is shown in the image below.
 
 #### Metric monitor configuration snapshot
 
@@ -279,7 +279,9 @@ No data: There has been no data on my_metric on:
 
 #### Scheduling Downtimes
 
-**Path**: Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. I have included snapshots of the various required settings below:
+**Steps to schedule downtimes:**<br/>
+Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. 
+_I have included snapshots of the various required settings below:_
 
 
 #### Sat - Sun scheduled configuration notification (recurrent)
