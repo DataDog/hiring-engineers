@@ -22,6 +22,7 @@ docker run -d --name <container_name>
 
 ```
 Following this, I ran ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ``` to get information on my installation as well as to ensure my container was running without errors. An excerpt of the output is shown below:
+
 ```
 ==============
 Agent (v6.6.0)
@@ -260,32 +261,51 @@ No data: There has been no data on my_metric on:
 
 #### Scheduling Downtimes
 
-**Path**: Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message.
+**Path**: Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. I have included snapshots of the various required settings below:
 
-#### Sat - Sun scheduled downtime notification
+
+#### Sat - Sun scheduled configuration notification (recurrent)
 ![alt text][img4a]
 
-[img4a]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
+[img4a]: ./images/weekly_downtime_schedule(recurrent).png "Sat - Sun scheduled downtime configuration (recurrent)"
+
+
+#### Sat - Sun scheduled configuration notification (one-off)
+
+![alt text][img4b]
+
+[img4a]: ./images/weekly_downtime_schedule(one-off).png "Sat - Sun scheduled downtime configuration (one-off)"
+
+
+#### Sat - Sun scheduled downtime notification
+![alt text][img4b]
+
+[img4b]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
 
 
 #### Expiration notification for  Sat - Sun scheduled downtime notification
-![alt text][img4b]
+![alt text][img4c]
 
-[img4b]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
-
-#### 7pm to 9am, Monday - Friday,  scheduled downtime notification
-
-![alt text][img4c]Editi
-
-[img4c]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4c]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
 
 
-
-#### Expiration notification for 7pm to 9am, Monday - Friday,  scheduled downtime notification
+#### 7pm to 9am, Monday - Friday,  scheduled downtime configuration (recurrent)
 
 ![alt text][img4d]
 
-[img4d]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4d]: ./images/daily_downtime_schedule.png "7pm to 9am, Monday - Friday, scheduled downtime configuration (recurrent)"
+
+#### 7pm to 9am, Monday - Friday,  scheduled downtime notification
+
+![alt text][img4e]
+
+[img4e]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+
+#### Expiration notification for 7pm to 9am, Monday - Friday,  scheduled downtime notification
+
+![alt text][img4f]
+
+[img4f]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 -----
 ## Collecting APM Data:
