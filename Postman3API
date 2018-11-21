@@ -1,0 +1,55 @@
+POST /api/v1/dash?api_key=2304c16262ee065312d8738f6cab7384&amp; application_key=a1ad9167e47540e6ebe0fa8b3fb3e53c31249025 HTTP/1.1
+Host: app.datadoghq.com
+Content-Type: application/json
+cache-control: no-cache
+Postman-Token: 6c81e6e3-7e6a-468f-818f-1dc57273244f
+{
+    "graphs": [
+        {
+            "title": "My Metric",
+            "definition": {
+                "events": [],
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:ubuntu-xenial}"
+                    }
+                ]
+            },
+            "viz": "timeseries"
+        },
+        {
+            "title": "Anomalies MongoDB",
+            "definition": {
+                "events": [],
+                "requests": [
+                    {
+                        "q": "anomalies(avg:mongodb.connections.current{host:ubuntu-xenial}, 'basic', 2)"
+                    }
+                ]
+            },
+            "viz": "timeseries"
+        },
+        {
+            "title": "Rollup My_Metric",
+            "definition": {
+                "events": [],
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:ubuntu-xenial}.rollup(sum, 3600)"
+                    }
+                ]
+            },
+            "viz": "timeseries"
+        }
+    ],
+    "title": "My 3 APIs Timeboard",
+    "description": "My Metric Info.",
+    "template_variables": [
+        {
+            "name": "ubuntu_xenial",
+            "prefix": "host",
+            "default": "host:my-host"
+        }
+    ],
+    "read_only": "True"
+}
