@@ -281,7 +281,7 @@ No data: There has been no data on my_metric on:
 
 **Steps to schedule downtimes:**<br/>
 Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. <br/>
-I have included snapshots of the various required settings below:_
+I have included snapshots of the various required settings below:
 
 
 #### Sat - Sun scheduled configuration notification (recurrent)
@@ -294,39 +294,39 @@ I have included snapshots of the various required settings below:_
 
 ![alt text][img4b]
 
-[img4a]: ./images/weekly_downtime_schedule(one-off).png "Sat - Sun scheduled downtime configuration (one-off)"
+[img4b]: ./images/weekly_downtime_schedule(one-off).png "Sat - Sun scheduled downtime configuration (one-off)"
 
 
 #### Sat - Sun scheduled downtime notification
-**Note:** I configurrd a one-off notification for this exercise)
-![alt text][img4b]
+**Note:** I configured a one-off notification for this exercise)
+![alt text][img4c]
 
-[img4b]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
+[img4c]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
 
 
 #### Expiration notification for  Sat - Sun scheduled downtime notification
-![alt text][img4c]
+![alt text][img4d]
 
-[img4c]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
+[img4d]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
 
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime configuration (recurrent)
 
-![alt text][img4d]
+![alt text][img4e]
 
-[img4d]: ./images/daily_downtime_schedule.png "7pm to 9am, Monday - Friday, scheduled downtime configuration (recurrent)"
+[img4e]: ./images/daily_downtime_schedule.png "7pm to 9am, Monday - Friday, scheduled downtime configuration (recurrent)"
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
-![alt text][img4e]
+![alt text][img4f]
 
-[img4e]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4f]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 #### Expiration notification for 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
-![alt text][img4f]
+![alt text][img4g]
 
-[img4f]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4g]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 -----
 ## Collecting APM Data:
