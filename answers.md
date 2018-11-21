@@ -21,7 +21,11 @@ docker run -d --name <container_name>
               datadog/agent:latest
 
 ```
-Following this, I ran ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ``` to get information on my installation as well as to ensure my container was running without errors. An excerpt of the output is shown below:
+Following this, I ran
+ ``` 
+ docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status 
+ ``` 
+ to get information on my installation as well as to ensure my container was running without errors. An excerpt of the output is shown below:
 
 ```
 ==============
