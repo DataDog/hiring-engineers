@@ -318,6 +318,10 @@ Let's also schedule another downtime for the weekends. You can do this by select
 
 ![alt text][downtime1]
 
+A scheduled downtime email may look something like this:
+
+![alt text][downtime-email]
+
 # Collecting APM Data
 
 APM stands for Application Performance Management and it is just so, this allows you to track the performance or key metrics of your applications. Thereby allowing you to have a single souce to check all your systems and applications to debug, fix or pinpoint areas needing improvemnt.
@@ -461,3 +465,4 @@ I think the hospitality industry could easily benefit from Datadog's product. Wh
 [alert-graph]: ./snapshots/datadog-alert-graph.JPG "datadog email graph of a metric as defined by a monitor previously created"
 [metrics-alert]: ./snapshots/datadog-metrics-alert.JPG "datadog email alert of metric errors as defined by the monitor"
 [metrics-graph]: ./snapshots/datadog-metrics-email.JPG "datadog email of when a user takes a snapshot of a graph on the platform and tags another user with it using @"
+[downtime-email]: ./snapshots/datadog-downtime.JPG "datadog email scheduled downtime alert"
