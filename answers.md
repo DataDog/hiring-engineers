@@ -60,7 +60,8 @@ apt-get install -y vim-tiny
 > For example:
 > - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
 > - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
-
+> Other useful agent commands cona be [found here](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6)
+> 
 > **_Fun tip_**: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file (```datadog.yaml```) on the host and copy it, from the host into the right folder of the container (```/etc/datadog-agent/```) using **Method 1** above.
 
 
@@ -84,7 +85,7 @@ tags:
 - [Custom check python file](./my_check.py) <br/>
 - [Custom check configuration file](./my_check.yaml)
 
-> **Note**: To ensure the custom check is running as expected, run: <br/>
+> **Side note**: To ensure the custom check is running as expected, run: <br/>
 >```/opt/datadog-agent/bin/agent/agent check <check_name>```
 >
 > The output should be allong the following lines:
@@ -349,18 +350,20 @@ Remembering how long I had to wait in line at a restaurant on a Thanksgiving wee
 ------
 ### References
 ------
-1. [Building a custom check agent(Hands on instructions)](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
-2. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
-3. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-4. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
-5. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
-6. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
-7. [Graphing](https://docs.datadoghq.com/graphing/)
-8. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
-9. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
-10. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
-11. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-12. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
-13. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
-14. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
-15. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+1. [Agent Commands](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6)
+2. [Building a custom check agent(Hands on instructions)](https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+3. [Creating and configuring custom metrics](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+4. [Creating time boards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+5. [Distributed Tracing](https://docs.datadoghq.com/tracing/faq/distributed-tracing/)
+6. [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
+7. [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/)
+8. [Graphing](https://docs.datadoghq.com/graphing/)
+9. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
+10. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
+11. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+12. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+13. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+14. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
+15. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
+16. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
