@@ -111,6 +111,7 @@ Modifying the alert was easy, and can be found here:
 Under the Monitor Tab, just simply create a Monitor and follow the conditions from the screenshot.
 
 Steps 1-3: https://www.dropbox.com/s/nytqk1n3alglkpu/800500.png?dl=0
+
 Step 4: https://www.dropbox.com/s/rpf2w2i3kmus0qv/monitoralert.png?dl=0
 
 Email notification:
@@ -127,6 +128,8 @@ Scheduled to start Nov 20, 2018 19:00 PST and repeats weekly from 7:00pm to 9:00
 
 Sat-Sun Downtime:
 Scheduled to start Nov 23, 2018 0:00 PST and repeats weekly from 12:00am to 12:00am in 2 days on Sunday and Saturday
+
+Downtime Email alert can be seen here: https://www.dropbox.com/s/fy2fxzgud5p06l8/downtimealert.png?dl=0
 
 ## Collecting APM Data:
 
@@ -180,7 +183,7 @@ A "Service" is the name of a set of processes that work together to provide a fe
 	Example: webservice to call something
 
 Resource: A particular query to a service.
-	Example: The underlying result 
+	Example: The underlying result from being called.
 
 
 ## Final Question:
