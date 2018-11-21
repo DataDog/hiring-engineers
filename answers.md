@@ -44,7 +44,7 @@ Once tags were set, since this is a config file, the agent has to be restarted, 
 
 In order to view my tags, I hopped to the Infrastructure tab, and was able to see them on my dashboard. https://www.dropbox.com/s/mvuvr6cdksycw0q/projse.png?dl=0
 
-### - Installing Database - **
+### - Installing Database -
 
 The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo since I use it quite a bit. I ran these commands to get it installed
 
@@ -189,7 +189,9 @@ python flaskapp.py bash
 
 And from another terminal, just start using curl
 url http://127.0.0.1:5050/api/trace
+
 url http://127.0.0.1:5050/api/apm
+
 url http://127.0.0.1:5050
 
 Once this was done, the DataDog dashboard starting picking up metrics as seen here:
@@ -204,7 +206,7 @@ Link: https://app.datadoghq.com/dash/993992/my-3-apis-timeboard
 
 The flaskapp.py will be attached as well.
 
-**Bonus Question: What is the difference between a Service and a Resource?
+**Bonus Question: What is the difference between a Service and a Resource?**
 
 A "Service" is the name of a set of processes that work together to provide a feature set.
 	Example: webservice to call something
