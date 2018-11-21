@@ -10,8 +10,8 @@ Your answers to the questions go here.
 
 ### Q3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-```python:checks.d/myMetric.py
-
+A. python:checks.d/myMetric.py
+```
 import random
 # the following try/except block will make the custom check compatible with any Agent version
 try:
@@ -32,8 +32,9 @@ class myMetric(AgentCheck):
 
 ### Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-``` checks.d/myMetric.yaml
+A. checks.d/myMetric.yaml
 
+``` 
 init_config:
 　　min_collection_interval: 45
 
