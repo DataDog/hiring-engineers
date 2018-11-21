@@ -1,11 +1,13 @@
-#Enterprise Sales Engineer
+### Enterprise Sales Engineer
 
-#Sid Narang
+## Sid Narang
 
-Introduction: 
+**# Introduction:**
+
 My intial step was to make sure the whole project was to watch some getting-started DataDog videos and make sure I understood exactly the types of problems DataDog was solving. This gave me a quick and simple understanding on some of the use cases that are supported by customers and how the product itself could expand.
 
-Prerequisites - Setup the environment
+**# Prerequisites - Setup the environment**
+
 I am using macOS High Sierra Version 10.13.5
 
 Vagrant is fast and simple and *most* of the time has low dependency issues if done right.
@@ -19,20 +21,21 @@ $ vagrant up
 
 This was a simple process, with SSH being next. https://www.dropbox.com/s/v6ve8efnfv35r2b/VagrantSSH.png?dl=0
 
-Collecting Metrics:
+**# Collecting Metrics:**
 
-- Install Agent - 
+# - Install Agent - 
 Going to datadoghq.com and signing up for an account gave me the ability to walk through the product quickly.
 
 The first task was to download the agent, hopping into the Installation Instructions - I was able to get the commands for Ubuntu and run it locally on my machine. 
 
-Script: DD_API_KEY="apikey" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+**Script:** DD_API_KEY="apikey" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 https://www.dropbox.com/s/hr2rwbtgglurjc9/Installationinstructionsagent.png?dl=0
 
 In the DataDog dashboard, metrics started to appear and were default metrics such as system disk, cpu, etc.
 
-- Add Tags - 
+**# - Add Tags - **
+
 Adding a tag was simple, and is modified in the yaml file located at /etc/datadog-agent/datadog.yaml. This is the config file that DataDog leverages and holds key paramaters and settings when starting up.
 
 My tags were set, as you can see here: https://www.dropbox.com/s/sm0kuqpya7e2j93/tags.png?dl=0
@@ -42,7 +45,7 @@ Once tags were set, since this is a config file, the agent has to be restarted, 
 
 In order to view my tags, I hopped to the Infrastructure tab, and was able to see them on my dashboard. https://www.dropbox.com/s/mvuvr6cdksycw0q/projse.png?dl=0
 
-- Installing Database - 
+**# - Installing Database - **
 
 The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo since I use it quite a bit. I ran these commands to get it installed
 
