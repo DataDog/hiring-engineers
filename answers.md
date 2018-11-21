@@ -1,12 +1,11 @@
-### Enterprise Sales Engineer
-
+# Enterprise Sales Engineer
 ## Sid Narang
 
-**# Introduction:**
+**## Introduction:**
 
 My intial step was to make sure the whole project was to watch some getting-started DataDog videos and make sure I understood exactly the types of problems DataDog was solving. This gave me a quick and simple understanding on some of the use cases that are supported by customers and how the product itself could expand.
 
-**# Prerequisites - Setup the environment**
+**## Prerequisites - Setup the environment**
 
 I am using macOS High Sierra Version 10.13.5
 
@@ -21,9 +20,9 @@ $ vagrant up
 
 This was a simple process, with SSH being next. https://www.dropbox.com/s/v6ve8efnfv35r2b/VagrantSSH.png?dl=0
 
-**# Collecting Metrics:**
+**## Collecting Metrics:**
 
-# - Install Agent - 
+**### - Install Agent - ** 
 Going to datadoghq.com and signing up for an account gave me the ability to walk through the product quickly.
 
 The first task was to download the agent, hopping into the Installation Instructions - I was able to get the commands for Ubuntu and run it locally on my machine. 
@@ -34,7 +33,7 @@ https://www.dropbox.com/s/hr2rwbtgglurjc9/Installationinstructionsagent.png?dl=0
 
 In the DataDog dashboard, metrics started to appear and were default metrics such as system disk, cpu, etc.
 
-**# - Add Tags - **
+**### - Add Tags - **
 
 Adding a tag was simple, and is modified in the yaml file located at /etc/datadog-agent/datadog.yaml. This is the config file that DataDog leverages and holds key paramaters and settings when starting up.
 
@@ -45,7 +44,7 @@ Once tags were set, since this is a config file, the agent has to be restarted, 
 
 In order to view my tags, I hopped to the Infrastructure tab, and was able to see them on my dashboard. https://www.dropbox.com/s/mvuvr6cdksycw0q/projse.png?dl=0
 
-**# - Installing Database - **
+**### - Installing Database - **
 
 The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo since I use it quite a bit. I ran these commands to get it installed
 
@@ -75,15 +74,15 @@ db.createUser({
   ]
 }) 
 
-- my_metric
+**###- my_metric
 
 This next step required a py and yaml file, with the py file holding the logic and yaml for any neccesary config modifications.
 
 The script is randomvalue.py and randomvalue.yaml; both which will be uploaded here.
 
-Bonus: Since the yaml is also included, I can modify that file only and keep the py file as is.
+**Bonus:** Since the yaml is also included, I can modify that file only and keep the py file as is.
 
-Visualizing Data:
+**### Visualizing Data:**
 
 The API explorer from DataDog was simple to understand, and once I started testing a couple of them, it was easy to implement. I used postman to execute the API. 
 
@@ -100,9 +99,9 @@ The dashboard is composed of 3 main graphs, (ignore the 4th), one which is my_me
 
 Snapshot image: https://www.dropbox.com/s/bmscnmwjj6shf1e/mymetricsnapshot.png?dl=0
 
-Bonus: The anomaly graph will show when a specific metric is beyond the expected avg over time.
+**Bonus:** The anomaly graph will show when a specific metric is beyond the expected avg over time.
 
-Monitoring Data:
+**## Monitoring Data:
 
 Modifying the alert was easy, and can be found here:
 
@@ -124,8 +123,7 @@ Scheduled to start Nov 20, 2018 19:00 PST and repeats weekly from 7:00pm to 9:00
 Sat-Sun Downtime:
 Scheduled to start Nov 23, 2018 0:00 PST and repeats weekly from 12:00am to 12:00am in 2 days on Sunday and Saturday
 
-
-Collecting APM Data:
+**## Collecting APM Data:
 
 In order to set this up, we need an app to start testing against.
 
@@ -150,7 +148,7 @@ apm_config:
 This allowed me to enable the trace agent manually, and next I needed to make sure my flask app could actually use this.
 
 
-Below is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable it.
+**Below is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable it.
 
 from flask import Flask
 import logging
@@ -158,7 +156,7 @@ import sys
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
 
- # Have flask use stdout as the logger
+Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
 c = logging.StreamHandler(sys.stdout)
@@ -206,7 +204,7 @@ Link: https://app.datadoghq.com/dash/993992/my-3-apis-timeboard
 
 The flaskapp.py will be attached as well.
 
-Bonus Question: What is the difference between a Service and a Resource?
+**Bonus Question: What is the difference between a Service and a Resource?
 
 A "Service" is the name of a set of processes that work together to provide a feature set.
 	Example: webservice to call something
@@ -214,8 +212,9 @@ A "Service" is the name of a set of processes that work together to provide a fe
 Resource: A particular query to a service.
 	Example: The underlying result 
 
-Final Question:
 
-DataDog possesess the relevant tech to helo solve many common-day problems.
+**### Final Question:
+
+DataDog possesess the relevant tech to help solve many common-day problems.
 
 Once of the major issues we will see with population growth, and the influx of cars(self-driving and normal), we will need to understand how traffic can be solved. This is an issue in every country and with the amount of residents within downtown and major hubs, having the ability to understand a common output will be important. The ability to analyze places that can generate quick crowds is also relevant.
