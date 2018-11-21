@@ -278,7 +278,7 @@ No data: There has been no data on my_metric on:
 
 
 #### Sat - Sun scheduled downtime notification
-**Note**: I configurrd a one-off notification for this exercise)
+**Note:** I configurrd a one-off notification for this exercise)
 ![alt text][img4b]
 
 [img4b]: ./images/scheduled_downtime_1.png "Sat - Sun scheduled downtime notification"
