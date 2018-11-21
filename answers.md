@@ -8,7 +8,7 @@ Your answers to the questions go here.
 **Q2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 ![A2](https://github.com/jhhys/hiring-engineers/blob/master/Install%20a%20database%20on%20your%20machine.png)
 
-Q3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+**Q3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 A. checks.d/myMetric.py
 ```
@@ -30,7 +30,7 @@ class myMetric(AgentCheck):
         self.gauge('my_metric', random.randrange(1000))
 ```
 
-### Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 A. conf.d/myMetric.yaml
 
@@ -42,19 +42,19 @@ instances: [{}]
 
 ```
 
-### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+**Q5.Bonus Question Can you change the collection interval without modifying the Python check file you created?
 A. I could not find the answer. Maybe there is a API for that?
 
 # Visualizing Data:
 
-### Q. Utilize the Datadog API to create a Timeboard that contains:
-### Your custom metric scoped over your host.
-### Any metric from the Integration on your Database with the anomaly function applied.
-### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+**Q6. Utilize the Datadog API to create a Timeboard that contains:
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 ![A](https://github.com/jhhys/hiring-engineers/blob/master/Timeboard.png)
 
-### Q. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+**Q7. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 A. myTimeboard.py
 ```
@@ -113,24 +113,20 @@ api.Timeboard.create(title=title,
 
 ```
 
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
+**Q8. Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
 
-
-
-
-
-
-
-Q. Set the Timeboard's timeframe to the past 5 minutes
 A. I could not find thw way to change the timeframe to the value less than 1 hour.
 
-Q. Bonus Question: What is the Anomaly graph displaying?
+**Q9.Bonus Question: What is the Anomaly graph displaying?
+
 A. It shows parts in a charts in where some graphs are show different movement.
+
+
+
+
+
 
 Q. Bonus Question: What is the difference between a Service and a Resource?
 A. A service is an entry point of an application and a resource is a particular action for a given service.
