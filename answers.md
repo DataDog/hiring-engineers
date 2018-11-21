@@ -379,7 +379,7 @@ A **Resource**, on the other hand, is a particular **action** for a service. In 
 
 [Link to APM and Infrastructure Metrics Dashboard](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1542642466428&graphType=span_list&index=trace-search&live=true&query=env%3Add_docker&saved_view=6953&spanID=15764508887163998640&stream_sort=desc&to_ts=1542646066428&trace)
 
-
+#### The Flask App
 [Fully instrumented app](./app.py)<br/><br/>
 **Note:** Instrumentation could be done by either:
 - Installing ```ddtace``` and running the application as follows::
