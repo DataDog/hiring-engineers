@@ -8,7 +8,7 @@ _For this technical exercise, I chose to install my agent on Docker rather than 
 
 **Installation:**
 I created my docker container (with the datadog agent) by running the command below. <br/>
-> The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
+> **Side note:** The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
 
 ```
 docker run -d --name <container_name>
