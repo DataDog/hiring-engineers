@@ -294,7 +294,7 @@ I have included snapshots of the various required settings below:
 
 ![alt text][img4b]
 
-[img4b]: ./images/weekly_downtime_schedule(one-off).png "Sat - Sun scheduled downtime configuration (one-off)"
+[img4b]: ./images/weekly_downtime_schedule(one_off).png "Sat - Sun scheduled downtime configuration (one-off)"
 
 
 #### Sat - Sun scheduled downtime notification
