@@ -15,8 +15,10 @@ As DataDog instructed, I went with Ubunutu 16.04
 Next, following the instructions here: https://www.vagrantup.com/intro/getting-started/ and downloading the installer for mac.
 
 To ensure 16.04 version, I ran these commands in my terminal once the installation was done
-$ vagrant init ubuntu/xenial64
-$ vagrant up
+
+"$ vagrant init ubuntu/xenial64"
+
+"$ vagrant up"
 
 This was a simple process, with SSH being next. https://www.dropbox.com/s/v6ve8efnfv35r2b/VagrantSSH.png?dl=0
 
@@ -48,13 +50,13 @@ In order to view my tags, I hopped to the Infrastructure tab, and was able to se
 
 The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo and ran these commands to get it installed.
 
-"sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4"
+"$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4"
 
-"echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list"
+"$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list"
 
-"sudo apt-get update"
+"$ sudo apt-get update"
 
-"sudo apt-get install -y mongodb-org"
+"$ sudo apt-get install -y mongodb-org"
 
 All which can be found here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
@@ -64,7 +66,8 @@ https://docs.datadoghq.com/integrations/mongo/#prepare-mongodb
 I followed the command below.
 
 On MongoDB 3.x or higher, use the createUser command.
-db.createUser({
+
+"db.createUser({
   "user":"datadog",
   "pwd": "<UNIQUEPASSWORD>",
   "roles" : [
@@ -72,7 +75,7 @@ db.createUser({
     {role: 'clusterMonitor', db: 'admin'},
     {role: 'read', db: 'local' }
   ]
-}) 
+})" 
 
 ### my_metric
 
@@ -80,13 +83,13 @@ This next step required a py and yaml file, with the py file holding the logic a
 
 The script is randomvalue.py and randomvalue.yaml; both which will be uploaded here.
 
-**Bonus:** Since the yaml is also included, I can modify that file only and keep the py file as is.
+**Bonus:** Since the yaml is also included, I can modify that file only and keep the py file as is for any configuration changes.
 
 ## Visualizing Data:
 
 The API explorer from DataDog was simple to understand, and once I started testing a couple of them, it was easy to implement. I used postman to execute the API. 
 
-Since this was a timeboard, I managed to focus most of my time on that API section: https://docs.datadoghq.com/api/?lang=python#timeboards
+Since this section required me to add timeboard, I managed to focus most of my time on that API section: https://docs.datadoghq.com/api/?lang=python#timeboards
 
 The postman script can be found here: https://www.dropbox.com/s/63z0cbf9146egzx/Postman3API?dl=0
 
@@ -107,15 +110,17 @@ Modifying the alert was easy, and can be found here:
 
 Under the Monitor Tab, just simply create a Monitor and follow the conditions from the screenshot.
 
-https://www.dropbox.com/s/nytqk1n3alglkpu/800500.png?dl=0
-https://www.dropbox.com/s/rpf2w2i3kmus0qv/monitoralert.png?dl=0
+Steps 1-3: https://www.dropbox.com/s/nytqk1n3alglkpu/800500.png?dl=0
+Step 4: https://www.dropbox.com/s/rpf2w2i3kmus0qv/monitoralert.png?dl=0
 
 Email notification:
 https://www.dropbox.com/s/9s27bmlka58aqpf/emailalert.png?dl=0
 
-This was a warn signal which meant it was > 500 at least once.
+This was a warn signal which meant it was > 500 at least once in 5m.
 
 Now to keep the sanity, DataDog allows downtimes for these alerts. 
+
+The configurations are below for Mon-Fri and special changes for Sat-Sun
 
 Mon-Fri Downtime:
 Scheduled to start Nov 20, 2018 19:00 PST and repeats weekly from 7:00pm to 9:00am tomorrow on Monday, Tuesday, Wednesday, Thursday, and Friday
@@ -131,17 +136,18 @@ I leverged the flask app that was already included but modified it so we could e
 
 Since I did not go via the ddtrace-run route, I had to change couple of things manually first.
 
-Going into the /etc/datadog-agent/datadog.yaml file, I made the neccesary changes below:
+Going into the /etc/datadog-agent/datadog.yaml file, I made the neccesary changes below: This was from the instructions from here: https://docs.datadoghq.com/tracing/setup/?tab=agent630#agent-configuration
 
-apm_config:
+"apm_config:
   enabled: true
   env: test_sn
-  receiver_port: 8126   
+  receiver_port: 8126
+"
 
 This allowed me to enable the trace agent manually, and next I needed to make sure my flask app could actually use this.
 
 
-**Attached is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable it.
+**Attached is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable tracing.
 
 
 After restaring the agent, all I really had to do was run the following commands:
