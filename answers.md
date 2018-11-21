@@ -408,7 +408,7 @@ For my instrumentation, I used the Flask middleware and instrumented it as follo
 
 
 ### Datadog - Creative Use:
-I am presently working om a performance measurement application, and I can clearly see myself using Datadog to montior application usage as well as bottle necks in the system (when it launches). Also, remembering how long I had to wait in line at a restaurant on a Thanksgiving weekend, it would be interesting to use Datadog to find out about traffic at my favorite restaurants. Two extra benefit will be the predicitive aspect of Datadog that would analyze the pattern of traffic flow to make predictions that would:
+I am presently working om a performance measurement application, and I can clearly see myself using Datadog to montior application usage as well as bottle necks in the system (when it launches). Also, remembering how long I had to wait in line at a restaurant on a Thanksgiving weekend, it would be interesting to use Datadog to find out about traffic at my favorite restaurants. Two extra benefits will be the predicitive aspect of Datadog that would analyze the pattern of traffic flow to make predictions that would:
 - help clients in organising their schedules to get into the restaurant during a 'good' window
 - help the restaurant owners decide when they need to assign more workers/get extra hands on deck.
 
