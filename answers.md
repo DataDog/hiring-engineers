@@ -79,7 +79,7 @@ apt-get install -y vim-tiny
 > For example:
 > - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
 > - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```<br/>
-<br/>
+> <br/>
 > _Other useful agent commands can be [found here](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6)_
 
 > **_Fun tip_**: If you mess up your configuration file (like I did), and the container refuses to start with a  corrupted configuration file, all isn't lost and you don't have to spin up a new container. Create a new  configuration file (```datadog.yaml```) on the host and copy it, from the host into the right folder of the container (```/etc/datadog-agent/```) using **Method 1** above.
