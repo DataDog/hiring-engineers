@@ -156,7 +156,7 @@ instances:
 More information can be found [here on custom metrics and their configuration](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). 
 
 -----
-## Visualizing Data:
+## Visualizing Data
 -----
 #### Timeboard Scripts:
 - [Script for creating a single graph timeboard](./create_timeboard_single.py)
