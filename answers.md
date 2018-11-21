@@ -36,7 +36,7 @@ Agent (v6.6.0)
 
 ```
 
-> **Side note:** Some important docker commands to understand the state of the cointainers can be found [here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
+> **Side note:** Some important docker commands to understand the state of the cointainers can be [found here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
 
 -----
 ## Collecting Metrics
