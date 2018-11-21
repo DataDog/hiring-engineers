@@ -1,5 +1,6 @@
-Enterprise Sales Engineer
-Sid Narang
+##Enterprise Sales Engineer
+
+#Sid Narang
 
 Introduction: 
 My intial step was to make sure the whole project was to watch some getting-started DataDog videos and make sure I understood exactly the types of problems DataDog was solving. This gave me a quick and simple understanding on some of the use cases that are supported by customers and how the product itself could expand.
