@@ -263,7 +263,7 @@ No data: There has been no data on my_metric on:
 
 ![alt text][img4c]
 
-[img4c]: ./images/scheduled_downtime_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4c]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 
 
