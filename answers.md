@@ -188,7 +188,7 @@ More information can be found [here on custom metrics and their configuration](h
 [img2c]: ./images/timeboard_for_multiple_boards.png "Timeboard - multiple graphs"
 
 <br/>
-Thus, I created the multiple graph timeboard above to show the rollup sum clearly. 
+As can be seen, the "multiple graphs" timeboard above facilitates easy information extraction from all the plots. 
 
 
 ### Anomaly Graph
