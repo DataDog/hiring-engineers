@@ -3,7 +3,7 @@
 
 ## Introduction:
 
-My intial step was to make sure the whole project was to watch some getting-started DataDog videos and make sure I understood exactly the types of problems DataDog was solving. This gave me a quick and simple understanding on some of the use cases that are supported by customers and how the product itself could expand.
+Before starting the project, my first step was to quickly understand the types of problems DataDog was solving. This would allow me to look from a customer's standpoint and help me uncover various applicable use cases.
 
 ## Prerequisites - Setup the environment
 
@@ -12,7 +12,7 @@ I am using macOS High Sierra Version 10.13.5
 Vagrant is fast and simple and *most* of the time has low dependency issues if done right.
 As DataDog instructed, I went with Ubunutu 16.04
 
-Next, following the instructions here: https://www.vagrantup.com/intro/getting-started/ and downloading the packager for mac.
+Next, following the instructions here: https://www.vagrantup.com/intro/getting-started/ and downloading the installer for mac.
 
 To ensure 16.04 version, I ran these commands in my terminal once the installation was done
 $ vagrant init ubuntu/xenial64
@@ -46,15 +46,15 @@ In order to view my tags, I hopped to the Infrastructure tab, and was able to se
 
 ### - Installing Database -
 
-The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo since I use it quite a bit. I ran these commands to get it installed
+The next step was to install a database (MongoDB, MySQL, or PostgreSQL). I picked mongo and ran these commands to get it installed.
 
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+"sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4"
 
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+"echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list"
 
-sudo apt-get update
+"sudo apt-get update"
 
-sudo apt-get install -y mongodb-org
+"sudo apt-get install -y mongodb-org"
 
 All which can be found here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
