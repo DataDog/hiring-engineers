@@ -1,10 +1,63 @@
 ## Solutions Engineer
 
-## Prerequisites - Setup the environment (Mac OS/X)
-1. Get the Agent reporting metrics from your local machine.
-- I am using macOS Mojave Version 10.14 for this Challenge.
+## Setup the environment
 
-<img src="./images/0-Installation-Success.png">  
+<!-- 0-vagrant image -->
+<!-- <img src="./images/2-yaml-config.png"> -->
+
+- Installing your software
+DataDog recommends virtualization via Virtual Machine's as to avoid dependency issues. Follow the instructions to build a Linux VM via Vagrant - environment workflow software:
+
+1. Download VirtualBox <a href="https://www.virtualbox.org/wiki/Downloads">HERE</a>  
+i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a normal install.  
+
+2. Download Vagrant <a href="https://www.vagrantup.com/downloads.html">HERE</a>
+
+3. Confirm the installation from your command line:  
+```$ vagrant --version
+   ie. Output: Vagrant 2.2.1
+```
+
+- Building the project environment  
+The documentation is clean and concise.  Check it out<a href="https://www.vagrantup.com/intro/getting-started/project_setup.html">HERE</a>
+
+4. Create a directory/folder to store the VM and the related files
+```$ mkdir DataDog2
+```
+5. Enter the new directory
+```$ cd DataDog2
+```
+6. Initialize the VM.  This will create the Vagrant file ('vagrantfile'). <a href="https://www.vagrantup.com/docs/vagrantfile/">What the Vagrantfile does.</a>
+```$ vagrant init
+```
+7. Check out your work so far. You should see a ‘vagrantfile’ in the directory.
+```$ ls
+```
+- Creating a clone of a virtual machine
+Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  When you installed VirtualBox, you install a 'box'.
+
+8. Create the clone of a VM using a 'box'.  Choose a <a href="https://app.vagrantup.com/boxes/search">BOX</a>
+i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
+```$ vagrant box add ubuntu/xenial64>
+```
+9. There will be terminal prompt.  Choose your Hypervisor Provider. I have VirtualBox so I chose '2'.
+
+10. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
+```$ atom vagrantfile
+
+Vagrant.configure("2") do |config|
+  config.vm.box = “ubuntu/xenial64”
+end
+
+Your virtual machine environment is ready.
+```
+11. Start the VM.  
+```$ vagrant up
+```
+12. To interact with the VM.
+```$ vagrant ssh
+```
+
 
 ## Collecting Metrics:
 2. Add tags in the Agent config file
