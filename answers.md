@@ -4,10 +4,10 @@
 -----
 ## Environment Setup
 -----
-For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is lighter weight and would have used less of my system's (rather limited) resources.
+_For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is lighter weight and would have used less of my system's (rather limited) resources._
 
 **Installation:**
-I created my docker container (with the datadog agent) by running the command below. 
+I created my docker container (with the datadog agent) by running the command below. <br/>
 **Note:** The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
 
 ```
