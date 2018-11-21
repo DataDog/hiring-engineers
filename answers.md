@@ -90,6 +90,8 @@ vim.tiny /etc/datadog-agent/datadog.yaml
 
 ```
 (within the container). Then, I added the following lines to my datadog.yaml file:
+
+```
 tags:
   - host_tag
   - env:prod
