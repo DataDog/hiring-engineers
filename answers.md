@@ -1,25 +1,25 @@
-## Solutions Engineer
 
-## Setup the environment
+#I. Setup the environment
 
 <!-- 0-vagrant image -->
 <!-- <img src="./images/2-yaml-config.png"> -->
 
-- Installing your software
+## Step 1: Installing your software  
 DataDog recommends virtualization via Virtual Machine's as to avoid dependency issues. Follow the instructions to build a Linux VM via Vagrant - environment workflow software:
 
-1. Download VirtualBox <a href="https://www.virtualbox.org/wiki/Downloads">HERE</a>  
+1. Download VirtualBox <a href="https://www.virtualbox.org/wiki/Downloads">here</a>  
 i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a normal install.  
 
-2. Download Vagrant <a href="https://www.vagrantup.com/downloads.html">HERE</a>
+2. Download Vagrant <a href="https://www.vagrantup.com/downloads.html">here</a>
 
 3. Confirm the installation from your command line:  
-```$ vagrant --version
+```
+$ vagrant --version
    ie. Output: Vagrant 2.2.1
 ```
 
-- Building the project environment  
-The documentation is clean and concise.  Check it out<a href="https://www.vagrantup.com/intro/getting-started/project_setup.html">HERE</a>
+## Step 2: Building the project environment  
+The documentation is clean and concise.  Check it out <a href="https://www.vagrantup.com/intro/getting-started/project_setup.html">here</a>
 
 4. Create a directory/folder to store the VM and the related files
 ```$ mkdir DataDog2
