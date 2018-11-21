@@ -64,7 +64,7 @@ To edit the files within docker (which include the datadog-agent configuration f
 - Log into the container ```docker exec -it <container_name> bash ``` 
 - Install the neccessary editor. 
 
-I chose to install ```vim-tiny``` over ```vim``` since it contains all I needed for a basic editor and occupies less space. Running the commands below enabled this installation.
+I chose to install ```vim-tiny``` over ```vim``` since it satisfied my requirements for a basic editor and occupies less space. Running the commands below enabled this installation.
 
 
 ```
