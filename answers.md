@@ -7,7 +7,7 @@
 For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is lighter weight and would have used less of my system's (rather limited) resources.
 
 **Installation:**
-I created by docker container (with the datadog agent) by running the command below. 
+I created my docker container (with the datadog agent) by running the command below. 
 **Note:**The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
 
 ```
@@ -140,9 +140,9 @@ More information can be found [here on custom metrics and their configuration](h
 > **Note:** 
 > I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
 > **Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. This means that either:
-> -  the details of the rollup sum would be clear and the other plots (my_etric average and postgresql) will be too small to give useful information *or* 
+> -  the details of the rollup sum would be clear and the other plots (```my_metric average``` and ```postgresql rows returned```) will be too small to give useful information *or* 
 > - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
-> In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has far more spread out points than the average metric and postgresql plots -- only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
+> In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has much more points that are spread out than the average ```my_metric``` and ```postgresql rows returned``` plots -- only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
 
 #### Timeboard - single graph (mulitple plots)
 ![alt text][img2b]
@@ -159,7 +159,7 @@ More information can be found [here on custom metrics and their configuration](h
 Thus, I created the multiple graph timeboard above to show the rollup sum clearly. 
 
 
-### Anomaly Graph.
+### Anomaly Graph
 
 The anomaly graph displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my choice of metric, it includes extreme and/or outlier values as well as unexpected behaviour (the area of minimal change). 
 
@@ -173,7 +173,7 @@ The anomaly graph displays metrics/situations where the query returns values out
 
 
 #### Metric Monitor Configuration
-**Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (ver the last 5 minutes) as well as 'No data' (ocver 10 minutes), see the settings in the image below.
+**Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), see the settings in the image below.
 
 #### Metric monitor configuration snapshot
 
@@ -261,7 +261,7 @@ No data: There has been no data on my_metric on:
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
-![alt text][img4c]
+![alt text][img4c]Editi
 
 [img4c]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
@@ -302,7 +302,7 @@ No data: There has been no data on my_metric on:
 
 
 #### Service vs. Resource <br/>
-A **Service** is a **_set of processes_** that do the same job (for example a web application, or a database). An example of a Service , in this technical exercise,i s my flask web application (shown as **flask-app** in the image below). <br/>
+A **Service** is a **_set of processes_** that perform the same job (for example a web application, or a database). An example of a Service in this technical exercise is my flask web application (shown as **flask-app** in the image below). <br/>
 
 A **Resource**, on the other hand, is a particular **_action_** for a service. In the case of a database, this could be a query. For example: ```SELECT * FROM users WHERE id = ?```. In web applications, these could be canonical URLs (/users/status/) or handler functions/routes. On the APM interface, these resources can be found after clicking a particular service. (See image below). <br/>
 
