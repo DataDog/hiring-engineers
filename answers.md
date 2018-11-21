@@ -193,7 +193,7 @@ As can be seen, the "multiple graphs" timeboard above facilitates easy informati
 
 ### Anomaly Graph
 
-The anomaly graph displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red as seen in the image below. For my choice of metric, it includes extreme and/or outlier values as well as unexpected behaviour (the area of minimal change). 
+The anomaly graph displays metrics/situations where the query returns values outside the historical/established norm. It highlights these areas in red (as seen in the image below). For my choice of metric, it includes extreme and/or outlier values as well as unexpected behaviour (the area of minimal change shown by a relatively straight line). 
 
 #### Timeboard - Highlighting the anomalies
 
@@ -205,7 +205,8 @@ The anomaly graph displays metrics/situations where the query returns values out
 
 
 #### Metric Monitor Configuration
-**Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), see the settings in the image below.
+**Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. <br/>
+For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), see the settings in the image below.
 
 #### Metric monitor configuration snapshot
 
