@@ -17,6 +17,7 @@ i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a n
 
 3. Confirm the installation from your command line:  
 ```
+MAIN TERMINAL
 $ vagrant --version
 > Vagrant 2.2.1
 ```
@@ -69,6 +70,8 @@ $ vagrant up
 5. To interact with the VM environment / Check if it is working.
 ```
 $ vagrant ssh
+
+MAINTERMINAL $ becomes: vagrant@ubuntu-xenial:~$
 ```
 6. To exit the VM.
 ```
@@ -82,39 +85,57 @@ press 'CTRL' + 'D'
 **Else**,
 1. Sign up for an [Account](https://app.datadoghq.com/signup)  
 
-2. You should be in your VM directory (Step 2.2 in 'Setup the Environment') and enter the VM environment with **$ vagrant ssh** (Step 3.5 in 'Setup the Environment')
+2. Double check you command prompt is inside the VM environment.  If not, get inside your VM directory (Step 2.2 in 'Setup the Environment') and enter the VM environment with **$ vagrant ssh** (Step 3.5 in 'Setup the Environment')
+
+```
+**This will be the command line prompt going forward:**
+vagrant@ubuntu-xenial:~$
+```
 
 3. Install Agent.  Copy and paste the "one-step install" command in  your Vagrant SSH.
 ```
 $ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ```
-The agent is running in the background.  
+The agent should be running in the background.  
 
 ```
 To halt the program:
-sudo systemctl stop datadog-agent
+$ sudo systemctl stop datadog-agent
 
 To start it again:
-sudo systemctl start datadog-agent
+$ sudo systemctl start datadog-agent
 ```
 
 # Collecting Metrics:
 
-2. Add tags in the Agent config file
+## Step 1: Add tags in the Agent config file
 <img src="./images/2-yaml-config.png">
 
-Configured the host tags submitted by the Agent inside datadog.yaml.
-The host's tags
-tags:
-  - env:prod
-  - role:database
+1. Go to Host Map.  You should see a hexagon representing your VM.  
 
-3. Show us a screenshot of your host and its tags on the Host Map page in Datadog.
-<img src="./images/3-host-and-map.png">
+2. Configure the host tags submitted by the Agent inside datadog.yaml. The [docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
+```
+$ cd /etc/datadog-agent
+$ ls
+$ sudo vim datadog.yaml
+```
+The above commands opens up the Linux virtual editor.  [Using VIM](https://www.linux.com/learn/vim-101-beginners-guide-vim)
 
-4. Install a database on your machine (MongoDB, MySQL, or PostgreSQL)
-- I am using PostgreSQL for this part.
+3. Scroll down to the line that reads **Set the host's tags**, **type 'i'** to enter Insert mode, and **delete** the hash next to tags.
+<!-- image here -->
+<!-- <img src="./images/6-my-metric-code.png"> -->
+
+4. Hit 'ESC' to leave 'Insert' mode.  Save changes, type :wq
+
+5. Restart the agent
+```
+$ sudo service datadog-agent restart
+```
+
+## Step 2: Install a database & respective Datadog integration
+
+1. $ brew install post
 
 5. Install the respective Datadog integration for that database.
 <img src="./images/5-check-postgresql-integration.png">
