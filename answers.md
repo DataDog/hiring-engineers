@@ -390,6 +390,7 @@ A **Resource**, on the other hand, is a particular **action** for a service. In 
 ```
 **OR**
 - Including a middleware in the script. <br/>
+
 For my instrumentation, I used the Flask middleware and instrumented it as follows:
 ``` 
     from ddtrace.contrib.flask import TraceMiddleware
