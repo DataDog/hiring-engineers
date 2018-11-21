@@ -1,5 +1,5 @@
-## Answers (Solutions Engineering Technical Exercise)
-#### Suzie Mae
+## Solutions Engineering Technical Exercise
+#### - Suzie Mae
 
 -----
 ## Environment Setup
