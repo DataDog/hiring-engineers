@@ -78,7 +78,7 @@ apt-get install -y vim-tiny
 
 > For example:
 > - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
-> - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```<br/>
+> - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
 > <br/>
 > _Other useful agent commands can be [found here](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6)_
 
