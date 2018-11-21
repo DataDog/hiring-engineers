@@ -284,10 +284,10 @@ Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuratio
 I have included snapshots of the various required settings below:
 
 
-#### Sat - Sun scheduled configuration notification (recurrent)
+#### Sat - Sun scheduled configuration notification (recurring)
 ![alt text][img4a]
 
-[img4a]: ./images/weekly_downtime_schedule(recurrent).png "Sat - Sun scheduled downtime configuration (recurrent)"
+[img4a]: ./images/weekly_downtime_schedule(recurrent).png "Sat - Sun scheduled downtime configuration (recurring)"
 
 
 #### Sat - Sun scheduled configuration notification (one-off)
@@ -310,11 +310,11 @@ I have included snapshots of the various required settings below:
 [img4d]: ./images/downtime_expiry_1.png "Expiration notification for Sat - Sun scheduled downtime notification"
 
 
-#### 7pm to 9am, Monday - Friday,  scheduled downtime configuration (recurrent)
+#### 7pm to 9am, Monday - Friday,  scheduled downtime configuration (recurring)
 
 ![alt text][img4e]
 
-[img4e]: ./images/daily_downtime_schedule.png "7pm to 9am, Monday - Friday, scheduled downtime configuration (recurrent)"
+[img4e]: ./images/daily_downtime_schedule.png "7pm to 9am, Monday - Friday, scheduled downtime configuration (recurring)"
 
 #### 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
@@ -327,6 +327,13 @@ I have included snapshots of the various required settings below:
 ![alt text][img4g]
 
 [img4g]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+
+> **Side note:** After scheduling a downtime, the dashboard to ensure it has been scheduled as necessary, as well as hte prsent status of the scheduled downtime.
+> #### Schedule Downtime Dashboard
+> ![alt text][img4h]
+>[img4g]: ./images/schedule_downtime_dashboard.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+
+
 
 -----
 ## Collecting APM Data:
