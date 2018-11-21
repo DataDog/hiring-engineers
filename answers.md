@@ -22,7 +22,7 @@ This was a simple process, with SSH being next. https://www.dropbox.com/s/v6ve8e
 
 ## Collecting Metrics:
 
-**### - Install Agent - ** 
+### - Install Agent -
 Going to datadoghq.com and signing up for an account gave me the ability to walk through the product quickly.
 
 The first task was to download the agent, hopping into the Installation Instructions - I was able to get the commands for Ubuntu and run it locally on my machine. 
