@@ -103,9 +103,7 @@ The API explorer from DataDog was simple to understand, and once I started testi
 
 Since this section required me to add timeboard, I managed to focus most of my time on that API section: https://docs.datadoghq.com/api/?lang=python#timeboards
 
-The postman script can be found here: 
-
-![Postman](https://github.com/sidblazer/hiring-engineers/blob/master/Postman3API)
+The postman script will be attached here [Postman File](https://github.com/sidblazer/hiring-engineers/blob/master/Postman3API)
 
 Once I ran my script, going into my dashboards, I could see the "My 3 APIs Timeboard" which was configured as expected.
 
