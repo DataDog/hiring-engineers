@@ -329,11 +329,11 @@ I have included snapshots of the various required settings below:
 [img4g]: ./images/downtime_expiry_2.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 > **Side note:** After scheduling a downtime, the dashboard to ensure it has been scheduled as necessary, as well as hte prsent status of the scheduled downtime. 
-
-#### Schedule Downtime Dashboard
-![alt text][img4h]
-
-[img4h]: ./images/schedule_downtime_dashboard.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+>
+> #### Schedule Downtime Dashboard
+> ![alt text][img4h]
+>
+> [img4h]: ./images/schedule_downtime_dashboard.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 
 
