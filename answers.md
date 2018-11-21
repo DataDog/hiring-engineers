@@ -169,8 +169,9 @@ More information can be found [here on custom metrics and their configuration](h
 
 
 > **Note:** 
-> I created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
-> **Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. This means that either:
+> I also created a timeboard with multiple graphs in order to extract clearer details about the rollup sum function. <br/><br/>
+> **Reason**: On the single graph, the rollup sum has values so high they cannot be accomodated comfortably with the other graphs. <br/>
+_Implications_:
 > -  the details of the rollup sum would be clear and the other plots (```my_metric average``` and ```postgresql rows returned```) will be too small to give useful information *or* 
 > - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent. <br/>
 > In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has much more points that are spread out than the average ```my_metric``` and ```postgresql rows returned``` plots -- only one data point per hour as opposed to the multiple data points for the other plots (See the two graphs below).
