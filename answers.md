@@ -132,7 +132,10 @@ tags:
 
 #### Changing the collection interval without modifying the Python check file.
 
-In programattically creating a custom check, two files are involved, a python file (ending in ```.py```) and a configuration file (ending in ```.yaml```). Both files must have the same name and be placed in the following folders:
+In programattically creating a custom check, two files are involved:
+- a python file (ending in ```.py```) and 
+- a configuration file (ending in ```.yaml```). 
+Both files must have the same name and be placed in the following folders:
 ```
 Config file: /etc/datadog-agent/conf.d/
 Python file: /etc/datadog-agent/checks.d/
