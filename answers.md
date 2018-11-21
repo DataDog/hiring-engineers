@@ -60,7 +60,7 @@ https://docs.datadoghq.com/integrations/mongo/#prepare-mongodb
 
 I followed the command below.
 
-# On MongoDB 3.x or higher, use the createUser command.
+On MongoDB 3.x or higher, use the createUser command.
 db.createUser({
   "user":"datadog",
   "pwd": "<UNIQUEPASSWORD>",
@@ -131,16 +131,16 @@ Since I did not go via the ddtrace-run route, I had to change couple of things m
 
 Going into the /etc/datadog-agent/datadog.yaml file, I made the neccesary changes below:
 
-# Trace Agent Specific Settings
-#
+--# Trace Agent Specific Settings
+--#
 apm_config:
-#   Whether or not the APM Agent should run
+--#   Whether or not the APM Agent should run
    enabled: true
    env: test_sn
-#   The environment tag that Traces should be tagged with
-#   Will inherit from "env" tag if none is applied here
-#   env: none
-#   The port that the Receiver should listen on
+--#   The environment tag that Traces should be tagged with
+--#   Will inherit from "env" tag if none is applied here
+--#   env: none
+--#   The port that the Receiver should listen on
    receiver_port: 8126
 
 This allowed me to enable the trace agent manually, and next I needed to make sure my flask app could actually use this.
