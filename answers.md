@@ -1,8 +1,8 @@
-## Solutions Engineering Technical Exercise
+# Solutions Engineering Technical Exercise
 #### - Suzie Mae
 
 -----
-### Environment Setup
+## Environment Setup
 -----
 _For this technical exercise, I chose to install my agent on Docker rather than vagrant because Docker is lighter weight and would have used less of my system's (rather limited) resources._
 
