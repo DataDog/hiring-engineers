@@ -165,7 +165,7 @@ More information can be found [here on custom metrics and their configuration](h
 #### Timeboard - Snapshot of single graph over 5 minutes
 ![alt text][img2a]
 
-[img2a]: ./images/timeboard_over_5_minutes_1.png "Timeboard - Snapshot of single graph over 5 minutes"
+[img2a]: ./images/timeboard_over_5_minutes.png "Timeboard - Snapshot of single graph over 5 minutes"
 
 
 > **Note:** 
