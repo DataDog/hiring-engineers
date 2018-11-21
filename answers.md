@@ -280,8 +280,8 @@ No data: There has been no data on my_metric on:
 #### Scheduling Downtimes
 
 **Steps to schedule downtimes:**<br/>
-Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. 
-_I have included snapshots of the various required settings below:_
+Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. <br/>
+I have included snapshots of the various required settings below:_
 
 
 #### Sat - Sun scheduled configuration notification (recurrent)
