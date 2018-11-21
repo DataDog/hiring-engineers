@@ -21,7 +21,7 @@ To ensure 16.04 version, I ran these commands in my terminal once the installati
 "$ vagrant up"
 
 This was a simple process, with SSH being next. 
-![Vagrant SSH](https://www.dropbox.com/s/v6ve8efnfv35r2b/VagrantSSH.png?dl=0)
+![Vagrant SSH](https://www.dropbox.com/s/v6ve8efnfv35r2b/VagrantSSH.png)
 
 ## Collecting Metrics:
 
