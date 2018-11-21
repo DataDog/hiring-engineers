@@ -333,7 +333,7 @@ I have included snapshots of the various required settings below:
 #### Schedule Downtime Dashboard
 ![alt text][img4h]
 
-[img4g]: ./images/schedule_downtime_dashboard.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4h]: ./images/schedule_downtime_dashboard.png "Expiration notification for 7pm 7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 
 
