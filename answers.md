@@ -8,7 +8,7 @@ For this technical exercise, I chose to install my agent on Docker rather than v
 
 **Installation:**
 I created my docker container (with the datadog agent) by running the command below. 
-**Note:**The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
+**Note:** The ``` -p 127.0.0.1:8126:8126/tcp``` line is particularly important to bind the host port to the docker port, thereby enabling communication between the two machines.
 
 ```
 docker run -d --name <container_name>
@@ -21,7 +21,21 @@ docker run -d --name <container_name>
               datadog/agent:latest
 
 ```
-Following this, I ran ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ``` to get information on my installation as well as to ensure my container was running without errors
+Following this, I ran ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ``` to get information on my installation as well as to ensure my container was running without errors. An excerpt of the output is shown below:
+```
+==============
+Agent (v6.6.0)
+==============
+
+  Status date: 2018-11-21 17:08:00.027401 UTC
+  Pid: 341
+  Python Version: 2.7.15
+  Logs: /var/log/datadog/agent.log
+  Check Runners: 4
+  Log Level: debug
+
+```
+
 > **Side note:** Some important docker commands to understand the state of the cointainers can be found [here](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
 
 -----
