@@ -174,7 +174,7 @@ More information can be found [here on custom metrics and their configuration](h
 > -  the details of the rollup sum would be clear and the other plots (```my_metric average``` and ```postgresql rows returned```) will be too small to give useful information **or** 
 > - the details of the my_metric average and postgresql plots will be clear and the rollup sum plot will be virtually non-existent <br/>
 >
-> In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has much more points that are spread out than the ```average my_metric``` and ```postgresql rows returned``` plots --- only one data point per hour as opposed to the multiple data points for the other plots. (See the two graphs below).
+> In additon, the hourly buckets of the rollup sum contribute to the "adequate information" issue because the rollup sum plot has much more points that are spread out than the ```average my_metric``` and ```postgresql rows returned``` plots --- only one data point per hour, as opposed to the multiple data points for the other plots. (See the two graphs below).
 
 #### Timeboard - single graph (mulitple plots)
 ![alt text][img2b]
