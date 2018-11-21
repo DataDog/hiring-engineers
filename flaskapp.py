@@ -4,7 +4,6 @@ import sys
 from ddtrace import tracer
 from ddtrace.contrib.flask import TraceMiddleware
 
- # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
 c = logging.StreamHandler(sys.stdout)
@@ -14,7 +13,7 @@ c.setFormatter(formatter)
 main_logger.addHandler(c)
 app = Flask(__name__)
 
-traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
+traced_app = TraceMiddleware(app, tracer, service="flask-app", distributed_tracing=False)
 
 @app.route('/')
 def api_entry():
