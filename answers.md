@@ -188,6 +188,7 @@ After restaring the agent, all I really had to do was run the following commands
 python flaskapp.py bash
 
 And from another terminal, just start using curl
+
 url http://127.0.0.1:5050/api/trace
 
 url http://127.0.0.1:5050/api/apm
