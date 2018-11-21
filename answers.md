@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-## Collecting Metrics:
+# Collecting Metrics:
 
 ### Q1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 ![A1](https://github.com/jhhys/hiring-engineers/blob/master/Add%20tags%20in%20the%20Agent%20config%20file%20.png)
@@ -10,7 +10,7 @@ Your answers to the questions go here.
 
 ### Q3.Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-A. python:checks.d/myMetric.py
+A. checks.d/myMetric.py
 ```
 import random
 # the following try/except block will make the custom check compatible with any Agent version
@@ -32,7 +32,7 @@ class myMetric(AgentCheck):
 
 ### Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-A. checks.d/myMetric.yaml
+A. conf.d/myMetric.yaml
 
 ``` 
 init_config:
@@ -45,10 +45,86 @@ instances: [{}]
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 A. I could not find the answer. Maybe there is a API for that?
 
+# Visualizing Data:
+
+### Q. Utilize the Datadog API to create a Timeboard that contains:
+### Your custom metric scoped over your host.
+### Any metric from the Integration on your Database with the anomaly function applied.
+### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+![A](https://github.com/jhhys/hiring-engineers/blob/master/Timeboard.png)
+
+### Q. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+A. myTimeboard.py
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'ea79ad28beeb99688cb324fc897d8d64',
+    'app_key': 'bee880364a846ba5e75c86b4fdf10c9435052854'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "An informative timeboard."
+
+graphs = [
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "avg:my_metric{admin:harry,host:training.localdomain}"}],
+        "viz": "timeseries"
+    },
+    "title": "custom metric scoped over your host"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "anomalies(avg:mysql.innodb.buffer_pool_free{*}, 'basic', 2)"}],
+        "viz": "timeseries"
+    },
+    "title": "Any metric from the Integration on your Database with the anomaly function applied"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "avg:my_metric{admin:harry,host:training.localdomain}.rollup(sum,3600)"}],
+        "viz": "timeseries"
+    },
+    "title": "Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket"
+}
+]
 
 
-Q. Bonus Question Can you change the collection interval without modifying the Python check file you created?
-A. I could not find the answer in your doc site.
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+#                     template_variables=template_variables,
+                     read_only=read_only)
+
+```
+
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
+
+
+
+
+
+
 
 Q. Set the Timeboard's timeframe to the past 5 minutes
 A. I could not find thw way to change the timeframe to the value less than 1 hour.
