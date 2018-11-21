@@ -4,19 +4,17 @@
 <!-- 0-vagrant image -->
 <!-- <img src="./images/2-yaml-config.png"> -->
 
-## Step 1: Installing your software  
+## Step 1: Installing the virtual machine software  
 DataDog recommends the use of virtual machine's as to avoid dependency issues.  
 Follow the instructions to build a Linux VM via Vagrant.
 
-VirtualBox is your virtualization software.  Vagant is environment workflow software that will interface with VirtualBox.  
+VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
 
 1. Download VirtualBox [Here](https://www.virtualbox.org/wiki/Downloads)  
 i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a normal install.  
 
 2. Download Vagrant [Here](https://www.vagrantup.com/downloads.html)
-```
-$ vagrant ssh
-```
+
 3. Confirm the installation from your command line:  
 ```
 $ vagrant --version
@@ -52,31 +50,54 @@ i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
 ```
 $ vagrant box add ubuntu/xenial64>
 ```
-2. There will be terminal prompt.  Choose your Hypervisor Provider. I have VirtualBox so I chose '2'.
 
-3. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
+2. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
 ```
 $ atom vagrantfile
+```
 
 In the vagrantfile:
-
+```
 Vagrant.configure("2") do |config|
   config.vm.box = “ubuntu/xenial64”
 end
 ```
-4. Start the VM.  
+4. Boot up the Vagrant environment.  
 ```
 $ vagrant up
 ```
-5. To interact with the VM.
+5. To interact with the VM environment / Check if it is working.
 ```
 $ vagrant ssh
 ```
-5. To exit the VM.
+6. To exit the VM.
 ```
 press 'CTRL' + 'D'
 ```
 **Your virtual machine environment is ready.**
+
+## Step 4: Setup DataDog Account
+**If**, you installed the Agent to the desktop and want to remove it from the host, go [Here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
+
+**Else**,
+1. Sign up for an [Account](https://app.datadoghq.com/signup)  
+
+2. You should be in your VM directory (Step 2.2 in 'Setup the Environment') and enter the VM environment with **$ vagrant ssh** (Step 3.5 in 'Setup the Environment')
+
+3. Install Agent.  Copy and paste the "one-step install" command in  your Vagrant SSH.
+```
+$ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+```
+The agent is running in the background.  
+
+```
+To halt the program:
+sudo systemctl stop datadog-agent
+
+To start it again:
+sudo systemctl start datadog-agent
+```
 
 # Collecting Metrics:
 
