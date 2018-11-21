@@ -141,40 +141,7 @@ apm_config:
 This allowed me to enable the trace agent manually, and next I needed to make sure my flask app could actually use this.
 
 
-**Below is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable it.
-
-from flask import Flask
-import logging
-import sys
-from ddtrace import tracer
-from ddtrace.contrib.flask import TraceMiddleware
-
-Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-
-main_logger.addHandler(c)
-app = Flask(__name__)
-
-traced_app = TraceMiddleware(app, tracer, service="my-flask-app", distributed_tracing=False)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-
+**Attached is my code for the Flask App, which has import tracer and import TraceMiddleware as well, to enable it.
 
 
 After restaring the agent, all I really had to do was run the following commands:
