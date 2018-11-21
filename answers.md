@@ -11,17 +11,12 @@ Follow the instructions to build a Linux VM via Vagrant.
 VirtualBox is your virtualization software.  Vagant is environment workflow software that will interface with VirtualBox.  
 
 1. Download VirtualBox [Here](https://www.virtualbox.org/wiki/Downloads)
-
-
-<a href="https://www.virtualbox.org/wiki/Downloads">here</a>  
 i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a normal install.  
 
-2. Download Vagrant <a href="https://www.vagrantup.com/downloads.html">here</a>5. To interact with the VM.
+2. Download Vagrant [Here](https://www.vagrantup.com/downloads.html)
 ```
 $ vagrant ssh
 ```
-
-
 3. Confirm the installation from your command line:  
 ```
 $ vagrant --version
