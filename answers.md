@@ -324,9 +324,9 @@ I have included snapshots of the various required settings below:
 
 #### Navigating to Manage Downtime
 
-![alt text][img2e]
+![alt text][img3d]
 
-[img2e]: ./images/monitor_manage_downtime.png "Navigating to Manage Downtime"
+[img3d]: ./images/monitor_manage_downtime.png "Navigating to Manage Downtime"
 
 #### Sat - Sun scheduled configuration notification (recurring)
 ![alt text][img4a]
