@@ -77,8 +77,14 @@ apt-get install -y vim-tiny
 ``` docker exec -it <container_name> <path to bin> <command>```
 
 > For example:
-> - To check the agent status from within the container, run: ``` /opt/datadog-agent/bin/agent/agent status ```
-> - To check the status of the agent from the host, run: ``` docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status ```
+> - To check the agent status from within the container, run: 
+``` 
+/opt/datadog-agent/bin/agent/agent status 
+```
+> - To check the status of the agent from the host, run: 
+``` 
+docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status 
+```
 >
 > _Other useful agent commands can be [found here](https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6)_
 
@@ -114,8 +120,7 @@ tags:
 **Chosen integration:** Postgres SQL <br/>
 For this exercise, I installed Postgres SQL using Postgres.app since it is specifically packaged for my development OS. Instructions on downloading and installing Postgress.app can be [found here](https://postgresapp.com). After this, following the [instructions here](https://docs.datadoghq.com/integrations/postgres/) for integrating Postgres SQL had my integration up and running.
 
-> **Side note 1**: To ensure the integration is running as expected, run: <br/>
->```/opt/datadog-agent/bin/agent/agent check <check_name>```
+> **Side note 1**: To ensure the integration is running as expected, check the status of the agent (as explained above)
 >
 > The output should be along the following lines (if working properly):
 ```
