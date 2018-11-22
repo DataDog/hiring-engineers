@@ -132,7 +132,7 @@ The above commands opens up the Linux virtual editor.  [Using VIM](https://www.l
 <!-- image here -->
 <!-- <img src="./images/6-my-metric-code.png"> -->
 
-4. Hit 'ESC' to leave 'Insert' mode.  Save changes, type :wq
+4. Hit 'ESC' to leave 'Insert' mode.  To save changes and exit, type :wq
 
 5. Restart the agent
 ```
@@ -142,7 +142,7 @@ $ sudo service datadog-agent restart
 6. Checking if it worked. Go to Host Map on the dashboard. MyTags should read 'my_test_tag'
 
 ## Step 2: Install a database & respective Datadog integration
-The goal here is to install a database and integrate the
+The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
 1. Go to the VM's root directory
 ```
@@ -158,18 +158,82 @@ $ sudo apt-get install postgresql postgresql-contrib
 $ sudo su - postgres
 $ psql
 ```
-To exit
+If you wish to exit, this is how
 ```
 postgres=# \q (or Ctrl + D)
 ```
-4. Install the respective Datadog integration for that database.
+4. Click 'Integrations' (puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
+<!-- Configure Image  -->
+
+Press 'generate password'. Then head over to your terminal.  
+
+```
+$ sudo su - postgres
+postgres@ubuntu-xenial:~$ psql
+```
+
+Copy and paste the code next to the Terminal icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
+```
+postgres=# create user datadog with password 'ababababababababababa';
+postgres=# grant SELECT ON pg_stat_database to datadog;
+postgres=# \q
+
+postgres@ubuntu-xenial:~$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && \
+echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
+echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+
+Hit Enter.
+
+Password for user: Copy and paste the password here.  
+
+Postgres Connection: Ok
+```
+
+5. Edit the conf.d/postgres.yaml file
+```
+postgres@ubuntu-xenial:~$ Press Ctrl + D
+$ cd /etc/datadog-agent/conf.d/postgres.d
+$ ls
+```
+You should notice there is no postgres.yaml so we create one.
+```
+/etc/datadog-agent/conf.d/postgres.d$ sudo touch conf.yaml
+/etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.yaml
+
+```
+Hit 'i' and copy/paste the code from the configuration
+```
+Press 'i'
+
+init_config:
+
+instances:
+   -   host: localhost
+       port: 5432
+       username: datadog
+       password: eub3PYCtMjeCPHhKbClyWO8p
+       tags:
+            - optional_tag1
+            - optional_tag2
+```
+It is also possible to add custom metrics and logs to the conf.yaml file.  
+
+Hit 'esc' then ':wq' to save
+
+6. Restart the Agent & Check the Agent's status
+```
+$ sudo service datadog-agent restart
+$ sudo datadog-agent status
+```
+7. Press "Install Integration".  Check back in five minutes to see if the integration is working properly.  
+<!-- Successful Integration  -->
 
 
-<img src="./images/5-check-postgresql-integration.png">
-<img src="./images/5-yaml-postgresql.png">
-<img src="./images/5-install-overview-postgresql.png">
+## Step 3: Install a database & respective Datadog integration
+The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
-6. Create a custom Agent check that submits a metric named "my_metric" with a random value between 0 and 1000.
+
+5. Create a custom Agent check that submits a metric named "my_metric" with a random value between 0 and 1000.
 <!-- The names of the configuration and check files must match. File is my_metric.py & my_metric.yaml. -->
 <a href="my_metric.py">MY METRIC</a>
 
