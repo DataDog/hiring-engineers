@@ -320,7 +320,7 @@ I have included snapshots of the various required settings below:
 
 ![alt text][img4f]
 
-[img4f]: ./images/scheduled_downtime_2a.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
+[img4f]: ./images/scheduled_downtime_2.png "7pm to 9am, Monday - Friday,  scheduled downtime notification"
 
 #### Expiration notification for 7pm to 9am, Monday - Friday,  scheduled downtime notification
 
