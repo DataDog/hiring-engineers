@@ -1,14 +1,10 @@
-# Application as 'Biblical Sales Engineer' at Datadog
+# Application as 'Senior Sales Engineer' at Datadog
 
-
- ...I'm sorry, but Senior is no longer the right element within a job title for me!! :trollface:
-
-
-## So, who the hack is 'The Logfather'
+Who is 'The Logfather'
 
 This nickname was given to me by former colleagues at Splunk. Although my focus goes far beyond simple log files, I still carry this name with a certain pride.
 
-I am now biblically 54 years old and have been working for almost 20 years as presales in various companies, but ALWAYS for start-up companies.
+I am now 54 years old and have been working for almost 20 years as presales in various companies, but ALWAYS for start-up companies.
 Where, if not in such young, agile and open companies, does the own acting and thinking have so much positive influence on the prosperity, the growth and the coming events of ingenious ideas, products and companies.
 
 Before I started in the IT industry, I worked as a roofer, plumber, steel constructor and a lot more.
@@ -17,17 +13,9 @@ I gained a foothold in IT about twenty years ago after training as a Java progra
 However, I am not the code nerd who loves to sit between undefinable amounts of cold pizza boxes and let his genius run free to create incredibly good lines of code.
 I'm rather the type of nerd who loves to successfully bring the ingenious ideas of others to the table. For me there is nothing more pleasing than to see how a great idea first becomes a convincing product, and in the next step a brilliant business idea becomes a successful company for everyone involved.
 
-[So let's get started!](https://www.youtube.com/watch?v=IKqV7DB8Iwg)
-
-
-### And the Oscar goes to....
-![And the Oscar goes to....](https://github.com/simuvid/hiring-engineers/blob/master/images/datadog_oscar_goes_to.jpeg)
-
-My thanks go to _**Lee Farrar**_ and Datadog for their interest in me and for giving me the opportunity to apply as a Sales Engineer.
+My personal thanks go to _**Lee Farrar**_ and Datadog for their interest in me and for giving me the opportunity to apply as a Senior Sales Engineer.
 
 # Following now all my answers. 
-
-For everyone's information, the cloud also contains another, very individual version of the answers: https://spark.adobe.com/page/DtglP7uGh51BG/
 
 
 ## Starting with Datadog - Setup the environment
@@ -323,32 +311,12 @@ The difference between service and resource within Datadog can also be described
 * **Resource**: Unlike the EMT example, within Datadog a resource is not hardware, like the ambulance, but rather something like an action that is necessary to perform a service. For a web application, for example, this would be the canonical URL. Or in a connected SQL database: a certain query, like SQL statements ( SELECT * )  
   
   
-  
-  
 ## _**CONCLUSION**_: 
 
 Datadog is different! The Logfather is different.
 
-If you are looking for a Sales Engineer who dives deep into code and configuration,...   
+If I say I am different then this means I bring a lot of valuable experience with me. My skills are not limited to the classic tasks of a presales engineer. I have already proven that, to a certain extent, technical product marketing is additional one of my strengths. In the past I have worked closely with PR and marketing agencies, created my own presentations and published technical articles in various trade magazines. I would also like to bring this knowledge to my new environment.
 
-...if for you the ideal Sales Engineer is self-absorbed and technology-loving, sitting in a quiet room and otherwise avoiding the sunlight,...  
+I hope that the technical answers to this online assessment are technically correct and detailed enough to convince Datadog of me.
 
-...then dear folks, I am for certain, definitely and perfectly sure not your guy.  
-
-**But...**  
-
-If in your eyes a sales engineer is  
-
-... extroverted ...  
-
-... he can inspire by his appearance ...  
-
-... he has his true joy on big stages ...  
-
-... he can nevertheless represent, present, implement and configure a product with technical expertise...  
-
-... he can build up a deep customer relationship through his positive personality ...  
-
-... he is a team player who can think not only in terms of features but also in terms of sales ...  
-
-## **... then I am the man!**
+I look forward to a fruitful and valuable collaboration with all colleagues and divisions within Datadog.
