@@ -118,8 +118,8 @@ tags:
 [img1b]: ./images/host_map_1.png "Host map"
 
 #### Installing a database
-**Chosen integration:** Postgres SQL <br/>
-For this exercise, I installed Postgres SQL using Postgres.app since it is specifically packaged for my development OS. Instructions on downloading and installing Postgress.app can be [found here](https://postgresapp.com). After this, following the [instructions here](https://docs.datadoghq.com/integrations/postgres/) for integrating Postgres SQL had my integration up and running.
+**Chosen integration:** Postgres SQL <br/><br/>
+For this exercise, I installed Postgres SQL using Postgres.app (since it is specifically packaged for my development OS). Instructions on downloading and installing Postgress.app can be [found here](https://postgresapp.com). After this, following the [instructions here](https://docs.datadoghq.com/integrations/postgres/) for integrating Postgres SQL had my integration up and running.
 
 > **Side note 1**: To ensure the integration is running as expected, check the status of the agent (as explained above)
 >
