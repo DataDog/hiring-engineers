@@ -73,14 +73,15 @@ apt-get install -y vim-tiny
 
 ``` 
 > **Side note 1:** The command when using ```vim-tiny``` to work with files is ```vim.tiny``` <br/>
+>
 > **Side note 2:** Although I did most of my work form within the container (as this was more convient for me), all the subcommands run within the container can also be run from outside the container by using:<br/>
 ``` docker exec -it <container_name> <path to bin> <command>```
-
+>
 > For example:
 > - To check the agent status from within the container, run: 
-``` 
-/opt/datadog-agent/bin/agent/agent status 
-```
+>``` 
+>/opt/datadog-agent/bin/agent/agent status 
+>```
 > - To check the status of the agent from the host, run: 
 ``` 
 docker exec -it <container_name> /opt/datadog-agent/bin/agent/agent status 
