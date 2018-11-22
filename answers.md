@@ -137,7 +137,7 @@ For this exercise, I installed Postgres SQL using Postgres.app (since it is spec
 
 ```
 
-> **Side note 2**: Custom integrations can be found with integration installations after logging into Datadog and going to integrations: <br/>
+> **Side note 2**: Custom integrations can be found with integration instructions after logging into Datadog and going to integrations (as shown in the image below): <br/>
 > #### Navigating to integrations after logging into Datadog
 > ![alt text][img_a]
 >
