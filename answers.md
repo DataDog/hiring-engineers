@@ -98,12 +98,44 @@ tags:
   - env:prod
   - role:database
 ```
+#### Navigating to host map
+
+![alt text][img1a]
+
+[img1a]: ./images/host_map_navigation.png "Navigating to host map"
 
 #### Host map with added tags
 
-![alt text][img1]
+![alt text][img1b]
 
-[img1]: ./images/host_map_1.png "Host map"
+[img1b]: ./images/host_map_1.png "Host map"
+
+#### Installing a database
+**Chosen integration:** Postgres SQL <br/>
+For this exercise, I installed Postgres SQL using Postgres.app since it is specifically packaged for my development OS. Instructions on downloading and installing Postgress.app can be [found here](https://postgresapp.com). After this, following the [instructions here](https://docs.datadoghq.com/integrations/postgres/) for integrating Postgres SQL had my integration up and running.
+
+> **Side note 1**: To ensure the integration is running as expected, run: <br/>
+>```/opt/datadog-agent/bin/agent/agent check <check_name>```
+>
+> The output should be along the following lines (if working properly):
+```
+    postgres (2.2.3)
+    ----------------
+        Instance ID: postgres:8e6dded31c225e88 [OK]
+        Total Runs: 1,510
+        Metric Samples: 43, Total: 64,930
+        Events: 0, Total: 0
+        Service Checks: 1, Total: 1,510
+        Average Execution Time : 210ms
+        
+
+```
+
+> **Side note 2**: Custom integrations can be found with integration installations after logging into Datadog and going to integrations: <br/>
+> #### Navigating to integrations after logging into Datadog
+> ![alt text][img_a]
+>
+>[img_a]: ./images/integrations_navigation.png "Navigating to integrations after logging into Datadog"
 
 
 #### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -114,7 +146,7 @@ tags:
 > **Side note**: To ensure the custom check is running as expected, run: <br/>
 >```/opt/datadog-agent/bin/agent/agent check <check_name>```
 >
-> The output should be allong the following lines:
+> The output should be along the following lines:
  ```
   Running Checks
   ==============
@@ -206,6 +238,13 @@ The anomaly graph displays metrics/situations where the query returns values out
 
 #### Metric Monitor Configuration
 **Steps to configure the monitor:** <br/> Choose **New Monitor** (under Monitors) ---> **Metric** (on the Select a monitor type page) and **Threshold Alert**. <br/>
+
+#### Navigating to New Monitor
+
+![alt text][img2e]
+
+[img2e]: ./images/monitor_new_monitor.png "Navigating to New Monitor"
+
 For a warning threshold of 500 and alert of 800 (over the last 5 minutes) as well as 'No data' (over 10 minutes), the configuration is shown in the image below.
 
 #### Metric monitor configuration snapshot
@@ -283,6 +322,11 @@ No data: There has been no data on my_metric on:
 Monitors --> Manage Downtime --> Schedule Downtime. Select monitor, configuration and create message. <br/>
 I have included snapshots of the various required settings below:
 
+#### Navigating to Manage Downtime
+
+![alt text][img2e]
+
+[img2e]: ./images/monitor_manage_downtime.png "Navigating to Manage Downtime"
 
 #### Sat - Sun scheduled configuration notification (recurring)
 ![alt text][img4a]
@@ -428,9 +472,10 @@ I am presently working om a performance measurement application, and I can clear
 9. [JSON Graphing Primer](https://docs.datadoghq.com/graphing/graphing_json/)
 10. [Monitoring Docker - Datadog Training Site](https://datadog.github.io/summit-training-session/handson/monitordocker/)
 11. [Monitoring Flask apps with Datadog](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
-12. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
-13. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
-14. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
-15. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
-16. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+12. [Postgres SQL](https://docs.datadoghq.com/integrations/postgres/)
+13. [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
+14. [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup/python/)
+15. [Tracing Docker Applications](https://docs.datadoghq.com/tracing/setup/docker/?tab=java#tracing-from-the-host)
+16. [Rollup](https://docs.datadoghq.com/graphing/functions/rollup/)
+17. [What is the Difference Between "Type", "Service", "Resource", and "Name"?](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
 
