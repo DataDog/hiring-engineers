@@ -10,4 +10,4 @@ docker run -d --name dd-agent \
 -e DD_API_KEY=44777b5614adfe98cfc78886cbea1eba \
 datadog/agent:latest
 ```
-![alt-text](pictures/001 - docker run.png "Running the agent")
+![alt-text]('pictures/001 - docker run.png' "Running the agent")
