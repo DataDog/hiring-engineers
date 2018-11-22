@@ -139,7 +139,7 @@ The above commands opens up the Linux virtual editor.  [Using VIM](https://www.l
 $ sudo service datadog-agent restart
 ```
 
-6. Checking if it worked. Go to Host Map on the dashboard. MyTags should read 'my_test_tag'
+6. Check if it worked. Go to Host Map on the dashboard. MyTags should read 'mytesttag'
 
 ## Step 2: Install a database & respective Datadog integration
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
@@ -228,14 +228,18 @@ $ sudo datadog-agent status
 7. Press "Install Integration".  Check back in five minutes to see if the integration is working properly.  
 <!-- Successful Integration  -->
 
-
-## Step 3: Install a database & respective Datadog integration
-The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 
-5. Create a custom Agent check that submits a metric named "my_metric" with a random value between 0 and 1000.
-<!-- The names of the configuration and check files must match. File is my_metric.py & my_metric.yaml. -->
-<a href="my_metric.py">MY METRIC</a>
+## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
+We can create a custom check to submit metrics to the Agent.  [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+
+1. Head down to the **checks.d** directory & create a Python file called 'my_metric'.
+```
+$ cd /etc/datadog-agent/checks.d
+/etc/datadog-agent/checks.d$ sudo touch my_metric.py
+```
+2. Open up my_metric using **sudo touch my_metric.py**.  Copy and paste the following:
 
 ```
 import random
@@ -254,13 +258,38 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0, 1000))
 ```
+<!-- image here -->
 
-7. Change your check's collection interval so that it only submits the metric once every 45 seconds.
-<img src="./images/6-my-metric-code.png">
+When done, hit 'ESC' and save, ':wq'
 
-<img src="./images/7-my-metric-dashboard.png">
+At this point, a random number will be sent with our check.  The check, by default, will try and run the check every 15 seconds.  
 
-8. **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+# Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+1. Match the file structure of postgresql.  Navigate to etc/.../conf.d$ create a directory called "my_metric.d", navigate into the directory and create a file called 'my_metric.yaml'  
+```
+$ sudo mkdir my_metric.d
+$ cd my_metric.d
+$ sudo touch my_metric.yaml
+```
+2. Open up the file and paste the following code to set the interval time to 45 seconds.
+```
+$ sudo vim my_metric.yaml
+
+init_config:
+
+ instances:
+    - min_collection_interval: 45
+```
+<!-- image here --> Hit 'esc', save :wq
+
+3. Check to see if the check is running
+```
+sudo -u dd-agent -- datadog-agent check my_metric.py
+```
+
+
+# Step 5: **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 - Someone could use the rollup() function and plug in the 45 seconds in the bin size constraint.  
 
 ## Visualizing Data:
