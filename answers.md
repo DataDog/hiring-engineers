@@ -2,18 +2,23 @@ In order to ... Datadog...(pyrammid process)
 
 1. Setup the environment
 2. Collect data
-3. visualize our data through our dashboard
+3. Visualize our data through our dashboard
 4. Monitor and sending notificactions
 5. dasf
 
 
 # Setup the environment
-DataDog recommends the use of virtual machine's as to avoid dependency issues.  
+DataDog recommends the use of virtual machine's (VM) as to avoid dependency issues.  
+
 VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
 
-Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you installed VirtualBox, you installed a 'box'.
+Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you install VirtualBox, you install a 'box'.
 
-1.2.3.4.
+Our four steps for setting up the environment:
+1. Installing VM & Vagrant software
+2. Building the VM's environment
+3. Creating a clone of a virtual machine
+4. Setup a Datadog Account
 
 ## Step 1: Installing the virtual machine software  
 
@@ -51,7 +56,7 @@ $ ls
 
 ## Step 3: Creating a clone of a virtual machine
 <img src="./img/install-vagrant-box.png">
-<img src="./img/install-vagrant-config.png">
+<img src="./img/install-vagrant-box-config.png">
 
 
 1. Create the clone of a VM using a 'box'.  Choose a <a href="https://app.vagrantup.com/boxes/search">BOX</a>
@@ -85,7 +90,6 @@ MAINTERMINAL $ becomes: vagrant@ubuntu-xenial:~$
 ```
 press 'CTRL' + 'D'
 ```
-**Your virtual machine environment is ready.**
 
 ## Step 4: Setup DataDog Account
 **If**, you installed the Agent to the desktop and want to remove it from the host, go [here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
@@ -117,7 +121,8 @@ To check status. This will tell you where there you have errors.  For example, I
 ```
 $ sudo datadog-agent status
 ```
-
+</br>
+**---------------**
 
 # Collecting Metrics:
 Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
@@ -329,7 +334,7 @@ Our two steps for visualizing data:
 1. Create a timeboard
 2. Accessing it and sending ourselves information
 
-# Step 1: Create a Timeboard 
+# Step 1: Create a Timeboard
 
 Utilize the Datadog API to create a Timeboard that contains:
 Your custom metric scoped over your host.
