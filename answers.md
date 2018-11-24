@@ -88,15 +88,13 @@ Here a screenshot of my host in the Host Map page in Datadog:
 
 ![alt-text](pictures/Host%20Map.png "Screenshot of my host in the Host Map page")
 
-## Create an Agent Check
-##### Step 2: Create the check and metric, generate a random number
+##### Step 2: Create the agent check and metric, generate a random number
 
-Creating a custom agent check 
+Creating a custom agent check and defining a custom metric 
  - ![see_my_metric.py](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
-Defining a custom metric
  - ![see_my_metric.yaml](datadog-agent/datadog-agent-conf.d/my_metric.yaml "my_metric.yaml")
 
-After creating my custom metric, I add to validate it through the command:
+After creating my custom metric, I validated it through the command:
 ```
 sudo docker exec -it dd-agent /opt/datadog-agent/bin/agent/agent configcheck
 
@@ -153,7 +151,7 @@ An Anomaly uses algorithmic detection to compare a metric with its historical da
 
 # Section 3: Monitoring Data
 
-I created a monitor through UI with the requested conditional messages. The host ip is not visible for security reason in Docker by default, but can be exposed. The {{host.name}} placeholder works by the way.
+I created a monitor through UI with the requested conditional messages. The host ip is not visible for security reason in Docker by default, but can be exposed. What I get instead is **. The {{host.name}} placeholder works by the way.
 
 ```
 **query** max(last_5m):max:my_metric{host:lionh-vm} > 800
@@ -193,7 +191,7 @@ Please note that the time is scheduled in CET and the notification is displayed 
 ## Instrument an Flask/Python/Ruby/Go app using Datadog APM
 ##### Step 1: Configure the environment
 
-First of all I have to enable the APM trace in my dd-agent with the DD_APM_ENABLED=true:
+First of all I had to enable the APM trace in my dd-agent with the DD_APM_ENABLED=true:
 
 ```
 sudo docker run -d --name dd-agent \
