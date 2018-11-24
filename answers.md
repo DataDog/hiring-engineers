@@ -69,7 +69,7 @@ $ vagrant box add ubuntu/xenial64>
 ```
 $ atom vagrantfile
 
-<!-- **In the vagrantfile:** -->
+//In the vagrantfile:
 
 Vagrant.configure("2") do |config|
   config.vm.box = “ubuntu/xenial64”
@@ -83,7 +83,9 @@ $ vagrant up
 ```
 $ vagrant ssh
 
-MAINTERMINAL $ becomes: vagrant@ubuntu-xenial:~$
+Your command line $ becomes:
+
+vagrant@ubuntu-xenial:~$
 ```
 6. To exit the VM.
 ```
@@ -103,7 +105,7 @@ press 'CTRL' + 'D'
 vagrant@ubuntu-xenial:~$
 ```
 
-3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in background.  
+3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in the background.  
 ```
 $ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
@@ -162,9 +164,9 @@ $ sudo service datadog-agent restart
 <img src="./img/collecting-psql-installation.png">
 <img src="./img/collecting-integrations-menu.png">
 <img src="./img/collecting-integrations-instructions.png">
-<img src="./img/collecting-psql-yaml-commands.png">
+<img src="./img/collecting-psql-conf-commands.png">
 <img src="./img/collecting-psql-conf-yaml.png">
-<img src="./img/collecting-psql-integration-success.png">
+<img src="./img/collecting-psql-integration-successful.png">
 
 1. Install your database.  I used Postgresql and typed the following commands while it in my VM's root directory.  
 ```
