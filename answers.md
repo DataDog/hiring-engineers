@@ -1,25 +1,24 @@
+In order to ... Datadog...(pyrammid process)
 
-Use the Pyramid Process to Write
+1. Setup the environment
+2. Collect data
+3. visualize our data through our dashboard
+4. Monitor and sending notificactions
+5. dasf
+
 
 # Setup the environment
 
-<!-- 0-vagrant image -->
-<!-- <img src="./images/2-yaml-config.png"> -->
-
 ## Step 1: Installing the virtual machine software  
 DataDog recommends the use of virtual machine's as to avoid dependency issues.  
-Follow the instructions to build a Linux VM via Vagrant.
-
 VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
 
-1. Download VirtualBox [Here](https://www.virtualbox.org/wiki/Downloads)  
-i.e. If you have Mac OSX Mojave, download OS X Host Intel Mac.  Proceed with a normal install.  
+1. Download VirtualBox [here](https://www.virtualbox.org/wiki/Downloads)  
 
-2. Download Vagrant [Here](https://www.vagrantup.com/downloads.html)
+2. Download Vagrant [here](https://www.vagrantup.com/downloads.html)
 
 3. Confirm the installation from your command line:  
 ```
-MAIN TERMINAL
 $ vagrant --version
 > Vagrant 2.2.1
 ```
@@ -47,6 +46,10 @@ $ ls
 
 ## Step 3: Creating a clone of a virtual machine
 Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you installed VirtualBox, you installed a 'box'.
+
+<img src="./img/install-vagrant-box.png">
+<img src="./img/install-vagrant-config.png">
+
 
 1. Create the clone of a VM using a 'box'.  Choose a <a href="https://app.vagrantup.com/boxes/search">BOX</a>
 i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
@@ -94,7 +97,7 @@ press 'CTRL' + 'D'
 vagrant@ubuntu-xenial:~$
 ```
 
-3. Install Agent.  Copy and paste the "one-step install" command in  your Vagrant SSH.
+3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH.
 ```
 $ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
@@ -112,50 +115,49 @@ To check status // Very useful command.  This will tell you where there you have
 $ sudo datadog-agent status
 ```
 
+
 # Collecting Metrics:
 
 ## Step 1: Add tags in the Agent config file
-Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things .  
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.  
 
-<!-- image here -->
-<!-- <img src="./images/2-yaml-config.png"> -->
+<img src="./img/collecting-tags-config.png">
+<img src="./img/collecting-host-map.png">
 
-1. Go to Host Map.  You should see a hexagon representing your VM.  
-
-2. Configure the host tags submitted by the Agent inside datadog.yaml. The [docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
+1. Configure the host tags submitted by the Agent inside datadog.yaml. The [docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
 ```
 $ cd /etc/datadog-agent
 $ ls
 $ sudo vim datadog.yaml
 ```
-The above commands opens up the Linux virtual editor.  [Using VIM](https://www.linux.com/learn/vim-101-beginners-guide-vim)
+The above commands opens up the Linux virtual editor.  [How to use VIM](https://www.linux.com/learn/vim-101-beginners-guide-vim)
 
-3. Scroll down to the line that reads **Set the host's tags**, **type 'i'** to enter Insert mode, and **delete** the hash next to tags.
-<!-- image here -->
-<!-- <img src="./images/6-my-metric-code.png"> -->
+2. Scroll down to the line that reads **"Set the host's tags"**, **type 'i'** to enter Insert mode, and **delete** the hash next to tags.
 
-4. Hit 'ESC' to leave 'Insert' mode.  To save changes and exit, type :wq
+3. Hit **ESC** to leave 'Insert' mode.  Save and exit, type **:wq**
 
-5. Restart the agent
+4. Restart the agent
 ```
 $ sudo service datadog-agent restart
 ```
-
-6. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'mytesttag'
+5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'mytesttag'
 
 ## Step 2: Install a database & respective Datadog integration
-The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
+The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.  [The Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
-1. Go to the VM's root directory
-```
-$ cd
-```
-2. Install your database.  I used Postgresql.  
+<img src="./img/collecting-psql-installation.png">
+<img src="./img/collecting-integrations-menu.png">
+<img src="./img/collecting-integrations-instructions.png">
+<img src="./img/collecting-psql-yaml-commands.png">
+<img src="./img/collecting-psql-conf-yaml.png">
+<img src="./img/collecting-psql-integration-success.png">
+
+1. Install your database.  I used Postgresql and typed the following commands while it in my VM's root directory.  
 ```
 $ sudo apt-get update
 $ sudo apt-get install postgresql postgresql-contrib
 ```
-3. Enter your database to see if it works.
+2. Enter your database to check if it works.
 ```
 $ sudo su - postgres
 $ psql
@@ -164,8 +166,7 @@ If you wish to exit, this is how
 ```
 postgres=# \q (or Ctrl + D)
 ```
-4. Click 'Integrations' (puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
-<!-- Configure Image  -->
+3. Click 'Integrations' (under the puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
 
 Press 'generate password'. Then head over to your terminal.  
 
@@ -197,11 +198,9 @@ postgres@ubuntu-xenial:~$ Press Ctrl + D
 $ cd /etc/datadog-agent/conf.d/postgres.d
 $ ls
 ```
-You should notice there is no postgres.yaml so we create one.
+There is only the example conf.yaml file.  We open, edit, then 'move' the file to save as conf.yaml
 ```
-/etc/datadog-agent/conf.d/postgres.d$ sudo touch conf.yaml
-/etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.yaml
-
+/etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
 Hit 'i' and copy/paste the code from the configuration
 ```
@@ -218,9 +217,12 @@ instances:
             - optional_tag1
             - optional_tag2
 ```
-It is also possible to add custom metrics and logs to the conf.yaml file.  
+Hit **ESC**, to save, type **:wq**
 
-Hit 'esc' then ':wq' to save
+Rename conf.yaml file
+```
+/etc/datadog-agent/conf.d/postgres.d$ sudo mv conf.yaml.example conf.yaml
+```
 
 6. Restart the Agent & Check the Agent's status
 ```
@@ -228,7 +230,6 @@ $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
 7. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
-<!-- Successful Integration  -->
 
 
 ## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
