@@ -8,10 +8,14 @@ In order to ... Datadog...(pyrammid process)
 
 
 # Setup the environment
-
-## Step 1: Installing the virtual machine software  
 DataDog recommends the use of virtual machine's as to avoid dependency issues.  
 VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
+
+Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you installed VirtualBox, you installed a 'box'.
+
+1.2.3.4.
+
+## Step 1: Installing the virtual machine software  
 
 1. Download VirtualBox [here](https://www.virtualbox.org/wiki/Downloads)  
 
@@ -24,7 +28,7 @@ $ vagrant --version
 ```
 
 ## Step 2: Building the project environment  
-The documentation is clean and concise.  Check it out <a href="https://www.vagrantup.com/intro/getting-started/project_setup.html">here</a>
+[Project Setup Docs](https://www.vagrantup.com/intro/getting-started/project_setup.html)
 
 1. Create a directory/folder to store the VM and the related files.  I created a folder on my desktop.
 ```
@@ -35,7 +39,8 @@ $ mkdir DataDog2
 ```
 $ cd DataDog2
 ```
-3. Initialize the VM.  This will create the Vagrant file. <a href="https://www.vagrantup.com/docs/vagrantfile/"> See what the Vagrantfile does.</a>
+
+3. Initialize Vagrant.  This will create the Vagrant workflow [See what the Vagrantfile does](https://www.vagrantup.com/docs/vagrantfile/)
 ```
 $ vagrant init
 ```
@@ -45,8 +50,6 @@ $ ls
 ```
 
 ## Step 3: Creating a clone of a virtual machine
-Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you installed VirtualBox, you installed a 'box'.
-
 <img src="./img/install-vagrant-box.png">
 <img src="./img/install-vagrant-config.png">
 
@@ -85,7 +88,7 @@ press 'CTRL' + 'D'
 **Your virtual machine environment is ready.**
 
 ## Step 4: Setup DataDog Account
-**If**, you installed the Agent to the desktop and want to remove it from the host, go [Here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
+**If**, you installed the Agent to the desktop and want to remove it from the host, go [here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
 
 **Else**,
 1. Sign up for an [Account](https://app.datadoghq.com/signup)  
@@ -97,34 +100,41 @@ press 'CTRL' + 'D'
 vagrant@ubuntu-xenial:~$
 ```
 
-3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH.
+3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in background.  
 ```
 $ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-
 ```
-The agent should be running in the background.  
 
-```
 To halt the program:
+```
 $ sudo systemctl stop datadog-agent
-
+```
 To start it again:
+```
 $ sudo systemctl start datadog-agent
-
-To check status // Very useful command.  This will tell you where there you have errors.  For example, I had the wrong spaces into my datadog.yaml configuration.  
+```
+To check status. This will tell you where there you have errors.  For example, I had the wrong spaces into my datadog.yaml configuration.  
+```
 $ sudo datadog-agent status
 ```
 
 
 # Collecting Metrics:
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
+
+The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.
+
+1. Add tags to the Agent's config file
+2.  
+3.  
+4.
 
 ## Step 1: Add tags in the Agent config file
-Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.  
 
 <img src="./img/collecting-tags-config.png">
 <img src="./img/collecting-host-map.png">
 
-1. Configure the host tags submitted by the Agent inside datadog.yaml. The [docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
+1. Configure the host tags submitted by the Agent inside datadog.yaml. [Relevant Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
 ```
 $ cd /etc/datadog-agent
 $ ls
@@ -143,7 +153,7 @@ $ sudo service datadog-agent restart
 5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'mytesttag'
 
 ## Step 2: Install a database & respective Datadog integration
-The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.  [The Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
+[Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
 <img src="./img/collecting-psql-installation.png">
 <img src="./img/collecting-integrations-menu.png">
@@ -302,16 +312,40 @@ $ sudo datadog-agent status
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes.  You can enter the yaml file and change the interval manually.  
-
+Yes.  You can run this command with the -d flag and a integer argument standing for desired seconds.  
+```
+sudo -u dd-agent -- datadog-agent check my_metric -d 30
+```
 
 ## Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:  
-9. Your custom metric scoped over your host.  
-10. Any metric from the Integration on your Database with the anomaly function applied.  
-11. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-<img src="./images/12-my-metric-graph.png">
+In math we use analysis to see phenomena, but often times, we want to a have a different perspective.  We use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
+
+Datadog is no different.  We can see my_metric and our database in the terminal.  But Datadog provides robust data visualization tools to help us gain a greater grasp of the metrics we are tracking.
+
+The two major tools Datadog has are the Timeboard and the Screenboard.  [Boards](https://www.youtube.com/watch?v=uI3YN_cnahk)
+
+Our two steps for visualizing data:
+1. Create a timeboard
+2. Accessing it and sending ourselves information
+
+# Step 1: Create a Timeboard 
+
+Utilize the Datadog API to create a Timeboard that contains:
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+# Step 2: Access the timeboard and notify yourself
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+**Bonus Question:** What is the Anomaly graph displaying?
+
 
 12. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
