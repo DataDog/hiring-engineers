@@ -1,7 +1,7 @@
 ## Datadog Coding Challenge - Lionel Tesolin
 
 Hello Datadog, all the consolidated answers of the coding challenge is resumed in this livedoc. My approach is to relate each step with in mind an hipotetical customer that might need to replicate the same task.
-I'm aware (and you also are) that Github is a public platform and all forks are accessible by everyone so it can be useful to see how others candidates have answered to the same task. 
+I'm aware (and you also are) that Github is a public platform and all forks are accessible by everyone so it is useful and interesting to check what have the others candidates answered to the same challenge. 
 Let's start!
 ![alt-text](pictures/troll.gif "Let's start")
 
@@ -38,7 +38,7 @@ The run command allow us to share volume between the docker container and the do
 
 ![alt-text](pictures/001%20-%20docker%20run.png "Running the agent")
 
-It's necessary to add a user in mongodb to allow the datadog agent to access in ro to the database metrics:
+It's necessary to add a user in mongodb to allow the datadog agent to access in ro the database metrics:
 
 ```shell
 creating user datadog in mongo:
@@ -94,6 +94,27 @@ sudo docker start dd-agent
 ---
 > *Bonus Question Can you change the collection interval without modifying the Python check file you created?*
 ---
-Modifying the ```.yaml``` file was my first approach. The question asked if it is possible to do it without modifying the ```.py```. The Gauge class expose a ```flush```method that take *interval* argument. So in Python, it could be possible to set how often a given metric is flushed to Datadog.
+Modifying the ```.yaml``` file was my first approach. The question asked if it is possible to do it without modifying the ```.py```. The Gauge class exposes a ```flush```method that takes *interval* argument. So in Python, it is possible to set how often a given metric is flushed to Datadog.
 
+# Section 2: Visualizing Data
+*Utilize the Datadog API to create a Timeboard...*
 
+---
+
+## Create a Timeboard
+##### Step 1: I'm going to use Curl as a simple Rest Client and storing the call in a bash script.
+---
+> *(Make sure your timeboard contains:*)
+> - *Your custom metric scoped over your host.*
+> - *Any metric from the Integration on your Database with the anomaly function applied.*
+---
+ - ![see timeboard.sh](timeboard.sh "timeboard curl call")
+##### Step 2: Verify the custom Dashboard
+![alt-text](pictures/Dashboard%20screenshot.png "Screenshot of my custom Dashboard")
+##### Step 3: Verify the email notification with 5 minutes timeframe
+---
+>*(Access the Dashboard in the UI:)*
+> - *Take a snapshot of this graph and use the @ notation to send it to yourself.*
+---
+Selecting any graph, using the camera button in the top right, I was able to take a snapshot and share it using @ with a suggestion list of user and use my own email adress. I receive immediately the following email in my inbox:
+![alt-text](pictures/Email%20notification.png "Email notification")
