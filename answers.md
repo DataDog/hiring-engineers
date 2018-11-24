@@ -64,6 +64,6 @@ Here a screenshot of my host in the Host Map page in Datadog:
 
 ![alt-text](pictures/Host%20Map.png "Screenshot of my host in the Host Map page")
 
-Creating a custom agent check:
-
-![alt-text](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
+Creating a custom agent check 
+ - ![see my_metric.py](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
+ - ![see my_metric.yaml](datadog-agent/datadog-agent-conf.d/my_metric.yaml "my_metric.yaml")
