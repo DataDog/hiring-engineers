@@ -70,6 +70,7 @@ Successfully added user: {
 }
 ```
 
+
 # Section 1: Collecting Metrics
 
 ##### Step: Find Hostmap in Datadog, provide screenshot
@@ -96,7 +97,9 @@ sudo docker start dd-agent
 ---
 Modifying the ```.yaml``` file was my first approach. The question asked if it is possible to do it without modifying the ```.py```. The Gauge class exposes a ```flush```method that takes *interval* argument. So in Python, it is possible to set how often a given metric is flushed to Datadog.
 
+
 # Section 2: Visualizing Data
+
 *Utilize the Datadog API to create a Timeboard...*
 
 ---
@@ -118,3 +121,41 @@ Modifying the ```.yaml``` file was my first approach. The question asked if it i
 ---
 Selecting any graph, using the camera button in the top right, I was able to take a snapshot and share it using @ with a suggestion list of user and use my own email adress. I receive immediately the following email in my inbox:
 ![alt-text](pictures/Email%20notification.png "Email notification")
+
+## What is the Anomaly graph displaying?
+An Anomaly uses algorithmic detection to compare a metric with its historical data highlighting deviations over a specific window time. Different algorithm can be chosen.
+
+
+# Section 3: Monitoring Data
+
+I created a monitor through UI with the requested conditional messages. The host ip get lost because I'm using Docker container but the {{host.name}} placeholder works.
+
+```
+**query** max(last_5m):max:my_metric{host:lionh-vm} > 800
+
+{{#is_alert}} The data is above the threshold. A peak of {{value}} is too high, please review host: {{host.ip}} {{/is_alert}}
+
+{{#is_warning}} The data is below the threshold. A peak of {{value}} is high, please consider review what is going on {{/is_warning}}
+
+{{#is_no_data}} No data coming in 10m, please contact support {{/is_no_data}}
+```
+![Alert Monitor Notification](pictures/email.png)
+
+---
+> ***Bonus Question:*** *Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
+> - *One that silences it from 7pm to 9am daily on M-F,*
+> - *And one that silences it all day on Sat-Sun.,*
+> - *Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
+---
+I scheduled two recurring Downtime and received the notification by mail. One each working day from 7pm, duration 14h and one on Saturday beginning at 00:00am, duration 2 days.
+
+Here the details:
+
+![Downtime definition](pictures/DowntimeDef.png)
+
+![Downtime notification](pictures/Downtime2.png)
+
+![Downtime started notification](pictures/Downtime started.png)
+
+Please note that the time is scheduled in CET and the notification is given in UTC (1 hour delayed)
+
