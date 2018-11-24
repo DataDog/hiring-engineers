@@ -92,19 +92,18 @@ Here a screenshot of my host in the Host Map page in Datadog:
 ##### Step 2: Create the check and metric, generate a random number
 
 Creating a custom agent check 
- - ![see my_metric.py](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
+ - ![see_my_metric.py](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
 Defining a custom metric
- - ![see my_metric.yaml](datadog-agent/datadog-agent-conf.d/my_metric.yaml "my_metric.yaml")
+ - ![see_my_metric.yaml](datadog-agent/datadog-agent-conf.d/my_metric.yaml "my_metric.yaml")
 
 After creating my custom metric, I add to validate it through the command:
 ```
 sudo docker exec -it dd-agent /opt/datadog-agent/bin/agent/agent configcheck
-```
+
 === my_metric check ===
 Source: File
 Instance ID: my_metric:5ba864f3937b5bad
 min_collection_interval: 45
-~
 ===
 ```
 
