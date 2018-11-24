@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+  - server: mongodb://datadog:K3mbruck@mongodb:27017/admin
+    additional_metrics:
+      - collection       # collect metrics for each collection
+      - metrics.commands
+      - tcmalloc
+      - top

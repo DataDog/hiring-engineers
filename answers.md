@@ -63,3 +63,7 @@ Successfully added user: {
 Here a screenshot of my host in the Host Map page in Datadog:
 
 ![alt-text](pictures/Host%20Map.png "Screenshot of my host in the Host Map page")
+
+Creating a custom agent check:
+
+![alt-text](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
