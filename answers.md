@@ -68,10 +68,9 @@ $ vagrant box add ubuntu/xenial64>
 2. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
 ```
 $ atom vagrantfile
-```
 
-In the vagrantfile:
-```
+<!-- **In the vagrantfile:** -->
+
 Vagrant.configure("2") do |config|
   config.vm.box = “ubuntu/xenial64”
 end
@@ -121,8 +120,8 @@ To check status. This will tell you where there you have errors.  For example, I
 ```
 $ sudo datadog-agent status
 ```
+-------------------------------------
 </br>
-**---------------**
 
 # Collecting Metrics:
 Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
