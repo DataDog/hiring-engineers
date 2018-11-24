@@ -1,3 +1,13 @@
+## Datadog Coding Challenge - Lionel Tesolin
+
+Hello Datadog, all the consolidated answers of the coding challenge is resumed in this livedoc. My approach is to relate each step with in mind an hipotetical customer that might need to replicate the same task.
+I'm aware (and you also are) that Github is a public platform and all forks are accessible by everyone so it can be useful to see how others candidates have answered to the same task. 
+Let's start!
+![alt-text](pictures/troll.gif "Let's start")
+
+
+# Prerequisites - Setup the Environment
+
 ### Installation
 
 Vagrant is a powerful vm orchestrator but I have already in my personal notebook an Ubuntu vm image with Docker. I'm using VirtualBox. I will then install the dockerized version of mongodb and datadog agent:
@@ -60,10 +70,30 @@ Successfully added user: {
 }
 ```
 
+# Section 1: Collecting Metrics
+
+##### Step: Find Hostmap in Datadog, provide screenshot
 Here a screenshot of my host in the Host Map page in Datadog:
 
 ![alt-text](pictures/Host%20Map.png "Screenshot of my host in the Host Map page")
 
+## Create an Agent Check
+##### Step 1: Create the check and metric, generate a random number
 Creating a custom agent check 
  - ![see my_metric.py](datadog-agent/datadog-agent-checks.d/my_metric.py "my_metric.py")
+Defining a custom metric
  - ![see my_metric.yaml](datadog-agent/datadog-agent-conf.d/my_metric.yaml "my_metric.yaml")
+
+##### Step 2: Run and verify the check
+Stopping and restarting the dd-agent container is easy with Docker
+
+```
+sudo docker stop dd-agent
+sudo docker start dd-agent
+```
+---
+> *Bonus Question Can you change the collection interval without modifying the Python check file you created?*
+---
+Modifying the ```.yaml``` file was my first approach. The question asked if it is possible to do it without modifying the ```.py```. The Gauge class expose a ```flush```method that take *interval* argument. So in Python, it could be possible to set how often a given metric is flushed to Datadog.
+
+
