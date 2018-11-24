@@ -233,7 +233,11 @@ $ sudo datadog-agent status
 
 
 ## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
-We can create a custom check to submit metrics to the Agent.  [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+We can create a custom check to submit metrics to the Agent. To do so requires 1. A check file 2. a YAML configuration file     [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+
+<img src="./img/collecting-my-metric-config.png">
+<img src="./img/collecting-my-metric-code.png">
+<img src="./img/collecting-my-metric-initial.png">
 
 1. Head down to the **checks.d** directory & create a Python file called 'my_metric'.
 ```
@@ -259,21 +263,25 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0, 1000))
 ```
-<!-- image here -->
+Hit **ESC** and save, **:wq**
 
-When done, hit 'ESC' and save, ':wq'
+3. Restart the Agent & Check the Agent's status
+```
+$ sudo service datadog-agent restart
+$ sudo datadog-agent status
+```
 
 At this point, a random number will be sent with our check.  The check, by default, will try and run the check every 15 seconds.  
 
 # Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-1. Match the file structure of postgresql.  Navigate to etc/.../conf.d$ create a directory called "my_metric.d", navigate into the directory and create a file called 'my_metric.yaml'  
-```
-$ sudo mkdir my_metric.d
-$ cd my_metric.d
-$ sudo touch my_metric.yaml
-```
-2. Open up the file and paste the following code to set the interval time to 45 seconds.
+<img src="./img/collecting-yaml-interval.png">
+<img src="./img/collecting-time-0.png">
+<img src="./img/collecting-my-metric-0.png">
+<img src="./img/collecting-time-45.png">
+<img src="./img/collecting-my-metric-45.png">
+
+1. Open up my_metric.yaml file in the conf.d directory.
 ```
 $ sudo vim my_metric.yaml
 
@@ -282,16 +290,19 @@ init_config:
  instances:
     - min_collection_interval: 45
 ```
-<!-- image here --> Hit 'esc', save :wq
+Hit 'esc', save :wq
 
-3. Check to see if the check is running
+2. Restart the Agent & Check the Agent's status
 ```
-sudo -u dd-agent -- datadog-agent check my_metric.py
+$ sudo service datadog-agent restart
+$ sudo datadog-agent status
 ```
 
-# Step 5: **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+3. After about 45 seconds, repeat above step.
 
-1. One can use the -d flag after this command: sudo -u dd-agent -- datadog-agent check my_metric.py
+**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+Yes.  You can enter the yaml file and change the interval manually.  
 
 
 ## Visualizing Data:
