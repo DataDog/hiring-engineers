@@ -1,4 +1,6 @@
 
+Use the Pyramid Process to Write
+
 # Setup the environment
 
 <!-- 0-vagrant image -->
@@ -116,7 +118,7 @@ $ sudo datadog-agent status
 Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things .  
 
 <!-- image here -->
-<img src="./images/2-yaml-config.png">
+<!-- <img src="./images/2-yaml-config.png"> -->
 
 1. Go to Host Map.  You should see a hexagon representing your VM.  
 
@@ -139,7 +141,7 @@ The above commands opens up the Linux virtual editor.  [Using VIM](https://www.l
 $ sudo service datadog-agent restart
 ```
 
-6. Check if it worked. Go to Host Map on the dashboard. MyTags should read 'mytesttag'
+6. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'mytesttag'
 
 ## Step 2: Install a database & respective Datadog integration
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can being monitoring your metrics or the health of your systems.  [The Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
@@ -174,7 +176,7 @@ postgres@ubuntu-xenial:~$ psql
 
 Copy and paste the code next to the Terminal icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
 ```
-postgres=# create user datadog with password 'ababababababababababa';
+postgres=# create user datadog with password 'the password they provide';
 postgres=# grant SELECT ON pg_stat_database to datadog;
 postgres=# \q
 
@@ -225,10 +227,8 @@ Hit 'esc' then ':wq' to save
 $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
-7. Press "Install Integration".  Check back in five minutes to see if the integration is working properly.  
+7. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
 <!-- Successful Integration  -->
-
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 
 ## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
@@ -288,9 +288,10 @@ init_config:
 sudo -u dd-agent -- datadog-agent check my_metric.py
 ```
 
-
 # Step 5: **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-- Someone could use the rollup() function and plug in the 45 seconds in the bin size constraint.  
+
+1. One can use the -d flag after this command: sudo -u dd-agent -- datadog-agent check my_metric.py
+
 
 ## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:  
