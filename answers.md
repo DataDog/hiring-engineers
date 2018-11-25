@@ -16,13 +16,13 @@ So recently, the whole reason I'm here, the fine people of Datadog are consideri
 
 "Awesome," I thought after I got off of the phone screen, "when do I get to start breaking things?"
 
-### Reasearch and Preparation
+## Research and Preparation
      
 Being relatively new to coding (having graduated a bootcamp in May), I'm always trying to approach each project I attempt in a new way.  I think one of my largest problems as a new coder currently is feeling rushed.  If I'm reading through documentation, and the thing I've just read will solve the problem I'm working on, I'm back to coding before you can say "you should always read the full documentation."  I feel rushed to prove myself, so I don't read what I don't need.  I'm fighting that instinct here and from now on, because I think it's a bad habit that ultimately results in more beating my head against a desk, and I sincerely want to be one of those *boring* guys who always asks "did you read the documentation first?"
 
 I'm not familiar with most of the technologies I'll be using here, and so would like to take some time to dive into some of the cool things I learned along the way.
 
-   #### Vagrant: A Very Brief Overview
+   ### Vagrant: A Very Brief Overview
 
 **Introduction and Information** : https://www.vagrantup.com/intro/index.html
 **Documentation** : https://www.vagrantup.com/docs/
@@ -46,9 +46,9 @@ Run `vagrant` at the command line for help to be displayed, along with a list of
 
 **From** Vagrant Cloud (a list of vagrant boxes for download with fully configured vagrantfiles for different tech stacks and working environments): https://app.vagrantup.com/boxes/search
 
-#### Datadog
+### Datadog
 
-**Introduction and Dcumentation**:  https://docs.datadoghq.com/
+**Introduction and Documentation**:  https://docs.datadoghq.com/
 
 While none of this information will be new to the hiring team, this is my first introduction to working with the Datadog platform and that is truly the meat of this assignment.  I'll remain brief to avoid glossing your eyes over with stuff you already know.
 
@@ -60,7 +60,7 @@ Datadog has a focus on being usable for everyone.  The eggheads love it for it's
 
 "Awesome," I'm thinking, "before I get to breaking and fixing this thing I have to learn some Python."
 
-   #### Python
+   ### Python
 
  Whoa.  Python is cool.  I mean, Python is really cool.  Python makes me feel kind of sweaty and excited to write code.  I come from a Java background,  so I thought a good place to start would be asking google "python java differences?"  Then I went over to W3 schools to get a deeper dive into basic syntax, structure, and highlights of the language.  Lastly I looked into naming and style conventions in Python to try to be certain I don't end up looking like a Java writer dressed as a Python writer.  Don't get me wrong, Java is a robust language and even holds some significant advantages over Python, especially in Java's usage of JIT (just in time) compiling, and syntactically is a language that forces clarity (if sacrificiing readability in some situations) in it's strict rules for method signatures and static typing.  I like Java.  It's great.  It does what I ask it to about half the time, and what more could you ask for?  I'm starting to *love* Python, though.  I'll get into why a little later, and I'm going to apologize ahead of time for not being brief.  Python is, as I've said already, really cool.
 
@@ -127,7 +127,7 @@ cast_to_string(counter)
 
    Python is, and I know I've said it three or more separate times, *really cool*.  Syntactically significant whitespace and tabs?  Code blocks based on indentation instead of easy-to-lose brackets? A robust dyamically typed language with some of the advantages of static typing at runtime?  These are all great things, but there is a double-edged sword to Python that I think really becomes a hidden strength. If the dev writing the Python code isn't descriptive, it becomes gibberish with very few clues to aid anyone who is reading their code.  Python forces you to write more elegantly *because* it does so much work for you.  Java forces clarity at the expense of readability, whereas Python forces the programmer to be clear.  Variables in Python must be more descriptive to maintain readability, while the syntactically significant white spaces for code blocks force a naturally readable flow.  I can't say enough about Python at the moment.  I feel like the first cave man to discover fire.  I can feel my code becoming more descriptive and readable.  I'm thinking more deeply about how to be descriptive with naming variables and functions, and how to write code that's partially/mostly readable to someone who has never even coded in their life.  I imagine my code being simple and pretty and good and Python-y, and I'm trying not to run off and re-code every Java project on my GitHub into Python, because I've got to learn a little about the Flask framework before using it with Datadog.
 
-   #### Flask
+   ### Flask
 
 **From**:  http://flask.pocoo.org/docs/1.0/installation/#installation
 **From**:  http://flask.pocoo.org/docs/1.0/quickstart/
@@ -147,7 +147,7 @@ Alright, that should cover most of the technologies I learned to get this projec
 
 Yes, it's finally time to break things, fix them, and have fun doing it.
 
-### Setting Up An Environment With Vagrant and Running The Datadog Agent
+## Setting Up An Environment With Vagrant and Running The Datadog Agent
 
 **Attempt one:** 
 
@@ -225,7 +225,7 @@ Here's a picture from the Datadog dashboard showing my beautiful green hexagonal
 
 Alright, that's been broken several times and then mostly fixed.  I accidentally have a datadog-agent running somewhere on my machine and I don't know where, but I've got one running inside the VM and that's what counts. It isn't perfect but might get me through the rest of this exercise.  What's next?
 
-### Collecting Metrics
+## Collecting Metrics
 
 **My Host**
 I added a tag called "example_tag" to the ubuntu/xenial host via the add tags button on the popup box that shows after clicking on the host.
@@ -274,7 +274,7 @@ instances: [{}]
 
 This returns a successful check from the command-line, so I'm crossing my fingers here because I think I've got it right.  I'm not sure why init_config: is not working, but theoretically my metric is now sending a random number between 0 and 1000 on an approximately 45 second interval.
 
-### Visualising Data
+## Visualising Data
  **Seeing my_metric in Action**
  Okay, so now I'm going to create a Timeboard that observes this metric reporting data from my ubuntu/xenial host.  I'm unable to show metrics from my database integration, as I was unable to resolve permissions errors, and don't think I will be able to on the Ubuntu system that I'm not as familiar with as OSX.  I had the same issues installing MySql Server to my machine, and was barely able to fix it on a familiar OS.  Then I'm going to display my custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.  Here's the screenshot from my dashboard:
 
@@ -346,7 +346,7 @@ The code for the metric over host graph is:
 
  Alright.  Cool.  I got through this section without breaking anything else!  I'm unable to answer the bonus question because I couldn't get my database integration to listen to me, and don't have an anomoly graph to refer to.  Now to work with monitoring in Datadog.
 
-### Monitoring Data
+## Monitoring Data
 
  **Creating Monitors**
  Okay, so first I'm going to take my metric, and create a monitor that will warn at a threshold of 500, Alert at a threshold of 800, or notification if there's no data for 10 minutes.  This monitor is going to be configured to send me an email whenever it is triggered, have different messages for Warning, Alert, and No Data.  The email notification should also include the metric value that cause the monitor to trigger and the host ip when the monitor triggers an alert state.
@@ -369,7 +369,7 @@ The code for the metric over host graph is:
 
  Next, we'll look at APM Data in Datadog, and how to get your own apps reporting data to the agent.
 
-### Collecting APM Data
+## Collecting APM Data
 
 **Attempt one**
 Okay, here we go.  I'm not sure if I actually have Python or an interpreter installed on the machine, so I can check that by running `python -v` in the command line.  This tells me my VM has the packages for Python 3.  I ran an install script, `sudo apt-get update; sudo apt-get install python3`, and everything is up to date.
@@ -420,12 +420,12 @@ Negative.  I'll try again if I have any new ideas, but as of now I'm tapped out.
 Unfortunately, I was unable to get the ddtrace program to integrate successfully with my application.  I've racked my brain as to why, and cannot come up with anything to resolve the issue.  As a last resort, I tried moving app.py to within the venv folder so that it would be fully within the environment.  This had no effect.  Unfortunately, I'm at the end of my knowledge, and won't be able to complete this portion of the exercise.  Any feedback as to where I went wrong would be greatly appreciated, because it makes no sense to me.  In a work setting, I'm sure I'd be going to someone that understands this environment better and saying "I cannot figure this out.  Here's the steps I've taken, and I'm lost and fear anything I do from here on out will further break it."  It's frustrating, because I hate giving up, but I'm at the end of my knowledge here.  I will probably give it some further consideration, and if I come up with a novel approach I'll be sure to commit and push these changes to my forked repo on github.
 
 
-### Going Outside The Box With Datadog
+## Going Outside The Box With Datadog
 
  Datadog has been used for more than simply measuring metrics, including working with the NYC Subway System and more.  I've been asked to think outside of the box about how Datadog could be used, and I think that this tech could be utilized by ad agencies to test the effectiveness of marketing campaigns.
  Let's say you are a Marketing person, and you're using two different campaigns on the same product, and you're looking for a way to aggregate data about which campaign is driving more traffic to the site, app, etc.  You even want to know how it's faring on the east versus west coasts to gauage the campaigns effectiveness by region or city.  If both campaigns point to the same host site but have two different servers that are accessed by a different domain (one for the first campaign, and the other for the second), I could imagine that each servers hit rates could be summed to show the advertiser which campaign is getting greater hits.  A third server could even indicate traffic that isn't being driven by the campaigns.  If these metrics can also include an accurate server location (for instance, when someone types the url in Austin the server shows a hit in Austin instead of Timbuktoo), someone could theoretically set up a dashboard showing real-time statistics on the success of one campaign over the other spread out across any number of regions or cities in the world.  Further research on this would include how to gather demographic data from users that make a hit so that these can be graphed to show success by demographic by campaign as well as total stats.  I'm certain tools that do this exist currently, though I think the level of customization available to the Datadog platform may be worth exploring in the Marketing realm.
 
-### Closing Remarks
+## Closing Remarks
 
  So, here we are.  At the end of this assignment.  I've learned a handful of new-to-me technologies at a basic level (Vagrant, VirtualBox, Docker, Datadog, Python, Flask, Virtualenv, Pip), gotten a deeper delve into the Ubuntu system that I'm unfamiliar with, and come to understand a great deal more about running dev environments and programs from the command line.  I think I've performed well, given how over my head I was at the beginning of this assignment, and was only unable to configure a MySQL integration installed on an unfamiliar OS with permissions errors I don't understand, and an apm integration that failed (I think) based on a bizarre but common error that seems specific to the Virtualenv platform.  I'm truly bummed out by this.  I don't like giving up on anything, but in light of the fact that it's 1:30AM on a Sunday and I began at around 1:00PM Saturday.
  Regardless, this assignment has been eye-opening, the biggest learning experience I've had since attending coding bootcamp, and mostly fun (minus a few moments of heavy doubt) and I've taken a liking to the Datadog platform and found a deep interest I didn't know  I had in performance monitoring.
