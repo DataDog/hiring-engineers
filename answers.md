@@ -358,7 +358,7 @@ The code for the metric over host graph is:
 
  Now I just click save, and wait for my monitor to be triggered!  Boom!  Near instantaneously my computer notifies me I have a new message from datadog alerts, and here is my email:
 
- ![Alert] (/images/alert.png)
+ ![Alert](/images/alert.png)
 
  **Scheduling Downtime**
  Okay, the last step is to get this monitor not to bother me if I'm outside of the office,  I navigated to Monitors, and then "Manage Downtime."  This is another relatively simple operation.  Fill out the boxes, double check your downtime, and submit.  I created two downtaimes for this monitor, one for weekends and one for weekdays.  The weekend downtime is scheduled to start on Saturday at 9AM and last for two days (the time before 9AM should be covered by the downtime scheduled on Fridays, and then from there last until Monday at 9AM).  This should cover downtime.  Here is a screenshot of the downtime creatiion window on Datadog.com:
