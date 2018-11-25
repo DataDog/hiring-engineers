@@ -6,15 +6,15 @@ Recruiter: Avery Johnson
 ## Or:  How To Break Things, Fix Them, And Have Fun Doing It
 ###### By Nate Perkins
 
-     Coding is hard.  I mean, it can be really hard.  I've often spent a full hour (probably more accurate to say hours) staring at a computer screen with my head in my hands saying "This *should* work.  What is wrong with *me*?"  I check the code, line by line, check with a debugger to find not even it knows what I've done to ruin my code.  The logic *has* to be right.  If the logic isn't right, I fear I don't even understand the problem I'm working on.  I'll spend an hour diving into dry API's, reading endless questions and responses on Stack Overflow, check to see if W3 schools can tell me why this block of code isn't compiling or my console is filling with dreaded red error-text, taunting me, telling me "You are not the coder you thought yourself to be."  It tells me "walk away, give up."  It tells me "you won't get hired anywhere if you can't fix this simple issue."  The problem hangs in the air over me, shrouding my belief in my future in this career.  It's a crisis of confidence, but I'm not so easily defeated.  I check my code again, line by line.
+Coding is hard.  I mean, it can be really hard.  I've often spent a full hour (probably more accurate to say hours) staring at a computer screen with my head in my hands saying "This *should* work.  What is wrong with *me*?"  I check the code, line by line, check with a debugger to find not even it knows what I've done to ruin my code.  The logic *has* to be right.  If the logic isn't right, I fear I don't even understand the problem I'm working on.  I'll spend an hour diving into dry API's, reading endless questions and responses on Stack Overflow, check to see if W3 schools can tell me why this block of code isn't compiling or my console is filling with dreaded red error-text, taunting me, telling me "You are not the coder you thought yourself to be."  It tells me "walk away, give up."  It tells me "you won't get hired anywhere if you can't fix this simple issue."  The problem hangs in the air over me, shrouding my belief in my future in this career.  It's a crisis of confidence, but I'm not so easily defeated.  I check my code again, line by line.
 
-     Inevitably, I discover I've missed a semicolon, or I had an "r" where there should have been an "R," or I have otherwise fat-fingered something important, or a mis-placed curly bracket has brought a vital variable out of the proper scope, or I've somehow managed to try to run two different versions of Java in the same project by messing around with the integrated terminal in Spring STS, severely angering the JVM to the point of breaking it.  Given a million years and as many dollars, I don't think I could reproduce that last error.
+Inevitably, I discover I've missed a semicolon, or I had an "r" where there should have been an "R," or I have otherwise fat-fingered something important, or a mis-placed curly bracket has brought a vital variable out of the proper scope, or I've somehow managed to try to run two different versions of Java in the same project by messing around with the integrated terminal in Spring STS, severely angering the JVM to the point of breaking it.  Given a million years and as many dollars, I don't think I could reproduce that last error.
 
-     "Whew," I think after I find the slip-up, "I *am* as smart as I think I am.  I've got this."  I get to go back to believing I am a competent junior programmer, and that maybe all I need is new glasses or a more readable theme for my IDE.  Then I code until everything is broken again, and repeat the process until everything works.
+"Whew," I think after I find the slip-up, "I *am* as smart as I think I am.  I've got this."  I get to go back to believing I am a competent junior programmer, and that maybe all I need is new glasses or a more readable theme for my IDE.  Then I code until everything is broken again, and repeat the process until everything works.
 
-     So recently, the whole reason I'm here, the fine people of Datadog are considering me for a position, and this is a technical challenge to get up and running with Datadog, showing my work as cleary and with as much verbos-ity as I can.
+So recently, the whole reason I'm here, the fine people of Datadog are considering me for a position, and this is a technical challenge to get up and running with Datadog, showing my work as cleary and with as much verbos-ity as I can.
 
-     "Awesome," I thought after I got off of the phone screen, "when do I get to start breaking things?"
+"Awesome," I thought after I got off of the phone screen, "when do I get to start breaking things?"
 
 ### Reasearch and Preparation
      
@@ -24,8 +24,8 @@ Recruiter: Avery Johnson
 
    #### Vagrant: A Very Brief Overview
 
-     ** Introduction and Information ** : https://www.vagrantup.com/intro/index.html
-     ** Documentation ** : https://www.vagrantup.com/docs/
+     **Introduction and Information** : https://www.vagrantup.com/intro/index.html
+     **Documentation** : https://www.vagrantup.com/docs/
     
 
      Vagrant's stated goal is to 'Say goodbye to "works on my machine" bugs.'  It is a child of the Hashicorp company, which also makes Terraform.
