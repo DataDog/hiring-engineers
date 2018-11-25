@@ -163,7 +163,7 @@ I deleted my Vagrantfile and associated metadata within the project, and opted f
 
 I found a box called ubuntu/xenial64 on the Vagrant cloud that is running Ubuntu v16.04.  This is a better start.  So I run `vagrant init ubuntu/xenial64`, and my correctly versioned vagrantfile appears.  I run `vagrant up`, and boom.  Here we are.  My VM is running at the right version, and everything looks great.
 
-![Vagrant Up: Nothing Installed] (/images/vagrant_up_one.png)
+![Vagrant Up: Nothing Installed](/images/vagrant_up_one.png)
 
 I run `vagrant destroy` to spin down the VM, because now I need to go about making sure that my Vagrantfile includes provisioning to install Docker for Linux, and then the Datadog Docker Agent.  This is proving more challenging than I thought, as the shell command to install Docker, then fetch the Datadog Agent Image is not easy to find online.
 
@@ -175,7 +175,7 @@ docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v
 
 All I had to do was provide Docker to the vagrantfile, using `config.vm.provider "docker"` inside the Vagrantfile, then boot it up and run the agent installation command, and this happened:
 
-![First Agent Reporting] (/images/first_agent_reporting.png)
+![First Agent Reporting](/images/first_agent_reporting.png)
 
 Awesome!  I have the Datadog Agent running inside of my containerized Ubuntu VM, and it's reporting.  The Agent still is not installing itself during boot, which bothers me, so I'll be working to provision that shell command to run automatically.  I re-organized my Vagrantfile.  I type `exit` in the terminal to get back into my local machine, and then type `vagrant reload`, and...  I broke it again.  No worries.  I'm getting a syntax error, and I don't understand vagrantfiles well enough to know what it specifically means.  I'm going to try downloading an extension for VS Code that will give me syntax notes on vagrant.  
 
