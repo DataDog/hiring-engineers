@@ -1,6 +1,6 @@
-Technical Challenge for Solutions Engineer Position at Datadog
-Nate Perkins
-Recruiter: Avery Johnson
+Technical Challenge for Solutions Engineer Position at Datadog /
+Nate Perkins /
+Recruiter: Avery Johnson /
 
 # Datadog Solutions-Engineer Technical Challenge
 ## Or:  How To Break Things, Fix Them, And Have Fun Doing It
