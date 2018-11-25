@@ -213,15 +213,15 @@ config.vm.provision "shell" do |s|
 end
 ```
 
-   I have a feeling that there may be a way to provision docker and run the shell script in the same block, or mount the image using `d.build_image` just beneath `config.vm.provision "docker`, but it's working currently so I'm not going to touch it for now, or maybe ever again.  I have now sucessfully spun up a vagrant VM running Ubunu v16.04, installed Docker through provisioning, and then provisioned the Datadog Agent using a shell script.  That's awesome.  A week ago if someone had asked me to do that, I would have stared blankly into their eyes and said "You're out of you mind.  That's rocket science."  All it took was some good old fashioned beating my head into the desk, some self-doubt, and reading.  This is what coding is all about to me.  That moment when you finally figure something out is worth it.  It's the same feeling as trying to record a complex guitar part, and the fingering stretches beyond your limits, moving faster than you can keep up with, the melody escapes you and you can't even remember what key you're in.  It doesn't matter if it takes twenty takes as long as you get it.  
+I have a feeling that there may be a way to provision docker and run the shell script in the same block, or mount the image using `d.build_image` just beneath `config.vm.provision "docker`, but it's working currently so I'm not going to touch it for now, or maybe ever again.  I have now sucessfully spun up a vagrant VM running Ubunu v16.04, installed Docker through provisioning, and then provisioned the Datadog Agent using a shell script.  That's awesome.  A week ago if someone had asked me to do that, I would have stared blankly into their eyes and said "You're out of you mind.  That's rocket science."  All it took was some good old fashioned beating my head into the desk, some self-doubt, and reading.  This is what coding is all about to me.  That moment when you finally figure something out is worth it.  It's the same feeling as trying to record a complex guitar part, and the fingering stretches beyond your limits, moving faster than you can keep up with, the melody escapes you and you can't even remember what key you're in.  It doesn't matter if it takes twenty takes as long as you get it.  
 
-   Then I realized the VM was not recognizing the `datadog-agent`command, so I ran the `DD_API_KEY=de9e4eb74662bf570392b15046b76e43 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"` to install again.  The site had mentioned that I should be prompted for a password after running this command, but I was not prompted and I'm unsure why.  I don't have permission to access the datadog.yaml file, and cannot run the GUI.  I have a feeling it has to do with the App key I generated from the datadog site, but I'm unsure of how to use it or where to put it. (update: it had nothing to do with the app-key)
+Then I realized the VM was not recognizing the `datadog-agent`command, so I ran the `DD_API_KEY=de9e4eb74662bf570392b15046b76e43 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"` to install again.  The site had mentioned that I should be prompted for a password after running this command, but I was not prompted and I'm unsure why.  I don't have permission to access the datadog.yaml file, and cannot run the GUI.  I have a feeling it has to do with the App key I generated from the datadog site, but I'm unsure of how to use it or where to put it. (update: it had nothing to do with the app-key)
 
 Running `sudo chmod -R a+rwx /path/to/folder` into the terminal allowed me access into the agent folders and files.  Trying to run the GUI gave me an error that I would have to set an appropriate port in the .yaml file.  Tried setting port to "5002" with no success.  I believe it isn't going to work because the Datadog Docs say "For security reasons, the GUI can only be accessed from the local network interface (localhost/127.0.0.1), so you must be on the same host that the Agent is running to use it. In other words, you can’t run the Agent on a VM or a container and access it from the host machine."
 
 Here's a picture from the Datadog dashboard showing my beautiful green hexagonal machine quietly and calmly running and reporting in:
 
-![My VM Reporting] (images/vm_host_reporting.png)
+![My VM Reporting](/images/vm_host_reporting.png)
 
 Alright, that's been broken several times and then mostly fixed.  I accidentally have a datadog-agent running somewhere on my machine and I don't know where, but I've got one running inside the VM and that's what counts. It isn't perfect but might get me through the rest of this exercise.  What's next?
 
@@ -230,7 +230,7 @@ Alright, that's been broken several times and then mostly fixed.  I accidentally
 **My Host**
 I added a tag called "example_tag" to the ubuntu/xenial host via the add tags button on the popup box that shows after clicking on the host.
 
-![My Host and Tags] (/images/host_and_tags.png)
+![My Host and Tags](/images/host_and_tags.png)
 
 **Install MySQL to my VM**
 To begin, I ran `sudo apt-get update`, then `sudo apt-get install mysql-server`.  I set the root password to 1234.
@@ -238,11 +238,12 @@ To begin, I ran `sudo apt-get update`, then `sudo apt-get install mysql-server`.
 From here I followed the instructions on the datadog integration page for MySQL.
 I was unable to complete the full integration into my system due to permissions errors, and finding answers is coming slowly.  I'm able to log into the root user, but root does not seem to have any permissions, and even when running commands signed in as the root user with the proper password, I'm given another error message that states user vagrant@localhost does not have permissions.   The last error I got was that the world-writable config file at /etc/mysql/my.cnf is ignored.  I tried to make the file read only, as suggested at https://github.com/cytopia/devilbox/issues/212, but permission to change permissions was denied.  The problem may be the environment, and I'm not sure I know enough about the environment to fix it as is, and I'm worried about crashing the entire box if I continue messing around with permissions.  I'm going to push ahead in hopes I can answer the other questions without this integration returning data to the agent, as I'm unable to create a datadog user.  Here is a picture showing a manual install of the MySQL integration from my Datadog Account:
 
-![MySQL Integration] (/images/mysql_installed.png)
+![MySQL Integration](/images/mysql_installed.png)
 
-**Creating a Custom Agent Check** (used a tutorial from https://datadog.github.io/summit-training-session/handson/customagentcheck/)
+**Creating a Custom Agent Check** (I used a tutorial from https://datadog.github.io/summit-training-session/handson/customagentcheck/)
 
 Step one is to create a configuration file for the custom check in /etc/datadog-agent/conf.d. I created a file called my_metric.yaml, then wrote the following inside it:  (I decided to set the min_interval_collection to 45 from here, as the default is 15 seconds)
+
 ```
 init_config:
 
@@ -260,7 +261,7 @@ self.guage ('my_metric', random.randint(0,1000))
 To test the check, I ran `datadog-agent check my_metric`, which showed an error in my yaml file.  There was some metadata nonsense at the top of the file.  I deleted that, and now running a metric check shows the error at line four.  I believe it's the hyphen, and I also think wrapping the who min_collection line in `[{}]` will do the trick so I'm going to delete and add, then run the check again.  This didn't work, so I'll delete the minimum interval and the init_config: and run again.  As far as I can tell, the page https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6 says all I need in the yaml file is `instances: [{}]`, so I'll match that exactly and re-run.
 Awesome.  A new error, which is progress.  It says Global name random is not recognized, so my thought is I may be missing an import in my .py file.  Boom.  I believe my custom check is now working, and will try to verify this on the site:
 
-![Custom Metric Found] (/images/my_metric_found.png)
+![Custom Metric Found](/images/my_metric_found.png)
 
 Great,  I've installed an integration that I can try to get up and running if I figure out my permissions errors with mysql, created a custom metric, and the Datadog site has access to it.  
 To end this section, I'll be trying to adjust the metric to report every 45 seconds instead of the default 15 second interval.  I went back into my yaml and am trying to find where the min_collection_interval goes.  This configuration appears to work:
@@ -277,7 +278,7 @@ This returns a successful check from the command-line, so I'm crossing my finger
  **Seeing my_metric in Action**
  Okay, so now I'm going to create a Timeboard that observes this metric reporting data from my ubuntu/xenial host.  I'm unable to show metrics from my database integration, as I was unable to resolve permissions errors, and don't think I will be able to on the Ubuntu system that I'm not as familiar with as OSX.  I had the same issues installing MySql Server to my machine, and was barely able to fix it on a familiar OS.  Then I'm going to display my custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.  Here's the screenshot from my dashboard:
 
- ![My First Timeboard] (/images/timeboard1.png)
+ ![My First Timeboard](/images/timeboard1.png)
 
 The code for the metric over host graph is:
  ```
@@ -341,7 +342,7 @@ The code for the metric over host graph is:
  ```
  The next step in this assignment is to set the Timeboard's frame to five minutes, take a snapshot, and send it to myself with @ notation.  I set the rollup function to a time period of 5 minutes and sent a snapshot to myself, and it showed up instantly in my inbox!
 
- ![Snapshot email] (/images/snapshot_email.png) 
+ ![Snapshot email](/images/snapshot_email.png) 
 
  Alright.  Cool.  I got through this section without breaking anything else!  I'm unable to answer the bonus question because I couldn't get my database integration to listen to me, and don't have an anomoly graph to refer to.  Now to work with monitoring in Datadog.
 
@@ -353,7 +354,7 @@ The code for the metric over host graph is:
 
  This was pretty easy, just navigate to the Monitor section on teh Datadog platform, and create a new one!  It's pretty straightforward from there, just fill out the boxes, and make sure your message is using the right message template variables.  Here's a screen shot showing my monitor before saving and creating it.  I've also been at this for a while, so I added a funny subject line to the email.  It's the little things in life.  Anyways, here is what the monitor creation looks like inside Datadog:
 
- ![Creating a Monitor] (/images/create_monitor.png)
+ ![Creating a Monitor](/images/create_monitor.png)
 
  Now I just click save, and wait for my monitor to be triggered!  Boom!  Near instantaneously my computer notifies me I have a new message from datadog alerts, and here is my email:
 
@@ -362,7 +363,7 @@ The code for the metric over host graph is:
  **Scheduling Downtime**
  Okay, the last step is to get this monitor not to bother me if I'm outside of the office,  I navigated to Monitors, and then "Manage Downtime."  This is another relatively simple operation.  Fill out the boxes, double check your downtime, and submit.  I created two downtaimes for this monitor, one for weekends and one for weekdays.  The weekend downtime is scheduled to start on Saturday at 9AM and last for two days (the time before 9AM should be covered by the downtime scheduled on Fridays, and then from there last until Monday at 9AM).  This should cover downtime.  Here is a screenshot of the downtime creatiion window on Datadog.com:
 
- ![Down Time Editor] (/images/downtime.png)
+ ![Down Time Editor](/images/downtime.png)
 
  This covers some basic information on Monitors in Datadog, and I got through this one without breaking anything!!
 
@@ -387,7 +388,7 @@ Now I'll be following the directions to install Flask on my machine.  I've alrea
 
 To run the app, simply tell flask what to run.  In this case, the command is `export FLASK_APP=app.py`.  Next, tell flask to run with `flask run`.  The terminal outputs that the app is running at http://127.0.0.1:5000/.  So I navigate there in my browser and...
 
-![Flask App Running] (/images/flask_app_works)
+![Flask App Running](/images/flask_app_works)
 
 Okay.  The app is up and running, and looking through the code it appears to be a simple application with three routes that specify an entry pointto the application, an apm endpoint, and a trace endpoint.  So my Flask app is up and running.  What's next?
 
