@@ -221,7 +221,7 @@ Running `sudo chmod -R a+rwx /path/to/folder` into the terminal allowed me acces
 
 Here's a picture from the Datadog dashboard showing my beautiful green hexagonal machine quietly and calmly running and reporting in:
 
-![My VM Reporting] (/images/vm_host_reporting.png)
+![My VM Reporting] (images/vm_host_reporting.png)
 
 Alright, that's been broken several times and then mostly fixed.  I accidentally have a datadog-agent running somewhere on my machine and I don't know where, but I've got one running inside the VM and that's what counts. It isn't perfect but might get me through the rest of this exercise.  What's next?
 
