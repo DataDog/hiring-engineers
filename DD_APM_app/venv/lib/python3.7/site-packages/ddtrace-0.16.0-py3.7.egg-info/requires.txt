@@ -1,0 +1,5 @@
+wrapt
+msgpack-python
+
+[opentracing]
+opentracing>=2.0.0

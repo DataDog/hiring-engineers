@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: ddtrace
+Version: 0.16.0
+Summary: Datadog tracing code
+Home-page: https://github.com/DataDog/dd-trace-py
+Author: Datadog, Inc.
+Author-email: dev@datadoghq.com
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: opentracing
