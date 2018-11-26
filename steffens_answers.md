@@ -81,7 +81,8 @@ DEBUG:ddtrace.api:reported 1 traces in 0.01557s
 INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 14:20:49] "GET / HTTP/1.1" 200 -
 2018-11-26 14:20:49,849 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 14:20:49] "GET / HTTP/1.1" 200 -
 DEBUG:ddtrace.api:reported 1 traces in 0.00150s
-2018-11-26 14:20:50,646 - ddtrace.api - DEBUG - reported 1 traces in 0.00150s```
+2018-11-26 14:20:50,646 - ddtrace.api - DEBUG - reported 1 traces in 0.00150s
+```
 
 # My comments
 
