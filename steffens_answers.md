@@ -20,8 +20,8 @@ I added a Agent check that submits metric from my real home automation system (H
 * Temp_outside Temperature outside my house, direction North 
 
 The additional metrics are added by a rule in my HAB once a day<br>
-* HZ_usage-kWh the consumption of gas for heating in kWh
-* WW_Usage_kWh the consumption of gas for warm water in kWh
+* HZ_usage-kWh the consumption of gas for heating in kWh<br>
+* WW_Usage_kWh the consumption of gas for warm water in kWh<br>
 
 ![ScreenShot] (https://raw.githubusercontent.com/mod42/hiring-engineers/master/screenshots/openhab.png)
 
