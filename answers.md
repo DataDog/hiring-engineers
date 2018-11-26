@@ -1,6 +1,6 @@
 In order to ... Datadog...(pyrammid process)
 
-1. Setup the environment
+1. [Setup the environment](#Setup the environment)
 2. Collect data
 3. Visualize our data through our dashboard
 4. Monitor and sending notificactions
@@ -542,4 +542,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-- Companies, by and large, want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This owuld allow a company to recruit groups with less opaqueness.  
+- Companies, by and large, want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This would allow a company to recruit groups with less opaqueness.  
