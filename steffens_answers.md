@@ -35,8 +35,12 @@ Attached code and config is [house.py](src/house.py) and [house.yaml](src/house.
 I used Paw on my Mac to execute the API call, please find the exported curl command here <br>
 [Visualizing Data.sh](src/Visualizing_Data.sh)
 
+My Timeboard (Past week)
 
-#My comments
+ ![Alt text](screenshots/dashboard.png?raw=true "Dashboard")
+
+
+# My comments
 
 I liked the structure of the datadog.conf file. All default values have been entered and
 umcommented like <br>```# enable_gohai: true```
