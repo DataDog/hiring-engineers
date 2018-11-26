@@ -113,7 +113,7 @@ vagrant@ubuntu-xenial:~$
 $ DD_API_KEY=abcdefghijklmnopqrstuv bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-![Install Success](.img/install-datadog-success.png)
+![Install Success](img/install-datadog-success.png)
 
 To halt the program:
 ```
