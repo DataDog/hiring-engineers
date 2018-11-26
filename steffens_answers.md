@@ -45,7 +45,7 @@ save, send/inform others. Screenshots are a way more tideous.
  ![Alt text](screenshots/snapshot.png?raw=true "Dashboard")
 
 
-# Bonus Question: What is the Anomaly graph displaying?<br>
+<b>Bonus Question:<b> What is the Anomaly graph displaying?<br>
 
 I assume the Anomaly graph displace diviation from a band of expected values.
 For my warm water heating, this would mean a high usage of energy. I had that in
@@ -55,12 +55,36 @@ be alarmed earlier.
 
 # Monitoring Data
 
+![Alt text](screenshots/temp_step1+2.png?raw=true "temp_step1+2")
+
+
+The code completion during writing the messages is really cool.
+
+![Alt text](screenshots/alert_message.png?raw=true "alert_message")
+
+
+![Alt text](screenshots/email_planned_downtime.png?raw=true "Email for planned downtime")
+
+![Alt text](screenshots/alert_message.png?raw=true "alert_message")
+
+# Collecting APM Data
+
+I assume set up everything as described. The traces are produced from the app started like
+` * ddtrace-run flask run --port 5050 --host 0.0.0.0 &`
 
 
 # My comments
 
 I liked the structure of the datadog.conf file. All default values have been entered and
 umcommented like <br>```# enable_gohai: true```
+
+I started a chat on the webpage to get some help. A case was opened and a case number and
+link provided. As I am on the Europe instance it seems I am not able to login to the case tool
+with my European account.
+
+I had problems with the version 5.28 on my Raspberry to get the agent working with APM. Seems 
+there are some details missing in the documentation. The configuration is mainly focusing on the 
+datadog.yaml and nothing about the datadog.conf.
 
 
 
