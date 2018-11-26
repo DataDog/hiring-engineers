@@ -397,31 +397,37 @@ It graphs a metrics' normal context.  Often, our metrics can have a few peaks an
 
 For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
 
-## Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
+## Monitoring Data
+While reading and seeing our metrics goes a long way towards understanding, Datadog has tools to color our picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
+
+Our two steps to monitor data:
+1. Create a new monitor with the desired parameters
+2. Configure the monitor’s message when thresholds (or nothing) occurs
+
+# Create a new monitor with the desired parameters
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-- My Steps:
-- Step 1: Find 'my_metric' dashboard,
-- Step 2: Click 'widget' button -> Create Monitor
-- Step 3: Check if metric is defined, in this case I want 'my_metric' and 'Steven-Weiss' as host
-- Step 3a: Check threshold: in this case, 'average'
-- Step 4: Create thresholds and notifications
+1. Find the 'sprocket' icon in whatever graph you want to monitor. Click 'new monitor'.
 
-16. Warning threshold of 500
-17. Alerting threshold of 800
-18. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+![new monitor](.img/monitor-new-monitor)
 
-<img src="./images/15-monitor.png">
+2. Check if metric is defined, in this case I want 'my_metric' and 'ubuntu-xenial' as host
 
-Please configure the monitor’s message so that it will:
+3. Create thresholds and decide on notification if data is missing
 
-19. Send you an email whenever the monitor triggers.
-20. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-21. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+![Thresholds](.img/monitor-thresholds)
 
-```{{#is_alert}} <br/>
+
+# Configure the monitor’s message when thresholds (or nothing) occurs
+[Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
+
+1. Send you an email whenever the monitor triggers.
+2. Create different messages **{{#is_warning}}** based on whether the monitor is in an Alert, Warning, or No Data state.
+3. Include the metric value **{{value}}** that caused the monitor to trigger and host ip **{{host.ip}}** when the Monitor triggers an Alert state.
+
+```
+{{#is_alert}} <br/>
 Alert: Value has exceeded an average of 800 over the past 5 minutes. <br/>
 Value: {{value}}  <br/>
 Host: {{host.name}} <br/>
@@ -441,134 +447,99 @@ Host: {{host.name}} <br/>
 <br/>
 Contact @weiss.steven@gmail.com
 ```
+4. Notify team member
 
-22. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-<img src="./images/22-email.png">
+5. Hit **Save**
+
+![Email Monitor](.img/monitor-email)
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-23. One that silences it from 7pm to 9am daily on M-F,
-24. And one that silences it all day on Sat-Sun.
-25. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+- One that silences it from 7pm to 9am daily on M-F,
+- And one that silences it all day on Sat-Sun.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-<img src="./images/23-weekends.png">
-<img src="./images/24-weeknights.png">
-<img src="./images/25-weekend-email.png">
-<img src="./images/26-weeknight-email.png">
+![Weekends](.img/monitor-weekends)
+![Weekends](.img/monitor-weeknights)
+![Weekends](.img/monitor-email)
+![Weekends](.img/monitor-weeknight-email)
 
 
 ## Collecting APM Data:
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+Thus far we have setup tools to observe our infrastructure.  As the infrastructure grows, the complexity and the root causes for problems will become more opaque.  Ideally, we will use better tools/applications.  But what if the tools are faulty?  How would we collect data on the tool?  This is a blind spot in our monitoring.  Fortunately, this is where Application Performance Monitoring (APM) comes in.  APM allows the user to collect, search, and analyze traces across fully distributed architectures.
 
-```python
-from flask import Flask
-import logging
-import sys
+Our two steps to collect APM data:
+1. Create the application
+2. Instrument the application
+3. Let the world know with a Screenboard
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
+# Create the application
+1. Navigate to the *etc/datadog-agent* and create a file for the application
 ```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-
+$ sudo touch app.py
 ```
-My Steps:
-$ sudo -H pip install ddtrace
+2. Open file and add your code.
+
+[Flask App](.files/app.py)
+
+3. Add corresponding libraries (if necessary)
+```
 $ sudo pip install flask
-$ ./trace-agent-darwin-amd64-6.6.0 -config /opt/datadog-agent/etc/datadog.yaml
-$ ddtrace-run python app.py
-
-Then, followed ddtrace / 27 (next line)
 ```
 
-27. Follow Instruction here for ddtrace:
-- https://docs.datadoghq.com/tracing/setup/?tab=agent630
+# Instrument the application
+**Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+1. Open your datadog.yaml file and delete the hashes such that your code looks like this. This will enable APM trace.  Save and restart.  
+```
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+```
+2. Head over to the docs menu under APM in the UI [APM Docs](https://app.datadoghq.com/apm/docs) and follow the first command
+```
+$ pip install ddtrace
+```
+
+3. Run application. A server will start.  
+```
+$ ddtrace-run python app.py
+```
+
+4. Open a new tab in terminal (Ctrl + T), enter the VM **vagrant ssh** and make calls to the localhost,.
+```
+curl localhost:5050/
+curl localhost:5050/
+curl localhost:5050/
+```
+![Get Requests](.img/apm-corresponding-get)
+![Corresponding Gets](.img/apm-localhost-calls)
+
+
+# Create a Screenboard
+
+1. Create a new dashboard.  Choose Screenboard.
+
+2. Choose metrics to display.  I chose the system.cpu and the flask app requests.
+
+[Public URL](https://p.datadoghq.com/sb/6ac05d7a5-6b9d92bd8824c3a8030e158d0bbe2e44)
 
 28. * **Bonus Question**: What is the difference between a Service and a Resource?
 
-- First, let's define a service and a resource.
+First, let's define a service and a resource.
 
-- From the Datadog FAQ, a "Service" is the name of a set of processes that work together to provide a feature set.  In my working solution, the Flask app is an example of a service.  In general, a service would be any front-end built with functions or any backend algorithms.  
+From the Datadog FAQ, a "Service" is the name of a set of processes that work together to provide a feature set.  In my working solution, the Flask app is an example of a service.  In general, a service would be any front-end built with functions or any backend algorithms.  
 
-- A "Resource" is the query to a service.  In apps, we see resources as 'routes'; in databases, we see resources in the form of database queries.  An example, a frontend user making a POST request to an app's backend to create a login account.  
+A "Resource" is the query to a service.  In apps, we see resources as 'routes'; in databases, we see resources in the form of database queries.  An example, a frontend user making a POST request to an app's backend to create a login account.  
 
-- Since most programs can be distilled down to procedures, the differences are akin to the separation of concerns in the design of any procedure - we create the body of a procedure that describes the behavior and we call the procedure with a set of desired input.  In a procedure we 'blackbox' an action and and provide a thing.  
+Since most programs can be distilled down to procedures, the differences are akin to the separation of concerns in the design of any procedure - we create the body of a procedure that describes the behavior and we call the procedure with a desired input.  In a procedure we 'blackbox' an action and and provide a thing.  
 
-- In terms of service and resource, a service is akin to a function/procedure that describes and embodies the desired behaviors of the program.  The resources are the calls and arguments that feed the functions.  While services and resources are not dependent on each other, that is, we can still have services designed without resources and resources designed without services, they are designed to know of each others existence.   
-
-29. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-<a href="https://p.datadoghq.com/sb/6ac05d7a5-c503ddbadde3c3ddbff88f0ce76d3e8e">APM / Infrastructure</a>
-
-<img src="./images/29-infra-apm-screenboard.png">
-
-30. Please include your fully instrumented app in your submission, as well.
-<a href="app.py">APP</a>
+In terms of service and resource, a service is the function/procedure that describes and embodies the desired behaviors of the program.  The resources are the calls and arguments that feed the functions.  While services and resources are not dependent on each other, that is, we can still have services designed without resources and resources designed without services, they are designed to know of each others existence.   
 
 ## Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-31. Is there anything creative you would use Datadog for?
+Is there anything creative you would use Datadog for?
 
 - Companies, by and large, want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This owuld allow a company to recruit groups with less opaqueness.  
-
-## Instructions
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
