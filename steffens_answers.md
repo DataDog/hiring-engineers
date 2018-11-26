@@ -72,7 +72,8 @@ The code completion during writing the messages is really cool.
 I assume set up everything as described. The traces are produced from the app started like<br>
 ` * ddtrace-run flask run --port 5050 --host 0.0.0.0 &`
 
-`*2018-11-26 12:33:48,267 - ddtrace.api - DEBUG - reported 1 traces in 0.01119s<br>
+```shell
+*2018-11-26 12:33:48,267 - ddtrace.api - DEBUG - reported 1 traces in 0.01119s<br>
 INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 14:20:47] "GET / HTTP/1.1" 200 -
 2018-11-26 14:20:47,322 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 14:20:47] "GET / HTTP/1.1" 200 -
 DEBUG:ddtrace.api:reported 1 traces in 0.01557s
