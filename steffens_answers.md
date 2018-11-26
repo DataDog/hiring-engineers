@@ -70,7 +70,7 @@ The code completion during writing the messages is really cool.
 # Collecting APM Data
 
 I assume set up everything as described. The traces are produced from the app started like<br>
-` * ddtrace-run flask run --port 5050 --host 0.0.0.0 &`
+` ddtrace-run flask run --port 5050 --host 0.0.0.0 &`
 
 ```shell
 2018-11-26 12:33:48,267 - ddtrace.api - DEBUG - reported 1 traces in 0.01119s<br>
@@ -84,18 +84,47 @@ DEBUG:ddtrace.api:reported 1 traces in 0.00150s
 2018-11-26 14:20:50,646 - ddtrace.api - DEBUG - reported 1 traces in 0.00150s
 ```
 
+I am able to see they are sent in the trace log `tail -f /var/log/datadog/trace-agent.log`
+
+```shell
+2018-11-26 15:11:49 INFO (service_writer.go:76) - flushed service payload to the API, time:563.458234ms, size:29 bytes
+2018-11-26 15:11:49 INFO (trace_writer.go:97) - flushed trace payload to the API, time:567.824387ms, size:723 bytes
+2018-11-26 15:11:54 INFO (trace_writer.go:97) - flushed trace payload to the API, time:482.008248ms, size:710 bytes
+2018-11-26 15:12:03 INFO (service_mapper.go:59) - total number of tracked services: 1
+2018-11-26 15:12:04 INFO (stats_writer.go:265) - flushed stat payload to the API, time:482.016425ms, size:545 bytes
+2018-11-26 15:12:13 INFO (api.go:324) - [lang:python lang_version:2.7.5 interpreter:CPython tracer_version:0.16.0] -> traces received: 3, traces dropped: 0, traces filtered: 0, traces amount: 6818 bytes, services received: 0, services amount: 0 bytes
+2018-11-26 15:12:14 INFO (stats_writer.go:265) - flushed stat payload to the API, time:486.610289ms, size:542 bytes
+2018-11-26 15:12:14 INFO (trace_writer.go:97) - flushed trace payload to the API, time:489.446587ms, size:737 bytes
+2018-11-26 15:12:19 INFO (trace_writer.go:97) - flushed trace payload to the API, time:481.655784ms, size:719 bytes
+2018-11-26 15:12:34 INFO (stats_writer.go:265) - flushed stat payload to the API, time:491.700119ms, size:763 bytes
+2018-11-26 15:13:03 INFO (service_mapper.go:59) - total number of tracked services: 1
+2018-11-26 15:13:23 INFO (api.go:324) - [lang:python lang_version:2.7.5 interpreter:CPython tracer_version:0.16.0] -> traces received: 1, traces dropped: 0, traces filtered: 0, traces amount: 2294 bytes, services received: 0, services amount: 0 bytes
+2018-11-26 15:14:03 INFO (service_mapper.go:59) - total number of tracked services: 1
+```
+
+
+But I am not able to see anything in the web console.
+
 # My comments
 
 I liked the structure of the datadog.conf file. All default values have been entered and
 umcommented like <br>```# enable_gohai: true```
 
 I started a chat on the webpage to get some help. A case was opened and a case number and
-link provided. As I am on the Europe instance it seems I am not able to login to the case tool
+link provided. As I am on the Europe instance, it seems I am not able to login to the case tool
 with my European account.
 
 I had problems with the version 5.28 on my Raspberry to get the agent working with APM. Seems 
 there are some details missing in the documentation. The configuration is mainly focusing on the 
-datadog.yaml and nothing about the datadog.conf.
+datadog.yaml and nothing about the datadog.conf for the 5.* version. I have actived APM in the 
+datadog.conf, but there was no process listening on 8126.
+
+```shell
+2018-11-26 16:31:57,333 - werkzeug - INFO - 192.168.0.46 - - [26/Nov/2018 16:31:57] "GET /api/trace HTTP/1.1" 200 -
+ERROR:ddtrace.writer:cannot send spans to localhost:8126: [Errno 111] Connection refused
+2018-11-26 16:31:57,806 - ddtrace.writer - ERROR - cannot send spans to localhost:8126: [Errno 111] Connection refused
+```
+
 
 
 
