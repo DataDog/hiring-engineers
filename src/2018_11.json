@@ -1,0 +1,441 @@
+[ {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1064654557622542338",
+  "text" : "WW TagesVerbrauch 12.64256 HZ TagesVerbrauch 54.97256",
+  "id" : 1064654557622542338,
+  "created_at" : "2018-11-19 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1064292171925397504",
+  "text" : "WW TagesVerbrauch 6.99856 HZ TagesVerbrauch 42.55576",
+  "id" : 1064292171925397504,
+  "created_at" : "2018-11-18 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1063929781413183488",
+  "text" : "WW TagesVerbrauch 5.30536 HZ TagesVerbrauch 49.44144",
+  "id" : 1063929781413183488,
+  "created_at" : "2018-11-17 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1063567397020413953",
+  "text" : "WW TagesVerbrauch 14.33576 HZ TagesVerbrauch 42.66864",
+  "id" : 1063567397020413953,
+  "created_at" : "2018-11-16 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1063205005707149312",
+  "text" : "WW TagesVerbrauch 9.25616 HZ TagesVerbrauch 20.54416",
+  "id" : 1063205005707149312,
+  "created_at" : "2018-11-15 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1062842622245527552",
+  "text" : "WW TagesVerbrauch 4.74096 HZ TagesVerbrauch 25.84952",
+  "id" : 1062842622245527552,
+  "created_at" : "2018-11-14 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1062480239606013952",
+  "text" : "WW TagesVerbrauch 13.77136 HZ TagesVerbrauch 3.61216",
+  "id" : 1062480239606013952,
+  "created_at" : "2018-11-13 23:00:03 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1062117850511482880",
+  "text" : "WW TagesVerbrauch 13.09408 HZ TagesVerbrauch 9.03040",
+  "id" : 1062117850511482880,
+  "created_at" : "2018-11-12 23:00:03 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1061755454190243842",
+  "text" : "WW TagesVerbrauch 10.38496 HZ TagesVerbrauch 10.72360",
+  "id" : 1061755454190243842,
+  "created_at" : "2018-11-11 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1061393066785980416",
+  "text" : "WW TagesVerbrauch 13.43272 HZ TagesVerbrauch 11.85240",
+  "id" : 1061393066785980416,
+  "created_at" : "2018-11-10 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1061030681055236096",
+  "text" : "WW TagesVerbrauch 11.62664 HZ TagesVerbrauch 21.10856",
+  "id" : 1061030681055236096,
+  "created_at" : "2018-11-09 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1060668295173627904",
+  "text" : "WW TagesVerbrauch 10.72360 HZ TagesVerbrauch 38.49208",
+  "id" : 1060668295173627904,
+  "created_at" : "2018-11-08 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1060305902920720384",
+  "text" : "WW TagesVerbrauch 16.25472 HZ TagesVerbrauch 23.36616",
+  "id" : 1060305902920720384,
+  "created_at" : "2018-11-07 23:00:01 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1059943520209944582",
+  "text" : "WW TagesVerbrauch 7.11144 HZ TagesVerbrauch 21.67296",
+  "id" : 1059943520209944582,
+  "created_at" : "2018-11-06 23:00:02 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1059581139055271938",
+  "text" : "WW TagesVerbrauch 11.51376 HZ TagesVerbrauch 4.96672",
+  "id" : 1059581139055271938,
+  "created_at" : "2018-11-05 23:00:04 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1059218756197588992",
+  "text" : "WW TagesVerbrauch 0 HZ TagesVerbrauch 0",
+  "id" : 1059218756197588992,
+  "created_at" : "2018-11-04 23:00:05 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1058856347935166464",
+  "text" : "WW TagesVerbrauch 7.11144 HZ TagesVerbrauch 31.38064",
+  "id" : 1058856347935166464,
+  "created_at" : "2018-11-03 23:00:00 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1058493959675277312",
+  "text" : "WW TagesVerbrauch 14.22288 HZ TagesVerbrauch 29.80032",
+  "id" : 1058493959675277312,
+  "created_at" : "2018-11-02 23:00:00 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1058131572841504768",
+  "text" : "WW TagesVerbrauch 6.20840 HZ TagesVerbrauch 23.70480",
+  "id" : 1058131572841504768,
+  "created_at" : "2018-11-01 23:00:00 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+}, {
+  "source" : "\u003Ca href=\"http:\/\/www.openHAB.org\" rel=\"nofollow\"\u003EopenHAB\u003C\/a\u003E",
+  "entities" : {
+    "user_mentions" : [ ],
+    "media" : [ ],
+    "hashtags" : [ ],
+    "urls" : [ ]
+  },
+  "geo" : { },
+  "id_str" : "1057769183855947776",
+  "text" : "WW TagesVerbrauch 7.78872 HZ TagesVerbrauch 30.81624",
+  "id" : 1057769183855947776,
+  "created_at" : "2018-10-31 23:00:00 +0000",
+  "user" : {
+    "name" : "myHouse Tweets",
+    "screen_name" : "myHouseTweets",
+    "protected" : true,
+    "id_str" : "2261734244",
+    "profile_image_url_https" : "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_normal.png",
+    "id" : 2261734244,
+    "verified" : false
+  }
+} ]
