@@ -1,6 +1,6 @@
 In order to ... Datadog...(pyrammid process)
 
-1. [Setup the environment](#Setup the environment)
+1. [Setup the environment](#Setup-the-environment)
 2. Collect data
 3. Visualize our data through our dashboard
 4. Monitor and sending notificactions
