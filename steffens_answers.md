@@ -25,7 +25,7 @@ The additional metrics are added by a rule in my HAB once a day<br>
 
 Attached code and config is [house.py](src/house.py) and [house.yaml](src/house.yaml).
 
-![ScreenShot] (screenshots/openhab.png?raw=true "Openhab")
+![Alt text] (screenshots/openhab.png?raw=true "Openhab")
 
 <b>Bonus question:</b> Is there another way to change the collection interval? 
  I was able to change the interval in the yaml.
