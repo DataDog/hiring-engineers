@@ -30,9 +30,9 @@ Attached code and config is [house.py](src/house.py) and [house.yaml](src/house.
 <b>Bonus question:</b> Is there another way to change the collection interval? <br>
  I was able to change the interval in the yaml.
 
-##V isualizing Data
+## Visualizing Data
 
-I used Paw on my Mac to execute the API call, please find the exported curl command here 
+I used Paw on my Mac to execute the API call, please find the exported curl command here <br>
 [Visualizing Data.sh](src/Visualizing_Data.sh)
 
 
