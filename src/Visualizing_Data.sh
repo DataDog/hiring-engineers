@@ -6,6 +6,18 @@ curl -X "POST" "https://app.datadoghq.eu/api/v1/dash?api_key=d3086d9ee6433b3af5e
   "title": "Steffens Timeboard",
   "graphs": [
     {
+      "title": "Anomalies WW consumption",
+      "definition": {
+        "requests": [
+          {
+            "q": "anomalies(avg:WW_Usage_kWh{host:raspberrypi}, '"'"'basic'"'"', 2)"
+          }
+        ],
+        "viz": "timeseries",
+        "events": []
+      }
+    },
+    {
       "title": "Steffens heating consumption",
       "definition": {
         "requests": [
