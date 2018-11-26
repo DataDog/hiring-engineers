@@ -11,6 +11,8 @@ to transmit Smart Home information. In addition I added some data feeds via APIs
 ## Collecting metrics
 The screenshots show the hostmap after installing the agent to my Raspberry.
 
+![ScreenShot](https://github.com/mod42/hiring-engineers/blob/master/screenshots/hostmap_details.png)
+
 
 
 #My comments
