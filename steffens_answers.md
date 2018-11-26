@@ -2,7 +2,9 @@
 
 Hi<br>
 my name is Steffen and I enjoyed runnning through this exercise. I was already
-looking into some monitoring or visualization for my home automation system.<br>
+looking into some monitoring or visualization for my home automation system. But, 
+it was very easy and great documented to have a quick start. This challenge is quick
+and great opportunity to dive into the product.<br>
 
 # Environment
 I have attached my home automation instance on a raspberry. There is no
@@ -69,46 +71,61 @@ The code completion during writing the messages is really cool.
 
 # Collecting APM Data
 
-I assume set up everything as described. The traces are produced from the app started like<br>
-` ddtrace-run flask run --port 5050 --host 0.0.0.0 &`
+I assume I have set up everything as described. The traces are produced from the app started like<br>
+` ddtrace-run python my_app.py`
 
 ```shell
-2018-11-26 12:33:48,267 - ddtrace.api - DEBUG - reported 1 traces in 0.01119s<br>
-INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 14:20:47] "GET / HTTP/1.1" 200 -
-2018-11-26 14:20:47,322 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 14:20:47] "GET / HTTP/1.1" 200 -
-DEBUG:ddtrace.api:reported 1 traces in 0.01557s
-2018-11-26 14:20:47,640 - ddtrace.api - DEBUG - reported 1 traces in 0.01557s
-INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 14:20:49] "GET / HTTP/1.1" 200 -
-2018-11-26 14:20:49,849 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 14:20:49] "GET / HTTP/1.1" 200 -
-DEBUG:ddtrace.api:reported 1 traces in 0.00150s
-2018-11-26 14:20:50,646 - ddtrace.api - DEBUG - reported 1 traces in 0.00150s
+[root@playground ~]# ddtrace-run python test.py
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+DEBUG:ddtrace.api:reported 1 traces in 0.00716s
+2018-11-26 15:29:20,217 - ddtrace.api - DEBUG - reported 1 traces in 0.00716s
+DEBUG:ddtrace.api:reported 2 services
+2018-11-26 15:29:20,218 - ddtrace.api - DEBUG - reported 2 services
+2018-11-26 15:29:44,367 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 15:30:06] "GET / HTTP/1.1" 200 -
+2018-11-26 15:30:06,212 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 15:30:06] "GET / HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.00220s
+2018-11-26 15:30:06,404 - ddtrace.api - DEBUG - reported 1 traces in 0.00220s
+INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 15:30:14] "GET /api/apm HTTP/1.1" 200 -
+2018-11-26 15:30:14,468 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 15:30:14] "GET /api/apm HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.00116s
+2018-11-26 15:30:15,414 - ddtrace.api - DEBUG - reported 1 traces in 0.00116s
+INFO:werkzeug:192.168.27.1 - - [26/Nov/2018 15:30:19] "GET /api/trace HTTP/1.1" 200 -
+2018-11-26 15:30:19,124 - werkzeug - INFO - 192.168.27.1 - - [26/Nov/2018 15:30:19] "GET /api/trace HTTP/1.1" 200 -
+DEBUG:ddtrace.api:reported 1 traces in 0.00140s
+2018-11-26 15:30:19,419 - ddtrace.api - DEBUG - reported 1 traces in 0.00140s
 ```
 
 I am able to see they are sent in the trace log `tail -f /var/log/datadog/trace-agent.log`
 
 ```shell
-2018-11-26 15:11:49 INFO (service_writer.go:76) - flushed service payload to the API, time:563.458234ms, size:29 bytes
-2018-11-26 15:11:49 INFO (trace_writer.go:97) - flushed trace payload to the API, time:567.824387ms, size:723 bytes
-2018-11-26 15:11:54 INFO (trace_writer.go:97) - flushed trace payload to the API, time:482.008248ms, size:710 bytes
-2018-11-26 15:12:03 INFO (service_mapper.go:59) - total number of tracked services: 1
-2018-11-26 15:12:04 INFO (stats_writer.go:265) - flushed stat payload to the API, time:482.016425ms, size:545 bytes
-2018-11-26 15:12:13 INFO (api.go:324) - [lang:python lang_version:2.7.5 interpreter:CPython tracer_version:0.16.0] -> traces received: 3, traces dropped: 0, traces filtered: 0, traces amount: 6818 bytes, services received: 0, services amount: 0 bytes
-2018-11-26 15:12:14 INFO (stats_writer.go:265) - flushed stat payload to the API, time:486.610289ms, size:542 bytes
-2018-11-26 15:12:14 INFO (trace_writer.go:97) - flushed trace payload to the API, time:489.446587ms, size:737 bytes
-2018-11-26 15:12:19 INFO (trace_writer.go:97) - flushed trace payload to the API, time:481.655784ms, size:719 bytes
-2018-11-26 15:12:34 INFO (stats_writer.go:265) - flushed stat payload to the API, time:491.700119ms, size:763 bytes
-2018-11-26 15:13:03 INFO (service_mapper.go:59) - total number of tracked services: 1
-2018-11-26 15:13:23 INFO (api.go:324) - [lang:python lang_version:2.7.5 interpreter:CPython tracer_version:0.16.0] -> traces received: 1, traces dropped: 0, traces filtered: 0, traces amount: 2294 bytes, services received: 0, services amount: 0 bytes
-2018-11-26 15:14:03 INFO (service_mapper.go:59) - total number of tracked services: 1
+2018-11-26 15:30:09 INFO (trace_writer.go:97) - flushed trace payload to the API, time:477.941762ms, size:711 bytes
+2018-11-26 15:30:19 INFO (trace_writer.go:97) - flushed trace payload to the API, time:478.874137ms, size:713 bytes
+2018-11-26 15:30:24 INFO (trace_writer.go:97) - flushed trace payload to the API, time:488.77825ms, size:735 bytes
+2018-11-26 15:30:24 INFO (stats_writer.go:265) - flushed stat payload to the API, time:504.857649ms, size:542 bytes
+2018-11-26 15:30:33 INFO (api.go:324) - [lang:python lang_version:2.7.5 interpreter:CPython tracer_version:0.16.0] -> traces received: 3, traces dropped: 0, traces filtered: 0, traces amount: 6811 bytes, services received: 0, services amount: 0 bytes
+2018-11-26 15:30:34 INFO (stats_writer.go:265) - flushed stat payload to the API, time:476.255178ms, size:757 bytes
+2018-11-26 15:31:03 INFO (service_mapper.go:59) - total number of tracked services: 2
+2018-11-26 15:31:39 INFO (trace_writer.go:97) - flushed trace payload to the API, time:638.438009ms, size:1261 bytes
+2018-11-26 15:31:44 INFO (trace_writer.go:97) - flushed trace payload to the API, time:495.91676ms, size:712 bytes
+2018-11-26 15:31:54 INFO (stats_writer.go:265) - flushed stat payload to the API, time:480.624009ms, size:564 bytes
 ```
 
 
 But I am not able to see anything in the web console.
+# Final Question
 
-# My comments
+I think monitoring my house with Datadog would be a great thing. As I described above, monitoring
+energy consumption and detecting anomalis is great for maintenance and savings. Alerts and events could
+be used to signal errors like, the heating in a room is still on, but the sensor says the window
+is open. That is for sure an error wasting energy and an error in the communication between the window
+sensor and the heating actor (happens from time to time).   
 
-I liked the structure of the datadog.conf file. All default values have been entered and
-umcommented like <br>```# enable_gohai: true```
+# My observations
 
 I started a chat on the webpage to get some help. A case was opened and a case number and
 link provided. As I am on the Europe instance, it seems I am not able to login to the case tool
