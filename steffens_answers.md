@@ -39,6 +39,23 @@ My Timeboard (Past week)
 
  ![Alt text](screenshots/dashboard.png?raw=true "Dashboard")
 
+The snapshot feature with the easy @ function is really great idea to quickly
+save, send/inform others. Screenshots are a way more tideous. 
+
+ ![Alt text](screenshots/snapshot.png?raw=true "Dashboard")
+
+
+# Bonus Question: What is the Anomaly graph displaying?<br>
+
+I assume the Anomaly graph displace diviation from a band of expected values.
+For my warm water heating, this would mean a high usage of energy. I had that in
+the past, but without automatic chekcing. I found that one of the valve was broken,
+whene the consumption rose by 50%, after a specific date. With this detector I would 
+be alarmed earlier.
+
+# Monitoring Data
+
+
 
 # My comments
 
