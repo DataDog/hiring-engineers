@@ -94,26 +94,26 @@ press 'CTRL' + 'D'
 
 ## Step 4: Setup DataDog Account
 
-![Install Window](.img/install-datadog-window)
+![Install Window](.img/install-datadog-window.png)
 
 **If**, you installed the Agent to the desktop and want to remove it from the host, go [here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
 
 **Else**,
 1. Sign up for an [Account](https://app.datadoghq.com/signup)  
 
-2. Double check you command prompt is inside the VM environment.  If not, get inside your VM directory (Step 2.2 in 'Setup the Environment') and enter the VM environment with **$ vagrant ssh** (Step 3.5 in 'Setup the Environment')
+2. Double check your command prompt is inside the VM environment.  If not, get inside your VM directory (Step 2.2 in 'Setup the Environment') and enter the VM environment with **$ vagrant ssh** (Step 3.5 in 'Setup the Environment')
 
 ```
 **This will be the command line prompt going forward:**
 vagrant@ubuntu-xenial:~$
 ```
 
-3. Install Agent.  Find this by entering Integrations menu and clicking Agetn tab.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in the background.  
+3. Install Agent.  Find this by entering Integrations menu and clicking Agent tab.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in the background.  
 ```
-$ DD_API_KEY=651ea7b72011ccd54f640d26830aeb3f bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+$ DD_API_KEY=abcdefghijklmnopqrstuv bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-![Install Success](.img/install-datadog-success)
+![Install Success](.img/install-datadog-success.png)
 
 To halt the program:
 ```
@@ -131,20 +131,19 @@ $ sudo datadog-agent status
 </br>
 
 # Collecting Metrics
-Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
 
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.
 
 Our steps for collecting metrics:
 1. Add tags to the Agent's config file
 2. Install a database & respective Datadog integration
-3.  
-4.
+3. Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ## Step 1: Add tags in the Agent config file
 
-<img src="./img/collecting-tags-config.png">
-<img src="./img/collecting-host-map.png">
+![Yaml Config](.img/collecting-tags-config.png)
 
 1. Configure the host tags submitted by the Agent inside datadog.yaml. [Relevant Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
 ```
@@ -164,11 +163,13 @@ $ sudo service datadog-agent restart
 ```
 5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'stevetag'
 
+![Host Map](.img/collecting-host-map.png)
+
 ## Step 2: Install a database & respective Datadog integration
 [Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
+![Psql Install](.img/collecting-psql-installation.png)
 
-<img src="./img/collecting-psql-installation.png">
 1. Install your database.  I used Postgresql and typed the following commands while it in my VM's root directory.  
 ```
 $ sudo apt-get update
@@ -183,8 +184,8 @@ If you wish to exit, this is how
 ```
 postgres=# \q (or Ctrl + D)
 ```
-<img src="./img/collecting-integrations-menu.png">
-<img src="./img/collecting-integrations-instructions.png">
+![Integrations Menu](.img/collecting-integrations-menu.png)
+![Integrations Instruct](.img/collecting-integrations-instructions.png)
 
 3. Click 'Integrations' (under the puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
 
@@ -195,23 +196,22 @@ $ sudo su - postgres
 postgres@ubuntu-xenial:~$ psql
 ```
 
-4. Copy and paste the code next to the Terminal icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
+4. Copy and paste the code next to the **terminal** icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
 ```
 postgres=# create user datadog with password 'the password they provide';
 postgres=# grant SELECT ON pg_stat_database to datadog;
 postgres=# \q
 ```
 
-5. Copy and paste the code next to the Check icon. Then, hit **enter** and copy and paste the password.  Your database will be connected.  
+5. Copy and paste the code next to the **check** icon. Then, hit **enter** and copy and paste the password.  Your database will be connected.  
 
 ```
 postgres@ubuntu-xenial:~$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && \
 echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
 echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
-<img src="./img/collecting-psql-conf-commands.png">
-<img src="./img/collecting-psql-conf-yaml.png">
 
+![Psql Commands](.img/collecting-psql-conf-commands.png)
 6. Edit the **conf.yaml.example** inside the conf.d/postgres.yaml directory.
 ```
 postgres@ubuntu-xenial:~$ Press Ctrl + D
@@ -219,6 +219,8 @@ $ cd /etc/datadog-agent/conf.d/postgres.d
 $ ls
 /etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
+
+![Psql Commands](.img/collecting-psql-conf-yaml.png)
 7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC** and save, by typing **:wq**
 ```
 init_config:
@@ -241,13 +243,15 @@ instances:
 
 <img src="./img/collecting-psql-integration-successful.png">
 
-6. Restart the Agent & Check the Agent's status
+9. Restart the Agent & Check the Agent's status
 ```
 $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
 
-7. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
+![psql success](.img/collecting-psql-integration-successful.png)
+
+10. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
 
 
 ## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
@@ -255,13 +259,13 @@ We can create a custom check to submit metrics to the Agent. To do so requires:
   1. A check file
   2. a YAML configuration file     
 
-When this is set up, a random number will be sent with our check.  The check, by default, will try and run the check every 15 seconds.  
+When this is set up, a random number will be sent with our check.  The check, by default, will try and run every 15 seconds.  
 [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 
-<img src="./img/collecting-my-metric-config.png">
-<img src="./img/collecting-my-metric-code.png">
+![my metric config](./img/collecting-my-metric-config.png)
+![my metric code](./img/collecting-my-metric-code.png)
 
-1. Head down to the **checks.d** directory & create a Python file called 'my_metric'.
+1. Head to the **checks.d** directory & create a Python file called 'my_metric'.
 ```
 $ cd /etc/datadog-agent/checks.d
 /etc/datadog-agent/checks.d$ sudo touch my_metric.py
@@ -292,7 +296,6 @@ init_config:
 
 instances: [{}]
 ```
-=
 3. Restart the Agent & Check the Agent's status. my_metric should be now be visible under the category "Running Checks".
 ```
 $ sudo service datadog-agent restart
@@ -301,12 +304,7 @@ $ sudo datadog-agent status
 
 # Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-<img src="./img/collecting-yaml-interval.png">
-<img src="./img/collecting-time-0.png">
-<img src="./img/collecting-my-metric-0.png">
-<img src="./img/collecting-time-45.png">
-<img src="./img/collecting-my-metric-45.png">
-
+![Yaml Interval](./img/collecting-yaml-interval.png)
 1. Open up my_metric.yaml file in the conf.d directory.
 ```
 $ sudo vim my_metric.yaml
@@ -326,9 +324,13 @@ $ sudo datadog-agent status
 
 3. After about 45 seconds, repeat above step.
 
+![Time 0](./img/collecting-time-0.png) ![Metric 0](./img/collecting-my-metric-0.png)
+![Time 0](./img/collecting-time-45.png) ![Metric 45](./img/collecting-my-metric-45.png)
+
+
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes.  You can run this command with the -d flag and a integer argument standing for desired seconds.  
+Yes.  You can run this command with the -d flag and an integer argument standing for desired seconds.  
 ```
 sudo -u dd-agent -- datadog-agent check my_metric -d 30
 ```
