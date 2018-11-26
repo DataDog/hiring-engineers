@@ -1,10 +1,11 @@
-In order to ... Datadog...(pyrammid process)
+Datadog is a monitoring service.  These documents allow anyone to build a basic Datadog integration allowing them greater insight to their infrastructure metrics.  
 
-1. [Setup the environment](#Setup-the-Environment)
-2. [Collecting Metrics](#Collecting-Metrics)
-3. [Visualizing Data](#Visualizing-Data)
-4. [Monitoring Data](#Monitoring-Data)
-5. [Collecting APM Data](#Collecting-APM-Data)
+To do so, we will do the following:
+1. [Setup the Datadog Environment](#Setup-the-Environment)
+2. [Collect Metrics](#Collecting-Metrics)
+3. [Visualize Data](#Visualizing-Data)
+4. [Monitor Data](#Monitoring-Data)
+5. [Collect APM Data](#Collecting-APM-Data)
 
 # Setup the Environment
 DataDog recommends the use of virtual machine's (VM) as to avoid dependency issues.  
@@ -14,12 +15,12 @@ VirtualBox is your virtualization software.  Vagrant is environment workflow sof
 Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you install VirtualBox, you install a 'box'.
 
 Our four steps for setting up the environment:
-1. Installing VM & Vagrant software
-2. Building the VM's environment
-3. Creating a clone of a virtual machine
+1. Install VM & Vagrant software
+2. Build the VM's environment
+3. Create a clone of a virtual machine
 4. Setup a Datadog Account
 
-## Step 1: Installing the virtual machine software  
+## Step 1: Install the virtual machine software  
 
 1. Download VirtualBox [here](https://www.virtualbox.org/wiki/Downloads)  
 
@@ -31,7 +32,7 @@ $ vagrant --version
 > Vagrant 2.2.1
 ```
 
-## Step 2: Building the project environment  
+## Step 2: Build the project environment  
 [Project Setup Docs](https://www.vagrantup.com/intro/getting-started/project_setup.html)
 
 1. Create a directory/folder to store the VM and the related files.  I created a folder on my desktop.
@@ -53,18 +54,18 @@ $ vagrant init
 $ ls
 ```
 
-## Step 3: Creating a clone of a virtual machine
-<img src="./img/install-vagrant-box.png">
-<img src="./img/install-vagrant-box-config.png">
+## Step 3: Create a clone of a virtual machine
 
+![Box Install](.img/install-vagrant-box)
+![Box Config](./img/install-vagrant-box-config)
 
-1. Create the clone of a VM using a 'box'.  Choose a <a href="https://app.vagrantup.com/boxes/search">BOX</a>
+1. Create the clone of a VM using a 'box'. Choose a [box here](https://app.vagrantup.com/boxes/search)  
 i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
 ```
 $ vagrant box add ubuntu/xenial64
 ```
 
-2. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
+2. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in the prior step. Open the vagrantfile in a code editor.  Replace code as follows:
 ```
 $ atom vagrantfile
 
@@ -92,6 +93,9 @@ press 'CTRL' + 'D'
 ```
 
 ## Step 4: Setup DataDog Account
+
+![Install Window](.img/install-datadog-window)
+
 **If**, you installed the Agent to the desktop and want to remove it from the host, go [here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
 
 **Else**,
@@ -108,6 +112,8 @@ vagrant@ubuntu-xenial:~$
 ```
 $ DD_API_KEY=651ea7b72011ccd54f640d26830aeb3f bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+
+![Install Success](.img/install-datadog-success)
 
 To halt the program:
 ```
@@ -326,6 +332,8 @@ Yes.  You can run this command with the -d flag and a integer argument standing 
 ```
 sudo -u dd-agent -- datadog-agent check my_metric -d 30
 ```
+-------------------------------------
+</br>
 
 ## Visualizing Data
 In math we use analysis to see phenomena, but often, we want to a have a different perspective.  To do so, we use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
@@ -395,6 +403,8 @@ It graphs a metrics' normal context.  Often, our metrics can have a few peaks an
 
 For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
 
+-------------------------------------
+</br>
 
 ## Monitoring Data
 While reading and seeing our metrics goes a long way towards understanding, Datadog has tools to color our picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
@@ -463,8 +473,10 @@ Contact @weiss.steven@gmail.com
 ![Weekends](.img/monitor-email)
 ![Weekends](.img/monitor-weeknight-email)
 
+-------------------------------------
+</br>
 
-## Collecting APM Data
+# Collecting APM Data
 Thus far we have setup tools to observe our infrastructure.  As the infrastructure grows, the complexity and the root causes for problems will become more opaque.  Ideally, we will use better tools/applications.  But what if the tools are faulty?  How would we collect data on the tool?  This is a blind spot in our monitoring.  Fortunately, this is where Application Performance Monitoring (APM) comes in.  APM allows the user to collect, search, and analyze traces across fully distributed architectures.
 
 Our two steps to collect APM data:
@@ -472,7 +484,7 @@ Our two steps to collect APM data:
 2. Instrument the application
 3. Let the world know with a Screenboard
 
-# Create the application
+## Create the application
 1. Navigate to the *etc/datadog-agent* and create a file for the application
 ```
 $ sudo touch app.py
@@ -486,7 +498,7 @@ $ sudo touch app.py
 $ sudo pip install flask
 ```
 
-# Instrument the application
+## Instrument the application
 **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 1. Open your datadog.yaml file and delete the hashes such that your code looks like this. This will enable APM trace.  Save and restart.  
@@ -515,7 +527,7 @@ curl localhost:5050/
 ![Corresponding Gets](.img/apm-localhost-calls)
 
 
-# Create a Screenboard
+## Create a Screenboard
 
 1. Create a new dashboard.  Choose Screenboard.
 
@@ -534,6 +546,9 @@ A "Resource" is the query to a service.  In apps, we see resources as 'routes'; 
 Since most programs can be distilled down to procedures, the differences are akin to the separation of concerns in the design of any procedure - we create the body of a procedure that describes the behavior and we call the procedure with a desired input.  In a procedure we 'blackbox' an action and and provide a thing.  
 
 In terms of service and resource, a service is the function/procedure that describes and embodies the desired behaviors of the program.  The resources are the calls and arguments that feed the functions.  While services and resources are not dependent on each other, that is, we can still have services designed without resources and resources designed without services, they are designed to know of each others existence.   
+
+-------------------------------------
+</br>
 
 ## Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
