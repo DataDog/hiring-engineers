@@ -211,8 +211,8 @@ echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
 echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-![Psql Commands](img/collecting-psql-conf-commands.png)
 6. Edit the **conf.yaml.example** inside the conf.d/postgres.yaml directory.
+![Psql Commands](img/collecting-psql-conf-commands.png)
 ```
 postgres@ubuntu-xenial:~$ Press Ctrl + D
 $ cd /etc/datadog-agent/conf.d/postgres.d
@@ -220,8 +220,8 @@ $ ls
 /etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
 
-![Psql Commands](img/collecting-psql-conf-yaml.png)
 7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC** and save, by typing **:wq**
+![Psql Commands](img/collecting-psql-conf-yaml.png)
 ```
 init_config:
 
