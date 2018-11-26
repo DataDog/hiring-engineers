@@ -56,7 +56,7 @@ $ ls
 
 ## Step 3: Create a clone of a virtual machine
 
-![Box Install](.img/install-vagrant-box.png)
+![Box Install](./img/install-vagrant-box-terminal.png)
 ![Box Config](./img/install-vagrant-box-config.png)
 
 1. Create the clone of a VM using a 'box'. Choose a [box here](https://app.vagrantup.com/boxes/search)  
