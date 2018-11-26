@@ -16,8 +16,8 @@ So, I changed the tag to \#homeassistant.
 
 ![ScreenShot](https://github.com/mod42/hiring-engineers/raw/master/screenshots/hostmap_details.png)
 
-I added a Agent check that submits metric from my real home automation system (HAB).
-* Item Temp_outside Temperature outside my house, direction North <br>
+I added a Agent check that submits metric from my real home automation system (HAB). <br>
+*	Temp_outside Temperature outside my house, direction North 
 
 The additional metrics are added by a rule in my HAB once a day<br>
 * HZ_usage-kWh the consumption of gas for heating in kWh<br>
