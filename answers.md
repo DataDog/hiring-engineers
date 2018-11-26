@@ -94,7 +94,7 @@ press 'CTRL' + 'D'
 
 ## Step 4: Setup DataDog Account
 
-![Install Window](.img/install-datadog-window.png)
+![Install Window](./img/install-datadog-window.png)
 
 **If**, you installed the Agent to the desktop and want to remove it from the host, go [here](https://docs.datadoghq.com/agent/faq/how-do-i-uninstall-the-agent/?tab=agentv6)
 
