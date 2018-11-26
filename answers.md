@@ -62,7 +62,7 @@ $ ls
 1. Create the clone of a VM using a 'box'.  Choose a <a href="https://app.vagrantup.com/boxes/search">BOX</a>
 i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
 ```
-$ vagrant box add ubuntu/xenial64>
+$ vagrant box add ubuntu/xenial64
 ```
 
 2. Change the contents of 'vagrantfile' to include the Ubuntu/Xenial box (or whatever box) you added in Step 8. Open the vagrantfile in a code editor.  Replace code as follows:
@@ -105,9 +105,9 @@ press 'CTRL' + 'D'
 vagrant@ubuntu-xenial:~$
 ```
 
-3. Install Agent.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in the background.  
+3. Install Agent.  Find this by entering Integrations menu and clicking Agetn tab.  Copy and paste the "one-step install" command in your Vagrant SSH. The agent will run in the background.  
 ```
-$ DD_API_KEY=d123456789901234567890 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+$ DD_API_KEY=651ea7b72011ccd54f640d26830aeb3f bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 To halt the program:
@@ -130,8 +130,9 @@ Tagging is used throughout Datadog to query the machines and metrics you monitor
 
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.
 
+Our steps for collecting metrics:
 1. Add tags to the Agent's config file
-2.  
+2. Install a database & respective Datadog integration
 3.  
 4.
 
@@ -156,18 +157,13 @@ The above commands opens up the Linux virtual editor.  [How to use VIM](https://
 ```
 $ sudo service datadog-agent restart
 ```
-5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'mytesttag'
+5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'stevetag'
 
 ## Step 2: Install a database & respective Datadog integration
 [Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
-<img src="./img/collecting-psql-installation.png">
-<img src="./img/collecting-integrations-menu.png">
-<img src="./img/collecting-integrations-instructions.png">
-<img src="./img/collecting-psql-conf-commands.png">
-<img src="./img/collecting-psql-conf-yaml.png">
-<img src="./img/collecting-psql-integration-successful.png">
 
+<img src="./img/collecting-psql-installation.png">
 1. Install your database.  I used Postgresql and typed the following commands while it in my VM's root directory.  
 ```
 $ sudo apt-get update
@@ -182,6 +178,9 @@ If you wish to exit, this is how
 ```
 postgres=# \q (or Ctrl + D)
 ```
+<img src="./img/collecting-integrations-menu.png">
+<img src="./img/collecting-integrations-instructions.png">
+
 3. Click 'Integrations' (under the puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
 
 Press 'generate password'. Then head over to your terminal.  
@@ -191,37 +190,32 @@ $ sudo su - postgres
 postgres@ubuntu-xenial:~$ psql
 ```
 
-Copy and paste the code next to the Terminal icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
+4. Copy and paste the code next to the Terminal icon.  Check the [docs](https://docs.datadoghq.com/integrations/postgres/) to reconcile your database version versus their code.  
 ```
 postgres=# create user datadog with password 'the password they provide';
 postgres=# grant SELECT ON pg_stat_database to datadog;
 postgres=# \q
+```
 
+5. Copy and paste the code next to the Check icon. Then, hit **enter** and copy and paste the password.  Your database will be connected.  
+
+```
 postgres@ubuntu-xenial:~$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && \
 echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
 echo -e "\e[0;31mCannot connect to Postgres\e[0m"
-
-Hit Enter.
-
-Password for user: Copy and paste the password here.  
-
-Postgres Connection: Ok
 ```
+<img src="./img/collecting-psql-conf-commands.png">
+<img src="./img/collecting-psql-conf-yaml.png">
 
-5. Edit the conf.d/postgres.yaml file
+6. Edit the **conf.yaml.example** inside the conf.d/postgres.yaml directory.
 ```
 postgres@ubuntu-xenial:~$ Press Ctrl + D
 $ cd /etc/datadog-agent/conf.d/postgres.d
 $ ls
-```
-There is only the example conf.yaml file.  We open, edit, then 'move' the file to save as conf.yaml
-```
 /etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
-Hit 'i' and copy/paste the code from the configuration
+7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC** and save, by typing **:wq**
 ```
-Press 'i'
-
 init_config:
 
 instances:
@@ -232,35 +226,42 @@ instances:
        tags:
             - optional_tag1
             - optional_tag2
-```
-Hit **ESC**, to save, type **:wq**
 
-Rename conf.yaml file
+```
+
+8. Rename conf.yaml.example file to conf.yaml.
 ```
 /etc/datadog-agent/conf.d/postgres.d$ sudo mv conf.yaml.example conf.yaml
 ```
+
+<img src="./img/collecting-psql-integration-successful.png">
 
 6. Restart the Agent & Check the Agent's status
 ```
 $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
+
 7. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
 
 
 ## Step 3: Create a custom Agent check that submits a metric named my_metric with a random value between (0, 1000)
-We can create a custom check to submit metrics to the Agent. To do so requires 1. A check file 2. a YAML configuration file     [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+We can create a custom check to submit metrics to the Agent. To do so requires:
+  1. A check file
+  2. a YAML configuration file     
+
+When this is set up, a random number will be sent with our check.  The check, by default, will try and run the check every 15 seconds.  
+[Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 
 <img src="./img/collecting-my-metric-config.png">
 <img src="./img/collecting-my-metric-code.png">
-<img src="./img/collecting-my-metric-initial.png">
 
 1. Head down to the **checks.d** directory & create a Python file called 'my_metric'.
 ```
 $ cd /etc/datadog-agent/checks.d
 /etc/datadog-agent/checks.d$ sudo touch my_metric.py
 ```
-2. Open up my_metric using **sudo touch my_metric.py**.  Copy and paste the following:
+2. Open up my_metric using **sudo touch my_metric.py**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC** and save, by typing **:wq**
 
 ```
 import random
@@ -279,15 +280,19 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0, 1000))
 ```
-Hit **ESC** and save, **:wq**
 
-3. Restart the Agent & Check the Agent's status
+4. Head into the conf.d directory.  Create a corresponding my_metric yaml file **sudo touch my_metric.yaml**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC** and save, by typing **:wq**
+```
+init_config:
+
+instances: [{}]
+```
+=
+3. Restart the Agent & Check the Agent's status. my_metric should be now be visible under the category "Running Checks".
 ```
 $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
-
-At this point, a random number will be sent with our check.  The check, by default, will try and run the check every 15 seconds.  
 
 # Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -327,83 +332,70 @@ sudo -u dd-agent -- datadog-agent check my_metric -d 30
 
 In math we use analysis to see phenomena, but often times, we want to a have a different perspective.  We use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
 
-Datadog is no different.  We can see my_metric and our database in the terminal.  But Datadog provides robust data visualization tools to help us gain a greater grasp of the metrics we are tracking.
+Datadog gives us perspective.  We can see my_metric and our database in the terminal.  Their tools provide robust data visualization tools to help us gain a greater grasp of the metrics we are tracking.
+
+We can manipulate data through scripts and the API or we can adjust the graphs manually.  With this data, we can notify our team to pertinent data points.  In our example, we will adjust our grapht to five minutes and sent a note using the @ notation.
 
 The two major tools Datadog has are the Timeboard and the Screenboard.  [Boards](https://www.youtube.com/watch?v=uI3YN_cnahk)
 
 Our two steps for visualizing data:
-1. Create a timeboard
+1. Create a Timeboard
 2. Accessing it and sending ourselves information
 
 # Step 1: Create a Timeboard
 
-Utilize the Datadog API to create a Timeboard that contains:
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+1. To utilize the Datadog API we need to add software to VM [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
 
-# Step 2: Access the timeboard and notify yourself
+```
+$ sudo apt-get install python-pip
+$ sudo pip install datadog
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+```
+![API dashboard](./img/visualizing-api-menu)
+![API key menu](./img/visualizing-application-key)
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+2. Click the 'API' menu item on the Dashboard. Then, generate an **application key**
+
+![create Timeboard](.img/visualizing-timeboard-init)
+
+3. Head to the datadog-agent folder. Create a Python file.  
+
+```
+$ cd etc/datadog-agent
+$ sudo touch timeboard.py
+$ sudo vim timeboard.py
+```
+4. Open the timeboard.py file using an editor and add in the following code from the [API documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
+
+5. Edit the code using an editor **sudo vim timeboard.py** to adjust graphs accordingly - Aggregation function, an Anomaly function, and a Rollup function.  [Relevant Docs](https://docs.datadoghq.com/graphing/graphing_json/)
+
+[Timeboard Code](./files/timeboard.py)
+
+![Timeboard Created](.img/visualizing-functions-success)
+![Timeboard Graphing](.img/visualizing-graphing-success)
+
+6. Exit editor, save, and execute code to create Timeboard
+```
+$ python timeboard.py
+```
+
+# Step 2: Access the Timeboard and notify yourself
+
+1. Once this is created, access the Dashboard from your Dashboard List in the UI
+
+2. Set the Timeboard's timeframe to the past 5 minutes by selecting a starting point on the graph and dragging the cursor for five minutes.  
+
+![Five minutes](./img/visualizing-five-minutes)
+
+3. Send a notification with the @ notation
+
+ ![Notify snapshot](/img/visualizing-notify)
 
 **Bonus Question:** What is the Anomaly graph displaying?
 
+It graphs a metrics' normal context.  Often, our metrics can have a few peaks and valleys.  The anomaly function considers this, then graphs a chart to show the trend of the graph without the peaks and valleys.  
 
-12. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-```
-{
-  "requests": [
-    {
-      "q": "avg:my_metric{host:Steven-Weiss}",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      },
-      "conditional_formats": []
-    },
-    {
-      "q": "anomalies(avg:my_metric{host:Steven-Weiss}, 'basic', 2)",
-      "type": "line",
-      "style": {
-        "palette": "cool",
-        "type": "solid",
-        "width": "normal"
-      }
-    },
-    {
-      "q": "avg:my_metric{host:Steven-Weiss}.rollup(sum, 60)",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      }
-    }
-  ],
-  "viz": "timeseries",
-  "autoscale": true
-}
-```
-
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-13. Set the Timeboard's timeframe to the past 5 minutes
-14. Take a snapshot of this graph and use the @ notation to send it to yourself.
-
-<img src="./images/13-5-minutes-annotate.png">
-
-15. **Bonus Question**: What is the Anomaly graph displaying?
-- It graphs a metrics' normal context.  Often, our metrics can have a few peaks and valleys.  The anomaly function considers this, then graphs a chart to show the trend of the graph without the peaks and valleys.  
-
-- For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
+For example, if a zoologist wanted to set an alarm clock for the coming month based on the prior month's wake times.  First, she would input all her waking times over thirty days.  Then, sort through the average days.  Finally, she would disregard all the long nights out at the bar till 4am.  Then, with the 'normalized' data, she would set the alarm.  The anomaly function is the zoologist's alarm analysis.  
 
 ## Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
