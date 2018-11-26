@@ -23,7 +23,9 @@ The additional metrics are added by a rule in my HAB once a day<br>
 * HZ_usage-kWh the consumption of gas for heating in kWh<br>
 * WW_Usage_kWh the consumption of gas for warm water in kWh<br>
 
-![ScreenShot] (https://raw.githubusercontent.com/mod42/hiring-engineers/master/screenshots/openhab.png)
+Attached code and config is [house.py](src/house.py) and [house.yaml](src/house.yaml).
+
+![ScreenShot] (screenshots/openhab.png?raw=true)
 
 #My comments
 
