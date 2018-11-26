@@ -125,6 +125,27 @@ be used to signal errors like, the heating in a room is still on, but the sensor
 is open. That is for sure an error wasting energy and an error in the communication between the window
 sensor and the heating actor (happens from time to time).   
 
+I tried to import historic values through the API, but I did not succeed. I used [Import.py](src/import.py)
+to import [old tweets](src/2018_11.json). As you can see below, I received 202 OK. But the values do not show in the 
+Graphs
+
+```shell
+{"series":[{"metric":"WW Usage kWh","points":[[1541282400,7.11144]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]},{"metric":"HZ Usage kWh","points":[[1541282400,31.38064]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]}]}
+Response HTTP Status Code: 202
+Response HTTP Response Body: {"status": "ok"}
+{"series":[{"metric":"WW Usage kWh","points":[[1541196000,14.22288]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]},{"metric":"HZ Usage kWh","points":[[1541196000,29.80032]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]}]}
+Response HTTP Status Code: 202
+Response HTTP Response Body: {"status": "ok"}
+{"series":[{"metric":"WW Usage kWh","points":[[1541109600,6.20840]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]},{"metric":"HZ Usage kWh","points":[[1541109600,23.70480]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]}]}
+Response HTTP Status Code: 202
+Response HTTP Response Body: {"status": "ok"}
+{"series":[{"metric":"WW Usage kWh","points":[[1541023200,7.78872]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]},{"metric":"HZ Usage kWh","points":[[1541023200,30.81624]],"type":"gauge","interval":20,"host":"raspberrypi","tags":["environment:test"]}]}
+Response HTTP Status Code: 202
+Response HTTP Response Body: {"status": "ok"}
+```
+
+![Alt text](screenshots/heating_prob.png?raw=true "Heating graph")
+
 # My observations
 
 I started a chat on the webpage to get some help. A case was opened and a case number and

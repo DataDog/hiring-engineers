@@ -31,7 +31,7 @@ for item in json_data:
 				 "api_key": "d3086d9ee6433b3af5e47a2eb5485abf",
 		},
 		headers={
-			 "Content-Type": "text/plain; charset=utf-8",
+			 "Content-Type": "application/json",
 		},
 		#data=json.dumps(series)
 		data=series
