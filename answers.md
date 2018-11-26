@@ -56,8 +56,8 @@ $ ls
 
 ## Step 3: Create a clone of a virtual machine
 
-![Box Install](.img/install-vagrant-box)
-![Box Config](./img/install-vagrant-box-config)
+![Box Install](.img/install-vagrant-box.png)
+![Box Config](./img/install-vagrant-box-config.png)
 
 1. Create the clone of a VM using a 'box'. Choose a [box here](https://app.vagrantup.com/boxes/search)  
 i.e. The documentation uses hashicorp/precise64 but I ran ubuntu/xenial64
