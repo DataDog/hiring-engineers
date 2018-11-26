@@ -143,7 +143,7 @@ Our steps for collecting metrics:
 
 ## Step 1: Add tags in the Agent config file
 
-![Yaml Config](.img/collecting-tags-config.png)
+![Yaml Config](img/collecting-tags-config.png)
 
 1. Configure the host tags submitted by the Agent inside datadog.yaml. [Relevant Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
 ```
@@ -163,12 +163,12 @@ $ sudo service datadog-agent restart
 ```
 5. Check if it worked. Go to Host Map on the dashboard. After a few minutes, my tags should read 'stevetag'
 
-![Host Map](.img/collecting-host-map.png)
+![Host Map](img/collecting-host-map.png)
 
 ## Step 2: Install a database & respective Datadog integration
 [Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
-![Psql Install](.img/collecting-psql-installation.png)
+![Psql Install](img/collecting-psql-installation.png)
 
 1. Install your database.  I used Postgresql and typed the following commands while it in my VM's root directory.  
 ```
@@ -184,8 +184,8 @@ If you wish to exit, this is how
 ```
 postgres=# \q (or Ctrl + D)
 ```
-![Integrations Menu](.img/collecting-integrations-menu.png)
-![Integrations Instruct](.img/collecting-integrations-instructions.png)
+![Integrations Menu](img/collecting-integrations-menu.png)
+![Integrations Instruct](img/collecting-integrations-instructions.png)
 
 3. Click 'Integrations' (under the puzzle piece) on the Dashboard.  Install and Configure.  A window should appear:
 
@@ -211,7 +211,7 @@ echo -e "\e[0;32mPostgres connection - OK\e[0m" || \
 echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-![Psql Commands](.img/collecting-psql-conf-commands.png)
+![Psql Commands](img/collecting-psql-conf-commands.png)
 6. Edit the **conf.yaml.example** inside the conf.d/postgres.yaml directory.
 ```
 postgres@ubuntu-xenial:~$ Press Ctrl + D
@@ -220,7 +220,7 @@ $ ls
 /etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
 
-![Psql Commands](.img/collecting-psql-conf-yaml.png)
+![Psql Commands](img/collecting-psql-conf-yaml.png)
 7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC** and save, by typing **:wq**
 ```
 init_config:
@@ -249,7 +249,7 @@ $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
 
-![psql success](.img/collecting-psql-integration-successful.png)
+![psql success](img/collecting-psql-integration-successful.png)
 
 10. Press "Install Integration".  Check back in a few minutes to see if the integration is working properly.  
 
@@ -262,8 +262,8 @@ We can create a custom check to submit metrics to the Agent. To do so requires:
 When this is set up, a random number will be sent with our check.  The check, by default, will try and run every 15 seconds.  
 [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 
-![my metric config](./img/collecting-my-metric-config.png)
-![my metric code](./img/collecting-my-metric-code.png)
+![my metric config](img/collecting-my-metric-config.png)
+![my metric code](img/collecting-my-metric-code.png)
 
 1. Head to the **checks.d** directory & create a Python file called 'my_metric'.
 ```
@@ -304,7 +304,7 @@ $ sudo datadog-agent status
 
 # Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-![Yaml Interval](./img/collecting-yaml-interval.png)
+![Yaml Interval](img/collecting-yaml-interval.png)
 1. Open up my_metric.yaml file in the conf.d directory.
 ```
 $ sudo vim my_metric.yaml
@@ -324,8 +324,8 @@ $ sudo datadog-agent status
 
 3. After about 45 seconds, repeat above step.
 
-![Time 0](./img/collecting-time-0.png) ![Metric 0](./img/collecting-my-metric-0.png)
-![Time 0](./img/collecting-time-45.png) ![Metric 45](./img/collecting-my-metric-45.png)
+![Time 0](img/collecting-time-0.png) ![Metric 0](img/collecting-my-metric-0.png)
+![Time 0](img/collecting-time-45.png) ![Metric 45](img/collecting-my-metric-45.png)
 
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
