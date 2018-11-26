@@ -1,13 +1,12 @@
 In order to ... Datadog...(pyrammid process)
 
-1. [Setup the environment](#Setup-the-environment)
-2. Collect data
-3. Visualize our data through our dashboard
-4. Monitor and sending notificactions
-5. dasf
+1. [Setup the environment](#Setup-the-Environment)
+2. [Collecting Metrics](#Collecting-Metrics)
+3. [Visualizing Data](#Visualizing-Data)
+4. [Monitoring Data](#Monitoring-Data)
+5. [Collecting APM Data](#Collecting-APM-Data)
 
-
-# Setup the environment
+# Setup the Environment
 DataDog recommends the use of virtual machine's (VM) as to avoid dependency issues.  
 
 VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
@@ -125,7 +124,7 @@ $ sudo datadog-agent status
 -------------------------------------
 </br>
 
-# Collecting Metrics:
+# Collecting Metrics
 Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
 
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.
@@ -328,9 +327,8 @@ Yes.  You can run this command with the -d flag and a integer argument standing 
 sudo -u dd-agent -- datadog-agent check my_metric -d 30
 ```
 
-## Visualizing Data:
-
-In math we use analysis to see phenomena, but often times, we want to a have a different perspective.  We use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
+## Visualizing Data
+In math we use analysis to see phenomena, but often, we want to a have a different perspective.  To do so, we use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
 
 Datadog gives us perspective.  We can see my_metric and our database in the terminal.  Their tools provide robust data visualization tools to help us gain a greater grasp of the metrics we are tracking.
 
@@ -466,7 +464,7 @@ Contact @weiss.steven@gmail.com
 ![Weekends](.img/monitor-weeknight-email)
 
 
-## Collecting APM Data:
+## Collecting APM Data
 Thus far we have setup tools to observe our infrastructure.  As the infrastructure grows, the complexity and the root causes for problems will become more opaque.  Ideally, we will use better tools/applications.  But what if the tools are faulty?  How would we collect data on the tool?  This is a blind spot in our monitoring.  Fortunately, this is where Application Performance Monitoring (APM) comes in.  APM allows the user to collect, search, and analyze traces across fully distributed architectures.
 
 Our two steps to collect APM data:
