@@ -3,17 +3,28 @@ Your answers to the questions go here.
 
 ##Prerequisites - Setup the environment
 [x]- Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field),
+RESOUCES: https://datadog.github.io/summit-training-session/handson/customagentcheck/
 [x]- Get the Agent reporting metrics from your local machine.
 
 ##Collecting Metrics:
-[]- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+[x]- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+RESOURCES: 
+https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6
+https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
 []- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+RESOURCES:
+http://tutorials.jumpstartlab.com/topics/vagrant_setup.html
+https://docs.datadoghq.com/integrations/postgres/#prepare-postgres
 []- Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 []- Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 ##Visualizing Data:
 []-Utilize the Datadog API to create a Timeboard that contains:
+RESOURCES:
+https://docs.datadoghq.com/api/?lang=ruby#overview
+https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
+
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -40,6 +51,9 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 
 ##Collecting APM Data:
 []- Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
+RESOURCES:
+https://docs.datadoghq.com/tracing/setup/?tab=agent630
+
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 #Bonus Question: What is the difference between a Service and a Resource?
