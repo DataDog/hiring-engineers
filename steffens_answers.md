@@ -11,8 +11,8 @@ to transmit Smart Home information. In addition I added some data feeds via APIs
 
 ## Collecting metrics
 The screenshots show the hostmap after installing the agent to my Raspberry.
-Hass means homeassitant, which is default naming, not very clever in German language.
-So, I change the tag to \#homeassistant.
+Hass means homeassitant, which is default naming by home assistance, not very clever in German language :-)
+So, I changed the tag to \#homeassistant.
 
 ![ScreenShot](https://github.com/mod42/hiring-engineers/raw/master/screenshots/hostmap_details.png)
 
@@ -22,6 +22,7 @@ I added a Agent check that submits metric from my real home automation system (H
 The additional metrics are added by a rule in my HAB once a day<br>
 * HZ_usage-kWh the consumption of gas for heating in kWh
 * WW_Usage_kWh the consumption of gas for warm water in kWh
+
 
 
 #My comments
