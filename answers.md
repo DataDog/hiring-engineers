@@ -338,9 +338,9 @@ sudo -u dd-agent -- datadog-agent check my_metric -d 30
 </br>
 
 ## Visualizing Data
-In math we use analysis to see phenomena, but often, we want to a have a different perspective.  To do so, we use other tools, such as geometry, to see new patterns giving us a deeper understanding of whatever we are calculating.
+In math we use analysis to see phenomena, but it is also useful to apply different approaches to gain a greater understanding of a particular problem.  For example, we may use geometry to under why a number squared is a side multiplied by itself, two times.  
 
-Datadog gives us perspective.  We can see my_metric and our database in the terminal.  Their tools provide robust data visualization tools to help us gain a greater grasp of the metrics we are tracking.
+Datadog doesn't leave us staring at the matrix.  It gives us perspective.  Their tools provide robust data visualization features to help us gain a greater grasp of the metrics we are tracking.
 
 We can manipulate data through scripts and the API or we can adjust the graphs manually.  With this data, we can notify our team to pertinent data points.  In our example, we will adjust our grapht to five minutes and sent a note using the @ notation.
 
@@ -359,12 +359,12 @@ $ sudo apt-get install python-pip
 $ sudo pip install datadog
 
 ```
-![API dashboard](./img/visualizing-api-menu)
-![API key menu](./img/visualizing-application-key)
+![API dashboard](img/visualizing-api-menu.png)
+![API key menu](img/visualizing-application-key.png)
 
 2. Click the 'API' menu item on the Dashboard. Then, generate an **application key**
 
-![create Timeboard](.img/visualizing-timeboard-init)
+![create Timeboard](img/visualizing-timeboard-init.png)
 
 3. Head to the datadog-agent folder. Create a Python file.  
 
@@ -379,8 +379,8 @@ $ sudo vim timeboard.py
 
 [Timeboard Code](./files/timeboard.py)
 
-![Timeboard Created](.img/visualizing-functions-success)
-![Timeboard Graphing](.img/visualizing-graphing-success)
+![Timeboard Created](img/visualizing-functions-success.png)
+![Timeboard Graphing](img/visualizing-graphing-success.png)
 
 6. Exit editor, save, and execute code to create Timeboard
 ```
@@ -389,15 +389,15 @@ $ python timeboard.py
 
 # Step 2: Access the Timeboard and notify yourself
 
-1. Once this is created, access the Dashboard from your Dashboard List in the UI
+1. Once this is created, access the Dashboard from the Datadog user interface.
 
 2. Set the Timeboard's timeframe to the past 5 minutes by selecting a starting point on the graph and dragging the cursor for five minutes.  
 
-![Five minutes](./img/visualizing-five-minutes)
+![Five minutes](img/visualizing-five-minutes.png)
 
 3. Send a notification with the @ notation
 
- ![Notify snapshot](/img/visualizing-notify)
+ ![Notify snapshot](img/visualizing-notify.png)
 
 **Bonus Question:** What is the Anomaly graph displaying?
 
