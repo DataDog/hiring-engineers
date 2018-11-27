@@ -14,12 +14,16 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 <br/>
 <img src="images/PostgreSQL_Integration.png">
 
+
+
 <br/>
 
 - Add tags in the Agent config file in `/etc/datadog-agent/datadog.yaml`
 
 
+
 <img src="images/Ubuntu_VM_Tags.png">
+
 
 <br/>
 - View and confirm tags in the UI under `Infrastructure -> Host Map -> Your Infrastructure`
