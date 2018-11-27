@@ -102,7 +102,7 @@ On the Dashboard UI, the timeboard looks like this:
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.53.02%20AM.png">
 
-# Step 2
+## Step 2
 Using the "annotate" icon on the Timeboard graph, I set the Timeboard's timeframe to the past 5 minutes:
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.59.38%20AM.png">
@@ -112,88 +112,67 @@ I took a snapshot of the graph and used the @ notation to send it to myself.
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%202.13.49%20AM.png">
 
 
-# Bonus Question
+## Bonus Question
 
 The Anomaly graph is displaying the number of MySQL connections. As soon as there are additional connections, the anomaly graph will show a red spike to represent the anomaly (connection).
 
 
-## Monitoring Data
+# Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+## Step 1
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Using the UI on the Datadog site I am able to create a monitor by clicking on 'Monitors -> New Monitor':
 
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Please configure the monitor’s message so that it will:
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2011.44.01%20AM.png">
 
-Send you an email whenever the monitor triggers.
+I created a new monitor that has a warning threshold of 500, an alerting threshold of 800, and a notification if there is no data over the past 10 minutes, simply by completing the form.  I also configured the monitor to send me an email whenever it is triggered, with different messages based on whether the monitor is an Alert, a Warning or No Data State.
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2011.49.53%20AM.png">
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+<img
+src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2011.51.03%20AM.png">
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+I can also view the triggered monitor by clicking on 'Triggered Monitor' in the Dashboard dropdown menu:
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2011.52.35%20AM.png">
 
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+## Bonus Question
+
+In order to be able to schedule downtimes for my monitor, I use the 'Manage Downtime' dropdown menu.   I configured the monitor to be silenced from 7pm to 9am M-F and all day on Sat-Sun:
+
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.11.05%20PM.png">
+
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.11.15%20PM.png">
+
+I also made sure that a notification email is sent out when I schedule downtime:
+
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.20.36%20PM.png">
 
 
-Collecting APM Data:
+# Collecting APM Data:
+
+## Step 1
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-from flask import Flask
-import logging
-import sys
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+Using the provided Flask app, I am able to to collect APM data.  After installing flask with 'pip install flask' I am able to import the flask app.  Next I need to install dd-trace with the command 'pip install ddtrace' in order to trace the application we installed. After installing dd-trace we can instrument the application using the command 'ddtrace-run python flask_app.py'.  With the application running in one terminal we are able to make api calls in another terminal:  
 
-app = Flask(__name__)
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.09.40%20PM.png">
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
+After we've begun collecting traces we can see them in the dashboard from the APM dropdown menu in the trace list:
 
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
+<img
+src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.12.35%20PM.png">
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-Bonus Question: What is the difference between a Service and a Resource?
+## Bonus Question
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+A "Service" refers to a process or processes that generate different aspects of a feature.  An application may have only a couple services or many services, depending on the complexity of the application.
 
-Please include your fully instrumented app in your submission, as well.
+A "Resource" refers to a query to a service, as described above.  For instance, the actual code of a query to a database would be a resource, whereas the query system itself would be the service.
 
-Final Question:
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+# Final Question:
 
-Instructions
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-Fork this repo.
-Answer the questions in answers.md
-Commit as much code as you need to support your answers.
-Submit a pull request.
-Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+There are truly unlimited possibilities for the implementation of Datadog. One in particular that I think would be interesting is to use Datadog to monitor all of metrics assocationed with the various agencies of New York City Government. With such a wide range of missions and systems to accomplish their goals, the number of different technologies at use is tremendous. Therefore it is often difficult to compare or create associations between metrics from different agencies using different systems, databases, infrastructure, etc.  An application like Datadog would be necessary to accomplish such a complex task.
