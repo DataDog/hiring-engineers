@@ -22,10 +22,11 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 
 
 
-<img src="images/Ubuntu_VM_Tags.png">
+<img src="images/ubuntu_vm_tags.png">
 
 
 <br/>
+
 - View and confirm tags in the UI under `Infrastructure -> Host Map -> Your Infrastructure`
 
 ![Ubuntu VM Tags UI](/images/ubuntuvm_tags_ui.png)
@@ -34,9 +35,9 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 
 ## Step 2 - Collecting Metrics:
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+Create a custom Agent check that submits a metric named `my_metric` with a random value between 0 and 1000.
 
-- Create a file my_metric.py with the following script and save it to `/etc/datadog-agent/check.d`
+- Create a file `my_metric.py` with the following script and save it to `/etc/datadog-agent/check.d`
 
 ```python
   # the following try/except block will make the custom check compatible with any Agent version
@@ -57,8 +58,8 @@ Create a custom Agent check that submits a metric named my_metric with a random 
           self.gauge('my_metric.metric_value',random.randint(1,1000))
 ```
 
-- Create a check configuration file called my_metric.yaml and save it in `/etc/datadog-agent/conf.d`
-- Edit the check's collection interval in my_metric.yaml that it only submits the metric once every 45 seconds.
+- Create a check configuration file called `my_metric.yaml` and save it in `/etc/datadog-agent/conf.d`
+- Edit the check's collection interval in `my_metric.yaml` that it only submits the metric once every 45 seconds.
 
 ```
   instances:
@@ -66,16 +67,18 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 ```
 
 <br/>
+
 - **Bonus Question** Can you change the collection interval without modifying the Python check file you created? `Yes, by adding the min_collection_interval param under instance in my_metric.yaml file.`
 
 <br/>
+
 ## Step 3 - Visualizing Data:
 
 - Generate an API key and an App Key at `Integrations -> APIs`
-- Use the following script to create the timeboard "My Timeboard" that contains
-  - my_metric scoped over Ubuntu VM
+- Use the following script to create the timeboard **My Timeboard** that contains
+  - `my_metric` scoped over Ubuntu VM
   - A metric from PostgreSQL with anomalies
-  - Sum rollup of my_metric for the past hour
+  - Sum rollup of `my_metric` for the past hour
 
 ```
 curl -X POST \
@@ -125,11 +128,15 @@ curl -X POST \
 '
 ```
 
+<br/>
+
 - Access the timeboard from the UI under `Dahsboard -> Dashboard List -> My Timeboard`
+
 
 ![My Timeboard](/images/my_timeboard.png)
 
 <br/>
+
 
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -142,10 +149,11 @@ curl -X POST \
   `I used the percent_usage_connections metric for the anomaly graph. Whenever the number of connections to this database as a fraction of the maximum number of allowed connections goes above a certain threshhold (i.e 0.1), the graph displays an anomaly`
 
 <br/>
+
 ## Step 4 - Monitoring Data
 
-- Create a new Metric Monitor called "My Metric Monitor" under `Monitors -> New Monitor`
-- Setup the monitor to watches the average of my_metric and alert if it’s above the following values over the past 5 minutes:
+- Create a new Metric Monitor called **My Metric Monitor** under `Monitors -> New Monitor`
+- Setup the monitor to watches the average of `my_metric` and alert if it’s above the following values over the past 5 minutes:
 
   - Warning threshold of 500
   - Alerting threshold of 800
@@ -164,16 +172,22 @@ curl -X POST \
 ![Monitor Notification Email](/images/monitor_notification_email.png)
 
 <br/>
+
 **Alert Email Example**
-![Alert Email](/images/alert_email.png)
+
+<img src="images/alert_email.png">
 
 <br/>
+
 **Warning Email Example**
-![Warning Email](/images/warning_email.png)
+
+<img src="images/warning_email.png">
 
 <br/>
+
 **No Data Email Example**
-![No Data Email](/images/nodata_email.png)
+
+<img src="images/nodata_email.png">
 
 <br/>
 
@@ -182,7 +196,10 @@ curl -X POST \
   - And one that silences it all day on Sat-Sun.
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+  <br/>
+
 **Downtime Email Example**
+
 ![Downtime Email](/images/downtime_email.png)
 
   <br/>
