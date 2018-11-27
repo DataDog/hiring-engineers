@@ -377,8 +377,6 @@ $ sudo vim timeboard.py
 
 5. Edit the code using an editor **sudo vim timeboard.py** to adjust graphs accordingly - Aggregation function, an Anomaly function, and a Rollup function.  [Relevant Docs](https://docs.datadoghq.com/graphing/graphing_json/)
 
-[Timeboard Code](./files/timeboard.py)
-
 ![Timeboard Created](img/visualizing-functions-success.png)
 ![Timeboard Graphing](img/visualizing-graphing-success.png)
 
@@ -386,6 +384,7 @@ $ sudo vim timeboard.py
 ```
 $ python timeboard.py
 ```
+[Timeboard Code](./files/timeboard.py)
 
 # Step 2: Access the Timeboard and notify yourself
 
@@ -409,31 +408,32 @@ For example, if a zoologist wanted to set an alarm clock for the coming month ba
 </br>
 
 ## Monitoring Data
-While reading and seeing our metrics goes a long way towards understanding, Datadog has tools to color our picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
+While reading and seeing our metrics goes a long way towards understanding, Datadog has additional tools to create an even richer picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
 
 Our two steps to monitor data:
 1. Create a new monitor with the desired parameters
 2. Configure the monitor’s message when thresholds (or nothing) occurs
 
-# Create a new monitor with the desired parameters
+# Step 1: Create a new monitor with the desired parameters
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 1. Find the 'sprocket' icon in whatever graph you want to monitor. Click 'new monitor'.
 
-![new monitor](.img/monitor-new-monitor)
+![new monitor](img/monitor-new-monitor.png)
 
 2. Check if metric is defined, in this case I want 'my_metric' and 'ubuntu-xenial' as host
 
 3. Create thresholds and decide on notification if data is missing
 
-![Thresholds](.img/monitor-thresholds)
+![Thresholds](img/monitor-thresholds.png)
 
-
-# Configure the monitor’s message when thresholds (or nothing) occurs
+# Step 2: Configure the monitor’s message when thresholds (or nothing) occurs
 [Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
 
 1. Send you an email whenever the monitor triggers.
+
 2. Create different messages **{{#is_warning}}** based on whether the monitor is in an Alert, Warning, or No Data state.
+
 3. Include the metric value **{{value}}** that caused the monitor to trigger and host ip **{{host.ip}}** when the Monitor triggers an Alert state.
 
 ```
@@ -457,11 +457,11 @@ Host: {{host.name}} <br/>
 <br/>
 Contact @weiss.steven@gmail.com
 ```
-4. Notify team member
+4. Notify team member(s)
 
 5. Hit **Save**
 
-![Email Monitor](.img/monitor-email)
+![Email Monitor](img/monitor-email.png)
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -470,10 +470,10 @@ Contact @weiss.steven@gmail.com
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-![Weekends](.img/monitor-weekends)
-![Weekends](.img/monitor-weeknights)
-![Weekends](.img/monitor-email)
-![Weekends](.img/monitor-weeknight-email)
+![Weekends](img/monitor-weekends.png)
+![Weeknights](img/monitor-weeknights.png)
+![Weekends Email](img/monitor-email.png)
+![Weeknights Email](img/monitor-weeknight-email.png)
 
 -------------------------------------
 </br>
@@ -481,7 +481,7 @@ Contact @weiss.steven@gmail.com
 # Collecting APM Data
 Thus far we have setup tools to observe our infrastructure.  As the infrastructure grows, the complexity and the root causes for problems will become more opaque.  Ideally, we will use better tools/applications.  But what if the tools are faulty?  How would we collect data on the tool?  This is a blind spot in our monitoring.  Fortunately, this is where Application Performance Monitoring (APM) comes in.  APM allows the user to collect, search, and analyze traces across fully distributed architectures.
 
-Our two steps to collect APM data:
+Our three steps to collect APM data:
 1. Create the application
 2. Instrument the application
 3. Let the world know with a Screenboard
@@ -525,8 +525,8 @@ curl localhost:5050/
 curl localhost:5050/
 curl localhost:5050/
 ```
-![Get Requests](.img/apm-corresponding-get)
-![Corresponding Gets](.img/apm-localhost-calls)
+![Get Requests](img/apm-corresponding-get.png)
+![Corresponding Gets](img/apm-localhost-calls.png)
 
 
 ## Create a Screenboard
@@ -557,4 +557,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-- Companies, by and large, want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of engineers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This would allow a company to recruit groups with less opaqueness.  
+Companies want great teams, but still recruit disparate individuals.  I think it would be possible to create a system, using several Datadog integrations (Slack, Github, Hipchat), that monitor a group of programmers that are friends, track their collaboration, and create a score to see how they work together and collaborate.  This would allow a company to recruit groups with an emphasis on collaboration.  
