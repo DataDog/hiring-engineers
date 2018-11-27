@@ -6,7 +6,7 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 
 - Spin up an Ubuntu VM via Vagrant on local machine.
 - Install the Ubuntu Agent under `Integrations -> Agent -> Ubuntu`
-- Verfiy the host connection under `Infrastructure -> Host Map`
+- Verify the host connection under `Infrastructure -> Host Map`
 ![Ubuntu VM on Host Map](/images/ubuntuvmonhostpage.png)
 - Install PostgreSQL on the VM
 - Install the respective Datadog integration for PostgreSQL under `Integrations -> PostgreSQL -> Configuration`
@@ -131,7 +131,7 @@ curl -X POST \
 
 <br/>
 
-- Access the timeboard from the UI under `Dahsboard -> Dashboard List -> My Timeboard`
+- Access the timeboard from the UI under `Dashboard -> Dashboard List -> My Timeboard`
 
 
 ![My Timeboard](/images/my_timeboard.png)
@@ -147,14 +147,14 @@ curl -X POST \
 <br/>
 
 - **Bonus Question**: What is the Anomaly graph displaying?
-  `I used the percent_usage_connections metric for the anomaly graph. Whenever the number of connections to this database as a fraction of the maximum number of allowed connections goes above a certain threshhold (i.e 0.1), the graph displays an anomaly.`
+  `I used the percent_usage_connections metric for the anomaly graph. Whenever the number of connections to this database as a fraction of the maximum number of allowed connections goes above a certain threshold (i.e. 0.1), the graph displays an anomaly.`
 
 <br/>
 
 ## Step 4 - Monitoring Data
 
 - Create a new Metric Monitor called **My Metric Monitor** under `Monitors -> New Monitor`
-- Setup the monitor to watche the average of `my_metric` and alert if it’s above the following values over the past 5 minutes:
+- Setup the monitor to watch the average of `my_metric` and alert if it’s above the following values over the past 5 minutes:
 
   - Warning threshold of 500
   - Alerting threshold of 800
@@ -247,7 +247,7 @@ if __name__ == '__main__':
   <br/>
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
-  `A service is a component within an app such as frontend or a database. Number of services in an app may differ depending on the complexity of it. A resourse is connection to a service such a database query or an API call.`
+  `A service is a component within an app such as frontend or a database. Number of services in an app may differ depending on the complexity of it. A resource is connection to a service such a database query or an API call.`
   <br/>
 
 * Create a dashboard with both APM and Infrastructure Metrics.
@@ -265,10 +265,11 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 ```
-Datadog metric collecting and analysing capabilities can be utilized in many consumer goods and services industires.
+Datadog metric collecting and analyzing capabilities can be utilized in many consumer goods and services industries.
 
-- e-commerce: collect and analyse customer buying metrics for promotions, sales, geolocation based merketing events etc.
-- food - franchise restaurants: collect and analyse customer menu selections to improve food offering, curate menus for different geographies etc.
+- e-commerce: collect and analyze customer buying metrics for promotions, sales, geolocation based marketing events etc.
+- food - franchise restaurants: collect and analyze customer menu selections to improve food offering, curate menus for different geographies etc.
 - fitness - franchise gyms: customer attendance and health metrics can be used to improve membership programs, promotions etc.
 - entertainment - video streaming services: use customer access metrics, viewer metrics, free trial signup etc. to improve content, personalized curations for viewers etc.
+
 ```
