@@ -1,6 +1,5 @@
 Your answers to the questions go here.
 
-
 ##Prerequisites - Setup the environment
 [x]- Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field),
 RESOUCES: https://datadog.github.io/summit-training-session/handson/customagentcheck/
@@ -9,14 +8,20 @@ RESOUCES: https://datadog.github.io/summit-training-session/handson/customagentc
 ##Collecting Metrics:
 [x]- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 RESOURCES: 
-https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6
+https://docs.datadoghq.com/tagging/
 https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
-[]- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6
+https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
+
+[x]- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 RESOURCES:
+https://docs.datadoghq.com/integrations/postgres/
+https://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
 http://tutorials.jumpstartlab.com/topics/vagrant_setup.html
-https://docs.datadoghq.com/integrations/postgres/#prepare-postgres
-[]- Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-[]- Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+[x]- Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+[x]- Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 ##Visualizing Data:

@@ -25,3 +25,29 @@ $ launchctl start com.datadoghq.agent
 Then, tags were on host map page
 screenshots/tags_on_host_map_page.png
 screenshots/tags_on_host_map_page2.png
+
+4. Checked PostgreSQL was already installed.
+psql --version
+psql (PostgreSQL) 10.5
+
+Run PostgreSQL
+$ psql
+Then, 
+$ create user datadog with password 'albertodatadog'
+
+Run returning Postgres connection - OK but not requiring password.
+$ psql -h localhost -U datadog postgres -c \ "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+
+Changed name postgres.yaml.example to postgres.yaml
+Added tags: database:postgresql
+
+Restarted Agent as before. Then, run 
+$ datadog-agent status
+Postgres is under Running checks
+Then, Postgres shows on host map page
+
+5. Created files 2 files, my_metric.py and my_metric.yaml. saved in /etc/dd-agent/checks.d and /etc/dd-agent/conf.d respectively.
+Followed this directions: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+screenshots/my_metrics_py_file.png
+screenshots/my_metrics_yaml_collection_interval_45.png
+screenshots/my_metrics_graph.png
