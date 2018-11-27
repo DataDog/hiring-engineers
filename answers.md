@@ -17,7 +17,7 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 <br/>
 - Add tags in the Agent config file in `/etc/datadog-agent/datadog.yaml`
 
-![Ubuntu VM on Host Map](/images/Ubuntu_VM_Tags.png)
+![Ubuntu VM on Host Map](/images/ubuntu_vm_tags.png)
 
 <br/>
 - View and confirm tags in the UI under `Infrastructure -> Host Map -> Your Infrastructure`
