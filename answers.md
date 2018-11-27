@@ -145,7 +145,7 @@ Our steps for collecting metrics:
 
 ![Yaml Config](img/collecting-tags-config.png)
 
-1. Configure the host tags submitted by the Agent inside datadog.yaml. [Relevant Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
+1. Configure the host tags submitted by the Agent inside datadog.yaml. // [Relevant Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6)
 ```
 $ cd /etc/datadog-agent
 $ ls
@@ -166,7 +166,7 @@ $ sudo service datadog-agent restart
 ![Host Map](img/collecting-host-map.png)
 
 ## Step 2: Install a database & respective Datadog integration
-[Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
+// [Relevant Docs](https://docs.datadoghq.com/integrations/postgres/#prepare-postgres)
 
 ![Psql Install](img/collecting-psql-installation.png)
 
@@ -260,8 +260,7 @@ We can create a custom check to submit metrics to the Agent. To do so requires:
   1. A check file
   2. a YAML configuration file     
 
-When this is set up, a random number will be sent with our check.  The check, by default, will try and run every 15 seconds.  
-[Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+When this is set up, a random number will be sent with our check.  The check, by default, will try and run every 15 seconds.  //  [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 
 
 1. Head to the **checks.d** directory & create a Python file called 'my_metric'.
@@ -355,7 +354,7 @@ Our two steps for visualizing data:
 
 ## Step 1: Create a Timeboard
 
-1. To utilize the Datadog API we need to add software to VM // [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
+1. To utilize the Datadog API we need to add software to VM  //  [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
 
 ```
 $ sudo apt-get install python-pip
@@ -378,7 +377,7 @@ $ sudo vim timeboard.py
 ```
 4. Open the timeboard.py file using an editor and add in the following code from the [API documentation](https://docs.datadoghq.com/api/?lang=python#create-a-timeboard)
 
-5. Edit the code using an editor **sudo vim timeboard.py** to adjust graphs accordingly - Aggregation function, an Anomaly function, and a Rollup function.  [Relevant Docs](https://docs.datadoghq.com/graphing/graphing_json/)
+5. Edit the code using an editor **sudo vim timeboard.py** to adjust graphs accordingly - Aggregation function, an Anomaly function, and a Rollup function.  //  [Relevant Docs](https://docs.datadoghq.com/graphing/graphing_json/)
 
 ![Timeboard Created](img/visualizing-functions-success.png)
 ![Timeboard Graphing](img/visualizing-graphing-success.png)
@@ -396,6 +395,7 @@ Here is the [Timeboard Code](./files/timeboard.py)
 2. Set the Timeboard's timeframe to the past 5 minutes by selecting a starting point on the graph and dragging the cursor for five minutes.  
 
 ![Five minutes](img/visualizing-five-minutes.png)
+
 
 3. Send a notification with the @ notation
 
@@ -431,7 +431,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 ![Thresholds](img/monitor-thresholds.png)
 
 ## Step 2: Configure the monitor’s message when thresholds (or nothing) occurs
-// [Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
+//  [Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
 
 1. Send you an email whenever the monitor triggers.
 
