@@ -6,7 +6,7 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 
 - Spin up an Ubuntu VM via Vagrant on local machine.
 - Install the Ubuntu Agent under `Integrations -> Agent -> Ubuntu`
-- Verfiy the agent setup under `Infrastructure -> Host Map`
+- Verfiy the host connection under `Infrastructure -> Host Map`
 ![Ubuntu VM on Host Map](/images/ubuntuvmonhostpage.png)
 - Install PostgreSQL on the VM
 - Install the respective Datadog integration for PostgreSQL under `Integrations -> PostgreSQL -> Configuration`
@@ -147,14 +147,14 @@ curl -X POST \
 <br/>
 
 - **Bonus Question**: What is the Anomaly graph displaying?
-  `I used the percent_usage_connections metric for the anomaly graph. Whenever the number of connections to this database as a fraction of the maximum number of allowed connections goes above a certain threshhold (i.e 0.1), the graph displays an anomaly`
+  `I used the percent_usage_connections metric for the anomaly graph. Whenever the number of connections to this database as a fraction of the maximum number of allowed connections goes above a certain threshhold (i.e 0.1), the graph displays an anomaly.`
 
 <br/>
 
 ## Step 4 - Monitoring Data
 
 - Create a new Metric Monitor called **My Metric Monitor** under `Monitors -> New Monitor`
-- Setup the monitor to watches the average of `my_metric` and alert if it’s above the following values over the past 5 minutes:
+- Setup the monitor to watche the average of `my_metric` and alert if it’s above the following values over the past 5 minutes:
 
   - Warning threshold of 500
   - Alerting threshold of 800
@@ -168,8 +168,7 @@ curl -X POST \
   - Send you an email whenever the monitor triggers.
   - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
   - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-  - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
+  
 ![Monitor Notification Email](/images/monitor_notification_email.png)
 
 <br/>
