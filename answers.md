@@ -60,7 +60,7 @@ Create a custom Agent check that submits a metric named `my_metric` with a rando
 ```
 
 - Create a check configuration file called `my_metric.yaml` and save it in `/etc/datadog-agent/conf.d`
-- Edit the check's collection interval in `my_metric.yaml` that it only submits the metric once every 45 seconds.
+- Edit the check's collection interval in `my_metric.yaml` so that it only submits the metric once every 45 seconds.
 
 ```
   instances:
