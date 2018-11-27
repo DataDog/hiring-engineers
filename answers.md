@@ -7,17 +7,19 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 - Spin up an Ubuntu VM via Vagrant on local machine.
 - Install the Ubuntu Agent under `Integrations -> Agent -> Ubuntu`
 - Verfiy the agent setup under `Infrastructure -> Host Map`
-  ![Ubuntu VM on Host Map](/images/ubuntuvmonhostpage.png)
+![Ubuntu VM on Host Map](/images/ubuntuvmonhostpage.png)
 - Install PostgreSQL on the VM
 - Install the respective Datadog integration for PostgreSQL under `Integrations -> PostgreSQL -> Configuration`
 
 <br/>
-![PostgreSQL Integration](/images/postgresql_integration.png)
+<img src="images/PostgreSQL_Integration.png">
 
 <br/>
+
 - Add tags in the Agent config file in `/etc/datadog-agent/datadog.yaml`
 
-![Ubuntu VM on Host Map](/images/ubuntu_vm_tags.png)
+
+<img src="images/Ubuntu_VM_Tags.png">
 
 <br/>
 - View and confirm tags in the UI under `Infrastructure -> Host Map -> Your Infrastructure`
