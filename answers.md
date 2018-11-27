@@ -1,4 +1,4 @@
-## The Exercise
+# The Exercise
 
 Please find the answers to the Solution Engineer Tech Challenge below.
 
