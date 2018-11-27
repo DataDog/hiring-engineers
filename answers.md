@@ -12,17 +12,17 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 - Install the respective Datadog integration for PostgreSQL under `Integrations -> PostgreSQL -> Configuration`
 
 <br/>
-![Ubuntu VM on Host Map](/images/postgresql_integration.png)
+![PostgreSQL Integration](/images/postgresql_integration.png)
 
 <br/>
 - Add tags in the Agent config file in `/etc/datadog-agent/datadog.yaml`
 
-![Ubuntu VM on Host Map](/images/Ubuntu_VM_Tags.png)
+![Ubuntu VM Tags](/images/Ubuntu_VM_Tags.png)
 
 <br/>
 - View and confirm tags in the UI under `Infrastructure -> Host Map -> Your Infrastructure`
 
-![Ubuntu VM on Host Map](/images/ubuntuvm_tags_ui.png)
+![Ubuntu VM Tags UI](/images/ubuntuvm_tags_ui.png)
 
 <br/>
 
@@ -121,14 +121,14 @@ curl -X POST \
 
 - Access the timeboard from the UI under `Dahsboard -> Dashboard List -> My Timeboard`
 
-![Ubuntu VM on Host Map](/images/my_timeboard.png)
+![My Timeboard](/images/my_timeboard.png)
 
 <br/>
 
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![Ubuntu VM on Host Map](/images/email_notification.png)
+![Email Notification](/images/email_notification.png)
 
 <br/>
 
@@ -145,7 +145,7 @@ curl -X POST \
   - Alerting threshold of 800
   - Notify if there is No Data for this query over the past 10m
 
-  ![Ubuntu VM on Host Map](/images/monitor_settings.png)
+  ![Monitor Settings](/images/monitor_settings.png)
 
 <br/>
 
@@ -155,19 +155,19 @@ curl -X POST \
   - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
   - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![Ubuntu VM on Host Map](/images/monitor_notification_email.png)
+![Monitor Notification Email](/images/monitor_notification_email.png)
 
 <br/>
 **Alert Email Example**
-![Ubuntu VM on Host Map](/images/alert_email.png)
+![Alert Email](/images/alert_email.png)
 
 <br/>
 **Warning Email Example**
-![Ubuntu VM on Host Map](/images/warning_email.png)
+![Warning Email](/images/warning_email.png)
 
 <br/>
 **No Data Email Example**
-![Ubuntu VM on Host Map](/images/nodata_email.png)
+![No Data Email](/images/nodata_email.png)
 
 <br/>
 
@@ -177,7 +177,7 @@ curl -X POST \
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 **Downtime Email Example**
-![Ubuntu VM on Host Map](/images/downtime_email.png)
+![Downtime Email](/images/downtime_email.png)
 
   <br/>
 
@@ -229,7 +229,7 @@ if __name__ == '__main__':
 
 * Create a dashboard with both APM and Infrastructure Metrics.
 
-![Ubuntu VM on Host Map](/images/apm_and_infrastructure_dashboard.png)
+![APM and Infrastructure Dashboard](/images/apm_and_infrastructure_dashboard.png)
 
 <br/>
 
