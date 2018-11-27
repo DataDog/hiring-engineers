@@ -247,7 +247,7 @@ if __name__ == '__main__':
   <br/>
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
-  `A service is a component within an app such as frontend or a database. Number of services in an app may differ depending on the complexity of it. A resource is connection to a service such a database query or an API call.`
+  `A service is a component within an app such as frontend or a database. Number of services in an app may differ depending on the complexity of it. A resource is a connection to a service such a database query or an API call.`
   <br/>
 
 * Create a dashboard with both APM and Infrastructure Metrics.
