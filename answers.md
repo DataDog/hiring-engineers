@@ -2,17 +2,17 @@ Datadog is a monitoring service.  These documents allow anyone to build a basic 
 
 To do so, we will do the following:
 1. [Setup the Datadog Environment](#Setup-the-Environment)
-2. [Collect Metrics](#Collecting-Metrics)
-3. [Visualize Data](#Visualizing-Data)
-4. [Monitor Data](#Monitoring-Data)
-5. [Collect APM Data](#Collecting-APM-Data)
+2. [Collect Metrics](#Collect-Metrics)
+3. [Visualize Data](#Visualize-Data)
+4. [Monitor Data](#Monitor-Data)
+5. [Collect APM Data](#Collect-APM-Data)
 
 # Setup the Environment
 DataDog recommends the use of virtual machine's (VM) as to avoid dependency issues.  
 
 VirtualBox is your virtualization software.  Vagrant is environment workflow software that will interface with VirtualBox.  
 
-Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' - base images of VM's.  Nothing to worry about, when you install VirtualBox, you install a 'box'.
+Building a VM from scratch is laborious.  Instead, Vagrant creates a clone of a VM through the use of 'boxes' leaving you with more time to create other computer bugs.  
 
 Our four steps for setting up the environment:
 1. Install VM & Vagrant software
@@ -79,7 +79,7 @@ end
 ```
 $ vagrant up
 ```
-5. To interact with the VM environment / Check if it is working.
+5. To interact with the VM environment and/or check if it is working, use the vagrant ssh command.
 ```
 $ vagrant ssh
 
@@ -87,7 +87,7 @@ Your command line $ becomes:
 
 vagrant@ubuntu-xenial:~$
 ```
-6. To exit the VM.
+DO NOT exit the VM, but if you want if you wish to do so
 ```
 press 'CTRL' + 'D'
 ```
@@ -130,8 +130,8 @@ $ sudo datadog-agent status
 -------------------------------------
 </br>
 
-# Collecting Metrics
-Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment to discover the true causes could be difficult.  In other words, the tags help you accurately keep track of things.
+# Collect Metrics
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to add tags, finding problems in your environment poses some difficulty.  The tags, in sum, help you keep your ship in order.
 
 The goal here is to install a database on the VM and integrate your database with the Datadog agent so they can begin monitoring your metrics or the health of your systems.
 
@@ -212,6 +212,7 @@ echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
 6. Edit the **conf.yaml.example** inside the conf.d/postgres.yaml directory.
+
 ![Psql Commands](img/collecting-psql-conf-commands.png)
 ```
 postgres@ubuntu-xenial:~$ Press Ctrl + D
@@ -262,8 +263,6 @@ We can create a custom check to submit metrics to the Agent. To do so requires:
 When this is set up, a random number will be sent with our check.  The check, by default, will try and run every 15 seconds.  
 [Relevant Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
 
-![my metric config](img/collecting-my-metric-config.png)
-![my metric code](img/collecting-my-metric-code.png)
 
 1. Head to the **checks.d** directory & create a Python file called 'my_metric'.
 ```
@@ -271,6 +270,8 @@ $ cd /etc/datadog-agent/checks.d
 /etc/datadog-agent/checks.d$ sudo touch my_metric.py
 ```
 2. Open up my_metric using **sudo touch my_metric.py**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC** and save, by typing **:wq**
+
+![my metric code](img/collecting-my-metric-code.png)
 
 ```
 import random
@@ -291,12 +292,15 @@ class RandomCheck(AgentCheck):
 ```
 
 4. Head into the conf.d directory.  Create a corresponding my_metric yaml file **sudo touch my_metric.yaml**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC** and save, by typing **:wq**
+
+![my metric config](img/collecting-my-metric-config.png)
+
 ```
 init_config:
 
 instances: [{}]
 ```
-3. Restart the Agent & Check the Agent's status. my_metric should be now be visible under the category "Running Checks".
+3. Restart the Agent & check the Agent's status. my_metric should be now be visible under the category "Running Checks".
 ```
 $ sudo service datadog-agent restart
 $ sudo datadog-agent status
@@ -305,7 +309,7 @@ $ sudo datadog-agent status
 ## Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ![Yaml Interval](img/collecting-yaml-interval.png)
-1. Open up my_metric.yaml file in the conf.d directory.
+1. Open up my_metric.yaml file in the conf.d directory. When finished, hit 'esc', and save, ':wq'
 ```
 $ sudo vim my_metric.yaml
 
@@ -314,7 +318,6 @@ init_config:
  instances:
     - min_collection_interval: 45
 ```
-Hit 'esc', save :wq
 
 2. Restart the Agent & Check the Agent's status
 ```
@@ -322,7 +325,7 @@ $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
 
-3. After about 45 seconds, repeat above step.
+3. After about 45 seconds, repeat above step. Note in these images that the 'Metric Sample' has incremented by 1.
 
 ![Time 0](img/collecting-time-0.png) ![Metric 0](img/collecting-my-metric-0.png)
 ![Time 0](img/collecting-time-45.png) ![Metric 45](img/collecting-my-metric-45.png)
@@ -337,7 +340,7 @@ sudo -u dd-agent -- datadog-agent check my_metric -d 30
 -------------------------------------
 </br>
 
-# Visualizing Data
+# Visualize Data
 In math we use analysis to see phenomena, but it is also useful to apply different approaches to gain a greater understanding of a particular problem.  For example, we may use geometry to under why a number squared is a side multiplied by itself, two times.  
 
 Datadog doesn't leave us staring at the matrix.  It gives us perspective.  Their tools provide robust data visualization features to help us gain a greater grasp of the metrics we are tracking.
@@ -352,7 +355,7 @@ Our two steps for visualizing data:
 
 ## Step 1: Create a Timeboard
 
-1. To utilize the Datadog API we need to add software to VM [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
+1. To utilize the Datadog API we need to add software to VM // [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
 
 ```
 $ sudo apt-get install python-pip
@@ -384,7 +387,7 @@ $ sudo vim timeboard.py
 ```
 $ python timeboard.py
 ```
-[Timeboard Code](./files/timeboard.py)
+Here is the [Timeboard Code](./files/timeboard.py)
 
 ## Step 2: Access the Timeboard and notify yourself
 
@@ -407,7 +410,7 @@ For example, if a zoologist wanted to set an alarm clock for the coming month ba
 -------------------------------------
 </br>
 
-# Monitoring Data
+# Monitor Data
 While reading and seeing our metrics goes a long way towards understanding, Datadog has additional tools to create an even richer picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
 
 Our two steps to monitor data:
@@ -428,7 +431,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 ![Thresholds](img/monitor-thresholds.png)
 
 ## Step 2: Configure the monitor’s message when thresholds (or nothing) occurs
-[Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
+// [Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
 
 1. Send you an email whenever the monitor triggers.
 
@@ -478,7 +481,7 @@ Contact @weiss.steven@gmail.com
 -------------------------------------
 </br>
 
-# Collecting APM Data
+# Collect APM Data
 Thus far we have setup tools to observe our infrastructure.  As the infrastructure grows, the complexity and the root causes for problems will become more opaque.  Ideally, we will use better tools/applications.  But what if the tools are faulty?  How would we collect data on the tool?  This is a blind spot in our monitoring.  Fortunately, this is where Application Performance Monitoring (APM) comes in.  APM allows the user to collect, search, and analyze traces across fully distributed architectures.
 
 Our three steps to collect APM data:
@@ -510,11 +513,16 @@ apm_config:
   enabled: true
 ```
 2. Head over to the docs menu under APM in the UI [APM Docs](https://app.datadoghq.com/apm/docs) and follow the first command
+![Instrument app](img/apm-instrument-app.png)
+
 ```
 $ pip install ddtrace
 ```
 
 3. Run application. A server will start.  
+
+![Flask Trace](img/apm-flask-trace.png)
+
 ```
 $ ddtrace-run python app.py
 ```
