@@ -155,7 +155,7 @@ The above commands opens up the Linux virtual editor.  [How to use VIM](https://
 
 2. Scroll down to the line that reads **"Set the host's tags"**, **type 'i'** to enter Insert mode, and **delete** the hash next to tags.
 
-3. Hit **ESC** to leave 'Insert' mode.  Save and exit, type **:wq**
+3. When you are done, hit **ESC**, save and exit, type **:wq**
 
 4. Restart the agent
 ```
@@ -221,7 +221,7 @@ $ ls
 /etc/datadog-agent/conf.d/postgres.d$ sudo vim conf.example.yaml
 ```
 
-7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC** and save, by typing **:wq**
+7. Hit **'i'** and copy/paste the code from the configuration.  When you are done, hit **ESC**, save and exit, type **:wq**
 ![Psql Commands](img/collecting-psql-conf-yaml.png)
 ```
 init_config:
@@ -269,7 +269,7 @@ When this is set up, a random number will be sent with our check.  The check, by
 $ cd /etc/datadog-agent/checks.d
 /etc/datadog-agent/checks.d$ sudo touch my_metric.py
 ```
-2. Open up my_metric using **sudo touch my_metric.py**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC** and save, by typing **:wq**
+2. Open up my_metric using **sudo touch my_metric.py**.  Edit by typing **i** and adding the code below.  When you are done, hit **ESC**, save and exit, type **:wq**
 
 ![my metric code](img/collecting-my-metric-code.png)
 
@@ -309,7 +309,7 @@ $ sudo datadog-agent status
 ## Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ![Yaml Interval](img/collecting-yaml-interval.png)
-1. Open up my_metric.yaml file in the conf.d directory. When finished, hit 'esc', and save, ':wq'
+1. Open up my_metric.yaml file in the conf.d directory. When you are done, hit **ESC**, save and exit, type **:wq**
 ```
 $ sudo vim my_metric.yaml
 
