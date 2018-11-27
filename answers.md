@@ -1,10 +1,10 @@
 
 
-##Solutions Engineer Exercise
+## Solutions Engineer Exercise
 
-#Noah Kalkstein
+# Noah Kalkstein
 
-##Prerequisites
+## Prerequisites
 
 I began setting up the environment by downloading and installing Vagrant after downloading it from their website (https://www.vagrantup.com/downloads.html). I began Vagrant with the command 'vagrant up.' I ssh'd into the machine with the command "vagrant ssh." I can also terminate the virtual machine with the command 'vagrant destroy.'
 
@@ -13,7 +13,7 @@ As suggested, I downloaded and installed Ubuntu/Xenial64 (version 16.04) via the
 Once my Vagrant Ubuntu VM was up and running I visited Datadoghq.com and signed up for an account.  I installed the Agent on my machine with the single line install: 'DD_API_KEY="" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"'
 
 
-##Collecting Metrics:
+## Collecting Metrics:
 
 #Step 1
 With the Vagrant Ubuntu VM and the Datadog service started, I accessed the datadog.yaml configuration file at the following location: /etc/datadog-agent/datadog.yaml.  I used the command 'sudo vi datadog.yaml' and pressed 'i' (for insert) to edit the file and add tags:
@@ -24,7 +24,7 @@ After restarting the Datadog service with the command 'sudo service datadog-agen
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-25%20at%2010.44.33%20PM.png">
 
-#Step 2
+# Step 2
 I installed the MySQL database on my machine and then installed the related Datadog integration using the instructions on the Datadog site.
 
 First I created a datadog user with replication rights in my MySQL server using the command:
@@ -67,7 +67,7 @@ Next, in order to configure the Agent to connect to MySQL, I created and edited 
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2010.59.51%20PM.png">
 
-#Step 3 and Step 4
+# Step 3 and Step 4
 Next I created a custom Agent check.  First I created a python file MyCheck.py with 'sudo vi MyCheck.py' and saved it in '/etc/datadog-agent/checks.d.' I edited the file in order to create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.:
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2011.06.32%20PM.png">
@@ -81,7 +81,7 @@ I ran the following command to verify the check: 'sudo -u dd-agent -- datadog-ag
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-20%20at%208.06.10%20PM.png">
 
 
-#Bonus Question
+# Bonus Question
 
 It is possible to change the collection interval without modifying the python check file.  As described and shown in Step 3 above, you can edit the configuration file associated with your check by adding the code:
 
@@ -91,18 +91,18 @@ It is possible to change the collection interval without modifying the python ch
 
 
 
-##Visualizing Data:
+## Visualizing Data:
 
-#Step 1
+# Step 1
 In order to visualize my data I generated API and App keys at 'Integrations tab -> APIs' on the Datadog site. I read the documentation section on creating a timeboard (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) in order to learn how to create a timeboard.  I utilized the Datadog API to create a Timeboard by creating and running the following python file:
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.25.06%20AM.png">
 
 On the Dashboard UI, the timeboard looks like this:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.53.02%20AM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.53.02%20AM.png">
 
-#Step 2
+# Step 2
 Using the "annotate" icon on the Timeboard graph, I set the Timeboard's timeframe to the past 5 minutes:
 
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.59.38%20AM.png">
@@ -112,7 +112,7 @@ I took a snapshot of the graph and used the @ notation to send it to myself.
 <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%202.13.49%20AM.png">
 
 
-#Bonus Question
+# Bonus Question
 
 The Anomaly graph is displaying the number of MySQL connections. As soon as there are additional connections, the anomaly graph will show a red spike to represent the anomaly (connection).
 
