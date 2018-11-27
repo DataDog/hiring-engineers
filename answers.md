@@ -18,11 +18,11 @@ Once my Vagrant Ubuntu VM was up and running I visited Datadoghq.com and signed 
 #Step 1
 With the Vagrant Ubuntu VM and the Datadog service started, I accessed the datadog.yaml configuration file at the following location: /etc/datadog-agent/datadog.yaml.  I used the command 'sudo vi datadog.yaml' and pressed 'i' (for insert) to edit the file and add tags:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2010.33.17%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2010.33.17%20PM.png">
 
 After restarting the Datadog service with the command 'sudo service datadog-agent restart,' the tags were visible in my hostmap on the Datadog website:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-25%20at%2010.44.33%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-25%20at%2010.44.33%20PM.png">
 
 #Step 2
 I installed the MySQL database on my machine and then installed the related Datadog integration using the instructions on the Datadog site.
@@ -65,20 +65,20 @@ Then I verified the additional priveleges I granted with the commands:
 
 Next, in order to configure the Agent to connect to MySQL, I created and edited the file mysql.yaml using the command 'sudo vi mysql.yaml' and saved it in the '/etc/datadog-agent/conf.d' directory:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2010.59.51%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2010.59.51%20PM.png">
 
 #Step 3 and Step 4
 Next I created a custom Agent check.  First I created a python file MyCheck.py with 'sudo vi MyCheck.py' and saved it in '/etc/datadog-agent/checks.d.' I edited the file in order to create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2011.06.32%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2011.06.32%20PM.png">
 
 I also made a configuration file, MyCheck.yaml, and saved it in '/etc/datadog-agent/conf.d.' It is necessary for the python and Yaml files to have exactly the same name in order for the check to work. In order to change the check's collection interval so that it only submits the metric once every 45 seconds, I added the following code to MyCheck.yaml:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2011.10.41%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-26%20at%2011.10.41%20PM.png">
 
 I ran the following command to verify the check: 'sudo -u dd-agent -- datadog-agent check MyCheck.py' I got the following result:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-20%20at%208.06.10%20PM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-20%20at%208.06.10%20PM.png">
 
 
 #Bonus Question
@@ -96,7 +96,7 @@ It is possible to change the collection interval without modifying the python ch
 #Step 1
 In order to visualize my data I generated API and App keys at 'Integrations tab -> APIs' on the Datadog site. I read the documentation section on creating a timeboard (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard) in order to learn how to create a timeboard.  I utilized the Datadog API to create a Timeboard by creating and running the following python file:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.25.06%20AM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%2012.25.06%20AM.png">
 
 On the Dashboard UI, the timeboard looks like this:
 
@@ -105,11 +105,11 @@ On the Dashboard UI, the timeboard looks like this:
 #Step 2
 Using the "annotate" icon on the Timeboard graph, I set the Timeboard's timeframe to the past 5 minutes:
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.59.38%20AM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%201.59.38%20AM.png">
 
 I took a snapshot of the graph and used the @ notation to send it to myself.
 
-<a <img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%202.13.49%20AM.png"></a>
+<img src="https://github.com/nkalkstein/hiring-engineers/blob/master/Screen%20Shot%202018-11-27%20at%202.13.49%20AM.png">
 
 
 #Bonus Question
