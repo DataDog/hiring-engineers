@@ -16,6 +16,7 @@ Please find the answers to the Solution Engineer Tech Challenge below.
 
 
 
+
 <br/>
 
 - Add tags in the Agent config file in `/etc/datadog-agent/datadog.yaml`
@@ -267,8 +268,8 @@ Is there anything creative you would use Datadog for?
 ```
 Datadog metric collecting and analysing capabilities can be utilized in many consumer goods and services industires.
 
-* e-commerce: collect and analyse customer buying metrics for promotions, sales, geolocation based merketing events etc.
-* food - franchise restaurants: collect and analyse customer menu selections to improve food offering, curate menus for different geographies etc.
-* fitness - franchise gyms: customer attendance and health metrics can be used to improve membership programs, promotions etc.
-* entertainment - video streaming services: use customer access metrics, viewer metrics, free trial signup etc. to improve content, personalized curations for viewers etc.
+- e-commerce: collect and analyse customer buying metrics for promotions, sales, geolocation based merketing events etc.
+- food - franchise restaurants: collect and analyse customer menu selections to improve food offering, curate menus for different geographies etc.
+- fitness - franchise gyms: customer attendance and health metrics can be used to improve membership programs, promotions etc.
+- entertainment - video streaming services: use customer access metrics, viewer metrics, free trial signup etc. to improve content, personalized curations for viewers etc.
 ```
