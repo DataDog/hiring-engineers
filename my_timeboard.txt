@@ -1,0 +1,45 @@
+curl -X POST \
+  'https://api.datadoghq.com/api/v1/dash?api_key={{api_key}}&application_key={{app_key}}' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{
+      "graphs" : [{
+          "title": "UbuntuVM:My_Metric",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "my_metric.metric_value{*}"}
+              ],
+              "viz": "timeseries"
+          }
+      },
+     {
+          "title": "Postgresql:Anomalies",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "anomalies(avg:postgresql.percent_usage_connections{*}, '\''basic'\'', 2)"}
+              ],
+              "viz": "timeseries"
+          }
+      },
+     {
+          "title": "UbuntuVM:My_Metrics rollup (sum) for the past hour ",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "my_metric.metric_value{*}.rollup(sum, 3600)"}
+              ],
+              "viz": "query_value"
+          }
+      }],
+      "title" : "My Timeboard",
+      "description" : "Timeboard containing three graphs of my metric data and postgresql anomalies",
+      "template_variables": [{
+          "name": "UbuntuVM",
+          "prefix": "host",
+          "default": "host:UbuntuVM"
+      }],
+      "read_only": "True"
+}
+'
