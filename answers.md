@@ -302,7 +302,7 @@ $ sudo service datadog-agent restart
 $ sudo datadog-agent status
 ```
 
-# Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
+## Step 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ![Yaml Interval](img/collecting-yaml-interval.png)
 1. Open up my_metric.yaml file in the conf.d directory.
@@ -337,7 +337,7 @@ sudo -u dd-agent -- datadog-agent check my_metric -d 30
 -------------------------------------
 </br>
 
-## Visualizing Data
+# Visualizing Data
 In math we use analysis to see phenomena, but it is also useful to apply different approaches to gain a greater understanding of a particular problem.  For example, we may use geometry to under why a number squared is a side multiplied by itself, two times.  
 
 Datadog doesn't leave us staring at the matrix.  It gives us perspective.  Their tools provide robust data visualization features to help us gain a greater grasp of the metrics we are tracking.
@@ -350,7 +350,7 @@ Our two steps for visualizing data:
 1. Create a Timeboard
 2. Accessing it and sending ourselves information
 
-# Step 1: Create a Timeboard
+## Step 1: Create a Timeboard
 
 1. To utilize the Datadog API we need to add software to VM [Relevant Docs](https://docs.datadoghq.com/integrations/python/)
 
@@ -386,7 +386,7 @@ $ python timeboard.py
 ```
 [Timeboard Code](./files/timeboard.py)
 
-# Step 2: Access the Timeboard and notify yourself
+## Step 2: Access the Timeboard and notify yourself
 
 1. Once this is created, access the Dashboard from the Datadog user interface.
 
@@ -407,14 +407,14 @@ For example, if a zoologist wanted to set an alarm clock for the coming month ba
 -------------------------------------
 </br>
 
-## Monitoring Data
+# Monitoring Data
 While reading and seeing our metrics goes a long way towards understanding, Datadog has additional tools to create an even richer picture.  Often we have undesired or unexpected data.  By creating monitors with custom parameters and notifications, we can take proactive approaches to our data.  
 
 Our two steps to monitor data:
 1. Create a new monitor with the desired parameters
 2. Configure the monitor’s message when thresholds (or nothing) occurs
 
-# Step 1: Create a new monitor with the desired parameters
+## Step 1: Create a new monitor with the desired parameters
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 1. Find the 'sprocket' icon in whatever graph you want to monitor. Click 'new monitor'.
@@ -427,7 +427,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 ![Thresholds](img/monitor-thresholds.png)
 
-# Step 2: Configure the monitor’s message when thresholds (or nothing) occurs
+## Step 2: Configure the monitor’s message when thresholds (or nothing) occurs
 [Relevant Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
 
 1. Send you an email whenever the monitor triggers.
@@ -486,7 +486,7 @@ Our three steps to collect APM data:
 2. Instrument the application
 3. Let the world know with a Screenboard
 
-## Create the application
+## Step 1: Create the application
 1. Navigate to the *etc/datadog-agent* and create a file for the application
 ```
 $ sudo touch app.py
@@ -500,7 +500,7 @@ $ sudo touch app.py
 $ sudo pip install flask
 ```
 
-## Instrument the application
+## Step 2: Instrument the application
 **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 1. Open your datadog.yaml file and delete the hashes such that your code looks like this. This will enable APM trace.  Save and restart.  
@@ -529,7 +529,7 @@ curl localhost:5050/
 ![Corresponding Gets](img/apm-localhost-calls.png)
 
 
-## Create a Screenboard
+## Step 3: Create a Screenboard
 
 1. Create a new dashboard.  Choose Screenboard.
 
