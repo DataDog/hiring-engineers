@@ -20,12 +20,12 @@ datadog-agent version
 
 ### Add tags in the Agent config file
 I added tags by updating the main agent configuration file `/etc/datadog-agent/datadog.yaml`.
-There were already defualt tags present after uncommenting the tags section of the yaml config file, so I added some other random tags for the sake understanding. 
+There were already default tags present after uncommenting the tags section of the yaml config file, so I added some other random tags for the sake understanding. 
 
 We can see my host and the tags from Host Map page in Datadog:
 <img src="Screenshots/Host_Tags.png"></img>
 
-You can see that tags have been enabled as well the nondefualt tags I added : mytag, test1 and test2.
+You can see that tags have been enabled as well the non-default tags I added : mytag, test1 and test2.
 
 ### Installing Datadog integration for Postgres
 In my current machine I have already have Postgres version 10.5 installed, therefore I do not need to install it.
@@ -44,7 +44,7 @@ In Addition to creating a Postgres Datadog user, I also needed to edit the postg
 `/etc/datadog-agent/conf.d/postgres.yaml`
 
 Finally, the agent must be restarted to complete the Postgres Datadog integration.
-To restart the agent we can use :
+To restart the agent I used :
 
 ```
 launchctl stop com.datadoghq.agent
@@ -53,13 +53,12 @@ followed by
 ```
 launchctl start com.datadoghq.agent
 ```
-These particular instructions are for a macOSX agent such as mine. They can be different for other OS systems.
 
-We can then see all the postgres metrics appear in the metric explorer and dashboard.
+I can then see all the postgres metrics appear in the metric explorer and dashboard.
 
 <img src="Screenshots/metric_exporer.png"></img>
 
-If we check the <a href="https://app.datadoghq.com/dashboard/lists">dashboard list page <a/> we can see that Postgres is present in the list:
+If I check the <a href="https://app.datadoghq.com/dashboard/lists">dashboard list page <a/> we can see that Postgres is present in the list:
     
 <img src="Screenshots/Dashboard.png"></img>
 
@@ -98,13 +97,11 @@ class custom_check(AgentCheck):
     def check(self, instances):
         self.gauge('my_metric', random.randint(0,1001))
 ```
-The check class inherits from AgentCheck and send a gauge of a random number for the metric 'my_metric' on each call.
+The check class inherits from AgentCheck and send a gauge of a random number from 0-1000 for the metric 'my_metric' on each call.
 
 ##### Note: random.randint follows a low inclusive to high exclusive, hence the need for 1001 high and not 1000.
-#####       Default collection interval without change in yaml file is 15 seconds. 
-#####       See bottom for some extra notes I discovered while writing this custom check
-
-
+   #####       Default collection interval without change in yaml file is 15 seconds. 
+   #####       See [bottom](#extra-notes-on-custom-metric-check)  for some extra notes I discovered while writing this custom   check
 #### Bonus Question: To change the collection interval outside of the python check file, changed the yaml file of our Agent check to include - "min_collection_interval : <seconds here>" under the instances section.
 
 
@@ -113,11 +110,11 @@ The first step was to create an Application key for my Datadog account. This cou
 
 The new timeboard will contain:
 
-The new metric: my_metric scoped over my host.
+   The new metric: my_metric scoped over my host.
 
-Anomolies graph of cpu usage by the system from all host (in this case just mine)
+   Anomolies graph of cpu usage by the system from all host (in this case just mine)
 
-'my_metric' with the rollup function applied to sum up all the points for the past hour into one bucket scoped over my host.
+   'my_metric' with the rollup function applied to sum up all the points for the past hour into one bucket scoped over my host.
 
 Find more about Timeboard creation <a href="https://docs.datadoghq.com/api/?lang=python#create-a-timeboard">here</a>
 
@@ -183,17 +180,17 @@ response = api.Timeboard.create(title=title,
                       description=description,
                       graphs=graphs,
                       read_only=read_only)
-print(response)
+print(response) #NOT Needed
 ```
 
-I printed the response to show what was sent back from the Datadog API.
+I printed the response to see/show what was sent back from the Datadog API.
 Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but are not used so not included.
 
 <img src="Screenshots/Reponse.png"></img>
 
 
 ### Taking a snapshot of the graph
-I took a snapshot of the graph by clicking on the camera icon, and select my email using @ notation and send it to myself.
+I took a snapshot of the graph by clicking on the camera icon, and select my email using @ notation to send it to myself.
 
 <img src="Screenshots/snapshot_notify.png"></img>
 
@@ -214,13 +211,13 @@ a notify if No data reported.
 
 <img src="Screenshots/My_metric_Moniter.png"></img>
 
-This moniter will send an email whenever the monitor is triggered.
+This monitor will send an email whenever the monitor is triggered.
 The message it sends is based on whether the monitor is in an Alert, Warning, or No Data state.
 Included is the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 <img src="Screenshots/Notify_metric.png"></img>
 
-The moniter indeed sends me notification to my email when it is triggered.
+The monitor indeed sends me notification to my email when it is triggered.
 <img src="Screenshots/moniter_email.png"></img>
 
 ### Bonus Question:
@@ -253,12 +250,12 @@ The most recent OSX APM agent download was actually an executable itself.
 MacOS is can be very nitpicky about downloaded programs and executables, I used ```chmod +x trace-agent-darwin-amd64-6.7.0```
 to give executable permissions to the downloaded APM agent.
 
-Because the APM Agent is seperate, it must be started on the manually on the side. Once started, I can begin collecing APM data from my flask APP. To start the APM Agent, I executed the APM agent with my Datadog Agent main config file.
+Because the APM Agent is separate, it must be started on the manually on the side. Once started, I can begin collecing APM data from my flask APP. To start the APM Agent, I executed the APM agent with my Datadog Agent main config file.
    ```./trace-agent-darwin-amd64-6.7.0 -config /opt/datadog-agent/etc/datadog.yaml ```
    
 With the APM Agent running and listening on port 8126, I can finally start collecting APM Data from my app.
 
-Tracing Python Applications using Ddtrace:
+Tracing Python Applications using ddtrace:
 The First step is to have an app, in this case the python flask app given was used. I saved it to a python file called "Ddog_trace_app.py"
 
 There are two ways of collecting APM data from the python flask app. 
