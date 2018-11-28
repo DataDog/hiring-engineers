@@ -9,7 +9,7 @@ initialize(**options)
 
 
 
-title = "Custom_Timeboard"
+title = "My_Custom_Timeboard"
 description = "My_Metric_timeboard"
 graphs = [{
     "definition": {
@@ -41,20 +41,9 @@ graphs = [{
     },
     "title": "Roll up of my metric over the past 1hr"
 },
-{
-          "definition": {
-          "events": [],
-          "requests": [
-                       {"q": "my_metric{host:Jorges-MacBook-Air.local}.rollup(sum, 3600)"}
-                       ],
-          "viz": "query_value"
-          },
-          "title": "Roll up of my metric over the past 1hr as query value for sake of visual"
-}
+
         
           ]
-
-
 
 read_only = True
 response = api.Timeboard.create(title=title,
