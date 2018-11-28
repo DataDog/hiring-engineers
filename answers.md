@@ -55,8 +55,9 @@ launchctl start com.datadoghq.agent
 ```
 These particular instructions are for a macOSX agent such as mine. They can be different for other OS systems.
 
+We can then see all the postgres metrics appear in the metric explorer and dashboard.
 
-<img src="Screenshots/metric_explorer.png"></img>
+<img src="Screenshots/metric_exporer.png"></img>
 
 If we check the <a href="https://app.datadoghq.com/dashboard/lists">dashboard list page <a/> we can see that Postgres is present in the list:
     
@@ -188,7 +189,7 @@ print(response)
 I printed the response to show what was sent back from the Datadog API.
 Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but are not used so not included.
 
-<img src="Screenshots/Response.png"></img>>
+<img src="Screenshots/Reponse.png"></img>
 
 
 ### Taking a snapshot of the graph
@@ -340,4 +341,28 @@ A **resource** is a particular action for a given service (typically an individu
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-  ### Answer this question.
+
+Something I can think of, if its possible to set up nodes/info senders around the world, we can moniter climate conditions in real time to see changes in temperature, humidy level, wind level, water temperature, etc around the world as an individual or regional average. 
+
+
+#### EXTRA NOTES ON CUSTOM METRIC CHECK
+I wasn't too sure how to change the interval for the custom check within the Python code. I spent an incredible amount of time trying to see how that could be done.
+
+ALL BELOW IS FOR AGENT V6!
+
+I tried to use the super constructor version of the check:
+```
+class custom_check(AgentCheck):
+    def __init__(self, name, init_config, instances):
+       super(custom_check, self).__init__("my_metric",init_config=[{}], instances=[{min_collection_interval}:30])
+```
+
+but the interval would not be changed when I checked the custom check using ```datadog-agent check custom_check``` or even when checking all the Agent Check configs using ```datadog-agent configcheck``` command.
+Regardless of what I did to my python check constructor.
+
+After looking at the Agent Collector, responsible for the life of a check, start to finish found 
+<a href="https://github.com/DataDog/datadog-agent/tree/master/pkg/collector">Here</a>, I came to realize that the custom check I created uses a different check class. The custom python check I wrote imports the Agent check (Base check) python class. This means that even if I add a min_collection_interval to the instances in the check constructor, the scheduling interval or actual collection interval does not change since the Agent Collector only looks at the check yaml config file to determine collection interval scheduling. 
+
+I'm noting this because the collecting Metrics subtopic of this challenge specifically says change the collection interval to 45 seconds. However, the bonus question includes "without modifying the Python check file you created" as if it can be changed from within the python check file. 
+
+My question: is there actually a way to change the collection interval for a check from the python check file without using the check yaml config file? I genuinely really want to know!! (Partly because I read 1000+ lines of source code to try and find out).
