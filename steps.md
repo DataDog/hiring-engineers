@@ -63,6 +63,42 @@ The anomalies
 7. Detail step by step how to adjust timeboards.
 8. Detail step by step how to create and customize metric monitors.
 
-9. Created Rails app without database or test framework. $ rails new instrumented-app -T --skip-active-record
+9. Installed the Datadog's macOS Trace Agent 
+- Downloaded and installed Go.
+- Installed running:
+$go get -u github.com/DataDog/datadog-trace-agent/...
+- Then within the newly created folder src/github.com/DataDog/datadog-trace-agent, run
+$make install
+- Then within the  folder bin, run
+$./trace-agent -config /opt/datadog-agent/etc/datadog.yaml
+- Configured datadog.yaml main configuration file enabling trace collection:
+$ sublime ~/.datadog-agent/datadog.yaml
+or
+$ vim ~/.datadog-agent/datadog.yaml
+(line 628 & 630)
+Uncommented:
+ apm_config:
+  enabled: true
 
-Added 
+Enable trace collection for the Datadog Agent
+Configure your environment
+Instrument your application:
+- Created Rails app without database or test framework. $ rails new instrumented-app -T --skip-active-record
+- In Gemfile, added:
+gem 'ddtrace'
+- Run $bundle install
+
+from https://docs.datadoghq.com/tracing/setup/ruby/
+- Created new file: config/initializers/datadog.rb and added basic configuration code.
+Datadog.configure do |c|
+  c.use :rails
+end
+
+
+from https://app.datadoghq.com/apm/install#
+- Created new file: config/initializers/datadog-tracer.rb and added basic configuration code.
+
+Datadog.configure do |c|
+    c.use :rails, service_name: 'my-rails-app'
+end
+

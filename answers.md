@@ -58,7 +58,7 @@ https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variab
 2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 4. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-#Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+#Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ##Collecting APM Data:
 [x]- Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
@@ -66,9 +66,12 @@ RESOURCES:
 https://docs.datadoghq.com/tracing/setup/?tab=agent630
 https://docs.datadoghq.com/tracing/setup/ruby/
 git 
+https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 #Bonus Question: What is the difference between a Service and a Resource?
+Answer: 
+https://docs.datadoghq.com/tracing/visualization/
 
 ##Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
