@@ -97,7 +97,7 @@ class custom_check(AgentCheck):
     def check(self, instances):
         self.gauge('my_metric', random.randint(0,1001))
 ```
-The check class inherits from AgentCheck and send a gauge of a random number from 0-1000 for the metric 'my_metric' on each call.
+The check class inherits from AgentCheck and sends a gauge of a random number from 0-1000 for the metric 'my_metric' on each call.
 
 ##### Note: random.randint follows a low inclusive to high exclusive, hence the need for 1001 high and not 1000.
    #####       Default collection interval without change in yaml file is 15 seconds. 
@@ -183,8 +183,8 @@ response = api.Timeboard.create(title=title,
 print(response) #NOT Needed
 ```
 
-I printed the response to see/show what was sent back from the Datadog API.
-Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but are not used so not included.
+I printed the response to see/show what was recieved back from the Datadog API.
+Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but they are not used so I did not included them.
 
 <img src="Screenshots/Reponse.png"></img>
 
@@ -339,13 +339,13 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Something I can think of, if its possible to set up nodes/info senders around the world, we can moniter climate conditions in real time to see changes in temperature, humidy level, wind level, water temperature, etc around the world as an individual or regional average. 
+Something I can think of, if it's possible to set up nodes/info senders around the world, is moniter climate conditions in real time to see changes in temperature, humidy level, wind level, water temperature, etc around the world as an individual or regional average. 
 
 
 #### EXTRA NOTES ON CUSTOM METRIC CHECK
 I wasn't too sure how to change the interval for the custom check within the Python code. I spent an incredible amount of time trying to see how that could be done.
 
-ALL BELOW IS FOR AGENT V6!
+FOR AGENT V6!
 
 I tried to use the super constructor version of the check:
 ```
