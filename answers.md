@@ -16,7 +16,7 @@ datadog-agent version
 ```
 <img src="Screenshots/Datadog_agent.png"></img>
 
-## [](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer#collecting-metrics)Collecting Metrics:
+## Collecting Metrics:
 
 ### Add tags in the Agent config file
 I added tags by updating the main agent configuration file `/etc/datadog-agent/datadog.yaml`.
@@ -327,7 +327,7 @@ if __name__ == '__main__':
  ```
  
  
- Link of dashboard : 
+Link of dashboard : 
 https://app.datadoghq.com/apm/service/flask/flask.request?start=1536299777594&end=1536303377594&paused=false&env=prod
  
  <img src="Screenshots/flask_tracing.png"></img>
