@@ -31,16 +31,14 @@ You can see that tags have been enabled as well the nondefualt tags I added : my
 In my current machine I have already have Postgres version 10.5 installed, therefore I do not need to install it.
 However, I do need to install the postgress Datadog integration and create a read-only administrator user for the Datadog agent. 
 
-####Change image source after commit with postgres vers img
-<img src="Screenshots/replae this"></img> 
+<img src="Screenshots/Postgres"></img> 
 
 
 In order to install Postgres integration for the my host's Datadog agent, I followed the instuctions from <a href="https://app.datadoghq.com/account/settings#integrations/postgres">the Datadog integrations page</a>
 
 After creating the read_only user for the Datadog agent, I tested the Datadog user with the test given by the instruction.
 
-####Change image source after commit with datadog user test img.
-<img src="Screenshots/replacethis"></img>
+<img src="Screenshots/Datadog_user"></img>
 
 In Addition to creating a Postgres Datadog user, I also needed to edit the postgres.yaml file located in the datadog-agent/conf.d directory. 
 `/etc/datadog-agent/conf.d/postgres.yaml`
@@ -58,12 +56,11 @@ launchctl start com.datadoghq.agent
 These particular instructions are for a macOSX agent such as mine. They can be different for other OS systems.
 
 
-####replace this aswell for metrics explorer
-<img src="Screenshots/replacethis.png"></img>
+<img src="Screenshots/metric_explorer.png"></img>
 
 If we check the <a href="https://app.datadoghq.com/dashboard/lists">dashboard list page <a/> we can see that Postgres is present in the list:
-####replace this for dashboard img
-<img src="Screenshots/dashboard-list.png"></img>
+    
+<img src="Screenshots/Dashboard.png"></img>
 
 ### Creating a custom Agent check
 To complete this task, I learned to create a custom check from the 
@@ -189,9 +186,10 @@ print(response)
 ```
 
 I printed the response to show what was sent back from the Datadog API.
+Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but are not used so not included.
 
 ##### CHANGE THIS LATER
-<img src="Screenshots/changethis.png"></img>>
+<img src="Screenshots/Response.png"></img>>
 
 
 ### Taking a snapshot of the graph
@@ -201,7 +199,7 @@ I took a snapshot of the graph by clicking on the camera icon, and select my ema
 
 
 meanwhile the entire timeboard I created titled "My_Custom_Timeboard" looks like 
-<img src = Screenshots/replacethis.png></img>
+<img src = Screenshots/Custom_Timeboard.png></img>
 
 ### Bonus Question: What is the Anomaly graph displaying?
 The highlighted area in the graph represent the expected range of the metric based on previous values, so anything outside that range is an anomaly.
@@ -220,10 +218,10 @@ This moniter will send an email whenever the monitor is triggered.
 The message it sends is based on whether the monitor is in an Alert, Warning, or No Data state.
 Included is the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-<img src="Screenshots/changethis.png"></img>
+<img src="Screenshots/Notify_metric.png"></img>
 
 The moniter indeed sends me notification to my email when it is triggered.
-<img src="Screenshots/replacethis"></img>
+<img src="Screenshots/moniter_email.png"></img>
 
 ### Bonus Question:
 Set up two scheduled downtimes for this monitor:
