@@ -61,10 +61,11 @@ https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variab
 #Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ##Collecting APM Data:
-[]- Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
+[x]- Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
 RESOURCES:
 https://docs.datadoghq.com/tracing/setup/?tab=agent630
-
+https://docs.datadoghq.com/tracing/setup/ruby/
+git 
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 #Bonus Question: What is the difference between a Service and a Resource?

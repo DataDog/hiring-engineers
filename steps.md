@@ -62,3 +62,7 @@ The anomalies
 
 7. Detail step by step how to adjust timeboards.
 8. Detail step by step how to create and customize metric monitors.
+
+9. Created Rails app without database or test framework. $ rails new instrumented-app -T --skip-active-record
+
+Added 

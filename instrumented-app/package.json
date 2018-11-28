@@ -1,0 +1,5 @@
+{
+  "name": "instrumented-app",
+  "private": true,
+  "dependencies": {}
+}
