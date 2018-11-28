@@ -25,10 +25,12 @@ http://tutorials.jumpstartlab.com/topics/vagrant_setup.html
 #Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 ##Visualizing Data:
-[]-Utilize the Datadog API to create a Timeboard that contains:
+[x]-Utilize the Datadog API to create a Timeboard that contains:
 RESOURCES:
 https://docs.datadoghq.com/api/?lang=ruby#overview
 https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
+https://docs.datadoghq.com/graphing/
+https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
@@ -36,18 +38,22 @@ https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
 
 NOTE: Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-[]- Once this is created, access the Dashboard from your Dashboard List in the UI:
+[x]- Once this is created, access the Dashboard from your Dashboard List in the UI:
 1. Set the Timeboard's timeframe to the past 5 minutes
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 #Bonus Question: What is the Anomaly graph displaying?
 
 ##Monitoring Data
-[]-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+[x]-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 1. Warning threshold of 500
 2. Alerting threshold of 800
 3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-[]-Please configure the monitor’s message so that it will:
+RESOURCES:
+https://docs.datadoghq.com/monitors/monitor_types/metric/
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
+
+[x]-Please configure the monitor’s message so that it will:
 1. Send you an email whenever the monitor triggers.
 2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.

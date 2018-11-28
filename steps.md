@@ -51,3 +51,14 @@ Followed this directions: https://docs.datadoghq.com/developers/write_agent_chec
 screenshots/my_metrics_py_file.png
 screenshots/my_metrics_yaml_collection_interval_45.png
 screenshots/my_metrics_graph.png
+
+
+6. Created Ruby app with datadog gem (gem "dogapi").
+After bundle install, I wrote the script for creating a Timeboard with 3 graphs. 
+Went to https://app.datadoghq.com/account/settings#api and created an Application key. The API key was already created. Added the keys to the script.
+After executing the script ($ruby run.rb) the terminal printed the response. The timeboard was available in the UI "Dashboard >> Dashboard list".
+
+The anomalies 
+
+7. Detail step by step how to adjust timeboards.
+8. Detail step by step how to create and customize metric monitors.
