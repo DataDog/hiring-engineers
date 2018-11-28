@@ -31,14 +31,14 @@ You can see that tags have been enabled as well the nondefualt tags I added : my
 In my current machine I have already have Postgres version 10.5 installed, therefore I do not need to install it.
 However, I do need to install the postgress Datadog integration and create a read-only administrator user for the Datadog agent. 
 
-<img src="Screenshots/Postgres"></img> 
+<img src="Screenshots/Postgres.png"></img> 
 
 
 In order to install Postgres integration for the my host's Datadog agent, I followed the instuctions from <a href="https://app.datadoghq.com/account/settings#integrations/postgres">the Datadog integrations page</a>
 
 After creating the read_only user for the Datadog agent, I tested the Datadog user with the test given by the instruction.
 
-<img src="Screenshots/Datadog_user"></img>
+<img src="Screenshots/Datadog_user.png"></img>
 
 In Addition to creating a Postgres Datadog user, I also needed to edit the postgres.yaml file located in the datadog-agent/conf.d directory. 
 `/etc/datadog-agent/conf.d/postgres.yaml`
@@ -188,7 +188,6 @@ print(response)
 I printed the response to show what was sent back from the Datadog API.
 Also, there are many more options that can be used for each graph such as aggregate, linetype, etc but are not used so not included.
 
-##### CHANGE THIS LATER
 <img src="Screenshots/Response.png"></img>>
 
 
@@ -226,13 +225,13 @@ The moniter indeed sends me notification to my email when it is triggered.
 ### Bonus Question:
 Set up two scheduled downtimes for this monitor:
 
-<img src="Screenshots/downtimes.png"></img>
+<img src="Screenshots/Downtimes.png"></img>
 
-Out of Office Downtime
+Out of Office Downtime (7pm-9AM weekdays)
 
 <img src="Screenshots/out_of_office_downtime.png"></img>
 
-scheduled weekend downtime
+scheduled weekend downtime (Sat,Sun Allday)
 
 <img src="Screenshots/weekend_downtime.png"></img>
 
