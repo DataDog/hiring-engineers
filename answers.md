@@ -12,6 +12,7 @@ To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM runnin
 - Find the right VM Ubuntu image from Vagrant catalog and add to vagrant
 ```
 vagrant box add "ubuntu/xenial64"
+```
 
 - Start the environment. Edit the file Vagrantfile to add the following:
 ```
