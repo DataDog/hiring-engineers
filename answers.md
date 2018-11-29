@@ -16,7 +16,7 @@
   * [Utilize the Datadog API to create a Timeboard](#Utilize-the-Datadog-API-to-create-a-Timeboard)
   * [Set the Timeboard’s timeframe to the past 5 minutes](#Set-the-Timeboard’s-timeframe-to-the-past-5-minutes)
   * [Take a snapshot of this graph and use the @ notation to send it to yourself](#Take-a-snapshot-of-this-graph-and-use-the--notation-to-send-it-to-yourself)
-  * [**Bonus Question** - What is the Anomaly graph displaying?](#Bonus-Question-What-is-the-Anomaly-graph-displaying)
+  * [**Bonus Question** - What is the Anomaly graph displaying?](#Bonus-Question---What-is-the-Anomaly-graph-displaying)
 - [Monitoring Data](#Monitoring-Data)
     * [Create a new Metric Monitor](#Create-a-new-Metric-Monitor)
     * [Further configuring the monitor’s message](#Further-configuring-the-monitor’s-message)
