@@ -24,7 +24,7 @@
     * [**Bonus Question** - Set up two scheduled downtimes for this monitor](#Bonus-Question)
 - [Collecting APM Data](#Collecting-APM-Data)
     * [Preparations](#Preparations)
-    * [**Bonus Question** - What is the difference between a Service and a Resource?](#Bonus-Question-What-is-the-difference-between-a-Service-and-a-Resource)
+    * [**Bonus Question** - What is the difference between a Service and a Resource?](#Bonus-Question---What-is-the-difference-between-a-Service-and-a-Resource)
     * [Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics](#Link-and-a-screenshot-of-a-Dashboard-with-both-APM-and-Infrastructure-Metrics)
 __________
 
