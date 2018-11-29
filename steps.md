@@ -15,7 +15,7 @@ If you ever want to stop the Agent, please use the Datadog Agent App or the laun
 $ vim ~/.datadog-agent/datadog.yaml
 
 tags: region:USEast, role:localmachine
-screenshots/tags_on_agent_config_file.png
+![alt text](screenshots/tags_on_agent_config_file.png)
 ![alt text](screenshots/tags_on_ui.png)
 
 Then, restarted agent: 
@@ -23,8 +23,8 @@ $ launchctl stop com.datadoghq.agent
 $ launchctl start com.datadoghq.agent
 
 Then, tags were on host map page
-screenshots/tags_on_host_map_page.png
-screenshots/tags_on_host_map_page2.png
+![alt text](screenshots/tags_on_host_map_page.png)
+![alt text](screenshots/tags_on_host_map_page2.png)
 
 4. Checked PostgreSQL was already installed.
 psql --version
@@ -48,9 +48,9 @@ Then, Postgres shows on host map page
 
 5. Created files 2 files, my_metric.py and my_metric.yaml. saved in /etc/dd-agent/checks.d and /etc/dd-agent/conf.d respectively.
 Followed this directions: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
-screenshots/my_metrics_py_file.png
-screenshots/my_metrics_yaml_collection_interval_45.png
-screenshots/my_metrics_graph.png
+![alt text](screenshots/my_metrics_py_file.png)
+![alt text](screenshots/my_metrics_yaml_collection_interval_45.png)
+![alt text](screenshots/my_metrics_graph.png)
 
 
 6. Created Ruby app with datadog gem (gem "dogapi").
