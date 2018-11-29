@@ -1,0 +1,15 @@
+# set the identifier used to match container image name
+ad_identifiers:
+   -  postgres
+init_config:
+
+# pass the credentials needed for the postgres integration service user
+instances:
+   -   host: "%%host%%"
+       port: 5432
+       username: datadog
+       password: Agnzr5uEKeLrt81ZRhucdjqc
+       tags:
+            - postgres-in-a-container-in-aws
+            - labcontainer
+
