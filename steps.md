@@ -16,7 +16,7 @@ $ vim ~/.datadog-agent/datadog.yaml
 
 tags: region:USEast, role:localmachine
 screenshots/tags_on_agent_config_file.png
-screenshots/tags_on_ui.png
+![alt text](screenshots/tags_on_ui.png)
 
 Then, restarted agent: 
 $ launchctl stop com.datadoghq.agent
