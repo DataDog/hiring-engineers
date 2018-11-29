@@ -1,14 +1,28 @@
 Your answers to the questions go here.
 
+# Introduction
+
 # Prerequisites - Setup the environment
 
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM running on Virtual Box using a Vagrant image. I already had a datadog trial account that was expired, and I requested to extend it in order to run the Challenge.
 
-You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+## Steps to set up the environment
+- Install Virtual box on my laptop
+- Instal Vagrant to access and easily download VMs 
+- Find the right VM Ubuntu image from Vagrant catalog
+- Start the environment
 
-Collecting Metrics:
+*Image of Virtualbox and the VM Shell*
+
+## Installing the agent
+
+To install the Datadog agent into the Ubuntu server, is as easy as running from a shell the following command:
+
+```
+DD_API_KEY=$YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+
+# Collecting Metrics:
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
