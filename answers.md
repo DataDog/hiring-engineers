@@ -24,7 +24,7 @@
     * [**Bonus Question** - Set up two scheduled downtimes for this monitor](#Bonus-Question)
 - [Collecting APM Data](#Collecting-APM-Data)
     * [Preparations](#Preparations)
-    * [**Bonus Question** - Set up two scheduled downtimes for this monitor:](#Bonus-Question-What-is-the-difference-between-a-Service-and-a-Resource)
+    * [**Bonus Question** - What is the difference between a Service and a Resource?](#Bonus-Question-What-is-the-difference-between-a-Service-and-a-Resource)
     * [Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics](#Link-and-a-screenshot-of-a-Dashboard-with-both-APM-and-Infrastructure-Metrics)
 __________
 
@@ -471,7 +471,7 @@ Expect this output:
 ```
 
 
-## Bonus Question: What is the difference between a Service and a Resource?
+## Bonus Question - What is the difference between a Service and a Resource?
 A Service typically represents an application or several processes that provide some feature.
 A Resource is typically a query/call to a specific part/subset of a Service.
 
