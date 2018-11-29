@@ -309,7 +309,7 @@ In the screenshot below we can see the message field and the @ notation being us
 ![Graph screenshot zoomed captured annotated with e-mail tagging](https://i.imgur.com/zIz7t5Y.png)
 
 
-## Bonus Question: What is the Anomaly graph displaying?
+## Bonus Question - What is the Anomaly graph displaying?
 The anomaly function will make the graph indicate what is considered to be within set bounds, i.e normal deviations, and highlight heavy deviations, helping you to spot (or monitor) when something isn’t quite right.
 
 This blog article covers it in more detail, explaining amongst other things how this smart function can handle seasonality:
