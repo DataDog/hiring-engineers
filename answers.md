@@ -5,19 +5,65 @@ Your answers to the questions go here.
 - [x] Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field).
 - Successfully signed up for Datadog on https://app.datadoghq.com/signup
 - [x] Get the Agent reporting metrics from your local machine.
+In order to get the Datadog Agent reporting metrics from my local machine, I first installed  Agent directly in my local machine (macOS) without VB or containers. 
+
+1. Datadog Agent installation. 
+After selecting macOS as the platform for installation (R1), I followed the installation instructions (R2). On my terminal, I run the following command which included my Datadog API key. The installation run automatially
+
+`$ DD_API_KEY=04b457d18fc4f92ecd500f802a01449d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"`
+
+The installation run automatically, and prompted the following success message:
+
+*Your Agent is running properly. It will continue to run in the background and submit metrics to Datadog. You can check the agent status using the ##datadog-agent status## command or by opening the webui using the ##datadog-agent launch-gui## command. If you ever want to stop the Agent, please use the Datadog Agent App or the launchctl command. It will start automatically at login.*
+
+2. Datadog agent status
+I checked Datadog agent status run the following command in terminal.
+`$ datadog-agent status` 
+![alt text](screenshots/agent_status.png)
+3. Datadog agent GUI 
+In order to access the agent's GUI, in the terminal I run the following command. 
+`$ datadog-agent launch-gui` 
+The GUI successfully opens on http://127.0.0.1:5002/ 
+![alt text](screenshots/GUI.png)
 
 **RESOURCES** 
-https://datadog.github.io/summit-training-session/handson/customagentcheck/
+R1 - Datadog agent documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/
+R2 - Datadog Agent Installing on macOS documentation: 
+https://app.datadoghq.com/account/settings#agent/mac
 
+https://datadog.github.io/summit-training-session/handson/customagentcheck/
 
 ## Collecting Metrics
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+1. As detailed in documentation (R3), the configuration files and folders for the Agent are located in *~/.datadog-agent/datadog.yaml*
+In order to access the Agent configuration files, I run 
+`$ vim ~/.datadog-agent/datadog.yaml` or 
+`$ sublime ~/.datadog-agent/datadog.yaml`
+
+2. Once inside the file, I added tags following the documentation. First uncommented the tags section code and added tags following the documentation guidelines (R4, R5) modifying the code as follows:
+`tags: region:USEast, role:localmachine`
+![alt text](screenshots/tags_on_agent_config_file.png)
+
+After saving the changes in the file, the changes are also visible (and editable) from the Agent GUI.
+![alt text](screenshots/tags_on_ui.png)
+
+Then, I restarted agent following the agent commands documentation (R6). In the terminal, I run the following stop/start commands. 
+`$ launchctl stop com.datadoghq.agent`
+`$ launchctl start com.datadoghq.agent`
+
+After restarting the agent, I checked the tags were showing on host map page.
+![alt text](screenshots/tags_on_host_map_page.png)
+![alt text](screenshots/tags_on_host_map_page2.png)
+
 **RESOURCES** 
-https://docs.datadoghq.com/tagging/
-https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
+R3 - Datadog Agent Usage on macOS documentation:https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
+R4 -  Tags documentation: https://docs.datadoghq.com/tagging/
+R5 -  Assigning tags documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
+R6 -  Agent command documentation: https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
+
+
 https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6
-https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
 
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
