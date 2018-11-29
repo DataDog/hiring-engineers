@@ -9,8 +9,16 @@ To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM runnin
 ## Steps to set up the environment
 - Install Virtual box on my laptop
 - Instal Vagrant to access and easily download VMs 
-- Find the right VM Ubuntu image from Vagrant catalog
-- Start the environment
+- Find the right VM Ubuntu image from Vagrant catalog and add to vagrant
+```
+vagrant box add "ubuntu/xenial64"
+
+- Start the environment. Edit the file Vagrantfile to add the following:
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+end
+```
 
 *Image of Virtualbox and the VM Shell*
 
