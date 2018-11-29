@@ -38,7 +38,7 @@ $ create user datadog with password 'albertodatadog'
 Run returning Postgres connection - OK but not requiring password.
 $ psql -h localhost -U datadog postgres -c \ "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 
-Changed name postgres.yaml.example to postgres.yaml
+Changed name conf.yaml.example to conf.yaml
 Added tags: database:postgresql
 
 Restarted Agent as before. Then, run 
@@ -60,8 +60,6 @@ After executing the script ($ruby run.rb) the terminal printed the response. The
 
 The anomalies 
 
-7. Detail step by step how to adjust timeboards.
-8. Detail step by step how to create and customize metric monitors.
 
 9. Installed the Datadog's macOS Trace Agent 
 - Downloaded and installed Go.
