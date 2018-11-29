@@ -25,7 +25,7 @@ In order to access the agent's GUI, I run the following command in the terminal.
 The GUI successfully opens on http://127.0.0.1:5002/ 
 ![alt text](screenshots/GUI.png)
 
-**RESOURCES** 
+***RESOURCES***
 - R1 Datadog agent documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/
 - R2 Datadog Agent Installing on macOS documentation: 
 https://app.datadoghq.com/account/settings#agent/mac
@@ -53,23 +53,14 @@ After restarting the agent, I checked the tags were showing on host map page.
 ![alt text](screenshots/tags_on_host_map_page.png)
 ![alt text](screenshots/tags_on_host_map_page2.png)
 
-**RESOURCES** 
-- R3 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
-- R4 Tags documentation: https://docs.datadoghq.com/tagging/
-- R5 Assigning tags documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
-- R6 Agent command documentation: https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
-
-
-https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6
-
 - [x] Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 1. **PostgreSQL installation and monitoring**
 I check that PostgreSQL is already installed running the following commands in terminal
 `$ psql --version` which prompts *psql (PostgreSQL) 10.5*
 
-I select the PostgreSQL integration in the documentation (R6) and follow the guidelines.
-I run PostgreSQL `$ psql` and then follow the documentation for installing the integration for the database (R7, R8).
+I select the PostgreSQL integration in the documentation (R7) and follow the guidelines.
+I run PostgreSQL `$ psql` and then follow the documentation for installing the integration for the database (R8, R9).
 I first prepare PostgreSQL by running the following command in the terminal by granting the Agent with permission to monitor PostgreSQL
 `$ create user datadog with password 'albertodatadog';`
 `$ grant pg_monitor to datadog;`
@@ -79,7 +70,7 @@ To verify the correct permissions, I run the following command:
 which prompts *Postgres connection - OK* in the message.
 
 2. **Setting metrics collection**
-To configure the Agent to collect PostgreSQL metrics, I first find the configuration files for the database (R9).
+To configure the Agent to collect PostgreSQL metrics, I first find the configuration files for the database (R10).
 For macOs, I access the PostgreSQL configuration folder in the terminal:
 `$ cd ~/.datadog-agent/conf.d/postgres.d/`
 In order to activate it, I change the file name from *conf.yaml.example* to *conf.yaml*
@@ -88,12 +79,16 @@ Then, I open it `$ vim conf.yaml` and added tags to the file
 
 I restart the Agent as before. Then, check the agent status in the terminal `$ datadog-agent status`. Now, under *Running checks*, there is also PostgreSQL. Postgres also shows on host map page.
 
-**RESOURCES** 
-- R6 Integrations documentation: https://docs.datadoghq.com/integrations/
-- R7 PostgreSQL integration documentation: 
+***RESOURCES***
+- R3 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
+- R4 Tags documentation: https://docs.datadoghq.com/tagging/
+- R5 Assigning tags documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
+- R6 Agent command documentation: https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
+- R7 Integrations documentation: https://docs.datadoghq.com/integrations/
+- R8 PostgreSQL integration documentation: 
 https://docs.datadoghq.com/integrations/postgres/
-- R8 How to collect and monitor PostgreSQL data with Datadoghttps://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
-- R9 Agent configuration directories.
+- R9 How to collect and monitor PostgreSQL data with Datadoghttps://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
+- R10 Agent configuration directories.
 https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-configuration-directory
 
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -122,12 +117,6 @@ After bundle install, I wrote the script for creating a Timeboard with 3 graphs.
 Went to https://app.datadoghq.com/account/settings#api and created an Application key. The API key was already created. Added the keys to the script.
 After executing the script ($ruby run.rb) the terminal printed the response. The timeboard was available in the UI "Dashboard >> Dashboard list".
 
-**RESOURCES** 
-https://docs.datadoghq.com/api/?lang=ruby#overview
-https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
-https://docs.datadoghq.com/graphing/
-https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
-
 - [x] Once this is created, access the Dashboard from your Dashboard List in the UI:
 1. Set the Timeboard's timeframe to the past 5 minutes
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -135,13 +124,19 @@ https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Dat
 ### Bonus Question
 What is the Anomaly graph displaying?
 
+***RESOURCES***
+https://docs.datadoghq.com/api/?lang=ruby#overview
+https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
+https://docs.datadoghq.com/graphing/
+https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
+
 ## Monitoring Data
 - [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 1. Warning threshold of 500
 2. Alerting threshold of 800
 3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-**RESOURCES** 
+***RESOURCES***
 https://docs.datadoghq.com/monitors/monitor_types/metric/
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
 
@@ -160,12 +155,6 @@ Detail step by step how to create and customize metric monitors.
 
 ## Collecting APM Data
 - [x] Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
-
-**RESOURCES** 
-https://docs.datadoghq.com/tracing/setup/?tab=agent630
-https://docs.datadoghq.com/tracing/setup/ruby/
-git 
-https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
 
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
@@ -214,6 +203,12 @@ end
 What is the difference between a Service and a Resource?
 **Answer**
 https://docs.datadoghq.com/tracing/visualization/
+
+***RESOURCES***
+https://docs.datadoghq.com/tracing/setup/?tab=agent630
+https://docs.datadoghq.com/tracing/setup/ruby/
+git 
+https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
 
 ### Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
