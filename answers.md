@@ -93,6 +93,27 @@ vagrant@ubuntu-xenial:~$ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" |
 > echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 datadog user - OK
 ```
+```
+instances:
+  - server: mongodb://datadog:LJjrd2A9Sdf5LVodMIUmabHe@localhost:27017
+    tags:
+      - mongo1
+      - mongo2
+```
+
+
+```
+sudo datadog-agent status
+
+    mongo (1.6.1)
+    -------------
+        Instance ID: mongo:3c8b62da17e7016e [OK]
+        Total Runs: 48
+        Metric Samples: 121, Total: 5,808
+        Events: 0, Total: 0
+        Service Checks: 1, Total: 48
+        Average Execution Time : 204ms
+```
 
 
 
