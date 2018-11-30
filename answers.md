@@ -146,6 +146,48 @@ __version__ = "1.0.0"
 class CustomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('hello.world', random.randint(0,1000))
+```
+
+```
+sudo -u dd-agent -- datadog-agent check custom
+
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "hello.world",
+      "points": [
+        [
+          1543621193,
+          263
+        ]
+      ],
+      "tags": null,
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    custom (1.0.0)
+    --------------
+        Instance ID: custom:5bbfe9f3938f1c8d [OK]
+        Total Runs: 1
+        Metric Samples: 1, Total: 1
+        Events: 0, Total: 0
+        Service Checks: 0, Total: 0
+        Average Execution Time : 0s
+        
+```
+
 
 
 
