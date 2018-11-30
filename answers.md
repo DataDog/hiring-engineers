@@ -171,11 +171,16 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 
 ### Bonus Question
 What is the Anomaly graph displaying?
+(R16) The graph with the function anomaly applied is used for detecting values that are observed outside of the expected values. Once these non-expected values are detected by the algorithm, they are highlighted for our close attention.
+In our timeboard, I apply the anomaly function to the postgreSQL database on the connections metric. As observed in the anomalies graph, each connection is highlighted in red because the pattern is no connections at all.
+![alt text](screenshots/anomalies_function.png)
 
 ***RESOURCES***
 - R12 Datadog API documentation in Ruby >> Timeboards https://docs.datadoghq.com/api/?lang=ruby#timeboards
 - R14 Graphing documentation https://docs.datadoghq.com/graphing/
 - R15 Timeseries graphs https://www.datadoghq.com/blog/timeseries-metric-graphs-101/
+- R16 Anomaly monitor
+ https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 ***
 
 ## Monitoring Data
@@ -282,6 +287,10 @@ from https://app.datadoghq.com/apm/install#
 https://docs.datadoghq.com/tracing/setup/ruby/#quickstart-for-rails-applications
 - R22 APM introduction documentation https://docs.datadoghq.com/tracing/visualization/
 - R23 APM article https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+
 ### Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
+I have an environmental/occupational risk prevention background. A great use for the Datadog platform would be monitoring the performance of installed solar panels. It would be ideal to track their general performance and having monitors to identify production thresholds or performance anomalies. Companies could also  used screenboards to display these metrics on shared spaces (i.e. kWh, gCO2eq/kWh)
+
+Another great application of Datadog would be for monitoring environmental metrics in facilities such as temperature, lighting, CO2 levels, electric consumption, etc. with data collected from installed sensors. 
