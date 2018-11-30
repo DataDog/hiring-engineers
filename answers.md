@@ -7,6 +7,8 @@ Your answers to the questions go here.
 - [x] Get the Agent reporting metrics from your local machine.
 - In order to get the Datadog Agent reporting metrics from my local machine, I first install the Agent directly in my local machine (macOS) without VB or containers. 
 
+<hr>
+
 - **Datadog Agent installation.**
 - After selecting macOS as the platform for installation (R1), I follow the installation instructions (R2). On my terminal, I run the following command which includes my Datadog API key.
 
@@ -31,6 +33,8 @@ Your answers to the questions go here.
 - R1 Datadog agent documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/
 - R2 Datadog Agent Installing on macOS documentation: 
 https://app.datadoghq.com/account/settings#agent/mac
+
+<hr>
 
 ## Collecting Metrics
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -87,18 +91,6 @@ and add tags to the file
 ![alt text](screenshots/postgreSQL_running_checks.png)
 Postgres also shows on host map page.
 
-***RESOURCES***
-- R3 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
-- R4 Tags documentation: https://docs.datadoghq.com/tagging/
-- R5 Assigning tags documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
-- R6 Agent command documentation: https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
-- R7 Integrations documentation: https://docs.datadoghq.com/integrations/
-- R8 PostgreSQL integration documentation: 
-https://docs.datadoghq.com/integrations/postgres/
-- R9 How to collect and monitor PostgreSQL data with Datadoghttps://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
-- R10 Agent configuration directories.
-https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-configuration-directory
-
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 - In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders */etc/dd-agent/checks.d* and */etc/dd-agent/conf.d* respectively\
@@ -128,10 +120,22 @@ Code *my_metric.yaml* file:\
 ![alt text](screenshots/my_metrics_explore_ui.png)
 
 ***RESOURCES***
+- R3 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
+- R4 Tags documentation: https://docs.datadoghq.com/tagging/
+- R5 Assigning tags documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=go#configuration-files
+- R6 Agent command documentation: https://docs.datadoghq.com/agent/faq/agent-commands/?tab=agentv6
+- R7 Integrations documentation: https://docs.datadoghq.com/integrations/
+- R8 PostgreSQL integration documentation: 
+https://docs.datadoghq.com/integrations/postgres/
+- R9 How to collect and monitor PostgreSQL data with Datadoghttps://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
+- R10 Agent configuration directories.
+https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-configuration-directory
 - R11 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
 ### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
+
+<hr>
 
 ## Visualizing Data
 
@@ -169,6 +173,8 @@ https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
 https://docs.datadoghq.com/graphing/
 https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
+<hr>
+
 ## Monitoring Data
 - [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 1. Warning threshold of 500
@@ -192,6 +198,8 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 ***RESOURCES***
 https://docs.datadoghq.com/monitors/monitor_types/metric/
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
+
+<hr>
 
 ## Collecting APM Data
 - [x] Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
