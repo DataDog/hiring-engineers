@@ -133,7 +133,9 @@ https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agen
 - R11 Custom Agent check documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
 ### Bonus Question
-Can you change the collection interval without modifying the Python check file you created?
+Can you change the collection interval without modifying the Python check file you created?\
+**Answer**\
+
 
 ***
 
@@ -170,7 +172,8 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 ![alt text](screenshots/5_min_snapshot_shared_email.png)
 
 ### Bonus Question
-What is the Anomaly graph displaying?
+What is the Anomaly graph displaying?\
+**Answer**\
 (R16) The graph with the function anomaly applied is used for detecting values that are observed outside of the expected values. Once these non-expected values are detected by the algorithm, they are highlighted for our close attention.
 In our timeboard, I apply the anomaly function to the postgreSQL database on the connections metric. As observed in the anomalies graph, each connection is highlighted in red because the pattern is no connections at all.
 ![alt text](screenshots/anomalies_function.png)
@@ -211,7 +214,8 @@ In our timeboard, I apply the anomaly function to the postgreSQL database on the
 ![alt text](screenshots/monitor_warn_notification.png)
 
 ### Bonus Question
-Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.\
+**Answer**\
 - On the *Edit* page for the monitor, I click on the upper tab *Manage Downtime* and schedule 2 different downtimes following documentation (R18).
 ![alt text](screenshots/downtime_edit_week.png)
 ![alt text](screenshots/downtime_edit_weekend.png)
@@ -273,13 +277,12 @@ Code *datadog-tracer.rb* file:\
 ![alt text](screenshots/screenboard.png)
 
 ### Bonus Question
-What is the difference between a Service and a Resource? 
-**Answer**
+What is the difference between a Service and a Resource?\
+**Answer**\
 (R22, R23) Datadog API provides metrics from your instrumented application at different levels. Two of them are services and resources. 
 An application may have different services, each of them consisting of a set of processes that work together to perform a specific job or feature set.  Basic applications might consist of a webapp service and a database service. On the other hand, resources are the queries to those services. For instance, in our basic Rails app, the following URL *http://localhost:3000/api/trace* contains the resource */api/trace*. For databases, SQL queries would be resources of the database service. 
 
 ***RESOURCES***
-from https://app.datadoghq.com/apm/install#
 - R18 APM Setup documentation https://docs.datadoghq.com/tracing/setup/?tab=agent630
 - R19 Datadog APM agent documentation https://github.com/DataDog/datadog-trace-agent
 - R20 Latest APM agent release https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
@@ -289,7 +292,7 @@ https://docs.datadoghq.com/tracing/setup/ruby/#quickstart-for-rails-applications
 - R23 APM article https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 
 ### Final Question
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?**
 
 I have an environmental/occupational risk prevention background. A great use for the Datadog platform would be monitoring the performance of installed solar panels. It would be ideal to track their general performance and having monitors to identify production thresholds or performance anomalies. Companies could also  used screenboards to display these metrics on shared spaces (i.e. kWh, gCO2eq/kWh)
 
