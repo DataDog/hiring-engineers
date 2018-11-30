@@ -24,7 +24,7 @@ Your answers to the questions go here.
 - **Datadog agent GUI.** 
 - In order to access the agent's GUI, I run the following command in the terminal.\
 `$ datadog-agent launch-gui`
-- The GUI successfully opens on http://127.0.0.1:5002/\
+- The GUI successfully opens on http://127.0.0.1:5002/
 ![alt text](screenshots/GUI.png)
 
 ***RESOURCES***
@@ -71,6 +71,7 @@ which prompts *psql (PostgreSQL) 10.5*
 - To verify the correct permissions, I run the following command:\
 `$ psql -h localhost -U datadog postgres -c \ "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || \ || echo -e "\e[0;31mCannot connect to Postgres\e[0m"`\
 which prompts *Postgres connection - OK* in the message.
+![alt text](screenshots/postgresql_connection_ok.png)
 
 - **Setting metrics collection**
 - To configure the Agent to collect PostgreSQL metrics, I first find the configuration files for the database (R10).
@@ -82,7 +83,9 @@ which prompts *Postgres connection - OK* in the message.
 and add tags to the file
 *tags: database:postgresql*
 - I restart the Agent as described before. 
-- Then, I check the agent status in the terminal `$ datadog-agent status`. Now, under *Running checks*, there is also PostgreSQL. Postgres also shows on host map page.
+- Then, I check the agent status in the terminal `$ datadog-agent status`. Now, under *Running checks*, there is also PostgreSQL.
+![alt text](screenshots/postgreSQL_running_checks.png)
+Postgres also shows on host map page.
 
 ***RESOURCES***
 - R3 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/agent/basic_agent_usage/osx/?tab=agentv6
@@ -98,7 +101,7 @@ https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agen
 
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders */etc/dd-agent/checks.d* and */etc/dd-agent/conf.d* respectively.\
+- In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders */etc/dd-agent/checks.d* and */etc/dd-agent/conf.d* respectively\
 I run the following commands:\
 `$ cd ~/.datadog-agent/checks.d/`\
 `$ touch my_metric.py`\
@@ -106,10 +109,10 @@ I run the following commands:\
 `$ touch my_metric.yaml`\
 
 - I check that Python is already installed running the following commands in terminal\
-`$ python --version` \ 
+`$ python --version`\ 
 which prompts *Python 2.7.10*
 
-- I edit the agent check file as follows:
+- I edit the agent check file as follows:\
 `$ sublime my_metric.py`\ 
 Code *my_metric.py* file:\
 ![alt text](screenshots/my_metrics_py_file.png)
@@ -151,7 +154,7 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 1. Set the Timeboard's timeframe to the past 5 minutes.
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-- From the Timeboard UI, I follow the next steps to email a 5-minute timeframe of any pf my custom metrics:\
+- From the Timeboard UI, I follow the next steps to email a 5-minute timeframe of any of my custom metrics:\
 ![alt text](screenshots/selector_time_range.png)
 ![alt text](screenshots/screenshot.png)
 ![alt text](screenshots/@notation.png)
