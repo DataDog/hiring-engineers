@@ -39,7 +39,7 @@ Some basic prerequisites are not covered in this document since they are already
 - [Installing Docker on your linux Docker host](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 - [Installing the Datadog agent on your linux Docker host](https://app.datadoghq.com/account/settings#agent) (Optional, but we use this agent as the example in one exercise)
 
-In the test environment, I have chosen to use commonly used platforms and technologies to compose a modern environment that you can set up quickly and recreate easily. Using this approach multiple pre-existing Datadog integrations can also be leveraged for inspiration and to speed up the process of creating meaningful dashboards.
+In the test environment, I have chosen to use commonly used platforms and technologies to compose a modern environment that you can set up quickly and recreate easily. Since Datadog offers ready to use dashboards for each integration, pre-existing dashboards can be used for inspiration and to speed up the process of creating meaningful dashboards.
 
 I have chosen to use an AWS EC2 instance, running Ubuntu linux 18.04. This instance acts as the host for three Docker containers -  a postgres database server, a Datadog Agent container, and a small python application that provides an HTTP endpoint using Flask.
 
@@ -67,7 +67,8 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" << E
 EOSQL
 ```
 
-2. Start the postgres container, making sure it can reach and reference the shell script you created by use of the -v flag. (The Postgres database runs in this container)
+2. Start the postgres container, making sure it can reach and reference the shell script you created by using the -v flag. (The Postgres database runs in this container)
+
 
 ```sh
 docker run --name postgres -v /tmp/postgres/init_datadog_user.sh:/docker-entrypoint-initdb.d/init_datadog.sh -e POSTGRES_PASSWORD=anyrandompassword -d postgres
@@ -147,7 +148,7 @@ Expect this output:
 docker exec -it dd-agent /bin/bash
 grep -i payload /var/log/datadog/agent.log
 ```
-Expected this output:
+Expect this output:
 ```sh
 2018-11-20 16:51:48 UTC | INFO | (transaction.go:193 in Process) | Successfully posted payload to "https://6-6-0-app.agent.datadoghq.com/intake/?api_key=*************************2ceae", the agent will only log transaction success every 20 transactions
 2018-11-20 16:54:02 UTC | INFO | (transaction.go:198 in Process) | Successfully posted payload to "https://6-6-0-app.agent.datadoghq.com/api/v1/series?api_key=*************************2ceae"
@@ -163,7 +164,9 @@ Using Datadog you are likely to be looking at metrics from multiple sources. Her
 How you can utilize tags in the different views and features is documented here:
 https://docs.datadoghq.com/tagging/
 
-Tags at AWS EC2 Docker host (Ubuntu 18.04): ``/etc/datadog-agent/datadog.yaml:``
+Tags at AWS EC2 Docker host (Ubuntu 18.04):
+Let's set a couple of tags that identifies the host where we will be running our our containers.
+Edit ``/etc/datadog-agent/datadog.yaml`` and add the tags to the configuration:
 
 ```yaml
 # Set the host's tags (optional)
@@ -173,7 +176,9 @@ tags:
   - role:docker-host
 ```
 
-In the screenshot below we can see the tags we set as well as tags automatically set by Datadog or detected by installed integrations (like the AWS EC2 integration). Tags can also be added using the user interface.
+In the screenshot below we can see the tags we set as well as tags automatically set by Datadog or detected by already enabled  integrations (like the AWS EC2 integration). Tags can also be added using the user interface.
+Platform integrations can easily be enabled under [Integrations](https://app.datadoghq.com/account/settings) in the Datadog user interface.
+
 ![Tags collected from AWS EC2 docker host](https://i.imgur.com/W4515fM.png)
 
 
@@ -242,7 +247,9 @@ Expect this output:
 ```
 
 ## Metric collection intervals
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
+In some situations it is very useful to be able to adjust the collection interval. Typical examples would be a check that is very resource-intensive or simply a metric where high resolution is not needed.
+
+Change your check's collection interval so that it only submits the metric once every 45 seconds. Default is 15 seconds.
 
 Edit ``/tmp/datadog/conf.d/my_custom_agent_check.yaml`` and add the minimum collection interval variable:
 
@@ -268,7 +275,8 @@ min_collection_interval: 45
 ```
 
 ## Bonus Question - Can you change the collection interval without modifying the Python check file you created?
-Yes, the setting is applied through editing the configuration file (.yaml), not the .py script. See [Metric collection intervals](#Metric-collection-intervals) above.
+Yes, settings for checks are applied by editing the configuration file for the check (my_custom_agent_check.yaml). Editing the check script (my_custom_agent_check.py) is not needed. See [Metric collection intervals](#Metric-collection-intervals) above.
+
 
 # Visualizing Data:
 
@@ -276,7 +284,8 @@ Yes, the setting is applied through editing the configuration file (.yaml), not 
 
 Run the provided script create_timeboard.py.
 
-Note: You must edit the script and set both the keys to your keys. Keylength may vary.
+Note: You must edit the script and set both the keys to your keys. Keylength may vary. You can find your API key and generate an app key in the [Ingration - API](https://app.datadoghq.com/account/settings#api) page in the Datadog user interface.
+
 
 ```sh
 root@ubuntu-1804-ec2:~# python /tmp/scripts/create_timeboard.py
@@ -310,13 +319,14 @@ In the screenshot below we can see the message field and the @ notation being us
 
 
 ## Bonus Question - What is the Anomaly graph displaying?
-The anomaly function will make the graph indicate what is considered to be within set bounds, i.e normal deviations, and highlight heavy deviations, helping you to spot (or monitor) when something isn’t quite right.
+The anomaly function will make the graph indicate what is considered to be within set bounds, i.e normal deviations, and highlight heavy deviations, helping you to spot (or monitor) when something is fluctuating outside of normal deviations.
+
 
 This blog article covers it in more detail, explaining amongst other things how this smart function can handle seasonality:
 [Introducing anomaly detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
 
 In the screenshot below we can see the anomaly function enabled on a metric. The grey area indicates what values that would be considered to be within set bounds. The red part of the blue line indicates a detected anomaly.
-![](https://i.imgur.com/iACmxum.png)
+![](https://i.imgur.com/qoqiUrK.png)
 
 
 # Monitoring Data
@@ -380,13 +390,12 @@ In the four screenshots below you can see how to meet the requirements above and
 # Collecting APM Data:
 
 ## Preparations
-Let's prepare to try out Datadog APM. To have something to monitor we will create an application container that is running a little WSGI application written in Python using the web framework Flask. The application provides an HTTP endpoint with some resources we can query.
+Let's prepare to explore the APM and tracing feature set of Datadog. To have something to monitor we will create an application container that is running a little WSGI application written in Python using the web framework Flask. The application provides an HTTP endpoint with some resources we can query.
 
 Preferably start with a fresh build directory.
 
 
-- Instrument the Python application by creating a ``Dockerfile`` for the flask app and wrapping the command with ``ddtrace-run`` to enable APM:
-
+- Instrument the Python application by wrapping the command with ``ddtrace-run`` to enable APM. Create a ``Dockerfile`` for the flask app with the below content:
 ```
 FROM python:3.5
 ADD main.py /
@@ -430,12 +439,14 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-- Build a docker image
+
+- Build the Docker flask image
 ```sh
 docker build -t dd-flask .
 ```
 
-- Run the container you built in daemon mode. Expose the port used by the application on the Docker host and set destination for traces (to the gateway address of the Datadog Agent container):
+
+- Run the flask container you built, in daemon mode. Expose the port used by the application on the Docker host and set destination for traces (to the gateway address of the Datadog Agent container):
 ```sh
 docker run --name dd-flask -d -e DATADOG_TRACE_AGENT_HOSTNAME=172.17.0.1 -p 5050:5050 dd-flask
 ```
@@ -445,20 +456,21 @@ docker run --name dd-flask -d -e DATADOG_TRACE_AGENT_HOSTNAME=172.17.0.1 -p 5050
 docker logs dd-flask`
 ``` 
 
-Expect this output:
+Expect to find this in the output:
 ``
 DEBUG:ddtrace.api:reported 2 services
 ``
 
 Note: A couple of “HTTP error status 400” errors are expected
 
-- Now generate some traces by hitting the HTTP resources with some tool like curl or links (where you can easily generate multiple requests with CTRL-R).
+- Now generate some traces by hitting the HTTP resourcesa a couple of times. Create a script that uses curl, or simply browse the reources and refresh the browser multiple times. If you don't have a graphical browser you can always utilize the CLI browser "links". Include calls to some nonexistant resource to generate errors too.
 ```sh
 links http://localhost:5050
 links http://localhost:5050/api/apm
 links http://localhost:5050/api/trace
 links http://localhost:5050/api/does_not_exist_in_API
 ```
+
 
 - Now let's verify traces are successfully being delivered to Datadog API:
 ```sh
@@ -475,6 +487,8 @@ Expect this output:
 A Service typically represents an application or several processes that provide some feature.
 A Resource is typically a query/call to a specific part/subset of a Service.
 
+
+
 ## Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 A Timeboard was composed exporting graphs from [‘APM  - Services’](https://app.datadoghq.com/apm/services) and from two relevant Infrastructure integrations for the flask app - AWS EC2 and Docker Overview. By cloning these default dashboards the json for widgets can easily be copied and reused in a custom dashboard.
 Link: https://app.datadoghq.com/dash/1001399/combining-apm--infrastructure-timeboard?page=0&is_auto=false&from_ts=1543330740000&to_ts=1543334340000&live=false&tile_size=m
@@ -486,8 +500,15 @@ In the screenshot below we can see a basic Timeboard combining APM and Infrastru
 # Final Question:
 
 ## Is there anything creative you would use Datadog for?
-If major mobile telephone network operators (like Tele2) would utilize Datadog and its functions to find and address general problem areas, the quality of service on calls, message delivery, and data transfer can be improved. By adding geo-tagging on top of that, specific problem areas can be ranked/found and the customer satisfaction baseline can be raised significantly as well.
+Datadog offers a unique combination of metrics based monitoring and APM/tracing capabilities. This makes it possible to monitor the actual consumer experience in transactional system where synthetic monitoring is not a viable option.
+By monitoring the actual metrics of real transactions, poluting production systems with test data can be avoided and the full consumer experience covered end-to-end. Adding APM/tracing to further gain insight into how the actual processing of the transactions is performing completes the picture and makes it possible to catch unexpected effects of changes to the configuration of the system.
+A typical example would be monitoring the metrics from real time financial risk decisioning systems while simultaneously cathing unexpected results of configuration changes by analysing the traces from the risk decisioning application.
 
-# Feedback:
-If you are running a Python app in a Docker container, https://docs.datadoghq.com/tracing/setup/python/ combined with https://docs.datadoghq.com/tracing/setup/docker/?tab=python
-may lead you to believe the app needs BOTH wrapping with ddtrace-run AND configuration of tracing in the application code). This can be made more clear in the first webpage, by complementing the example of how to wrap your python app with ddtrace-run, with an example of how to alternatively set the destination using environment variables when starting the Python application container.
+
+# Conclusion:
+I found this Tech Exercise to be complete. It covers basic as well as advanced topics and gives you a chance to explore a large part of the feature set of Datadog.
+
+
+## Feedback on Tech Exercise
+If you are running a Python app in a Docker container, reading https://docs.datadoghq.com/tracing/setup/python/ and https://docs.datadoghq.com/tracing/setup/docker/?tab=python
+may lead you to believe the app needs BOTH wrapping with ddtrace-run AND configuration of tracing in the application code). This can be made more clear in the first webpage, by complementing the example of how to wrap your python app with ddtrace-run, with an example of how to alternatively set the destination for your traces using an environment variable when starting the Python application container.
