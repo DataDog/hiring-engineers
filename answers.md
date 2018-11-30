@@ -88,6 +88,8 @@ and add tags to the file
 - Then, I check the agent status in the terminal `$ datadog-agent status`. Now, under *Running checks*, there is also PostgreSQL.
 ![alt text](screenshots/postgreSQL_running_checks.png)
 Postgres also shows on host map page.
+- The Metric is now accessible in the UI (*Metrics >> Explorer* selecting `postgresql.connection` (or any other metric starting with *postgresql*) in the field *Graph*). https://app.datadoghq.com/metric/explorer
+![alt text](screenshots/postgres_metrics_explorer.png)
 
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
