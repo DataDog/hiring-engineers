@@ -7,8 +7,6 @@ Your answers to the questions go here.
 - [x] Get the Agent reporting metrics from your local machine.
 - In order to get the Datadog Agent reporting metrics from my local machine, I first install the Agent directly in my local machine (macOS) without VB or containers. 
 
-***
-
 - **Datadog Agent installation.**
 - After selecting macOS as the platform for installation (R1), I follow the installation instructions (R2). On my terminal, I run the following command which includes my Datadog API key.
 
@@ -115,7 +113,7 @@ Code *my_metric.py* file:\
 Code *my_metric.yaml* file:\
 ![alt text](screenshots/my_metrics_yaml_collection_interval_45.png)
 
-- The Metric is now accessible in the UI *Metrics >> Explorer* selecting `my_metric` in the field *Graph*. https://app.datadoghq.com/metric/explorer
+- The Metric is now accessible in the UI (*Metrics >> Explorer* selecting `my_metric` in the field *Graph*). https://app.datadoghq.com/metric/explorer
 ![alt text](screenshots/my_metrics_graph.png)
 ![alt text](screenshots/my_metrics_explore_ui.png)
 
@@ -130,7 +128,7 @@ https://docs.datadoghq.com/integrations/postgres/
 - R9 How to collect and monitor PostgreSQL data with Datadoghttps://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/
 - R10 Agent configuration directories.
 https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-configuration-directory
-- R11 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+- R11 Custom Agent check documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
 ### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
@@ -145,13 +143,15 @@ Can you change the collection interval without modifying the Python check file y
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 NOTE: Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-- I create a Ruby app (folder *hiring-engineers/ruby-datadog-api-script*) and add the Datadog gem to its Gemfile (gem "dogapi").
-- After running `$ bundle install` to install the dependencies, I write the script for creating a Timeboard with 3 graphs.
-- The script requires an API and an App Key which can be found in https://app.datadoghq.com/account/settings#api. The API key exists but I create an application key. Added the keys to the script.
-- After executing the script by running `$ ruby run.rb` in the terminal, the terminal prompts Datadog's API response. 
+- In order to create a timeboard through the Datadog API, I create a Ruby app (folder *hiring-engineers/ruby-datadog-api-script*) and add the Datadog gem to its Gemfile (gem "dogapi").
+- After running `$ bundle install` to install the dependencies, I write the script for creating a Timeboard with 3 graphs following the documentation guidelines in Ruby (R12).
+- The script requires an API and an App Key which can be found in https://app.datadoghq.com/account/settings#api. The API key exists but I create the required application key. I add the keys to the script (file  *hiring-engineers/ruby-datadog-api-script/bin/run.rb*). The script only contains 3 variables: title, description, and graphs. 
+- I use documentation (R12, R13) to define the variable graphs and each of the 3 different graphs in it. Each graphs is defined with its own query.
+- The rollup metric is represented using bars while the other two metrics are represented using line graphs (R15).
+- After executing the script running `$ ruby run.rb` in the terminal, the terminal prompts Datadog's API response. 
 ![alt text](screenshots/response_from_api.png)
-- The timeboard is now available in the UI "Dashboard >> Dashboard list". https://app.datadoghq.com/dashboard. 
-- To access it, select it by its name *Test timeboard*
+- The timeboard is now available in the UI (Dashboard >> Dashboard list) https://app.datadoghq.com/dashboard. 
+- To access it, select the given timeboard name (title = *Test timeboard*).
 ![alt text](screenshots/timeboard_from_api.png)
 
 - [x] Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -159,6 +159,9 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 - From the Timeboard UI, I follow the next steps to email a 5-minute timeframe of any of my custom metrics:\
+- First, I select the timeframe with the cursor on the same graph so the graph zooms in to the selected time area.
+- Then, I click on the snapshot icon. A new communication window opens. I enter @ and select my email address followed by a message.
+- The notification gets to my email.
 ![alt text](screenshots/selector_time_range.png)
 ![alt text](screenshots/screenshot.png)
 ![alt text](screenshots/@notation.png)
@@ -168,11 +171,9 @@ NOTE: Please be sure, when submitting your hiring challenge, to include the scri
 What is the Anomaly graph displaying?
 
 ***RESOURCES***
-https://docs.datadoghq.com/api/?lang=ruby#overview
-https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
-https://docs.datadoghq.com/graphing/
-https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
-
+- R12 Datadog API documentation in Ruby >> Timeboards https://docs.datadoghq.com/api/?lang=ruby#timeboards
+- R14 Graphing documentation https://docs.datadoghq.com/graphing/
+- R15 Timeseries graphs https://www.datadoghq.com/blog/timeseries-metric-graphs-101/
 ***
 
 ## Monitoring Data
@@ -181,7 +182,18 @@ https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Dat
 2. Alerting threshold of 800
 3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-- Clicking on the Gear icon on the top right corner of my_metric graph, I can select *Create Monitor*.
+- Clicking on the Gear icon on the top right corner of *my_metric* graph, I can select *Create Monitor*.
+- I define the monitor following the guidelines (R16) on each process step as follows:
+1. Detection method: Threshold Alert
+2. Metric: avg: my_metric{host:Albertos-MBP.home}
+3. Alert conditions: I enter the values required (800/500) for each threshold and select Notify for the option *if data is missing for more than*.
+4. Notification template: I write the following notication template following the documentation guidelines (R17):
+@acarrerasc@gmail.com 
+*Host {{host.ip}}.*
+*{{#is_alert}} Your metric is too high! The monitored average value for the last 5 minutes: {{value}} (Above {{threshold}}) {{value}}	{{/is_alert}}*
+*{{#is_warning}} Your metric is high! The monitored average value for last 5 minutes was:  {{value}} (Above {{warn_threshold}}) {{/is_warning}}*
+*{{#is_no_data}} There was No Data for Your metric over the past 10m. {{/is_no_data}}*
+5. I select my user from the user list.
 
 - [x] Please configure the monitor’s message so that it will:
 
@@ -196,8 +208,8 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 ![alt text](screenshots/downtime_notification.png)
 
 ***RESOURCES***
-https://docs.datadoghq.com/monitors/monitor_types/metric/
-https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
+- R16 Metric monitor documentation https://docs.datadoghq.com/monitors/monitor_types/metric/
+- R17 Notifications documentation https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
 
 ***
 
