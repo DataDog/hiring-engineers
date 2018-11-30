@@ -179,6 +179,7 @@ In our timeboard, I apply the anomaly function to the postgreSQL database on the
 - R15 Timeseries graphs https://www.datadoghq.com/blog/timeseries-metric-graphs-101/
 - R16 Anomaly monitor
  https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+
 ***
 
 ## Monitoring Data
@@ -285,6 +286,8 @@ An application may have different services, each of them consisting of a set of 
 https://docs.datadoghq.com/tracing/setup/ruby/#quickstart-for-rails-applications
 - R22 APM introduction documentation https://docs.datadoghq.com/tracing/visualization/
 - R23 APM article https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
+
+***
 
 ### Final Question
 **Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?**
