@@ -23,7 +23,7 @@ Your answers to the questions go here.
 
 - **Datadog agent GUI.** 
 - In order to access the agent's GUI, I run the following command in the terminal.\
-`$ datadog-agent launch-gui`\
+`$ datadog-agent launch-gui`
 - The GUI successfully opens on http://127.0.0.1:5002/\
 ![alt text](screenshots/GUI.png)
 
@@ -35,7 +35,7 @@ https://app.datadoghq.com/account/settings#agent/mac
 ## Collecting Metrics
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-- As detailed in documentation (R3), the configuration files and folders for the Agent are located in *~/.datadog-agent/datadog.yaml*
+- As detailed in documentation (R3), the configuration files and folders for the Agent are located in *~/.datadog-agent/datadog.yaml*.
 In order to access the Agent configuration files, I run\
 `$ vim ~/.datadog-agent/datadog.yaml` or 
 `$ sublime ~/.datadog-agent/datadog.yaml`
@@ -48,10 +48,10 @@ In order to access the Agent configuration files, I run\
 ![alt text](screenshots/tags_on_ui.png)
 
 - Then, I restart the agent following the Agent commands documentation (R6). In the terminal, I run the following stop/start commands.\
-`$ launchctl stop com.datadoghq.agent`
+`$ launchctl stop com.datadoghq.agent`\
 `$ launchctl start com.datadoghq.agent`
 
-- After restarting the agent, I checked the tags were showing on host map page.\
+- After restarting the agent, I check the tags are showing on the host map page.\
 ![alt text](screenshots/tags_on_host_map_page.png)
 ![alt text](screenshots/tags_on_host_map_page2.png)
 
@@ -98,13 +98,24 @@ https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agen
 
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- Created files 2 files, my_metric.py and my_metric.yaml. saved in /etc/dd-agent/checks.d and /etc/dd-agent/conf.d respectively.
-- Followed this directions: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+- In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders /etc/dd-agent/checks.d and /etc/dd-agent/conf.d respectively. I run the following commands:\
+`$ cd ~/.datadog-agent/checks.d/`\
+`$ touch my_metric.py`\
+`$ cd ~/.datadog-agent/conf.d/`\
+`$ touch my_metric.yaml`\
+
+Code *my_metric.py* file:\
 ![alt text](screenshots/my_metrics_py_file.png)
 
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Code *my_metric.yaml* file:\
 ![alt text](screenshots/my_metrics_yaml_collection_interval_45.png)
+
+- The Metric is now accessible in the UI *Metrics >> Explorer* selecting `my_metric` in the field *Graph*. https://app.datadoghq.com/metric/explorer
 ![alt text](screenshots/my_metrics_graph.png)
+
+***RESOURCES***
+- R11 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
 ### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
@@ -117,10 +128,14 @@ Can you change the collection interval without modifying the Python check file y
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 NOTE: Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-- I created Ruby app with datadog gem (gem "dogapi").
-- After bundle install, I wrote the script for creating a Timeboard with 3 graphs. 
-- Went to https://app.datadoghq.com/account/settings#api and created an Application key. The API key was already created. Added the keys to the script.
-- After executing the script ($ruby run.rb) the terminal printed the response. The timeboard was available in the UI "Dashboard >> Dashboard list".
+- I created Ruby app (ruby-datadog-api-script) and added the Datadog gem to its Gemfile (gem "dogapi").
+- After running `$ bundle install` to install the dependencies, I write the script for creating a Timeboard with 3 graphs.
+- The script requires an API and an App Key which can be found in https://app.datadoghq.com/account/settings#api. The API key exists but I create an application key. Added the keys to the script.
+- After executing the script by running `$ ruby run.rb` in the terminal, the terminal prompts Datadog's API response. 
+![alt text](screenshots/response_from_api.png)
+- The timeboard is now available in the UI "Dashboard >> Dashboard list". https://app.datadoghq.com/dashboard. 
+- To access it, select it by its name *Test timeboard*\ 
+![alt text](screenshots/timeboard_from_api.png)
 
 - [x] Once this is created, access the Dashboard from your Dashboard List in the UI:
 1. Set the Timeboard's timeframe to the past 5 minutes
