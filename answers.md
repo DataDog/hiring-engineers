@@ -202,6 +202,7 @@ What is the Anomaly graph displaying?
 3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 4. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ![alt text](screenshots/monitor_warn_notification.png)
+![alt text](screenshots/monitor_warn_notification2.png)
 
 ### Bonus Question
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
@@ -225,7 +226,9 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 
-- First, I install the Datadog's macOS Trace Agent following the documentation. 
+- **Trace Agent installation and setup**
+- First, I install the Datadog's macOS Trace Agent following the documentation (R19).
+- I run into some issues with the latest OSX Trace Agent release, so I follow the Development alternative. 
 - I download and install Go.
 - I install macOS Trace Agent running the following code in the terminal:\
 `$ go get -u github.com/DataDog/datadog-trace-agent/...`
@@ -233,13 +236,15 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 `$ make install`
 - Then within the folder *bin*, I run\
 `$./trace-agent -config /opt/datadog-agent/etc/datadog.yaml`
-- I configure the *datadog.yaml* main configuration file enabling trace collection. i access the file and uncomment lines 628 & 630 (`apm_config:
+- I configure the *datadog.yaml* main configuration file enabling trace collection. 
+- I access the file and uncomment lines 628 & 630 (`apm_config:
   enabled: true`)\
 `$ sublime ~/.datadog-agent/datadog.yaml`
 
-- In order to instrument an application, I first create a Rails app without database or test framework.\
+- **Application instrumentation**
+- In order to instrument an application, I first create a Rails app without database or test framework (folder *hiring-engineers/instrumented-app*).
 `$ rails new instrumented-app -T --skip-active-record`
-- In Gemfile, I add `gem 'ddtrace'` and run `$ bundle install`
+- In Gemfile, I add `gem 'ddtrace'` and run `$ bundle install` to install the dependencies.
 - I create a new file within the *config/initializers* folder 
 `$ cd config/initializers/`
 `$ touch datadog-tracer.rb`
@@ -247,13 +252,11 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 `$ sublime datadog-tracer.rb`
 Code *datadog-tracer.rb* file:\
 
-Datadog.configure do |c|
-    c.use :rails, service_name: 'my-rails-app'
-end
+`Datadog.configure do |c|`
+    `c.use :rails, service_name: 'my-rails-app'`
+`end`
 
 - I restart the agent and the application metrics now show up in 
-
-from https://app.datadoghq.com/apm/install#
 
 ### Bonus Question
 What is the difference between a Service and a Resource?
@@ -261,10 +264,14 @@ What is the difference between a Service and a Resource?
 https://docs.datadoghq.com/tracing/visualization/
 
 ***RESOURCES***
+from https://app.datadoghq.com/apm/install#
+- R19 Datadog APM agent documentation https://github.com/DataDog/datadog-trace-agent
+- R20 Latest APM agent release https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
+
+
 https://docs.datadoghq.com/tracing/setup/?tab=agent630
 https://docs.datadoghq.com/tracing/setup/ruby/
 git 
-https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
 
 ### Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
