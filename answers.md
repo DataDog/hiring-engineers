@@ -7,7 +7,7 @@ Your answers to the questions go here.
 - [x] Get the Agent reporting metrics from your local machine.
 - In order to get the Datadog Agent reporting metrics from my local machine, I first install the Agent directly in my local machine (macOS) without VB or containers. 
 
-<hr>
+***
 
 - **Datadog Agent installation.**
 - After selecting macOS as the platform for installation (R1), I follow the installation instructions (R2). On my terminal, I run the following command which includes my Datadog API key.
@@ -34,7 +34,7 @@ Your answers to the questions go here.
 - R2 Datadog Agent Installing on macOS documentation: 
 https://app.datadoghq.com/account/settings#agent/mac
 
-<hr>
+***
 
 ## Collecting Metrics
 - [x] Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -135,7 +135,7 @@ https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agen
 ### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
 
-<hr>
+***
 
 ## Visualizing Data
 
@@ -173,7 +173,7 @@ https://docs.datadoghq.com/api/?lang=ruby#create-a-timeboard
 https://docs.datadoghq.com/graphing/
 https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Datadog-APIs
 
-<hr>
+***
 
 ## Monitoring Data
 - [x] Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -199,7 +199,7 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 https://docs.datadoghq.com/monitors/monitor_types/metric/
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
 
-<hr>
+***
 
 ## Collecting APM Data
 - [x] Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
