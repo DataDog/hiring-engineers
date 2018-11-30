@@ -205,11 +205,17 @@ What is the Anomaly graph displaying?
 
 ### Bonus Question
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+- On the *Edit* page for the monitor, I click on the upper tab *Manage Downtime* and schedule 2 different downtimes following documentation (R18).
+![alt text](screenshots/downtime_edit_week.png)
+![alt text](screenshots/downtime_edit_weekend.png)
+
+- I receive notifications for both scheduled downtimes.
 ![alt text](screenshots/downtime_notification.png)
 
 ***RESOURCES***
 - R16 Metric monitor documentation https://docs.datadoghq.com/monitors/monitor_types/metric/
 - R17 Notifications documentation https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
+- R18 Downtime documentation https://docs.datadoghq.com/monitors/downtimes/
 
 ***
 
