@@ -132,11 +132,6 @@ https://docs.datadoghq.com/integrations/postgres/
 https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-configuration-directory
 - R11 Custom Agent check documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
-### Bonus Question
-Can you change the collection interval without modifying the Python check file you created?\
-**Answer**\
-
-
 ***
 
 ## Visualizing Data
