@@ -92,7 +92,7 @@ Successfully added user: {
 vagrant@ubuntu-xenial:~$ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
 > echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 datadog user - OK
-
+```
 
 
 
