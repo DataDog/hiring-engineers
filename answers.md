@@ -218,7 +218,7 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 
 - I receive notifications for both scheduled downtimes.
 ![alt text](screenshots/downtime_notification.png)
-![alt text](screenshots/monitor_downtime_notification2.png)
+![alt text](screenshots/monitor_downtime_notification_week.png)
 
 
 ***RESOURCES***
