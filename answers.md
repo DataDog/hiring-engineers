@@ -64,6 +64,37 @@ tags:
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+```
+>use admin
+switched to db admin
+
+>db.createUser({"user":"datadog", "pwd": "LJjrd2A9Sdf5LVodMIUmabHe", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
+Successfully added user: {
+	"user" : "datadog",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "admin"
+		},
+		{
+			"role" : "clusterMonitor",
+			"db" : "admin"
+		},
+		{
+			"role" : "read",
+			"db" : "local"
+		}
+	]
+}
+```
+
+```
+vagrant@ubuntu-xenial:~$ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
+> echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
+datadog user - OK
+
+
+
 
 
 
