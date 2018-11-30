@@ -204,7 +204,6 @@ What is the Anomaly graph displaying?
 3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 4. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ![alt text](screenshots/monitor_warn_notification.png)
-![alt text](screenshots/monitor_warn_notification2.png)
 
 ### Bonus Question
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
@@ -214,6 +213,8 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 
 - I receive notifications for both scheduled downtimes.
 ![alt text](screenshots/downtime_notification.png)
+![alt text](screenshots/downtime_notification2.png)
+
 
 ***RESOURCES***
 - R16 Metric monitor documentation https://docs.datadoghq.com/monitors/monitor_types/metric/
@@ -232,7 +233,7 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 - First, I install the Datadog's macOS Trace Agent following the documentation (R19).
 - I run into some issues with the latest OSX Trace Agent release, so I follow the Development alternative. 
 - I download and install Go.
-- I install macOS Trace Agent running the following code in the terminal:\
+- I install macOS Trace Agent running the following code in the terminal.\
 `$ go get -u github.com/DataDog/datadog-trace-agent/...`
 - Then within the newly created folder *src/github.com/DataDog/datadog-trace-agent*, I run\
 `$ make install`
@@ -244,21 +245,29 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 `$ sublime ~/.datadog-agent/datadog.yaml`
 
 - **Application instrumentation**
-- In order to instrument an application, I first create a Rails app without database or test framework (folder *hiring-engineers/instrumented-app*).
+- In order to instrument an application, I first create a Rails app without database or test framework (folder *hiring-engineers/instrumented-app*).\
 `$ rails new instrumented-app -T --skip-active-record`
 - In Gemfile, I add `gem 'ddtrace'` and run `$ bundle install` to install the dependencies.
-- I create a new file within the *config/initializers* folder 
-`$ cd config/initializers/`
+- I create a new file within the *config/initializers* folder \
+`$ cd config/initializers/`\
 `$ touch datadog-tracer.rb`
-- I add the basic configuration code to the new configuration file.
-`$ sublime datadog-tracer.rb`
+- I add the basic configuration code to the new configuration file.\
+`$ sublime datadog-tracer.rb` \
 Code *datadog-tracer.rb* file:\
-
-`Datadog.configure do |c|`
-    `c.use :rails, service_name: 'my-rails-app'`
+`Datadog.configure do |c|`\
+    `c.use :rails, service_name: 'my-rails-app'`\
 `end`
+- I write routes and controllers to reproduce the Flask app given (folder *hiring-engineers/instrumented-app*). I start the app server running in the terminal `$ rails server`
+- I restart the agent and the application metrics are now accessible in the UI (*APM >> Services* selecting `my-rails-app`). https://app.datadoghq.com/apm/services
+![alt text](screenshots/services_list.png)
+![alt text](screenshots/my_rails_app_services.png)
 
-- I restart the agent and the application metrics now show up in 
+- **Dashboard with both APM and Infrastructure Metrics**
+- I create a new shareable dashboard ((*Dashboard >> New Dashboard >> Screenboard)
+- The open url: https://p.datadoghq.com/sb/cb5a9291f-093662e91fa4007a91c1ea4bf7a12bbe) 
+![alt text](screenshots/screenboard.png)
+
+
 
 ### Bonus Question
 What is the difference between a Service and a Resource?
