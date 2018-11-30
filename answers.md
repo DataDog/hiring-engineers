@@ -123,8 +123,7 @@ sudo datadog-agent status
 ```
 init_config:
 
-instances:
-  - min_collection_interval: 30
+instances: [{}]
 ```
 
 ```
@@ -145,7 +144,7 @@ __version__ = "1.0.0"
 
 class CustomCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('hello.world', random.randint(0,1000))
+        self.gauge('mycheck', random.randint(0,1000))
 ```
 
 ```
@@ -155,11 +154,11 @@ sudo -u dd-agent -- datadog-agent check custom
 {
   "series": [
     {
-      "metric": "hello.world",
+      "metric": "mycheck",
       "points": [
         [
-          1543621193,
-          263
+          1543621885,
+          193
         ]
       ],
       "tags": null,
@@ -179,13 +178,15 @@ Collector
     
     custom (1.0.0)
     --------------
-        Instance ID: custom:5bbfe9f3938f1c8d [OK]
+        Instance ID: custom:d884b5186b651429 [OK]
         Total Runs: 1
         Metric Samples: 1, Total: 1
         Events: 0, Total: 0
         Service Checks: 0, Total: 0
         Average Execution Time : 0s
         
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
 ```
 
 
