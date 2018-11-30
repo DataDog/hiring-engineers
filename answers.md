@@ -79,9 +79,9 @@ which prompts *Postgres connection - OK* in the message.
 - In order to activate it, I change the file name from *conf.yaml.example* to *conf.yaml*
 - Then, I open it \
 `$ vim conf.yaml` \
-and added tags to the file
+and add tags to the file
 *tags: database:postgresql*
-- I restart the Agent as before. 
+- I restart the Agent as described before. 
 - Then, I check the agent status in the terminal `$ datadog-agent status`. Now, under *Running checks*, there is also PostgreSQL. Postgres also shows on host map page.
 
 ***RESOURCES***
@@ -98,21 +98,31 @@ https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agen
 
 - [x] Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders /etc/dd-agent/checks.d and /etc/dd-agent/conf.d respectively. I run the following commands:\
+- In order to create a custom agent check, I follow the documentation (R11) and create 2 files *my_metric.py* and *my_metric.yaml* inside the following folders */etc/dd-agent/checks.d* and */etc/dd-agent/conf.d* respectively.\
+I run the following commands:\
 `$ cd ~/.datadog-agent/checks.d/`\
 `$ touch my_metric.py`\
 `$ cd ~/.datadog-agent/conf.d/`\
 `$ touch my_metric.yaml`\
 
+- I check that Python is already installed running the following commands in terminal\
+`$ python --version` \ 
+which prompts *Python 2.7.10*
+
+- I edit the agent check file as follows:
+`$ sublime my_metric.py`\ 
 Code *my_metric.py* file:\
 ![alt text](screenshots/my_metrics_py_file.png)
 
 - [x] Change your check's collection interval so that it only submits the metric once every 45 seconds.
+- I edit the agent check file as follows:
+`$ vim my_metric.yaml`\ 
 Code *my_metric.yaml* file:\
 ![alt text](screenshots/my_metrics_yaml_collection_interval_45.png)
 
 - The Metric is now accessible in the UI *Metrics >> Explorer* selecting `my_metric` in the field *Graph*. https://app.datadoghq.com/metric/explorer
 ![alt text](screenshots/my_metrics_graph.png)
+![alt text](screenshots/my_metrics_explore_ui.png)
 
 ***RESOURCES***
 - R11 Datadog Agent Usage on macOS documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
@@ -128,18 +138,24 @@ Can you change the collection interval without modifying the Python check file y
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 NOTE: Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-- I created Ruby app (ruby-datadog-api-script) and added the Datadog gem to its Gemfile (gem "dogapi").
+- I create a Ruby app (folder *hiring-engineers/ruby-datadog-api-script*) and add the Datadog gem to its Gemfile (gem "dogapi").
 - After running `$ bundle install` to install the dependencies, I write the script for creating a Timeboard with 3 graphs.
 - The script requires an API and an App Key which can be found in https://app.datadoghq.com/account/settings#api. The API key exists but I create an application key. Added the keys to the script.
 - After executing the script by running `$ ruby run.rb` in the terminal, the terminal prompts Datadog's API response. 
 ![alt text](screenshots/response_from_api.png)
 - The timeboard is now available in the UI "Dashboard >> Dashboard list". https://app.datadoghq.com/dashboard. 
-- To access it, select it by its name *Test timeboard*\ 
+- To access it, select it by its name *Test timeboard*
 ![alt text](screenshots/timeboard_from_api.png)
 
 - [x] Once this is created, access the Dashboard from your Dashboard List in the UI:
-1. Set the Timeboard's timeframe to the past 5 minutes
+1. Set the Timeboard's timeframe to the past 5 minutes.
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+- From the Timeboard UI, I follow the next steps to email a 5-minute timeframe of any pf my custom metrics:\
+![alt text](screenshots/selector_time_range.png)
+![alt text](screenshots/screenshot.png)
+![alt text](screenshots/@notation.png)
+![alt text](screenshots/5_min_snapshot_shared_email.png)
 
 ### Bonus Question
 What is the Anomaly graph displaying?
@@ -156,9 +172,7 @@ https://help.datadoghq.com/hc/en-us/articles/115002182863-Using-Postman-With-Dat
 2. Alerting threshold of 800
 3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-***RESOURCES***
-https://docs.datadoghq.com/monitors/monitor_types/metric/
-https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
+- Clicking on the Gear icon on the top right corner of my_metric graph, I can select *Create Monitor*.
 
 - [x] Please configure the monitor’s message so that it will:
 
@@ -166,12 +180,15 @@ https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variab
 2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 4. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![alt text](screenshots/monitor_warn_notification.png)
 
 ### Bonus Question
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+![alt text](screenshots/downtime_notification.png)
 
-- Detail step by step how to adjust timeboards.
-- Detail step by step how to create and customize metric monitors.
+***RESOURCES***
+https://docs.datadoghq.com/monitors/monitor_types/metric/
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
 
 ## Collecting APM Data
 - [x] Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution. 
@@ -179,45 +196,35 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 
-- Installed the Datadog's macOS Trace Agent: 
-- Downloaded and installed Go.
-- Installed running:
-$go get -u github.com/DataDog/datadog-trace-agent/...
-- Then within the newly created folder src/github.com/DataDog/datadog-trace-agent, run
-$make install
-- Then within the  folder bin, run
-$./trace-agent -config /opt/datadog-agent/etc/datadog.yaml
-- Configured datadog.yaml main configuration file enabling trace collection:
-$ sublime ~/.datadog-agent/datadog.yaml
-or
-$ vim ~/.datadog-agent/datadog.yaml
-(line 628 & 630)
-Uncommented:
- apm_config:
-  enabled: true
+- First, I install the Datadog's macOS Trace Agent following the documentation. 
+- I download and install Go.
+- I install macOS Trace Agent running the following code in the terminal:\
+`$ go get -u github.com/DataDog/datadog-trace-agent/...`
+- Then within the newly created folder *src/github.com/DataDog/datadog-trace-agent*, I run\
+`$ make install`
+- Then within the folder *bin*, I run\
+`$./trace-agent -config /opt/datadog-agent/etc/datadog.yaml`
+- I configure the *datadog.yaml* main configuration file enabling trace collection. i access the file and uncomment lines 628 & 630 (`apm_config:
+  enabled: true`)\
+`$ sublime ~/.datadog-agent/datadog.yaml`
 
-Enable trace collection for the Datadog Agent
-Configure your environment
-Instrument your application:
-- Created Rails app without database or test framework. $ rails new instrumented-app -T --skip-active-record
-- In Gemfile, added:
-gem 'ddtrace'
-- Run $bundle install
-
-from https://docs.datadoghq.com/tracing/setup/ruby/
-- Created new file: config/initializers/datadog.rb and added basic configuration code.
-Datadog.configure do |c|
-  c.use :rails
-end
-
-
-from https://app.datadoghq.com/apm/install#
-- Created new file: config/initializers/datadog-tracer.rb and added basic configuration code.
+- In order to instrument an application, I first create a Rails app without database or test framework.\
+`$ rails new instrumented-app -T --skip-active-record`
+- In Gemfile, I add `gem 'ddtrace'` and run `$ bundle install`
+- I create a new file within the *config/initializers* folder 
+`$ cd config/initializers/`
+`$ touch datadog-tracer.rb`
+- I add the basic configuration code to the new configuration file.
+`$ sublime datadog-tracer.rb`
+Code *datadog-tracer.rb* file:\
 
 Datadog.configure do |c|
     c.use :rails, service_name: 'my-rails-app'
 end
 
+- I restart the agent and the application metrics now show up in 
+
+from https://app.datadoghq.com/apm/install#
 
 ### Bonus Question
 What is the difference between a Service and a Resource?
