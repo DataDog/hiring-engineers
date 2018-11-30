@@ -229,9 +229,9 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 1. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 2. Please include your fully instrumented app in your submission, as well.
 
-- **Trace Agent installation and setup**
-- First, I install the Datadog's macOS Trace Agent following the documentation (R19).
-- I run into some issues with the latest OSX Trace Agent release, so I follow the Development alternative. 
+- **Trace Agent installation and configuration**
+- First, I install the Datadog's macOS Trace Agent following the documentation for macOS (R18, R19).
+- I run into some issues with the latest OSX Trace Agent release, so I follow the Development alternative (R19). 
 - I download and install Go.
 - I install macOS Trace Agent running the following code in the terminal.\
 `$ go get -u github.com/DataDog/datadog-trace-agent/...`
@@ -239,13 +239,13 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
 `$ make install`
 - Then within the folder *bin*, I run\
 `$./trace-agent -config /opt/datadog-agent/etc/datadog.yaml`
-- I configure the *datadog.yaml* main configuration file enabling trace collection. 
+- I configure the *datadog.yaml* main configuration file enabling trace collection according to guidelines (R18): 
 - I access the file and uncomment lines 628 & 630 (`apm_config:
   enabled: true`)\
 `$ sublime ~/.datadog-agent/datadog.yaml`
 
 - **Application instrumentation**
-- In order to instrument an application, I first create a Rails app without database or test framework (folder *hiring-engineers/instrumented-app*).\
+- In order to instrument an application, I first create a Rails app without database or test framework (folder *hiring-engineers/instrumented-app*) and I instrument the Rails application based on documentation (, R21)\
 `$ rails new instrumented-app -T --skip-active-record`
 - In Gemfile, I add `gem 'ddtrace'` and run `$ bundle install` to install the dependencies.
 - I create a new file within the *config/initializers* folder \
@@ -267,23 +267,21 @@ Code *datadog-tracer.rb* file:\
 - The open url: https://p.datadoghq.com/sb/cb5a9291f-093662e91fa4007a91c1ea4bf7a12bbe) 
 ![alt text](screenshots/screenboard.png)
 
-
-
 ### Bonus Question
-What is the difference between a Service and a Resource?
+What is the difference between a Service and a Resource? 
 **Answer**
-https://docs.datadoghq.com/tracing/visualization/
+(R22, R23) Datadog API provides metrics from your instrumented application at different levels. Two of them are services and resources. 
+An application may have different services, each of them consisting of a set of processes that work together to perform a specific job or feature set.  Basic applications might consist of a webapp service and a database service. On the other hand, resources are the queries to those services. For instance, in our basic Rails app, the following URL *http://localhost:3000/api/trace* contains the resource */api/trace*. For databases, SQL queries would be resources of the database service. 
 
 ***RESOURCES***
 from https://app.datadoghq.com/apm/install#
+- R18 APM Setup documentation https://docs.datadoghq.com/tracing/setup/?tab=agent630
 - R19 Datadog APM agent documentation https://github.com/DataDog/datadog-trace-agent
 - R20 Latest APM agent release https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0
-
-
-https://docs.datadoghq.com/tracing/setup/?tab=agent630
-https://docs.datadoghq.com/tracing/setup/ruby/
-git 
-
+- R21 Tracing Rails applications 
+https://docs.datadoghq.com/tracing/setup/ruby/#quickstart-for-rails-applications
+- R22 APM introduction documentation https://docs.datadoghq.com/tracing/visualization/
+- R23 APM article https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 ### Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
