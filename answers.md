@@ -29,7 +29,7 @@ dog-agent/master/cmd/agent/install_script.sh)"
 ##### Expected Outcome: Events Page
 ###### [https://app.datadoghq.com/event/stream](https://app.datadoghq.com/event/stream)
 &NewLine;
-![Events Page](https://i.imgur.com/kYjincp.png)
+![Events Page](/screenshots/1_events_page_outcome.png)
 
 ## Collecting Metrics:
 
@@ -46,7 +46,7 @@ tags:
 ##### Expected Outcome: Host Map Page
 ###### [https://app.datadoghq.com/infrastructure/map](https://app.datadoghq.com/infrastructure/map)
 &NewLine;
-![Host Map Page](https://i.imgur.com/On9JkVy.png)
+![Host Map Page](/screenshots/5_host_map_page.png)
 * Install a database on your machine (~~MongoDB~~, MySQL, ~~or PostgreSQL~~) and then install the respective Datadog integration for that database.
 ```bash
 # install mysql-server !-- password: ‘123’ --!
@@ -119,11 +119,11 @@ Collector
 
 ##### Expected Outcome: MySQL Integrations Page
 ###### [https://app.datadoghq.com/account/settings#integrations/mysql](https://app.datadoghq.com/account/settings#integrations/mysql)
-![MySQL Integrations Page](https://i.imgur.com/6i8f60w.png)
+![MySQL Integrations Page](/screenshots/2_mysql_integrations_page.png)
 
 ##### Expected Outcome: MySQL Overview Page
 ###### [https://app.datadoghq.com/dash/integration/12/mysql---overview](https://app.datadoghq.com/dash/integration/12/mysql---overview)
-![MySQL Overview Page](https://i.imgur.com/bCbL9A2.png)
+![MySQL Overview Page](/screenshots/3_mysql_overview_page.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ```bash
@@ -166,7 +166,7 @@ instances:
 ##### Expected Outcome: Metrics Explorer Page
 ###### [https://app.datadoghq.com/metric/explorer](https://app.datadoghq.com/metric/explorer)
 &NewLine;
-![Metrics Explorer Page](https://i.imgur.com/jHNSJ04.png)
+![Metrics Explorer Page](/screenshots/4_metrics_explorer_page.png)
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
@@ -235,49 +235,49 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 ```
 &NewLine;
 ##### Postman Setup:
-![Postman Setup](https://i.imgur.com/P97i0kr.png)
+![Postman Setup](/screenshots/6a_my_timeboard_postman_setup.png)
 
 #### Postman Screenshot:
-![Postman Screenshot](https://i.imgur.com/JPihIlQ.png)
+![Postman Screenshot](/screenshots/6b_my_timeboard_postman.png)
 
 ##### Expected Outcome: Dashboard List Page
 ###### [https://app.datadoghq.com/dashboard/lists](https://app.datadoghq.com/dashboard/lists)
 &NewLine;
-![Dashboard List Page](https://i.imgur.com/Y07FuU5.png)
+![Dashboard List Page](/screenshots/6_dahsboard_list_page.png)
 
 ##### Expected Outcome: My Timeboard Page (Show: The Past Hour)
 ###### [https://app.datadoghq.com/dash/1006369/my-timeboard](https://app.datadoghq.com/dash/1006369/my-timeboard)
 &NewLine;
-![My Timeboard Page](https://i.imgur.com/vF0t9h5.png)
+![My Timeboard Page](/screenshots/7_my_timeboard_page_past_hour.png)
 
 ##### Expected Outcome: My Timeboard Page (Show: The Past 2 Days)
 ###### [https://app.datadoghq.com/dash/1006369/my-timeboard](https://app.datadoghq.com/dash/1006369/my-timeboard)
 &NewLine;
-![My Timeboard Page](https://i.imgur.com/B1eohzv.png)
+![My Timeboard Page](/screenshots/7_my_timeboard_page.png)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 &NewLine;
-![My Timeboard - Past 5 Minutes](https://i.imgur.com/QvpPIqT.png)
+![My Timeboard - Past 5 Minutes](/screenshots/8_my_timeboard_5_mins.png)
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 ##### My Timeboard: My Metric Graph Snapshot with Recipient and Corresponding Email Notification:
 &NewLine;
-![My Metric Graph Snapshot with Recipient](https://i.imgur.com/qEvukLk.png)
+![My Metric Graph Snapshot with Recipient](/screenshots/9_snapshot_my_metric.png)
 &NewLine;
-![My Metric Graph Snapshot Email Notification](https://i.imgur.com/Mo28jvl.png)
+![My Metric Graph Snapshot Email Notification](/screenshots/9a_email_snapshot_my_metric.png)
 &NewLine;
 ##### My Timeboard: Anomalized MySQL Queries Graph Snapshot with Recipient and Corresponding Email Notification:
 &NewLine;
-![Anomalized MySQL Queries Graph Snapshot with Recipient](https://i.imgur.com/9DaO8zB.png)
+![Anomalized MySQL Queries Graph Snapshot with Recipient](/screenshots/10_snapshot_anomalized_mysql_queries.png)
 &NewLine;
-![Anomalized MySQL Queries Graph Snapshot Email Notification](https://i.imgur.com/806dtpF.png)
+![Anomalized MySQL Queries Graph Snapshot Email Notification](/screenshots/10a_email_snapshot_anomalized_mysql_queries.png)
 &NewLine;
 ##### My Timeboard: Custom Metric with Rollup Function Graph Snapshot with Recipient and Corresponding Email Notification:
 &NewLine;
-![Custom Metric with Rollup Function Graph Snapshot with Recipient](https://i.imgur.com/48HyEzM.png)
+![Custom Metric with Rollup Function Graph Snapshot with Recipient](/screenshots/11_snapshot_custom_metric_with_rollup_function.png)
 &NewLine;
-![Custom Metric with Rollup Function Graph Snapshot Email Notification](https://i.imgur.com/MRSLSP1.png)
+![Custom Metric with Rollup Function Graph Snapshot Email Notification](/screenshots/11a_email_snapshot_custom_metric_with_rollup_function.png)
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
@@ -290,7 +290,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 &NewLine;
-![New Metric Monitor](https://i.imgur.com/diUdGS7.png)
+![New Metric Monitor](/screenshots/12_my_metric_monitor_threshold.png)
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
@@ -315,10 +315,10 @@ There has been no data for my_metric over the past 10 minutes.
 {{/is_no_data}}  @g.a.salamat@gmail.com
 ```
 ##### My Metric Monitor Messages and Notification
-![My Metric Monitor Messages and Notification](https://i.imgur.com/FLTZAjo.png)
+![My Metric Monitor Messages and Notification](/screenshots/14_my_metric_monitor_email_messages.png)
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 &NewLine;
-![My Metric Monitor Email Notification](https://i.imgur.com/HBLaLcd.png)
+![My Metric Monitor Email Notification](/screenshots/13_my_metric_monitor_warn_email.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -422,29 +422,29 @@ if __name__ == '__main__':
 ```
 
 ##### Screenshot of 2 Vagrant Sessions:
-![Screenshot of 2 Vagrant Sessions](https://i.imgur.com/NUKekO2.png)
+![Screenshot of 2 Vagrant Sessions](/screenshots/19_terminal_vagrant_sessions.png)
 
 ##### Expected Outcome: APM Services Page
 ###### [https://app.datadoghq.com/apm/services](https://app.datadoghq.com/apm/services)
 &NewLine;
-![APM Services Page](https://i.imgur.com/ofHzunc.png)
+![APM Services Page](/screenshots/15_apm_services_page.png)
 
 ##### Expected Outcome: APM Services: Flask Page
 ###### [https://app.datadoghq.com/apm/service/flask/flask.request](https://app.datadoghq.com/apm/service/flask/flask.request)
 &NewLine;
-![APM Services: Flask Page](https://i.imgur.com/FHoE3Kw.png)
+![APM Services: Flask Page](/screenshots/16_apm_services_flask_page.png)
 
 ##### Expected Outcome: APM Trace List Page
 ###### [https://app.datadoghq.com/apm/traces](https://app.datadoghq.com/apm/traces)
 &NewLine;
-![APM Trace List Page](https://i.imgur.com/HXsFwSf.png)
+![APM Trace List Page](/screenshots/17_apm_trace_list.png)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ##### Dashboard with APM and Infrastructure Metrics
 &NewLine;
-![Dashboard with APM and Infrastructure Metrics](https://i.imgur.com/4pMRKvC.png)
+![Dashboard with APM and Infrastructure Metrics](/screenshots/18_dashboard_apm_infrastructure_metrics.png)
 
 Please include your fully instrumented app in your submission, as well.
 
