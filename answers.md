@@ -125,27 +125,20 @@ instances:
   tags:
     - database:mongodb
     - project:technical_test
-
 ```
 And restart the agent
+
 ```
 sudo systemctl stop datadog-agent
 sudo systemctl start datadog-agent
+```
 
-
+We can check that the integration is running correctly:
 
 ```
 sudo datadog-agent status
-
-    mongo (1.6.1)
-    -------------
-        Instance ID: mongo:3c8b62da17e7016e [OK]
-        Total Runs: 48
-        Metric Samples: 121, Total: 5,808
-        Events: 0, Total: 0
-        Service Checks: 1, Total: 48
-        Average Execution Time : 204ms
 ```
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Mongo Check.png?raw=true">
 
 
 
