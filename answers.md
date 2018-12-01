@@ -185,7 +185,7 @@ instances:
 
 Automatically we will have the custom check available for the agent, as we can se at the [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
 
-<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Custom Check.png?raw=true">
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Custom.png?raw=true">
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
