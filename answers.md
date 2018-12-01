@@ -7,6 +7,8 @@ Here is when Datadog comes to help, providing a flexible monitoring and analytic
 
 To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM running on Virtual Box using a Vagrant image. I already had a datadog trial account that was expired, and I requested to extend it in order to run the Challenge.
 
+## Installing the VM environment
+
 Added a box to vagrant:
 ```
 vagrant box add hashicorp-vagrant/ubuntu-16.04
