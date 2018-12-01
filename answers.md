@@ -56,7 +56,7 @@ We can see in the Datadog Host Map that we are already monitoring it.
 
 Datadog uses tags as a mechanism to filter, aggregate and compare metrics and infrastructure elements. Tagging is a very good mechanism to provide flexibility and multi-dimensioning to data.
 
-It is possible to add tags to the datadog agent in the config.yaml file:
+It is possible to add tags to the datadog agent in the datadog.yaml file:
 
 ```
 tags:
