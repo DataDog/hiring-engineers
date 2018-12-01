@@ -23,15 +23,16 @@ To start the environment we run the following command:
 ```
 vagrant up
 ```
-
+Now we have the environment up and running.
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Virtualbox.png?raw=true">
 
-
-
-*Image of Virtualbox and the VM Shell*
-
 ## Installing the agent
+
+Now we have to install the datadog agent into our VM to start monitoring it. It is really easy to do it, just need run the specific command for your OS:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Agent platform.png?raw=true">
+
 
 To install the Datadog agent into the Ubuntu server, is as easy as running from a shell the following command:
 
