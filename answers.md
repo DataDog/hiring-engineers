@@ -47,9 +47,6 @@ We can see in the Datadog Host Map that we are already monitoring it.
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map Initial.png?raw=true">
 
-
-
-
 # Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -133,12 +130,17 @@ sudo systemctl stop datadog-agent
 sudo systemctl start datadog-agent
 ```
 
-We can check that the integration is running correctly:
+Now we can check that the integration is running correctly
 
 ```
 sudo datadog-agent status
 ```
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Mongo Check.png?raw=true">
+
+Datadog will provide out of the box [dashboard for MongoDB](https://app.datadoghq.com/screen/integration/13/MongoDB%20-%20Overview?tpl_var_scope=host%3Avagrant&page=0&is_auto=false&from_ts=1543681380000&to_ts=1543684980000&live=true)
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Mongo Dashboard.png?raw=true">
+
 
 
 
