@@ -39,6 +39,15 @@ To install the Datadog agent into the Ubuntu server, is as easy as running from 
 ```
 DD_API_KEY=c7c0572c87dc9c1295865e5fb4246307 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+This is the answer to the command that confirm that the agent is running
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Agent Installed.png?raw=true">
+
+We can see in the Datadog Host Map that we are already monitoring it.
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map Initial.png?raw=true">
+
+
 
 
 ## Collecting Metrics:
