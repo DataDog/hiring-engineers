@@ -64,7 +64,7 @@ tags:
   - project:technical_test
   - region:spain
 ```
-We can see in the Host Map the new addesd tags to the agent:
+We can see in the Host Map the new added tags to the agent:
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Tags.png?raw=true">
 
