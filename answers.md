@@ -330,7 +330,7 @@ There has been no data for my_metric over the past 10 minutes.
   ![Downtime Sat-Sun Part2](/screenshots/21a_downtime_ss.png)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   ![Email Notification for Downtime M-F](/screenshots/20b_downtime_mf.png)
-  ![Email Notification for Downtime Sat-Sun](/screenshots/21b_downtime_mf.png)
+  ![Email Notification for Downtime Sat-Sun](/screenshots/21b_downtime_ss.png)
 
 ## Collecting APM Data:
 
