@@ -175,6 +175,7 @@ Now, let's confirm that the custom metric is correctly running at the agent
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+It is possible to adjust the collection interval for checks, just by changing the configuration file, in this case **myrandom.yaml**
 ```
 init_config:
 
@@ -182,7 +183,22 @@ instances:
   - min_collection_interval: 45
 ```
 
+Automatically we will have the custom check available for the agent, as we can se at the [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Custom Check.png?raw=true">
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+To change the collection interval there is no need to modify the script created, just need to modify the configuration file.
+
+
+
+
+
+
+
+
+
 
 ## Visualizing Data:
 
