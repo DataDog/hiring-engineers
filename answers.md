@@ -1,7 +1,5 @@
-Your answers to the questions go here.
-
 # Introduction
-
+Companies are changing the way they access and run application using modern architectures, moving to cloud environments, public, priveate or hybrid. These architectures provide great capabilities in term of scalability and flexibility, but it creates a big challenge to monitor such complex architectures with multiples layers and dependencies. Here is when Datadog comes to help, providing a flexible monitoring and analytics cloud platform, able to monitor and analyze traditional and modern applications
 
 
 
