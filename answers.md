@@ -25,6 +25,9 @@ vagrant up
 ```
 
 
+<img src="hiring-engineers/screenshots/Virtualbox.png" width="500" height="332">
+
+
 
 *Image of Virtualbox and the VM Shell*
 
