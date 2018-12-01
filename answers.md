@@ -264,19 +264,17 @@ Now we can access our [Dashboard](https://app.datadoghq.com/dash/1006937/vicente
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Custom Dashboard.png?raw=true">
 
-
-
-
-
-
-
-
-
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
 * Set the Timeboard's timeframe to the past 5 minutes
+
+It is possible to analyze in detail the metrics included into a dashboard by zooming in, selecting a shot period of time in one of the graphs:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Custom Dashboard 5min.png?raw=true">
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+
+
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
