@@ -9,16 +9,20 @@ To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM runnin
 
 ## Installing the VM environment
 
-Added a box to vagrant:
+First step is to add the box from vagrant catalog to the local vagrant app
 ```
 $ vagrant box add hashicorp-vagrant/ubuntu-16.04
 ```
-Here is the content of Vagrantfile:
+Then we have to modify the configuration fiile Vagrantfile
 ```
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp-vagrant/ubuntu-16.04"
 end
 ```
+To start the environment we run the following command:
+```
+vagrant up
+
 
 
 
