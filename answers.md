@@ -141,29 +141,23 @@ Datadog will provide out of the box [dashboard for MongoDB](https://app.datadogh
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Mongo Dashboard.png?raw=true">
 
-
-
-
-
-
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Datadog has integrations for most of the commercial software platforms in the market, but sometimes it is needed to monitor something that is so unique or home grown that needs to build a custom monitoring. Datadog provides the flexibility to be extended with custom checks to create new metrics.
+
+We need to create a configuration file for the custom check, in this case we will call it **myrandom.yaml**  
+
 ```
 init_config:
 
 instances: [{}]
 ```
 
+We need also to create the script that will run to provide the custom metric **myrandom.py**
 ```
 import random
 
-# the following try/except block will make the custom check compatible with any Agent ve
-rsion
-try:
-    # first, try to import the base class from old versions of the Agent...
-    from checks import AgentCheck
-except ImportError:
-    # ...if the above failed, the check is running in Agent version 6 or later
-    from datadog_checks.checks import AgentCheck
+from datadog_checks.checks import AgentCheck
 
 # content of the special variable __version__ will be shown in the Agent status page
 __version__ = "1.0.0"
@@ -171,54 +165,13 @@ __version__ = "1.0.0"
 
 class CustomCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('mycheck', random.randint(0,1000))
-```
+        self.gauge('custom.mycheck', random.randint(0,1000))
 
 ```
-sudo -u dd-agent -- datadog-agent check custom
 
-=== Series ===
-{
-  "series": [
-    {
-      "metric": "mycheck",
-      "points": [
-        [
-          1543621885,
-          193
-        ]
-      ],
-      "tags": null,
-      "host": "ubuntu-xenial",
-      "type": "gauge",
-      "interval": 0,
-      "source_type_name": "System"
-    }
-  ]
-}
-=========
-Collector
-=========
+Now, let's confirm that the custom metric is correctly running at the agent
 
-  Running Checks
-  ==============
-    
-    custom (1.0.0)
-    --------------
-        Instance ID: custom:d884b5186b651429 [OK]
-        Total Runs: 1
-        Metric Samples: 1, Total: 1
-        Events: 0, Total: 0
-        Service Checks: 0, Total: 0
-        Average Execution Time : 0s
-        
-
-Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
-```
-
-
-
-
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Custom Check Agent.png?raw=true">
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
