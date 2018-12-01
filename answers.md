@@ -37,7 +37,7 @@ Now we have to install the datadog agent into our VM to start monitoring it. It 
 To install the Datadog agent into the Ubuntu server, is as easy as running from a shell the following command:
 
 ```
-DD_API_KEY=$YOUR_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=c7c0572c87dc9c1295865e5fb4246307 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 
