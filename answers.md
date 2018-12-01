@@ -13,7 +13,7 @@ First step is to add the box from vagrant catalog to the local vagrant app
 ```
 $ vagrant box add hashicorp-vagrant/ubuntu-16.04
 ```
-Then we have to modify the configuration fiile Vagrantfile
+Then we have to modify the configuration fiile **Vagrantfile**
 ```
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp-vagrant/ubuntu-16.04"
@@ -56,7 +56,7 @@ We can see in the Datadog Host Map that we are already monitoring it.
 
 Datadog uses tags as a mechanism to filter, aggregate and compare metrics and infrastructure elements. Tagging is a very good mechanism to provide flexibility and multi-dimensioning to data.
 
-It is possible to add tags to the datadog agent in the datadog.yaml file:
+It is possible to add tags to the datadog agent in the **datadog.yaml** file:
 
 ```
 tags:
