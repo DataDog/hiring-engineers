@@ -116,17 +116,22 @@ $ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" | mongo admin | grep -E 
 > echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 datadog user - OK
 ```
-
-
-
+Now we edit the **mongodb.yaml** file to instruct the agent to integrate with MongoDB:
 
 ```
 instances:
-  - server: mongodb://datadog:LJjrd2A9Sdf5LVodMIUmabHe@localhost:27017
-    tags:
-      - mongo1
-      - mongo2
+  - server: mongodb://datadog:er1RKRdSi10Xoq0Mac64xhAu@localhost:27017
+
+  tags:
+    - database:mongodb
+    - project:technical_test
+
 ```
+And restart the agent
+```
+sudo systemctl stop datadog-agent
+sudo systemctl start datadog-agent
+
 
 
 ```
