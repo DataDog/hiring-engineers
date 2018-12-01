@@ -83,6 +83,9 @@ $ echo "mongodb-org-shell hold" | sudo dpkg --set-selections
 $ echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
 $ echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 ```
+Now we are going to install the datadog integration for MongoDB following the instruction at the datadog portal:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/MongoDB Integration.png?raw=true">
 
 
 
