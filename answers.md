@@ -22,7 +22,7 @@ end
 To start the environment we run the following command:
 ```
 vagrant up
-
+```
 
 
 
