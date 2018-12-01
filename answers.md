@@ -11,7 +11,7 @@ To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM runnin
 
 Added a box to vagrant:
 ```
-vagrant box add hashicorp-vagrant/ubuntu-16.04
+$ vagrant box add hashicorp-vagrant/ubuntu-16.04
 ```
 Here is the content of Vagrantfile:
 ```
