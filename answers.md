@@ -1,11 +1,16 @@
 # Introduction
 Companies are changing the way they access and run application using modern architectures, moving to cloud environments, public, priveate or hybrid. These architectures provide great capabilities in term of scalability and flexibility, but it creates a big challenge to monitor such complex architectures with multiples layers and dependencies. 
+
 Here is when Datadog comes to help, providing a flexible monitoring and analytics cloud platform, able to monitor and analyze traditional and modern application architectures, including cloud environments, containrers, servers, databases, etc. If something is not ready you can create it...
 
 # Prerequisites - Setup the environment
 
 To avoid any compatibility or dependency issues I used an Ubuntu 16.04 VM running on Virtual Box using a Vagrant image. I already had a datadog trial account that was expired, and I requested to extend it in order to run the Challenge.
 
+Added a box to vagrant:
+```
+vagrant box add hashicorp-vagrant/ubuntu-16.04
+```
 Here is the content of Vagrantfile:
 ```
 Vagrant.configure("2") do |config|
