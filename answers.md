@@ -272,20 +272,28 @@ It is possible to analyze in detail the metrics included into a dashboard by zoo
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+Datadog provides collaboration functions to make easy share metrics and analytics with your team to improve teamwork and time to resolution.
 
-
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Graph Snapshot.png?raw=true">
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-## Monitoring Data
+Datadog provides anomaly detection funtionality by comparing past data with current data to identify when metric is deviating from its normal behaviour. That functionality allows to prevent failures by anticipating when performance is degrading. 
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+# Monitoring Data
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+
+
+
+
+
+
 
 Please configure the monitor’s message so that it will:
 
