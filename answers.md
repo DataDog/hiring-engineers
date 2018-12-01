@@ -87,15 +87,11 @@ Now we are going to install the datadog integration for MongoDB following the in
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/MongoDB Integration.png?raw=true">
 
-
-
-
-
+We run the commands at the MongoDB shell to create a user for datadog:
 ```
->use admin
+> use admin
 switched to db admin
-
->db.createUser({"user":"datadog", "pwd": "LJjrd2A9Sdf5LVodMIUmabHe", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
+> db.createUser({"user":"datadog", "pwd": "er1RKRdSi10Xoq0Mac64xhAu", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 Successfully added user: {
 	"user" : "datadog",
 	"roles" : [
@@ -114,12 +110,16 @@ Successfully added user: {
 	]
 }
 ```
-
+To confirm that the user has been correctly created, we run the following:
 ```
-vagrant@ubuntu-xenial:~$ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
+$ echo "db.auth('datadog', 'LJjrd2A9Sdf5LVodMIUmabHe')" | mongo admin | grep -E "(Authentication failed)|(auth fails)" &&
 > echo -e "\033[0;31mdatadog user - Missing\033[0m" || echo -e "\033[0;32mdatadog user - OK\033[0m"
 datadog user - OK
 ```
+
+
+
+
 ```
 instances:
   - server: mongodb://datadog:LJjrd2A9Sdf5LVodMIUmabHe@localhost:27017
