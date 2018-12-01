@@ -25,7 +25,7 @@ vagrant up
 ```
 
 
-<img src="https://raw.githubusercontent.com/vlorente68/hiring-engineers/screenshots/Virtualbox.png" width="500" height="332">
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Virtualbox.png?raw=true" width="500" height="332">
 
 
 
