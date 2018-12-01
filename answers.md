@@ -194,6 +194,14 @@ Check has run only once, if some metrics are missing you can try again with --ch
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+```
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 ## Visualizing Data:
