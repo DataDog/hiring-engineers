@@ -43,7 +43,7 @@ This is the answer to the command that confirm that the agent is running
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Agent Installed.png?raw=true">
 
-We can see in the Datadog Host Map that we are already monitoring it.
+We can see in the [Datadog Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) that we are already monitoring it.
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map Initial.png?raw=true">
 
@@ -61,7 +61,7 @@ tags:
   - project:technical_test
   - region:spain
 ```
-We can see in the Host Map the new added tags to the agent:
+We can see in the [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) the new added tags to the agent:
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Tags.png?raw=true">
 
