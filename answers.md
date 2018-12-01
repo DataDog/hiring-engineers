@@ -191,16 +191,7 @@ Automatically we will have the custom check available for the agent, as we can s
 
 To change the collection interval there is no need to modify the script created, just need to modify the configuration file.
 
-
-
-
-
-
-
-
-
-
-## Visualizing Data:
+# Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -208,7 +199,79 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Datadog is an extremely flexible and open monitoring platform, it provides an API to easily integrate with any other external system and control programmaticaly all functionality included into the platform.
+
+We are going to use that API to create a new Timeboard, we will use a python script that call the API **timeseries.py**
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'c7c0572c87dc9c1295865e5fb4246307',
+    'app_key': 'b0ce75a211360b93300465f78abfc8ce82443c5d'
+}
+
+initialize(**options)
+
+title = "Vicente's Dashboard"
+description = "Dashboard created through the API"
+graphs = [
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:custom.mycheck{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Random Number"
+},
+{ 
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mongodb.uptime{*}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Anomalies for MongoDB"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:custom.mycheck{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Random number 1 hour rollup"
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+```
+Now we can access our [Dashboard](https://app.datadoghq.com/dash/1006937/vicentes-dashboard?live=true&page=0&is_auto=false&from_ts=1543678463245&to_ts=1543692863245&tile_size=m&tpl_var_host1=vagrant) from the Dashboard list:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Custom Dashboard.png?raw=true">
+
+
+
+
+
+
+
+
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
