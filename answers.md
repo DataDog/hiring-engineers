@@ -50,14 +50,19 @@ We can see in the Datadog Host Map that we are already monitoring it.
 
 
 
-## Collecting Metrics:
+# Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+Datadog uses tags as a mechanism to filter, aggregate and compare metrics and infrastructure elements. Tagging is a very good mechanism to provide flexibility and multi-dimensioning to data.
+
+It is possible to add tags to the datadog agent in the config.yaml file:
+
 ```
 tags:
   - owner:vicente
   - project:technical_test
-  - spain
+  - region:spain
 ```
 
 
