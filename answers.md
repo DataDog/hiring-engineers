@@ -8,7 +8,8 @@
 * Datadog Account - Linked to Google account, rayner.dalmeida@gmail.com.
 * Installed Ubuntu Datadog Agent using instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
 
-![Host Agent Installation](https://github.com/raynerdalmeida/hiring-engineers/blob/solutions-engineer/screenshots/host_agent_install.png)
+![Host Agent Installation](/screenshots/custom_agent_files.png "Host Agent Installation")
+
 
 
 ## Collecting Metrics:
