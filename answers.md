@@ -64,7 +64,9 @@ tags:
   - project:technical_test
   - region:spain
 ```
+We can see in the Host Map the new addesd tags to the agent:
 
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Host Map with Tags.png?raw=true">
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
