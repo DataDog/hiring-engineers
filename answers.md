@@ -248,7 +248,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 ##### Expected Outcome: My Timeboard Page (Show: The Past Hour)
 ###### [https://app.datadoghq.com/dash/1006369/my-timeboard](https://app.datadoghq.com/dash/1006369/my-timeboard)
 &NewLine;
-![My Timeboard Page](/screenshots/7_my_timeboard_page_past_hour.png)
+![My Timeboard Page](/screenshots/7a_my_timeboard_page_past_hour.png)
 
 ##### Expected Outcome: My Timeboard Page (Show: The Past 2 Days)
 ###### [https://app.datadoghq.com/dash/1006369/my-timeboard](https://app.datadoghq.com/dash/1006369/my-timeboard)
@@ -323,8 +323,14 @@ There has been no data for my_metric over the past 10 minutes.
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+  ![Downtime M-F Part1](/screenshots/20_downtime_mf.png)
+  ![Downtime M-F Part2](/screenshots/20a_downtime_mf.png)
   * And one that silences it all day on Sat-Sun.
+  ![Downtime Sat-Sun Part1](/screenshots/21_downtime_ss.png)
+  ![Downtime Sat-Sun Part2](/screenshots/21a_downtime_ss.png)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  ![Email Notification for Downtime M-F](/screenshots/20b_downtime_mf.png)
+  ![Email Notification for Downtime Sat-Sun](/screenshots/21b_downtime_mf.png)
 
 ## Collecting APM Data:
 
