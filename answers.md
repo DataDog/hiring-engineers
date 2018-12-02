@@ -460,4 +460,10 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+As soon as you can access to data series, even better if they are multi dimensional, you can make use of Datadog to gain insight and alert on specific conditions. Here we have some examples:
 
+* **Smart Cities:** Most of the big cities in the world are making restriction to traffic. For example, in Madrid traffic is restricted for private cars, except if you are going to a public parking. We could use the API provided by the local government to check real time status of parking utilization and could decide if going to the city center by car or public transportation. Even, it could be used as a public service for all citizens.
+* **Marketing Campaigns** Already exists software that is able to track marketing campaigns, but it could be interesting to put in the same dashboard the information coming from marketing about hits with the information from sales opportunities and from finance. Datadog could be used to gather data from many different systems and present that business data into a single dashboard.
+* **Personal Finance** The European Union launched the PSD2 directive, so all banks have to provide a public API with information about the bank accounts, balances, etc. We can connect to those APIs and get the balance of our accounts, that information can be published in a dashboard to keep track of personal finances including all different banks. Also, We can connect to any of the multiple data streams for the stock market and monitor the evolution of the stock portfolio, add that information to the personal finance dashboard and even get alerts when thresholds are reached to buy or sell stocks.
+
+Those are some uses cases, but as soon as you have access to data you can use Datadog advanced analytics and visualization to start getting more value out of that data. 
