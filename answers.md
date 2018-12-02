@@ -452,7 +452,7 @@ Please include your fully instrumented app in your submission, as well.
 
 We can edit the [Dashboard](https://app.datadoghq.com/dash/1006937/vicentes-dashboard?live=true&page=0&is_auto=false&from_ts=1543700487308&to_ts=1543714887308&tile_size=m) created before to innclude APM metrics beside the infrastructure metrics:
 
-<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM and Infrastructure.png.png?raw=true">
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM and Infrastructure.png?raw=true">
 
 # Final Question:
 
