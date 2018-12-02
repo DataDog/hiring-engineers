@@ -6,7 +6,7 @@
 
 * Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant.
 * Datadog Account - Linked to Google account, rayner.dalmeida@gmail.com.
-* Installed Ubuntu Datadog agent using instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
+* Installed Ubuntu Datadog agent using the Datadog supplied instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
 
   _Host Agent Installation:_
   ![Host Agent Installation](screenshots/host_agent_install.png "Host Agent Installation")
@@ -16,6 +16,8 @@
 ## Collecting Metrics:
 
 * Tags were added by updating the tags parameter within the Datadog agent config file, /etc/datadog-agent/datadog.yaml.
+
+  [Datadog Agent Configuration File - datadog.yaml](config/datadog.yaml)
 
   _Agent Config File with Tags:_
   ![Agent Config File with Tags](screenshots/agent_config_tags.png "Agent Config File with Tags")
@@ -30,8 +32,14 @@
 
   ![MySQL Install Complete](screenshots/mysql_install_complete_verified.png "MySQL Install Complete")
 
-  _MySQL.yaml File Configuration (/etc/datadog-agent/conf.d/mysql.d/conf.yaml):_
+  _MySQL.yaml Configuration File (/etc/datadog-agent/conf.d/mysql.d/conf.yaml):_
+
+  [MySQL Configuration File - conf.yaml](config/conf.yaml)
+
   ![MySQL Config File](screenshots/mysql_yaml.png "MySQL Config File")
+
+  _MySQL Datadog Commands:_
+  ![MySQL Datadog Commands](screenshots/mysql_yaml.png "MySQL Datadog Commands")
 
 * Created a custom agent check that submits a metric named my_metric.randnum with a random value between 0 and 1000.  I updated the metric name to utilize a proper namespace and follow the naming convention established by the out-of-box metrics.  Prior to the update the host map rendered the metric with a "no namespace" label.
 
@@ -61,7 +69,7 @@
     ![Custom Agent File List](screenshots/custom_agent_files.png "Custom Agent File List")
 
   _Custom Agent Check Validation:_
-  ![Custom Agent Check Validation](screenshots/mymetric_check_ validation.png "Custom Agent Check Validation")
+  ![Custom Agent Check Validation](screenshots/mymetric_check_validation.png "Custom Agent Check Validation")
 
   Host Map Displaying Custom Agent Check:
   ![my_metric custom agent check](screenshots/custom_agent_host_map.png "my_metric custom agent check")
@@ -83,7 +91,7 @@ The timeboard presented below was generated through a Python script calling the 
 
   [API Generated Timeboard](https://app.datadoghq.com/dash/1006685/datadog-lab---timeboard)
 
-  [Timeboard Python Script - timeboard.py](timeboard.py)
+  [Timeboard Python Script - timeboard.py](scripts/timeboard.py)
   ```Python
   # Datadog Timeboard Script
 
