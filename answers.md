@@ -404,27 +404,26 @@ $ python flask_requests.py
 import requests
 import time
 
+url = 'http://0.0.0.0:5050/'
+
 def get_main():
-  r = requests.get('http://0.0.0.0:5050')
+  r = requests.get(url)
   print(r.content)
   return r.content
 
 def get_api_apm():
-  r = requests.get('http://0.0.0.0:5050/api/apm')
+  r = requests.get(url + 'api/apm')
   print(r.content)
   return r.content
 
 def get_api_trace():
-  r = requests.get('http://0.0.0.0:5050/api/trace')
+  r = requests.get(url + 'api/trace')
   print(r.content)
   return r.content
 
 if __name__ == '__main__':
   get_main()
   time.sleep(5)
-  get_api_apm()
-  time.sleep(5)
-  get_api_trace()
 ```
 
 ##### Screenshot of 2 Vagrant Sessions:
