@@ -314,9 +314,12 @@ Random metric increasing value
 
 @vlorente68@gmail.com
 ```
-
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+Here we have the messages sent by email when the alert is sent:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Warning Email.png?raw=true">
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/No Data Email.png?raw=true">
 
 
 
@@ -365,7 +368,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM Dashboard.png?raw=true">
+
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
