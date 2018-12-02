@@ -62,7 +62,7 @@
     # content of the special variable __version__ will be shown in the Agent status page
     __version__ = "1.0.0"
 
-    class RandomNumCheck(AgentCheck):
+    class RandomNumheck(AgentCheck):
         def check(self, instance):
             self.gauge('my_metric.randnum', random.randint(0,1000))
     ```
@@ -146,12 +146,14 @@ The timeboard presented below was generated through a Python script calling the 
   _API Generated Timeboard:_
   ![API Generated Timeboard](screenshots/api_generated_timeboard.png "API Generated Timeboard")
 
-* Accessed the dashboard through the dashboard list and set the timeboard's timeframe to the past 5 minutes
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+* Set the Timeboard's timeframe to the past 5 minutes
 
   _Timeboard for the Past 5 Minutes:_
   ![Timeboard for the Past 5 Minutes](screenshots/timeboard_past_5mins.png "Timeboard for the Past 5 Minutes")
-
-* Took a snapshot and used the @ notation to send it to myself.
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
   _Timeboard Snapshot and Notificaiton:_
   ![Timeboard Snapshot and Notificaiton](screenshots/timeboard_snapshot.png "Timeboard Snapshot and Notificaiton")
@@ -162,77 +164,29 @@ The timeboard presented below was generated through a Python script calling the 
 * **Bonus Question:** What is the Anomaly graph displaying?
 
   **Answer:**  The anomaly graph identifies when a metric does not adhere to the normal trending values.  The anomaly function utilizes historic data to determine if a value is considered outside the normal trends.  The grey area in the graph represents the range of acceptable values based on historic data.  If a value goes outside the grey area the value will be considered abnormal and classified as an anomaly and identified with a red line.
-
+ 
 ## Monitoring Data
 
-Configured a new metric monitor tracking the average of my_metric.randnum.  The monitor generates alerts if it exceeds the values below over the past 5 minutes:
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-* Warning threshold of 500.
-* Alerting threshold of 800.
-* Notification sent out when there is no data for the past 10 minutes.
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-The monitor was configured with the following functionality:
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-* Send an email when the monitor is triggered.
-* Different messages are sent out based on the alert state: Alert, Warning and No Data  
-* Messaging includes the metric value that triggered the monitor.
-* The host IP is included in the messaging when the monitor enters the Alert state.
+Please configure the monitor’s message so that it will:
 
-  _Monitor Configuration:_
-  ![Monitor Configuration](screenshots/monitor_definition.png "Monitor Configuration")
-
-  ![Monitor Configuration Continued](screenshots/monitor_definition_2.png "Monitor Configuration Continued")
-
-  _Monitor Export:_
-  ```json
-  {
-    "name": "{{#is_alert}}  My_Metric Threshold ({{threshold}}) Exceeded on Host:{{host.name}}, IP:{{host.ip}}  {{/is_alert}}  {{#is_warning}}  My_Metric Threshold ({{warn_threshold}}) Exceeded on Host:{{host.name}}  {{/is_warning}}  {{#is_no_data}} No Data Recovered on Host: {{host.name}}  {{/is_no_data}}",
-    "type": "metric alert",
-    "query": "avg(last_5m):avg:my_metric.randnum{host:ubuntu-xenial} > 800",
-    "message": "{{#is_alert}} \n\n# CRITCAL\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**\n\nCheck host:{{host.name}} with IP {{host.ip}} and determine the root cause of the issue.\n\n{{/is_alert}}\n\n{{#is_warning}}\n\n# WARNING\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**  \n\nCheck host:{{host.name}} and determine the root cause of the issue.\n\n{{/is_warning}}\n\n{{#is_no_data}}\n\n# NO DATA RECOVERED\n**Data is missing for the last 10 minutes**  \n\nCheck Host: {{host.name}} and determine why the server is no longer transmitting data.\n\n{{/is_no_data}}\n \n@rayner.dalmeida@gmail.com",
-    "tags": [],
-    "options": {
-      "notify_audit": false,
-      "locked": false,
-      "timeout_h": 0,
-      "silenced": {
-        "*": 1543741021
-      },
-      "include_tags": false,
-      "no_data_timeframe": 10,
-      "new_host_delay": 300,
-      "require_full_window": true,
-      "notify_no_data": true,
-      "renotify_interval": 0,
-      "escalation_message": "",
-      "synthetics_check_id": null,
-      "thresholds": {
-        "critical": 800,
-        "warning": 500
-      }
-    }
-  }
-```
-  _Monitor Properties and Messaging:_
-  ![Monitor Properties and Messaging](screenshots/monitor_properties.png "Monitor Properties and Messaging")
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 * **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-  * One that silences it from 7pm to 9am daily on M-F.
-  * One that silences it all day on Sat-Sun.
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-  <br/>
-  **Answer:**
-  _Weekday Downtime Configuration:_
-  ![Weekday Downtime Configuration](screenshots/weekday_dowmtime.png "Weekday Downtime Configuration")
-
-  _Weekend Downtime Configuration:_
-  ![Weekend Downtime Configuration](screenshots/weekend_dowmtime.png "Weekend Downtime Configuration")
-
-  _Downtime Email Notification:_
-  ### TODO: Attach Downtime Email Notificaiton
-
 
 ## Collecting APM Data:
 

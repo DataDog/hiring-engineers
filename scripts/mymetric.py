@@ -1,6 +1,6 @@
 # the following try/except block will make the custom check compatible with any Agent version
-import random  
- 	
+import random
+
 try:
     # first, try to import the base class from old versions of the Agent...
     from checks import AgentCheck
@@ -11,6 +11,6 @@ except ImportError:
 # content of the special variable __version__ will be shown in the Agent status page
 __version__ = "1.0.0"
 
-class RandomNumheck(AgentCheck):
+class RandomNumCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric.randnum', random.randint(0,1000))
