@@ -455,7 +455,8 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 ```
-A service is a group of processes that have the same function. Resources are associated with services and are specific actions for a service.
+A service is a group of processes that have the same function. Resources are associated with services and are
+specific actions for a service.
 ```
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
