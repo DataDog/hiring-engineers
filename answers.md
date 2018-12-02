@@ -6,35 +6,166 @@
 
 * Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant.
 * Datadog Account - Linked to Google account, rayner.dalmeida@gmail.com.
-* Installed Ubuntu Datadog Agent using instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
+* Installed Ubuntu Datadog agent using instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
 
-![Host Agent Installation](/screenshots/custom_agent_files.png "Host Agent Installation")
+  _Host Agent Installation:_
+  ![Host Agent Installation](screenshots/host_agent_install.png "Host Agent Installation")
 
-
+  ![Host Agent Installation Complete](screenshots/host_agent_install_complete.png "Host Agent Installation Complete")
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+* Tags were added by updating the tags parameter within the Datadog agent config file, /etc/datadog-agent/datadog.yaml.
+
+  _Agent Config File with Tags:_
+  ![Agent Config File with Tags](screenshots/agent_config_tags.png "Agent Config File with Tags")
+
+  _Host Map Displaying Host Tags_:
+  ![Host Map Displaying Host Tags](screenshots/host_map_tags.png "Host Map Displaying Host Tags")
+
+* For this exercise I installed a MySQL database onto my VM and completed the Datadog MySQL integration instructions, https://docs.datadoghq.com/integrations/mysql/.
+
+  _MySQL Database Installation:_
+  ![MySQL Install](screenshots/mysql_install.png "MySQL Install")
+
+  ![MySQL Install Complete](screenshots/mysql_install_complete_verified.png "MySQL Install Complete")
+
+  _MySQL.yaml File Configuration (/etc/datadog-agent/conf.d/mysql.d/conf.yaml):_
+  ![MySQL Config File](screenshots/mysql_yaml.png "MySQL Config File")
+
+* Created a custom agent check that submits a metric named my_metric.randnum with a random value between 0 and 1000.  I updated the metric name to utilize a proper namespace and follow the naming convention established by the out-of-box metrics.  Prior to the update the host map rendered the metric with a "no namespace" label.
+
+  _Custom Agent File List:_
+
+  * [Agent Configuration File - mymetric.yaml](config/mymetric.yaml)
+  * [Agent Python Script - mymetric.py](scripts/mymetric.py)
+
+    ```python
+    # the following try/except block will make the custom check compatible with any Agent version
+    import random  
+
+    try:
+        # first, try to import the base class from old versions of the Agent...
+        from checks import AgentCheck
+    except ImportError:
+        # ...if the above failed, the check is running in Agent version 6 or later
+        from datadog_checks.checks import AgentCheck
+
+    # content of the special variable __version__ will be shown in the Agent status page
+    __version__ = "1.0.0"
+
+    class RandomNumheck(AgentCheck):
+        def check(self, instance):
+            self.gauge('my_metric.randnum', random.randint(0,1000))
+    ```
+    ![Custom Agent File List](screenshots/custom_agent_files.png "Custom Agent File List")
+
+  _Custom Agent Check Validation:_
+  ![Custom Agent Check Validation](screenshots/mymetric_check_ validation.png "Custom Agent Check Validation")
+
+  Host Map Displaying Custom Agent Check:
+  ![my_metric custom agent check](screenshots/custom_agent_host_map.png "my_metric custom agent check")
+
+* Updated the collection interval for the custom agent check to 45 seconds by updating the min_collection_interval parameter in mymetric.yaml.
+![Collection Interval 45 Seconds](screenshots/mymetric_45_sec.png "Collection Interval 45 Seconds")
+
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+  **Answer:** The collection interval can be modified through the min_collection_interval parameter stored in the custom agent configuration file (/etc/datadog-agent/conf.d/mymetric.yaml).
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+The timeboard presented below was generated through a Python script calling the Datadog Timeboard APIs.  The timeboard contains:
+* Custom metric (my_metric) scoped over my host, ubuntu-xenial.
+* MySQL CPU time performance metric (mysql.performance.cpu_time) with the anomaly function applied.
+* Custom metric (my_metric) with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+  [API Generated Timeboard](https://app.datadoghq.com/dash/1006685/datadog-lab---timeboard)
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+  [Timeboard Python Script - timeboard.py](timeboard.py)
+  ```Python
+  # Datadog Timeboard Script
+
+  # imports
+  from datadog import initialize, api
+  from json import dumps
+
+  # API initialization parameters
+  options = {'api_key': '956b376eda4be274a4d8a54fbfb84a42',
+             'app_key': 'ab521a571251baa8202cef85a2d1a95bb2e26ffd'}
+
+  initialize(**options)
+
+  # Timeboard API parameters
+  title = "Datadog Lab - Timeboard"
+  description = "Timeboard generated through Datadog APIs"
+  graphs = [{"definition": {"events": [],
+                            "requests": [{
+                              "q": "avg:my_metric.randnum{host:ubuntu-xenial}",
+                              "type": "line"}],
+                              "viz": "timeseries"},
+                            "title": "My_Metric by Host"},
+            {"definition": {"events": [],
+                            "requests": [{
+                              "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+                              "type": "line"}],
+                              "viz": "timeseries"},
+                            "title": "MySQL CPU Time with Anomalies"},
+            {"definition": {"events": [],
+                            "requests": [{
+                              "q": "avg:my_metric.randnum{*}.rollup(sum, 3600)",
+                              "type": "line"}],
+                              "viz": "timeseries"},
+                            "title": "My_Metric Rolled Up Hourly"}
+          ]
+
+  template_variables = [{
+      "name": "ubuntu-xenial",
+      "prefix": "host",
+      "default": "host:ubuntu-xenial"
+  }]
+  read_only = True
+
+  apiResponse = api.Timeboard.create(
+                       title=title,
+                       description=description,
+                       graphs=graphs,
+                       template_variables=template_variables,
+                       read_only=read_only)
+  ```
+
+  _API Generated Timeboard:_
+  ![API Generated Timeboard](screenshots/api_generated_timeboard.png "API Generated Timeboard")
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+  _Timeboard for the Past 5 Minutes:_
+  ![Timeboard for the Past 5 Minutes](screenshots/timeboard_past_5mins.png "Timeboard for the Past 5 Minutes")
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+  _Timeboard Snapshot and Notificaiton:_
+  ![Timeboard Snapshot and Notificaiton](screenshots/timeboard_snapshot.png "Timeboard Snapshot and Notificaiton")
+
+  ![Snapshot Email Notification](screenshots/snapshot_email_notification.png "Snapshot Email Notification")
+
+
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+  **Answer:** The anomaly graph is displaying .
+
+
+
+
+
+
+
+
+
 
 ## Monitoring Data
 

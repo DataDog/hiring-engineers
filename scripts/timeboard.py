@@ -1,7 +1,8 @@
 # Datadog Timeboard Script
+
 # imports
 from datadog import initialize, api
-from json import dump
+from json import dumps
 
 # API initialization parameters
 options = {'api_key': '956b376eda4be274a4d8a54fbfb84a42',
@@ -9,32 +10,50 @@ options = {'api_key': '956b376eda4be274a4d8a54fbfb84a42',
 
 initialize(**options)
 
+# Timeboard API parameters
 title = "Datadog Lab - Timeboard"
 description = "Timeboard generated through Datadog APIs"
-graphs = [{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:system.mem.free{*}"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "Average Memory Free"
-}]
+graphs = [{"definition": {"events": [],
+                          "requests": [{
+                            "q": "avg:my_metric.randnum{host:ubuntu-xenial}",
+                            "type": "line"}],
+                            "viz": "timeseries"},
+                          "title": "My_Metric by Host"},
+          {"definition": {"events": [],
+                          "requests": [{
+                            "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+                            "type": "line"}],
+                            "viz": "timeseries"},
+                          "title": "MySQL CPU Time with Anomalies"},
+          {"definition": {"events": [],
+                          "requests": [{
+                            "q": "avg:my_metric.randnum{*}.rollup(sum, 3600)",
+                            "type": "line"}],
+                            "viz": "timeseries"},
+                          "title": "My_Metric Rolled Up Hourly"}
+        ]
 
 template_variables = [{
-    "name": "host1",
+    "name": "ubuntu-xenial",
     "prefix": "host",
-    "default": "host:my-host"
+    "default": "host:ubuntu-xenial"
 }]
-
 read_only = True
-apiResponse = api.Timeboard.create(title=title,
+
+apiResponse = api.Timeboard.create(
+                     title=title,
                      description=description,
                      graphs=graphs,
                      template_variables=template_variables,
                      read_only=read_only)
 
-#this will create a file named output.json in the current folder
-with open("output.json", "w") as f:
-    dump(apiResponse, f)
+# apiResponse = api.Timeboard.update(
+#                      1006685,
+#                      title=title,
+#                      description=description,
+#                      graphs=graphs,
+#                      template_variables=template_variables,
+#                      read_only=read_only)
+
+# API response outputted to screen
+# print(dumps(apiResponse, indent=2));
