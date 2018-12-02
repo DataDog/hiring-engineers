@@ -383,6 +383,78 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+The first thing we have to do is to configure the Datadog agent to collect APM metrics and traces by modifiying the **datadog.yaml**
+```
+# Trace Agent Specific Settings
+#
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if none is applied here
+  env: none
+#   The port that the Receiver should listen on
+#   receiver_port: 8126
+#   Whether the Trace Agent should listen for non local traffic
+#   Only enable if Traces are being sent to this Agent from another host/container
+#   apm_non_local_traffic: false
+#   Extra global sample rate to apply on all the traces
+#   This sample rate is combined to the sample rate from the sampler logic, still promoting interesting traces
+#   From 1 (no extra rate) to 0 (don't sample at all)
+#   extra_sample_rate: 1.0
+#   Maximum number of traces per second to sample.
+#   The limit is applied over an average over a few minutes ; much bigger spikes are possible.
+#   Set to 0 to disable the limit.
+#   max_traces_per_second: 10
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+#   ignore_resources: []
+```
+
+To instrument the application, we will use in this case the manual mode by modifiying the application **myApp.py**, adding the first two lines:
+
+```python
+from ddtrace import patch_all
+patch_all()
+
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+```
+
+
+
+
+
+
+
+
+
+
+
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM Dashboard.png?raw=true">
 
 
