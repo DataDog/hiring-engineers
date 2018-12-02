@@ -168,6 +168,9 @@ instances:
 &NewLine;
 ![Metrics Explorer Page](/screenshots/4_metrics_explorer_page.png)
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+```
+Yes. You can edit the yaml file associated with the Python check file.
+```
 
 ## Visualizing Data:
 
@@ -279,6 +282,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 &NewLine;
 ![Custom Metric with Rollup Function Graph Snapshot Email Notification](/screenshots/11a_email_snapshot_custom_metric_with_rollup_function.png)
 * **Bonus Question**: What is the Anomaly graph displaying?
+```
+The anomaly graph displays grayed-out boundaries and renders an anomaly in red when it is detected by the algorithm.
+```
 
 ## Monitoring Data
 
@@ -448,6 +454,9 @@ if __name__ == '__main__':
 ![APM Trace List Page](/screenshots/17_apm_trace_list.png)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+```
+A service is a group of processes that have the same function. Resources are associated with services and are specific actions for a service.
+```
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ##### Dashboard with APM and Infrastructure Metrics
