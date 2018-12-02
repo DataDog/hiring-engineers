@@ -1,0 +1,27 @@
+{
+  "name": "{{#is_alert}}  My_Metric Threshold ({{threshold}}) Exceeded on Host:{{host.name}}, IP:{{host.ip}}  {{/is_alert}}  {{#is_warning}}  My_Metric Threshold ({{warn_threshold}}) Exceeded on Host:{{host.name}}  {{/is_warning}}  {{#is_no_data}} No Data Recovered on Host: {{host.name}}  {{/is_no_data}}",
+  "type": "metric alert",
+  "query": "avg(last_5m):avg:my_metric.randnum{host:ubuntu-xenial} > 800",
+  "message": "{{#is_alert}} \n\n# CRITCAL\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**\n\nCheck host:{{host.name}} with IP {{host.ip}} and determine the root cause of the issue.\n\n{{/is_alert}}\n\n{{#is_warning}}\n\n# WARNING\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**  \n\nCheck host:{{host.name}} and determine the root cause of the issue.\n\n{{/is_warning}}\n\n{{#is_no_data}}\n\n# NO DATA RECOVERED\n**Data is missing for the last 10 minutes**  \n\nCheck Host: {{host.name}} and determine why the server is no longer transmitting data.\n\n{{/is_no_data}}\n \n@rayner.dalmeida@gmail.com",
+  "tags": [],
+  "options": {
+    "notify_audit": false,
+    "locked": false,
+    "timeout_h": 0,
+    "silenced": {
+      "*": 1543741021
+    },
+    "include_tags": false,
+    "no_data_timeframe": 10,
+    "new_host_delay": 300,
+    "require_full_window": true,
+    "notify_no_data": true,
+    "renotify_interval": 0,
+    "escalation_message": "",
+    "synthetics_check_id": null,
+    "thresholds": {
+      "critical": 800,
+      "warning": 500
+    }
+  }
+}

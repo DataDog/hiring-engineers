@@ -45,8 +45,9 @@
 
   _Custom Agent File List:_
 
-  * [Agent Configuration File - mymetric.yaml](config/mymetric.yaml)
-  * [Agent Python Script - mymetric.py](scripts/mymetric.py)
+  [Agent Configuration File - mymetric.yaml](config/mymetric.yaml)
+
+  [Agent Python Script - mymetric.py](scripts/mymetric.py)
 
     ```python
     # the following try/except block will make the custom check compatible with any Agent version
@@ -66,7 +67,8 @@
         def check(self, instance):
             self.gauge('my_metric.randnum', random.randint(0,1000))
     ```
-    ![Custom Agent File List](screenshots/custom_agent_files.png "Custom Agent File List")
+
+  ![Custom Agent File List](screenshots/custom_agent_files.png "Custom Agent File List")
 
   _Custom Agent Check Validation:_
   ![Custom Agent Check Validation](screenshots/mymetric_check_validation.png "Custom Agent Check Validation")
@@ -183,38 +185,14 @@ The monitor was configured with the following functionality:
 
   ![Monitor Configuration Continued](screenshots/monitor_definition_2.png "Monitor Configuration Continued")
 
-  _Monitor Export:_
-  ```json
-  {
-    "name": "{{#is_alert}}  My_Metric Threshold ({{threshold}}) Exceeded on Host:{{host.name}}, IP:{{host.ip}}  {{/is_alert}}  {{#is_warning}}  My_Metric Threshold ({{warn_threshold}}) Exceeded on Host:{{host.name}}  {{/is_warning}}  {{#is_no_data}} No Data Recovered on Host: {{host.name}}  {{/is_no_data}}",
-    "type": "metric alert",
-    "query": "avg(last_5m):avg:my_metric.randnum{host:ubuntu-xenial} > 800",
-    "message": "{{#is_alert}} \n\n# CRITCAL\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**\n\nCheck host:{{host.name}} with IP {{host.ip}} and determine the root cause of the issue.\n\n{{/is_alert}}\n\n{{#is_warning}}\n\n# WARNING\n**my_metric.randnum threshold ({{threshold}}) exceeded.  The value that triggered the monitor is {{value}}.**  \n\nCheck host:{{host.name}} and determine the root cause of the issue.\n\n{{/is_warning}}\n\n{{#is_no_data}}\n\n# NO DATA RECOVERED\n**Data is missing for the last 10 minutes**  \n\nCheck Host: {{host.name}} and determine why the server is no longer transmitting data.\n\n{{/is_no_data}}\n \n@rayner.dalmeida@gmail.com",
-    "tags": [],
-    "options": {
-      "notify_audit": false,
-      "locked": false,
-      "timeout_h": 0,
-      "silenced": {
-        "*": 1543741021
-      },
-      "include_tags": false,
-      "no_data_timeframe": 10,
-      "new_host_delay": 300,
-      "require_full_window": true,
-      "notify_no_data": true,
-      "renotify_interval": 0,
-      "escalation_message": "",
-      "synthetics_check_id": null,
-      "thresholds": {
-        "critical": 800,
-        "warning": 500
-      }
-    }
-  }
-```
+  [Monitor JSON Export](config/mymetric_monitor.json "Monitor JSON Export")
+
   _Monitor Properties and Messaging:_
   ![Monitor Properties and Messaging](screenshots/monitor_properties.png "Monitor Properties and Messaging")
+
+  _Warn Email Notification:_
+  ![Warn Email Notification](screenshots/warn_email.png "Warn Email Notification")
+
 
 * **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -224,14 +202,17 @@ The monitor was configured with the following functionality:
 
   <br/>
   **Answer:**
+
   _Weekday Downtime Configuration:_
   ![Weekday Downtime Configuration](screenshots/weekday_dowmtime.png "Weekday Downtime Configuration")
 
   _Weekend Downtime Configuration:_
-  ![Weekend Downtime Configuration](screenshots/weekend_dowmtime.png "Weekend Downtime Configuration")
+  ![Weekend Downtime Configuration](screenshots/weekend_downtime.png "Weekend Downtime Configuration")
 
-  _Downtime Email Notification:_
-  ### TODO: Attach Downtime Email Notificaiton
+  _Schedule Downtime Email Notification:_
+  ![Weekday Downtime Schedule Notification](screenshots/weekday_downtime_schedule_notificaiton.png "Weekday Downtime Schedule Notification")
+
+  ![Weekend Downtime Schedule Notification](screenshots/weekday_downtime_schedule_notificaiton.png "Weekend Downtime Schedule Notification")
 
 
 ## Collecting APM Data:
