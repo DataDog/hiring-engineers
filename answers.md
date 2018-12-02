@@ -97,7 +97,7 @@ instances:
 $ sudo service datadog-agent restart
 
 # check mysql
-$ sudo -u dd-agent -- datadog-agent check mysql
+$ sudo -u dd-agent --datadog-agent check mysql
 
 # expected outcome
 =========
