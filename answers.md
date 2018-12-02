@@ -49,7 +49,7 @@ tags:
 ![Host Map Page](/screenshots/5_host_map_page.png)
 * Install a database on your machine (~~MongoDB~~, MySQL, ~~or PostgreSQL~~) and then install the respective Datadog integration for that database.
 ```bash
-# install mysql-server !-- password: ‘123’ --!
+# install mysql-server !-- `root` password: ‘123’ --!
 $ sudo apt-get update
 $ sudo apt-get install mysql-server
 
@@ -61,7 +61,7 @@ Your MySQL connection id is 31
 Server version: 5.7.24-0ubuntu0.16.04.1 (Ubuntu)
 
 # create user with replication rights
-mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'TSHY0Kcpw3FH7zrlitYbT?kP';
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '************************';
 Query OK, 0 rows affected (0.00 sec)
 mysql> FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0.00 sec)
@@ -83,7 +83,7 @@ init_config:
 instances:
   - server: localhost
     user: datadog
-    pass: TSHY0Kcpw3FH7zrlitYbT?kP
+    pass: ************************
     options:
       replication: 0
       galera_cluster: 1
