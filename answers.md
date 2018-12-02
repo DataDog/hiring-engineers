@@ -424,6 +424,9 @@ def get_api_trace():
 if __name__ == '__main__':
   get_main()
   time.sleep(5)
+  get_api_apm()
+  time.sleep(5)
+  get_api_trace()
 ```
 
 ##### Screenshot of 2 Vagrant Sessions:
