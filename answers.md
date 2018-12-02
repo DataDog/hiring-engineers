@@ -49,7 +49,7 @@ tags:
 ![Host Map Page](/screenshots/5_host_map_page.png)
 * Install a database on your machine (~~MongoDB~~, MySQL, ~~or PostgreSQL~~) and then install the respective Datadog integration for that database.
 ```bash
-# install mysql-server !-- `root` password: ‘123’ --!
+# install mysql-server
 $ sudo apt-get update
 $ sudo apt-get install mysql-server
 
