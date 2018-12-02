@@ -321,17 +321,32 @@ Here we have the messages sent by email when the alert is sent:
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Warning Email.png?raw=true">
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/No Data Email.png?raw=true">
 
-
-
-
-
-
-
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
+Datadog provides a very easy to use and flexible interface to schedule Downtime and silence alerts
+
   * One that silences it from 7pm to 9am daily on M-F,
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Schedule Downtime 1.png?raw=true">
+  
   * And one that silences it all day on Sat-Sun.
+  
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Schedule Downtime 2.png?raw=true">
+
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+A message can be sent when the downtime start or finish:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Downtime message.png?raw=true">
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Downtime Email.png?raw=true">
+
+
+
+
+
+
+
 
 ## Collecting APM Data:
 
