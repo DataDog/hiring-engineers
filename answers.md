@@ -154,7 +154,7 @@ instances: [{}]
 ```
 
 We need also to create the script that will run to provide the custom metric **myrandom.py**
-```
+```python
 import random
 
 from datadog_checks.checks import AgentCheck
@@ -202,7 +202,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 Datadog is an extremely flexible and open monitoring platform, it provides an API to easily integrate with any other external system and control programmaticaly all functionality included into the platform.
 
 We are going to use that API to create a new Timeboard, we will use a python script that call the API **timeseries.py**
-```
+```python
 from datadog import initialize, api
 
 options = {
@@ -341,14 +341,7 @@ A message can be sent when the downtime start or finish:
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/Downtime Email.png?raw=true">
 
-
-
-
-
-
-
-
-## Collecting APM Data:
+# Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -445,67 +438,26 @@ def trace_endpoint():
     return 'Posting Traces'
 ```
 
-
-
-
-
-
-
-
-
-
+After some requests we can see the traces and the APM metrics in the [APM Dashboards](https://app.datadoghq.com/apm/service/flask/flask.request?env=environment&start=1543710832672&end=1543714432672&paused=false) that come out of the box with Datadog:
 
 <img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM Dashboard.png?raw=true">
 
-
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+Datadog APM differenciates between Services and Resources, a service is a more global concept and is a set of processes that provide a function, for example a database, app server, web framework, etc. A resource is an specific entry point or query that belongs to a service. We can say that the resource is more granular than a service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
 
-## Final Question:
+We can edit the [Dashboard](https://app.datadoghq.com/dash/1006937/vicentes-dashboard?live=true&page=0&is_auto=false&from_ts=1543700487308&to_ts=1543714887308&tile_size=m) created before to innclude APM metrics beside the infrastructure metrics:
+
+<img src="https://github.com/vlorente68/hiring-engineers/blob/master/screenshots/APM and Infrastructure.png.png?raw=true">
+
+# Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
-## Instructions
 
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
