@@ -4,7 +4,7 @@
 
 ## Prerequisites - Setup the environment
 
-* Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant ([Vagrantfile](config/Vagrantfile))
+* Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant ([Vagrantfile](config/Vagrantfile)).
 * Datadog Account - Linked to Google account, rayner.dalmeida@gmail.com.
 * Installed Ubuntu Datadog agent using the Datadog supplied instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
 
