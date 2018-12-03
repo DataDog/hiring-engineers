@@ -285,3 +285,43 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 **Answer**:  The cannabis industry is experiencing extreme growth over the past several years.  With this growth technology companies have emerged providing software platforms to licensed producers and retail operations.  In Canada Ample Organics (https://ampleorganics.com) has developed a seed-to-sale platform that provides licensed producers the ability to manage their cannabis production, clients, sales, packaging and fulfillment, quality assurance and reporting.  Given the complexity and multitude of services provided by this platform Ample Organics would benefit from using Datadog to monitor their platform.
+
+## Instructions
+
+If you have a question, create an issue in this repository.
+
+To submit your answers:
+
+* Fork this repo.
+* Answer the questions in answers.md
+* Commit as much code as you need to support your answers.
+* Submit a pull request.
+* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+
+## References
+
+### How to get started with Datadog
+
+* [Datadog overview](https://docs.datadoghq.com/)
+* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
+* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
+
+### The Datadog Agent and Metrics
+
+* [Guide to the Agent](https://docs.datadoghq.com/agent/)
+* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
+* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
+* [Datadog API](https://docs.datadoghq.com/api/)
+
+### APM
+
+* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
+* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
+
+### Vagrant
+
+* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
+
+### Other questions:
+
+* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)

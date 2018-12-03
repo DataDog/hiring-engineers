@@ -632,12 +632,14 @@ tags:
 
 # Trace Agent Specific Settings
 #
-# apm_config:
+apm_config:
 #   Whether or not the APM Agent should run
-#   enabled: true
+    enabled: true
+    analyzed_spans:
+      flask|flask.request: 1
 #   The environment tag that Traces should be tagged with
 #   Will inherit from "env" tag if none is applied here
-#   env: none
+#   env: lab
 #   The port that the Receiver should listen on
 #   receiver_port: 8126
 #   Whether the Trace Agent should listen for non local traffic
