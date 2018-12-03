@@ -4,7 +4,7 @@
 
 ## Prerequisites - Setup the environment
 
-* Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant.
+* Environment - 16.04.5 LTS (Xenial Xerus).  Environment was setup and accessed through Vagrant ([Vagrantfile](config/Vagrantfile))
 * Datadog Account - Linked to Google account, rayner.dalmeida@gmail.com.
 * Installed Ubuntu Datadog agent using the Datadog supplied instructions: https://app.datadoghq.com/account/settings#agent/ubuntu
 
@@ -150,7 +150,7 @@ The timeboard presented below was generated through a Python script calling the 
   _API Generated Timeboard:_
   ![API Generated Timeboard](screenshots/api_generated_timeboard.png "API Generated Timeboard")
 
-* Accessed the dashboard through the dashboard list and set the timeboard's timeframe to the past 5 minutes
+* Accessed the dashboard through the dashboard list and set the timeboard's timeframe to the past 5 minutes.
 
   _Timeboard for the Past 5 Minutes:_
   ![Timeboard for the Past 5 Minutes](screenshots/timeboard_past_5mins.png "Timeboard for the Past 5 Minutes")
@@ -215,7 +215,7 @@ The monitor was configured with the following functionality:
   _Schedule Downtime Email Notification:_
   ![Weekday Downtime Schedule Notification](screenshots/weekday_downtime_schedule_notificaiton.png "Weekday Downtime Schedule Notification")
 
-  ![Weekend Downtime Schedule Notification](screenshots/weekday_downtime_schedule_notificaiton.png "Weekend Downtime Schedule Notification")
+  ![Weekend Downtime Schedule Notification](screenshots/weekend_downtime_schedule_notification.png "Weekend Downtime Schedule Notification")
 
 
 ## Collecting APM Data:
@@ -284,4 +284,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-**Answer**:  The cannabis industry is experiencing extreme growth over the past several years.  With this growth technology companies have emerged providing software platforms to licensed producers and retail operations.  In Canada Ample Organics (https://ampleorganics.com) has developed a seed-to-sale platform that provides licensed producers the ability to manage their cannabis production, clients, sales, packaging and fulfillment, quality assurance and reporting.  Given the complexity and multitude of services provided by this platform Ample Organics would benefit from using Datadog to monitor their platform.
+**Answer**:  The cannabis industry has experienced extreme growth over the past several years.  With this growth technology companies have emerged providing software platforms to licensed producers and retail operations.  In Canada, Ample Organics (https://ampleorganics.com) has developed a seed-to-sale platform that provides licensed producers the ability to manage their cannabis production, clients, sales, packaging and fulfillment, quality assurance and reporting.  Given the complexity and multitude of services provided by this platform Ample Organics would benefit from using Datadog to monitor their platform.
