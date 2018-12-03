@@ -471,3 +471,12 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+```
+As a former band member whose band released an album on Spotify, I would use Datadog on Spotify to gain more
+exposure. The way I would do this is to monitor users who listen to the genre of music my band's album belongs
+to and monitor the podcasts they listen to, then find correlations between the two.
+
+I would then contact the creators of those podcasts and ask them to make one of our album's songs their feature
+song for a certain episode. This way, my band will gain more exposure by reaching the right audience.
+```
