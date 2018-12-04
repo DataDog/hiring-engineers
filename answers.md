@@ -83,45 +83,82 @@ Yes, I added the *min_collection_interval: 45 *to the yaml file and did not modi
 I ran the following python program to create my Timeboard and graphs with rollup and anomaly features:
 
 from datadog import initialize, api
+
 options = {'api_key': 'bc9c040619249fb29dcc64b2955d7223',
+
            'app_key': '513bc9b63afa9551a2b2f31c938a573be0d41fea'}
+	   
 #
+
 #
+
 initialize(**options)
+
 title = "Tom's Timeboard"
+
 description = "Tom's random metric"
+
 graphs = [{
-    "definition": {
-        "events": [],
-        "requests": [
-           {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
-        ],
-        "viz": "timeseries"
-   },
+
+	"definition": {
+        
+	"events": [],
+        
+	"requests": [
+        
+		{"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        
+	],
+        
+	"viz": "timeseries"
+
+	},
 
     "title": "my_metric - Tom's Random"
+
 },
+
 {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}
-        ]
-        "viz": "timeseries"
+
+	"definition": {
+        
+	"events": [],
+        
+	"requests": [
+        
+		{"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}
+        
+	]
+        
+	"viz": "timeseries"
+    
     },
+    
     "title": "MySQL Performance User Time"
+
 }]
+
 template_variables = [{
+    
     "name": "host1",
+    
     "prefix": "host",
+    
     "default": "host:my-host"
+
 }]
+
 read_only = True
+
 api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
+                     
+		     description=description,
+                     
+		     graphs=graphs,
+                     
+		     template_variables=template_variables,
+                     
+		     read_only=read_only)
 
 Timeboard as created by API with rollup and anomaly features:
 
@@ -144,35 +181,64 @@ The gray band shows the bounds for the anomaly monitor with the "basic" algorith
 For "fun" I added the following lines to the bottom of my API script and created a monitor for this metric:
 
 # Create a new monitor	
+
 options: {
+		
 		"notify_audit": False,
+		
 		"locked": False,
+		
 		"timeout_h": 0,
+		
 		"new_host_delay": 300,
+		
 		"require_full_window": False,
+		
 		"notify_no_data": False,
+		
 		"renotify_interval": "0",
+		
 		"escalation_message": "",
+		
 		"include_tags": False,
+		
 		"thresholds": {
+			
 			"critical": 1,
+			
 			"warning": 0.8,
+			
 			"critical_recovery": 0
+		
 		},
+		
 		"threshold_windows": {
+			
 			"trigger_window": "last_15m",
+			
 			"recovery_window": "last_15m"
+	
 	}
+
 }
 
 tags = []
+
 api.Monitor.create(
+    
     type="metric alert",
-    query="avg(last_4h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1",
+    
+    query="avg(last_4h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='both', alert_window='last_15m', 
+    interval=60, count_default_zero='true') >= 1",
+    
     name="Anomaly Alert on MySQL Performance",
+    
     message=" @tom.nedbal@gmail.com",
+    
     tags=tags,
+    
     options=options
+
 )
 
 "Extra Credit" - Monitor created by API script for the MySQL metric:
