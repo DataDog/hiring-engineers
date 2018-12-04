@@ -301,7 +301,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Yes, I am interested to see if any custmers are using Datadog to monitor SAP or PeopleSoft.  Also, with the new synthetic solution coming, monitoring Salesforce and other big SaaS offerings. 
+Yes, I am interested to see if any customers are using Datadog to monitor SAP or PeopleSoft.  Also, with the new synthetic solution coming, can it monitoring Salesforce and other big SaaS offerings. 
 
 In summary, I found this exercise very informative.  I found Datadog to be a powerful and very easy to use (and implement) monitoring solution. 
 
