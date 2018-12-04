@@ -44,13 +44,10 @@ Metrics reporting to the MqSQL dashboard:
 
 I created "my_metric.yaml" and “my_metric.py” files and used “random.randint(0,1000)” as shown below:
 
-*import random*
-
-*class My_MetricCheck(AgentCheck):*
-
-*    def check(self, instance):*
-
-*        self.gauge('my_metric', random.randint(0,1000))*
+import random
+class My_MetricCheck(AgentCheck):
+def check(self, instance):
+self.gauge('my_metric', random.randint(0,1000))
 
 Viewing "my_metric" random values:
 
@@ -60,11 +57,10 @@ Viewing "my_metric" random values:
 
 I added "min_collection_interval: 45" to the “my_metric.yaml” file.
 
-*init_config:*
+init_config:
+instances:
 
-*instances:*
-
-*  - min_collection_interval: 45*
+ - min_collection_interval: 45
 
 Graph of metrics confirming the new collection interval of 45 sec:
 
@@ -86,83 +82,46 @@ Yes, I added the *min_collection_interval: 45 *to the yaml file and did not modi
 
 I ran the following python program to create my Timeboard and graphs with rollup and anomaly features:
 
-*from datadog import initialize, api*
+from datadog import initialize, api
+options = {'api_key': 'bc9c040619249fb29dcc64b2955d7223',
+           'app_key': '513bc9b63afa9551a2b2f31c938a573be0d41fea'}
+#
+#
+initialize(**options)
+title = "Tom's Timeboard"
+description = "Tom's random metric"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+           {"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+        ],
+        "viz": "timeseries"
+   },
 
-*options = {'api_key': 'bc9c040619249fb29dcc64b2955d7223',*
-
-*           'app_key': '513bc9b63afa9551a2b2f31c938a573be0d41fea'}*
-
-*#*
-
-*#*
-
-*initialize(**options)*
-
-*title = "Tom's Timeboard"*
-
-*description = "Tom's random metric"*
-
-*graphs = [{*
-
-*    "definition": {*
-
-*        "events": [],*
-
-*        "requests": [*
-
-*            {"q": "avg:my_metric{*}.rollup(sum, 3600)"}*
-
-*        ],*
-
-*        "viz": "timeseries"*
-
-*    },*
-
-*    "title": "my_metric - Tom's Random"*
-
-*},*
-
-*{*
-
-*    "definition": {*
-
-*        "events": [],*
-
-*        "requests": [*
-
-*            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}*
-
-*        ],*
-
-*        "viz": "timeseries"*
-
-*    },*
-
-*    "title": "MySQL Performance User Time"*
-
-*}]*
-
-*template_variables = [{*
-
-*    "name": "host1",*
-
-*    "prefix": "host",*
-
-*    "default": "host:my-host"*
-
-*}]*
-
-*read_only = True*
-
-*api.Timeboard.create(title=title,*
-
-*                     description=description,*
-
-*                     graphs=graphs,*
-
-*                     template_variables=template_variables,*
-
-*                     read_only=read_only)*
+    "title": "my_metric - Tom's Random"
+},
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}
+        ]
+        "viz": "timeseries"
+    },
+    "title": "MySQL Performance User Time"
+}]
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
 
 Timeboard as created by API with rollup and anomaly features:
 
@@ -184,8 +143,7 @@ The gray band shows the bounds for the anomaly monitor with the "basic" algorith
 
 For "fun" I added the following lines to the bottom of my API script and created a monitor for this metric:
 
-*# Create a new monitor
-	
+# Create a new monitor	
 options: {
 		"notify_audit": False,
 		"locked": False,
@@ -215,7 +173,7 @@ api.Monitor.create(
     message=" @tom.nedbal@gmail.com",
     tags=tags,
     options=options
-)*
+)
 
 "Extra Credit" - Monitor created by API script for the MySQL metric:
 
@@ -286,47 +244,26 @@ The Host Map with APM metrics:
 Flask app I used:
 
 from flask import Flask
-
 import logging
-
 import sys
-
 # Have flask use stdout as the logger
-
 main_logger = logging.getLogger()
-
 main_logger.setLevel(logging.DEBUG)
-
 c = logging.StreamHandler(sys.stdout)
-
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
 c.setFormatter(formatter)
-
 main_logger.addHandler(c)
-
 app = Flask(__name__)
-
 @app.route('/')
-
 def api_entry():
-
     return 'Entrypoint to the Application'
-
 @app.route('/api/apm')
-
 def apm_endpoint():
-
     return 'Getting APM Started'
-
 @app.route('/api/trace')
-
 def trace_endpoint():
-
     return 'Posting Traces'
-
 if __name__ == '__main__':
-
     app.run(host='0.0.0.0', port='5050')
 
 Tracing Section:
@@ -336,6 +273,13 @@ Tracing Section:
 A **Service** is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webapp service and a single database service.  These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
 
 A **Resource** is a particular query to a service. For a web application, some examples might be a canonical URL like /user/home. For a SQL database, a resource would be the SQL of the query itself like "select * from users where id = ?".  These resources can be found after clicking on a particular service. 
+
+Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+Yes, I am interested to see if any custmers are using Datadog to monitor SAP or PeopleSoft.  Also, with the new synthetic solution coming, monitoring Salesforce and other big SaaS offerings. 
 
 In summary, I found this exercise very informative.  I found Datadog to be a powerful and very easy to use (and implement) monitoring solution. 
 
