@@ -26,8 +26,13 @@
   * Screenshot:
     <img src=screenshots/screenshot2.png>
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+  The customer agent check file is included in this git repo.  The python script is located at checks.d/mymetric.py 
+  Screenshot of the my_metric collection:
+  <img src=screenshots/screenshot3.png>
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+  The updated configuration file for the custom check is located at conf.d/mymetrics.yaml 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+  You don't modify the python script.  The check configuration yaml file has to be updated to change the check interval.
 
 ## Visualizing Data:
 
