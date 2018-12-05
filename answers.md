@@ -3,10 +3,28 @@
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 <img src=screenshots/screenshot1.png>
 
-
-
-
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. 
+  * Installed MariaDB (MySQL) on the RHEL box.
+  * Create the datadog database user and granted the correct permissions
+  * Added the following stanza to conf.d/mysql.d/conf.yaml
+  '''
+  instances:
+  - server: 127.0.0.1
+    user: datadog
+    pass: 'password' # from the CREATE USER step earlier
+    port: 3306
+    options:
+       replication: 0
+       galera_cluster: 1
+       extra_status_metrics: true
+       extra_innodb_metrics: true
+       extra_performance_metrics: true
+       schema_size_metrics: false
+       disable_innodb_metrics: false
+  '''
+  * Restarted Agent
+  * Screenshot:
+    <img src=screenshots/screenshot2.png>
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
