@@ -44,7 +44,7 @@ Metrics reporting to the MqSQL dashboard:
 
 I created "my_metric.yaml" and “my_metric.py” files and used “random.randint(0,1000)” as shown below:
 
-'''python
+```python
 # the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from old versions of the Agent...
@@ -61,7 +61,7 @@ class My_MetricCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
 
-'''
+```
 
 Viewing "my_metric" random values:
 
@@ -71,12 +71,12 @@ Viewing "my_metric" random values:
 
 I added "min_collection_interval: 45" to the “my_metric.yaml” file.
 
-'''python
+```python
 init_config:
 instances:
 
  - min_collection_interval: 45
- '''
+ ```
 
 Graph of metrics confirming the new collection interval of 45 sec:
 
@@ -98,7 +98,7 @@ Yes, I added the *min_collection_interval: 45 *to the yaml file and did not modi
 
 I ran the following python program to create my Timeboard and graphs with rollup and anomaly features:
 
-'''python
+```python
 from datadog import initialize, api
 
 options = {'api_key': 'bc9c040619249fb29dcc64b2955d7223',
@@ -176,7 +176,7 @@ api.Timeboard.create(title=title,
 		     template_variables=template_variables,
                      
 		     read_only=read_only)
-'''
+```
 
 Timeboard as created by API with rollup and anomaly features:
 
@@ -198,7 +198,7 @@ The gray band shows the bounds for the anomaly monitor with the "basic" algorith
 
 For "fun" I added the following lines to the bottom of my API script and created a monitor for this metric:
 
-'''python
+```python
 # Create a new monitor	
 
 options: {
@@ -259,7 +259,7 @@ api.Monitor.create(
     options=options
 
 )
-'''
+```
 
 "Extra Credit" - Monitor created by API script for the MySQL metric:
 
@@ -329,7 +329,7 @@ The Host Map with APM metrics:
 
 Flask app I used:
 
-'''python
+```python
 from flask import Flask
 
 import logging
@@ -373,7 +373,7 @@ def trace_endpoint():
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', port='5050')
-'''
+```
     
 
 Tracing Section:
