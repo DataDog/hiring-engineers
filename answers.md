@@ -100,81 +100,43 @@ I ran the following python program to create my Timeboard and graphs with rollup
 
 ```python
 from datadog import initialize, api
-
-options = {'api_key': 'bc9c040619249fb29dcc64b2955d7223',
-
-           'app_key': '513bc9b63afa9551a2b2f31c938a573be0d41fea'}
-	   
+options = {'api_key': 'xxx',
+           'app_key': 'xxx'}	   
 #
-
 #
-
 initialize(**options)
-
 title = "Tom's Timeboard"
-
 description = "Tom's random metric"
-
 graphs = [{
-
-	"definition": {
-        
-	"events": [],
-        
-	"requests": [
-        
-		{"q": "avg:my_metric{*}.rollup(sum, 3600)"}
-        
-	],
-        
+	"definition": {       
+	"events": [],        
+	"requests": [        
+		{"q": "avg:my_metric{*}.rollup(sum, 3600)"}        
+	],        
 	"viz": "timeseries"
-
 	},
-
     "title": "my_metric - Tom's Random"
-
 },
-
 {
-
-	"definition": {
-        
-	"events": [],
-        
-	"requests": [
-        
-		{"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}
-        
-	]
-        
-	"viz": "timeseries"
-    
-    },
-    
+	"definition": {       
+	"events": [],        
+	"requests": [        
+		{"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic',2)"}        
+	]        
+	"viz": "timeseries"    
+    },    
     "title": "MySQL Performance User Time"
-
 }]
-
-template_variables = [{
-    
-    "name": "host1",
-    
-    "prefix": "host",
-    
+template_variables = [{   
+    "name": "host1",    
+    "prefix": "host",    
     "default": "host:my-host"
-
 }]
-
 read_only = True
-
-api.Timeboard.create(title=title,
-                     
-		     description=description,
-                     
-		     graphs=graphs,
-                     
-		     template_variables=template_variables,
-                     
+api.Timeboard.create(title=title,                     
+		     description=description,                     
+		     graphs=graphs,                     
+		     template_variables=template_variables,                     
 		     read_only=read_only)
 ```
 
@@ -200,64 +162,35 @@ For "fun" I added the following lines to the bottom of my API script and created
 
 ```python
 # Create a new monitor	
-
-options: {
-		
-		"notify_audit": False,
-		
-		"locked": False,
-		
-		"timeout_h": 0,
-		
-		"new_host_delay": 300,
-		
-		"require_full_window": False,
-		
-		"notify_no_data": False,
-		
-		"renotify_interval": "0",
-		
-		"escalation_message": "",
-		
-		"include_tags": False,
-		
-		"thresholds": {
-			
-			"critical": 1,
-			
-			"warning": 0.8,
-			
-			"critical_recovery": 0
-		
-		},
-		
-		"threshold_windows": {
-			
-			"trigger_window": "last_15m",
-			
-			"recovery_window": "last_15m"
-	
+options: {		
+		"notify_audit": False,		
+		"locked": False,		
+		"timeout_h": 0,		
+		"new_host_delay": 300,		
+		"require_full_window": False,		
+		"notify_no_data": False,		
+		"renotify_interval": "0",		
+		"escalation_message": "",		
+		"include_tags": False,		
+		"thresholds": {			
+			"critical": 1,			
+			"warning": 0.8,			
+			"critical_recovery": 0		
+		},		
+		"threshold_windows": {			
+			"trigger_window": "last_15m",			
+			"recovery_window": "last_15m"	
 	}
-
 }
-
 tags = []
-
-api.Monitor.create(
-    
-    type="metric alert",
-    
+api.Monitor.create(    
+    type="metric alert",    
     query="avg(last_4h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='both', alert_window='last_15m', 
-    interval=60, count_default_zero='true') >= 1",
-    
-    name="Anomaly Alert on MySQL Performance",
-    
-    message=" @tom.nedbal@gmail.com",
-    
-    tags=tags,
-    
+    interval=60, count_default_zero='true') >= 1",    
+    name="Anomaly Alert on MySQL Performance",    
+    message=" @tom.nedbal@gmail.com",    
+    tags=tags,    
     options=options
-
 )
 ```
 
@@ -331,47 +264,26 @@ Flask app I used:
 
 ```python
 from flask import Flask
-
 import logging
-
 import sys
-
 # Have flask use stdout as the logger
-
 main_logger = logging.getLogger()
-
 main_logger.setLevel(logging.DEBUG)
-
 c = logging.StreamHandler(sys.stdout)
-
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
 c.setFormatter(formatter)
-
 main_logger.addHandler(c)
-
 app = Flask(__name__)
-
 @app.route('/')
-
 def api_entry():
-
-    return 'Entrypoint to the Application'
-    
+    return 'Entrypoint to the Application'    
 @app.route('/api/apm')
-
 def apm_endpoint():
-
-    return 'Getting APM Started'
-    
+    return 'Getting APM Started'    
 @app.route('/api/trace')
-
 def trace_endpoint():
-
-    return 'Posting Traces'
-    
+    return 'Posting Traces'    
 if __name__ == '__main__':
-
     app.run(host='0.0.0.0', port='5050')
 ```
     
