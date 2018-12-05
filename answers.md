@@ -7,7 +7,7 @@
   * Installed MariaDB (MySQL) on the RHEL box.
   * Create the datadog database user and granted the correct permissions
   * Added the following stanza to conf.d/mysql.d/conf.yaml
-'''
+```
   instances:
   - server: 127.0.0.1
     user: datadog
@@ -21,7 +21,7 @@
        extra_performance_metrics: true
        schema_size_metrics: false
        disable_innodb_metrics: false
-'''
+```
   * Restarted Agent
   * Screenshot:
     <img src=screenshots/screenshot2.png>
