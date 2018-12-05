@@ -22,3 +22,6 @@ These resources can be found after clicking on a particular service.
 Bonus Questions:
 I would use Datadog to monitor the locations of people who view a particular instagram page so that we can tell which pages pull the most internation views.
 
+Link to HostMap: https://app.datadoghq.com/dash/1010026/my-timeboard?tile_size=m&page=0&is_auto=false&from_ts=1543894200000&to_ts=1543980600000&live=true
+
+Link to Timeboard: https://app.datadoghq.com/dash/1010026/my-timeboard?tile_size=m&page=0&is_auto=false&from_ts=1543894200000&to_ts=1543980600000&live=true
