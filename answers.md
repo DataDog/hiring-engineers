@@ -33,7 +33,11 @@ As soon as I was able to verify that mysql had been integrated within my agent, 
 
 To do this, I needed first understand the documentation for Metrics, which I was able to here: https://docs.datadoghq.com/developers/metrics/
 
-Once I was able to understand the different types of Datadog, I was able to begin the process. Though I am still not as proficient in Python, I felt it was necessary to write this file using the language rather than writing on Java. 
+And the documentation needed to write up an agent check:
+
+https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+
+Once I was able to understand the different types of metrics, I was able to begin the process. Though I am still not as proficient in Python, I felt it was necessary to write this file using the language rather than writing on Java. 
 
 Here is the script:
 
@@ -45,7 +49,16 @@ from datadog_checks.checks import AgentCheck
 class CustomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('custom.mycheck', random.randint(0,1000))
-        
-To verify that this script had worked properly, I needed to.....
 ```
+
+Submitting a metric once every 45 seconds:
+
+To do this, all you would need to do is changing the configuration file, so entering the conf, which I have named datadog.yaml. In the file, you would need to include the following under instances:
+
+```
+instances:
+  - min_collection_interval: 45
+```
+
+Answer to bonus question: You wouldn't necessarily need to modify the python script that was created since all you would need to do is modify the configuration file.
 
