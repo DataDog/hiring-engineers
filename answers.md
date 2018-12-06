@@ -37,6 +37,7 @@ Once I was able to understand the different types of Datadog, I was able to begi
 
 Here is the script:
 
+```
 import random
 
 from datadog_checks.checks import AgentCheck
@@ -46,5 +47,5 @@ class CustomCheck(AgentCheck):
         self.gauge('custom.mycheck', random.randint(0,1000))
         
 To verify that this script had worked properly, I needed to.....
-
+```
 
