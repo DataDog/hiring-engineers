@@ -20,5 +20,31 @@ In order to add tags, I needed to first follow the directions in setting up the 
 ![](Tags.png)
 
 
+Once I have verified that the tags were edited within the agent, I decided to work on setting up the MySQL integration with Datadog. To do this, I needed to first update Ubuntu to the latest version, then run an installer for MySQL server. As soon as MySQL was installed on my machine, I went to the list of integrators on Datadog, which allowed me to select a list of any sort of integrations I wanted to use within my agent. I selected MySQL, and followed the directions to allow me to create a connection between MySQL and my Datadog agent. To verify this, I went back to the Host Map, which shows my results:
+
+![](mysql%20integration.png)
+
+I was also able to verify this by running the command line: sudo datadog-agent status, which returned this:
+
+
+![](mysql%20check.png)
+
+As soon as I was able to verify that mysql had been integrated within my agent, I finally started to work on collecting my metrics. 
+
+To do this, I needed first understand the documentation for Metrics, which I was able to here: https://docs.datadoghq.com/developers/metrics/
+
+Once I was able to understand the different types of Datadog, I was able to begin the process. Though I am still not as proficient in Python, I felt it was necessary to write this file using the language rather than writing on Java. 
+
+Here is the script:
+
+import random
+
+from datadog_checks.checks import AgentCheck
+
+class CustomCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('custom.mycheck', random.randint(0,1000))
+        
+To verify that this script had worked properly, I needed to.....
 
 
