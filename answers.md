@@ -60,6 +60,7 @@ Once I verified that my monitor was created correctly through the API, I moved o
 I added monitor to the timeboard file so that the timeboard with my_metric and the metric with an anomaly function could all be created at once in a single location.  In the future, I might consider breaking these out (timeboard and monitor) into separate files and including them in one aggregate file for clarity and repeatability, however for demonstration and code flow readability, and since I would only be running this file once, I kept them in a single file.  I changed the timeboard data to reflect the new graph.  Below is the timeboard:
 
 ![image](./images/datadog_timeboard.png)
+[Link to the timeboard](https://app.datadoghq.com/dash/1012686/timeboard-with-the-3-graphs?tile_size=m&page=0&is_auto=false&from_ts=1544205060000&to_ts=1544208660000&live=true)
 
 The code is shown below:
 
