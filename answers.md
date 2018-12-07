@@ -62,3 +62,48 @@ instances:
 
 Answer to bonus question: You wouldn't necessarily need to modify the python script that was created since all you would need to do is modify the configuration file.
 
+## Visualizing Data:
+
+To completely understand it from a UI perspective, I decided to go back to my agent on the Datadog website, which allowed me to create different timeboards with several different setups, ranging from System load to uptime. As soon as I was able to understand this better, I decided to look up the documentation, which in return allowed me to choose from three different languages of code. I chose Python, created a file called timeboard.py. Here is how the script currently looks like:
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'e077d9fda7b7a9295973f330489e41b1',
+    'app_key': '65141ce631b97da2c8a6615cf932a52f00ac04c5'
+}
+
+initialize(**options)
+
+title = "Al's board"
+description = "Timeboard for the hiring exercise"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.mem.free{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Average Memory Free"
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+In order to secure the API and APP keys, I had to go through settings on the Datadog UI which allowed me to not only see what my API key was, but also create an APP key. Once I was able to fill the script with the information necessary, I needed to work on running the script on my virtual machine.
+
+
+
