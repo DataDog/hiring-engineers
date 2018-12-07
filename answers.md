@@ -228,7 +228,7 @@ I found that most, if not all hikers I met on the trail had a phone on them and 
 6. Most common places hikers get lost (guilty, several times)
 7. Any anomalies such as slow hikers which could indicate injury or lost hikers
 
-Friends and family members could create dashboards to keep tabs on different behaivors set up by the hiker (speed, stopping places to receive packages) or they can create custom monitors and metrics to track other behaviors.
+Friends and family members could create dashboards to keep tabs on different behaviors set up by the hiker (speed, stopping places to receive packages) or they can create custom monitors and metrics to track other behaviors.
 
 I have a hiking app that I created that I want to integrate with the Google maps API.  I think I will try to use Datadog and see if I can actually get this integration with some volunteers (a few thousand hike each year).
 
