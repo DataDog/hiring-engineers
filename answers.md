@@ -285,6 +285,6 @@ Notify: @steve.rev@gmail.com
 * **Bonus Question** 
 set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday 
 
-![weekday downtime](/images/downtime_m-F)
+![weekday downtime](/images/downtime_m-F.png)
 
 
