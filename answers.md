@@ -32,7 +32,7 @@ Agent 6.7.0 - Commit: 2555a01 - Serialization version: 4.7.1
 
 `root@vagrant:/etc/datadog-agent# vi /etc/datadog-agent/datadog.yaml`
 
-
+![Host Tags in agent conf](/images/Host_Tags.png)
 
 then restarted the agent:
 
@@ -40,6 +40,8 @@ then restarted the agent:
 
 
 screenshot of my host and its tags on the Host Map page in Datadog:
+
+![Host Map with Tags](/images/Host_Map.png)
 
 * **Install a database on your machine and then install the respective Datadog integration for that database:**
 
@@ -53,10 +55,25 @@ Reference: https://docs.datadoghq.com/integrations/mysql/
 
 As per the documentation, this check is already included in the agent.  Following the instructions I created a database user ("datadog@localhost") and granted permissions to allow this user to collect metrics:
 
+`mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';`
 
-I also edited the mysql.d/conf.yaml file to gather metrics:
+```
+mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+```
+
+`mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';`
 
 
+Then edited the mysql.d/conf.yaml file to gather metrics:
+
+ `root@vagrant:/etc/datadog-agent/conf.d/mysql.d# vi /etc/datadog-agent/conf.d/mysql.d/conf.yaml`
+ 
+ ![mysql yaml](/images/mysql_conf_yaml.png)
+ 
 * **Create a custom Agent check:** 
 
 (submit a metric named my_metric with a random value between 0 and 1000).
