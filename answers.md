@@ -86,14 +86,22 @@ I created a custom check:
  
 `root@vagrant:/etc/datadog-agent/checks.d# vi my_metric.py`
 
+
 [!Custom Metric](/images/my_metric_check.png)
 
 
-root@vagrant:/etc/datadog-agent/checks.d# 
+root@vagrant:/etc/datadog-agent/checks.d 
+
+For the initial check, also need a corresponding conf file.  In /etc/datadog-agent/conf.d
+
+added:
+
+`instances: [{}]`
 
 
 
-* **Change your check's collection interval so that it only submits the metric once every 45 seconds.*
+* **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
+
 
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
