@@ -249,6 +249,34 @@ To create, in the Datadog UI I went to 'Monitors' -> 'New Monitor'  chose 'Metri
 
 ![Monitor](/images/Metric_monitor.png)
 
+```
+{{#is_alert}}
+
+Alert! {{value}} exceeds {{threshold}} on {{host.ip}}
+
+
+{{/is_alert}} 
+
+{{#is_warning}}
+
+Warning: Custom Metric has crossed {{warn_threshold}} 
+
+{{/is_warning}} 
+
+{{#is_no_data}}
+
+No data received for custom metric 
+
+{{/is_no_data}} 
+
+
+
+Notify: @steve.rev@gmail.com
+```
+
+![alert](/images/alert.png)
+
+
 * **Bonus Question** 
 set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday 
 
