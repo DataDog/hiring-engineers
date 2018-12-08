@@ -216,6 +216,11 @@ api.Timeboard.create(title=title,
 
 
 ```
+
+![Timeboard pic](/images/timeboard.png)
+
+
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 
