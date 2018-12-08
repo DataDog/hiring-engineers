@@ -76,35 +76,19 @@ Then edited the mysql.d/conf.yaml file to gather metrics:
  
 * **Create a custom Agent check:** 
 
-(submit a metric named my_metric with a random value between 0 and 1000).
+(submit a metric named my_metric with a random value between 0 and 1000)
 
 
 Reference: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#pagetitle
 
 I created a custom check:
 
-root@vagrant:/etc/datadog-agent/checks.d# pwd
-/etc/datadog-agent/checks.d
  
-root@vagrant:/etc/datadog-agent/checks.d# cat my_metric.py
+`root@vagrant:/etc/datadog-agent/checks.d# vi my_metric.py`
 
-`from random import randint
-# the following try/except block will make the custom check compatible with any Agent version
-try:
-    # first, try to import the base class from old versions of the Agent...
-    from checks import AgentCheck
-except ImportError:
-    # ...if the above failed, the check is running in Agent version 6 or later
-    from datadog_checks.checks import AgentCheck
-
-# content of the special variable __version__ will be shown in the Agent status page
-__version__ = "1.0.0"
+[!Custom Metric](/images/my_metric_check.png)
 
 
-class My_MetricCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric.number', randint(0,1000))
-        `
 root@vagrant:/etc/datadog-agent/checks.d# 
 
 
