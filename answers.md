@@ -7,9 +7,9 @@
 
 
 
-I chose to use Virtualbox v5.2.22 and Vagrant (version 2.2.2) running bento/ubuntu-18.04
+Installed Virtualbox v5.2.22 and Vagrant (version 2.2.2) running bento/ubuntu-18.04
 
-I signed up for a trial, downloaded and installed the agent:
+After signing up for a trial, downloaded and installed the agent:
 
 ```
 root@vagrant: DD_API_KEY=<MY_API_KEY>  bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -39,7 +39,7 @@ then restarted the agent:
 `sudo systemctl restart datadog-agent`
 
 
-screenshot of my host and its tags on the Host Map page in Datadog:
+screenshot of host and its tags on the Host Map page in Datadog:
 
 ![Host Map with Tags](/images/Host_Map.png)
 
@@ -152,7 +152,7 @@ Reference:  https://docs.datadoghq.com/api/?lang=python#overview
 Reference:  https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
 
 
-For this section, I installed pip on my host, and pip installed datadog. I also had to create an app key per the documentation referenced above (which was created in the API tab ofr my profile in the Datadog UI)
+For this section, I installed pip on my host, and pip installed datadog. I also had to create an app key per the documentation referenced above
 
 ```python
 from datadog import initialize, api
@@ -297,10 +297,10 @@ What creative ways would I use Datadog?:
 
 A few thoughts came to mind. As was already suggested in another Datadog blog, monitoring home smart devices. Temperature in the house, smoke and CO detectors, alarm systems, lights, etc. might make for a good use case.
 
-Another idea I'd like to pursue:
+Another idea:
 
-Although we are entering the unforgiving winter stretch - my local beach has a 4x4 accessible stretch, but with a limited number of vehicles allowed out on any given weekend.  Much like monitoring a subway system, I would love to find a way to monitor and alert on whether it's even worth trying to get out the door and head to the beach.  Various factors affect the number of vehicles permitted (extreme tide forces early closure for passage out, endangered birds nest and when new fledglings hatch, there is extremely limited (or no) access to the beach until they are able to fly, etc.). 
+My local town beach has a 4x4 accessible stretch with a limited number of vehicles allowed out on any given weekend.  Much like monitoring a subway system, I would like to find a way to monitor and alert whether it's possible to get passage.  Various factors affect the number of vehicles permitted (extreme tide forces early closure for passage out and so limits the access, endangered birds nest and when new fledglings hatch, there is extremely limited (or no) access to the beach until they are able to fly, and so on with other factors). 
 
-I would love a way for the park rangers or attendants to enter how many vehicles have been permitted access (as a running total, minus any vehicles that have exited), taking into account the various factors that make up the total number of vehicles allowed on any given day, and ideally how many vehicles are queued up requesting access, then have Datadog monitor all this to give a picture of "beach traffic".
+I would like a way for park rangers or attendants to enter how many vehicles have been permitted access (as a running total, minus any vehicles which have exited), taking into account the various factors that make up the total number of vehicles allowed on any given day, and ideally how many vehicles are queued up requesting access, then have Datadog monitor all this to give a picture of "beach traffic".
 
 
