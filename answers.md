@@ -288,3 +288,19 @@ set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday
 ![weekday downtime](/images/downtime_m-F.png)
 
 
+
+
+### Final Question:
+
+What creative ways would I use Datadog?:
+
+
+A few thoughts came to mind. As was already suggested in another Datadog blog, monitoring home smart devices. Temperature in the house, smoke and CO detectors, alarm systems, lights, etc. might make for a good use case.
+
+Another idea I'd like to pursue:
+
+Although we are entering the unforgiving winter stretch - my local beach has a 4x4 accessible stretch, but with a limited number of vehicles allowed out on any given weekend.  Much like monitoring a subway system, I would love to find a way to monitor and alert on whether it's even worth trying to get out the door and head to the beach.  Various factors affect the number of vehicles permitted (extreme tide forces early closure for passage out, endangered birds nest and when new fledglings hatch, there is extremely limited (or no) access to the beach until they are able to fly, etc.). 
+
+I would love a way for the park rangers or attendants to enter how many vehicles have been permitted access (as a running total, minus any vehicles that have exited), taking into account the various factors that make up the total number of vehicles allowed on any given day, and ideally how many vehicles are queued up requesting access, then have Datadog monitor all this to give a picture of "beach traffic".
+
+
