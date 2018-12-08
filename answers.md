@@ -114,7 +114,9 @@ For the initial check, also need a corresponding conf file.  In /etc/datadog-age
 `instances: [{}]`
 
 
-[!Metric](/images/my_metric_number.png)
+
+
+![Metric](/images/my_metric_number.png)
 
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
@@ -128,11 +130,40 @@ instances:
   
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
+I may have misunderstood the previous two questions - I debated using time.sleep in my_metric.py before self.gauge, but after reading the docs, believed the way to do this was in the conf file for the instance.
+
+
+## Visualizing Data
+
+
+
+* **Utilize the Datadog API to create a Timeboard that contains:**
+
+
+Your custom metric scoped over your host.
+
+Any metric from the Integration on your Database with the anomaly function applied.
+
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+
+Reference:  https://docs.datadoghq.com/api/?lang=python#overview
+Reference:  https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
+
+
+For this section, I installed pip on my host, and pip installed datadog. I also had to create an app key per the documentation referenced above (which was created in the API tab ofr my profile in the Datadog UI)
 
 
 
 
 
+
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
 
 
 
