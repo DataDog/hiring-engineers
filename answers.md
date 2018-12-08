@@ -81,7 +81,7 @@ Then edited the mysql.d/conf.yaml file to gather metrics:
 
 Reference: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#pagetitle
 
-I created a custom check:
+I created a custom check from the example (url) above and added in a random number :
 
  
 `root@vagrant:/etc/datadog-agent/checks.d# vi my_metric.py`
@@ -114,7 +114,7 @@ For the initial check, also need a corresponding conf file.  In /etc/datadog-age
 `instances: [{}]`
 
 
-[!Custom Metric](/images/custom_metric.png)
+[!Custom Metric](/images/my_metric_number.png)
 
 
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
@@ -126,6 +126,7 @@ instances:
   - min_collection_interval: 45
   
   ```
+  
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
 
