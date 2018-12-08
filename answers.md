@@ -114,8 +114,7 @@ For the initial check, also need a corresponding conf file.  In /etc/datadog-age
 `instances: [{}]`
 
 
-[!Custom Metric](/images/my_metric_number.png)
-
+[!Metric](/images/my_metric_number.png)
 
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
