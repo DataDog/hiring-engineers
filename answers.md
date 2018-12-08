@@ -86,15 +86,30 @@ I created a custom check:
  
 `root@vagrant:/etc/datadog-agent/checks.d# vi my_metric.py`
 
+```python
 
-[!Custom Metric](/images/my_metric_check.png)
+from random import randint
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
 
 
-root@vagrant:/etc/datadog-agent/checks.d 
+class My_MetricCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric.number', randint(0,1000))
 
-For the initial check, also need a corresponding conf file.  In /etc/datadog-agent/conf.d
+```
 
-added:
+
+
+For the initial check, also need a corresponding conf file.  In /etc/datadog-agent/conf.d/my_metric.yaml,  added:
 
 `instances: [{}]`
 
@@ -102,7 +117,13 @@ added:
 
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
+In the conf file /etc/datadog-agent/conf.d/my_metric.yaml changed contents to:
 
+```
+instances:
+  - min_collection_interval: 45
+  
+  ```
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
 
