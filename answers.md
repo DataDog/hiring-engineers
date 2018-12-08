@@ -109,7 +109,7 @@ class My_MetricCheck(AgentCheck):
 
 
 
-For the initial check, also need a corresponding conf file.  In /etc/datadog-agent/conf.d/my_metric.yaml,  added:
+For the initial check, also need a corresponding conf file.  In /etc/datadog-agent/conf.d/my_metric.yaml, I added:
 
 `instances: [{}]`
 
