@@ -249,5 +249,6 @@ To create, in the Datadog UI I went to 'Monitors' -> 'New Monitor'  chose 'Metri
 
 ![Monitor](/images/Metric_monitor.png)
 
-
+* **Bonus Question** 
+set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday 
 
