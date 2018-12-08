@@ -148,24 +148,89 @@ Your custom metric with the rollup function applied to sum up all the points for
 
 
 Reference:  https://docs.datadoghq.com/api/?lang=python#overview
+
 Reference:  https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
 
 
 For this section, I installed pip on my host, and pip installed datadog. I also had to create an app key per the documentation referenced above (which was created in the API tab ofr my profile in the Datadog UI)
 
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '10f0a2c69bef1b67ad086092bdc15f63',
+    'app_key': '76531123e22758098a5d3a2db6c862cd28e3f5d4'
+}
+
+initialize(**options)
+
+title = "Steve's Custom Timeboard"
+description = "A custom metric timeboard"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric.number{host:sreveliotty}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Custom My_Metric"
+},
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.user_time{*},'basic',3)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL Perf User Time"
+},
+
+{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric.number{*}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "Custom My_Metric Sum Rollup One Hour"
+}]
+
+template_variables = [{
+    "name": "sreveliotty",
+    "prefix": "host",
+    "default": "host:sreveliotty"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
 
 
 
 
-
-
+```
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+
 Set the Timeboard's timeframe to the past 5 minutes
+
+![5min Snapshot](/images/5min_snapshot.png)
+
+
 Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![at notation email](/images/notation_email.png)
+
 Bonus Question: What is the Anomaly graph displaying?
 
-
+The Anomaly graph is displaying actual performance versus what is 'predicted' or expected based on trends and statistical models.  In this case I just chose 'Basic', which is doing a lagging, rolling computation where Agile and Robust will account for seasonal day/time trends and watch for according metric shifts.
 
 
 
