@@ -233,4 +233,12 @@ Bonus Question: What is the Anomaly graph displaying?
 The Anomaly graph is displaying actual performance versus what is 'predicted' or expected based on trends and statistical models.  In this case I just chose 'Basic', which is doing a lagging, rolling computation where Agile and Robust will account for seasonal day/time trends and watch for according metric shifts.
 
 
+## Monitoring Data
+
+* **Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
+
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 
