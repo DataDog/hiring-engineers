@@ -238,7 +238,16 @@ The Anomaly graph is displaying actual performance versus what is 'predicted' or
 * **Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
 
 Warning threshold of 500
+
 Alerting threshold of 800
+
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+
+To create, in the Datadog UI I went to 'Monitors' -> 'New Monitor'  chose 'Metric' from the options, then filled out as below:
+
+
+![Monitor](/images/Metric_monitor.png)
+
 
 
