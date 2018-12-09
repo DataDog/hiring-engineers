@@ -5,14 +5,14 @@
 
 ## Environment setup
 
-I have setup and tested several environments - in Azure and locally. In Azure it was a Ubuntu Linux host, a Kubernetes based container and a Windows 10 workstation. Localy it was an Ubuntu VM host. 
+I have setup and tested several environments - in Azure and locally. In Azure it was a Ubuntu Linux host, a Kubernetes based container and a Windows 10 workstation. Locally it was an Ubuntu VM host. 
 <img src="01_azureoverview.jpg" width="100%">
 The **DD Hostmap** then looks like:
 
 <img src="02_ddhostoverview.jpg" width="100%">
 
-For the sake of this assignment all tasks are beign done on the **testmachine.smit.net** host which is the local VM.I have preconfigured the environment with all necessary packages - python, pip, bench tools etc.
-To have reaosnable data and events sent to the DD collector, I simulated certain situation, like high CPU usage with **stress-ng --cpu 0 --perf** and generated traffic on the simple webapp which used a local DB hosted with a simple script like: **for i in `seq 1 1000`; do curl http://0.0.0.0:9999/<name_here>; done**. App has its own randomizer inbuilt. 
+For the sake of this assignment all tasks are being executed on the **testmachine.smit.net** host which is the local VM.I have preconfigured the environment with all necessary packages - python, pip, bench tools etc.
+To have reasonable data and events sent to the DD collector, I simulated certain situation, like high CPU usage with **stress-ng --cpu 0 --perf** and generated traffic on the simple webapp which used a local DB hosted with a simple script like: **for i in `seq 1 1000`; do curl http://0.0.0.0:9999/<name_here>; done**. App has its own randomizer inbuilt. 
 
 **Agent info:** 
 ```bash
@@ -126,7 +126,7 @@ The python script is located [here](https://github.com/smitius/hiring-engineers/
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-The 5 minute timeboard view was created by a manual selection in a graph with the help of the "counter" on the bottom of the page.It is easier when the scale is set to L or XL. 
+The 5 minute timeboard view was created by a manual selection in a graph with the help of the "counter" on the bottom of the page. It is easier when the scale is set to L or XL. 
 **Updated timeboard snapshot:**
 
 <img src="06_timeboard5minutes.jpg" width="100%">
@@ -136,7 +136,7 @@ The 5 minute timeboard view was created by a manual selection in a graph with th
 Note: The snapshot is of a single graph/metric/widget - not the entire timeboard
 
 3. Bonus Question: What is the Anomaly graph displaying?
-The anomaly algorithm takes previous the data stream and trains a model function for future prediction. The grey overlay then represents the expected values based on this function. If the data recieved deviate from the trained function predictive span, it is highlighted in red or orther color as an anomaly. The deviation is then also taken as an input for the predictor. The more data the more precise the analysis. I have used basic anomaly detection with simple but efficient algorithm, but there are several other options available.   
+The anomaly algorithm takes previous the data stream and trains a model function for future prediction. The grey overlay then represents the expected values based on this function. If the data received deviates from the trained function predictive span, it is highlighted in red or other color as an anomaly. The deviation is then also taken as an input for the predictor. The more data the more precise the analysis. I have used basic anomaly detection with simple but efficient algorithm, but there are several other options available.   
 
 ## Monitoring Data
 1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -166,7 +166,7 @@ The anomaly algorithm takes previous the data stream and trains a model function
 <img src="12_monitorbonus2.jpg" width="70%">
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 <img src="13_monitorbonus3.jpg" width="80%">
-**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weeked and after 7pm I can only set the start date in the future. Also, the weekend downtime was assumed to be recurring event.**
+**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weekend and after 7pm I can only set the start date in the future. Also, the weekend downtime was assumed to be recurring event.**
 
 ## Collecting APM Data
 1. Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution.
@@ -176,9 +176,9 @@ App has been instrumented both for Flask and MySQL with patch_all procedure of d
 
 2. Bonus Question: What is the difference between a Service and a Resource?
 
-- **Service** - A service is a set of processes that execute the same job or function. The sample app consist of two services, a webapp service and a mysql database service.
+- **Service** - A service is a set of processes that execute the same job or function. The sample app consists of two services, a webapp service and a mysql database service.
 
-- **Resource** -  Resource is a particular action within a service. For this simple web application it is an URL, such as "/name" and for the SQL DB it is a query itself, such as "INSERT INTO example ( id, name ) VALUES ( null, '" + name + "');"
+- **Resource** - Resource is a particular action within a service. For this simple web application it is an URL, such as "/name" and for the SQL DB it is a query itself, such as "INSERT INTO example ( id, name ) VALUES ( null, '" + name + "');"
 
 3. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
 A dashboard has been created for the VM host showing a mix of APM and infrastructure metrics:
@@ -186,3 +186,10 @@ A dashboard has been created for the VM host showing a mix of APM and infrastruc
 
 4. Include your fully instrumented app in your submission.
 - App code is located [here](https://github.com/smitius/hiring-engineers/blob/master/apmapp.py "APM App")
+
+## Final Question
+1. Is there anything creative you would use Datadog for?
+
+I was thinking on creating an app that would take periodically snapshots from my IP camera pointed to the front of the apartment building where parking spaces are located. I would use a ML YOLO model to count how many cars are in sight. Knowing how many parking spaces are available and how many cars are in sight I can deduce if there still is parking space. I could have a metric created if the parking lot is completely full or exceeding a threshold and have it sent to my mail. I could collect this data on ongoing basis and try if there is a pattern and potentially also use the anomaly detector.
+
+Second use case can be the meeting room occupancy monitor. Based on the motion sensor data coming from the IOT system or security system and corelated with the booking system data, one could do a lot of things - unbook the room if booked but no-one there for 15 minutes, see patterns and do a simple recommender to a room least likely to be occupied at that time. There are some commercial applications available that can do this but this could be a DIY approach for smaller companies. 
