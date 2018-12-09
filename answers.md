@@ -295,9 +295,23 @@ set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday
 * **Collecting APM Data:**
 
 on the host:   `pip install ddtrace`
+copy sample Flask app to host as DD_APM.py
+ddtrace-run python DD_APM.py
+
+
 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+
+public URL:
+
+https://p.datadoghq.com/sb/ca1241559-bfb414387b3456805beb9536f9dd1087
+
+screenshot of screenboard:
+
+
+
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -305,7 +319,7 @@ Please include your fully instrumented app in your submission, as well.
 
 A service is a collection of processes the perform the same job - "webapp", "database", etc.
 
-A resource is a query to a service - e.g. for a "database" service, the actual SQL query itself, or for a "webapp" service, a handler function or URL "/home/user"
+A resource is a query to a service: e.g. for a "database" service, the actual SQL query itself, or for a "webapp" service, a handler function or URL "/home/user"
 
 
 
