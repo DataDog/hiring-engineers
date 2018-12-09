@@ -160,11 +160,11 @@ The anomaly algorithm takes previous the data stream and trains a model function
 4. Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 - One that silences it from 7pm to 9am daily on M-F,
-<img src="11_monitorbonus1.jpg" width="100%">
+<img src="11_monitorbonus1.jpg" width="70%">
 **Note: left it over the whole week including weeked (can be modified when weekly is selected but the next rule will override)
-- And one that silences it all day on Sat-Sun.
-<img src="12_monitorbonus2.jpg" width="100%">
+- And one that silences it all day on Sat-Sun.**
+<img src="12_monitorbonus2.jpg" width="70%">
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-<img src="13_monitorbonus3.jpg" width="100%">
-**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weeked and after 7pm I can only set the start date in the future. 
+<img src="13_monitorbonus3.jpg" width="80%">
+**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weeked and after 7pm I can only set the start date in the future. **
 
