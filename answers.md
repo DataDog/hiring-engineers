@@ -154,6 +154,7 @@ The anomaly algorithm takes previous the data stream and trains a model function
 <img src="09_monitor2.jpg" width="100%">
 
 3. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<img src="10_monitor3.jpg" width="100%">
 
 4. Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
