@@ -144,6 +144,7 @@ The anomaly algorithm takes previous the data stream and trains a model function
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
+**Warning Query: avg(last_5m):avg:my_metric{host:testmachine.smit.net} > 800**
 <img src="08_monitor1.jpg" width="100%">
 
 2. Configure the monitor’s message so that it will:
