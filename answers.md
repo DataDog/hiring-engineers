@@ -184,7 +184,7 @@ App has been instrumented both for Flask and MySQL with patch_all procedure of d
 A dashboard has been created for the VM host showing a mix of APM and infrastructure metrics:
 <img src="14_APMDashboard.jpg" width="100%">
 
-- I created a public link to the dashboard [here] (https://p.datadoghq.com/sb/607174cd9-a7dfcbcf37805d3353f8b16875772aee)
+- I created a public link to the dashboard [here](https://p.datadoghq.com/sb/607174cd9-a7dfcbcf37805d3353f8b16875772aee "Dashboard")
 
 4. Include your fully instrumented app in your submission.
 - App code is located [here](https://github.com/smitius/hiring-engineers/blob/master/apmapp.py "APM App")
