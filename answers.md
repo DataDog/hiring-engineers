@@ -292,6 +292,21 @@ set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday
 ![weekday downtime](/images/downtime_m-F.png)
 
 
+* **Collecting APM Data:**
+
+on the host:   `pip install ddtrace`
+
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Please include your fully instrumented app in your submission, as well.
+
+**Bonus Question: What is the difference between a Service and a Resource?**
+
+A service is a collection of processes the perform the same job - "webapp", "database", etc.
+
+A resource is a query to a service - e.g. for a "database" service, the actual SQL query itself, or for a "webapp" service, a handler function or URL "/home/user"
+
 
 
 ### Final Question:
