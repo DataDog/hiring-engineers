@@ -161,10 +161,28 @@ The anomaly algorithm takes previous the data stream and trains a model function
 
 - One that silences it from 7pm to 9am daily on M-F,
 <img src="11_monitorbonus1.jpg" width="70%">
-**Note: left it over the whole week including weeked (can be modified when weekly is selected but the next rule will override)
-- And one that silences it all day on Sat-Sun.**
+**Note: left it over the whole week including weeked (can be modified when weekly is selected but the next rule will override)**
+- And one that silences it all day on Sat-Sun
 <img src="12_monitorbonus2.jpg" width="70%">
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 <img src="13_monitorbonus3.jpg" width="80%">
-**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weeked and after 7pm I can only set the start date in the future. **
+**Note: The time in email is UTC - I'm other time zone so that's why it shows differently - in the settings it's ok. Also - because at the time of writing this was weeked and after 7pm I can only set the start date in the future. Also, the weekend downtime was assumed to be recurring event.**
 
+## Collecting APM Data
+1. Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution.
+
+App has been instrumented both for Flask and MySQL with patch_all procedure of ddtrace. There are several other options commented out in the code of the app.
+<img src="14_APMdatabase.jpg" width="70%">
+
+2. Bonus Question: What is the difference between a Service and a Resource?
+
+- **Service** - A service is a set of processes that execute the same job or function. The sample app consist of two services, a webapp service and a mysql database service.
+
+- **Resource** -  Resource is a particular action within a service. For this simple web application it is an URL, such as /<name>/ and for the SQL DB it is a query itself, such as "INSERT INTO example ( id, name ) VALUES ( null, '" + name + "');"
+
+3. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
+A dashboard has been created for the VM host showing a mix of APM and infrastructure metrics:
+<img src="14_APMDashboard.jpg" width="100%">
+
+4. Include your fully instrumented app in your submission
+App code is located [here](https://github.com/smitius/hiring-engineers/blob/master/apmapp.py "APM App")
