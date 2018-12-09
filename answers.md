@@ -114,7 +114,8 @@ By modifying the check's yaml file - no need to edit python script as per above.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 The timeboard was created using the start template located [here](https://docs.datadoghq.com/api/?lang=python#timeboards "DataDog Docs") 
-Unchanged Timeboard:
+
+**Unchanged Timeboard:**
 <img src="05_timeboardoriginal.jpg" width="100%">
 
 The JSON structure was done with the help of a second timeboard created in the UI to speed things up. The JSON used in python needed some clean-up (remove null values, autoscale ...)
@@ -125,9 +126,13 @@ The python script is located [here](https://github.com/smitius/hiring-engineers/
 - Set the Timeboard's timeframe to the past 5 minutes
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-Updated timeboard snapshot:
-<img src="06_timeboardupdated.jpg" width="100%">
+The 5 minute timeboard view was created by a manual selection in a graph with the help of the "counter" on the bottom of the page.It is easier when the scale is set to L or XL. 
+**Updated timeboard snapshot:**
 
+<img src="06_timeboard5minutes.jpg" width="100%">
+**Snapshot shared:**
+
+<img src="07_snapshot.jpg" width="100%">
 
 3. Bonus Question: What is the Anomaly graph displaying?
 The anomaly algorithm takes previous the data stream and trains a model function for future prediction. The grey overlay then represents the expected values based on this function. If the data recieved deviate from the trained function predictive span, it is highlighted in red or orther color as an anomaly. The deviation is then also taken as an input for the predictor. The more data the more precise the analysis. I have used basic anomaly detection with simple but efficient algorithm, but there are several other options available.   
