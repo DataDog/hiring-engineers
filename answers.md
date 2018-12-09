@@ -49,8 +49,60 @@ mysql (1.4.0)
         Average Execution Time : 41ms
  ```
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+Custom monitoring agent has been created (online Doc has some inconsistency where files should be uploaded - checks.d or conf.d and also I had to manually install libraries for the AgentCheck class definition - worked fine after)
 
+Two files were created:
+
+- mycheck.yaml [config data]
+- mycheck.py [data feeder]
+
+```python
+from random import randint
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        randnum = randint(0, 1000)
+        self.gauge('my_metric', randnum)
+```
+
+
+After check with **sudo datadog-agent check mycheck** that the check works, restarted the agent to start sending data.
+```bash
+    mycheck (1.0.0)
+    ---------------
+        Instance ID: mycheck:5ba864f3937b5bad [OK]
+        Total Runs: 8
+        Metric Samples: 1, Total: 4
+        Events: 0, Total: 0
+        Service Checks: 0, Total: 0
+        Average Execution Time : 0s
+```
+
+Online View:
+<img src="03_customcheck.jpg" width="100%">
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Modiefied **mycheck.yaml**
+
+```yaml
+init_config:
+
+instances:
+ - min_collection_interval: 45
+```
+Note: Technically this does not mean it's always going to be exactly 45 seconds - it depends on load and volume of metrics. 
 
 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+By modifying the check's yaml file - no need to edit python script as per above. 
