@@ -178,11 +178,11 @@ App has been instrumented both for Flask and MySQL with patch_all procedure of d
 
 - **Service** - A service is a set of processes that execute the same job or function. The sample app consist of two services, a webapp service and a mysql database service.
 
-- **Resource** -  Resource is a particular action within a service. For this simple web application it is an URL, such as /<name>/ and for the SQL DB it is a query itself, such as "INSERT INTO example ( id, name ) VALUES ( null, '" + name + "');"
+- **Resource** -  Resource is a particular action within a service. For this simple web application it is an URL, such as "/<name>/" and for the SQL DB it is a query itself, such as "INSERT INTO example ( id, name ) VALUES ( null, '" + name + "');"
 
 3. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
 A dashboard has been created for the VM host showing a mix of APM and infrastructure metrics:
 <img src="14_APMDashboard.jpg" width="100%">
 
-4. Include your fully instrumented app in your submission
-App code is located [here](https://github.com/smitius/hiring-engineers/blob/master/apmapp.py "APM App")
+4. Include your fully instrumented app in your submission.
+- App code is located [here](https://github.com/smitius/hiring-engineers/blob/master/apmapp.py "APM App")
