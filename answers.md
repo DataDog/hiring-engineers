@@ -120,6 +120,12 @@ For the initial check, also need a corresponding conf file.  In /etc/datadog-age
 
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
+I added `import time` at the top of my script and put `time.sleep(45)` before self.gauge, though I'm sure there was a better way to do this.
+
+  
+* **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
+
+I may have misunderstood this question - 
 In the conf file /etc/datadog-agent/conf.d/my_metric.yaml changed contents to:
 
 ```
@@ -128,9 +134,7 @@ instances:
   
   ```
   
-* **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
-
-I may have misunderstood the previous two questions - I debated using time.sleep in my_metric.py before self.gauge, but after reading the docs, believed the way to do this was in the conf file for the instance.
+   
 
 
 ## Visualizing Data
@@ -295,12 +299,17 @@ set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday
 What creative ways would I use Datadog?:
 
 
-A few thoughts came to mind. As was already suggested in another Datadog blog, monitoring home smart devices. Temperature in the house, smoke and CO detectors, alarm systems, lights, etc. might make for a good use case.
+As was already suggested in another Datadog blog, one idea was to monitor smart home devices. Temperature in the house, smoke and CO detectors, alarm systems, lights, etc. might make for a good use case.
 
-Another idea:
 
-My local town beach has a 4x4 accessible stretch with a limited number of vehicles allowed out on any given weekend.  Much like monitoring a subway system, I would like to find a way to monitor and alert whether it's possible to get passage.  Various factors affect the number of vehicles permitted (extreme tide forces early closure for passage out and so limits the access, endangered birds nest and when new fledglings hatch, there is extremely limited (or no) access to the beach until they are able to fly, and so on with other factors). 
+other IoT monitoring:
 
-I would like a way for park rangers or attendants to enter how many vehicles have been permitted access (as a running total, minus any vehicles which have exited), taking into account the various factors that make up the total number of vehicles allowed on any given day, and ideally how many vehicles are queued up requesting access, then have Datadog monitor all this to give a picture of "beach traffic".
+Agricultural  - Have Datadog read from IoT sensors for things like crop metrics: soil acidity and moisture, livestock monitoring: ((GPS) help identify animals that have roamed from the herd, or monitor the health of animals so they can be quarantined), data from a drone collecting plant count, thermal data, etc.
+
+
+
+My local town beach has a 4x4 accessible stretch with a limited number of vehicles allowed out on any given weekend.  Much like monitoring a subway system, I would like to find a way to monitor and alert whether it's possible to get passage.  Various factors affect the number of vehicles permitted (extreme tide forces early closure for passage out and limits access, endangered birds nest and when new fledglings hatch, there is limited (or no) access to the beach until they are able to fly later in the season, and so on with other factors). 
+
+I would like a way for park rangers or attendants to enter how many vehicles have been permitted access (as a running total, minus any vehicles which have exited), taking into account the various factors that make up the total number of vehicles allowed on any given day and ideally how many vehicles are queued up then have Datadog monitor all this to give a picture of "beach traffic".  Possibly include dashboards for things like tide schedule, air/water temperature, a video feed, etc.
 
 
