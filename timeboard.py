@@ -4,8 +4,8 @@ from datadog import initialize, api
 #Note:There is one aditional value added showing the same data as the 1h timelapse graph on my_metric
 
 options = {
-    'api_key': '21029214ec3586e84737353678dc1493',
-    'app_key': 'f5ee20312de5ce3e5becb0cec6f4972dca98ce51'
+    'api_key': '',
+    'app_key': ''
 }
 
 initialize(**options)
