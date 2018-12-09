@@ -308,7 +308,7 @@ public URL:
 
 https://p.datadoghq.com/sb/ca1241559-eb323733a5106962d2e76af5acfc1445
 
-![APM](/images/APM.png)
+![APM](/images/APM_screen.png) 
 
 
 screenshot of screenboard:
