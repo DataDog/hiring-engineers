@@ -1,6 +1,6 @@
 # DataDog Technical Excercise 
 
-#### Applicant: 
+#### Applicant: Peter Smitka
 #### Date: December 12 2018
 
 ## Environment setup
