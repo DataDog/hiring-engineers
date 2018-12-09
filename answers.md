@@ -115,7 +115,7 @@ By modifying the check's yaml file - no need to edit python script as per above.
 
 The timeboard was created using the start template located [here](https://docs.datadoghq.com/api/?lang=python#timeboards "DataDog Docs") 
 Unchanged Timeboard:
-<img src="05_timeboardoriginal" width="100%">
+<img src="05_timeboardoriginal.jpg" width="100%">
 
 The JSON structure was done with the help of a second timeboard created in the UI to speed things up. The JSON used in python needed some clean-up (remove null values, autoscale ...)
 
@@ -126,7 +126,7 @@ The python script is located [here](https://github.com/smitius/hiring-engineers/
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Updated timeboard snapshot:
-<img src="06_timeboardupdated" width="100%">
+<img src="06_timeboardupdated.jpg" width="100%">
 
 
 3. Bonus Question: What is the Anomaly graph displaying?
