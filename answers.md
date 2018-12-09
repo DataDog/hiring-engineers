@@ -133,8 +133,33 @@ The 5 minute timeboard view was created by a manual selection in a graph with th
 **Snapshot shared:**
 
 <img src="07_snapshot.jpg" width="100%">
+Note: The snapshot is of a single graph/metric/widget - not the entire timeboard
 
 3. Bonus Question: What is the Anomaly graph displaying?
 The anomaly algorithm takes previous the data stream and trains a model function for future prediction. The grey overlay then represents the expected values based on this function. If the data recieved deviate from the trained function predictive span, it is highlighted in red or orther color as an anomaly. The deviation is then also taken as an input for the predictor. The more data the more precise the analysis. I have used basic anomaly detection with simple but efficient algorithm, but there are several other options available.   
+
+## Monitoring Data
+1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+- Warning threshold of 500
+- Alerting threshold of 800
+- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+<img src="08_monitor1.jpg" width="100%">
+
+2. Configure the monitor’s message so that it will:
+
+- Send you an email whenever the monitor triggers.
+- Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+- Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+<img src="09_monitor2.jpg" width="100%">
+
+3. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+4. Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+- One that silences it from 7pm to 9am daily on M-F,
+- And one that silences it all day on Sat-Sun.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
 
 
