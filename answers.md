@@ -106,3 +106,22 @@ Note: Technically this does not mean it's always going to be exactly 45 seconds 
 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 By modifying the check's yaml file - no need to edit python script as per above. 
+
+## Visualizing Data
+1. Utilize the Datadog API to create a Timeboard that contains:
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+The timeboard was created using the start template located [here](https://docs.datadoghq.com/api/?lang=python#timeboards "DataDog Docs")  
+The JSON structure was done with the help of a second timeboard created in the UI to speed things up. The JSON used in python needed some clean-up (remove null values, autoscale ...)
+
+The python script is located [here]()
+
+2. Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
+
+
