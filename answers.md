@@ -37,13 +37,12 @@ And the documentation needed to write up an agent check:
 
 https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
-Once I was able to understand the different types of metrics, I was able to begin the process. Though I am still not as proficient in Python, I felt it was necessary to write this file using the language rather than writing on Java. 
+Once I was able to understand the different types of metrics, I was able to begin the process. Since Python was utilized in a lot of the documentation, I decided to use the language in my approach.
 
 Here is the script:
 
 ```
 import random
-
 from datadog_checks.checks import AgentCheck
 
 class CustomCheck(AgentCheck):
@@ -103,7 +102,24 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
-In order to secure the API and APP keys, I had to go through settings on the Datadog UI which allowed me to not only see what my API key was, but also create an APP key. Once I was able to fill the script with the information necessary, I needed to work on running the script on my virtual machine.
+In order to secure the API and APP keys, I had to go through settings on the Datadog UI which allowed me to not only see what my API key was, but also create an APP key. Once I was able to fill the script with the information necessary, I needed to work on running the script on my virtual machine. Once I had began running the script, I seem to have run into the following error:
+
+![](Timeboarderror.png)
+
+I decided to check whether this was an issue with the script, or the virtual machine itself, but none of the solutions that I have found have worked properly so I felt it was best to tackle this issue from the perspective of the UI itself since I feel that is very important with not only from the perspective of the client, but to picture the inquiry properly.
+
+On the UI, I decided to look at what I had done with past Timeboards to see the results of data during the test phases when setting up the environment. Once I was able to comprehend the features a bit better, I selected new Dashboards under the Dashboard header, which allows to select between the following two options:
+
+![](dashboard%20options.png)
+
+I selected New Timeboard, which returned a new dashboard that allows me to add different graphs for metrics. I chose two different boards, one that measures my metrics, and the other that measures the System load.
+
+![](metrics.png)
+
+What I'd like to do now is begin the process of 
+
+
+Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.  
 
 
 
