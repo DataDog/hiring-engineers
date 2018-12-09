@@ -104,7 +104,7 @@ api.Timeboard.create(title=title,
 
 In order to secure the API and APP keys, I had to go through settings on the Datadog UI which allowed me to not only see what my API key was, but also create an APP key. Once I was able to fill the script with the information necessary, I needed to work on running the script on my virtual machine. Once I had began running the script, I seem to have run into the following error:
 
-![](Timeboarderror.png)
+![](timeboarderror.png)
 
 I decided to check whether this was an issue with the script, or the virtual machine itself, but none of the solutions that I have found have worked properly so I felt it was best to tackle this issue from the perspective of the UI itself since I feel that is very important with not only from the perspective of the client, but to picture the inquiry properly.
 
@@ -116,10 +116,76 @@ I selected New Timeboard, which returned a new dashboard that allows me to add d
 
 ![](metrics.png)
 
+In order to include a third graph, we must implement and define a timeboard which will allow us to use rollup. Normally, this would occur in the same timeboard, and look like the following:
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'e077d9fda7b7a9295973f330489e41b1',
+    'app_key': '65141ce631b97da2c8a6615cf932a52f00ac04c5'
+}
+
+initialize(**options)
+
+title = "Al's board"
+description = "Timeboard for the hiring exercise"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:custom.mycheck{*}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_Metric"
+}
+
+ "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:system.load"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_Metric"
+
+}
+
+ "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:custom.mycheck{*}.rollup(sum,3600)"} #Based on Hours
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My_Metric"
+    
+  }
+
+]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+Since this happened to be the first time I used the rollup method, I had to look in the Datadog documentation to understand it as it is recommended only for experts. Datadog rollsup all the data points automatically based on two parameters that is being taken in within that function, the method and time. Since we are currently looking for the average, we want to be able to take in the sum of the function, and I chose 3600 as time is calculated in seconds. If the timeboard portion had worked properly, it should return graphs similar to the ones below:
+
+
+
+
 What I'd like to do now is begin the process of 
 
 
 Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.  
-
-
 
