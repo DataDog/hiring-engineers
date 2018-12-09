@@ -2,6 +2,7 @@ from datadog import initialize, api
 
 #My API generated Timeboard
 #Note:There is one aditional value added showing the same data as the 1h timelapse graph on my_metric
+#keys removed
 
 options = {
     'api_key': '',
