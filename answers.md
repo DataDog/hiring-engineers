@@ -1,6 +1,6 @@
 Collecting Metrics:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![Alt text](./img.png?raw=true "host with tags on Host Map")
+![Alt text](Screenshots/check_ok_after_PostgreSQL_integration.png "host with tags on Host Map")
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
