@@ -296,7 +296,7 @@ set up downtime to silence alerts over the weekend and 7pm-9am Monday - Friday
 
 on the host:   `pip install ddtrace`
 copy sample Flask app to host as DD_APM.py
-ddtrace-run python DD_APM.py
+`ddtrace-run python DD_APM.py`
 
 
 
