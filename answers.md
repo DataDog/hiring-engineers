@@ -13,12 +13,12 @@ Added the following in datadog.yaml:
 
 ============
 
-api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
+    api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
 
-tags:
-  \- my_server
-  \- env:exercise
-  \- role:testserver
+    tags:
+      - my_server
+      - env:exercise
+      - role:testserver
 
 =============
 
@@ -32,7 +32,6 @@ Installation following the description.
 
 Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
 
-====================
 
     init_config:
 
@@ -47,7 +46,7 @@ Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
           replication: 0
           galera_cluster: 1
 
-========================
+
 
 After agent restart checking the result (datadog agent check mysql):
 
