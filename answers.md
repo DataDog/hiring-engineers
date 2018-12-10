@@ -13,3 +13,6 @@ Two files attached: configuration-file-tags.png & host-map-tags.png
 <h2>Database</h2>
 
 I installed MySQL and added the integration with the full metrics catalog.
+
+
+<img src="mysql-overview-dashboard.png">
