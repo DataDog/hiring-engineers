@@ -197,4 +197,158 @@ it Here is a snapshot of the graph and the use of the @ notation to showcase tha
 
 Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.
 
+## Metric Monitoring
+
+To begin understanding the process, I continue to follow my method of reading through the documentation. After reading through it, I began by going into the Datadog UI, hovering over the monitors tab, I selected new Monitor, which will allow me to create any Monitor type. 
+
+![](Monitor%20Types.png)
+
+For this specific inquiry, I chose to do Metric Monitoring. Once this option has been selected, I followed a set of steps that assisted me with setting the monitoring process properly.
+
+![](steps.png)
+
+Because this inquiry specifies threshold, I chose threshold alert, and chose the specific metric that had been used for visualizing our data in the last exercise. Here is what the current setup looks like with our warning threshold being at 500, and the alerting threshold being at 800.
+
+![](steps2.png)
+
+Once this is configured, I began tackling the next step, which allows me to create messages for my monitor. The exercise had asked for the following four configurations for this process:
+
+```
+-Send you an email whenever the monitor triggers.
+-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+```
+
+Utilizing the variable templates given to me by Datadog, I was able to write up the following messages for my monitor:
+
+![](monitormessages.png)
+
+To verify that email notifications were working properly, I have reeived the following on my email:
+
+![](alert1.png)
+![](alert2.png)
+
+Bonus: Before beginning this bonus question, I started to notice how I had been receiving alerts pretty often, and realized that it may be an issue to receive alerts during times when they are unecessary. For this task, I will continue to use the Datadog UI to manage the following tasks:
+
+```
+-One that silences it from 7pm to 9am daily on M-F,
+-And one that silences it all day on Sat-Sun.
+-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+```
+
+To begin configuring this with my current monitor, I want to first select it from the Monitor list. Once selected, I can begin choosing a tab above named Managed downtime, which will allow me to accomplish the tasks above. Here is what the interface currenly looks like after this step:
+
+![](downtime1.png)
+
+From here, I will need to select the option to Schedule Downtime for my monitor. This will return the following window:
+
+![](downtime2.png)
+
+After filling out all information needed, you will need to verify that everything is written properly:
+
+![](downtime3.png)
+
+At the moment, there seems to be an issue in which I am unable to select 12:00AM for the beginning time to allow silence all day on Saturday-Sunday, so to tackle this issue, I had done the following:
+
+![](downtime4.png)
+
+
+As you can see, I chose Friday and Saturday and didn't include Sunday as choosing 12:00AM as a beginning time wasn't possible. I decided on Friday and Saturday since the beginning time had been late at night, which would then end the following day.
+
+What I found a little odd was if I chose a different timezone outside the United States, it will allow me to silence all 24 hours.
+
+![](downtime5.png)
+
+Nevertheless, I was able to tackle the task by choosing an alternative path way.
+
+
+
+## Collecting APM Data:
+
+In order to begin collecting APM data, I will first need to enable the configuration in the datadog.yaml, which should resemble this snapshot:
+
+![](apm%20config)
+
+Once I have enabled it, I will need to verify that it was properly updated after restarting the agent. I have verified that there are no errors, which will mean that I may begin implementing the following app that had been given to me:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+I've created a file on my virtual machine, and have pasted the content in it. Once I had verified that everthing had been properly inserted with the correct syntax, I saved the file. Reading up on the documentation for python, I was able to run the app with the following command: ddtrace-run python apm.py which outputted:
+
+![](amprun.png)
+
+At first, I wasn't too sure to what had been running, but then started to realize that the dashboard hasn't been created on my list of dashboards, and there happen to not be any services running. I started to then understand that there happened to be an error with this script which may have been caused by my virtual machine.
+
+Bonus Question: Differences between a Service and Resource
+
+-A service is defined as a sect of processes or actions that assist with the same job. An example used by Datadog is a web application that consists of two different services, one that happens to be a single web app service, and another that is a single database service.
+
+-A resource is a particular query to a service. In lamens terms, a resource is used when a service happens to need some sort of action that needs to be trigged. One obvious example is if we utilize a single database service, the resource would likely be a query.
+
+## Final Question:
+
+Based on the importance of monitoring analytics in our world today, I certainly believe that measuring performance on different platforms is ideal for efficiency, so I would definitely use the Datadog API for that. There are many different examples for using the API for measuring certain aspects like trends online or traffic flow. Personally, I would love to learn more about the API itself and use it for ecommerce in order to track when traffic flow is the heaviest.
+
+
+## References
+
+### How to get started with Datadog
+
+* [Datadog overview](https://docs.datadoghq.com/)
+* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
+* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
+
+### The Datadog Agent and Metrics
+
+* [Guide to the Agent](https://docs.datadoghq.com/agent/)
+* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
+* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
+* [Datadog API](https://docs.datadoghq.com/api/)
+
+### APM
+
+* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
+* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
+
+### Vagrant
+
+* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
+
+### Other questions:
+
+* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+* [Difference between Service and Resource](https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-)
+
+
+
 
