@@ -91,3 +91,7 @@ Collector
         Service Checks: 0, Total: 0
         Average Execution Time : 0s
 </pre>
+
+Finally i created a notebook showing my_metric.
+
+<img src="notebook-my-metric.png">
