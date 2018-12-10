@@ -11,16 +11,12 @@ I have decided to go with the Vagrant VM
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Added the following in datadog.yaml:
 
-============
-
     api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
 
     tags:
       - my_server
       - env:exercise
       - role:testserver
-
-=============
 
 The tags were reflected in the host map:
 
@@ -32,44 +28,34 @@ Installation following the description.
 
 Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
 
-
     init_config:
 
     instances:
-      \- server: localhost
+      - server: localhost
         user: datadog
         pass: jalla2000
         tags:
-            \- optional_tag1
-            \- optional_tag2
+            - optional_tag1
+            - optional_tag2
         options:
           replication: 0
           galera_cluster: 1
 
-
-
 After agent restart checking the result (datadog agent check mysql):
 
-
-=========
-
-Collector
-
-=========
-
-  Running Checks
-
-  ==============
-
-    mysql (1.4.0)
-    -------------
-        Instance ID: mysql:bc77a72a65c1a127 [OK]
-        Total Runs: 1
-        Metric Samples: 60, Total: 60
-        Events: 0, Total: 0
-        Service Checks: 1, Total: 1
-        Average Execution Time : 15ms
-
+    =========
+    Collector
+    =========
+      Running Checks
+      ==============
+        mysql (1.4.0)
+        -------------
+            Instance ID: mysql:bc77a72a65c1a127 [OK]
+            Total Runs: 1
+            Metric Samples: 60, Total: 60
+            Events: 0, Total: 0
+            Service Checks: 1, Total: 1
+            Average Execution Time : 15ms
 
 Full output in mysql_check_output.txt
 
@@ -77,52 +63,40 @@ Full output in mysql_check_output.txt
 
 Created my_metric.yaml (see file my_metric.yaml)
 
-===================
+    init_config:
 
-init_config:
-
-instances:
-  - min_collection_interval: 45
-
-====================
+    instances:
+      - min_collection_interval: 45
 
 Created my_metric.py in checks.d (see file my_metric.py)
 
-======================
+    import random
 
-import random
+    # the following try/except block will make the custom check compatible with any Agent version
+    try:
+        # first, try to import the base class from old versions of the Agent...
+        from checks import AgentCheck
+    except ImportError:
+        # ...if the above failed, the check is running in Agent version 6 or later
+        from datadog_checks.checks import AgentCheck
 
-\# the following try/except block will make the custom check compatible with any Agent version
-try:
-    \# first, try to import the base class from old versions of the Agent...
-    from checks import AgentCheck
-except ImportError:
-    \# ...if the above failed, the check is running in Agent version 6 or later
-    from datadog_checks.checks import AgentCheck
-
-\# content of the special variable __version__ will be shown in the Agent status page
-__version__ = "1.0.0"
+    # content of the special variable __version__ will be shown in the Agent status page
+    __version__ = "1.0.0"
 
 
-class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric', random.randint(0,1000))
-
-=======================
+    class HelloCheck(AgentCheck):
+        def check(self, instance):
+            self.gauge('my_metric', random.randint(0,1000))
 
 Check after restart (datadog agent check my_metric):
 
 ![My Metric Check](My_Metric_Check.png)
 
-<h1>Change your check's collection interval so that it only submits the metric once every 45 seconds.</h1>
+<h2>Change your check's collection interval so that it only submits the metric once every 45 seconds.</h2>
 
 Added in my_metric.yaml:
 
-==================
-
-- min_collection_interval: 45
-
-====================
+    - min_collection_interval: 45
 
 <h2>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h2>
 
@@ -141,64 +115,60 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Timeboard created with Python script (create_timeboard.py):
 
-===================
+    from datadog import initialize, api
 
-from datadog import initialize, api
+    options = {
+        'api_key': '1e4bc1602c9a7eeac37718d0b4fcd482',
+        'app_key': '02e9c8a50a650907e979279ba2dd227deef90094'
+    }
 
-options = {
-    'api_key': '1e4bc1602c9a7eeac37718d0b4fcd482',
-    'app_key': '02e9c8a50a650907e979279ba2dd227deef90094'
-}
+    initialize(\*\*options)
 
-initialize(\*\*options)
+    title = "My Timeboard"
+    description = "An informative timeboard."
+    graphs = [{
+        "definition": {
+            "events": [],
+            "requests": [
+                {"q": "my_metric{\*}"}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "My Metric"},
+        {
+        "definition": {
+            "events": [],
+            "requests": [
+                {"q": "anomalies(mysql.innodb.buffer_pool_utilization{\*},'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true')"}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "MySQL Buffer Pool Utilization"},
+        {
+        "definition": {
+            "events": [],
+            "requests": [
+                {"q": "my_metric{\*}.rollup(sum,1200)"}
+            ],
+            "viz": "timeseries"
+        },
+        "title": "My Metric Rollup"}
+    ]
 
-title = "My Timeboard"
-description = "An informative timeboard."
-graphs = [{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "my_metric{\*}"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "My Metric"},
-    {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "anomalies(mysql.innodb.buffer_pool_utilization{\*},'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true')"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "MySQL Buffer Pool Utilization"},
-    {
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "my_metric{\*}.rollup(sum,1200)"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "My Metric Rollup"}
-]
+    template_variables = [{
+        "name": "host1",
+        "prefix": "host",
+        "default": "host:ubuntu-xenial"
+    }]
 
-template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:ubuntu-xenial"
-}]
+    read_only = True
+    res = api.Timeboard.create(title=title,
+                         description=description,
+                         graphs=graphs,
+                         template_variables=template_variables,
+                         read_only=read_only)
 
-read_only = True
-res = api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
-
-print(res)
-
-====================
+    print(res)
 
 Snapshot sent to myself:
 
@@ -217,35 +187,31 @@ And also ensure that it will notify you if there is No Data for this query over 
 
 Created Monitor (Export file my_metric_monitor.json):
 
-=====================
-
-{
-	"name": "Something is happening with My Metric!",
-	"type": "metric alert",
-	"query": "avg(last_5m):avg:my_metric{\*} > 800",
-	"message": "My Metric current value is {{value}} \\n\\n{{#is_alert}}My Metric is through the roof. Please act accordingly{{/is_alert}} \\n\\n{{#is_warning}}My Metric is high. You should have a look{{/is_warning}}\\n\\n{{#is_no_data}}My Metric is very quiet. Perhaps it's dead{{/is_no_data}}\\n  \\nNotify: @dollenbacher@gmail.com",
-	"tags": [
-		"service:the_dummy_app"
-	],
-	"options": {
-		"notify_audit": false,
-		"locked": false,
-		"timeout_h": 0,
-		"new_host_delay": 300,
-		"require_full_window": true,
-		"notify_no_data": true,
-		"renotify_interval": "0",
-		"escalation_message": "",
-		"no_data_timeframe": 10,
-		"include_tags": false,
-		"thresholds": {
-			"critical": 800,
-			"warning": 500
-		}
-	}
-}
-
-========================
+    {
+	    "name": "Something is happening with My Metric!",
+	    "type": "metric alert",
+	    "query": "avg(last_5m):avg:my_metric{\*} > 800",
+	    "message": "My Metric current value is {{value}} \n\n{{#is_alert}}My Metric is through the roof. Please act accordingly{{/is_alert}} \n\n{{#is_warning}}My Metric is high. You should have a look{{/is_warning}}\n\n{{#is_no_data}}My Metric is very quiet. Perhaps it's dead{{/is_no_data}}\n  \nNotify: @dollenbacher@gmail.com",
+	    "tags": [
+		    "service:the_dummy_app"
+    	],
+	    "options": {
+		    "notify_audit": false,
+		    "locked": false,
+		    "timeout_h": 0,
+		    "new_host_delay": 300,
+		    "require_full_window": true,
+		    "notify_no_data": true,
+		    "renotify_interval": "0",
+		    "escalation_message": "",
+		    "no_data_timeframe": 10,
+		    "include_tags": false,
+		    "thresholds": {
+			    "critical": 800,
+			    "warning": 500
+		    }
+	    }
+    }
 
 ![Timeboard](Timeboard.png)
 
