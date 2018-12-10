@@ -27,9 +27,10 @@ ad-configpolling, ad-servicelistening, aggregator, collector-queue, dogstatsd-ma
 
 Tags were added to the agent yaml file */etc/datadog-agent/datadog.yaml*  : 
 
-**# Set the host's tags (optional)
+** Set the host's tags (optional)
+```yaml
 tags: mysql, env:production, role:web**
-
+```
 <img src="03_customtags.jpg" width="100%">
 
 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -170,6 +171,23 @@ The anomaly algorithm takes previous the data stream and trains a model function
 
 ## Collecting APM Data
 1. Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution.
+DD agents had been configured with:
+```yaml
+apm_config:
+#   Whether or not the APM Agent should run
+   enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if none is applied here
+   env: production
+   analyzed_spans:
+     flask|flask.request: 1
+#   The port that the Receiver should listen on
+   receiver_port: 8126
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+   ignore_resources: ["GET /favicon.ico"]
+```
 
 App has been instrumented both for Flask and MySQL with patch_all procedure of ddtrace. There are several other options commented out in the code of the app.
 <img src="14_APMdatabase.jpg" width="70%">
