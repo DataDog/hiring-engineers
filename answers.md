@@ -16,9 +16,9 @@ Added the following in datadog.yaml:
 api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
 
 tags:
-  - my_server
-  - env:exercise
-  - role:testserver
+  \- my_server
+  \- env:exercise
+  \- role:testserver
 
 =============
 
@@ -26,7 +26,7 @@ The tags were reflected in the host map:
 
 ![Host Map](HostMap.png)
 
-<h1>Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.</h1>
+<h2>Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.</h2>
 
 Installation following the description.
 
@@ -37,12 +37,12 @@ Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
 init_config:
 
 instances:
-  - server: localhost
+  \- server: localhost
     user: datadog
     pass: jalla2000
     tags:
-        - optional_tag1
-        - optional_tag2
+        \- optional_tag1
+        \- optional_tag2
     options:
       replication: 0
       galera_cluster: 1
@@ -53,10 +53,13 @@ After agent restart checking the result (datadog agent check mysql):
 
 
 =========
+
 Collector
+
 =========
 
   Running Checks
+
   ==============
 
     mysql (1.4.0)
