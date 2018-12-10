@@ -130,7 +130,7 @@ Timeboard created with Python script (create_timeboard.py):
         "definition": {
             "events": [],
             "requests": [
-                {"q": "my_metric{\*}"}
+                {"q": "my_metric{*}"}
             ],
             "viz": "timeseries"
         },
@@ -139,7 +139,7 @@ Timeboard created with Python script (create_timeboard.py):
         "definition": {
             "events": [],
             "requests": [
-                {"q": "anomalies(mysql.innodb.buffer_pool_utilization{\*},'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true')"}
+                {"q": "anomalies(mysql.innodb.buffer_pool_utilization{*},'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true')"}
             ],
             "viz": "timeseries"
         },
@@ -148,7 +148,7 @@ Timeboard created with Python script (create_timeboard.py):
         "definition": {
             "events": [],
             "requests": [
-                {"q": "my_metric{\*}.rollup(sum,1200)"}
+                {"q": "my_metric{*}.rollup(sum,1200)"}
             ],
             "viz": "timeseries"
         },
