@@ -1,0 +1,37 @@
+---
+driver:
+  name: vagrant
+  vm_hostname: vagrant1.scottford.io
+  network:
+    - ["private_network", {ip: "192.168.33.33"}]
+
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-18.04
+
+suites:
+  - name: mongodb
+    run_list:
+      - recipe[chef_datadog_example::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
+      datadog:
+        agent6: true
+        api_key: <%= ENV['DD_API_KEY'] %>
+        application_key: <%= ENV['DD_APP_KEY'] %>
+        tags: 
+          name: vagrant1.scottford.io
+          environment: localdev
+          config_mgmt: chef
+        mongo:
+          instances:
+            - host: localhost
+            - port: 27017
