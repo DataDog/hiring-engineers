@@ -181,11 +181,20 @@ api.Timeboard.create(title=title,
 
 Since this happened to be the first time I used the rollup method, I had to look in the Datadog documentation to understand it as it is recommended only for experts. Datadog rollsup all the data points automatically based on two parameters that is being taken in within that function, the method and time. Since we are currently looking for the average, we want to be able to take in the sum of the function, and I chose 3600 as time is calculated in seconds. If the timeboard portion had worked properly, it should return graphs similar to the ones below:
 
+![](metrics2.png)
 
 
+What I'd like to do now is begin the process of settting the timeboard's time frame to the past 5 minutes. In order to begin this prcedure, I need to go back to my time series on the Datadog UI. From there, I would select one of the graphs, which will then open up a window of the same graph with more options. From there, you may select two different points, which will allow you to gather data between that time frame. Here is a snapshot of what it should look like:
 
-What I'd like to do now is begin the process of 
+![](fiveminutes.png)
+
+To send a snapshot of a particular point on one of my graphs, I would need to select a point on the graph and annotate it.
+
+it Here is a snapshot of the graph and the use of the @ notation to showcase that it was sent to myself:
+
+![](annotate.png)
 
 
-Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.  
+Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.
+
 
