@@ -103,3 +103,6 @@ It is indeed possible by updating the value of the collection interval in the Ya
 
 To Create the script i used the <a href="https://docs.datadoghq.com/api/?lang=python#timeboards">documentation</a> and i used the UI as an help to create the queries. The python is available <a href="timeboard.py">here</a>. I just removed the app_key and api_key.
 I have not been able to set the set timeframe on 5 minutes. The lowest option that i was able to access was 15 minutes.
+
+I took the snapshot and send it to me. The snapshot appears in the event.
+<img src="snapshot-timeboard.png">
