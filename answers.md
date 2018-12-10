@@ -13,6 +13,10 @@ Two files attached: configuration-file-tags.png & host-map-tags.png
 <h2>Database</h2>
 
 I installed MySQL and added the integration with the full metrics catalog.
+After i checked the status of the agent using : 
+<pre>  sudo datadog-agent status </pre>
+<img src="mysql-agent-status.png">
 
+I installed Apache and PhpMyAdmin in order to generate a few metrics and to be able to visualize it on the Mysql Overview Dashboard.
 
 <img src="mysql-overview-dashboard.png">
