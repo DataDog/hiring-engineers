@@ -98,3 +98,7 @@ Finally i created a notebook showing my_metric.
 
 <h2>Bonus Question:</h2>
 It is indeed possible by updating the value of the collection interval in the Yaml file.
+
+<h1>Visualizing Data</h1>
+
+To Create the script i used the <a href="https://docs.datadoghq.com/api/?lang=python#timeboards">documentation</a> and i used the UI as an help to create the queries. The python is available <a href="timeboard.py">here</a>
