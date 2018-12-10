@@ -232,7 +232,7 @@ A dashboard has been created for the VM host showing a mix of APM and infrastruc
 
 - There are many more examples I could think of including a little pressure sensor on my chair that would count the amount of hours I sit in front of the computer and trigger an "action" to get moving and display sum over a month. Might be good motivational element. 
 
-2. Adding Functionality in next releases
+2. Adding functionality in next releases / roadmap items
 
 - It would be useful for the IT DevOps managers or non-technical people have easy access to the data as part of consolidated dashboard like a PowerBI one. I tried it and it works with publicly shared dashboards via iframe integration but it's not elegant.It would be nice if one could integrate into more complex reports via a custom integration.
 
@@ -242,4 +242,4 @@ src="https://p.datadoghq.com/sb/607174cd9-a7dfcbcf37805d3353f8b16875772aee" fram
 allowfullscreen></iframe> 
 ``` 
 
-- Second roadmap item is a no-brainer. Make datadog module that handles Security Incident and Events (**SIEM**). DD can already collect logs and even monitor custom apps and if deployed in as a lightweight agent on end-users devices (laptops, workstations) - the security staff gain end-to-end view on the security posture. DD could partner or develop it's own capability to investigate these events and automatically visualize and take remediative actions. I can certainly see how this could disrup the legacy SIEM market with ArcSight and the likes. 
+- Second roadmap item is a no-brainer. Make datadog module that handles Security Incident and Events (**SIEM**). DD can already collect logs and monitor custom apps and correlate and if deployed in as a lightweight agent on end-users devices (laptops, workstations) - the security staff gain end-to-end view on the security posture. DD could partner or develop it's own capability to investigate these events and automatically visualize and take remediative actions. I can certainly see how this could disrup the legacy SIEM market with ArcSight and the likes. This can easily identify certain attack vectors, detect if ransomware is encrypting your drive or LUN, detect suspicious connections bursts as part of malware or spambots and similar use cases. I truly believe there is value in this and if combined with longer data retention plans for logging - very usable for goverment agencies and regulated sectors (Energy, Banking). 
