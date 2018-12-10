@@ -1,7 +1,7 @@
 # DataDog Technical Excercise 
 
 #### Applicant: Peter Smitka
-#### Date: December 12 2018
+#### Date: December 12, 2018
 
 ## Environment setup
 
@@ -12,7 +12,8 @@ The **DD Hostmap** then looks like:
 <img src="02_ddhostoverview.jpg" width="100%">
 
 For the sake of this assignment all tasks are being executed on the **testmachine.smit.net** host which is the local VM.I have preconfigured the environment with all necessary packages - python, pip, bench tools etc.
-To have reasonable data and events sent to the DD collector, I simulated certain situation, like high CPU usage with **stress-ng --cpu 0 --perf** and generated traffic on the simple webapp which used a local DB hosted with a simple script like: **for i in `seq 1 1000`; do curl http://0.0.0.0:9999/<name_here>; done**. App has its own randomizer inbuilt. 
+
+Note: To have reasonable data and events sent to the DD collector, I simulated certain situation, like high CPU usage with **stress-ng --cpu 0 --perf** and generated traffic on the simple webapp which used a local DB hosted with a simple script like: **for i in `seq 1 1000`; do curl http://0.0.0.0:9999/<name_here>; done**. App has its own randomizer inbuilt. 
 
 **Agent info:** 
 ```bash
@@ -225,3 +226,7 @@ Second use case can be the meeting room occupancy monitor. Based on the motion s
 A more industrial example would be an application with a data pipeline from drones' live feed that would circle around a power plant's cooling towers every day on a pre-defined GPS route. The drone would have a thermal imaging camera and would look for leaks in the cooling tower. The feed would be processed by a CNN neural network and in case of a find,  datadog could trigger an event with a picture or gif enclosed in an email message to the local engineer. He could then validate if it isnt a false positive. In some cases an autoremediation activities could be triggered depending on the event's impact (small leak, medium, big leak, disaster, unknown ...).
 
 There are many more examples I could think of including a little pressure sensor on my chair that would count the amount of hours I sit in front of the computer and trigger an "action" to get moving and display sum over a month. Might be good motivational element. 
+
+**Final Note**
+During the work on this excercise, no animals were harmed but 1 quirk should be reported as experienced:
+1. When using Chrome, Host Map will not show detail on the host (like tags or expanded info) when clicked on it. Other browser works fine.
