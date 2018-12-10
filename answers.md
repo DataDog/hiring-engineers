@@ -95,6 +95,7 @@ Online View:
 <img src="03_customtags.jpg" width="100%">
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
 Modiefied **mycheck.yaml**
 
 ```yaml
@@ -226,6 +227,14 @@ Second use case can be the meeting room occupancy monitor. Based on the motion s
 A more industrial example would be an application with a data pipeline from drones' live feed that would circle around a power plant's cooling towers every day on a pre-defined GPS route. The drone would have a thermal imaging camera and would look for leaks in the cooling tower. The feed would be processed by a CNN neural network and in case of a find,  datadog could trigger an event with a picture or gif enclosed in an email message to the local engineer. He could then validate if it isnt a false positive. In some cases an autoremediation activities could be triggered depending on the event's impact (small leak, medium, big leak, disaster, unknown ...).
 
 There are many more examples I could think of including a little pressure sensor on my chair that would count the amount of hours I sit in front of the computer and trigger an "action" to get moving and display sum over a month. Might be good motivational element. 
+
+FYI - I thought it would be useful for the IT DevOps managers or non-technical people have easy access to the data as part of consolidated dashboard like a PowerBI one. I tried it and it works with publicly shared dashboards via iframe integration:
+```html
+<iframe width="1400" height="900"
+src="https://p.datadoghq.com/sb/607174cd9-a7dfcbcf37805d3353f8b16875772aee" frameborder="0"
+allowfullscreen></iframe>
+```
+However, it would be nice if one could integrate into more complex reports via a custom integration.
 
 **Final Note**
 During the work on this excercise, no animals were harmed but 1 quirk should be reported as experienced:
