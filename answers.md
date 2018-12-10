@@ -40,9 +40,11 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![Alt text](Screenshots/annotation_received.png "Annotation Email")
 
 Bonus Question: What is the Anomaly graph displaying?
+
 Anomalies are events that occur outside of a normal/historically expected trend. The anomaly graph displays detections that occur outside of the historically expected trend. When an event doesn't match a prediction, it is an anomaly and will be displayed on the anomaly graph.
 
-Monitoring Data
+Monitoring Data:
+
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -70,11 +72,23 @@ Make sure that your email is notified when you schedule the downtime and take a 
 ![Alt text](Screenshots/M-F_downtime.png "Weekly Downtime")
 ![Alt text](Screenshots/Weekend_downtime.png "Weekend Downtime")
 
+Collecting APM Data:
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+Sorry, but I ran out of time to work on this. :( Happy to complete with more time.
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+Services are a set of processes that work together to provide a feature set. Examples of simple featured sets might be a webapp service or a database service. Services are defined by the user when they create their app using Datadog. Services help to quickly distinguish between different processes run by the app.
+
+Resources are a query to a service. For a web app, examples might be a handler or a canonical URL.
+
 Final Question:
+
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
 Yes! Food trucks are popular lunch time destinations in the San Francisco Financial District. However, it is the nature of most food trucks to be mobile. This leaves workers of the FiDi uncertain of where to find their favorite food truck on a given day. A Datadog dashboard would be a brilliant solution to monitor a truck's location.
 
-In order to gather the necessary data, truck owner's would need to give permission to have their GPS location tracked and uploaded to Google Maps. The Google Maps API could be utilized to gather this information and parse into a Datadog dashboard. That dashboard would lead hungry workers to their favorite food trucks on any day they choice. Bon appetit!
+In order to gather the necessary data, truck owner's would need to give permission to have their GPS location tracked and uploaded to Google Maps. The Google Maps API could be utilized to gather this information and parsed into a Datadog dashboard. That dashboard would lead hungry workers to their favorite food trucks on any day they choose. Bon appetit!
