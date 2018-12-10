@@ -1,4 +1,4 @@
-<h1>Answers for Datadog Exercise
+<h1>Answers for Datadog Exercise</h1>
 
 I have decided to go with the Vagrant VM
 
@@ -7,7 +7,7 @@ I have decided to go with the Vagrant VM
 - Installed MySQL
 - Installed Datadog Agent
 
-<h1>Collecting Metrics:
+<h1>Collecting Metrics:</h1>
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Added the following in datadog.yaml:
 
