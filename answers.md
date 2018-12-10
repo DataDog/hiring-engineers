@@ -228,14 +228,14 @@ A more industrial example would be an application with a data pipeline from dron
 
 There are many more examples I could think of including a little pressure sensor on my chair that would count the amount of hours I sit in front of the computer and trigger an "action" to get moving and display sum over a month. Might be good motivational element. 
 
-FYI - I thought it would be useful for the IT DevOps managers or non-technical people have easy access to the data as part of consolidated dashboard like a PowerBI one. I tried it and it works with publicly shared dashboards via iframe integration:
+2. Adding Functionality in next releases
+
+1. I thought it would be useful for the IT DevOps managers or non-technical people have easy access to the data as part of consolidated dashboard like a PowerBI one. I tried it and it works with publicly shared dashboards via iframe integration but it's not elegant:
 ```html
 <iframe width="1400" height="900"
 src="https://p.datadoghq.com/sb/607174cd9-a7dfcbcf37805d3353f8b16875772aee" frameborder="0"
 allowfullscreen></iframe>
 ```
-However, it would be nice if one could integrate into more complex reports via a custom integration.
+It would be nice if one could integrate into more complex reports via a custom integration.
 
-**Final Note**
-During the work on this excercise, no animals were harmed but 1 quirk should be reported as experienced:
-1. When using Chrome, Host Map will not show detail on the host (like tags or expanded info) when clicked on it. Other browser works fine.
+2. Second roadmap item is a no-brainer. Make datadog module that handles Security Incident and Events (**SIEM**). DD can already collect logs and even monitor custom apps and if deployed in as a lightweight agent on end-users devices (laptops, workstations) - the security staff gain end-to-end view on the security posture. DD could partner or develop it's own capability to investigate these events and automatically visualize and take remediative actions. I can certainly see how this could disrup the legacy SIEM market with ArcSight and the likes. 
