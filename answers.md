@@ -59,7 +59,9 @@ instances:
   - min_collection_interval: 45
 ```
 
-Answer to bonus question: You wouldn't necessarily need to modify the python script that was created since all you would need to do is modify the configuration file.
+**Bonus:
+
+You wouldn't necessarily need to modify the python script that was created since all you would need to do is modify the configuration file.
 
 ## Visualizing Data:
 
@@ -195,7 +197,9 @@ it Here is a snapshot of the graph and the use of the @ notation to showcase tha
 ![](annotate.png)
 
 
-Bonus: The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.
+**Bonus:
+
+The anamoly graph displays the metric behavior that is different than normally, allowing you to see the different trends that occur based the day of the week and patterns during the time itself. These sort of graphs are very useful when strong trends and recurring patterns are difficult to monitor when using threshold-based altering. In lamens terms, an anomaly graph will assist you in decreasing the amount of possible errors that may occur based on an an anomaly.
 
 ## Metric Monitoring
 
@@ -205,11 +209,11 @@ To begin understanding the process, I continue to follow my method of reading th
 
 For this specific inquiry, I chose to do Metric Monitoring. Once this option has been selected, I followed a set of steps that assisted me with setting the monitoring process properly.
 
-![](steps.png)
+![](Collecting%20Metrics%20Step%201.png)
 
 Because this inquiry specifies threshold, I chose threshold alert, and chose the specific metric that had been used for visualizing our data in the last exercise. Here is what the current setup looks like with our warning threshold being at 500, and the alerting threshold being at 800.
 
-![](steps2.png)
+![](Collecting%20Metrics%20Step%202.png)
 
 Once this is configured, I began tackling the next step, which allows me to create messages for my monitor. The exercise had asked for the following four configurations for this process:
 
@@ -229,7 +233,9 @@ To verify that email notifications were working properly, I have reeived the fol
 ![](alert1.png)
 ![](alert2.png)
 
-Bonus: Before beginning this bonus question, I started to notice how I had been receiving alerts pretty often, and realized that it may be an issue to receive alerts during times when they are unecessary. For this task, I will continue to use the Datadog UI to manage the following tasks:
+**Bonus: 
+
+Before beginning this bonus question, I started to notice how I had been receiving alerts pretty often, and realized that it may be an issue to receive alerts during times when they are unecessary. For this task, I will continue to use the Datadog UI to manage the following tasks:
 
 ```
 -One that silences it from 7pm to 9am daily on M-F,
@@ -268,7 +274,7 @@ Nevertheless, I was able to tackle the task by choosing an alternative path way.
 
 In order to begin collecting APM data, I will first need to enable the configuration in the datadog.yaml, which should resemble this snapshot:
 
-![](apm%20config)
+![](apm%20config.png)
 
 Once I have enabled it, I will need to verify that it was properly updated after restarting the agent. I have verified that there are no errors, which will mean that I may begin implementing the following app that had been given to me:
 
@@ -305,11 +311,11 @@ if __name__ == '__main__':
 
 I've created a file on my virtual machine, and have pasted the content in it. Once I had verified that everthing had been properly inserted with the correct syntax, I saved the file. Reading up on the documentation for python, I was able to run the app with the following command: ddtrace-run python apm.py which outputted:
 
-![](amprun.png)
+![](apmrun.png)
 
 At first, I wasn't too sure to what had been running, but then started to realize that the dashboard hasn't been created on my list of dashboards, and there happen to not be any services running. I started to then understand that there happened to be an error with this script which may have been caused by my virtual machine.
 
-Bonus Question: Differences between a Service and Resource
+**Bonus Question: Differences between a Service and Resource
 
 -A service is defined as a sect of processes or actions that assist with the same job. An example used by Datadog is a web application that consists of two different services, one that happens to be a single web app service, and another that is a single database service.
 
