@@ -34,18 +34,18 @@ Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
 
 ====================
 
-init_config:
+    init_config:
 
-instances:
-  \- server: localhost
-    user: datadog
-    pass: jalla2000
-    tags:
-        \- optional_tag1
-        \- optional_tag2
-    options:
-      replication: 0
-      galera_cluster: 1
+    instances:
+      \- server: localhost
+        user: datadog
+        pass: jalla2000
+        tags:
+            \- optional_tag1
+            \- optional_tag2
+        options:
+          replication: 0
+          galera_cluster: 1
 
 ========================
 
