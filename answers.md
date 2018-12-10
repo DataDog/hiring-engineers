@@ -327,6 +327,13 @@ Based on the importance of monitoring analytics in our world today, I certainly 
 
 Personally, I would love to learn more about the API itself and use it for ecommerce in order to track when traffic flow is the heaviest. I feel that with the success of web stores such as Amazon and eBay, ecommerce will grow even further. Gathering data to understand what the customer wants is such an important step for ecommerce to become bigger than it currently is, and I certainly believe that using Datadog will allow businesses to thrive in factors such as Marketing, Operations, Focus, and most importanly, the customer. 
 
+**Links to Dashboards: 
+
+* [My Metric](https://app.datadoghq.com/dash/1014750/mymetric?tile_size=m&page=0&is_auto=false&from_ts=1544479320000&to_ts=1544482920000&live=true)
+* [My SQL](https://app.datadoghq.com/dash/1014751/mysql---overview)
+* [Main](https://app.datadoghq.com/dash/host/716975303?live=true&page=0&tile_size=m&is_auto=false&from_ts=1544479380000&to_ts=1544482980000)
+
+
 ## References
 
 ### How to get started with Datadog
