@@ -110,7 +110,7 @@ I took the snapshot and send it to me. The snapshot appears in the event.
 
 I created the following PHP script to generate requests on the Flask App.
 <pre>
-<?php
+
 
  $base = 'http://192.168.0.52:5050';
  $requests = array(
@@ -132,7 +132,7 @@ I created the following PHP script to generate requests on the Flask App.
     curl_close($ch); 
  }
  
- ?>
+
 </pre>
 
 Link to Dashboard APM & VM Metrics: https://p.datadoghq.com/sb/598f8fce1-8c5ca067c3ab81c735c76aafd32d9a33
