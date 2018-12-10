@@ -107,10 +107,46 @@ I have not been able to set the set timeframe on 5 minutes. The lowest option th
 I took the snapshot and send it to me. The snapshot appears in the event.
 <img src="snapshot-timeboard.png">
 
+Here is the FlaskApp:
+
+<pre>
+
+from flask import Flask
+import logging
+import sys
+from ddtrace import patch_all
+patch_all()
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return -1
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+</pre>
+
+I made the choice to return -1 on '/api/apm' to visualize errors in the Dashboard.
 
 I created the following PHP script to generate requests on the Flask App.
 <pre>
-
 
  $base = 'http://192.168.0.52:5050';
  $requests = array(
@@ -141,3 +177,8 @@ Screenshot of the Dashboard.
 <img src="dashboard-apm-vm-metrics.png">
 Link to Dashboard APM & VM Metrics: https://p.datadoghq.com/sb/598f8fce1-8c5ca067c3ab81c735c76aafd32d9a33
 
+<h2>Bonus Question</h2>
+What is the difference between a Service and a Resource?
+
+Service is a component of an application for example: a web server, a database would be diffrent services.
+Ressource is what is accessed through a service for a web server it would be a specific url (*/posts/*, */users/*), for a database an SQL request ('SELECT * FROM table'). 
