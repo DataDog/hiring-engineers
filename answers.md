@@ -12,12 +12,14 @@ Add tags in the Agent config file and show us a screenshot of your host and its 
 Added the following in datadog.yaml:
 
 ============
+
 api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
 
 tags:
   - my_server
   - env:exercise
   - role:testserver
+
 =============
 
 The tags were reflected in the host map:
@@ -31,6 +33,7 @@ Installation following the description.
 Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
 
 ====================
+
 init_config:
 
 instances:
@@ -43,6 +46,7 @@ instances:
     options:
       replication: 0
       galera_cluster: 1
+
 ========================
 
 After agent restart checking the result (datadog agent check mysql):
@@ -72,15 +76,18 @@ Full output in mysql_check_output.txt
 Created my_metric.yaml (see file my_metric.yaml)
 
 ===================
+
 init_config:
 
 instances:
   - min_collection_interval: 45
+
 ====================
 
 Created my_metric.py in checks.d (see file my_metric.py)
 
 ======================
+
 import random
 
 \# the following try/except block will make the custom check compatible with any Agent version
@@ -98,6 +105,7 @@ __version__ = "1.0.0"
 class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
+
 =======================
 
 Check after restart (datadog agent check my_metric):
@@ -109,7 +117,9 @@ Check after restart (datadog agent check my_metric):
 Added in my_metric.yaml:
 
 ==================
+
 - min_collection_interval: 45
+
 ====================
 
 <h2>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h2>
@@ -130,6 +140,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Timeboard created with Python script (create_timeboard.py):
 
 ===================
+
 from datadog import initialize, api
 
 options = {
@@ -184,6 +195,7 @@ res = api.Timeboard.create(title=title,
                      read_only=read_only)
 
 print(res)
+
 ====================
 
 Snapshot sent to myself:
@@ -204,6 +216,7 @@ And also ensure that it will notify you if there is No Data for this query over 
 Created Monitor (Export file my_metric_monitor.json):
 
 =====================
+
 {
 	"name": "Something is happening with My Metric!",
 	"type": "metric alert",
@@ -229,6 +242,7 @@ Created Monitor (Export file my_metric_monitor.json):
 		}
 	}
 }
+
 ========================
 
 ![Timeboard](Timeboard.png)
