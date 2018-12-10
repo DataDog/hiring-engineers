@@ -95,3 +95,6 @@ Collector
 Finally i created a notebook showing my_metric.
 
 <img src="notebook-my-metric.png">
+
+<h2>Bonus Question:</h2>
+It is indeed possible by updating the value of the collection interval in the Yaml file.
