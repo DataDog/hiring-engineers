@@ -11,25 +11,26 @@ I have decided to go with the Vagrant VM
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Added the following in datadog.yaml:
 
-*
+============
 api_key: 1e4bc1602c9a7eeac37718d0b4fcd482
 
 tags:
   - my_server
   - env:exercise
   - role:testserver
-*
+=============
 
 The tags were reflected in the host map:
 
 ![Host Map](HostMap.png)
 
-<h1>Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+<h1>Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.</h1>
 
 Installation following the description.
 
 Created conf.yaml in /etc/datadog/conf.d/mysql (see file conf.yaml):
-*
+
+====================
 init_config:
 
 instances:
@@ -42,11 +43,11 @@ instances:
     options:
       replication: 0
       galera_cluster: 1
-*
+========================
 
 After agent restart checking the result (datadog agent check mysql):
 
-*
+
 =========
 Collector
 =========
@@ -62,24 +63,24 @@ Collector
         Events: 0, Total: 0
         Service Checks: 1, Total: 1
         Average Execution Time : 15ms
-*
+
 
 Full output in mysql_check_output.txt
 
-<h1>Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+<h1>Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</h1>
 
 Created my_metric.yaml (see file my_metric.yaml)
 
-*
+===================
 init_config:
 
 instances:
   - min_collection_interval: 45
-*
+====================
 
 Created my_metric.py in checks.d (see file my_metric.py)
 
-*
+======================
 import random
 
 \# the following try/except block will make the custom check compatible with any Agent version
@@ -97,35 +98,38 @@ __version__ = "1.0.0"
 class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
+=======================
 
 Check after restart (datadog agent check my_metric):
 
 ![My Metric Check](My_Metric_Check.png)
 
-<h1>Change your check's collection interval so that it only submits the metric once every 45 seconds.
+<h1>Change your check's collection interval so that it only submits the metric once every 45 seconds.</h1>
 
 Added in my_metric.yaml:
-*
+
+==================
 - min_collection_interval: 45
-*
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+====================
+
+<h2>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h2>
 
 See above
 
 First Dashboard:
 ![First Dashboard](FirstDashboard.png)
 
-<h1>Visualizing Data:
+<h1>Visualizing Data</h1>
 <h2>Utilize the Datadog API to create a Timeboard that contains:
 
-<h2>Your custom metric scoped over your host.
-<h2>Any metric from the Integration on your Database with the anomaly function applied.
-<h2>Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-<h2>Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.</h2>
 
 Timeboard created with Python script (create_timeboard.py):
 
-*
+===================
 from datadog import initialize, api
 
 options = {
@@ -180,26 +184,26 @@ res = api.Timeboard.create(title=title,
                      read_only=read_only)
 
 print(res)
-*
+====================
 
 Snapshot sent to myself:
 
 ![Send Metric](SendMetric.png)
 
-<h2>Bonus Question: What is the Anomaly graph displaying?
+<h2>Bonus Question: What is the Anomaly graph displaying?</h2>
 
 Anomalies show unexpected behavior compared to historical data
 
-<h1>Monitoring Data
+<h1>Monitoring Data</h1>
 <h2>Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-<h2>Warning threshold of 500
-<h2>Alerting threshold of 800
-<h2>And also ensure that it will notify you if there is No Data for this query over the past 10m.
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.</h2>
 
 Created Monitor (Export file my_metric_monitor.json):
 
-*
+=====================
 {
 	"name": "Something is happening with My Metric!",
 	"type": "metric alert",
@@ -225,6 +229,7 @@ Created Monitor (Export file my_metric_monitor.json):
 		}
 	}
 }
+========================
 
 ![Timeboard](Timeboard.png)
 
@@ -238,7 +243,7 @@ Downtime Definitions for night and weekend:
 Downtime Notification received:
 ![Downtime Notification](DowntimeNotification.png)
 
-<h1>Collecting APM Data:
+<h1>Collecting APM Data</h1>
 
 I have used the sample app and included with ddtrace (I did some experiments also with statsd, but liked ddtrace better).
 I also defined HTML 404 as an error to generate some alerts also.
