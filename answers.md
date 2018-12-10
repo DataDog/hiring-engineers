@@ -196,7 +196,7 @@ The APM services view:
 <img src="15_APMservices.jpg" width="100%">
 
 The correlated info from both services:
-<img src="16_APMflaskdetail.jpg" width="70%">
+<img src="16_APMflaskdetail.jpg" width="100%">
 
 2. Bonus Question: What is the difference between a Service and a Resource?
 
