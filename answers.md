@@ -27,9 +27,9 @@ ad-configpolling, ad-servicelistening, aggregator, collector-queue, dogstatsd-ma
 
 Tags were added to the agent yaml file */etc/datadog-agent/datadog.yaml*  : 
 
-** Set the host's tags (optional)
+**Set the host's tags (optional)**
 ```yaml
-tags: mysql, env:production, role:web**
+tags: mysql, env:production, role:web
 ```
 <img src="03_customtags.jpg" width="100%">
 
@@ -191,6 +191,12 @@ apm_config:
 
 App has been instrumented both for Flask and MySQL with patch_all procedure of ddtrace. There are several other options commented out in the code of the app.
 <img src="14_APMdatabase.jpg" width="70%">
+
+The APM services view:
+<img src="15_APMservices.jpg" width="100%">
+
+The correlated info from both services:
+<img src="16_APMflaskdetail.jpg" width="70%">
 
 2. Bonus Question: What is the difference between a Service and a Resource?
 
