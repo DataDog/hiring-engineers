@@ -91,7 +91,7 @@ After check with **sudo datadog-agent check mycheck** that the check works, rest
 ```
 
 Online View:
-<img src="03_customcheck.jpg" width="100%">
+<img src="03_customtags.jpg" width="100%">
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Modiefied **mycheck.yaml**
@@ -131,9 +131,10 @@ The 5 minute timeboard view was created by a manual selection in a graph with th
 **Updated timeboard snapshot:**
 
 <img src="06_timeboard5minutes.jpg" width="100%">
-- **Snapshot shared:**
 
-<img src="07_snapshot.jpg" width="100%">
+**Snapshot shared:**
+
+<img src="07_snapshot.jpg" width="70%">
 Note: The snapshot is of a single graph/metric/widget - not the entire timeboard
 
 3. Bonus Question: What is the Anomaly graph displaying?
@@ -145,7 +146,8 @@ The anomaly algorithm takes previous the data stream and trains a model function
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
-- **Warning Query: avg(last_5m):avg:my_metric{host:testmachine.smit.net} > 800**
+
+**Warning Query: avg(last_5m):avg:my_metric{host:testmachine.smit.net} > 800**
 <img src="08_monitor1.jpg" width="100%">
 
 2. Configure the monitor’s message so that it will:
