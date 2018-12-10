@@ -171,7 +171,7 @@ The anomaly algorithm takes previous the data stream and trains a model function
 
 ## Collecting APM Data
 1. Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution.
-DD agents had been configured with:
+- **DD agents had been configured with:**
 ```yaml
 apm_config:
 #   Whether or not the APM Agent should run
@@ -189,7 +189,7 @@ apm_config:
    ignore_resources: ["GET /favicon.ico"]
 ```
 
-App has been instrumented both for Flask and MySQL with patch_all procedure of ddtrace. There are several other options commented out in the code of the app.
+App has been instrumented both for Flask and MySQL with patch_all procedure of ddtrace. There are several other options commented out in the code of the app. Also an app wrapper can be used as documented. 
 <img src="14_APMdatabase.jpg" width="70%">
 
 The APM services view:
