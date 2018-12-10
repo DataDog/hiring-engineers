@@ -1,0 +1,25 @@
+{
+	"name": "Something is happening with My Metric!",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "My Metric current value is {{value}} \n\n{{#is_alert}}My Metric is through the roof. Please act accordingly{{/is_alert}} \n\n{{#is_warning}}My Metric is high. You should have a look{{/is_warning}}\n\n{{#is_no_data}}My Metric is very quiet. Perhaps it's dead{{/is_no_data}}\n  \nNotify: @dollenbacher@gmail.com",
+	"tags": [
+		"service:the_dummy_app"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

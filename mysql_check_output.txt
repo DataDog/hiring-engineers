@@ -1,0 +1,397 @@
+vagrant@ubuntu-xenial:~/datadog$ sudo datadog-agent check mysql
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "mysql.performance.thread_cache_size",
+      "points": [
+        [
+          1544472924,
+          8
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.net.max_connections",
+      "points": [
+        [
+          1544472924,
+          3
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.buffer_pool_used",
+      "points": [
+        [
+          1544472924,
+          6.651904e+06
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.table_open_cache",
+      "points": [
+        [
+          1544472924,
+          431
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.qcache_size",
+      "points": [
+        [
+          1544472924,
+          1.6777216e+07
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.net.max_connections_available",
+      "points": [
+        [
+          1544472924,
+          151
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.buffer_pool_free",
+      "points": [
+        [
+          1544472924,
+          1.2754944e+08
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.buffer_pool_dirty",
+      "points": [
+        [
+          1544472924,
+          0
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.open_files",
+      "points": [
+        [
+          1544472924,
+          6
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.key_cache_utilization",
+      "points": [
+        [
+          1544472924,
+          0.182373046875
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.threads_connected",
+      "points": [
+        [
+          1544472924,
+          1
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.open_tables",
+      "points": [
+        [
+          1544472924,
+          71
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.myisam.key_buffer_size",
+      "points": [
+        [
+          1544472924,
+          1.6777216e+07
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.myisam.key_buffer_bytes_used",
+      "points": [
+        [
+          1544472924,
+          3072
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.threads_running",
+      "points": [
+        [
+          1544472924,
+          1
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.myisam.key_buffer_bytes_unflushed",
+      "points": [
+        [
+          1544472924,
+          0
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.row_lock_current_waits",
+      "points": [
+        [
+          1544472924,
+          0
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.buffer_pool_utilization",
+      "points": [
+        [
+          1544472924,
+          0.0495665967464447
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.qcache.utilization",
+      "points": [
+        [
+          1544472924,
+          0
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.innodb.buffer_pool_total",
+      "points": [
+        [
+          1544472924,
+          1.34201344e+08
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "mysql.performance.table_locks_waited",
+      "points": [
+        [
+          1544472924,
+          0
+        ]
+      ],
+      "tags": [
+        "optional_tag1",
+        "optional_tag2"
+      ],
+      "host": "ubuntu-xenial",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=== Service Checks ===
+[
+  {
+    "check": "mysql.can_connect",
+    "host_name": "ubuntu-xenial",
+    "timestamp": 1544472924,
+    "status": 0,
+    "message": "",
+    "tags": [
+      "optional_tag2",
+      "optional_tag1",
+      "server:localhost",
+      "port:unix_socket"
+    ]
+  }
+]
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    mysql (1.4.0)
+    -------------
+        Instance ID: mysql:bc77a72a65c1a127 [OK]
+        Total Runs: 1
+        Metric Samples: 60, Total: 60
+        Events: 0, Total: 0
+        Service Checks: 1, Total: 1
+        Average Execution Time : 15ms
+        
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
