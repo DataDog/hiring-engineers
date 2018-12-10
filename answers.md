@@ -318,6 +318,37 @@ screenshot of screenboard:
 
 Please include your fully instrumented app in your submission, as well.
 
+I used the script provided in the example, and manually initiated testing with ddtrace as above (ddtrace-run python DD_APM.py), but could have added the following to the beginning of the app for instrumentation:
+
+```
+from ddtrace import patch_all
+patch_all()
+
+```
+
+the following script was used to "test" the endpoints:
+
+```
+import requests, random, time
+
+endpoints = [ "/", "/api/apm", "/api/trace" ] 
+
+def get_local(path):
+  requests.get("http://localhost:5050{}".format(path))
+
+
+def main():
+  while True:
+    r = random.randint(1,500)
+    get_local(endpoints[r%3])
+    time.sleep(r/100)
+
+
+if __name__ == '__main__':
+  main()
+  
+  ```
+
 **Bonus Question: What is the difference between a Service and a Resource?**
 
 A service is a collection of processes the perform the same job - "webapp", "database", etc.
