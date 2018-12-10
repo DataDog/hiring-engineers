@@ -652,7 +652,25 @@ instances:
 ```
 
 #### Create a new recipe to configure our custom check
-`$ chef generate recipe dd_custom_check`
+```
+$ chef generate recipe dd_custom_check
+Recipe: code_generator::recipe
+  * directory[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/spec/unit/recipes] action create (up to date)
+  * cookbook_file[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/spec/spec_helper.rb] action create_if_missing (up to date)
+  * template[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/spec/unit/recipes/dd_custom_check_spec.rb] action create_if_missing
+    - create new file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/spec/unit/recipes/dd_custom_check_spec.rb
+    - update content in file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/spec/unit/recipes/dd_custom_check_spec.rb from none to 113e46
+    (diff output suppressed by config)
+  * directory[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/test/integration/default] action create (up to date)
+  * template[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/test/integration/default/dd_custom_check_test.rb] action create_if_missing
+    - create new file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/test/integration/default/dd_custom_check_test.rb
+    - update content in file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/test/integration/default/dd_custom_check_test.rb from none to 8691ba
+    (diff output suppressed by config)
+  * template[/Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/recipes/dd_custom_check.rb] action create
+    - create new file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/recipes/dd_custom_check.rb
+    - update content in file /Users/scottford/src/data_dog/hiring-engineers/chef_datadog_example/recipes/dd_custom_check.rb from none to eefe83
+    (diff output suppressed by config)
+```
 
 ##### Edit `chef_datadog_example/recipes/dd_custom_check`
 ```
@@ -661,11 +679,11 @@ instances:
 # Recipe:: dd_custom_check
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
-template '/etc/dd-agent/conf.d/my_metric.yaml' do
+template '/etc/datadog-agent/conf.d/my_metric.yaml' do
   source 'my_metric.yaml.erb'
 end
 
-template '/etc/dd-agent/checks.d/my_metric.py' do
+template '/etc/datadog-agent/checks.d/my_metric.py' do
   source 'my_metric.py.erb'
 end
 ```
@@ -676,7 +694,7 @@ end
 # Cookbook:: chef_datadog_example
 # Recipe:: default
 #
-# Copyright:: 2017, The Authors, All Rights Reserved.
+# Copyright:: 2018, The Authors, All Rights Reserved.
 include_recipe 'datadog::dd-agent'
 include_recipe 'datadog::dd-handler'
 include_recipe 'chef_datadog_example::mongodb'

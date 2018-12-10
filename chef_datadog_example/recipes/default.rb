@@ -6,3 +6,4 @@
 include_recipe 'datadog::dd-agent'
 include_recipe 'datadog::dd-handler'
 include_recipe 'chef_datadog_example::mongodb'
+include_recipe 'chef_datadog_example::dd_custom_check'
