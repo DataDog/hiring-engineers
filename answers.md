@@ -323,8 +323,9 @@ At first, I wasn't too sure to what had been running, but then started to realiz
 
 ## Final Question:
 
-Based on the importance of monitoring analytics in our world today, I certainly believe that measuring performance on different platforms is ideal for efficiency, so I would definitely use the Datadog API for that. There are many different examples for using the API for measuring certain aspects like trends online or traffic flow. Personally, I would love to learn more about the API itself and use it for ecommerce in order to track when traffic flow is the heaviest.
+Based on the importance of monitoring analytics in our world today, I certainly believe that measuring performance on different platforms is ideal for efficiency, so I would definitely use the Datadog API for that. There are many different examples for using the API for measuring certain aspects like trends online or traffic flow.
 
+Personally, I would love to learn more about the API itself and use it for ecommerce in order to track when traffic flow is the heaviest. I feel that with the success of web stores such as Amazon and eBay, ecommerce will grow even further. Gathering data to understand what the customer wants is such an important step for ecommerce to become bigger than it currently is, and I certainly believe that using Datadog will allow businesses to thrive in factors such as Marketing, Operations, Focus, and most importanly, the customer. 
 
 ## References
 
