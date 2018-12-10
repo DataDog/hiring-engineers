@@ -170,6 +170,10 @@ Timeboard created with Python script (create_timeboard.py):
 
     print(res)
 
+Resulting Timeboard:
+
+![Timeboard](Timeboard.png)
+
 Snapshot sent to myself:
 
 ![Send Metric](SendMetric.png)
@@ -212,8 +216,6 @@ Created Monitor (Export file my_metric_monitor.json):
 		    }
 	    }
     }
-
-![Timeboard](Timeboard.png)
 
 Alert mails received:
 ![Alert Mail](AlertMail.png)
