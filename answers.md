@@ -108,5 +108,32 @@ I took the snapshot and send it to me. The snapshot appears in the event.
 <img src="snapshot-timeboard.png">
 
 
+I created the following PHP script to generate requests on the Flask App.
+<pre>
+<?php
+
+ $base = 'http://192.168.0.52:5050';
+ $requests = array(
+    0 => '/',
+    1 => '/api/apm',
+    2 => '/api/trace'
+);
+
+ for($i = 0; $i <= 1500; $i++){
+     $rand = rand(0, 2);
+     $url = $base.$requests[$rand];
+     echo $i.' ';
+     echo $url;
+         
+    $ch = curl_init(); 
+    curl_setopt($ch, CURLOPT_URL, $url); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+    $output = curl_exec($ch);  
+    curl_close($ch); 
+ }
+ 
+ ?>
+</pre>
+
 Link to Dashboard APM & VM Metrics: https://p.datadoghq.com/sb/598f8fce1-8c5ca067c3ab81c735c76aafd32d9a33
 
