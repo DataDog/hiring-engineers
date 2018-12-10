@@ -107,6 +107,7 @@ I have not been able to set the set timeframe on 5 minutes. The lowest option th
 I took the snapshot and send it to me. The snapshot appears in the event.
 <img src="snapshot-timeboard.png">
 
+<h1>Collecting APM Data:</h1>
 Here is the FlaskApp:
 
 <pre>
