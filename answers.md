@@ -25,6 +25,7 @@ I installed Apache and PhpMyAdmin in order to generate a few metrics and to be a
 <h2>Agent Check</h2>
 
 For this part i used the documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval
+I did the mistake of creating both files in checks.d at the beginning after i fixed that it worked just fine.
 
 The Scirpt for the Agent Check is a follow: 
 
@@ -101,13 +102,44 @@ It is indeed possible by updating the value of the collection interval in the Ya
 
 <h1>Visualizing Data</h1>
 
-To Create the script i used the <a href="https://docs.datadoghq.com/api/?lang=python#timeboards">documentation</a> and i used the UI as an help to create the queries. The python is available <a href="timeboard.py">here</a>. I just removed the app_key and api_key.
+To Create the script i used the <a href="https://docs.datadoghq.com/api/?lang=python#timeboards">documentation</a> and i used the UI as an help to create the queries. The python script is available <a href="timeboard.py">here</a>. I just removed the app_key and api_key.
 I have not been able to set the set timeframe on 5 minutes. The lowest option that i was able to access was 15 minutes.
 
 I took the snapshot and send it to me. The snapshot appears in the event.
 <img src="snapshot-timeboard.png">
 
-<h1>Collecting APM Data:</h1>
+<h2>Bonus Question</h2>
+
+An anomaly display metrics that do not match the usual pattern. By comparing to the previous datas the anomaly graph is able to identify what datas are abnormal.
+
+<h1>Monitoring Data</h1>
+
+I created a new monitor as follow.
+
+<img src="monitor-alert-warning.png">
+
+I found the conditions ({{#is_alert}}, {{#is_warning}})system really handy. Allowing to customize one message instead of having to declare several monitors or several messages.
+
+Screenshot of the email:
+
+<img src="screenshot-email-monitor.png">
+
+<h2>Bonus Question</h2>
+
+For this part i created two downtimes:
+<ul>
+    <li>One recurinng daily to silence the monitor from 7pm to 9am from Monday to Friday</li>
+    <li>One recurring weekly to silnce the monitor on saturday and sunday</li>
+</ul>
+
+At first i got confused by the week going from Sunday to Saturday. As French for me the week goes from Monday to Sunday.
+
+The two screenshot for the daily and weekly downtime notifactions:
+
+<img src="downtime-daily.png">
+<img src="downtime-weekly.png">
+
+<h1>Collecting APM Data</h1>
 Here is the FlaskApp:
 
 <pre>
