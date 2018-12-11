@@ -221,3 +221,17 @@ What is the difference between a Service and a Resource?
 
 Service is a component of an application for example: a web server, a database would be diffrent services.
 Ressource is what is accessed through a service for a web server it would be a specific url (*/posts/*, */users/*), for a database an SQL request ('SELECT * FROM table'). 
+
+
+<h1>Final Question</h1>
+
+I am really interested by investment in general but lately mostly by crypto currencies (Bitecoin, Ripple, Monero, ...). As of today there is more than 2000 different crypto currencies on the market which makes it difficult to follow. I think it would be a fun way to use DataDog by tracking and Monitor crypto Currencies.
+
+- DataDog would allow to set monitor on the price 
+- The graph function would allow to do analyses on the price
+
+It would also be possible to monitor the social media activity around those crypto currency: How many tweets, How many facebook post, How many blog articles have been posted related to one crypto currency ? 
+
+It is possible to go even further than that by using API like Text Analytics (Microsoft Azure). It will possible to identify the sentiment of the text: is it positive or negative ? and also identify the main topic of the text.
+
+The correlation between the price analysis and social media analysis could make of Datadog a great tools to monitor the crypto currency market.
