@@ -8,7 +8,13 @@ I created a Ubuntu 18.04 VM on my local machine using Hyper-V.
 
 I added two tags to the configuration file: datadog.yaml.<br/>
 <pre>location:dublin, purpose:hiring_test </pre>
-Two files attached: configuration-file-tags.png & host-map-tags.png
+
+This screenshot shows the tags that i added in the datadog.yaml configuration file.
+<img src="configuration-file-tags.png">
+
+This screenshot shows the tags appearing the Host Map page.
+<img src="host-map-tags.png">
+
 
 <h2>Database</h2>
 
