@@ -12,3 +12,8 @@ Q: What is the difference between a Service and a Resource?
 
 
 A: A Service is self contained component utilized by an application.  For example, an application's database is a service as is it's web server.  A Resource is a request to a service - for an a 'SELECT' statement is a 'Resource' to the databases 'Service'.
+
+Q: Is there anything creative you would use Datadog for?
+
+
+A: With more and more household relying on voice assistance such as amazon Alexa, I believe monitoring of those business servers is critical to the organizations that host.  Amazon, for example, will lose revenue when users are unable to order goods directly through Alexa.  An interesting side thought would be to enable an Alexa skill tied directly into Datadog to provide metrics verbally on the state of monitored servers.
