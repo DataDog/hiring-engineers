@@ -240,3 +240,8 @@ APM Data and traces have been received:
 ![APM Monitoring](APM_Monitoring.png)
 ![APM Traces](APM_Traces.png)
 ![APM Single Trace](APM_Single_Trace.png)
+
+<h1>Final Question</h1>
+<h2>Is there anything creative you would use Datadog for?</h2>
+
+One of the emerging areas of computing is Serverless Computing or Function as a Service FaaS. I was creating such a function for personal purposes for a Amazon Alexa service based on Amazone Lambda. While Amazone Lambda is a pretty cool service, it became obvious that the monitoring capabilities are quite poor and mainly focused on availabilty and usage, only with an outside view. Getting information of the internal runtime behavior is more or less impossible, log analytics is the only way to find out, if your code performs bad. Tracking with ddtrace (if Python is used, but I guess Datadog has similar solutions for other languages) could deliver fine-grained runtime information. The challenge is that it's not possible to install an agent on FaaS, if it is hosted on a public cloud. That would require to implement the transport layer directly in tracing module.   
