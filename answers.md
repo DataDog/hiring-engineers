@@ -210,7 +210,7 @@ I created the following PHP script to generate requests on the Flask App.
 
 </pre>
 
-I started by created a timeboard, it seems easier at beginning because i was able to export the graph APM Services. I realise only after that i could not share a timeboard and started over with a screenboard.
+I started by created a timeboard, it seems easier at beginning because i was able to export the graph from APM Services. I realise only after that i could not share a timeboard and started over with a screenboard.
 
 Screenshot of the Dashboard.
 <img src="dashboard-apm-vm-metrics.png">
