@@ -60,7 +60,7 @@ These are screenshots of the monitors and the notice I received via email.
 ![Alt text](Screenshots/metric_monitor.png "Metric Monitor")
 ![Alt text](Screenshots/metric_monitor2.png "Metric Monitor2")
 
-As a bonus, I scheduled two downtimes for these monitors so that I'm not notified after business hours or during the weekends. Below are two screenshots of notifications stating both monitors, one for the weekday and one for the weekend, had been created.
+As a bonus, I scheduled two downtimes for these monitors so that I'm not notified after business hours or during the weekends. Below are two screenshots of notifications stating both monitors, one for weekdays and one for weekends, had been created.
 ![Alt text](Screenshots/M-F_downtime.png "Weekly Downtime")
 ![Alt text](Screenshots/Weekend_downtime.png "Weekend Downtime")
 
@@ -75,9 +75,9 @@ I did run into bugs trying to integrate the APM which I'll discuss in the challe
 
 For the final bonus, I'm going to explain the difference between a Service and a Resource.
 
-Services are a set of processes that work together to provide a feature set. Examples of simple featured sets might be a webapp service or a database service. Services are defined by the user when they create their app using Datadog. Services help to quickly distinguish between different processes run by the app.
+Services are a set of processes that perform the same function. For example, a basic web application may consist of two services, a single web app and a single database. These are two services working in tandem. You pull up the web app in your browser and enter your login credentials. The credentials are sent to the database to validate your credentials and return your user information. Services help to quickly distinguish between different processes run by the app.
 
-Resources are a query to a service. For a web app, examples might be a handler or a canonical URL.
+Resources are a particular action, or query, for a service. For a web app, examples might be a handler or a canonical URL.
 
 Here are two challenges I encountered while completing this exercise.
 
@@ -92,7 +92,7 @@ However, the Agent status check continued to return a message of "APM Disabled o
 ![Alt text](Screenshots/APM_disabled.png "APM Disabled")
 This may be due to an inability to install the Mac APM Agent. Per the [docs](https://github.com/DataDog/datadog-trace-agent), I downloaded the file and ran the command "./trace-agent-darwin-amd64-X.Y.Z -config /opt/datadog-agent/etc/datadog.yaml". The response error I received was "./trace-agent-darwin-amd64-6.7.0: command not found". A [google search](https://github.com/DataDog/datadog-trace-agent/issues/397) showed this was an issue prior to the binaries being provided. I could find no information as to why the issue is persisting. As I continued to attempt to debug, I did find [Datadog documentation for monitoring Flask apps](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/), but again to no avail. I also read through [APM Setup docs](https://docs.datadoghq.com/tracing/setup/?tab=agent630#primary-tags), [Agent configuration docs](https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6#agent-main-configuration-file), as well as [running ddtrace with Flask](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). If this were a real work situation, this is the point where I would ask colleagues for help. While it is essential to know how to ask the right questions to conduct focused research, it's equally important to know when it's time for collaboration.
 
-Wow, did I learn a lot during this exercise! Completing each of these assignments fully demonstrated the power of the Datadog platform and how critical the information provided can be to drive businesses and help teams be more efficient and productive. The beauty of Datadog doesn't stop there though. There are a plethora of creative applications for Datadog's platform.   
+Wow, did I learn a lot during this exercise! Completing each of these assignments fully demonstrated the power of the Datadog platform and how critical the information provided by the dashboards can be to drive businesses and help teams be more efficient and productive. The beauty of Datadog doesn't stop there though. There are a plethora of creative applications for Datadog's platform.   
 
 I'm a very food centric individual, so of course the first creative use for Datadog's platform that comes to mind is a lunch application. Food trucks are popular lunch time destinations in the San Francisco Financial District. However, it is the nature of most food trucks to be mobile. This leaves workers of the FiDi uncertain of where to find their favorite food truck on a given day. A Datadog dashboard would be a brilliant solution to monitor a truck's location.
 
