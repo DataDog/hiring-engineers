@@ -1,5 +1,8 @@
 Welcome to my completed Datadog exercise for the Solutions Engineer role!
+
 ![Alt text](Screenshots/datadog.png "Datadog Logo")
+
+
 Seriously, the cutest logo and one of the most fun projects I've had the opportunity to work on.
 
 To kickoff this exercise, I spun up a virtual environment using virtualenv. I chose virtualenv because it's lightweight, Python friendly (which is used extensively with Datadog though Go is the main codebase) and very quick to activate and deactivate. It's also very user friendly.
@@ -26,7 +29,7 @@ Finally, I changed the custom check's collection interval so that it only submit
 
 Bonus! To change the collection interval, I updated the configuration file and not the Python file.
 
-Time to visualize all this beautiful data! For me, feels a bit like eating dessert. A lot of work goes into accurately collecting data, considering edge cases, confounding variables, etc. But what good is all that data if we can't see it to better analyze and understand correlations. Graphs bring data together and display it in easy to understand (and often pretty) pictures to quickly demonstrate what's happening under the hood. There's so much that can be missed without accurate graphs!
+Time to visualize all this beautiful data! I am a lover of graphs and creating them feels almost as good as eating dessert. A lot of work goes into accurately collecting data, considering edge cases, confounding variables, etc. But what good is all that data if we can't see it to better analyze and understand correlations? Graphs bring data together and display it in easy to understand (and often pretty) pictures to quickly demonstrate what's happening under the hood. There's so much that can be missed without accurate graphs!
 
 Anyhow, I digress. Back to the assignment. Visualizing Data!
 
@@ -57,11 +60,12 @@ These are screenshots of the monitors and the notice I received via email.
 ![Alt text](Screenshots/metric_monitor.png "Metric Monitor")
 ![Alt text](Screenshots/metric_monitor2.png "Metric Monitor2")
 
-As a bonus, I scheduled two downtimes for these monitors so that I'm notified after business hours or during the weekends. Below are two screenshots, one of the weekday monitor and the other of a notification I received stating the weekend monitor had been created.
+As a bonus, I scheduled two downtimes for these monitors so that I'm not notified after business hours or during the weekends. Below are two screenshots of notifications stating both monitors, one for the weekday and one for the weekend, had been created.
 ![Alt text](Screenshots/M-F_downtime.png "Weekly Downtime")
 ![Alt text](Screenshots/Weekend_downtime.png "Weekend Downtime")
 
 Finally, I created an app using Flask with the intent of collecting APM data. Getting the Flask app running and integrated with Datadog was unambiguous. Here are screenshots of the Flask app running on the local host as well as Flask metrics from Datadog.
+
 ![Alt text](Screenshots/entry_point.png "Entry Point")
 ![Alt text](Screenshots/getting_APM_started.png "Getting APM started")
 ![Alt text](Screenshots/posting_traces.png "Posting traces")
@@ -76,6 +80,7 @@ Services are a set of processes that work together to provide a feature set. Exa
 Resources are a query to a service. For a web app, examples might be a handler or a canonical URL.
 
 Here are two challenges I encountered while completing this exercise.
+
 First, due to time constraints, I was not able to utilize scripts or the Python wrappers to create the Timeboard. In the interest of time, I simply used the Datadog UI to create the Timeboard. I would love to revisit this with more time.
 
 The second challenge I encountered was integrating the APM Agent. Following the Datadog docs, I enabled the APM Agent in the main config files.
