@@ -714,6 +714,24 @@ instances:
     [{}]
 ```
 
+Running `kitchen converge` again will update the template, and restart the datadog-agent. You can see the custom check running now from both the CLI:
+
+```
+root@vagrant1:~# datadog-agent status|grep -A 7 my_metric
+    my_metric (unversioned)
+    -----------------------
+        Instance ID: my_metric:708819f59dba2721 [OK]
+        Total Runs: 8
+        Metric Samples: 1, Total: 8
+        Events: 0, Total: 0
+        Service Checks: 0, Total: 0
+        Average Execution Time : 0s
+```
+
+You can also see the data in the UI:
+
+
+
 ## Vizualizing Data
 Using the DataDog API we can add a timeboard...
 
@@ -728,36 +746,55 @@ dog = Dogapi::Client.new(api_key, app_key)
 
 
 # Create a timeboard.
-title = 'My Timeboard'
+title = 'Scott Ford - Timeboard'
 description = 'A basic timeboard generated via the API'
 graphs = [{
   "definition" => {
     "events" => [],
     "requests"=> [
       {
-        "q" => "avg:my_metric.check{host:mongodb-ubuntu-1604}",
-        "type" => "line"
-      },
-      {
-        "q" => "anomalies(avg:mongodb.mem.virtual{*}, 'basic', 2)",
-        "type" => "line"
-      },
-      {
-        "q" => "avg:my_metric.check{*}.rollup(sum, 3600)",
+        "q" => "avg:my_metric{host:mongodb-ubuntu-1804}",
         "type" => "line"
       }
     ],
   "viz" => "timeseries"
   },
-  "title" => "Random int check"
+  "title" => "My metric over host"
+},
+{
+  "definition" => {
+    "events" => [],
+    "requests"=> [
+      {
+        "q" => "anomalies(avg:mongodb.mem.virtual{*}, 'basic', 2)",
+        "type" => "line"
+      }
+    ],
+  "viz" => "timeseries"
+  },
+  "title" => "MongoDB anomolies"
+},
+{
+"definition" => {
+    "events" => [],
+    "requests"=> [
+      {
+        "q" => "avg:my_metric{*}.rollup(sum, 3600)",
+        "type" => "line"
+      }
+    ],
+  "viz" => "timeseries"
+  },
+  "title" => "my_metric rollup sum over one hour"
 }]
 template_variables = [{
-	"name" => "host1",
+	"name" => "mongodb-ubuntu-1804",
 	"prefix" => "host",
-	"default" => "host:my-host"
+	"default" => "host:mongodb-ubuntu-1804"
 }]
 
 res = dog.create_dashboard(title, description, graphs, template_variables)
+
 ```
 
 
