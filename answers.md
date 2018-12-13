@@ -53,7 +53,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
   * Created the Timeboard and set the timeframe to the past 5 minutes.  I am only able to share a snapshot of a single graph in this timeboard.   The Datadog documention confirms you are not able to share/snapshot the whole timeboard (screenshot of the info I found).   Also included is a screenshot of the shared 5 minute snapshot anomaly graph.   
 #### Data on Timeboard Functionality
 <img src=screenshots/timeboarddata.png>
-#### The Graph snapshot that was sent to myself.
+
+#### The graph snapshot that was sent to myself
 <img src=screenshots/last5minutes.png>
 * **Bonus Question**: What is the Anomaly graph displaying?
 The graph highlights the times where the metric (in this case the MySQL instance user time CPU cycles) was more or less than the average consumption.
