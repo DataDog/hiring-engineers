@@ -741,7 +741,10 @@ You can also see the data in the UI:
 
 
 ## Vizualizing Data
-Using the DataDog API we can create a Timeboard to visualize data for a specific time period for any metrics we choose. The following `ruby` script will create a Timeboard called 'Scott Ford - Timeboard' with the `my_metric` check scoped over the test instance, a metric showing virtual memory usage for MongoDB for the test instance, and a custom metric with the rollup function applied to sum up all of the points in the past hour.
+Using the DataDog API we can create a Timeboard to visualize data for a specific time period for any metrics we choose. 
+
+### Using Ruby to generate a Timeboard
+The following `ruby` script will create a Timeboard called 'Scott Ford - Timeboard' with the `my_metric` check scoped over the test instance, a metric showing virtual memory usage for MongoDB for the test instance, and a custom metric with the rollup function applied to sum up all of the points in the past hour.
 
 ```ruby
 require 'rubygems'
@@ -810,4 +813,13 @@ The `timeboard.rb` script can be applied by opening a terminal and running `ruby
 The timeboard is now avaiable in the UI:
 
 ![alt text](screenshots/screenshot4.png)
+
+### Sending Snapshots
+With the timeboard created it is easy to drag the timeframe to 5min and zero in on specific data. Doing so allows you to zero in on anomalies, and then you can easily snapshot and send that data out to colleagues for further investigation:
+
+![alt text](screenshots/screenshot5.png)
+
+The notification arrives almost instantly in my inbox:
+![alt text](screenshots/screenshot6.png)
+
 
