@@ -898,7 +898,7 @@ I also generated a publicly accesible link to the Dashboard here...
 https://p.datadoghq.com/sb/9a33bf95b-211aa784795c5db3dd94a9a57a2fbd8e
 
 ## Final Question - What else could DataDog monitoring be used for
-I would love to see the 'One Climate Change Dashboard to rule them all' and have that Dashboard be publicly available. Given that DataDog is a NY company, if price were no option that Dashboard would live permanently in Times Square and display live data on some of the most impactful Data on what is happening by our lack of effort to tackle probably the biggest facing humanity. 
+I would love to see the 'One Climate Change Dashboard to rule them all' and have that Dashboard be publicly available. Given that DataDog is a NY company, if money was no object that Dashboard would live permanently in Times Square and display live data on some of the most impactful Data on what is happening by our lack of effort to tackle probably the biggest facing humanity. 
 
 Some examples of Dashboards might be:
 
