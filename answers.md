@@ -861,3 +861,29 @@ Doing so triggered alerts in my inbox that the downtime was scheduled:
 ![alt text](screenshots/screenshot10.png)
 
 ## Collecting Data APM
+Getting APM tracing going was very straight forward as well. I used the sample application provided in the `README` and configured `python3` on my test instance and ran a `pip3 install ddtrace` and `pip3 install Flask`. 
+
+### Running the application
+Once everything was configured I started the sample Flask application up with `ddtrace-run python flask_app.py`. I was able to validate the app running:
+
+```
+$ netstat -tulpn|grep 5050
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:5050            0.0.0.0:*               LISTEN      1779/python
+```
+
+### Tracing the app
+With the app running I then opened a separate terminal on my test instance and ran `curl localhost:5050/api/apm` and got the response 'Getting APM Started'. I then started a simple `while` loop to continuously hit `/api/trace` 
+
+```
+$ while true; do
+> curl localhost:5050/api/trace
+> sleep 5
+> done
+Posting TracesPosting TracesPosting TracesPosting TracesPosting
+```
+
+After a couple of minutes I was able to login to the APM Dashboard and see my data
+
+![alt text](screenshots/screenshot11.png)
