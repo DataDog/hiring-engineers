@@ -634,25 +634,28 @@ Recipe: code_generator::template
 ```
 
 ##### Edit `chef_datadog_example/templates/my_metric.py.erb`
-```
+The following check is a simple python script that submits a random value between 0-1000: 
+```python
 from random import *
 from checks import AgentCheck
 
 class RandomCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('my_metric', randint(1, 1000), tags=['my_metric'])
+        self.gauge('my_metric', randint(0, 1000), tags=['my_metric'])
 ```
 
 ##### Edit `chef_datadog_example/templates/my_metric.yml.erb` 
-```
+The `my_metric.yml` file configures the python check. Right now we have the collection interval set to 5 seconds but we'll update that shortly.
+```yaml
 init_config:
-  min_collection_interval: 45
+  min_collection_interval: 5
 
 instances:
     [{}]
 ```
 
 #### Create a new recipe to configure our custom check
+We can now use chef to create a new recipe to deploy our custom check on the test instance.
 ```
 $ chef generate recipe dd_custom_check
 Recipe: code_generator::recipe
@@ -674,7 +677,8 @@ Recipe: code_generator::recipe
 ```
 
 ##### Edit `chef_datadog_example/recipes/dd_custom_check`
-```
+The following uses the chef `template` resource to configure the `my_metric.yaml` and the `my_metric.py` scripts on the test instance
+```ruby
 #
 # Cookbook:: chef_datadog_example
 # Recipe:: dd_custom_check
@@ -690,7 +694,8 @@ end
 ```
 
 ##### Edit `chef_datadog_example/recipes/default.rb` 
-```
+Now we can update our `recipes/default.rb` to add the new recipe to the test instance:
+```ruby
 #
 # Cookbook:: chef_datadog_example
 # Recipe:: default
@@ -707,7 +712,8 @@ Run `kitchen converge` again to add our custom check to the instance.
 Now with Chef managing the `my_metric.yml` configuration file we can easily change the check interval to 45 seconds..
 
 ##### Edit `chef_datadog_example/templates/my_metric.yaml.erb`
-```
+By update thing the `min_collection_interval:` to `45`, running `chef-client` again will see that the template has changed and update the file 
+```yaml
 init_config:
   min_collection_interval: 45
 
@@ -715,7 +721,7 @@ instances:
     [{}]
 ```
 
-Running `kitchen converge` again will update the template, and restart the datadog-agent. You can see the custom check running now from both the CLI:
+Running `kitchen converge` again will update the template, and restart the datadog-agent. You can see the custom check running now from the CLI:
 
 ```
 root@vagrant1:~# datadog-agent status|grep -A 7 my_metric
@@ -735,9 +741,9 @@ You can also see the data in the UI:
 
 
 ## Vizualizing Data
-Using the DataDog API we can add a timeboard...
+Using the DataDog API we can create a Timeboard to visualize data for a specific time period for any metrics we choose. The following `ruby` script will create a Timeboard called 'Scott Ford - Timeboard' with the `my_metric` check scoped over the test instance, a metric showing virtual memory usage for MongoDB for the test instance, and a custom metric with the rollup function applied to sum up all of the points in the past hour.
 
-```
+```ruby
 require 'rubygems'
 require 'dogapi'
 
@@ -799,4 +805,9 @@ res = dog.create_dashboard(title, description, graphs, template_variables)
 
 ```
 
+The `timeboard.rb` script can be applied by opening a terminal and running `ruby timeboard.rb`. The API does not return any output if the call is successful, but running `echo $?` will show the exit status of the command which should be `0` if successful.
+
+The timeboard is now avaiable in the UI:
+
+![alt text](screenshots/screenshot4.png)
 
