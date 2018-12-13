@@ -41,14 +41,16 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-  * The script has been completed and it is under the scripts directory.  The file is called 'api-timeboard.py'
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+
+* The script has been completed and it is under the scripts directory.  The file is called 'api-timeboard.py'
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-  * Created the Timeboard and set the timefream to the past 5 minutes.  I am only able to share a snapshot of a single graph in this timeboard.   The Datadog documention confirms you are not able to share/snapshot the whole timeboard (screenshot of the info I found).   Also included is a screenshot of the anomaly graph for the past 5 minutes.   
+  * Created the Timeboard and set the timeframe to the past 5 minutes.  I am only able to share a snapshot of a single graph in this timeboard.   The Datadog documention confirms you are not able to share/snapshot the whole timeboard (screenshot of the info I found).   Also included is a screenshot of the shared 5 minute snapshot anomaly graph.   
 #### Data on Timeboard Functionality
 <img src=screenshots/timeboarddata.png>
 #### The Graph snapshot that was sent to myself.
