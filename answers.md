@@ -76,7 +76,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-* Created the monitor as asked.  I have inclued exported monitor definition at monitors/my-metric-monitor.json.   Also below is a screen shot of the email alert.
+Created the monitor as asked.  I have inclued exported monitor definition at monitors/my-metric-monitor.json.   Also below is a screen shot of the email alert.
 <img src=screenshots/emailalert.png>
 
 
@@ -86,7 +86,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-* Downtime created and the screen shot of the email notification is:
+Downtime created and the screen shot of the email notification is:
 <img src=screenshots/emailnotification.png>
 
 
@@ -128,7 +128,7 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
- * In the case of the example provided the service a fully implemented web applcation.  The resources are each on different endpoints in that service.   So a service is a superset grouping of resources.
+ ** In the case of the example provided the service a fully implemented web applcation.  The resources are each on different endpoints in that service.   So a service is a superset grouping of resources.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -137,7 +137,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 * Dashboard Link: https://app.datadoghq.com/dash/1020451/apm-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1544735640000&to_ts=1544739240000&live=true
 
 * Dashboard Screenshot:
-<img scr=screenshots/apm.png>
+<img src=screenshots/apm.png>
 
 
 Please include your fully instrumented app in your submission, as well.
