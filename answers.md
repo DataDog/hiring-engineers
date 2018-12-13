@@ -851,11 +851,13 @@ This produced the following alerts in my inbox on gmail:
 ### BONUS: Scheduling Downtime
 Nobody wants to receive notifications if they do not have to. There will be times when you want to schedule downtime for alerts for maintenance windows, holidays, etc. 
 
-I was able to schedule downtime from 7pm to 9am daily on M-F: 
+I was able to schedule downtime from 7pm to 9am daily on M-F:
 ![alt text](screenshots/screenshot8.png)
 
-I also scheduled downtime Sat/Sun?
+I also scheduled downtime Sat/Sun:
 ![alt text](screenshots/screenshot8.png)
 
 Doing so triggered alerts in my inbox that the downtime was scheduled:
 ![alt text](screenshots/screenshot10.png)
+
+## Collecting Data APM
