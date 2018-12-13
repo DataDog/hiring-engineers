@@ -446,7 +446,7 @@ We can now login to DataDog and see the host in the Host Map with the specified 
 
 ![alt text](screenshots/screenshot1.png)
 
-## DataDog Chef Intergration (BONUS)
+### DataDog Chef Intergration (BONUS)
 DataDog provides an intergration for Chef so we can monitor the health of our Chef runs. To take advantage of this integration we need to generate an Data Dog Application key, export the key to an environment variable, update our `.kitchen.yml`, and then add the `dd-handler` recipe from the DataDog community cookbook to our default recipe...
 
 1. Generate an Application Key [here](https://app.datadoghq.com/account/settings#api)
@@ -646,7 +646,7 @@ class RandomCheck(AgentCheck):
 ##### Edit `chef_datadog_example/templates/my_metric.yml.erb` 
 ```
 init_config:
-  min_collection_interval: 5
+  min_collection_interval: 45
 
 instances:
     [{}]
@@ -731,6 +731,7 @@ root@vagrant1:~# datadog-agent status|grep -A 7 my_metric
 
 You can also see the data in the UI:
 
+![alt text](screenshots/screenshot3.png)
 
 
 ## Vizualizing Data
