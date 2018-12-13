@@ -110,7 +110,7 @@ Instance             Driver   Provisioner  Verifier  Transport  Last Action    L
 mongodb-ubuntu-1804  Vagrant  ChefZero     Inspec    Ssh        <Not Created>  <None>
 ```
 
-### Kitchen Create
+#### Kitchen Create
 With our `.kitchen.yml` file configured we can now move on to creating and converging Chef code on a running Ubuntu-18.04 box. Test Kitchen has a number of different commands to interact with the tool. We've already seen the `kitchen list` will print out the configuration of the `.kitchen.yml`. At any point you can run `kitchen --help` to see all of the commands. The next command we are going to learn is `kitchen create` which will provision out a new instance of the platform(s) we have configured. Since we only have one platform configured at this point, we can run `kitchen create` which will call Vagrant and then provision a VM in VirtualBox. 
 
 ```
@@ -168,7 +168,7 @@ Connection to 127.0.0.1 closed.
 
 We could just start manually configuring this instance at this point, but that would be slow and error prone. Instead let's jump right into the power of Chef and test out the capabities of DataDog. 
 
-### Kitchen Converge
+#### Kitchen Converge
 In order to configure our instance with Chef, we will first need to install the `chef-client` on the instance. The `chef-client` is an agent that runs locally on every node that is under management by Chef. When a chef-client is run, it will perform all of the steps that are required to bring the node into the expected state. If something is already in the expected state, then `chef-client` will perform no action. 
 
 To get `chef-client` installed on our instance we simply need to run `kitchen converge`
@@ -244,7 +244,7 @@ A fundamental aspect of using Chef is the understanding Resources and Recipes. R
 
 The DataDog community cookbook contains a recipe called `dd-agent` which will install the agent and start reporting to your DataDog account using the API key configured. In order to run that recipe, we just need to include it in our default recipe...
 
-##### Edit `chef_datadog_example/recipes/default.rb`
+#### Edit `chef_datadog_example/recipes/default.rb`
 ```ruby
 #
 # Cookbook:: chef_datadog_example
@@ -412,7 +412,7 @@ vagrant@vagrant1:~$ sudo service datadog-agent status
            └─2990 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/agent.pid
 ```
 
-##### Add some tags
+#### Add some tags
 DataDog allows you to create tags allowing you to organize and query the instances you have to monitor. The DataDog Chef cookbook provides a cookbook attribute to easily tag our instance. The tags are just a list of key value pairs as seen below:
 
 ```yaml
