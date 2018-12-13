@@ -1,0 +1,26 @@
+{
+  "requests": [
+    {
+      "q": "hour_before(avg:my_metric{host:precise64})",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    },
+    {
+      "q": "anomalies(avg:postgresql.max_connections{host:precise64}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true,
+  "viz": "timeseries"
+}
