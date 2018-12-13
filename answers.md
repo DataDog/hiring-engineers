@@ -87,7 +87,7 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 * Downtime created and the screen shot of the email notification is:
-<img src=screenshots/emailnotificaiton.png>
+<img src=screenshots/emailnotification.png>
 
 
 ## Collecting APM Data:
