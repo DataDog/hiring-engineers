@@ -1,0 +1,23 @@
+{
+	"name": "My Metric Alert",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "{{#is_alert}}Alert: The My Metric value is {{my_metric}} on {{host.ip}} {{/is_alert}} \n{{#is_warning}}Warning the My Metric Value is getting high on {{host.name}} {{/is_warning}} \n{{#is_no_data}}There has been not data for the My Metric value on host {{host.name}} {{/is_no_data}} \n\n @henndawg80@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": true,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
