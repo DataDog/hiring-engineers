@@ -32,7 +32,7 @@
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
   The updated configuration file for the custom check is located at conf.d/mymetrics.yaml 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-  You don't modify the python script.  The check configuration yaml file has to be updated to change the check interval.
+  You don't modify the python script.  The check configuration yaml file has to be updated to update the check interval.
 
 ## Visualizing Data:
 
@@ -41,14 +41,20 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
+  * The script has been completed and it is under the scripts directory.  The file is called 'api-timeboard.py'
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+  * Created the Timeboard and set the timefream to the past 5 minutes.  I am only able to share a snapshot of a single graph in this timeboard.   The Datadog documention confirms you are not able to share/snapshot the whole timeboard (screenshot of the info I found).   Also included is a screenshot of the anomaly graph for the past 5 minutes.   
+#### Data on Timeboard Functionality
+<img src=screenshots/timeboarddata.png>
+#### The Graph snapshot that was sent to myself.
+<img src=screenshots/last5minutes.png>
 * **Bonus Question**: What is the Anomaly graph displaying?
+The graph highlights the times where the metric (in this case the MySQL instance user time CPU cycles) was more or less than the average consumption.
 
 ## Monitoring Data
 
