@@ -2,6 +2,8 @@ Add tags in the Agent config file and show us a screenshot of your host and its 
 ![Host Map Screenshot](https://github.com/johnmarkl/hiring-engineers/blob/master/HostMapTagsScreenshot.png?raw=true "Host Map Screenshot")
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Answer: collection interval is changed in the .yaml file
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+https://github.com/johnmarkl/hiring-engineers/blob/master/JMTimeboardScript.txt
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ![Email Notification Example](https://github.com/johnmarkl/hiring-engineers/blob/master/JMEmailNotificationScreenshot.png?raw=true "Email Notification Example")
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -14,3 +16,5 @@ Make sure that your email is notified when you schedule the downtime and take a 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 https://app.datadoghq.com/apm/service/flask/flask.request?end=1544726979906&env=jmvirtualbox&paused=false&start=1544640579906
 ![APM Example](https://github.com/johnmarkl/hiring-engineers/blob/master/APMmetricsScreenshot.png?raw=true "APM Example")
+Please include your fully instrumented app in your submission, as well.
+https://github.com/johnmarkl/hiring-engineers/blob/master/flaskapp.py
