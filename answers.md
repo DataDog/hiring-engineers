@@ -128,8 +128,17 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+ * In the case of the example provided the service a fully implemented web applcation.  The resources are each on different endpoints in that service.   So a service is a superset grouping of resources.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+* APM script is located under the APM folder
+
+* Dashboard Link: https://app.datadoghq.com/dash/1020451/apm-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1544735640000&to_ts=1544739240000&live=true
+
+* Dashboard Screenshot:
+<img scr=screenshots/apm.png>
+
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -138,3 +147,5 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+For my own personal use I could see using this for collecting and monitoring the number of events on my different home automation devices.  I current gather metrics from these devices but have no real visiablity beyond log data.  I could create a new metric gathering item and gather those events in real time.  I could also set alerts on certain thresholds to know things like when the kids leave the garage door open :-)
