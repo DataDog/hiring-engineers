@@ -822,4 +822,28 @@ With the timeboard created it is easy to drag the timeframe to 5min and zero in 
 The notification arrives almost instantly in my inbox:
 ![alt text](screenshots/screenshot6.png)
 
+### BONUS QUESTION: What is the Anomaly graph displaying?
+The anomaly graph idenditfies metrics behaving differently than it has in the past. The algorithm taks into account trends such as seasonal day-of-week, and time-of-day patterns. In the case here we are monitoring virtual memory on MongoDB which is that exciting!
 
+## Monitoring Data
+With the amount of infrastructure and applications we are tasked with managing these days there is no way for teams to stay glued to a UI trying to determine the health status. Luckily DataDog make creating monitors simple.
+
+> Set up a monitor on this metric that alerts you when it goes above 0.90 at
+least once during the last 5 minutes
+> Bonus points: Make it a multi-alert by host so that you won't have to recreate
+> it if your infrastructure scales up.
+> Give it a descriptive monitor name and message (it might be worth it to
+> include the link to your previously created dashboard in the message). Make
+> sure that the monitor will notify you via email.
+
+In the UI I was able to create the following alert:
+
+```
+{{#is_warning}}WARNING: my_metric {{value}} is exceeding threshold{{/is_warning}}
+{{#is_alert}} ALERT: my_metric {{value}} is alerting on Host IP: {{host.ip}} {{/is_alert}}
+{{#is_no_data}}NO DATA: my_metic {{value}} is not returning any data{{/is_no_data}}
+```
+
+This produced the following alerts in my inbox on gmail:
+
+![alt text](screenshots/screenshot7.png)
