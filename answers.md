@@ -77,7 +77,7 @@ Please configure the monitor’s message so that it will:
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 * Created the monitor as asked.  I have inclued exported monitor definition at monitors/my-metric-monitor.json.   Also below is a screen shot of the email alert.
-<img src=emailalert.png>
+<img src=screenshots/emailalert.png>
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -87,7 +87,7 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 * Downtime created and the screen shot of the email notification is:
-<img src=emailnotificaiton.png>
+<img src=screenshots/emailnotificaiton.png>
 
 
 ## Collecting APM Data:
