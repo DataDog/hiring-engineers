@@ -887,3 +887,13 @@ Posting TracesPosting TracesPosting TracesPosting TracesPosting
 After a couple of minutes I was able to login to the APM Dashboard and see my data
 
 ![alt text](screenshots/screenshot11.png)
+
+### Dashboard for APM and Infrastructure
+I then created a simple Timeboard with some infrastructure monitoring and APM metrics for the Flask app:
+
+![alt text](screenshots/screenshot12.png) 
+
+I also generated a publicly accesible link to the Dashboard here...
+
+https://p.datadoghq.com/sb/9a33bf95b-211aa784795c5db3dd94a9a57a2fbd8e
+
