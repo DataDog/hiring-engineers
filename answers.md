@@ -74,7 +74,7 @@ drwxr-xr-x   3 scottford  staff    96 Dec  9 17:15 test
 
 Inside that directory you will find a `.kitchen.yml` file which is the configuration file for Test Kitchen. My initial `.kitchen.yml` looks like this...
 
-```.kitchen.yml
+```yaml
 ---
 driver:
   name: vagrant
@@ -111,7 +111,7 @@ mongodb-ubuntu-1804  Vagrant  ChefZero     Inspec    Ssh        <Not Created>  <
 ```
 
 ### Kitchen Create
-With our `.kitchen.yml` file configured we can now move on to creating and converging Chef code on a running Ubuntu-16.04 box. Test Kitchen has a number of different commands to interact with the tool. We've already seen the `kitchen list` will print out the configuration of the `.kitchen.yml`. At any point you can run `kitchen --help` to see all of the commands. The next command we are going to learn is `kitchen create` which will provision out a new instance of the platform(s) we have configured. Since we only have one platform configured at this point, we can run `kitchen create` which will call Vagrant and then provision a VM in VirtualBox. 
+With our `.kitchen.yml` file configured we can now move on to creating and converging Chef code on a running Ubuntu-18.04 box. Test Kitchen has a number of different commands to interact with the tool. We've already seen the `kitchen list` will print out the configuration of the `.kitchen.yml`. At any point you can run `kitchen --help` to see all of the commands. The next command we are going to learn is `kitchen create` which will provision out a new instance of the platform(s) we have configured. Since we only have one platform configured at this point, we can run `kitchen create` which will call Vagrant and then provision a VM in VirtualBox. 
 
 ```
 $ kitchen create
@@ -204,7 +204,7 @@ DataDog provides excellent [documentation](https://docs.datadoghq.com/agent/) on
 #### Edit the metadata.rb
 Open the `chef_datadog_example/metadata.rb` in an editor and add a dependency on the DataDog community cookbook:
 
-```
+```ruby
 name 'chef_datadog_example'
 maintainer 'Scott Ford'
 maintainer_email 'smford22@gmail.com'
@@ -225,8 +225,8 @@ $ export DD_API_KEY=<YOUR API KEY GOES HERE>
 ```
 
 #### Edit attribute
-Back in our `.kitchen.yml` file, set the attribute for the api key:
-```
+Back in our `.kitchen.yml` file, set the attribute for the api key to the environment variable we exported above:
+```yaml
 suites:
   - name: default
     run_list:
@@ -245,7 +245,7 @@ A fundamental aspect of using Chef is the understanding Resources and Recipes. R
 The DataDog community cookbook contains a recipe called `dd-agent` which will install the agent and start reporting to your DataDog account using the API key configured. In order to run that recipe, we just need to include it in our default recipe...
 
 ##### Edit `chef_datadog_example/recipes/default.rb`
-```
+```ruby
 #
 # Cookbook:: chef_datadog_example
 # Recipe:: default
@@ -413,9 +413,9 @@ vagrant@vagrant1:~$ sudo service datadog-agent status
 ```
 
 ##### Add some tags
-DataDog allows you to create tags allowing you to organize and query the instances you have to monitor. Using the DataDog cookbook we can easily add tags to our instance:
+DataDog allows you to create tags allowing you to organize and query the instances you have to monitor. The DataDog Chef cookbook provides a cookbook attribute to easily tag our instance. The tags are just a list of key value pairs as seen below:
 
-```
+```yaml
 suites:
   - name: mongodb1
     run_list:
@@ -426,7 +426,7 @@ suites:
     attributes:
       datadog:
         api_key: <%= ENV['DD_API_KEY'] %>
-        tags: 
+        tags: # TAGS GO HERE
           name: scottford-test
           environment: localdev
           config_mgmt: chef
@@ -446,13 +446,13 @@ We can now login to DataDog and see the host in the Host Map with the specified 
 
 ![alt text](screenshots/screenshot1.png)
 
-#### DataDog Chef Intergration (BONUS)
+## DataDog Chef Intergration (BONUS)
 DataDog provides an intergration for Chef so we can monitor the health of our Chef runs. To take advantage of this integration we need to generate an Data Dog Application key, export the key to an environment variable, update our `.kitchen.yml`, and then add the `dd-handler` recipe from the DataDog community cookbook to our default recipe...
 
 1. Generate an Application Key [here](https://app.datadoghq.com/account/settings#api)
 2. Export the Data Dog Application key as an environment variable on your workstation `scottford$ export DD_APP_KEY='<DD_APP_KEY GOES HERE>'`
 3. Update `.kitchen.yml`
-```
+```yaml
 suites:
   - name: mongodb
     run_list:
@@ -489,7 +489,7 @@ $ chef generate recipe mongodb
 
 Using Chef resources we can configure the `mongodb.rb` recipe to install MongoDB, manage its configuration, and manage the service. In addition in the same recipe we can configure the MongoDB integration 
 
-```
+```ruby
 #
 # Cookbook:: chef_datadog_example
 # Recipe:: mongodb
@@ -520,7 +520,7 @@ execute 'setup-datadog-user' do
 end
 
 #
-# Command to restart the datadog-agent
+# Command to restart the datadog-agent with an action of :nothing. This resource will be called through chef notifications
 #
 execute 'restart-datadog-agent' do
   command 'service datadog-agent restart'
@@ -537,7 +537,7 @@ end
 ```
 
 #### Generate a template for /etc/datadog-agent/conf.d/mongo.yaml
-Additonally, we need to create a template for the DataDog agent to monitor our service:
+Additonally, we need to create a template for the DataDog agent to monitor our service. From the terminal on your workstation, `cd` inside of the cookbook and run the following command:
 
 ```
 $ chef generate template mongo.yaml
@@ -553,7 +553,7 @@ Recipe: code_generator::template
 #### Add content for mongo.yaml template
 We can now add the following content to `chef_datadog_example/templates/mongo.yaml.erb`:
 
-```
+```ruby
 ---
 logs: []
 
@@ -568,6 +568,7 @@ init_config:
 With our recipe written we need to add it to our `default` recipe and then run `kitchen converge` again
 
 #### Edit `chef_datadog_example/recipes/default.rb`
+Update the `recipes/default.rb` to include our mongodb recipe
 ```
 #
 # Cookbook:: chef_datadog_example
@@ -609,7 +610,7 @@ We can now login to DataDog and see the host in the Host Map with the specified 
 ![alt text](screenshots/screenshot2.png)
 
 #### Creating a Custom Check
-In this next section we will create a custom check called 'my_metric' that tests a random interval on our instance
+In this next section we will create a custom check called 'my_metric' that tests a random interval on our instance that submits the metric every 45 seconds.
 
 
 ```

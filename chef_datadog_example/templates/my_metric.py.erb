@@ -1,7 +1,6 @@
-import random
+from random import *
 from checks import AgentCheck
 
-class MyMetric(AgentCheck):
+class RandomCheck(AgentCheck):
   def check(self, instance):
-    random_number = random.randint(0,1001)
-    self.gauge('my_metric', random_number)
+    self.gauge('my_metric', randint(1, 1000), tags=['my_metric'])
