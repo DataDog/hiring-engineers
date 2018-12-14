@@ -1,2 +1,7 @@
 Your answers to the questions go here.
-![Host Map](https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7)
+![screenshot](https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7)
+
+<p align="center">
+  <img src="https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7 width="350" title="hover text">
+</p>
+
