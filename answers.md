@@ -2,6 +2,6 @@ Your answers to the questions go here.
 ![screenshot](https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7)
 
 <p align="center">
-  <img src="https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7 width="350" title="hover text">
+  <img src="https://lh3.googleusercontent.com/qcvKDV70UVtHZowO1UVbQ5-M9y3Iz4wBo0SqK9KjZZ3CFFDDqQGxLgSF-eJdmcX6fBgULXMJ8zG6pUF84C5MqHAZ9D6KybxK6an1QVvV2NKHoz-rHb77kLzijD5uHpAmLvho_Vkes6hQgUUgSDtProXd-TQkIMlGqfPjUxa1iWY3jc-taGl4pXKImexpaUBWkwnN0zllRmivGOgeh9cn-K1A-c2QUmongJbAFx32b8_pAPaMfgWbDpY9ZWQckKsnfLTRZMUOdDfpIKH4WtxNc3VZh2sgdzvpHzw04sMitrkeQwckqJpD5hUKlewNwTnufh-D03xM_jY6bxdILCbnDCqooEeirFZQCN5ccKuB2as9iD80ENZltyQfsLUxcrjm5v18O1dwC6O_Dt2hY3evmXlqQPV6RPjwAAanJODqkUGwmhNszYZgQqkOfOJtSfr1z0TK4vNP2wiM28loj_akbGtvB2_mEEvuyE6XCli-0pwMU9cwgqsJ8sOhZsMdVH2bXZFVUkggybdeeV0Rp2gukwS4oead_WIcYCO1Luq7XSgyBaYnBP6lyIVaqzybZd7-uRHgV9J4gd4RKZbpsyODlB3EYOjeHl4S7-DjAK8v6CVFfC3nNL2qGgVm2g9szRi81DFXGB8WIyUEcwQVBPPLLXYqRj4Cx2SZQVH_1iKpDHZ7F8eb4CKF9T5ldtjr9Gz3L_Lq3KQEgnc9cysKpw=w1514-h901-no width="350" title="hover text">
 </p>
 
