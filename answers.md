@@ -31,3 +31,20 @@ instances: [{}]
 
 Q.5) Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Ans - May be there is an API for that.
+
+
+
+Section B : Visualizing Data
+Q.1) Utilize the Datadog API to create a Timeboard that contains:
+
+    Your custom metric scoped over your host.
+    Any metric from the Integration on your Database with the anomaly function applied.
+    Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Ans - myTimeboard.py
+
+Q.2) Set the Timeboard's timeframe to the past 5 minutes.Take a snapshot of this graph and use the @ notation to send it to yourself.
+Ans - I couldn't find a way to do it below 1 hour.
+
+Q.3) What is the Anomaly graph displaying?
+Ans - It shows parts in a chart where some of the graphs are showing different movement.
