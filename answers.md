@@ -4,6 +4,8 @@ Your answers to the questions go here.
 
 ![alt text](http://www.flickr.com/photos/alq666/10125225186/ "Host Map with tags screenshot") to Host Map with tags screenshot.
 
+<img src="http://www.flickr.com/photos/alq666/10125225186/ " alt="Smiley face" height="42" width="42">
+
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
 Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
 Just add:<br>
