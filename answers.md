@@ -209,6 +209,7 @@ api.Timeboard.create(title=title, description=description, graphs=graphs)
   * **Bonus Question**: Downtime created and the screen shot of the email notifications:
 
 <img src=screenshots/emailnotification.png>
+
   * The ease of creating a monitor allows for the most novice user to create a new monitors.
   * It is great to see that you can export the monitor configuration for  use later with the API.  A user can use/tweak this JSON for creating a group of similar monitors.
   * The fact that the monitor content data can be specific to a level of alert is really great to provide actual real world fixes/troubleshooting steps in the alert notification.
