@@ -155,10 +155,7 @@ api.Timeboard.create(title=title, description=description, graphs=graphs)
   * I focused on the 'mymetric' graph and zoomed into the a 5 minute collection interval.
   * Created a snapshot of that graph with the 5 minute interval and sent it to myself via the @ mention.
   * The snapshot of the graph was then sent to the 'Events' feed in my account.  This is a great feature for quickly sharing graphs and information with users that might not be as familiar with the platform.   A more educated user can login and create/share information so quickly and with out having to do crazy stuff such as screen snapshots or data reformatting in an excel sheet.  
-* Examples:
-   * Data on Timeboard functionality
-
-   <img src=screenshots/timeboarddata.png>
+* Example:
    * The snapshot that showed up my the Event feed:
 
    <img src=screenshots/last5minutes.png>
