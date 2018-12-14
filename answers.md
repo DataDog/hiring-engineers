@@ -1,7 +1,73 @@
 Your answers to the questions go here.
-![screenshot](https://photos.app.goo.gl/Dnw2ZoXvZtksyFck7)
 
-<p align="center">
-  <img src="https://lh3.googleusercontent.com/qcvKDV70UVtHZowO1UVbQ5-M9y3Iz4wBo0SqK9KjZZ3CFFDDqQGxLgSF-eJdmcX6fBgULXMJ8zG6pUF84C5MqHAZ9D6KybxK6an1QVvV2NKHoz-rHb77kLzijD5uHpAmLvho_Vkes6hQgUUgSDtProXd-TQkIMlGqfPjUxa1iWY3jc-taGl4pXKImexpaUBWkwnN0zllRmivGOgeh9cn-K1A-c2QUmongJbAFx32b8_pAPaMfgWbDpY9ZWQckKsnfLTRZMUOdDfpIKH4WtxNc3VZh2sgdzvpHzw04sMitrkeQwckqJpD5hUKlewNwTnufh-D03xM_jY6bxdILCbnDCqooEeirFZQCN5ccKuB2as9iD80ENZltyQfsLUxcrjm5v18O1dwC6O_Dt2hY3evmXlqQPV6RPjwAAanJODqkUGwmhNszYZgQqkOfOJtSfr1z0TK4vNP2wiM28loj_akbGtvB2_mEEvuyE6XCli-0pwMU9cwgqsJ8sOhZsMdVH2bXZFVUkggybdeeV0Rp2gukwS4oead_WIcYCO1Luq7XSgyBaYnBP6lyIVaqzybZd7-uRHgV9J4gd4RKZbpsyODlB3EYOjeHl4S7-DjAK8v6CVFfC3nNL2qGgVm2g9szRi81DFXGB8WIyUEcwQVBPPLLXYqRj4Cx2SZQVH_1iKpDHZ7F8eb4CKF9T5ldtjr9Gz3L_Lq3KQEgnc9cysKpw=w1514-h901-no width="350" title="hover text">
-</p>
+<h1>Collecting metrics:</h1><br>
 
+- Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
+Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
+Just add:<br>
+
+```- min_collection_interval: 45 ```
+
+<hr>
+<h1>Visualizing data:</h1><br>
+<h3>Script used to create Timeboard:</h3><br>
+
+```python
+#!/usr/bin/env python
+from datadog import initialize, api
+
+options = {
+    'api_key': 'f100449dca7313b71f6abeb488c312c7',
+    'app_key': '82818b84506cc9a41c43181b8b88bfd8567a14da'
+}
+
+initialize(**options)
+
+
+title = "Datadog Hiring"
+description = "Mix of graphs."
+graphs = [
+# first graph, my_metric
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "custom.my_metric{host:datadog-test}", "type": "area"}],
+        "viz": "timeseries"
+    },
+    "title": "Custom metric, random"
+},
+# 2nd graph, mysql metric with anomalies function
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "anomalies(avg:mysql.innodb.buffer_pool_free{host:datadog-test}, 'basic', 2)"}],
+        "viz": "timeseries"
+    },
+    "title": "Mysql, buffer pool free, anomalies"
+},
+# 3rd graph, again my_metric but with anomalies function
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "anomalies(avg:custom.my_metric{host:datadog-test}, 'basic', 2)"}],
+        "viz": "timeseries"
+    },
+    "title": "Custom metric, random, anomalies"
+},
+# 4th graph, my_metric rolled up
+{
+    "definition": {
+        "events": [],
+        "requests": [{"q": "custom.my_metric{host:datadog-test}.rollup(avg,3600)"}],
+        "viz": "timeseries"
+    },
+    "title": "Custom metric, random, rolled up"
+}
+]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     read_only=read_only)
+```
