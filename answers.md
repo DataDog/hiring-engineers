@@ -13,7 +13,8 @@ Just add:<br>
 
 <hr>
 <h1>Visualizing data:</h1><br>
-[Link](https://photos.app.goo.gl/GB9CfLDGUHMXtZsUA) to Timeboard screenshot
+
+[Link](https://photos.app.goo.gl/GB9CfLDGUHMXtZsUA) to Timeboard screenshot.
 
 <h3>Script used to create Timeboard:</h3><br>
 
