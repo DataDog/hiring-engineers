@@ -2,7 +2,7 @@ Your answers to the questions go here.
 
 <h1>Collecting metrics:</h1><br>
 
-[Link](https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8) to Host Map with tags screenshot
+[Link](https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8) to Host Map with tags screenshot.
 
 
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
@@ -13,6 +13,8 @@ Just add:<br>
 
 <hr>
 <h1>Visualizing data:</h1><br>
+[Link](https://photos.app.goo.gl/GB9CfLDGUHMXtZsUA) to Timeboard screenshot
+
 <h3>Script used to create Timeboard:</h3><br>
 
 ```python
