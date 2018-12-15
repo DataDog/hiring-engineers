@@ -80,3 +80,17 @@ api.Timeboard.create(title=title,
 
 <hr>
 <h1>Monitoring data:</h1><br>
+
+[Link](https://photos.app.goo.gl/r3emijTofDdN6nh4A) to my_metric monitor config screenshot showing thresholds.
+
+[Link](https://photos.app.goo.gl/9UcJp9emSm4hbBUYA) to my_metric monitor config screenshot showing custom message and receiver.
+
+- Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+    One that silences it from 7pm to 9am daily on M-F,
+    And one that silences it all day on Sat-Sun.
+
+[Link](https://photos.app.goo.gl/SzpxQ4ziyP6nR7B56) to my_metric monitor 1st scheduled downtime email notification.
+
+[Link](https://photos.app.goo.gl/1RjhvoM1d4hRiGxW9) to my_metric monitor 2nd scheduled downtime email notification.
+
