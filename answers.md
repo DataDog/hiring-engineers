@@ -48,3 +48,10 @@ Ans - I couldn't find a way to do it below 1 hour.
 
 Q.3) What is the Anomaly graph displaying?
 Ans - It shows parts in a chart where some of the graphs are showing different movement.
+
+
+
+
+
+Section C : Monitoring Data
+Q.1) 
