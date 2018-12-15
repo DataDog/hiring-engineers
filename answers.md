@@ -2,7 +2,10 @@ Your answers to the questions go here.
 
 <h1>Collecting metrics:</h1><br>
 
-[Link](https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8) to Host Map with tags screenshot.
+<h4>Host and its tags on the Host Map page in Datadog<h4>
+
+![alt text](https://lh3.googleusercontent.com/gLfPsk9qtFoHbXBjhYvaCaRiTE8lttrL3FUYogAhoqHuGjBKTN51PbGlk4TpzyZdIdC440lEPb1u7yGju-QVARX-2jSxfnR4FkgmVoIwxTwHb_UuVpye-rl7C8x5HM2U0QgKfrBseYqu0sW7ANymBFoTIpZhQm__E7jH8mkNdkDYYcIR9zVHl6TNYZYro8zHbZQD5XyfVd3l2MrSmTwZxxNQTqwf9fEgk4cc1JJbNLeA7ciPL3KneVsd6L52N6nAjchWD301zO5ZnTnciRWV5bvdbnoU5ZD5xIqjE2GLHVubWmjw2SZzSnRxNc22lCl-RSjrbkVWS09nf6ldeLDovGte6vB3GKTm92Jc_-jPyJMQ-tzCJ3T9eWR2sB5ndso6Hf0Kbf1GB_x_7eFquxrxhWPjhOEsz6YvMz16GUFp27ZuTQB0wB0vd2TXwDzRBbF-DTiokcYBdToo39LRAveV1o4aU2Lelc5A7-4x7zLrlOqH4zJJafIKLbDRXWV-6EswPSPxvMmSh2NYArlqX0n0BUD1KaC8DGaR7lFJHRfyCir4dlDzPjFH7eE5UlbXP2KQ_wf2DcLyBcebdD4wL1FqCGC6OQj-z-_wUMvcA9eWUlxtlfkTkOnUp-5XIerOf4dwtFR9nS6U2FQmU38hPSCIKoqjF8QI0ekKDNyCMRfSAVAHzbkCiGeTZ7cv_nfuNm8W5Jq9muMENmcRsNMetA=w1514-h901-no-tmp.jpg "Host Map with tags screenshot")
+
 
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
 Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
@@ -15,7 +18,7 @@ Just add:<br>
 
 [Link](https://photos.app.goo.gl/GB9CfLDGUHMXtZsUA) to Timeboard screenshot.
 
-<h3>Script used to create Timeboard:</h3><br>
+<h4>Script used to create Timeboard:</h4><br>
 
 ```python
 #!/usr/bin/env python
