@@ -91,11 +91,21 @@ Anomalies tend to disappear when zooming in the data, meaning that some standalo
 <hr>
 <h1>Monitoring data:</h1><br>
 
-![alt text](https://lh3.googleusercontent.com/zeBznAXleciYlxginvEYTBWfxWNRbvSLGznk7fsoOizJTg0rqAYfH7xk-MnDnuHkg0DYa69uiyN0wAFokQY4gb6hpbKuQsltb0ZcY1mYbkiT4VkM-WpubKqP9GrtvjG2zdB7RHLGKCZJ1oeglDdLIS7qqn3jdm80Xk4sKaAxkZ18gk0tQw6qyvONf0zzTVIvX9crh0qoHDBoSSy3iJANNm5X8gHitlOB94F5zwlq0oAlii4dQtzYVCWXjvGKNaF-XejjsMGyFWHSrFUrSVzs3axAXZfn01MJMRvvvAB7wnmi19-a4KtpyKS72okjogHXzhJBzJ8BFx3MXsexKooyWYEfvD96QrTawvqxQpWUsQYxreXuKFZNYgVT8AIl2DfYSnuqoT-vC4T1YTaHEbYP6Gm5bpubqElSL8AbWGHi7xf3yDrNEbXf3TCEzTTcOzqvyA1M_mq_-FIQwZ3jt660Mw4gJusJU8IHBMsWpiGiZtVcz5Kz_eBGgSSh4Jpij_z04qYEieLgfUsqUq0DfJB8IvsMNT9kes2Sqe1pqSJHmOz4Hc9sNxmUsFg5agJn_jP6JxBj04Qa4Ja80Mrbl0XJi6csBJyezmjX3hF8YogD4a8MMRavZFtt1MV3ZOtbCLaWlA6_HyNCmWQceBT1R775bboCnBy1wme9MW-4oBsABeUs-eAREATztQj4wuOyC4eO6RuSmJvaf76N9yRW9g=w707-h583-no-tmp.jpg "my_metric 5 min timeframe")
+<h4>Please configure the monitor’s message so that it will:
 
-[Link](https://photos.app.goo.gl/r3emijTofDdN6nh4A) to my_metric monitor config screenshot showing thresholds.
+ - Send you an email whenever the monitor triggers.
 
-[Link](https://photos.app.goo.gl/9UcJp9emSm4hbBUYA) to my_metric monitor config screenshot showing custom message and receiver.
+ - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+ - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+ - When this monitor sends you an email notification, take a screenshot of the email that it sends you.</h4>
+ 
+ Alert triggered :
+   ![alt text](https://lh3.googleusercontent.com/Svyf9W725SWKb3KItUQkab3tw_cQTlGIqLPMp7EWX164eS8vqRFwaU58DrJcRuyRO4BypvtGqk9cHyPqEyk18O78_6cgY4uyH17YZU7uUSQ7J8IPa2kCxCAcKzcBbV-W3vSL4WYKV_9aCpNKiAnWVmN0r8ix7Q1_5_rQN0lkHCXB_P2eiRPkmH1oQmSqrs5iMu1-o4wzSfiUeBS0q-KYM_DiAcGWuS7l8fNRGv4joKUz4lV-RVz2sZdYc7Qz6mEY65M6bVneF9Btktpcuo3LIAw5n80hMczyuxrnPdGHeRoQtCq7PvoUeqbCm2yX_RqrKBktnwWQ3OoSjqm8P6avPs0UwO3GIVXYo4NyWk5Bu5NbNNyeLhv9u5_DKHkvMfLIMCDjTtGnMtb04e3ltu6sib_TnnvE2impFblqbqSF-2RD0btW5RNJPxKm8D_9WhxnUu7WS7keFN46dFaYrGB0-mt-4-PHfnstw2S53MJJiML7ooGpIPR5d8GQxkwPLNGOg9VNqaHGB7gvIZhpQXTd79BzDK2bBxPpAZGt0B9Ax1kMMJ6pwsTq-Iq8G8JusTFy00SV_dFau3xKS0sM85mjCuNexINGa3mUoAG0mzxfQvZbNn02oKFbSFBOUEkCpWjn4rgHKUl5taPAR6QICacEpkMPtpww7DcjzRElwMLVbKUiu-UDRCeIv0wWtzofRi0Isk9q0RFwRvbQwFZ_SQ=w709-h736-no-tmp.jpg "my_metric monitor alert triggered")
+   
+ No data triggered :
+    ![alt text](https://lh3.googleusercontent.com/LGhglkerLBch4uG_EBhZxVEASOlYde02KJqGP-1EZT-ysrDAAaXuuhVbaLBl7Dnwnr7P-SUAmUof0aEVoHLrJRNQBVPivhZrKOJJ7BxGHLrFXlm1gdmGX9UJoAwnyRPZD1uaKIIl3CTHspQ6wKM891G4InkNUWg30x0q12-eGD1qXo0_dyrTwfUV2JcORu8JIlL1HbKK9wrWd9IQ2u53Nyu4RJ_6UzSnVsg__VZv22uGn_i-ChkaP9QeyV7s3roPgq9nM52W4GUEvvYtFokvJYB2_d8n_m1jEzcoj0P86S9bHfYhCZXoG04i78kNGKBu31kMeVUYUxej25DhQgGrxjC1OLiMJfDMQqU3utaTWwODCN7MV9cj2jhh5U7rYN9bDnIvO9rhqTy48YeEQHXGTNC_FzQULAea-z49gVBeJtHs94yP_KvObxVWdKtUT6NUH5YpCDdFYU5CJXJYzJ8dgPQbNvok-qs_XYd4Qpe5ssjOr4XZdODL6-uPsSFyk3OH07e87SUEjEoBXU_WCX0I0mPG30AVQrNyQCw9vpyzCdqOu7notOA6lss1v6JiV4Fkmxekc6ecm2J1q4uZJ40MLGZOOqHbvZKB3lU696yPBogYidNrcTZCSs2axdggJ73d_dZJGYmBh1UEng54d51NVgx9Vxwn4WY1yvdkSbax9mfW-ekDcRKyzjO76TL2jyI9s_fkz6myetYmfM3ymw=w704-h533-no-tmp.jpg "my_metric monitor no data triggered"
 
 <h4>Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:</h4>
 
