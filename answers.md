@@ -2,7 +2,7 @@ Your answers to the questions go here.
 
 <h1>Collecting metrics:</h1><br>
 
-<h4>Host and its tags on the Host Map page in Datadog<h4>
+<h4>Host and its tags on the Host Map page in Datadog</h4>
 
 ![alt text](https://lh3.googleusercontent.com/gLfPsk9qtFoHbXBjhYvaCaRiTE8lttrL3FUYogAhoqHuGjBKTN51PbGlk4TpzyZdIdC440lEPb1u7yGju-QVARX-2jSxfnR4FkgmVoIwxTwHb_UuVpye-rl7C8x5HM2U0QgKfrBseYqu0sW7ANymBFoTIpZhQm__E7jH8mkNdkDYYcIR9zVHl6TNYZYro8zHbZQD5XyfVd3l2MrSmTwZxxNQTqwf9fEgk4cc1JJbNLeA7ciPL3KneVsd6L52N6nAjchWD301zO5ZnTnciRWV5bvdbnoU5ZD5xIqjE2GLHVubWmjw2SZzSnRxNc22lCl-RSjrbkVWS09nf6ldeLDovGte6vB3GKTm92Jc_-jPyJMQ-tzCJ3T9eWR2sB5ndso6Hf0Kbf1GB_x_7eFquxrxhWPjhOEsz6YvMz16GUFp27ZuTQB0wB0vd2TXwDzRBbF-DTiokcYBdToo39LRAveV1o4aU2Lelc5A7-4x7zLrlOqH4zJJafIKLbDRXWV-6EswPSPxvMmSh2NYArlqX0n0BUD1KaC8DGaR7lFJHRfyCir4dlDzPjFH7eE5UlbXP2KQ_wf2DcLyBcebdD4wL1FqCGC6OQj-z-_wUMvcA9eWUlxtlfkTkOnUp-5XIerOf4dwtFR9nS6U2FQmU38hPSCIKoqjF8QI0ekKDNyCMRfSAVAHzbkCiGeTZ7cv_nfuNm8W5Jq9muMENmcRsNMetA=w1514-h901-no-tmp.jpg "Host Map with tags screenshot")
 
@@ -16,7 +16,9 @@ Just add:<br>
 <hr>
 <h1>Visualizing data:</h1><br>
 
-[Link](https://photos.app.goo.gl/GB9CfLDGUHMXtZsUA) to Timeboard screenshot.
+<h4>HTimeboard screenshot</h4>
+
+![alt text](https://lh3.googleusercontent.com/dg2zXs4JOmt-2r_A26o3K4K14qc6jmuyttfm-y0vLuShHO24dF8EURuYHbc7Ppulg2EFqPQBwupkm3WHywI_hipa2rm9y9RFDAUBxBps2eptseFut3W3rZFgkh_7PNZyfoIzplJKH4C_cSv6gvVO6ePtfeRDdSNKoF7thRnNkIIZVBn_cLErxE3HjFmfZ8rHMxtQ_dV6fPvu1-YnecX_rUm6KK2HtQ6Pv250zZbI4fHp6e030pFTONI93XlVthTr55cYI2cKBGBcrXKq54vpQ39wyuJHN-lm7o6mqweu5klc-qMyCO4Oz1F08fX92LO3dnmB9psYxwYC-IPjKAfNqf3K_Trn2hUUkQt43AJPAalLWaxTNzFLgPTCLtr4tmy2KDyh9gvXwnktmWzFk3P13aYZPGyRXtvks5WhTJRiO5jnEQ5n5juIKCtjaEuEmvx3v47BbfOzLUYVtpcrA1pBrniDKgIwO2VnEjNroVLOFCefWwXCPsnogBVgf5fGHME-YQLBosHr1u-jd0nAUbOqIabRHgmpjPfWlEVQ1G3KN-SPAt4CKbUHstLBEJpbUkAFO9qgwnjCAHKeW7wCh0ZAwLLomU7UuJ75MGcKwYPPALF7KIJB3An-QYf-w89lQTFFsyIJfTvkxV0ksEb40Z7t900EPHQduwpq1HuXLIETrQoVrsw75O5nlBbhqEqG1Mnsw6JY3TMkchoUDe_1QA=w1761-h611-no-tmp.jpg "Timeboard screenshot")
 
 <h4>Script used to create Timeboard:</h4><br>
 
