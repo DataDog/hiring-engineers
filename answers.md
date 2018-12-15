@@ -57,6 +57,7 @@ Section C : Monitoring Data
 Q.1) Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 Ans -  https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Alert_JSON.PNG
        https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Warning_JSON.PNG
+       https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/DataMissing.PNG
        
 Q.2) Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 Ans - Downtime1(https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Downtime1.PNG)
