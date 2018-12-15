@@ -7,7 +7,7 @@ Your answers to the questions go here.
 ![alt text](https://lh3.googleusercontent.com/gLfPsk9qtFoHbXBjhYvaCaRiTE8lttrL3FUYogAhoqHuGjBKTN51PbGlk4TpzyZdIdC440lEPb1u7yGju-QVARX-2jSxfnR4FkgmVoIwxTwHb_UuVpye-rl7C8x5HM2U0QgKfrBseYqu0sW7ANymBFoTIpZhQm__E7jH8mkNdkDYYcIR9zVHl6TNYZYro8zHbZQD5XyfVd3l2MrSmTwZxxNQTqwf9fEgk4cc1JJbNLeA7ciPL3KneVsd6L52N6nAjchWD301zO5ZnTnciRWV5bvdbnoU5ZD5xIqjE2GLHVubWmjw2SZzSnRxNc22lCl-RSjrbkVWS09nf6ldeLDovGte6vB3GKTm92Jc_-jPyJMQ-tzCJ3T9eWR2sB5ndso6Hf0Kbf1GB_x_7eFquxrxhWPjhOEsz6YvMz16GUFp27ZuTQB0wB0vd2TXwDzRBbF-DTiokcYBdToo39LRAveV1o4aU2Lelc5A7-4x7zLrlOqH4zJJafIKLbDRXWV-6EswPSPxvMmSh2NYArlqX0n0BUD1KaC8DGaR7lFJHRfyCir4dlDzPjFH7eE5UlbXP2KQ_wf2DcLyBcebdD4wL1FqCGC6OQj-z-_wUMvcA9eWUlxtlfkTkOnUp-5XIerOf4dwtFR9nS6U2FQmU38hPSCIKoqjF8QI0ekKDNyCMRfSAVAHzbkCiGeTZ7cv_nfuNm8W5Jq9muMENmcRsNMetA=w1514-h901-no-tmp.jpg "Host Map with tags screenshot")
 
 
-<h4>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h4><br>
+<h4>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h4>
 Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
 Just add:<br>
 
@@ -86,20 +86,23 @@ api.Timeboard.create(title=title,
 ![alt text](https://lh3.googleusercontent.com/zeBznAXleciYlxginvEYTBWfxWNRbvSLGznk7fsoOizJTg0rqAYfH7xk-MnDnuHkg0DYa69uiyN0wAFokQY4gb6hpbKuQsltb0ZcY1mYbkiT4VkM-WpubKqP9GrtvjG2zdB7RHLGKCZJ1oeglDdLIS7qqn3jdm80Xk4sKaAxkZ18gk0tQw6qyvONf0zzTVIvX9crh0qoHDBoSSy3iJANNm5X8gHitlOB94F5zwlq0oAlii4dQtzYVCWXjvGKNaF-XejjsMGyFWHSrFUrSVzs3axAXZfn01MJMRvvvAB7wnmi19-a4KtpyKS72okjogHXzhJBzJ8BFx3MXsexKooyWYEfvD96QrTawvqxQpWUsQYxreXuKFZNYgVT8AIl2DfYSnuqoT-vC4T1YTaHEbYP6Gm5bpubqElSL8AbWGHi7xf3yDrNEbXf3TCEzTTcOzqvyA1M_mq_-FIQwZ3jt660Mw4gJusJU8IHBMsWpiGiZtVcz5Kz_eBGgSSh4Jpij_z04qYEieLgfUsqUq0DfJB8IvsMNT9kes2Sqe1pqSJHmOz4Hc9sNxmUsFg5agJn_jP6JxBj04Qa4Ja80Mrbl0XJi6csBJyezmjX3hF8YogD4a8MMRavZFtt1MV3ZOtbCLaWlA6_HyNCmWQceBT1R775bboCnBy1wme9MW-4oBsABeUs-eAREATztQj4wuOyC4eO6RuSmJvaf76N9yRW9g=w707-h583-no-tmp.jpg "my_metric 5 min timeframe")
 
 <h4>Bonus Question: What is the Anomaly graph displaying?</h4>
+Anomalies tend to disappear when zooming in the data, meaning that some standalone points might not represent an anomaly.
 
 <hr>
 <h1>Monitoring data:</h1><br>
+
+![alt text](https://lh3.googleusercontent.com/zeBznAXleciYlxginvEYTBWfxWNRbvSLGznk7fsoOizJTg0rqAYfH7xk-MnDnuHkg0DYa69uiyN0wAFokQY4gb6hpbKuQsltb0ZcY1mYbkiT4VkM-WpubKqP9GrtvjG2zdB7RHLGKCZJ1oeglDdLIS7qqn3jdm80Xk4sKaAxkZ18gk0tQw6qyvONf0zzTVIvX9crh0qoHDBoSSy3iJANNm5X8gHitlOB94F5zwlq0oAlii4dQtzYVCWXjvGKNaF-XejjsMGyFWHSrFUrSVzs3axAXZfn01MJMRvvvAB7wnmi19-a4KtpyKS72okjogHXzhJBzJ8BFx3MXsexKooyWYEfvD96QrTawvqxQpWUsQYxreXuKFZNYgVT8AIl2DfYSnuqoT-vC4T1YTaHEbYP6Gm5bpubqElSL8AbWGHi7xf3yDrNEbXf3TCEzTTcOzqvyA1M_mq_-FIQwZ3jt660Mw4gJusJU8IHBMsWpiGiZtVcz5Kz_eBGgSSh4Jpij_z04qYEieLgfUsqUq0DfJB8IvsMNT9kes2Sqe1pqSJHmOz4Hc9sNxmUsFg5agJn_jP6JxBj04Qa4Ja80Mrbl0XJi6csBJyezmjX3hF8YogD4a8MMRavZFtt1MV3ZOtbCLaWlA6_HyNCmWQceBT1R775bboCnBy1wme9MW-4oBsABeUs-eAREATztQj4wuOyC4eO6RuSmJvaf76N9yRW9g=w707-h583-no-tmp.jpg "my_metric 5 min timeframe")
 
 [Link](https://photos.app.goo.gl/r3emijTofDdN6nh4A) to my_metric monitor config screenshot showing thresholds.
 
 [Link](https://photos.app.goo.gl/9UcJp9emSm4hbBUYA) to my_metric monitor config screenshot showing custom message and receiver.
 
-- Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+<h4>Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
     One that silences it from 7pm to 9am daily on M-F,
-    And one that silences it all day on Sat-Sun.
+    And one that silences it all day on Sat-Sun.</h4>
 
-[Link](https://photos.app.goo.gl/SzpxQ4ziyP6nR7B56) to my_metric monitor 1st scheduled downtime email notification.
+![alt text](https://lh3.googleusercontent.com/MQIgW52Qm_F8dpzLPVs_xjlhfgO8vzKZVbsTSDpDU5cvUJ44rde-ClbsPL9u25PCbovKA8GDmClzUHk2p4D39sCtKWni_qCJohwkw4Qz23aVGAsuw50BNSqQBqMGmfZF4lsofaea-Dv7lU0p2p0qbf_VcR3vIoBdxRnsuGlbcwpHM2VALJ9KxfmLEdJbadNUG3mdmI84EAKQ9FKy_Wy9TkM5c7PINKx4WUewqZSNkTDoIPxUZ_L73MfG8yKUVD94aBICI3j-ceyo47GlTsyk_fDvOdvX6dd22R6aG0koKSss3bCATv8llWGSq_9HQSm7gC66nsw536xaRw6T-Yix3Sey8lpNb95ebZ5Av0xi_ezGUtrvLVNnNu2ZUxXvKe_X-cGXj2VN3GrjYF1EzHKbkvYddQtymTNi359cj9o9jmnZIE7PFYG4xTe4iqdvlSg1BQ-a3dgoiY1GF-KrjhGMMK2pxOBREFPbkuA8So-HFam3nTTgTtBx87NLmZ1W4YbcAmMyhim9Wft9T6SNCSn_K3jIqOxLDcRB1pyKvlSuBx5YzVnl9MJ-ZQc_vu5YPVHDxCra3c8OgHmR3_qkhpSeVchemDoIPzk3LRTw6MW1cUrtf8wY0LtGIVlC72Gzu737lkJNPqN-Tys9C5OtdkhDUGzNJd2DizcrZp_Wu78kOvDGeG7ElV9p319BlRzlVJTzm5r4vMbXjSyGFA4RrQ=w705-h408-no-tmp.jpg "my_metric monitor 1st scheduled downtime email notification")
 
 [Link](https://photos.app.goo.gl/1RjhvoM1d4hRiGxW9) to my_metric monitor 2nd scheduled downtime email notification.
 
