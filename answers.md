@@ -20,8 +20,6 @@ Just add:<br>
 
 ![alt text](https://lh3.googleusercontent.com/dg2zXs4JOmt-2r_A26o3K4K14qc6jmuyttfm-y0vLuShHO24dF8EURuYHbc7Ppulg2EFqPQBwupkm3WHywI_hipa2rm9y9RFDAUBxBps2eptseFut3W3rZFgkh_7PNZyfoIzplJKH4C_cSv6gvVO6ePtfeRDdSNKoF7thRnNkIIZVBn_cLErxE3HjFmfZ8rHMxtQ_dV6fPvu1-YnecX_rUm6KK2HtQ6Pv250zZbI4fHp6e030pFTONI93XlVthTr55cYI2cKBGBcrXKq54vpQ39wyuJHN-lm7o6mqweu5klc-qMyCO4Oz1F08fX92LO3dnmB9psYxwYC-IPjKAfNqf3K_Trn2hUUkQt43AJPAalLWaxTNzFLgPTCLtr4tmy2KDyh9gvXwnktmWzFk3P13aYZPGyRXtvks5WhTJRiO5jnEQ5n5juIKCtjaEuEmvx3v47BbfOzLUYVtpcrA1pBrniDKgIwO2VnEjNroVLOFCefWwXCPsnogBVgf5fGHME-YQLBosHr1u-jd0nAUbOqIabRHgmpjPfWlEVQ1G3KN-SPAt4CKbUHstLBEJpbUkAFO9qgwnjCAHKeW7wCh0ZAwLLomU7UuJ75MGcKwYPPALF7KIJB3An-QYf-w89lQTFFsyIJfTvkxV0ksEb40Z7t900EPHQduwpq1HuXLIETrQoVrsw75O5nlBbhqEqG1Mnsw6JY3TMkchoUDe_1QA=w1761-h611-no-tmp.jpg "Timeboard screenshot")
 
-[Timeboard link]()
-
 <h4>Script used to create Timeboard:</h4><br>
 
 ```python
@@ -90,6 +88,7 @@ api.Timeboard.create(title=title,
 <h4>Bonus Question: What is the Anomaly graph displaying?</h4>
 Anomalies tend to disappear when zooming in the data, meaning that some standalone points might not represent an anomaly.
 
+
 <hr>
 <h1>Monitoring data:</h1><br>
 
@@ -128,6 +127,7 @@ Warning triggered :
    <h4>And one that silences it all day on Sat-Sun</h4>
    
    ![alt text](https://lh3.googleusercontent.com/G_dpIzs1okNkwbVxVMWA4Sr_75C06nNHPz4KsO3gm6QMgfj5XsCs4ao4RDLp8l19L8bgLJ3oD0Yhq3Y2bAw98vO_Kktmf6cKOE4wutqgtJ9nEn2H12auHGctmUM_fgq0miyWefOOThqXfSyh7svmp-AGC5B8R1Q-GzIj69icnH3xZHgrnHvJhJTkc-jz0aHt4k-CPUB1mPeTZ7kJXzVETNq8YaFhnrhZgJ8iV-_3HSZBwN1wKCVyJeE-p0QgiTMd786EDHXdorZznhfB9p4WF5nwVC2seQ3u5ofqaA7PsNTunAOLy8B6SI9CnO3gooWSk2Xzr5iC44DeexTR7mqBVL-zy7XzTAB9rnMV_oVDH7PD2JMU6Adn4GiZLdLI5rObzwJD-8FDKB6gIN3iK5_FXGgzh0esE5xxqZqUFh3vgTXdD2xCxBFGmqynUZ5GacLak-2m3YnM-Hr2oWbdXQ6u9J4AnqxCv21OCgOQbuoHEN-5d6ti2PNQLKNd9Tuc0nvzOKd5Pf0Q7OzwQ-IMVl3WrzGy-oQASTmqv7N7AB2L69yJwX7_TVEdUCgemMFAG5L3D_WCiq0RlY-w0kYUCT3pKqVjpjat24eyw8Z2JsBb_sMlCPTFGwc2zTiPfhzExKJNhXFhx9elrhyfaa3VGcUKnaCd_7wPt11DtfZCsHJzgzvWewJqDFdrna18ZdzvFN-a49BrUZqAEDSYOgeHDw=w708-h409-no-tmp.jpg "my_metric monitor 2nd scheduled downtime email notification")
+
 
 <hr>
 <h1>Collecting APM data:</h1><br>
