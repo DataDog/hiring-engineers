@@ -97,12 +97,15 @@ Anomalies tend to disappear when zooming in the data, meaning that some standalo
 
 [Link](https://photos.app.goo.gl/9UcJp9emSm4hbBUYA) to my_metric monitor config screenshot showing custom message and receiver.
 
-<h4>Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+<h4>Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:</h4>
 
-    One that silences it from 7pm to 9am daily on M-F,
-    And one that silences it all day on Sat-Sun.</h4>
-
-![alt text](https://lh3.googleusercontent.com/MQIgW52Qm_F8dpzLPVs_xjlhfgO8vzKZVbsTSDpDU5cvUJ44rde-ClbsPL9u25PCbovKA8GDmClzUHk2p4D39sCtKWni_qCJohwkw4Qz23aVGAsuw50BNSqQBqMGmfZF4lsofaea-Dv7lU0p2p0qbf_VcR3vIoBdxRnsuGlbcwpHM2VALJ9KxfmLEdJbadNUG3mdmI84EAKQ9FKy_Wy9TkM5c7PINKx4WUewqZSNkTDoIPxUZ_L73MfG8yKUVD94aBICI3j-ceyo47GlTsyk_fDvOdvX6dd22R6aG0koKSss3bCATv8llWGSq_9HQSm7gC66nsw536xaRw6T-Yix3Sey8lpNb95ebZ5Av0xi_ezGUtrvLVNnNu2ZUxXvKe_X-cGXj2VN3GrjYF1EzHKbkvYddQtymTNi359cj9o9jmnZIE7PFYG4xTe4iqdvlSg1BQ-a3dgoiY1GF-KrjhGMMK2pxOBREFPbkuA8So-HFam3nTTgTtBx87NLmZ1W4YbcAmMyhim9Wft9T6SNCSn_K3jIqOxLDcRB1pyKvlSuBx5YzVnl9MJ-ZQc_vu5YPVHDxCra3c8OgHmR3_qkhpSeVchemDoIPzk3LRTw6MW1cUrtf8wY0LtGIVlC72Gzu737lkJNPqN-Tys9C5OtdkhDUGzNJd2DizcrZp_Wu78kOvDGeG7ElV9p319BlRzlVJTzm5r4vMbXjSyGFA4RrQ=w705-h408-no-tmp.jpg "my_metric monitor 1st scheduled downtime email notification")
+   <h4>One that silences it from 7pm to 9am daily on M-F</h4>
+   
+   ![alt text](https://lh3.googleusercontent.com/MQIgW52Qm_F8dpzLPVs_xjlhfgO8vzKZVbsTSDpDU5cvUJ44rde-ClbsPL9u25PCbovKA8GDmClzUHk2p4D39sCtKWni_qCJohwkw4Qz23aVGAsuw50BNSqQBqMGmfZF4lsofaea-Dv7lU0p2p0qbf_VcR3vIoBdxRnsuGlbcwpHM2VALJ9KxfmLEdJbadNUG3mdmI84EAKQ9FKy_Wy9TkM5c7PINKx4WUewqZSNkTDoIPxUZ_L73MfG8yKUVD94aBICI3j-ceyo47GlTsyk_fDvOdvX6dd22R6aG0koKSss3bCATv8llWGSq_9HQSm7gC66nsw536xaRw6T-Yix3Sey8lpNb95ebZ5Av0xi_ezGUtrvLVNnNu2ZUxXvKe_X-cGXj2VN3GrjYF1EzHKbkvYddQtymTNi359cj9o9jmnZIE7PFYG4xTe4iqdvlSg1BQ-a3dgoiY1GF-KrjhGMMK2pxOBREFPbkuA8So-HFam3nTTgTtBx87NLmZ1W4YbcAmMyhim9Wft9T6SNCSn_K3jIqOxLDcRB1pyKvlSuBx5YzVnl9MJ-ZQc_vu5YPVHDxCra3c8OgHmR3_qkhpSeVchemDoIPzk3LRTw6MW1cUrtf8wY0LtGIVlC72Gzu737lkJNPqN-Tys9C5OtdkhDUGzNJd2DizcrZp_Wu78kOvDGeG7ElV9p319BlRzlVJTzm5r4vMbXjSyGFA4RrQ=w705-h408-no-tmp.jpg "my_metric monitor 1st scheduled downtime email notification")
+   
+   <h4>And one that silences it all day on Sat-Sun.</h4>
+   
+   [alt text](https://lh3.googleusercontent.com/G_dpIzs1okNkwbVxVMWA4Sr_75C06nNHPz4KsO3gm6QMgfj5XsCs4ao4RDLp8l19L8bgLJ3oD0Yhq3Y2bAw98vO_Kktmf6cKOE4wutqgtJ9nEn2H12auHGctmUM_fgq0miyWefOOThqXfSyh7svmp-AGC5B8R1Q-GzIj69icnH3xZHgrnHvJhJTkc-jz0aHt4k-CPUB1mPeTZ7kJXzVETNq8YaFhnrhZgJ8iV-_3HSZBwN1wKCVyJeE-p0QgiTMd786EDHXdorZznhfB9p4WF5nwVC2seQ3u5ofqaA7PsNTunAOLy8B6SI9CnO3gooWSk2Xzr5iC44DeexTR7mqBVL-zy7XzTAB9rnMV_oVDH7PD2JMU6Adn4GiZLdLI5rObzwJD-8FDKB6gIN3iK5_FXGgzh0esE5xxqZqUFh3vgTXdD2xCxBFGmqynUZ5GacLak-2m3YnM-Hr2oWbdXQ6u9J4AnqxCv21OCgOQbuoHEN-5d6ti2PNQLKNd9Tuc0nvzOKd5Pf0Q7OzwQ-IMVl3WrzGy-oQASTmqv7N7AB2L69yJwX7_TVEdUCgemMFAG5L3D_WCiq0RlY-w0kYUCT3pKqVjpjat24eyw8Z2JsBb_sMlCPTFGwc2zTiPfhzExKJNhXFhx9elrhyfaa3VGcUKnaCd_7wPt11DtfZCsHJzgzvWewJqDFdrna18ZdzvFN-a49BrUZqAEDSYOgeHDw=w708-h409-no-tmp.jpg "my_metric monitor 2nd scheduled downtime email notification")
 
 [Link](https://photos.app.goo.gl/1RjhvoM1d4hRiGxW9) to my_metric monitor 2nd scheduled downtime email notification.
 
