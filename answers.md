@@ -2,8 +2,6 @@ Your answers to the questions go here.
 
 <h1>Collecting metrics:</h1><br>
 
-![alt text](http://www.flickr.com/photos/alq666/10125225186/)
-
 [Link](https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8) to Host Map with tags screenshot.
 
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
