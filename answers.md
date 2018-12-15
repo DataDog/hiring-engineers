@@ -142,3 +142,6 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+<h4>Bonus Question: What is the difference between a Service and a Resource?</h4>
+A service is a set of processes doing the same job. A website service might be comprised of a frontend process, a backend process and a database process. Services are defined by users when instrumenting an app.
+A resource is a service component, discovered through app instrumentation.Resources are, for instance, a SQL query for a database, or a canonical url for a web app.
