@@ -77,3 +77,6 @@ api.Timeboard.create(title=title,
                      graphs=graphs,
                      read_only=read_only)
 ```
+
+<hr>
+<h1>Monitoring data:</h1><br>
