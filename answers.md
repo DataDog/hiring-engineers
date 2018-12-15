@@ -55,3 +55,5 @@ Ans - It shows parts in a chart where some of the graphs are showing different m
 
 Section C : Monitoring Data
 Q.1) 
+Ans -  https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Alert_JSON.PNG
+       
