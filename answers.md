@@ -2,10 +2,7 @@ Your answers to the questions go here.
 
 <h1>Collecting metrics:</h1><br>
 
-<img src="https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8" width="250px" >
-
 [Link](https://photos.app.goo.gl/YQVNRjJXyUxxGpZs8) to Host Map with tags screenshot.
-
 
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
 Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
