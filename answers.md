@@ -7,7 +7,7 @@ Your answers to the questions go here.
 ![alt text](https://lh3.googleusercontent.com/gLfPsk9qtFoHbXBjhYvaCaRiTE8lttrL3FUYogAhoqHuGjBKTN51PbGlk4TpzyZdIdC440lEPb1u7yGju-QVARX-2jSxfnR4FkgmVoIwxTwHb_UuVpye-rl7C8x5HM2U0QgKfrBseYqu0sW7ANymBFoTIpZhQm__E7jH8mkNdkDYYcIR9zVHl6TNYZYro8zHbZQD5XyfVd3l2MrSmTwZxxNQTqwf9fEgk4cc1JJbNLeA7ciPL3KneVsd6L52N6nAjchWD301zO5ZnTnciRWV5bvdbnoU5ZD5xIqjE2GLHVubWmjw2SZzSnRxNc22lCl-RSjrbkVWS09nf6ldeLDovGte6vB3GKTm92Jc_-jPyJMQ-tzCJ3T9eWR2sB5ndso6Hf0Kbf1GB_x_7eFquxrxhWPjhOEsz6YvMz16GUFp27ZuTQB0wB0vd2TXwDzRBbF-DTiokcYBdToo39LRAveV1o4aU2Lelc5A7-4x7zLrlOqH4zJJafIKLbDRXWV-6EswPSPxvMmSh2NYArlqX0n0BUD1KaC8DGaR7lFJHRfyCir4dlDzPjFH7eE5UlbXP2KQ_wf2DcLyBcebdD4wL1FqCGC6OQj-z-_wUMvcA9eWUlxtlfkTkOnUp-5XIerOf4dwtFR9nS6U2FQmU38hPSCIKoqjF8QI0ekKDNyCMRfSAVAHzbkCiGeTZ7cv_nfuNm8W5Jq9muMENmcRsNMetA=w1514-h901-no-tmp.jpg "Host Map with tags screenshot")
 
 
-- Bonus Question Can you change the collection interval without modifying the Python check file you created?<br>
+<h4>Bonus Question Can you change the collection interval without modifying the Python check file you created?</h4><br>
 Yes, we only need to modify Python check's config, a yaml file located in conf.d agent's directory. 
 Just add:<br>
 
@@ -81,9 +81,11 @@ api.Timeboard.create(title=title,
                      graphs=graphs,
                      read_only=read_only)
 ```
-<h3>Take a snapshot of this graph and use the @ notation to send it to yourself.</h3>
+<h4>Take a snapshot of this graph and use the @ notation to send it to yourself.</h4>
 
 ![alt text](https://lh3.googleusercontent.com/zeBznAXleciYlxginvEYTBWfxWNRbvSLGznk7fsoOizJTg0rqAYfH7xk-MnDnuHkg0DYa69uiyN0wAFokQY4gb6hpbKuQsltb0ZcY1mYbkiT4VkM-WpubKqP9GrtvjG2zdB7RHLGKCZJ1oeglDdLIS7qqn3jdm80Xk4sKaAxkZ18gk0tQw6qyvONf0zzTVIvX9crh0qoHDBoSSy3iJANNm5X8gHitlOB94F5zwlq0oAlii4dQtzYVCWXjvGKNaF-XejjsMGyFWHSrFUrSVzs3axAXZfn01MJMRvvvAB7wnmi19-a4KtpyKS72okjogHXzhJBzJ8BFx3MXsexKooyWYEfvD96QrTawvqxQpWUsQYxreXuKFZNYgVT8AIl2DfYSnuqoT-vC4T1YTaHEbYP6Gm5bpubqElSL8AbWGHi7xf3yDrNEbXf3TCEzTTcOzqvyA1M_mq_-FIQwZ3jt660Mw4gJusJU8IHBMsWpiGiZtVcz5Kz_eBGgSSh4Jpij_z04qYEieLgfUsqUq0DfJB8IvsMNT9kes2Sqe1pqSJHmOz4Hc9sNxmUsFg5agJn_jP6JxBj04Qa4Ja80Mrbl0XJi6csBJyezmjX3hF8YogD4a8MMRavZFtt1MV3ZOtbCLaWlA6_HyNCmWQceBT1R775bboCnBy1wme9MW-4oBsABeUs-eAREATztQj4wuOyC4eO6RuSmJvaf76N9yRW9g=w707-h583-no-tmp.jpg "my_metric 5 min timeframe")
+
+<h4>Bonus Question: What is the Anomaly graph displaying?</h4>
 
 <hr>
 <h1>Monitoring data:</h1><br>
