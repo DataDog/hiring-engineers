@@ -60,4 +60,4 @@ Ans -  https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solution
        
 Q.2) Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 Ans - Downtime1(https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Downtime1.PNG)
-      Downtime2(
+      Downtime2(https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/Downtime2.PNG)
