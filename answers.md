@@ -163,3 +163,5 @@ Is there anything creative you would use Datadog for?
 
    For the latter, it would be really good to have kind of geo map widget.
    https://flightaware.com/commercial/flightxml/
+
+- Get data from M-Bus enabled devices. M-Bus is a European standard for remote reading of heatmeters and it is also usable for all other types of consumption meters as well as for various sensors and actuators.
