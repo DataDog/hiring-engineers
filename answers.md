@@ -143,5 +143,10 @@ if __name__ == '__main__':
 ```
 
 <h4>Bonus Question: What is the difference between a Service and a Resource?</h4>
+
 A service is a set of processes doing the same job. A website service might be comprised of a frontend process, a backend process and a database process. Services are defined by users when instrumenting an app.
 A resource is a service component, discovered through app instrumentation.Resources are, for instance, a SQL query for a database, or a canonical url for a web app.
+
+<h3>Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics</h3>
+
+![alt text](https://lh3.googleusercontent.com/uNCnw06bddihxmmDMXlXcbSQ0XPt0dnnf6QZE1Z5B9L0aSVR1g-7vh1mlOHheoeMrKD_NTlulrh4c5oTsKXVaB6xw9csECJlzSsWL25lt3XChhFiBSatZTM2TFtOReMWHL3-ienX2pLGkRvHJnjTbDuj47mLBpDtnho83caoHLeIXCWYTDN_tW9HJGa9ECUp7dtED_mouV_2joU7RuvkDC0W_-auoIBviait-PF43XkBqsB7SbcJPzIJo6iNwgOZDfcZaVkTmS9l_7PzgG3z3J378kOOFWZqcQ5dBZL1NtjDgXcnkwYgXGORXKA3Rak1bUdmjJC2gITwRtQ7juLQKi-Kp8PGePqWjwaw4gyZT-YUI5ZSn1vKZiFx7bHrkWqbMGy9R3mU4vD9KK-ptdpwKuUM7OCGmBdzGiyDW-Dds8Rhk_jvJoCtuHuxb7VBD-xzLqccyRIpJHXkIm2Pf9rpb3p12Z7oU91Ee-anXRQrYeDLQwKw_ZkeBov37VaiIknFwiBODBP5o1queh4ZvYLzu8xzmhbJMdoGI6KHqiJSdt78JDMPTg48tUktRg7-F_xPk5Nh7QubA5JwQtksv9UuMY698Jo7salV9gl8qeAerH2gHCPtMJ_cEc_k-nfjysZNij_hFoUKLzN5LNFglTkPvuGEjKjh7J8mFz-NOoznabFQq0w5ZH_RLShGPdf089yjIDR2KLY62InIJhjcgA=w1750-h863-no-tmp.jpg "APM and infrastructure metrics")
