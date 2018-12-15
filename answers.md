@@ -109,7 +109,7 @@ Anomalies tend to disappear when zooming in the data, meaning that some standalo
 
 <hr>
 <h1>Collecting APM data:</h1><br>
-<h3>App used for instrumentation:</h3>
+<h4>App used for instrumentation:</h4>
 
 ```python
 from flask import Flask
@@ -150,3 +150,16 @@ A resource is a service component, discovered through app instrumentation.Resour
 <h3>Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics</h3>
 
 ![alt text](https://lh3.googleusercontent.com/uNCnw06bddihxmmDMXlXcbSQ0XPt0dnnf6QZE1Z5B9L0aSVR1g-7vh1mlOHheoeMrKD_NTlulrh4c5oTsKXVaB6xw9csECJlzSsWL25lt3XChhFiBSatZTM2TFtOReMWHL3-ienX2pLGkRvHJnjTbDuj47mLBpDtnho83caoHLeIXCWYTDN_tW9HJGa9ECUp7dtED_mouV_2joU7RuvkDC0W_-auoIBviait-PF43XkBqsB7SbcJPzIJo6iNwgOZDfcZaVkTmS9l_7PzgG3z3J378kOOFWZqcQ5dBZL1NtjDgXcnkwYgXGORXKA3Rak1bUdmjJC2gITwRtQ7juLQKi-Kp8PGePqWjwaw4gyZT-YUI5ZSn1vKZiFx7bHrkWqbMGy9R3mU4vD9KK-ptdpwKuUM7OCGmBdzGiyDW-Dds8Rhk_jvJoCtuHuxb7VBD-xzLqccyRIpJHXkIm2Pf9rpb3p12Z7oU91Ee-anXRQrYeDLQwKw_ZkeBov37VaiIknFwiBODBP5o1queh4ZvYLzu8xzmhbJMdoGI6KHqiJSdt78JDMPTg48tUktRg7-F_xPk5Nh7QubA5JwQtksv9UuMY698Jo7salV9gl8qeAerH2gHCPtMJ_cEc_k-nfjysZNij_hFoUKLzN5LNFglTkPvuGEjKjh7J8mFz-NOoznabFQq0w5ZH_RLShGPdf089yjIDR2KLY62InIJhjcgA=w1750-h863-no-tmp.jpg "APM and infrastructure metrics")
+
+<hr>
+<h1>Final question</h1><br>
+Is there anything creative you would use Datadog for?
+ 
+- Get data from BACNET enabled devices ( power consumption, cooling systems, etc ), useful in Datacenter environment monitoring.
+
+  There is a python library related to this : (http://bacpypes.sourceforge.net/)
+  
+-  Monitor flight status, like aircraft type, Longitude, latitude, groundspeed and altitude, origin and destination.
+
+   For the latter, it would be really good to have kind of geo map widget.
+   https://flightaware.com/commercial/flightxml/
