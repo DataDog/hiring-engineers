@@ -9,7 +9,7 @@ Install the datadog agent
 ![installagent](screenshots/installagent.png)  
   
 Datadog welcome page  
-![welcome](screenshots/welcome.png)  
+![welcome](screenshots/welcome.PNG)  
   
 COLLECTING METRICS:  
   
@@ -26,10 +26,10 @@ Yes, you can change the collection interval changing the config file instead  of
 VISUALIZING DATA:  
   
 Script to create a timeboard via the datadog API  
-![timeboard_create](screenshots/timeboard_create.png)  
+![timeboard_create](screenshots/timeboard_create.PNG)  
   
 Monitor created via the API.  
-![my_metric_dashboard](screenshots/my_metric_dashboard.png)  
+![my_metric_dashboard](screenshots/my_metric_dashboard.PNG)  
   
 Bonus Question: What is the Anomaly graph displaying?  
 Nothing.  
@@ -37,7 +37,7 @@ Nothing.
 MONITORING DATA:  
   
 Monitor the my_metric creating alarms and warnings  
-![my_metric_monitor](screenshots/my_metric_monitor.png)  
+![my_metric_monitor](screenshots/my_metric_monitor.PNG)  
   
 Email1  
 ![email1](screenshots/email1.png)  
