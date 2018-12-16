@@ -68,3 +68,9 @@ Ans - Downtime1(https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde
  Section D : Collecting APM Data
  Q.1) Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution
  Ans - flaskApp.py (https://github.com/sshinde16/hiring-engineers/blob/SurabhiShinde_Solutions_Engineer/flaskApp.py)
+
+
+
+Section E : Final Question
+Q.1)Is there anything creative you would use Datadog for?
+Ans - Availability of devices used for IoT.
