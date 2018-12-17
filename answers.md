@@ -67,14 +67,19 @@ monitor.json
 }
 ```
 
-> The important piece in the request above is the `"query"` value, which performs the actual check for MySQL's CPU anomaly. 
+> The important piece in the request above is the `"query"` value, which performs the actual check for MySQL's CPU anomaly (See below).
+ 
 
 `avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1`
 
+
 > So how did I incorporate this into the timeboard? I created a timeseries graph of the Percentage of CPU time spent in the user space by MySQL, and added a query to the `events` block that would return events triggered by the `MySQL CPU Anomaly Monitor` I created earlier. You can see this section of the timeseries API request below. 
+
 
 timeseries.json
 ```
+{
+      "graphs" : [
 ...
         {
           "title": "MySQL CPU Time",
@@ -85,13 +90,22 @@ timeseries.json
               ],
               "viz": "timeseries"
           }
-        }
+        },
+...
+      ],
 ...
 ```
 
-> The query here matches on the monitor and reports anomalies on the graph based on deviations from expected behavior. 
+> The query below matches on the monitor's title and reports anomalies on the graph based on deviations from expected behavior. 
 
 `"events": [{"q": "MySQL CPU Anomaly"}],`
+
+
+> Here's what the anomaly graph actually looks like. I triggered MySQL anomalies by [running a script](scripts/select_abunch.sh) that spammed the DB with a large number of `SELECT` queries. You can see the anomalies highlighted in red on the graph below. 
+
+![]images/anomalous_behavior.png
+
+*Anomalous MySQL events after executing `select_abunch.sh`*
 
 
 
