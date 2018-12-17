@@ -1,10 +1,23 @@
 # Collecting Metrics
 
+## Add tags in the Agent config file.
 
-### My Virtual Host - `ubuntu-xenial`
+> Here are my host tags as they are configured in `/etc/datadog-agent/datadog.yaml`
+```
+...
+# Set the host's tags (optional)
+tags:
+   - owner:mlupton
+   - env:sandbox
+...
+```
+
+## Show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### `ubuntu-xenial`
+
 ![](images/host_with_tags.png)
 
-*Ubuntu Vagrant Host With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
+*Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
 
 
 ## Bonus Question - Can you change the collection interval without modifying the Python check file you created?
