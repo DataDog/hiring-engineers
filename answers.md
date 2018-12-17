@@ -15,6 +15,8 @@ tags:
 ## Show us a screenshot of your host and its tags on the Host Map page in Datadog.
 ### `ubuntu-xenial`
 
+> Here's my host, it's a single Ubuntu instance I spun up on my MacBook with Vagrant.
+
 ![](images/host_with_tags.png)
 
 *Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*

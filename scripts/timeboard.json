@@ -11,11 +11,12 @@
           }
         },
         {
-          "title": "Sum of my_metric Values (past Hour)",
+          "title": "Sum of my_metric Values",
+          "description": "Adds up the value of my_metric in 30 second increments",
           "definition": {
               "events": [],
               "requests": [
-                  {"q": "sum:my_metric.value.rollup(sum,3600)"}
+                  {"q": "sum:my_metric.value.rollup(sum,30)"}
               ],
               "viz": "query_value"
           }
