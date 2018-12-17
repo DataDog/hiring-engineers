@@ -1,5 +1,32 @@
+##SETUP
+Once Logged in the first thing you need to do is setup the Datadog Agent.
+I will show the steps required on a Mac OS.
+
+Click on Agent Installation and choose Mac OS.
+Copy the script provided and run in your terminal.
+This will start the download for the latest agent.
+You can start/stop/restart your Datadog Agent from the menu bar by clicking on the dog bone logo.
+Once downloaded the you can run the agent at login or on boot up.
+By default the agent runs at Login.
+if you want to run the agent on boot up you can run the following script:
+
+```
+sudo cp '/opt/datadog-agent/etc/com.datadoghq.agent.plist.example' /Library/LaunchDaemons/com.datadoghq.agent.plist
+sudo launchctl load -w /Library/LaunchDaemons/com.datadoghq.agent.plist
+```
+
+![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/Download_DD_Agent.png)
+
+Once downloaded you should have your localhost reporting to Datadog. You can view your host map and check
+
+![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/DD_Hostmap.png)
+
+
 ## COLLECTING METRICS
 **Custom tags screenshot**
+You can add custom tags to track your infrastructure. To do this locate your datadog.yaml file
+mine is located in (/Users/<username>/.datadog-agent/datadog.yaml).
+You can follow the format provided in the example. Tags should be provided as <key>:<value> pair.
 
 ![custom tags screenshot](DATADOG_SCREENSHOTS/Custom_Tags.png?raw=true "Custom Tags")
 
