@@ -1,0 +1,7 @@
+init_config:
+
+instances:
+  - host: host.docker.internal
+    port: 5432
+    username: datadog
+    password: eJ8tZzDMgwqLHcO224NMOheC
