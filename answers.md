@@ -1,18 +1,18 @@
 ## COLLECTING METRICS
-** Custom tags screenshot **
+**Custom tags screenshot**
 
 ![custom tags screenshot](DATADOG_SCREENSHOTS/Custom_Tags.png?raw=true "Custom Tags")
 
-**  MongoDB installed and mongo/conf.yaml filed created **
+**MongoDB installed and mongo/conf.yaml filed created**
 
 ![mongo conf.yaml](DATADOG_SCREENSHOTS/mongo_yaml.png)
 
-** my_metric created **
+**my_metric created**
 
 ![my_metric script](DATADOG_SCREENSHOTS/my_metric_python_script.png)
 
 
-** Collection interval set to 45 using my_metric.yaml file **
+**Collection interval set to 45 using my_metric.yaml file**
 By changing your metrics yaml file you can customize the collection interval using min_collection_interval.
 
 ```
@@ -45,7 +45,7 @@ Ruby Script used to build Dashboard with Datadog API: [dog_api](dog_api.rb)
 ```
 
 
-** What is the Anomaly graph displaying? **
+**What is the Anomaly graph displaying?**
 
 	The anomaly graph is displaying a blue line representing the number of MongoDB connections available. The blue line is buffered by a gray area representing the acceptable area of deviation from the average number of connections. If the number of connections is greater than or less than the gray area, the size of which is controlled by the bounds parameter, the line will turn red representing an anomaly in the data. After a period of having a large number of connections to the Mongo database the anomaly graph has shifted representing a change in the expected behavior.
 
@@ -84,7 +84,7 @@ Downtimes can also be set so you are not bothered during your time off. Here are
 
 ![Infrastructure and APM Dashboard](DATADOG_SCREENSHOTS/Infrastructure_and_APM_timeboard.png)
 
-1. **What is the difference between a Service and a Resource?**
+**What is the difference between a Service and a Resource?**
 A service is a set of processes that do a job. Examples include web applications and databases.
 A resource is an action that takes place inside a service. Examples include routes in a web app and database queries. In the above example dashboard I have time series tracking all requests on my web application (service metrics) and one tracking just my index root path (Resource metrics).
 
