@@ -74,9 +74,9 @@ I've included a screenshot of the notification email below.
 
 ## Collecting APM Data
 
-I used the provided Flask app to demonstrate APM collection. One thing I found interesting
-was that `ddtrace-run` didn't work when I started the app using the `flask` command, I had
-to use `python` instead.
+I used the provided Flask app to demonstrate APM collection. The source code can be found
+[here](./apm.py). One thing I found interesting was that `ddtrace-run` didn't work when I
+started the app using the `flask` command, I had to use `python` instead.
 
 I added the APM metrics to the Timeboard I created earlier.
 
