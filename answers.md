@@ -47,13 +47,14 @@ Ruby Script used to build/update Dashboard with Datadog API: [dog_api](dog_api.r
 
 **What is the Anomaly graph displaying?**
 
-	The anomaly graph is displaying a blue line representing the number of MongoDB connections available. The blue line is buffered by a gray area representing the acceptable area of deviation from the average number of connections. If the number of connections is greater than or less than the gray area, the size of which is controlled by the bounds parameter, the line will turn red representing an anomaly in the data. After a period of having a large number of connections to the Mongo database the anomaly graph has shifted representing a change in the expected behavior.
+The anomaly graph is displaying a blue line representing the number of MongoDB connections available. The blue line is buffered by a gray area representing the acceptable area of deviation from the average number of connections. If the number of connections is greater than or less than the gray area, the size of which is controlled by the bounds parameter, the line will turn red representing an anomaly in the data. After a period of having a large number of connections to the Mongo database the anomaly graph has shifted representing a change in the expected behavior.
+
 
 ## MONITORING DATA
 
 Thresholds can be set on a metric to either warn you to keep and eye on it or alert you that something more serious is happening. These can be set using the Datadog monitoring tools.
-Here we have an example of a notification message for the my_metric metric. Using a one monitor you can have a single message that varies depending on what type of notification needs to be sent.
-If the monitor is triggered with an alert all contents in between {{#is_alert}} and {{/is_alert}} will be sent to the specified team member(s). The same is true for {{is_warning}} and {{is_no_data}}.
+Here we have an example of a notification message for the my_metric metric. Using a monitor you can have a single message that varies depending on what type of notification needs to be sent.
+If the monitor is triggered with an alert, all contents in between {{#is_alert}} and {{/is_alert}} will be sent to the specified team member(s). The same is true for {{is_warning}} and {{is_no_data}}.
 
 ```
 {{#is_alert}}ALERT threshold of {{threshold}} exceeded. My_Metric has reached {{value}} {{/is_alert}}
@@ -65,11 +66,13 @@ My_Metric was last triggered at: {{last_triggered_at}}
 
 In this example an alert threshold of 800 was set. If my_metric exceeds 800 @jedpeek@gmail.com will receive an email that reads:
 
-ALERT threshold of 800 exceeded. My_Metric has reached 821
+**ALERT**
 ![Alert Email](DATADOG_SCREENSHOTS/Datadog_Alert.png)
 
-WARNING threshold of 500 exceeded. My_Metric has reached 793
+**WARNING**
 ![Warning Email](DATADOG_SCREENSHOTS/Warning_Email.png)
+
+**Setting Downtimes**
 
 Downtimes can also be set so you are not bothered during your time off. Here are examples of daily and weekend downtimes.
 
@@ -86,7 +89,7 @@ Downtimes can also be set so you are not bothered during your time off. Here are
 
 **What is the difference between a Service and a Resource?**
 A service is a set of processes that do a job. Examples include web applications and databases.
-A resource is an action that takes place inside a service. Examples include routes in a web app and database queries. In the above example dashboard I have time series tracking all requests on my web application (service metrics) and one tracking just my index root path (Resource metrics).
+A resource is an action that takes place inside a service. Examples include routes in a web app and database queries. In the above example dashboard I have two timeseries, one tracking all requests on my web application (service metrics) and one tracking just my index root path (Resource metrics).
 
 ## CREATIVE USES
 
