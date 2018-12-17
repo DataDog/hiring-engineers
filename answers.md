@@ -26,7 +26,7 @@ instances:
 
 [API Dashboard](https://app.datadoghq.com/dash/1021540/apimetrics?tile_size=m&page=0&is_auto=false&from_ts=1545081000000&to_ts=1545084600000&live=true)
 
-Ruby Script used to build Dashboard with Datadog API: [dog_api](dog_api.rb)
+Ruby Script used to build/update Dashboard with Datadog API: [dog_api](dog_api.rb)
 
 1. my_metric scoped over Jeds-MacBook-Pro.local
 ```
@@ -65,7 +65,7 @@ My_Metric was last triggered at: {{last_triggered_at}}
 
 In this example an alert threshold of 800 was set. If my_metric exceeds 800 @jedpeek@gmail.com will receive an email that reads:
 
-ALERT threshold of 800 exceeded. My_Metric has reached 911
+ALERT threshold of 800 exceeded. My_Metric has reached 821
 ![Alert Email](DATADOG_SCREENSHOTS/Datadog_Alert.png)
 
 WARNING threshold of 500 exceeded. My_Metric has reached 793
