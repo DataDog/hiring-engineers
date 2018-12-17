@@ -1,20 +1,20 @@
 ## COLLECTING METRICS
-1. Custom tags screenshot
+** Custom tags screenshot **
 
 ![custom tags screenshot](DATADOG_SCREENSHOTS/Custom_Tags.png?raw=true "Custom Tags")
 
-3. MongoDB installed and mongo/conf.yaml filed created
+**  MongoDB installed and mongo/conf.yaml filed created **
 
 ![mongo conf.yaml](DATADOG_SCREENSHOTS/mongo_yaml.png)
 
-4. my_metric created
+** my_metric created **
 
 ![my_metric script](DATADOG_SCREENSHOTS/my_metric_python_script.png)
 
 
-5. Collection interval set to 45 using my_metric.yaml file
-6. **Can you change the collection interval without modifying the Python check file you created?**
-		Yes, by changing your metrics yaml file you can customize the collection interval using min_collection_interval.
+** Collection interval set to 45 using my_metric.yaml file **
+By changing your metrics yaml file you can customize the collection interval using min_collection_interval.
+
 ```
 init_config:
 
@@ -45,7 +45,7 @@ Ruby Script used to build Dashboard with Datadog API: [dog_api](dog_api.rb)
 ```
 
 
-5. What is the Anomaly graph displaying?
+** What is the Anomaly graph displaying? **
 
 	The anomaly graph is displaying a blue line representing the number of MongoDB connections available. The blue line is buffered by a gray area representing the acceptable area of deviation from the average number of connections. If the number of connections is greater than or less than the gray area, the size of which is controlled by the bounds parameter, the line will turn red representing an anomaly in the data. After a period of having a large number of connections to the Mongo database the anomaly graph has shifted representing a change in the expected behavior.
 
@@ -66,7 +66,7 @@ My_Metric was last triggered at: {{last_triggered_at}}
 In this example an alert threshold of 800 was set. If my_metric exceeds 800 @jedpeek@gmail.com will receive an email that reads:
 
 ALERT threshold of 800 exceeded. My_Metric has reached 911
-![Alert Email](DATADOG_SCREENSHOTS/Alert_Email.png)
+![Alert Email](DATADOG_SCREENSHOTS/Datadog_Alert.png)
 
 WARNING threshold of 500 exceeded. My_Metric has reached 793
 ![Warning Email](DATADOG_SCREENSHOTS/Warning_Email.png)
