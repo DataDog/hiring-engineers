@@ -1,0 +1,42 @@
+{
+      "graphs" : [
+        {
+          "title": "My Metric Value",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric.value{*}"}
+              ],
+              "viz": "timeseries"
+          }
+        },
+        {
+          "title": "Sum of My Metric Values (past Hour)",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "sum:my_metric.value.rollup(sum,3600)"}
+              ],
+              "viz": "query_value"
+          }
+        },
+        {
+          "title": "MySQL CPU Time",
+          "definition": {
+              "events": [{"q": "MySQL CPU Anomaly"}],
+              "requests": [
+                  {"q":"avg:mysql.performance.user_time{*}"}
+              ],
+              "viz": "timeseries"
+          }
+        }
+      ],
+      "title" : "My Vagrant Host Metrics",
+      "description" : "A dashboard with my vagrant host metrics",
+      "template_variables": [{
+          "name": "myhost",
+          "prefix": "host",
+          "default": "host:ubuntu-xenial"
+      }],
+      "read_only": "True"
+}

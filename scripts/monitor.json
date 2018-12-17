@@ -1,0 +1,11 @@
+{
+      "type": "metric alert",
+      "query": "avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1",
+      "name": "MySQL CPU Anomaly Monitor",
+      "message": "Unsual CPU activity by MySQL.",
+      "tags": ["service:mysql", "host:ubuntu-xenial"],
+      "options": {
+        "notify_no_data": true,
+        "no_data_timeframe": 20
+      }
+}
