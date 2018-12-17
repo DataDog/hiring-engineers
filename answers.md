@@ -1,9 +1,14 @@
-##SETUP
+## SETUP
+
 Once Logged in the first thing you need to do is setup the Datadog Agent.
 I will show the steps required on a Mac OS.
 
 Click on Agent Installation and choose Mac OS.
 Copy the script provided and run in your terminal.
+
+```
+DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
+```
 This will start the download for the latest agent.
 You can start/stop/restart your Datadog Agent from the menu bar by clicking on the dog bone logo.
 Once downloaded the you can run the agent at login or on boot up.
@@ -17,9 +22,15 @@ sudo launchctl load -w /Library/LaunchDaemons/com.datadoghq.agent.plist
 
 ![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/Download_DD_Agent.png)
 
-Once downloaded you should have your localhost reporting to Datadog. You can view your host map and check
+Once downloaded you should have your localhost reporting to Datadog. You can view your host map and check to make sure that your reporting information.
 
 ![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/DD_Hostmap.png)
+
+At this point you can also run ```datadog-agent status``` in the terminal to make sure your agent is up and running
+This will give you information on the environment your agent is running on and other helpful information.
+You should see something similar to this:
+
+![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/DD_AGENT_STATUS.png)
 
 
 ## COLLECTING METRICS
@@ -113,6 +124,34 @@ Downtimes can also be set so you are not bothered during your time off. Here are
 
 
 ## COLLECTING APM DATA
+
+Since we're running on MacOS we need to install a separate [Trace Agent](https://github.com/DataDog/datadog-trace-agent#run-on-osx) to collect APM data for our applications.
+Once you've downloaded the files([Download Here](https://github.com/DataDog/datadog-trace-agent/releases/tag/6.7.0)) you need to get the trace agent up and running. You can do this from the terminal by moving into the directory that the trace agent is located (I moved mine into my Datadog agent file) and run a script similar to this: ``` sudo ./trace-agent-darwin-amd64-6.7.0 -config /Users/jedpeek/.datadog-agent/datadog.yaml ```
+
+This if for trace agent 6.7.0. Make sure you use the path to your datadog.yaml file following -config.
+Since this is a sudo command it will also require your system password.
+
+Once your Trace Agent is up and running you should receive an output similar to this
+
+[Datadog Trace Output](DATADOG_SCREENSHOTS/DD_TRACE_OUTPUT.png)
+
+Once your trace agent is up and running you'll need to setup your application to start communicating with Datadog.
+I used a simple Rails application and configured it using the ddtrace gem. Add the ddtrace gem to your gemfile and run bundle install. Then create a config/initializers/datadog.rb file and insert the following:
+
+```
+require 'ddtrace'
+Datadog.configure do |c|
+  # This will activate auto-instrumentation for Rails
+  c.use :rails
+end
+```
+
+Once you have your app up and running you should begin to see both service and resource level metrics being tracked under the APM services tab.
+
+![DOG_APP APM](DATADOG_SCREENSHOTS/DD_DOG_APP.png)
+
+Here we have both APM and Infrastructure metrics on a single dashboard.
+
 [APM and Infrastructure Dashboard](https://app.datadoghq.com/dash/1022589/infrastructure-and-apm?tile_size=m&page=0&is_auto=false&from_ts=1545080940000&to_ts=1545084540000&live=true)
 
 ![Infrastructure and APM Dashboard](DATADOG_SCREENSHOTS/Infrastructure_and_APM_timeboard.png)
