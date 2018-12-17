@@ -17,7 +17,7 @@ tags:
 
 ![](images/host_with_tags.png)
 
-*Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
+**Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`**
 
 
 ## Bonus Question - Can you change the collection interval without modifying the Python check file you created?
@@ -40,6 +40,9 @@ instances:
 ### _Your custom metric scoped over your host._
 
 > The graph below is a screenshot of the custom metric, `my_metric`  being graphed as a timeseries. 
+
+![](images/my_metric_timeseries.png)
+**`my_metric`'s value graphed over one hour**
 
 
 
