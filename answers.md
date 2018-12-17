@@ -72,7 +72,7 @@ Downtimes can also be set so you are not bothered during your time off. Here are
 
 ## COLLECTING APM DATA
 
-![Infrastructure and APM Dashboard](DATADOG_SCREENSHOTS/Infrastructure and APM timeboard.png)
+![Infrastructure and APM Dashboard](DATADOG_SCREENSHOTS/Infrastructure_and_APM_timeboard.png)
 
 1. **What is the difference between a Service and a Resource?**
 A service is a set of processes that do a job. Examples include web applications and databases.
