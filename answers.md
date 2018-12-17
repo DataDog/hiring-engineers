@@ -13,6 +13,7 @@
 
 
 **Collection interval set to 45 using my_metric.yaml file**
+
 By changing your metrics yaml file you can customize the collection interval using min_collection_interval.
 
 ```
@@ -67,9 +68,11 @@ My_Metric was last triggered at: {{last_triggered_at}}
 In this example an alert threshold of 800 was set. If my_metric exceeds 800 @jedpeek@gmail.com will receive an email that reads:
 
 **ALERT**
+
 ![Alert Email](DATADOG_SCREENSHOTS/Datadog_Alert.png)
 
 **WARNING**
+
 ![Warning Email](DATADOG_SCREENSHOTS/Warning_Email.png)
 
 **Setting Downtimes**
