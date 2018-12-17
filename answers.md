@@ -37,6 +37,7 @@ instances:
 
 > I used the [script here](scripts/my_metric-timeboard.sh) to issue two separate `POST` requests. One [to create the timeboard](scripts/timeboard.json) itself, and the other [to create the anomaly monitor](scripts/monitor.json) for MySQL's CPU usage. Below are the details as they relate to the bullet points listed in the exercise. 
 
+
 ### _Your custom metric scoped over your host._
 
 > The graph below is a screenshot of the custom metric, `my_metric`  being graphed as a timeseries. 
@@ -46,7 +47,26 @@ instances:
 *`my_metric`'s value graphed over one hour*
 
 
-### _Your custom metric scoped over your host._
+
+### _Any metric from the Integration on your Database with the anomaly function applied._
+
+> This ended up being more difficult than I originally intended as the `anomalies()` function requires the creation of a separate monitor, which requires a separate API request altogether. Although linked above, I've provided the contents of that request below for additional clarity (entitled `[monitor.json](scripts/monitor.json)`). 
+
+monitor.json
+```
+{
+      "type": "metric alert",
+      "query": "avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1",
+      "name": "MySQL CPU Anomaly Monitor",
+      "message": "Unsual CPU activity by MySQL.",
+      "tags": ["service:mysql", "host:ubuntu-xenial"],
+      "options": {
+        "notify_no_data": true,
+        "no_data_timeframe": 20
+      }
+}
+
+```
 
 # Monitoring Data
 
