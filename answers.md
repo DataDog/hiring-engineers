@@ -42,6 +42,7 @@ instances:
 > The graph below is a screenshot of the custom metric, `my_metric`  being graphed as a timeseries. 
 
 ![](images/my_metric_timeseries.png)
+
 *`my_metric`'s value graphed over one hour*
 
 
