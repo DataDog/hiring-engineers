@@ -56,7 +56,7 @@ monitor.json
 ```
 {
       "type": "metric alert",
-      "query": `**`"avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1"`**`,
+      "query": <b>"avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1"</b>,
       "name": "MySQL CPU Anomaly Monitor",
       "message": "Unsual CPU activity by MySQL.",
       "tags": ["service:mysql", "host:ubuntu-xenial"],
