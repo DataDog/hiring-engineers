@@ -3,8 +3,15 @@
 
 ![custom tags screenshot](DATADOG_SCREENSHOTS/Custom_Tags.png?raw=true "Custom Tags")
 
-3. MongoDB installed
+3. MongoDB installed and mongo/conf.yaml filed created
+
+![mongo conf.yaml](DATADOG_SCREENSHOTS/mongo_yaml.png)
+
 4. my_metric created
+
+![my_metric script](DATADOG_SCREENSHOTS/my_metric_python_script.png)
+
+
 5. Collection interval set to 45 using my_metric.yaml file
 6. **Can you change the collection interval without modifying the Python check file you created?**
 		Yes, by changing your metrics yaml file you can customize the collection interval using min_collection_interval.
@@ -16,6 +23,10 @@ instances:
   ```
 
 ## VISUALIZING DATA
+
+[API Dashboard](https://app.datadoghq.com/dash/1021540/apimetrics?tile_size=m&page=0&is_auto=false&from_ts=1545081000000&to_ts=1545084600000&live=true)
+
+Ruby Script used to build Dashboard with Datadog API: [dog_api](dog_api.rb)
 
 1. my_metric scoped over Jeds-MacBook-Pro.local
 ```
@@ -32,8 +43,6 @@ instances:
 ```
 "q" => "sum:my_metric{host:Jeds-MacBook-Pro.local}.rollup(sum, 3600)"
 ```
-
-4. To view script see: [dog_api](dog_api.rb)
 
 
 5. What is the Anomaly graph displaying?
@@ -71,16 +80,17 @@ Downtimes can also be set so you are not bothered during your time off. Here are
 
 
 ## COLLECTING APM DATA
+[APM and Infrastructure Dashboard](https://app.datadoghq.com/dash/1022589/infrastructure-and-apm?tile_size=m&page=0&is_auto=false&from_ts=1545080940000&to_ts=1545084540000&live=true)
 
 ![Infrastructure and APM Dashboard](DATADOG_SCREENSHOTS/Infrastructure_and_APM_timeboard.png)
 
 1. **What is the difference between a Service and a Resource?**
 A service is a set of processes that do a job. Examples include web applications and databases.
-A resource is an action that takes place inside a service. Examples include routes in a web app and database queries.
+A resource is an action that takes place inside a service. Examples include routes in a web app and database queries. In the above example dashboard I have time series tracking all requests on my web application (service metrics) and one tracking just my index root path (Resource metrics).
 
 ## CREATIVE USES
-**Is there anything creative you would use Datadog for?**
-As someone who has always been a fan of gardening but was not gifted with a green thumb, building a raspberry Pi connected to Datadog alerts would give me the help I need. Alerts would be triggered whenever the plants being monitored need to be watered (soil moisture to low) or they are not getting enough sun.
+
+As someone who has always been a fan of gardening but was not gifted with a green thumb, building a raspberry Pi connected to Datadog alerts would give me the help I need. Alerts would be triggered whenever the plants being monitored need to be watered (soil moisture too low) or they are not getting enough sun.
 Tools needed for the job:
 
 1. A Raspberry Pi
