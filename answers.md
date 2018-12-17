@@ -17,7 +17,7 @@ tags:
 
 ![](images/host_with_tags.png)
 
-__Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`__
+*Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
 
 
 ## Bonus Question - Can you change the collection interval without modifying the Python check file you created?
