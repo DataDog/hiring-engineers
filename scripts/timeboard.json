@@ -1,7 +1,7 @@
 {
       "graphs" : [
         {
-          "title": "My Metric Value",
+          "title": "my_metric Value",
           "definition": {
               "events": [],
               "requests": [
@@ -11,7 +11,7 @@
           }
         },
         {
-          "title": "Sum of My Metric Values (past Hour)",
+          "title": "Sum of my_metric Values (past Hour)",
           "definition": {
               "events": [],
               "requests": [

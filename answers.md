@@ -39,7 +39,7 @@ instances:
 
 ### _Your custom metric scoped over your host._
 
-
+> The graph below is a screenshot of the custom metric, `my_metric`  being graphed as a timeseries. 
 
 
 
