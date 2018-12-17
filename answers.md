@@ -50,13 +50,13 @@ instances:
 
 ### _Any metric from the Integration on your Database with the anomaly function applied._
 
-> This ended up being more difficult than I originally intended as the `anomalies()` function requires the creation of a separate monitor, which requires a separate API request altogether. Although linked above, I've provided the contents of that request below for additional clarity (entitled `[monitor.json](scripts/monitor.json)`). 
+> This ended up being more difficult than I originally expected. The `anomalies()` function requires the creation of a separate monitor, which requires a separate API request altogether. Although linked above, I've provided the contents of that request below for additional clarity. The query that actually performs the anomaly check is highlighted
 
 monitor.json
 ```
 {
       "type": "metric alert",
-      "query": "avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1",
+      "query": *"avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1"*,
       "name": "MySQL CPU Anomaly Monitor",
       "message": "Unsual CPU activity by MySQL.",
       "tags": ["service:mysql", "host:ubuntu-xenial"],
@@ -65,8 +65,9 @@ monitor.json
         "no_data_timeframe": 20
       }
 }
-
 ```
+
+> So how did I incorporate this into the timeboard? Within my 
 
 # Monitoring Data
 
