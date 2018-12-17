@@ -1,4 +1,4 @@
-# Metrics
+# Collecting Metrics
 
 
 ### My Virtual Host - `ubuntu-xenial`
@@ -6,10 +6,10 @@
 
 *Ubuntu Vagrant Host With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
 
-## Visualizations
+# Visualizing Data
 
-## Monitors
+# Monitoring Data
 
-## APM
+# Collecting APM Data
 
-## Final Question
+# Final Question
