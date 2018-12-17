@@ -50,13 +50,13 @@ instances:
 
 ### _Any metric from the Integration on your Database with the anomaly function applied._
 
-> This ended up being more difficult than I originally expected. The `anomalies()` function requires the creation of a separate monitor, which requires a separate API request altogether. Although linked above, I've provided the contents of that request below for additional clarity. The query that actually performs the anomaly check is highlighted
+> This ended up being more difficult than I originally expected. The `anomalies()` function requires the creation of a separate monitor, which requires a separate API request altogether. Although linked above, I've provided the contents of that request below for additional clarity.
 
 monitor.json
 ```
 {
       "type": "metric alert",
-      "query": <b>"avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1"</b>,
+      "query": "avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1",
       "name": "MySQL CPU Anomaly Monitor",
       "message": "Unsual CPU activity by MySQL.",
       "tags": ["service:mysql", "host:ubuntu-xenial"],
@@ -67,7 +67,33 @@ monitor.json
 }
 ```
 
-> So how did I incorporate this into the timeboard? Within my 
+> The important piece in the request above is the `"query"` value, which performs the actual check for MySQL's CPU anomaly. 
+
+`avg(last_1h):anomalies(avg:mysql.performance.user_time{*}, 'basic', 2, direction='above', alert_window='last_30s', interval=1, count_default_zero='true', timezone='America/New_York') >= 1`
+
+> So how did I incorporate this into the timeboard? I created a timeseries graph of the Percentage of CPU time spent in the user space by MySQL, and added a query to the `events` block that would return events triggered by the `MySQL CPU Anomaly Monitor` I created earlier. You can see this section of the timeseries API request below. 
+
+timeseries.json
+```
+...
+        {
+          "title": "MySQL CPU Time",
+          "definition": {
+              "events": [{"q": "MySQL CPU Anomaly"}],
+              "requests": [
+                  {"q":"avg:mysql.performance.user_time{*}"}
+              ],
+              "viz": "timeseries"
+          }
+        }
+...
+```
+
+> The query here matches on the monitor and reports anomalies on the graph based on deviations from expected behavior. 
+
+`"events": [{"q": "MySQL CPU Anomaly"}],`
+
+
 
 # Monitoring Data
 
