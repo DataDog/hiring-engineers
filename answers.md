@@ -103,7 +103,7 @@ timeseries.json
 
 > Here's what the anomaly graph actually looks like. I triggered MySQL anomalies by [running a script](scripts/select_abunch.sh) that spammed the DB with a large number of `SELECT` queries. You can see the anomalies highlighted in red on the graph below. 
 
-![]images/anomalous_behavior.png
+![](images/anomalous_behavior.png)
 
 *Anomalous MySQL events after executing `select_abunch.sh`*
 
