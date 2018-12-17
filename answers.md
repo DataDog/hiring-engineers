@@ -37,7 +37,7 @@ instances:
 
 > I used the [script here](scripts/my_metric-timeboard.sh) to issue two separate `POST` requests. One [to create the timeboard](scripts/timeboard.json) itself, and the other [to create the anomaly monitor](scripts/monitor.json) for MySQL's CPU usage. Below are the details as they relate to the bullet points listed in the exercise. 
 
-### Your custom metric scoped over your host.
+### _Your custom metric scoped over your host._
 
 
 
