@@ -19,7 +19,7 @@ tags:
 
 ![](images/host_with_tags.png)
 
-*Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
+*[Figure 1] Screenshot of Host from Host Map With Custom Host Tags `#env:sandbox`, and `#owner:mlupton`*
 
 
 ## Bonus Question - Can you change the collection interval without modifying the Python check file you created?
@@ -46,7 +46,7 @@ instances:
 
 ![](images/my_metric_timeseries.png)
 
-*`my_metric`'s value graphed over one hour*
+*[Figure 2] `my_metric`'s value graphed over one hour*
 
 
 
@@ -107,7 +107,7 @@ timeseries.json
 
 ![](images/anomalous_behavior.png)
 
-*Anomalous MySQL events after executing `select_abunch.sh`*
+*[Figure 3] Anomalous MySQL events after executing `select_abunch.sh`*
 
 ### _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket._
 
@@ -159,7 +159,7 @@ timeseries.json
 
 ![](images/my_metric_1hr_sum.png)
 
-*Query Value Widget Showing Average of `my_metric`'s 1 Hr Sum Over 24 Hours*
+*[Figure 4] Query Value Widget Showing Average of `my_metric`'s 1 Hr Sum Over 24 Hours*
 
 
 ### _Set the Timeboard's timeframe to the past 5 minutes._
@@ -168,7 +168,7 @@ timeseries.json
 
 ![](images/5_min_timeboard.png)
 
-*My Timeboard With a 5 Minute Timeframe*
+*[Figure 5] My Timeboard With a 5 Minute Timeframe*
 
 
 ### _Take a snapshot of this graph and use the @ notation to send it to yourself._
@@ -177,7 +177,7 @@ timeseries.json
 
 ![](images/notifications_window.png)
 
-*Notifications Setting To Send Updates With @ Notation*
+*[Figure 6] Notifications Setting To Send Updates With @ Notation*
 
 
 ## Bonus Question - What is the Anomaly graph displaying?
@@ -192,7 +192,7 @@ timeseries.json
 
 ![](images/metric_monitor_thresholds.png)
 
-*Threshold Config For Metric Monitors*
+*[Figure 7] Threshold Config For Metric Monitors*
 
 ## Configure the Monitor's Message.
 
@@ -200,12 +200,14 @@ timeseries.json
 
 ![](images/monitor_message.png)
 
-*Notification Setting in Metric Monitor*
+*[Figure 8] Notification Setting in Metric Monitor*
 
 
 > Here's a screenshot from the e-mail I received when the alert was triggered.
 
 ![](images/alert_email.png)
+
+*[Figure 9] Alert E-mail Contents*
 
 ## Bonus Question - Configure two scheduled downtimes for your monitor.
 
@@ -213,21 +215,23 @@ timeseries.json
 
 ![](images/notify_dropdown.png)
 
+*[Figure 10] Notify Dropdown Setting*
+
 > Scheduled downtime appears in a totally different view. I configured Scheduled Downtime by navigating to Monitors > Manage Downtime > Schedule Downtime. You can see the settings for both monitors below. 
 
 ![](images/weekday_monitor.png)
 
-*Monitor for M-F Downtime*
+*[Figure 11] Monitor for M-F Downtime*
 
 ![](images/weekend_monitor.png)
 
-*Monitor for Saturday/Sunday Downtime*
+*[Figure 12] Monitor for Saturday/Sunday Downtime*
 
 > Here's the e-mail I received related to this scheduled downtime. 
 
 ![](images/downtime_email.png)
 
-*Downtime Email*
+*[Figure 13] Downtime Email*
 
 # Collecting APM Data
 
@@ -252,7 +256,7 @@ apm_config:
 
 ![](images/flask_app_dashboard.png)
 
-*APM Dashboard of Flask App `example_app.py`*
+*[Figure 14] APM Dashboard of Flask App `example_app.py`*
 
 
 ## Bonus Question - What's the difference between a Service and a Resoure?
