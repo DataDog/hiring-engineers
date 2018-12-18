@@ -13,7 +13,6 @@ tags:
 ```
 
 ## Show us a screenshot of your host and its tags on the Host Map page in Datadog.
-### `ubuntu-xenial`
 
 > Here's my host, it's a single Ubuntu instance I spun up on my MacBook with Vagrant.
 
@@ -182,7 +181,7 @@ timeseries.json
 
 ## Bonus Question - What is the Anomaly graph displaying?
 
-> The Anomaly graph tracks anomalies in the percentage of CPU time spent in the user space by MySQL within 3 standard deviations of the mean (as calculated over the past hour). It's a bit of mouthful, but basically anytime the percentage of CPU time exceeds the average of the past hour for more than 30 seconds, a monitor is triggered, resulting in the red highlighted portions of the graph you see above.  
+> The Anomaly graph tracks anomalies in the percentage of CPU time spent in the user space by MySQL within 3 standard deviations of the mean (as calculated over the past hour). It's a bit of a mouthful, but basically anytime the percentage of CPU time exceeds the average of the past hour for more than 30 seconds, a monitor is triggered, resulting in the red highlighted portions of the graph you see above.  
 
 # Monitoring Data
 
