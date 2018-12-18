@@ -261,4 +261,4 @@ apm_config:
 
 # Final Question
 
-> As a big music fan, it could be cool to track either pricing trends for records or release trends for labels, genres and artists over time. Discogs, my former employer, actually provides a public API with every entry in their database. It wouldn't be all that difficult to ingest data from there or from another music-related public REST API (like Spotify). I think the biggest challenge here would be staying within the rate-limit rules these companies have for their data. If you could overcome that, you could see some very interesting results.
+> As a big music fan, it could be cool to track either pricing trends for records or release trends for labels, genres and artists over time. Discogs, my former employer, actually provides a public API with every entry in their database. It wouldn't be all that difficult to ingest data from there or from another music-related public REST API (like Spotify). I think the biggest challenge here would be staying within the rate-limit rules these companies have for accessing their data. If you could overcome that, you could see some very interesting results.
