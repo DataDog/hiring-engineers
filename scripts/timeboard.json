@@ -11,14 +11,41 @@
           }
         },
         {
-          "title": "Sum of my_metric Values",
-          "description": "Adds up the value of my_metric in 30 second increments",
+          "title": "Sum of my_metric Values Over One Hour",
+    "description": "Adds up the value of my_metric over an hour in one bucket",
           "definition": {
               "events": [],
-              "requests": [
-                  {"q": "sum:my_metric.value.rollup(sum,30)"}
+        "viz": "query_value",
+        "requests": [
+    {
+      "q": "sum:my_metric.value{host:ubuntu-xenial}.rollup(sum, 3600)",
+      "type": null,
+      "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+      },
+      "conditional_formats": [
+          {
+      "comparator": ">",
+      "palette": "white_on_red",
+      "value": null
+          },
+          {
+      "comparator": ">=",
+      "palette": "white_on_yellow",
+      "value": null
+          },
+          {
+      "comparator": "<",
+      "palette": "white_on_green",
+      "value": null
+          }
               ],
-              "viz": "query_value"
+       "aggregator": "avg"
+        }
+      ],
+      "autoscale": true
           }
         },
         {
