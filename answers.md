@@ -9,18 +9,21 @@ Copy the script provided and run in your terminal.
 ```
 DD_API_KEY=<YOUR_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
 ```
+
+![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/Download_DD_Agent.png)
+
 This will start the download for the latest agent.
 You can start/stop/restart your Datadog Agent from the menu bar by clicking on the dog bone logo.
-Once downloaded the you can run the agent at login or on boot up.
+Once downloaded you can run the agent at login or on boot up.
 By default the agent runs at Login.
-if you want to run the agent on boot up you can run the following script:
+If you want to run the agent on boot up you can run the following script:
 
 ```
 sudo cp '/opt/datadog-agent/etc/com.datadoghq.agent.plist.example' /Library/LaunchDaemons/com.datadoghq.agent.plist
 sudo launchctl load -w /Library/LaunchDaemons/com.datadoghq.agent.plist
 ```
 
-![Datadog agent download Mac OS](DATADOG_SCREENSHOTS/Download_DD_Agent.png)
+
 
 Once downloaded you should have your localhost reporting to Datadog. You can view your host map and check to make sure that your reporting information.
 
@@ -36,16 +39,30 @@ You should see something similar to this:
 ## COLLECTING METRICS
 **Custom tags screenshot**
 You can add custom tags to track your infrastructure. To do this locate your datadog.yaml file
-mine is located in (/Users/<username>/.datadog-agent/datadog.yaml).
-You can follow the format provided in the example. Tags should be provided as <key>:<value> pair.
+mine is located in (/Users/jedpeek/.datadog-agent/datadog.yaml).
+You can follow the format provided in the example. Tags should be provided as key:value pair.
 
 ![custom tags screenshot](DATADOG_SCREENSHOTS/Custom_Tags.png?raw=true "Custom Tags")
 
 **MongoDB installed and mongo/conf.yaml filed created**
+To install an integration to communicate with Datadog go the integrations tag and search for the integration you would like to setup. I chose to track my MongoDB Database with Datadog. Once selected you will have to setup Datadog as a read-only admin user.
+
+```
+use admin
+db.auth("admin", "admin-password")
+db.createUser({"user":"datadog", "pwd": "
+
+", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
+```
+ Configure you mongo.yaml file located in the datadog agent
+ (/Users/jedpeek/.datadog-agent/conf.d/mongo.d/conf.yaml)
 
 ![mongo conf.yaml](DATADOG_SCREENSHOTS/mongo_yaml.png)
 
+ You should start seeing metrics reported to Datadog on your host.
+
 **my_metric created**
+To create a custom metric you need to create two files a python script in the checks.d folder in you datadog agent as well as a yaml file in you conf.d folder. These two files must have matching names. I called mine my_metric (checks.d/my_metric.py and conf.d/my_metric.yaml).
 
 ![my_metric script](DATADOG_SCREENSHOTS/my_metric_python_script.png)
 
@@ -62,6 +79,7 @@ instances:
   ```
 
 ## VISUALIZING DATA
+You can create/update Dashboards using the Datadog API. Here is an example of a dashboard updated using the Datadog API and the corresponding ruby script.
 
 [API Dashboard](https://app.datadoghq.com/dash/1021540/apimetrics?tile_size=m&page=0&is_auto=false&from_ts=1545081000000&to_ts=1545084600000&live=true)
 
