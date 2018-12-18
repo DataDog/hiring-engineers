@@ -1,7 +1,7 @@
 #!/bin/bash
 
-api_key="2b26fb6c0ab7bd38a6a5fc3de677dd22"
-app_key="256bc13bf7b6adf82609c8b007f3695e961dafe8"
+api_key="<MY_API_KEY>"
+app_key="<MY_APP_KEY>"
 
 curl  -X POST -H "Content-type: application/json" \
 -T timeboard.json \
