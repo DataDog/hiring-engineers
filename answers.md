@@ -50,7 +50,7 @@ To install an integration to communicate with Datadog go the integrations tag an
 ```
 use admin
 db.auth("admin", "admin-password")
-db.createUser({"user":"datadog", "pwd": "
+db.createUser({"user":"datadog", "pwd":"password"
 
 ", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
 ```
@@ -62,7 +62,7 @@ db.createUser({"user":"datadog", "pwd": "
  You should start seeing metrics reported to Datadog on your host.
 
 **my_metric created**
-To create a custom metric you need to create two files a python script in the checks.d folder in you datadog agent as well as a yaml file in you conf.d folder. These two files must have matching names. I called mine my_metric (checks.d/my_metric.py and conf.d/my_metric.yaml).
+To create a custom metric you need to create two files a python script in the checks.d folder in your datadog agent as well as a yaml file in you conf.d folder. These two files must have matching names. I called mine my_metric (checks.d/my_metric.py and conf.d/my_metric.yaml).
 
 ![my_metric script](DATADOG_SCREENSHOTS/my_metric_python_script.png)
 
@@ -91,12 +91,12 @@ Ruby Script used to build/update Dashboard with Datadog API: [dog_api](dog_api.r
 
 ```
 
-2. Available MongoDb Connections
+2. Available MongoDb Connections w/ anomalies function applied
 ```
 "q" => "anomalies(avg:mongodb.connections.available{server:mongodb://datadog:_localhost:27017}, 'basic', 2)"
 ```
 
-3. All Custom Metric points for last hour
+3. All Custom Metric points for last hour (tracking my_metric)
 ```
 "q" => "sum:my_metric{host:Jeds-MacBook-Pro.local}.rollup(sum, 3600)"
 ```
@@ -151,10 +151,10 @@ Since this is a sudo command it will also require your system password.
 
 Once your Trace Agent is up and running you should receive an output similar to this
 
-[Datadog Trace Output](DATADOG_SCREENSHOTS/DD_TRACE_OUTPUT.png)
+![Datadog Trace Output](DATADOG_SCREENSHOTS/DD_TRACE_OUTPUT.png)
 
 Once your trace agent is up and running you'll need to setup your application to start communicating with Datadog.
-I used a simple Rails application and configured it using the ddtrace gem. Add the ddtrace gem to your gemfile and run bundle install. Then create a config/initializers/datadog.rb file and insert the following:
+I used a simple Rails application and configured it using the ddtrace gem. Add the``` gem 'ddtrace' ``` to your gemfile and run ```bundle install```. Then create a config/initializers/datadog.rb file and insert the following:
 
 ```
 require 'ddtrace'
