@@ -56,7 +56,7 @@ __Tag Setup__:
 
 
 
-#### 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+##### 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Start by selecting PostgreSQL from the list of Integration options and follow directions the as summarized (with additional annotations) below:
 
@@ -101,7 +101,7 @@ sudo docker exec -it dd-agent agent status
 
 
 
-#### 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+##### 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 - overview
   - Parts: `mymetric.py` check file and `mymetric.yaml` config file
@@ -138,7 +138,7 @@ sudo docker exec -it dd-agent agent status
 
 
 
-#### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+##### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 - process: updating `mymetric.yaml` by adding `min_collection_interval: 45`
 - screenshots/visuals:
@@ -146,4 +146,42 @@ sudo docker exec -it dd-agent agent status
   - screen shot of mymetric check status results
   - screen shot of mymetric dashboard graph
 
-#### 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+##### 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+
+
+### II. Visualizing Data:
+
+([ref](
+https://docs.datadoghq.com/graphing/graphing_json
+))
+
+Utilize the Datadog API to create a Timeboard that contains:
+
+##### 1. Your custom metric scoped over your host.
+
+  <a href='./images/2.01-timeboard_graph1_my_metric.jpeg'><img src="images/2.01-timeboard_graph1_my_metric.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+
+##### 2. Any metric from the Integration on your Database with the anomaly function applied.
+
+  <a href='./images/2.02-timeboard_graph2_postgres_metric.jpeg'><img src="images/2.02-timeboard_graph2_postgres_metric.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+
+##### 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+
+  <a href='./images/2.03-timeboard_graph3_my_metric_anomaly.jpeg'><img src="images/2.03-timeboard_graph3_my_metric_anomaly.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+
+##### 4. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+##### 5. Set the Timeboard's timeframe to the past 5 minutes
+
+<a href='./images/2.05-timeboard-5min.jpeg'><img src="images/2.05-timeboard-5min.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+
+
+##### 6. Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+<a href='./images/2.06-timeboard-email.jpeg'><img src="images/2.06-timeboard-email.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+
+
+Bonus Question: What is the Anomaly graph displaying?

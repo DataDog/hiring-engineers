@@ -5,6 +5,9 @@ options = {
     'app_key': '7e8dffc303beb44b4f83d36c3c22a6a84561db87'
 }
 
+
+
+
 initialize(**options)
 
 title = "Siobhan's DataViz Timeboard"
@@ -17,7 +20,7 @@ graphs = [
       "events": [],
       "requests": [
         {
-          "q": "avg:my_metric{*}"
+          "q": "avg:my_metric{host:linuxkit-025000000001}"
           }
       ],
       "viz": "timeseries"
@@ -29,7 +32,7 @@ graphs = [
       "events": [],
       "requests": [
         {
-          "q": "anomalies(avg:postgresql.rows_fetched{*}, 'basic', 1)"
+          "q": "anomalies(avg:postgresql.rows_fetched{*}, 'basic', 3)"
         }
       ],
       "viz": "timeseries"
@@ -52,9 +55,9 @@ graphs = [
 
 
 template_variables = [{
-"name": "SiobhanMahoney",
+"name": "linuxkit-025000000001",
 "prefix": "host",
-"default": "host:siobhan"
+"default": "host:linuxkit-025000000001"
 }]
 
 

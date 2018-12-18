@@ -1,0 +1,52 @@
+from datadog import initialize, api
+
+options = {
+    'api_key': '4dc7304832d0ab2d0d1048ab35c0b86f',
+    'app_key': '7e8dffc303beb44b4f83d36c3c22a6a84561db87'
+}
+
+
+
+
+initialize(**options)
+
+title = "Testing host value"
+
+description = "Testing host scope"
+
+graphs = [
+  {
+    "definition": {
+      "events": [],
+      "requests": [
+        {
+          "q": "avg:my_metric{host:linuxkit-025000000001}"
+          }
+      ],
+      "viz": "timeseries"
+    },
+    "title": "my_metric WITH avg"
+  },
+    {
+      "definition": {
+        "events": [],
+        "requests": [
+          {
+            "q": "avg:my_metric{host:linuxkit-025000000001}"
+            }
+        ],
+        "viz": "timeseries"
+      },
+      "title": "my_metric WITHOUT avg"
+    },
+]
+
+
+template_variables = [{
+"name": "linuxkit-025000000001",
+"prefix": "host",
+"default": "host:linuxkit-025000000001"
+}]
+
+
+api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables)
