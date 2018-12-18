@@ -205,10 +205,30 @@ timeseries.json
 
 > Here's a screenshot from the e-mail I received when the alert was triggered.
 
-![](images/alert_email.png
+![](images/alert_email.png)
+
+## Bonus Question - Configure two scheduled downtimes for your monitor.
+
+> First thing I had to do for this step was change the drop down in the "Notify your Team" section of the "Edit Monitor" view such that I would be alerted whenever the alert was modified. 
+
+![](images/notify_dropdown.png)
+
+> Scheduled downtime appears in a totally different view. I configured Scheduled Downtime by navigating to Monitors > Manage Downtime > Schedule Downtime. You can see the settings for both monitors below. 
+
+![](images/weekday_monitor.png)
+
+*Monitor for M-F Downtime*
+
+![](images/weekend_monitor.png)
+
+*Monitor for Saturday/Sunday Downtime*
+
+> Here's the e-mail I received related to this scheduled downtime. 
+
+![](images/downtime_email.png)
+
+*Downtime Email*
 
 # Collecting APM Data
-
-
 
 # Final Question
