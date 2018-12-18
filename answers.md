@@ -231,4 +231,32 @@ timeseries.json
 
 # Collecting APM Data
 
+> I used the Python code provided to create a Python script named `example_app.py`, installed Flask with `pip`, and changed the following settings in `datadog.yaml` so that the trace agent could track the behavior of my application.
+
+```
+...
+# Trace Agent Specific Settings
+#
+apm_config:
+#   Whether or not the APM Agent should run
+  enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if none is applied here
+  env: sandbox
+#   The port that the Receiver should listen on
+  receiver_port: 8126
+...
+```
+
+> After restarting the datadog-agent, I started the application by issuing `ddtrace-run python example_app.py`. I issued a series of curl statements on the host `0.0.0.0` at port `5050` where the application was running, the app began reporting to APM shortly thereafter, populating information in the dashboard below.
+
+![](images/flask_app_dashboard.png)
+
+*APM Dashboard of Flask App `example_app.py`*
+
+
+## Bonus Question - What's the difference between a Service and a Resoure?
+
+
+
 # Final Question
