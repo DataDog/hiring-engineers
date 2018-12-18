@@ -257,6 +257,8 @@ apm_config:
 
 ## Bonus Question - What's the difference between a Service and a Resoure?
 
-
+> A service is a set of processes that do the same job (e.g. a group of processes that perform database functions). A resource is a particular action for a service (e.g. a query against a database service, like a SELECT statement). 
 
 # Final Question
+
+> As a big music fan, it could be cool to track either pricing trends for records or release trends for labels, genres and artists over time. Discogs, my former employer, actually provides a public API with every entry in their database. It wouldn't be all that difficult to ingest data from there or from another music-related public REST API (like Spotify). I think the biggest challenge here would be staying within the rate-limit rules these companies have for their data. If you could overcome that, you could see some very interesting results.
