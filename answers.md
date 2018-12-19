@@ -2,7 +2,7 @@
 
 Nerd, Zelda enthusiast (grumble, grumble!), older than she wishes she was... Kristen's been designing monitoring solutions for at least 12 years. 
 
-<img src="https://vignette.wikia.nocookie.net/zelda/images/0/08/Hungry_Goriya.png">
+<img src="images/grumble.jpg" width=400px>
 
 After playing with Datadog in search of a better core for her previous employer's offerings and seeing potential, she's decided to talk to the crew at Datadog and see if she might be a fit to help make Datadog great.
 
@@ -20,7 +20,7 @@ I chose Ubuntu as the OS since it is oft-cited in the documentation provided.  I
 Our Test Host:<br>
 ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
-<img src="pic_of_datadogtest.png" width=400>
+<img src="images/host_is_online.png" width=400>
 
 **Impressions**:  Installation is relatively straightforward and easy, but the author found it difficult to navigate the UI to sort out when the last time the agent reported.  Lags of 30-60 seconds seem fairly standard and well within range, but sometimes it was up to 10 minutes or more and it was difficult to troubleshoot whether the agent hadn't reported in yet or whether there was still a configuration issue.
 
@@ -37,13 +37,13 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 * **Database Integration** I chose MySQL to install on my test host.  I saw mysqld in the process list fairly quickly in Datadog, and then followed the instructions to get the MySQL integration installed  At first I had a typo in my dd-agent key, and it took upwards of 5 minutes or so before my corrections showed in the UI.  Random musing... have you had problems with someone having a typo that was *exactly the same* as someone else's key and data getting collocated?  
 
-<img src="mysql_is_online.png">
+<img src="images/mysql_is_online.png">
 
 * **Custom Check** I created a simple check called customtest that submits the metric of a random int between 0 and 1000.  I would have preferred here to do something a bit more useful for the timeboard -- for example, do some kind of transform on the current time, or make the value go haywire every 30 minutes, or similar, so that my timeboard would be more interesting later.  We'll get to that later, but for now, it's just a simple python check. 
 
 **_note_** I realized that having it say just "my\_metric" resulted in the "app" in the "Infrastructure List" to be listed as "no\_namespace".  So I changed it so that it submitted as customtest.my\_metric instead of just "my\_metric".  For now, I haven't added any additional tags.
 
-<img src="customtest_check_online.png">
+<img src="images/customtest_check_online.png">
 
 
 * **Collection Interval**  It's easy to set the check interval by editing the conf.yaml file in conf.d/custom.d/ however... the value is min\_collection\_interval.  This would mean that every 45 seconds the agent will schedule the check to run.  There are a lot of reasons that might not work as advertised, but the chances of this being off on a box that is so lean is low.  
@@ -105,7 +105,7 @@ I've never used Flask, so I used the default flask app provided to continue with
 
 Since I know that the service map for this is going to be fairly boring (no dependencies), I start with invoking ddtrace-run. I purposely curl some bad URLs so I have something interesting to look at in the traces... but honestly this is still pretty bleak looking.
 
-<img src="flask_is_online.png">
+<img src="images/flask_is_online.png">
 
 		
 		root@datadogtest:/opt/flasktest# curl localhost:5050/api/apm
@@ -124,7 +124,7 @@ Since I know that the service map for this is going to be fairly boring (no depe
 		root@datadogtest:/opt/flasktest# DEBUG:ddtrace.api:reported 1 traces in 0.00084s
 		2018-12-18 00:52:07,084 - ddtrace.api - DEBUG - reported 1 traces in 0.00084s
 
-<img src="we_have_traces.png">
+<img src="images/we_have_traces.png">
 
 I redid all this by putting some real dependencies in there:
 
