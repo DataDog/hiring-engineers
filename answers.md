@@ -35,9 +35,9 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
    		- role:database
    		- location:cloud
 
-* **Database Integration** I chose MySQL to install on my test host.  I saw mysqld in the process list fairly quickly in Datadog, and then followed the instructions to get the MySQL integration installed  At first I had a typo in my dd-agent key, and it took upwards of 5 minutes or so before my corrections showed in the UI.  Random musing... have you had problems with someone having a typo that was *exactly the same* as someone else's key and data getting collocated?  
+* **Database Integration** I chose MySQL to install on my test host.  I saw mysqld in the process list fairly quickly in Datadog, and then followed the instructions to get the MySQL integration installed  At first I had a typo in my dd-agent key, and it took upwards of 5 minutes or so before my corrections showed in the UI.  Random musing... have you had problems with someone having a typo that was *exactly the same* as someone else's key and data getting collocated, or more realistically, a problem where someone at Datadog copied some work from a colleague and accidentally forgot to update the key?  
 
-<img src="images/mysql_is_online.png">
+<img src="images/mysql_is_online.png" align="center" width=500px>
 
 * **Custom Check** I created a simple check called customtest that submits the metric of a random int between 0 and 1000.  I would have preferred here to do something a bit more useful for the timeboard -- for example, do some kind of transform on the current time, or make the value go haywire every 30 minutes, or similar, so that my timeboard would be more interesting later.  We'll get to that later, but for now, it's just a simple python check. 
 
@@ -56,25 +56,30 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 		/usr/bin/datadog-agent check custom 
 
-	This sounds more useful in the context of forcing a check and verifying output after maintenance.  I bet there's also a way through the Datadog API to do this <look into this>
+	This sounds more useful in the context of forcing a check and verifying output after maintenance.  I bet there's also a way through the Datadog API to do this.
 
 
 
 ### Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+First, we can use the API to make a timeboard, but I made a conscious decision not to overengineer the API call.  The use case here that immediately comes to mind is to spawn a timeboard when you detect something bad in monitoring, and since I didn't have the facility to know very well all the knobs and dials for color, size, etc. and what would look nice, I started out just making a default one and then played with it until it looked a little bit nicer. 
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+The timeboard contains:
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+* The "customtest" metric scoped over the host
+* The MySQL CPU Time with the anomaly function applied
+* The "customtest" metric summed up for an hour.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+
+* **Anomaly Graphs**  This highlights (by default, in gray), the area where the values are "expected to be" and in red the ones that look "anomalous"
+
+<img src="images/anomaly_graph_cpu.png">
+
+By showing the CPU time, you can see that in reality, the anomaly really shouldn't be these spikes, and the anomaly function probably needs more time to "bake" to show a true anomaly.  (Incidentally, that's why - when faced with designing a similar function for a competing product, we didn't just have a few different algorithms, we had 9 of them working together and had the ability to change the weights to get something that worked better.  I wanted to add some machine learning in there on top of it all, but then I left the company... but I digress.)
 
 ## Monitoring Data
 
@@ -103,7 +108,7 @@ Please configure the monitor’s message so that it will:
 
 I've never used Flask, so I used the default flask app provided to continue with the exercise.  However, I think it would be more colorful to add in some other dependencies, such as the lovely little MySQL server we installed earlier so that the traces could actually find something interesting.  For now, let's just get the basic flask app running.
 
-Since I know that the service map for this is going to be fairly boring (no dependencies), I start with invoking ddtrace-run. I purposely curl some bad URLs so I have something interesting to look at in the traces... but honestly this is still pretty bleak looking.
+Since I know that the service map for this is going to be fairly boring (no dependencies), I start with invoking ddtrace-run. I purposely curl some bad URLs so I have something interesting to look at in the traces besides 200OK... but honestly this is still pretty bleak looking.
 
 <img src="images/flask_is_online.png">
 
@@ -126,25 +131,29 @@ Since I know that the service map for this is going to be fairly boring (no depe
 
 <img src="images/we_have_traces.png">
 
-I redid all this by putting some real dependencies in there:
+I redid all this by putting some dependencies in there:
 
-* I added a random /api/databaseme to do a simple select on mysql
-* I added a random /api/googleme to do a simple curl of google.com 
-* I manually instrumented the app
-* I added extra error codes for the traces, so that even a simple 404 throws an error trace, just to add some color.
+* I added a random /api/testdb to do a simple select on mysql
+* I neglected to grant the mysql the ability to select on the database to start so I'd get a nasty 500
 
 I then re-instrumented the app, curled a few of the URLs to force some traces... hoping I'd get a more interesting service map when it came online.
 
-And voila... I did.
 
-<img src="we_have_dependencies.png">
+And voila... the service map shows the db dependency.
+
+<img src="images/we_have_dependencies.png">
+
+We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the flasktestweb errors line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
+
+* note:  this is a timeboard - I'm assuming you can get into my profile to see this, otherwise your link will likely be dead.
+<a href=https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true>APM Timeboard Example </a>
+<img src="images/apm_timeboard.png">
+
+<br>
+<a href=https://p.datadoghq.com/sb/cf1e2a4ea-503c962c1610e556f0adcb22eeaf6fdd>Public Screenboard with Similar Data</a>
 
 
-* **Bonus Question**: What is the difference between a Service and a Resource?  
-
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your is fully instrumented app in your submission, as well.
+* **Service vs. Resource**  (PS: I *really tried* not to just repeat the documentation <a href=https://docs.datadoghq.com/tracing/visualization> here </a>) A resource is something consumed/utilized by a service, while a service is a set of things that provide a particular activity for an application.  In other words, in order to provide the webapp of of "mysite" I need to use the service of "database_server" (to print out some stuff from the db) and  "mywebapp".   The database server will use several resources to grab data (select and insert statements), and the webapp has resources like "homepage" and "orderstatus_page".  A service could require several resources, some internal to the host, some external. 
 
 ### So, Now What???
 The default exercise was a nice guided tour, but this is just a small taste of what Datadog can do.  
@@ -162,7 +171,7 @@ It so happened that right at this time, I'd been playing around with HomeAssista
 
 ### Collecting Metrics
 
-I installed the agent on cbserv and then enabled the HomeAssistant integration.  I didn't worry too much about tags for the moment, because I only have the 1 server that is hosting everything, but in a larger environment I'd be much more careful.
+I installed the agent on cbserv.  I didn't worry too much about tags for the moment, because I only have the 1 server that is hosting everything, but in a larger environment I'd be much more careful here.
 
 ### Visualizing Data
 
@@ -181,7 +190,7 @@ I'm less interested in how HomeAssistant is performing from an app resource pers
 Using Datadog, I was able to:
 
 * see that /dev/sda might be having IO latency which contributes to timeouts on my zigbee mesh
-* get notified in the morning when my daughter turns on Christmas lights in the middle of the night
+* get notified in the morning when my daughter turns on Christmas lights in the middle of the night.  Seriously, what world do we live in when a 3 year-old is talking to AI to calm her fears from bad dreams????
 
 I can certainly see a lot more I could do with this software in the automation space.  Have Datadog make sure you don't forget to lock your doors.  Force a record on a webcam if any of the lights are triggered.  The possibilities are myriad, and that's just with the home automation aspects.  
 
@@ -195,11 +204,11 @@ I've always approached monitoring from a "Critical Business Process" perspective
 
 "We sell pants."
 
-He said this was his mantra because it kept things in perspective.  Things really weren't a P1 unless they couldn't sell pants.  The processing system was slow?  Not a P1. Because you can still buy pants. And even when you did have a P1, and yes, millions of dollars in revenue were on the line... well, *they sell pants*, so don't take it too seriously.
+He said this was his mantra because it kept things in perspective.  Things really weren't a P1 unless they couldn't sell pants.  The processing system was slow?  Not a P1. Because you can still buy pants. And even when you did have a P1, and yes, millions of dollars in revenue were on the line... well, *they sell pants*, so don't take it too seriously.  No one's going to die from a lack of moderately priced khakis.
 
 I would probably approach a live customer in a similar way when thinking about their dashboards and monitoring needs.  I'd start with that coalesced idea:  **what is the critical use of this application, and who is consuming this data**.  I'd design monitoring on an application level that can monitor whether or not that is occurring.  And then, I'd work on ensuring that you could drill down in an outage scenario to be sure that you could figure out why you weren't reaching that goal. 
 
-I had a decent amount of fun playing around with Datadog, but I will admit that some of the learning curve seemed steep for some avoidable reasons.  Example:  he custom checks documentation tells you to buck the presumed standard of directory named checkname.d/conf.yaml and name the file checkname.yaml.
+I had a decent amount of fun playing around with Datadog, but I will admit that some of the learning curve seemed steep for some avoidable reasons.  Example:  the custom checks documentation tells you to buck the presumed standard of directory named checkname.d/conf.yaml and name the file checkname.yaml.
 
 Net-net it seems like there is a ton of potential with Datadog, and given how flexible and open ended the system is, I see how solutions engineers and similar teammates at Datadog are extremely important to helping companies realize the full potential of their investment. 
 
