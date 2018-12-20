@@ -1,0 +1,23 @@
+{
+	"name": "my_metric monitor",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "{{#is_alert}}\n## `my_metric`  ALERT In the past 5 minutes,  the values produced by `my_metric` averaged at {{value}}, surpassing  the alert threshold of 800. @siobhan.p.mahoney@gmail.com\n\n### Host Info: \n__name__: {{host.name}}\n__ip__: {{host.ip}}\n \n{{/is_alert}}\n\n\n{{#is_warning}} \n## `my_metric` WARNING:  In the past 5 minutes,  the values produced by `my_metric` averaged at {{value}}, surpassing  the warning threshold of 500 \n\n### Host Info: \n \n\n@siobhan.p.mahoney@gmail.com  \n{{/is_warning}} \n\n\n{{#is_no_data}} \n## NOTIFICATION: `my_metric` produced no data in the past 10 minutes.\n@siobhan.p.mahoney@gmail.com  \n{{/is_no_data}}",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

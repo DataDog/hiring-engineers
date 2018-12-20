@@ -4,8 +4,4 @@ instances:
   - host: host.docker.internal
     port: 5432
     username: datadog
-    password: botvWo8KMViw5r3zuEQB3YlZ
-
-# collect_activity_metrics: true
-#
-# collect_default_database: true
+    password: HcDLWgHXEgz36E9qmriDfIeH
