@@ -3,9 +3,9 @@ Your answers to the questions go here.
 
 ### Intro: Agent Set Up
 
-Because the environment variables I set when creating the agent shaped my approach in building several of the features, I wanted to preface my responses by reviewing these customizations.  and I inc wanted to start by reviewing how these custom parameters
-
 #### Agent Setup
+
+[Dashboard Link](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=737203816)
 
 I created an agent in a Docker container using the dockerized Datadog Agent image by running the following command:
 
