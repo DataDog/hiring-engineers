@@ -3,9 +3,7 @@ Your answers to the questions go here.
 
 ### Intro: Agent Set Up
 
-
 Because the environment variables I set when creating the agent shaped my approach in building several of the features, I wanted to preface my responses by reviewing these customizations.  and I inc wanted to start by reviewing how these custom parameters
-
 
 #### Agent Setup
 
@@ -437,5 +435,11 @@ tracer.configure(hostname='172.17.0.2', port=8126)
 After getting hands-on experience with just a few of Datadog's powerful tools, the possibilities seem endless! However, when thinking of how real time data analytics, monitoring, and graphing, 2 areas in particular come to mind:
 
 
-###### Weather Forecast and Alerts
-Is the temperature going to rise or fall mroe than 10° in the next 4 hours?
+###### 1. Weather Forecast and Alerts
+If configured with DarkSky's API, Datadog's real time monitoring and alert tools could be used for:
+- Scheduling notifications each morning with warnings about rain ("bring an umbrella!") or a drastic temperature change (10° or more) from the day before ("no need to wear the winter parka today!")
+- Real-time alerts for when rain is predicted to start within 15 minutes ("you should run that errand now!"), when rain starts and how long it's predicted to continue ("you may want to hold off on running that errand.."), and when the rain has stopped ("all clear to run that errand")
+- After extended periods of rain, notifications about upcoming sunny weather and the longevity thereof ("You may want to go for that run this afternoon. Rain will start this evening and will continue through tomorrow morning.")
+
+###### 2. All Transit
+The subway system example referenced in the question got me thinking — how great would it be if, in addition to monitoring and getting alerts about the subway schedule, scheduling, trip length, and price data for other modes of transportation (e.g., CitiBike, bus, ride share, walking, etc.) could also be accounted for when planning a trip? Analyses could be run on demand ("I'm leaving x for y now") as well as scheduled — using the user's daily commute, the user could receive notifications recommending the best combination of transit options.
