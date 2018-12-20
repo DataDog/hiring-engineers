@@ -1,14 +1,47 @@
 Your answers to the questions go here.
 
-#### Intro
 
-##### Setup:
-
+### Intro: Agent Set Up
 
 
-```sh
-docker run -d --name dd-agent -p 8126:8126/tcp -v /var/run/docker.sock:/var/run/docker.sock:ro  -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -v /Users/siobhanpmahoney/Development/take-home-assignments/datadog/hiring-engineers/SiobhanMahoneyAssignment/datadog-agent-conf.d:/conf.d:ro -v /Users/siobhanpmahoney/Development/take-home-assignments/datadog/hiring-engineers/SiobhanMahoneyAssignment/datadog-agent-checks.d:/checks.d:ro -e DD_APM_ENABLED=true -e DD_APM_NON_LOCAL_TRAFFIC=true -e DD_API_KEY=4dc7304832d0ab2d0d1048ab35c0b86f datadog/agent:latest
+Because the environment variables I set when creating the agent shaped my approach in building several of the features, I wanted to preface my responses by reviewing these customizations.  and I inc wanted to start by reviewing how these custom parameters
+
+
+#### Agent Setup
+
+I created an agent in a Docker container using the dockerized Datadog Agent image by running the following command:
+
+```bash
+docker run -d --name dd-agent
+-p 8126:8126/tcp
+-v /var/run/docker.sock:/var/run/docker.sock:ro  \
+-v /proc/:/host/proc/:ro \
+-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+-v /Users/siobhanpmahoney/Development/take-home-assignments/datadog/hiring-engineers/SiobhanMahoneyAssignment/datadog-agent-conf.d:/conf.d:ro \
+-v /Users/siobhanpmahoney/Development/take-home-assignments/datadog/hiring-engineers/SiobhanMahoneyAssignment/datadog-agent-checks.d:/checks.d:ro \
+-e DD_APM_ENABLED=true \
+-e DD_APM_NON_LOCAL_TRAFFIC=true \
+-e DD_API_KEY=4dc7304832d0ab2d0d1048ab35c0b86f datadog/agent:latest \
 ```
+
+The above command includes several environment variables in addition those included in the [Docker Agent one-step install instruction](https://app.datadoghq.com/account/settings#agent/docker) that I found to be helpful, if not necessary, in completing the assignment:
+
+- Mounting directories:
+
+```bash
+-v [..]/datadog-agent-conf.d:/conf.d:ro
+-v [..]/datadog-agent-checks.d:/checks.d:ro
+```
+
+The above commands mount YAML configuration files and Python files in the host's local `/conf.d` and `check.d` directories to the agent container, copying them the agent's `/etc/datadog-agent/conf.d/` and `/etc/datadog-agent/check.d/` directories when the container starts. By mounting these two directories, files can be created locally and accessed by the container — which proved helpful when writing the `my_metric` custom Agent check.
+
+- Tracing-related: the following allowed for the agent to trace data from an application outside it's container:  
+
+| Commmand | Description |
+|-|-|
+|`-p 8126:8126/tcp`|Enables tracing on port 8126/tcp from any host |
+|`-e DD_APM_ENABLED=true`| Enables the trace-agent to run along with the infrastructure Agent, allowing the container to accept traces on `8126/tcp`|
+|`-e DD_APM_NON_LOCAL_TRAFFIC=true`| Allows for non-local traffic when tracing from other containers |
 
 
 #### Part 1: Collecting Metrics:
@@ -47,20 +80,20 @@ I saved my changes and exited vim's edit mode by entering pressing `esc`, follow
 I selected PostgreSQL from the list of Integration options and followed directions the as summarized (with additional annotations) below:
 
 
-* Started a Postgres shell session _by enter `psql` from your Mac terminal_ and create a read-only datadog user with proper access to your PostgreSQL Server by running the following command:
+* I created a read-only datadog user with proper access to your PostgreSQL Server by running the following command in a `psql` shell:
 
 ```sql
 create user datadog with password <PASSWORD>;
 grant SELECT ON pg_stat_database to datadog;
 ```
 
-* Exit the `psql` shell, and from your Mac terminal, confirm that the permissions were sent:
+After exiting the `psql` shell, I confirmed that the permissions were set by running:
 
 ```sh
 psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-* Configure the integration by creating a `postgres.yaml` in the `/datadog-agent-conf.d/` directory (__note__: this this the directory located in the respository on the host machine that is mounted to the `dd-agent` Docker container) with the following contents:
+* I created the `postgres.yaml` config file in the `/datadog-agent-conf.d/` local directory with the below contents. Because this directory is mounted to the container, it will be copied to the container's `conf.d` directory.
 
 ```yaml
 init_config:
@@ -72,15 +105,15 @@ instances:
     password: <FILL IN>
 ```
 
-* From the host's terminal, run the following commands to restart the agent and verify that Postgres was successfully integrated:
+
+
+* I then restarted the agent. To verify that Postgres had been successfully integrated, I ran the agent status command to make sure the `postgres` section under `Checks` did not include any errors.
 
 ```sh
 docker container stop dd-agent
 docker container start dd-agent
 sudo docker exec -it dd-agent agent status
 ```
-
-*  Look for postgres under the Checks section to verify the integration:
 
   <a href='./images/1.02-agent-db-check-screenshot.jpeg'><img src="images/1.02-agent-db-check-screenshot.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
@@ -89,10 +122,8 @@ sudo docker exec -it dd-agent agent status
 
 > 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-- overview
-  - Parts: `mymetric.py` check file and `mymetric.yaml` config file
-  - Process: because the `/datadog-agent-conf.d` and `/datadog-agent-checks.d` directories on the host machine are mounted to the agent Docker container, the necessary config and check files for the `my_metric` can be created locally and stored in the respective directory
-- screenshots
+Creating a custom Agent check involves creating a config (YAML) file and corresponding check file Because the local `/datadog-agent-conf.d` and `/datadog-agent-checks.d` directories are mounted to the agent container, the necessary config and check files for `my_metric` can be created locally and stored in the respective directory.
+
   - `mymetric.yaml` code
 
     ```yaml
@@ -183,10 +214,10 @@ I configured a Metric alert using the [Create Monitor](https://app.datadoghq.com
 
 
 
-> _2. Please configure the monitor’s message so that it will:
-> - Send you an email whenever the monitor triggers.
-> - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-> - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
+> _2. Please configure the monitor’s message so that it will_:
+  > - _Send you an email whenever the monitor triggers.
+  > - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+  > - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
 
 I created distinct content for each of the alert, warning, and no data notification types within the same message using Datadog's tag notation:
 
@@ -212,20 +243,12 @@ I created distinct content for each of the alert, warning, and no data notificat
   NOTIFICATION: `my_metric` produced no data in the past 10 minutes.
   @siobhan.p.mahoney@gmail.com  
   __{{/is_no_data}}__
-
 -----
 
 
 > _When this monitor sends you an email notification, take a screenshot of the email that it sends you._
 
 <a href='./images/3.02-my_metric-monitor-alert-notification-email.jpeg'><img src="images/3.02-my_metric-monitor-alert-notification-email.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
-
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
 
 
 
