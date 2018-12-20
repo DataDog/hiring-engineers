@@ -6,8 +6,6 @@ options = {
 }
 
 
-
-
 initialize(**options)
 
 title = "Siobhan's DataViz Timeboard"
