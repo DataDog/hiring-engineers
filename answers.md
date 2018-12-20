@@ -332,7 +332,8 @@ I created distinct content for each of the alert, warning, and no data notificat
 
 Here's an overview of the steps I took to implement the collection of APM data:
 
-1. I began by configuring my agent for trace collection by updating `datadog.yaml` (located in the agent container's `/etc/datadog-agent/datadog.yaml` directory) by adding the `apm_config` key and parameters:
+1. I began by configuring my agent for trace collection by updating `datadog.yaml` (located in the agent container's `/etc/datadog-agent/` directory) by adding the `apm_config` key and parameters:
+
 
 ```yaml
 listeners:
@@ -353,28 +354,33 @@ apm_config:
     flask|flask.request: 1
 
 ```
+
 2. I next built a Python app outside of the agent container, which involved:
   - Installing the necessary packages, including:
     - __Flask__ web framework (`pip install flask`)
     - __ddtrace__ library, which will connect the application to our agent, enabling the application to be traced (`pip install ddtrace`)
   - Retrieved the agent's hostname by running `hostname -I` in the agent container's shell
-  - Saved the app code provided in the assignment's ReadMe file with the following line:
+  - Saved the app code provided in the assignment's ReadMe file and configured the application tracer to report to the container's default route by passing the `hostname` (which I confirmed by running `hostname -I` in the agent container's shell) and `port` to the :
 
-    ```py
-    tracer.configure(hostname='172.17.0.2', port=8126)
-    ```
+```py
+tracer.configure(hostname='172.17.0.2', port=8126)
+```
 
-    Here, the application's default ddtrace.tracer object is modified to use the agent's hostname and port, the agent to collect trace data.
+Here, I'm configuring  `ddtrace.tracer` object  use the agent's hostname and port, the agent to collect trace data.
+
+
+
 3. I then ran the app by prepending `dd-trace` to the run command:
 
-  ```sh
-  ddtrace-run python FlaskApp/flaskapp.py
-  ```
+```sh
+ddtrace-run python FlaskApp/flaskapp.py
+```
 
 Once the app was up and running, the tracing data will be available to view in the Datadog platform, both in the host's main infrastructure map and under the APM tab, which offers visuals for the collected data at both the app (or __service__) and individual route (or __resource__) levels:
 
 
 __Infrastructure Map__:
+
 <a href='./images/4.01-infrastructure-map-with-tracing.jpeg'><img src="images/4.01-infrastructure-map-with-tracing.jpeg" width="500" alt="04.01"></a>
 
 
@@ -388,11 +394,14 @@ __APM Tab — `/get` Resource View:__
 
 
 * *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics*.
+To view the APM tracing data within the context of the host's infrastructure metrics, I navigated to the "Trace List" tab, selected the resource "/GET" listed next to one of the traces, and then selected [a trace item]( https://app.datadoghq.com/apm/trace/15032123211980184985?spanID=11181490899064586607&env=production&sort=time&colorBy=service&graphType=flamegraph) and viewed its "Host" tab:
 
-I created a dashboard titled 'APM + Infrastructure Metrics', which includes clones of the host's top host-level metrics and the Flask Application's Latency on Service data:
+<a href='./images/4.03-trace-host-info.jpeg'><img src="images/4.03-trace-host-info.jpeg" width="500" alt="04.01"></a>
 
-[APM + Infrastructure Metrics Dashboard Link](https://app.datadoghq.com/dash/1026232/apm--infrastructure-metrics?tile_size=m&page=0&is_auto=false&from_ts=1545264540000&to_ts=1545268140000&live=true)
-<a href='./images/4.03-APM-infrastructure-metric-dashboard.jpeg'><img src="images/4.03-APM-infrastructure-metric-dashboard.jpeg" width="500" alt="04.01"></a>
+__Note:__ I intended exporting the graphs displayed in the above screenshot to a Timeboard, but received an error when I attempted to do so:
+
+<a href='./images/4.03-error-screenshot.jpeg'><img src="images/4.03-error-screenshot.jpeg" width="500" alt="04.01"></a>
+
 
 * *Please include your fully instrumented app in your submission, as well*.
 The Flask application code with dd-trace below:
