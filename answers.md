@@ -31,7 +31,7 @@ The above command includes several environment variables in addition those inclu
 -v [..]/datadog-agent-checks.d:/checks.d:ro
 ```
 
-The above commands mount YAML configuration files and Python files in the host's local `/conf.d` and `check.d` directories to the agent container, copying them the agent's `/etc/datadog-agent/conf.d/` and `/etc/datadog-agent/check.d/` directories when the container starts. By mounting these two directories, files can be created locally and accessed by the container — which proved helpful when writing the `my_metric` custom Agent check.
+The above commands mount YAML configuration files and Python files in the host's local `/conf.d` and `check.d` directories to the agent container, copying them to the agent's `/etc/datadog-agent/conf.d/` and `/etc/datadog-agent/check.d/` directories when the container starts. By mounting these two directories, files can be created locally and accessed by the container — which proved helpful when writing the `my_metric` custom Agent check.
 
 - Tracing-related: the following allowed for the agent to trace data from an application outside it's container:  
 
@@ -89,7 +89,7 @@ After exiting the `psql` shell, I confirmed that the permissions were set by run
 psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-* I created the `postgres.yaml` config file in the `/datadog-agent-conf.d/` local directory with the below contents. Because this directory is mounted to the container, it will be copied to the container's `conf.d` directory.
+I then created the `postgres.yaml` config file in the `/datadog-agent-conf.d/` local directory with the below contents. Because this directory is mounted to the container, it will be copied to the container's `conf.d` directory.
 
 ```yaml
 init_config:
@@ -103,7 +103,7 @@ instances:
 
 
 
-* I then restarted the agent. To verify that Postgres had been successfully integrated, I ran the agent status command to make sure the `postgres` section under `Checks` did not include any errors.
+* I then restarted the agent. To verify that Postgres had been successfully integrated, I ran the agent status command to make sure that the `postgres` section under `Checks` did not include any errors.
 
 ```sh
 docker container stop dd-agent
@@ -181,7 +181,7 @@ Comparison of the `my_metric` graph before the collection frequency was updated 
 
 ### II. Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard.  that contains:
+_Utilize the Datadog API to create a Timeboard.  that contains:_
 
 * *Your custom metric scoped over your host.*
 
@@ -254,7 +254,9 @@ template_variables = [{
 api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables)
 ```
 
->Once this is created, access the Dashboard from your Dashboard List in the UI:
+[Timeboard Link](https://app.datadoghq.com/dash/1026228/siobhans-dataviz-timeboard?tile_size=m&page=0&is_auto=false&from_ts=1545224400000&to_ts=1545310800000&live=true)
+
+_Once this is created, access the Dashboard from your Dashboard List in the UI_:
 
 * *Set the Timeboard's timeframe to the past 5 minutes*
 
@@ -434,12 +436,11 @@ tracer.configure(hostname='172.17.0.2', port=8126)
 * *Is there anything creative you would use Datadog for?*
 After getting hands-on experience with just a few of Datadog's powerful tools, the possibilities seem endless! However, when thinking of how real time data analytics, monitoring, and graphing, 2 areas in particular come to mind:
 
-
-###### 1. Weather Forecast and Alerts
+__1. Weather Forecast and Alerts__
 If configured with DarkSky's API, Datadog's real time monitoring and alert tools could be used for:
 - Scheduling notifications each morning with warnings about rain ("bring an umbrella!") or a drastic temperature change (10° or more) from the day before ("no need to wear the winter parka today!")
-- Real-time alerts for when rain is predicted to start within 15 minutes ("you should run that errand now!"), when rain starts and how long it's predicted to continue ("you may want to hold off on running that errand.."), and when the rain has stopped ("all clear to run that errand")
+- Real-time alerts for when rain is predicted to start within 10-15 minutes ("you should run that errand now!"), when rain starts and how long it's predicted to continue ("you may want to hold off on running that errand.."), and when the rain has stopped ("all clear to run that errand")
 - After extended periods of rain, notifications about upcoming sunny weather and the longevity thereof ("You may want to go for that run this afternoon. Rain will start this evening and will continue through tomorrow morning.")
 
-###### 2. All Transit
+__2. All Transit__
 The subway system example referenced in the question got me thinking — how great would it be if, in addition to monitoring and getting alerts about the subway schedule, scheduling, trip length, and price data for other modes of transportation (e.g., CitiBike, bus, ride share, walking, etc.) could also be accounted for when planning a trip? Analyses could be run on demand ("I'm leaving x for y now") as well as scheduled — using the user's daily commute, the user could receive notifications recommending the best combination of transit options.
