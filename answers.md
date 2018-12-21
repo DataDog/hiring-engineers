@@ -222,6 +222,8 @@ Using Datadog, I was able to:
 
 ## Conclusions
 
+* **note** any code used that wasn't specifically linked is under "sample_code".  You can find all the configuration files and full text of the flask app and other data there.
+
 I've always approached monitoring from a "Critical Business Process" perspective that I learned from being the lead for a contract managing all the systems for one of the world's largest online clothing retailers.  I'll never forget what the CIO said to me the moment I got onsite:
 
 "We sell pants."
@@ -237,7 +239,6 @@ I'd be really interested in pairing some of the anomaly detection, past history 
 I had a decent amount of fun playing around with Datadog, but I will admit that some of the learning curve seemed steep for some avoidable reasons.  Example:  the custom checks documentation tells you to buck the presumed standard of directory named checkname.d/conf.yaml and name the file checkname.yaml.
 
 Net-net it seems like there is a ton of potential with Datadog, and given how flexible and open ended the system is, I see how solutions engineers and similar teammates at Datadog are extremely important to helping companies realize the full potential of their investment. 
-
 
 CHEERS, and happy holidays.
 
