@@ -37,13 +37,13 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 * **Database Integration** I chose MySQL to install on my test host.  I saw mysqld in the process list fairly quickly in Datadog, and then followed the instructions to get the MySQL integration installed  At first I had a typo in my dd-agent key, and it took upwards of 5 minutes or so before my corrections showed in the UI.  Random musing... have you had problems with someone having a typo that was *exactly the same* as someone else's key and data getting collocated, or more realistically, a problem where someone at Datadog copied some work from a colleague and accidentally forgot to update the key?  
 
-<img src="images/mysql_is_online.png" align="center" width=500px>
+	<img src="images/mysql_is_online.png" align="center">
 
 * **Custom Check** I created a simple check called customtest that submits the metric of a random int between 0 and 1000.  I would have preferred here to do something a bit more useful for the timeboard -- for example, do some kind of transform on the current time, or make the value go haywire every 30 minutes, or similar, so that my timeboard would be more interesting later.  We'll get to that later, but for now, it's just a <a href="sample_code/customcheck.py"> simple python check </a>. 
 
 * **_note_** I realized that having it say just "my\_metric" resulted in the "app" in the "Infrastructure List" to be listed as "no\_namespace".  So I changed it so that it submitted as customtest.my\_metric instead of just "my\_metric".  For now, I haven't added any additional tags.
 
-<img src="images/customtest_check_online.png">
+	<img src="images/customtest_check_online.png">
 
 
 * **Collection Interval**  It's easy to set the check interval by editing the conf.yaml file in conf.d/custom.d/ however... the value is min\_collection\_interval.  This would mean that every 45 seconds the agent will schedule the check to run.  There are a lot of reasons that might not work as advertised, but the chances of this being off on a box that is so lean is low.  
@@ -73,11 +73,11 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 * **_note_**   Setting the timeboard to 5 minutes is not intuitive.  Even rigging the URL doesn't always work, and you can't select anything more fine grained than a day with the UI.  You can select an hour and then play back.  It isn't in the documentation I could find anywhere.  I finally found it from the datadog twitter feed...
 
-<img src="images/timeboard_5min.png">
+	<img src="images/timeboard_5min.png">
 
 * I took a snapshot of one of the graphs and sent myself a copy. 
 
-<img src="images/graph_email_5min.png">
+	<img src="images/graph_email_5min.png" width=300px>
 
 * **Anomaly Graphs**  This highlights (by default, in gray), the area where the values are "expected to be" and in red the ones that look "anomalous"
 
@@ -108,11 +108,11 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 	Low and behold, within about 30 seconds it did.
 
-<img src="images/monitor_alert_email.png">
+	<img src="images/monitor_alert_email.png">
 
 * **Downtime** I set up downtime for the weekend and for M-F 9pm-7am.  Note there's a little bit of overlapping downtime (Saturday midnight->Saturday 7am) ... that's ok.
 
-<img src="images/downtime_email.png">
+	<img src="images/downtime_email.png">
 
 
 ### Collecting APM Data:
@@ -121,7 +121,7 @@ I've never used Flask, so I used the default flask app provided to continue with
 
 Since I know that the service map for this is going to be fairly boring (no dependencies), I start with invoking ddtrace-run. I purposely curl some bad URLs so I have something interesting to look at in the traces besides 200OK... but honestly this is still pretty bleak looking.
 
-<img src="images/flask_is_online.png">
+	<img src="images/flask_is_online.png">
 
 Here's some logs showing me checking out this basic webapp and it sending traces, for reference:
 		
@@ -144,7 +144,7 @@ Here's some logs showing me checking out this basic webapp and it sending traces
 
 ..as you can see, the traces showed up in the UI:
 
-<img src="images/we_have_traces.png">
+	<img src="images/we_have_traces.png">
 
 
 So... to make this better, I redid all this by putting some dependencies in there:
@@ -156,16 +156,18 @@ I then re-instrumented the app, curled a few of the URLs to force some traces...
 
 And voila... the service map shows the db dependency.
 
-<img src="images/we_have_dependencies.png">
+	<img src="images/we_have_dependencies.png">
 
 We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the 500's line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
 
 * note:  this is a timeboard - I'm assuming you can get into my profile to see this, otherwise your link will likely be dead.
-<a href="https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true"><img src="images/apm_timeboard.png"></a>
+
+	<a href="https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true"><img src="images/apm_timeboard.png"></a>
 
  
 If you clicked on that and can't see, I also made a quick Screenboard and made it public:
-<a href=https://p.datadoghq.com/sb/cf1e2a4ea-503c962c1610e556f0adcb22eeaf6fdd><img src="images/apm_screenboard.png"></a>
+
+	<a href=https://p.datadoghq.com/sb/cf1e2a4ea-503c962c1610e556f0adcb22eeaf6fdd><img src="images/apm_screenboard.png"></a>
 
 
 ### Service vs. Resource
