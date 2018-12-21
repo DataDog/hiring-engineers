@@ -178,7 +178,7 @@ The default exercise was a nice guided tour, but this is just a small taste of w
 
 For a more fun application, I decided to play around with my home automation box and see if I could play some tricks on my family (and debug a small issue) with Datadog.
 
-## Stage 2:  Using Baremetal Linux
+## Stage 2:  HomeAssistant and an old Dell Optiplex
 I was asked:  _Is there anything creative you would use Datadog for?_
 
 It so happened that right at this time, I'd been playing around with HomeAssistant to automate some things in my home.  If you haven't played with HASS, I highly recommend.  It runs great on a Raspberry Pi - or even an 11 year old desktop.
