@@ -112,7 +112,7 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 * **Downtime** I set up downtime for the weekend and for M-F 9pm-7am.  Note there's a little bit of overlapping downtime (Saturday midnight->Saturday 7am) ... that's ok.
 
-	<img src="images/downtime_email.png" width=300px>
+	<img src="images/downtime_notification.png" width=300px>
 
 
 ### Collecting APM Data:
@@ -209,10 +209,10 @@ I used the regular Datadog GUI to add a Timeboard after exploring some of the me
 
 It looks like I might have an iffy drive sda that causes some IO spikes.  I thought it would be a good idea to add a monitor there.
 
-I injected the HomeAssistant events into Datadog, and I found that the IO spikes didn't correlate with times I had problems turning on the lights.  But for kicks, I did add a fun monitor to text my husband "oh no... spooky" every time my kid turns on the lights after midnight.  (I broke the monitor to force it to trigger on "no data" so I could test it)
-<img src="images/spooky.png">
+I found that the IO spikes didn't correlate with times I had problems turning on the lights.  But for kicks, I did add a fun monitor to text my husband "oh no... spooky" every time it happens.  (I broke the monitor to force it to trigger on "no data" so I could test it)
+<img src="images/spooky.jpg" width=200px>
 
-mwa, ha, ha!!
+From here it could be pretty easy to text my husband every time my kid turns on the lights at night.  mwa, ha, ha!!
 
 ### So, Now What???
 
