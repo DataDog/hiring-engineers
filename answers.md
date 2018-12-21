@@ -210,6 +210,7 @@ I used the regular Datadog GUI to add a Timeboard after exploring some of the me
 It looks like I might have an iffy drive sda that causes some IO spikes.  I thought it would be a good idea to add a monitor there.
 
 I found that the IO spikes didn't correlate with times I had problems turning on the lights.  But for kicks, I did add a fun monitor to text my husband "oh no... spooky" every time it happens.  (I broke the monitor to force it to trigger on "no data" so I could test it)
+
 <img src="images/spooky.jpg" width=200px>
 
 From here it could be pretty easy to text my husband every time my kid turns on the lights at night.  mwa, ha, ha!!
