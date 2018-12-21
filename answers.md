@@ -108,11 +108,11 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 	Low and behold, within about 30 seconds it did.
 
-	<img src="images/monitor_alert_email.png">
+	<img src="images/monitor_alert_email.png" width=300px>
 
 * **Downtime** I set up downtime for the weekend and for M-F 9pm-7am.  Note there's a little bit of overlapping downtime (Saturday midnight->Saturday 7am) ... that's ok.
 
-	<img src="images/downtime_email.png">
+	<img src="images/downtime_email.png" width=300px>
 
 
 ### Collecting APM Data:
@@ -156,7 +156,7 @@ I then re-instrumented the app, curled a few of the URLs to force some traces...
 
 And voila... the service map shows the db dependency.
 
-	<img src="images/we_have_dependencies.png">
+	<img src="images/we_have_dependencies.png" width=400px>
 
 We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the 500's line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
 
@@ -209,9 +209,10 @@ I used the regular Datadog GUI to add a Timeboard after exploring some of the me
 
 It looks like I might have an iffy drive sda that causes some IO spikes.  I thought it would be a good idea to add a monitor there.
 
-### Collecting APM Data
+I injected the HomeAssistant events into Datadog, and I found that the IO spikes didn't correlate with times I had problems turning on the lights.  But for kicks, I did add a fun monitor to text my husband "oh no... spooky" every time my kid turns on the lights after midnight.  (I broke the monitor to force it to trigger on "no data" so I could test it)
+<img src="images/spooky.png">
 
-I injected the HomeAssistant events into Datadog, and I found that the IO spikes didn't correlate with times I had problems turning on the lights.  But for kicks, I did add a fun monitor to ship me a note every time my kid turns on the lights after midnight.
+mwa, ha, ha!!
 
 ### So, Now What???
 
