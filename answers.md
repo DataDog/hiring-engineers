@@ -77,7 +77,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Anomaly Graphs**  This highlights (by default, in gray), the area where the values are "expected to be" and in red the ones that look "anomalous"
 
-<img src="images/anomaly_graph_cpu.png">
+<img src="images/anomaly_graph.png">
 
 By showing the CPU time, you can see that in reality, the anomaly really shouldn't be these spikes, and the anomaly function probably needs more time to "bake" to show a true anomaly.  (Incidentally, that's why - when faced with designing a similar function for a competing product, we didn't just have a few different algorithms, we had 9 of them working together and had the ability to change the weights to get something that worked better.  I wanted to add some machine learning in there on top of it all, but then I left the company... but I digress.)
 
@@ -112,6 +112,7 @@ Since I know that the service map for this is going to be fairly boring (no depe
 
 <img src="images/flask_is_online.png">
 
+Here's some logs showing me checking out this basic webapp and it sending traces, for reference:
 		
 		root@datadogtest:/opt/flasktest# curl localhost:5050/api/apm
 		INFO:werkzeug:127.0.0.1 - - [18/Dec/2018 00:52:00] "GET /api/apm HTTP/1.1" 200 -
@@ -129,21 +130,24 @@ Since I know that the service map for this is going to be fairly boring (no depe
 		root@datadogtest:/opt/flasktest# DEBUG:ddtrace.api:reported 1 traces in 0.00084s
 		2018-12-18 00:52:07,084 - ddtrace.api - DEBUG - reported 1 traces in 0.00084s
 
+
+..as you can see, the traces showed up in the UI:
+
 <img src="images/we_have_traces.png">
 
-I redid all this by putting some dependencies in there:
+
+So... to make this better, I redid all this by putting some dependencies in there:
 
 * I added a random /api/testdb to do a simple select on mysql
 * I neglected to grant the mysql the ability to select on the database to start so I'd get a nasty 500
 
 I then re-instrumented the app, curled a few of the URLs to force some traces... hoping I'd get a more interesting service map when it came online.
 
-
 And voila... the service map shows the db dependency.
 
 <img src="images/we_have_dependencies.png">
 
-We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the flasktestweb errors line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
+We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the 500's line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
 
 * note:  this is a timeboard - I'm assuming you can get into my profile to see this, otherwise your link will likely be dead.
 <a href="https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true"><img src="images/apm_timeboard.png"></a>
