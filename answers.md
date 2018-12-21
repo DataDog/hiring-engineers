@@ -27,13 +27,15 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 ### Collecting Metrics:
 
-* **Tags** A few simple tags were added to the agent config to start.  Knowing we are going to set up a database, and that my other test host is a baremetal, I added role and location. Tags are relatively easy to use, though I doubt if there is actually any real hierarchy to metrics when separated by : as implied.  Instead it seems like a convention that works well to approximate it.
+* **Tags** A few simple tags were added to the agent config to start.  Knowing we are going to set up a database, and that my other test host is a baremetal, I added role and location. Tags are relatively easy to use.
 
 		tags:
    		- datadogtest
    		- env:test
    		- role:database
    		- location:cloud
+		
+	<img src="images/host_map.png">
 
 * **Database Integration** I chose MySQL to install on my test host.  I saw mysqld in the process list fairly quickly in Datadog, and then followed the instructions to get the MySQL integration installed  At first I had a typo in my dd-agent key, and it took upwards of 5 minutes or so before my corrections showed in the UI.  Random musing... have you had problems with someone having a typo that was *exactly the same* as someone else's key and data getting collocated, or more realistically, a problem where someone at Datadog copied some work from a colleague and accidentally forgot to update the key?  
 
