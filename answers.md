@@ -58,38 +58,34 @@ I then added the `tag` property and a list of tags in a `<key>:<value>` format:
   <a href='./images/1.01-datadog.yaml-tag-screenshot.jpeg'><img src="Images/1.01-datadog.yaml-tag-screenshot.jpeg" width="500" height="332" alt="datadog.yaml-tag-code"></a>
 
 
-I saved my changes and exited vim's edit mode by entering pressing `esc`, followed by `:wq`. I then exited the container's terminal (by running `exit`), and restarted the agent:
+I saved my changes and exited vim's edit mode by entering `esc`, followed by `:wq`. I then exited the container's terminal (by running `exit`), and restarted the agent:
 
-  * Restart your Datadog agent with the following command:
+```sh
+docker container stop dd-agent
+docker container start dd-agent
+```
 
-  ```sh
-  docker container stop dd-agent
-  docker container start dd-agent
-  ```
+I then navigated to the Host Map to make sure the new tags were listed:
 
-  * Navigate to Host Map in your Datadog Dashboard and you should see the new tags listed:
-
-  <a href='./images/1.01-datadog.yaml-tag-screenshot.jpeg'><img src="images/1.01-dashboard-tag-screenshot.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+<a href='./images/1.01-datadog.yaml-tag-screenshot.jpeg'><img src="images/1.01-dashboard-tag-screenshot.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 
 * *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
 
-I selected PostgreSQL from the list of Integration options.
-
-I created a read-only datadog user with proper access to your PostgreSQL Server by running the following command in a `psql` shell:
+After selecting PostgreSQL from the list of Integration options, I created a read-only datadog user with proper access to my PostgreSQL Server by running the following command in a `psql` shell:
 
 ```sql
 create user datadog with password <PASSWORD>;
 grant SELECT ON pg_stat_database to datadog;
 ```
 
-After exiting the `psql` shell, I confirmed that the permissions were set by running:
+After exiting the `psql` shell, I confirmed that the permissions had been set by running:
 
 ```sh
 psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-I then created the `postgres.yaml` config file in the `/datadog-agent-conf.d/` local directory with the below contents. Because this directory is mounted to the container, it will be copied to the container's `conf.d` directory.
+I then created the `postgres.yaml` config file in the `/datadog-agent-conf.d/` local directory with the content below. Because this directory is mounted to the container, it will be copied to the container's `conf.d` directory.
 
 ```yaml
 init_config:
@@ -101,9 +97,7 @@ instances:
     password: <FILL IN>
 ```
 
-
-
-* I then restarted the agent. To verify that Postgres had been successfully integrated, I ran the agent status command to make sure that the `postgres` section under `Checks` did not include any errors.
+I then restarted the agent. To verify that Postgres had been successfully integrated, I ran the agent status command to make sure that the `postgres` section under `Checks` did not include any errors.
 
 ```sh
 docker container stop dd-agent
@@ -111,7 +105,7 @@ docker container start dd-agent
 sudo docker exec -it dd-agent agent status
 ```
 
-  <a href='./images/1.02-agent-db-check-screenshot.jpeg'><img src="images/1.02-agent-db-check-screenshot.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+<a href='./images/1.02-agent-db-check-screenshot.jpeg'><img src="images/1.02-agent-db-check-screenshot.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 
 
@@ -122,42 +116,47 @@ Creating a custom Agent metric check involves creating a check (Python) file, wh
 
 Because the local `/datadog-agent-checks.d` and `/datadog-agent-conf.d` directories are mounted to the agent container, the necessary config and check files for `my_metric` can be created locally and stored in the respective directory. Here's what the files look like:
 
-  - `mymetric.yaml`
+- `mymetric.yaml`
 
-    ```yaml
-    init_config:
+  ```yaml
+  init_config:
 
-    instances: [{}]
-    ```
-
-  - `mymetric.py`: uses the Python `random` library to generate a random integer in the range of 1 and 1000:
-
-    ```py
-  try:
-    from checks import AgentCheck
-  except ImportError:
-    from datadog_checks.checks import AgentCheck
-
-    __version__ = "1.0.0"
-
-    import random
-
-    class HelloCheck(AgentCheck):
-      def check(self, instance):
-        self.gauge('my_metric', random.randint(1,1000))
+  instances: [{}]
   ```
+
+- `mymetric.py`: uses the Python `random` library to generate a random integer in the range of 1 and 1000:
+
+  ```py
+try:
+  from checks import AgentCheck
+except ImportError:
+  from datadog_checks.checks import AgentCheck
+
+  __version__ = "1.0.0"
+
+  import random
+
+  class HelloCheck(AgentCheck):
+    def check(self, instance):
+      self.gauge('my_metric', random.randint(1,1000))
+```
 
 After restarting the agent, I ran the `agent status check` and `agent status` commands and reviewed the host map on the Datadog platform to confirm `my_metric` had been implemented successfully:
 
-`agent status` Results_:
-<a href='./images/1.03.2-mymetric-agent-status.jpeg
-'><img src="images/1.03.2-mymetric-agent-status.jpeg
-" width="500" alt="my-metric-agent-status"></a>
+`agent status`:
 
-`agent status check` Results_:
-<a href='./images/1.03.3-mymetric-check-status.jpeg'><img src="images/1.03.3-mymetric-check-status.jpeg" width="500" alt="my-metric-agent-status"></a>
+<a href='./images/1.03.2-mymetric-agent-status.jpeg'><img src="images/1.03.2-mymetric-agent-status.jpeg" width="500" alt="my-metric-agent-status"></a>
+
+
+
+`agent status check`:
+
+<a href='./images/1.03.3-mymetric-check-status.jpeg'><img src="images/1.03.3-mymetric-check-status.jpeg" height="500" alt="my-metric-agent-status"></a>
+
+
 
 `my_metric` Dashboard in Host Map:
+
 <a href='./images/1.03.1-mymetric-dashboard-nomarkup.jpeg'><img src="images/1.03.1-mymetric-dashboard-nomarkup.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 
@@ -185,15 +184,39 @@ _Utilize the Datadog API to create a Timeboard.  that contains:_
 
 * *Your custom metric scoped over your host.*
 
+I used the following query to scope `my_metric` over the host:
+
+```py
+"q": "avg:my_metric{host:linuxkit-025000000001}"
+```
+
+Which produced:
+
   <a href='./images/2.01-timeboard_graph1_my_metric.jpeg'><img src="images/2.01-timeboard_graph1_my_metric.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 * *Any metric from the Integration on your Database with the anomaly function applied.*
+
+My query with the anomaly function:
+
+```py
+"q": "anomalies(avg:postgresql.rows_fetched{*}, 'basic', 3)"
+```
+
+Which produced:
 
   <a href='./images/2.02-timeboard_graph2_postgres_metric.jpeg'><img src="images/2.02-timeboard_graph2_postgres_metric.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 * *Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.*
 
-  <a href='./images/2.03-timeboard_graph3_my_metric_anomaly.jpeg'><img src="images/2.03-timeboard_graph3_my_metric_anomaly.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
+The `rollup` function applied to `my_metric`:
+
+```py
+"q": "avg:my_metric{*}.rollup(sum, 3600)"
+```
+
+Which produced:
+
+<a href='./images/2.03-timeboard_graph3_my_metric_anomaly.jpeg'><img src="images/2.03-timeboard_graph3_my_metric_anomaly.jpeg" width="500" alt="datadog.yaml-tag-code"></a>
 
 * *Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.*
 
@@ -394,13 +417,11 @@ __APM Tab — `/get` Resource View:__
 
 
 * *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics*.
-To view the APM tracing data within the context of the host's infrastructure metrics, I navigated to the "Trace List" tab, selected the resource "/GET" listed next to one of the traces, and then selected [a trace item]( https://app.datadoghq.com/apm/trace/15032123211980184985?spanID=11181490899064586607&env=production&sort=time&colorBy=service&graphType=flamegraph) and viewed its "Host" tab:
 
-<a href='./images/4.03-trace-host-info.jpeg'><img src="images/4.03-trace-host-info.jpeg" width="500" alt="04.01"></a>
+I created a dashboard titled [APM + Infrastructure Metrics](https://app.datadoghq.com/dash/1027757?tile_size=m&page=0&is_auto=false&from_ts=1545351692650&to_ts=1545351992650&live=false&tpl_var_=*) by cloning the top host-level metric dashboard and cloning metrics from the `flask.request` service, which   
 
-__Note:__ I intended exporting the graphs displayed in the above screenshot to a Timeboard, but received an error when I attempted to do so:
+<a href='./images/4.03-infrastructure-with-apm-metric-data.jpeg'><img src="images/4.03-infrastructure-with-apm-metric-data.jpeg" width="500" alt="4.3"></a>
 
-<a href='./images/4.03-error-screenshot.jpeg'><img src="images/4.03-error-screenshot.jpeg" width="500" alt="04.01"></a>
 
 
 * *Please include your fully instrumented app in your submission, as well*.
