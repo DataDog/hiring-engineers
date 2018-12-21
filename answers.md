@@ -2,7 +2,7 @@
 
 Nerd, Zelda enthusiast (grumble, grumble!), older than she wishes she was... Kristen's been designing monitoring solutions for at least 12 years. 
 
-<img src="images/grumble.jpg" width=400px>
+<img src="images/grumble.jpg" width=300px>
 
 After playing with Datadog in search of a better core for her previous employer's offerings and seeing potential, she's decided to talk to the crew at Datadog and see if she might be a fit to help make Datadog great.
 
@@ -62,18 +62,20 @@ Assuming "the python script" includes the yaml file too ... Another way to modif
 
 ### Visualizing Data:
 
-First, we can use the API to make a timeboard, but I made a conscious decision not to overengineer the API call.  The use case here that immediately comes to mind is to spawn a timeboard when you detect something bad in monitoring, and since I didn't have the facility to know very well all the knobs and dials for color, size, etc. 
+* First, we can use the API to make a timeboard, but I made a conscious decision not to overengineer the API call.  The use case here that immediately comes to mind is to spawn a timeboard when you detect something bad in monitoring, and since I didn't have the facility to know very well all the knobs and dials for color, size, etc. 
 
-The timeboard contains:
+	The timeboard contains:
 
-* The "customtest" metric scoped over the host
-* The MySQL CPU Time with the anomaly function applied
-* The "customtest" metric summed up for an hour
+	* The "customtest" metric scoped over the host
+	* The MySQL CPU Time with the anomaly function applied
+	* The "customtest" metric summed up for an hour
 
-*note* Setting the timeboard to 5 minutes is not intuitive.  Even rigging the URL doesn't always work, and you can't select anything more fine grained than a day with the UI.  You can select an hour and then play back.  It isn't in the documentation I could find anywhere.  I finally found it from the datadog twitter feed...
+* *Note*  Setting the timeboard to 5 minutes is not intuitive.  Even rigging the URL doesn't always work, and you can't select anything more fine grained than a day with the UI.  You can select an hour and then play back.  It isn't in the documentation I could find anywhere.  I finally found it from the datadog twitter feed...
+
 <img src="images/timeboard_5min.png">
 
-I took a snapshot of one of the graphs and sent myself a copy.  
+* I took a snapshot of one of the graphs and sent myself a copy. 
+
 <img src="images/graph_email_5min.png">
 
 * **Anomaly Graphs**  This highlights (by default, in gray), the area where the values are "expected to be" and in red the ones that look "anomalous"
@@ -178,11 +180,13 @@ It so happened that right at this time, I'd been playing around with HomeAssista
 "cbserv" has been my trusty little box since 2007.   It's an old Dell Optiplex 755, and it's survived 5 apartments and 3 jobs.
 
 I recently installed HomeAssistant on it in the hopes of using it to automate my lights and smart plugs.  The problem is... sometimes it just goes bonkers.  I've poured through the logs and found nothing, and I never lose connection to the app itself.  So I'm hoping that by using datadog and investigating some of the metrics in a timeseries view, I can figure out what the issue really is...
-<img src="images/optiplex.jpg">
+
+<img src="images/optiplex.jpg" width=300px>
 
 ### Collecting Metrics
 
 I installed the agent on cbserv.  I didn't worry too much about tags for the moment, because I only have the 1 server that is hosting everything, but in a larger environment I'd be much more careful here.
+
 <img src="images/cbserv_online.png">
 
 ### Visualizing Data
