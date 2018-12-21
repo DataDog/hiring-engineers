@@ -152,7 +152,7 @@ So... to make this better, I redid all this by putting some dependencies in ther
 * I added a random /api/testdb to do a simple select on mysql
 * I neglected to grant the mysql the ability to select on the database to start so I'd get a nasty 500
 
-I then re-instrumented the app, curled a few of the URLs to force some traces... hoping I'd get a more interesting service map when it came online.
+I then re-instrumented the app, curled a few of the URLs to force some traces... hoping I'd get a more interesting service map when it came online. <a href="sample_code/flasktestweb_instrumented.py"> The code </a>
 
 And voila... the service map shows the db dependency.
 
