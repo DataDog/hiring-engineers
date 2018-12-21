@@ -146,11 +146,11 @@ And voila... the service map shows the db dependency.
 We also made a quick timeboard showing the health of the box as the site was getting used.  Again, it's pretty simplistic, we can certainly go nuts here and do a lot of fancy things with the dashboard, but the main idea here - to use the board to show a snapshot of how multiple things are doing at one time - stays the same.  What you CAN see here is that the flasktestweb errors line up to where the MySQL is getting a few extra queries, but that there's no CPU latency to blame:
 
 * note:  this is a timeboard - I'm assuming you can get into my profile to see this, otherwise your link will likely be dead.
-<a href=https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true>APM Timeboard Example </a>
-<img src="images/apm_timeboard.png">
+<a href="https://app.datadoghq.com/dash/1020429?tile_size=m&page=0&is_auto=false&from_ts=1545343800000&to_ts=1545347400000&live=true"><img src="images/apm_timeboard.png"></a>
 
-<br>
-<a href=https://p.datadoghq.com/sb/cf1e2a4ea-503c962c1610e556f0adcb22eeaf6fdd>Public Screenboard with Similar Data</a>
+ 
+If you clicked on that and can't see, I also made a quick Screenboard and made it public:
+<a href=https://p.datadoghq.com/sb/cf1e2a4ea-503c962c1610e556f0adcb22eeaf6fdd><img src="images/apm_screenboard.png"></a>
 
 
 * **Service vs. Resource**  (PS: I *really tried* not to just repeat the documentation <a href=https://docs.datadoghq.com/tracing/visualization> here </a>) A resource is something consumed/utilized by a service, while a service is a set of things that provide a particular activity for an application.  In other words, in order to provide the webapp of of "mysite" I need to use the service of "database_server" (to print out some stuff from the db) and  "mywebapp".   The database server will use several resources to grab data (select and insert statements), and the webapp has resources like "homepage" and "orderstatus_page".  A service could require several resources, some internal to the host, some external. 
