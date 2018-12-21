@@ -39,7 +39,7 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 <img src="images/mysql_is_online.png" align="center" width=500px>
 
-* **Custom Check** I created a simple check called customtest that submits the metric of a random int between 0 and 1000.  I would have preferred here to do something a bit more useful for the timeboard -- for example, do some kind of transform on the current time, or make the value go haywire every 30 minutes, or similar, so that my timeboard would be more interesting later.  We'll get to that later, but for now, it's just a simple python check. 
+* **Custom Check** I created a simple check called customtest that submits the metric of a random int between 0 and 1000.  I would have preferred here to do something a bit more useful for the timeboard -- for example, do some kind of transform on the current time, or make the value go haywire every 30 minutes, or similar, so that my timeboard would be more interesting later.  We'll get to that later, but for now, it's just a <a href="sample_code/customcheck.py"> simple python check </a>. 
 
 **_note_** I realized that having it say just "my\_metric" resulted in the "app" in the "Infrastructure List" to be listed as "no\_namespace".  So I changed it so that it submitted as customtest.my\_metric instead of just "my\_metric".  For now, I haven't added any additional tags.
 
@@ -52,28 +52,29 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 			instances:
 			  - min_collection_interval: 45
 			  
-	Another way to modify the check interval... We could optionally set the entire agent to run checks every 45 seconds instead of 15 seconds (the default), but that would affect other checks as well - probably not the best idea.  We could also script up something that would run the check manually on the command line, or adding it to dd-agent's crontab:
+Assuming "the python script" includes the yaml file too ... Another way to modify the check interval... We could optionally set the entire agent to run checks every 45 seconds instead of 15 seconds (the default), but that would affect other checks as well - probably not the best idea.  We could also script up something that would run the check manually on the command line, or adding it to dd-agent's crontab:
 
 		/usr/bin/datadog-agent check custom 
 
-	This sounds more useful in the context of forcing a check and verifying output after maintenance.  I bet there's also a way through the Datadog API to do this.
+	This sounds more useful in the context of forcing a check and verifying output after maintenance.  There may be a way through the API as well, but I didn't see anything, and I assume that would mean that the agent would need to pull instead of just push.. so perhaps not.
 
 
 
 ### Visualizing Data:
 
-First, we can use the API to make a timeboard, but I made a conscious decision not to overengineer the API call.  The use case here that immediately comes to mind is to spawn a timeboard when you detect something bad in monitoring, and since I didn't have the facility to know very well all the knobs and dials for color, size, etc. and what would look nice, I started out just making a default one and then played with it until it looked a little bit nicer. 
+First, we can use the API to make a timeboard, but I made a conscious decision not to overengineer the API call.  The use case here that immediately comes to mind is to spawn a timeboard when you detect something bad in monitoring, and since I didn't have the facility to know very well all the knobs and dials for color, size, etc. 
 
 The timeboard contains:
 
 * The "customtest" metric scoped over the host
 * The MySQL CPU Time with the anomaly function applied
-* The "customtest" metric summed up for an hour.
+* The "customtest" metric summed up for an hour
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+*note* Setting the timeboard to 5 minutes is not intuitive.  Even rigging the URL doesn't always work, and you can't select anything more fine grained than a day with the UI.  You can select an hour and then play back.  It isn't in the documentation I could find anywhere.  I finally found it from the datadog twitter feed...
+<img src="images/timeboard_5min.png">
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+I took a snapshot of one of the graphs and sent myself a copy.  
+<img src="images/graph_email_5min.png">
 
 * **Anomaly Graphs**  This highlights (by default, in gray), the area where the values are "expected to be" and in red the ones that look "anomalous"
 
