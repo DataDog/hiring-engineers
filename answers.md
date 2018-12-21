@@ -87,26 +87,33 @@ ec2-18-216-168-78.us-east-2.compute.amazonaws.com aka **"datadogtest"**
 
 ### Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+* I created a monitor on the Custom Metric with:
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+	* Warning threshold of 500
+	* Alerting threshold of 800
+	* notify  if there is No Data for this query over the past 10m.
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* I set it to notify me using the text below:
 
-Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+			{{#is_alert}}This is a CRITICAL ALARM.  The Alert threshold is {{threshold}}{{/is_alert}} 
+			{{#is_alert_recovery}}The Alert has RECOVERED{{/is_alert_recovery}} 
+			{{#is_recovery}}The check has RECOVERED{{/is_recovery}} 
+			{{#is_alert_to_warning}}Things are getting better, it is now a WARNING{{/is_alert_to_warning}} 
+			{{#is_warning}}This is a WARNING ALARM.  The Warning threshold is {{warn_threshold}} {{/is_warning}} 
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+			The current value is {{value}} and the host ip if you need it is {{host.ip}}
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+			@kjm31@yahoo.com
+
+	Low and behold, within about 30 seconds it did.
+
+<img src="images/monitor_alert_email.png">
+
+* **Downtime** I set up downtime for the weekend and for M-F 9pm-7am.  Note there's a little bit of overlapping downtime (Saturday midnight->Saturday 7am) ... that's ok.
+
+<img src="images/downtime_email.png">
+
 
 ### Collecting APM Data:
 
@@ -182,7 +189,7 @@ It so happened that right at this time, I'd been playing around with HomeAssista
 
 I recently installed HomeAssistant on it in the hopes of using it to automate my lights and smart plugs.  The problem is... sometimes it just goes bonkers.  I've poured through the logs and found nothing, and I never lose connection to the app itself.  So I'm hoping that by using datadog and investigating some of the metrics in a timeseries view, I can figure out what the issue really is...
 
-<img src="images/optiplex.jpg" width=300px>
+<img src="images/optiplex.jpg" width=100px>
 
 ### Collecting Metrics
 
