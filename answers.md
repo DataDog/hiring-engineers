@@ -2,9 +2,9 @@ Your answers to the questions go here.
 
 ## Prerequisites - Setup the environment
 My environment for this exercise is below :
-  Vagrant Ubuntu VM 16.04 (xenial)  
+  Vagrant Ubuntu VM 16.04 (xenial)
   Docker (Ubuntu 16.04), MySQL on the Vagrant
-  
+
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -12,61 +12,96 @@ My environment for this exercise is below :
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-** Install MySQL
-1) sudo apt-get update
-2) sudo apt-get install mysql-server
+### Following is the steps from installing MySQL to installing & confirming Datadog integration. (Karino)
+### Install MySQL
+>sudo apt-get update
+>sudo apt-get install mysql-server
 
-** Create a datadog user
-1) sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'nl7ZchKVbXCEHux(MXG5LbkF';"
-2) sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
-3) sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
-4) sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+After MySQL is installed, take following steps on Dashboard.
+![On Dashboard](MySQL_install_1.PNG)
 
-** Verification
-1) mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "show status" | \
+Then give commands shown on Dashboards step by step.
+
+### Create a datadog user in MySQL
+>sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'nl7ZchKVbXCEHux(MXG5LbkF';"
+>sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
+>sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
+>sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+
+### Verification
+>mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "show status" | \
 grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
 echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "show slave status" && \
 echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 
-2) mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "SELECT * FROM performance_schema.threads" && \
+You can see as below when it is successful.
+![On Dashboard](MySQL_install_verify1.PNG)
+
+>mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "SELECT * FROM performance_schema.threads" && \
 echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing SELECT grant\033[0m"
 mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
 echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 
-** Configure the Agent to connect to MySQL
-1) create config file
- cd /etc/datadog-agent
- sudo vi conf.d/mysql.yaml
----------------------------------
-init_config:
+You can see as below when it is successful.
+![On Dashboard](MySQL_install_verify2.PNG)
 
-instances:
-  - server: localhost
-    user: datadog
-    pass: nl7ZchKVbXCEHux(MXG5LbkF
-    
-    tags:
-        - optional_tag1
-        - optional_tag2
-    options:
-      replication: 0
-      galera_cluster: 1
----------------------------------
+### Configure the Agent to connect to MySQL
+1) create config file
+>cd /etc/datadog-agent
+>sudo vi conf.d/mysql.yaml
+
+>---------------------------------
+>init_config:
+>
+>instances:
+>     - server: localhost
+>       user: datadog
+>       pass: nl7ZchKVbXCEHux(MXG5LbkF
+>       tags:
+>         - optional_tag1
+>         - optional_tag2
+>    options:
+>      replication: 0
+>      galera_cluster: 1
+>---------------------------------
 
 2) Restart the Agent
-   sudo systemctl stop datadog-agent
-   sudo systemctl start datadog-agent
+>   sudo systemctl stop datadog-agent
+>   sudo systemctl start datadog-agent
 
-3) Confirm Agent status 
-  sudo datadog-agent status | grep 'mysql'
+3) Confirm Agent status
+>  sudo datadog-agent status | grep 'mysql'
+
+You can see as below when it is successful.
+![On Dashboard](MySQL_install_verify3.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+To create custom Agent Check, I prepared two files
+  1) /etc/datadog-agent/checks.d/my_custom_check.py
+  2) /etc/datadog-agent/conf.d/my_custom_check.yaml
+>/etc/datadog-agent/checks.d/my_custom_check.py
+>-----------------------------------------------
+> from checks import AgentCheck
+> from random import *
+> class HelloCheck(AgentCheck):
+>    　 def check(self, instance):
+>     　 self.gauge('my_metric', randint(0,1000))
+>-----------------------------------------------
 
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+>/etc/datadog-agent/conf.d/my_custom_check.yaml
+> -----------------------------------------------
+>init_config:
+>
+>instances:
+> - min_collection_interval: 45
+>-----------------------------------------------
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+How about changing flush interval?
+https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-threadstats/
