@@ -186,6 +186,8 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ![On Dashboard](APM_1.PNG)
+https://app.datadoghq.com/apm/traces?end=1545627553279&env=none&paused=false&start=1545022753279 
+
 
 Please include your fully instrumented app in your submission, as well.
 
