@@ -92,6 +92,7 @@ To create custom Agent Check, I prepared two files
 >    　 def check(self, instance):
 >     　 self.gauge('my_metric', randint(0,1000))
 >-----------------------------------------------
+![On Dashboard](my_metric_config2.PNG)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 >/etc/datadog-agent/conf.d/my_custom_check.yaml
@@ -101,7 +102,8 @@ To create custom Agent Check, I prepared two files
 >instances:
 > - min_collection_interval: 45
 >-----------------------------------------------
+![On Dashboard](my_metric_config1.PNG)
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-How about changing flush interval?
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
+How about changing flush interval?  
 https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-threadstats/
