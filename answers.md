@@ -183,6 +183,13 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 * Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * Bonus Question: What is the difference between a Service and a Resource?
+Service is the name of a set of processes that do the same job. 
+For instance, a simple web application may consist of two services: a single webapp service and a single database service
+
+Resource is a particular query to a service. 
+For a web application, some examples might be a canonical URL like /user/home or a handler function like web.user.home
+
+* Reference: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ![On Dashboard](APM_1.PNG)
