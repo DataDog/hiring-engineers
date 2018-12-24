@@ -112,20 +112,21 @@ https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-thread
 
 
 ## Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
+* Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.  
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+* Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.  
+![On Dashboard](my.png)
 <a href="api_a.py">--> This is the link for source code</a>
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:  
+* Once this is created, access the Dashboard from your Dashboard List in the UI:  
 I've created "My_Dashboard_1".  
-![On Dashboard](My_Dashboard_1.PNG)  
+![On Dashboard](My_TimeBoard1.png)  
 
 
-Set the Timeboard's timeframe to the past 5 minutes  
+* Set the Timeboard's timeframe to the past 5 minutes  
 Take a snapshot of this graph and use the @ notation to send it to yourself.     
 ![On Dashboard](annotation.png)
 
