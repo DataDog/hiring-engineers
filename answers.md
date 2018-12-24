@@ -124,6 +124,7 @@ https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-thread
 * Once this is created, access the Dashboard from your Dashboard List in the UI:  
 I've created "My_Dashboard_1".  
 ![On Dashboard](My_Dashboard_1.PNG)
+----------------------------------------------------------
 ![On Dashboard](My_TimeBoard1.png)  
 
 
