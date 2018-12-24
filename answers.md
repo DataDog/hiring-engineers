@@ -117,12 +117,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-<a href="api_a.py">This is the link for source code</a>
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.  
+<a href="api_a.py">--> This is the link for source code</a>
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Once this is created, access the Dashboard from your Dashboard List in the UI:  
+I've created "My_Dashboard_1".  
 ![On Dashboard](My_Dashboard_1.png.PNG)
 
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**  What is the Anomaly graph displaying?
+* **Bonus Question**  What is the Anomaly graph displaying?  
+Anomaly graph displays data that is different from regular one with comparing the data with regular values on the same time zone in past.
