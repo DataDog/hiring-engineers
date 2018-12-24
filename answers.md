@@ -122,11 +122,11 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:  
 I've created "My_Dashboard_1".  
-![On Dashboard](My_Dashboard_1.png.PNG)
+![On Dashboard](My_Dashboard_1.png)
 
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.    
-![On Dashboard](annotation.png.PNG)
+![On Dashboard](annotation.PNG)
 
 * **Bonus Question**  What is the Anomaly graph displaying?  
 Anomaly graph displays data that is different from regular one with comparing the data with regular values on the same time zone in past.
