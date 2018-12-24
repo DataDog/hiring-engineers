@@ -215,12 +215,10 @@ I have 2 ideas for using Datadog.
 For example, showing correlation of revenue and latency, server downtime.  
 I am sure this is what business layer like director wants to see.  
 
-To do it, Datadog can prepare an special Agent that can be set to a part of "payment" method in Application, and the Agent can send metric everytime customer do payment.  
+To do it, Datadog can prepare an special Agent that can be set to a part of "payment" method in Application, and the Agent can send metric everytime customers do payment.  
 
 2) To visualize "Global heating"  
 Even now, some of people would not believe the serious issue.  
 
 So Datadog can visualize seawater temperature,   
 CO2 level, and any other factors related with "Global heating" sent by Aritificial Satellite.  
-
-
