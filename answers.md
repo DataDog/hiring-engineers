@@ -104,6 +104,7 @@ To create custom Agent Check, I prepared two files
 >instances:  
 > - min_collection_interval: 45  
 >-----------------------------------------------  
+/etc/datadog/conf.d/my_custom_check.yaml  
 ![On Dashboard](my_metric_config1.PNG)  
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
