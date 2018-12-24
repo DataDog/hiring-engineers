@@ -22,11 +22,11 @@ After MySQL is installed, take following steps on Dashboard.
 
 Then give commands shown on Dashboards step by step.
 
-### Create a datadog user in MySQL
->sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'nl7ZchKVbXCEHux(MXG5LbkF';"
->sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"
->sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
->sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
+### Create a datadog user in MySQL  
+>sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'nl7ZchKVbXCEHux(MXG5LbkF';"  
+>sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;"  
+>sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"  
+>sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"  
 
 ### Verification
 >mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "show status" | \
@@ -34,7 +34,7 @@ grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
 echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "show slave status" && \
 echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
-echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"  
 
 You can see as below when it is successful.
 ![On Dashboard](MySQL_install_verify1.PNG)
@@ -44,15 +44,15 @@ echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing SELECT grant\033[0m"
 mysql -u datadog --password='nl7ZchKVbXCEHux(MXG5LbkF' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
 echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
-echo -e "\033[0;31mMissing PROCESS grant\033[0m"
+echo -e "\033[0;31mMissing PROCESS grant\033[0m"  
 
-You can see as below when it is successful.
+You can see as below when it is successful.  
 ![On Dashboard](MySQL_install_verify2.PNG)
 
 ### Configure the Agent to connect to MySQL
-1) create config file
->cd /etc/datadog-agent
->sudo vi conf.d/mysql.yaml
+1) create config file  
+>cd /etc/datadog-agent  
+>sudo vi conf.d/mysql.yaml  
 
 >---------------------------------
 >init_config:
