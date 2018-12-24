@@ -3,12 +3,15 @@ Your answers to the questions go here.
 ## Prerequisites - Setup the environment
 My environment for this exercise is below :
   Vagrant Ubuntu VM 16.04 (xenial)
-  Docker (Ubuntu 16.04), MySQL on the Vagrant
+  Docker (Ubuntu 16.04), MySQL on the Vagrant  
+Note: Anti virus checker like Norton sometimes blocks installing Vagrant, if possible you can put off them on its installing.  
 
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![HostMap](HostMap_Karino.PNG)
+![HostMap](HostMap_Karino.PNG)  
+* Until yesterday, HostMap showed "MySQL", "Agent", however they are gone suddenly.  
+I need to study Datadog much harder to know the reason. 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -200,4 +203,24 @@ https://app.datadoghq.com/apm/traces?end=1545627553279&env=none&paused=false&sta
 Please include your fully instrumented app in your submission, as well.
 
 <a href="trace-demo-sqlite.py">-->This is the link of app source</a>
+
+## Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+* Is there anything creative you would use Datadog for?
+
+I have 2 ideas for using Datadog.  
+
+1) To visualize something for business layer  
+For example, showing correlation of revenue and latency, server downtime.  
+I am sure this is what business layer like director wants to see.  
+
+To do it, Datadog can prepare an special Agent that can be set to a part of "payment" method in Application, and the Agent can send metric everytime customer do payment.  
+
+2) To visualize "Global heating"  
+Even now, some of people would not believe the serious issue.  
+
+So Datadog can visualize seawater temperature,   
+CO2 level, and any other factors related with "Global heating" sent by Aritificial Satellite.  
+
 
