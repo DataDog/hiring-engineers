@@ -182,7 +182,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 * Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* Bonus Question: What is the difference between a Service and a Resource?
+* Bonus Question: What is the difference between a Service and a Resource?  
 Service is the name of a set of processes that do the same job. 
 For instance, a simple web application may consist of two services: a single webapp service and a single database service
 
