@@ -80,6 +80,8 @@ You can see as below when it is successful.
 ![On Dashboard](MySQL_install_verify3.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### This is "my_metric" on Metric Explore.  
+![On Dashboard](my_metric1.PNG)
 
 To create custom Agent Check, I prepared two files
   1) /etc/datadog-agent/checks.d/my_custom_check.py
