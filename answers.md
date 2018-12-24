@@ -156,6 +156,7 @@ Please see this screen shot.
 ![On Dashboard](Monitor_2.PNG)
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+Please see this screen shot.   
 ![On Dashboard](alert_mail_1.PNG)
 
 * **Bonus Question** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -163,10 +164,12 @@ Please see this screen shot.
 ** One that silences it from 7pm to 9am daily on M-F,
 Please see this screen shot.   
 ![On Dashboard](Downtime_1.PNG)
+![On Dashboard](Downtime_2.PNG)
 
 ** And one that silences it all day on Sat-Sun.
 Please see this screen shot.   
-![On Dashboard](Downtime_2.PNG)
+![On Dashboard](Downtime_3.PNG)
+![On Dashboard](Downtime_4.PNG)
 
 ** Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 Please see this screen shot.   
