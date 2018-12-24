@@ -111,7 +111,7 @@ How about changing flush interval?
 https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-threadstats/
 
 
-Visualizing Data:
+## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -125,6 +125,8 @@ I've created "My_Dashboard_1".
 ![On Dashboard](My_Dashboard_1.png.PNG)
 
 Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+Take a snapshot of this graph and use the @ notation to send it to yourself.    
+![On Dashboard](annotation.png.PNG)
+
 * **Bonus Question**  What is the Anomaly graph displaying?  
 Anomaly graph displays data that is different from regular one with comparing the data with regular values on the same time zone in past.
