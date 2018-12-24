@@ -176,3 +176,18 @@ Please see this screen shot.
 ![On Dashboard](Downtime_mail_1.PNG)
 ---------------------------------------------------------------------
 ![On Dashboard](Downtime_mail_1.PNG)
+
+## Collecting APM Data:
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+* Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+* Bonus Question: What is the difference between a Service and a Resource?
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+![On Dashboard](APM_1.PNG)
+
+Please include your fully instrumented app in your submission, as well.
+
+<a href="trace-demo-sqlite.py">-->This is the link of app source</a>
+
