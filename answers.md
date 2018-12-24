@@ -88,23 +88,23 @@ To create custom Agent Check, I prepared two files
   2) /etc/datadog-agent/conf.d/my_custom_check.yaml
 >/etc/datadog-agent/checks.d/my_custom_check.py
 >-----------------------------------------------
-> from checks import AgentCheck
-> from random import *
-> class HelloCheck(AgentCheck):
->    　 def check(self, instance):
->     　 self.gauge('my_metric', randint(0,1000))
+> from checks import AgentCheck  
+> from random import *  
+> class HelloCheck(AgentCheck):  
+>    　 def check(self, instance):  
+>     　 self.gauge('my_metric', randint(0,1000))  
 >-----------------------------------------------
-![On Dashboard](my_metric_config2.PNG)
+![On Dashboard](my_metric_config2.PNG)  
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
->/etc/datadog-agent/conf.d/my_custom_check.yaml
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.  
+>/etc/datadog-agent/conf.d/my_custom_check.yaml  
 > -----------------------------------------------
->init_config:
+>init_config:  
 >
->instances:
-> - min_collection_interval: 45
->-----------------------------------------------
-![On Dashboard](my_metric_config1.PNG)
+>instances:  
+> - min_collection_interval: 45  
+>-----------------------------------------------  
+![On Dashboard](my_metric_config1.PNG)  
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
 How about changing flush interval?  
