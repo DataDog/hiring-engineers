@@ -17,7 +17,7 @@ My environment for this exercise is below :
 >sudo apt-get update
 >sudo apt-get install mysql-server
 
-After MySQL is installed, take following steps on Dashboard.
+After MySQL is installed, take following steps on Dashboard.  
 ![On Dashboard](MySQL_install_1.PNG)
 
 Then give commands shown on Dashboards step by step.
