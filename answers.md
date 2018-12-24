@@ -118,7 +118,6 @@ https://docs.datadoghq.com/developers/faq/data-aggregation-with-dogstatsd-thread
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 * Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.  
-![On Dashboard](my.png)
 <a href="api_a.py">--> This is the link for source code</a>
 
 * Once this is created, access the Dashboard from your Dashboard List in the UI:  
