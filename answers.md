@@ -12,13 +12,13 @@
 
 ## Final Results:
 
-![DataDog successfully runs in terminal screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/pics_for_environment_setup/6_DataDogRuns.png)
-
 DataDog successfully runs in terminal screenshot.
 
-![DataDog reports metrics from local machine screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/pics_for_environment_setup/7_DataDogReportsmetricsfromlocalmachine.png)
+![DataDog successfully runs in terminal screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/pics_for_environment_setup/6_DataDogRuns.png)
 
 DataDog reports metrics from local machine screenshot.
+
+![DataDog reports metrics from local machine screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/pics_for_environment_setup/7_DataDogReportsmetricsfromlocalmachine.png)
 
 ## Steps followed:
 
@@ -37,21 +37,21 @@ DataDog reports metrics from local machine screenshot.
 
 ## Final Results:
 
-![my_metric.yaml screenshot](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/13_customcheckyaml.png) 
-
 my_metric.yaml screenshot
 
-![my_metric.py screenshot](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/14_customcheckpython.png) 
+![my_metric.yaml screenshot](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/13_customcheckyaml.png) 
 
 my_metric.py screenshot
 
-![Time interval of metric update changed to 45 seconds between updates screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/15_customcheckevery45seconds.png)
+![my_metric.py screenshot](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/14_customcheckpython.png) 
 
 Time interval of metric update changed to 45 seconds between updates screenshot.
 
-![Metric tested and shows it runs screenshot screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/16_testmetricsuccess.png)
+![Time interval of metric update changed to 45 seconds between updates screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/15_customcheckevery45seconds.png)
 
 Metric tested and shows it runs screenshot screenshot.
+
+![Metric tested and shows it runs screenshot screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/collecting_metrics_pics/16_testmetricsuccess.png)
 
 ### Bonus: 
 Yes, you can change the instance rate without editing the .py file as the instance rate is found in the .yaml not the .py file.
@@ -87,9 +87,11 @@ I Googled how to do it. The website that looked the most promising is [this one]
 
 Here is a link to the code [datadogapigraph.py](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/datadogapigraph.py)
 
+Here is a screenshot of the Timeboard my code created and found all three visualizations. 
+
 ![Here is a screenshot of the Timeboard my code created and found all three visualizations.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/visualizing_data_pics/3_Timeboard_from_code.png)
 
-Here is a screenshot of the Timeboard my code created and found all three visualizations. I did not find a way to successfully change the time interval to 5 minutes. See above to see what I did.
+I did not find a way to successfully change the time interval to 5 minutes. See above to see what I did.
 
 ### Bonus: 
 
@@ -121,27 +123,27 @@ The anomaly graph is the regular graph along with a shadow of the average range 
 
 ## Final Results:
 
-![Email alert with datapoint screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/4_email_screenshot_of_alert_with_metric_number.png)
-
 Email alert with datapoint screenshot.
 
-![Email alert 2. Checking to make sure the emails are different screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/5_email_alert_2.png)
+![Email alert with datapoint screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/4_email_screenshot_of_alert_with_metric_number.png)
 
 Email alert 2. Checking to make sure the emails are different screenshot.
 
-![Email alert 3. Confirmed the emails are different screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/6_email_alert_3.png)
+![Email alert 2. Checking to make sure the emails are different screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/5_email_alert_2.png)
 
 Email alert 3. Confirmed the emails are different screenshot.
 
-### Bonus Final Results:
+![Email alert 3. Confirmed the emails are different screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/6_email_alert_3.png)
 
-![M-F Email Confirmation Screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/12_MF_downtime_email.png)
+### Bonus Final Results:
 
 M-F Email Confirmation Screenshot.
 
-![Saturday and Sunday Email Confirmation Screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/11_SatSun_downtime_conf_email.png)
+![M-F Email Confirmation Screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/12_MF_downtime_email.png)
 
 Saturday and Sunday Email Confirmation Screenshot.
+
+![Saturday and Sunday Email Confirmation Screenshot.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/monitoring_data_pics/11_SatSun_downtime_conf_email.png)
 
 ## Steps followed:
 
