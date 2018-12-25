@@ -1,6 +1,6 @@
 # Links
 
-[Evemts](https://app.datadoghq.com/event/stream)
+[Events](https://app.datadoghq.com/event/stream)
 
 [Dashboard](https://app.datadoghq.com/dashboard/lists)
 
@@ -8,7 +8,7 @@
 
 [Metric Summary](https://app.datadoghq.com/metric/summary)
 
-# Prerequisits - Setup the environment:
+# Prerequisites - Setup the environment:
 
 ## Final Results:
 
