@@ -115,7 +115,7 @@ Here is a screenshot of the Timeboard my code created and found all three visual
 
 ![Here is a screenshot of the Timeboard my code created and found all three visualizations.](https://raw.githubusercontent.com/oboechick/hiring-engineers/solutions-engineer/visualizing_data_pics/3_Timeboard_from_code.png)
 
-I did not find a way to successfully change the time interval to 5 minutes. See above to see what I did.
+I did not find a way to successfully change the time interval to 5 minutes. See below to see what I did.
 
 ### Bonus: 
 
