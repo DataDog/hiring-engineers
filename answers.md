@@ -110,7 +110,7 @@ Bonus Question: What is the difference between a Service and a Resource?
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ***https://app.datadoghq.com/dash/1025052/ 
 ![](https://i.imgur.com/zyRpvbW.png)
-![](https://i.imgur.com/bbRi6pl.png)
+![](https://i.imgur.com/bbRi6pl.png)***
 
 Please include your fully instrumented app in your submission, as well.
 ***I just used the Flask app provided :)***
@@ -120,4 +120,4 @@ Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-***I think it would be neat to see what you could do with Datadog and the Hue API. I was an early adopter of Hue lights, which offer millions of colors in wifi-connected LED lightbulbs. I could set up a custom monitor to turn one of my lights red if my server goes down, for example.
+***I think it would be neat to see what you could do with Datadog and the Hue API. I was an early adopter of Hue lights, which offer millions of colors in wifi-connected LED lightbulbs. I could set up a custom monitor to turn one of my lights red if my server goes down, for example.***
