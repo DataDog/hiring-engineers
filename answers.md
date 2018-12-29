@@ -108,9 +108,12 @@ Bonus Question: What is the difference between a Service and a Resource?
 ***According to the documentation, a service is a bunch of processes that do the same job while resources are actions OF the service. The easiest way to think of this metaphorically is a fast food employee would be the service, while their resources would be using the register, frying French fries, and cleaning floors.***
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-***I was going to simply use the included Flask app when I found, to my horror, that doing the vagrant/virtualbox setup gives you Pip 1.0 out of the box. Pip 1.0 doesn't even use HTTPS, so it's functionally useless. Despite my best efforts to get it to work, I simply couldn't uninstall Pip without wiping out everything I've currently worked on. I'd have just done my own Python app, but that also relies on Pip, and unfortunately I haven't worked in Ruby or Go enough to feel comfortable throwing something up there. If I could have gotten it working, I would have gone here: https://docs.datadoghq.com/tracing/setup/python/ and set up ddtrace with pip, then simply associated the app with ddtrace-run. 
+***https://app.datadoghq.com/dash/1025052/ 
+![](https://i.imgur.com/zyRpvbW.png)
+![](https://i.imgur.com/bbRi6pl.png)
 
 Please include your fully instrumented app in your submission, as well.
+***I just used the Flask app provided :)***
 
 Final Question:
 
