@@ -28,6 +28,14 @@ Download the  VirtualBox  Tool – To download this tool visit the website https
 
 1.3. Now we are going to setup Fresh Ubuntu Platform using in Virtual Box tools via Vagrant.
 
+Download Vagrant and Install it on your system-  https://www.vagrantup.com/
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20Website.PNG">
+
+Is vagrant installed or not you can check it by the following command on your Terminal 
+Vagrant -v 
+
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Version.PNG">
+
 
 
 
