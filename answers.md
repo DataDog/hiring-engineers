@@ -56,6 +56,7 @@ We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20Ubuntu.PNG">
 
 vagrant init ubuntu/xenial64
+
 vagrant up
 
 
