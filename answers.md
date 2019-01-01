@@ -64,7 +64,7 @@ Then Next I run the Command vagrant up inside the Vagrant Folder
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Ubuntu%20install.PNG">
 
-Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal
+<h5>Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal</h5>
 
 Bringing machine 'default' up with 'virtualbox' provider...
 
