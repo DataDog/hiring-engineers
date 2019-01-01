@@ -5,7 +5,7 @@
 
 Before going to setup Vagrant  we have to install some prerequisites such as :
 
-1.Windows Terminal / Mac Terminal / Gitbash Terminal (Recommended For Windows users).
+<h4>1.Windows Terminal / Mac Terminal / Gitbash Terminal (Recommended For Windows users).</h4>
 
 You can Download Those Terminal Following below Links:
 
@@ -20,7 +20,7 @@ Iterm2 - https://www.iterm2.com/ For Mac
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Iterm2%20for%20Mac%20Users.PNG" alt="Iterm2 Terminal ">
 
 
-2.Virtual Box /VMware Etc.
+<h4>2.Virtual Box /VMware Etc.</h4>
 
 Download the  VirtualBox  Tool – To download this tool visit the website https://www.virtualbox.org/
 
