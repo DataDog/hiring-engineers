@@ -123,6 +123,21 @@ Bringing machine 'default' up with 'virtualbox' provider...
 
 
 
+# Below Process are the configurations of Vagrant Setup
+
+config.vm.box - operating system
+
+config.vm.provider - Virtualbox
+
+config.vm.network - How your host sees your box
+
+config.vm.synced -  how you access files from your computer 
+
+config.vm.provision - what want to setup
+#
+
+
+
 
 
 
