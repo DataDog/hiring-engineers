@@ -50,6 +50,17 @@ $
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Folder%20On%20Desktop.PNG">
 
 
+To find out the vagrant box visit https://app.vagrantup.com/boxes/search
+We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20Ubuntu.PNG">
+
+vagrant init ubuntu/xenial64
+vagrant up
+
+
+
+
 
 
 
