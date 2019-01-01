@@ -148,7 +148,7 @@ For suspend- vagrant suspend
 For resuming – vagrant resume 
 
 
-# We can also change VM base memory and ram
+<h6>We can also change VM base memory and ram</h6>
 
 vb.memory=2048
     vb.cpus =4
