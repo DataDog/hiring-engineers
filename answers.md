@@ -60,6 +60,10 @@ vagrant init ubuntu/xenial64
 
 vagrant up
 
+Then Next I run the Command vagrant up inside the Vagrant Folder
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Ubuntu%20install.PNG">
+
+
 
 
 
