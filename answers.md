@@ -142,6 +142,17 @@ Bringing machine 'default' up with 'virtualbox' provider...
     default: /vagrant => C:/Users/User/Desktop/SetupVagrant
 
 
+Some Important command For Vagrant
+For Destroying- vagrant destroy
+For suspend- vagrant suspend
+For resuming – vagrant resume 
+
+
+# We can also change VM base memory and ram
+
+vb.memory=2048
+    vb.cpus =4
+
 
 
 <h4>Below are the steps How to do configurations of Vagrant Setup</h4>
@@ -155,6 +166,8 @@ config.vm.network - How your host sees your box
 config.vm.synced -  how you access files from your computer 
 
 config.vm.provision - what want to setup
+
+
 
 
 
