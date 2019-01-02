@@ -67,7 +67,7 @@ Then Next I run the Command vagrant up inside the Vagrant Folder
 <h5>Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal</h5>
 Here is the link of Logs Info 
 
-https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/Vagrant%20Up%20logs.docx
+https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrantup%20log
 
 Some Important command For Vagrant
 
