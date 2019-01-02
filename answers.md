@@ -357,7 +357,15 @@ I gave user is datadog and password also datadog
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
 
 
-<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/answers.md">
+<img src"https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20tags.png">
+ 
+ mysql config file 
+
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$
+
+conf.yaml.example
+
+
 
 
 
