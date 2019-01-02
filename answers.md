@@ -357,7 +357,7 @@ I gave user is datadog and password also datadog
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
 
 
-<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/answers.md">
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/answers.md">
 
 
 
