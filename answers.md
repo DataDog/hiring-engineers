@@ -1,13 +1,13 @@
 Your answers to the questions go here.
 
-#Collecting Metrics
+# Collecting Metrics
 ```
 tags:
   - test
   - role:pgs
   - env:poc
 ```
-(/tags.png "tags")
+![tags](/tags.png)
 
 Integrations 
 (postgresintegration.png "Postgres Integration")
@@ -22,7 +22,7 @@ instances:
 
 ```
 
-#Visualizing Data
+# Visualizing Data
 
 Part 1 
 
@@ -52,24 +52,22 @@ Click the + button and choose rollup and then sum
 Since the period is in seconds enter 3600 (60*60) as the period 
 click Done
 
-(/last5.png "Last 5 minutes ")
+![Last 5 Minutes](/last5.png)
 
 Bonus Question
 
 The anomaly graph is showing my metric of postgresql rows returned in blue with the accepted range in grey.
 
 Monitoring Data
-(/alert.png "Alert")
+![Alert](/alert.png)
 
 
-#Collecting APM Data
+# Collecting APM Data
 
 Bonus Question
 
-From the documentation:
-A service is a set of processes that do the same job.
-A Resource is a particular action for a service.
 
+A service would be defined for a particular functional piece of your application such as a ui or backend microservices. A resource is a particular action in a service such as a specific endpoint in a service. 
 
 
 
