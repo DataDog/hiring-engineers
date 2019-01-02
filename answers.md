@@ -285,7 +285,10 @@ I have already installed all the necessary packages those are all in vagrant pro
 
 To get the MySQL config file change the directory 
 
-<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20metric.png">
+
+
+
 
 
 
@@ -357,15 +360,43 @@ I gave user is datadog and password also datadog
 
 # Images:
 
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
 
 
-<img src"https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20tags.png">
+
+
  
  mysql config file 
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$
 
 conf.yaml.example
+
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20tags.png">
+
+
+
+I Copied the example yaml file and as well create new file by following command
+
+Sudo cp conf.yaml.example mysql.yaml
+
+
+
+
+I took a lot of time because I was doing mistake 
+I was creating a file inside the mysql. d directory 
+
+/etc/datadog-agent/conf.d/mysql.d
+
+
+But I had to create file inside the conf.d
+
+
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20is%20running%20in%20Datadog.png">
+
+
+
 
 
 
