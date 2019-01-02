@@ -69,6 +69,27 @@ Here is the link of Logs Info
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrantup%20log
 
+
+
+<h4>Below are the steps How to do configurations of Vagrant Setup</h4>
+
+config.vm.box - operating system
+
+config.vm.provider - Virtualbox
+
+config.vm.network - How your host sees your box
+
+config.vm.synced -  how you access files from your computer 
+
+config.vm.provision - what want to setup
+
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20configure%20image.png">
+
+Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20File
+
+
+
 Some Important command For Vagrant
 
 For Destroying- vagrant destroy
@@ -103,40 +124,6 @@ Here is the Vgarant ssh Logs File
 
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
-
-
-
-
-<h4>Below are the steps How to do configurations of Vagrant Setup</h4>
-
-config.vm.box - operating system
-
-config.vm.provider - Virtualbox
-
-config.vm.network - How your host sees your box
-
-config.vm.synced -  how you access files from your computer 
-
-config.vm.provision - what want to setup
-
-
-<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20configure%20image.png">
-
-Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20File
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
