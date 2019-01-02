@@ -99,29 +99,9 @@ $ vagrant ssh
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20ssh.png">
 Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-163-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com/
+Here is the Vgarant ssh Logs File
 
-  System information as of Wed Dec 26 17:02:38 UTC 2018
-
-  System load:  0.69              Processes:           128
-  Usage of /:   3.6% of 39.34GB   Users logged in:     0
-  Memory usage: 4%                IP address for eth0: 10.0.2.15
-  Swap usage:   0%
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
-
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
-
-0 packages can be updated.
-0 updates are security updates.
-
-New release '16.04.5 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
-
-
-vagrant@vagrant-ubuntu-trusty-64:~$
+https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
 
 
 
