@@ -156,9 +156,6 @@ vagrant@vagrant-ubuntu-trusty-64:~$ ls var/www/html
 ls: cannot access var/www/html: No such file or directory
 vagrant@vagrant-ubuntu-trusty-64:~$ clear
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
-html
-vagrant@vagrant-ubuntu-trusty-64:~$ cd html
--bash: cd: html: No such file or directory
 vagrant@vagrant-ubuntu-trusty-64:~$ cd html
 -bash: cd: html: No such file or directory
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www/html
@@ -173,6 +170,24 @@ $ vagrant reload
 ==> default: Attempting graceful shutdown of VM...
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Apache2%20run.png">
+
+
+Apache setup 
+
+http://localhost:8080/
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/apache%20working%20local%208080.png">
+
+
+
+We can also use local private network using vagrant file network setting config.vm.network "private_network", ip: "192.168.33.10"
+
+http://192.168.33.10/
+
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/image16.png">
+
+
 
 
 
