@@ -189,6 +189,32 @@ http://192.168.33.10/
 
 
 
+#Folder setting 
+  config.vm.synced_folder ".", "/var/www/html"
+
+
+
+# config file sync
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/apache%20server%20file.png">
+
+
+
+
+Sign up for Data dog:
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20Signup.png">
+
+
+1,2.Containerized approach with Docker for Linux and our dockerized Datadog Agent image
+
+The Datadog agent was successfully installed via the following:
+
+We can install two ways: First one is recommended
+
+
+
+
+
 
 
 
