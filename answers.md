@@ -285,6 +285,8 @@ I have already installed all the necessary packages those are all in vagrant pro
 
 To get the MySQL config file change the directory 
 
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
+
 
 
 vagrant@vagrant-ubuntu-trusty-64:/etc/datadog-agent/conf.d$
@@ -354,7 +356,7 @@ GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 I gave user is datadog and password also datadog
 
 # Images:
-<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
+
 
 
 <img src"https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20tags.png">
