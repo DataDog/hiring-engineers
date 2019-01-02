@@ -48,6 +48,21 @@ Bonus Question
 A service would be defined for a particular functional piece of your application such as a ui or backend microservices. A resource is a particular action in a service such as a specific endpoint in a service. 
 
 # Final Question:
+  I like to play a game with the option to pick servers in different regions. Previously I was able to select Singapore , Europe , or North America and recieve reasonable ping times. Since changing ISPs the ping times are all over the place. Sometimes NA is not even playable but Europe works great. Using the tcp_check module in datadog I can check my approximate ping time to a representative server in EU and NA to decide what is worth playing on. 
 
+```
+  [root@localhost tcp_check.d]# cat conf.yaml
+instances:
+  - name: EU Server
+    host: 34.250.157.17
+    port: 443
+    timeout: 1
+    collect_response_time: true
+  - name: NA Server
+    host: 54.194.95.138
+    port: 443
+    timeout: 1
+    collect_response_time: true
+ ```
 
-
+![wtping](/wtping.ping)
