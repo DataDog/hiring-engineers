@@ -56,11 +56,13 @@ click Done
 
 Bonus Question
 
-The anomaly graph is showing my metric of postgresql rows returned in blue with the accepted range in grey.
+The anomaly graph is showing my metric of postgresql rows returned in blue with the accepted range in grey. Where the line goes red , it shows values outside the accepted range.
 
 Monitoring Data
 ![Alert](/alert.png)
-
+Bonus Question: 
+![/downtime.png]
+![/downtimestarted.png]
 
 # Collecting APM Data
 
