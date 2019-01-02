@@ -1,0 +1,234 @@
+logs:
+
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-163-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Thu Dec 27 19:14:59 UTC 2018
+
+  System load:  0.42              Processes:           130
+  Usage of /:   5.0% of 39.34GB   Users logged in:     0
+  Memory usage: 7%                IP address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+New release '16.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Thu Dec 27 19:11:01 2018 from 10.0.2.2
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo datadog-agent status
+Getting the status from the agent.
+
+==============
+Agent (v6.8.2)
+==============
+
+  Status date: 2018-12-27 19:18:12.131384 UTC
+  Pid: 872
+  Python Version: 2.7.15
+  Logs:
+  Check Runners: 4
+  Log Level: info
+
+  Paths
+  =====
+    Config File: /etc/datadog-agent/datadog.yaml
+    conf.d: /etc/datadog-agent/conf.d
+    checks.d: /etc/datadog-agent/checks.d
+
+  Clocks
+  ======
+    NTP offset: 350µs
+    System UTC time: 2018-12-27 19:18:12.131384 UTC
+
+  Host Info
+  =========
+    bootTime: 2018-12-27 19:14:44.000000 UTC
+    kernelVersion: 3.13.0-163-generic
+    os: linux
+    platform: ubuntu
+    platformFamily: debian
+    platformVersion: 14.04
+    procs: 187
+    uptime: 16s
+    virtualizationRole: guest
+    virtualizationSystem: vbox
+
+  Hostnames
+  =========
+    hostname: vagrant-ubuntu-trusty-64
+    socket-fqdn: vagrant-ubuntu-trusty-64
+    socket-hostname: vagrant-ubuntu-trusty-64
+    hostname provider: os
+    unused hostname providers:
+      aws: not retrieving hostname from AWS: the host is not an ECS instance, and other providers already retrieve non-default hostnames
+      configuration/environment: hostname is empty
+      gce: unable to retrieve hostname from GCE: Get http://169.254.169.254/computeMetadata/v1/instance/hostname: dial tcp 169.254.169.254:80: connect: network is unreachable
+
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+
+    cpu
+    ---
+      Instance ID: cpu [OK]
+      Total Runs: 13
+      Metric Samples: Last Run: 6, Total: 72
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+
+    disk (2.0.0)
+    ------------
+      Instance ID: disk:e5dffb8bef24336f [OK]
+      Total Runs: 13
+      Metric Samples: Last Run: 84, Total: 1,092
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 99ms
+
+
+    file_handle
+    -----------
+      Instance ID: file_handle [OK]
+      Total Runs: 12
+      Metric Samples: Last Run: 5, Total: 60
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+
+    io
+    --
+      Instance ID: io [OK]
+      Total Runs: 13
+      Metric Samples: Last Run: 26, Total: 320
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 14ms
+
+
+    load
+    ----
+      Instance ID: load [OK]
+      Total Runs: 12
+      Metric Samples: Last Run: 6, Total: 72
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+
+    memory
+    ------
+      Instance ID: memory [OK]
+      Total Runs: 13
+      Metric Samples: Last Run: 17, Total: 221
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 1ms
+
+
+    network (1.8.0)
+    ---------------
+      Instance ID: network:2a218184ebe03606 [OK]
+      Total Runs: 12
+      Metric Samples: Last Run: 20, Total: 240
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 3ms
+
+
+    ntp
+    ---
+      Instance ID: ntp:b4579e02d1981c12 [OK]
+      Total Runs: 13
+      Metric Samples: Last Run: 1, Total: 13
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 1, Total: 13
+      Average Execution Time : 18ms
+
+
+    uptime
+    ------
+      Instance ID: uptime [OK]
+      Total Runs: 12
+      Metric Samples: Last Run: 1, Total: 12
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+========
+JMXFetch
+========
+
+  Initialized checks
+  ==================
+    no checks
+
+  Failed checks
+  =============
+    no checks
+
+=========
+Forwarder
+=========
+
+  Transactions
+  ============
+    CheckRunsV1: 12
+    Dropped: 0
+    DroppedOnInput: 0
+    Events: 0
+    HostMetadata: 0
+    IntakeV1: 2
+    Metadata: 0
+    Requeued: 0
+    Retried: 0
+    RetryQueueSize: 0
+    Series: 0
+    ServiceChecks: 0
+    SketchSeries: 0
+    Success: 26
+    TimeseriesV1: 12
+
+  API Keys status
+  ===============
+    API key ending with 64d7d on endpoint https://app.datadoghq.com: API Key valid
+
+==========
+Logs Agent
+==========
+
+  Logs Agent is not running
+
+=========
+Aggregator
+=========
+  Checks Metric Sample: 2,303
+  Dogstatsd Metric Sample: 154
+  Event: 1
+  Events Flushed: 1
+  Number Of Flushes: 12
+  Series Flushed: 2,122
+  Service Check: 114
+  Service Checks Flushed: 119
+
+=========
+DogStatsD
+=========
+  Event Packets: 0
+  Event Parse Errors: 0
+  Metric Packets: 154
+  Metric Parse Errors: 0
+  Service Check Packets: 0
+  Service Check Parse Errors: 
