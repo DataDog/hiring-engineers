@@ -211,10 +211,150 @@ The Datadog agent was successfully installed via the following:
 
 We can install two ways: First one is recommended
 
+Run Below command Inside your Ubuntu Server
+
+DD_API_KEY=610080f148d9e4d47efed7c611e64d7d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20agent%20install%20on%20Ubuntu.png">
+
+Step by Step Installation:
+
+Run these commands step by step to install the Datadog Agent in your Server.
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20agent%20step%20by%20step.png">
+
+
+1.3   Datadog Container Docker Install by following command 
+
+
+docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
+
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Docker%20install%20on%20Ubuntu%20.png">
+
+
+Docker installtion logs:
+
+vagrant@ubuntu-xenial:~$ sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
+Unable to find image 'datadog/agent:latest' locally
+latest: Pulling from datadog/agent
+790c37dedd62: Pull complete
+289cb409a94c: Pull complete
+c8c8c4faaf9e: Pull complete
+237fb89e1ed6: Pull complete
+f57b386ca81e: Pull complete
+847930fc0785: Pull complete
+dc7a1564846a: Pull complete
+2f9394a89b51: Pull complete
+Digest: sha256:301adad25c80a2d976c47f77b5341479cf0e5f2f81db353c90568e8c42ab6576
+Status: Downloaded newer image for datadog/agent:latest
+6ee6039e47b205ea357fb9485ca04ddf99a48581b9c1dd7736cf59a56844a2bd
+vagrant@ubuntu-xenial:~$
+
+
+Is Datadog is running or not  to know I run the command below
+sudo datadog-agent status
+
+Here is the Datadog running status Logs:
+
+https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/datadog_running_statusd_log
+
+
+
+To get the related info of Datadog agent we can use below command 
+
+DESCRIPTION	COMMAND
+Start Agent as a service	sudo service datadog-agent start
+
+Stop Agent running as a service	sudo service datadog-agent stop
+
+Restart Agent running as a service	sudo service datadog-agent restart
+
+Status of Agent service	sudo service datadog-agent status
+
+Status page of running Agent	sudo datadog-agent status
+
+Send flare	sudo datadog-agent flare
+
+Display command usage	sudo datadog-agent --help
+
+Run a check	sudo -u dd-agent -- datadog-agent check <check_name>
+
+
+I have already installed all the necessary packages those are all in vagrant provision shell script.
+
+To get the MySQL config file change the directory 
+
+
+
+vagrant@vagrant-ubuntu-trusty-64:/etc/datadog-agent/conf.d$
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20metric.png">
+
+And also install manually MySQL integrations.
+After installing the MySQL integration I restart my datadog agent
+
+by following command 
+
+sudo service datadog-agent restart
+
+logs
+
+vagrant@vagrant-ubuntu-trusty-64:/etc/datadog-agent/conf.d/mysql.d$ cd
+
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo service datadog-agent restart
+
+datadog-agent stop/waiting
+
+datadog-agent start/running, process 9504
+
+vagrant@vagrant-ubuntu-trusty-64:~$
 
 
 
 
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo service datadog-agent restart
+
+datadog-agent stop/waiting
+
+datadog-agent start/running, process 9712
+
+
+# Collecting Metrics:
+
+Mysql 
+sudo mysql -u root -p
+
+
+
+I used this Documents to create new user with password;
+https://docs.datadoghq.com/integrations/mysql/
+
+Configuration
+
+Edit conf.d/mysql.d/conf.yaml in the root of your Agent’s configuration directory in order to connect the Agent to your MySQL server. You will begin collecting your MySQL metrics and logs right away. See the sample configuration filefor all available configuration options.
+
+PREPARE MYSQL
+On each MySQL server, create a database user for the Datadog Agent:
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
+    
+Query OK, 0 rows affected (0.00 sec)
+
+For mySQL 8.0+ create the datadog user with the native password hashing method:
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
+Query OK, 0 rows affected (0.00 sec)
+
+
+sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';"
+
+CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';
+
+GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+
+I gave user is datadog and password also datadog
+
+# Images:
+<img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
 
 
 
