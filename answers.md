@@ -120,6 +120,13 @@ config.vm.synced -  how you access files from your computer
 config.vm.provision - what want to setup
 
 
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20configure%20image.png">
+
+Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20File
+
+
+
+
 
 
 
