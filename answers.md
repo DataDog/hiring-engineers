@@ -97,14 +97,12 @@ Logs below
 $ vagrant ssh
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20ssh.png">
-Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-163-generic x86_64)
+
 
 Here is the Vgarant ssh Logs File
 
+
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
-
-
-
 
 
 
