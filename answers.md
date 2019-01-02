@@ -9,7 +9,7 @@ tags:
 ```
 ![tags](/tags.png) 
 
-![Postgres Integration](/postgresintegration.png) 
+![Postgres Integration](/pgs_integration.png) 
 Bonus Question:
 You can modify the yaml file to change the collection interval
 ```
@@ -47,7 +47,7 @@ https://app.datadoghq.com/dash/1033000/infrastructure-and-apm
 Bonus Question
 A service would be defined for a particular functional piece of your application such as a ui or backend microservices. A resource is a particular action in a service such as a specific endpoint in a service. 
 
-
+# Final Question:
 
 
 
