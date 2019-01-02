@@ -65,4 +65,4 @@ instances:
     collect_response_time: true
  ```
 
-![wtping](/wtping.ping)
+![wtping](/wtping.png)
