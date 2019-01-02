@@ -126,4 +126,55 @@ Here is the Vgarant ssh Logs File
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
 
 
+If we search now var /www we will not find for that we have to install apache2 
+
+Lets Run the below command
+Sudo apt-get update
+Sudo apt-get install –y  git 
+Sudo apt-get install –y  apache2
+
+
+vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
+html
+vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www/html
+index.html
+vagrant@vagrant-ubuntu-trusty-64:~$
+
+
+For networking localhost has setup in vagrant file  and saved the file 
+
+   config.vm.network "forwarded_port", guest: 80, host: 8080
+
+
+
+logs –
+Setting up ssl-cert (1.0.33) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.14) ...
+Processing triggers for ufw (0.34~rc-0ubuntu2) ...
+Processing triggers for ureadahead (0.100.0-16) ...
+vagrant@vagrant-ubuntu-trusty-64:~$ ls var/www/html
+ls: cannot access var/www/html: No such file or directory
+vagrant@vagrant-ubuntu-trusty-64:~$ clear
+vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
+html
+vagrant@vagrant-ubuntu-trusty-64:~$ cd html
+-bash: cd: html: No such file or directory
+vagrant@vagrant-ubuntu-trusty-64:~$ cd html
+-bash: cd: html: No such file or directory
+vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www/html
+index.html
+vagrant@vagrant-ubuntu-trusty-64:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+
+User@Dipankar-Barua MINGW64 ~/Desktop/SetupVagrant
+$ vagrant reload
+==> default: Attempting graceful shutdown of VM...
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Apache2%20run.png">
+
+
+
+
 
