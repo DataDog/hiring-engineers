@@ -1,4 +1,4 @@
-## Collecting Metrics:
+## Collecting Metrics
 
 ### Adding a custom tag to the Agent config file.
 
@@ -70,11 +70,13 @@ Final result:
 
 <img src="./screenshots/metric.png"/>
 
+#### Bonus Question
+
 If I can't modify the Python file, I'm not aware of an easy implementation to change the collection interval.
 
 We might be able to set an environment variable and read it in the yaml file, but I can't verify this with certainty or speak for its efficacy / use of good practices.
 
-## Visualizing Data:
+## Visualizing Data
 
 Creating a timeboard was an easy task to accomplish using the [Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards).
 
@@ -150,7 +152,7 @@ Then, setting the timeframe to the past 5 minutes, I created a snapshot and sent
 
 The Anomaly algorithm I used was the 'basic' one, which determines the range of expected values. According to [this article](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/), it adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends. 
 
-## Monitoring Data:
+## Monitoring Data
 
 Similar to creating a timeboard, creating a monitor involved making an API call and writing a script for that:
 
@@ -199,7 +201,7 @@ The following depicts the monitor working as expected, where the metric value th
 <img src="./screenshots/alert.png"/>
 
 You can find the final version of my monitor [here](https://app.datadoghq.com/monitors/7801518)
-### Bonus Question
+#### Bonus Question
 
 After scheduling a downtime for the monitor above, I silenced it from Monday-Friday from 7pm to 9am and received this notification:
 
@@ -214,7 +216,7 @@ You can find both downtimes scheduled here:
 [M-F](https://app.datadoghq.com/monitors#downtime?id=445779190)
 [weekend](https://app.datadoghq.com/monitors#downtime?id=445801685)
 
-## Collecting APM Data:
+## Collecting APM Data
 
 I instrumented the provided Flask application using Datadog's APM solution.
 
@@ -259,7 +261,7 @@ at which point I was able to see the following dashboards:
 
 This can be found [here](https://app.datadoghq.com/apm/service/flask/flask.request?end=1546496525467&env=none&paused=false&start=1546410125467)
 
-### Bonus Question
+#### Bonus Question
 
 A "Service" is said to be the name of a set of processes that work together to provide a set of features. If speaking about a web application, we can say that the web app may have the service for the application itself and a service concering all database processes.
 
