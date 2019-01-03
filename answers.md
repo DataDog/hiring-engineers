@@ -33,6 +33,15 @@ Bonus Question
 The anomaly graph is showing my metric of postgresql rows returned in blue with the accepted range in grey. Where the line goes red , it shows values outside the accepted range.
 
 # Monitoring Data
+```
+{{#is_warning}} My metric is currently {{value}} on {{host.ip}} {{/is_warning}}
+
+{{#is_alert}} My Metric is currently {{value}} on {{host.ip}} {{/is_alert}}
+
+{{#is_no_data}} There has been no data from My Metric in the last 10 minutes {{/is_no_data}}
+```
+
+
 ![Alert](/alert.png)
 Bonus Question: 
 ![downtime](/downtime.png)
