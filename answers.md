@@ -10,6 +10,7 @@ Before going to setup Vagrant  we have to install some prerequisites such as :
 You can Download Those Terminal Following below Links:
 
 Gitbash- - https://git-scm.com/downloads For Windows.
+
 let's Install Gitbash For Windows Users:
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Gitbash%20Terminal.png" alt="Gitbash Terminal">
@@ -26,7 +27,7 @@ Download the  VirtualBox  Tool – To download this tool visit the website https
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Virtualbox%20after%20install.PNG" alt="Virtualbox After Installed">
 
-1.3. Now we are going to setup Fresh Ubuntu Platform using in Virtual Box tools via Vagrant.
+# 1.3. Now we are going to setup Fresh Ubuntu Platform using in Virtual Box tools via Vagrant.
 
 Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
