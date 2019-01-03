@@ -33,9 +33,9 @@ Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20Website.PNG">
 
-**Is vagrant installed or not you can check it by the following command on your Terminal 
+<h5>Is vagrant installed or not you can check it by the following command on your Terminal </h5>
 
-<h6>Vagrant -v </h6>
+<h5>Vagrant -v </h5>
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Version.PNG">
 
@@ -54,20 +54,24 @@ $
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/VM%20and%20Terminal.PNG">
 
 To find out the vagrant box visit https://app.vagrantup.com/boxes/search
+
 We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20Ubuntu.PNG">
 
-vagrant init ubuntu/xenial64
+<h3>vagrant init ubuntu/xenial64</h4#3>
 
-vagrant up
+<h3>vagrant up<7h3>
 
 Then Next I run the Command vagrant up inside the Vagrant Folder
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Ubuntu%20install.PNG">
+
 
 <h5>Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal</h5>
 Here is the link of Logs Info 
+
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrantup%20log
 
@@ -86,11 +90,12 @@ config.vm.synced -  how you access files from your computer
 config.vm.provision - what want to setup
 
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20configure%20image.png">
 
 Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20File
 
-
+# -------------------------------
 
 Some Important command For Vagrant
 
@@ -100,6 +105,8 @@ For suspend- vagrant suspend
 
 For resuming – vagrant resume 
 
+#----------------------------- 
+
 
 <h6> We can also change VM base memory and ram </h6>
 
@@ -107,7 +114,8 @@ vb.memory=2048
     vb.cpus =4
     
     
-    in the vagrant file 
+<h4>in the vagrant file </h4>
+    
 after saving the file we can reload vagrant -- reload then it will change
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20reload.png">
@@ -122,20 +130,23 @@ $ vagrant ssh
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20ssh.png">
 
 
-Here is the Vgarant ssh Logs File
+<h3>Here is the Vgarant ssh Logs File </h3>
 
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
 
-
+# ------------------------------
 If we search now var /www we will not find for that we have to install apache2 
 
 Lets Run the below command
+
 Sudo apt-get update
-Sudo apt-get install –y  git 
-Sudo apt-get install –y  apache2
 
+Sudo apt-get install –y  git  (for git)
 
+Sudo apt-get install –y  apache2 (for apache 2)
+
+# --------------------------
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
 html
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www/html
@@ -143,13 +154,15 @@ index.html
 vagrant@vagrant-ubuntu-trusty-64:~$
 
 
+# ----------------------
 For networking localhost has setup in vagrant file  and saved the file 
 
    config.vm.network "forwarded_port", guest: 80, host: 8080
 
 
+# ----------------------
+>h4>logs info  –</h4>
 
-logs –
 Setting up ssl-cert (1.0.33) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.14) ...
 Processing triggers for ufw (0.34~rc-0ubuntu2) ...
@@ -168,12 +181,15 @@ Connection to 127.0.0.1 closed.
 
 
 User@Dipankar-Barua MINGW64 ~/Desktop/SetupVagrant
+# -----
+
 $ vagrant reload
 ==> default: Attempting graceful shutdown of VM...
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Apache2%20run.png">
 
-
+# --------------
 Apache setup 
 
 http://localhost:8080/
@@ -181,7 +197,7 @@ http://localhost:8080/
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/apache%20working%20local%208080.png">
 
 
-
+# ------------------------
 We can also use local private network using vagrant file network setting config.vm.network "private_network", ip: "192.168.33.10"
 
 http://192.168.33.10/
@@ -190,22 +206,28 @@ http://192.168.33.10/
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/image16.png">
 
 
+# -------------
 
 #Folder setting 
   config.vm.synced_folder ".", "/var/www/html"
 
 
 
-# config file sync
+# -----------
+
+<h4>config file sync</h4>
+
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/apache%20server%20file.png">
 
 
 
-
+# ----------
 Sign up for Data dog:
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20Signup.png">
 
+
+# ------------------------
 
 1,2.Containerized approach with Docker for Linux and our dockerized Datadog Agent image
 
