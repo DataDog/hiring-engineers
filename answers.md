@@ -4,12 +4,19 @@ Hi there, my name is Sara Burke. I'm applying for a Solutions Engineer position 
 
 ## Prerequisites - Setup the environment
 
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+I chose to keep the VM simple and follow recommendations to make an Ubuntu VM using Vagrant. I haven't had many opportunities to work with Docker, so I'll try to isolate the learning part of this process to DataDog products.
 
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+Initially, I tried (and failed) to install the datadog agent using provisioning within the Vagrantfile and a shell script. My knowledge of setting up Vagrant from scratch with provisions is spotty, particularly in working with keys. 
 
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+![datadog failed to install using script.](imgs/01-Screen-Shot-datadog-failed-to-install.png)
+
+So instead I'll admit defeat and successfully run the "easy one-step install" listed under Agent Setup during the signup process. More time will be spent in the future to learn about Vagrantfiles and detailed provisioning/shell scripts.
+
+![datadog succeeded in installation.](imgs/02-Screen-Shot-successful-datadog-install.png)
+
+Great! It's working. Let's move on.
+
+![confirmation that datadog is receiving data from one host.](imgs/03-Screen-Shot-hosts-show-1.png)
 
 ## Collecting Metrics:
 
