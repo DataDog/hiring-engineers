@@ -16,11 +16,11 @@ tags:
   - role:pgs
   - env:poc
 ```
-Once your yaml is defined you can start/restart the agent by `service datadog_agent restart` and it should start reporting info. If you don't believe its working you can check what it is doing with ` datadog-agent status` . If that tells you that something like "Could not reach agent" you can check /var/log/datadog/ to see what happened. 
+Once your yaml is defined you can start/restart the agent by `service datadog_agent restart` and it should start reporting info. If you don't believe its working you can check what it is doing with ` datadog-agent status` . If that tells you that something like "Could not reach agent" you can check /`var/log/datadog/agent.log` to see what happened. 
 Once its started you should see an event in your datadog panel as well as a host in the host map with the tags defined in your yaml file.
 ![tags](/tags.png) 
 
- The next step was to install a database. I installed Postgres from yum and started it up. Following the instructions on the integration page , the first step is to create a user to allow datadog to talk to my database. Once the user was setup and tested with the provided command you are ready to let the agent know you want it to monitor Postgres. This is done by creating a yaml file in /etc/datadog-agent/conf.d/postgres.d from the provided example. To get started all you need to add is your login information you created in the previous step.
+ The next step was to install a database. I installed Postgres from yum and started it up. Following the instructions on the integration page , the first step is to create a user to allow datadog to talk to my database. Once the user was setup and tested with the provided command you are ready to let the agent know you want it to monitor Postgres. This is done by creating a yaml file in `/etc/datadog-agent/conf.d/postgres.d`from the provided example. To get started all you need to add is your login information you created in the previous step.
  ```
  init_config:
 
@@ -49,7 +49,7 @@ Also a `datadog-agent status` will now show a section for postgres
 
 ## Creating a custom metric
 
-Despite all the out of the box funciotnality provided by Datadog, occasionaly you may find the need to create a custom metric to gather data from some proprietary application. This requires two parts. The [actual check](/checks.d/my_metric.py) which would be a python script under checks.d and a [yaml file](/conf.d/my_metric.yaml) under conf.d to tell datadog to look for your check. These two files need to have the same name so the agent knows what to look for. This sample my metric simply picks a random number between 1 and a 1000 and sends it to the agent. 
+Despite all the out of the box funcionality provided by Datadog, occasionaly you may find the need to create a custom metric to gather data from some proprietary application. This requires two parts. The [actual check](/checks.d/my_metric.py) which would be a python script under checks.d and a [yaml file](/conf.d/my_metric.yaml) under conf.d to tell datadog to look for your check. These two files need to have the same name so the agent knows what to look for. This sample my metric simply picks a random number between 1 and a 1000 and sends it to the agent. 
 In the past I have used a custom check to warn us of an impending SSL cert expiration although this is now built into the http check. I found this wonderful check [online](https://github.com/dobber/datadog-ssl-check-expire-days) and its a good example to show that you can add variables in your yaml file to avoid having to change your python check for different sites. 
 
 
@@ -65,17 +65,64 @@ instances:
 
 ```
 
+If you had no issues with yaml symtax running `datadog-agent status` should show that your custom check is running only about a third as many times as the default checks.
+
+```
+    
+    memory
+    ------
+      Instance ID: memory [OK]
+      Total Runs: 107
+      Metric Samples: Last Run: 17, Total: 1,819
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      
+    
+    my_check (unversioned)
+    ----------------------
+      Instance ID: my_check:5ba864f3937b5bad [OK]
+      Total Runs: 36
+      Metric Samples: Last Run: 1, Total: 36
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+ ```
+
 # Visualizing Data
 
+Geting data into Datadog is only the first step! Building a timeboard so you can see what is happening or how various things interact at any given point of time is a very powerful way to get insight into your system. You can create a timeboard via the easy to use datadog GUI or once you realize the instructions for this exercise call for you to use the API you can follow the [great documentation](https://docs.datadoghq.com/api/?lang=python#overview) available. 
 
-https://app.datadoghq.com/dash/1033029/api-timeboard
-created by apitimeboard.py
+In just a few minutes, even as a non developer I was able to create a python script to call the API and create my timeboard. To start off I created a new API key and an APP key from the Integrations/API menu in the datadog UI. With these keys you can start off your script following the [authentication section of the documentation](https://docs.datadoghq.com/api/?lang=python#authentication).
 
+With the goal of createing a timeboard I skipped down to the [timeboard section of the docs](https://docs.datadoghq.com/api/?lang=python#timeboards) 
+After adding the timeboard section to the auth section from the previous step , I modified the title and started building out the graphs. The only parts that needed changeing from the example were the title of my graph and the data I actually wanted displayed. Building out the requests section of the graphs dict can be a bit daunting but there is an easy way to cheat. If you build your graph in the UI , you can select JSON in the timeserieres editor window and it will give you everything you need to create that graph via api.
+
+![graph definition](/json.png)
+
+The only other change from the examples was I saved the request to a variable and printed it so I could see whether my script succeeded or failed.
+
+```
+response = api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     )
+print response
+```
+
+After pasting together the two sections from the examples and modifying them with my graphs I came up with [this script](apitimeboard.py). When ran I got back a handy chunk of JSON letting me know it succeded!
+
+```
+python apitimeboard.py 
+{'dash': {'read_only': False, 'description': 'An informative timeboard.', 'created': '2019-01-02T02:11:30.400016+00:00', 'title': 'API Timeboard', 'modified': '2019-01-02T02:11:30.400016+00:00', 'created_by': {'handle': 'mbattaglia@gmail.com', 'name': 'Michael Battaglia', 'access_role': 'adm', 'verified': True, 'disabled': False, 'is_admin': True, 'role': None, 'email': 'mbattaglia@gmail.com', 'icon': 'https://secure.gravatar.com/avatar/32aa83522024c737ebea50bcd564b552?s=48&d=retro'}, 'graphs': [{'definition': {'viz': 'timeseries', 'requests': [{'q': 'avg:my_metric{host:exercisevm}'}], 'events': []}, 'title': 'My Metric on exercisvm'}, {'definition': {'viz': 'timeseries', 'requests': [{'q': "anomalies(avg:postgresql.rows_returned{host:exercisevm}, 'basic', 2)"}], 'events': []}, 'title': 'Integration with anomaly'}, {'definition': {'viz': 'timeseries', 'requests': [{'q': 'avg:my_metric{host:exercisevm}.rollup(sum, 3600)'}], 'events': []}, 'title': 'My metric rolled up to an hour'}], 'template_variables': None, 'id': 1033029}, 'url': '/dash/1033029/api-timeboard', 'resource': '/api/v1/dash/1033029'}
+```
+I was then able to browse over to my timeboard at https://app.datadoghq.com/dash/1033029/api-timeboard and see what I created.
+
+Next I wanted to be able to show someone what was happening in the last 5 minutes with my postgres integration I graphed. This was as simple as clicking on the graph and selecting the time period I wanted to view. This allows you to set the timeboard to virtually any time period. After that you can click the annotate button which opens up a window where you can put in comments and @a coworker, yourself or datadog support. 
+![annotate](/annotate.png)
+Here is a graph showing the last 5 minutes of Rows Returned from the Postgres Integration. It is showing the metric itself in blue with the accepted range in grey. Where the line goes red , it shows values outside the accepted range.
 ![Last 5 Minutes](/last5.png)
-
-Bonus Question
-
-The anomaly graph is showing my metric of postgresql rows returned in blue with the accepted range in grey. Where the line goes red , it shows values outside the accepted range.
 
 # Monitoring Data
 ```
