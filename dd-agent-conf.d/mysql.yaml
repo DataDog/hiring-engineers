@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+  - server: 172.17.0.4
+    user: datadog
+    pass: tHC1nbvmz91z;1DZnOJifL5F
+    tags:
+        - mysql_custom_tag
