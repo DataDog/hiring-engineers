@@ -1,0 +1,7 @@
+init_config:
+
+instances:
+  - min_collection_interval: 6000
+  - site: login.comcastaddelivery.com
+  - site: transfer.comcastaddelivery.com
+  - site: cadbeta.addelivery.cts.comcast.net 
