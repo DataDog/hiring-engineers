@@ -125,18 +125,66 @@ Here is a graph showing the last 5 minutes of Rows Returned from the Postgres In
 ![Last 5 Minutes](/last5.png)
 
 # Monitoring Data
+
+Since you can't stare at graphs 24 hours a day , you can let datadog monitor your data and let you know when something is not quite right. In this case I am monitoring the custom metric my_metric. To do this you would click on Monitors and then New Monitor on the left side of the datadog UI. Choose your metric and define when you want it to alert.
+![Monitor](/monitor.png)
+This will warn me if my_metric goes above 500 and then go to alert status at 800. I also told it to notify no data is recieved for more than 10 minutes which would also indicate a problem.
+
+After defining what I want the monitor to watch , I can now define who and how I want to be notified. In this case I want my email notified on warning, alert, and no data. The syntax for this is very easy to learn with autocomplete in the UI. Here I was able to setup a notification with the same @User used when sending annotations.  It also tells me the ip of the host that is alerting and what the value is. 
+
+
 ```
-{{#is_warning}} My metric is currently {{value}} on {{host.ip}} {{/is_warning}}
+@mbattaglia@gmail.com
 
-{{#is_alert}} My Metric is currently {{value}} on {{host.ip}} {{/is_alert}}
+{{#is_warning}}
+My metric is currently {{value}} on {{host.ip}}
+{{/is_warning}} 
 
-{{#is_no_data}} There has been no data from My Metric in the last 10 minutes {{/is_no_data}}
+{{#is_alert}}
+My Metric is currently {{value}} on {{host.ip}}
+{{/is_alert}} 
+
+{{#is_no_data}}
+There has been no data from My Metric in the last 10 minutes
+{{/is_no_data}}
 ```
-
-
+Of course since my metric is all over the place , I quickly got an email letting me know that on 10.0.2.15 my metric is at a warning state with a value of 799 (just below the alert threshold!)
 ![Alert](/alert.png)
-Bonus Question: 
+
+
+
+You could also have seperate notifications for warning and alerts , say you wanted the warning to show up in slack but if it hits alert to send to pagerduty by moving the @ into the appropriate section
+
+```
+{{#is_warning}}
+@myslack
+My metric is currently {{value}} on {{host.ip}}
+{{/is_warning}} 
+
+{{#is_alert}}
+@mypagerduty
+My Metric is currently {{value}} on {{host.ip}}
+{{/is_alert}} 
+
+{{#is_no_data}}
+@mypagerduty
+There has been no data from My Metric in the last 10 minutes
+{{/is_no_data}}
+```
+
+You can also schedule downtimes to silence the Monitor when its not needed. In this case, I only wanted notifications during office hours.
+This can be used to silence alerts during non critical times so your team can get a decent night's sleep or a 1 time downtime during a maintenance window so you can focus on your maintenance and not checking on alerts.  
+To do this , go to Monitors and manage downtime on the left. On the manage downtime page you can select "Schedule Downtime".
+From there simply select monitor you wish to schedule downtime for and the times you want your monitor to be quiet. 
+I have one downtime for the weekends:
+![noweekend](/noweekend.png)
+and one for weekday evenings and nights:
+![nonight](/nonight.png)
+
+
+You can get an email when the downtime is scheduled:
 ![downtime](/downtime.png)
+You can also set it to send an email when the actual downtime starts :
 ![downtimestartedemail](/downtimestarted.png)
 
 # Collecting APM Data
