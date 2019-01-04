@@ -66,7 +66,7 @@ We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
 <h5>vagrant up<h5>
     
 
-Then Next I run the Command vagrant up inside the Vagrant Folder
+##### Then Next I run the Command vagrant up inside the Vagrant Folder
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Ubuntu%20install.PNG">
@@ -509,7 +509,7 @@ vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$
 and as well yaml file  a yaml file  my_metric.yaml inside conf.d directory
 vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d$
 
-my_metric.yaml:
+##### my_metric.yaml:
 
 
 
@@ -816,10 +816,10 @@ The anomaly diagram is designed to show any variations in the data points from n
 
 #####  vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 
-dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
+###### dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
 
 
-flask-app.py  
+#### flask-app.py  
 
 
 
