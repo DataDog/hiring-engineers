@@ -408,7 +408,6 @@ GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 ###### I did setup  user name  is datadog and password also datadog
 
-# Images:
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
 
