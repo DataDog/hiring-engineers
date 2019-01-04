@@ -790,7 +790,7 @@ The anomaly diagram is designed to show any variations in the data points from n
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/monitor%20schedule%20downtime.png">
 
-
+#### And one that silences it all day on Sat-Sun.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mail%20send%20to%20me.png">
 
@@ -801,14 +801,20 @@ The anomaly diagram is designed to show any variations in the data points from n
 
 # collecting APM Data
 
+
+##### I installed all python flask application  related packages in to the server
+
+
+###### Then later I created a file inside the agent checks.d foder 
+
+
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install.png">
 
 
-I installed all python flask application  related packages in to the server
 
-Then later I created a file inside the agent checks.d foder 
+#####  vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 
-# vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
 
 
@@ -816,6 +822,7 @@ flask-app.py
 
 
 
+#### Here is the Pip Install logs
 
 
 vagrant@ubuntu-xenial:/etc$ pip install datadog
@@ -852,14 +859,11 @@ You should consider upgrading via the 'pip install --upgrade pip' command
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install%20menthod.png">
 
 
-I run the flask app via ddtrace-run python flask-app.py
+##### I run the flask app via ddtrace-run python flask-app.py
 
-Then got the below logs:
-
-
+##### Then got the below logs:
 
 INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
-
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/run%20flask%20app.png">
@@ -869,12 +873,13 @@ INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/complete%20datadog%20Graph.png">
 
 
-Another way I tried to run the flask app using virtutalenv and gurnicorn 
+##### Another way I tried to run the flask app using virtutalenv and gurnicorn 
 
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/flask%20app%20run%20another%20way.png">
 
+##### what is Anomaly Detection:
 
 Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting
 
@@ -882,7 +887,7 @@ Anomaly detection is an algorithmic feature that allows you to identify when a m
 
 
 
-Bonus Question: What is the difference between a Service and a Resource? 
+###### Bonus Question: What is the difference between a Service and a Resource? 
 
 A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webappservice and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
 These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
@@ -893,7 +898,7 @@ In the Datadog UI, this is the "Name" field in the above image.  An example of s
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/image53.png">
 
 
-Resource
+##### Resource
 A particular query to a service. For a web application, some examples might be a canonical URL like /user/home or a handler function like
 web.user.home (often referred to as "routes" in MVC frameworks). For a SQL database, a resource would be the SQL of the query itself like select * from users where id = ?
 The Tracing backend can track thousands (not millions or billions) of unique resources per service, so resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources.
@@ -902,23 +907,13 @@ These resources can be found after clicking on a particular service.
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/image54.png">
 
 
-Fianl Question 
+#### Fianl Question 
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! 
+###### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! 
 Is there anything creative you would use Datadog for? 
 
 
-
-
 I would like to integrate data dog with Health Industry. In the hospitals, there are a lot of patients with having different illnesses. we know that all the hospitals they have all the tools I mean the difference application to checkup the patient's conditions.in Realtime how patience health is improving we can know by using datadog and as well Hospitals authorisation can also confirm how can they improve patients health for future patients.
-
-
-
-
-
-Notes: sorry to say that I didn’t submit on deadline due to some personal reasons I needed some times to complete the task and Finally I would like to tell that I am  really interested for this positions.
-
-
 
 
 
@@ -1037,6 +1032,8 @@ Sat Dec 29 2018 02:31:45 GMT+0100 (Central European Standard Time) • Add comme
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/2nd%20Janaury.png">
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/2nd%20January%20.png">
+
+
 
 
 
