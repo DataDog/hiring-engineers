@@ -369,8 +369,8 @@ datadog-agent start/running, process 9712
 
 # Collecting Metrics:
 
-##### Mysql 
-##### sudo mysql -u root -p
+##### > Mysql 
+##### > sudo mysql -u root -p
 
 
 
@@ -385,6 +385,7 @@ https://docs.datadoghq.com/integrations/mysql/
 ##### Edit the Below File
 
 ###### /etc/datadog-agent/conf.d
+
 
 ###### in the root of your Agent’s configuration directory in order to connect the Agent to your MySQL server. You will begin collecting your MySQL metrics and logs right away. See the sample configuration filefor all available configuration options.
 
@@ -417,7 +418,7 @@ GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d
 
-conf.yaml.example
+##### conf.yaml.example
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20tags.png">
 
@@ -436,28 +437,36 @@ conf.yaml.example
 ##### But I had to create file inside the conf.d
 
 
-###### dd tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
+#### dd tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
+####  mysql is running 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20is%20running%20in%20Datadog.png">
 
+#### datadog host 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20agent%20UI.png">
+
+#### datadog integrations
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20Integration.png">
 
+### datadog Tags into mysql configurations
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20mysql%20Integrations%20tags.png">
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+#### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+##### manual mysql integrationa
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20integration%20manully.png">
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+#### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/customs%20metrics.png">
 
 
-I created a Python file my_metric.py  inside the checks.d directory 
+#### I created a Python file my_metric.py  inside the checks.d directory 
 
 
 vagrant@ubuntu-xenial:/etc/datadog-agent$ cd checks.d
@@ -465,17 +474,20 @@ vagrant@ubuntu-xenial:/etc/datadog-agent$ cd checks.d
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
 
-my_metric.py:
+### my_metric.py:
 
-# the following try/except block will make the custom check compatible with any Agent version
+###### the following try/except block will make the custom check compatible with any Agent version
+
 try:
     # first, try to import the base class from old versions of the Agent...
     from checks import AgentCheck
 except ImportError:
     # ...if the above failed, the check is running in Agent version 6 or later
     from datadog_checks.checks import AgentCheck
+    
 
-# content of the special variable __version__ will be shown in the Agent status page
+###### content of the special variable __version__ will be shown in the Agent status page
+
 __version__ = "1.0.0"
 
 import random
@@ -483,6 +495,10 @@ import random
 class MyMetricCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(1,1001))
+        
+#### Here is the URL of my-metric.py
+
+https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/my_metric.py
 
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$
@@ -498,8 +514,7 @@ my_metric.yaml:
 
 
 
-
-
+#### hange your check's collection interval so that it only submits the metric once every 45 seconds.
 
 init_config:
 
@@ -510,26 +525,21 @@ instances:
 
 
 
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+#### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 my_metric.yaml:
 
-yes without changing Python file we can change interval inside the yaml file.
-
-
-
-
-
+### yes without changing Python file we can change interval inside the yaml file.
 
 init_config:
 
 instances:
   - min_collection_interval : 45
 
-Like instead of 45 we can setup 30 
+### Like instead of 45 we can setup 30 
 
 
-
+##### datadog agent running status 
 
 
 datadog-agent.service - "Datadog Agent"
@@ -541,6 +551,7 @@ datadog-agent.service - "Datadog Agent"
       CPU: 1.762s
    CGroup: /system.slice/datadog-agent.service
            └─9295 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/agent.pid
+           
 
 Dec 29 02:47:13 ubuntu-xenial agent[9295]: 2018-12-29 02:47:13 UTC | INFO | (runner.go:324 in work) | Done running check uptime
 Dec 29 02:47:14 ubuntu-xenial agent[9295]: 2018-12-29 02:47:14 UTC | INFO | (runner.go:258 in work) | Running check network
@@ -557,13 +568,7 @@ lines 1-20/20 (END)
 
 
 
-
-
-
-
-
-
-After running the check my_metric I got the Below logs:
+##### After running the check my_metric I got the Below logs:
 
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ sudo -u dd-agent -- datadog-agent check my_metric
@@ -586,12 +591,11 @@ vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ sudo -u dd-agent -- datadog-a
     }
   ]
 }
-=========
-Collector
-=========
 
-  Running Checks
-  ==============
+### Collector
+
+  ### Running Checks
+  
 
     my_metric (1.0.0)
     -----------------
@@ -603,7 +607,7 @@ Collector
       Average Execution Time : 0s
 
 
-Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+#### Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/custom%20%20metrcis%20ouput%20logs.png">
 
@@ -628,12 +632,11 @@ agent check my_metric
     }
   ]
 }
-=========
-Collector
-=========
+
+
+##### Collector
 
   Running Checks
-  ==============
 
     my_metric (1.0.0)
     -----------------
@@ -645,11 +648,12 @@ Collector
       Average Execution Time : 0s
 
 
-Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+#### Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$
 
 
-Yes we can change the interval without modifying python file  
+##### Yes we can change the interval without modifying python file  
 
 init_config:
 
@@ -665,28 +669,33 @@ Here is yaml file into conf.d Directory
 # Visualizing Data:
 
 
+
 https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
 
-Utilize the Datadog API to create a Timeboard that contains
-
+### Utilize the Datadog API to create a Timeboard that contains
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/dashboard%20via%20script.png">
-
-
 
 vagrant@ubuntu-xenial:/etc/datadog-agent$ cd checks.d
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$
 
-Inside the checks.d directory I created a python file name is dashboard-via-script.py  
+#### Inside the checks.d directory I created a python file name is dashboard-via-script.py  
+
+
+### I follow this  url instruction of Datadog Website  to create Custom Time Board 
+
+https://docs.datadoghq.com/api/?lang=python#create-a-timeboard
 
 
 
-dashboard-via-script.py  :
+#### dashboard-via-script.py  :
 
-Notes:
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboar
+### Here is the Script file url 
+
+#### Notes:
+##### Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboar
 
 initialize(**options)
 
@@ -717,7 +726,7 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 
 
-I Have given the name  Dipankar Barua Time Board"
+##### I Have given the name  Dipankar Barua Time Board"
 
 
 
@@ -725,22 +734,25 @@ I Have given the name  Dipankar Barua Time Board"
 
 
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+#### Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/dashbboard%20garphg.png">
 
 
 
 
-•	Set the Timeboard's timeframe to the past 5 minutes
-•	Take a snapshot of this graph and use the @ notation to send it to yourself.
+#### 	Set the Timeboard's timeframe to the past 5 minutes
+
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/annotate%20dashboard.png">
+
+##### Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/monitor%20schedule%20downtime.png">
 
 
-•	Bonus Question: What is the Anomaly graph displaying?
+#### bonus Question: What is the Anomaly graph displaying?
+
 The anomaly diagram is designed to show any variations in the data points from normal leaning. If the data point is outside of what is predicted, it's going to an anomaly.
 
 
@@ -749,31 +761,53 @@ The anomaly diagram is designed to show any variations in the data points from n
 
 # Monitoring
 
+##### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+##### Warning threshold of 500
+##### Alerting threshold of 800
+##### And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+### alert Threshold and Warning Threshold
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20monitor.png">
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/metric%20monitorr.png">
 
+### notify Team and I setup My Email ID
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/metric%20monitor%20notified.png">
 
+### Recieved Mail 
+### Warning threshold of 500
+### Alerting threshold of 800
+#### And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/monitor%20check%20mail%20send%20to%20me.png">
 
 
+##### One that silences it from 7pm to 9am daily on M-F,
+
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/monitor%20schedule%20downtime.png">
 
+
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mail%20send%20to%20me.png">
+
+### all the schedule Notification alers list 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20monitor%20schedule.png">
 
 
-# ollecting APM Data
+# collecting APM Data
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install.png">
 
 
-I installed all python flask related packages in to the server
+I installed all python flask application  related packages in to the server
+
 Then later I created a file inside the agent checks.d foder 
+
 # vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
 
