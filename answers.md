@@ -33,9 +33,9 @@ Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20Website.PNG">
 
-<h5>Is vagrant installed or not you can check it by the following command on your Terminal </h5>
+#### Is vagrant installed or not you can check it by the following command on your Terminal
 
-<h5>Vagrant -v </h5>
+#### Vagrant -v 
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Version.PNG">
 
