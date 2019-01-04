@@ -188,8 +188,27 @@ You can also set it to send an email when the actual downtime starts :
 ![downtimestartedemail](/downtimestarted.png)
 
 # Collecting APM Data
+ Being an Infrastructure person by trade , I used the [sample flask application](/sample.py) for the APM task. I started by adding the following lines to the datadog.yaml and restarting the agent. 
+ ```
+ apm_config:
+  enabled: true
+ ```
 
+ The next step was to tell the application to send data to the agent. I first attempted that by adding a few lines to the begining of my sample app. 
+```
+from ddtrace import patch_all
+patch_all()
+```
+Unfortunatly flask was complaining about ports being in use already even though according to netstat they were not. Luckily there is another way to instrument the application and it doesn't involve modifiying the code nor did it complain about the port being used. 
+
+I commented out the above lines and simply started my application through ddtrace with the following command:
+
+`ddtrace-run python sample.py`
+Once the app was up and running , I was able to spam  a couple hundred `curl localhost:5051/api/trace ` and `curl localhost:5050/api/apm' to get some data generated.
+The Apm data in of itself can be pretty useful , but it gets even more powerful when combined with infrastructure metrics to see a correlation between the application layer and infrastrucure layer.
 ![apmdashboard](/infaandapm.png)
+
+
 https://app.datadoghq.com/dash/1033000/infrastructure-and-apm
 
 
@@ -198,7 +217,6 @@ A service would be defined for a particular functional piece of your application
 
 # Final Question:
   I like to play a game with the option to pick servers in different regions. Previously I was able to select Singapore , Europe , or North America and recieve reasonable ping times. Since changing ISPs the ping times are all over the place. Sometimes NA is not even playable but Europe works great. Using the tcp_check module in datadog I can check my approximate ping time to a representative server in EU and NA to decide what is worth playing on. 
-
 ```
   [root@localhost tcp_check.d]# cat conf.yaml
 instances:
