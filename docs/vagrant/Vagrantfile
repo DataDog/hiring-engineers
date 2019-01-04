@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+    # Box Settings ==============================================
+    config.vm.box = "ubuntu/xenial64"
+
+    # Provider Settings =========================================
+    # none
+
+    # Network Settings ==========================================
+    config.vm.network "private_network", ip: "192.168.33.10"
+
+    # Folder Settings ===========================================
+        # includes nfs
+    config.vm.synced_folder ".", "/var/www/html"
+
+    # Provision Settings ========================================
+    config.vm.provision "shell", path: "install.sh"
+end
