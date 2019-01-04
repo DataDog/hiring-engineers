@@ -39,11 +39,10 @@ Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Version.PNG">
 
-Let’s create a folder on Desktop using Terminal 
-
-Run below command on Terminal
+ ###### Let’s create a folder on Desktop using Terminal  and Run below command on Terminal
 
 User@Dipankar-Barua MINGW64 ~/Desktop
+
 $ mkdir SetupVagrant
 
 User@Dipankar-Barua MINGW64 ~/Desktop
@@ -53,15 +52,19 @@ $
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/VM%20and%20Terminal.PNG">
 
-To find out the vagrant box visit https://app.vagrantup.com/boxes/search
+
+####### To find out the vagrant box visit https://app.vagrantup.com/boxes/search
 
 We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20Ubuntu.PNG">
 
-<h3>vagrant init ubuntu/xenial64</h4#3>
 
-<h3>vagrant up<7h3>
+<h5>vagrant init ubuntu/xenial64</h5>
+
+<h5>vagrant up<h5>
+    
 
 Then Next I run the Command vagrant up inside the Vagrant Folder
 
@@ -70,7 +73,8 @@ Then Next I run the Command vagrant up inside the Vagrant Folder
 
 
 <h5>Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal</h5>
-Here is the link of Logs Info 
+
+###### Here is the link of Logs Info 
 
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrantup%20log
@@ -79,6 +83,8 @@ https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folde
 
 <h4>Below are the steps How to do configurations of Vagrant Setup</h4>
 
+<code>
+    
 config.vm.box - operating system
 
 config.vm.provider - Virtualbox
@@ -89,13 +95,15 @@ config.vm.synced -  how you access files from your computer
 
 config.vm.provision - what want to setup
 
+</code>
+
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20box%20configure%20image.png">
 
 Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20File
 
-# -------------------------------
+##### some important command of Vagrant 
 
 Some Important command For Vagrant
 
@@ -105,8 +113,7 @@ For suspend- vagrant suspend
 
 For resuming – vagrant resume 
 
-#----------------------------- 
-
+##### We can change VB Internal base Memory 
 
 <h6> We can also change VM base memory and ram </h6>
 
@@ -115,6 +122,7 @@ vb.memory=2048
     
     
 <h4>in the vagrant file </h4>
+
     
 after saving the file we can reload vagrant -- reload then it will change
 
@@ -124,8 +132,9 @@ after saving the file we can reload vagrant -- reload then it will change
 Now we gonna install vagrant ssh using command vagrant ssh 
 
 
-Logs below
-$ vagrant ssh
+###### Logs below
+
+###### $ vagrant ssh
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20ssh.png">
 
@@ -135,16 +144,19 @@ $ vagrant ssh
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
 
-# ------------------------------
-If we search now var /www we will not find for that we have to install apache2 
+######  Before Installing Apache 2
 
-Lets Run the below command
+###### If we search now var /www we will not find for that we have to install apache2 
+
+
+###### Lets Run the below command
 
 Sudo apt-get update
 
 Sudo apt-get install –y  git  (for git)
 
 Sudo apt-get install –y  apache2 (for apache 2)
+
 
 # --------------------------
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
