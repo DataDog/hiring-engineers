@@ -39,7 +39,7 @@ Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Vagrant%20Version.PNG">
 
- ###### Let’s create a folder on Desktop using Terminal  and Run below command on Terminal
+ #### Let’s create a folder on Desktop using Terminal  and Run below command on Terminal
 
 User@Dipankar-Barua MINGW64 ~/Desktop
 
@@ -53,7 +53,7 @@ $
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/VM%20and%20Terminal.PNG">
 
 
-####### To find out the vagrant box visit https://app.vagrantup.com/boxes/search
+#### To find out the vagrant box visit https://app.vagrantup.com/boxes/search
 
 We are going to select the Ubuntu 16.04 Vagrant Box for the Virtual Box
 
@@ -74,7 +74,7 @@ Then Next I run the Command vagrant up inside the Vagrant Folder
 
 <h5>Following logs after Running the Vagrant up command inside the Vgarant Setup Folder Using Terminal</h5>
 
-###### Here is the link of Logs Info 
+##### Here is the link of Logs Info 
 
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrantup%20log
@@ -105,8 +105,6 @@ Here is the Configurations File URL - https://github.com/mrbarua/hiring-engineer
 
 ##### some important command of Vagrant 
 
-Some Important command For Vagrant
-
 For Destroying- vagrant destroy
 
 For suspend- vagrant suspend
@@ -114,8 +112,6 @@ For suspend- vagrant suspend
 For resuming – vagrant resume 
 
 ##### We can change VB Internal base Memory 
-
-<h6> We can also change VM base memory and ram </h6>
 
 vb.memory=2048
     vb.cpus =4
@@ -132,9 +128,9 @@ after saving the file we can reload vagrant -- reload then it will change
 Now we gonna install vagrant ssh using command vagrant ssh 
 
 
-###### Logs below
+#### Logs below
 
-###### $ vagrant ssh
+##### $ vagrant ssh
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/vagrant%20ssh.png">
 
@@ -144,12 +140,12 @@ Now we gonna install vagrant ssh using command vagrant ssh
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/vagrant%20ssh%20logs
 
-######  Before Installing Apache 2
+####  Before Installing Apache 2
 
-###### If we search now var /www we will not find for that we have to install apache2 
+#### If we search now var /www we will not find for that we have to install apache2 
 
 
-###### Lets Run the below command
+##### Lets Run the below command
 
 Sudo apt-get update
 
@@ -158,7 +154,7 @@ Sudo apt-get install –y  git  (for git)
 Sudo apt-get install –y  apache2 (for apache 2)
 
 
-# --------------------------
+####
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www
 html
 vagrant@vagrant-ubuntu-trusty-64:~$ ls /var/www/html
@@ -166,14 +162,13 @@ index.html
 vagrant@vagrant-ubuntu-trusty-64:~$
 
 
-# ----------------------
+#####
 For networking localhost has setup in vagrant file  and saved the file 
 
    config.vm.network "forwarded_port", guest: 80, host: 8080
 
 
-# ----------------------
->h4>logs info  –</h4>
+##### logs info 
 
 Setting up ssl-cert (1.0.33) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.14) ...
@@ -193,7 +188,8 @@ Connection to 127.0.0.1 closed.
 
 
 User@Dipankar-Barua MINGW64 ~/Desktop/SetupVagrant
-# -----
+
+#####
 
 $ vagrant reload
 ==> default: Attempting graceful shutdown of VM...
@@ -201,15 +197,17 @@ $ vagrant reload
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Apache2%20run.png">
 
-# --------------
-Apache setup 
+##### 
+
+#### Apache setup 
 
 http://localhost:8080/
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/apache%20working%20local%208080.png">
 
 
-# ------------------------
+###### 
+
 We can also use local private network using vagrant file network setting config.vm.network "private_network", ip: "192.168.33.10"
 
 http://192.168.33.10/
@@ -218,14 +216,14 @@ http://192.168.33.10/
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/image16.png">
 
 
-# -------------
+###### 
 
 #Folder setting 
   config.vm.synced_folder ".", "/var/www/html"
 
 
 
-# -----------
+##### 
 
 <h4>config file sync</h4>
 
@@ -233,34 +231,33 @@ http://192.168.33.10/
 
 
 
-# ----------
-Sign up for Data dog:
+#### Sign up for Data dog:
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20Signup.png">
 
 
-# ------------------------
-
-1,2.Containerized approach with Docker for Linux and our dockerized Datadog Agent image
+#### 1,2.Containerized approach with Docker for Linux and our dockerized Datadog Agent image
 
 The Datadog agent was successfully installed via the following:
 
-We can install two ways: First one is recommended
+#### We can install two ways:
+###### First one is recommended
 
-Run Below command Inside your Ubuntu Server
+###### Run Below command Inside your Ubuntu Server
 
 DD_API_KEY=610080f148d9e4d47efed7c611e64d7d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20agent%20install%20on%20Ubuntu.png">
 
-Step by Step Installation:
+###### Step by Step Installation:
 
 Run these commands step by step to install the Datadog Agent in your Server.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20agent%20step%20by%20step.png">
 
 
-1.3   Datadog Container Docker Install by following command 
+###### 1.3   Datadog Container Docker Install by following command 
 
 
 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
@@ -269,7 +266,7 @@ docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Docker%20install%20on%20Ubuntu%20.png">
 
 
-Docker installtion logs:
+###### docker installtion logs:
 
 vagrant@ubuntu-xenial:~$ sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
 Unable to find image 'datadog/agent:latest' locally
@@ -285,21 +282,24 @@ dc7a1564846a: Pull complete
 Digest: sha256:301adad25c80a2d976c47f77b5341479cf0e5f2f81db353c90568e8c42ab6576
 Status: Downloaded newer image for datadog/agent:latest
 6ee6039e47b205ea357fb9485ca04ddf99a48581b9c1dd7736cf59a56844a2bd
+
 vagrant@ubuntu-xenial:~$
 
 
-Is Datadog is running or not  to know I run the command below
-sudo datadog-agent status
+##### Is Datadog is running or not  to know I run the command below
 
-Here is the Datadog running status Logs:
+###### sudo datadog-agent status
+
+###### Here is the Datadog running status Logs:
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/datadog_running_statusd_log
 
 
 
-To get the related info of Datadog agent we can use below command 
+###### To get the related info of Datadog agent we can use below command 
 
-DESCRIPTION	COMMAND
+##### DESCRIPTION	COMMAND
+
 Start Agent as a service	sudo service datadog-agent start
 
 Stop Agent running as a service	sudo service datadog-agent stop
@@ -317,29 +317,37 @@ Display command usage	sudo datadog-agent --help
 Run a check	sudo -u dd-agent -- datadog-agent check <check_name>
 
 
-I have already installed all the necessary packages those are all in vagrant provision shell script.
 
-To get the MySQL config file change the directory 
+###### I have already installed all the necessary packages those are all in vagrant provision shell script.
+
+
+# Install MySQL
+apt-get install -y mysql-server
+
+# PHP-MYSQL lib
+apt-get install -y php7.2-mysql
+
+
+##### To get the MySQL config file change the directory 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20metric.png">
-
-
-
 
 
 
 vagrant@vagrant-ubuntu-trusty-64:/etc/datadog-agent/conf.d$
 
+
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20metric.png">
 
-And also install manually MySQL integrations.
+##### And also install manually MySQL integrations.
+
 After installing the MySQL integration I restart my datadog agent
 
-by following command 
+###### by following command 
 
-sudo service datadog-agent restart
+##### sudo service datadog-agent restart
 
-logs
+#### logs
 
 vagrant@vagrant-ubuntu-trusty-64:/etc/datadog-agent/conf.d/mysql.d$ cd
 
@@ -352,8 +360,6 @@ datadog-agent start/running, process 9504
 vagrant@vagrant-ubuntu-trusty-64:~$
 
 
-
-
 vagrant@vagrant-ubuntu-trusty-64:~$ sudo service datadog-agent restart
 
 datadog-agent stop/waiting
@@ -363,17 +369,24 @@ datadog-agent start/running, process 9712
 
 # Collecting Metrics:
 
-Mysql 
-sudo mysql -u root -p
+##### Mysql 
+##### sudo mysql -u root -p
 
 
 
-I used this Documents to create new user with password;
+###### I used this Documents to create new user with password;
+
+##### Follow this Instructions 
+
 https://docs.datadoghq.com/integrations/mysql/
 
-Configuration
+###### Configuration
 
-Edit conf.d/mysql.d/conf.yaml in the root of your Agent’s configuration directory in order to connect the Agent to your MySQL server. You will begin collecting your MySQL metrics and logs right away. See the sample configuration filefor all available configuration options.
+##### Edit the Below File
+
+###### /etc/datadog-agent/conf.d
+
+###### in the root of your Agent’s configuration directory in order to connect the Agent to your MySQL server. You will begin collecting your MySQL metrics and logs right away. See the sample configuration filefor all available configuration options.
 
 PREPARE MYSQL
 On each MySQL server, create a database user for the Datadog Agent:
@@ -392,7 +405,7 @@ CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';
 
 GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
-I gave user is datadog and password also datadog
+###### I did setup  user name  is datadog and password also datadog
 
 # Images:
 
@@ -400,11 +413,9 @@ I gave user is datadog and password also datadog
 
 
 
+###  mysql config file 
 
- 
- mysql config file 
-
-vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d/mysql.d$
+vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d
 
 conf.yaml.example
 
@@ -412,25 +423,20 @@ conf.yaml.example
 
 
 
-I Copied the example yaml file and as well create new file by following command
+##### I Copied the example yaml file and as well create new file by following command
 
-Sudo cp conf.yaml.example mysql.yaml
-
-
+###### Sudo cp conf.yaml.example mysql.yaml
 
 
-I took a lot of time because I was doing mistake 
-I was creating a file inside the mysql. d directory 
+##### I took a lot of time because I was doing mistake  and I was creating a file inside the mysql. d directory 
 
 /etc/datadog-agent/conf.d/mysql.d
 
 
-But I had to create file inside the conf.d
+##### But I had to create file inside the conf.d
 
 
-dd tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
-
-
+###### dd tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20is%20running%20in%20Datadog.png">
