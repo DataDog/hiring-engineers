@@ -1,8 +1,5 @@
 import random
 
-for jj in range(1):
-    my_metric = random.randint(1, 1001)
-
 # the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from old versions of the Agent...

@@ -69,11 +69,9 @@ tags:
 * I created a custom Agent check named my_metric that generated a random int between 0 and 1000 in Python. Displayed below are the code snippets, with comments trimmed, to make this check function properly.
 
 [my_metric python file:](docs/datadog/my_metric.py)
+
 ```python
 import random
-
-for jj in range(1):
-    my_metric = random.randint(0, 1001)
 
 try:
     from checks import AgentCheck
@@ -89,6 +87,7 @@ class my_metric_check(AgentCheck):
 ```
 
 [my_metric yaml file:](docs/datadog/my_metric.yaml)
+
 ```yaml
 instances: [{}]
 ```
