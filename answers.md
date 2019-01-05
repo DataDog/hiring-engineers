@@ -43,7 +43,7 @@ tags:
 
 ![screenshot of host map with tags selected.](imgs/04-Screen-Shot-host-map-tags.png)
 
-* I installed MySQL using a [Vagrant provisioning file](docs/vagrant/install.sh) with the script snippet below.
+* I installed MySQL using an [installation shell file](docs/vagrant/install.sh) linked to my [Vagrantfile](docs/vagrant/install.sh) provisions with the script snippet below.
 
 ```bash
 # MySQL ========================
@@ -66,7 +66,7 @@ tags:
 
 ![DataDog status checks](imgs/06-Screen-Shot-mySQL-check-success.png)
 
-* I created a custom Agent check named my_metric that generated a random int between 0 and 1000 in Python. Displayed below are the code snippets, with comments trimmed, to make this check functional.
+* I created a custom Agent check named my_metric that generated a random int between 0 and 1000 in Python. Displayed below are the code snippets, with comments trimmed, to make this check function properly.
 
 [my_metric python file:](docs/datadog/my_metric.py)
 ```python
@@ -113,19 +113,16 @@ instances:
 
 ## Visualizing Data
 
-Utilize the Datadog API to create a Timeboard that contains:
+* The timeboard below was created with this [API-timeboard.py](docs/datadog/API-timeboard.py) script I created. Completing this task took longer than I expected in looking through the API docs. So, I used the GUI for creating graphs to generate JSON so I could better understand the structure of the requests, which helped give me additional perspective.
 
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+![Timeboard created via DataDog API](imgs/08-Screen-Shot-API-timeboard-view.png)
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+* In this screen shot, I've shortened the Timeboard's timeframe to the last 5 minutes, taken a snapshot, and used the @ notation to send it to myself.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+![snapshot](imgs/09-Screen-Shot-snapshot-5min-timeframe.png)
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
+  * My Anomaly graph is showing the MySQL kernel_time which displays the percentage of CPU time spent in kernel space by MySQL. The anomaly part of this graph shows grey shading over the visualization showing the expected behavior based on previous data.
 
 ## Monitoring Data
 
