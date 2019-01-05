@@ -41,7 +41,7 @@ tags:
 
 * Tag functionality displayed across three VMs on the Host Map.
 
-![screenshot of host map with tags selected.](imgs/04-Screen-Shot-host-map-tags.png)
+![screen shot of host map with tags selected.](imgs/04-Screen-Shot-host-map-tags.png)
 
 * I installed MySQL using an [installation shell file](docs/vagrant/install.sh) linked to my [Vagrantfile](docs/vagrant/install.sh) provisions with the script snippet below.
 
@@ -113,7 +113,7 @@ instances:
 
 ## Visualizing Data
 
-* The timeboard below was created with this [API-timeboard.py](docs/datadog/API-timeboard.py) script I created. Completing this task took longer than I expected in looking through the API docs. So, I used the GUI for creating graphs to generate JSON so I could better understand the structure of the requests, which helped give me additional perspective.
+* This timeboard was created with this [API-timeboard.py](docs/datadog/API-timeboard.py) script I created. Completing this task took longer than I expected in looking through the API docs. So, I used the GUI for creating graphs to generate JSON so I could better understand the structure of the requests, which helped give me additional perspective.
 
 ![Timeboard created via DataDog API](imgs/08-Screen-Shot-API-timeboard-view.png)
 
@@ -122,30 +122,48 @@ instances:
 ![snapshot](imgs/09-Screen-Shot-snapshot-5min-timeframe.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
-  * My Anomaly graph is showing the MySQL kernel_time which displays the percentage of CPU time spent in kernel space by MySQL. The anomaly part of this graph shows grey shading over the visualization showing the expected behavior based on previous data.
+  * My Anomaly graph is showing the MySQL kernel_time which displays the percentage of CPU time spent in kernel space by MySQL. The anomaly part of this graph displays grey shading over the visualization showing the expected behavior based on previous data.
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+* I created a new metric monitor for my_metric that I created earlier in this exercise. Here's a screen shot of the monitor's settings.
+  * Warn for value > 500 at 5 mins
+  * Alert for value > 800 at 5 mins
+  * No data at 10 mins
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+![Metric monitor threshold settings](imgs/10-Screen-Shot-alert-threshold-setting.png)
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* Here's a screen shot of one of the emails that the monitor sent me followed by the email template.
 
-Please configure the monitor’s message so that it will:
+![Metric monitor email](imgs/11-Screen-Shot-email-monitor.png)
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+```none
+TITLE: my_metric {{#is_no_data}}has no data{{/is_no_data}}{{^is_no_data}}levels too high{{/is_no_data}} at {{last_triggered_at}}
+
+BODY:
+my_metric has reached a level of {{value}} at {{last_triggered_at}}.
+
+{{#is_warning}}Warnings trigger at a value of {{warn_threshold}} or higher{{/is_warning}}
+{{#is_alert}}Alerts trigger at a value of {{threshold}} or higher{{/is_alert}}
+{{#is_no_data}}No data has been detected for at least 10 minutes{{/is_no_data}}
+
+Issue occurred at: {{last_triggered_at}} 
+ @burkesaram@gmail.com
+```
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  * Below are screen shots showing scheduled downtime for weekdays from 7pm to 9am.
+
+  ![weekday downtime schedule](imgs/12-Screen-Shot-weekday-downtime.png)
+
+  * And another downtime scheduled for the entirety of Saturday and Sunday.
+
+  ![weekend downtime schedule](imgs/13-Screen-Shot-weekend-downtime.png)
+
+  * Last but not least, a screen shot of the notification showing that downtime has started for this monitor.
+
+  ![downtime email notification](imgs/14-Screen-Shot-downtime-email.png)
 
 ## Collecting APM Data
 
@@ -186,7 +204,7 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Provide a link and a screen shot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -206,4 +224,4 @@ To submit your answers:
 * Answer the questions in answers.md
 * Commit as much code as you need to support your answers.
 * Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+* Don't forget to include links to your dashboard(s), even better links and screen shots. We recommend that you include your screen shots inline with your answers.
