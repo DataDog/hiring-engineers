@@ -126,7 +126,7 @@ instances:
 
 ## Monitoring Data
 
-* I created a new metric monitor for my_metric that I created earlier in this exercise. Here's a screen shot of the monitor's settings.
+* I created a new metric monitor for my_metric. Here's a screen shot of the monitor and a listing of settings.
   * Warn for value > 500 at 5 mins
   * Alert for value > 800 at 5 mins
   * No data at 10 mins
@@ -150,6 +150,17 @@ my_metric has reached a level of {{value}} at {{last_triggered_at}}.
 Issue occurred at: {{last_triggered_at}} 
  @burkesaram@gmail.com
 ```
+
+* Potential bug: (Sat, Jan 5 2019, ~10-11AM PST) Cannot properly scroll on edit modal in Manage Downtime tab. Initial steps: Under the Manage Downtime tab (Layer 1, main-page), select an existing scheduled downtime(Layer 2, opens right-hand-slideout), select the edit button (Layer 3, opens edit-modal).
+  * This didn't appear to be an issue last night (Fri, Jan 4 2019, ~11PM PST) when I was editing downtimes.
+  * 2015 macbook pro trackpad will not scroll the L3:edit-modal.
+    * Position of cursor does not change behavior.
+  * Using up/down arrow keys changes selection on list of existing scheduled downtimes on the L1:main-page. Right-hand slideout appropriately changes information according to selected scheduled downtime.
+  * Spacebar and shift+spacebar DOES properly scroll L3:edit-modal.
+  * [esc] properly exits edit modal.
+    * Trackpad scrolling now functions properly, including typical scrolling behavior based on cursor position for macOS devices. i.e. with L2:right-hand-slideout open, cursor over L2:right-hand-slideout result in no scrolling. Cursor over L1:main-page scrolls L1:main-page.
+  * Reloading and shift+command+R do not resolve the issue.
+  * I don't have screen recording software, so visually documenting the bug is difficult on my end.
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
