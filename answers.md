@@ -44,7 +44,7 @@ Once the agent was restarted ```“systemctl restart datadog-agent”```, I was 
 
 <img src="./screenshots/mysqlvm.png"/> 
 
-We can also see this connection, plus some extra information from our [Datadog dashboard] (https://app.datadoghq.com/dash/1036097/my-sql-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1546728600000&to_ts=1546732200000&live=true) and Events pages
+We can also see this connection, plus some extra information from our [Datadog dashboard](https://app.datadoghq.com/dash/1036097/my-sql-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1546728600000&to_ts=1546732200000&live=true) and Events pages
 
 <img src="./screenshots/MYSQLEvent.png"/> 
 
@@ -251,7 +251,7 @@ This produced the following results within the APM Dashboard (as per expected).
 
 <img src="./screenshots/TraceSearch.png"/> 
 
-I also created the following [dashboard] (https://app.datadoghq.com/dash/1036113/infrastructure-and-apm?tile_size=m&page=0&is_auto=false&from_ts=1546736040000&to_ts=1546739640000&live=true)
+I also created the following [dashboard](https://app.datadoghq.com/dash/1036113/infrastructure-and-apm?tile_size=m&page=0&is_auto=false&from_ts=1546736040000&to_ts=1546739640000&live=true)
 
 <img src="./screenshots/InfrastructureAPMDash.png"/>
 
