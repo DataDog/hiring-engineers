@@ -112,7 +112,7 @@ instances:
 
 ## Visualizing Data
 
-* This timeboard was created with this [API-timeboard.py](docs/datadog/API-timeboard.py) script I created. Completing this task took longer than I expected in looking through the API docs. So, I used the GUI for creating graphs to generate JSON so I could better understand the structure of the requests, which helped give me additional perspective.
+* This timeboard was created with this [API-timeboard.py](docs/datadog/API-timeboard.py) script. Completing this task took longer than I expected while looking through the API docs. So, I used the GUI for creating graphs on a timeboard to generate JSON so I could better understand the structure of the requests.
 
 ![Timeboard created via DataDog API](imgs/08-Screen-Shot-API-timeboard-view.png)
 
@@ -146,12 +146,13 @@ my_metric has reached a level of {{value}} at {{last_triggered_at}}.
 {{#is_alert}}Alerts trigger at a value of {{threshold}} or higher{{/is_alert}}
 {{#is_no_data}}No data has been detected for at least 10 minutes{{/is_no_data}}
 
-Issue occurred at: {{last_triggered_at}} 
+Issue occurred at: {{last_triggered_at}}
  @burkesaram@gmail.com
 ```
 
 * Potential bug: (Sat, Jan 5 2019, ~10-11AM PST) Cannot properly scroll on edit modal in Manage Downtime tab. Initial steps: Under the Manage Downtime tab (Layer 1, main-page), select an existing scheduled downtime(Layer 2, opens right-hand-slideout), select the edit button (Layer 3, opens edit-modal).
   * This didn't appear to be an issue last night (Fri, Jan 4 2019, ~11PM PST) when I was editing downtimes.
+  * Issue does NOT occur when creating a new scheduled downtime.
   * 2015 macbook pro trackpad will not scroll the L3:edit-modal.
     * Position of cursor does not change behavior.
   * Using up/down arrow keys changes selection on list of existing scheduled downtimes on the L1:main-page. Right-hand slideout appropriately changes information according to selected scheduled downtime.
@@ -177,52 +178,70 @@ Issue occurred at: {{last_triggered_at}}
 
 ## Collecting APM Data
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+This exercise took a few steps to complete, so I've numbered them for easier reading.
 
-```python
-from flask import Flask
-import logging
-import sys
+1. I installed Flask and ddtrace to the Vagrant box, and my personal machine for IDE lib functionality.
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
+```shell
+sudo -H pip install flask
+sudo -H pip install ddtrace
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+2. I modified the datadog.yaml file and restarted the Agent.
+
+```yaml
+apm_config:
+    enable:true
+```
+
+```shell
+sudo service datadog-agent restart
+```
+
+3. I modified my [Vagrantfile](docs/vagrant/Vagrantfile) so that I could test the small flask app through my main computer's browser, then reloaded Vagrant.
+
+```yaml
+config.vm.network "forwarded_port", guest:5050, host:8080
+```
+
+```shell
+vagrant reload
+```
+
+4. I changed the Flask app's permissions to be executable and initiated instrumentation by running the app using ddtrace.
+
+```shell
+sudo chmod a+x app.py
+ddtrace-run python3 app.py
+```
+
+5. Here's a screen shot collection showing successful visits to the Flask app.
+
+![Successful flask app in browser](imgs/15-Screen-Shot-flask-app-working.png)
+
+6. Evidence of the successful APM connection.
+
+![Successful apm connect to DataDog](imgs/16-Screen-Shot-success-apm-connect.png)
+
+7. [Dashboard with both APM and Infrastructure Metrics.](https://p.datadoghq.com/sb/fa5a62a52-b8a4a466849b241fd97a17ae99bdacb4)
+
+![Dashboard with APM and Infrastructure](imgs/17-dashboard-APM-Infra.png)
+
+* I've included the [fully instrumented app](docs/datadog/app.py) as requested, however my instrumentation was limited to running the app with ddtrace-run. I spent some hours reading through the APM documentation and while I understand the basics, applying ddtrace inside of an application is something I will need more guidance with before becoming proficient.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+  * Let's say I have a webapp that sends a query to a database and displays the results of that query in a browser. The service is the webapp, and a resource is the query from the webapp. A service is a collection of processes that have an end result. A resource is a part of that service which helps create that end result.
 
-Provide a link and a screen shot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
 
 ## Final Question
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
 Is there anything creative you would use Datadog for?
+
+I grew up in the American Midwest. While I've been living on the West Coast for nearly a decade now, I'm familiar only with bodies of fresh water. So lately, I've been learning about oceans. Currents, waves, tides, swells, sea kayaking, sailing, boating, fishing, crabbing, etc.
+
+The National Oceanic and Atmospheric Administration (NOAA) has a series of sensor bouys they maintain across the country (world?) to monitor various conditions. There are several bouys just outside of San Francisco and within the SF Bay. I started monitoring them around the time that weather conditions were able to facilitate the [Mavericks competition](https://en.wikipedia.org/wiki/Mavericks,_California#Invitational_Surfing_Contest) (which was ultimately cancelled recently, 2018). 2018's weather conditions forecasted waves of up to 60 feet tall between Half Moon Bay and Marin. When the giant swells moved in, I could see the evidence in readings from the NOAA bouys. Unfortunately, the bouy feeds are difficult to read and only a few steps away from raw data.
+
+I'd like to collect the bouy data, then track it through DataDog to improve readability of the information. Hypothetically speaking, conditionals could be applied to send notifications based on surfability (wave height, time interval between waves), small watercraft safety (wave height, strength of currents), what the tide stage is at, and even as granular as whether currents are too strong to drop crab pots.
 
 ## Instructions
 
