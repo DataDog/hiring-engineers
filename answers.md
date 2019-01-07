@@ -43,7 +43,7 @@ Download Vagrant and Install it on your system-  https://www.vagrantup.com/
 
 User@Dipankar-Barua MINGW64 ~/Desktop
 
-$ mkdir SetupVagrant
+###### $ mkdir SetupVagrant
 
 User@Dipankar-Barua MINGW64 ~/Desktop
 $
@@ -241,23 +241,23 @@ http://192.168.33.10/
 The Datadog agent was successfully installed via the following:
 
 #### We can install two ways:
-###### First one is recommended
+##### First one is recommended
 
-###### Run Below command Inside your Ubuntu Server
+##### Run Below command Inside your Ubuntu Server
 
 DD_API_KEY=610080f148d9e4d47efed7c611e64d7d bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20agent%20install%20on%20Ubuntu.png">
 
-###### Step by Step Installation:
+##### Step by Step Installation:
 
 Run these commands step by step to install the Datadog Agent in your Server.
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20agent%20step%20by%20step.png">
 
 
-###### 1.3   Datadog Container Docker Install by following command 
+##### 1.3   Datadog Container Docker Install by following command 
 
 
 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
@@ -266,7 +266,7 @@ docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Docker%20install%20on%20Ubuntu%20.png">
 
 
-###### docker installtion logs:
+##### docker installtion logs:
 
 vagrant@ubuntu-xenial:~$ sudo docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=610080f148d9e4d47efed7c611e64d7d datadog/agent:latest
 Unable to find image 'datadog/agent:latest' locally
@@ -288,15 +288,15 @@ vagrant@ubuntu-xenial:~$
 
 ##### Is Datadog is running or not  to know I run the command below
 
-###### sudo datadog-agent status
+##### sudo datadog-agent status
 
-###### Here is the Datadog running status Logs:
+##### Here is the Datadog running status Logs:
 
 https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/File%20Folder/datadog_running_statusd_log
 
 
 
-###### To get the related info of Datadog agent we can use below command 
+##### To get the related info of Datadog agent we can use below command 
 
 ##### DESCRIPTION	COMMAND
 
@@ -321,10 +321,10 @@ Run a check	sudo -u dd-agent -- datadog-agent check <check_name>
 ###### I have already installed all the necessary packages those are all in vagrant provision shell script.
 
 
-# Install MySQL
+### Install MySQL
 apt-get install -y mysql-server
 
-# PHP-MYSQL lib
+### PHP-MYSQL lib
 apt-get install -y php7.2-mysql
 
 
@@ -380,7 +380,7 @@ datadog-agent start/running, process 9712
 
 https://docs.datadoghq.com/integrations/mysql/
 
-###### Configuration
+##### Configuration
 
 ##### Edit the Below File
 
@@ -406,7 +406,7 @@ CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';
 
 GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
-###### I did setup  user name  is datadog and password also datadog
+##### I did setup  user name  is datadog and password also datadog
 
 
 <img src="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/mysql%20configurations%20for%20tags.png">
@@ -469,6 +469,8 @@ vagrant@ubuntu-xenial:/etc/datadog-agent/conf.d
 
 
 vagrant@ubuntu-xenial:/etc/datadog-agent$ cd checks.d
+
+#### touch my_metric.py
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
 dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
@@ -806,23 +808,6 @@ The anomaly diagram is designed to show any variations in the data points from n
 ##### I installed all python flask application  related packages in to the server
 
 
-###### Then later I created a file inside the agent checks.d foder 
-
-
-
-<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install.png">
-
-
-
-#####  vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
-
-###### dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
-
-
-#### flask-app.py  
-
-
-
 #### Here is the Pip Install logs
 
 
@@ -860,6 +845,26 @@ You should consider upgrading via the 'pip install --upgrade pip' command
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install%20menthod.png">
 
 
+
+###### Then later I created a file inside the agent checks.d foder 
+
+
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/pip%20install.png">
+
+
+
+#####  vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
+
+###### dashboard-via-script.py  flask-app.py  my_metric.py  my_metric.pyc
+
+
+#### flask-app.py  
+
+
+
+
+
 ##### I run the flask app via ddtrace-run python flask-app.py
 
 ##### Then got the below logs:
@@ -874,13 +879,16 @@ INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/complete%20datadog%20Graph.png">
 
 
-##### Another way I tried to run the flask app using virtutalenv and gurnicorn 
+#### Another way I tried to run the flask app using virtutalenv and gurnicorn 
+
+#### what I mean PIPENV way run the flask app inside the ubuntu server, This way we can easily manage the depencies Packages of python flask app
+
 
 
 
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/flask%20app%20run%20another%20way.png">
 
-##### what is Anomaly Detection:
+#### what is Anomaly Detection:
 
 Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting
 
@@ -888,7 +896,7 @@ Anomaly detection is an algorithmic feature that allows you to identify when a m
 
 
 
-###### Bonus Question: What is the difference between a Service and a Resource? 
+#### Bonus Question: What is the difference between a Service and a Resource? 
 
 A "Service" is the name of a set of processes that work together to provide a feature set. For instance, a simple web application may consist of two services: a single webappservice and a single database service, while a more complex environment may break it out into 6 services: 3 separate webapp, admin, and query services, along with a master-db, a replica-db, and a yelp-api external service.
 These services are defined by the user when instrumenting their application with Datadog. This field is helpful to quickly distinguish between your different processes.
@@ -910,11 +918,11 @@ These resources can be found after clicking on a particular service.
 
 #### Fianl Question 
 
-###### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! 
+##### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! 
 Is there anything creative you would use Datadog for? 
 
 
-I would like to integrate data dog with Health Industry. In the hospitals, there are a lot of patients with having different illnesses. we know that all the hospitals they have all the tools I mean the difference application to checkup the patient's conditions.in Realtime how patience health is improving we can know by using datadog and as well Hospitals authorisation can also confirm how can they improve patients health for future patients.
+I would like to integrate data dog with Health Industry. In the hospitals, there are a lot of patients with having different illnesses. we know that all the hospitals they have different kinds of tools I mean the difference application to checkup the patient's conditions.in Realtime how patience health is improving we can know by using datadog tools and as well Hospitals authorisation can also confirm how can they improve of future patients health.
 
 
 
@@ -1035,31 +1043,13 @@ Sat Dec 29 2018 02:31:45 GMT+0100 (Central European Standard Time) • Add comme
 <img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/2nd%20January%20.png">
 
 
+### 5th January to 6th January Datadog alert 
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/Datadog%20Alert%201.PNG">
+
+<img src ="https://github.com/mrbarua/hiring-engineers/blob/solutions-engineer/images/datadog%20alert%202.PNG">
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### Thank you so much to give me this assigment to show my skills and I hope so I have fullfilled your expectations.
 
