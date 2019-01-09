@@ -15,14 +15,16 @@ The custom Agent check code is located [here](./metric.py) and was installed in
 
 ## Visualizing Data
 
-First, I created a graph tracking MySQL connections with an anomaly applied to it.
+The first task was to create an anomaly in the MySQL database and graph it.
+The anomaly I used was `mysqlslap` to simulate a load on the server.
+From Datadog, I created a graph tracking MySQL connections with an anomaly applied to it.
 That provided the query to use in the API to create the Timeboard. I then created a
 [Python script](./timeboard.py) to create a Timeboard via API. It includes 3 graphs:
 1. My Custom Metric over time
 2. MySQL Connections
 3. Rollup of the My Custom Metric values over the past hour
 
-You can see a screenshot of this Timeboard below.
+![APM Timeboard](./img/2018-12-16_14-47-21.png)
 
 I took a snapshot of the MySQL Connections chart and tagged myself. It sent me this email:
 
@@ -53,7 +55,9 @@ My Metric is above 500 for 5 minutes!
 My Metric has no data for 10 minutes!
 {{/is_no_data}} @mblanton@gmail.com
 ```
-This sends different messages for alert, warning, and no data.
+This sends different messages for alert, warning, and no data. I could use this sort of alert to
+monitor network connections or CPU utilization to determine when systems are closed to being over
+utilized, over utilized, or offline and send out messages accordingly.
 
 ![Monitor configuration](./img/2018-12-16_15-15-58.png)
 
@@ -78,11 +82,14 @@ I used the provided Flask app to demonstrate APM collection. The source code can
 [here](./apm.py). One thing I found interesting was that `ddtrace-run` didn't work when I
 started the app using the `flask` command, I had to use `python` instead.
 
-I added the APM metrics to the Timeboard I created earlier.
+I added the APM metrics to the Timeboard I created earlier via API.
 
 ![APM Timeboard](./img/2018-12-16_14-47-21.png)
 
 My Timeboard can be accessed [here](https://app.datadoghq.com/dash/1022243/my-timeboard?tile_size=m&page=0&is_auto=false&from_ts=1545000360000&to_ts=1545003960000&live=true)
+
+As a Developer, this is useful for me to determine how effectively my code is running. It can also
+help me track down long running or inefficient functions that could possibly be optimized.
 
 **Bonus Question**: What is the difference between a Service and a Resource? A Resource is
 a part of a system available to run Services (ie, CPU, Memory, Disk Space). A Service is something
