@@ -1,0 +1,26 @@
+{
+	"name": "Random value is large [ {{value}} ]",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric.randomint{host:c-instance-3.asia-northeast1-b.c.trial-project-227315.internal} > 800",
+	"message": "{{#is_alert}}\n# Hi, this is Alert !\nHost {{host.name}} with IP {{host.ip}} has a large random value [ {{value}} ]\n{{/is_alert}}\n{{#is_warning}}\n# Hi, this is Warning\nHost {{host.name}} with IP {{host.ip}} has a large random value [ {{value}} ]\n{{/is_warning}} \n{{#is_no_data}}\n# Hi, data hasn't come for 10 minuites\nNo data has arrived from Host {{host.name}} with IP {{host.ip}}  for more than 10 minutes. Please check.\n{{/is_no_data}}\n@yuhkih@hotmail.com",
+	"tags": [
+		"excerise",
+		"yuhki"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
