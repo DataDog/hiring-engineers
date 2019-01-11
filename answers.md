@@ -24,7 +24,7 @@ Answer:
 
 [the yaml file](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/larry_check.yaml)
 
-[the check python script](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/larry_check.py)
+[the python check script](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/larry_check.py)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
