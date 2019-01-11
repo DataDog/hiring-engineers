@@ -196,11 +196,11 @@ The definition:
 The timeboard:
 ![Flask hit timeboard](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/Flask%20hit%20dashboard.png)
 
-Please include your fully instrumented app in your submission, as well.
+Please include your fully app in your submission, as well.
 
 **Answer:**
 
-![The instrumented Flask app](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/flask_app_instrumentation.py)
+[The instrumented Flask app](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/flask_app_instrumentation.py)
 
 ## Final Question:
 
