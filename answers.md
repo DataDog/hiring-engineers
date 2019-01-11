@@ -121,7 +121,7 @@ This is a Warning!
 The current my_metric value is: {{value}}, the current threshold is: {{warn_threshold}} 
 {{/is_warning}} 
 
-{{#is_recovery}}my_metric is back to normal! {{/is_recovery}} @songlining@gmail.com
+{{#is_recovery}}my_metric is back to normal! {{/is_recovery}} @somebody@gmail.com
 ```
 
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
