@@ -4,7 +4,7 @@
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Answer:
+**Answer:**
 
 *Tag definition*
 ![host tags](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/tagging.png)
@@ -14,13 +14,13 @@ Answer:
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Answer:
+**Answer:**
 
 ![mysql_overview](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/mysql_overview.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-Answer:
+**Answer:**
 
 [the yaml file](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/larry_check.yaml)
 
@@ -28,13 +28,13 @@ Answer:
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-Answer:
+**Answer:**
 
 This was defined in the same yaml file as above with the line: __- min_collection_interval: 45__
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Answer:
+**Answer:**
 
 Not sure if I understand the question, is the above answer for this question too?
 
@@ -44,25 +44,25 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
 
-Answer:
+**Answer:**
 
 ![Timeboard created via API/script](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/timeboard%20via%20api.png)
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-Answer:
+**Answer:**
 
 ![Mysql metric with anomaly function applied](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/mysql%20metric%20anomaly_robust.png)
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Answer:
+**Answer:**
 
 ![Hourly sum up of my_metric definition](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/my_metric%20hourly%20sum%20up.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Answer:
+**Answer:**
 
 [Here is the Python script that calls the API to create the timeboard](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/timeboard_api.py)
 
@@ -71,13 +71,13 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-Answer:
+**Answer:**
 
 ![Snapshot email via @ notation](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/dashboard_snapshot.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-Answer:
+**Answer:**
 
 Anomaly graph shows the standard deviation of the metrics based on learning on historical data.
 
@@ -91,7 +91,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Answer:
+**Answer:**
 
 ![Monitor definition](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/monitor%20definition.png)
 
@@ -99,13 +99,13 @@ Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 
-Answer:
+**Answer:**
 
 Please refer to the previous screen capture.
 
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-Answer:
+**Answer:**
 
 Please refer to the previous screen capture. More details on the message definition:
 ```
@@ -126,7 +126,7 @@ The current my_metric value is: {{value}}, the current threshold is: {{warn_thre
 
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-Answer:
+**Answer:**
 
 Please refer to the previous code block.
 
@@ -135,7 +135,7 @@ Snapshot of alert with IP address:
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Answer:
+**Answer:**
 
 Please refer to the previous screen capture.
 
@@ -145,7 +145,7 @@ Please refer to the previous screen capture.
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Answer: I will leave this for the future exercise.
+**Answer:** I will leave this for the future exercise.
 
 ## Collecting APM Data:
 
@@ -188,7 +188,7 @@ if __name__ == '__main__':
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Answer:
+**Answer:**
 
 The definition:
 ![Flask hit definition](https://raw.githubusercontent.com/dayousong/hiring-engineers/solutions-engineer/uploads/images/Flask%20hit%20definition.png)
@@ -198,7 +198,7 @@ The timeboard:
 
 Please include your fully instrumented app in your submission, as well.
 
-Answer:
+**Answer:**
 
 ![The instrumented Flask app](https://github.com/dayousong/hiring-engineers/blob/solutions-engineer/uploads/scripts/flask_app_instrumentation.py)
 
@@ -208,7 +208,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Answer: 
+**Answer:**
 
 I am so impressed by this product! With the richness and ease of use on both frontend and agents, I think Datadog is ready for the age of IoT and 5G. 
 
@@ -229,5 +229,5 @@ To submit your answers:
 * Submit a pull request.
 * Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
 
-Thanks for the reminding, just realised it's so easy to share a screenboard, here's a dummy one: https://p.datadoghq.com/sb/54e014755-67c664a71a28185a844b21db7a6f1557
+**Thanks for the reminding, just realised it's so easy to share a screenboard, here's a dummy one: https://p.datadoghq.com/sb/54e014755-67c664a71a28185a844b21db7a6f1557**
 
