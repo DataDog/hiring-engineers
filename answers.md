@@ -76,8 +76,8 @@ After that I went back into the browser and finished installing the PostgreSQL I
 
 Upon reading the [Writing a custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) I had to create two files
 
-1. A Check file (which is just a regular python file)
-2. A YAML configuration file
+1. A Check file (which is just a regular python file) that needs to be created in the `/etc/datadog-agent/checks.d` directory.
+2. A YAML configuration file that needs to be created in the `/etc/datadog-agent/conf.d` directory.
 
 The first thing I did was create a Check file named `my_metric.py` which contains code found in the aforementioned docs. It looks like this :
 
@@ -98,3 +98,10 @@ I restarted the Datadog Agent. my_metric check is successfully being submitted a
 All I had to do here was go back into my YAML config file named `my_metric.yaml` and add some things in. Now my YAML file looks like this:
 
 ![my_metric_3](./screenshots/my_metric_3.png)
+
+The only way I was able to check if this was indeed working was running `sudo datadog-agent status` and timing when the total run count  incremented. Upon testing this a few times, it was indeed  updating around 45 seconds.
+
+
+## Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+By changing my check's collection interval in the YAMl file , I never had to modify my Python file that I have created.
