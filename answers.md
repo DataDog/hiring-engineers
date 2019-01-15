@@ -65,8 +65,8 @@ The directions on the Integration told to me to do the following steps :
 
 6. I restarted the Datadog Agent and ran a status check by running `sudo datadog-agent status`, and the PostgreSQL integration check was successful.
 
-![postgreSQL_4](./screenshots/postgreSQL_4.png)
+![postgreSQL_3](./screenshots/postgreSQL_3.png)
 
 After that I went back into the browser and finished installing the PostgreSQL Integration.
 
-![postgreSQL_3](./screenshots/postgreSQL_3.png)
+![postgreSQL_4](./screenshots/postgreSQL_4.png)
