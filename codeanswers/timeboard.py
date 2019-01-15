@@ -1,3 +1,5 @@
+# I ran this from vagrant in the /etc/datadog-agent directory where I created a file and put this code inside.
+
 from datadog import initialize, api
 
 options = {
