@@ -1,0 +1,6 @@
+# How the YAML file looks like  inside the conf.d  directory
+
+init_config:
+
+instances:
+   - min_collection_interval: 45
