@@ -40,3 +40,33 @@ Upon saving these changes , you have to restart the agent using `sudo service da
 This is how it should appear :
 
 ![host_map_2](./screenshots/host_map_2.png)
+
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+The database I chose to install was PostgreSQL since I have experience using this the most . To install Postgresql on Ubuntu I simply had to refer to the [PostgreSQL docs](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04). Here I was able to find the commands needed to install and run PostgreSQL.
+
+1. `sudo apt-get update`
+2. `sudo apt-get install postgresql postgresql-contrib`
+
+Now that I've downloaded and installed PostgreSQL I can now head over to the Datadog web applications and look under Integrations to find PostgreSQL.
+
+![postgreSQL_1](./screenshots/postgreSQL_1.png)
+
+The directions on the Integration told to me to do the following steps :
+
+1. create user datadog with password ( press the generate password key and your password will show up)
+2. grant SELECT ON pg_stat_database to datadog;
+3. I then had to navigate to `/etc/datadog-agent/conf.d/postgres.d` where I found the `conf.yaml.example` file.
+4. I opened the editor using `sudo nano conf.yaml.example` and made some changes.
+
+![postgreSQL_2](./screenshots/postgreSQL_2.png)
+
+5. I then pressed `control x ` and nano asked me to save. I clicked yes and then renamed the file `conf.yaml` since it's no longer an example and something I need to use.
+
+6. I restarted the Datadog Agent and ran a status check by running `sudo datadog-agent status`, and the PostgreSQL integration check was successful.
+
+![postgreSQL_4](./screenshots/postgreSQL_4.png)
+
+After that I went back into the browser and finished installing the PostgreSQL Integration.
+
+![postgreSQL_3](./screenshots/postgreSQL_3.png)
