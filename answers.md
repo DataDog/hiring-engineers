@@ -168,3 +168,62 @@ Here's the email I received from it.
 ## Bonus Question: What is the Anomaly graph displaying?
 
 The Anomaly graph is displaying the maximum number of connections to my PostgreSQL database and would tell me if there are any abnormalities. My graph at the moment is showing the max number of 100  and since it's all blue lines it means there are no abnormal behaviors at the moment
+
+
+# Monitoring Data
+
+## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+1. Warning threshold of 500
+2. Alerting threshold of 800
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+
+With the help of the Datadog monitoring [docs](https://docs.datadoghq.com/monitors/) I was able to set up my monitor.
+
+I first Navigated to the Monitors --> New Monitor --> Metric Tab on the left.
+
+I then had to complete the information.
+
+![alert_1](./screenshots/alert_1.png)
+
+## Please configure the monitor’s message so that it will:
+
+1. Send you an email whenever the monitor triggers.
+2. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+3. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![alert_2](./screenshots/alert_2.png)
+
+Here are my emails I received for both alerts.
+
+![alert_3](./screenshots/alert_3.png)
+
+![alert_4](./screenshots/alert_4.png)
+
+
+## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+1. One that silences it from 7pm to 9am daily on M-F,
+2. And one that silences it all day on Sat-Sun.
+
+
+7pm to 9am Daily :
+
+![downtime_week](./screenshots/downtime_week.png)
+
+Sat-Sun
+
+![downtime_weekend](./screenshots/downtime_weekend.png)
+
+
+## Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+
+Weekly Alert
+
+![downtime_1](./screenshots/downtime_1.png)
+
+
+Weekend Alert
+![downtime_2](./screenshots/downtime_2.png)
