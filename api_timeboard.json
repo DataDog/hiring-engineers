@@ -1,0 +1,60 @@
+{
+      "graphs": [
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "q": "avg:my_metric{role:database}",
+                            "style": {
+                                "palette": "dog_classic",
+                                "width": "normal",
+                                "type": "solid"
+                            },
+                            "type": "line"
+                        }
+                    ]
+                },
+                "title": "Average of my_metric on the DB"
+            },
+            {
+                "definition": {
+                    "autoscale": true,
+                    "text_align": "center",
+                    "precision": 2,
+                    "viz": "query_value",
+                    "requests": [
+                        {
+                            "q": "avg:my_metric{*}.rollup(sum, 3600)",
+                            "aggregator": "sum",
+                            "conditional_formats": []
+                        }
+                    ]
+                },
+                "title": "Rollup Sum of my_metric"
+            },
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "q": "anomalies(avg:postgresql.percent_usage_connections{*}, 'basic', 2)",
+                            "style": {
+                                "palette": "dog_classic",
+                                "width": "normal",
+                                "type": "solid"
+                            },
+                            "type": "line"
+                        }
+                    ]
+                },
+                "title": "Percentage of DB Connections (with Anomaly)"
+            }
+        ],
+      "title" : "Hiring Exercise Timeboard Created Using API",
+      "description" : "Hey! I used the API to make a timeboard!",
+      "template_variables": [{
+ 
+      }],
+      "read_only": "True"
+    }
