@@ -273,7 +273,7 @@ After creating this we generate the url at the top right  part of your screen
 
 Screenshot of a dashboard
 
-![flask](./screenshots/flash.png)
+![flask](./screenshots/flask.png)
 
 ## Please include your fully instrumented app in your submission, as well.
 
