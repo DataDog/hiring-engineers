@@ -70,3 +70,31 @@ The directions on the Integration told to me to do the following steps :
 After that I went back into the browser and finished installing the PostgreSQL Integration.
 
 ![postgreSQL_4](./screenshots/postgreSQL_4.png)
+
+
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Upon reading the [Writing a custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) I had to create two files
+
+1. A Check file (which is just a regular python file)
+2. A YAML configuration file
+
+The first thing I did was create a Check file named `my_metric.py` which contains code found in the aforementioned docs. It looks like this :
+
+![my_metric_1](./screenshots/my_metric_1.png)
+
+The YAML configuration file named `my_metric.yaml` looks something like this , for now :
+
+`instances: [{}]`
+
+Even though it's empty , for now , it is quite necessary to have in your configuration file.
+
+I restarted the Datadog Agent. my_metric check is successfully being submitted after checking with `sudo datadog-agent status`.
+
+![my_metric_2](./screenshots/my_metric_2.png)
+
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+All I had to do here was go back into my YAML config file named `my_metric.yaml` and add some things in. Now my YAML file looks like this:
+
+![my_metric_3](./screenshots/my_metric_3.png)
