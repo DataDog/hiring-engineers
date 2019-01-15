@@ -227,3 +227,69 @@ Weekly Alert
 
 Weekend Alert
 ![downtime_2](./screenshots/downtime_2.png)
+
+
+# Collecting APM Data:
+
+Using the Datadog APM [docs](https://docs.datadoghq.com/tracing/setup/#agent-configuration) I figured out how to set up my config files to start tracing .
+
+1. Edit the `datadog.yaml` file to enable trace collection for the Trace Agent and configure the environment
+
+It should look something like this
+
+![config_file](./screenshots/config_file.png)
+
+2. Next we have to install flask since we need to use it for this part of the challenge
+
+`pip install flask`
+
+3. Now we need to install the trace
+
+`pip install ddtrace`
+
+4. Next we create a file [app.py](https://github.com/EliasAHH/hiring-engineers/blob/Juan_Solutions_Engineer/codeanswers/app.py) that stores the flask file we were given.
+
+5. Next run `ddtrace-run python app.py`
+
+6. After running the ddtrace you now have access to port 5050 . You can open the terminal and start navigating to these routes
+
+`curl localhost:5050/`
+`curl localhost:5050/api/apm`
+`curl localhost:5050/api/trace`
+
+## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+According to the Datadog graphing [docs](https://docs.datadoghq.com/graphing/dashboards/#what-is-the-difference-between-a-screenboard-and-a-timeboard) the best way for us to share our dashboard is to use a screenboard .
+
+In the screenboard , we created timeseries for three different things :
+
+- system.cpu.user (The percent of time the CPU spent running user space processes)
+- system.net.bytes_sent (The number of bytes sent from a device per second)
+- trace.flask.request.hits (The number of flask requests made)
+
+After creating this we generate the url at the top right  part of your screen
+ [Juan's Screenboard](https://p.datadoghq.com/sb/9e1e0d971-ac0446e91a294cce2bb434f7e8384920)
+
+
+Screenshot of a dashboard
+
+![flask](./screenshots/flash.png)
+
+## Please include your fully instrumented app in your submission, as well.
+
+[App](https://github.com/EliasAHH/hiring-engineers/blob/Juan_Solutions_Engineer/codeanswers/app.py)
+
+
+
+## Bonus Question: What is the difference between a Service and a Resource?
+
+A Service is made up of set of processes that work together to provide a feature set. For instance, a simple web application may consist of a few services database services , webapplication services , query services. Essentially things that help users obtain information.
+
+A resource is a particular query to a service. An example of this would be an SQL query(SELECT * from Authors) or trying to access a patricular route (/home)
+
+
+# Final Question:
+
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+
+ Coming from an area where crime rate is high you have to learn to adapt fast. Datadog can help with this by monitoring high crime rate areas. We can monitor places that were affected, times that these crimes happed and the victims targeted by these crimes. . With this technology hopefully we can help predict times in which the most crime has happened and areas to help people avoid them and hopefully minimize the amount of illegal activities that occur.
