@@ -105,3 +105,66 @@ The only way I was able to check if this was indeed working was running `sudo da
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 By changing my check's collection interval in the YAMl file , I never had to modify my Python file that I have created.
+
+
+# Visualizing Data
+
+## Utilize the Datadog API to create a Timeboard that contains:
+
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+
+So upon looking at the [Datadog Api Docs](https://docs.datadoghq.com/api/?lang=python#timeboards) I figured out that to use the Datadog Api, I have to first install it (DUH!)
+
+To do this I have to first install pip onto my operating system.
+
+`sudo apt-get install python-pip`
+
+Once pip is installed I have to install Datadog.
+
+`pip install datadog`
+
+Next, Datadog API takes in two keys . The "api_key" and the "app_key". We have the API key but we have to go generate our app_key. We navigate on our browser to Integrations and then API and you'll see  where it says generate app_key.
+
+Once you've generated your app_key we create this [Python file](https://github.com/EliasAHH/hiring-engineers/blob/Juan_Solutions_Engineer/codeanswers/timeboard.py) and run `python timeboard.py` in our terminal.
+
+Resources I used to complete this code were :
+
+1. [Anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
+2. [Graphing](https://docs.datadoghq.com/graphing/)
+3. [PostgreSQL](https://docs.datadoghq.com/integrations/postgres/)
+4. [Timeboards](https://docs.datadoghq.com/api/#timeboards)
+
+
+After running the `python timeboard.py ` command I went to my dashboard to see if it was created . Indeed it was :
+
+![datadog_timeboard](./screenshots/datadog_timeboard.png)
+
+When I click the timeboard, three graphs are displayed .
+
+![timeboard_1](./screenshots/timeboard_1.png)
+
+##Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+## Set the Timeboard's timeframe to the past 5 minutes
+
+The only way to actually obtain the 5 minute goal is to manually click on the graph it self and move it until you've reached 5 minutes .
+
+![timeboard_2](./screenshots/timeboard_2.png)
+
+## Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+There's a camera button on the top right of the graph you're currently on . Click that to take a snapshot.
+
+![timeboard_3](./screenshots/timeboard_3.png)
+
+
+Here's the email I received from it.
+
+![timeboard_4](./screenshots/timeboard_4.png)
+
+## Bonus Question: What is the Anomaly graph displaying?
+
+The Anomaly graph is displaying the maximum number of connections to my PostgreSQL database and would tell me if there are any abnormalities. My graph at the moment is showing the max number of 100  and since it's all blue lines it means there are no abnormal behaviors at the moment
