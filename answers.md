@@ -141,4 +141,3 @@ Is there anything creative you would use Datadog for?
 * Monitor my home current energy consumption in real time.
 * Monitor my car fuel and fluid levels.
 * Monitoring data centre room temperatures we should be able to leverage CPU usage and external temperature to detect decreased efficiency of AC.  Such decreases in efficiency could be easily mitigated with preventive maintenance.
-* Monitoring facilities temperature and providing.
