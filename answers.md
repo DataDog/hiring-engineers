@@ -11,7 +11,7 @@ tags:
   - env:sandbox
   - os:linux
 ```
-![alt text](images/img01.png)
+![alt text](images/img01.PNG)
 #### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Downloaded and installed MySQL.
 ```
@@ -60,7 +60,9 @@ sudo datadog-agent status mysql
 ```
 * Installed MySQL integration and vizualize MySQL Dashboard.
 
-![alt text](images/img02.png)
+![alt text](images/img09.PNG)
+
+![alt text](images/img02.PNG)
 
 
 #### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -91,7 +93,8 @@ instances:
 Yes, the collection interval is changed modifing   `/etc/datadog-agent/conf.d/random_check.yaml`.
 
 ## Visualizing Data
-* Created application key at *Integrations -> APIs* using [timeframe.json](timeframe.json).
+#### Utilize the Datadog API to create a Timeboard
+* Created application key at *Integrations -> APIs*.  Created the Timeboard using [timeboard.json](timeboard.json).
 
 ```
 api_key=e460cf68f7b1dadeb42f5b9437ab96f0
@@ -99,18 +102,22 @@ app_key=64b9bbb4ea2103025b2d228d7cd67901a6ca9772
 
 curl  -X POST -H "Content-type: application/json" -d @timeframe.json "https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
 ```
-![alt text](images/img03.png)
+![alt text](images/img03.PNG)
 
 #### Bonus Question - What is the Anomaly graph displaying?
-![alt text](images/img04.png)
+![alt text](images/img04.PNG)
 
 The grey band represents values not farther than 2 (third parameter of the anomalies function) deviations from the predicted value.
 
 ## Monitoring Data
 * Create the monitor.  The monitor export can be found [here](monitor.json).
 
+![alt text](images/img10.PNG)
+Although I used {{host.ip}} as a placeholder for the host IP in the message, I could not get it to work.
+
 #### Bonus Question
-![alt text](images/img05.png)
+![alt text](images/img05.PNG)
+![alt text](images/img08.PNG)
 
 ## Collecting APM Data
 
@@ -120,7 +127,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 [Instrumented Python code](app.py)
 
-![alt text](images/img07.png)
+![alt text](images/img07.PNG)
 
 #### Bonus Question - What is the difference between a Service and a Resource?
 Service is a collection of processes that work together to provide a capability. Resource is a service query.  Using our Python application as an example, Service name is "python-app" and resources are the URLs we queried e.g. /api/trace and /api/apm.
@@ -130,5 +137,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-* Monitoring data centre chassis temperatures we should be able to leverage CPU usage and external temperature to detect decreased efficiency of AC.  Such decreases in efficiency could be easily mitigated with preventive maintenance.
-* 
+* Monitor my hot tub chemical levels so I can easily know what is needed.
+* Monitor my home current energy consumption in real time.
+* Monitor my car fuel and fluid levels.
+* Monitoring data centre room temperatures we should be able to leverage CPU usage and external temperature to detect decreased efficiency of AC.  Such decreases in efficiency could be easily mitigated with preventive maintenance.
+* Monitoring facilities temperature and providing.
