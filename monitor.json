@@ -1,0 +1,23 @@
+{
+	"name": "High random value",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "{{#is_alert}}\nALERT: Value of {{value}} detect at host {{host.ip}}.\n{{/is_alert}} \n\n{{#is_warning}}\nWarning: Value of {{value}} detect at host {{host.ip}}.\n{{/is_warning}} \n\n{{#is_no_data}}\nNo data detected for the past 10 minutes at {{host.ip}}.\n{{/is_no_data}} @alex@oursphere.net",
+	"tags": [],
+	"options": {
+		"notify_audit": true,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

@@ -1,0 +1,66 @@
+{
+    "title": "Hiring Challenge",
+    "description": "A dashboard with my custom metric scoped over my host, a metric from MySQL with the anomaly function applied,a nd my custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.",
+    "graphs": [
+        {
+            "title": "My metric",
+            "definition": {
+                "viz": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:osboxes}",
+                        "type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "type": "solid",
+                            "width": "normal"
+                        },
+                        "aggregator": "avg",
+                        "conditional_formats": []
+                    }
+                ],
+                "autoscale": true
+            }
+        },
+        {
+            "title": "MySQL CPU",
+            "definition": {
+                "viz": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+                        "type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "type": "solid",
+                            "width": "normal"
+                        },
+                        "conditional_formats": []
+                    }
+                ],
+                "autoscale": true
+            }
+        },
+        {
+            "title": "",
+            "definition": {
+                "viz": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*}.rollup(sum, 3600)",
+                        "type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "type": "solid",
+                            "width": "normal"
+                        },
+                        "aggregator": "avg",
+                        "conditional_formats": []
+                    }
+                ],
+                "autoscale": true
+            }
+        }
+    ],
+    "read_only": "True"
+}
