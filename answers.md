@@ -3,7 +3,7 @@
 Q) Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
   
 A) I added some tags to the agent.  #datadog:yuhki, #env:test, #gcp:compute, #os:centos7.    
-Please see the screenshot [./CollectingMetrics/appeared_tags_on_Host_Map_page.png](./CollectingMetrics/appeared_tags_on_Host_Map_page.png)    
+Please see the screenshot ![./CollectingMetrics/appeared_tags_on_Host_Map_page.png](./CollectingMetrics/appeared_tags_on_Host_Map_page.png)    
  
 Q)Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
@@ -15,7 +15,7 @@ A) I created mycheck.yaml and mycheck.py for the custom agent check.  Please see
 I named the metric my_metric.randomint.
 
 For DB integration, I used MySQL. Please see the below screen shot.   
- [./CollectingMetrics/MySQLOverview.png](./CollectingMetrics/MySQLOverview.png)  
+ ![./CollectingMetrics/MySQLOverview.png](./CollectingMetrics/MySQLOverview.png)  
 
 Q) Bonus Question Can you change the collection interval without modifying the Python check file you created?  
   
@@ -33,10 +33,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI: S
 A) I created CreateTimebaord.py to create the timeboard.  
 [./VisualizingData/CreateTimeboard.py](./VisualizingData/CreateTimeboard.py)  
 and its screenshot
-[./VisualizingData/TimeBoardCreatedByAPI.png](./VisualizingData/TimeBoardCreatedByAPI.png)
+![./VisualizingData/TimeBoardCreatedByAPI.png](./VisualizingData/TimeBoardCreatedByAPI.png)
 
 For the past 5 min dashboard graph snapshot and how to send the graph to myself, please see the following file.
-[./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png](./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png)  
+![./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png](./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png)  
   
 Q) Bonus Question: What is the Anomaly graph displaying?  
 A) The gray band shows the range of expected values computed by an anomaly detection algorithm. If a metric crosses the boundaries of the gray band, it means that the metirc is behaving differently than it has in the past,  
@@ -51,23 +51,23 @@ And also ensure that it will notify you if there is No Data for this query over 
 Please configure the monitor’s message so that it will send you an email whenever the monitor triggers. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.  
   
 A) Please see the following screenshot and a json file for the monitor setting.   
-[./MonitoringData/Monitor_Setting.png](./MonitoringData/Monitor_Setting.png)    
+![./MonitoringData/Monitor_Setting.png](./MonitoringData/Monitor_Setting.png)    
 [./MonitoringData/monitor.json](./MonitoringData/monitor.json)  
   
 Q) When this monitor sends you an email notification, take a screenshot of the email that it sends you.  
   
 A) Please see the following screenshot.   
-[./MonitoringData/Monitor_Alert_Email.png](./MonitoringData/Monitor_Alert_Email.png)  
+![./MonitoringData/Monitor_Alert_Email.png](./MonitoringData/Monitor_Alert_Email.png)  
   
 Q) Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun.Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
 A)Please see the following screenshot for notification emails.  
-[./MonitoringData/DowntimeSetting_NotifyEmail1.png](./MonitoringData/DowntimeSetting_NotifyEmail1.png)      
-[./MonitoringData/DowntimeSetting_NotifyEmail2.png](./MonitoringData/DowntimeSetting_NotifyEmail2.png)      
+![./MonitoringData/DowntimeSetting_NotifyEmail1.png](./MonitoringData/DowntimeSetting_NotifyEmail1.png)      
+![./MonitoringData/DowntimeSetting_NotifyEmail2.png](./MonitoringData/DowntimeSetting_NotifyEmail2.png)      
 
 I also took the screen shots for each setting.   
-[./MonitoringData/DowntimeSetting1.png](./MonitoringData/DowntimeSetting1.png)      
-[./MonitoringData/DowntimeSetting2.png](./MonitoringData/DowntimeSetting2.png)        
+![./MonitoringData/DowntimeSetting1.png](./MonitoringData/DowntimeSetting1.png)      
+![./MonitoringData/DowntimeSetting2.png](./MonitoringData/DowntimeSetting2.png)        
   
 Please note that UTC+9 hours is my local time(JST).  
 So, 10:00pm - 12:00 pm UTC equals 7:00am - 9pm JST,  3:00pm UTC equals 12:00am JST.  
@@ -78,7 +78,7 @@ Q)Given the following Flask app (or any Python/Ruby/Go app of your choice) instr
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics. Please include your fully instrumented app in your submission, as well.  
  
 A)  Please see "Infra-APM-Dashboard.png"  for the Dashbaord screenshot.  
-[./CollectingAPMData/Infra-APM-Dashboard.png](./CollectingAPMData/Infra-APM-Dashboard.png)  
+![./CollectingAPMData/Infra-APM-Dashboard.png](./CollectingAPMData/Infra-APM-Dashboard.png)  
   
 The dashboard public URL is below.  
 https://p.datadoghq.com/sb/c6c89ec8f-dcee1084690f6f76ec4df099926b9516  
