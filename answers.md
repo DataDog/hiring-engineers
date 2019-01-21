@@ -33,19 +33,36 @@ The next step was to set up an integration with a database on my machine. Since 
 
   - Here I was able to add my own configuration for my PosgreSQL Server:
 
-    ```bash
-    init_config:
+        ```bash
+        init_config:
 
-    instances:
-    - host: localhost
-    port: 5432
-    username: datadog
-    password: <my_password>
-    tags:
-        - hostname:jacobsmachine
-        - env:dev
-        - proj:solutinsengineer
-    ```
+        instances:
+        - host: localhost
+        port: 5432
+        username: datadog
+        password: <my_password>
+        tags:
+            - hostname:jacobsmachine
+            - env:dev
+            - proj:solutinsengineer
+        ```
+
+Next I created a custom Agent check that submitted a metric name `my_metric` with a random value between 0 and 1000.
+
+- I did this by creating a [custom_check.py](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Custom%20Check/custom_check.py) file.
+- This file was placed under the `/etc/datadog-agent/checks.d`
+  folder and contained the script that the agent will run to perform the check.
+- I was able to configure the check by adding a `yaml` file with the [same name](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Custom%20Check/custom_check.yaml) as the check file under `/etc/datadog-agent/conf.d`.
+  - I configured the check to run every 45s with the following:
+  ```bash
+  init_config:
+  ```
+
+instances:
+
+- min_collection_interval: 45
+
+```
 
 ### Visualizing Data
 
@@ -54,3 +71,4 @@ The next step was to set up an integration with a database on my machine. Since 
 ### Collecting APM Data
 
 ### Final Question
+```
