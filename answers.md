@@ -121,6 +121,16 @@ curl -X POST \
 }'
 ```
 
+When I opened the Dashboard in the UI I was able to see the three graphs that were created:
+![timeboards](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/Full_Timeboard.png)
+
+After setting the time frame for the past 5 minutes the dashboard looked like so:
+![5min_timeboards](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/5min_time_frame.png)
+
+I then took a snapshot of the
+Custom Metric graph and used the @ notation to send it to myself. The following is the notification I received:
+![5min_snapshot](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/Snapshot_@JacobFeinberg.png)
+
 ### Monitoring Data
 
 ### Collecting APM Data
