@@ -15,6 +15,8 @@ The next step was to add some custom tags to the Agent config file.
 
 - I navigated to the agent config file at /etc/datadog-agent/datadog.yaml. Here is a screen shot of the custom tags I added to the config file:
 
+![agentTags](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Tags_Agent_Config_File.png)
+
 ### Visualizing Data
 
 ### Monitoring Data
