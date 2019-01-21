@@ -74,11 +74,11 @@ To visualize some data I utilized the Datadog API an created a Timeboard that co
 I did this by using the folowing curl comand in my termianl:
 
 ```bash
-api_key=<API_KEY>
-app_key=<APP_KEY>
-
-curl -X POST -H "Content-type: application/json" \
--d '{
+curl -X POST \
+  'https://api.datadoghq.com/api/v1/dash?api_key=<API_KEY>&application_key=<APP_KEY>' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
 "graphs" : [{
 "title": "Custom Metric",
 "definition": {
@@ -94,8 +94,8 @@ curl -X POST -H "Content-type: application/json" \
 "definition": {
 "events": [],
 "requests": [
-{"q": "anomalies(postgresql.rows_returned{*}, 'basic', 2)"}
-],
+    {"q": "anomalies(postgresql.rows_returned{*}, '\''basic'\'', 2)"}
+    ],
 "viz": "timeseries"
 }
 },
@@ -118,8 +118,7 @@ curl -X POST -H "Content-type: application/json" \
 "default": "host:my-host"
 }],
 "read_only": "True"
-}' \
-"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+}'
 ```
 
 ### Monitoring Data
