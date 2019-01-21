@@ -33,19 +33,19 @@ The next step was to set up an integration with a database on my machine. Since 
 
   - Here I was able to add my own configuration for my PosgreSQL Server:
 
-        ```bash
-        init_config:
+    ```bash
+    init_config:
 
-        instances:
-        - host: localhost
-        port: 5432
-        username: datadog
-        password: <my_password>
-        tags:
-            - hostname:jacobsmachine
-            - env:dev
-            - proj:solutinsengineer
-        ```
+    instances:
+    - host: localhost
+    port: 5432
+    username: datadog
+    password: <my_password>
+    tags:
+        - hostname:jacobsmachine
+        - env:dev
+        - proj:solutinsengineer
+    ```
 
 Next I created a custom Agent check that submitted a metric name `my_metric` with a random value between 0 and 1000.
 
@@ -53,22 +53,81 @@ Next I created a custom Agent check that submitted a metric name `my_metric` wit
 - This file was placed under the `/etc/datadog-agent/checks.d`
   folder and contained the script that the agent will run to perform the check.
 - I was able to configure the check by adding a `yaml` file with the [same name](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Custom%20Check/custom_check.yaml) as the check file under `/etc/datadog-agent/conf.d`.
+
   - I configured the check to run every 45s with the following:
+
   ```bash
   init_config:
+
+  instances:
+    - min_collection_interval: 45
   ```
 
-instances:
-
-- min_collection_interval: 45
-
-```
-
 ### Visualizing Data
+
+To visualize some data I utilized the Datadog API an created a Timeboard that contains:
+
+- My custom metric scoped over my host.
+- Any metric from the Integration on my PostgreSQL database with the anomaly function applied.
+- My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+I did this by using the folowing curl comand in my termianl:
+
+```bash
+api_key=<API_KEY>
+app_key=<APP_KEY>
+
+curl -X POST -H "Content-type: application/json" \
+-d '{
+"graphs" : [{
+"title": "Custom Metric",
+"definition": {
+"events": [],
+"requests": [
+{"q": "avg:system.mem.free{*}"}
+],
+"viz": "timeseries"
+}
+},
+{
+"title": "Anomalies - PostgreSQL Rows Returned",
+"definition": {
+"events": [],
+"requests": [
+{"q": "anomalies(postgresql.rows_returned{*}, 'basic', 2)"}
+],
+"viz": "timeseries"
+}
+},
+{
+"title": "Average Custom Metric RollUp Sum last hour",
+"definition": {
+"events": [],
+"requests": [
+{"q": "avg:my_metric{*}.rollup(sum, 3600)"}
+],
+"viz": "query_value"
+}
+}
+],
+"title" : "My_Metric Timeboard",
+"description" : "An informative timeboard about my custom metric.",
+"template_variables": [{
+"name": "host1",
+"prefix": "host",
+"default": "host:my-host"
+}],
+"read_only": "True"
+}' \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+```
 
 ### Monitoring Data
 
 ### Collecting APM Data
 
 ### Final Question
+
+```
+
 ```
