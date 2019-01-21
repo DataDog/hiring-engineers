@@ -24,27 +24,28 @@ The next step was to add some custom tags to the Agent config file.
 The next step was to set up an integration with a database on my machine. Since I was using my local machine and already had PostgreSQL installed, I then installed the specific integration for postgres.
 
 - After creating a read-only datadog user with proper access to my PostgreSQL Server I had to configure the Agent to connect to it.
+
   - Since most integrations are already installed in the `conf.d` folder in the `datadog-agent`. I just had to configure the specific integration file for postgres:
 
-```bash
-/etc/datadog-agent/conf.d/postgres.d/conf.yaml
-```
+    ```bash
+    /etc/datadog-agent/conf.d/postgres.d/conf.yaml
+    ```
 
-    - Here I was able to add my own configuration for my PosgreSQL Server:
+  - Here I was able to add my own configuration for my PosgreSQL Server:
 
-```bash
-init_config:
+    ```bash
+    init_config:
 
-instances:
-- host: localhost
-  port: 5432
-  username: datadog
-  password: <my_password>
-  tags:
-    - hostname:jacobsmachine
-    - env:dev
-    - proj:solutinsengineer
-```
+    instances:
+    - host: localhost
+    port: 5432
+    username: datadog
+    password: <my_password>
+    tags:
+        - hostname:jacobsmachine
+        - env:dev
+        - proj:solutinsengineer
+    ```
 
 ### Visualizing Data
 
