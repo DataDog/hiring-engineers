@@ -17,6 +17,10 @@ The next step was to add some custom tags to the Agent config file.
 
 ![agentTags](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Tags_Agent_Config_File.png)
 
+- You can see that adding these tags to the config file worked by viewing them on the Host Map page in Datadog:
+
+![hostMapTags](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20Metrics/Tags_Host_Map_UI.png)
+
 ### Visualizing Data
 
 ### Monitoring Data
