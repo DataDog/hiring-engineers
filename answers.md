@@ -184,11 +184,13 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
 
     ![traceList](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/Trace_List.png)
 
-    - I was also able to create a dashboard with my traces and some infrastucture data. Here is an example of that:
+    - I was also able to create a dashboard with my traces and some infrastucture data. [Here is an example](https://app.datadoghq.com/dash/1047022/jacobs-timeboard-16-jan-2019-1525?tile_size=m&page=0&is_auto=false&from_ts=1548036000000&to_ts=1548122400000&live=true) of that:
 
     ![apmInDashboard](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/APM_Infrastructure_Metrics.png)
 
 ### Final Question
+
+One idea that came to mind for a Datadog use case is for airlines to monitor their ticket pricing. Every once in a while either a computer algorithm gets something wrong, or user error causes a flight to be put up at an extreme discount. Not that I'm really advocating for this, BUT I could see airlines using datadog to monitor these anomolies and make sure that they aren't giving \$200 flights to Hawaii.
 
 ```
 
