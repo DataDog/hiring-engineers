@@ -169,6 +169,25 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
 
 ### Collecting APM Data
 
+- Since I was going to be using the [provided example as my application](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/app.py) I first had to install flask by running `pip install flask`
+- Then to set up Datadog's APM solution I first followed the [docs](https://docs.datadoghq.com/tracing/languages/python/) and ran `pip install dd-trace`
+- Since the APM agent (aka Trace Agent) isn't part of the OSX Datadog Agent yet, it needed to be run manually on the side.
+
+  - I followed the [docs here](https://github.com/DataDog/datadog-trace-agent)
+  - I also made sure that the apm_config was enabled in the `/etc/.datadog-agent/datadog.yaml`
+
+  ![apmConfig](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/apm_config.png)
+
+  - With the trace agent running manually on the side, and everything configured for my flask app, I was able to run `dd-trace-run python app.py` to begin collecting data on my flask app.
+
+    - I made some requests to my running flask app and could see them in my trace list in the Datadog UI:
+
+    ![traceList](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/Trace_List.png)
+
+    - I was also able to create a dashboard with my traces and some infrastucture data. Here is an example of that:
+
+    ![apmInDashboard](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/APM_Infrastructure_Metrics.png)
+
 ### Final Question
 
 ```
