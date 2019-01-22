@@ -71,7 +71,7 @@ Please configure the monitor’s message so that it will send you an email whene
   - The following emails were sent to me to notify the new settings.
 This one is to silence it from 7pm to 9am daily from Monday to Friday(10:00pm - 12:00 pm UTC equals 7:00am - 9pm JST, my local time)
 ![./MonitoringData/DowntimeSetting_NotifyEmail1.png](./MonitoringData/DowntimeSetting_NotifyEmail1.png)      
-And this one is to silence the monitor all day from Saturday to Sunday( 3:00pm UTC equals 12:00am JST, my local time)
+And this one is to silence the monitor all day from Saturday to Sunday(3:00pm UTC equals 12:00am JST, my local time)
 ![./MonitoringData/DowntimeSetting_NotifyEmail2.png](./MonitoringData/DowntimeSetting_NotifyEmail2.png)        
     
 ## Collecting APM Data
