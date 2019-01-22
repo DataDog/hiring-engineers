@@ -158,6 +158,15 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
 
 ![warning](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Warning_Notification.png)
 
+- After these monitors were set up, I also scheduled downtimes for it with the following conditions:
+  - One that silences it from 7pm to 9am daily on M-F
+    ![weekdayDowntime](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Weekday_Downtime.png)
+  - And one that silences it all day on Sat-Sun.
+    ![weekendDowntime](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Weekend_Downtime.png)
+  - My email is notified when I scheduled the downtime.
+    ![weekdayNotification](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Weekday_Notification.png)
+    ![weekendNotification](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Weekend_Notification.png)
+
 ### Collecting APM Data
 
 ### Final Question
