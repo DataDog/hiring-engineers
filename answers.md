@@ -123,18 +123,28 @@ curl -X POST \
 
 When I opened the Dashboard in the UI I was able to see the three graphs that were created:
 
-![timeboards](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/Full_Timeboard.png)
+![timeboards](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Visualizing%20Data/Full_Timeboard.png)
 
 After setting the time frame for the past 5 minutes the dashboard looked like so:
 
-![5min_timeboards](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/5min_time_frame.png)
+![5min_timeboards](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Visualizing%20Data/5min_time_frame.png)
 
 I then took a snapshot of the
 Custom Metric graph and used the @ notation to send it to myself. The following is the notification I received:
 
-![5min_snapshot](https://github.com/JTFeinberg/hiring-engineers/tree/Jacob_Feinberg_Solutions_Engineer/Vizualizing%20Data/Snapshot_@JacobFeinberg.png)
+![5min_snapshot](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Visualizing%20Data/Snapshot_%40JacobFeinberg.png)
 
 ### Monitoring Data
+
+For setting up the monitors for `my_metric`, I used the Datadog UI which had simple and well labeled form.
+
+- First I created a monitor that watches the avaerage of `my_metric` and alerts me if it’s above the following values over the past 5 minutes:
+  - Warning threshold of 500
+  - Alerting threshold of 800
+  - And it will notify me if there is No Data for this query over the past 10m.
+- Here is what the form in the UI looks like when those values are inputted:
+
+![monitorForm](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Monitor_Properties.png)
 
 ### Collecting APM Data
 
