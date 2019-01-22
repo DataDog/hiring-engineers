@@ -10,11 +10,6 @@
       - env:test
  ```
  The screenshot is here. ![./CollectingMetrics/appeared_tags_on_Host_Map_page.png](./CollectingMetrics/appeared_tags_on_Host_Map_page.png)    
- 
-   - you can also force the hostname to what you want by changing the following section in datadog.yaml file
- ``` # Force the hostname to whatever you want. (default: auto-detected)
-hostname: myhostname.mydomain
-``` 
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
@@ -73,13 +68,12 @@ Please configure the monitor’s message so that it will send you an email whene
   
 - Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:One that silences it from 7pm to 9am daily on M-F,And one that silences it all day on Sat-Sun.Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-  - Please see the following screenshot for notification emails.  
+  - The following emails were sent to me to notify the new settings.
+This one is to silence it from 7pm to 9am daily from Monday to Friday(10:00pm - 12:00 pm UTC equals 7:00am - 9pm JST, my local time)
 ![./MonitoringData/DowntimeSetting_NotifyEmail1.png](./MonitoringData/DowntimeSetting_NotifyEmail1.png)      
+And this one is to silence the monitor all day from Saturday to Sunday( 3:00pm UTC equals 12:00am JST, my local time)
 ![./MonitoringData/DowntimeSetting_NotifyEmail2.png](./MonitoringData/DowntimeSetting_NotifyEmail2.png)        
-  
-Please note that UTC+9 hours is my local time(JST).  
-So, 10:00pm - 12:00 pm UTC equals 7:00am - 9pm JST,  3:00pm UTC equals 12:00am JST.  
-  
+    
 ## Collecting APM Data
  
 - Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: 
@@ -88,6 +82,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
   - Please see "Infra-APM-Dashboard.png"  for the Dashbaord screenshot.  
 ![./CollectingAPMData/Infra-APM-Dashboard.png](./CollectingAPMData/Infra-APM-Dashboard.png)  
  The dashboard can be seen from the below URL.
+
 https://p.datadoghq.com/sb/c6c89ec8f-dcee1084690f6f76ec4df099926b9516  
 I used a sample flask app (manage.py) and executed  "ddtrace-run python manage.py".   
 The application file can be seen from the following link.  
