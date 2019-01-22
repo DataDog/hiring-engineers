@@ -134,6 +134,8 @@ Custom Metric graph and used the @ notation to send it to myself. The following 
 
 ![5min_snapshot](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Visualizing%20Data/Snapshot_%40JacobFeinberg.png)
 
+- The Anomaly graph is displaying what the chosen algorithm expects the normal range of a metric to be at any given time. It does this by using past and current data trends.
+
 ### Monitoring Data
 
 For setting up the monitors for `my_metric`, I used the Datadog UI which had simple and well labeled form.
@@ -188,10 +190,10 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
 
     ![apmInDashboard](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/APM_Infrastructure_Metrics.png)
 
+- Service vs. Resource
+  - Service: A set of processes that do the same job (ex. a web application, or a database). In the case of the APM I just set up, the service is the [flask app](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Collecting%20APM%20Data/app.py) I set up.
+  - Resource: A Resource is a particular action for a service. In the case of the APM I just set up, a resource would be a api call such as GET /api/apm.
+
 ### Final Question
 
 One idea that came to mind for a Datadog use case is for airlines to monitor their ticket pricing. Every once in a while either a computer algorithm gets something wrong, or user error causes a flight to be put up at an extreme discount. Not that I'm really advocating for this, BUT I could see airlines using datadog to monitor these anomolies and make sure that they aren't giving \$200 flights to Hawaii.
-
-```
-
-```
