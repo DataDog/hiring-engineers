@@ -9,7 +9,7 @@
       - os:centos7
       - env:test
  ```
-The screenshot is here. ![./CollectingMetrics/appeared_tags_on_Host_Map_page.png](./CollectingMetrics/appeared_tags_on_Host_Map_page.png)    
+ The screenshot is here. ![./CollectingMetrics/appeared_tags_on_Host_Map_page.png](./CollectingMetrics/appeared_tags_on_Host_Map_page.png)    
  
    - you can also force the hostname to what you want by changing the following section in datadog.yaml file
  ``` # Force the hostname to whatever you want. (default: auto-detected)
@@ -48,7 +48,6 @@ Once this is created, access the Dashboard from your Dashboard List in the UI: S
 [./VisualizingData/CreateTimeboard.py](./VisualizingData/CreateTimeboard.py)  
 and its screenshot
 ![./VisualizingData/TimeBoardCreatedByAPI.png](./VisualizingData/TimeBoardCreatedByAPI.png)
-
 You can select the past 5 minuets by dragging mouse and send it to someone who you want to let it know.
 ![./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png](./VisualizingData/Snapshot_of_graph_and_use_@notation_to_send_to_myself.png)  
   
@@ -61,7 +60,6 @@ You can select the past 5 minuets by dragging mouse and send it to someone who y
 Warning threshold of 500  
 Alerting threshold of 800  
 And also ensure that it will notify you if there is No Data for this query over the past 10m.  
-  
 Please configure the monitor’s message so that it will send you an email whenever the monitor triggers. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.  
   
   - Please see the following screenshot and a json file for the monitor setting.   
@@ -89,12 +87,10 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
  
   - Please see "Infra-APM-Dashboard.png"  for the Dashbaord screenshot.  
 ![./CollectingAPMData/Infra-APM-Dashboard.png](./CollectingAPMData/Infra-APM-Dashboard.png)  
-  
-The dashboard public URL is below.  
+ The dashboard can be seen from the below URL.
 https://p.datadoghq.com/sb/c6c89ec8f-dcee1084690f6f76ec4df099926b9516  
-
-I  used  a sample flask app (manage.py) and executed  "ddtrace-run python manage.py".   
-I put the whole application file in the following link.  
+I used a sample flask app (manage.py) and executed  "ddtrace-run python manage.py".   
+The application file can be seen from the following link.  
 https://github.com/yuhkih/flask-sqlight-sample   
 
 - Bonus Question: What is the difference between a Service and a Resource?  
@@ -105,4 +101,6 @@ For example, if there is a "DB Server" service, the resource would be a SQL quer
   
 - Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?   
   
-  - Monitoring a remaining amount of ink and papers in copy machines. Rental cars, taxies monitoring via a LTE network to monitor battery level, fuel level, overall health status and latest GPS location.  
+  - Monitoring a remaining amount of ink and papers in copy machines. 
+  - Rental cars, taxies monitoring via a LTE network to monitor battery level, fuel level, overall health status and latest GPS location.  
+  - End to end delivery tracking of packages and snail mails by installing datadog agents in IoT devices.
