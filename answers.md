@@ -154,6 +154,10 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
 
 ![customMessage](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Custom_Message.png)
 
+- Here is what the warning message looks like for my custom template:
+
+![warning](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Warning_Notification.png)
+
 ### Collecting APM Data
 
 ### Final Question
