@@ -144,7 +144,15 @@ For setting up the monitors for `my_metric`, I used the Datadog UI which had sim
   - And it will notify me if there is No Data for this query over the past 10m.
 - Here is what the form in the UI looks like when those values are inputted:
 
-![monitorForm](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Monitor_Properties.png)
+![monitorForm](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Set_Threshold_Monitoring_Levels.png)
+
+- I also configured a custom message to:
+  - Send you an email whenever the monitor triggers.
+  - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+  - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- Here is what that configuration looks like:
+
+![customMessage](https://github.com/JTFeinberg/hiring-engineers/blob/Jacob_Feinberg_Solutions_Engineer/Monitoring%20Data/Custom_Message.png)
 
 ### Collecting APM Data
 
