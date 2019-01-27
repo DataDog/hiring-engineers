@@ -2,6 +2,9 @@
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_tag_file.png?raw=true)
+
 ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_tag_GUI.png?raw=true)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
