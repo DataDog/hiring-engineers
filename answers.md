@@ -2,7 +2,7 @@
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-<img src="https://github.com/aesteban00/screenshots/Agent_tag_GUI.png" />
+<img src="https://github.com/aesteban00/screenshots/Agent%20tag%20GUI.png" />
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
