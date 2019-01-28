@@ -22,7 +22,7 @@ We need to install the Datadog agent, so let's head over to the [Datadog API](ht
 
 After a few moments you should see a message letting you know the agent has been installed and is running:
 
-![alt text](dd_images/dd_01_copy.png)
+![alt text](dd_images/dd_01.png)
 
 ## Tagging your agent host
 
