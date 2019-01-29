@@ -1,4 +1,4 @@
-# I created a file in /etc/datadog-agent repository and added this code to it. I then ran this from vagrant@ubuntu-xenial. 
+# I created a file in /etc/datadog-agent directory and added this code to it. I then ran this from vagrant@ubuntu-xenial. 
 from datadog import initialize, api
 
 options = {
