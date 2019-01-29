@@ -1,0 +1,6 @@
+# I created this yaml file inside conf.d  directory of datadog-agent.
+init_config:
+
+instances:
+  - min_collection_interval: 45
+
