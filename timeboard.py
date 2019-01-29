@@ -13,7 +13,7 @@ graphs = [{
     "definition": {
         "events":[],
         "requests": [
-            {"q": "avg:random.data{host:trialhostname}"},
+            {"q": "avg:my_metric.data{host:trialhostname}"},
             {"q": "avg(last_1h):anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, directions='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1"},
             {"q": "avt:random.data.rollup(sum,60)"}],
         "viz": "query_value"
