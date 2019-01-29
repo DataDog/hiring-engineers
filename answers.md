@@ -9,15 +9,15 @@
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-################# Configuration file /etc/datadog-agent/conf.d/postgres.d/conf.yaml:
-instances:
+## Configuration file /etc/datadog-agent/conf.d/postgres.d/conf.yaml:
+**instances:
   - host: localhost
     port: 5432
     username: datadog
     password: hHNAq3h2lk6XaZJP9J41CL18
     dbname: postgres
-    ssl: False
-#################
+    ssl: False**
+
 
 ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_tag_Postgres_metrics.png?raw=true)
 
