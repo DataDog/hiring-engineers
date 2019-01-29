@@ -10,7 +10,8 @@
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 **Configuration file /etc/datadog-agent/conf.d/postgres.d/conf.yaml:**
-```instances:
+```
+instances:
   - host: localhost
     port: 5432
     username: datadog
