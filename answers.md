@@ -2,14 +2,14 @@ Your answers to the questions go here.
 
 # Solutions Engineer Hiring Exercise
 
-- [Prerequisites - Setup The Environment](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#prerequisites---setup-the-environment)
-- [Collecting Metrics](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#collecting-metrics)
-- [Visualizing Data](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#visualizing-data)
-- [Monitoring Data](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#monitoring-data)
-- [Collecting APM Data](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#collecting-apm-data)
-- [Final Question](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#final-question)
-- [Feedback](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#feedback)
-- [Candidate LinkedIn Account](https://github.com/Shrutiku/hiring-engineers/blob/solutions-engineer/answers.md#candidate-linkedin-account)
+- [Prerequisites - Setup The Environment](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#prerequisites---setup-the-environment)
+- [Collecting Metrics](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#collecting-metrics)
+- [Visualizing Data](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#visualizing-data)
+- [Monitoring Data](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#monitoring-data)
+- [Collecting APM Data](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#collecting-apm-data)
+- [Final Question](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#final-question)
+- [Feedback](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#feedback)
+- [Candidate LinkedIn Account](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/answers.md#candidate-linkedin-account)
 
 <hr>
 
