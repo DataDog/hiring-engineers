@@ -34,15 +34,15 @@ Below is a screenshot of my terminal on typing the above commands:
 
 ##### Datadog Sign up 
 
-Signed up for [Datadg](https://app.datadoghq.com/signup), used `Datadog Recruiting Candidate` in the Company field.
+Signed up for [Datadog](https://app.datadoghq.com/signup), using `Datadog Recruiting Candidate` in the Company field.
 
 ##### Datadog Agent Installation
 
-Navigated to Integrations tab on the Datadog webapp and selected Agent option. 
+Navigated to the `Integrations` tab on the Datadog webapp and selected `Agent` option: 
 
 ![integrating_agent](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/installation%20instructions.png)
 
-Chose the correct platform which is Ubuntu in my case and followed the 1-step installation instructions
+Chose the correct platform which is `Ubuntu` in my case and followed the 1-step installation instructions:
 
 ![ubuntu_agent](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/ubuntu%20agent.png)
 
@@ -137,12 +137,12 @@ I added some content to the `postgres.yaml` file as shown and saved the changes:
 
 ![postgres.yaml file](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/postgres%20yaml%20file.png)
 
-**Step 3**: Restart the agent:
+**Step 3**: Restarted the agent:
 
 ```shell
   $ sudo service datadog-agent restart
 ```
-**Step 4**: Execute the `Agent status` command and verify that the integration check has passed. Look for `postgres` under the Checks section:
+**Step 4**: Executed the `Agent status` command and verified that the integration check has passed. Look for `postgres` under the Checks section:
 
 ```shell
   $ sudo datadog-agent status
@@ -152,12 +152,12 @@ I added some content to the `postgres.yaml` file as shown and saved the changes:
 
 The terminal status as well as the webapp integration success message proved that the installation was successful.
 
-
+.
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Referred the [writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) for this part.
 
-The document asked me to create 2 files named `my_metric.yaml` and `my_metric.py` files such that their names should match. The check file `my_metric.py` should be placed in `checks.d` folder, while the configuration file named `my_metric.yaml` should be placed in the `conf.d` folder.
+The document asked me to create 2 files named `my_metric.yaml` and `my_metric.py` files such that their names should match. The check file `my_metric.py` should be placed in the `checks.d` folder, while the configuration file named `my_metric.yaml` should be placed in the `conf.d` folder.
 
 I navigated to `/etc/datadog-agent/checks.d` directory and created a file called [my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.py)
 
@@ -224,9 +224,10 @@ I found the following important point in the agent check documentation -
 
 _The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds._
 
+.
+> Bonus Question Can you change the collection interval without modifying the Python check file you created? 
 
->Bonus Question Can you change the collection interval without modifying the Python check file you created? 
->Yes, the collection interval can be changed by directly changing the collection interval in the `/conf.d/my_metric.yaml` configration file, similar to what I did in the above step.
+Yes, the collection interval can be changed by directly changing the collection interval in the `/conf.d/my_metric.yaml` configration file, similar to what I did in the above step.
 
 <hr>
 
@@ -238,18 +239,26 @@ _The default is 0 which means it’s collected at the same interval as the rest 
 > - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 > Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Researched [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards) and figured out that I first needed to install the datadog API.
+Researched [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards) and figured out that I first needed to install Datadog.
 
 I installed pip for this:
 
 ```shell
   $ sudo apt-get install python-pip
 ```
+
+Once pip was installed, I installed Datadog:
+
+```shell
+  $ pip install datadog
+```
+
 Next we need the `App Key` and `API key`!
 
 API key can be found by navigating to APIs under Integrations option of datadog webapp. There, under API Keys, you can find your unique api key. Timeboard App key needs to be generated. This can be done by navigating to APIs under Integrations on webapp. Navigated to the Application Keys section, added a name for the application key in the input box and clicked Create Application Key button. By doing this, an application key was generated for me.
 
-I then created a python file named `sk_timeboard.py` in the `datadog-agent repository`. This file included the code to create timeboards for my custom metric scoped over the host, any metric from postgreSQL integration with anomaly function applied and my custom metric with roll up function applied. For the 2nd question i.e any metric for my selected database, I selected the `percent usage connection` metric which is the number of connections to this database as a fraction of the maximum number of allowed connections.
+I then created a python file named `sk_timeboard.py` in the `datadog-agent repository`. This file included the code to create timeboards for my custom metric scoped over the host, any metric from postgreSQL integration with anomaly function applied and my custom metric with roll up function applied. 
+For the 2nd question i.e any metric for my selected database, I selected the `percent usage connection` metric which is the number of connections to this database as a fraction of the maximum number of allowed connections.
 
 Referred [anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and [anomaly monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) to create the anomaly function. 
 The anomaly function has two parameters:
@@ -270,7 +279,7 @@ I then navigated to the `Dashboard` List under Dashboards tab on the webapp:
 
 ![dashboard list](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/timeboard%20displayed%20in%20list.png)
 
-I could see `My Timeboard` created successfully in the list and clicked into it to see graphs for `my custom metric`, `postgres anomaly function` and `my custom metric roll up` as below:
+I could see `My Timeboard` created successfully in the list and clicked into it to see graphs for `My custom metric`, `PostgreSQL integration anomaly` and `My custom metric rollup` as below:
 
 ![my_metric](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my%20timeboard.png)
 
@@ -278,11 +287,11 @@ I could see `My Timeboard` created successfully in the list and clicked into it 
 > - Set the Timeboard's timeframe to the past 5 minutes
 > - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-To set timeboard’s timeframe to past 5 minutes, I manually dragged the graph such that I could see the data for 5 minutes:  
+To set timeboard’s timeframe to past 5 minutes, I manually dragged the graph such that I could see the data for past 5 minutes:  
 
 ![5 min](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/5%20min%20timeboard.jpeg)
 
-I then clicked the small camera icon at the top of one of the metric as below and added my name with @ notation in the comments, to send the snap to my email address:
+I then clicked the small camera icon at the top of one of the metric as below, and added my name with @ notation in the comments, to send the snap to my email address:
 
 ![send snap](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/timeboard%20snapshot.png)
 
@@ -290,9 +299,10 @@ Here is the email that I received:
 
 ![snapshot](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/email%20for%20custom%20metric.png)
 
-
+.
 > - Bonus Question: What is the Anomaly graph displaying?
->The anomaly graph is tracking whether the metric is behaving differently than usual within an assigned deviation. My anomaly graph is displaying if there are abnormalities in the number of connections to this database as a fraction of the maximum number of allowed connections. A straight blue line indicates there’s no abnormalities. Red spikes indicate there are some abnormalities. In my case for the past day, there’s a small red spike which indicates that there’s an abnormality in the number of connections to this database as a fraction of the maximum number of allowed connections.
+
+The anomaly graph is tracking whether the metric is behaving differently than usual within an assigned deviation. My anomaly graph is displaying if there are abnormalities in the number of connections to this database as a fraction of the maximum number of allowed connections. A straight blue line indicates there’s no abnormalities. Red spikes indicate there are some abnormalities. In my case for the past day, there’s a small red spike which indicates that there’s an abnormality in the number of connections to this database as a fraction of the maximum number of allowed connections.
  
 
 <hr>
@@ -307,7 +317,8 @@ Here is the email that I received:
 
 I researched the [metric monitor](https://docs.datadoghq.com/monitors/) document to understand how to create monitors in order to monitor the dashboard.
 
-I then navigated to `Metric` under `New Monitors` of `Monitor` section on the webapp. I selected `my_metric` from the metric dropdown and selected my `host`. Added `800` to the alert threshold input box and `500` to the warning threshold input box. Selected notify me if `no data`. I the added a title for my monitor and then added alert, warning, no data messages along with my `host ip` and `email address` in the message field. Please refer the screenshots below for more clarity:
+I then navigated to `Metric` under `New Monitors` of `Monitor` section on the webapp. I selected `my_metric` from the metric dropdown and selected my `host`. Added `800` to the alert threshold input box and `500` to the warning threshold input box. Selected notify me if `no data`. I the added a title for my monitor and then added alert, warning, no data messages along with my `host ip` and `email address` in the message field. 
+Please refer the screenshots below for more clarity:
 
 ![create metric monitor1](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_1.jpeg)
 
@@ -318,7 +329,7 @@ Here are the screenshots of the warning and no-data alert emails that I received
 ![warning](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_3.jpeg)
 ![no data alert](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/missing%20data%20alert.png)
 
-
+.
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 > - One that silences it from 7pm to 9am daily on M-F,
 > - And one that silences it all day on Sat-Sun.
@@ -346,7 +357,7 @@ I then received an email confirmation for the weekend downtime scheduled:
 
 ### Collecting APM Data
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+> Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 <details><summary>EXPAND</summary>
 <p>
@@ -381,58 +392,60 @@ if __name__ == '__main__':
 > Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 </details>
 
-Referred [agent tracking python documentation](https://docs.datadoghq.com/tracing/languages/python/) for this task.
+I referred [agent tracking python documentation](https://docs.datadoghq.com/tracing/languages/python/) for this task.
 
-Installed flask using the following command
+I installed flask using the following command:
 ```shell
 $ pip install flask
 ```
-Installed ddtrace using the following command
+I then installed ddtrace using the following command:
 ```shell
 $ pip install ddtrace
 ```
-I then edited the datadog.yaml file in the datadog-agent directory to enable to trace collection for the trace agent. 
-For this, I opened datadog.yaml file using nano and uncommented following 2 lines from the file
+I then edited the `datadog.yaml` file in the `datadog-agent directory` to enable to trace collection for the trace agent. 
+For this, I opened `datadog.yaml` file using nano and uncommented following 2 lines from the file:
 ```shell
 apm_config:
 enabled:true
 ```
-I saved the file and created a new python file called [app.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/app.py) in the same directory. I added the given flask app code in this file 
+I saved the file and created a new python file called [app.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/app.py) in the same directory. I added the given flask app code in this file :
 
 ![app.py file](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/app.py%20file2.png)
 
-I then restarted the datadog-agent
+I then restarted the `datadog-agent`:
 ```shell
 sudo service datadog-agent restart
 ```
-I then ran app.py file using ddtrace 
+I then ran `app.py` file using ddtrace:
 ```shell
 ddtrace-run python app.py
 ```
-The below screenshot proves the successful running of the flask app
+The below screenshot proves the successful running of the flask app:
+
 ![flask app running](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/app.py%20running.png)
 
-The APM section of webapp continued to show me the following screens
+However, the APM section of webapp continued to show me the following screens:
 
 ![apm instructions](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/apm%20instructions.png)
 ![apm python](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/apm%20python%20screen.png)
 
-*Note: I was unable to complete the task inspite of having the APM app to run successfully. I couldn't get the apm to connect to my server inspite of doing an extensive research on the issue and trobleshooting for 2 days.*
+*Note: I was unable to complete the task inspite of having the APM app run successfully. I couldn't get the apm to connect to my server inspite of doing  extensive research on the issue and trobleshooting for 2 days.*
 
-Researched [APM (tracing)](https://docs.datadoghq.com/tracing/), [APM Setup](https://docs.datadoghq.com/tracing/setup/), specifically [Tracking Python Applications](https://docs.datadoghq.com/tracing/setup/python/), [Flask Setup](http://flask.pocoo.org/docs/0.12/installation/#installation), [Introduction to Flask, (http://flask.pocoo.org/docs/0.12/quickstart/), and [Flask Framework Compatibility](http://pypi.datadoghq.com/trace/docs/#flask).
+I researched [APM (tracing)](https://docs.datadoghq.com/tracing/), [APM Setup](https://docs.datadoghq.com/tracing/setup/), specifically [Tracking Python Applications](https://docs.datadoghq.com/tracing/setup/python/), [Flask Setup](http://flask.pocoo.org/docs/0.12/installation/#installation), [Introduction to Flask, (http://flask.pocoo.org/docs/0.12/quickstart/), and [Flask Framework Compatibility](http://pypi.datadoghq.com/trace/docs/#flask).
 
-Here are the things I tired to debug this issue -
-1. Edited datadog.yaml file to test for different other ports like 2200, 8156, etc
-2. Tried the Middleware approach by installing blinker and editing the flask file correctly but got the same result
+Here are the things I tired to debug this issue:
+1. Edited `datadog.yaml` file to test for different other ports like `2200, 8156`, etc
+2. Tried the `Middleware` approach by installing blinker and editing the flask file correctly. However, I got the same result as before
 3. Used java approach by following the APM instructions for java
-4. Stopped firewall and reset chrome settings to get the security clearance
-5. Tried all the steps from scratch on windows os
+4. Stopped my host firewall and reset chrome settings to get the security clearance
+5. Tried all the APM related steps from scratch on Windows OS
 6. Went through all the open, closed issues for [python ddtrace Github repository](https://github.com/DataDog/dd-trace-py/issues) as well as [Solutions Engineering Solutions Github repository](https://github.com/DataDog/hiring-engineers/issues?q=is%3Aissue+is%3Aclosed)
-7. Since my account had expired, I created a new account thinking that might be the issue and repeated all the steps from scratch to get the same output. 
-8. Tried to install datadog agent directly on Mac and repeated the steps
+7. Since my account had expired, I created a new account, thinking that might resolve the issue, and repeated all the steps from scratch to get the same output
+8. Tried to install datadog agent directly on Mac and repeated all relevant steps
 
 Since I'm out of further approaches to make this run, I'd ask for help in this case.
 
+.
 > Bonus Question: What is the difference between a Service and a Resource?
 
 Researched [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/).
@@ -440,6 +453,7 @@ Researched [Getting started with APM](https://docs.datadoghq.com/tracing/visuali
 A service is a set of processes that function together to provide a complete feature. Eg. a web application is made up of many different services like web app service, database service, query service, etc. 
 
 A resource is an action / query for a service. Eg. /home routes or a sql query like 'SELECT users.first_name from users'; 
+
 
 > Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 > Please include your fully instrumented app in your submission, as well.
@@ -457,7 +471,7 @@ My flask app can be found [here](https://github.com/Shrutiku/hiring-engineers/bl
 
 ### Feedback 
 
-I really enjoyed taking this challenge. Although, I got stuck in the installation step due to a permissions issue, I could later figure out my mistake and finish the assignment. I got a hands-on experience and a thorough understanding of how powerful data-dog platform is. Thank you for giving me the opportunity to take this challenge!!!
+I really enjoyed taking this challenge. Although I got stuck in the installation step due to a permissions issue, I was able to figure out my mistake and finish the assignment. I got a hands-on experience and a thorough understanding of how powerful the Datadog platform is. Thank you for giving me the opportunity to take this challenge!
 
 ### Candidate LinkedIn Account
 
