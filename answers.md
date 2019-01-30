@@ -343,7 +343,7 @@ I then navigated to the `Manage Downtime` tab and clicked `Schedule Downtime`. I
 
 I then received an email confirmation for the weekday downtime scheduled:
 
-![weekday email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%202.jpeg)
+![weekday email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/weekday%20downtime.png)
 
 Next, I scheduled the weekends downtime by following the same procedure that I used for setting the weekday downtime. The only difference is that I chose `Saturday, Sunday` for Repeat on field and the `12 am to 12 am` time slot by setting the begining time to 12 am and duration to 12 hours. I again added appropriate message and added my email address. 
 
@@ -352,7 +352,7 @@ Next, I scheduled the weekends downtime by following the same procedure that I u
 
 I then received an email confirmation for the weekend downtime scheduled:
 
-![weekend email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%204.jpeg)
+![weekend email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/weekend%20downtime.png)
 
 <hr>
 
@@ -447,7 +447,7 @@ Here are the things I tired to debug this issue:
 
 Since I'm out of further approaches to make this run, I'd ask for help in this case.
 
-.
+
 > Bonus Question: What is the difference between a Service and a Resource?
 
 Researched [Getting started with APM](https://docs.datadoghq.com/tracing/visualization/).
