@@ -69,7 +69,7 @@ You can see the following success message on the terminal after correct agent in
 
 Studied [how to assign tags](https://docs.datadoghq.com/tagging/assigning_tags/?) documentation to get a better idea of tags. I referred [configuration file location](https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6) to get the location of my agent configuration file on ubuntu.   
 
-I had to use sudo admin privildeges to acess and make changes to the datadog.yaml file. This was done by initially navigating back to the vagrant root directory and then accessing datadog.yaml file from the datadog-agent directory. Here are the commands used for the same -
+I had to use `sudo` admin privileges to access and make changes to the `datadog.yaml` file. This was done by initially navigating back to the `vagrant root directory` and then accessing `datadog.yaml` file from the `datadog-agent directory`. Here are the commands used for the same -
 
 ```shell
   $ cd..
@@ -79,27 +79,28 @@ I had to use sudo admin privildeges to acess and make changes to the datadog.yam
 
 *`nano` is vagrant's built-in text editor.*
 
-I referred[tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) while creating my tags. The above command opened datadog.yaml file in my terminal. I then added my respective tags to this file using the correct format as seen in the following image -
+I referred [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) while creating my tags. The above command opened `datadog.yaml` file in my terminal. I then added my respective tags to this file using the correct format as seen in the following image -
 
 ![datadog.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/tags%20file.png)
 
-I then closed the file saving changes (using Cntrl + X) and restarted the agent
+I then closed the file, saving the changes (using Ctrl + X) and restarted the agent:
 
 ```shell
   $ sudo service datadog-agent restart
 ```
 
-These tags could be reflected on the datadog webapp hostmap. To observe these changes, I navigated to Host Map under Infrastructure tab on the left navigation of datadog webapp. My Host Map with tags could be seen there as below -
+These tags could be reflected on the datadog webapp hostmap. To observe these changes, I navigated to `Host Map` under `Infrastructure` tab on the navigation pane of datadog webapp. My Host Map with tags could be seen there as below -
 
 
 ![host map tags](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/tags.png)
 
+
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Installed PostgreSQL on virtual machine. I have used PostgreSQL for this assignment as I’ve used it for a number of projects while pursuing my Masters in CS. I referred [PostgreSQL installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04). 
+Installed `PostgreSQL` on virtual machine. I used PostgreSQL for this assignment as I’ve used it for a number of projects while pursuing my Masters in CS. I referred [PostgreSQL installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04). 
 
 **Step 1**:
-Installed postgresql using the following commands on my terminal
+Installed postgresql using the following commands on my terminal:
 
 ```shell
   $ sudo apt-get update
@@ -107,29 +108,29 @@ Installed postgresql using the following commands on my terminal
 ```
 ![postgres installation](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/postgres%20install.png)
 
-Navigated to Integrations section of the webapp and looked up for PostgreSQL integration there. I then clicked into it and finished installing it. 
+Navigated to `Integrations` section of the webapp and looked up for PostgreSQL integration there. I then clicked into it and finished installing it. 
 
 The configurations tab read as
 create user datadog with password 'Generate Password';
 grant SELECT ON pg_stat_database to datadog;
 
-I clicked on Generate Password button to generate my PostgreSQL password. I referred [how to use postgres on ubuntu 16.0](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) document to learn the usage of postgres on ubuntu. The following command switched me to postgres account on ubuntu
+I clicked on `Generate Password` button to generate my PostgreSQL password. I referred the [how to use postgres on ubuntu 16.0](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) document to learn the usage of postgres on ubuntu. The following command switched me to the `postgres` account on ubuntu:
 
 ```shell
   $ sudo -i -u postgres
 ```
 
-The following command was used to access the postgres prompt
+The following command was used to access the `postgres` prompt:
 
 ```shell
   $ psql
 ```
 
-I then created a user on postgres and granted permissions to him following the configuration instructions as shown below
+I then created a user on postgres and granted permissions to it following the configuration instructions as shown below:
 
 ![postgres user](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/switch%20to%20postgres%20%26%20create%20user%20with%20grant.png)
 
-**Step 2**: Configured the agent to connect to the PostgreSQL server. For this step, I accessed conf.d/postgres.yaml file
+**Step 2**: Configured the agent to connect to the PostgreSQL server. For this step, I accessed the `conf.d/postgres.yaml` file:
 
 ```shell
   $ \q
@@ -137,16 +138,16 @@ I then created a user on postgres and granted permissions to him following the c
   $ sudo nano postgres.yaml
 ```
 
-I added some content to the postgres.yaml file as shown and saved the changes
+I added some content to the `postgres.yaml` file as shown and saved the changes:
 
 ![postgres.yaml file](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/postgres%20yaml%20file.png)
 
-**Step 3**: Restart the agent
+**Step 3**: Restart the agent:
 
 ```shell
   $ sudo service datadog-agent restart
 ```
-**Step 4**: Execute the Agent status command and verify that the integration check has passed. Look for postgres under the Checks section.
+**Step 4**: Execute the `Agent status` command and verify that the integration check has passed. Look for postgres under the Checks section:
 
 ```shell
   $ sudo datadog-agent status
@@ -156,11 +157,12 @@ I added some content to the postgres.yaml file as shown and saved the changes
 
 The terminal status as well as the webapp integration success message proved that the installation was successful.
 
+
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-Referred [writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) for this part.
+Referred the [writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) for this part.
 
-The document asked me to create 2 files named my_metric.yaml and my_metric.py files such that their names should match. The check file `my_metric.py` should be placed in `checks.d` folder while the configuration file named `my_metric.yaml` of the configuration and check files must match. If your check is called `my_metric.py` your configuration file must be placed in `conf.d` folder.
+The document asked me to create 2 files named `my_metric.yaml` and `my_metric.py` files such that their names should match. The check file `my_metric.py` should be placed in `checks.d` folder, while the configuration file named `my_metric.yaml` should be placed in the `conf.d` folder.
 
 I navigated to /etc/datadog-agent/checks.d directory and created a file called [my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.py)
 
@@ -181,13 +183,13 @@ class MyMetric(AgentCheck):
 
 ![my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my_metric.py.jpeg)
 
-I then navigated to `/etc/datadog-agent/conf.d` and created my_metric.yaml file and created the my_metric.yaml file there
+I then navigated to `/etc/datadog-agent/conf.d` and created the `my_metric.yaml` file there:
 
 ```shell
-  $ cd /etc/datadog-agent/cof.d
+  $ cd /etc/datadog-agent/conf.d
   $ sudo nano my_metric.yaml
 ```
-Saved the following code in my_metric.yaml
+Saved the following code in `my_metric.yaml`:
 
 `my_metric.yaml`
 ```python
@@ -198,7 +200,7 @@ instances:
 ![my metric.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my_metric.yaml.jpeg)
 
 
-Restarted the Agent for the changes to reflect and checked the agent status.
+Restarted the Agent for the changes to reflect and checked the agent status:
 
 ```shell
   $ sudo service datadog-agent restart
@@ -207,9 +209,10 @@ Restarted the Agent for the changes to reflect and checked the agent status.
 ![my metric status](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my_metric%20status%20check.png)
 ![my_metric check](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my_metric%20status%20check%20copy.png)
 
+
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-I opened [my_metric.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.yaml) file again to make the following changes to it before saving it again
+I opened the [my_metric.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.yaml) file again to make the following changes before saving it again:
 
 `my_metric.yaml`
 ```python
@@ -218,19 +221,20 @@ instances:
 ```
 ![my_metric 45 secs interval](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/45%20sec%20interval%20for%20yaml.png)
 
-Restart the Agent for the changes to be reflect.
+Restart the Agent for the changes to be reflect:
 
 ```shell
   $ sudo service datadog-agent restart
 ```
-To verify if this was successful, I checked datadog-agent status using sudo datadog-agent status a couple of times and verified that the total run count was updating after 45 seconds
+To verify if this was successful, I checked `datadog-agent status` a couple of times and verified that the total run count was updating after 45 seconds.
 
 I found the following important point in the agent check documentation -
 
 _The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds._
 
+
 >Bonus Question Can you change the collection interval without modifying the Python check file you created? 
-Yes, the collection interval can be changed by directly changing the collection interval in the '/conf.d/my_metric.yaml' configration file like I did in the above step.
+Yes, the collection interval can be changed by directly changing the collection interval in the `'/conf.d/my_metric.yaml'` configration file, similar to what I did in the above step.
 
 <hr>
 
@@ -244,15 +248,16 @@ Yes, the collection interval can be changed by directly changing the collection 
 
 Researched [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards) and figured out that I first need to install the datadog API.
 
-I installed pip for this
+I installed pip for this:
 
-
-
-Next we need App Key and API key!
+```shell
+  $ sudo service datadog-agent restart
+```
+Next we need the `App Key` and `API key`!
 
 API key can be found by navigating to APIs under Integrations option of datadog webapp. There, under API Keys, you can find your unique api key. Timeboard App key needs to be generated. This can be done by navigating to APIs under Integrations on webapp. Navigated to the Application Keys section, added a name for the application key in the input box and clicked Create Application Key button. By doing this, an application key was generated for me.
 
-I then created a python file named sk_timeboard.py in the datadog-agent repository. This file included the code to create timeboards for my custom metric scoped over the host, any metric from integration on postgreSQL with anomaly function applied and my custom metric with roll up function applied. For the 2nd question i.e any metric for my selected database, I selected the “percent usage connection” metric which is the number of connections to this database as a fraction of the maximum number of allowed connections.
+I then created a python file named `sk_timeboard.py` in the `datadog-agent repository`. This file included the code to create timeboards for my custom metric scoped over the host, any metric from postgreSQL integration with anomaly function applied and my custom metric with roll up function applied. For the 2nd question i.e any metric for my selected database, I selected the `percent usage connection` metric which is the number of connections to this database as a fraction of the maximum number of allowed connections.
 
 Referred [anomalies](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and [anomaly monitors via the API](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-monitors-via-the-api) to create the anomaly function. 
 The anomaly function has two parameters:
