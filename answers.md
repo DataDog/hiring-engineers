@@ -326,10 +326,11 @@ Please refer the screenshots below for more clarity:
 
 Here are the screenshots of the warning and no-data alert emails that I received: 
 
-![warning](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_3.jpeg)
-![no data alert](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/missing%20data%20alert.png)
+![warning](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/warning%20email.png)
 
-.
+![no data alert](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/missing%20data%20email.png)
+
+
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 > - One that silences it from 7pm to 9am daily on M-F,
 > - And one that silences it all day on Sat-Sun.
