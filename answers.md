@@ -148,11 +148,11 @@ I added some content to the `postgres.yaml` file as shown and saved the changes:
   $ sudo datadog-agent status
 ```
 
-![step 4 status](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/postgres%20staus%20check.png)
+![step 4 status](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/datadog%20agent%20status.png)
 
 The terminal status as well as the webapp integration success message proved that the installation was successful.
 
-.
+
 > Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Referred the [writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) for this part.
@@ -224,7 +224,7 @@ I found the following important point in the agent check documentation -
 
 _The default is 0 which means it’s collected at the same interval as the rest of the integrations on that Agent. If the value is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds._
 
-.
+
 > Bonus Question Can you change the collection interval without modifying the Python check file you created? 
 
 Yes, the collection interval can be changed by directly changing the collection interval in the `/conf.d/my_metric.yaml` configration file, similar to what I did in the above step.
