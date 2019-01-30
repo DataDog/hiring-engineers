@@ -427,6 +427,7 @@ The below screenshot proves the successful running of the flask app:
 However, the APM section of webapp continued to show me the following screens:
 
 ![apm instructions](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/apm%20instructions.png)
+
 ![apm python](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/apm%20python%20screen.png)
 
 *Note: I was unable to complete the task inspite of having the APM app run successfully. I couldn't get the apm to connect to my server inspite of doing  extensive research on the issue and trobleshooting for 2 days.*
