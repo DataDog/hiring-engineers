@@ -27,7 +27,7 @@ I initialized, activated and SSHed into the virtual machine using following comm
   $ vagrant up
   $ vagrant ssh
 ```
-Your screen should look like below on typing the above commands on your terminal -
+Below is a screenshot of my terminal on typing the above commands:
 
 ![vagrant set up](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/vagrant.png)
 
@@ -46,15 +46,14 @@ Chose the correct platform which is Ubuntu in my case and followed the 1-step in
 
 ![ubuntu_agent](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/ubuntu%20agent.png)
 
-The following command was used on terminal to install the datadog-agent
+The following command was used on terminal to install the datadog-agent:
 
 ```shell
-The program 'curl' is currently not installed.  You can install it by typing:
 $ sudo apt-get install curl
 $ DD_API_KEY=f1939bb97730746da2a69d15c07b5901 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
-You can see the following success message on the terminal after correct agent installation.
+You can see the following success message on the terminal after correct agent installation:
 
 ![Agent is running and functioning properly](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Agent%20installation%20success%20message.png)
 
@@ -69,7 +68,7 @@ You can see the following success message on the terminal after correct agent in
 
 Studied [how to assign tags](https://docs.datadoghq.com/tagging/assigning_tags/?) documentation to get a better idea of tags. I referred [configuration file location](https://docs.datadoghq.com/agent/faq/agent-configuration-files/?tab=agentv6) to get the location of my agent configuration file on ubuntu.   
 
-I had to use `sudo` admin privileges to access and make changes to the `datadog.yaml` file. This was done by initially navigating back to the `vagrant root directory` and then accessing `datadog.yaml` file from the `datadog-agent directory`. Here are the commands used for the same -
+I had to use `sudo` admin privileges to access and make changes to the `datadog.yaml` file. This was done by initially navigating back to the `vagrant root directory` and then accessing `datadog.yaml` file from the `datadog-agent directory`. Here are the commands used for the same:
 
 ```shell
   $ cd..
@@ -79,7 +78,7 @@ I had to use `sudo` admin privileges to access and make changes to the `datadog.
 
 *`nano` is vagrant's built-in text editor.*
 
-I referred [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) while creating my tags. The above command opened `datadog.yaml` file in my terminal. I then added my respective tags to this file using the correct format as seen in the following image -
+I referred [tags best practices](https://docs.datadoghq.com/getting_started/tagging/#tags-best-practices) while creating my tags. The above command opened `datadog.yaml` file in my terminal. I then added my respective tags to this file using the correct format as seen in the following image:
 
 ![datadog.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/tags%20file.png)
 
@@ -89,15 +88,15 @@ I then closed the file, saving the changes (using Ctrl + X) and restarted the ag
   $ sudo service datadog-agent restart
 ```
 
-These tags could be reflected on the datadog webapp hostmap. To observe these changes, I navigated to `Host Map` under `Infrastructure` tab on the navigation pane of datadog webapp. My Host Map with tags could be seen there as below -
+These tags could be reflected on the datadog webapp hostmap. To observe these changes, I navigated to `Host Map` under `Infrastructure` tab on the navigation pane of datadog webapp. My Host Map with tags could be seen there as below:
 
 
 ![host map tags](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/tags.png)
 
-
+.
 > Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Installed `PostgreSQL` on virtual machine. I used PostgreSQL for this assignment as I’ve used it for a number of projects while pursuing my Masters in CS. I referred [PostgreSQL installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04). 
+Installed `PostgreSQL` on virtual machine. I used PostgreSQL for this assignment as I’ve used it for a number of projects while pursuing my Masters in CS. I referred the [PostgreSQL installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) document. 
 
 **Step 1**:
 Installed postgresql using the following commands on my terminal:
@@ -109,10 +108,6 @@ Installed postgresql using the following commands on my terminal:
 ![postgres installation](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/postgres%20install.png)
 
 Navigated to `Integrations` section of the webapp and looked up for PostgreSQL integration there. I then clicked into it and finished installing it. 
-
-The configurations tab read as
-create user datadog with password 'Generate Password';
-grant SELECT ON pg_stat_database to datadog;
 
 I clicked on `Generate Password` button to generate my PostgreSQL password. I referred the [how to use postgres on ubuntu 16.0](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04) document to learn the usage of postgres on ubuntu. The following command switched me to the `postgres` account on ubuntu:
 
@@ -147,7 +142,7 @@ I added some content to the `postgres.yaml` file as shown and saved the changes:
 ```shell
   $ sudo service datadog-agent restart
 ```
-**Step 4**: Execute the `Agent status` command and verify that the integration check has passed. Look for postgres under the Checks section:
+**Step 4**: Execute the `Agent status` command and verify that the integration check has passed. Look for `postgres` under the Checks section:
 
 ```shell
   $ sudo datadog-agent status
@@ -164,15 +159,14 @@ Referred the [writing an Agent check](https://docs.datadoghq.com/developers/writ
 
 The document asked me to create 2 files named `my_metric.yaml` and `my_metric.py` files such that their names should match. The check file `my_metric.py` should be placed in `checks.d` folder, while the configuration file named `my_metric.yaml` should be placed in the `conf.d` folder.
 
-I navigated to /etc/datadog-agent/checks.d directory and created a file called [my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.py)
+I navigated to `/etc/datadog-agent/checks.d` directory and created a file called [my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.py)
 
 ```shell
   $ cd /etc/datadog-agent/checks.d
   $ sudo nano my_metric.py
 ```
-Saved the following code in my_metric.py
+Saved the following code in `my_metric.py`"
 
-`my_metric.py`
 ```python
 from checks import AgentCheck
 import random
@@ -191,7 +185,6 @@ I then navigated to `/etc/datadog-agent/conf.d` and created the `my_metric.yaml`
 ```
 Saved the following code in `my_metric.yaml`:
 
-`my_metric.yaml`
 ```python
 instances:
   [{}]
@@ -214,14 +207,13 @@ Restarted the Agent for the changes to reflect and checked the agent status:
 
 I opened the [my_metric.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.yaml) file again to make the following changes before saving it again:
 
-`my_metric.yaml`
 ```python
 instances:
     -   min_collection_interval: 45
 ```
 ![my_metric 45 secs interval](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/45%20sec%20interval%20for%20yaml.png)
 
-Restart the Agent for the changes to be reflect:
+Restarted the Agent for the changes to reflect:
 
 ```shell
   $ sudo service datadog-agent restart
@@ -234,7 +226,7 @@ _The default is 0 which means it’s collected at the same interval as the rest 
 
 
 >Bonus Question Can you change the collection interval without modifying the Python check file you created? 
-Yes, the collection interval can be changed by directly changing the collection interval in the `'/conf.d/my_metric.yaml'` configration file, similar to what I did in the above step.
+>Yes, the collection interval can be changed by directly changing the collection interval in the `/conf.d/my_metric.yaml` configration file, similar to what I did in the above step.
 
 <hr>
 
@@ -246,12 +238,12 @@ Yes, the collection interval can be changed by directly changing the collection 
 > - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 > Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Researched [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards) and figured out that I first need to install the datadog API.
+Researched [Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards) and figured out that I first needed to install the datadog API.
 
 I installed pip for this:
 
 ```shell
-  $ sudo service datadog-agent restart
+  $ sudo apt-get install python-pip
 ```
 Next we need the `App Key` and `API key`!
 
@@ -264,20 +256,21 @@ The anomaly function has two parameters:
 - The first parameter is for selecting which algorithm is used.
 - The second parameter is labeled bounds, tune it to change the width of the gray band. bounds can be interpreted as the standard deviations for your algorithm; a value of 2 or 3 should be large enough to include most “normal” points.
 
-Referred [rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) to create the rollup function on my custom metric
+Referred [rollup](https://docs.datadoghq.com/graphing/miscellaneous/functions/#rollup-1) to create the rollup function on my custom metric:
 - Appending this function to the end of a query allows you to control the number of raw points rolled up into a single point plotted on the graph. The function takes two parameters, method and time: `.rollup(method,time)`.
 
 ![sk_timeboard](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/sk-timeboard.png)
 
-I then saved [sk_timeboard.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/sk-timeboard.png) and ran it using the following terminal command -
+I then saved [sk_timeboard.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/sk-timeboard.png) and ran it using the following terminal command:
+
 ```shell
   $ python sk_timeboard.py
 ```
-Navigated to Dashboard List under Dashboards tab on the webapp
+I then navigated to the `Dashboard` List under Dashboards tab on the webapp:
 
 ![dashboard list](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/timeboard%20displayed%20in%20list.png)
 
-I could see My Timeboard created successfully in the list and clicked into it to see graphs for My custom metric, postgres anomaly function and my custom metric roll up as below
+I could see `My Timeboard` created successfully in the list and clicked into it to see graphs for `my custom metric`, `postgres anomaly function` and `my custom metric roll up` as below:
 
 ![my_metric](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/my%20timeboard.png)
 
@@ -285,19 +278,21 @@ I could see My Timeboard created successfully in the list and clicked into it to
 > - Set the Timeboard's timeframe to the past 5 minutes
 > - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-To set timeboard’s timeframe to past 5 minutes, manually dragged the graph such that I could see the data for 5 minutes.  
+To set timeboard’s timeframe to past 5 minutes, I manually dragged the graph such that I could see the data for 5 minutes:  
 
 ![5 min](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/5%20min%20timeboard.jpeg)
 
-Clicked the small camera icon at the top of one of the metric as below and added my name with @ notation in the comments to send the snap to my email address
+I then clicked the small camera icon at the top of one of the metric as below and added my name with @ notation in the comments, to send the snap to my email address:
 
 ![send snap](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/timeboard%20snapshot.png)
 
-Here's the email that I received -
+Here is the email that I received:
+
 ![snapshot](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/email%20for%20custom%20metric.png)
 
+
 > - Bonus Question: What is the Anomaly graph displaying?
-The anomaly graph is tracking whether the metric is behaving differently than usual within an assigned deviation. My anomaly graph is displaying if there are abnormalities in the number of connections to this database as a fraction of the maximum number of allowed connections. A straight blue line indicates there’s no abnormalities. Red spikes indicate there are some abnormalities. In my case for the past day, there’s a small red spike which indicates that there’s abnormality in the number of connections to this database as a fraction of the maximum number of allowed connections.
+>The anomaly graph is tracking whether the metric is behaving differently than usual within an assigned deviation. My anomaly graph is displaying if there are abnormalities in the number of connections to this database as a fraction of the maximum number of allowed connections. A straight blue line indicates there’s no abnormalities. Red spikes indicate there are some abnormalities. In my case for the past day, there’s a small red spike which indicates that there’s an abnormality in the number of connections to this database as a fraction of the maximum number of allowed connections.
  
 
 <hr>
@@ -310,39 +305,40 @@ The anomaly graph is tracking whether the metric is behaving differently than us
 > - Alerting threshold of 800
 > - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Researched [metric monitor](https://docs.datadoghq.com/monitors/) to understand how to create monitors in order to monitor the dashboard.
+I researched the [metric monitor](https://docs.datadoghq.com/monitors/) document to understand how to create monitors in order to monitor the dashboard.
 
-Navigated to Metric under New Monitors of Monitor section on the webapp. Selected my_metric from the metric dropdown and selected my host. Added 800 to the alert threshold input box and 500 to the warning threshold input box. Selected notify me if no data. I added a title for my monitor and then added alert, warning, no data messages along with my host ip and email address in the message field. Please refer the screenshots below for more clarity - 
+I then navigated to `Metric` under `New Monitors` of `Monitor` section on the webapp. I selected `my_metric` from the metric dropdown and selected my `host`. Added `800` to the alert threshold input box and `500` to the warning threshold input box. Selected notify me if `no data`. I the added a title for my monitor and then added alert, warning, no data messages along with my `host ip` and `email address` in the message field. Please refer the screenshots below for more clarity:
 
 ![create metric monitor1](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_1.jpeg)
 
 ![create metric monitor2](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_2.jpeg)
 
-Here are the screenshots of the emails with warning and no-data alerts that I received 
+Here are the screenshots of the warning and no-data alert emails that I received: 
 
 ![warning](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_3.jpeg)
 ![no data alert](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/missing%20data%20alert.png)
+
 
 > Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 > - One that silences it from 7pm to 9am daily on M-F,
 > - And one that silences it all day on Sat-Sun.
 > - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Navigated to Manage Monitors under Monitors on webapp and clicked on the edit sign besides your monitor in the list.
-Navigated to Manage Downtime tab and clicked Schedule Downtime. Selected my monitor name and selected the Recurring Schedule option. There I added start day as the same day, repeat every 1 week and selected Monday - Friday for the downtime. Set the beginning time to 7 pm and the duration to  14 hours. I then added an appropriate notification message and added my name in the Notify your team field.
+I navigated to `Manage Monitors` under Monitors on webapp and clicked on the edit sign besides my monitor in the list.
+I then navigated to the `Manage Downtime` tab and clicked `Schedule Downtime`. I selected my monitor name and selected the `Recurring Schedule` option. There I added start day as the same day, repeat every 1 week and selected Monday - Friday for the downtime. Set the beginning time to 7 pm and the duration to 14 hours. I then added an appropriate notification message and added my name in the Notify your team field.
 
 ![weekday downtime](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%201.jpeg)
 
-I then received an email confirmation for the weekday downtime set.
+I then received an email confirmation for the weekday downtime scheduled:
 
 ![weekday email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%202.jpeg)
 
-Next, I scheduled weekends downtime by following the same procedure that I used for setting weekly downtime. The only difference is that I chose Saturday, Sunday for Repeat on field and the 12 am to 12 pm time slot by setting the begining time to 12 am and duration to 12 hours. I again added appropriate message and added my email address. 
+Next, I scheduled the weekends downtime by following the same procedure that I used for setting the weekday downtime. The only difference is that I chose `Saturday, Sunday` for Repeat on field and the `12 am to 12 am` time slot by setting the begining time to 12 am and duration to 12 hours. I again added appropriate message and added my email address. 
 
 
 ![weekend downtime](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%203.jpeg)
 
-I then received an email confirmation for the weekend downtime set.
+I then received an email confirmation for the weekend downtime scheduled:
 
 ![weekend email](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/Monitor_downtime%204.jpeg)
 
