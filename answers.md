@@ -468,6 +468,9 @@ My flask app can be found [here](https://github.com/Shrutiku/hiring-engineers/bl
 > Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 > Is there anything creative you would use Datadog for?
 
+Example 1 - Datadog can be used to monitor vital parameters of patients with severe health conditions like cancer patients, pacemaker patients and patients with blood pressure problems. Here, one can set warnings and alerts such that datadog will send alert notifications directly to the patient and/or his doctor. If for instance, a patient's blood pressure goes above a specific set threshold, his family members and doctor will receive an immediate alert. 
+
+Example 2 - Datadog can be used to monitor mobile network coverage. It can monitor and aggregate data across many different service providers and geographic areas. It can then segregate and tag network coverage according to the service provider and relevant area. This data can be made available to users, which can tell them any statistic related to network coverage. For instance, datadog can monitor network availability of T mobile network and based upon the monitoring results, it can be used to notify users of different network availability in different geographic areas.
 
 <hr>
 
