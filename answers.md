@@ -428,7 +428,7 @@ Here are the things I tired to debug this issue -
 3. Used java approach by following the APM instructions for java
 4. Stopped firewall and reset chrome settings to get the security clearance
 5. Tried all the steps from scratch on windows os
-6. Went through all the open, closed issues for [python ddtrace Github repository](https://github.com/DataDog/dd-trace-py/issues) as well as [Solutions Engineering Solutions Github repository] (https://github.com/DataDog/hiring-engineers/issues?q=is%3Aissue+is%3Aclosed)
+6. Went through all the open, closed issues for [python ddtrace Github repository](https://github.com/DataDog/dd-trace-py/issues) as well as [Solutions Engineering Solutions Github repository](https://github.com/DataDog/hiring-engineers/issues?q=is%3Aissue+is%3Aclosed)
 7. Since my account had expired, I created a new account thinking that might be the issue and repeated all the steps from scratch to get the same output. 
 8. Tried to install datadog agent directly on Mac and repeated the steps
 
@@ -444,6 +444,7 @@ A resource is an action / query for a service. Eg. /home routes or a sql query l
 
 > Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 > Please include your fully instrumented app in your submission, as well.
+
 My flask app can be found [here](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/app.py).
 <hr>
 
