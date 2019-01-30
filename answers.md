@@ -164,7 +164,7 @@ Referred [writing an Agent check](https://docs.datadoghq.com/developers/write_ag
 
 The document asked me to create 2 files named my_metric.yaml and my_metric.py files such that their names should match. The check file `my_metric.py` should be placed in `checks.d` folder while the configuration file named `my_metric.yaml` of the configuration and check files must match. If your check is called `my_metric.py` your configuration file must be placed in `conf.d` folder.
 
-I navigated to /etc/datadog-agent/checks.d directory and created a file called my_metric.py
+I navigated to /etc/datadog-agent/checks.d directory and created a file called [my_metric.py](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.py)
 
 ```shell
   $ cd /etc/datadog-agent/checks.d
@@ -211,7 +211,7 @@ Restarted the Agent for the changes to reflect and checked the agent status.
 
 > Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-I opened my_metric.yaml file again to make the following changes to it before saving it again
+I opened [my_metric.yaml](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/files/my_metric.yaml) file again to make the following changes to it before saving it again
 
 `my_metric.yaml`
 ```python
