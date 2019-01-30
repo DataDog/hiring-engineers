@@ -29,10 +29,8 @@ I initialized, activated and SSHed into the virtual machine using following comm
 ```
 Your screen should look like below on typing the above commands on your terminal -
 
-![vagrant set up](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/vagrant%20set%20up.png)
+![vagrant set up](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/vagrant.png)
 
-
-![vagrant ssh](https://github.com/Shrutiku/hiring-engineers/blob/Shruti_Kulkarni_Solutions_Engineer/screenshots/vagrant%20ssh.png)
 
 ##### Datadog Sign up 
 
