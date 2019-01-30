@@ -1,0 +1,18 @@
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/xenial64"
+
+  # To automatically configure a private network uncomment following line.
+  # config.vm.network "private_network", ip: "192.168.33.30"
+
+  config.vm.provider "virtualbox" do |vb|
+  # Customize the amount of memory on the VM:
+     vb.memory = "4024"
+  end
+
+  # Port forwarding: If unneeded comment or remove following lines
+  config.vm.network "forwarded_port", guest: 80, host: 8001
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+end
