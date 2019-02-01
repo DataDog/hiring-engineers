@@ -1,6 +1,7 @@
 from flask import Flask
 import logging
 import sys
+import time
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -13,7 +14,7 @@ main_logger.addHandler(c)
 app = Flask(__name__)
 
 @app.route('/')
-def api_entry():
+def api_entry():    
     return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
