@@ -1,4 +1,5 @@
-Your answers to the questions go here.
+Setup:
+Please note that when setting up a virtual machine, it's helpful to make sure you have an updated version of Ubuntu in vagrant.  The older versions cause issues using pip install.
 
 
 Collecting Metrics:
@@ -6,13 +7,12 @@ Collecting Metrics:
 Step 1) Access the Agent config file.
 
 To add tags to your agent, you'll need to accees the configuration file.  The path to your configuration file depends on what platform you're using.  For a linux platform, the path is:
-/etc/datadog-agent/datadog.yaml. 
 
-If you get a 'denied access' error, try to 'cd' into each parent directory one at a time until you are in the datadog-agent file.  You can then 'ls' to see the files in that directory.  datadog.yaml should be in there.
+/etc/datadog-agent/datadog.yaml. 
 
 From there, use vi to access the file from the command line and edit the file.  You can use the arrow keys to move down the file to the 'Set the host's tags' section and add your custom tag there. In my repo, I added a custom tag of 'env:development' for practice.
 
-![add_tags](https://user-images.githubusercontent.com/38845846/51808195-8fabce80-2245-11e9-8d31-d6f26b07f1f3.png)
+![screenshot 1 host map w tags](https://user-images.githubusercontent.com/38845846/52139648-96e82900-2605-11e9-8096-bab0a459bc47.png)
 
 This is a screenshot of the host and it's new tag in the Host Map page.
 
@@ -24,63 +24,36 @@ Step 3) Create a custom agent check that submits a metric named my_metric with a
 
 To do this, you'll again use vi to create a custom_check.py file under datadog-agent/check.d directory.  You'll also need to create a custom_check.yaml file in the datadog-agent/conf.d directory.  This is where you can modify the interval for the check you created in custom_check.py.
 
+custom_check.py should look like this:
+
 ![screen shot 2019-01-28 at 4 45 09 pm](https://user-images.githubusercontent.com/38845846/51876035-2480fb80-231c-11e9-85ac-f555bf4fcf77.png)
 
-Above is a screenshot of custom_check.py
+custom_check.yaml should look like this: 
+
+![conf d custom_check yaml 45 sec interval](https://user-images.githubusercontent.com/38845846/52083770-36011800-2555-11e9-9dbe-84549d07e8ad.png)
 
 
 Visualizing Data:
 
-Timeboard snapshot:
+To create a custom metric using Datadog's API, it's helpful to refer to the following documentation (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard).  The code that I used is below.  Note, you'll need to input your own API and APP keys, which can be found in your account info.
 
-To create a custom metric using Datadog's API, it's helpful to refer to the following documentation (https://docs.datadoghq.com/api/?lang=python#create-a-timeboard).  Sample code that I used is below.  Note, you'll need to input your own API and APP keys, which can be found in your account info.
+When you run your script in the terminal (python timeboard.py) a new dashboard will be created in you dashboards list.
 
-__________________________________________________________________
-from datadog import initialize, api
+(*Note- using the anomoly and rollup functions in this section was difficult for me.  I'm not sure if I applied the methods incorrectly, or if I need to adjust a setting to see the anomoly shadowing appear on the graph.  I'd love a review of how to correctly implement these methods.)
 
-options = {
-    'api_key': '<<source your personal API key>>',
-    'app_key': '<<source your personal APP key>>'
-}
+This is a screenshot of my code for the timeboard (note: the text is blurry, refer to the code submitted for a clearer view):
 
-initialize(**options)
-
-title = "Solutions Engineer Timeboard"
-description = "Create a timeboard for hiring challenge"
-graphs = [{
-    "definition": {
-        "events":[],
-        "requests": [
-            #these requests scope over the host we created, apply the 
-            #anomolies function and the rollup function.  
-            #Note, I had some difficulty with the synatax for these - 
-            #reviewing them with a co-worker would be helpful for me!
-            {"q": "avg:my_metric.data{host:trialhostname}"},
-            {"q": "avg(last_1h):anomalies(avg:system.cpu.system{name:cassandra}, 'basic', 3, directions='above', alert_window='last_5m', interval=20, count_default_zero='true') >= 1"},
-            {"q": "avt:random.data.rollup(sum,60)"}],
-        "viz": "query_value"
-    },
-    "title": "Random Timeboard Trial"
-}]
-
-template_variables = [{
-    "name": "host1", 
-    "prefix": "host", 
-    "default": "host:my-host"
-
-}]
-
-read_only = True
-api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
+![visualizing data screenshot 1 timeboard py](https://user-images.githubusercontent.com/38845846/52146188-e3d4fb00-2617-11e9-989d-fab9ac38cfd1.png)
 
 
-________________________________________________________________________
+Screenshot of my dashboard:
 
-![screen shot 2019-01-28 at 11 33 07 am](https://user-images.githubusercontent.com/38845846/51861256-9e9b8b00-22f0-11e9-91ae-c1c4dd945699.png)
+![visualizing data screenshot 2 dashboard](https://user-images.githubusercontent.com/38845846/52146135-c011b500-2617-11e9-9e3c-dbfcc711a5e4.png)
+
+
+Screenshot of graph using @ notation:
+
+![visualizing data screenshot 3 notification of dashboard graph](https://user-images.githubusercontent.com/38845846/52146244-0cf58b80-2618-11e9-8eb2-e67732fce8fb.png)
 
 
 
@@ -88,20 +61,28 @@ Monitoring Data:
 
 To create a new monitor from the GUI, use the toolbar on the left and select new monitor from the montiors option.  Then click on 'Metric' to create your new monitor alert for my_metric.  Select 'my_metric.data' from the drop-down field, then enter your threshold conditions under 'Set alert conditions.'
 
-New Alert Monitor screenshots:
-![screen shot 2019-01-28 at 11 28 06 am](https://user-images.githubusercontent.com/38845846/51861025-056c7480-22f0-11e9-8228-fdf22e57455b.png)
-
-![screen shot 2019-01-28 at 11 26 00 am](https://user-images.githubusercontent.com/38845846/51861054-1b7a3500-22f0-11e9-987d-327dc9c37108.png)
-
 To configure the monitor's message to send an email and customized messages based on alert, use the documentation found here:  https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning.  The conditional variables will allow you to control what message is sent, depending on the alert/warning/no-data conditions.  Using @ notification will allow you to control who recieves the messages. 
+
+Here is a screenshot of my monitor alert settings:
+
+![monitoring data screenshot 1 set alert conditions](https://user-images.githubusercontent.com/38845846/52142587-e9c5de80-260d-11e9-8ac4-7004cecd7b2a.png)
+
+
+Here is a screenshot of an email that is sent when the montior is triggered by a warning alert:
+
+![monitoring data screenshot 2 warning alert email](https://user-images.githubusercontent.com/38845846/52142780-7ffa0480-260e-11e9-9c58-81d48ce420e7.png)
 
 
 To schedule downtime when you do not want to recieve alerts, click on the 'Manage Downtime' tab on the middle of you GUI.  The 'Schedule Downtime' button on the right will allow you to set when you do not want to recieve notifications (and indicate which users are affected by this downtime).
 
-Downtime for scheduled alert:
-![screen shot 2019-01-28 at 11 27 45 am](https://user-images.githubusercontent.com/38845846/51861015-feddfd00-22ef-11e9-809b-53d78e7150f0.png)
+Screenshot of daily downtime schedule:
 
-![screen shot 2019-01-28 at 11 25 43 am](https://user-images.githubusercontent.com/38845846/51861037-0ef5dc80-22f0-11e9-9ad3-77efb7b0a65c.png)
+![monitoring data screenshot 3 downtime scheduled](https://user-images.githubusercontent.com/38845846/52143445-5641dd00-2610-11e9-81e8-7794883ec649.png)
+
+
+Screenshot of scheduled downtime email:
+
+![monitoring data screenshot 4 email of scheduled downtime](https://user-images.githubusercontent.com/38845846/52143510-88ebd580-2610-11e9-83c3-47c0dd4df0c8.png)
 
 
 Collecting APM Data:
@@ -126,12 +107,21 @@ Finally, to run the application, you'll use:
 
 ddtrace-run python apm_collection.py 
 
+(*Note: I was able to run the APM trace correctly, but am not sure if I'm generating the correct graph of APM & Infrastructure metrics, below.  I'd love a review of this.)
 
+Screenshot of APM & Infratructure metrics:
+
+![collecting apm data screenshot 1 apm infratructure dashboard](https://user-images.githubusercontent.com/38845846/52144320-c7828f80-2612-11e9-81b4-bb11a6b954c8.png)
+
+General public URL to dashboard:
+
+https://p.datadoghq.com/sb/1feb95c95-de70e006faa8b6d5140f02d7f8de6db9
 
 Bonus:
 A service is the name of a set of processes that work together to provide a feature set, for example a webapp service or a database service.  A resource is a specific query to a service.  More information can be found at: https://help.datadoghq.com/hc/en-us/articles/115000702546-What-is-the-Difference-Between-Type-Service-Resource-and-Name-
 
+
+
 Creative ways to use Datadog:
 I have chickens whose egg production seems to vary somewhat frequently.  It would be interesting to use Datadog to monitor the conditions in which they produce eggs.  For example, how does temperature affect when they lay?  How does food type impact the size or frequency of eggs?  What about light (i.e. season/day length), etc...  It would be cool to see all this broken down using Datadog.
-
 

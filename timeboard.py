@@ -14,7 +14,7 @@ graphs = [{
         "events":[],
         "requests": [
             {"q": "avg:my_metric{host:lahorton.machinehost}"},
-            {"q": "anomalies(avg:my_metric{*}, 'basic', 3)"}
+            {"q": "avg(last_1h):anomalies(avg:lahorton.machinehost{my_metric}, 'basic', 3)"},
             {"q": "my_metric.rollup(sum,60)"}],
         "viz": "query_value"
     },
@@ -25,3 +25,5 @@ graphs = [{
 read_only = True
 api.Timeboard.create(title=title,
                      description=description,
+		     graphs=graphs,
+		     read_only=read_only)
