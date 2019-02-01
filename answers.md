@@ -25,7 +25,7 @@ instances:
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 **Configuration file /etc/datadog-agent/checks.d/random_angel.py:**
-``
+```
 import random
 
 # the following try/except block will make the custom check compatible with any Agent version
@@ -43,21 +43,21 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('angel_metrics.my_metric', random.randint(0,1000))
 
-``
+```
 **Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
-``
+```
 init_config:
 instances: [{}]
-``
+```
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 **Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
-``
+```
 init_config:
 min_collection_interval: 45
 instances: [{}]
-``
+```
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
