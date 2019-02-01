@@ -18,19 +18,10 @@ graphs = [{
             {"q": "my_metric.rollup(sum,60)"}],
         "viz": "query_value"
     },
-    "title": "Random Timeboard Trial"
+    "title": "my_metric Timeboard Graph"
 }]
 
-template_variables = [{
-    "name": "host1", 
-    "prefix": "host", 
-    "default": "host:my-host"
-
-}]
 
 read_only = True
 api.Timeboard.create(title=title,
                      description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
