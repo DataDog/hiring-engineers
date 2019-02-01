@@ -157,3 +157,130 @@ __Bonus Question__
 
 One of the takeaways from editing the `demo_check.yaml` configuration is that you need not change `min_collection_interval` from within the Python file, rather you can do so on a per-instance basis by setting `min_collection_interval` in the yaml file instead.
 
+## Creating a Timeboard with the Datadog API
+
+To glean visual insights from our `my_metric` check, look for anomalous metrics coming from our database, or perform computations on metrics to customize the data on your dashboard, use the `Timeboard` endpoint from the [Datadog API](https://docs.datadoghq.com/api/?lang=python#timeboards)
+
+We're going to use Python3 to create a script to:
+
+- Scope `my_metric` over the `ubuntu-xenial` host
+
+- Look for anomalies in the number of rows returned in the database created earlier
+
+- Use a rollup function to add up the last hour's data points from the `my_metric` check
+
+First, go to your [Datadog account's API page](https://app.datadoghq.com/account/settings#api) to generate an Application Key to give the script access to the Datadog API. Scroll down to Application Keys, enter a name for your new key, then click Create Application Key.
+
+
+Next, install pip3 and the required libraries:
+
+`apt-get install python3-pip`
+
+`pip3 install datadog datadog_checks_base prometheus_client`
+
+
+Now create a file called `demo_timeboard` in your preferred directory with `touch demo_timeboard.py`, open the file in your text editor, and add your API and App keys.
+
+
+```python
+
+from datadog import initialize, api
+  
+options = {
+    'api_key': '<YOUR_API_KEY>',
+    'app_key': '<YOUR_APP_KEY>'
+}
+
+initialize(**options)
+
+title = "My Timeboard"
+description = "Timeboard for my_metric and Postgres."
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "my_metric{host:ubuntu-xenial}"}
+            ],
+        "viz": "timeseries"
+    },
+    "title": "my_metric"
+},
+
+{
+    "definition": {
+        "events":[],
+        "requests": [
+            {"q": "anomalies(avg:postgresql.rows_returned{host:ubuntu-xenial}, 'basic', 1, direction='above')"}
+            ],
+        "viz": "timeseries"
+        },
+    "title": "Postgres rows returned"
+
+},
+
+{
+
+    "definition": {
+        "events":[],
+        "requests": [
+            {"q": "my_metric{host:ubuntu-xenial}.rollup(sum, 3600)"}
+            ],
+        "viz": "timeseries"
+        },
+    "title": "Sum of all points for my_metric over the last hour"
+
+}]
+
+template_variables = [{
+    "name": "ubuntu-xenial",
+    "prefix": "host",
+    "default": "host:ubuntu-xenial"
+}]
+
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+```
+
+
+A few things to note about this code:
+
+- The line `{"q": "my_metric{host:ubuntu-xenial}"}` denotes a request query for `my_metric` on the `ubuntu-xenial` host.
+
+- `{"q": "anomalies(avg:postgresql.rows_returned{host:ubuntu-xenial}, 'basic', 1, direction='above')"}` -- This query looks for anomalies in the database within the scope of the `ubuntu-xenial` host. Specifically, it's checking to see if the number of rows returned is one standard deviation above the normal value observed in the past. `basic` denotes the algorithm used to detect anomalies, which as the name implies is the most basic of the three detection algorithms available:
+
+![alt text](dd_images/dd_19.png)
+
+- `{"q": "my_metric{host:ubuntu-xenial}.rollup(sum, 3600)"}` -- This query seeks the sum of all points returned in the last hour for `my_metric`, scoped over the `ubuntu-xenial` host. The `rollup` function aggregates data over a time period you specify. You can choose to aggregate by average (`avg`), maximum (`max`), minimum (`min`), or sum (`sum`). For the example you'll want the sum of all points for the last hour, thus the call to `rollup(sum, 3600)` on `my_metric`.
+
+- `"viz": "timeseries"` -- All of these graphs use a timeseries to visualize the data, which will show the evolution of a given metric over a time window you define. There are numerous [options for data visualization](https://docs.datadoghq.com/graphing/dashboards/widgets/).
+
+Save and close the editor and run `python3 demo_timeboard.py` to execute the script. 
+
+
+## Viewing the new timeboard
+
+Head to the [Dashboard list](https://app.datadoghq.com/dashboard/lists) and click on the newly created timeboard. You'll see the three graphs defined in your script. Looking at the __Postgres rows returned__ graph, you can see an increase in the number of rows returned beginning at the 23:00 mark, with the anomalous data showing in red:
+
+
+![alt text](dd_images/dd_20.png)
+
+At the top right of the timeboard you'll see the available default time intervals. You can customize these time intervals by pressing alt+] to decrement or alt+[ to increment the interval, all the way down to a five minute window. Depending on your browser you may have issues with the decrement/increment feature -- it didn't work on my locked-down version of Firefox, but worked flawlessly on Safari.
+
+## Taking a snapshot of a graph
+
+Perhaps you find something on a graph that sticks out and you'd like to notify other members of your team. Hover your mouse over the graph to locate the camera icon:
+
+![alt text](dd_images/dd_21.png)
+
+Click the camera, and a text box will appear. Enter a comment and use `@` to mention a member of your team. Once you've finished, press return and a notification will appear letting you know a screenshot has been created. The team member you mentioned in your comment will receive an email containing the comment, the name of the graph in question, and the screenshot of the graph:
+
+![alt text](dd_images/dd_22.png)
+
+__Bonus Question__
+
+The anomaly graph is displaying the variance in the behavior of a metric at a specific point compared to previously observed points. As shown above there are three different algorithms available to detect these variances.
+
