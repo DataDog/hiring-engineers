@@ -293,7 +293,7 @@ With [Datadog Monitors](https://docs.datadoghq.com/monitors/) you can automate t
 - Notifies you if `my_metric` hasn't returned any data in the last ten minutes
 - Silences itself after business hours and on weekends
 
-Start by going to the [Manage Monitors](https://app.datadoghq.com/monitors/manage) and click on New Monitor at the top right of the screen. When given the option to select a monitor type, click Metric.
+Start by going to the [Manage Monitors](https://app.datadoghq.com/monitors/manage) and click on __New Monitor__ at the top right of the screen. When given the option to select a monitor type, click Metric.
 
 ![alt text](dd_images/dd_23.png)
 
@@ -301,18 +301,22 @@ Select __Threshold Alert__, then choose `my_metric` for the metric to be monitor
 
 ![alt text](dd_images/dd_24.png)
 
+Next, navigate to __Say what's happening__ to create monitor messages and notify team members:
+
+![alt text](dd_images/dd_32.png)
+
 Use template variables and conditional statements to state the cause of the alert and email team members:
 
 ```
 {{#is_alert}} 
 
-@codyborders@gmail.com  my_metric is returning a value of {{value}}  for the host at {{host.ip}}.
+@codyborders@gmail.com my_metric is returning a value of {{value}} for the host at {{host.ip}}.
 
 {{/is_alert}}
 
 {{#is_warning}}
 
-@codyborders@gmail.com  my_metric is returning a value above the warning threshold!
+@codyborders@gmail.com my_metric is returning a value above the warning threshold!
 
 {{/is_warning}} 
 
@@ -345,8 +349,6 @@ The team members you've tagged will receive an email notification regarding the 
 ![alt text](dd_images/dd_29.png)
 
 # Collecting APM Data
-
-## Configuring APM
 
 With __Application Performance Monitoring__ you can gain insight into the performance of your application's services, resources, traces, and spans. In this tutorial you'll create a small Python Flask application to gain an understanding of how APM monitors traces on your services. To get started using APM you'll need to enable trace collection within the `datadog.yaml` configuration file. Open `/etc/datadog-agent/datadog.yaml` in a text editor, search for `apm_config`, then add the following:
 
