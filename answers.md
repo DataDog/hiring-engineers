@@ -284,3 +284,63 @@ __Bonus Question__
 
 The anomaly graph is displaying the variance in the behavior of a metric at a specific point compared to previously observed points. As shown above there are three different algorithms available to detect these variances.
 
+# Monitoring Data
+
+With [Datadog Monitors](https://docs.datadoghq.com/monitors/) you can automate the process of checking metrics and sending alerts to your team when necessary. In this example you'll create a monitor that:
+
+- Creates an alert when `my_metric` returns an average value over 500 over the last five minutes
+- Creates a warning and emails it to team members when `my_metric` returns an average value over 800 over the last five minutes
+- Notifies you if `my_metric` hasn't returned any data in the last ten minutes
+- Silences itself after business hours and on weekends
+
+Start by going to the [Manage Monitors](https://app.datadoghq.com/monitors/manage) and click on New Monitor at the top right of the screen. When given the option to select a monitor type, click Metric.
+
+![alt text](dd_images/dd_23.png)
+
+Select __Threshold Alert__, then choose `my_metric` for the metric to be monitored, and `host:ubuntu-xenial` as the host from which metrics will be pulled. Set the alert conditions as follows:
+
+![alt text](dd_images/dd_24.png)
+
+Use template variables and conditional statements to state the cause of the alert and email team members:
+
+```
+{{#is_alert}} 
+
+@codyborders@gmail.com  my_metric is returning a value of {{value}}  for the host at {{host.ip}}.
+
+{{/is_alert}}
+
+{{#is_warning}}
+
+@codyborders@gmail.com  my_metric is returning a value above the warning threshold!
+
+{{/is_warning}} 
+
+{{#is_no_data}}
+
+@codyborders@gmail.com  my_metric hasn't returned any data for the last 10 minutes.
+
+{{/is_no_data}}
+
+```
+
+You can choose from a variety of conditional statements:
+
+![alt text](dd_images/dd_25.png)
+
+Finally, press Save to finish creating your monitor.
+
+When an alert is triggered the team member(s) you've tagged will receive an email:
+
+![alt text](dd_images/dd_26.png)
+
+To schedule downtime for your monitor, go to [Manage Downtime](https://app.datadoghq.com/monitors#/downtime) and click __Schedule Downtime__. Choose your monitor, then modify the schedule according to your needs. Choose team member(s) to notify of the new downtime schedule and leave them a message, then press Save.
+
+![alt text](dd_images/dd_27.png)
+
+The team members you've tagged will receive an email notification regarding the new downtime:
+
+![alt text](dd_images/dd_28.png)
+
+![alt text](dd_images/dd_29.png)
+
