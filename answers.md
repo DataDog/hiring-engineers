@@ -61,6 +61,8 @@ instances: [{}]
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+**Yes, we can do it through the configuration file using "min_collection_interval" parameter**
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
