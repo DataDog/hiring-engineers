@@ -24,7 +24,7 @@ instances:
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-**Configuration file /etc/datadog-agent/checks.d/random_angel.py:**
+**Check file /etc/datadog-agent/checks.d/random_angel.py:**
 ```
 import random
 
