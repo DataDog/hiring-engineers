@@ -5,7 +5,7 @@ If you want to apply as a solutions engineer at [Datadog](http://datadog.com) yo
 
 ## The Exercise
 
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
+Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references) 
 
 ## Questions
 
