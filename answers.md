@@ -73,6 +73,54 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+**HTTP POST call to https://app.datadoghq.com/api/v1/dash?api_key={{dd_api_key}}&application_key={{dd_app_key}} with the following JSON**
+
+```
+{					
+			"graphs" : [{
+									"title": "Angel check",
+									"definition": {
+																	"events": [],
+																	"requests": [
+																							{"q": "avg:my_metric{*}"}
+																							]
+																},
+									"viz": "timeseries"
+      						},
+									{
+									"title": "Postgresql bgwriter anomalies",
+									"definition": {
+																	"events": [],
+																	"requests": [
+																							{"q": "anomalies(avg:postgresql.bgwriter.checkpoints_timed{*}.as_count(), 'basic', 2, direction='both', alert_window='last_5m', interval=20, count_default_zero='true')"}
+																							]
+																},
+									"viz": "timeseries"
+      						},
+									{
+									"title": "Angel check rollup",
+									"definition": {
+																	"events": [],
+																	"requests": [
+																							{"q": "avg:my_metric{*}.rollup(sum,3600)"}
+																							]
+																},
+									"viz": "timeseries"
+      						}
+								 ],
+						
+      "title" : "Angel Timeboard API v8",
+      "description" : "A dashboard for test.",
+      "template_variables": [{
+          "name": "host1",
+          "prefix": "host",
+          "default": "host:ubuntu"
+      }],
+      "read_only": "True"
+    }
+```
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Timeboard.png?raw=true)
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
