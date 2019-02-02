@@ -9,7 +9,7 @@
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-**Configuration file /etc/datadog-agent/conf.d/postgres.d/conf.yaml:**
+**ANSWER: Configuration file /etc/datadog-agent/conf.d/postgres.d/conf.yaml:**
 ```
 instances:
   - host: localhost
@@ -24,7 +24,7 @@ instances:
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-**Check file /etc/datadog-agent/checks.d/random_angel.py:**
+**ANSWER: Check file /etc/datadog-agent/checks.d/random_angel.py:**
 ```
 import random
 
@@ -44,7 +44,7 @@ class RandomCheck(AgentCheck):
         self.gauge('angel_metrics.my_metric', random.randint(0,1000))
 
 ```
-**Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
+**ANSWER: Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
 ```
 init_config:
 instances: [{}]
@@ -52,7 +52,7 @@ instances: [{}]
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-**Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
+**ANSWER: Configuration file /etc/datadog-agent/conf.d/random_angel.yaml:**
 ```
 init_config:
 min_collection_interval: 45
@@ -61,7 +61,7 @@ instances: [{}]
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-**Yes, we can do it through the configuration file using "min_collection_interval" parameter**
+**ANSWER: Yes, we can do it through the configuration file using "min_collection_interval" parameter**
 
 ## Visualizing Data:
 
@@ -73,7 +73,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-**HTTP POST call to https://app.datadoghq.com/api/v1/dash?api_key={{dd_api_key}}&application_key={{dd_app_key}} with the following JSON**
+**ANSWER: HTTP POST call to https://app.datadoghq.com/api/v1/dash?api_key={{dd_api_key}}&application_key={{dd_app_key}} with the following JSON**
 
 ```
 {					
@@ -133,6 +133,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Timeboard_notification_2.png?raw=true)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+**ANSWER: It display the usual results along with an expected “normal” range. In my case, it's in alert due to the range is 5' and the graph is usually "0" but each 5' the value is "1":**
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_anomality.png?raw=true)
+
 
 ## Monitoring Data
 
