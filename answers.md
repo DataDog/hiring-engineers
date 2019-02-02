@@ -124,7 +124,14 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Timeboard_5m.png?raw=true)
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Timeboard_notification.png?raw=true)
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Timeboard_notification_2.png?raw=true)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
