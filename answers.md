@@ -23,7 +23,7 @@ tags:
 ``` bash
 # service datadog-agent restart
 ```
-![tag-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/01-tags.jpg)
+![tag-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/01-tags.png)
 
 We use MySQL as an example of integration and follow installation instructions provided
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -124,7 +124,8 @@ We create a new application key in the in the account’s API [view](https://app
 
 The script used to create the timeboard can be found [here](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/visualizing-task/create-timeboard.sh).
 
-![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/02-graph.png) 
+![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/02-graph.png) 
+
 
 - Bonus Question: What is the Anomaly graph displaying? 
 It allows you to identify when a metric threshold based on basic algorithm is behaving differently than it was over the past.
@@ -133,7 +134,7 @@ It allows you to identify when a metric threshold based on basic algorithm is be
 
 Create a new Metric Monitor
 
-![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/03-monitoring-data.png)
+![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/03-monitoring-data.png)
 
 Configure the monitor’s message accordingly
 
@@ -157,12 +158,13 @@ There is no data from my metric for the last 10 minutes!!
 @carlos.cornejo.crespo@gmail.com
 ```
 
-![email-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/04-email-snapshot.png)
+![email-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/04-email-snapshot.png)
 
 - Bonus Question
 
-![downtime-weekend](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/05-downtime-weekend.png)
-![downtime-working-days](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/06-downtime-working-days.png)
+![downtime-weekend](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/05-downtime-weekend.png)
+![downtime-working-days](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/06-downtime-working-days.png)
+![downtime-weekend-email](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/07-weekend-notification.png)
 
 
 # Collecting APM Data:
@@ -171,15 +173,13 @@ We need to [install](https://docs.datadoghq.com/tracing/languages/python/) the D
 
 We run the agent, curl the endpoints and check APM is working in the UI.
 
-![apm-01-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-01.png)
-![apm-02-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-02.png)
-![apm-03-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-03.png)
+![apm-01-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/08-apm.png)
+![apm-02-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/09-apm.png)
+![apm-03-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/10-apm.png)
 
-![public accesible dashboard](https://p.datadoghq.com/sb/xc8xyqjicrfqidw7-bf1a6ec613ef25b6be8b8d166327d2db)
-![public dashboard snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-04.png)
+[public accesible dashboard](https://p.datadoghq.com/sb/xc8xyqjicrfqidw7-bf1a6ec613ef25b6be8b8d166327d2db)
+![public dashboard snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/11-apm.png)
 
-
-![public dashboard snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/07-weekend-notification.png)
 
 - Bonus Question: What is the difference between a Service and a Resource?
 
