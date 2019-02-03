@@ -241,6 +241,10 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+**ANSWER: A new class of devices are being developed that capture your cars computer sensor data using your vehicles on-board diagnostic port (OBD II is available on cars built from 1996 on) and adds a layer of additional features on top.
+These devices turn this information into a resource to help easily understand a check-engine light, adjust your insurance rate based on how/when you actually drive, and create added safety features through tracking and emergency response services.
+Many renting car companies, Uber, ... could be interested in monitor the status of his fleet of cars in a real-time way to predict malfunction and save money repairing them in advance.**
+
 ## Instructions
 
 If you have a question, create an issue in this repository.
