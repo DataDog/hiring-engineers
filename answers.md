@@ -182,7 +182,7 @@ Please configure the monitor’s message so that it will:
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-  ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_downtime_message.png?raw=true)
+  ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_downtime_email.png?raw=true)
 
 ## Collecting APM Data:
 
