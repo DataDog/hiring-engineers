@@ -166,6 +166,7 @@ There is no data from my metric for the last 10 minutes!!
 ![downtime-working-days](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/06-downtime-working-days.png)
 ![downtime-weekend-email](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/images/07-weekend-notification.png)
 
+**Note** I had some problems while trying to update an existing downtime monitor as I couldn't scroll down to reach the save button. I tried with chrome, firefox and safari with no luck so far.
 
 # Collecting APM Data:
 
@@ -184,5 +185,8 @@ We run the agent, curl the endpoints and check APM is working in the UI.
 - Bonus Question: What is the difference between a Service and a Resource?
 
 A Service is a set of processes that do the same job, and a Resource is a particular action for a service.
-
 Using our flask app as an example, the service is the app itself that have a number of resources ("/", "/api/apm", "/api/trace").
+
+# Final Question
+
+I think that any IoT integration alongside APM or distributed tracing would be nice.
