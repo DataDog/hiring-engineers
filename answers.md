@@ -168,7 +168,7 @@ Please configure the monitor’s message so that it will:
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/TBC.png?raw=true)
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_notify_message_2.png?raw=true)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -182,7 +182,7 @@ Please configure the monitor’s message so that it will:
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-  
+  ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_downtime_message.png?raw=true)
 
 ## Collecting APM Data:
 
