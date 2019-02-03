@@ -163,6 +163,9 @@ Please configure the monitor’s message so that it will:
 ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_conditional_message.png?raw=true)
 
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_conditional_message_2.png?raw=true)
+
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
