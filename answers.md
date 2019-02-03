@@ -163,3 +163,26 @@ There is no data from my metric for the last 10 minutes!!
 
 ![downtime-weekend](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/05-downtime-weekend.png)
 ![downtime-working-days](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/06-downtime-working-days.png)
+
+
+# Collecting APM Data:
+
+We need to [install](https://docs.datadoghq.com/tracing/languages/python/) the Datadog Tracing library so we can instrument the provided python app.
+
+We run the agent, curl the endpoints and check APM is working in the UI.
+
+![apm-01-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-01.png)
+![apm-02-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-02.png)
+![apm-03-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-03.png)
+
+![public accesible dashboard](https://p.datadoghq.com/sb/xc8xyqjicrfqidw7-bf1a6ec613ef25b6be8b8d166327d2db)
+![public dashboard snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/apm-04.png)
+
+
+![public dashboard snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/07-weekend-notification.png)
+
+- Bonus Question: What is the difference between a Service and a Resource?
+
+A Service is a set of processes that do the same job, and a Resource is a particular action for a service.
+
+Using our flask app as an example, the service is the app itself that have a number of resources ("/", "/api/apm", "/api/trace").
