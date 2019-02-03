@@ -221,6 +221,8 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_APM_dashboard_0.png?raw=true)
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 **ANSWER: Both, Service and Resource, can be defined as independently developed, deployed, managed, and maintained software implementation, the difference is that a Service is self-contained and support specific business-relevant functionality and a Resource is directly-accessible and support specific data.**
