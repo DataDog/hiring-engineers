@@ -154,6 +154,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_notify.png?raw=true)
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_notify_message.png?raw=true)
+
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
