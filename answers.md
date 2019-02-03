@@ -159,6 +159,9 @@ Please configure the monitor’s message so that it will:
 ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_notify_message.png?raw=true)
 
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_conditional_message.png?raw=true)
+
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
