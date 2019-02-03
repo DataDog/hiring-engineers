@@ -223,9 +223,15 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+**ANSWER: Both, Service and Resource, can be defined as independently developed, deployed, managed, and maintained software implementation, the difference is that a Service is self-contained and support specific business-relevant functionality and a Resource is directly-accessible and support specific data.**
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_APM_dashboard.png?raw=true)
+
 Please include your fully instrumented app in your submission, as well.
+
+**ANSWER: I used the Flask app that you suggested above.**
 
 ## Final Question:
 
