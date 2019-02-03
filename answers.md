@@ -128,3 +128,38 @@ The script used to create the timeboard can be found [here](https://github.com/c
 
 - Bonus Question: What is the Anomaly graph displaying? 
 It allows you to identify when a metric threshold based on basic algorithm is behaving differently than it was over the past.
+
+# Monitoring Data
+
+Create a new Metric Monitor
+
+![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/03-monitoring-data.png)
+
+Configure the monitor’s message accordingly
+
+``` markdown
+{{#is_alert}} 
+
+Alert threshold ({{threshold}}) exceeded with value :: {{value}}!! 
+Please check on {{host.name}} :: {{host.ip}}  
+
+{{/is_alert}}
+{{#is_warning}}
+
+Warning threshold exceeded!!
+
+{{/is_warning}} 
+{{#is_no_data}}
+
+There is no data from my metric for the last 10 minutes!!
+
+{{/is_no_data}}
+@carlos.cornejo.crespo@gmail.com
+```
+
+![email-snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/04-email-snapshot.png)
+
+- Bonus Question
+
+![downtime-weekend](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/05-downtime-weekend.png)
+![downtime-working-days](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/06-downtime-working-days.png)
