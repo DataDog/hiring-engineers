@@ -116,3 +116,15 @@ service datadog-agent restart
 - Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
   By changing the interval at the instance level in the yaml file.
+
+# Visualizing Data
+
+We need to get the API authorization sorted by requesting API Keys and Application key.
+We create a new application key in the in the account’s API [view](https://app.datadoghq.com/account/settings#api).
+
+The script used to create the timeboard can be found [here](https://github.com/cmcornejocrespo/hiring-engineers/blob/solutions-engineer/visualizing-task/create-timeboard.sh).
+
+![snapshot](https://github.com/cmcornejocrespo/hiring-engineers/blob/images/02-graph.png) 
+
+- Bonus Question: What is the Anomaly graph displaying? 
+It allows you to identify when a metric threshold based on basic algorithm is behaving differently than it was over the past.
