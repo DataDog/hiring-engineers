@@ -168,6 +168,8 @@ Please configure the monitor’s message so that it will:
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/TBC.png?raw=true)
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
