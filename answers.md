@@ -173,8 +173,16 @@ Please configure the monitor’s message so that it will:
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+  
+  ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_downtime_daily.png?raw=true)
+  
   * And one that silences it all day on Sat-Sun.
+  
+  ![Agent_tags](https://github.com/aesteban00/screenshots/raw/master/Agent_Monitor_downtime_weekend.png?raw=true)
+  
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+  
 
 ## Collecting APM Data:
 
