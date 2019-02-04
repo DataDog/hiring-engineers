@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: WnAZ3BwaRYdFxUbg5c$m2Zlp
+    tags:
+        - sql_server_function:sechallenge_database
+    options:
+      replication: 0
+      galera_cluster: 1

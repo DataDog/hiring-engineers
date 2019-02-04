@@ -1,0 +1,10 @@
+ad_identifiers:
+  - consul
+
+init_config:
+
+instances:
+  - url: "http://%%host%%:8500"
+    catalog_checks: true
+    new_leader_checks: true
+    # service_whitelist:

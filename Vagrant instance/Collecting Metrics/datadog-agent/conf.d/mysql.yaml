@@ -1,0 +1,11 @@
+nit_config:
+
+instances:
+  - server: localhost
+    user: datadog
+    pass: tBbxex49Gd/ebgLMnTUaacn0
+    tags:
+        - sql_server:vangard
+    options:
+      replication: 0
+      galera_cluster: 1

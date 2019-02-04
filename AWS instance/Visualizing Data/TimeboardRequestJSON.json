@@ -1,0 +1,99 @@
+{
+    "graphs" : [{
+        "title" : "My Metric Time Series AVG",
+         "definition":{
+          "viz": "timeseries",
+          "requests": [{
+           "q": "sum:custom_myMetric{host:i-006bcfbe19406fc91}",
+           "type": "line",
+      "style": {
+      "palette": "dog_classic",
+      "type": "solid",
+      "width": "normal"
+    },
+    "aggregator": "avg",
+    "conditional_formats": []
+  }]
+  },
+"autoscale": true
+},
+{
+    "title" :"Query Value Report over Custom Metric over last 1 hour",
+    "definition": {
+    "viz": "query_value",
+    "requests": [
+      {
+        "q": "sum:custom_myMetric{host:i-006bcfbe19406fc91}.rollup(sum, 3600)",
+        "type": null,
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "aggregator": "sum",
+        "conditional_formats": [
+          {
+            "palette": "white_on_red",
+            "comparator": ">",
+            "value": null
+          },
+          {
+            "palette": "white_on_yellow",
+            "comparator": ">=",
+            "value": null
+          },
+          {
+            "palette": "white_on_green",
+            "comparator": "<",
+            "value": null
+          }
+        ]
+      }
+    ],
+    "autoscale": false,
+    "precision": "2",
+    "custom_unit": null}  
+},
+{
+    "autoscale": true,
+    "yaxis": {
+      "min": "auto",
+      "max": "auto",
+      "scale": "linear",
+      "label": "",
+      "includeZero": true
+    },
+    "color_by_groups": [],
+    "xaxis": {
+      "min": "auto",
+      "max": "auto",
+      "scale": "linear",
+      "label": "",
+      "includeZero": true
+    },
+    "viz": "timeseries",
+     "title" : "MySQL Timeseries with Anomaly Function",
+    "definition":{
+    "requests": [
+        {
+            "q": "anomalies(count_nonzero(avg:mysql.performance.user_time{*}), 'basic', 2)",
+            "type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "type": "solid",
+              "width": "normal"
+            },
+            "aggregator": "avg",
+            "conditional_formats": []
+        }
+    ]} 
+}],
+    "title" : "SE Challenge Visualization Report Submission",
+    "description" : "A dashboard for the SE Challenge.",
+    "template_variables": [{
+        "name": "i-006bcfbe19406fc91_dashboard_name",
+        "prefix": "host",
+        "default": "host:i-006bcfbe19406fc91"
+    }],
+    "read_only": "True"
+}

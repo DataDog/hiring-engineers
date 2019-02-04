@@ -1,0 +1,91 @@
+{
+    "dash": {
+        "read_only": true,
+        "graphs": [
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "style": {
+                                "palette": "dog_classic",
+                                "width": "normal",
+                                "type": "solid"
+                            },
+                            "aggregator": "avg",
+                            "conditional_formats": [],
+                            "q": "sum:custom_myMetric{host:i-006bcfbe19406fc91}",
+                            "type": "line"
+                        }
+                    ]
+                },
+                "title": "My Metric Time Series AVG"
+            },
+            {
+                "definition": {
+                    "autoscale": false,
+                    "precision": 2,
+                    "viz": "query_value",
+                    "requests": [
+                        {
+                            "q": "sum:custom_myMetric{host:i-006bcfbe19406fc91}.rollup(sum, 3600)",
+                            "aggregator": "sum",
+                            "conditional_formats": [],
+                            "type": null,
+                            "style": {
+                                "width": "normal",
+                                "palette": "dog_classic",
+                                "type": "solid"
+                            }
+                        }
+                    ]
+                },
+                "title": "Query Value Report over Custom Metric over last 1 hour"
+            },
+            {
+                "definition": {
+                    "viz": "timeseries",
+                    "requests": [
+                        {
+                            "style": {
+                                "palette": "dog_classic",
+                                "width": "normal",
+                                "type": "solid"
+                            },
+                            "aggregator": "avg",
+                            "conditional_formats": [],
+                            "q": "anomalies(count_nonzero(avg:mysql.performance.user_time{*}), 'basic', 2)",
+                            "type": "area"
+                        }
+                    ]
+                },
+                "title": "MySQL Timeseries with Anomaly Function"
+            }
+        ],
+        "template_variables": [
+            {
+                "default": "host:i-006bcfbe19406fc91",
+                "prefix": "host",
+                "name": "i-006bcfbe19406fc91_dashboard_name"
+            }
+        ],
+        "description": "A dashboard for the SE Challenge.",
+        "title": "SE Challenge Visualization Report Submission",
+        "created": "2019-02-04T02:53:46.174938+00:00",
+        "id": 1066178,
+        "created_by": {
+            "disabled": false,
+            "handle": "jeff.haw.23@gmail.com",
+            "name": "Jefferson Haw",
+            "is_admin": true,
+            "role": null,
+            "access_role": "adm",
+            "verified": true,
+            "email": "jeff.haw.23@gmail.com",
+            "icon": "https://secure.gravatar.com/avatar/7b9f244eb4c3d53f151719ea0c1f63db?s=48&d=retro"
+        },
+        "modified": "2019-02-04T02:53:46.174938+00:00"
+    },
+    "url": "/dash/1066178/se-challenge-visualization-report-submission",
+    "resource": "/api/v1/dash/1066178"
+}

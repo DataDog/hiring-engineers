@@ -1,0 +1,23 @@
+{
+	"name": "MyMetric threshhold reach",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:custom_myMetric{env_se_function:se_tech_challenge} > 800",
+	"message": "{{#is_alert}} [ALERT]Alert Threshold reach. Metric value of: {{value}}  , Host from {{host.ip}} {{/is_alert}} \n\n{{#is_warning}} [WARNING]Warning Threshold reach.{{/is_warning}} \n\n{{#is_no_data}} [NO DATA] No data has been collected for more than last 10 minutes{{/is_no_data}}  @jeff.haw.23@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": true,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
