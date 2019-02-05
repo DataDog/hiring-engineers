@@ -58,7 +58,7 @@ sudo service datadog-agent restart
 
 *Look at the [host map](https://app.datadoghq.com/infrastructure/map?host=817478908&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)*
 
-![Hostmap](/images/01-hostmap_tags.png)
+![Hostmap](/images/00-hostmap-tags.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
