@@ -9,7 +9,7 @@ Please provide screenshots and code snippets for all steps.
 
 *Clone the repo to the desktop, check out the correct branch and setup the vagrant host.*
 ```bash
-git clone https://github.com/DataDog/hiring-engineers.git
+git clone https://github.com/daclutter/hiring-engineers.git
 cd hiring-engineers
 git checkout solutions-engineer
 vagrant init hasicorp/precise64
@@ -56,7 +56,9 @@ tags:
 sudo service datadog-agent restart
 ```
 
-* Look at the [host map](https://app.datadoghq.com/infrastructure/map?host=817478908&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)*
+*Look at the [host map](https://app.datadoghq.com/infrastructure/map?host=817478908&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)*
+
+![Hostmap](/01-hostmap_tags.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
