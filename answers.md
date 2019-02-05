@@ -165,7 +165,7 @@ $ sudo datadog-agent status | grep -A 5 mysql
 ![Integrations](/images/03-mysql-integration-install.PNG)
 
 *Verify from the Hostmap that the App is installed*
-![Integrations](/images/05-mysql-hostmap.PNG)
+![MySQL Hostmap](/images/05-mysql-hostmap.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -269,7 +269,7 @@ Check has run only once, if some metrics are missing you can try again with --ch
 ```
 
 *Also on the Datadog Web Interface*
-[my_metric](/images/06-my_metric.PNG)
+![my_metric](/images/06-my_metric.PNG)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -352,7 +352,7 @@ Check has run only once, if some metrics are missing you can try again with --ch
 ```
 
 *Also on the Datadog Web Interface*
-[my_metric](/images/07-my_metric_45.PNG)
+![my_metric_45](/images/07-my_metric_45.PNG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
