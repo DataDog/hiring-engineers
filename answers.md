@@ -26,6 +26,9 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 
 *Install the Agent on the host - the install command, including the API KEY is desplayed on the Datadog getting started page.*
+
+![Agent](/images/00-Ubuntu-agent.PNG)
+
 ```bash
 sudo apt-get install -y curl
 DD_API_KEY=<API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -58,7 +61,7 @@ sudo service datadog-agent restart
 
 *Look at the [host map](https://app.datadoghq.com/infrastructure/map?host=817478908&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)*
 
-![Hostmap](/images/00-hostmap-tags.PNG)
+![Hostmap](/images/01-hostmap-tags.PNG)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -68,6 +71,10 @@ sudo apt-get install -y mysql-server
 ```
 
 *Follow the [MySQL integration instructions](https://app.datadoghq.com/account/settings#integrations/mysql), [alternative instructions](https://docs.datadoghq.com/integrations/mysql/)*
+
+*Integrations on the Datadog Web interface*
+![Integrations](/images/02-Integrations.png)
+![MySQL Integrations](/images/03-mysql-integration.PNG)
 
 *Create a user for the datadog agent to use with replications rights:*
 ```bash
@@ -155,6 +162,10 @@ vagrant@precise64:/etc/datadog-agent/conf.d/mysql.d$ sudo datadog-agent status |
 ```
 
 *Install the integration on the Datadog Web Interface*
+![Integrations](/images/03-mysql-integration-install.PNG)
+
+*Verify from the Hostmap that the App is installed*
+![Integrations](/images/05-mysql-hostmap.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
