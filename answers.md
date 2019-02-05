@@ -95,13 +95,13 @@ sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';" -
 
 *Use the following commands to verify the above*
 ```bash
-vagrant@precise64:/etc/datadog-agent$ mysql -u datadog --password='<PASSWORD>' -e "show status" | \
+$ mysql -u datadog --password='<PASSWORD>' -e "show status" | \
 > grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
 > echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 Uptime  1191
 Uptime_since_flush_status       1191
 MySQL user - OK
-vagrant@precise64:/etc/datadog-agent$ mysql -u datadog --password='<PASSWORD>' -e "show slave status" && \
+$ mysql -u datadog --password='<PASSWORD>' -e "show slave status" && \
 > echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 > echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 MySQL grant - OK
@@ -109,11 +109,11 @@ MySQL grant - OK
 
 *Use the following commands to verify the additional privileges*
 ```bash
-vagrant@precise64:/etc/datadog-agent$ mysql -u datadog --password='<PASSWORD>' -e "SELECT * FROM performance_schema.threads" && \
+$ mysql -u datadog --password='<PASSWORD>' -e "SELECT * FROM performance_schema.threads" && \
 > echo -e "\033[0;32mMySQL SELECT grant - OK\033[0m" || \
 > echo -e "\033[0;31mMissing SELECT grant\033[0m"
 MySQL SELECT grant - OK
-vagrant@precise64:/etc/datadog-agent$ mysql -u datadog --password='<PASSWORD>' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
+$ mysql -u datadog --password='<PASSWORD>' -e "SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST" && \
 > echo -e "\033[0;32mMySQL PROCESS grant - OK\033[0m" || \
 > echo -e "\033[0;31mMissing PROCESS grant\033[0m"
 +----+---------+-----------+------+---------+------+-----------+----------------------------------------------+
@@ -150,7 +150,7 @@ sudo service datadog-agent restart
 
 *Verify the changes using the status command*
 ```bash
-vagrant@precise64:/etc/datadog-agent/conf.d/mysql.d$ sudo datadog-agent status | grep -A 5 mysql
+$ sudo datadog-agent status | grep -A 5 mysql
     mysql (1.5.0)
     -------------
       Instance ID: mysql:59e1aacfe586f820 [OK]
@@ -168,8 +168,195 @@ vagrant@precise64:/etc/datadog-agent/conf.d/mysql.d$ sudo datadog-agent status |
 ![Integrations](/images/05-mysql-hostmap.PNG)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+*There will be 2 files that need to be created - a code file (python) and a configuration file (yaml). Both files **must** have the same name.*
+
+*Create the configuration file with the below configuration*
+```bash
+sudo vim /etc/datadog-agent/conf.d/my_metric.yaml
+```
+```yaml
+instances: [{}]
+```
+
+*Create the code file with the below code*
+```bash
+sudo vim /etc/datadog-agent/checks.d/my_metric.py
+```
+```python
+import random
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+
+class MyMetric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000))
+```
+
+*Restart the datadog-agent*
+```bash
+sudo service datadog-agent restart
+```
+
+*Verify the check is working*
+```bash
+$ sudo datadog-agent check my_metric
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "datadog.agent.check_ready",
+      "points": [
+        [
+          1549385506,
+          1
+        ]
+      ],
+      "tags": [
+        "agent_version_major:6",
+        "agent_version_minor:9",
+        "check_name:my_metric",
+        "status:ready"
+      ],
+      "host": "precise64",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1549385506,
+          804
+        ]
+      ],
+      "tags": null,
+      "host": "precise64",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+
+    my_metric (1.0.0)
+    -----------------
+      Instance ID: my_metric:d884b5186b651429 [OK]
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+```
+
+*Also on the Datadog Web Interface*
+[my_metric](/images/06-my_metric.PNG)
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+*Modify the configuration file for the check to contain the following.*
+```bash
+sudo vim /etc/datadog-agent/conf.d/my_metric.yaml
+```
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+*It is worth noting that the time put for `min_collection_interval` will be attempted, but if the agent is running many checks or the check takes more than 45 seconds to finish it will skip until the next interval*
+
+*Restart the datadog-agent*
+```bash
+sudo service datadog-agent restart
+```
+
+*Verify the check is working*
+```bash
+$ sudo datadog-agent check my_metric
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "datadog.agent.check_ready",
+      "points": [
+        [
+          1549387187,
+          1
+        ]
+      ],
+      "tags": [
+        "agent_version_major:6",
+        "agent_version_minor:9",
+        "check_name:my_metric",
+        "status:ready"
+      ],
+      "host": "precise64",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1549387187,
+          251
+        ]
+      ],
+      "tags": null,
+      "host": "precise64",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+
+    my_metric (1.0.0)
+    -----------------
+      Instance ID: my_metric:5ba864f3937b5bad [OK]
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+```
+
+*Also on the Datadog Web Interface*
+[my_metric](/images/07-my_metric_45.PNG)
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+*The collection interval is controlled entirely by the configuration file (yaml) so there should be no need to modify the Python file. However if the check performed in the python file has a long execution time (e.g. greater than the interval desired) there may need to be changes made to the Python file.*
 
 ## Visualizing Data:
 
