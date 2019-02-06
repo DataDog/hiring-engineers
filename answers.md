@@ -353,7 +353,7 @@ The collection interval is controlled entirely by the configuration file (yaml) 
 
 ## Visualizing Data:
 
-###Utilize the Datadog API to create a Timeboard that contains:
+### Utilize the Datadog API to create a Timeboard that contains:
 
 * ***Your custom metric scoped over your host.***
 * ***Any metric from the Integration on your Database with the anomaly function applied.***
@@ -443,7 +443,7 @@ $ python ~/create_timeboard.py
 
 [The script used to create the timeboard can be found here.](/create_timeboard.py)
 
-###Once this is created, access the Dashboard from your Dashboard List in the UI:
+### Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 [Dashboard](https://app.datadoghq.com/dashboard/h5z-e46-t35/dales-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549449300000&to_ts=1549452900000&live=true)
 ![Timeboard](/images/09-timeboard.PNG)
@@ -464,7 +464,7 @@ The anomoly graph uses trends to understand expected metric values based on hist
 
 ## Monitoring Data
 
-###Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * ***Warning threshold of 500***
 * ***Alerting threshold of 800***
@@ -483,7 +483,7 @@ Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on t
 
 Configure the thresholds
 
-![Thresholds](/images/14-thresholds.PNG)
+![Thresholds](/images/14-monitor-thresholds.PNG)
 
 Configure the alert/warning/no data notification messages
 
@@ -521,7 +521,7 @@ The downtime message
 
 ## Collecting APM Data:
 
-###Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 ```python
 from flask import Flask
