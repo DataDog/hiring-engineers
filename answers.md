@@ -29,8 +29,40 @@
     * Re-executed following and fixed the warning (thought I already did, but tried again :-)
        * sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
        * sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
-  * datadog-agent status - now OK  (woo hoo!)
+  * datadog-agent status - now OK (woo hoo!)
     <img src=screenshots/mysql_good.png>
+    
+  * Custom Agent Check:
+    * Custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+    * Created conf.d/my_metric.yaml and checks.d/my_metric.py
+      ```
+      init_config:
+
+      instances:
+        - min_collection_interval: 45
+      ```
+      ```
+      import random
+      try:
+         from checks import AgentCheck
+      except ImportError:
+         from datadog_check.check import AgentCheck
+
+      __version__ = "1.0.0"
+
+      class MyMetric(AgentCheck):
+         def check(self, instance):
+            self.gauge('my_metric', random.randint(1,1000))
+      ```
+    * Check Agent Check configuration: <I>datadog-agent configcheck</I>
+      <img src=screenshots/my_metric_configcheck.png>
+    * Verified Agent Check: <I>dd-agent check my_metric</I>
+      <img src=screenshots/my_metric_check.png>
+    * Confirmed in Host Map UI:
+      <img src=screenshots/my_metric.png>
+
+
+    
 
         
       
