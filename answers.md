@@ -1,8 +1,12 @@
 # Answers 
 
+Thank you for the oppportunity to apply for the position as Solutions Engineer at Datadog. I have very much enjoyed working with and seeing the various aspects of the Datadog solution. 
+
+I have included the question list from [README.md](/README.md) to ensure everything is logically arranged. All the questions are highlighted as headings with my answers clearly described underneath with screenshots, code snippets and commands run. 
+
 ## Prerequisites - Setup the environment
 
-Clone the repo to the desktop, check out the correct branch and setup the vagrant host.
+Clone the repo to your PC, check out the correct branch and setup the vagrant host.
 ```bash
 git clone https://github.com/daclutter/hiring-engineers.git
 cd hiring-engineers
@@ -11,14 +15,14 @@ vagrant init hasicorp/precise64
 vagrant up
 ```
 
-Log in and ensure everything is up to date
+Log in and ensure everything is up to date.
 ```bash
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo reboot
 ```
 
-Install the Agent on the host - the install command, including the API KEY is desplayed on the Datadog getting started page.
+Install the Agent on the host using the install command, including the API KEY is desplayed on the Datadog getting started page.
 
 ![Agent](/images/00-Ubuntu-agent.PNG)
 
@@ -26,13 +30,15 @@ Install the Agent on the host - the install command, including the API KEY is de
 sudo apt-get install -y curl
 DD_API_KEY=<API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+*curl not included on the base vagrant image*
 
 ## Collecting Metrics:
 
-Default vagrant install is missing vim, install it.
+Default vagrant install is missing vim, install it. Alternatively you can install and use the text editor of your choice.
 ```bash
 sudo apt-get install -y vim
 ```
+
 ### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Add the following lines into the config file
@@ -155,7 +161,7 @@ $ sudo datadog-agent status | grep -A 5 mysql
 ```
 
 Install the integration on the Datadog Web Interface
-![Integrations](/images/03-mysql-integration-install.PNG)
+![Integrations](/images/04-mysql-integration-install.PNG)
 
 Verify from the Hostmap that the App is installed
 ![MySQL Hostmap](/images/05-mysql-hostmap.PNG)
@@ -276,7 +282,7 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
-It is worth noting that the time put for `min_collection_interval` will be attempted, but if the agent is running many checks or the check takes more than 45 seconds to finish it will skip until the next interval
+*It is worth noting that the time put for `min_collection_interval` will be attempted, but if the agent is running many checks or the check takes more than 45 seconds to finish it will skip until the next interval.*
 
 Restart the datadog-agent
 ```bash
@@ -450,16 +456,21 @@ $ python ~/create_timeboard.py
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 
+Use the key shortcut `alt + ]` to zoom in to 5 minutes.
+
 [Dashboard 5m](https://app.datadoghq.com/dashboard/h5z-e46-t35/dales-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549450950000&to_ts=1549451250000&live=false)
 ![Timeboard](/images/10-timeboard-5m.PNG)
 
 ### Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+Select the camera icon which is displayed when hovering over the graph to save a snapshot.
+
 ![Timeboard](/images/11-snapshot-email.PNG)
 
 ### **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomoly graph uses trends to understand expected metric values based on historical activity. It will highlight (in this case, in red) when a metric falls outside of expected values based on historical trends. The MySQL server is not hosting anything so is quite, however when I ran a bunch of blank queries to force an anomoly you can see the red spike below.
+The anomoly graph uses trends to understand expected metric values based on historical activity. It will highlight (in this case, in red) when a metric falls outside of expected values based on historical trends. The MySQL server is not hosting anything so is quiet, however I ran a series of blank queries to force an anomoly as you can see by the red spike below.
+
 ![Timeboard](/images/12-anomoly.PNG)
 
 ## Monitoring Data
@@ -477,19 +488,19 @@ The anomoly graph uses trends to understand expected metric values based on hist
 * ***Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.***
 * ***When this monitor sends you an email notification, take a screenshot of the email that it sends you.***
 
-Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on the Datadog Web Interface and select "[New Monitor](https://app.datadoghq.com/monitors#/create)"
+Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on the Datadog Web Interface and select "[New Monitor](https://app.datadoghq.com/monitors#/create)".
 
 ![New Monitor](/images/13-new-monitor-metric.PNG)
 
-Configure the thresholds
+Configure the thresholds.
 
 ![Thresholds](/images/14-monitor-thresholds.PNG)
 
-Configure the alert/warning/no data notification messages
+Configure the alert/warning/no data notification messages.
 
 ![Messages](/images/15-monitor-message.PNG)
 
-Below are the warning and alert (I temporarily changed the my_check.py to force an alert to trigger) e-mail notifications
+Below are the warning and alert e-mail notifications.
 
 ![Warning](/images/16-warning.PNG)
 
@@ -501,23 +512,24 @@ Below are the warning and alert (I temporarily changed the my_check.py to force 
   * ***And one that silences it all day on Sat-Sun.***
   * ***Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.***
 
-Go to the [manage downtime page](https://app.datadoghq.com/monitors#/downtime) on the Datadog Wen Interface and select "Schedule Downtime"
+Go to the [manage downtime page](https://app.datadoghq.com/monitors#/downtime) on the Datadog Web Interface and select "Schedule Downtime"
 
-Setup the nighttime downtime as per below
+Setup the nighttime downtime as per below.
 
 ![Night Downtime](/images/18-night-downtime.PNG)
 
-Repeat to setup the weekend downtime as below
+Repeat to setup the weekend downtime as below.
 
 ![Weekend Downtime](/images/19-weekend-downtime.PNG)
 
-The downtime list should look as follows
+The downtime list should look as follows.
 
 ![Downtime](/images/20-downtime.PNG)
 
-The downtime message
+The downtime messages.
 
-![Downtime](/images/21-downtime-message.PNG)
+![Downtime](/images/21-downtime-email.PNG)
+![Downtime](/images/21-downtime-email2.PNG)
 
 ## Collecting APM Data:
 
@@ -556,13 +568,13 @@ if __name__ == '__main__':
 
 Go to the [APM Intro page](https://app.datadoghq.com/apm/intro) and select [Get Started](https://app.datadoghq.com/apm/install)
 
-Follow and select the appropriate language (in this case, Python) and follow the instructions
+Follow and select the appropriate language (in this case, Python) and follow the instructions.
 
 ![Python APM](/images/22-python-apm.PNG)
 
-Install flask and ddtrace, then create the Python flask app using the provided script above, and finally launch the flask app using ddtrace
+Install flask and ddtrace, then create the Python flask app using the provided script above, and finally launch the flask app using ddtrace.
 
-There was an issue with ddtrace being able to detect the 'six' package which was resolved by forcing an upgrade of the package 'setuptools'
+*There was an issue with ddtrace being able to detect the 'six' package which was resolved by forcing an upgrade of the package 'setuptools'*
 ```bash
 sudo apt-get remove python-setuptools -y
 sudo pip install --upgrade setuptools
@@ -571,7 +583,7 @@ vim ~/flask_app.py
 ddtrace-run python ~/flask_app.py
 ```
 
-Then use curl to interact the with the flask app
+Then use curl to interact the with the flask app.
 ```bash
 $ curl localhost:5050/
 Entrypoint to the Application
@@ -594,11 +606,11 @@ Check the APM dashboard for the [Flask service](https://app.datadoghq.com/apm/se
 
 ### **Bonus Question**: What is the difference between a Service and a Resource?
 
-A service could be a whole application (e.g. the small Flask application used above) or a micro service (e.g. Auth service, tagging service, catalogue service). A resource is a component of a service, such as an api endpoint or a query (e.g. /api/trace in the above Flask app)
+A service represents a whole application (e.g. the small Flask application used above) or a micro service (e.g. Auth service, tagging service, catalogue service). A resource is a component of a service, such as an api endpoint or a query (e.g. /api/trace in the above Flask app).
 
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Below is a [dashboard](https://app.datadoghq.com/dashboard/yvj-byn-3in/infrastructure-and-apm-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549461240000&to_ts=1549464840000&live=true) with some system metrics as well as APM metrics for the Flask service
+Below is a [dashboard](https://app.datadoghq.com/dashboard/yvj-byn-3in/infrastructure-and-apm-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549461240000&to_ts=1549464840000&live=true) with some system metrics as well as APM metrics for the Flask service.
 
 ![Infrastructure and APM Dashboard](/images/24-apm-infrastructure.PNG)
 
@@ -612,9 +624,9 @@ Please include your fully instrumented app in your submission, as well.
 
 ***Is there anything creative you would use Datadog for?***
 
-**There are a couple of creative uses I have for Datadog.**
+**There are a couple of creative uses I have for Datadog**
 
-*The first would be to monitor and alert the activity of our cats. We have two cats and a smart cat door. The cat door provides alerts when a cat goes in or out. In the past I recognised a health issue with one of the cats when she started to spend less time outside than she did. I could see the anomoly engine being particularly useful as the cats have pretty typical schedules that they stick to. There could also be great opportunity to correlate the information against the other metric such as the weather (temperature, rain, etc) and the internal environmental conditions of our house.*
+*The first would be to monitor and alert on the activity of our cats. We have two cats and a smart cat door. The cat door provides alerts when a cat goes in or out and if the cat looks out the door but doesn't go through. In the past I recognised a health issue with one of the cats when she started to spend less time outside than normal. I could see the anomoly engine being particularly useful as the cats have pretty typical schedules that they stick to. There could also be great opportunity to correlate the information against the other metrics such as the weather (temperature, rain, etc) and the internal environmental conditions of our house.*
 
 *Another use would be for a computer game I play in my spare time, Elite: Dangerous (ED). ED has a very complex "background simulation" that constantly changes the the state of the populated systems. This covers numerous things such as factions, their influence in the system, the state of the system (Boom, Investment, War, etc). Lots of groups of players have their own faction in the game and use some 3rd party tools or complex spreadsheets to track the state of their faction. I could see lots of potential to use Datadog to provide dashboards and alerts to assist with the management of the background simulation for players of the game.*
 
