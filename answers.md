@@ -16,6 +16,13 @@ vagrant init hasicorp/precise64
 vagrant up
 ```
 
+*Log in and ensure everything is up to date*
+```bash
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo reboot
+```
+
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
@@ -368,11 +375,97 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+*Create an Application key on the [API page](https://app.datadoghq.com/account/settings#api) of the Datadog Web Interface*
+![App Key](/images/08-app-key.PNG)
+
+*Use the [API Reference](https://docs.datadoghq.com/api/?lang=python#timeboards)*
+
+*Install the [Datadog Python SDK](https://github.com/DataDog/datadogpy)*
+```bash
+sudo apt-get install python-pip -y
+sudo pip install -i https://pypi.python.org/simple/ --upgrade pip
+sudo apt-get remove python-chardet
+sudo pip install datadog
+```
+*Note that the version of pip in the 16.04 repository is currently broken as it refers to the non-SSL version of the package index. The above forces the SSL version. Chardet also needs to be manually removed to allow pip to install datadog*
+
+*Create a Python script to create a timeseries/dashboard using the API and the following script*
+```bash
+vim ~/create_timeboard.py
+```
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<API KEY>',
+    'app_key': '<APP KEY>'
+}
+
+initialize(**options)
+
+title = "Dale's Metrics"
+description = "A timeboard built for the Datadog interview process"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{host:precise64}"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric"
+},{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.queries{host:precise64}, 'basic', 2)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "MySQL Metric"
+},{
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{host:precise64}.rollup(sum, 3600)",
+            "type": "bars"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "My Metric Rollup"
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+result = api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     template_variables=template_variables,
+                     read_only=read_only)
+
+print result
+```
+*Execute the script and confirm the output from the script*
+```bash
+$ python ~/create_timeboard.py
+{u'dash': {u'read_only': True, u'description': u'A timeboard built for the Datadog interview process', u'created': u'2019-02-06T11:07:21.353611+00:00', u'title': u"Dale's Metrics", u'modified': u'2019-02-06T11:07:21.353611+00:00', u'created_by': {u'handle': u'daclutter@gmail.com', u'name': u'Dale Clutterbuck', u'access_role': u'adm', u'verified': True, u'disabled': False, u'is_admin': True, u'role': None, u'email': u'daclutter@gmail.com', u'icon': u'https://secure.gravatar.com/avatar/c3c51236610593c4fc3b677970e06c2c?s=48&d=retro'}, u'graphs': [{u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u'avg:my_metric{host:precise64}'}], u'events': []}, u'title': u'My Metric'}, {u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u"anomalies(avg:mysql.performance.queries{host:precise64}, 'basic', 2)"}], u'events': []}, u'title': u'MySQL Metric'}, {u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u'avg:my_metric{host:precise64}.rollup(sum, 3600)', u'type': u'bars'}], u'events': []}, u'title': u'My Metric Rollup'}], u'template_variables': [{u'default': u'host:my-host', u'prefix': u'host', u'name': u'host1'}], u'id': 1068953}, u'url': u'/dash/1068953/dales-metrics', u'resource': u'/api/v1/dash/1068953'}
+```
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+![Timeboard](/images/09-timeboard.PNG)
 * Set the Timeboard's timeframe to the past 5 minutes
+![Timeboard](/images/10-timeboard-5m.PNG)
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+![Timeboard](/images/11-snapshot-email.PNG)
 * **Bonus Question**: What is the Anomaly graph displaying?
+*The anomoly graph uses trends to understand expected metric values based on historical activity. It will highlight (in this case, in red) when a metric falls outside of expected values based on historical trends. The MySQL server is not hosting anything so is quite, however when I ran a bunch of blank queries to force an anomoly you can see the red spike below.* 
+![Timeboard](/images/12-anomoly.PNG)
 
 ## Monitoring Data
 
