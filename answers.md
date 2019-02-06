@@ -2,7 +2,7 @@
 
 ## Setup:
 * My Environment:
-  * VM - Ubuntu 12.04 - Vagrant setup / VirtualBox
+  * Ubuntu VM - Vagrant setup / VirtualBox
   * Installed the Agent via the curl command per instructions
     * Error: The program 'curl' is currently not installed.
     * Installed curl: <b>sudo apt-get install curl</b>
@@ -10,5 +10,9 @@
   
 ## Collecting Metrics:
 * Created tags for the this host by editing the /etc/datadog-agent/datadog.yaml
-* restarted the Agent via systemctl
-* Below is a screen shot showing my new host tags via the Host Map Page:
+ <img src=screenshots/datadog.yaml.jpg>
+ 
+* Restarted the Agent: <B>sudo service datadog-agent restart</B>
+* Verified new tag shows in Host Map view
+ <img src=screenshots/hostmap.jpg>
+
