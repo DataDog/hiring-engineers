@@ -492,7 +492,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-*Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on the Datadog Web Interface and Select "[New Monitor](https://app.datadoghq.com/monitors#/create)"*
+*Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on the Datadog Web Interface and select "[New Monitor](https://app.datadoghq.com/monitors#/create)"*
 
 ![New Monitor](/images/13-new-monitor-metric.PNG)
 
@@ -515,6 +515,24 @@ Please configure the monitor’s message so that it will:
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+*Go to the [manage downtime page](https://app.datadoghq.com/monitors#/downtime) on the Datadog Wen Interface and select "Schedule Downtime"*
+
+*Setup the nighttime downtime as per below*
+
+![Night Downtime](/images/18-night-downtime.PNG)
+
+*Repeat to setup the weekend downtime as below*
+
+![Weekend Downtime](/images/18-weekend-downtime.PNG)
+
+*The downtime list should look as follows*
+
+![Downtime](/images/20-downtime.PNG)
+
+*The downtime message*
+
+![Downtime](/images/21-downtime-message.PNG)
 
 ## Collecting APM Data:
 
