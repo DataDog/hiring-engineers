@@ -530,6 +530,7 @@ The downtime messages.
 
 ![Downtime](/images/21-downtime-email.PNG)
 ![Downtime](/images/21-downtime-email2.PNG)
+![Downtime](/images/21-downtime-email3.PNG)
 
 ## Collecting APM Data:
 
