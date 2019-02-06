@@ -1,5 +1,4 @@
-Your answers to the questions go here.
-
+# Answers 
 
 ## Questions
 
@@ -456,6 +455,8 @@ $ python ~/create_timeboard.py
 {u'dash': {u'read_only': True, u'description': u'A timeboard built for the Datadog interview process', u'created': u'2019-02-06T11:07:21.353611+00:00', u'title': u"Dale's Metrics", u'modified': u'2019-02-06T11:07:21.353611+00:00', u'created_by': {u'handle': u'daclutter@gmail.com', u'name': u'Dale Clutterbuck', u'access_role': u'adm', u'verified': True, u'disabled': False, u'is_admin': True, u'role': None, u'email': u'daclutter@gmail.com', u'icon': u'https://secure.gravatar.com/avatar/c3c51236610593c4fc3b677970e06c2c?s=48&d=retro'}, u'graphs': [{u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u'avg:my_metric{host:precise64}'}], u'events': []}, u'title': u'My Metric'}, {u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u"anomalies(avg:mysql.performance.queries{host:precise64}, 'basic', 2)"}], u'events': []}, u'title': u'MySQL Metric'}, {u'definition': {u'viz': u'timeseries', u'requests': [{u'q': u'avg:my_metric{host:precise64}.rollup(sum, 3600)', u'type': u'bars'}], u'events': []}, u'title': u'My Metric Rollup'}], u'template_variables': [{u'default': u'host:my-host', u'prefix': u'host', u'name': u'host1'}], u'id': 1068953}, u'url': u'/dash/1068953/dales-metrics', u'resource': u'/api/v1/dash/1068953'}
 ```
 
+[The script used to create the timeboard can be found here.](/create_timeboard.py)
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 *[Dashboard](https://app.datadoghq.com/dashboard/h5z-e46-t35/dales-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549449300000&to_ts=1549452900000&live=true)*
@@ -524,7 +525,7 @@ Please configure the monitor’s message so that it will:
 
 *Repeat to setup the weekend downtime as below*
 
-![Weekend Downtime](/images/18-weekend-downtime.PNG)
+![Weekend Downtime](/images/19-weekend-downtime.PNG)
 
 *The downtime list should look as follows*
 
@@ -571,14 +572,67 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+*Go to the [APM Intro page](https://app.datadoghq.com/apm/intro) and select [Get Started](https://app.datadoghq.com/apm/install)*
+
+*Follow and select the appropriate language (in this case, Python) and follow the instructions*
+
+![Python APM](/images/22-python-apm.PNG)
+
+*Install flask and ddtrace, then create the Python flask app using the provided script above, and finally launch the flask app using ddtrace*
+
+*There was an issue with ddtrace being able to detect the 'six' package which was resolved by forcing an upgrade of the package 'setuptools'*
+```bash
+sudo apt-get remove python-setuptools -y
+sudo pip install --upgrade setuptools
+sudo pip install flask ddtrace
+vim ~/flask_app.py
+ddtrace-run python ~/flask_app.py
+```
+
+*Then use curl to interact the with the flask app*
+```bash
+$ curl localhost:5050/
+Entrypoint to the Application
+$ curl localhost:5050/
+Entrypoint to the Application
+$ curl localhost:5050/api/apm
+Getting APM Started
+$ curl localhost:5050/api/trace
+Posting Traces
+$ curl localhost:5050/api/trace
+Posting Traces
+$ curl localhost:5050/api/trace
+Posting Traces
+
+```
+
+*Check the APM dashboard for the [Flask service](https://app.datadoghq.com/apm/service/flask/flask.request?end=1549464864418&env=none&paused=false&start=1549461264418)*
+![Flask APM](/images/23-flask-apm.PNG)
+
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+*A service could be a whole application (e.g. the small Flask application used above) or a micro service (e.g. Auth service, tagging service, catalogue service). A resource is a component of a service, such as an api endpoint or a query (e.g. /api/trace in the above Flask app)*
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+*Below is a [dashboard](https://app.datadoghq.com/dashboard/yvj-byn-3in/infrastructure-and-apm-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549461240000&to_ts=1549464840000&live=true) with some system metrics as well as APM metrics for the Flask service*
+
+![Infrastructure and APM Dashboard](/images/24-apm-infrastructure.PNG)
+
 Please include your fully instrumented app in your submission, as well.
+
+[The app file is here.](/flask_app.py)
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+***There are a couple of creative uses I have for Datadog.***
+
+*The first would be to monitor and alert the activity of our cats. We have two cats and a smart cat door. The cat door provides alerts when a cat goes in or out. In the past I recognised a health issue with one of the cats when she started to spend less time outside than she did. I could see the anomoly engine being particularly useful as the cats have pretty typical schedules that they stick to. There could also be great opportunity to correlate the information against the other metric such as the weather (temperature, rain, etc) and the internal environmental conditions of our house.*
+
+*Another use would be for a computer game I play in my spare time, Elite: Dangerous (ED). ED has a very complex "background simulation" that constantly changes the the state of the populated systems. This covers numerous things such as factions, their influence in the system, the state of the system (Boom, Investment, War, etc). Lots of groups of players have their own faction in the game and use some 3rd party tools or complex spreadsheets to track the state of their faction. I could see lots of potential to use Datadog to provide dashboards and alerts to assist with the management of the background simulation for players of the game.*
+
