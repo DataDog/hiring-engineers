@@ -458,12 +458,20 @@ $ python ~/create_timeboard.py
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+*[Dashboard](https://app.datadoghq.com/dashboard/h5z-e46-t35/dales-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549449300000&to_ts=1549452900000&live=true)*
 ![Timeboard](/images/09-timeboard.PNG)
+
 * Set the Timeboard's timeframe to the past 5 minutes
+
+*[Dashboard 5m](https://app.datadoghq.com/dashboard/h5z-e46-t35/dales-metrics?tile_size=m&page=0&is_auto=false&from_ts=1549450950000&to_ts=1549451250000&live=false)*
 ![Timeboard](/images/10-timeboard-5m.PNG)
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
 ![Timeboard](/images/11-snapshot-email.PNG)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
 *The anomoly graph uses trends to understand expected metric values based on historical activity. It will highlight (in this case, in red) when a metric falls outside of expected values based on historical trends. The MySQL server is not hosting anything so is quite, however when I ran a bunch of blank queries to force an anomoly you can see the red spike below.* 
 ![Timeboard](/images/12-anomoly.PNG)
 
@@ -483,6 +491,24 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+*Go to the [manage monitors page](https://app.datadoghq.com/monitors/manage) on the Datadog Web Interface and Select "[New Monitor](https://app.datadoghq.com/monitors#/create)"*
+
+![New Monitor](/images/13-new-monitor-metric.PNG)
+
+*Configure the thresholds*
+
+![Thresholds](/images/14-thresholds.PNG)
+
+*Configure the alert/warning/no data notification messages*
+
+![Messages](/images/15-monitor-message.PNG)
+
+*Below are the warning and alert (I temporarily changed the my_check.py to force an alert to trigger) e-mail notifications*
+
+![Warning](/images/16-warning.PNG)
+
+![Alert](/images/17-alert.PNG)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
