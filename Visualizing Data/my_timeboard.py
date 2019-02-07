@@ -8,7 +8,7 @@ options = {
 initialize(**options)
 
 title = "My Timeboard"
-description = "Timeboard for Arlen Techincal Exercise"
+description = "Timeboard for Arlen Technical Exercise"
 graphs = [
 {
     "definition": {
