@@ -69,38 +69,126 @@
    ```
    * Bonus:
    
-   The min_collection_interval allows you to modify the timelimit for collection of the metric without having to change the python code at all.
+   The min_collection_interval allows you to modify the timelimit for collection of the metric without having to change the python code at all.  This allows admins to change without knowing how to read the code.
    
 Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
+* Utilize the Datadog API to create a Timeboard that contains:
+ * Intalled pip on my mac
+ ```
+ sudo easy_install pip
+ ```
+ * Used pip to install datadog python module
+```
+pip install datadog
+```
+ * Looked at the documentation for API integration.
+ * Also created a timeboard via the GUI to get a better idea of how to code it.
+ * Below is the python code for my API call to create the timeboards.
+```
+from datadog import initialize, api
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
+options = {'api_key': '0f4ed1330465ec78f05d13b39c865135',
+           'app_key': '02aa01821ed3826e6ae0837649f256df3dea11aa'
+          }
+
+initialize(**options)
+
+# Call Embed API function
+api.Embed.get_all()
+
+title = "My Special Timeboard"
+description = "My SA sample timeboard for testvm.localdomain!"
+graphs = [
+{
+  "title": "My_metric Timeboard",
+  "definition": {
+      "events": [],
+      "requests": [
+        {
+           "q": "avg:my_metric{host:testvm.localdomain}",
+           "type": "line",
+           "style": {
+               "palette": "dog_warm",
+               "type": "solid",
+               "width": "normal"
+          },
+          "conditional_formats": [],
+          "aggregator": "avg"
+        }
+      ],
+      "autoscale": "true",
+      "viz": "timeseries"
+  }
+},
+{
+  "title": "MySQL anonmalies Applied",
+  "definition": {
+  "viz": "timeseries",
+      "events": [],
+      "requests": [
+        {
+           "q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 2)",
+           "type": "line",
+           "style": {
+               "palette": "dog_classic",
+               "type": "solid",
+               "width": "normal"
+        },
+        "conditional_formats": [],
+        "aggregator": "avg"
+        }
+       ],
+      "autoscale": "true",
+    }
+  }
+]
+
+api.Timeboard.create(title=title, description=description, graphs=graphs)
+```
+* Below is the screen shot of my_metric from my custom Timeboard
+![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/My-metric-timeboard.png "Host with Tags")
+
+
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+
 Bonus Question: What is the Anomaly graph displaying?
-Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+* Monitoring Data
+  * Created the monitor for my_metric.
+  * Warning at 500.
+  * Alert at 800.
+  * Notify if no data for 10 minutes.
+  * All warnings, Alerts and notifications are sent to my email address with a different message linux64@gmail.com.
+  * Below is the code used for my API call.
+```
+{
+	"name": "Monitor Name: My Metric alarm",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:testvm.localdomain} > 800",
+	"message": "{{#is_alert}}Alert: My Metric is {{my_metric}} is high on {{host.ip}} {{/is_alert}}\n{{#is_warning}}Warning the My Metric Value is getting high on {{host.name}}{{/is_warning}}\n{{#is_no_data}}No data has been received My Metric value on host {{host.name}} {{/is_no_data}} \n@linux64@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+* Screen Shot of a warning message sent to my email.
+![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/Email-warning.png "Host with Tags")
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Please configure the monitor’s message so that it will:
-
-Send you an email whenever the monitor triggers.
-
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
