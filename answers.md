@@ -78,11 +78,11 @@
   ```
   
 * My Timeboard showed up on Dashboard list:
-  <img src=screenshots/my_timeboard.png>
+  <img src=screenshots/timeboard.png>
     
   * Focused on the "MySQL Anomaly" graph for the last 5 minutes
-  * Created a snapshot of that interval used the @ mention notation to send it to myself:
-    <img src=screenshots/my_snapshot.png>
+  * Created a snapshot of that interval and used the @ mention notation to send it to myself:
+    <img src=screenshots/snapshot.png>
       
 * <B>Bonus Question:</B> What is the Anomaly graph displaying?
   * The Anomaly graph is identifying when a metric is behaving differently than it has in the past.  In my example, whether the MySQL instance CPU time was 3 std. deviations above or below the value over the the last 5 minutes.
@@ -138,8 +138,8 @@
   * One that silences it from 7pm to 9am daily on M-F,
   * One that silences it all day on Sat-Sun.
     
-* Email downtime scheduled:
-  <img src=screenshots/downtime_email.png>
+  * Email downtime scheduled:
+    <img src=screenshots/downtime_email.png>
 
 * Commentary:
   * UI "wizard" makes it very easy to create/edit/manage monitors
