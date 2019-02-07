@@ -29,6 +29,7 @@
        * sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
        
   * datadog-agent status - now OK  (woo hoo!)
+    
     <img src=screenshots/mysql_good.png>
     
   * Custom Agent Check:
