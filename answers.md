@@ -4,8 +4,6 @@
 * My Environment:
   * Ubuntu VM - Vagrant setup / VirtualBox
   * Installed the Agent via the curl command per instructions
-    * Error: The program 'curl' is currently not installed.
-    * Installed curl: <b>sudo apt-get install curl</b>
   * Installed and started MySQL Server on the VM
   
 ## Collecting Metrics:
