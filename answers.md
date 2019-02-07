@@ -29,7 +29,8 @@
     * Re-executed following and fixed the warning (thought I already did, but tried again :-)
        * sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'localhost';"
        * sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';"
-  * datadog-agent status - now OK   Woo Hoo!
+       
+  * datadog-agent status - now OK  (woo hoo!)
     <img src=screenshots/mysql_good.png>
     
   * Custom Agent Check:
@@ -128,7 +129,49 @@
     * Downtime email notification shows time range in UTC, even though selected time zone
       * Could not figure out how to set this in email template to show in time zone specified?
       
-        
+## Collecting APM Data
+  * Flask app instrumentation using Datadog’s APM solution:
+    * pip install ddtrace
+    * Run <I> ddtrace-run python myFlaskApp.py</I>
+    
+    * Alternatively, also instrumented script (found instructions @ http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask) and called <I>python myFlaskApp.py</I> directly
+      ```
+      from ddtrace import patch_all
+      patch_all()
       
+      from flask import Flask
+      import logging
+      import sys
 
+      # Have flask use stdout as the logger
+      main_logger = logging.getLogger()
+      ...
+      ```
+    * Used curl to access the different endpoints (e.g. curl localhost:5050/api/apm)
+    * APM immediately shows data (e.g. trace list):
+      <img src=screenshots/apm.png>
+    * Created dashboard with APM and System metrics:
+      https://app.datadoghq.com/dashboard/wxr-bs3-x6i/arlen?tile_size=m&page=0&is_auto=false&from_ts=1549494960000&to_ts=1549498560000&live=true
+      <img src=screenshots/dashboard.png>
+      
+  * <B>Bonus Question:</B> What is the difference between a Service and a Resource?
+    * A service is a set of processes that do the same job - for example a web framework or database
+    * A resource is a particular action for a given service (typically an individual endpoint or query)
+      * For a web application: some examples might be a canonical URL, such as /user/home
+      * For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?
+    * So for the Flask example:
+      * flask would be the service
+      * /, /api/apm & /api/trace would be the resources
+      <img src=screenshots/flask.png>
 
+  * Commentary:
+    * APM collection setup is very simple
+      * ddtrace-run seems like a prefered solution since it does not require changing/instrumenting the code
+    * Data collection tracing was almost immediate.
+    * Demonstrates real value to a customer/prospect that they can get APM up and running very quickly
+    * Creating a dashboard was also very simple.  Drag-and-drop to select widget, select metric and data shows up immediately.  Nice!
+    * Also nice feature of "Export to Timeboard" from APM services to easily add widget to Dashboard
+    
+## Final Question
+  * Is there anything creative you would use Datadog for?
+    * Datadog could be used by grocery stores to monitor their stores.  With IOT being so prevelent, sensors could be put on refrigerators and freezers and Datadog could monitor temperature thresholds to assure that the units did not malfunction, thus saving money by getting notified of any issues immediately and preventing product loss.
