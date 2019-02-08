@@ -62,19 +62,83 @@
       <img src=screenshots/my_metric.png>
   
 * <B>Bonus Question</B> Can you change the collection interval without modifying the Python check file you created?
-    * Yes, since the interval is defined in the .yaml config file, no change the python code is required
+    * Yes, since the interval is defined in the .yaml config file, no change to the python code is required
 * Commentary:
     * Adding custom agent checks is very simple and having config and check python code separate makes it easier to maintain
     * configcheck and agent check commands make it easy to verify the custom agent check is setup and running correctly
    
 ## Visualizing Data
-* Timeboard:
+* Generate Timeboard using the Datadog API:
   * Your custom metric scoped over your host.
   * Any metric from the Integration on your Database with the anomaly function applied.
   * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
     
 * API python code to generate the Timeboard:
   ```
+  from datadog import initialize, api
+
+  options = {
+      'api_key': '6b6aca5a303d9c08e1db89cddadd837a',
+      'app_key': 'b5b91b7aed4fd27423ce537c7949a9ff710291f2'
+  }
+  initialize(**options)
+
+  title = "My Timeboard"
+  description = "Timeboard for Arlen Technical Exercise"
+  graphs = [
+  {
+      "definition": {
+          "requests": [
+             {
+               "q": "avg:my_metric{*}",
+               "type": "line",
+               "aggregator": "avg",
+             },
+          ],
+          "viz": "timeseries",
+          "autoscale": "true"
+      },
+      "title": "My Metric"
+  },
+  {
+      "definition": {
+         "requests": [
+             {
+               "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 3, direction='both', alert_window='last_5m')",
+               "type": "line",
+             }
+          ],
+          "viz": "timeseries"
+      },
+      "autoscale": "true",
+      "title": "MySQL Anomaly"
+  },
+  {
+      "definition": {
+          "requests": [
+             {
+               "q": "sum:my_metric{*}.rollup(sum,60)",
+               "type": "line"
+             }
+          ],
+          "viz": "query_value"
+      },
+      "autoscale": "true",
+      "title": "My Metric Rollup"
+  } ]
+
+  template_variables = [{
+      "name": "HOST",
+      "prefix": "host",
+      "default": "host:my-host"
+  }]
+
+  read_only = True
+  api.Timeboard.create(title=title,
+                       description=description,
+                       graphs=graphs,
+                       template_variables=template_variables,
+                       read_only=read_only)
   ```
   
 * My Timeboard showed up on Dashboard list:
@@ -89,9 +153,9 @@
 
 * Commentary:
   * API documentation provided details and examples to easily be able to write the code to create the timeboard
-  * Nice to have examples provided for Python, Ruby and Curl
+  * Handy that the documentation examples are provided for Python, Ruby and Curl
   * Found that creating a graph and clicking on the JSON tab provided the correct syntax and content to be used with the API
-  * One confusion I had was when instructed to take snapshot. The graph has camera icon, but if you hover over the icon sometimes it shows "Camera" and other times it shows "Annotate this graph". Was not clear at first that this was the snapshot.
+  * One confusion I had was when instructed to take a snapshot. The graph has a camera icon, but if you hover over the icon sometimes it shows "Camera" and other times it shows "Annotate this graph". Was not clear at first that this was the snapshot.
 
 ## Monitoring Data
 * New Metric Monitor my_metric that will alert if it’s above the following values over the past 5 minutes:
@@ -143,10 +207,10 @@
 
 * Commentary:
   * UI "wizard" makes it very easy to create/edit/manage monitors
-  * Downtime and Mute is nice feature to easily setup notification and silence windows
-  * Export of configuration to JSON very nice so that can use that with API
+  * Downtime and Mute is nice feature to easily setup alert notification and silence windows
+  * Export of configuration to JSON very useful so that can be used with API
     * Would be nice to have an import so that configs can be shared
-  * Downtime email notification shows time range in UTC, even though selected time zone
+  * Downtime email notification shows time range in UTC, even though selected Pacific time zone
     * Could not figure out how to set this in email template to show in time zone specified?
       
 ## Collecting APM Data
@@ -179,7 +243,7 @@
   * A resource is a particular action for a given service (typically an individual endpoint or query)
     * For a web application: some examples might be a canonical URL, such as /user/home
     * For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?
-  * So for the Flask example:
+  * So for my Flask example:
     * flask would be the service
     * /, /api/apm & /api/trace would be the resources
     <img src=screenshots/flask.png>
@@ -190,7 +254,7 @@
   * Data collection tracing was almost immediate.
   * Demonstrates real value to a customer/prospect that they can get APM up and running very quickly
   * Creating a dashboard was also very simple.  Drag-and-drop to select widget, select metric and data shows up immediately.  Nice!
-  * Also nice feature of "Export to Timeboard" from APM services to easily add widget to Dashboard
+  * Also convenient feature of "Export to Timeboard" from APM services to easily add widget to a Dashboard
     
 ## Final Question
 * Is there anything creative you would use Datadog for?
