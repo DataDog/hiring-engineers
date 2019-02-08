@@ -83,8 +83,9 @@ pip install datadog
 ```
  * Looked at the documentation for API integration.
  * Also created a timeboard via the GUI to get a better idea of how to code it.
- * Below is the python code for my API call to create the timeboards.
+ * Below is the python code for my API call to create the timeboards. filename:dd-api.py
 ```
+#!/usr/bin/python
 from datadog import initialize, api
 
 options = {'api_key': '0f4ed1330465ec78f05d13b39c865135',
@@ -105,7 +106,7 @@ graphs = [
       "events": [],
       "requests": [
         {
-           "q": "avg:my_metric{host:testvm.localdomain}",
+           "q": "avg:my_metric{*}",
            "type": "line",
            "style": {
                "palette": "dog_warm",
@@ -140,20 +141,37 @@ graphs = [
        ],
       "autoscale": "true",
     }
-  }
+  },
+{
+  "title": "My_metric Rollup Timeboard",
+  "definition": {
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{*}.rollup(sum, 60)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": "true"
+ }
+}
 ]
 
 api.Timeboard.create(title=title, description=description, graphs=graphs)
 ```
 * Below is the screen shot of my_metric from my custom Timeboard
-![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/My-metric-timeboard.png "Host with Tags")
-
-
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-
+![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/My-metric-timeboard.png "My metric timeboard")
 
 Bonus Question: What is the Anomaly graph displaying?
+* The anomalies of the mysql metric against the systems averages.
+
+
 * Monitoring Data
   * Created the monitor for my_metric.
   * Warning at 500.
@@ -186,29 +204,66 @@ Bonus Question: What is the Anomaly graph displaying?
 	}
 }
 ```
-* Screen Shot of a warning message sent to my email.
-![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/Email-warning.png "Host with Tags")
 
+  * Screen Shot of a warning message sent to my email.
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+  ![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/Email-warning.png "Email warning")
 
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-Collecting APM Data:
+  Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * Below is a screenshot of my scheduled downtime and the configuration of each.
+
+  ![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/Manage-downtime-dd.png "Scheduled Downtime")
+
+  * One that silences it from 7pm to 9am daily on M-F.
+
+  ![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/M-F-Downtime.png "Monday-Friday scheduled downtime")
+
+  * And one that silences it all day on Sat-Sun.
+
+  ![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/Weekend-Downtime.png "Weekend scheduled downtime")
+
+* Collecting APM Data:
+  * Install pip from the Fedora EPEL repo
+  ```
+  yum install python-pip
+  ```
+  * Install ddtrace using pip
+  ```
+  pip install ddtrace
+  ```
+  * Executed the flask app on the host.
+  * Started a script to curl to port 5050 to access an entry port with a while loop
+  ```
+  while true
+   do 
+   curl http://0.0.0.0:5050
+   sleep 3
+   done
+  ```
+  * Added the recommend configuration for APM data to the /etc/datadog-agent/datadog.yaml
+  ```
+  apm_config:
+    analyzed_spans:
+       flask|flask_span: 1
+  ```
+  
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+```
+from ddtrace import check_all
+patch_all()
 
 from flask import Flask
 import logging
 import sys
 
 # Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+#main_logger = logging.getLogger()
+#main_logger.setLevel(logging.DEBUG)
+#c = logging.StreamHandler(sys.stdout)
+#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#c.setFormatter(formatter)
+#main_logger.addHandler(c)
 
 app = Flask(__name__)
 
@@ -226,17 +281,22 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+```    
 
 Bonus Question: What is the difference between a Service and a Resource?
+* Service is a grouping of resources
+* In the example it is a webservice with multipule access points
+* It was so easy to collect loads of data real quickly.  I was really impressed at how easy it was to setup and start collecting data.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
+   * Timeboard URL: https://app.datadoghq.com/dashboard/hwi-eac-fij/my-special-timeboard?tile_size=m&page=0&is_auto=false&from_ts=1549588380000&to_ts=1549591980000&live=true&tv_mode=false
+   * Screenshot of my timeboard
+ 
+  ![alt text](https://github.com/bluey64/hiring-engineers/blob/solutions-engineer/APM-dashboard.png "APM dashboard")
 
 Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-
+* There are many different applications that this could be used for.  Integration with the home automation or for monitoring small devices on pipelines or in oil fields to tell when one unit in the field changes production rates and is anonomaly.  This way you can see a divergant system quickly.  So in a really large environment you can know which system is having a problem quickly.  For me I would like to use it with my PI's some are doing home automation for items that I have upgraded to be automated. I could also use it to monitor the usage on my kids retropi to see how much time they spend playing on it.
 
