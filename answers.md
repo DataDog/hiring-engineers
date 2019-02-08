@@ -1,1 +1,183 @@
-Your answers to the questions go here.
+# Solutions Engineer Exercise - Kyle Neale
+
+For the purposes of this exercise, I'm choosing to run Vagrant and Virtual-Box. Vagrant provides easy to configure, reproducible, and portable work environments while maxing user productivity. With just one line of configuration and one command in your terminal, you can bring up a fully functional, SSH accessible virtual machine. More information about the use case of Vagrant can be found  [here](https://www.vagrantup.com/intro/index.html) as well as the docs, [here](https://www.vagrantup.com/intro/getting-started/).
+
+## Prerequisites - Setup
+
+Once Vagrant and Virtual-Box have been installed, in order to avoid potential dependency, Ubuntu 16.04 LTS was recommended for use. The proper build was found (ubuntu/xenial64) though [Vagrant Cloud](https://app.vagrantup.com/boxes/search) and I initialized my VM.
+
+Next, download the Datadog Agent via terminal. Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field). You will be given an API key, which should never be shown to the public.
+
+```
+DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+```
+
+Running the above command will install Datadog's Agent onto your VM and provide access to the Datadog dashboard.
+
+Up until this point everything has gone smoothly and thus, we can proceed to the next step.
+
+## Collecting Metrics
+
+Tagging, in the Datadog Agent, is a way of adding 'dimensions' to metrics. With tags, metrics can be filtered, aggregated and compared. A quick stop in Datadog's [Tagging](https://docs.datadoghq.com/tagging/) documentation provided most of the steps necessary to add tags.
+
+```
+cd /etc/datadog-agent
+```
+and ...
+```
+sudo vim Datadog.yaml
+```
+
+Tags did not show up initially, so I checked the Agent Status to see what was wrong using: ```sudo systemctl status datadog-agent.service```. The Agent was offline and in order to get a documented log of what the issue was, I debugged using, ```sudo journalctl -u datadog-agent.service```. Documentation of the two commands can be found [here](https://docs.datadoghq.com/agent/troubleshooting/?tab=agentv6).
+
+Eventually, I found there was an error in the format of the tags and corrected it. A screenshot of the tags can be shown below.
+
+- INSERT PICTURE
+
+#### Installing a database
+
+I chose to install PostgreSQL since it was a database I was familiar with. The following command handled the installation ``` sudo apt-get install postgres```. The documentation can be found [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04).
+
+In order to login to PostGreSQL, you can either run ```sudo -i -u postgres``` to switch over to the postgres account and ```psql``` to access the prompt, or ```sudo -u postgres psql``` to skip the intermediary bash shell in between.
+
+Once in the database, I navigated to the matched PostgreSQL integration and followed the steps provided
+
+- INSERT PICTURE
+
+I also navigated to my ```conf.d/postgres.yaml``` directory and configured my ```conf.yaml``` file.
+
+It is recommended to restart client after configuring the ```conf.yaml``` file executing the Agent Status command, ```sudo datadog-agent status```, in order to verify that the integration check has passed. Look for postgres under the Running Checks section.
+
+A couple minutes later, the integration installation shows that it was successful.
+
+- INSERT PICTURE
+
+#### Adding a custom check
+
+Adding a custom check is well explained in the docs [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6). The docs state that the names of the configuration and check files must match. If your check is called mycheck.py, your configuration file must be named mycheck.yaml.
+
+I created two files, one python file named my_check.py which was placed in directory /etc/datadog-agent/checks.d/my_check.py.
+
+- INSERT PICTURE
+
+The other file, my_check.yaml, was placed in directory /etc/datadog-agent/conf.d/my_check.d/my_check.yaml.
+
+- INSERT PICTURE
+
+
+Your custom metric can now be viewed in the Metrics Explorer sub-tab of Metrics:
+
+- INSERT PICTURE
+
+###### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+
+Yes, it is possible to change the interval by editing my my_check.yaml file and setting ```min_collection_interval```. It defaults to 15 seconds. This information can be found [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval).
+
+## Visualizing Data
+
+In this section we use the Datadog API to create a Timeboard. A TimeBoard is a live monitoring dashboard which utilizes graphs that can be used to draw useful insights and analytics. Further research shows that, since Timeboards are essentially requesting data, we will need to generate an APP key as well as utilize our API key.
+
+We generate our APP key through the API subsection in the Integrations tab.
+
+Furthermore, we need to install the Python Datadog package so we can import both the `initialize` and `api` methods provided.
+
+`from datadog import initialize, api`
+
+We are tasked to build 3 graphs:
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Provided below is the code executed for the request:
+
+```
+options = {
+    'api_key': API_KEY,
+    'app_key': APP_KEY
+}
+
+initialize(**options)
+
+title = "Kyle's TimeBoard"
+description = "Solution's Engineer Code Challenge Timeboard"
+graphs = [{
+    "definition": {
+        "events": [],
+        "requests": [{
+            "q": "avg:my_metric{host:ubuntu-xenial}",
+            "type": "line",
+        }],
+        "viz": "timeseries"
+    },
+    "title": "Metric Scoped With Host",
+}, {
+    "definition": {
+        "events": [],
+        "requests": [{
+         "q": "avg:postgresql.bgwriter.checkpoints_timed{host:ubuntu-xenial}.as_count()",
+         "type": "line",
+        }],
+        "viz": "timeseries"
+    },
+    "title": "Anomoly monitor for PostgreSQL",
+}, {
+    "definition": {
+        "events": [],
+        "requests": [{
+            "q": "avg:my_metric{*}.rollup(sum, 3600)",
+            "type": "line",
+        }],
+        "viz": "timeseries"
+    },
+    "title": "Metric Rollup Point Sum",
+}]
+
+template_variables = [{
+    "name": "host1",
+    "prefix": "host",
+    "default": "host:my-host"
+}]
+
+read_only = True
+
+api.Timeboard.create(
+    title=title,
+    description=description,
+    graphs=graphs
+    template_variables=template_variables,
+    read_only=read_only
+    )
+```
+
+Once finished, I navigated back to my Agent and open the Dashboard List under the Dashboard tab. Three graphs should have been created.
+
+#### Navigating the Agent GUI
+
+- Insert Photo
+
+In order to set the Timeboard's timeframe to the past 5 minutes, I manually highlighted the time interval I would like to observe.
+
+ - Insert Photo
+
+In addition you can send snapshots of metrics to yourself using the camera icon located at the top right of each graph.
+
+- Insert Photo
+
+
+###### Bonus Question: What is the Anomaly graph displaying?
+
+According to the Alerting Section in the Datadog docs. The [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+
+## Monitoring Data
+In this step, I created monitors based on the following criteria:
+- Warning threshold of 500
+- Alerting threshold of 800
+- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+I created a new metric Monitor in the Monitors tab after reading about and below are the pictures detailing my process:
+
+###### Bonus:  Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+- *One that silences it from 7pm to 9am daily on M-F,*
+- *One that silences it all day on Sat-Sun.*
+- *Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
