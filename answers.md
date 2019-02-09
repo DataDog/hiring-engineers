@@ -279,6 +279,8 @@ Resources are the queries that a user constructs to interact with the services t
 More information on Services and Resources can be found [here](https://docs.datadoghq.com/tracing/visualization/).
 
 ## Final Question:
-###### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
-I was able to look at some of the videos posted on the Datadog channel over YouTube. Namely, the ones that deal with Datadog Agent and APM implementation in Peloton and in EA Games, the AAA title games producer.
+###### Is there anything creative you would use Datadog for?
+
+During Flatiron School, I was able to present a technical talk on IoT and the global move towards more 'smart' environments. I think the Datadog Agent and it's APM service would thrive in this field. Datadog would be able to monitor device/sensor malfunctions, identify potential trends in power/water usage and alert us when something doesn't look right -
+identify when something is either above or below its normal thresholds (temperature for example).
