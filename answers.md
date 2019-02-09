@@ -284,3 +284,5 @@ More information on Services and Resources can be found [here](https://docs.data
 
 During Flatiron School, I was able to present a technical talk on IoT and the global move towards more 'smart' environments. I think the Datadog Agent and it's APM service would thrive in this field. Datadog would be able to monitor device/sensor malfunctions, identify potential trends in power/water usage and alert us when something doesn't look right -
 identify when something is either above or below its normal thresholds (temperature for example).
+
+I think another cool use case for Datadog would be with eSports. Esports is essentially competitive gaming and because of how popular it's becoming, using Datadog to monitor and report metrics on, for instance, if there is a problem with the game server or a potential DDoS attack would keep engineers a step ahead of the problem. Datadog would also be able to monitor the streaming service so that its users receive real time, low-log visuals on the progress of the competition.
