@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+  - server: "10.0.2.15"
+    user: datadog
+    pass: uzuvpKA4*CDBQ6MeyW4WYMUk
+    tags:
+        - Adams_MySQL
+    options:
+      replication: 0
+      galera_cluster: 1
