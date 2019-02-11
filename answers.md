@@ -259,7 +259,7 @@ curl http://localhost:3000/api/trace
 
 Below are the responses that I received:
 
-![](./Screenshots/cURL_endpoints.png)
+![](./Screenshots/curl_endpoints.png)
 
 ![](./Screenshots/endpoint_responses.png)
 
