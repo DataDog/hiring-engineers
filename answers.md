@@ -1,7 +1,12 @@
 Your answers to the questions go here.
 Prerequisites - Setup the environment
 
-I used a Windows Server with SQL Server and Python installed for the exercise. 
+I used a Windows Server 2012 R2 with SQL Server and Python installed for the exercise. 
+hostname: PATAM10
+tags:
+  #bs:citidirect
+  #database
+  #prod
 
 For the next step --->
 "Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine."
@@ -11,6 +16,8 @@ I went to the datadoghq.com website and signed up for my own account following t
 <<Insert Image001>>>
 
 In a very short time, the agent started reporting data:
+
+<<Insert Image 001-1>>>
 
 <<<Insert Image002>>>
 
@@ -42,9 +49,7 @@ Change your check's collection interval so that it only submits the metric once 
     
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
     
-It is possible to change the interval without modifyinh the .py file. 
-    
-Yes, you can change it in the YAML
+It is possible to change the interval without modifying the .py file, you can change it in the YAML
     
  <<Insert Image 008>>>
     
@@ -115,6 +120,28 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <<Insert Image 016>>
 
 Bonus Question: What is the difference between a Service and a Resource?
+From the documentation:
 
+Services: https://docs.datadoghq.com/tracing/visualization/#services
+
+A service is a set of processes that do the same job. For instance, a simple web application may consist of two services:
+
+  A single webapp service and a single database service.
+
+While a more complex environment may break it out into 6 services:
+
+  3 separate services: webapp, admin, and query.
+  3 separate external service: master-db, replica-db, and yelp-api.
+
+Resources: https://docs.datadoghq.com/tracing/visualization/#resources
+
+A Resource is a particular action for a service.
+
+  For a web application: some examples might be a canonical URL, such as /user/home or a handler function like web.user.home (often referred to as “routes” in MVC frameworks).
+  For a SQL database: a resource is the query itself, such as SELECT * FROM users WHERE id = ?.
+
+Resources should be grouped together under a canonical name, like /user/home rather than have /user/home?id=100 and /user/home?id=200 as separate resources. APM automatically assigns names to your resources; however you can also name them explicitly. See instructions for: Go, Java, Python, Ruby.
+
+These resources can be found after clicking on a particular service.
 
 Please include your fully instrumented app in your submission, as well.
