@@ -1,5 +1,5 @@
 # Introduction #
-> Thank you for taking the time to look over my answers for the Datadog Solutions Engineer Exercise.  I have used Datadog over the past three years and am continuously surprised which I discover new aspects and features.  
+> Thank you for taking the time to look over my answers for the Datadog Solutions Engineer Exercise.  I have used Datadog over the past three years and am continuously surprised when I discover new aspects and features.  
 >
 > Working with the Datadog Agent Docker image was an interesting challenge dealing with configs, checks, and ports between the container and the host.  It helped expand my knowledge of working with Datadog and Docker.  
 > 
