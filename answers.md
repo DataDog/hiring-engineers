@@ -17,7 +17,7 @@ DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/
 
 Running the above command will install Datadog's Agent onto my VM and provide access to the Datadog dashboard.
 
-![](./Screenshots/install_datadog_agent.png)
+![](./Screenshots/install_data_agent.png)
 
 Up until this point everything has gone smoothly and thus, I proceeded to the next step.
 
@@ -37,7 +37,7 @@ Tags did not show up initially, so I checked the Agent Status to see what was wr
 
 Eventually, I found there was an error in the format of the tags and corrected it. A screenshot of the tags can be shown below.
 
-![](./Screenshots/tags.png)
+![](./Screenshots/host_tags.png)
 
 #### Installing a database
 
