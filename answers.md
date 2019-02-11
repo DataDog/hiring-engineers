@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 Prerequisites - Setup the environment
 
-I used a Windows Server with SQL Server and Python installed for the APM exercise. 
+I used a Windows Server with SQL Server and Python installed for the exercise. 
 
 For the next step --->
 "Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine."
