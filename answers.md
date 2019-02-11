@@ -1,8 +1,8 @@
 # Solutions Engineer Exercise - Kyle Neale
 
-For the purposes of this exercise, I'm choosing to run Vagrant and Virtual-Box. Vagrant provides easy to configure, reproducible, and portable work environments while maxing user productivity. With just one line of configuration and one command in your terminal, you can bring up a fully functional, SSH accessible virtual machine. More information about the use case of Vagrant can be found  [here](https://www.vagrantup.com/intro/index.html) as well as the docs, [here](https://www.vagrantup.com/intro/getting-started/).
+For the purpose of this exercise, I'm choosing to run Vagrant and Virtual-Box. Vagrant provides easy to configure, reproducible, and portable work environments while maxing user productivity. With just one line of configuration and one command in your terminal, you can bring up a fully functional, SSH accessible virtual machine. More information about the use case of Vagrant can be found [here](https://www.vagrantup.com/intro/index.html) as well as the docs, [here](https://www.vagrantup.com/intro/getting-started/).
 
-![](./Screenshots/Vagrant SSH.png)
+![](./Screenshots/vagrant_SSH.png)
 
 ## Prerequisites - Setup
 
