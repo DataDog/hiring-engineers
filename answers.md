@@ -70,6 +70,8 @@ https://github.com/patam01/hiring-engineers/blob/master/API%20Timeboard.py
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+https://github.com/patam01/hiring-engineers/blob/master/Image008-2.jpg
+
 Set the Timeboard's timeframe to the past 5 minutes
 Using "ALT + ]" I zoomed to 5 min interval
 Take a snapshot of this graph and use the @ notation to send it to yourself.
