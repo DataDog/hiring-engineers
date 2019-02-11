@@ -13,7 +13,7 @@ For the next step --->
 
 I went to the datadoghq.com website and signed up for my own account following the instruction prompts. On the first login I followed the getting started instructions to install the agent. It is very easy to get the agent started as there is a one step install command for Windows.
 
-<<Insert Image001>>>
+https://github.com/patam01/hiring-engineers/blob/master/Image001.JPG
 
 In a very short time, the agent started reporting data:
 
