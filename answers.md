@@ -17,11 +17,11 @@ https://github.com/patam01/hiring-engineers/blob/master/Image001.JPG
 
 In a very short time, the agent started reporting data:
 
-<<Insert Image 001-1>>>
+https://github.com/patam01/hiring-engineers/blob/master/Image001-1.jpg
 
-<<<Insert Image002>>>
+https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg
 
-<<Insert Image004>>
+https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg
 
 --------------------------------------------------------------------------------------
 
@@ -30,14 +30,14 @@ Collecting Metrics:
  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
  I added host tags and users tags as shown in the screenshot:
     
- <<Insert Image005>>>
+https://github.com/patam01/hiring-engineers/blob/master/Image005.jpg
     
  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     
 For SQL Server monitoring, I followed the steps outlined in the documentation:
 https://docs.datadoghq.com/integrations/sqlserver/
 
-<<Insert Image003>>> SQL YAML Config
+https://github.com/patam01/hiring-engineers/blob/master/Image003.png SQL YAML Config
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
