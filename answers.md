@@ -66,7 +66,7 @@ Your custom metric with the rollup function applied to sum up all the points for
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-
+https://github.com/patam01/hiring-engineers/blob/master/API%20Timeboard.py
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
