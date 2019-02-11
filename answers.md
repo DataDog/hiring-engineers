@@ -42,7 +42,9 @@ https://docs.datadoghq.com/integrations/sqlserver/
     
     Bonus Question Can you change the collection interval without modifying the Python check file you created?
     
-    It is possible to change the interval without modifyinh the .py file. You can change it in the YAML
+    It is possible to change the interval without modifyinh the .py file. 
+    
+    Yes, you can change it in the YAML
     
     <<Insert Image 008>>>
     
@@ -56,9 +58,15 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+<<Insert API Timeboard.py>>> File
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
     Set the Timeboard's timeframe to the past 5 minutes
+    Using "ALT + ]" I zoomed to 5 min interval
     Take a snapshot of this graph and use the @ notation to send it to yourself.
+    <<Insert 5 min @ snapshot>>
     Bonus Question: What is the Anomaly graph displaying?
+    
+    The part of the "Anomalies Sql Batch Requests" graph that are shown in RED are showing that for this metric the value is outside of normal. In this case the mathematical formula used ('1e-3', direction='above') for any spikes above the value of 1e-3 will be highlighted as outside of the normal.  It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph.
 
