@@ -19,42 +19,42 @@ In a very short time, the agent started reporting data:
 
 Collecting Metrics:
 
-    Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-    I added host tags and users tags as shown in the screenshot:
+ Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+ I added host tags and users tags as shown in the screenshot:
     
-    <<Insert Image005>>>
+ <<Insert Image005>>>
     
-    Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     
-    For SQL Server monitoring, I followed the steps outlined in the documentation:
+For SQL Server monitoring, I followed the steps outlined in the documentation:
 https://docs.datadoghq.com/integrations/sqlserver/
 
 <<Insert Image003>>> SQL YAML Config
 
-    Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-    Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+Change your check's collection interval so that it only submits the metric once every 45 seconds.
     
-    I created a my_metric check using documentation link:
-    https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+ I created a my_metric check using documentation link:
+  https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
     
-    <<Insert Image 007>>>
+ <<Insert Image 007>>>
     
     
-    Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Bonus Question Can you change the collection interval without modifying the Python check file you created?
     
-    It is possible to change the interval without modifyinh the .py file. 
+It is possible to change the interval without modifyinh the .py file. 
     
-    Yes, you can change it in the YAML
+Yes, you can change it in the YAML
     
-    <<Insert Image 008>>>
+ <<Insert Image 008>>>
     
-    Visualizing Data:
+Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-    Your custom metric scoped over your host.
-    Any metric from the Integration on your Database with the anomaly function applied.
-    Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
