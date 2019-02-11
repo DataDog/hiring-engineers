@@ -160,7 +160,7 @@ Once finished, I navigated back to my Agent and open the Dashboard List under th
 
 #### Navigating the Agent GUI
 
-![](./Screenshots/timeboard.png)
+![](./Screenshots/my_timeboard.png)
 
 In order to set the Timeboard's timeframe to the past 5 minutes, I manually highlighted the time interval I would like to observe.
 
