@@ -8,18 +8,18 @@ For the purpose of this exercise, I'm choosing to run Vagrant and Virtual-Box. V
 
 Once Vagrant and Virtual-Box have been installed, in order to avoid potential dependency, Ubuntu 16.04 LTS was recommended for use. The proper build was found (ubuntu/xenial64) though [Vagrant Cloud](https://app.vagrantup.com/boxes/search) and I initialized my VM.
 
-Next, download the Datadog Agent via terminal. Sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field). You will be given an API key, which should never be shown to the public.
+Next, I downloaded the Datadog Agent via terminal. I signed up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field). I was given an API key, which should never be shown to the public.
 
 ```
 DD_API_KEY=API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ```
 
-Running the above command will install Datadog's Agent onto your VM and provide access to the Datadog dashboard.
+Running the above command will install Datadog's Agent onto my VM and provide access to the Datadog dashboard.
 
-![](./Screenshots/Install Datadog Agent.png)
+![](./Screenshots/install_datadog_agent.png)
 
-Up until this point everything has gone smoothly and thus, we can proceed to the next step.
+Up until this point everything has gone smoothly and thus, I proceeded to the next step.
 
 ## Collecting Metrics
 
@@ -37,7 +37,7 @@ Tags did not show up initially, so I checked the Agent Status to see what was wr
 
 Eventually, I found there was an error in the format of the tags and corrected it. A screenshot of the tags can be shown below.
 
-![](./Screenshots/Tags.png)
+![](./Screenshots/tags.png)
 
 #### Installing a database
 
@@ -47,17 +47,17 @@ In order to login to PostGreSQL, you can either run `sudo -i -u postgres` to swi
 
 Once in the database, I navigated to the matched PostgreSQL integration and followed the steps provided
 
-![](./Screenshots/PostgreSQL Integration.png)
+![](./Screenshots/postgreSQL_integration.png)
 
 I also navigated to my ```conf.d/postgres.yaml``` directory and configured my ```conf.yaml``` file.
 
-![](./Screenshots/User Datadog.png)
+![](./Screenshots/user_datadog.png)
 
 It is recommended to restart client after configuring the ```conf.yaml``` file executing the Agent Status command, ```sudo datadog-agent status```, in order to verify that the integration check has passed. Look for postgres under the Running Checks section.
 
 A couple minutes later, the integration installation shows that it was successful.
 
-![](./Screenshots/PostgreSQL Confirmation.png)
+![](./Screenshots/postgreSQL_confirmation.png)
 
 #### Adding a custom check
 
@@ -65,32 +65,32 @@ Adding a custom check is well explained in the docs [here](https://docs.datadogh
 
 I created two files, one python file named my_check.py which was placed in directory /etc/datadog-agent/checks.d/my_check.py.
 
-![](./Screenshots/Metric Script.png)
+![](./Screenshots/metric_script.png)
 
 The other file, my_check.yaml, was placed in directory /etc/datadog-agent/conf.d/my_check.d/my_check.yaml.
 
 
 Your custom metric can now be viewed in the Metrics Explorer sub-tab of Metrics:
 
-![](./Screenshots/Metric Graph.png)
+![](./Screenshots/metric_graph.png)
 
 ###### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 Yes, it is possible to change the interval by editing my my_check.yaml file and changing ```min_collection_interval```. It defaults to 15 seconds. This information can be found [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval).
 
-![](./Screenshots/Min Collection Interval.png)
+![](./Screenshots/min_collection interval.png)
 
 ## Visualizing Data
 
 In this section we use the Datadog API to create a Timeboard. A Timeboard is a live monitoring dashboard which utilizes graphs that can be used to draw useful insights and analytics. Further research shows that, since Timeboards are requesting data, we will need to generate an APP key as well as utilize our API key.
 
-We generate our APP key through the API subsection in the Integrations tab.
+I generated our APP key through the API subsection in the Integrations tab.
 
-Furthermore, we need to install the Python Datadog package so we can import both the `initialize` and `api` methods provided.
+Furthermore, I needed to install the Python Datadog package so we can import both the `initialize` and `api` methods provided.
 
 `from datadog import initialize, api`
 
-We are tasked to build 3 graphs:
+I was tasked to build 3 graphs:
 - Your custom metric scoped over your host.
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -160,33 +160,34 @@ Once finished, I navigated back to my Agent and open the Dashboard List under th
 
 #### Navigating the Agent GUI
 
-![](./Screenshots/Timeboard.png)
+![](./Screenshots/timeboard.png)
 
 In order to set the Timeboard's timeframe to the past 5 minutes, I manually highlighted the time interval I would like to observe.
 
- ![](./Screenshots/Timeboard 5 Minutes.png)
+ ![](./Screenshots/timeboard_minutes.png)
 
 In addition you can send snapshots of metrics to yourself using the camera icon located at the top right of each graph.
 
-![](./Screenshots/Sending Snapshots of Metrics.png)
+![](./Screenshots/sending_snapshots_of_metrics.png)
 
 
 ###### Bonus Question: What is the Anomaly graph displaying?
 
-According to the Alerting Section in the Datadog docs. The [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
+According to the Alerting Section in the Datadog docs, the [anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) graph is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.
 
 ## Monitoring Data
+
 In this step, I created monitors based on the following criteria:
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-I created a new metric Monitor in the Monitors tab after reading about and below are the pictures detailing my process:
+I created a new metric Monitor in the Monitors tab and below are the pictures detailing my process:
 
-![](./Screenshots/Warning Levels.png)
-![](./Screenshots/Defining Alerts.png)
+![](./Screenshots/warning_levels.png)
+![](./Screenshots/defining_alerts.png)
 
-![](./Screenshots/Alert Email Confirmation.png)
+![](./Screenshots/alert_email_confirmation.png)
 
 ###### Bonus:  Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 - *One that silences it from 7pm to 9am daily on M-F,*
@@ -195,9 +196,9 @@ I created a new metric Monitor in the Monitors tab after reading about and below
 
 Below are the pictures detailing my process:
 
-![](./Screenshots/Scheduling Downtime Week.png)
+![](./Screenshots/scheduling_downtime_week.png)
 
-![](./Screenshots/Scheduling Downtime Weekend.png)
+![](./Screenshots/scheduling_downtime_weekend.png)
 ## Collecting APM Data
 
 Following the docs about [Tracing](https://docs.datadoghq.com/tracing/), about [Flask](http://flask.pocoo.org/docs/0.12/quickstart/), and about [getting starting with the APM](https://docs.datadoghq.com/tracing/visualization/), I was finally ready to get started tackling this section.
@@ -258,17 +259,17 @@ curl http://localhost:3000/api/trace
 
 Below are the responses that I received:
 
-![](./Screenshots/cURL Endpoints.png)
+![](./Screenshots/cURL_endpoints.png)
 
-![](./Screenshots/Endpoint Responses.png)
+![](./Screenshots/endpoint_responses.png)
 
 It looked as though I was finally successful and when I went back to the Agent, the UI changed and displayed the traces as well as the endpoints that were hit.
 
-![](./Screenshots/Flask Traces.png)
+![](./Screenshots/flask_traces.png)
 
 Additionally, I was able to view my traces from the Trace List sub-tab.
 
-![](./Screenshots/Trace List.png)
+![](./Screenshots/trace_list.png)
 
 ###### Bonus Question: What is the difference between a Service and a Resource?
 
@@ -282,7 +283,6 @@ More information on Services and Resources can be found [here](https://docs.data
 
 ###### Is there anything creative you would use Datadog for?
 
-During Flatiron School, I was able to present a technical talk on IoT and the global move towards more 'smart' environments. I think the Datadog Agent and it's APM service would thrive in this field. Datadog would be able to monitor device/sensor malfunctions, identify potential trends in power/water usage and alert us when something doesn't look right -
-identify when something is either above or below its normal thresholds (temperature for example).
+During Flatiron School, I was able to present a technical talk on IoT and the global move towards more 'smart' environments. I think the Datadog Agent and its APM service would thrive in this field. Datadog would be able to monitor device/sensor malfunctions, identify potential trends in power/water usage and alert us when something doesn't look right - identify when something is either above or below its normal thresholds (temperature for example).
 
-I think another cool use case for Datadog would be with eSports. Esports is essentially competitive gaming and because of how popular it's becoming, using Datadog to monitor and report metrics on, for instance, if there is a problem with the game server or a potential DDoS attack would keep engineers a step ahead of the problem. Datadog would also be able to monitor the streaming service so that its users receive real time, low-lag visuals on the progress of the competition.
+I think another cool use case for Datadog would be with eSports. eSports is essentially competitive gaming and because of how popular it's becoming, using Datadog to monitor and report metrics on, for instance, if there is a problem with the game server or a potential DDoS attack would keep engineers a step ahead of the problem. Datadog would also be able to monitor the streaming service so that its users receive real time, low-lag visuals on the progress of the competition.
