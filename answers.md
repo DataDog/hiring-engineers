@@ -62,11 +62,12 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-    Set the Timeboard's timeframe to the past 5 minutes
-    Using "ALT + ]" I zoomed to 5 min interval
-    Take a snapshot of this graph and use the @ notation to send it to yourself.
-    <<Insert 5 min @ snapshot>>
-    Bonus Question: What is the Anomaly graph displaying?
-    
+Set the Timeboard's timeframe to the past 5 minutes
+Using "ALT + ]" I zoomed to 5 min interval
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+<<Insert 5 min @ snapshot>>
+Bonus Question: What is the Anomaly graph displaying?
+
     The part of the "Anomalies Sql Batch Requests" graph that are shown in RED are showing that for this metric the value is outside of normal. In this case the mathematical formula used ('1e-3', direction='above') for any spikes above the value of 1e-3 will be highlighted as outside of the normal.  It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph.
 
