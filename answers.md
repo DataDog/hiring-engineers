@@ -78,7 +78,7 @@ Your custom metric can now be viewed in the Metrics Explorer sub-tab of Metrics:
 
 Yes, it is possible to change the interval by editing my my_check.yaml file and changing ```min_collection_interval```. It defaults to 15 seconds. This information can be found [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval).
 
-![](./Screenshots/min_collection interval.png)
+![](./Screenshots/min_collection_interval.png)
 
 ## Visualizing Data
 
