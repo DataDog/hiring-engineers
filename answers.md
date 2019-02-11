@@ -74,7 +74,8 @@ Set the Timeboard's timeframe to the past 5 minutes
 Using "ALT + ]" I zoomed to 5 min interval
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-<<Insert 5 min @ snapshot>>
+https://github.com/patam01/hiring-engineers/blob/master/Image008-1.jpg
+
 Bonus Question: What is the Anomaly graph displaying?
 
 The part of the "Anomalies Sql Batch Requests" graph that are shown in RED are showing that for this metric the value is outside of normal. In this case the mathematical formula used ('1e-3', direction='above') for any spikes above the value of 1e-3 will be highlighted as outside of the normal.  It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph.
@@ -91,30 +92,31 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
  Alerting threshold of 800
  And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-<<Insert Image 009> Monitoring configuration
+https://github.com/patam01/hiring-engineers/blob/master/Image009.jpg
 
 Please configure the monitor’s message so that it will:
 Send you an email whenever the monitor triggers.
 
-<<Insert Image 010> Email notification warning abouve 500
+https://github.com/patam01/hiring-engineers/blob/master/Image010.jpg
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data staInclude the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-<<Insert Image 010> No data
+https://github.com/patam01/hiring-engineers/blob/master/Image011.jpg
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 
-<Insert Image 012> 
+https://github.com/patam01/hiring-engineers/blob/master/Image012.jpg
 
 And one that silences it all day on Sat-Sun.
 
-<Insert Image 013>>
+https://github.com/patam01/hiring-engineers/blob/master/Image013.jpg
         
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-<Insert Image 014 & 015>>
+https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg
+https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg
 
 --------------------------------------------------------------------------------------
 
@@ -124,7 +126,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-<<Insert Image 016>>
+https://github.com/patam01/hiring-engineers/blob/master/Image016.jpg
 
 Bonus Question: What is the difference between a Service and a Resource?
 From the documentation:
