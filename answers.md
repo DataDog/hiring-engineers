@@ -47,7 +47,7 @@ In order to login to PostGreSQL, you can either run `sudo -i -u postgres` to swi
 
 Once in the database, I navigated to the matched PostgreSQL integration and followed the steps provided
 
-![](./Screenshots/postgreSQL_integration.png)
+![](./Screenshots/postgres_integration.png)
 
 I also navigated to my ```conf.d/postgres.yaml``` directory and configured my ```conf.yaml``` file.
 
@@ -57,7 +57,7 @@ It is recommended to restart client after configuring the ```conf.yaml``` file e
 
 A couple minutes later, the integration installation shows that it was successful.
 
-![](./Screenshots/postgreSQL_confirmation.png)
+![](./Screenshots/postgres_confirmation.png)
 
 #### Adding a custom check
 
