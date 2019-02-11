@@ -1,6 +1,6 @@
-Your answers to the questions go here.
-Prerequisites - Setup the environment
 
+Prerequisites - Setup the environment
+--------------------------------------------------------------------------------------
 I used a Windows Server 2012 R2 with SQL Server and Python installed for the exercise. 
 hostname: PATAM10
 tags:
@@ -23,6 +23,7 @@ In a very short time, the agent started reporting data:
 
 <<Insert Image004>>
 
+--------------------------------------------------------------------------------------
 
 Collecting Metrics:
 
@@ -52,7 +53,9 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 It is possible to change the interval without modifying the .py file, you can change it in the YAML
     
  <<Insert Image 008>>>
-    
+
+--------------------------------------------------------------------------------------
+
 Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -75,6 +78,8 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
 
 The part of the "Anomalies Sql Batch Requests" graph that are shown in RED are showing that for this metric the value is outside of normal. In this case the mathematical formula used ('1e-3', direction='above') for any spikes above the value of 1e-3 will be highlighted as outside of the normal.  It uses the history of the metric to predict the future values. If the value is outside of the expected range it will color it red on the graph.
+
+--------------------------------------------------------------------------------------
 
 Monitoring Data
 
@@ -111,6 +116,8 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 <Insert Image 014 & 015>>
 
+--------------------------------------------------------------------------------------
+
 Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
@@ -145,3 +152,5 @@ Resources should be grouped together under a canonical name, like /user/home rat
 These resources can be found after clicking on a particular service.
 
 Please include your fully instrumented app in your submission, as well.
+
+
