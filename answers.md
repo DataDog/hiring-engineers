@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 Prerequisites - Setup the environment
+
 I used a Windows Server 2012 R2 with SQL Server and Python installed for the exercise. hostname: PATAM10 tags: #bs:citidirect #database #prod
 
 For the next step ---> "Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine."
