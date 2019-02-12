@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 Prerequisites - Setup the environment
 
 I used a Windows Server 2012 R2 with SQL Server and Python installed for the exercise. hostname: PATAM10 tags: #bs:citidirect #database #prod
@@ -84,3 +85,4 @@ Flask File: https://github.com/patam01/hiring-engineers/blob/master/flask_data.p
 ________________________________________
 
 
+</html>
