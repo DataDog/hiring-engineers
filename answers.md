@@ -1,9 +1,13 @@
 Prerequisites - Setup the environment
 I used a Windows Server 2012 R2 with SQL Server and Python installed for the exercise. hostname: PATAM10 tags: #bs:citidirect #database #prod
+
 For the next step ---> "Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine."
+
 I went to the datadoghq.com website and signed up for my own account following the instruction prompts. On the first login I followed the getting started instructions to install the agent. It is very easy to get the agent started as there is a one step install command for Windows.
+
 https://github.com/patam01/hiring-engineers/blob/master/Image001.JPG
 In a very short time, the agent started reporting data:
+
 https://github.com/patam01/hiring-engineers/blob/master/Image001-1.jpg
 https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg
 https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg
