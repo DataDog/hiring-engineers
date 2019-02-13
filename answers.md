@@ -351,13 +351,13 @@ notification.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>&lt;Add screen shots for scheduled
+mso-fareast-font-family:"Times New Roman"'>&lt;Screen shots for scheduled
 downtime email notification&gt;<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
 mso-fareast-font-family:"Times New Roman"'><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg</a>
+href="https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg</a><br>
 <a href="https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg</a><o:p></o:p></span></p>
 
 <div class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
