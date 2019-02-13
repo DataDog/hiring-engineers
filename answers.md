@@ -477,11 +477,11 @@ text-align:center;line-height:normal'><span style='font-size:12.0pt;font-family:
 </span></div>
 
 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-<b>Final Question:
+Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?</b><br>
+Is there anything creative you would use Datadog for?<br>
 
 <b>A cool way to expand Datadog in the commercial world would be to imbed it into IoT devices. With the proliferation of connected devices in industries like manufacturing, to healthcare, to physical security etc., getting a view of this connected map would provide insights to the customers that are not available today. Wouldn’t it be cool if a health care organization had a view of all the medical devices in a hospital, a remote clinic, or in a patient’s house and be able to look at custom metrics and be able to take corrective action based on abnormal behavior. Think about how much better the patient’s experience would be and how the doctors could take that valuable data and provide better healthcare. Think about that emergency scenario where the medics on an ambulance can pull relevant data points on route to a patient and already have an action plan and also share that with the ER and Dr’s. The possibilities are endless and that excites me!</b>
 </div>
