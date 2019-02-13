@@ -351,8 +351,8 @@ notification.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'>&lt;Screen shots for scheduled
-downtime email notification&gt;<o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><b>Screen shots for scheduled
+downtime email notification<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
