@@ -100,8 +100,7 @@ style='font-size:12.0pt;font-family:"Times New Roman",serif;mso-fareast-font-fam
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image003.png" alt="Image 003"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image003.png">https://github.com/patam01/hiring-engineers/blob/master/Image003.png</a>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image003.png" alt="Image 003">
 SQL YAML Config<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
@@ -121,8 +120,7 @@ href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6">http
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image007.png" alt="Image 007"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image007.png">https://github.com/patam01/hiring-engineers/blob/master/Image007.png</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image007.png" alt="Image 007"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -138,8 +136,7 @@ change it in the YAML<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008.png" alt="Image 008"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image008.png">https://github.com/patam01/hiring-engineers/blob/master/Image008.png</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008.png" alt="Image 008"><o:p></o:p></span></p>
 
 <div class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:12.0pt;font-family:
@@ -190,8 +187,7 @@ Dashboard from your Dashboard List in the UI:<o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008-2.jpg" alt="Image 008-2"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image008-2.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image008-2.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008-2.jpg" alt="Image 008-2"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><b style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:
@@ -203,8 +199,7 @@ yourself.<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008-1.jpg" alt="Image 008-1"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image008-1.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image008-1.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image008-1.jpg" alt="Image 008-1"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -262,8 +257,7 @@ mso-fareast-font-family:"Times New Roman"'>Screen shot of creating 500 &amp;
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image009.jpg" alt="Image 009"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image009.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image009.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image009.jpg" alt="Image 009"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -278,8 +272,7 @@ notification<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image010.jpg" alt="Image 010"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image010.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image010.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image010.jpg" alt="Image 010"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -296,8 +289,7 @@ for missing data for 10 mins:<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image011.jpg" alt="Image 011"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image011.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image011.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image011.jpg" alt="Image 011"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -319,8 +311,7 @@ weekdays:<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image012.jpg" alt="Image 012"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image012.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image012.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image012.jpg" alt="Image 012"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -335,8 +326,7 @@ for weekend:<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image013.jpg" alt="Image 013"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image013.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image013.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image013.jpg" alt="Image 013"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
@@ -351,9 +341,8 @@ downtime email notification</b><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg" alt="Image 015"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg</a><br>
-<a href="https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image014.jpg" alt="Image 014"><br><img src="https://github.com/patam01/hiring-engineers/blob/master/Image015.jpg" alt="Image 015">
+<o:p></o:p></span></p>
 
 <div class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:12.0pt;font-family:
