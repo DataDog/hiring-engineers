@@ -49,13 +49,11 @@ mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg" alt="Image 003"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image002.jpg" alt="Image 003"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg" alt="Image 004"><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image004.jpg" alt="Image 004"><o:p></o:p></span></p>
 
 <div class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:12.0pt;font-family:
@@ -84,7 +82,7 @@ shown in the screenshot:<o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><a
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image005.jpg" alt="Image 005"><a
 href="https://github.com/patam01/hiring-engineers/blob/master/Image005.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image005.jpg</a><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
