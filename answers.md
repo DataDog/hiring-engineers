@@ -374,8 +374,7 @@ href="https://p.datadoghq.com/sb/ap338w9s48uq47nq-236d0816d44be41d11be22de7c950d
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
-mso-fareast-font-family:"Times New Roman"'><a
-href="https://github.com/patam01/hiring-engineers/blob/master/Image016.jpg">https://github.com/patam01/hiring-engineers/blob/master/Image016.jpg</a><o:p></o:p></span></p>
+mso-fareast-font-family:"Times New Roman"'><img src="https://github.com/patam01/hiring-engineers/blob/master/Image016.jpg" alt="Image 016"><o:p></o:p></span></p>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman",serif;
