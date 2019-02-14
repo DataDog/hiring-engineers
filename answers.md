@@ -86,7 +86,7 @@ Bonus:What is the difference between a Service and a Resource?
 A service is a set of processes that do the same job. An example would be a simple web application with webapp and databases services.
 A resource is a particular action related to a service. An exampe of a resource would be a SQL database query (SELECT * FROM users WHERE id = Dawn). 
 
-In support of the above work, I am including copies of my pythvenv folder which I used for the Flask app and Datadogpy Pyton Library install, mysql.yaml, datadog.yaml, mymetric.yaml, mymetric,py
+In support of the above work, I am including copies of my mysql.yaml, datadog.yaml, mymetric.yaml, mymetric.py
 
 
 **Thank you for giving me the opportunity to complete the hiring exercise. I learned a lot and really enjoyed it!
