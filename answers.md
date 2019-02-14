@@ -86,6 +86,14 @@ Bonus:What is the difference between a Service and a Resource?
 A service is a set of processes that do the same job. An example would be a simple web application with webapp and databases services.
 A resource is a particular action related to a service. An exampe of a resource would be a SQL database query (SELECT * FROM users WHERE id = Dawn). 
 
+
+FINAL QUESTION:
+Every year I make a resolution to spend more time out and about in the city, taking in the wide array of Arts related activities available. I get busy and often miss exhibits and events that I really want to see, or there are fantastic arts events happening that I don't know about until they've ended (for exampe, The Museum of Ice Cream last year). I could use Datadog to monitor the NYC Art Beat API to alert me to upcoming and current Arts events of interest to me. Also, when friends come to town, I could easily have at hand events of interest.
+
+
+
+
+NOTES:
 In support of the above work, I am including copies of my mysql.yaml, datadog.yaml, mymetric.yaml, mymetric.py
 
 
