@@ -1,2 +1,0 @@
-decorator>=3.3.2
-requests>=2.6.0

@@ -1,4 +1,0 @@
-[console_scripts]
-dog = datadog.dogshell:main
-dogwrap = datadog.dogshell.wrap:main
-
