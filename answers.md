@@ -1,15 +1,15 @@
 ## Prerequisites - Setup the environment
-  Use docker to launch datadog agent and mointor a mongodb instance and flask application.
+  I chose to use docker to launch datadog agent and mointor a mongodb instance.
 
   ### Pull Images Via Docker Hub
   * Mongo: `docker pull mongo`
   * Mongo-express: `docker pull mongo-express`
   * Datadog Agent: `docker pull datadog/agent`
 
-  ### Setup mongo container
+  ### Setup mongo container *note port mapping for all containers*
   `docker run -d --name mongodb mongo -p 27017:27017`
 
-  ### Setup mongo-express container
+  ### Setup mongo-express container (because web interfaces are prettier!)
   `docker run -it -d --rm -p 8081:8081 --link mongodb:mongo --name mongo-express mongo-express`
 
   ### Setup datadog agent container
@@ -25,6 +25,7 @@
   ```
   ### View running containers to verify
   `docker ps -a`  
+
   ![list docker containers](https://github.com/polyygon/hiring-engineers/blob/polyygon/images/running-docker-containers.png)
 
 ## Collecting Metrics:
@@ -43,7 +44,7 @@
    `tags: project:tictactoe`
    * restart dd-agent:
    `docker restart dd-agent`
-   * *note* tags can also be added to the host via the UI
+   * *note* I added additional tags to the host via the UI
 
   **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
@@ -52,19 +53,20 @@
    * navigate to integrations menu on datadog dashboard and search for "mongodb" and follow configuration instructions
       * create mongo.yaml file on local machine
       *note* follow the guidance [here](https://docs.datadoghq.com/integrations/mongo/)
-      * copy mongo.yaml file to dd-agent conf.d directory:
-      `docker cp mongo.yaml dd-agent:conf.d/mongo.yaml`
-      * Shell into mongo instance:
-         * `docker exec -it mongodb bash`
-      * start mongo CLI:    
-         * `mongo`
+      * copy mongo.yaml file to dd-agent conf.d directory: \
+       `docker cp mongo.yaml dd-agent:conf.d/mongo.yaml`
+      * Shell into mongo instance: \
+        `docker exec -it mongodb bash`
+      * start mongo CLI: \    
+         `mongo`
       * add new admin user:    
-         * ```
+          ```
             use admin
             db.auth("admin", "admin-password")
             db.createUser({"user":"datadog", "pwd": "<generated pwd", "roles" : [ {role: 'read', db: 'admin' }, {role: 'clusterMonitor', db: 'admin'}, {role: 'read', db: 'local' }]})
            ```
-      * verify user was created through mongo-express interface (admin > system users> id = admin.datadog)
+      * verify user was created through mongo-express interface (admin > system users> id = admin.datadog):
+
         ![mongo-express user check](https://github.com/polyygon/hiring-engineers/blob/polyygon/images/mongo-express-user-check.png)
    * restart the datadog agent
     `docker restart dd-agent`
@@ -88,7 +90,7 @@
       ```
    * copy python script files to docker agent container \
       `docker cp my_metric.py dd-agent:conf.d/my_metric.py`
-   * *note* Refer to [Writing a customer Agent check](https://docs.datadoghq.com/developers/write_agent_check) for more details   
+   * *note* refer to [Writing a customer Agent check](https://docs.datadoghq.com/developers/write_agent_check) for more details   
 
   **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
    * write my_metric.yaml file to set collection interval *note:The names of the configuration and check files must match.*
@@ -216,6 +218,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
     * highlight notation
     ![tagging graph](https://github.com/polyygon/hiring-engineers/blob/polyygon/images/tagging-graph.png)
 
+    * email notification   
+    ![tagging graph](https://github.com/polyygon/hiring-engineers/blob/polyygon/images/%40notification.png)
   * Bonus Question: What is the Anomaly graph displaying?
     * when zoomed in the anomaly graph shows a "shadow" range for abnormal behavior.
 
@@ -292,7 +296,9 @@ if __name__ == '__main__':
     `docker cp my_app.py python-dev:home/my_app.py`
   * run ddtrace when in the same local directory as my_app.py:
     `ddtrace-run python my_app.py`
-  * hit localhost:5050 through command line or web browser.   
+  * hit localhost:5050 through command line or web browser. The trace won't start until the server is pinged.
+
+  * The above app was a simple webserver and was the most easy to understand how & what happens when a trace takes place.  
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
   * A service is a set of processes that do the same job. For example, a database.
