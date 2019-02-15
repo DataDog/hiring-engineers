@@ -17,7 +17,7 @@
   docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro \
               -v /proc/:/host/proc/:ro \
               -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-              -e DD_API_KEY=ccd5b7e74c6bb551944b43154b81a45d \
+              -e DD_API_KEY= < YOUR API KEY> \
               -e DD_APM_ENABLED=true \
               -e DD_APM_NON_LOCAL_TRAFFIC=true \
               -p 8126:8126/tcp \
