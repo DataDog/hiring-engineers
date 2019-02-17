@@ -34,6 +34,6 @@ PS:  to get some performence figures on the mysql.performence.opentables Im just
  - preping for flask, using conda all as root...(install conda, create env, install flask, add app, create .flaskenv, pip dd drace and flaskenv
  - run the app with ddtrace in the background and generate some traffic
 Bonus Question: What is the difference between a Service and a Resource?... service is an endpoint you access to get service, like db, web server, resource is more granular rest endpoint, db table, specific query or file
-![FlaskService]((https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/flask.png)
+![FlaskService](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/flask.png)
 # LOGGING
  - configured rsyslog to forward events from auth.log and use TLS
