@@ -23,12 +23,12 @@ sudo systemctl start docker
 git clone https://github.com/edennuriel/hiring-engineers.git
 cd hiring-engineers
 }
-source resources
 
+docit '*this file was created by [scripted](https://github.com/edennuriel/hiring-engineers/blob/master/scripted.sh)'
 docit '# PREPARING'
 docit ' - lab environment - install curl, get the repo and install the agent'
 
-[[ command -v datadog-agent ]] || bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+[[ $(command -v datadog-agent) ]] || bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 docit '# METRICS'
 docit ' - add tags to the agent config and restart the agent'
 
@@ -44,7 +44,7 @@ tags:
 EOF
 
 systemctl restart datadog-agent
-docit ' - URL showing the tags as variables and used in group by viz of host map is [here] (https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064)'
+docit ' - URL showing the tags as variables and used in group by viz of host map is [here](https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064)'
 docit ' - or in the host map screenshot here'
 docit '![static_image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/tags-added.png)'
 
@@ -97,7 +97,7 @@ sleep 2
 while [[ ! $(datadog-agent status | grep mysql) ]]; do echo -n "."; sleep 1; done
 
 docit ' - Configure custom metric check and metric'
-docit ' - Use python script [my_metric.py] (https://github.com/edennuriel/hiring-engineers/blob/master/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
+docit ' - Use python script [my_metric.py](https://github.com/edennuriel/hiring-engineers/blob/master/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
 grep -v "#" my_metric.py > /etc/datadog-agent/checks.d/my_metric.py
 
 echo  << EOF > /etc/datadog-agent/conf.d/my_metric.yaml
@@ -113,9 +113,9 @@ docit "...Yes, Check interval is controled by the metric conf not the check code
 
 docit '# VISUALIZING'
 docit ' - I used tth web UI to create the graphs, then the get_boards to extract the configuration of the graphs so i can create it via the rest api'
-docit ' - It seems the python API does not have Dashboard method as documented in the API section of the [doc] (https://docs.datadoghq.com/api/?lang=python#create-a-dashboard), insteat a Timetable API was available (also swapped widgets list for graphs) so maybe some docit updates is due or maybe I was missing something'
+docit ' - It seems the python API does not have Dashboard method as documented in the API section of the [doc](https://docs.datadoghq.com/api/?lang=python#create-a-dashboard), insteat a Timetable API was available (also swapped widgets list for graphs) so maybe some docit updates is due or maybe I was missing something'
 docit ' - get_boards is hard coded for the board I created in the UI, create board script is here [create_board](https://github.com/edennuriel/hiring-engineers/blob/master/create_board.py)'
-docit ' - link to [graph] (https://app.datadoghq.com/graph/embed?token=a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096)'
+docit ' - link to [graph](https://app.datadoghq.com/graph/embed?token=a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096)'
 docit '![static image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/dashboard.png) '
 docit 'Bonus Question: What is the Anomaly graph displaying?... It uses the selected algorithm to paint in red a pattern that is considered outside of the normal behavior of the metric by comparing it to the metric history'
 docit 'PS:  to get some performence figures on the mysql.performence.opentables Im just running a select all on all tables on all databases for a 100 times or so, that will be an anomoly for sure'
