@@ -3,11 +3,11 @@
 BASEDIR="$(dirname $0)"
 
 docit() {
-	echo "$@"
+        echo "$@"
         echo "$@" >> answers.md
 }
 
-bootstrap(){ 
+bootstrap(){
 # this is happenning before the git clone
 # make sure the host is ready
 # prms
@@ -19,16 +19,17 @@ bootstrap(){
 # this is mandatory for this to work
 source .env
 sudo apt install git curl docker.io  -y > /dev/null 2>&1
-sudo systemctl start docker 
+sudo systemctl start docker
 git clone https://github.com/edennuriel/hiring-engineers.git
 cd hiring-engineers
 }
-# the rest can run from here...
-docit '# PREPARING'
-docit ' - lab environment - install curl and git, get the repo and install the agentr'
+source resources
 
-bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-docit '#METRICS'
+docit '# PREPARING'
+docit ' - lab environment - install curl, get the repo and install the agent'
+
+[[ command -v datadog-agent ]] || bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+docit '# METRICS'
 docit ' - add tags to the agent config and restart the agent'
 
 # Adding Custom tags to agent and restarting agent
@@ -43,8 +44,9 @@ tags:
 EOF
 
 systemctl restart datadog-agent
-docit ' - URL showing the tags as variables and used in group by viz of host map is here: docit "https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064"'
-docit ' - static image'
+docit ' - URL showing the tags as variables and used in group by viz of host map is [here] (https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064)'
+docit ' - or in the host map screenshot here'
+docit '![static_image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/tags-added.png)'
 
 docit " - Install mysql on the host + mongo as docker container"
 
@@ -95,7 +97,7 @@ sleep 2
 while [[ ! $(datadog-agent status | grep mysql) ]]; do echo -n "."; sleep 1; done
 
 docit ' - Configure custom metric check and metric'
-docit ' - Use python script SCRIPT to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
+docit ' - Use python script [my_metric.py] (https://github.com/edennuriel/hiring-engineers/blob/master/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
 grep -v "#" my_metric.py > /etc/datadog-agent/checks.d/my_metric.py
 
 echo  << EOF > /etc/datadog-agent/conf.d/my_metric.yaml
@@ -111,10 +113,10 @@ docit "...Yes, Check interval is controled by the metric conf not the check code
 
 docit '# VISUALIZING'
 docit ' - I used tth web UI to create the graphs, then the get_boards to extract the configuration of the graphs so i can create it via the rest api'
-docit ' - It seems the python API does not have Dashboard method as documented in the API section of the docit <url>, insteat a Timetable API was available (also swapped widgets list for graphs) so maybe some docit updates is due or maybe I was missing something'
-docit ' - get_boards is hard coded for the board i created as the template <> create board script is here <>'
-docit ' - link to the vizualisation https://app.datadoghq.com/account/settings#a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096'
-docit ' - and a local image too'
+docit ' - It seems the python API does not have Dashboard method as documented in the API section of the [doc] (https://docs.datadoghq.com/api/?lang=python#create-a-dashboard), insteat a Timetable API was available (also swapped widgets list for graphs) so maybe some docit updates is due or maybe I was missing something'
+docit ' - get_boards is hard coded for the board I created in the UI, create board script is here [create_board](https://github.com/edennuriel/hiring-engineers/blob/master/create_board.py)'
+docit ' - link to [graph] (https://app.datadoghq.com/graph/embed?token=a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096)'
+docit '![static image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/dashboard.png) '
 docit 'Bonus Question: What is the Anomaly graph displaying?... It uses the selected algorithm to paint in red a pattern that is considered outside of the normal behavior of the metric by comparing it to the metric history'
 docit 'PS:  to get some performence figures on the mysql.performence.opentables Im just running a select all on all tables on all databases for a 100 times or so, that will be an anomoly for sure'
 
@@ -128,8 +130,8 @@ docit "# MONITORING"
 docit " - configured monitor for my_metric via UI and configure scheduled downtime"
 docit " - scripted the creation of the monitor here "
 docit " - for the scheduled downtime, i used to scheduled (friday 7am - Mon 9am and Mon,Tue,Wed,Thur 7pm-9am) I could'nt grasp why the schedular makes it hard to pick any time or why there's no cron syntax available, also the time UI is iffy with keyboard controls"
-docit " - here is an example of a notification for the scheduled downtime "
-docit " - and for the monitor triggering "
+docit " - here is an example of a notification for the scheduled downtime"
+docit '![email](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/downtime-email.png)'
 
 docit "# APMING"
 docit " - configure agent conf to enable APM" 
@@ -166,11 +168,11 @@ conda activate flaskenv
 conda install flask
 pip install ddtrace datadog python-dotenv
 touch .flaskenv
-cat << EOX >> .flaskenv
+cat << EOF >> .flaskenv
 FLASK_APP=app.py
 FLASK_RUN_PORT=5050
 SERVER_NAME="0.0.0.0:5050"
-EOX
+EOF
 
 docit " - run the app with ddtrace in the background and generate some traffic"
 ddtrace-run flask run --host 0.0.0.0 & >/dev/null 2>&1
@@ -179,6 +181,7 @@ docit " - chart "
 docit 'Bonus Question: What is the difference between a Service and a Resource?... service is an endpoint you access to get service, like db, web server, resource is more granular rest endpoint, db table, specific query or file'
 
 docit "# LOGGING"
+
 docit ' - configured rsyslog to forward events from auth.log and use TLS'
 if [[ $(grep "$DD_API_KEY" /etc/rsyslog.d/datadog.conf) ]]
 then
@@ -201,7 +204,13 @@ $ActionSendStreamDriverAuthMode x509/name
 $ActionSendStreamDriverPermittedPeer *.logs.datadoghq.com
 *.* @@intake.logs.datadoghq.com:10516;DatadogFormat
 EOF
+
 fi
 
 # need some work here to look for it and add it, for now just add
 echo 'module(load=imfile PollingInterval=10)' >> /etc/rsyslog.conf
+
+# get cert 
+curl -O https://docs.datadoghq.com/crt/intake.logs.datadoghq.com.crt
+mv intake.logs.datadoghq.com.crt /etc/ssl/certs/
+
