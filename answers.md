@@ -11,5 +11,6 @@ Output: ![user datadog in mysql](https://user-images.githubusercontent.com/47703
 ![mysql configured and datadog reporting mysql metrics](https://user-images.githubusercontent.com/47703847/52917219-e3df2700-32b6-11e9-9d77-9340b27031e7.png)
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Answer: Input: Created custom_test.py file in checks.d 
+[Python Script](hiring-engineers/custom_test.py)
  
 
