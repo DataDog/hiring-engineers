@@ -314,7 +314,7 @@ Please include your fully instrumented app in your submission, as well.
 ## Final Question:
 
 **Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?**
-  * Seeing as this is a powerful monitoring platform you can gain insight into anything that changes states. It would be fun to outfit a smart home (or any commercial building) and all of its sensors to gain insight on power consumption, HVAC health, foot traffic, etc.
+  * Outfitting a copper mine and all of its assets - from trucks, cranes, and drills would be a childhood dream. I would first  do a proof of concept on my sons tonka trucks and sandbox. I would mointor the load weight (in lbs) and state (full or empty) at several parts of a mock mining process. Using the desired data could give valuable insight into how to better organize my crew to become more productive. An interesting potential second order effect would be monitoring asset health and deploying predictive maintence on all my gear! 
 
 ## References
  * [Guide to the Docker Agent](https://docs.datadoghq.com/agent/docker/)
