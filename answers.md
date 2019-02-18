@@ -1,6 +1,7 @@
 # ANSWERS
 
 ## COLLECTING METRICS:
+
 1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Answer: Input: Added tags as input in agent config file that is datadog.yaml file. 
@@ -27,13 +28,19 @@ Installed respective datadog integration for that database and configured it
   
 /etc/datadog-agent/conf.d/mysql.d file:
   
- [mysql conf file](https://user-images.githubusercontent.com/47703847/52919061-3bd45880-32cc-11e9-9129-c03a3ab658d5.png)
+![mysql conf file](https://user-images.githubusercontent.com/47703847/52919061-3bd45880-32cc-11e9-9129-c03a3ab658d5.png)
  
 Output:
 
+datadog user included in all mysql users
+
 ![user datadog in mysql](https://user-images.githubusercontent.com/47703847/52916498-323bf800-32ae-11e9-80ee-a78af8e42142.png)
 
+mysql installed shown on UI
+
 ![mysql installed](https://user-images.githubusercontent.com/47703847/52917191-6c10fc80-32b6-11e9-84f1-9b489e548c6a.png)
+
+mysql metrics reported in summary 
 
 ![mysql configured and datadog reporting mysql metrics](https://user-images.githubusercontent.com/47703847/52917219-e3df2700-32b6-11e9-9d77-9340b27031e7.png)
  
@@ -96,16 +103,22 @@ Answer: Clicked on the camera button on each graph and mentioned email id with @
 
 Output : 
 
+Camera
+
 ![snapshot of graph and email you](https://user-images.githubusercontent.com/47703847/52928565-67783280-330e-11e9-8307-4a42b6f6637a.png)
+
+Email notification
 
 ![email of graph snapshot](https://user-images.githubusercontent.com/47703847/52928575-719a3100-330e-11e9-86c0-7e7acbb8d914.png)
 
 Bonus Question: What is the Anomaly graph displaying?
+
 Answer:
-
-
-
-
+It is used for dynamic infrastructure and metrics. By applying anomaly function on a dynamic graph, it displays reults based on historical trends. It shows that even though a metric fluctuate constantly, it is still in the range of past trends. When actual traffic doesn't match the prediction then that is called anomaly. Datadog uses three algorithms for anamoly
+1. Basic: lagging rolling quantile algo
+2. Agile: SARIMA
+3. Robust: Seasonal-trend Decomposition Algorithm
+All the algorithms are robust so past anomalies don't blow off future broadcasts, adapt to changes at metric base-line, adapt to missing data
 
 ## MONITORING DATA:
 
@@ -115,7 +128,7 @@ Answer:
 >> Alerting threshold of 800
 >> And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Answer: Went to the Create Monitor section on datadog UI
+Answer: Went to Create Monitor section on datadog UI
 Input:
 
 ![create monitor input 1](https://user-images.githubusercontent.com/47703847/52928908-0e110300-3310-11e9-8b2b-6b78397363b8.png)
@@ -171,7 +184,7 @@ NO DATA output
 >> Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 >> When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-ANSWERS: The host ip was determined by navigating datadog's UI Infrastructure list >> Inspect shruti-VirtualBox >> system info >> network as 10.0.2.5
+Answers: The host ip was determined by navigating datadog's UI Infrastructure list >> Inspect shruti-VirtualBox >> system info >> network as 10.0.2.5
 As seen in the image my_metric was > 800.0
 
 Input:
@@ -182,8 +195,71 @@ Output:
 
 ![alert message with host ip output](https://user-images.githubusercontent.com/47703847/52931400-2c7bfc00-331a-11e9-8182-1e3986612cd0.png)
 
+>> Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+Answers:
+
+Schedule M-F 7 pm - 9 am. I tried changing time-zone multiple times but it would just stay America-New_york
+
+Input:
+
+![schedule downtime m-f input 1](https://user-images.githubusercontent.com/47703847/52932673-867ec080-331e-11e9-99c0-02cbe3f2fb59.png)
+
+![schedule downtime m-f input 2](https://user-images.githubusercontent.com/47703847/52932698-a3b38f00-331e-11e9-86bd-5e0bd057f243.png)
+
+Email notification:
+
+![schedule downtime email notification m-f](https://user-images.githubusercontent.com/47703847/52932663-7a92fe80-331e-11e9-961b-0b8c91d0677c.png)
+
+Schedule saturday sunday entire day
+
+Input:
+
+![schedule downtime saturday sunday input](https://user-images.githubusercontent.com/47703847/52932704-ab733380-331e-11e9-9b92-71a67964ed88.png)
+
+Email notification:
+
+![schedule downtime email notification sat-sun](https://user-images.githubusercontent.com/47703847/52932669-82eb3980-331e-11e9-8a1e-5c675b2cde6a.png)
+
+## COLLECTING APM DATA:
+
+>> Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+>> Please include your fully instrumented app in your submission, as well
+
+Answers:
+
+Started collecting traces by running the command
+1. pip install ddtrace
+2. ddtrace-run python my_app.py
+
+Python script for my_app
+
+[Python Script](https://github.com/srp84/hiring-engineers/blob/master/my_app.py)
+
+Flask App on UI
+
+![flask app](https://user-images.githubusercontent.com/47703847/52937458-23e0f100-332d-11e9-88bc-fb37caac24db.png)
+
+Dashboard with APM and Infrastructure Metrics
+
+![infrastructure and apm graph](https://user-images.githubusercontent.com/47703847/52937469-2d6a5900-332d-11e9-85cd-974fc3ee9f2e.png)
+
+Trace
+
+![apm trace](https://user-images.githubusercontent.com/47703847/52937501-4246ec80-332d-11e9-9d00-1c9026e41049.png)
+
+## FINAL QUESTION:
+
+>> Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?
+
+Answer: I think datadog is an interesting tool that provides communication between data in all ways possible. 
+According to me, Datadog can be used effectively for analysing human behaviour for Fitbit and keep a track of data about the amount of sleep, the rate of heartbeat, walking data, running data and so on.
 
 
 
