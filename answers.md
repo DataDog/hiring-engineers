@@ -49,22 +49,22 @@ mysql metrics reported in summary
 Answer:  
 step 1: Created custom_test.py file in /etc/datadog-agent/checks.d 
 
-       [Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.py)
+[Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.py)
        
 step 2:Created custom_test.yaml file in /etc/datadog-agent/conf.d
 
-       ![custom agent check input in yaml file](https://user-images.githubusercontent.com/47703847/52919311-2280db80-32cf-11e9-91cd-2c8b08fb1e67.png)
+[Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.yaml)
        
 step 3:Run Agent Check:
        sudo -u dd-agent -- datadog-agent check custom_test
        
-       ![output of agent-check 1](https://user-images.githubusercontent.com/47703847/52919212-f9ac1680-32cd-11e9-811f-79d236d36411.png)
+![output of agent-check 1](https://user-images.githubusercontent.com/47703847/52939745-e5e6cb80-3332-11e9-8ee2-be353b22cce2.png)
        
-       ![output of agent check 2](https://user-images.githubusercontent.com/47703847/52919214-fdd83400-32cd-11e9-8810-8674bc1014e3.png)
+![output of agent check 2](https://user-images.githubusercontent.com/47703847/52939760-ec754300-3332-11e9-88e1-72f177e986cf.png)
        
 step 4:It was successfully implemented and available in metrics summary
 
-       ![my_metric image](https://user-images.githubusercontent.com/47703847/52919267-86ef6b00-32ce-11e9-9b42-f235a956c488.png)
+![my_metric image](https://user-images.githubusercontent.com/47703847/52919267-86ef6b00-32ce-11e9-9b42-f235a956c488.png)
        
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
