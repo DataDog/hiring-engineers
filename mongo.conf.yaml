@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+      # -   server: mongodb://datadog:NYCHlB6E4R1XT43BnyrpAIuA@localhost:27016
+      #     tags:
+      #         - db
+      #         - macos
+      -   server: mongodb://datadog:NYCHlB6E4R1XT43BnyrpAIuA@localhost:27017
+          tags:
+              - db
+              - macos

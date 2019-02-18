@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+ - name: Chrome
+   search_string: ['Google Chrome']
+   ignore_denied_access: True
