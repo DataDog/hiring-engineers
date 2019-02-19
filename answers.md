@@ -1,5 +1,5 @@
 ## Prerequisites - Setup the environment
-  I chose to use docker to launch datadog agent and mointor a mongodb instance.
+  I chose to use docker to launch datadog agent and monitor a mongodb instance.
 
   ### Pull Images Via Docker Hub
   * Mongo: `docker pull mongo`
