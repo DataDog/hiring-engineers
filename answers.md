@@ -394,7 +394,7 @@ The link for this url is below
 ```
 https://p.datadoghq.com/sb/09loq3vwd22vwo7d-3b74b8f02720d5147e836c6a64b27615
 ```
-I felt very satisfied being able to work through the numerous bugs I encountered in this journey. A very rewarding experience being able to problem solve and scour the docs.
+I felt very satisfied being able to work through the numerous bugs I encountered in this journey. A very rewarding experience being able to problem solve and scour the docs. Thank you for the opportunity on working on this project
 
 ### Bonus Question: What is the difference between a Service and a Resource?
 
