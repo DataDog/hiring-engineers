@@ -35,6 +35,7 @@ Visualizing Data:
 ![image](https://user-images.githubusercontent.com/32622982/53060859-b50cb080-3470-11e9-8440-2a3440a36f57.png)
 
 What is the anomaly graph displaying?
+
 Answer: When the PSQL makes commits, the graph shows the activity.
 
 3. Monitoring Data
@@ -51,6 +52,7 @@ Answer: When the PSQL makes commits, the graph shows the activity.
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 1.Scheduled downtime between 7 pm to 9 am on weekdays
+
 2. Scheduled downtimes all day on Saturday and Sunday.
 
 ![image](https://user-images.githubusercontent.com/32622982/53060928-f00ee400-3470-11e9-93a9-482afb63c4ae.png)
@@ -62,6 +64,7 @@ Collecting APM Data:
 ![image](https://user-images.githubusercontent.com/32622982/53060969-15035700-3471-11e9-84c3-750992362773.png)
 
 Question: What is the difference between a Service and a Resource?
+
 Answer: A service can be defined as a function that does a task. It can be a unit of design and implementation. It can be a database, interceptor, API endpoint etc. A resource describes the implementation or action of a service like a query to a database. We can think of service as a verb and resource as a noun.
 
 Final Question:
@@ -69,8 +72,11 @@ Is there anything creative you would use Datadog for?
 
 1.	Stock Market Prediction - Based on daily highs and lows of the stock price.
 2.	Personal Health Tracking 
-                - Sleep Monitoring and PSQI Sleep score computation.
-                - Weight loss and gain based on calorie intake and diet.
+
+      - Sleep Monitoring and PSQI Sleep score computation.
+                
+      - Weight loss and gain based on calorie intake and diet.
+                
 3.	Traffic Monitoring based on your saved routes on freeways – Can monitor traffic on your routes and alert you/notify you about the optimal time to avoid traffic.
 
 
