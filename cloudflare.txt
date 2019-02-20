@@ -1,0 +1,2 @@
+ClientID     : 258e1fc7942eba67e2da2691b34d4483.access.nuevecuatrouno.com
+Client Secret: d69507dd1b6754aa09dfeab078157360ebe934cfb037205e0daf07a6c0bef2f7
