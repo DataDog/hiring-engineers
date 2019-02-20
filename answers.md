@@ -1,14 +1,93 @@
 # ANSWERS
 
+Vagrant allows users to create and destroy virtual machines and transfer the vagrant file to another user who can generate the same environment on which you are working. It helps you transfer development environment from one machine to another.I Installed Vagrant for Windows 64-bit on my laptop. To install Vagrant you need to do two things:
+Step-1. Install virtual machine from this website:
+        https://www.virtualbox.org/
+        Once you install virtual box, it would look like this:
+   
+   ![virtual box installed](https://user-images.githubusercontent.com/47703847/53057366-336f4f80-347d-11e9-90a1-94fabc4bc0da.png)
+
+Step-2. Install Vagrant for Windows 64-bitfrom this website:
+        https://www.vagrantup.com/downloads.html
+After installing vagrant, go to command prompt of desktop and enter following command to check for successful installation:
+vagrant -v
+
+![vagrant has succesfully installed](https://user-images.githubusercontent.com/47703847/53057803-ca88d700-347e-11e9-80bc-25a7a22d3678.png)
+
+Go to https://app.vagrantup.com/boxes/search. You'll see different boxes. I selected ubuntu/trusty64
+Go to Command prompt : Write following commands:
+1. vagrant box add ubuntu/trusty64
+2. vagrant init ubuntu/trusty64
+3. vagrant up
+After these commands, the box is installed.
+Now give ssh command : vagrant ssh
+
+Now go to VirtualBox, 
+
+Select the user, type in your password
+![virtual box user](https://user-images.githubusercontent.com/47703847/53064051-67a23a80-3494-11e9-8425-797fdebf41dc.png)
+
+![vm desktop](https://user-images.githubusercontent.com/47703847/53064055-6a9d2b00-3494-11e9-92c6-d71fab0d428e.png)
+
+Open Applications>Terminal
+In Terminal, put command:
+sudo -i
+put your password.
+
+![starting terminal on vm](https://user-images.githubusercontent.com/47703847/53058462-218fab80-3481-11e9-80ad-69448ce083e5.png)
+
+SETTING UP dd-agent:
+
+Go to https://app.datadoghq.com/account/settings#agent/ubuntu (You can select any OS that you are working on, I selected ubuntu).Directed to page that looks like this:
+
+![dd-agent install](https://user-images.githubusercontent.com/47703847/53064622-7a1d7380-3496-11e9-971b-e60c97aba95f.png)
+
+I am going to copy "use our easy one-step install" command and paste it on my VM terminal.
+
+![dd-agent install command on vm terminal](https://user-images.githubusercontent.com/47703847/53064848-442cbf00-3497-11e9-9213-07b9ab2bedac.png)
+
+After installing dd-agent, I am going to start this agent as a service by putting following command on my VM Terminal:
+
+sudo service datadog-agent start
+
+On your terminal open following path: /etc/datadog-agent in which you will find following files:
+
+![datadog-agent path](https://user-images.githubusercontent.com/47703847/53065148-738ffb80-3498-11e9-9bee-5ce849c81ffb.png)
+
+The configuration files and folders for the Agent are located in:
+/etc/datadog-agent/datadog.yaml
+Configuration files for Integrations:
+/etc/datadog-agent/conf.d/
+
 ## COLLECTING METRICS:
 
 1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Answer: Input: Added tags as input in agent config file that is datadog.yaml file. 
+Answer:
+Input: To Add host tags as input in agent config file that is datadog.yaml file, first put following command to open that file and edit it.
+vi datadog.yaml
+The entire file has comments. While reading comments I came across tags in comment section as shown below:
+
+![tags before editing file](https://user-images.githubusercontent.com/47703847/53066032-126a2700-349c-11e9-95d5-432dad241ac7.png)
+
+The format for assigning tags is 
+tags: <KEY_1>:<VALUE_1>, <KEY_2>:<VALUE_2> or
+tags:
+    - <KEY_1>:<VALUE_1>
+    - <KEY_2>:<VALUE_2>
+I assigned two host tags as input as shown below. I saved and exited the file by pressing esc and then writing :wq.
 
 ![assisgning tags input](https://user-images.githubusercontent.com/47703847/52916135-e8511300-32a9-11e9-85a5-7937532162bb.png)
 
-Output: I have created User tags to play with datadog UI
+Output: Now to see the output on my UI, I logged into my datadog account with username and password. Go to Hostmap.
+
+![click on hostmap](https://user-images.githubusercontent.com/47703847/53066340-5873ba80-349d-11e9-9e5f-f6fc468b12bb.png)
+
+![directed to shruti-virtualbox host](https://user-images.githubusercontent.com/47703847/53066399-b0aabc80-349d-11e9-8980-5f661083d98b.png)
+
+Click on shruti-VirtualBox host, The host tags assigned are displayed under Tags > datadog section
+I have created User tags to play with datadog UI by clicking on edit tags. Writting tags like:
+instance:comments,instance:follows,instance:likes,name:instademo and saved them.
 
 ![host tags and user tags output](https://user-images.githubusercontent.com/47703847/52916383-bab99900-32ac-11e9-8e6f-a722298dbd73.png)
 
@@ -16,42 +95,52 @@ Output: I have created User tags to play with datadog UI
 
 Answer: 
 
-Input: Installed mysql on ubuntu by following commands:
+Input: Installed mysql on VM terminal by following commands:
                - sudo apt-get update
                - sudo apt-get install mysql-server
+               - sudo apt install mysql-workbench (To get the workbench of mysql on my VM Desktop)
                
-Installed respective datadog integration for that database and configured it
+Open datadog UI and click on integrations as show below:
+
+![click on integrations](https://user-images.githubusercontent.com/47703847/53067060-8b6b7d80-34a0-11e9-93fe-3b7403e70029.png)
+
+![mysql installed](https://user-images.githubusercontent.com/47703847/52917191-6c10fc80-32b6-11e9-84f1-9b489e548c6a.png)
+               
+Installed respective datadog integration for that database and configured it by following commands on VM Terminal:
                - sudo mysql -e "CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUE PASSWORD>';"
                - sudo mysql -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'127.0.0.1' WITH MAX_USER_CONNECTIONS 10;"
                - sudo mysql -e "GRANT PROCESS ON *.* TO 'datadog'@'127.0.0.1';"
                - sudo mysql -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'127.0.0.1';"
   
-/etc/datadog-agent/conf.d/mysql.d file:
+Output: datadog user included in all mysql users can be checked by putting command:
+SELECT User, Host FROM mysql.user;
+
+![user datadog in mysql](https://user-images.githubusercontent.com/47703847/52916498-323bf800-32ae-11e9-80ee-a78af8e42142.png)
+
+Edit configuration file for mysql as follows : /etc/datadog-agent/conf.d/mysql.d. Open and edit conf.yaml by:
+vi conf.yaml
   
 ![mysql conf file](https://user-images.githubusercontent.com/47703847/52919061-3bd45880-32cc-11e9-9129-c03a3ab658d5.png)
  
 Output:
 
-datadog user included in all mysql users
-
-![user datadog in mysql](https://user-images.githubusercontent.com/47703847/52916498-323bf800-32ae-11e9-80ee-a78af8e42142.png)
-
-mysql installed shown on UI
-
-![mysql installed](https://user-images.githubusercontent.com/47703847/52917191-6c10fc80-32b6-11e9-84f1-9b489e548c6a.png)
-
-mysql metrics reported in summary 
+To check for metrics reported by mysql go to Metrics > Summary on Datadog UI > Type "mysql" in Filter Metrics by name search and all the metrics for mysql will appear in the list.
 
 ![mysql configured and datadog reporting mysql metrics](https://user-images.githubusercontent.com/47703847/52917219-e3df2700-32b6-11e9-9d77-9340b27031e7.png)
  
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Answer:  
-step 1: Created custom_test.py file in /etc/datadog-agent/checks.d 
+step 1: Created a new custom_test.py file in following path: /etc/datadog-agent/checks.d by following command:
+vi custom_test.py
 
 [Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.py)
+
+After writing python script, checked for successful execustion of file by following command:
+python custom_test.py
        
-step 2:Created custom_test.yaml file in /etc/datadog-agent/conf.d
+step 2:Created custom_test.yaml file in following path: /etc/datadog-agent/conf.d by following command:
+vi custom_test.yaml
 
 [Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.yaml)
        
@@ -69,7 +158,7 @@ step 4:It was successfully implemented and available in metrics summary
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 Answer:This answers the BONUS QUESTION too.
-Changes made in /etc/datadog-agent/conf.d/custom_test.yaml file
+Changes made in /etc/datadog-agent/conf.d/custom_test.yaml file. Defined minimum interval as 45 seconds.
 
 [Python Script](https://github.com/srp84/hiring-engineers/blob/master/custom_test.yaml)
 
@@ -81,15 +170,28 @@ Changes made in /etc/datadog-agent/conf.d/custom_test.yaml file
 >> Any metric from the Integration on your Database with the anomaly function applied.
 >> Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Answer: Created a new python file in /etc/datadog-agent named as new_timeboard.py
-        Reffered to API section under DOCS of datadog website.
-        Created three different graphs by listing them in graphs: section of python code.
+Answer: Created a new python file in following path: /etc/datadog-agent and named it as new_timeboard.py
+
+![created new_timeboard python file](https://user-images.githubusercontent.com/47703847/53067606-f918a900-34a2-11e9-8d9c-41379e676594.png)
+        
+Reffered to API section under DOCS of datadog website.Created three different graphs by listing them in graphs: section of python code.
+The requests in python script followed the following rule:
+"q": "function(space aggregation:metric{scope}.Time-aggregation)"
+The function and Time-aggregation part is optional.
         
 Input:  [Python Script](https://github.com/srp84/hiring-engineers/blob/master/new_timeboard.py)
 
 Output: ![three graphs on a timeboard](https://user-images.githubusercontent.com/47703847/52919498-0d0cb100-32d1-11e9-8bd7-a72816122f2c.png)
 
 2. Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Answer:Go to datadog UI and click on Dashboard List as shown below:
+
+![click on dashboard list](https://user-images.githubusercontent.com/47703847/53068067-0040b680-34a5-11e9-8cd4-68b303e06cd7.png)
+
+![custom timeboard in dashboard list](https://user-images.githubusercontent.com/47703847/53068075-06cf2e00-34a5-11e9-8a72-f738aaf61aa2.png)
+
+![three graphs on a timeboard](https://user-images.githubusercontent.com/47703847/52919498-0d0cb100-32d1-11e9-8bd7-a72816122f2c.png)
 
 >> Set the Timeboard's timeframe to the past 5 minutes
 
@@ -128,7 +230,14 @@ All the algorithms are robust so past anomalies don't blow off future broadcasts
 >> Alerting threshold of 800
 >> And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Answer: Went to Create Monitor section on datadog UI
+Answer: Go to Datadog UI and Create Monitor as shown below:
+
+![click on new monitor](https://user-images.githubusercontent.com/47703847/53068194-9a086380-34a5-11e9-8e8d-ec4ebd31a024.png)
+
+Select Metric Monitor:
+
+![select metric monitor](https://user-images.githubusercontent.com/47703847/53068287-f3709280-34a5-11e9-9cbf-d32f2c501437.png)
+
 Input:
 
 ![create monitor input 1](https://user-images.githubusercontent.com/47703847/52928908-0e110300-3310-11e9-8b2b-6b78397363b8.png)
@@ -145,6 +254,10 @@ Answers:
 
 Email Notification i/p:
 
+The message before notify your team was:
+ALERT{host: shruti-VirtualBox}
+Monitor Message: Threshold is breached.
+
 ![email notification input](https://user-images.githubusercontent.com/47703847/52929399-4580af00-3312-11e9-8cc3-f25e2902a514.png)
 
 Triggered Monitor: 
@@ -157,7 +270,12 @@ Email of triggered monitor:
 
 >> Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-Answers: ALERT input 
+Various template variables are found by clicking use message template vaiables.
+
+![template variables](https://user-images.githubusercontent.com/47703847/53068901-1603ab00-34a8-11e9-86e5-28461f0aeb7d.png)
+
+Answers: ALERT input:
+Used {{#is_alert}}{{/is_alert}} 
 
 ![alert message input](https://user-images.githubusercontent.com/47703847/52930685-63044780-3317-11e9-8646-a1ff1e6d1523.png)
 
@@ -166,6 +284,7 @@ ALERT output
 ![alert message email output](https://user-images.githubusercontent.com/47703847/52930687-68619200-3317-11e9-8db4-7914178bc373.png)
 
 WARN input
+Used {{#is_warning}}{{/is_warning}}
 
 ![warn input](https://user-images.githubusercontent.com/47703847/52930690-6f88a000-3317-11e9-9088-4d88ae3bdacb.png)
 
@@ -174,6 +293,7 @@ WARN output
 ![warn message output](https://user-images.githubusercontent.com/47703847/52930694-72839080-3317-11e9-9c15-29e359f70853.png)
 
 NO DATA input
+Used {{#is_no_data}}{{/is_no_data}}
 
 ![no data input](https://user-images.githubusercontent.com/47703847/52930703-79120800-3317-11e9-9089-7f6dfb3d07b8.png)
 
@@ -184,16 +304,21 @@ NO DATA output
 >> Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 >> When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Answers: The host ip was determined by navigating datadog's UI Infrastructure list >> Inspect shruti-VirtualBox >> system info >> network as 10.0.2.5
-As seen in the image my_metric was > 800.0
+Answers: The host ip was determined by navigating datadog's UI Infrastructure list >> Inspect shruti-VirtualBox >> system info >> network as 10.0.2.5 to check if its displaying correct in e-mail notification.
+
+![verification of ip address](https://user-images.githubusercontent.com/47703847/53068437-7c87c980-34a6-11e9-9ed3-0fa76d2ae675.png
+)
 
 Input:
+{{host.shruti-VirtualBox}} with IP {{host.ip}} is down @srp84@njit.edu
 
 ![alert message with host ip input](https://user-images.githubusercontent.com/47703847/52931384-20903a00-331a-11e9-8b5c-d48e36455163.png)
 
 Output:
 
 ![alert message with host ip output](https://user-images.githubusercontent.com/47703847/52931400-2c7bfc00-331a-11e9-8182-1e3986612cd0.png)
+
+As seen in the image my_metric was > 800.0
 
 >> Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -205,7 +330,17 @@ Answers:
 
 Schedule M-F 7 pm - 9 am. I tried changing time-zone multiple times but it would just stay America-New_york
 
-Input:
+Input:Go to Datadog UI, click on Manage Downtime under Monitors as shown below:
+
+![click on manage downtime](https://user-images.githubusercontent.com/47703847/53069087-c07bce00-34a8-11e9-9142-b9d0a31d17b6.png)
+
+![click on schedule downtime](https://user-images.githubusercontent.com/47703847/53069139-e7d29b00-34a8-11e9-964c-eaca2b604f14.png)
+
+Choose Monitor name to silence:
+
+![choose monitor name to silence](https://user-images.githubusercontent.com/47703847/53069248-397b2580-34a9-11e9-83c1-2069526fb0dc.png)
+
+Schedule Downtime:
 
 ![schedule downtime m-f input 1](https://user-images.githubusercontent.com/47703847/52932673-867ec080-331e-11e9-99c0-02cbe3f2fb59.png)
 
@@ -217,7 +352,15 @@ Email notification:
 
 Schedule saturday sunday entire day
 
-Input:
+Input:Go to Datadog UI, click on Manage Downtime under Monitors as shown below:
+
+![click on manage downtime](https://user-images.githubusercontent.com/47703847/53069087-c07bce00-34a8-11e9-9142-b9d0a31d17b6.png)
+
+![click on schedule downtime](https://user-images.githubusercontent.com/47703847/53069139-e7d29b00-34a8-11e9-964c-eaca2b604f14.png)
+
+Choose Monitor name to silence:
+
+![choose monitor name to silence](https://user-images.githubusercontent.com/47703847/53069248-397b2580-34a9-11e9-83c1-2069526fb0dc.png)
 
 ![schedule downtime saturday sunday input](https://user-images.githubusercontent.com/47703847/52932704-ab733380-331e-11e9-9b92-71a67964ed88.png)
 
@@ -233,25 +376,41 @@ Email notification:
 
 Answers:
 
-Started collecting traces by running the command
+Created Python file my_app.py in /etc/datadog-agent
+
+[Python Script](https://github.com/srp84/hiring-engineers/blob/master/my_app.py)
+
+Then went to /etc/datadog-agent to edit datadog.yaml file to enable apm config as true
+
+![apm config enabled true](https://user-images.githubusercontent.com/47703847/53070319-bcea4600-34ac-11e9-9824-8d38a2554059.png)
+
+Set up APM first by following different commands for different OS by following steps given on https://app.datadoghq.com/apm/install# Started collecting traces by running the command on VM:
 1. pip install ddtrace
 2. ddtrace-run python my_app.py
 
-Python script for my_app
+![output of ddtrace](https://user-images.githubusercontent.com/47703847/53070245-83b1d600-34ac-11e9-8720-128cf520718d.png)
 
-[Python Script](https://github.com/srp84/hiring-engineers/blob/master/my_app.py)
+To view the app on UI, click service-map on UI
+
+![click on service-map](https://user-images.githubusercontent.com/47703847/53069515-451b1c00-34aa-11e9-91cc-015fa8dac612.png)
 
 Flask App on UI
 
 ![flask app](https://user-images.githubusercontent.com/47703847/52937458-23e0f100-332d-11e9-88bc-fb37caac24db.png)
 
+trace.flask metrics in Summary
+
+![trace flask metrics](https://user-images.githubusercontent.com/47703847/53070642-dcce3980-34ad-11e9-927c-e6f7aa35688d.png)
+
+![apm trace](https://user-images.githubusercontent.com/47703847/52937501-4246ec80-332d-11e9-9d00-1c9026e41049.png)
+
+Created a new graph on Custom Timeboard from Datadog UI
+
+![apm graph via ui](https://user-images.githubusercontent.com/47703847/53070527-72b59480-34ad-11e9-9325-c1f86fe4e43a.png)
+
 Dashboard with APM and Infrastructure Metrics
 
 ![infrastructure and apm graph](https://user-images.githubusercontent.com/47703847/52937469-2d6a5900-332d-11e9-85cd-974fc3ee9f2e.png)
-
-Trace
-
-![apm trace](https://user-images.githubusercontent.com/47703847/52937501-4246ec80-332d-11e9-9d00-1c9026e41049.png)
 
 ## FINAL QUESTION:
 
