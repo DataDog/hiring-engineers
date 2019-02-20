@@ -329,7 +329,7 @@ Output:
 
 ![alert message with host ip output](https://user-images.githubusercontent.com/47703847/52931400-2c7bfc00-331a-11e9-8182-1e3986612cd0.png)
 
-As seen in the image my_metric was > 800.0  
+As seen in the image my_metric was > 800.0 and host ip displayed as 10.0.2.5
 
 >> Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -426,7 +426,7 @@ Dashboard with APM and Infrastructure Metrics
 >> Bonus Question: What is the difference between a Service and a Resource?
 
 A service is a set of processes that do the same job.
-The service list from UI for flsk is shown below:
+The service list from UI for flask is shown below:
 
 ![flask shown in services list](https://user-images.githubusercontent.com/47703847/53106888-f600d580-3501-11e9-95bf-0da9008dd7c2.png)
 
