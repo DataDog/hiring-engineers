@@ -79,7 +79,7 @@ Visualizing Data:
 What is the anomaly graph displaying?
 Answer: When the PSQL makes commits, the graph shows the activity.
 
-3. Monitoring Data
+Monitoring Data
 1.	To avoid monitoring the data constantly, I set up alerts for warning threshold, alerting threshold and also for alerts for no data reported.
 2.	I used the monitor menu in the UI and set up alerts and wrote custom alert messages to get notifications on my email address when the alerts are triggered.
 
