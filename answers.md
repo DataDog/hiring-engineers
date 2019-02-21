@@ -85,7 +85,7 @@ Answer: When the PSQL makes commits, the graph shows the activity.
 
   ![image](https://user-images.githubusercontent.com/32622982/53147364-3e4ce180-355c-11e9-931f-26d807eb1fd6.png)
 	
-	![image](https://user-images.githubusercontent.com/32622982/53147397-56246580-355c-11e9-84b6-80c91af50bb7.png)
+  ![image](https://user-images.githubusercontent.com/32622982/53147397-56246580-355c-11e9-84b6-80c91af50bb7.png)
 
 3.	The screenshot below shows the alert notification.
 
