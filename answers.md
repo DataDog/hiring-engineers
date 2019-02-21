@@ -100,7 +100,7 @@ Bonus Question: Scheduled downtime for after work-hours from 7 PM to 9PM M-F.
 	
 Scheduled downtime for weekends all day - Saturday and Sunday.
 
-	![image](https://user-images.githubusercontent.com/32622982/53147580-cb903600-355c-11e9-93be-0d598c48ac33.png)
+  ![image](https://user-images.githubusercontent.com/32622982/53147580-cb903600-355c-11e9-93be-0d598c48ac33.png)
 	
 Collecting APM Data:
 1.	Datadog lets you use APM data to monitor your application and collect metrics.
@@ -140,12 +140,12 @@ I have attached a few screenshots to show a glimpse of my application, while I r
 
 Log in Page.
 
-		![image](https://user-images.githubusercontent.com/32622982/53147793-802a5780-355d-11e9-8bc0-4359affac270.png)
+  ![image](https://user-images.githubusercontent.com/32622982/53147793-802a5780-355d-11e9-8bc0-4359affac270.png)
 		
 Sending a tweet and glimpse of your timeline.
 
-		![image](https://user-images.githubusercontent.com/32622982/53147821-933d2780-355d-11e9-8ba1-ac5bbd8ccc39.png)
+  ![image](https://user-images.githubusercontent.com/32622982/53147821-933d2780-355d-11e9-8ba1-ac5bbd8ccc39.png)
 
 Public Timeline- shows tweets from all followers.
 
-		![image](https://user-images.githubusercontent.com/32622982/53147858-abad4200-355d-11e9-9dbb-586842d73e37.png)
+  ![image](https://user-images.githubusercontent.com/32622982/53147858-abad4200-355d-11e9-9dbb-586842d73e37.png)
