@@ -38,7 +38,7 @@ Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_6
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.48.59.png)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
-**answer:** use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml. Same as last question
+**Answer:** use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml. Same as last question
 
 ## Visualizing Data:
 
