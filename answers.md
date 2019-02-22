@@ -185,14 +185,17 @@ Here's a screenshot of me changing the monitor to trigger when the threshold rea
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/avg_threshold_vs_only_once.png)
 
 ######Bonus Question
-In order to set up the downtime, I went to the UI and first was a bit confused because there was no option to set a weekly recurring downtime on the UI where I could check physical days. I started messing around with the time options and changed the
+In order to set up the downtime, I went to the UI and first was a bit confused because there was no option to set a weekly recurring downtime on the UI where I could check physical days. I'd suggest to add a little toggleable question bubble next to the days to make it more obvious that that's how you set weekly reminders. I started messing around with the time options and eventually found the weekly option.
 
-Here are the screenshots of the downtime emails
+Here are the screenshots of the downtime emails as well as the settings page for each downtime.
+
 Weekend downtime Sat Sun all day:
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/down_time_sat_sun.png)
+![weekend downtime setting](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/weekend_downtime_setting.png)
 
 Weekly downtime 7pm - 9 am:
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/downtime_weekly_mon_tue_wed_thur_fri.png)
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/weekly_downtime_setting.png)
 
 ## Collecting APM Data
 
@@ -208,48 +211,57 @@ Storing complete log in /home/vagrant/.pip/pip.log
 vagrant@precise64:~$
 ```
 
-At this point I was googling anything I could find and trying everything including finding myself on a raspberry pi forum where someone wasn’t able to download anything using pip.
+I googled around and went down a few rabbit holes including one on a raspberry pi forum.
 
+Someone suggested this:
 "Found some entries for "pip-cannot-install-anything" indicating it could be a ssl-problem, so be sure your system is on current level ("sudo apt-get update" and then "sudo apt-get upgrade")."
 
-So I tried that and things seemed to be happening, so I tried again to install ddtrace using `sudo pip install ddtrace` but still the same error, shucks!
+So I tried those commands and things seemed to be happening, so I tried once again to install ddtrace using `sudo pip install ddtrace` but still the same error, shucks!
 
 I found others on Stackoverflow and Github (https://github.com/pypa/pip/issues/4817) were having similar issues with pip in general so I tried to install a few random packages using pip but to no avail. I read on Stackoverflow that http was automatically blocked by pip in the most recent versions and that I should instead specify to download using the https version of pip "https://pypi.python.org/simple/" but that didn’t work either.
 
 I tried `sudo pip install -v ddtrace -i https://pypi.python.org/simple/` and BOOM it started working!
 
-ran ddtrace-run python my_app.py according to api install datadog docs (https://app.datadoghq.com/apm/install#)
+I then ran ddtrace-run python my_app.py according to the APM install datadog docs (https://app.datadoghq.com/apm/install#) but got error:
 
+```
+Flask ImportError: No Module Named Flask
+```
 
-
-got error: Flask ImportError: No Module Named Flask
-
-installed Flask
-
+Ok, I thought. That one's easy.
+```
 sudo pip install -v flask -i https://pypi.python.org/simple/
+```
 
-then ran the command:
-- ddtrace-run python app.py cause my file was called app.py
+Following the APM install docs I ran the command `ddtrace-run python my_app.py` and the flask app was finally running on 0.0.0.0:5050, but nothing changed on the Datadog UI. Here's a screenshot after running the `ddtrace-run python my_app.py command`:
 
-image
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/apm_running.png)
 
-still nothing, command ran fine, flask app was running on 0.0.0.0:5050 but nothing chasing on datadog ui.
 
-so i found the logs for the tracer-agent
+I went searching for some tracer logs to see what was up at `/var/log/datadog/trace-agent.log`.
 
-/var/log/datadog/trace-agent.log
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/no_data_received_tracer.png)
 
-screenshot of logs
+A combination of no data received from the api as well as parsing errors in the yaml file. Decided to fix the yaml file first. According to the docs I had to configure my app to allow tracing by uncommenting the lines in my datadog.yaml file:
 
-a combination of no data received from the api as well as parsing errors in the yams file.
+```
+apm_config:
+  enabled: true
+```
 
-losing hope, i started curling into the flask app supposedly instrumented using ddtrace to send logs and requests to datadog. I saw I was getting errors!
+Restarted the agent then looked back at the UI but still nothing seemed to change. Because I was ssh'ed into my instance I was trying to figure out how to visit the routes I had defined in the Flask app to see if phyisically visiting those resources would trigger a trace, but since there's no browser built into the command line environment I was using to navigate my virtual machine I started googling how to ping a site given that I knew this app was running at `0.0.0.0:5050`.
 
+Enter `curl`.
+
+First I had to download `curl` to curl into that port hoping that I would at least get a message in the tab I was running ddtrace in, and I was!
+
+```
 2019-02-21 20:58:34,602 - werkzeug - INFO - 127.0.0.1 - - [21/Feb/2019 20:58:34] "GET /api/apm HTTP/1.1" 200 -
 2019-02-21 20:58:35,294 ERROR [ddtrace.writer] [writer.py:138] - cannot send spans to localhost:8126: [Errno 111] Connection refused
 2019-02-21 20:58:35,294 - ddtrace.writer - ERROR - cannot send spans to localhost:8126: [Errno 111] Connection refused
+```
 
-so my flask app wasn’t able to talk to my vagrant I’ve sshed into running the datadog agent. so i looked back at the /var/log/datadog/trace-agent.log logs:
+Connection refused. My hypothesis was that my flask app wasn’t able to talk to my virtual machine I’ve sshed into running the datadog agent. To be sure I looked back at the ``/var/log/datadog/trace-agent.log` logs:
 
 2019-02-21 20:24:53 INFO (main.go:160) - trace-agent running on host precise64
 2019-02-21 20:24:53 INFO (api.go:140) - listening for traces at http://localhost:8126
@@ -257,21 +269,11 @@ so my flask app wasn’t able to talk to my vagrant I’ve sshed into running th
 2019-02-21 20:25:53 INFO (service_mapper.go:59) - total number of tracked services: 0
 2019-02-21 20:26:03 INFO (api.go:324) - no data received
 
-no data being received. my hypothesis is that theres a mismatch here, listening for traces at port 8126 but the app being traced was run on a different port and somehow i haven’t configured the two to know that. Back to google. Someone also had this error on Stackoverflow (https://stackoverflow.com/questions/49699969/datadog-errorddtrace-writercannot-send-services-to-localhost8126-errno-111)
+No data being received. My hypothesis is that there's a mismatch here, listening for traces at port 8126 but the app being traced was run on a different port and somehow i haven’t configured the two to know that. Back to google. Someone also had this error on Stackoverflow (https://stackoverflow.com/questions/49699969/datadog-errorddtrace-writercannot-send-services-to-localhost8126-errno-111) but the solutions offered were very unclear.
 
-from stackoverflow:
+As a last ditch effort I tried using the Middlewareinstead of running the ddtrace-run function because the instructions said that you could use either the ddtrace-run or manually insert the Middleware. I ended up using this person's app as a blueprint to incorporate the Middleware: https://stackoverflow.com/questions/52390804/datadog-how-to-implement-ddtrace-on-flask-application. The file for the flask app is located in this repo at [my_app.py](./my_app.py).
 
-There are two ways to access dd-trace agent on host from a container:
-1. Only on <HOST_IP>:8126, if docker container is started in a bridge network:
-docker run -d <image_name>
-dd-trace agent should be bound to <HOST_IP> or 0.0.0.0 (which includes <HOST_IP>).
-2. On <HOST_IP>:8126 (if dd-trace agent is bound to <HOST_IP> or 0.0.0.0) and localhost:8126, if docker container is started in the host network:
-docker run --network host -d <image_name>
-As you already try to reach dd-trace agent on localhost:8126, so the second way is the best solution.
-
-so i tried using the middleware this time instead like this person did: https://stackoverflow.com/questions/52390804/datadog-how-to-implement-ddtrace-on-flask-application
-
-
+```
 from flask import Flask
 import logging
 import sys
@@ -304,17 +306,18 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+```
+
+I restarted the Datadog agent again, ran my new flask app without the built-in ddtrace-run function, sent a few curls to the host at port 5050 and BOOM, it started working! Finally, traces were showing up in the UI. Here are some screenshots of the UI with infrastructure metrics and APM metrics on one timeboard as well as a screenshot of the the traces getting logged to my vm's console.
+
+images
 
 
-restarted datadog agent, sent a few curls and BOOM, it started working.
-
-SCREENSHOT
-
-had to google the difference between infrastructure and app, here’s what i got:
+###### APM Bonus
 
 The APM language agents monitor your applications at the code level: which transactions, database queries, and external services are taking the most time, what runtime errors are occurring, etc. Infrastructure monitors your hosts at the operating system level: how much CPU, memory, etc. are being used on each server, which processes are running, etc.
 
-a service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business, that is another service. a resource is a particular component of an individual service responsible for a task. for the instrumented flask app, the endpoints for the web app correspond to a specific function that has one goal: log something.
+A service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business. That would be another example of a service. A resource is a particular component of an individual service responsible for a task. For the instrumented flask app, the endpoints for the web app are resources as they correspond to a specific function is responsible for one thing.
 
 ##LAST QUESTION
 
