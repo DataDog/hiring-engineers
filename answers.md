@@ -15,42 +15,42 @@ Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_6
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
 
 **answer:** add hostname tag in /etc/datadog-agent/datadog.yaml like this
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2014.44.16.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/14_59_35__02_22_2019.jpg)
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
 **answer:** installed MySQL 5.7.25 and installed Datadog integration for this DB
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/15_02_01__02_22_2019.jpg)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.47.44.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.34.32.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/15_35_18__02_22_2019.jpg)
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
 **answer** created a custom Agent check as below and run it
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.32.49.png)
 ![]()
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.  
 **answer** used "min_collection_interval: 45" options to collect metric once every 45 seconds
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.48.59.png)
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
 **answer** use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml. Same as last question
 
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-* Your custom metric scoped over your host.
+* Your custom metric scoped over your host.  
 **answer**
 
-* Any metric from the Integration on your Database with the anomaly function applied
+* Any metric from the Integration on your Database with the anomaly function applied  
 **answer**
 
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
 **answer**
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
