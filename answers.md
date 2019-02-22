@@ -37,7 +37,7 @@ Let’s try this again.
 
 `vagrant init hashicorp/precise64`then a `vagrant up`
 
-![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineer/master/ssh.png)
+![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/ssh.png)
 
 
 Success!
