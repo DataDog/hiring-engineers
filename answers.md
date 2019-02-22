@@ -39,6 +39,7 @@ Let’s try this again.
 
 ![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/ssh.png)
 
+## Collecting Metrics
 With the vm all set and ready to go it's now time to install the agent. Head over to the datadog UI (https://app.datadoghq.com/account/settings#agent/ubuntu) for instructions on installing the agent. Since my virtual machine is running Ubuntu I chose the Ubuntu option and ran the commands inside my ssh'ed instance:
 
 ```
@@ -48,7 +49,8 @@ DD_API_KEY=<MY-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/Dat
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/install_dd_agent.png)
 
 I then got the error:
-```the program 'curl' is currently not installed.  You can install it by typing: sudo apt-get install curl
+```
+the program 'curl' is currently not installed.  You can install it by typing: sudo apt-get install curl
 ```
 So I ran `sudo apt-get install curl` and installed curl in the virtual machine. This took about 10 seconds then I reran the simple one line installation again, then once the agent installed I started the agent up with the command `sudo service datadog-agent start`. And that's it for setup.
 
@@ -103,7 +105,7 @@ instances:
 
 As the instructions said and as the documentations reads, you can change the minimum collection interval by specifying a number of seconds (45). In this case the my_metric metric could be collected every 45 seconds. I ran into some issues finding the checks.d folder as well as the conf.d folder and I'd recommend putting a corresponding file structure map on these parts of the docs that rely on the datadog-agent file structure that shows the user where all of these important folders are located.
 
-
+## Visualizing Data
 
 Next up was creating a time board via the API. Navigate to the datadog ui, click on the integrations tab then the API link under that.
 
@@ -112,7 +114,7 @@ anomaly detection  look for strange behavior in a given metric given the metrics
 * more info on anomaly here: https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
 
 
-next monitoring
+## Monitoring Data
 
 setting up monitor i had them all set up but then noticed that the alert was a) not triggering even though the directions say wait for avg i changed it to at least once so i could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work.
 
