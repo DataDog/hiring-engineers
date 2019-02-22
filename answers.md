@@ -1,5 +1,5 @@
-## Solutions Engineer - Brendan McIlhenny
-###### Mac Computer Setup using Vagrant
+# Solutions Engineer - Brendan McIlhenny
+## Mac Computer Setup using Vagrant
 
 First things first, let's download Vagrant [here](https://www.vagrantup.com/docs/installation/) and follow the prompts like any other program, which will install a Vagrant Ubuntu virtual machine on my Mac laptop running MacOS Mojave.
 
@@ -33,7 +33,7 @@ error message for that particular provider.
 ```
 Hmm, first roadblock but a clue. As the error message reads above, Vagrant did not have a default "provider", which serves programs like Vagrant resources to run development environments. So I went over [here](https://www.virtualbox.org/) to download Virtualbox and followed the prompts to get it up and running.
 
-Let’s try this again. 
+Let’s try this again.
 
 `vagrant init hashicorp/precise64`then a `vagrant up`
 
@@ -41,7 +41,7 @@ Success!
 
 vagrant ssh
 
-DD_API_KEY=9e065fe0b87bb89515df9de330929ee3 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=<YOUR-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 The program 'curl' is currently not installed.  You can install it by typing:
 sudo apt-get install curl
@@ -53,7 +53,7 @@ vagrant@precise64:~$ sudo apt-get install curl
 
 this took about 10 seconds then i reran the simple one line installation located on step 1 here: https://app.datadoghq.com/account/settings#agent/ubuntu
 
-DD_API_KEY=9e065fe0b87bb89515df9de330929ee3 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 
 To turn your VM on, navigate to the directory with your Vagrantfile:
@@ -124,16 +124,16 @@ next monitoring
 
 setting up monitor i had them all set up but then noticed that the alert was a) not triggering even though the directions say wait for avg i changed it to at least once so i could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work.
 
-setting up downtimes: first i was confused that there was no option to set a weekly recurring downtime where i could check physical days, then i changed the 
+setting up downtimes: first i was confused that there was no option to set a weekly recurring downtime where i could check physical days, then i changed the
 
-i copied and pasted the flask app from the code challenge, 
+i copied and pasted the flask app from the code challenge,
 
 set up apm with the apm installation docs here: https://docs.datadoghq.com/agent/apm/?tab=agent630#agent-configuration
 
-found a raspberry pi forum where someone wasn’t able to download anything using pip: 
+found a raspberry pi forum where someone wasn’t able to download anything using pip:
 Found some entries for "pip-cannot-install-anything" indicating it could be a ssl-problem, so be sure your system is on current level ("sudo apt-get update" and then "sudo apt-get upgrade"). so tried it
 
-installed the python client as per the documentation (https://app.datadoghq.com/apm/install#) with the command 
+installed the python client as per the documentation (https://app.datadoghq.com/apm/install#) with the command
 - pip install ddtrace
 but was running into a consistent issue:
 
@@ -143,12 +143,12 @@ Downloading/unpacking ddtrace
   Could not find any downloads that satisfy the requirement ddtrace
 No distributions at all found for ddtrace
 Storing complete log in /home/vagrant/.pip/pip.log
-vagrant@precise64:~$ 
+vagrant@precise64:~$
 
 stack overflow said something about http being automatically blocked by pip so to specify https: but that didn’t work
 pip install -v ddtrace -i https://pypi.python.org/simple/
 
-it seemed to be an SSL 403 error. googled that with pip. stumbled upon this 
+it seemed to be an SSL 403 error. googled that with pip. stumbled upon this
 
 https://github.com/pypa/pip/issues/4817
 
@@ -177,7 +177,7 @@ so i found the logs for the tracer-agent
 
 screenshot of logs
 
-a combination of no data received from the api as well as parsing errors in the yams file. 
+a combination of no data received from the api as well as parsing errors in the yams file.
 
 losing hope, i started curling into the flask app supposedly instrumented using ddtrace to send logs and requests to datadog. I saw I was getting errors!
 
@@ -194,8 +194,8 @@ so my flask app wasn’t able to talk to my vagrant I’ve sshed into running th
 2019-02-21 20:26:03 INFO (api.go:324) - no data received
 
 no data being received. my hypothesis is that theres a mismatch here, listening for traces at port 8126 but the app being traced was run on a different port and somehow i haven’t configured the two to know that. Back to google. Someone also had this error on Stackoverflow (https://stackoverflow.com/questions/49699969/datadog-errorddtrace-writercannot-send-services-to-localhost8126-errno-111)
- 
-from stackoverflow: 
+
+from stackoverflow:
 
 There are two ways to access dd-trace agent on host from a container:
 1. Only on <HOST_IP>:8126, if docker container is started in a bridge network:
@@ -242,15 +242,15 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
 
-restarted datadog agent, sent a few curls and BOOM, it started working. 
+restarted datadog agent, sent a few curls and BOOM, it started working.
 
 SCREENSHOT
 
-had to google the difference between infrastructure and app, here’s what i got: 
+had to google the difference between infrastructure and app, here’s what i got:
 
 The APM language agents monitor your applications at the code level: which transactions, database queries, and external services are taking the most time, what runtime errors are occurring, etc. Infrastructure monitors your hosts at the operating system level: how much CPU, memory, etc. are being used on each server, which processes are running, etc.
 
-a service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business, that is another service. a resource is a particular component of an individual service responsible for a task. for the instrumented flask app, the endpoints for the web app correspond to a specific function that has one goal: log something. 
+a service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business, that is another service. a resource is a particular component of an individual service responsible for a task. for the instrumented flask app, the endpoints for the web app correspond to a specific function that has one goal: log something.
 
 ##LAST QUESTION
 
@@ -260,4 +260,4 @@ I’m really interested in the types of music people listen to and the patterns 
 
 You could use the Spotify API to record the music you and your friends/family listen to, the time they listened, the location they listened to it, and the weather at the time you listened and get data from an API that records when new music gets released. With a bigger picture of your listening context, you can use Datadog dashboards to see your personal distribution of music listens based on genre and learn to predict what types of music you gravitate towards. Do you listen to more depressing music in the winter methods like Radiohead? If so, are there outliers in the winter months that you can catch with monitors? Sounds like a good use for the the anomaly datadog algorithms. Are there certain relationships you can map out between people and the types of music they listen to?
 
-Can you build out dashboards that prove that your friend’s music tastes rubbed off on you, which in turn you shared with your other friends who have now shared it with their friends? You could use monitors for health reasons. For instance set up a monitor to alert you when you’re listening to too uplifting music at night so that you won’t be too amped to fall asleep at night. 
+Can you build out dashboards that prove that your friend’s music tastes rubbed off on you, which in turn you shared with your other friends who have now shared it with their friends? You could use monitors for health reasons. For instance set up a monitor to alert you when you’re listening to too uplifting music at night so that you won’t be too amped to fall asleep at night.
