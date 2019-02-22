@@ -113,49 +113,7 @@ Next up was creating a time board via the API. I noticed via the docs that in or
 
 I then wrote a simple Ruby script based off the examples provided in the API Dashboard section of the docs (https://docs.datadoghq.com/api/?lang=ruby#dashboards) with the my_metric scoped over the host (`my_metric{host:precise64}`), the anomaly function applied to my database's postgresql.bgwriter.buffers_backend{*} (anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)), and the  my_metric with the rollup function applied to sum up all the points for the past hour into one bucket (my_metric{*}.rollup(sum, 3600)), the 3600 here representing 3600 seconds in an hour.
 
-```
-require 'pry'
-require 'dogapi'
-
-api_key = <MY-API-KEY>
-app_key = <MY-APP-KEY>
-
-datadog_timeboard = Dogapi::Client.new(api_key, app_key)
-
-title = "Brendan's Code Project Timeboard"
-widgets = [{
-    "definition": {
-        "type" => "timeseries",
-        "requests" => [
-            {"q" => "my_metric{host:precise64}"},
-            {"q" => "anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)"},
-            {"q" => "my_metric{*}.rollup(sum, 3600)"},
-        ],
-        "title" => "my_metric scoped over host, my_metric with rollup(1 hour) and postgresql anomalies"
-    }
-}]
-layout_type = "ordered"
-
-description = "A dashboard with code challenge info."
-is_read_only = true
-notify_list = [<MY-EMAIL>]
-template_variables = [{
-    "name" => "host1",
-    "prefix" => "host",
-    "default" => "my-host"
-}]
-
-config = {
-  "description" => description,
-  "is_read_only" => is_read_only,
-  "notify_list" => notify_list,
-  "template_variables" => template_variables
-}
-
-datadog_timeboard.create_board(title, widgets, layout_type, config)
-```
-
-My script ran without any errors so I went back to the UI and saw my Timeboard.
+My script ran without any errors so I went back to the UI and saw my Timeboard. My script is located in this repo [timeboard.rb](./timeboard.rb).
 
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/postgres_2.png)
 
