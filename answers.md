@@ -31,7 +31,7 @@ why a particular provider isn't working by forcing usage with
 `vagrant up --provider=PROVIDER`, which should give you a more specific
 error message for that particular provider.
 ```
-Hmm, first roadblock but a clue. As the error message reads above, Vagrant did not have a default "provider", which serves programs like Vagrant resources to run development environments. So I went over [here](https://www.virtualbox.org/) to download Virtualbox and followed the prompts to get it up and running.
+Hmm, first roadblock but a clue! As the error message reads above, Vagrant did not have a default "provider", which serves programs like Vagrant resources to run development environments. So I went over [here](https://www.virtualbox.org/) to download Virtualbox and followed the prompts to get it up and running.
 
 Let’s try this again.
 
@@ -107,30 +107,98 @@ As the instructions said and as the documentations reads, you can change the min
 
 ## Visualizing Data
 
-Next up was creating a time board via the API. Navigate to the datadog ui, click on the integrations tab then the API link under that.
+Next up was creating a time board via the API. I noticed via the docs that in order to use the API I not only needed my API key, which was automatically generated for me when I signed up for datadog but I also needed to have an application key in order to write to my datadog app. So I generated a new application key to be used in my ruby script via the Integrations > API tab:
 
-anomaly detection  look for strange behavior in a given metric given the metrics past performance. i used the basic version of the anomaly algorithm given i don’t have much historical data for my database:
-* Basic uses a simple lagging rolling quantile computation to determine the range of expected values. It adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends.
-* more info on anomaly here: https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/app_key.png)
 
+I then wrote a simple Ruby script based off the examples provided in the API Dashboard section of the docs (https://docs.datadoghq.com/api/?lang=ruby#dashboards) with the my_metric scoped over the host (`my_metric{host:precise64}`), the anomaly function applied to my database's postgresql.bgwriter.buffers_backend{*} (anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)), and the  my_metric with the rollup function applied to sum up all the points for the past hour into one bucket (my_metric{*}.rollup(sum, 3600)), the 3600 here representing 3600 seconds in an hour.
+
+```
+require 'pry'
+require 'dogapi'
+
+api_key = <MY-API-KEY>
+app_key = <MY-APP-KEY>
+
+datadog_timeboard = Dogapi::Client.new(api_key, app_key)
+
+title = "Brendan's Code Project Timeboard"
+widgets = [{
+    "definition": {
+        "type" => "timeseries",
+        "requests" => [
+            {"q" => "my_metric{host:precise64}"},
+            {"q" => "anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)"},
+            {"q" => "my_metric{*}.rollup(sum, 3600)"},
+        ],
+        "title" => "my_metric scoped over host, my_metric with rollup(1 hour) and postgresql anomalies"
+    }
+}]
+layout_type = "ordered"
+
+description = "A dashboard with code challenge info."
+is_read_only = true
+notify_list = [<MY-EMAIL>]
+template_variables = [{
+    "name" => "host1",
+    "prefix" => "host",
+    "default" => "my-host"
+}]
+
+config = {
+  "description" => description,
+  "is_read_only" => is_read_only,
+  "notify_list" => notify_list,
+  "template_variables" => template_variables
+}
+
+datadog_timeboard.create_board(title, widgets, layout_type, config)
+```
+
+My script ran without any errors so I went back to the UI and saw my Timeboard.
+
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/postgres_2.png)
+
+I did some reading up on the anomaly detection function and what it does is it looks for weird behavior for a metric given how the metric performed in the past. For instance, Philadelphia Eagles legendary Super Bowl LII winning quarterback Nick Foles plays extremely well in the post season given his past historical performance. If he went out there for the NFC championship and threw 10 picks and threw for 0 touchdowns the anomaly function would catch this. That being said, I was forced to use the basic version of the anomaly algorithm as recommended by the docs given I don’t have much historical data for my database and the other versions are best with plentiful historical data.
+
+```* Basic uses a simple lagging rolling quantile computation to determine the range of expected values. It adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends.
+*```
+
+The instructions told me to change the timeframe to the last 5 minutes, I tried to change the timeframe to the last 5 minutes in the top right time interval bar but was not able to find an option smaller than the past 1 hour. So I went over to the Datadog youtube page and watched the Datadog 101 series and saw that if I clicked and dragged on a Timeboard I could change the time of that board to whatever interval I wanted. Once I adjusted the time I clicked on the snapshot button at the top of the board, tagged myself then received an email notification with that Timeboard. Here's an image of the Timeboard with the past 5 minute time interval as well as the notification I received when I tagged myself after highlighting the last 5 minutes of activity for the Timeboard:
+
+![tag myself](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/tag_myself.png)
+![email notification past 5 minutes](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/email_past_5_min.png)
 
 ## Monitoring Data
 
-setting up monitor i had them all set up but then noticed that the alert was a) not triggering even though the directions say wait for avg i changed it to at least once so i could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work.
+Setting up the monitor was very straight forward. Using the markdown and the simple if/if not logic I had the monitor set up to trigger a warning when the value was 500, an alert when it was above 800 and a notice when no data with different notification bodies for each type of monitor.
+![monitor](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/notification_body.png)
 
-setting up downtimes: first i was confused that there was no option to set a weekly recurring downtime where i could check physical days, then i changed the
+Also, checked the box to make sure I was alerted when no data was coming in for the past 10 minutes.
+![no data alert](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/no_data.png)
 
-i copied and pasted the flask app from the code challenge,
+But then noticed that the alert was a) not triggering even though the directions explicitly said wait for avg to trigger an 'alert' so changed it from 'avg' to 'at least once' so I could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work:
 
-set up apm with the apm installation docs here: https://docs.datadoghq.com/agent/apm/?tab=agent630#agent-configuration
+![host ip email alert](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/my_metric_alert_host_ip.png)
 
-found a raspberry pi forum where someone wasn’t able to download anything using pip:
-Found some entries for "pip-cannot-install-anything" indicating it could be a ssl-problem, so be sure your system is on current level ("sudo apt-get update" and then "sudo apt-get upgrade"). so tried it
+Here's a screenshot of me changing the monitor to trigger when the threshold reaches a level of 800 or higher using the "at least once" threshold to get it to trigger:
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/avg_threshold_vs_only_once.png)
 
-installed the python client as per the documentation (https://app.datadoghq.com/apm/install#) with the command
-- pip install ddtrace
-but was running into a consistent issue:
+######Bonus Question
+In order to set up the downtime, I went to the UI and first was a bit confused because there was no option to set a weekly recurring downtime on the UI where I could check physical days. I started messing around with the time options and changed the
 
+Here are the screenshots of the downtime emails
+Weekend downtime Sat Sun all day:
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/down_time_sat_sun.png)
+
+Weekly downtime 7pm - 9 am:
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/downtime_weekly_mon_tue_wed_thur_fri.png)
+
+## Collecting APM Data
+
+I copied and pasted the flask app included in the code challenge and followed the apm installation docs (https://docs.datadoghq.com/agent/apm/?tab=agent630#agent-configuration), however I ran into an issue during this section. I followed the directions by installing `pip install ddtrace`, but I kept getting the error:
+
+```
 vagrant@precise64:~$ pip install ddtrace
 Downloading/unpacking ddtrace
   Cannot fetch index base URL http://pypi.python.org/simple/
@@ -138,15 +206,17 @@ Downloading/unpacking ddtrace
 No distributions at all found for ddtrace
 Storing complete log in /home/vagrant/.pip/pip.log
 vagrant@precise64:~$
+```
 
-stack overflow said something about http being automatically blocked by pip so to specify https: but that didn’t work
-pip install -v ddtrace -i https://pypi.python.org/simple/
+At this point I was googling anything I could find and trying everything including finding myself on a raspberry pi forum where someone wasn’t able to download anything using pip.
 
-it seemed to be an SSL 403 error. googled that with pip. stumbled upon this
+"Found some entries for "pip-cannot-install-anything" indicating it could be a ssl-problem, so be sure your system is on current level ("sudo apt-get update" and then "sudo apt-get upgrade")."
 
-https://github.com/pypa/pip/issues/4817
+So I tried that and things seemed to be happening, so I tried again to install ddtrace using `sudo pip install ddtrace` but still the same error, shucks!
 
-sudo pip install -v ddtrace -i https://pypi.python.org/simple/
+I found others on Stackoverflow and Github (https://github.com/pypa/pip/issues/4817) were having similar issues with pip in general so I tried to install a few random packages using pip but to no avail. I read on Stackoverflow that http was automatically blocked by pip in the most recent versions and that I should instead specify to download using the https version of pip "https://pypi.python.org/simple/" but that didn’t work either.
+
+I tried `sudo pip install -v ddtrace -i https://pypi.python.org/simple/` and BOOM it started working!
 
 ran ddtrace-run python my_app.py according to api install datadog docs (https://app.datadoghq.com/apm/install#)
 
