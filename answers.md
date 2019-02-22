@@ -1,7 +1,7 @@
 # Solutions Engineer - Brendan McIlhenny
 ## Mac Computer Setup using Vagrant
 
-First things first, let's download Vagrant [here](https://www.vagrantup.com/docs/installation/) and follow the prompts like any other program, which will install a Vagrant Ubuntu virtual machine on my Mac laptop running MacOS Mojave.
+First things first, let's download Vagrant [here](https://www.vagrantup.com/docs/installation/) and follow the prompts like any other program, which will install a Vagrant Linux Ubuntu virtual machine on my Mac laptop running MacOS Mojave.
 
 What does Vagrant do? When dev teams are working on different operating systems and have different dependencies and you're all working on the same project, collaborating is bound to get annoying really fast. That's where Vagrant comes in. It creates an all encompassing environment using the same configurations regardless of all of these OS/ language/library versions and dependencies. With Vagrant installed I created a new folder that would serve as Root to this project and changed into it:
 
@@ -35,86 +35,77 @@ Hmm, first roadblock but a clue. As the error message reads above, Vagrant did n
 
 Let’s try this again.
 
-`vagrant init hashicorp/precise64`then a `vagrant up`
+`vagrant init hashicorp/precise64`then a `vagrant up`. Success! Since Vagrant runs the virtual machine you have to ssh into it with the command `vagrant ssh`.
 
-![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/ssh.png)
+![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/ssh.png)
 
+With the vm all set and ready to go it's now time to install the agent. Head over to the datadog UI (https://app.datadoghq.com/account/settings#agent/ubuntu) for instructions on installing the agent. Since my virtual machine is running Ubuntu I chose the Ubuntu option and ran the commands inside my ssh'ed instance:
 
-Success!
+```
+DD_API_KEY=<MY-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
 
-vagrant ssh
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/install_dd_agent.png)
 
-DD_API_KEY=<YOUR-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+I then got the error:
+```the program 'curl' is currently not installed.  You can install it by typing: sudo apt-get install curl
+```
+So I ran `sudo apt-get install curl` and installed curl in the virtual machine. This took about 10 seconds then I reran the simple one line installation again, then once the agent installed I started the agent up with the command `sudo service datadog-agent start`. And that's it for setup.
 
-The program 'curl' is currently not installed.  You can install it by typing:
-sudo apt-get install curl
-
-had to install curl in the virtual machine
-
-
-vagrant@precise64:~$ sudo apt-get install curl
-
-this took about 10 seconds then i reran the simple one line installation located on step 1 here: https://app.datadoghq.com/account/settings#agent/ubuntu
-
-DD_API_KEY=KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/run_agent.png)
 
 
-To turn your VM on, navigate to the directory with your Vagrantfile:
-vagrant up
-To pause your VM, navigate to the directory with your Vagrantfile:
-vagrant suspend
-To turn your VM off, navigate to the directory with your Vagrantfile:
-vagrant halt
-To destroy your VM, navigate to the directory with your Vagrantfile:
-vagrant destroy
+First step of the actual assignment is I needed to add some tags by manipulating the `datadog.yaml` configuration file. according to datadog’s docs, the configuration file is located at /etc/datadog-agent/datadog.yaml file. I'd change the documentation here slightly by explicitly stating to navigate to the file or changing the command box to something more explicit like `sudo nano /etc/datadog-agent/datadog.yaml`. I was not familiar with Linux commands before this exercise and was left scratching my head thinking what the command `/etc/datadog-agent/datadog.yaml` meant. If it's a command I'd expect something to happen when I ran `/etc/datadog-agent/datadog.yaml`.
+
+So I ran `sudo nano /etc/datadog-agent/datadog.yaml` and this opened up a simple text editor in the vm itself so I could change the configuration file to add my host's tags. I ran into some issues here with tags not showing up so I poked around the datadog agent docs (https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6) and found that I could run the command `sudo service datadog-agent status`. I got a helpful message saying my config file could not be parsed properly, meaning the syntax I used to add tags was incorrect.  It took some finagling to get this part to work as I had to add the tags on one line like the image below. I'd make another recommendation here to change the docs to be more explicit about putting tags on one line like this winning combination:
+
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/tags.png)
+
+Eventually I landed on the right syntax, restarted the agent with the command `sudo service datadog-agent restart` and my tags started showing up in the UI:
+
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/host_map_tags.png)
+
+Next step was to install a database on my machine and run the corresponding integration for the datadog agent. I decided to use postgresql for Linux Ubuntu, so I ran the command `sudo apt-get install postgresql` courtesy of the postgres docs (http://postgresguide.com/setup/install.html).
+
+According to the docs, this installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we can log into that account. So I switched over to the postgres account on your server by typing `sudo -i -u postgres`, then I navigated over to the datadog integrations tab, found postgres, clicked on it, then clicked on the configuration tab and followed the prompts.
+
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/postgres_1.png)
+![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/postgres_2.png)
+
+Next step was writing a custom agent check that submits a metric named my_metric with a random value between 0 and 1000, then changing the collection interval so that it only submits the metric once every 45 seconds. Using these docs as reference (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6), I navigated to the `/etc/datadog-agent` directory where the `checks.d` folder was located and created the file `custom_my_metric.py` where I was to define my check, a check that would return a metric named "my_metric" with a random value between 0 and 1000. My file looked like this:
+
+```
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+import random
+
+class MyMetric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1001))
+```
+
+I then navigated to the `/etc/datadog-agent/conf.d` directory where I put my custom check configuration file `custom_my_metric.yaml` with the following code:
+
+```
+init_config:
+
+instances:
+    -   min_collection_interval: 45
+```
+
+As the instructions said and as the documentations reads, you can change the minimum collection interval by specifying a number of seconds (45). In this case the my_metric metric could be collected every 45 seconds. I ran into some issues finding the checks.d folder as well as the conf.d folder and I'd recommend putting a corresponding file structure map on these parts of the docs that rely on the datadog-agent file structure that shows the user where all of these important folders are located.
 
 
-according to the vagrant documentation, “HashiCorp (the makers of Vagrant) publish a basic Ubuntu 12.04 (32 and 64-bit) box that is available for minimal use cases. It is highly optimized, small in size, and includes support for Virtualbox and VMware. You can use it like this:
-$ vagrant init hashicorp/precise64”
 
-m
-
-meaning i installed an ubuntu basic box.
-
-next i need to add some tags by manipulating the config file. according to datadog’s docs, I can change them in the /etc/datadog-agent/datadog.yaml file
-
-so i sudo nano /etc/datadog-agent/datadog.yaml
-
-opens up the builtin linux text editor
-
-https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6 status docs
-ran into big issue trying to add tags, after going through the -help options I was able to run `sudo datadog-agent status` to see what was the matter. it told me something was wrong in my configuration file on line 48, line 48 is where I had uncommented out tags, i had separated the stuff by lines like how the example has, it didn’t like that though so i put all of them together on one line like this tags: brendans_tag, env:prod, role:database for it to finally parse write. Then it started working and I was able to see those tags on the datadog UI.
-
-images images images
-
-install postgresql for linux ubuntu: sudo apt-get install postgresql courtesy of http://postgresguide.com/setup/install.html
-
-as per the digital ocean documentation here: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04
-
-The installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we can log into that account.
-Switch over to the postgres account on your server by typing:
-* sudo -i -u postgres
-
-
-then we need to sign into the postgres env to create a user. i used the command sudo -u postgres psql to sign me in as the default postgres user then navigate over to the datadog integrations tab, find postgres, click install then click on the configuration tab and follow the prompts:
-
-then its installed
-
-next up write a custom agent check:
-
-relevant docs: datadog: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
-
-Note: When choosing a name for your custom check, you should prefix it with custom_ in order to avoid conflict with the name of a preexisting Datadog Agent integrations. For instance, if you have a custom Postfix check, name your check files custom_postfix.py and custom_postfix.yaml instead of postfix.py and postfix.yaml.
-
-navigate to /etc/datadog-agent/conf.d
-create a checks.d directory
-then add file custom_my_metric.py
-
-image with code
-
-then create a custom_my_metric.yaml and add this line to the file: instances: [{}]
-
-Next up, creating a time board via the API. Navigate to the datadog ui, click on the integrations tab then the API link under that.
+Next up was creating a time board via the API. Navigate to the datadog ui, click on the integrations tab then the API link under that.
 
 anomaly detection  look for strange behavior in a given metric given the metrics past performance. i used the basic version of the anomaly algorithm given i don’t have much historical data for my database:
 * Basic uses a simple lagging rolling quantile computation to determine the range of expected values. It adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends.
