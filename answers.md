@@ -7,7 +7,8 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-[answer] I created a VM on alibaba cloud with CentOS7.6 and signed up a new Datadog account for 15 days trial.
+`answer`  
+I created a VM on alibaba cloud with CentOS7.6 and signed up a new Datadog account for 15 days trial.
 [root@dgtest ~]# uname -a
 Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 
