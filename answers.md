@@ -41,7 +41,11 @@ Success!
 
 vagrant ssh
 
+<<<<<<< HEAD
 DD_API_KEY=<YOUR-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+=======
+DD_API_KEY=KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+>>>>>>> ac5082bc19bea906f3edb09222eea2c3c76edf70
 
 The program 'curl' is currently not installed.  You can install it by typing:
 sudo apt-get install curl
@@ -94,8 +98,6 @@ Switch over to the postgres account on your server by typing:
 
 
 then we need to sign into the postgres env to create a user. i used the command sudo -u postgres psql to sign me in as the default postgres user then navigate over to the datadog integrations tab, find postgres, click install then click on the configuration tab and follow the prompts:
-
-fPogQ9krINAOqW99VNsZUVOv
 
 then its installed
 
