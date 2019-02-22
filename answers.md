@@ -7,7 +7,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-`answer`  
+`**answer**`  
 I created a VM on alibaba cloud with CentOS7.6 and signed up a new Datadog account for 15 days trial.
 [root@dgtest ~]# uname -a
 Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
@@ -16,32 +16,34 @@ Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_6
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-[answer] add hostname tag in /etc/datadog like this
+`**answer**` add hostname tag in /etc/datadog-agent/datadog.yaml like this
+![][https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2014.44.16.png]
+
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-[answer] installed MySQL 5.7.25 and installed Datadog integration for this DB
+`**answer**` installed MySQL 5.7.25 and installed Datadog integration for this DB
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-[answer] created a custom Agent check as below and run it
+`**answer**` created a custom Agent check as below and run it
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-[answer] used "min_collection_interval: 45" options to collect metric once every 45 seconds
+`**answer**` used "min_collection_interval: 45" options to collect metric once every 45 seconds
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-[answer] use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml
+`**answer**` use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml
 
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
-[answer]
+`**answer**`
 
-* Any metric from the Integration on your Database with the anomaly function applied.
-[answer]
+* Any metric from the Integration on your Database with the anomaly function applied
+`**answer**`
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-[answer]
+`**answer**`
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
