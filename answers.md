@@ -59,7 +59,7 @@ So I ran `sudo apt-get install curl` and installed curl in the virtual machine. 
 
 First step of the actual assignment is I needed to add some tags by manipulating the `datadog.yaml` configuration file. according to datadog’s docs, the configuration file is located at /etc/datadog-agent/datadog.yaml file. I'd change the documentation here slightly by explicitly stating to navigate to the file or changing the command box to something more explicit like `sudo nano /etc/datadog-agent/datadog.yaml`. I was not familiar with Linux commands before this exercise and was left scratching my head thinking what the command `/etc/datadog-agent/datadog.yaml` meant. If it's a command I'd expect something to happen when I ran `/etc/datadog-agent/datadog.yaml`.
 
-So I ran `sudo nano /etc/datadog-agent/datadog.yaml` and this opened up a simple text editor in the vm itself so I could change the configuration file to add my host's tags. I ran into some issues here with tags not showing up so I poked around the datadog agent docs (https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6) and found that I could run the command `sudo service datadog-agent status`. I got a helpful message saying my config file could not be parsed properly, meaning the syntax I used to add tags was incorrect.  It took some finagling to get this part to work as I had to add the tags on one line like the image below. I'd make another recommendation here to change the docs to be more explicit about putting tags on one line like this winning combination:
+After a few failed attempts at trying to access the yaml file I ran `sudo nano /etc/datadog-agent/datadog.yaml` and this opened up a simple text editor in the vm itself so I could change the configuration file to add my host's tags. I ran into some issues here with tags not showing up so I poked around the datadog agent docs (https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6) and found that I could run the command `sudo service datadog-agent status`. I got a helpful message saying my config file could not be parsed properly, meaning the syntax I used to add tags was incorrect.  It took some finagling to get this part to work as I had to add the tags on one line like the image below. I'd make another recommendation here to change the docs to be more explicit about putting tags on one line like this winning combination:
 
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/tags.png)
 
@@ -111,7 +111,7 @@ Next up was creating a time board via the API. I noticed via the docs that in or
 
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/app_key.png)
 
-I then wrote a simple Ruby script based off the examples provided in the API Dashboard section of the docs (https://docs.datadoghq.com/api/?lang=ruby#dashboards) with the my_metric scoped over the host (`my_metric{host:precise64}`), the anomaly function applied to my database's postgresql.bgwriter.buffers_backend{*} (anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)), and the  my_metric with the rollup function applied to sum up all the points for the past hour into one bucket (my_metric{*}.rollup(sum, 3600)), the 3600 here representing 3600 seconds in an hour.
+I then wrote a simple Ruby script based off the examples provided in the API Dashboard section of the docs (https://docs.datadoghq.com/api/?lang=ruby#dashboards) with the my_metric scoped over the host (`my_metric{host:precise64}`), the anomaly function applied to my database's postgresql.bgwriter.buffers_backend{*} (anomalies(postgresql.bgwriter.buffers_backend{*}, 'basic', 2)), and the  my_metric with the rollup function applied to sum up all the points for the past hour into one bucket (my_metric{*}.rollup(sum, 3600)), the 3600 here representing 3600 seconds in an hour. Here's a link to the [dashboard](https://app.datadoghq.com/dashboard/pgs-ker-na5/brendans-code-project-timeboard).
 
 My script ran without any errors so I went back to the UI and saw my Timeboard. My script is located in this repo [timeboard.rb](./timeboard.rb).
 
@@ -136,7 +136,7 @@ Setting up the monitor was very straight forward. Using the markdown and the sim
 Also, checked the box to make sure I was alerted when no data was coming in for the past 10 minutes.
 ![no data alert](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/no_data.png)
 
-But then noticed that the alert was a) not triggering even though the directions explicitly said wait for avg to trigger an 'alert' so changed it from 'avg' to 'at least once' so I could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work:
+However, I realized that the alert was a) not triggering even though the directions explicitly said wait for avg to trigger an 'alert' so changed it from 'avg' to 'at least once' so I could at least get the picture of the email for the hiring challenge but more importantly b) the template variable {{host.ip}} wasn’t returning anything in the email, it came back blank. So I added host:precise64 to the `define the metric` section and then it starting to work:
 
 ![host ip email alert](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/my_metric_alert_host_ip.png)
 
@@ -144,7 +144,7 @@ Here's a screenshot of me changing the monitor to trigger when the threshold rea
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/avg_threshold_vs_only_once.png)
 
 ######Bonus Question
-In order to set up the downtime, I went to the UI and first was a bit confused because there was no option to set a weekly recurring downtime on the UI where I could check physical days. I'd suggest to add a little toggleable question bubble next to the days to make it more obvious that that's how you set weekly reminders. I started messing around with the time options and eventually found the weekly option.
+In order to set up the downtime, I went to the UI and first was a bit confused because there was no option to set a weekly recurring downtime on the UI where I could check physical days. I'd suggest to add a little question bubble popup next to the days to make it more obvious that that's how you set weekly reminders. I started messing around with the time options and eventually found the weekly option.
 
 Here are the screenshots of the downtime emails as well as the settings page for each downtime.
 
@@ -172,9 +172,8 @@ Storing complete log in /home/vagrant/.pip/pip.log
 vagrant@precise64:~$
 ```
 
-I googled around and went down a few rabbit holes including one on a raspberry pi forum.
+I googled around and went down a few rabbit holes including one on a raspberry pi forum. Someone there suggested this:
 
-Someone suggested this:
 "Found some entries for "pip-cannot-install-anything" indicating it could be a ssl-problem, so be sure your system is on current level ("sudo apt-get update" and then "sudo apt-get upgrade")."
 
 So I tried those commands and things seemed to be happening, so I tried once again to install ddtrace using `sudo pip install ddtrace` but still the same error, shucks!
@@ -183,13 +182,13 @@ I found others on Stackoverflow and Github (https://github.com/pypa/pip/issues/4
 
 I tried `sudo pip install -v ddtrace -i https://pypi.python.org/simple/` and BOOM it started working!
 
-I then ran ddtrace-run python my_app.py according to the APM install datadog docs (https://app.datadoghq.com/apm/install#) but got error:
+I then ran ddtrace-run python my_app.py according to the APM install datadog docs (https://app.datadoghq.com/apm/install#) but got the error:
 
 ```
 Flask ImportError: No Module Named Flask
 ```
+Ok, I thought. That one's easy enough.
 
-Ok, I thought. That one's easy.
 ```
 sudo pip install -v flask -i https://pypi.python.org/simple/
 ```
@@ -198,19 +197,18 @@ Following the APM install docs I ran the command `ddtrace-run python my_app.py` 
 
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/apm_running.png)
 
-
 I went searching for some tracer logs to see what was up at `/var/log/datadog/trace-agent.log`.
 
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/no_data_received_tracer.png)
 
-A combination of no data received from the api as well as parsing errors in the yaml file. Decided to fix the yaml file first. According to the docs I had to configure my app to allow tracing by uncommenting the lines in my datadog.yaml file:
+A combination of no data received from the api as well as parsing errors in the yaml file so I decided to fix the yaml file first. According to the docs I had to configure my app to allow tracing by uncommenting the lines in my datadog.yaml file:
 
 ```
 apm_config:
   enabled: true
 ```
 
-Restarted the agent then looked back at the UI but still nothing seemed to change. Because I was ssh'ed into my instance I was trying to figure out how to visit the routes I had defined in the Flask app to see if phyisically visiting those resources would trigger a trace, but since there's no browser built into the command line environment I was using to navigate my virtual machine I started googling how to ping a site given that I knew this app was running at `0.0.0.0:5050`.
+Next I restarted the agent then looked back at the UI but still nothing seemed to change. Because I was ssh'ed into my instance I was trying to figure out how to visit the routes I had defined in the Flask app to see if physically visiting those resources would trigger a trace, but since there's no browser built into the command line environment I was using to navigate my virtual machine I started googling how to ping a site given that I knew this app was running at `0.0.0.0:5050`.
 
 Enter `curl`.
 
@@ -224,15 +222,17 @@ First I had to download `curl` to curl into that port hoping that I would at lea
 
 Connection refused. My hypothesis was that my flask app wasn’t able to talk to my virtual machine I’ve sshed into running the datadog agent. To be sure I looked back at the ``/var/log/datadog/trace-agent.log` logs:
 
+```
 2019-02-21 20:24:53 INFO (main.go:160) - trace-agent running on host precise64
 2019-02-21 20:24:53 INFO (api.go:140) - listening for traces at http://localhost:8126
 2019-02-21 20:25:03 INFO (api.go:324) - no data received
 2019-02-21 20:25:53 INFO (service_mapper.go:59) - total number of tracked services: 0
 2019-02-21 20:26:03 INFO (api.go:324) - no data received
+```
 
 No data being received. My hypothesis is that there's a mismatch here, listening for traces at port 8126 but the app being traced was run on a different port and somehow i haven’t configured the two to know that. Back to google. Someone also had this error on Stackoverflow (https://stackoverflow.com/questions/49699969/datadog-errorddtrace-writercannot-send-services-to-localhost8126-errno-111) but the solutions offered were very unclear.
 
-As a last ditch effort I tried using the Middlewareinstead of running the ddtrace-run function because the instructions said that you could use either the ddtrace-run or manually insert the Middleware. I ended up using this person's app as a blueprint to incorporate the Middleware: https://stackoverflow.com/questions/52390804/datadog-how-to-implement-ddtrace-on-flask-application. The file for the flask app is located in this repo at [my_app.py](./my_app.py).
+As a last ditch effort I tried using the Middleware instead of running the ddtrace-run function because the instructions said that you could use either the ddtrace-run or manually insert the Middleware. I ended up using this person's app as a blueprint to incorporate the Middleware: https://stackoverflow.com/questions/52390804/datadog-how-to-implement-ddtrace-on-flask-application. The file for the flask app is located in this repo at [my_app.py](./my_app.py).
 
 
 I restarted the Datadog agent again, ran my new flask app without the built-in ddtrace-run function, sent a few curls to the host at port 5050 and BOOM, it started working! Finally, traces were showing up in the UI. Here is a a screenshot of the the traces getting logged to my vm's console.
@@ -256,6 +256,6 @@ With that context, a service is a piece of software that is self contained, such
 
 I’m really interested in the types of music people listen to and the patterns you can infer from them. I grew up in Southern New Jersey so Bruce Springsteen is in my blood, but I attended high school in Philly and started really getting into r&b/hip hop and The Roots. Then I moved to New Orleans and got really into the Meters and the New Orleans funk movement. Geography plays a huge role in the types of music you’re exposed to, but it’s certainly not the only one. It would be super interesting to see how different factors like time, geography, seasonality, mood, weather, relationships piece together your music DNA and how you can use a combination of monitors, dashboards and algorithms to predict where you fit on the music spectrum, learn to predict what type of music you’d like, or maybe even find an ideal boyfriend/girlfriend.
 
-You could use the Spotify API to record the music you and your friends/family listen to, the time they listened, the location they listened to it, and the weather at the time you listened and get data from an API that records when new music gets released. With a bigger picture of your listening context, you can use Datadog dashboards to see your personal distribution of music listens based on genre and learn to predict what types of music you gravitate towards. Do you listen to more depressing music in the winter methods like Radiohead? If so, are there outliers in the winter months that you can catch with monitors? Sounds like a good use for the the anomaly datadog algorithms. Are there certain relationships you can map out between people and the types of music they listen to?
+You could use the Spotify API to record the music you and your friends/family listen to, the time they listened, the location they listened to it, and the weather at the time you listened and get data from an API that records when new music gets released. With a bigger picture of your listening context, you can use Datadog dashboards to see your personal distribution of music listens based on genre and learn to predict what types of music you gravitate towards. Do you listen to more depressing music in the winter methods like Radiohead? If so, are there outliers in the winter months that you can catch with monitors? Sounds like a good use for the the anomaly Datadog algorithms. Are there certain relationships you can map out between people and the types of music they listen to?
 
 Can you build out dashboards that prove that your friend’s music tastes rubbed off on you, which in turn you shared with your other friends who have now shared it with their friends? You could use monitors for health reasons. For instance set up a monitor to alert you when you’re listening to too uplifting music at night so that you won’t be too amped to fall asleep at night.
