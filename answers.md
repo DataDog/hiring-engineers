@@ -103,11 +103,11 @@ instances:
     -   min_collection_interval: 45
 ```
 
-As the instructions said and as the documentations reads, you can change the minimum collection interval by specifying a number of seconds (45). In this case the my_metric metric could be collected every 45 seconds. I ran into some issues finding the checks.d folder as well as the conf.d folder and I'd recommend putting a corresponding file structure map on these parts of the docs that rely on the datadog-agent file structure that shows the user where all of these important folders are located.
+As the instructions said and as the documentation read, you can change the minimum collection interval by specifying a number of seconds (45). In this case the my_metric metric could be collected every 45 seconds. I ran into some issues finding the checks.d folder as well as the conf.d folder and I'd recommend putting a corresponding file structure map on these parts of the docs that rely on the datadog-agent file structure that shows the user where all of these important folders are located.
 
 ## Visualizing Data
 
-Next up was creating a time board via the API. I noticed via the docs that in order to use the API I not only needed my API key, which was automatically generated for me when I signed up for datadog but I also needed to have an application key in order to write to my datadog app. So I generated a new application key to be used in my ruby script via the Integrations > API tab:
+Next up was creating a time board via the API. I noticed via the docs that in order to use the API I not only needed my API key, which was automatically generated for me when I signed up for Datadog but I also needed to have an application key in order to write to my Datadog app. So I generated a new application key to be used in my ruby script via the Integrations > API tab:
 
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/app_key.png)
 
@@ -161,8 +161,9 @@ My script ran without any errors so I went back to the UI and saw my Timeboard.
 
 I did some reading up on the anomaly detection function and what it does is it looks for weird behavior for a metric given how the metric performed in the past. For instance, Philadelphia Eagles legendary Super Bowl LII winning quarterback Nick Foles plays extremely well in the post season given his past historical performance. If he went out there for the NFC championship and threw 10 picks and threw for 0 touchdowns the anomaly function would catch this. That being said, I was forced to use the basic version of the anomaly algorithm as recommended by the docs given I don’t have much historical data for my database and the other versions are best with plentiful historical data.
 
-```* Basic uses a simple lagging rolling quantile computation to determine the range of expected values. It adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends.
-*```
+```
+Basic uses a simple lagging rolling quantile computation to determine the range of expected values. It adjusts quickly to changing conditions but has no knowledge of seasonality or long-term trends.
+```
 
 The instructions told me to change the timeframe to the last 5 minutes, I tried to change the timeframe to the last 5 minutes in the top right time interval bar but was not able to find an option smaller than the past 1 hour. So I went over to the Datadog youtube page and watched the Datadog 101 series and saw that if I clicked and dragged on a Timeboard I could change the time of that board to whatever interval I wanted. Once I adjusted the time I clicked on the snapshot button at the top of the board, tagged myself then received an email notification with that Timeboard. Here's an image of the Timeboard with the past 5 minute time interval as well as the notification I received when I tagged myself after highlighting the last 5 minutes of activity for the Timeboard:
 
