@@ -37,15 +37,14 @@ Let’s try this again.
 
 `vagrant init hashicorp/precise64`then a `vagrant up`
 
+![vagrant ssh](https://raw.githubusercontent.com/bmcilhenny/hiring-engineer/master/ssh.png)
+
+
 Success!
 
 vagrant ssh
 
-<<<<<<< HEAD
 DD_API_KEY=<YOUR-API-KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-=======
-DD_API_KEY=KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
->>>>>>> ac5082bc19bea906f3edb09222eea2c3c76edf70
 
 The program 'curl' is currently not installed.  You can install it by typing:
 sudo apt-get install curl
