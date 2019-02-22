@@ -149,10 +149,12 @@ In order to set up the downtime, I went to the UI and first was a bit confused b
 Here are the screenshots of the downtime emails as well as the settings page for each downtime.
 
 Weekend downtime Sat Sun all day:
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/mention_self_downtime_scheduled.png)
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/down_time_sat_sun.png)
 ![weekend downtime setting](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/weekend_downtime_setting.png)
 
 Weekly downtime 7pm - 9 am:
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/tag_myself_downtime_email_during_week.png)
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/downtime_weekly_mon_tue_wed_thur_fri.png)
 ![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/weekly_downtime_setting.png)
 
