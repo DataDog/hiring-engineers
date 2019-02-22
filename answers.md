@@ -67,7 +67,7 @@ Eventually I landed on the right syntax, restarted the agent with the command `s
 
 ![install agent](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/host_map_tags.png)
 
-Next step was to install a database on my machine and run the corresponding integration for the datadog agent. I decided to use postgresql for Linux Ubuntu, so I ran the command `sudo apt-get install postgresql` courtesy of the postgres docs (http://postgresguide.com/setup/install.html).
+Next step was to install a database on my machine and run the corresponding integration for the datadog agent. I decided to use postgres for Linux Ubuntu, so I ran the command `sudo apt-get install postgres` courtesy of the postgres docs (http://postgresguide.com/setup/install.html).
 
 According to the docs, this installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we can log into that account. So I switched over to the postgres account on your server by typing `sudo -i -u postgres`, then I navigated over to the datadog integrations tab, found postgres, clicked on it, then clicked on the configuration tab and followed the prompts.
 
@@ -273,51 +273,21 @@ No data being received. My hypothesis is that there's a mismatch here, listening
 
 As a last ditch effort I tried using the Middlewareinstead of running the ddtrace-run function because the instructions said that you could use either the ddtrace-run or manually insert the Middleware. I ended up using this person's app as a blueprint to incorporate the Middleware: https://stackoverflow.com/questions/52390804/datadog-how-to-implement-ddtrace-on-flask-application. The file for the flask app is located in this repo at [my_app.py](./my_app.py).
 
-```
-from flask import Flask
-import logging
-import sys
-from ddtrace import tracer
-from ddtrace.contrib.flask import TraceMiddleware
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+I restarted the Datadog agent again, ran my new flask app without the built-in ddtrace-run function, sent a few curls to the host at port 5050 and BOOM, it started working! Finally, traces were showing up in the UI. Here is a a screenshot of the the traces getting logged to my vm's console.
 
-app = Flask(__name__)
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/finally_reporting_traces.png)
 
-traced_app = TraceMiddleware(app, tracer)
+Here's another one of the Datadog UI with infrastructure metrics and APM metrics on one timeboard as well. To get the APM trace metrics into a timeboard I first had to export the individual charts from the APM services section by clicking on APM > Services > Flask. Here's a link to my APM/Infrastructure dashboard: https://app.datadoghq.com/dashboard/ujx-h6v-9m9/dashboard-with-both-apm-and-infrastructure-metrics?tile_size=m&page=0&is_auto=false&from_ts=1550872080000&to_ts=1550875680000&live=true.
 
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
-
-I restarted the Datadog agent again, ran my new flask app without the built-in ddtrace-run function, sent a few curls to the host at port 5050 and BOOM, it started working! Finally, traces were showing up in the UI. Here are some screenshots of the UI with infrastructure metrics and APM metrics on one timeboard as well as a screenshot of the the traces getting logged to my vm's console.
-
-images
+![host ip](https://raw.githubusercontent.com/bmcilhenny/hiring-engineers/master/images/trace_charts.png)
 
 
 ###### APM Bonus
 
-The APM language agents monitor your applications at the code level: which transactions, database queries, and external services are taking the most time, what runtime errors are occurring, etc. Infrastructure monitors your hosts at the operating system level: how much CPU, memory, etc. are being used on each server, which processes are running, etc.
+APM agents monitor applications at the code level: where people are on your site, transactions, db queries, API calls and other things. Infrastructure monitors your hosts at the OS level: CPU, memory, etc.
 
-A service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business. That would be another example of a service. A resource is a particular component of an individual service responsible for a task. For the instrumented flask app, the endpoints for the web app are resources as they correspond to a specific function is responsible for one thing.
+With that context, a service is a piece of software that is self contained, such as a flask app. your flask app could be one service that makes up your online business, perhaps you have a shopify app that handles payments for your business. That would be another example of a service. A resource is a particular component of an individual service responsible for a task. For the instrumented flask app, the endpoints for the web app are resources as they correspond to a specific function is responsible for one thing.
 
 ##LAST QUESTION
 
