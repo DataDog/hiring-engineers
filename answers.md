@@ -1,51 +1,87 @@
 
 
+#Single Sign On to Datadog Home Dashboard
 
 You can login to my Datadog trial instance by doing SAML IdP initiation request via:
 
 Okta IdP page: https://dev-998003.oktapreview.com/
+
+![SSO_Datadog_login](images/login.png)
+
+Kindly enter the username,
+
 Username: datadog_eval@okta.com
+
+then the password,
+
 Password: SEChallenge123!
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-Jefferson Haw: Please check datadog.yaml file.
-# Set the host's tags (optional)
-tags:
-- env_se_os:ubuntu
-- env_se_owner:jeffhaw
-- env_se_function:se_tech_challenge
-- env_provider:aws
+Once successful, you should be redirected to the Okta Dashboard page and inside the said page will have a Datadog icon. 
+![SSO_Datadog](images/SSO.png)
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Jefferson Haw: installing MySQL
+Please click the Datadog icon or chiclet and you should be Single Sign On to Datadog.
 
-All done! 
-ubuntu@ip-172-31-13-132:/etc/datadog-agent$ systemctl status mysql.service
-● mysql.service - MySQL Community Server
-   Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: en
-   Active: active (running) since Sun 2019-02-03 11:39:15 UTC; 1min 27s ago
- Main PID: 11406 (mysqld)
-   CGroup: /system.slice/mysql.service
-           └─11406 /usr/sbin/mysqld
+![SSO_Datadog_Home](images/DatadogHome.png)
 
-mysqladmin  Ver 8.42 Distrib 5.7.25, for Linux on x86_64
-Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+## Collecting Metrics:
+* Download the Datadog Agent
+    * After logging in the Datadog dashboard, Look at the left hand navigator and hover Integrations.
+    * Click Agent
+    * You should be taken to a page: [install agent] https://app.datadoghq.com/account/settings#agent
+    * Select the server you want to install the agent. For this exercise, we will use Ubuntu hence click Ubntu.
+    * You should see the page below and execute the steps provided as instructed within your server.
+        ![install_datadog_agent](images/installDatadogAgent.png)
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+* Setting up the Datadog Agent
+    * Check whether your Datadog agent is running by invoking the following command:
+            __sudo service datadog-agent status__
+      if the agent is not running, then you can invoke the following command:
+            __sudo service datadog-agent start__
+    * Proceed to the configuration filepath of the Datadog Agent. Normally in Ubuntu, it should be located at, 
+        The configuration files and folders for the Agent are located in:
+            __/etc/datadog-agent/datadog.yaml__
+    * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Server version		5.7.25-0ubuntu0.16.04.2
-Protocol version	10
-Connection		Localhost via UNIX socket
-UNIX socket		/var/run/mysqld/mysqld.sock
-Uptime:			2 min 13 sec
+        Refer to sample datadog yaml file: [Datadog_YAML](https://github.com/hawjefferson/hiring-engineers/blob/master/AWS%20instance/Collecting%20APM%20Data/datadog.yaml)
 
-Threads: 1  Questions: 5  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.037
+        Set the host's tags (optional)
+        tags:
+        - env_se_os:ubuntu
+        - env_se_owner:jeffhaw
+        - env_se_function:se_tech_challenge
+        - env_provider:aws
 
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+    * installing MySQL via terminal by invoking the following command: __sudo apt-get install mysql-server__
+        All done! 
+        ```SQL service
+        ubuntu@ip-172-31-13-132:/etc/datadog-agent$ systemctl status mysql.service
+        ● mysql.service - MySQL Community Server
+        Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: en
+        Active: active (running) since Sun 2019-02-03 11:39:15 UTC; 1min 27s ago
+        Main PID: 11406 (mysqld)
+        CGroup: /system.slice/mysql.service
+                └─11406 /usr/sbin/mysqld
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Jefferson Haw: Please check myMetric.py
+        mysqladmin  Ver 8.42 Distrib 5.7.25, for Linux on x86_64
+        Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+        Oracle is a registered trademark of Oracle Corporation and/or its
+        affiliates. Other names may be trademarks of their respective
+        owners.
+
+        Server version		5.7.25-0ubuntu0.16.04.2
+        Protocol version	10
+        Connection		Localhost via UNIX socket
+        UNIX socket		/var/run/mysqld/mysqld.sock
+        Uptime:			2 min 13 sec
+
+        Threads: 1  Questions: 5  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.037
+         ```
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+    Refer to [Datadog_Custom_Metric] https://github.com/hawjefferson/hiring-engineers/blob/master/AWS%20instance/Collecting%20Metrics/myMetric.py
+```Python
 #import random modules to generate number between 0 to 1000
 import random
 # the following try/except block will make the custom check compatible with any Agent version
@@ -63,15 +99,19 @@ __version__ = "1.0.0"
 class myMetricCheck(AgentCheck):
     def check(self, instance):
        self.gauge('custom_myMetric',random.uniform(0, 1000))
+```
 
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-Jefferson Haw: Please check myMetric.yaml file.
-init_config:
+Jefferson Haw: Please refer to  [Datadog_Custom_Metric_YAML] https://github.com/hawjefferson/hiring-engineers/blob/master/AWS%20instance/Collecting%20Metrics/myMetric.yaml 
 
-instances:
-    - min_collection_interval: 45
+        ```Python
+        init_config:
 
+        instances:
+            - min_collection_interval: 45
+
+        ```
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
