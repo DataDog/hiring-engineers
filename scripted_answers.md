@@ -1,51 +1,28 @@
-
-# SUMMARY
-With Datadog, you do not need to operate the monitoring platform, no upgrades, no downtimes, no patching. It simplify your business and allow you to focus on what you care about most.
-Visability into all the layers of your tech stack, from hardware and infrastructure to middleware and software.
-With a SaaS based core solution and an open API with strong community backing, you are not locked in with a closed proprietery software nor required to keep a team of highly skilled enginners to operate a 100% opensource project.
-
-# METRICS COLLECTION
-With Datadog, you don't need to reinvent the wheel, meteric collection for your platform is one command away. Because of the strong comminity and the ambraced open source philosophy, datadog is able to keep up with new platform releases and OS changs. 
-Adding tags to the agent, to allow grouping, slicing and dicing of the resources, is straight forward and often automated with your OS deployment - be it virtual or physical hostst, orchastreted in the cloud or on prem or plain old hosts.. 
-You have full control on tagging your resources and once it's done you can use it anywhere in the app (dashboards, monitors, reports)
-for example, adding the class of the host and the type of environment it runs in, allows you to group the hosts in the host map
+*this file was created by [scripted](https://github.com/edennuriel/hiring-engineers/blob/master/scripted.sh)
+# PREPARING
+ - lab environment - install curl, get the repo and install the agent
+# METRICS
+ - add tags to the agent config and restart the agent
  - URL showing the tags as variables and used in group by viz of host map is [here](https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064)
  - or in the host map screenshot here
 ![static_image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/tags-added.png)
-
-There are ready made integrations to collect metrics from all major cloud orchastrators, databases, messaging systems, cluster managers, containered solution and existing monitoring tools infrastructure chose from, for example mysql
-to add mysql specific metrics and monitors, you need a few more clicks
  - Install mysql on the host + mongo as docker container
  - Configure mysql integration create db user, grants
  - Update dd agent conf for mysql check with user/pass endpoint and tags
  - Restart agent and check that the check is running
- 
-The power of open source integration is demonstrated in the ease in which you can add metric collection, all the boiler plate code is taken care of, all there is left to do is generate the metric.
-- Configure custom metric check and metric
+ - Configure custom metric check and metric
  - Use python script [my_metric.py](https://github.com/edennuriel/hiring-engineers/blob/master/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds
  - restart agent and run check for my_metric
-
-You can then decide on how often you want to execute the metric generation and how often you want to report on it.
-
 "Bonus Question Can you change the collection interval without modifying the Python check file you created?"...
 ...Yes, Check interval is controled by the metric conf not the check code. by changinh the conf we control the reporting frequency
-
 # VISUALIZING
-Datadog has very reach set of ways to visualize your metrics and organize, share and manage your vizualizations, since most of the hard work of getting the metrics reliably from all sources is done, the platform can focus on providing it's customer with tools to make the most out of the metrics it collected.
-you can pick your poison, do it as a user via the UI, script it with REST API, backup you'r entire setup into a set of files, modify the exported config and reload.
-I used that approch to create a dashboard with cusom metric
-
  - I used tth web UI to create the graphs, then the get_boards to extract the configuration of the graphs so i can create it via the rest api
  - It seems the python API does not have Dashboard method as documented in the API section of the [doc](https://docs.datadoghq.com/api/?lang=python#create-a-dashboard), insteat a Timetable API was available (also swapped widgets list for graphs) so maybe some docit updates is due or maybe I was missing something
  - get_boards is hard coded for the board I created in the UI, create board script is here [create_board](https://github.com/edennuriel/hiring-engineers/blob/master/create_board.py)
  - link to [graph](https://app.datadoghq.com/graph/embed?token=a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096)
 ![static image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/dashboard.png) 
-
-having out of the box access to advanced ML for analyzing your time serieas data, elivate you from using yet another system. Datadog, is embedding the ML algorithms that are essensial for monitoring your environment in the platform. One example is anommoly detection which learn from the past pattern of a metric over time and provide indication of out of pattern behavior
-
 Bonus Question: What is the Anomaly graph displaying?... It uses the selected algorithm to paint in red a pattern that is considered outside of the normal behavior of the metric by comparing it to the metric history
 PS:  to get some performence figures on the mysql.performence.opentables Im just running a select all on all tables on all databases for a 100 times or so, that will be an anomoly for sure
-
 # MONITORING
  - configured monitor for my_metric via UI and configure scheduled downtime
  - scripted the creation of the monitor here 
