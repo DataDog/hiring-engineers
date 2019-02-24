@@ -47,7 +47,7 @@ Yes! This can be done by adding a *min_collection_interval* as instance paramete
 ![](/visualizing_data/timeboard_graph_snapshot.png)
 
 3. **Bonus question:** What is the anomaly graph displaying?
-- In the screenshot above, the timeseries graph is displaying that around 18:03 a spike i rows fetched occurred, which surpassed the set standard deviation of 1.2. Graphs like this one are very useful since they allow us to detect events which we would not normally expect to happen (based on historical data). In this particular scenario, a sudden increase in the number of rows fetched could indicate that someone has just run an read-intensive query such as *SELECT * FROM table_name;*, where the table contained a large number of rows.
+- In the screenshot above, the timeseries graph is displaying that around 18:03 a spike in rows fetched occurred, which surpassed the set standard deviation of 1.2. Graphs like this one are very useful since they allow us to detect events which we would not normally expect to happen (based on historical data). In this particular scenario, a sudden increase in the number of rows fetched could indicate that someone has just run an read-intensive query such as *SELECT * FROM table_name;*, where the table contained a large number of rows.
 - In general, an Anomaly graph allows to, quite simply, detect anomalous values of metrics, based on historical context.t Examples of very valuable, yet also very variable metrics include application throughput, web requests or user logins. Such metrics might exhibit seasonal patterns (e.g. increased login rate in the evenings) or show a trend (e.g. monotonically increasing number of web requests due to a rapidly growing user base of a high-growth startup)
 
 ## Monitoring Data
@@ -75,4 +75,60 @@ Here is a screenshot of my Monitor's configuration:
 ![](/monitoring_data/downtime_weekend.png)
 
 ## Collecting APM data
-1. 
+1. To make the APM work, I have used ddtrace and set the appropriate option in the *datadog.yaml* file:
+![](collecting_apm_data/apm_config.png)
+
+2. I used the following Flask app to be instrumented using Datadog's APM:
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+3. Finally, I ran ```$ ddtrace-run python app.py``` to instrument the app above
+
+4. After completing the above steps, the app was successfully running, as can be seen in the Service Map:
+![](/collecting_apm_data/service_map_flask.png)
+
+5. I then added a chart of number of requests for my Flask app to my existing Timeboard created earlier:
+![](/collecting_apm_data/dashboard_apm_infrastructure_metrics.png)
+
+6. Additionally, I provide a screenshot of the summary of metrics reported for the Flask app:
+![](/collecting_apm_data/metrics_summary_flask.png)
+
+7. **Bonus Question:** What is the difference between a Service and a Resource?
+- A Service is a set of processes that do the same job. An example might be a web app, such as the Flask app I created.
+- On the other hand, a Resource is a particular action for a Service. In the case of my Flask app, these are canonical URLs that can be seen at the bottom of this screenshot:
+![](/collecting_apm_data/resources.png)
+
+In general, the main difference is the level of *granularity* at which we can monitor a given app's performance, with a Service proving a lower granularity than a Resource. However, this is not to say that a Service is necessarily *worse* that a Resource due to lower granularity. Depending on a particular scenario, it might be more helpful to troubleshoot app's performance by first obtaining a high-level overview of the system, in which case examining Services first should be more productive.
+
+## Final Question
+
+1. Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+- Absolutely! I've been learning about and using Machine Learning for over 3 years now, and one of the scenarios I came across too often was monitoring the training of my Deep Learning models, which often took hours if not days. Sitting at the computer for so long would not be feasible. Datadog could easily be used to track and monitor the progress of training large Deep Learning models by monitoring metrics such as CPU usage per core, GPU memory usage or disk I/O. And the best part is - it could all be done remotely! This way, if something goes wrong with the training process, I could be alerted if, say, the CPU and usage falls below 5%, suggesting that my models might have stopped training. This is just one of the countless possible applications of Datadog for facilitating the process of developing Machine Learning models.
