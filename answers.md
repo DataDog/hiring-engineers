@@ -36,7 +36,9 @@ The code for the custom agent check follows.
         ri = randint(0,1000)
         self.gauge('my_metric', ri)
 
-* Bonus Question Can you change the collection interval without modifying the Python check file you created?
+* Bonus Question Can you change the collection interval without modifying the Python check file you created?  
+The collection interval was changed initially by conf.yaml; if I use code to change the interval to 45sec,   
+I'll skip twice to send the metric in check().
 
 # Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
