@@ -166,7 +166,7 @@ query_all_tables
  - here is an example of a notification for the scheduled downtime
 ![email](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/downtime-email.png)
 
-# APMING"
+# APMING
  - configure agent conf to enable APM 
 
 ```
@@ -195,17 +195,18 @@ SERVER_NAME="0.0.0.0:5050"
 EOF
 ```
  - run the app with ddtrace in the background and generate some traffic"
+
 ```
 ddtrace-run flask run --host 0.0.0.0 & >/dev/null 2>&1
-``
+```
  - generating some traffic so it can be seen in the traces
 
 ```
 for i in {1..100}; do for ep in $(grep -Po "route\(\K([^\)]+)" app.py | sed "s/'//g"); do curl http://localhost:5050$ep; done ;curl http://localhost:5050/$i ; done >/dev/null 2>&1
 ```
 
-- I could then go to the APM menu and see my service and the traces - the coolest thing is how easy it was and how I could correlate mysql metrics with application trace (say mysql was the backend for the services) and then logs too.. pretty powerfull
-![apm_traces](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/flask.png 
+ - I could then go to the APM menu and see my service and the traces - the coolest thing is how easy it was and how I could correlate mysql metrics with application trace (say mysql was the backend for the services) and then logs too.. pretty powerfull
+![apmtraces](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/flask.png)
 
 Bonus Question: What is the difference between a Service and a Resource?... service is an endpoint you access to get service, like db, web server, resource is more granular rest endpoint, db table, specific query or file'
 
@@ -240,7 +241,7 @@ EOF
 fi
 ```
 
-- brute force, just add this module (vs checkign if it is there and replacing... etc..
+ - brute force, just add this module (vs checkign if it is there and replacing... etc..
 ```
 echo 'module(load=imfile PollingInterval=10)' >> /etc/rsyslog.conf
 ```
@@ -253,8 +254,8 @@ mv intake.logs.datadoghq.com.crt /etc/ssl/certs/
  - and as with all other features, it just works, this is so much more than I can say about so many other products out there.
  - and then it was very easy to see what are the top patterns in the log and visualize them along a time line 
 
-![log pattern](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpat.png
-![log_appern_filtered](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpatflt.png
+![log pattern](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpat.png)
+![log_appern_filtered](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpatflt.png)
 
 # WHAT ELSE
  - I can see how this platform can be used to monitor anything, since it is that easy to add integration, for example, I could hook my smathome hub and configure monitors and dashboards for the data that is comming from it.
