@@ -61,7 +61,7 @@ systemctl restart datadog-agent
 
  - URL showing the tags as variables and used in group by viz of host map is [here](https://p.datadoghq.com/sb/q6rr0gs671wrdhi2-f115cbc602039fff6de4388bd9161064)'
  - or in the host map screenshot here'
-![static_image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/tags-added.png)'
+![static_image](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/tags-added.png)'
  - Following the instructions, I proceed with installing some middlewares
  - Install mysql on the host + mongo as docker container
 
@@ -122,7 +122,7 @@ while [[ ! $(datadog-agent status | grep mysql) ]]; do echo -n "."; sleep 1; don
  ```
                 self.gauge("my_metric",random.randint(0,1000))
 ```
- - the full script is here [my_metric.py](https://github.com/edennuriel/hiring-engineers/blob/master/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
+ - the full script is here [my_metric.py](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/my_metric.py) to update a gauge type with random int, place it with check scripts and create metric conf with min update interval set to 45 seconds'
  - move the script to the checks directory and update the conf with 45 s interval 
 
 ```
@@ -144,9 +144,9 @@ EOF
  - I took an easy approach here...
  - Started by using the web UI to create the graphs, then used the get_boards to extract the configuration of the graphs so I can create it programmatically via the rest API
  - It seems that the python API does not have a Dashboard method as documented in the API section of the [doc](https://docs.datadoghq.com/api/?lang=python#create-a-dashboard), Instead a Timetable API was available (also swapped widgets list for graphs) so maybe some updates are due or maybe I was missing something
- - get_boards is hard coded for the board I created in the UI, because I'm just hacking around, but I can see how one can completely automate saving the entire UI creation, and automate changes and backup procedures. The create board script is here [create_board](https://github.com/edennuriel/hiring-engineers/blob/master/create_board.py)
+ - get_boards is hard coded for the board I created in the UI, because I'm just hacking around, but I can see how one can completely automate saving the entire UI creation, and automate changes and backup procedures. The create board script is here [create_board](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/create_board.py)
  - link to [graph](https://app.datadoghq.com/graph/embed?token=a23c56f6c31444f2a2e1815f71756bddce8a2fff60474752c69f8b91d4ddf096)
-![static image](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/dashboard.png) '
+![static image](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/dashboard.png) '
 Bonus Question: What is the Anomaly graph displaying?... It uses the selected algorithm to paint in red a pattern that is considered outside of the normal behavior of the metric by comparing it to the metric history
 PS:  to get some performance figures on the mysql.performance.opentables, I'm just running a select all on all tables on all databases for a 100 times or so, that will be an anomaly for sure
 
@@ -164,7 +164,7 @@ query_all_tables
  - scripted the creation of the monitor here 
  - for the scheduled downtime, i used to scheduled (friday 7am - Mon 9am and Mon,Tue,Wed,Thur 7pm-9am) I could'nt grasp why the schedular makes it hard to pick any time or why there's no cron syntax available, also the time UI is iffy with keyboard controls
  - here is an example of a notification for the scheduled downtime
-![email](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/downtime-email.png)
+![email](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/downtime-email.png)
 
 # APMING
  - configure agent conf to enable APM 
@@ -206,7 +206,7 @@ for i in {1..100}; do for ep in $(grep -Po "route\(\K([^\)]+)" app.py | sed "s/'
 ```
 
  - I could then go to the APM menu and see my service and the traces - the coolest thing is how easy it was and how I could correlate mysql metrics with application trace (say mysql was the backend for the services) and then logs too.. pretty powerfull
-![apmtraces](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/flask.png)
+![apmtraces](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/flask.png)
 
 Bonus Question: What is the difference between a Service and a Resource?... service is an endpoint you access to get service, like db, web server, resource is more granular rest endpoint, db table, specific query or file'
 
@@ -254,8 +254,8 @@ mv intake.logs.datadoghq.com.crt /etc/ssl/certs/
  - and as with all other features, it just works, this is so much more than I can say about so many other products out there.
  - and then it was very easy to see what are the top patterns in the log and visualize them along a time line 
 
-![log pattern](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpat.png)
-![log_appern_filtered](https://github.com/edennuriel/hiring-engineers/blob/master/screenshots/logpatflt.png)
+![log pattern](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/logpat.png)
+![log_appern_filtered](https://github.com/edennuriel/hiring-engineers/blob/solution-architect/screenshots/logspatflt.png)
 
 # WHAT ELSE
  - I can see how this platform can be used to monitor anything, since it is that easy to add integration, for example, I could hook my smathome hub and configure monitors and dashboards for the data that is comming from it.
