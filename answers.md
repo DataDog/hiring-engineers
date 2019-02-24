@@ -5,8 +5,7 @@ Tomonori Matsuba
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Screen shot later
 The page
-<https://app.datadoghq.com/dash/host/850201734?tile_size=m&page=0&is_auto=false&from_ts=1550994240000&to_ts=1550997840000&live=true>
-</hiring-engineers/screenshots/Host.Map.Page.PNG>
+![Host Map Page](https://github.com/tmateama/hiring-engineers/screenshots/Host.Map.Page.PNG)
       
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
