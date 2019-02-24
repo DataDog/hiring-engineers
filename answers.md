@@ -4,6 +4,8 @@ Tomonori Matsuba
 # Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+I changed the default name of vagrant to other names. tma is the new name, prefix of several names after this.
+
 ![Host Map Page](./screenshots/Host.Map.Page.PNG)
       
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
