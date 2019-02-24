@@ -12,7 +12,10 @@ Add tags in the Agent config file and show us a screenshot of your host and its 
       
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+
+![Custom Agent Check: 15sec interval and 45sec](./screenshots/custom_agent_check.PNG)
+      
 
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
