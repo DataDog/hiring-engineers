@@ -6,7 +6,8 @@ Tomonori Matsuba
 Screen shot later
 The page
 <https://app.datadoghq.com/dash/host/850201734?tile_size=m&page=0&is_auto=false&from_ts=1550994240000&to_ts=1550997840000&live=true>
-
+</hiring-engineers/screenshots/Host.Map.Page.PNG>
+      
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
