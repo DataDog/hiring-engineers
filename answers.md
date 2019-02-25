@@ -1,7 +1,6 @@
-EDDITING, NOT SUBMITTED
+Name:Tomonori Matsuba
 
-
-Tomonori Matsuba
+The quiz has not been finished yet; I'll explain about the rest of the questions in the interviews.
 ----
 # Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
