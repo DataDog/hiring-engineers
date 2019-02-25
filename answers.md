@@ -18,7 +18,7 @@ Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_6
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
 
 **Answer:**  
-add hostname tag in /etc/datadog-agent/datadog.yaml like this
+Add hostname tag in /etc/datadog-agent/datadog.yaml like this
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2014.44.16.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/14_59_35__02_22_2019.jpg)
 
@@ -31,7 +31,8 @@ Installed MySQL 5.7.25 and installed Datadog integration for this DB
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/15_35_18__02_22_2019.jpg)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  
-**Answer:** created a custom Agent check as below and run it
+**Answer:**  
+Created a custom Agent check as below and run it
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.32.49.png)
 ![]()
 
@@ -40,23 +41,24 @@ Installed MySQL 5.7.25 and installed Datadog integration for this DB
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.48.59.png)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  
-**Answer:** use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml. Same as last question
+**Answer:**   
+Use "min_collection_interval: 45" options in conf.d/wangzz_my_metric.yaml. Same as last question
 
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.  
-**Answer:**
+**Answer:**  
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.13.47.png)
 
 * Any metric from the Integration on your Database with the anomaly function applied  
-**Answer:**
+**Answer:**  
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.14.25.png)
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
-**Answer:**
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.14.10.png)
+**Answer:**  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.14.10.png)  
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/18_15_29__02_22_2019.jpg)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
@@ -161,6 +163,10 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+**Answer**  
+Service is a set of processes that do the same job. In this sample, webapp is one service.
+Resource is a particular action for a service. In this sample, "/","/api/trace","/api/apm" are three 
+resources for the webapp service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -171,3 +177,6 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+**Answer:**  
+I think Datadog can be used in any place with data there.
+Maybe I want to use Datadog for monitoring stock changing, my game score or some of my sales data.
