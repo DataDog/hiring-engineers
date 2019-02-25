@@ -46,17 +46,16 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.  
 **Answer:**
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2016.43.42.png)
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.13.47.png)
 
 * Any metric from the Integration on your Database with the anomaly function applied  
 **Answer:**
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2016.54.19.png)
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/16_54_45__02_22_2019.jpg)
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.14.25.png)
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
 **Answer:**
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2016.44.48.png)
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/16_46_05__02_22_2019.jpg)
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2018.14.10.png)
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/18_15_29__02_22_2019.jpg)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -64,7 +63,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+* **Bonus Question**: What is the Anomaly graph displaying?  
+**Answer:**
+
 
 ## Monitoring Data
 
