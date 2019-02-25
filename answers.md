@@ -162,13 +162,17 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+* **Bonus Question**: What is the difference between a Service and a Resource?  
 **Answer**  
-Service is a set of processes that do the same job. In this sample, webapp is one service.
-Resource is a particular action for a service. In this sample, "/","/api/trace","/api/apm" are three 
-resources for the webapp service.
+Service is a set of processes that do the same job. In this sample, webapp is one service.  
+Resource is a particular action for a service. In this sample,  
+"/","/api/trace","/api/apm" are three resources for the webapp service.
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.  
+**Answer**  
+https://app.datadoghq.com/dashboard/wfb-4us-2e9/apm?tile_size=m&page=0&is_auto=false&from_ts=1551089310000&to_ts=1551090210000&live=true
+
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/screencapture-app-datadoghq-dashboard-wfb-4us-2e9-apm-2019-02-25-19_21_54.png)
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -179,4 +183,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 **Answer:**  
 I think Datadog can be used in any place with data there.
-Maybe I want to use Datadog for monitoring stock changing, my game score or some of my sales data.
+Maybe I will use Datadog for monitoring stock changing, my game score or some of my sales data.
