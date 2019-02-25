@@ -17,12 +17,14 @@ Linux dgtest 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_6
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
 
-**Answer:** add hostname tag in /etc/datadog-agent/datadog.yaml like this
+**Answer:**  
+add hostname tag in /etc/datadog-agent/datadog.yaml like this
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2014.44.16.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/14_59_35__02_22_2019.jpg)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.  
-**Answer:** installed MySQL 5.7.25 and installed Datadog integration for this DB
+**Answer:**  
+Installed MySQL 5.7.25 and installed Datadog integration for this DB
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/15_02_01__02_22_2019.jpg)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.47.44.png)
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-22%2015.34.32.png)
@@ -62,14 +64,16 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes  
-**Answer:**
+**Answer:**  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2013.50.04.png)
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.  
-**Answer:**
+**Answer:**  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2013.50.24.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?  
-**Answer:**
-
+**Answer:**  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2013.51.09.png)
 
 
 ## Monitoring Data
@@ -82,18 +86,42 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+**Answer:**  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/screencapture-app-datadoghq-monitors-2019-02-25-14_00_01.png)
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.  
+**Answer:**  
+Alert email:
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.03.58.png)
+
+Warning email:
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.02.55.png)
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+**Answer:**  
+Monitor downtime configuration
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.45.38.png)
+
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.46.08.png)
+
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.46.28.png)
+
+Downtime started message:  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.53.05.png)
+
+Downtime end message:  
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202019-02-25%2014.53.14.png)
 
 ## Collecting APM Data:
 
