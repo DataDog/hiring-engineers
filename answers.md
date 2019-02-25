@@ -174,13 +174,11 @@ https://app.datadoghq.com/dashboard/wfb-4us-2e9/apm?tile_size=m&page=0&is_auto=f
 
 ![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/screencapture-app-datadoghq-dashboard-wfb-4us-2e9-apm-2019-02-25-19_21_54.png)
 
-Please include your fully instrumented app in your submission, as well.
-
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+Is there anything creative you would use Datadog for?  
 **Answer:**  
 I think Datadog can be used in any place with data there.
 Maybe I will use Datadog for monitoring stock changing, my game score or some of my sales data.
