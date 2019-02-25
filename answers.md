@@ -172,7 +172,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 **Answer**  
 https://app.datadoghq.com/dashboard/wfb-4us-2e9/apm?tile_size=m&page=0&is_auto=false&from_ts=1551089310000&to_ts=1551090210000&live=true
 
-![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/screencapture-app-datadoghq-dashboard-wfb-4us-2e9-apm-2019-02-25-19_21_54.png)
+![](https://github.com/wangzhizheng/hiring-engineers/blob/solutions-engineer/screenshot/screencapture-app-datadoghq-dashboard-wfb-4us-2e9-apm-2019-02-25-19_35_11.png)
 
 ## Final Question:
 
