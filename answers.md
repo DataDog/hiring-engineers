@@ -4,7 +4,7 @@
 
 * Adding tags in the Agent config file:
 
-[Tags in Host Map page](images/sc001_tags.png)
+![Tags in Host Map page](images/sc001_tags.png)
 
 at /etc/datadog-agent/datadog.yaml
 ```yaml
@@ -85,7 +85,7 @@ sudo datadog-agent status
    Average Execution Time : 58ms
 ```
 
-[MySQL Dashboard](images/sc002_mysql-dash.png)
+![MySQL Dashboard](images/sc002_mysql-dash.png)
 
 * Creating a custom Agent check
 
@@ -168,7 +168,7 @@ Collector
       Average Execution Time : 0s
 ```
 
-[Metrics Explorer](images/sc003_my_metric.png)
+![Metrics Explorer](images/sc003_my_metric.png)
 
 * Changing my_metric interval as 45 sec.
 
@@ -179,7 +179,7 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
-[Metrics Explorer](images/sc004_my_metric_45s.png)
+![Metrics Explorer](images/sc004_my_metric_45s.png)
 
 * **Bonus Question** "Can you change the collection interval without modifying the Python check file you created?"
 
@@ -189,7 +189,7 @@ Definitely, YES. You can modify the collection interval at the configuration fil
 
 * Utilizing the Datadog API to create a Timeboard
 
-[My Timeboard](images/sc005_my_timeboard.png)
+![My Timeboard](images/sc005_my_timeboard.png)
 
 ```bash
 #!/bin/bash
@@ -244,11 +244,11 @@ curl  -X POST -H "Content-type: application/json" \
 
 * Accessing the Dashboard
 
-[My Timeboard set timeframe as 5min.](images/sc006_my_timeboard_5min.png)
+![My Timeboard set timeframe as 5min.](images/sc006_my_timeboard_5min.png)
 
-[Snapshot and @mention in Datadog](images/sc007_snapshot_in_timeboard.png)
+![Snapshot and @mention in Datadog](images/sc007_snapshot_in_timeboard.png)
 
-[E-mail notification sent via @mention](images/sc008_e-mail_notification.png)
+![E-mail notification sent via @mention](images/sc008_e-mail_notification.png)
 
 * **Bonus Question** "What is the Anomaly graph displaying?"
 
@@ -259,17 +259,17 @@ Anomaly detection for mysql.net.connections in the dashboard above shows no patt
 
 * Creating a new Metric Monitor for **my_metric**
 
-[Setting up Metric Monitor -1](images/sc009_threshold.png)
+![Setting up Metric Monitor -1](images/sc009_threshold.png)
 
-[Setting up Metric Monitor -2](images/sc010_message-body.png)
+![Setting up Metric Monitor -2](images/sc010_message-body.png)
 
-[Triggered Alert E-mail](images/sc011_triggered-alert.png)
+![Triggered Alert E-mail](images/sc011_triggered-alert.png)
 
 * **Bonus Question** "How to set scheduled downtimes for the Metric Monitor above?"
 
-[Setting up two scheduled downtimes -Out of Office in weekdays](images/sc012_downtime-outofoffice.png)
+![Setting up two scheduled downtimes -Out of Office in weekdays](images/sc012_downtime-outofoffice.png)
 
-[Setting up two scheduled downtimes -Weekend](images/sc013_downtime-weekend.png)
+![Setting up two scheduled downtimes -Weekend](images/sc013_downtime-weekend.png)
 
 ## Collecting APM Data:
 
@@ -308,7 +308,7 @@ if __name__ == '__main__':
 
 * [Shared Dashboard](https://p.datadoghq.com/sb/7k6umrascfdhy0wn-3c2249d1226d1590b27d4bf09a753b0a)
 
-[My Screenboard](images/sc014_MyScreenboard.png)
+![My Screenboard](images/sc014_MyScreenboard.png)
 
 * **Bonus Question**: "What is the difference between a Service and a Resource?"
 
