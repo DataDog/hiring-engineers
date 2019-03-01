@@ -16,15 +16,15 @@ Answers to [Solutions Engineer Hiring Exercise](README.md)
 ```
 3. Get Screenshot
 
-**[Full-size screenshot of host map w/ added tags](img/01-CollMetrics-002.png)**
+Screenshot of host map w/ added tags
 <img src="img/01-CollMetrics-002.png" width="600"/>
 -----------------
 ### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 #### Screenshots reflecting those instructions:
-  **[Full-size screenshot of PostgreSQL on my machine](img/01-CollMetrics-004.png)**
+Screenshot of PostgreSQL on my machine
   <img src="img/01-CollMetrics-004.png" width="600"/>
 ---------
-  **[Full-size Screenshot of PostgreSQL Integration](img/01-CollMetrics-003.png)**
+  Screenshot of PostgreSQL Integration
   <img src="img/01-CollMetrics-003.png" width="600"/>
 -----------
 ### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -123,14 +123,14 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-**[Full-size Screenshot of TimeBoard Snapshot Email](img/02-VizData-001.png)**      
+Screenshot of TimeBoard Snapshot Email    
 <img src="img/02-VizData-001.png" width="600"/>
 ------------------
 ### Bonus Question: What is the Anomaly graph displaying?
 - **Answer**: The Anomaly graph generally displays a given metric and it's adherence or deviation from its predicted behavior within a timeframe. The gray area indicates "safe" values or bounds. If a metric ends up being a standard deviation above or below, it ends up outside of these bounds. At this point, it's considered anomalous which suggests some kind of dysfunction or unintended behavior/ side-effect.
 More specifically, my anomaly graph is showing the number of commits made by PostgreSQL and whether or not it is within the bounds of predicted behavior by the algorithm.
 
-**[Full-size Screenshot of Anomaly Graph](img/02-VizData-002.png)**      
+Screenshot of Anomaly Graph
 <img src="img/02-VizData-002.png" width="600"/>
 ----------------
 ## Part 03: Monitoring Data
@@ -148,7 +148,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-[Full Size Warning Email](img/03-Monitor-02Warn.png)    
+Screenshot of Warning Email
 <img src="img/03-Monitor-02Warn.png" width="600"/>
 ---
 ### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -157,8 +157,13 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-[Full-size Scheduled Weekend Downtime Email Notification](img/04-Downtime-02WkEnds.png)      
-[Full-size Scheduled Weekdays Downtime Email Notification](img/04-Downtime-01MonFri.png)      
+   
+### Screenshots of Scheduled Downtime Email Notifications      
+
+#### Weekdays  
+<img src="img/04-Downtime-01MonFri.png" width="600">
+
+#### Weekends  
 <img src="img/04-Downtime-02WkEnds.png" width="600">
 ---
 ## Part 04: Collecting APM Data
