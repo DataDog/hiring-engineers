@@ -111,10 +111,10 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 1. Looked up and copied JSON file of each graph/widget inside previously made Timeboard. Rewrote them as Python dictionaries within a list called _graph_ in Timeboard creation script.
 1. Culled or rearranged any attributes as specified by Timeboard API in the script.
 1. Executed the **[timeboard creation script](create_timeboard.py)** in terminal.
-```bash
-  python create_timeboard.py
-```
-8. Confirmed results in GUI tool and datadog agent log.
+    ```bash
+      python create_timeboard.py
+    ```
+1. Confirmed results in GUI tool and datadog agent log.
 
 ### [Final Script Used to create Timeboard](create_timeboard.py)
 
