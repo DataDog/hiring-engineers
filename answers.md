@@ -10,6 +10,7 @@
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-hostmap.png)
 
 	Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-database.png)
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-mysql.png)
 
 	Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
