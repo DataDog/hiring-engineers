@@ -1,20 +1,24 @@
-Questions
-Please provide screenshots and code snippets for all steps.
+# Questions
+## Please provide screenshots and code snippets for all steps.
 
-Prerequisites - Setup the environment
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+## Prerequisites - Setup the environment
+### OS: Ubuntu 16.04 via Vagrant & VirtualBox
 
-You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+## Collecting Metrics:
+## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags.png)
 
-Collecting Metrics:
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Visualizing Data:
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration_mysql.png)
+
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric.png)
+
+### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
+
+## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
