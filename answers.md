@@ -112,14 +112,14 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 *Is there anything creative you would use Datadog for?*
 
-```
-As someone who's worked in the payments space for a while, I can definitely anticipate applications of Datadog across the board for payment processing. 
+
+> As someone who's worked in the payments space for a while, I can definitely anticipate applications of Datadog across the board for payment processing & accepting platforms. 
 
 - An Agent can be setup at a Data Center Group (DCG) level with custom checks for each service running. 
 - Payment Switches can have their own monitors in terms of CPU Usage, Load, DB Reads & Writes, etc. to ensure zero downtime.
 - Declines/Unauthorized erros can be aggregated with set thresholds for alerting monitors in order to keep track of alerts & downtime.
 - Custom Metrics for Authentication, Invoicing, Authorization, Settlement & Disbursement can help track performance as well as risk scores.
 - Visualizing support & uptime data can help technical support and evaluation processes as well as help determine escalation policies.
-```
+
 
 
