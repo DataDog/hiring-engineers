@@ -1,10 +1,13 @@
 # Answers
 
 ## Prerequisites - Environment
+------------------------
+
 	OS: Ubuntu 16.04
 	VM: Vagrant w/ VirtualBox
 
 ## Collecting Metrics:
+------------------------
 *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-file.png)	
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-hostmap.png)
@@ -23,6 +26,8 @@
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
 
 ## Visualizing Data:
+------------------------
+
 Utilize the Datadog API to create a Timeboard that contains:
 
 *Your custom metric scoped over your host.*
@@ -39,6 +44,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 *Bonus Question: What is the Anomaly graph displaying?*
 
 ## Monitoring Data:
+------------------------
 
 *Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.*
 
@@ -62,8 +68,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ## Collecting APM Data:
+------------------------
+
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
+```python
 from flask import Flask
 import logging
 import sys
@@ -92,6 +101,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+```
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
@@ -100,7 +110,9 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
-Final Question:
+## Final Question:
+------------------------
+
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
