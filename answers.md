@@ -6,26 +6,21 @@
 
 ## Collecting Metrics:
 *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
-	
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-file.png)	
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-hostmap.png)
 
 *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
-	
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-database.png)
 	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-mysql.png)
 
 *Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.*
-
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-custom_djcheck.png)	
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-custom_djcheck.png)	
 
 *Change your check's collection interval so that it only submits the metric once every 45 seconds.*
-
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric_status.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric_status.png)
 
 *Bonus Question Can you change the collection interval without modifying the Python check file you created?*
-
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
 
 ## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
