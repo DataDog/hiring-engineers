@@ -1,15 +1,15 @@
-# Questions
-## Please provide screenshots and code snippets for all steps.
+# Answers
 
 ## Prerequisites - Setup the environment
 ### OS: Ubuntu 16.04 via Vagrant & VirtualBox
+
 
 ## Collecting Metrics:
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags.png)
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration_mysql.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-mysql.png)
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### Change your check's collection interval so that it only submits the metric once every 45 seconds.
