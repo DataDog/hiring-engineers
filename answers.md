@@ -7,7 +7,8 @@ tags:
    - env:dev
    - role:database
   ``` 
-Host Map Screenshot 
+**Host Map Screenshot** 
+
 <img src=images/01_host_map_tags.png width=600>
 
 
@@ -183,6 +184,9 @@ I couldn't find a way to start a downtime from a previous day/time, which doesn'
 
 <img src=images/03_weekends_out_of_office_downtime.png width=600>
 
+I created a one-time downtime for the rest of the weekend, and received the corresponding e-mail.
+
+<img src=images/03_email_downtime_notification/png width=600>
 
 # 4. Collecting APM Data:
 
@@ -258,8 +262,7 @@ apm_config:
 ``` 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
-
-
+  A Service is a set of processeses providing a specific functionality, like a web application, or a database, while a resource is a particular action for a service: for a web application it could be a request, while for a database it could be a query. 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -272,3 +275,13 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 Please include your fully instrumented app in your submission, as well.
 
 ***The full instrumented app can be found under [`code/flask_app.py`](/code/flask_app.py)***
+
+# 5. Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+Similar to the bathroom availability example, meeting rooms in offices are an scarse resource and is often time consuming and frustrating to check if there are meeting rooms available, and if any of the booked meeting rooms is actually not in use. With sensors on the meeting rooms and programmatic access to the booking system (Exchange? Google Mail? put_here_your_service_name) it could be awesome to build a dashboard showing available meeting rooms per floor as well as booked meeting rooms not in use/empty.
+
+In a general perspective, I believe any company using datadog should feed near-real-time business and/or functional metrics related to the applications and systems monitored to Datadog, so they can be looked at together with system and application metrics and detect issues/behaviors that won't show up on pure system/app metrics. 
