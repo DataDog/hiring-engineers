@@ -508,7 +508,7 @@ ddtrace-run python my_app.py
 
 The below screenshot shows the result of the ddtrace-run, however the result is not as expected. I was not able to get the APM up and running.
 
-![Flask run](https://github.com/benalim/hiring-engineers/blob/master/Pics/flaskrun.png)
+![Flask run](https://github.com/benalim/hiring-engineers/blob/master/Pics/falskrun.png)
 
 ![APM trace](https://github.com/benalim/hiring-engineers/blob/master/Pics/trace.png)
 
