@@ -510,7 +510,7 @@ The below screenshot shows the result of the ddtrace-run, however the result is 
 
 ![Flask run](https://github.com/benalim/hiring-engineers/blob/master/Pics/falskrun.png)
 
-![APM trace](https://github.com/benalim/hiring-engineers/blob/master/Pics/trace.png)
+This page should have been showing different trace graphs instead of the below view.
 
 ![APM trace](https://github.com/benalim/hiring-engineers/blob/master/Pics/trace1.png)
 
