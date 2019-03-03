@@ -1,6 +1,7 @@
 # 1. Collecting Metrics
 ## Add tags in the Agent config file:
-Edited /etc/datadog-agent/datadog.yaml to add the metrics
+Edited /etc/datadog-agent/datadog.yaml to add the tags and restarted the agent to pick them up.
+
 ```yaml
 tags:
    - location:vagrant-local
@@ -86,7 +87,8 @@ After fixing copy-paste indentation errors... (and disabling extra_performance_m
       Average Execution Time : 0s
   ```
 
-  Screenshots:
+  ***Screenshots:***
+  
   <img src=images/01_custom_my_metric.png width=600>
 
 * By default the collection interval is 15 seconds. We can change that to 45 seconds by editing the `/etc/datadog-agent/conf.d/custom_my_metric.yaml` and adding `min_collection_interval`
@@ -104,6 +106,8 @@ After fixing copy-paste indentation errors... (and disabling extra_performance_m
 Created a Screenboard with some of the metrics [here](https://p.datadoghq.com/sb/gc2f3rf7u99g8xc8-5e803f2fae4a35f18f360c81265f313c)
 
 * **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
+
+
    Yes, using min_collection_interval on the conf.d YAML file for the metric
 
 # 2. Visualizing data
@@ -119,9 +123,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 **Solution:**
+
 Reviewed the API documentation [here](https://docs.datadoghq.com/api/?lang=python#overview)
 
-Python code used to complete this exercise can be found under `code/create_timeboard.py`
+Python code used to complete this exercise can be found under [`code/create_timeboard.py`](code/create_timeboard.py)
+I edited the code on the documentation to load the API and APP key from environment variables to avoid security issues commiting credentials to public repos. 
 
 **NOTE:** I had to manually install datadogpy from [source](https://github.com/DataDog/datadogpy) to be able to use the api.Dashboard module, as the version installed from pip doesn't seem to be the same even though both versions are shown as 0.26.0: ```AttributeError: module 'datadog.api' has no attribute 'Dashboard'```
 
@@ -132,15 +138,19 @@ Python code used to complete this exercise can be found under `code/create_timeb
    <img src=images/01_my_metric_rollup_function.png width=600>
 
 * API-created dashboard 
+
    <img src=images/02_api_created_dashboard.png width=600>
 
 * 5-min scoped dashboard 
+
    <img src=images/02_api_created_dashboard.png width=600>
 
 * Graph snapshot sent over e-mail:
+
    <img src=images/02_email_snapshot.png width=600>
 
 * **Bonus question:** What is the Anomaly graph displaying?
+  
   It shows a range of values that are expected for the metric based on past behavior and trends and trends. Datadog provides three anomaly detection algorithms depending on the nature of the metric:
   ** Basic: for metrics that have no repeating seasonal pattern.
   ** Agile: for seasonal metrics when you want the algorithm to quickly adjust to level shifts in the metric
@@ -166,6 +176,7 @@ Please configure the monitor’s message so that it will:
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 **Email Notification:**
+
 <img src=images/03_my_metric_warning.png width=600>
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -175,18 +186,20 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 **Weekdays out of office downtime**
+
 You need to add Sundays to the periodicity of the downtime, otherwise I'd be alerted on during Monday's AM before 9AM. There might be a better way to schedule this without overlapping downtimes... 
 
 <img src=images/03_weekdays_downtime.png width=600>
 
 **Weekends downtime**
+
 I couldn't find a way to start a downtime from a previous day/time, which doesn't let you configure a recurrent downtime that would have already started during your current time... I had to start this downtime schedule to start next weekend. There might be another way to do this.
 
 <img src=images/03_weekends_out_of_office_downtime.png width=600>
 
 I created a one-time downtime for the rest of the weekend, and received the corresponding e-mail.
 
-<img src=images/03_email_downtime_notification/png width=600>
+<img src=images/03_email_downtime_notification.png width=600>
 
 # 4. Collecting APM Data:
 
@@ -203,7 +216,7 @@ apm_config:
     enabled: true
 ``` 
 
-Read blog post about Flask monitoring with datadog [here](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
+I read blog post about Flask monitoring with datadog [here](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/)
 
 Installed ddtrace with pip and tested automated instrumentation with ddtrace-run 
 ```bash
@@ -262,6 +275,7 @@ apm_config:
 ``` 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
   A Service is a set of processeses providing a specific functionality, like a web application, or a database, while a resource is a particular action for a service: for a web application it could be a request, while for a database it could be a query. 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
