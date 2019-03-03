@@ -1,1 +1,11 @@
-Your answers to the questions go here.
+## ENVIRONMENT SETUP
+
+Used Ubuntu 16.04 linux VM via Vagrant
+
+001.PNG
+
+## COLLECTING METRICS
+
+## VISUALIZING DATA
+
+## MONITORING DATA
