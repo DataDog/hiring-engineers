@@ -120,7 +120,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
+Set the Timeboard's time frame to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Screenshot of TimeBoard Snapshot Email    
@@ -256,5 +256,34 @@ if __name__ == '__main__':
 ### **[Instrumented App link](my_app.py)**
 ### Bonus Question: What is the difference between a Service and a Resource?
 - **Answer**: A service is composed of resources. While a service is a grouping of processes that have the same job, resources are particular actions or specific executions of tasks for a given resource it belongs to. Somewhat similar to classes and functions or dictionaries and attributes.
+
+## Final Question:
+### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+### Is there anything creative you would use Datadog for?
+
+**Answer**: Modern life is full of convenience but that presents the new and unique problem of how and what to spend your time on.
+ 
+ A really neat application of Datadog's tooling would be to monitor and record relative locations, distance travelled, duration, times, money spent/gained, caloric intake/expenditure, and activity cost/benefit (time, money, calories, distance, etc). I call it holistic budgeting. 
+ 
+ The purpose would be to combine the various metrics for things like budgeting, travel itineraries, or self improvement/productivity. Time nor money are the only currency you can spend. Your health and peace of mind cost something.
+
+ Use Examples:
+  - Keep your excess spending down (budget)
+  - Strategic midday napping (not at work, or at lunch, depends)
+  - Insert light to moderate exercise in your commute to squeeze in physical fitness 
+    - example: by biking or getting out of a car or bus early to walk an extra 1000 ft both ways (confident that you have the time to do so)
+  - increase how much you sleep or reinforce better sleeping habits
+  - Figure out when you're more likely to be late to something
+  - cross-reference time/expenditures/calories to maintain diet 
+    - example: you know to avoid a certain area after work or going out during certain times because it costs you in terms of calories and dollars
+  - maintaining work/life/health balance
+  - Where and/or when you spend the most money
+    - example: spending rate doubles on Saturday nights in that neighborhood with the really good gyros around 3 am~4 am
+  - where you spend the most time outside of work or home
+  - create money over time rates or vice versa for certain activities to do cost benefit analysis
+    - example: You might spend less time commuting by car in the city but spend more money per minute/hour than if you commuted by train
+  - and more!!
+
+
 
 
