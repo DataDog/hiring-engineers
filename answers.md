@@ -166,7 +166,8 @@ Screenshot of Warning Email
 
 #### Weekends  
 <img src="img/04-Downtime-02WkEnds.png" width="600">
----
+------  
+
 ## Part 04: Collecting APM Data
 ### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
