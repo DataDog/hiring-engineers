@@ -8,7 +8,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 ###My Environment
 
-For the exercise, I actually got a bit curious so I set up two Ubuntu instances, one via Vagrant, another in my AWS test environement. My Vagrant instance is Unbuntu 14.04.5 while my AWS instance is 18.04. Due to the following statement for the exercise I chose to leverage my AWS instance for installation of MySQL and will use it for most of the requirements for the exercise. 
+For the exercise, I actually got a bit curious so I set up two Ubuntu instances, one via Vagrant, another in my AWS test environement. My Vagrant instance is Unbuntu 14.04.5 while my AWS instance is 18.04. Due to the following statement for the exercise I chose to leverage my AWS instance for installation of MySQL and will use it for most of the requirements for the exercise.
 ```
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues
 ```
@@ -23,7 +23,7 @@ I set up the Apache server and was successfully installed. I can browse to ther 
 
 
 #####Installing MySQL
-I chose to install MySQL for the database. 
+I chose to install MySQL for the database.
 
 
 
@@ -51,7 +51,7 @@ CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'DGLu16DQ_ET2BT0vUrosxMMJ'
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-#####Answers:
+**Answer:**
 
 Tags field was added in the datadog/yaml file. Code is as follows
 
@@ -80,6 +80,7 @@ This view shows the my custom tags are properly set up
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+**Answer:**
 I created a my_metric.py file in the /etc/datadog-agent/checks.d directory and added the following code.
 ```
 import random
@@ -146,6 +147,7 @@ Custom Metric is successfully reporting. I created a timeboard with my custom me
 
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
+**Answer:**
 Yes, the interval exists within the yaml file so it can be easily changed there. I went ahead and set it to 45 seconds. under instances "-min_collection_interval"
 
 ##Visualizing Data:
@@ -267,7 +269,7 @@ This is an example of how to show different messages based on type of alert.
 ######Figure 13 Monitor can be set up to show different messages
 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-
+**Answer:**
 I used the following text for my alert message:
 ```
 {{value}}   sent to @g.specht@gmstechllc.com
@@ -296,7 +298,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 ##Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog's APM solution:
-
+**Answer:**
 I installed flask via **sudo -H install flask**
 I then install ddtrace as follows **sudo -H pip install ddtrace**
 
@@ -352,5 +354,5 @@ Datadog has been used in a lot of creative ways in the past. We've written some 
 Is there anything creative you would use Datadog for?
 
 **Answer:**
-I have worked in the Energy industry and Smart meter technology is becoming a standard. Getting the meter data can be very challenging as it is not a conventional approach. The Datadog API and custom integrations would allow for energy companies to monitor health and availability of smart meter technologies as well as the applications and infrastructures that support it. The ability to easily create timeboards would allow for a very intuitive view of the overall smart meter service from a business standpoint. Also, in traditional corporations, there is a increasing need to add business related metrics along with IT service metrics. This is another way the Datadog can add value to the line of business within and organization.
+I have worked in the Energy industry and Smart meter technology is becoming a standard. Getting the meter data can be very challenging as it is not a conventional approach. The Datadog API and custom integrations would allow for energy companies to monitor health and availability of smart meter technologies as well as the applications and infrastructures that support it. The ability to easily create timeboards would allow for a very intuitive view of the overall smart meter service from a business standpoint. Also, in traditional corporations, there is a increasing need to add business related metrics along with IT service metrics. This is another way the Datadog can add value to the line of business within an organization.
 
