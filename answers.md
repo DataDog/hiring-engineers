@@ -84,6 +84,13 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 1. Consulted Timeboard API **[documentation](https://docs.datadoghq.com/graphing/faq/timeboard-api-doc/?tab=python#pagetitle)** to create the **[template](timeboard_scaffold.py)** needed to produce Timeboard programmatically. **NOTE:** This documentation was marked as **_outdated_** and in future exercises may cause conflicts. Consult **[Dashboard API](https://docs.datadoghq.com/api/?lang=python#dashboards)** for further detail.
 1. Looked up API and Application keys location using this **[doc](https://docs.datadoghq.com/account_management/faq/api-app-key-management/#api-keys)**. Transcribed keys to appropriate values inside of _option_ dictionary in timeboard creation script.
+
+1. Created a local Python virtual environment in parent folder of script using pipenv tool and installed datadog package.
+    ```bash
+      pipenv shell 
+      pipenv install datadog
+    ```
+1. Looked up and copied JSON file of each graph/widget inside previously made Timeboard. Rewrote them as Python dictionaries within a list called _graph_ in Timeboard creation script.
     ```js
       // JSON snippet for my_metric line graph
       {
@@ -103,12 +110,6 @@ Please be sure, when submitting your hiring challenge, to include the script tha
       "autoscale": true
     }
     ```
-1. Created a local Python virtual environment in parent folder of script using pipenv tool and installed datadog package.
-    ```bash
-      pipenv shell 
-      pipenv install datadog
-    ```
-1. Looked up and copied JSON file of each graph/widget inside previously made Timeboard. Rewrote them as Python dictionaries within a list called _graph_ in Timeboard creation script.
 1. Culled or rearranged any attributes as specified by Timeboard API in the script.
 1. Executed the **[timeboard creation script](create_timeboard.py)** in terminal.
     ```bash
