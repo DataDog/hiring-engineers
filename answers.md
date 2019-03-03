@@ -54,7 +54,7 @@ __version__ = "1.0.0"
 class MyMetricCheck(AgentCheck):
     def check(self, instance):
     # used the random module's randrange method to generate a random number b/n 0 and 1000
-        amount = randrange(1000)
+        amount = randrange(1, 1000)
         self.gauge('my_metric', amount)
 ```
 Code Excerpt from **my_metric.yaml** reflecting initial settings:
