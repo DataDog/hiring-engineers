@@ -29,11 +29,64 @@
 Utilize the Datadog API to create a Timeboard that contains:
 
 *Your custom metric scoped over your host.*
-
+```json
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:vagrant}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
+```
 *Any metric from the Integration on your Database with the anomaly function applied.*
-
+```json
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:mysql.performance.cpu_time{host:vagrant}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
+```
 *Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket*
-	
+
+```json
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "warm",
+        "type": "solid",
+        "width": "thick"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
+```	
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
