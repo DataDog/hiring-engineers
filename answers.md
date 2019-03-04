@@ -152,6 +152,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 *When this monitor sends you an email notification, take a screenshot of the email that it sends you.*
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-warning.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-alert.png)
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-recovery.png)
 
 *Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
