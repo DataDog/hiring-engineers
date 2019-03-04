@@ -287,7 +287,15 @@ if __name__ == '__main__':
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-https://p.datadoghq.com/sb/dv8va2kmb308p2ut-e884a7d2520b3ce1161ccc0e34246aaf
+1. In the top right corner of the dashboard, click the cog:
+
+    ![dashboard_settings](./images/config_public1.jpg)
+
+2. On the popup, configure the timeframe that you want to make puplic. The URL is a public URL to the dashboard
+
+    ![public_config](./images/config_public2.jpg)
+
+    https://p.datadoghq.com/sb/dv8va2kmb308p2ut-55348d03267b385784dd7b4655d7defd
 
 ![flask_app](./images/apm_infra.jpg)
 
