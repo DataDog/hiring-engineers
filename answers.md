@@ -38,27 +38,27 @@ Docker Install-
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20docker%20install.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" alt="_DSC4652"></a>
 
 Docker Datadog-agent
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/Datadog%20agent%20install%20via%20Docker%20image.png" width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/ddagent%20running%20as%20docker%20container%20DatadogInfrastructure-Containers.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/ddagent%20running%20as%20docker%20container%20DatadogInfrastructure-Containers.png" alt="_DSC4652"></a>
 
 
 Ubuntu Curl Download and install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png"width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png" width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png" width="500" height="332" alt="_DSC4652"></a>
 
 Ubuntu Vagrant datadog-agent install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png" alt="_DSC4652"></a>
 
 2. Collecting Metrics
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
@@ -94,7 +94,7 @@ Ubuntu Vagrant datadog-agent install-
   If you use the Docker container for Datadog-agent(dd-agent), you will need to start the Docker container to point to a different mount
   so you can include the custom yaml files.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png" alt="_DSC4652"></a>
 
 
   2.C Create custom Agent Check: 
@@ -102,7 +102,7 @@ Ubuntu Vagrant datadog-agent install-
   /etc/datadog-agent/conf.d filesystem. This will provide the interval for collection and other custom configurations. Second, you 
   will need to place your python code in a .py file in the /etc/datadog-agent/checks.d filesystem and then restart your agent.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric.yaml.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric.yaml.png" alt="_DSC4652"></a>
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my%20metric%20code.png" width="500" height="332" alt="_DSC4652"></a>
  
