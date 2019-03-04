@@ -28,11 +28,11 @@
 
 Utilize the Datadog API to create a Timeboard that contains:
 
-*Your custom metric scoped over your host.*
-*Any metric from the Integration on your Database with the anomaly function applied.*
-*Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket*
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-_Script: Timeboard.py_
+<b>Script: Timeboard.py</b>
 ```python
 from dogapi import dog_http_api as api
 
