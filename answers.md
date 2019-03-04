@@ -214,10 +214,20 @@ if __name__ == '__main__':
 Bonus Question: What is the difference between a Service and a Resource?
 > Service is a function that performs a task. Services can be Database, API Endpoints etc. 
 > Resource actually describes the action/implementation of a defined service.  
+> Services are more like a web application with databases and other integrations whereas Resources are like the actual Queries/Commands used to perform actions.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 [APM & Infrastructure Metrics](https://p.datadoghq.com/sb/yqtap2bnkp6at8cv-7e2f6910a444b6349ff92af405689811)
+
+<b>Host Metrics:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/infra-1.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/infra-2.png)
+
+<b>APM Services</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/apm-3.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/apm-2.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/apm-1.png)
 
 <b>APM and Infrastructure Metrics:</b>
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/apm_and_infra_metrics.png)
