@@ -4,6 +4,7 @@ I created multiple virtual environments. 3 ubuntu servers. 1 with Vagrant/Virtua
 I also had one existing EC2 image running Amazon Linux with Docker and a local RedHat Linux server. A total of 5 servers running Datadog agents. One as a docker container.
 
 Screen Prints for Vagrant/Virtual Box :
+
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20download%202.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%201.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%203.png)
@@ -11,47 +12,65 @@ Screen Prints for Vagrant/Virtual Box :
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%20completed.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20up.png)
+
 Screen Prints for AWS:
+
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png)
+
 Screen Prints for Agent installs:
+
 Docker Install-
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20docker%20install.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png)
+
 Docker Datadog-agent
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20agent%20install%20via%20Docker%20image.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ddagent%20running%20as%20docker%20container%20DatadogInfrastructure-Containers.png)
-  Ubuntu Curl Download and install-
+
+Ubuntu Curl Download and install-
  (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/regular%20ubuntu%20agent%20install%20API%20Key.png)
  (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png)
-  Ubuntu Vagrant datadog-agent install-
+
+Ubuntu Vagrant datadog-agent install-
  (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png)
 
 2. Collecting Metrics
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
-  (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png)
+
+(https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Event%20logs%20showing%20tags.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20Host%20map.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20list%20showing%20tags.png)
-  2.B Install MySQL Database: You can install mysql from Ubuntu using apt install mysql-server, go to integration page in Datadog UI,
+
+  2.B Install MySQL Database: 
+  
+  You can install mysql from Ubuntu using apt install mysql-server, go to integration page in Datadog UI,
   select MySQL and you will be provided instructions on how to configure your mysql.yaml, add the user and grant permisions for datadog.   
   Once the datadog user is added and permisions granted, it provides some test SQL to insure it is correct.
+  
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20command%20line.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png)
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png)
+  
   This mysql.yaml would be used for a standard agent or a docker agent container install.
+  
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20yaml%20config%20file%20for%20docker%20dd-agent.png)
+  
   If you use the docker container for Datadog-agent(dd-agent), you will need to start the docker container to point to a different mount
   so you can include the custom yaml files.
 
-   (https://github.com/kchitwood/hiring-       engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png)
-  2.C Create custom Agent Check: You can create custom checks using python code. You will need to create a my_metric.yaml file in the 
+   
+(https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png
+  
+  2.C Create custom Agent Check: 
+  You can create custom checks using python code. You will need to create a my_metric.yaml file in the 
   /etc/datadog-agent/conf.d filesystem. This will provide the interval for collection and other custom configurations. Second, you 
   will need to place your python code in a .py file in the /etc/datadog-agent/checks.d filesystem and then restart your agent.
   
@@ -61,11 +80,14 @@ Docker Datadog-agent
 Bonus=No, I could not find anything documented that you could change the interval other than the .yaml config file.
 
 3. Visulizing Data
+  
   3.A Utilize the Datadog API to create a timeboard that Contains: Use Datadog UI, navigate to the dashboards and select New Dashboard.
   Two options will come up(New Timeboard,New Screenboard). Select the Timeboard option. Start adding graphs to your board as stated below.
+  
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/timeboard%20with%203%20metrics%20.png)
   
   3.B Go to Metrics Explorer page in Datadog UI, Select the metric you want to graph, my_metric, and graph over host.
+  
   (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric%20graph%20over%20host.png)
   
   3.C Go to Monitors section in Datadog UI. Create new monitor and select anomoly type. You can select the metric and the alert.
@@ -82,7 +104,8 @@ Bonus=No, I could not find anything documented that you could change the interva
 Bonus - When brought to 5min, the anomaly graph sometimes displays not enough data.
   
 4. Monitoring Data
-    4.A,B,C Create New Monitor with thresholds and alerts. In Datadog UI, navigate to monitor. Create new. select metric. Select the
+  
+  4.A,B,C Create New Monitor with thresholds and alerts. In Datadog UI, navigate to monitor. Create new. select metric. Select the
     metric to monitor, choose from or exclude if needed. Use Avg by for this exercise. Set Alert Conditions to above, on average, 5min. 
     Set alert to 800, set warning at 500. Select notify if data is missing. In Say whats happening section, 
     you can use variables to define message and the value of the alerts. You can also specifiy who to notify.
@@ -107,6 +130,7 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20weekend.png)
     
     5. Collecting APM Data
+  
       5.A Create an Flask App and instrument this using Datadogs APM solution:
       First, install python-pip, Flask and ddtrace. Create python script, my_app.py, copied the flask code provided.
     
@@ -119,7 +143,7 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/APM%20config%20in%20datadog%20yaml.png)      
     
     Restart the datadog-agent. 
-      Execute the scritp using ddtrace-run python my_app.py 
+    Execute the scritp using ddtrace-run python my_app.py 
     
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Running%20my%20APM%20my_app.py.png)
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20trace%20graphs.png)
@@ -132,8 +156,10 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Finished%20Time%20Board.png)
     
     6. Final Question
-      What is a creative way Datadog should monitor? 
-      Collect and monitor data for any type of major event, example Super Bowl, that could collect media information, such as streaming, 
+     
+     What is a creative way Datadog should monitor? 
+     
+     Collect and monitor data for any type of major event, example Super Bowl, that could collect media information, such as streaming, 
       twitter, facebook and other social media along with tv, cable, satilite services to provide Geo-spacial type information as how each
       Geographic location is reacting or utilizing such events.
       
