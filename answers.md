@@ -149,6 +149,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 }
 ```
 
+<b>Monitor Setup Screens:</b>
+
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-screen-1.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-screen-2.png)
 
 *When this monitor sends you an email notification, take a screenshot of the email that it sends you.*
 <b>Warning Notification:</b>
@@ -175,6 +179,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ```python
 from flask import Flask
+# from ddtrace import patch_all
+# patch_all()
 import logging
 import sys
 
@@ -201,6 +207,7 @@ def trace_endpoint():
     return 'Posting Traces'
 
 if __name__ == '__main__':
+    print('In app.py __main__')
     app.run(host='0.0.0.0', port='5050')
 ```
 
@@ -209,6 +216,12 @@ Bonus Question: What is the difference between a Service and a Resource?
 > Resource actually describes the action/implementation of a defined service.  
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+[APM & Infrastructure Metrics](https://p.datadoghq.com/sb/yqtap2bnkp6at8cv-7e2f6910a444b6349ff92af405689811)
+
+<b>APM and Infrastructure Metrics:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/apm_and_infra_metrics.png)
+
 
 ## Final Question:
 
