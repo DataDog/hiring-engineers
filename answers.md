@@ -157,6 +157,3 @@ received mail of downtime details:
 
 ![023](https://user-images.githubusercontent.com/33669341/53706380-61b04000-3e2a-11e9-820e-eebeaf91a722.PNG)
 
-## APM
-
-ithula ni pannila ??yes
