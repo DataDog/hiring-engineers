@@ -205,5 +205,6 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
   Collect and monitor data for any type of major event, example Super Bowl, that could collect media information, such as streaming, 
   twitter ,facebook and other social media along with tv, cable, satilite services to provide Geospatial type information as how each
   georaphic location is reacting or utilizing such events.
-   
+  
+  
    
