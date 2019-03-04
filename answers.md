@@ -212,6 +212,7 @@ if __name__ == '__main__':
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
+> Service indicates a role that a set of processes are grouped on whereas a Resource represents a specific action within the Service.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -224,7 +225,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 *Is there anything creative you would use Datadog for?*
 
 
-`As someone who's worked in the payments space for a while, I can definitely anticipate applications of Datadog across the board for payment processing & accepting platforms. Each feature could be used in the following ways:`
+<b>As someone who's worked in the payments space for a while, I can definitely anticipate applications of Datadog across the board for payment processing & accepting platforms. Each feature could be used in the following ways:</b>
 
 - An Agent can be setup at a Data Center Group (DCG) level with custom checks for each service running. 
 - Payment Switches can have their own monitors in terms of CPU Usage, Load, DB Reads & Writes, etc. to ensure zero downtime.
@@ -232,5 +233,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 - Custom Metrics for Authentication, Invoicing, Authorization, Settlement & Disbursement can help track performance as well as risk scores.
 - Visualizing support & uptime data can help technical support and evaluation processes as well as help determine escalation policies.
 
+![Braintree Payments Tool](https://github.com/DJ92/braintree-spring-shop)
 
 
