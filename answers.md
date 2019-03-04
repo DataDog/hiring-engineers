@@ -229,6 +229,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 - Declines/Unauthorized erros can be aggregated with set thresholds for alerting monitors in order to keep track of alerts & downtime.
 - Custom Metrics for Authentication, Invoicing, Authorization, Settlement & Disbursement can help track performance as well as risk scores.
 - Visualizing support & uptime data can help technical support and evaluation processes as well as help determine escalation policies.
+
 [Braintree Payments Tool]: https://github.com/DJ92/braintree-spring-shop
+
 
 
