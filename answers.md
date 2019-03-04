@@ -53,7 +53,7 @@ Docker Datadog-agent
 
 Ubuntu Curl Download and install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ub%20API%20Key.png"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png"></a>
 
