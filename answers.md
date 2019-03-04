@@ -40,26 +40,25 @@ Docker Install-
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png"></a>
 
 Docker Datadog-agent
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/Datadog%20agent%20install%20via%20Docker%20image.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/ddagent%20running%20as%20docker%20container%20DatadogInfrastructure-Containers.png" alt="_DSC4652"></a>
 
 
 Ubuntu Curl Download and install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png" width="500" height="332" alt="_DSC4652"></a>
 
 Ubuntu Vagrant datadog-agent install-
 
-<img src=
-"https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png" ></a>
 
 2. Collecting Metrics
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
@@ -96,7 +95,7 @@ Ubuntu Vagrant datadog-agent install-
   so you can include the custom yaml files.
 
 <img src=
-"https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png" alt="_DSC4652"></a>
+"https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png"></a>
 
 
   2.C Create custom Agent Check: 
