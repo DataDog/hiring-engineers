@@ -48,7 +48,7 @@ Docker Datadog-agent
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/ddagent%20running%20as%20docker%20container%20DatadogInfrastructure-Containers.png"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd-agent%20docker%20dd%20Infra.png"></a>
 
 
 Ubuntu Curl Download and install-
