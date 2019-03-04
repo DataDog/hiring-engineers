@@ -44,7 +44,7 @@ Docker Install-
 
 Docker Datadog-agent
 
-<img src=https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png" width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png"></a>
 
