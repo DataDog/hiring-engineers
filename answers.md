@@ -59,7 +59,7 @@ Ubuntu Curl Download and install-
 
 Ubuntu Vagrant datadog-agent install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/install%20datadog%20agent%20on%20vagrant:vbox%20ubuntu%20image.png"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20vbox%20ub.png"></a>
 
 2. Collecting Metrics
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
