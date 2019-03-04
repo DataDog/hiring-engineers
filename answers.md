@@ -62,6 +62,7 @@ Ubuntu Vagrant datadog-agent install-
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20vbox%20ub.png"></a>
 
 2. Collecting Metrics
+  
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png" width="500" height="332" alt="_DSC4652"></a>
