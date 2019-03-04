@@ -1,12 +1,14 @@
 Your answers to the questions go here.
-1. Setting up the environment:
+##1. Setting up the environment:
 I created multiple virtual environments. 3 ubuntu servers. 1 with Vagrant/Virtual Box running on MacPro, 1 through AWS EC2 Ubuntu AMI with Datadog Agent running in Docker., 1 through AWS EC2 Ubuntu AMI without docker, with Mysql.
 I also had one existing EC2 image running Amazon Linux with Docker and a local RedHat Linux server. A total of 5 servers running Datadog agents. One as a docker container.
 
-Screen Prints for Vagrant/Virtual Box :
+##Screen Prints for Vagrant/Virtual Box :
 
-(https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20download%202.png)
-(https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%201.png)
+[vagrant download](https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20download%202.png)
+<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%201.png" width="500" height="332" alt="_DSC4652"></a>
+
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%203.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%20successful.png)
 (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%20completed.png)
