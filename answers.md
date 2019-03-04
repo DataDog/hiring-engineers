@@ -18,7 +18,7 @@ Screen Prints for Vagrant/Virtual Box :
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%20completed.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png" width="250" height="166"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20up.png" width="500" height="332" alt="_DSC4652"></a>
 
@@ -43,8 +43,7 @@ Docker Install-
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" width="500" height="332" alt="_DSC4652"></a>
 
 Docker Datadog-agent
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20agent%20install%20via%20Docker%20image.png"width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/Datadog%20agent%20install%20via%20Docker%20image.png" width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png" width="500" height="332" alt="_DSC4652"></a>
 
@@ -53,7 +52,7 @@ Docker Datadog-agent
 
 Ubuntu Curl Download and install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/regular%20ubuntu%20agent%20install%20API%20Key.png"width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch1/regular%20ubuntu%20agent%20install%20API%20Key.png"width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png" width="500" height="332" alt="_DSC4652"></a>
 
@@ -78,15 +77,15 @@ Ubuntu Vagrant datadog-agent install-
   select MySQL and you will be provided instructions on how to configure your mysql.yaml, add the user and grant permisions for datadog.   
   Once the datadog user is added and permisions granted, it provides some test SQL to insure it is correct.
   
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
  
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
  
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png" width="500" height="332" alt="_DSC4652"></a>
  
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png" width="500" height="332" alt="_DSC4652"></a> 
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png" width="500" height="332" alt="_DSC4652"></a> 
  
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png" width="500" height="332" alt="_DSC4652"></a>
   
   This mysql.yaml would be used for a standard agent or a Docker agent container install.
   
@@ -95,7 +94,6 @@ Ubuntu Vagrant datadog-agent install-
   If you use the Docker container for Datadog-agent(dd-agent), you will need to start the Docker container to point to a different mount
   so you can include the custom yaml files.
 
-   
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png" width="500" height="332" alt="_DSC4652"></a>
 
 
@@ -139,13 +137,13 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
   4.A,B,C Create New Monitor with thresholds and alerts. In Datadog UI, navigate to monitor. Create new. select metric. 
   Select the metric to monitor, choose from or exclude if needed. Use Avg by for this exercise. Set Alert Conditions to above, on average, 5min. Set alert to 800, set warning at 500. Select notify if data is missing. In Say whats happening section,  you can use variables to define message and the value of the alerts. You can also specifiy who to notify.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500.png" width="250" height="166" alt="_DSC4652"></a> 
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500.png" alt="_DSC4652"></a> 
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg2.png" width="500" height="332" alt="_DSC4652"></a>
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg3.png" width="500" height="332" alt="_DSC4652"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg4.png" width="250" height="166" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg4.png" alt="_DSC4652"></a>
    
    4.D Screenshot of alert emails:
    
