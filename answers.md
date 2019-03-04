@@ -95,7 +95,7 @@ Ubuntu Vagrant datadog-agent install-
   If you use the Docker container for Datadog-agent(dd-agent), you will need to start the Docker container to point to a different mount
   so you can include the custom yaml files.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwoodpatch1/starting%20docker%20datadog%20container%20to%20point%20to%20local%20yaml%20file.png"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dock%20dd%20yaml%20file.png"></a>
 
 
   2.C Create custom Agent Check: 
