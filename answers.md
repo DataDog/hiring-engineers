@@ -151,15 +151,29 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 
 *When this monitor sends you an email notification, take a screenshot of the email that it sends you.*
+<b>Warning Notification:</b>
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-warning.png)
-![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-alert.png)
+
+<b>Warning Recovery:</b>
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-recovery.png)
+
+<b>Alert Notification:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-alert.png)
+
+<b>Alert Recovery:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-alert-recovery.png)
 
 *Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
 
 - One that silences it from 7pm to 9am daily on M-F,
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+<b>Scheduled Downtime: Weekdays Mon-Fri / 7 PM - 9 AM ET:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/scheduled_downtime_weekdays.png)
+
+<b>Scheduled Downtime: Weekends Sat-Sun / 24 Hrs:</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/scheduled_downtime_weekends.png)
 
 ## Collecting APM Data:
 
