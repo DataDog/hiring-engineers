@@ -29,70 +29,76 @@
 Utilize the Datadog API to create a Timeboard that contains:
 
 *Your custom metric scoped over your host.*
-```json
-{
-  "viz": "timeseries",
-  "requests": [
-    {
-      "q": "avg:my_metric{host:vagrant}",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      },
-      "conditional_formats": []
-    }
-  ],
-  "autoscale": true
-}
-```
 *Any metric from the Integration on your Database with the anomaly function applied.*
-```json
-{
-  "viz": "timeseries",
-  "requests": [
-    {
-      "q": "avg:mysql.performance.cpu_time{host:vagrant}",
-      "type": "line",
-      "style": {
-        "palette": "dog_classic",
-        "type": "solid",
-        "width": "normal"
-      },
-      "conditional_formats": []
-    }
-  ],
-  "autoscale": true
-}
-```
 *Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket*
 
-```json
-{
-  "viz": "timeseries",
-  "requests": [
-    {
-      "q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)",
-      "type": "line",
-      "style": {
-        "palette": "warm",
-        "type": "solid",
-        "width": "thick"
-      },
-      "aggregator": "avg",
-      "conditional_formats": []
+_Script: Timeboard.py_
+```python
+from dogapi import dog_http_api as api
+
+api.api_key = 'c1cc27b54c99b4be0f841e5a7b6e40a9'
+api.application_key = 'c5b209e26604af4e1ed9196174a48e1341466944'
+
+title = "Vagrant API Timeboard"
+description = "Custom Metrics Visualized on a Timeboard using Datadog API's"
+template_variables = [{
+    'name': 'vagrant',
+    'prefix': 'host',
+    'default': 'host-vagrant'
+}]
+
+graphs = []
+
+my_metric_over_host = {
+    "title": "My Metric over Host - Vagrant",
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{host:vagrant}"}
+        ],
+        "viz": "timeseries"
     }
-  ],
-  "autoscale": true
 }
-```	
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+mysql_integration_with_anomaly_func = {
+    "title": "MySQL Performance CPU Time over Host - Vagrant",
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.cpu_time{*},'basic',2)"}
+        ],
+        "viz": "timeseries"
+    }
+}
+
+my_metric_with_rollup_sum_for_hour = {
+    "title": "My Metric Rolled up Sum for past one hour",
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "avg:my_metric{*}.rollup(sum,3600)"}
+        ],
+        "viz": "timeseries"
+    }
+}
+
+graphs.append(my_metric_over_host)
+graphs.append(mysql_integration_with_anomaly_func)
+graphs.append(my_metric_with_rollup_sum_for_hour)
+api.create_dashboard(title, description, graphs, template_variables=template_variables)
+```
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 *Set the Timeboard's timeframe to the past 5 minutes*
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/my_metric_5_min_snapshot.png)
+
 *Take a snapshot of this graph and use the @ notation to send it to yourself.*
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/snapshot-notation-1.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/snapshot-notation-2.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/snapshot-notation-3.png)
+
 *Bonus Question: What is the Anomaly graph displaying?*
+> The Anomaly Graph for the MySQL CPU Time shows an average pattern and highlights the various spikes/drops that deviate from a normal (average) behavior.
 
 ## Monitoring Data:
 
