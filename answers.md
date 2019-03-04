@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 
 This is the Results for Greg Specht
-#Prerequisites - Setup the environment
+**Prerequisites - Setup the environment**
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 
