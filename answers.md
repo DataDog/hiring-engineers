@@ -24,27 +24,27 @@ Screen Prints for Vagrant/Virtual Box :
 
 Screen Prints for AWS:
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png" width="500" height="332" alt="_DSC4652"></a>
 
 Screen Prints for Agent installs:
 
 Docker Install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20docker%20install.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20docker%20install.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" width="500" height="332" alt="_DSC4652 </a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png" width="500" height="332" alt="_DSC4652"></a>
 
 Docker Datadog-agent
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20agent%20install%20via%20Docker%20image.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20agent%20install%20via%20Docker%20image.png"width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png" width="500" height="332" alt="_DSC4652"></a>
 
@@ -53,9 +53,9 @@ Docker Datadog-agent
 
 Ubuntu Curl Download and install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/regular%20ubuntu%20agent%20install%20API%20Key.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/regular%20ubuntu%20agent%20install%20API%20Key.png"width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png" width="500" height="332"alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png" width="500" height="332" alt="_DSC4652"></a>
 
 Ubuntu Vagrant datadog-agent install-
 
