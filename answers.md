@@ -17,9 +17,10 @@
 
 *Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.*
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-custom_djcheck.png)	
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric_status.png)
 
 *Change your check's collection interval so that it only submits the metric once every 45 seconds.*
-![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric_status.png)
+> Updated the `min_collection_interval` to `45` in the `/etc/datadog-agent/checks.d/custom_djcheck.yaml` file. Default is `15`
 
 *Bonus Question Can you change the collection interval without modifying the Python check file you created?*
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
