@@ -38,10 +38,12 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 <b>Script: Timeboard.py</b>
 ```python
+# DogAPI
 from dogapi import dog_http_api as api
 
-api.api_key = 'c1cc27b54c99b4be0f841e5a7b6e40a9'
-api.application_key = 'c5b209e26604af4e1ed9196174a48e1341466944'
+# API & App Keys
+api.api_key = 'XXXXXXXXXX'
+api.application_key = 'XXXXXXXXXX'
 
 title = "Vagrant API Timeboard"
 description = "Custom Metrics Visualized on a Timeboard using Datadog API's"
@@ -113,13 +115,44 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 *Please configure the monitor’s message so that it will:*
 
 - Send you an email whenever the monitor triggers.
 - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+<b>Monitor.json</b>
+```json
+{
+	"name": "Average of my_metric is above threshold on {{host.name}} @ IP: {{host.ip}}",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
+	"message": "{{#is_alert}} <b>ALERT</b>: Average of my_metric is above threshold limit: 800 in the past 5 mins! {{/is_alert}}\n{{#is_warning}} <b>WARNING</b>: Average of my_metric is above: 500 in the past 5 mins! {{/is_warning}}\n{{#is_no_data}} <b>NO_DATA_ALERT</b>: No data has been recorded for my_metric in the past 10 mins! {{/is_no_data}}\nNotify: @joshidheeraj1992@gmail.com ",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+
+
 *When this monitor sends you an email notification, take a screenshot of the email that it sends you.*
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-warning.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/monitor-recovery.png)
 
 *Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
 
