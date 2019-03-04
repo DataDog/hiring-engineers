@@ -218,6 +218,7 @@ Bonus Question: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+<b>Dashboard:</b>
 [APM & Infrastructure Metrics](https://p.datadoghq.com/sb/yqtap2bnkp6at8cv-7e2f6910a444b6349ff92af405689811)
 
 <b>Host Metrics:</b>
