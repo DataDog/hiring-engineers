@@ -130,6 +130,7 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
       This is the final Time board with all the metrics and graphs included in the exercise.
      
     (https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Finished%20Time%20Board.png)
+    
     6. Final Question
       What is a creative way Datadog should monitor? 
       Collect and monitor data for any type of major event, example Super Bowl, that could collect media information, such as streaming, 
