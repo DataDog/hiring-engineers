@@ -2,11 +2,11 @@
 
 ## Prerequisites - Environment
 
-Host 1:
+	Host 1:
 	OS: Ubuntu 16.04
 	VM: Vagrant w/ VirtualBox
 
-Host 2:
+	Host 2:
 	OS: Mac OS Mojave 10.14.0
 	VM: Unix based Terminal Client
 
