@@ -128,7 +128,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 	"name": "Average of my_metric is above threshold on {{host.name}} @ IP: {{host.ip}}",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
-	"message": "{{#is_alert}} <b>ALERT</b>: Average of my_metric is above threshold limit: 800 in the past 5 mins! {{/is_alert}}\n{{#is_warning}} <b>WARNING</b>: Average of my_metric is above: 500 in the past 5 mins! {{/is_warning}}\n{{#is_no_data}} <b>NO_DATA_ALERT</b>: No data has been recorded for my_metric in the past 10 mins! {{/is_no_data}}\nNotify: @joshidheeraj1992@gmail.com ",
+	"message": "{{#is_alert}} <b>ALERT</b>: Average of my_metric is above threshold limit: 800 in the past 5 mins! {{/is_alert}}\n{{#is_warning}} <b>WARNING</b>: Average of my_metric is above: 500 in the past 5 mins! {{/is_warning}}\n{{#is_no_data}} <b>NO_DATA_ALERT</b>: No data has been recorded for my_metric in the past 10 mins! {{/is_no_data}}\n{{#is_warning_recovery}}<b>RECOVERY</b>: Average of my_metric is below: 500 in the past 5 mins! {{/is_warning_recovery}}\n{{#is_recovery}}<b>RECOVERY</b>: Average of my_metric is below: 800 in the past 5 mins! {{/is_recovery}}\nNotify: @joshidheeraj1992@gmail.com",
 	"tags": [],
 	"options": {
 		"notify_audit": false,
