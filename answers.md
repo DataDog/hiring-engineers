@@ -29,13 +29,31 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
         ![dashboard tags](./images/tags-dashboard.jpg)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-    1. As a user with sudo privledges run: `sudo apt-get install mysql-server -y && sudo systemctl start mysql`
-    2. Enter the mysql shell: `sudo mysql`
+    1. As a user with sudo privledges run: 
+    
+        `sudo apt-get install mysql-server -y && sudo systemctl start mysql`
+
+    2. Enter the mysql shell: 
+
+        `sudo mysql`
+
     3. In the mysql shell run the following (Note: Only the first two commands are required but the rest give access to the full metrics catalog for MySQL):
-        1. Create the datadog user: `CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<SuperSecurePassword>';`
-        2. Grant replication rights: `GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;`
-        3. Grant Process metrics: `GRANT PROCESS ON *.* TO 'datadog'@'localhost';`
-        4. Grant read access to the performance_schema and its tables: `GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';`
+        1. Create the datadog user: 
+
+            `CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<SuperSecurePassword>';`
+
+        2. Grant replication rights: 
+
+            `GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;`
+
+        3. Grant Process metrics: 
+
+            `GRANT PROCESS ON *.* TO 'datadog'@'localhost';`
+
+        4. Grant read access to the performance_schema and its tables: 
+
+            `GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';`
+
     4. run the following command to verify correct permissions setup if the extended permissions were granted:
         ```sh
         mysql -u datadog --password='<SuperSecurePassword>' -e "SELECT * FROM performance_schema.threads" && \
@@ -161,7 +179,7 @@ Notes:
         }
     }
     ```
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. Mine is located [here](./scripts/custom_timeboard.py)
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. **Mine is located [here](./scripts/custom_timeboard.py)**
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -260,7 +278,7 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-    I used this flask app
+    I used this flask app mentioned above
 
     
 * **Bonus Question**: What is the difference between a Service and a Resource?
