@@ -33,6 +33,9 @@ Utilize the Datadog API to create a Timeboard that contains:
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
+<b>Timeboard</b>
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/Vagrant_API_Timeboard.png)
+
 <b>Script: Timeboard.py</b>
 ```python
 from dogapi import dog_http_api as api
