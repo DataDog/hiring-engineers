@@ -13,14 +13,17 @@
 ## Collecting Metrics:
 
 *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-file.png)	
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-hostmap.png)
+
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-file.png)	
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent-tags-hostmap.png)
 
 *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-database.png)
-	![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-mysql.png)
+
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-database.png)
+![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/integration-mysql.png)
 
 *Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.*
+
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-custom_djcheck.png)	
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-my_metric_status.png)
 
@@ -28,6 +31,7 @@
 > Updated the `min_collection_interval` to `45` in the `/etc/datadog-agent/checks.d/custom_djcheck.yaml` file. Default is `15`
 
 *Bonus Question Can you change the collection interval without modifying the Python check file you created?*
+
 ![alt text](https://raw.githubusercontent.com/DJ92/hiring-engineers/DheerajJoshi_SolutionsEngineer/screenshots/agent_check-bonus.png)
 
 ## Visualizing Data:
@@ -253,7 +257,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 - Custom Metrics for Authentication, Invoicing, Authorization, Settlement & Disbursement can help track performance as well as risk scores.
 - Visualizing support & uptime data can help technical support and evaluation processes as well as help determine escalation policies.
 
-[Braintree Payments Tool](https://github.com/DJ92/braintree-spring-shop)
+Reference: [Braintree Payments Tool](https://github.com/DJ92/braintree-spring-shop)
 
 
 
