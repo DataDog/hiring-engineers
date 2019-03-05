@@ -39,7 +39,7 @@ After Download is completed, double click for virtual box installation wizard to
 
 Selcect Defaults, and installation should complete successfully.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%20completed.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vbox%20inst%20success.png"></a>
 
 Once Virtual box has completed, run this command from the command line as root to create your vagrantfile.
 vagrant init hashicorp/precise64
@@ -49,6 +49,16 @@ vagrant init hashicorp/precise64
 Run vagrant up command from the command line, this will build your box.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20up.png"></a>
+
+From the Datadog UI, go to Agent and retrieve your API KEY.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ub%20API%20Key.png"></a>
+
+Run the command at the command line to install the Datadog agent.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20vbox%20ub.png"></a>
+
+In those easy steps you created a virtual server environment and installed the Datadog Agent which instantly shows up in your Event Stream and in your Infrastructre list.
 
 Screen Prints for AWS:
 
@@ -85,9 +95,7 @@ Ubuntu Curl Download and install-
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png"></a>
 
-Ubuntu Vagrant datadog-agent install-
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20vbox%20ub.png"></a>
 
 2. Collecting Metrics
   
