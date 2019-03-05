@@ -1,10 +1,5 @@
-# Ken Chitwood
-
-# Datadog Recruiting Candidate
-
-# Kchitwood@hughes.net
-
-# [Ken Chitwood](www.linkedin.com/in/kenchitwood)
+# Ken Chitwood - Datadog Recruiting Candidate
+# Kchitwood@hughes.net / [Ken Chitwood](www.linkedin.com/in/kenchitwood)
 
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
@@ -139,40 +134,75 @@ Not only will your agent start reporting basic agent infomation, it will also st
 
 # 2. Collecting Metrics
   
-  2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
+  2.A Adding Tags: [Datadog Tagging](https://docs.datadoghq.com/tagging/assigning_tags/?tab=go)
+
+Tagging is used throughout Datadog to query the machines and metrics you monitor. Without the ability to assign and filter based on tags, finding problems in your environment and narrowing them down enough to discover the true causes could be difficult.
+
+There are several places tags can be assigned: configuration files, environment variables, your traces, the Datadog UI, API, DogStatsD, and inheriting from the integrations.
+
+Below is an example of tagging basic infomation in the datadog.yaml configuration file.
+
+You can specifiy what ever tag you want to your host.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Event%20logs%20showing%20tags.png" width="500" height="332" alt="_DSC4652"></a>
+Once you update your tags in the datadog.yaml file, just restart your agent sytemctl restart datadog-agent.
+
+The tagging shows up immediately in your event stream.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Event%20logs%20showing%20tags.png"></a>
+
+On your Host Maps.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20Host%20map.png" width="500" height="332" alt="_DSC4652"></a>
 
+In your Infrastructure list.
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20list%20showing%20tags.png" width="500" height="332" alt="_DSC4652"></a>
 
+  
   2.B Install MySQL Database: 
   
+  You can monitor your database with small configuration changes to your agent. With simple .yaml configuration files, and some user   
+  permisions, databases can be monitored in minutes. Example for mysql, the integration provides you 42 metrics to monitor.
+  
+  The following is an example of a MySql installation and the configuration of the datadog agent to support its integration.
+  
   You can install mysql from Ubuntu using apt install mysql-server, go to integration page in Datadog UI,
-  select MySQL and you will be provided instructions on how to configure your mysql.yaml, add the user and grant permisions for datadog.   
-  Once the datadog user is added and permisions granted, it provides some test SQL to insure it is correct.
+  select MySQL and you will be provided instructions on how to configure your mysql.yaml. It provides the user and grant permisions for   
+  datadog. Once the datadog user is added and permisions granted, it provides some test SQL to insure it is correct.
+  
+  apt install mysql-server from the command line, ufw allow mysql to allow mysql ports, systemctl enable mysql to start at boot.
+  systemtctl start mysql to start your database.
   
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
- 
+MySQL Integration page in Datadog UI, This provides your username, password and the SQL statements to create users and permisions. 
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png" width="500" height="332" alt="_DSC4652"></a>
  
+ Permision and Grant statements from the mysql command line
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png" width="500" height="332" alt="_DSC4652"></a> 
+ 
+ The integration also provides you test SQL to ensure setup is correct.
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png" width="500" height="332" alt="_DSC4652"></a>
   
-  This mysql.yaml would be used for a standard agent or a Docker agent container install.
+  Create your mysql.yaml. This would be used for a standard agent or a Docker agent container install.
   
- <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20yaml%20config%20file%20for%20docker%20dd-agent.png" width="500" height="332" alt="_DSC4652"></a>
+ <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20yaml%20config%20file%20for%20docker%20dd-agent.png"></a>
   
   If you use the Docker container for Datadog-agent(dd-agent), you will need to start the Docker container to point to a different mount
   so you can include the custom yaml files.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dock%20dd%20yaml%20file.png"></a>
+
+Once the configuration is complete, MySQL will show up with a check in the integration page. Also, it will provide you a dashboard
+specifically for MySQL.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Mysql%20integration%20page.png"></a>
+
 
 
   2.C Create custom Agent Check: 
