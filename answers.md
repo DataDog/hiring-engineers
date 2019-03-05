@@ -1,4 +1,7 @@
-Your answers to the questions go here.
+Ken Chitwood
+Datadog Recruiting Candidate
+Kchitwood@hughes.net
+[Ken Chitwood](www.linkedin.com/in/kenchitwood)
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
 
@@ -42,6 +45,7 @@ Selcect Defaults, and installation should complete successfully.
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vbox%20inst%20success.png"></a>
 
 Once Virtual box has completed, run this command from the command line as root to create your vagrantfile.
+
 vagrant init hashicorp/precise64
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png"></a>
@@ -60,40 +64,61 @@ Run the command at the command line to install the Datadog agent.
 
 In those easy steps you created a virtual server environment and installed the Datadog Agent which instantly shows up in your Event Stream and in your Infrastructre list.
 
-Screen Prints for AWS:
+Event Stream:
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20UI%20Agent%20running%20connected%20event%20log.png"></a>
+
+Infrastructure List:
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20UI%20infrastructure%20list%201st%20node.png"></a>
+
+
+Here is another example of building a virtual environment, this time in AWS. These two examples will build EC2 Ubuntu instances, one normal installation, one Docker installation for Datadog Agent.
+
+In EC2 Management Console, select launch instance. Choose the AMI that you would like to launch.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png" width="500" height="332" alt="_DSC4652"></a>
 
+Choose the instance type you would prefer, example t2.micro has 1 vcpu, 1gb memory with 8gb storage. You have multiple options you could choose or go with the default. Add storage if needed, add Tags for detail reporting information, configure security groups and ports. 
+
+Review your choices and Launch.
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
 
+Your instance is running in seconds.
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png" width="500" height="332" alt="_DSC4652"></a>
 
-Screen Prints for Agent installs:
-
-Docker Install-
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20docker%20install.png" width="500" height="332" alt="_DSC4652"></a>
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Command%20line%20install%20docker.png" alt="_DSC4652"></a>
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png"></a>
-
-Docker Datadog-agent
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png" width="500" height="332" alt="_DSC4652"></a>
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png"></a>
-
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd-agent%20docker%20dd%20Infra.png"></a>
-
-
-Ubuntu Curl Download and install-
+Again, you can go to the Datadog UI and retrieve your agent API KEY and run the command at the command line of your instance.
+DD_API_KEY=7918984e32eaa172f6fe38c0decd080f bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ub%20API%20Key.png"></a>
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png"></a>
+
+Your instance will start immediately reporting in Datadog.
+
+This last example is what you need to do to install docker and run datadog as a docker container. Once your instance is built, you can download docker running the following docker command. apt install docker
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20inst.png"></a>
+
+Run docker info at the command line to insure your install was correct.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png"></a>
+
+Download and run Datadog docker container with docker command, You can retrieve this command in the Datadog UI integration tab under agents/docker.
+
+docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=7918984e32eaa172f6fe38c0decd080f datadog/agent:latest
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png" width="500" height="332" alt="_DSC4652"></a>
+
+Run docker ps at the command line to ensure your container is running.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png"></a>
+
+Not only will your agent start reporting basic agent infomation, it will also start collecting docker container information with the docker integration.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd-agent%20docker%20dd%20Infra.png"></a>
+
+
 
 
 
