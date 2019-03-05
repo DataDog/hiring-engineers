@@ -1,7 +1,11 @@
-#Ken Chitwood
-#Datadog Recruiting Candidate
-#Kchitwood@hughes.net
-#[Ken Chitwood](www.linkedin.com/in/kenchitwood)
+# Ken Chitwood
+
+# Datadog Recruiting Candidate
+
+# Kchitwood@hughes.net
+
+# [Ken Chitwood](www.linkedin.com/in/kenchitwood)
+
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
 
@@ -100,7 +104,7 @@ DD_API_KEY=7918984e32eaa172f6fe38c0decd080f bash -c "$(curl -L https://raw.githu
 
 Your instance will start immediately reporting in Datadog.
 
-This last example is what you need to do to install docker and run datadog as a docker container. Once your instance is built, you can download docker running the following docker command. apt install docker
+This last example is what you need to do to install docker and run datadog as a docker container. Once your instance is built, you can download docker running the following command. apt install docker
 
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20inst.png"></a>
@@ -111,7 +115,7 @@ Run docker info at the command line to insure your install was correct.
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png"></a>
 
 
-Download and run Datadog docker container with docker command, You can retrieve this command in the Datadog UI integration tab under agents/docker.
+Download and run Datadog docker container with a docker command, You can retrieve this command in the Datadog UI integration tab under agents/docker.
 
 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=7918984e32eaa172f6fe38c0decd080f datadog/agent:latest
 
@@ -133,7 +137,7 @@ Not only will your agent start reporting basic agent infomation, it will also st
 
 
 
-2. Collecting Metrics
+# 2. Collecting Metrics
   
   2.A Adding Tags: By editing the datadog.yaml, you can create custom tags.
 
