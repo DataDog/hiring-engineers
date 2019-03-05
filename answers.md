@@ -201,22 +201,31 @@ MySQL Integration page in Datadog UI, This provides your username, password and 
 Once the configuration is complete, MySQL will show up with a check in the integration page. Also, it will provide you a dashboard
 specifically for MySQL.
 
+Integration Page
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Mysql%20integration%20page.png"></a>
 
+Mysql Dashboard
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Mysql%20Dashboard.png"></a>
 
 
   2.C Create custom Agent Check: 
+  
   You can create custom checks using python code. You will need to create a my_metric.yaml file in the 
   /etc/datadog-agent/conf.d filesystem. This will provide the interval for collection and other custom configurations. Second, you 
   will need to place your python code in a .py file in the /etc/datadog-agent/checks.d filesystem and then restart your agent.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric.yaml.png" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric.yaml.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my%20metric%20code.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my%20metric%20code.png"></a>
+ 
+ Once you complete the configuration files and place your code in the proper directory, restart the datadog agent.
+ The agent will start generating data for your metric. You can then search for your metric in the metrics tab of the Datadog UI.
+ Once your metric is available, you can create graphs, monitors and include them on your dashboard.
+ 
  
 Bonus=No, I could not find anything documented that you could change the interval other than the .yaml config file.
 
-3. Visulizing Data
+# 3. Visulizing Data
   
   3.A Utilize the Datadog API to create a timeboard that Contains: Use Datadog UI, navigate to the dashboards and select New Dashboard.
   Two options will come up(New Timeboard,New Screenboard). Select the Timeboard option. Start adding graphs to your board as stated below.
@@ -240,7 +249,7 @@ Bonus=No, I could not find anything documented that you could change the interva
   
 Bonus - When brought to 5min, the anomaly graph sometimes displays not enough data.
   
-4. Monitoring Data
+# 4. Monitoring Data
   
   4.A,B,C Create New Monitor with thresholds and alerts. In Datadog UI, navigate to monitor. Create new. select metric. 
   Select the metric to monitor, choose from or exclude if needed. Use Avg by for this exercise. Set Alert Conditions to above, on average, 5min. Set alert to 800, set warning at 500. Select notify if data is missing. In Say whats happening section,  you can use variables to define message and the value of the alerts. You can also specifiy who to notify.
@@ -273,7 +282,7 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20weekend.png" width="500" height="332" alt="_DSC4652"></a>
    
-   5. Collecting APM Data
+# 5. Collecting APM Data
   
    5.A Create an Flask App and instrument this using Datadogs APM solution:
     First, install python-pip, Flask and ddtrace. Create python script, my_app.py, copied the flask code provided.
@@ -304,7 +313,7 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
    
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Finished%20Time%20Board.png" width="500" height="332" alt="_DSC4652"></a>
    
-   6. Final Question
+# 6. Final Question
    
    What is a creative way Datadog should monitor? 
    
