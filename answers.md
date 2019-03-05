@@ -1,26 +1,54 @@
 Your answers to the questions go here.
 
-1. Setting up the environment:
+Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
 
-I created multiple virtual environments. 3 Ubuntu servers. 1 with Vagrant/Virtual Box running on MacPro, 1 through AWS EC2 Ubuntu AMI with Datadog Agent running in Docker., 1 through AWS EC2 Ubuntu AMI without Docker, with Mysql.
+With DevOps CI/CD culture, Datadog provides you with the ability to monitor and maintain your Infrastructe as it grows with statefull or stateless servers and serverless applications. As Infrastructure as a code and containerization grows more prominent, companies will need an all in one monitoring tool to provide you detailed insight into your entire environment.
 
-I also had one existing EC2 image running Amazon Linux with Docker and a local RedHat Linux server. A total of 5 servers running Datadog agents. One as a Docker container.
+It provides robust reporting of your cloud applications with a basic datadog agent installation. CPU, Load, Memory, Network and disk monitoring for your cloud or on premis servers and applications. Datadog comes with over 250 integrations that allow you to monitor all of your systems, apps, and services.These integrations are easy to setup and generate statistics immediately. Datadog provides an easy to use UI that allows you to see and monitor your Infrastructure and your entire application stack. The UI provides you easy to use Event Stream, Dashboards, Host maps, Monitors and metrics to see your server and application in full detail.
 
-Screen Prints for Vagrant/Virtual Box :
+In the below exercise I will demonstrate the ease of installation and configuration of servers, datadog agents, Intergrations, Metrics, Dashboards and finally an APM(Application Performance Monitoring) of a Flask app that monitors http traffic.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20download%202.png" width="500" height="332" alt="_DSC4652"></a>
+I created multiple environments, virtual and physical, on premis and in the cloud. 3 Ubuntu servers(1 vagrant/virtualbox on premis Mac Pro, 2 AWS Ubuntu EC2 AMI), 1 standalone on premis RHEL server and one Amazon Linux AMI in AWS.
+
+Each server recieved an Agent. One servers agent is a docker container.
+
+# 1. Setting up the Enviornment
+Screen Prints and configuration of Vagrant/Virtual Box Environment:
+
+First download [Vagrant](https://www.vagrantup.com/intro/getting-started/).
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20download%202.png"></a>
+
+Once Downloaded, just double click the file and the installation wizard will appear.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%201.png" width="500" height="332" alt="_DSC4652"></a>
 
+Choose the directory for the installation of the product
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%203.png" width="500" height="332" alt="_DSC4652"></a>
+
+Once completed you should see a successful installation screen.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20install%20successful.png" width="500" height="332" alt="_DSC4652"></a>
 
+Download [Virtual Box](https://download.virtualbox.org/virtualbox/6.0.4/VirtualBox-6.0.4-128413-OSX.dmg)
+
+After Download is completed, double click for virtual box installation wizard to appear.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%202.png"></a>
+
+Selcect Defaults, and installation should complete successfully.
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/virtual%20box%20install%20completed.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png" alt="_DSC4652"></a>
+Once Virtual box has completed, run this command from the command line as root to create your vagrantfile.
+vagrant init hashicorp/precise64
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20up.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrantfile%20creation.png"></a>
+
+Run vagrant up command from the command line, this will build your box.
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/vagrant%20up.png"></a>
 
 Screen Prints for AWS:
 
