@@ -1,5 +1,6 @@
-# Ken Chitwood - Datadog Recruiting Candidate
-# Kchitwood@hughes.net / [Ken Chitwood](www.linkedin.com/in/kenchitwood)
+# Ken Chitwood - Datadog Recruiting Candidate 
+
+Kchitwood@hughes.net / [Ken Chitwood](www.linkedin.com/in/kenchitwood)
 
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
@@ -172,8 +173,8 @@ In your Infrastructure list.
   select MySQL and you will be provided instructions on how to configure your mysql.yaml. It provides the user and grant permisions for   
   datadog. Once the datadog user is added and permisions granted, it provides some test SQL to insure it is correct.
   
-  apt install mysql-server from the command line, ufw allow mysql to allow mysql ports, systemctl enable mysql to start at boot.
-  systemtctl start mysql to start your database.
+  At the command line enter apt install mysql-server, ufw allow mysql, to allow mysql ports. systemctl enable mysql, to start at boot.
+  systemtctl start mysql, to start your database.
   
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png"></a>
  
