@@ -1,7 +1,7 @@
-Ken Chitwood
-Datadog Recruiting Candidate
-Kchitwood@hughes.net
-[Ken Chitwood](www.linkedin.com/in/kenchitwood)
+#Ken Chitwood
+#Datadog Recruiting Candidate
+#Kchitwood@hughes.net
+#[Ken Chitwood](www.linkedin.com/in/kenchitwood)
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
 
@@ -80,41 +80,52 @@ In EC2 Management Console, select launch instance. Choose the AMI that you would
 Choose the instance type you would prefer, example t2.micro has 1 vcpu, 1gb memory with 8gb storage. You have multiple options you could choose or go with the default. Add storage if needed, add Tags for detail reporting information, configure security groups and ports. 
 
 Review your choices and Launch.
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Final%20Review%20EC2%20Launch.png"></a>
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Ec2%20Instance%20Launch.png"></a>
 
 Your instance is running in seconds.
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png" width="500" height="332" alt="_DSC4652"></a>
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/EC2%20Image%20running.png"></a>
 
 Again, you can go to the Datadog UI and retrieve your agent API KEY and run the command at the command line of your instance.
 DD_API_KEY=7918984e32eaa172f6fe38c0decd080f bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ub%20API%20Key.png"></a>
 
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/ubuntu%20without%20docker.png"></a>
+
 
 Your instance will start immediately reporting in Datadog.
 
 This last example is what you need to do to install docker and run datadog as a docker container. Once your instance is built, you can download docker running the following docker command. apt install docker
 
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20inst.png"></a>
+
 
 Run docker info at the command line to insure your install was correct.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Docker%20Info.png"></a>
 
+
 Download and run Datadog docker container with docker command, You can retrieve this command in the Datadog UI integration tab under agents/docker.
 
 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=7918984e32eaa172f6fe38c0decd080f datadog/agent:latest
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png" width="500" height="332" alt="_DSC4652"></a>
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd%20inst%20v%20Dock.png"></a>
+
 
 Run docker ps at the command line to ensure your container is running.
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20Docker%20container%20running.png"></a>
 
+
 Not only will your agent start reporting basic agent infomation, it will also start collecting docker container information with the docker integration.
+
 
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/dd-agent%20docker%20dd%20Infra.png"></a>
 
