@@ -163,8 +163,8 @@ In your Infrastructure list.
   
   2.B Install MySQL Database: 
   
-  You can monitor your database with small configuration changes to your agent. With simple .yaml configuration files, and some user   
-  permisions, databases can be monitored in minutes. Example for mysql, the integration provides you 42 metrics to monitor.
+  You can monitor your database with small configuration changes to your agent. With simple .yaml configuration files
+  and some user permisions, databases can be monitored in minutes. Example for mysql, the integration provides you 42 metrics to monitor.
   
   The following is an example of a MySql installation and the configuration of the datadog agent to support its integration.
   
@@ -210,12 +210,18 @@ Mysql Dashboard
 
   2.C Create custom Agent Check: 
   
+  One of the great features in Datadog is to allow you to create your own metrics and Agent checks via python scritps.
+  
   You can create custom checks using python code. You will need to create a my_metric.yaml file in the 
   /etc/datadog-agent/conf.d filesystem. This will provide the interval for collection and other custom configurations. Second, you 
   will need to place your python code in a .py file in the /etc/datadog-agent/checks.d filesystem and then restart your agent.
   
+Creating the my_metric.yaml
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric.yaml.png"></a>
  
+Creating the python script for the custom check.
+
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my%20metric%20code.png"></a>
  
  Once you complete the configuration files and place your code in the proper directory, restart the datadog agent.
@@ -227,23 +233,33 @@ Bonus=No, I could not find anything documented that you could change the interva
 
 # 3. Visulizing Data
   
+  See It all In Once Place!
+  
+Datadog allows you to create a visual representation of your servers, your cloud, your applications, your support teams, all in one place.
+You will be able to monitor, troubleshoot, and optimize your application performance with real-time interactive dashboards. 
+
+This example we will create Timeboards, select metrics to monitor and graph and include on your timeboard.
+
   3.A Utilize the Datadog API to create a timeboard that Contains: Use Datadog UI, navigate to the dashboards and select New Dashboard.
   Two options will come up(New Timeboard,New Screenboard). Select the Timeboard option. Start adding graphs to your board as stated below.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/timeboard%20with%203%20metrics%20.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/timeboard%20with%203%20metrics%20.png"></a>
   
   3.B Go to Metrics Explorer page in Datadog UI, Select the metric you want to graph, my_metric, and graph over host.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric%20graph%20over%20host.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/my_metric%20graph%20over%20host.png"></a>
   
   3.C Go to Monitors section in Datadog UI. Create new monitor and select anomoly type. You can select the metric and the alert.
+  
+ <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/My_metric%20monitor.png"></a> 
   
   3.D Create a rollup function applied to sum up all the points for the past hour into one bucket.Go to Managed Monitors in the Datadog
   UI. Edit your the my_metric monitor and create alert conditions to trigger when metric is above and avg over 5mins.
   
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/My_metric%20alert.png" width="500" height="332" alt="_DSC4652"></a>
   
-  3.E Snapshot and email of Graph.
+  3.E Snapshot and email of Graph. Datadog provides you the ability to take snapshots of graphs in your Timeboard or Dashboard and send 
+  them to your team.
   
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20snapshot%20of%20graph%205m.png" width="500" height="332" alt="_DSC4652"></a>
   
@@ -254,53 +270,71 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
   4.A,B,C Create New Monitor with thresholds and alerts. In Datadog UI, navigate to monitor. Create new. select metric. 
   Select the metric to monitor, choose from or exclude if needed. Use Avg by for this exercise. Set Alert Conditions to above, on average, 5min. Set alert to 800, set warning at 500. Select notify if data is missing. In Say whats happening section,  you can use variables to define message and the value of the alerts. You can also specifiy who to notify.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500.png" alt="_DSC4652"></a> 
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500.png"></a> 
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg2.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg2.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg3.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg3.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg4.png" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Metric%20Threshold%20800%20500%20pg4.png"></a>
    
-   4.D Screenshot of alert emails:
+   4.D Screenshot of alert emails: 
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/alert%20Email.png" width="500" height="332" alt="_DSC4652"></a>
+   Once your alerts are created, Datadog provides you the ability to test your alerts.
+   
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20notifications%20on%203%20thresholds.png"></a>
+   
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/alert%20Email.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20test%20warning%20threshold.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20test%20warning%20threshold.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20test%20no-data%20threshold.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20test%20no-data%20threshold.png"></a>
    
   Bonus  In the Datadog UI, go to the Monitors, Manage Downtime, Set schedule for muting alerts.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Schedule%20weekday%20downtime.png" width="500" height="332" alt="_DSC4652"></a>
+   Datadog also allows you to mute alerts and set schedules for alerts when maintenance or other issues occur.
+   
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Schedule%20weekday%20downtime.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Scheduled%20downtime%20show%20muted%20.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Scheduled%20downtime%20show%20muted%20.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20schedule%20daily%20nightime%20.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20schedule%20daily%20nightime%20.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20started%20weekend.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20started%20weekend.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20weekend.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20scheduled%20downtime%20weekend.png"></a>
    
 # 5. Collecting APM Data
   
    5.A Create an Flask App and instrument this using Datadogs APM solution:
-    First, install python-pip, Flask and ddtrace. Create python script, my_app.py, copied the flask code provided.
+    
+ First, install python-pip, Flask and ddtrace. Create python script, my_app.py, copied the flask code provided.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20flask.png" width="500" height="332" alt="_DSC4652"></a>
+ Installing python.pip on the command line with apt install python-pip
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20python-pip.png"></a> 
+
+ Installing Flask on the command line with pip install flask
+
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20flask.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20ddtrace.png" width="500" height="332" alt="_DSC4652"></a>
+ Installing ddtrace on the command line with pip install ddtrace
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20python-pip.png" width="500" height="332" alt="_DSC4652"></a> 
-   
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/installing%20ddtrace.png"></a>
+
   Edit the datadog.yaml to configure APM in the agent.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/APM%20config%20in%20datadog%20yaml.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/APM%20config%20in%20datadog%20yaml.png"></a>
    
   Restart the datadog-agent. 
   Execute the scritp using ddtrace-run python my_app.py 
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Running%20my%20APM%20my_app.py.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Running%20my%20APM%20my_app.py.png"></a>
+ 
+ As soon as the traces start being downloaded, you will see the APM section of Datadog come alive with options for your traces.
+ You can then start to graph and place and set monitors on these traces for what ever situations, errors or performance you are looking to 
+ monitor.
  
 <img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20trace%20graphs.png" width="500" height="332" alt="_DSC4652"></a>
  
