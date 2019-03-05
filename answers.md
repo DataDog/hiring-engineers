@@ -74,7 +74,7 @@ Here is another example of building a virtual environment, this time in AWS. The
 
 In EC2 Management Console, select launch instance. Choose the AMI that you would like to launch.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Launch%20Ec2%20Ubuntu%20AMI.png"></a>
 
 Choose the instance type you would prefer, example t2.micro has 1 vcpu, 1gb memory with 8gb storage. You have multiple options you could choose or go with the default. Add storage if needed, add Tags for detail reporting information, configure security groups and ports. 
 
@@ -144,7 +144,7 @@ Below is an example of tagging basic infomation in the datadog.yaml configuratio
 
 You can specifiy what ever tag you want to your host.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/creating%20tags%20in%20datadog%20yaml%20.png"></a>
 
 Once you update your tags in the datadog.yaml file, just restart your agent sytemctl restart datadog-agent.
 
@@ -154,11 +154,11 @@ The tagging shows up immediately in your event stream.
 
 On your Host Maps.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20Host%20map.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20Host%20map.png"></a>
 
 In your Infrastructure list.
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20list%20showing%20tags.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Infrastructure%20list%20showing%20tags.png"></a>
 
   
   2.B Install MySQL Database: 
@@ -175,19 +175,19 @@ In your Infrastructure list.
   apt install mysql-server from the command line, ufw allow mysql to allow mysql ports, systemctl enable mysql to start at boot.
   systemtctl start mysql to start your database.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Installing%20Mysql%20Ubuntu%20command%20line.png"></a>
  
 MySQL Integration page in Datadog UI, This provides your username, password and the SQL statements to create users and permisions. 
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Datadog%20mysql%20integration%20page.png"></a>
  
  Permision and Grant statements from the mysql command line
 
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png" width="500" height="332" alt="_DSC4652"></a> 
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/mysql%20datadog%20grant.png"></a> 
  
  The integration also provides you test SQL to ensure setup is correct.
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Testing%20mysql%20datadog%20user.png"></a>
   
   Create your mysql.yaml. This would be used for a standard agent or a Docker agent container install.
   
@@ -256,12 +256,12 @@ This example we will create Timeboards, select metrics to monitor and graph and 
   3.D Create a rollup function applied to sum up all the points for the past hour into one bucket.Go to Managed Monitors in the Datadog
   UI. Edit your the my_metric monitor and create alert conditions to trigger when metric is above and avg over 5mins.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/My_metric%20alert.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/My_metric%20alert.png"></a>
   
   3.E Snapshot and email of Graph. Datadog provides you the ability to take snapshots of graphs in your Timeboard or Dashboard and send 
   them to your team.
   
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20snapshot%20of%20graph%205m.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Email%20snapshot%20of%20graph%205m.png"></a>
   
 Bonus - When brought to 5min, the anomaly graph sometimes displays not enough data.
   
@@ -336,16 +336,16 @@ Bonus - When brought to 5min, the anomaly graph sometimes displays not enough da
  You can then start to graph and place and set monitors on these traces for what ever situations, errors or performance you are looking to 
  monitor.
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20trace%20graphs.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20trace%20graphs.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20map.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20map.png"></a>
  
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20map%20with%20hover.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Flask%20service%20map%20with%20hover.png"></a>
    
    Bonus: A Service is a set of processes that do the same job. A Resource is an action for a service, such as a select query.
   This is the final Time board with all the metrics and graphs included in the exercise.
    
-<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Finished%20Time%20Board.png" width="500" height="332" alt="_DSC4652"></a>
+<img src="https://github.com/kchitwood/hiring-engineers/blob/kchitwood-patch-1/Finished%20Time%20Board.png"></a>
    
 # 6. Final Question
    
