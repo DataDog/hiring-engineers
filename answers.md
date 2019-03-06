@@ -181,11 +181,8 @@ received responses
 Service and resources in UI
 
 ![027](https://user-images.githubusercontent.com/33669341/53889273-6f321980-4026-11e9-8b71-9cecc6f6e3bf.PNG)
-
 ![028](https://user-images.githubusercontent.com/33669341/53889616-fd0e0480-4026-11e9-9a64-5b385634445a.PNG)
-
 ![029](https://user-images.githubusercontent.com/33669341/53889723-30509380-4027-11e9-8215-5824b926f4ba.PNG)
-
 ![033](https://user-images.githubusercontent.com/33669341/53891684-2d57a200-402b-11e9-81f2-9564ed17372d.PNG)
 
 Configuration file
