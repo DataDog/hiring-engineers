@@ -1,6 +1,6 @@
 # Ken Chitwood - Datadog Recruiting Candidate 
 
-Kchitwood@hughes.net / [Ken Chitwood](www.linkedin.com/in/kenchitwood)
+Kchitwood@hughes.net / [Ken Chitwood](https://www.linkedin.com/in/kenchitwood)
 
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience. [Datadog](https://www.datadoghq.com/about/press/)
