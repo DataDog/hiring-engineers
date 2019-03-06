@@ -193,4 +193,11 @@ Infrastructure List
 
 ![030](https://user-images.githubusercontent.com/33669341/53890176-ff249300-4027-11e9-8979-1cd3c814bcf3.PNG)
 
+**Bonus Question** Difference between a Service & a Resources :
+
+A service is providing something benificial to customer as they want. A resource is source from which benifit is produced.
+
+Creating a services using Flask app, (analyse the app performance using APM) and send a request like GET to get the resource and PUT, POST, DELTE to create, modify and delete a resource. 
+
+Retrive the resources (by GET request) from the service Flask. 
 
