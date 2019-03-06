@@ -148,6 +148,8 @@ Received below mail for all different alerts
 
 * Notify if no data
 
+![031](https://user-images.githubusercontent.com/33669341/53890720-026c4e80-4029-11e9-9483-aeda450116d3.PNG)
+
 **Bonus Question** Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled as below
 monitor in manage downtime tab :
 
