@@ -199,9 +199,8 @@ Infrastructure List
 
 **Bonus Question** Difference between a Service & a Resources :
 
-A service is providing something benificial to customer as they want. A resource is source from which benifit is produced.
+An application runs sevaral services to carry out the intended job defined by the developper. A minimal application may require a webapp service and database service. As the complexity of the application increases, services can be added to perform each kind of work efficiently, such as admin service for management.
 
-Creating a services using Flask app, (analyse the app performance using APM) and send a request like GET to get the resource and PUT, POST, DELTE to create, modify and delete a resource. 
+Every service will perform actions inorder to get some work done. Such actions are referred as resources. In the case of a web app. http requests are classified into resources based on the url it points out to and the type of the request. Another example would be queries in the database. 
 
-Retrive the resources (by GET request) from the service Flask. 
 
