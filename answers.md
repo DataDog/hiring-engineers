@@ -184,6 +184,15 @@ Service and resources in UI
 
 ![029](https://user-images.githubusercontent.com/33669341/53889723-30509380-4027-11e9-8215-5824b926f4ba.PNG)
 
+![033](https://user-images.githubusercontent.com/33669341/53891684-2d57a200-402b-11e9-81f2-9564ed17372d.PNG)
+
+![034](https://user-images.githubusercontent.com/33669341/53891685-2d57a200-402b-11e9-84e6-84203281b9d4.PNG)
+
 Infrastructure List
 
 ![030](https://user-images.githubusercontent.com/33669341/53890176-ff249300-4027-11e9-8979-1cd3c814bcf3.PNG)
+
+Configuration file
+
+![032](https://user-images.githubusercontent.com/33669341/53891687-2d57a200-402b-11e9-91cd-45ba6f6093ac.PNG)
+
