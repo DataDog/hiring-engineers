@@ -185,6 +185,10 @@ Service and resources in UI
 ![029](https://user-images.githubusercontent.com/33669341/53903520-36a13880-4044-11e9-964c-22ed86137919.PNG)
 ![033](https://user-images.githubusercontent.com/33669341/53891684-2d57a200-402b-11e9-81f2-9564ed17372d.PNG)
 
+APM Dashboard link
+
+    https://app.datadoghq.com/graph/embed?token=ecd449236d088c9bc91a97b96fba9516b1aabedd815e1bc016c5ff9f486a698d&height=300&width=600&legend=true
+
 Configuration file
 
 ![034](https://user-images.githubusercontent.com/33669341/53891685-2d57a200-402b-11e9-84e6-84203281b9d4.PNG)
