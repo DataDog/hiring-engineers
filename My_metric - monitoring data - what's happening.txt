@@ -1,0 +1,54 @@
+{{#is_alert}}
+
+Start the escalation process to return to a desired level.
+
+{{value}} breached the alert threshold {{threshold}} on IP {{host.ip}}
+
+@dskeddle@gmail.com 
+
+{{/is_alert}} 
+
+
+{{#is_warning}}
+
+Start to monitor process until threshold is lowered.
+
+@goldencheetah70@gmail.com 
+
+{{/is_warning}} 
+
+
+{{#is_no_data}}
+
+Data has been missing for over 10 minutes.
+
+@goldencheetah70@yahoo.com 
+
+{{/is_no_data}} 
+
+
+{{#is_alert_recovery}}
+
+This 'alert' has recovered to an acceptable level.
+
+@dskeddle@gmail.com 
+
+{{/is_alert_recovery}} 
+
+
+{{#is_warning_recovery}}
+
+This 'warning' has recovered to an acceptable level.
+
+@goldencheetah70@gmail.com 
+
+{{/is_warning_recovery}} 
+
+
+{{#is_no_data_recovery}}
+
+Data is now posting.
+
+@goldencheetah70@yahoo.com 
+
+{{/is_no_data_recovery}}
