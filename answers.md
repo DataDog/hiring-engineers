@@ -20,12 +20,14 @@ Uploaded Files: Tags_from_Agent_setting.png, Tags_from_Host_Map.png
 Installed MongoDB Enterprise and uploaded a test database with script. Enabled Authentication as it is disabled by default.
 Was challenged by the DOC’s for the windows agent.
 1.	It is clear that the Windows Agents mondo.d /conf.yaml is based on the Linux version so you have to make changes to it for getting the log agent to run correctly.
-Changed path from:
 
-# - type: file
-#   path: /var/log/mongodb/mongodb.log
-#   service: mongo
-#   source: mongodb
+Changed from:
+
+
+ - type: file
+   path: /var/log/mongodb/mongodb.log
+   service: mongo
+   source: mongodb
 
 To
 
@@ -33,6 +35,7 @@ To
       path: C:\Program Files\MongoDB\Server\4.0\log\mongod.log
       service: mongodb
       source: mongodb
+
 Which is the default path to the Mongodb log on my install.
 Suggestion:  Correct the all the help files for the Windows agent to the correct syntax.
 Eventually got the metrics and the logs collection work
