@@ -144,8 +144,8 @@ Restarted running datadog agent container with new configuration.
 
 ```bash
 ## Stop the running container and start a datadog-agent container with mounting checks.d
-docker rm -f dd-agent
-docker run -d --name dd-agent \
+$ docker rm -f dd-agent
+$ docker run -d --name dd-agent \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     -v /proc/:/host/proc/:ro \
     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
@@ -154,7 +154,7 @@ docker run -d --name dd-agent \
     -v $(pwd)/conf.d:/conf.d:ro \
     -v $(pwd)/checks.d:/checks.d:ro \
     --link dd-mysql \
-    datadog/agent:6.10.1**
+    datadog/agent:6.10.1
 ```
 
 Datadog agent started to submit my_metric like this:
@@ -191,7 +191,7 @@ $ docker logs dd-agent | grep custom_random
 [ AGENT ] 2019-03-10 01:21:18 UTC | INFO | (pkg/collector/runner/runner.go:330 in work) | Done running check custom_random
 ```
 
-**Bonus Question** : Can you change the collection interval without modifying the Python check file you created?
+## Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 Yes.
 One solution is modifying the constant value named `DefaultCheckInterval` in [source code](https://github.com/DataDog/datadog-agent/blob/33db6c888082da73e04a7d344b9c78ee3a72371d/pkg/collector/check/check.go#L16).
@@ -204,7 +204,7 @@ Obviously, it is a work around solution and affects to all checks and not a reco
 At first, I got an application key from `API > Application Keys` in Datadog Web UI.
 It's necessary for utilizing Datadog API.
 
-Then, created the following bash script for generating a timeboard.
+Then, created the following bash script for generating a timeboard and executed it.
 
 ```bash
 #!/bin/bash -eux
@@ -293,9 +293,9 @@ The snapshot is displayed in the timeline:
 
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54080169-6cd50580-432d-11e9-953a-c2d0eee3630c.png">
 
-**Bonus Question**: What is the Anomaly graph displaying?
+## Bonus Question: What is the Anomaly graph displaying?
 
-the Anomaly graph shows a metrics is behaving differently than it has in the past.
+The Anomaly graph shows a metrics is behaving differently than it has in the past.
 Gray band shows the expected metrics range that is calculated by the past metrics.
 When a metric is out of range, Datadog regards it as anomaly metrics and displays the metric with red line.
 
@@ -315,7 +315,7 @@ After waiting for a few minutes, I received an notification e-mail:
 
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54080339-b8d57980-4330-11e9-9ac3-727021c97cc7.png">
 
-**Bonus Question**: Setup scheduled downtime
+## Bonus Question: Setup scheduled downtime
 
 Created a new scheduled downtimes with the following bash script.
 Note that I scheduled downtimes in JST (UTC +0900).
@@ -361,3 +361,111 @@ After creating the scheduled downtime, I got e-mails from Datadog.
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54080588-d60d4680-4336-11e9-9d96-456d81458f47.png">
 
 
+# Collecting APM Data
+
+Enabled APM feature with environmental variables because it is disabled by default.
+
+```bash
+## Stop the running container and start a datadog-agent container with enabling APM
+$ docker rm -f dd-agent
+$ docker run -d --name dd-agent \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    -v /proc/:/host/proc/:ro \
+    -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+    -e DD_API_KEY=$DD_API_KEY \
+    -e DD_TAGS="country:japan city:tokyo" \
+    -e DD_APM_ENABLED="true" \
+    -e DD_APM_NON_LOCAL_TRAFFIC="true" \
+    -v $(pwd)/conf.d:/conf.d:ro \
+    -v $(pwd)/checks.d:/checks.d:ro \
+    --link dd-mysql \
+    datadog/agent:6.10.1
+```
+
+Then, prepared a flask application container.
+
+I modified the default Flask app to utilize ddtrace like this:
+
+```python
+from ddtrace import tracer
+tracer.configure(
+    hostname='dd-agent',
+    port=8126,
+)
+
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+
+```
+
+I also created Dockerfile like this:
+
+```dockerfile
+FROM python:3.7.2-alpine3.9
+RUN pip install flask ddtrace
+WORKDIR /app
+ADD app.py .
+EXPOSE 5050
+CMD ["ddtrace-run", "python", "app.py"]
+```
+
+Finally, built a container and run it.
+
+```bash
+## build my application container
+$ docker build -t dd-app .
+
+## run my application container
+$ docker run -d --name dd-app \
+  -p 5050:5050 \
+  --link dd-agent \
+  dd-app
+```
+
+After calling endpoints with curl, APM metrics are appeared in Datadog Web UI.
+
+```bash
+## call each endpoints by curl
+$ curl localhost:5050/
+$ curl localhost:5050/api/apm
+$ curl localhost:5050/api/trace
+```
+
+## Bonus Question: What is the difference between a Service and a Resource?
+
+A service is a set of processes that do the same job. For instance, webapp service and database service is services in APM context.
+A resource is a particular action for a service. For instance, it might be a canonical URL, such as `/api/apm` in webapp service.
+
+## Create Dashboard with both APM and Infrastructure Metrics
+
+Created new dashboard by cloning built-in my host's host metrics and added APM metrics into it.
+
+https://app.datadoghq.com/dashboard/f87-k3y-d4b/my-dashboard-2?tile_size=m&page=0&is_auto=false&from_ts=1552125600000&to_ts=1552212000000&live=false
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54083384-d40eac00-4365-11e9-8d3d-7ef660cd103e.png">
