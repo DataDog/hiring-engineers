@@ -24,17 +24,15 @@ Was challenged by the DOC’s for the windows agent.
 Changed from:
 
 
- - type: file
-   path: /var/log/mongodb/mongodb.log
-   service: mongo
-   source: mongodb
+ 	path: /var/log/mongodb/mongodb.log
+ 	service: mongo
+ 	source: mongodb
 
 To
 
-- type: file
-      path: C:\Program Files\MongoDB\Server\4.0\log\mongod.log
-      service: mongodb
-      source: mongodb
+	path: C:\Program Files\MongoDB\Server\4.0\log\mongod.log
+	service: mongodb
+ 	source: mongodb
 
 Which is the default path to the Mongodb log on my install.
 Suggestion:  Correct the all the help files for the Windows agent to the correct syntax.
