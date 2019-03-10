@@ -1,5 +1,6 @@
 Your answers to the questions go here.
 
+
 # Prerequisites
 
 According to [pull requests closed](https://github.com/DataDog/hiring-engineers/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aclosed+docker),
@@ -37,6 +38,7 @@ https://app.datadoghq.com/metric/summary
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54072145-ea5f2e00-42b9-11e9-9d77-776086b87ead.png">
 
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54072237-79207a80-42bb-11e9-91df-9f723b9e158b.png">
+
 
 # Collecting Metrics
 
@@ -191,5 +193,108 @@ docker logs dd-agent | grep custom_random
 
 **Bonus Question** : Can you change the collection interval without modifying the Python check file you created?
 
+Yes.
 One solution is modifying the constant value named `DefaultCheckInterval` in [source code](https://github.com/DataDog/datadog-agent/blob/33db6c888082da73e04a7d344b9c78ee3a72371d/pkg/collector/check/check.go#L16).
-Obviously, it is a work around solution and affects to all checks.
+Obviously, it is a work around solution and affects to all checks and not a recommended way.
+
+# Visualizing Data
+
+## Create a Timeboard
+
+At first, I got an application key from `API > Application Keys` in Datadog Web UI.
+It's necessary for utilizing Datadog API.
+
+Then, created the following bash script for generating a timeboard.
+
+```bash
+#!/bin/bash -eux
+
+$ cat << EOS > timeboard.json
+{
+  "title": "My Timeboard",
+  "description": "A dashboard for technical exercise.",
+  "template_variables": [],
+  "read_only": "True",
+  "graphs": [
+    {
+      "title": "My custom metric scoped over your host",
+      "definition": {
+        "requests": [
+          {
+            "q": "avg:my_metric{host:linuxkit-025000000001}",
+            "type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "type": "solid",
+              "width": "normal"
+            },
+            "conditional_formats": []
+          }
+        ]
+      },
+      "viz": "timeseries"
+    },
+    {
+      "title": "Any metric from the Integration on my Database with the anomaly function applied",
+      "definition": {
+        "requests": [
+          {
+            "q": "anomalies(avg:mysql.net.connections{*}, 'basic', 2)",
+            "type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "type": "solid",
+              "width": "normal"
+            },
+            "conditional_formats": []
+          }
+        ]
+      },
+      "viz": "timeseries"
+    },
+    {
+      "title": "My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket",
+      "definition": {
+        "requests": [
+          {
+            "q": "avg:my_metric{*}.rollup(sum, 3600)",
+            "type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "type": "solid",
+              "width": "normal"
+            },
+            "conditional_formats": []
+          }
+        ]
+      },
+      "viz": "timeseries"
+    }
+  ]
+}
+EOS
+
+$ curl -X POST \
+  -H "Content-type: application/json" \
+  -d "@timeboard.json" \
+  "https://api.datadoghq.com/api/v1/dash?api_key=${DD_API_KEY}&application_key=${DD_APP_KEY}"
+```
+
+New timeboard was created like this:
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080110-4ebad580-432c-11e9-814a-f7eb9bc59b34.png">
+
+I customized the Timeboard's timeframe to last 5 min by clicking and dragging the mouse cursor.
+Then, clicked a camera icon in the first graph and took a snapshot like this:
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080154-14056d00-432d-11e9-93a7-a00a4a0888bf.png">
+
+The snapshot is displayed in the timeline:
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080169-6cd50580-432d-11e9-953a-c2d0eee3630c.png">
+
+**Bonus Question**: What is the Anomaly graph displaying?
+
+the Anomaly graph shows a metrics is behaving differently than it has in the past.
+Gray band shows the expected metrics range that is calculated by the past metrics.
+When a metric is out of range, Datadog regards it as anomaly metrics and displays the metric with red line.
