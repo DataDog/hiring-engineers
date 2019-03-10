@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+  - server: dd-mysql
+    user: datadog
+    pass: iJX:9KBH1JmyOWFdgkZJhedd
+    options:
+      replication: false
