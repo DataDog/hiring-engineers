@@ -20,14 +20,14 @@ https://app.datadoghq.com/signup/agent#docker
 ```bash
 ## Start datadog/agent container with configurations
 ## Note that the actual API key is substituted with environmental variable 
-docker run -d --name dd-agent \
+$ docker run -d --name dd-agent \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     -v /proc/:/host/proc/:ro \
     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
     -e DD_API_KEY=$DD_API_KEY datadog/agent:latest
     
 ## check whether the container is running
-docker ps
+$ docker ps
 CONTAINER ID        IMAGE                  COMMAND             CREATED              STATUS                                 PORTS                NAMES
 784b07f8bc22        datadog/agent:latest   "/init"             About a minute ago   Up About a minute (health: starting)   8125/udp, 8126/tcp   dd-agent
 ```
@@ -49,10 +49,10 @@ I defined `DD_TAGS` environmental variables for adding tags.
 
 ```bash
 ## Stop & remove a running container
-docker rm -f dd-agent
+$ docker rm -f dd-agent
 
 ## Start a datadog-agent container with DD_TAGS environmental variable
-docker run -d --name dd-agent \
+$ docker run -d --name dd-agent \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     -v /proc/:/host/proc/:ro \
     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
@@ -70,23 +70,23 @@ Started a MySQL 5.7 container and configured it for collecting metrics.
 
 ```bash
 ## Start a mysql 5.7 container
-docker run -d --name dd-mysql \
+$ docker run -d --name dd-mysql \
     -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
     mysql:5.7
 
 ## Create datadog user in mysql & grant privileges
 ## Note that datadog user can accept login from 172.17.0.0/16 (subnet of Docker default network)
-docker exec -it dd-mysql mysql -uroot -e "CREATE USER 'datadog'@'172.17.%' IDENTIFIED BY 'iJX:9KBH1JmyOWFdgkZJhedd';"
-docker exec -it dd-mysql mysql -uroot -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'172.17.%' WITH MAX_USER_CONNECTIONS 5;"
-docker exec -it dd-mysql mysql -uroot -e "GRANT PROCESS ON *.* TO 'datadog'@'172.17.%';"
-docker exec -it dd-mysql mysql -uroot -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'172.17.%';"
+$ docker exec -it dd-mysql mysql -uroot -e "CREATE USER 'datadog'@'172.17.%' IDENTIFIED BY 'iJX:9KBH1JmyOWFdgkZJhedd';"
+$ docker exec -it dd-mysql mysql -uroot -e "GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'172.17.%' WITH MAX_USER_CONNECTIONS 5;"
+$ docker exec -it dd-mysql mysql -uroot -e "GRANT PROCESS ON *.* TO 'datadog'@'172.17.%';"
+$ docker exec -it dd-mysql mysql -uroot -e "GRANT SELECT ON performance_schema.* TO 'datadog'@'172.17.%';"
 ```
 
 Configured datadog-agent by adding `conf.d/mysql.yml` to collect the db container's metrics.
 
 ```bash
 ## Create configuration file
-cat << EOS > conf.d/mysql.yaml
+$ cat << EOS > conf.d/mysql.yaml
 init_config:
 
 instances:
@@ -99,8 +99,8 @@ EOS
 
 ## Stop the running container and start a datadog-agent container with mounting conf.d
 ## Add --link dd-mysql to connect the database container
-docker rm -f dd-agent
-docker run -d --name dd-agent \
+$ docker rm -f dd-agent
+$ docker run -d --name dd-agent \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     -v /proc/:/host/proc/:ro \
     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
@@ -176,13 +176,13 @@ instances:
 Restarted dd-agent container.
 
 ```bash
-docker restart dd-agent
+$ docker restart dd-agent
 ```
 
 According to dd-agent logs, the check is executed every 45s.
 
 ```bash
-docker logs dd-agent | grep custom_random
+$ docker logs dd-agent | grep custom_random
 [ AGENT ] 2019-03-10 01:20:33 UTC | INFO | (pkg/collector/scheduler.go:63 in Schedule) | Scheduling check custom_random
 [ AGENT ] 2019-03-10 01:20:33 UTC | INFO | (pkg/collector/scheduler/scheduler.go:76 in Enter) | Scheduling check custom_random with an interval of 45s
 [ AGENT ] 2019-03-10 01:20:34 UTC | INFO | (pkg/collector/runner/runner.go:264 in work) | Running check custom_random
@@ -209,7 +209,7 @@ Then, created the following bash script for generating a timeboard.
 ```bash
 #!/bin/bash -eux
 
-$ cat << EOS > timeboard.json
+cat << EOS > timeboard.json
 {
   "title": "My Timeboard",
   "description": "A dashboard for technical exercise.",
@@ -274,7 +274,7 @@ $ cat << EOS > timeboard.json
 }
 EOS
 
-$ curl -X POST \
+curl -X POST \
   -H "Content-type: application/json" \
   -d "@timeboard.json" \
   "https://api.datadoghq.com/api/v1/dash?api_key=${DD_API_KEY}&application_key=${DD_APP_KEY}"
@@ -298,3 +298,66 @@ The snapshot is displayed in the timeline:
 the Anomaly graph shows a metrics is behaving differently than it has in the past.
 Gray band shows the expected metrics range that is calculated by the past metrics.
 When a metric is out of range, Datadog regards it as anomaly metrics and displays the metric with red line.
+
+
+# Monitoring Data
+
+Created a new monitor from Monitors > New Monitor > Metric in Datadog Web UI.
+
+Set alert configurations and message to satisfy the requirements like this:
+ 
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080301-1917eb80-4330-11e9-83f5-75761f76d92a.png">
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080327-6dbb6680-4330-11e9-9406-85866d3ab1df.png">
+
+Finally, click the save button and a new monitor was created.
+After waiting for a few minutes, I received an notification e-mail:
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080339-b8d57980-4330-11e9-9ac3-727021c97cc7.png">
+
+**Bonus Question**: Setup scheduled downtime
+
+Created a new scheduled downtimes with the following bash script.
+Note that I scheduled downtimes in JST (UTC +0900).
+
+```bash
+#!/bin/bash -eux
+
+# create a scheduled downtime on weekdays
+curl -X POST -H "Content-type: application/json" \
+  -d '{
+      "scope": "*",
+      "start": '"$(gdate --date '2019-03-11 19hours' +%s)"',
+      "end": '"$(gdate --date '2019-03-12 9hours' +%s)"',
+      "recurrence": {
+        "type": "weeks",
+        "period": 1,
+        "week_days": ["Mon", "Tue", "Wed", "Thu", "Fri"]
+      },
+      "message" : "@tkmskmt0722@gmail.com Scheduled downtime is enabled during 7:00pm to 9:00am on M-F."
+    }' \
+    "https://api.datadoghq.com/api/v1/downtime?api_key=${DD_API_KEY}&application_key=${DD_APP_KEY}"
+    
+# create a scheduled downtime on weekends
+curl -X POST -H "Content-type: application/json" \
+  -d '{
+      "scope": "*",
+      "start": '"$(gdate --date '2019-03-17' +%s)"',
+      "end": '"$(gdate --date '2019-03-18' +%s)"',
+      "recurrence": {
+        "type": "weeks",
+        "period": 1,
+        "week_days": ["Sat", "Sun"]
+      },
+      "message" : "@tkmskmt0722@gmail.com Scheduled downtime is enabled on Saturday and Sunday."
+    }' \
+    "https://api.datadoghq.com/api/v1/downtime?api_key=${DD_API_KEY}&application_key=${DD_APP_KEY}"
+```
+
+After creating the scheduled downtime, I got e-mails from Datadog.
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080587-d4438300-4336-11e9-8fff-3579e9d413b0.png">
+
+<img width="640" src="https://user-images.githubusercontent.com/48383023/54080588-d60d4680-4336-11e9-9d96-456d81458f47.png">
+
+
