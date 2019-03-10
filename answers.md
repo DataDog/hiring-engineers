@@ -469,3 +469,13 @@ Created new dashboard by cloning built-in my host's host metrics and added APM m
 https://app.datadoghq.com/dashboard/f87-k3y-d4b/my-dashboard-2?tile_size=m&page=0&is_auto=false&from_ts=1552125600000&to_ts=1552212000000&live=false
 
 <img width="640" src="https://user-images.githubusercontent.com/48383023/54083384-d40eac00-4365-11e9-8d3d-7ef660cd103e.png">
+
+
+# Final Question
+
+I'd like to build a sophisticated smart home by integrating Datadog with IoT ready appliances and IFTTT.
+
+[Nature Remo](https://nature.global/) is a smart remote control that easily realizes smart home by connecting your appliances to the Internet.
+Since Nature Remo provides [Web API](https://developer.nature.global/en/overview) for collecting sensor values and controlling appliances, we can build more sophisticated smart home with combining the Web API, Datadog and IFTTT.
+Turning on a light by Datadog alert is an typical use case. By utilizing Datadog’s powerful query-based alert and scheduled downtime, we can describe more complex conditions beyond simple threshold condition.
+Also, we can visualize censor values such as temperatures, humidity and brightness. It’ useful to design triggers for turning on appliances effectively. 
