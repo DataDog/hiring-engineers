@@ -50,12 +50,15 @@ https://docs.datadoghq.com/api/?lang=python#send-traces
 Kept the version check of the Agent in the python file.
 Important that the files are in the root of the conf.d and checks.d directories
 Created file custom_check.yaml in conf.d:
+
 init_config:
 instances:
   - min_collection_interval: 45
+
 And 
 custom_check.py  in checks.d:
-# the following try/except block will make the custom check compatible with any Agent version
+
+
 try:
     # first, try to import the base class from old versions of the Agent...
     from checks import AgentCheck
@@ -63,8 +66,6 @@ try:
 except ImportError:
     # ...if the above failed, the check is running in Agent version 6 or later
     from datadog_checks.checks import AgentCheck
-# content of the special variable __version__ will be shown in the Agent status page
-__version__ = "1.0.0"
 
 from random import randint
 
@@ -75,7 +76,8 @@ class HelloCheck(AgentCheck):
 I then used the “Add a Check” on DataDog Agent Manager interface to add the custm_check.yaml
 to the checks
 
-4	Bonus Question: 
+4 Bonus Question: 
+
 User the Edit Enabled Checks function in the Datadog Agent Manager and change the  
 - min_collection_interval: in the custom_check.yaml check.
 See uploaded Edit custom_check.yaml.png
