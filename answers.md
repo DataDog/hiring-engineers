@@ -52,7 +52,7 @@ Installed mysql and corresponing Datadog integration. Below screenshot shows mys
 
 Below two file name should be same:
 > </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file & 
-</etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
+> </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
 **check file** 
 Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000.
