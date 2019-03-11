@@ -153,11 +153,11 @@ Mysql timeboard
 
 By using above timeboard, I have created a moniotor that works automatically and repeated with given contrians. The contrains are thresholds.
 
-Created new metric monitor named <My Monitor> 
+Created new metric monitor named <My Monitor>
 
 ![0019](https://user-images.githubusercontent.com/33669341/53705899-e3eb3500-3e27-11e9-80da-d1ce44e1ce8b.PNG)
 
-Can manage monitor after creating, below properties that include threshold for past 5 mins raise : 
+Can manage monitor after creating, below properties that include threshold for past 5 mins raise :  
 *alert* if range above 800,  
 *warning* if range above 500 &  
 *notify* if no data more than 10 mins
@@ -170,7 +170,7 @@ Data live status & history, & evaluation graph with threshold
 
 Received below mail for all different alerts
 
-* Alert value if above 800
+* Alert value if above 800  
   Test alert with test name (Monitor Name)
 
 ![021](https://user-images.githubusercontent.com/33669341/53707044-6aeedc00-3e2d-11e9-8c94-8622e8f5e9b9.PNG)
@@ -184,28 +184,33 @@ Received below mail for all different alerts
 ![031](https://user-images.githubusercontent.com/33669341/53890720-026c4e80-4029-11e9-9483-aeda450116d3.PNG)
 
 **Bonus Question** Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled as below
-monitor in manage downtime tab :
+monitor in manage downtime tab
+
+Set up two scheduled downtimes
+  > Monday to thursday - downtime for 14h on each day from 7pm to 9am
+  > Friday to monday - downtime for 63h on every weekend from friday 7pm to monday 9am
 
 ![020](https://user-images.githubusercontent.com/33669341/53706050-a935cc80-3e28-11e9-90b1-dc08f44f6307.PNG)
 
-received mail of downtime details:
+The received mail of downtime details:
 
 ![023](https://user-images.githubusercontent.com/33669341/53706380-61b04000-3e2a-11e9-820e-eebeaf91a722.PNG)
 
 ## APM
 
-ddtrace-run works good and produce data in UI initially then later after adding analysed span and env tag, i'm not able to get any data. 
+The ddtrace-run works good and produce data in UI initially then later after adding analysed span and env tag, i'm not able to get any data. 
 So I have done this APM with manual method, in manual method, it shows only default env tag even after adding env tag with right syntax in main config (datadog.yaml) file  
 
-given flask python script
+
+Given flask python script
 
 ![024](https://user-images.githubusercontent.com/33669341/53888045-d0a4b900-4023-11e9-8431-6ea8ce95a65c.PNG)
 
-sending request
+Sending request
 
 ![026](https://user-images.githubusercontent.com/33669341/53888913-caafd780-4025-11e9-8df2-7e61f1f3a334.PNG)
 
-received responses 
+Received responses 
 
 ![025](https://user-images.githubusercontent.com/33669341/53888188-24170700-4024-11e9-8fc8-bad55d394cab.PNG)
 
