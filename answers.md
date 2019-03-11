@@ -195,14 +195,22 @@ Based on that I created the “Visualizing Data using Dashboard.py” script see
 
 Setting the timeframe to the past 5 minutes was done by zooming in on the graph in the GUI.
 I then restarted the Mongodb service waited then stopped if for 30 sec started it and then finally stopped the datadog agent, and then pushed the camera icon and send the snapshot to myself.
+
 Uploaded as "Take a snapshot of this graph.png"
 
 4.	Bonus question What is the Anomaly graph displaying
 
-The anomaly graph is showing a gray band which is the zone where if the graph must stay within to not generate an anomaly
-Where the graph is RED it has thrown up an anomaly. Notice that the anomaly gray band grows when no data is received. Also once the backlogged data is reinserted the graphs the anomaly band normalizes as seen in uploaded “Normalised anomaly.png” snapshot
+Looking at: Take a snapshot of this graph.png
+
+The anomaly graph is showing a gray band which is the zone showing the predictive behaviour,  the value must stay within this band 
+as to not generate an anomaly.
+
+Where the graph is RED it has thrown up an anomaly. Notice that the anomaly gray band grows when no data is received. 
+
+Also once the backlogged data is reinserted the graphs the anomaly band normalizes as seen in uploaded “Normalised anomaly.png”
 
 So the anomaly function looks at data trend and once a deviation is found it marks the graph for that time period as an anomaly or as the official documentation nicely puts it:
+
 “Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, considering trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard or impossible to monitor with threshold-based alerting.”
 
 Monitoring data:
