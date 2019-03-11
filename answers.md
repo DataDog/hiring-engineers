@@ -7,10 +7,10 @@ Collecting Metrics:
 Created a windows server 2019 WDog3 and installed agent using the 
 https://app.datadoghq.com/account/settings#agent/windows 
 Instructions.
-Added tags to the installation
-msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="c657bdea00effba8c512cb5056a473ac" 
-HOSTNAME="WDog3" 
-TAGS="Windows, Test,Azure,W2K19"
+	Added tags to the installation
+	msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="c657bdea00effba8c512cb5056a473ac" 
+	HOSTNAME="WDog3" 
+	TAGS="Windows, Test,Azure,W2K19"
 
 Learned that the Datadog Agent ver 6 has its own bundled Python Environment and its management interface on localhost port 5002
 Uploaded Files: Tags_from_Agent_setting.png, Tags_from_Host_Map.png
