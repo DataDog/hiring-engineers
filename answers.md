@@ -4,6 +4,7 @@ I have experience working with VirtualBox and hypervisor for academic-oriented a
 
 Instead of manually creating and installing a virtual OS from scratch in VirtualBox. It is easy to use pre-built images ("boxes") provided by vagrant and a single command vagrant up/vagrant destroy, can create/shutdown a virtual environment.
 
+Below are required to perform the task:
   - Vagrant - v2.2.3
   - VirtualBox - v6.0
   - Cmder - linux like console for windows
@@ -18,9 +19,22 @@ Singed up into datadog and downloaded agent. The datadog-agent status after inst
 
 ## COLLECTING METRICS
 
-Once the environment setup done well. Then start collecting data into the datadog for further performance.
+Once the environment setup done well. Then start collecting data into the datadog for further performance. Before that we can see overview of current status of datadog after installing the agent by giving a command *"datadog-agent status"*
 
-There is a main config file in the path /etc/datadog-agent/datadog.yaml responsible for all application, host, trace, tags and more. Edited this agent config file to add the tag (first_tag).
+  *datadog-agent --help* - display all options
+  *datadog-agent status* - display status
+  *datadog-agent config* - display necessary config info
+  *datadog-agent check* - display info about check
+  and more
+  
+ I have used above commands that seems shortcut to see required details of datadog.
+
+There are 3 important config file 
+1) main config file in the path /etc/datadog-agent/datadog.yaml responsible for all application, host, trace, tags and more.
+2) installed or custom create application in the path /etc/datadog-agent/conf.d/<custom_create_app>
+3) file for checks either installed or custom check in the path /etc/datadog-agent/check.d/<custom_check>
+
+Edited the main agent config file to add the tag (first_tag) and ensure the tag was added or not by viewed with *datadog-agent config* command
 
 ![004](https://user-images.githubusercontent.com/33669341/53703973-d62db380-3e17-11e9-8097-268a970eff68.png)
 
@@ -28,7 +42,9 @@ Below screenshot shows the "Host Map" with *added tag*.
 
 ![img001](https://user-images.githubusercontent.com/33669341/53703892-180a2a00-3e17-11e9-931f-35832252c3af.PNG)
 
-Created custom check with metric named (my_metrics) in the range 0 to 1000 and it's default interval time is 30 sec. Then it has been changed to 45 sec.
+Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000 from that custom app with the default interval time is 30 sec and it has been changed to 45 sec which is called collecting interval instance in the path /etc/datadog-agent/cong.d/custom_firstCheck.yaml and 
+
+The check file name </etc/datadog-agent/checks.d/custom_firstCheck.py> and interval instance config file name </etc/datadog-agent/cong.d/custom_firstCheck.yaml> should be same. 
 
 ![005](https://user-images.githubusercontent.com/33669341/53704096-5c96c500-3e19-11e9-9fca-2ad3a00b3929.PNG)
 
