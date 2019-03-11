@@ -212,8 +212,7 @@ Data live status & history, & evaluation graph with threshold
 ![031](https://user-images.githubusercontent.com/33669341/53890720-026c4e80-4029-11e9-9483-aeda450116d3.PNG)
 
 
-**Bonus Question** : Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled as below
-monitor in manage downtime tab
+**Bonus Question** : Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled in manage downtime.
 
 Set up two scheduled downtimes  
   > Weekday - downtime for 14h on each day (monday to thursday) from 7 pm to 9 am  
