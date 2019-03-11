@@ -38,7 +38,7 @@ There are 3 important config file
 2) cust_app.yaml - /etc/datadog-agent/**conf.d**/cust_app.yaml - responsible for installed/custom created app's interval time.
 3) cust_app.py - /etc/datadog-agent/**check.d**/cust_app.py - responsible for getting metric's of installed/custom app.
 
-Edited the main agent config file to add the tag (first_tag) and ensure the tag is added with *datadog-agent config* command.
+Edited the datadog.yaml to add the tag <first_tag> and ensure the tag is added, run *datadog-agent config* command.
 
 ![004](https://user-images.githubusercontent.com/33669341/53703973-d62db380-3e17-11e9-8097-268a970eff68.png)
 
