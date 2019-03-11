@@ -4,10 +4,10 @@ Collecting Metrics:
 
 1.Host agent installation: 
 
-Created a windows server 2019 WDog3 and installed agent using the 
-https://app.datadoghq.com/account/settings#agent/windows 
-Instructions.
-	Added tags to the installation
+Created a windows server 2019 WDog3 and installed agent using the https://app.datadoghq.com/account/settings#agent/windows instructions.
+	
+Added tags to the installation
+
 	msiexec /qn /i datadog-agent-6-latest.amd64.msi APIKEY="c657bdea00effba8c512cb5056a473ac" 
 	HOSTNAME="WDog3" 
 	TAGS="Windows, Test,Azure,W2K19"
