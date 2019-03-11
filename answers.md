@@ -279,7 +279,8 @@ Every service will perform actions inorder to get some work done. Such actions a
 ## FINAL
 
 
-  > A social network site can use datadog to track the activity of its users to find out the peek active time and location inorder to promote respective products that the advertisers would like to sell to people. How about a restaurant's delicious food appearing on screen, at the time when most phones are active at a location around that restaurant. 
+  > A social network site can use datadog to track the activity of its users to find out the peek active time and location inorder to promote respective products that the advertisers would like to sell to people.  
+How about a restaurant's delicious food appearing on screen, at the time when most phones are active at a location around that restaurant. 
 
 
   > Now a days car parking in Mall, Cinema theater, Side street park, concert and more became crucial to everyone. In few places, implemented IOT for parking availability but that haven't became spread all over.  
