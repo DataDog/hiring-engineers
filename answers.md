@@ -153,14 +153,14 @@ Mysql timeboard
 
 By using above timeboard, I have created a moniotor that works automatically and repeated with given contrians. The contrains are thresholds.
 
-Created new metric monitor named <My Monitor>
+Created new metric monitor named < My Monitor >
 
 ![0019](https://user-images.githubusercontent.com/33669341/53705899-e3eb3500-3e27-11e9-80da-d1ce44e1ce8b.PNG)
 
 Can manage monitor after creating, below properties that include threshold for past 5 mins raise :  
-*alert* if range above 800,  
-*warning* if range above 500 &  
-*notify* if no data more than 10 mins
+  *alert* if range above 800,  
+  *warning* if range above 500 &  
+  *notify* if no data more than 10 mins
 
 ![017](https://user-images.githubusercontent.com/33669341/53705815-560f4a00-3e27-11e9-9c96-4b9094ac7f52.PNG)
 
@@ -183,12 +183,13 @@ Received below mail for all different alerts
 
 ![031](https://user-images.githubusercontent.com/33669341/53890720-026c4e80-4029-11e9-9483-aeda450116d3.PNG)
 
-**Bonus Question** Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled as below
+**Bonus Question**  
+Downtime from 7pm to 9am during weekdays and all day in weekend are scheduled as below
 monitor in manage downtime tab
 
-Set up two scheduled downtimes
-  > Monday to thursday - downtime for 14h on each day from 7pm to 9am
-  > Friday to monday - downtime for 63h on every weekend from friday 7pm to monday 9am
+Set up two scheduled downtimes  
+  > Weekday - downtime for 14h on each day (monday to thursday) from 7 pm to 9 am  
+  > Weekend - downtime for 63h on every weekend from friday 7 pm to monday 9 am
 
 ![020](https://user-images.githubusercontent.com/33669341/53706050-a935cc80-3e28-11e9-90b1-dc08f44f6307.PNG)
 
@@ -200,7 +201,6 @@ The received mail of downtime details:
 
 The ddtrace-run works good and produce data in UI initially then later after adding analysed span and env tag, i'm not able to get any data. 
 So I have done this APM with manual method, in manual method, it shows only default env tag even after adding env tag with right syntax in main config (datadog.yaml) file  
-
 
 Given flask python script
 
@@ -235,7 +235,8 @@ Infrastructure List
 
 ![030](https://user-images.githubusercontent.com/33669341/53890176-ff249300-4027-11e9-8979-1cd3c814bcf3.PNG)
 
-**Bonus Question** Difference between a Service & a Resources :
+**Bonus Question**  
+Difference between a Service & a Resources
 
 An application runs sevaral services to carry out the intended job defined by the developper. A minimal application may require a webapp service and database service. As the complexity of the application increases, services can be added to perform each kind of work efficiently, such as admin service for management.
 
