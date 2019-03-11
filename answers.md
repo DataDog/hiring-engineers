@@ -27,8 +27,7 @@ Once the environment setup done well. Then start collecting data into the datado
   
   > *datadog-agent config* - display necessary config info
   
-  > *datadog-agent check* - display info about check
-  and more
+  > *datadog-agent check* - display info about check and more
   
  I have used above commands that seems shortcut to see required details of datadog.
 
@@ -44,6 +43,10 @@ Edited the main agent config file to add the tag (first_tag) and ensure the tag 
 Below screenshot shows the "Host Map" with *added tag*.
 
 ![img001](https://user-images.githubusercontent.com/33669341/53703892-180a2a00-3e17-11e9-931f-35832252c3af.PNG)
+
+Installed mysql and corresponing Datadog integration. Below screenshot shows mysql datadog integration
+
+![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
 Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000 from that custom app with the default interval time is 30 sec and it has been changed to 45 sec which is called collecting interval instance in the path /etc/datadog-agent/cong.d/custom_firstCheck.yaml and 
 
@@ -65,17 +68,13 @@ Then interval changed from 5 sec to 45 sec to have a clear view.
 
 ## VISUALIZING DATA
 
-The created custom metrics and integrated mysql metrics in the hostmap.
+After collecting the data into the datadog, next step is to visualize the data in UI. Here, i have collected the metrics of above created custom app and installed mysql app in the hostmap are shown below.
 
 ![008](https://user-images.githubusercontent.com/33669341/53704495-5c98c400-3e1d-11e9-8fcd-bf4fc28cd234.PNG)
 
 ![009](https://user-images.githubusercontent.com/33669341/53704498-5efb1e00-3e1d-11e9-878c-937641649208.PNG)
 
-The integrated sql in datadog agent status
-
-![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
-
-Created timeboard by using datadog API. 
+Timeboard has been created by using datadog API. 
 
                 import requests, json, os, datetime, time
                 from datadog import initialize
