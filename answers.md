@@ -31,7 +31,7 @@ Once the environment setup is done well. Then datadog service start collecting d
   
   > *datadog-agent check* - display info about check and more
   
- I have used above commands that seems shortcut to see required details of datadog.
+ I have used above commands that seems shortcut to see required details of datadog services.
 
 There are 3 important config file 
 1)datadog.yaml - /etc/datadog-agent/**datadog.yaml** - responsible for all the application, host, trace, tags and more.
