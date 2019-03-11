@@ -174,7 +174,7 @@ Mysql timeboard
 
 ## MONITORING DATA
 
-By using above timeboard, I have created a moniotor that works automatically and repeated with given contrians. The contrains are thresholds.
+On the custom metrics timeboard, I have created a monitor that alerts or warn the seleted users when the metric exceeds the defined thresholds. This monitor is muted when the users out of office with the help of monitor downtime feature of datadog.
 
 Created new metric monitor named < My Monitor >
 
