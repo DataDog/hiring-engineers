@@ -74,7 +74,7 @@ After collecting the data into the datadog, next step is to visualize the data i
 
 ![009](https://user-images.githubusercontent.com/33669341/53704498-5efb1e00-3e1d-11e9-878c-937641649208.PNG)
 
-Timeboard has been created by using datadog API. 
+Timeboard has been created by using datadog API. In timeboard, we can have a better view of data flow in live or past. 
 
                 import requests, json, os, datetime, time
                 from datadog import initialize
@@ -116,11 +116,11 @@ Below is the JSON response of created timeboard using datadog api
 
 ![016](https://user-images.githubusercontent.com/33669341/53705231-23635280-3e23-11e9-8b13-3c3ad3ddcf9f.PNG)
 
-Dashboard list : Created custom dashboard and mysql dashboard
+Under dashboard tab, created custom dashboard <My Dashboard> and integrated mysql dashboard <Mysql - Overview> are listed in the dashboard list as below.
 
-![011](https://user-images.githubusercontent.com/33669341/53704824-2f014a00-3e20-11e9-8ca9-65df714327f8.PNG)
+![011bckup](https://user-images.githubusercontent.com/33669341/54142953-13520100-4429-11e9-9d7e-edbdb089d777.PNG)
 
-Dashboard *custom metric* link:
+Timeboard *custom metric* link:
 
     https://app.datadoghq.com/graph/embed?token=6da76d3c78d5cfac83ed7ea70f9a6d6082d69a4709033946f3c06e56dcfa5700&height=300&width=600&legend=true
 
@@ -129,7 +129,7 @@ Created custom metrics timeboard with no function and with rollup sum function f
 ![012](https://user-images.githubusercontent.com/33669341/53704818-2e68b380-3e20-11e9-8855-ba102423ead8.PNG)
 
 
-Dashboard *custom metric with roll up* link:
+Timeboard *custom metric with roll up* link:
 
     https://app.datadoghq.com/graph/embed?token=1db5616b1be00fae1a268699d4cfc0cf4eda6c17d83f4aecca8c850097b7fd8c&height=300&width=600&legend=true
 
@@ -140,7 +140,6 @@ Selected past 5 mins in the timeboard
 The received snapshot with selected last 5 mins data
 
 ![015](https://user-images.githubusercontent.com/33669341/53704821-2f014a00-3e20-11e9-8c4c-0b0be965af13.PNG)
-
 
 Mysql timeboard
 
