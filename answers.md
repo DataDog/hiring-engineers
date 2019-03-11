@@ -23,7 +23,7 @@ The datadog-agent status after installing agent in the host ubuntu-xenial.
 
 Once the environment setup is done well. Then datadog service start collecting data for further process. Before that we can see overview of current status with the command *"datadog-agent status"*
 
-I have used above commands that seems shortcut to see required details of datadog services.
+I have used below commands that seems shortcut to see required details of datadog services.
   > *datadog-agent --help* - display all options  
   > *datadog-agent status* - display status  
   > *datadog-agent config* - display necessary config info  
@@ -46,7 +46,7 @@ Installed mysql and corresponing Datadog integration. Below screenshot shows mys
 
 ![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
-Below two file name should be same:  
+Below two file name should be same  
  > </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file &  
  > </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
@@ -72,13 +72,13 @@ Then interval changed from 5 sec to 45 sec to have a clear view.
 
 ## VISUALIZING DATA
 
-After collecting the data into the datadog, next step is to visualize the data in UI. Here, i have collected the metrics of above created custom app and installed mysql app in the hostmap are shown below.
+After collecting the data into the datadog, next step is to visualize the data in UI or monitor tha data manually. Here, i have collected the metrics of above created custom app and installed mysql app in the hostmap are shown below.
 
 ![008](https://user-images.githubusercontent.com/33669341/53704495-5c98c400-3e1d-11e9-8fcd-bf4fc28cd234.PNG)
 
 ![009](https://user-images.githubusercontent.com/33669341/53704498-5efb1e00-3e1d-11e9-878c-937641649208.PNG)
 
-Timeboard has been created by using datadog API. In timeboard, we can have a better view of data flow in live or past. 
+Timeboard has been created by using datadog API. It helps to monitor data flow in live or past manually by giving query. 
 
                 import requests, json, os, datetime, time
                 from datadog import initialize
@@ -120,7 +120,7 @@ Below is the JSON response of created timeboard using datadog api
 
 ![016](https://user-images.githubusercontent.com/33669341/53705231-23635280-3e23-11e9-8b13-3c3ad3ddcf9f.PNG)
 
-Under dashboard tab, created custom dashboard <My Dashboard> and integrated mysql dashboard <Mysql - Overview> are listed in the dashboard list as below.
+Under dashboard tab, created custom dashboard <My Dashboard> and integrated mysql dashboard <Mysql - Overview> are in the dashboard list as below.
 
 ![011bckup](https://user-images.githubusercontent.com/33669341/54142953-13520100-4429-11e9-9d7e-edbdb089d777.PNG)
 
@@ -128,7 +128,7 @@ Timeboard *custom metric* link:
 
     https://app.datadoghq.com/graph/embed?token=6da76d3c78d5cfac83ed7ea70f9a6d6082d69a4709033946f3c06e56dcfa5700&height=300&width=600&legend=true
 
-Created custom metrics timeboard with no function and with rollup sum function for past 1 hour
+Created custom metrics timeboard with no function and with rollup sum function 
 
 ![012](https://user-images.githubusercontent.com/33669341/53704818-2e68b380-3e20-11e9-8855-ba102423ead8.PNG)
 
@@ -151,18 +151,20 @@ Mysql timeboard
 
 ## MONITORING DATA
 
-Created new metric monitor named (My Monitor) 
+By using above timeboard, I have created a moniotor that works automatically and repeated with given contrians. The contrains are thresholds.
+
+Created new metric monitor named <My Monitor> 
 
 ![0019](https://user-images.githubusercontent.com/33669341/53705899-e3eb3500-3e27-11e9-80da-d1ce44e1ce8b.PNG)
 
 Can manage monitor after creating, below properties that include threshold for past 5 mins raise : 
-*alert* if range above 800, 
-*warning* if range above 500 and 
+*alert* if range above 800,  
+*warning* if range above 500 &  
 *notify* if no data more than 10 mins
 
 ![017](https://user-images.githubusercontent.com/33669341/53705815-560f4a00-3e27-11e9-9c96-4b9094ac7f52.PNG)
 
-Data live status & history & evaluation graph with threshold
+Data live status & history, & evaluation graph with threshold
 
 ![018](https://user-images.githubusercontent.com/33669341/53705763-0892dd00-3e27-11e9-8e0f-eb54c7a0f36a.PNG)
 
@@ -193,7 +195,7 @@ received mail of downtime details:
 ## APM
 
 ddtrace-run works good and produce data in UI initially then later after adding analysed span and env tag, i'm not able to get any data. 
-So i have done this APM with manual method, in manual method, it shows only default env tag even after adding env tag with right syntax in main config (datadog.yaml) file  
+So I have done this APM with manual method, in manual method, it shows only default env tag even after adding env tag with right syntax in main config (datadog.yaml) file  
 
 given flask python script
 
@@ -233,5 +235,9 @@ Infrastructure List
 An application runs sevaral services to carry out the intended job defined by the developper. A minimal application may require a webapp service and database service. As the complexity of the application increases, services can be added to perform each kind of work efficiently, such as admin service for management.
 
 Every service will perform actions inorder to get some work done. Such actions are referred as resources. In the case of a web app. http requests are classified into resources based on the url it points out to and the type of the request. Another example would be queries in the database. 
+
+## LAST BUT NOT LEAST
+
+
 
 
