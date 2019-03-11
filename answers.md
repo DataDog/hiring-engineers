@@ -138,54 +138,55 @@ options = {
 
 Having worked around the issue I proceeded to test using the Create a Dashboard endpoint.
 I could not easily find how to do the rollup with all the last hour in 1 bucket so I created a widget with rollup applied, looked at the json tab  and appropriated the request shown below.
-"q": "avg:Up_Down.my_metric{*}.rollup(sum, 3600)",
+	"q": "avg:Up_Down.my_metric{*}.rollup(sum, 3600)",
 Based on that I created the “Visualizing Data using Dashboard.py” script seen below.
-from datadog import initialize, api
 
-options = {'api_key': '4e2177053a094d261c10e610b8ca8cdd',
-            'app_key': '223159fe496e0c2506af146fa8f0eae896818531'
-           }
+	from datadog import initialize, api
 
-initialize(**options)
+	options = {'api_key': '4e2177053a094d261c10e610b8ca8cdd',
+        	    'app_key': '223159fe496e0c2506af146fa8f0eae896818531'
+           	}
 
-title = "Visualizing Data using Dashboard:"
-widgets = [{
-            "definition": {
-                            "type": "timeseries",
-                            "requests": [
-                                        {"q": "avg:Up_Down.my_metric{*}"}
-                                        ],
-                            "title": "Custom_Check"
-                             },
-            },
-            {"definition": {
-                            "type": "timeseries",
-                            "requests": [
-                                        {"q": "anomalies(max:mongodb.asserts.userps{*}, 'basic', 5)"}
-                                        ],
-                            "title": "No of asserts per sec (anomaly detection on)"
-                             },
-            },
-            {"definition": {
-                            "type": "distribution",
-                            "requests": [
-                                        {"q": "avg:Up_Down.my_metric{*}.rollup(sum, 3600)"}
-                                        ],
-                            "title": "Custom_Check with Rollup"
-                            }
-            }]
+	initialize(**options)
 
-layout_type = "ordered"
-description = "3 Widgets."
-is_read_only = True
-notify_list = ["kjo@itadel.dk"]
-template_variables= None
+	title = "Visualizing Data using Dashboard:"
+	widgets = [{
+        	    "definition": {
+                	            "type": "timeseries",
+                        	    "requests": [
+                                	        {"q": "avg:Up_Down.my_metric{*}"}
+                                        	],
+                            	"title": "Custom_Check"
+                             	},
+            	},
+            	{"definition": {
+                	            "type": "timeseries",
+	                            "requests": [
+        	                                {"q": "anomalies(max:mongodb.asserts.userps{*}, 'basic', 5)"}
+                	                        ],
+                        	    "title": "No of asserts per sec (anomaly detection on)"
+	                             },
+        	    },
+            	{"definition": {
+                	            "type": "distribution",
+                        	    "requests": [
+                                	        {"q": "avg:Up_Down.my_metric{*}.rollup(sum, 3600)"}
+	                                        ],
+        	                    "title": "Custom_Check with Rollup"
+	                            }
+	            }]
 
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description, notify_list=notify_list,
-                     template_variables=template_variables)
+	layout_type = "ordered"
+	description = "3 Widgets."
+	is_read_only = True
+	notify_list = ["kjo@itadel.dk"]
+	template_variables= None
+
+	api.Dashboard.create(title=title,
+        	             	widgets=widgets,
+                		layout_type=layout_type,
+                     		description=description, notify_list=notify_list,
+                     		template_variables=template_variables)
 
 3 Take Snapshot
 
