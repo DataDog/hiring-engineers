@@ -21,14 +21,13 @@ The datadog-agent status after installing agent in the host ubuntu-xenial.
 
 ## COLLECTING METRICS
 
-Once the environment setup is done well. Then datadog service start collecting data for further process. Before that we can see overview of current status of datadog after installing the agent by giving a command *"datadog-agent status"*
- 
+Once the environment setup is done well. Then datadog service start collecting data for further process. Before that we can see overview of current status with the command *"datadog-agent status"*
+
+I have used above commands that seems shortcut to see required details of datadog services.
   > *datadog-agent --help* - display all options  
   > *datadog-agent status* - display status  
   > *datadog-agent config* - display necessary config info  
   > *datadog-agent check* - display info about check and more  
- 
- I have used above commands that seems shortcut to see required details of datadog services.
 
 There are 3 important config file 
 1) datadog.yaml - /etc/datadog-agent/**datadog.yaml** - responsible for all the application, host, trace, tags and more.
@@ -48,8 +47,8 @@ Installed mysql and corresponing Datadog integration. Below screenshot shows mys
 ![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
 Below two file name should be same:  
- </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file &  
- </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
+ > </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file &  
+ > </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
 **check file** 
 Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000.
