@@ -137,7 +137,7 @@ Below is the JSON response of created timeboard using datadog api
 ![016](https://user-images.githubusercontent.com/33669341/53705231-23635280-3e23-11e9-8b13-3c3ad3ddcf9f.PNG)
 
 
-Under dashboard tab, created custom dashboard < My Dashboard > and integrated mysql dashboard <Mysql - Overview> are in the dashboard list as below.
+Under dashboards tab, created custom dashboard <My Dashboard> and integrated mysql dashboard <Mysql - Overview> are listed in the dashboard list as below.
 
 ![011bckup](https://user-images.githubusercontent.com/33669341/54142953-13520100-4429-11e9-9d7e-edbdb089d777.PNG)
 
