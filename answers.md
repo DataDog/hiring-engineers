@@ -86,7 +86,7 @@ Then interval changed from 5 sec to 45 sec to have a clear view.
 
 ## VISUALIZING DATA
 
-After collecting the data into the datadog, next step is to visualize the data in UI or monitor tha data manually. Here, i have collected the metrics of above created custom app and installed mysql app in the hostmap are shown below.
+After collecting the data into the datadog, next step is to visualize the data in the UI. Here, I have collected the metrics of above created custom app and installed mysql app in the hostmap are shown below.
 
 ![008](https://user-images.githubusercontent.com/33669341/53704495-5c98c400-3e1d-11e9-8fcd-bf4fc28cd234.PNG)
 
