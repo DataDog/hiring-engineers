@@ -48,38 +48,21 @@ Found it here
 https://docs.datadoghq.com/api/?lang=python#send-traces
 
 Kept the version check of the Agent in the python file.
+
 Important that the files are in the root of the conf.d and checks.d directories
+
 Created file custom_check.yaml in conf.d:
 
-init_config:
-instances:
-  - min_collection_interval: 45
-
-And 
-custom_check.py  in checks.d:
+And custom_check.py  in checks.d:
 
 
-try:
-    # first, try to import the base class from old versions of the Agent...
-    from checks import AgentCheck
-
-except ImportError:
-    # ...if the above failed, the check is running in Agent version 6 or later
-    from datadog_checks.checks import AgentCheck
-
-from random import randint
-
-class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('Up_Down.my_metric', randint(1,1000))
-
-I then used the “Add a Check” on DataDog Agent Manager interface to add the custm_check.yaml
-to the checks
+I then used the “Add a Check” on DataDog Agent Manager interface to add the custm_check.yaml to the checks
 
 4 Bonus Question: 
 
 User the Edit Enabled Checks function in the Datadog Agent Manager and change the  
 - min_collection_interval: in the custom_check.yaml check.
+
 See uploaded Edit custom_check.yaml.png
 
 Visualizing data:
@@ -108,7 +91,7 @@ https://github.com/DataDog/datadogpy
 sudo python setup.py install
 NOTE:
 (( Revisited the issue 7th of March and can se vaerion 0.27.0 is available with the addition in the change log
-# 0.27.0 / Unreleased
+
 			# 0.27.0 / 2019-03-06
 			
 
