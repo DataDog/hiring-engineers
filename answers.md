@@ -137,8 +137,11 @@ options = {
 2 Creating Dashboard with 3 widgets 
 
 Having worked around the issue I proceeded to test using the Create a Dashboard endpoint.
-I could not easily find how to do the rollup with all the last hour in 1 bucket so I created a widget with rollup applied, looked at the json tab  and appropriated the request shown below.
+I could not easily find how to do the rollup with all the last hour in 1 bucket so I created a widget with rollup applied, 
+looked at the json tab and appropriated the request shown below.
+
 	"q": "avg:Up_Down.my_metric{*}.rollup(sum, 3600)",
+
 Based on that I created the “Visualizing Data using Dashboard.py” script seen below.
 
 	from datadog import initialize, api
