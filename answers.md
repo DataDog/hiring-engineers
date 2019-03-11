@@ -13,13 +13,15 @@ Downloaded vagrant and added ubuntu 16.04 image/box ("ubuntu/xenial")
 
 ![002](https://user-images.githubusercontent.com/33669341/53703513-2fdfaf00-3e13-11e9-964c-7546da8440c6.PNG)
 
-Singed up into datadog and downloaded agent. The datadog-agent status after installing agent in the host ubuntu-xenial.
+Signed up into datadog and downloaded agent which suits to above vagrant.
+
+The datadog-agent status after installing agent in the host ubuntu-xenial.
 
 ![001](https://user-images.githubusercontent.com/33669341/53703664-d1b3cb80-3e14-11e9-9a92-3b05a1d6f33f.PNG)
 
 ## COLLECTING METRICS
 
-Once the environment setup done well. Then start collecting data into the datadog for further performance. Before that we can see overview of current status of datadog after installing the agent by giving a command *"datadog-agent status"*
+Once the environment setup is done well. Then datadog service start collecting data for further process. Before that we can see overview of current status of datadog after installing the agent by giving a command *"datadog-agent status"*
 
   > *datadog-agent --help* - display all options
   
@@ -32,11 +34,11 @@ Once the environment setup done well. Then start collecting data into the datado
  I have used above commands that seems shortcut to see required details of datadog.
 
 There are 3 important config file 
-1) main config file in the path /etc/datadog-agent/datadog.yaml responsible for all application, host, trace, tags and more.
-2) installed or custom create application in the path /etc/datadog-agent/conf.d/<custom_create_app>
-3) file for checks either installed or custom check in the path /etc/datadog-agent/check.d/<custom_check>
+1) datadog.yaml - /etc/datadog-agent/datadog.yaml - responsible for all the application, host, trace, tags and more.
+2) custom_app.yaml - /etc/datadog-agent/**conf.d**/custom_app.yaml - responsible for installed/custom created app's interval time.
+3) custom_app.py - /etc/datadog-agent/**check.d**/custom_app.py - responsible for getting metric's of installed/custom app.
 
-Edited the main agent config file to add the tag (first_tag) and ensure the tag was added or not by viewed with *datadog-agent config* command
+Edited the main agent config file to add the tag (first_tag) and ensure the tag is added with *datadog-agent config* command.
 
 ![004](https://user-images.githubusercontent.com/33669341/53703973-d62db380-3e17-11e9-8097-268a970eff68.png)
 
@@ -48,9 +50,15 @@ Installed mysql and corresponing Datadog integration. Below screenshot shows mys
 
 ![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
-Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000 from that custom app with the default interval time is 30 sec and it has been changed to 45 sec which is called collecting interval instance in the path /etc/datadog-agent/cong.d/custom_firstCheck.yaml and 
+Below two file names should be same:
+</etc/datadog-agent/checks.d/custom_firstCheck.py> - check file & 
+</etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
-The check file name </etc/datadog-agent/checks.d/custom_firstCheck.py> and interval instance config file name </etc/datadog-agent/cong.d/custom_firstCheck.yaml> should be same. 
+**check file** 
+Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000.
+
+**config file**
+The application's time interval in the path /etc/datadog-agent/cong.d/custom_firstCheck.yaml with default interval time 30 sec and it has been changed to 45 sec.
 
 ![005](https://user-images.githubusercontent.com/33669341/53704096-5c96c500-3e19-11e9-9fca-2ad3a00b3929.PNG)
 
@@ -58,7 +66,7 @@ The created custom check can be viewed in the 'datadog-agent status' as below,
 
 ![dtdg-check](https://user-images.githubusercontent.com/33669341/53704173-974d2d00-3e1a-11e9-89a5-fe17def7a647.PNG)
 
-Initila interval time 5 sec for testing.
+Initial interval time 5 sec for testing.
 
 ![custom_metrics](https://user-images.githubusercontent.com/33669341/53704131-f1012780-3e19-11e9-883c-3b7023021a63.PNG)
 
