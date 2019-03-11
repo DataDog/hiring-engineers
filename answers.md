@@ -106,32 +106,32 @@ options = {
     'api_key': '4e2177053a094d261c10e610b8ca8cdd',
     'app_key': '223159fe496e0c2506af146fa8f0eae896818531'}
 
-initialize(**options)
-title = 'Average Memory Free Shell 2'
-widgets = [
-    {'definition': {
-            'type': 'timeseries',
-            'requests': [
-            {'q': 'avg:system.mem.free{*}'}],
-    'title': 'Average Memory Free'}}]
+	initialize(**options)
+	title = 'Average Memory Free Shell 2'
+	widgets = [
+    	{'definition': {
+        	    'type': 'timeseries',
+	            'requests': [
+        	    {'q': 'avg:system.mem.free{*}'}],
+	    'title': 'Average Memory Free'}}]
 
-layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['kjo@itadel.dk']
+	layout_type = 'ordered'
+	description = 'A dashboard with memory info.'
+	is_read_only = True
+	notify_list = ['kjo@itadel.dk']
 
-template_variables = [
-    {'name': 'host1',
-     'prefix': 'host',
-     'default': 'my-host'}]
+	template_variables = [
+    		{'name': 'host1',
+     		'prefix': 'host',
+     		'default': 'my-host'}]
 
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables)from datadog import initialize, api
+	api.Dashboard.create(title=title,
+        	             widgets=widgets,
+                	     layout_type=layout_type,
+                     	description=description,
+                     	is_read_only=is_read_only,
+                     	notify_list=notify_list,
+                     	template_variables=template_variables)from datadog import initialize, api
 
 
 2 Creating Dashboard with 3 widgets 
