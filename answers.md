@@ -1,6 +1,6 @@
 ## ENVIRONMENT SETUP
 
-I have experience working with VirtualBox and hypervisor for academic-oriented and self-learning. Docker and Vagrant both are interesting and new to me, with no special reason I have chosen Vagrant.
+I have experience working with VirtualBox and hypervisor for academic-oriented and self-learning purposes. Docker and Vagrant both are interesting and new to me, with no special reason I have chosen Vagrant.
 
 Instead of manually creating and installing a virtual OS from scratch in VirtualBox. It is easy to use pre-built images ("boxes") provided by vagrant and a single command vagrant up/vagrant destroy, can create/shutdown a virtual environment.
 
