@@ -50,10 +50,10 @@ Below two file name should be same
  > </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file &  
  > </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
-**check file** 
+**check file**  
 Creating a custom application <customCheck> in the path /etc/datadog-agent/checks.d/custom_firstCheck.py and collecting metrics <my_metrics> as a random value in the range 0 and 1000.
 
-**config file**
+**config file**  
 The application's time interval in the path /etc/datadog-agent/cong.d/custom_firstCheck.yaml with default interval time 30 sec and it has been changed to 45 sec.
 
 ![005](https://user-images.githubusercontent.com/33669341/53704096-5c96c500-3e19-11e9-9fca-2ad3a00b3929.PNG)
