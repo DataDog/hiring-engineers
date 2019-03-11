@@ -21,10 +21,10 @@ Singed up into datadog and downloaded agent. The datadog-agent status after inst
 
 Once the environment setup done well. Then start collecting data into the datadog for further performance. Before that we can see overview of current status of datadog after installing the agent by giving a command *"datadog-agent status"*
 
-  *datadog-agent --help* - display all options
-  *datadog-agent status* - display status
-  *datadog-agent config* - display necessary config info
-  *datadog-agent check* - display info about check
+  > *datadog-agent --help* - display all options
+  > *datadog-agent status* - display status
+  > *datadog-agent config* - display necessary config info
+  > *datadog-agent check* - display info about check
   and more
   
  I have used above commands that seems shortcut to see required details of datadog.
