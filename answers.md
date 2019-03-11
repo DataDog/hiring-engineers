@@ -50,8 +50,8 @@ Installed mysql and corresponing Datadog integration. Below screenshot shows mys
 
 ![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
-Below two file names should be same:
-</etc/datadog-agent/checks.d/custom_firstCheck.py> - check file & 
+Below two file name should be same:
+> </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file & 
 </etc/datadog-agent/cong.d/custom_firstCheck.yaml> - config file. 
 
 **check file** 
