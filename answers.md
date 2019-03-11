@@ -4,7 +4,7 @@ I have experience working with VirtualBox and hypervisor for academic-oriented a
 
 Instead of manually creating and installing a virtual OS from scratch in VirtualBox. It is easy to use pre-built images ("boxes") provided by vagrant and a single command vagrant up/vagrant destroy, can create/shutdown a virtual environment.
 
-Below are required to perform the task:
+Below are tools required to perform the task:
   - Vagrant - v2.2.3
   - VirtualBox - v6.0
   - Cmder - linux like console for windows
@@ -14,7 +14,7 @@ Downloaded vagrant and added ubuntu 16.04 image/box ("ubuntu/xenial")
 ![002](https://user-images.githubusercontent.com/33669341/53703513-2fdfaf00-3e13-11e9-964c-7546da8440c6.PNG)
 
 
-Signed up into datadog and downloaded agent which suits to above vagrant.
+Signed up into datadog and downloaded agent which suits to above environment.
 
 The datadog-agent status after installing agent in the host ubuntu-xenial.
 
@@ -23,7 +23,7 @@ The datadog-agent status after installing agent in the host ubuntu-xenial.
 
 ## COLLECTING METRICS
 
-Once the environment setup is done well. Then datadog service start collecting data for further process. Before that we can see overview of current status with the command *"datadog-agent status"*
+Once the environment setup is done well. Then datadog service starts collecting data for further process. Before that we can see overview of current status of the agent with the command *"datadog-agent status"*
 
 I have used below commands that seems shortcut to see required details of datadog services.
   > *datadog-agent --help* - display all options  
@@ -36,20 +36,24 @@ There are 3 important config file
 2) cust_app.yaml - /etc/datadog-agent/**conf.d**/cust_app.yaml - responsible for installed/custom created app's interval time.
 3) cust_app.py - /etc/datadog-agent/**check.d**/cust_app.py - responsible for getting metric's of installed/custom app.
 
+**Adding Tags**
+
 Edited the datadog.yaml to add the tag <first_tag> and ensure the tag is added, run *datadog-agent config* command.
 
 ![004](https://user-images.githubusercontent.com/33669341/53703973-d62db380-3e17-11e9-8097-268a970eff68.png)
 
 
-Below screenshot shows the "Host Map" with *added tag*.
+Below screenshot shows the selected host from the "Host Map" with *added tag*.
 
 ![img001](https://user-images.githubusercontent.com/33669341/53703892-180a2a00-3e17-11e9-931f-35832252c3af.PNG)
 
+**Install Mysql Integration**
 
 Installed mysql and corresponing Datadog integration. Below screenshot shows mysql datadog integration
 
 ![010](https://user-images.githubusercontent.com/33669341/53704502-60c4e180-3e1d-11e9-8a46-d787b055327b.PNG)
 
+**Custom Metrics**
 
 Below two file name should be same  
  > </etc/datadog-agent/checks.d/custom_firstCheck.py> - check file &  
@@ -68,6 +72,7 @@ The created custom check can be viewed in the 'datadog-agent status' as below,
 
 ![dtdg-check](https://user-images.githubusercontent.com/33669341/53704173-974d2d00-3e1a-11e9-89a5-fe17def7a647.PNG)
 
+**Modifying check's collection interval**
 
 Initial interval time 5 sec for testing.
 
