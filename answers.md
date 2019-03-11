@@ -34,9 +34,9 @@ Once the environment setup is done well. Then datadog service start collecting d
  I have used above commands that seems shortcut to see required details of datadog services.
 
 There are 3 important config file 
-1) datadog.yaml- /etc/datadog-agent/**datadog.yaml** - responsible for all the application, host, trace, tags and more.
-2) custom_app.yaml- /etc/datadog-agent/**conf.d**/custom_app.yaml - responsible for installed/custom created app's interval time.
-3) custom_app.py- /etc/datadog-agent/**check.d**/custom_app.py - responsible for getting metric's of installed/custom app.
+1) datadog.yaml - /etc/datadog-agent/**datadog.yaml** - responsible for all the application, host, trace, tags and more.
+2) cust_app.yaml - /etc/datadog-agent/**conf.d**/cust_app.yaml - responsible for installed/custom created app's interval time.
+3) cust_app.py - /etc/datadog-agent/**check.d**/cust_app.py - responsible for getting metric's of installed/custom app.
 
 Edited the main agent config file to add the tag (first_tag) and ensure the tag is added with *datadog-agent config* command.
 
