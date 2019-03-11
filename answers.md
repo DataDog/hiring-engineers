@@ -158,9 +158,9 @@ Created new metric monitor named < My Monitor >
 ![0019](https://user-images.githubusercontent.com/33669341/53705899-e3eb3500-3e27-11e9-80da-d1ce44e1ce8b.PNG)
 
 Can manage monitor after creating, below properties that include threshold for past 5 mins raise :  
-  *alert* if range above 800,  
-  *warning* if range above 500 &  
-  *notify* if no data more than 10 mins
+    *alert* if range above 800,  
+    *warning* if range above 500 &  
+    *notify* if no data more than 10 mins
 
 ![017](https://user-images.githubusercontent.com/33669341/53705815-560f4a00-3e27-11e9-9c96-4b9094ac7f52.PNG)
 
