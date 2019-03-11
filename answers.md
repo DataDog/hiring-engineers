@@ -93,7 +93,8 @@ After collecting the data into the datadog, next step is to visualize the data i
 ![009](https://user-images.githubusercontent.com/33669341/53704498-5efb1e00-3e1d-11e9-878c-937641649208.PNG)
 
 
-Timeboard has been created by using datadog API. It helps to monitor data flow in live or past manually by giving query. 
+Timeboard helps to monitor data flow in live or past.  
+The datadog API has been used in the following python code to create a timeboard.
 
                 import requests, json, os, datetime, time
                 from datadog import initialize
