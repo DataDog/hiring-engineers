@@ -278,11 +278,3 @@ Final Question:
 I would like to create an extension for daikin Air to Air Heatpump. It can be accessed over a REST API. Basically I want to be able to access all my smarthome boxes and sensors. And also see what possibilities there is to monitor a SECOMEA Access Gateway and Gatemanager server.
 
 Its not very creative but its what I could really use at the moment
-
-
-
-
-
-
-
-
