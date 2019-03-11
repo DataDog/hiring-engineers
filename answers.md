@@ -1,20 +1,30 @@
 ## ENVIRONMENT SETUP
 
-Used Ubuntu 16.04 linux VM via Vagrant.
+I have experience working with VirtualBox and hypervisor for academic-oriented and self-learning. Docker and Vagrant both are interesting and new to me, with no special reason I have chosen Vagrant.
+
+Instead of manually creating and installing a virtual OS from scratch in VirtualBox. It is easy to use pre-built images ("boxes") provided by vagrant and a single command vagrant up/vagrant destroy, can create/shutdown a virtual environment.
+
+  - Vagrant - v2.2.3
+  - VirtualBox - v6.0
+  - Cmder - linux like console for windows
+
+Downloaded vagrant and added ubuntu 16.04 image/box ("ubuntu/xenial")
 
 ![002](https://user-images.githubusercontent.com/33669341/53703513-2fdfaf00-3e13-11e9-964c-7546da8440c6.PNG)
 
-The datadog-agent status after installing agent in the host ubuntu-xenial.
+Singed up into datadog and downloaded agent. The datadog-agent status after installing agent in the host ubuntu-xenial.
 
 ![001](https://user-images.githubusercontent.com/33669341/53703664-d1b3cb80-3e14-11e9-9a92-3b05a1d6f33f.PNG)
 
 ## COLLECTING METRICS
 
-Edit the agent config file and added the tag (first_tag).
+Once the environment setup done well. Then start collecting data into the datadog for further performance.
+
+There is a main config file in the path /etc/datadog-agent/datadog.yaml responsible for all application, host, trace, tags and more. Edited this agent config file to add the tag (first_tag).
 
 ![004](https://user-images.githubusercontent.com/33669341/53703973-d62db380-3e17-11e9-8097-268a970eff68.png)
 
-Host Map with added tag.
+Below screenshot shows the "Host Map" with *added tag*.
 
 ![img001](https://user-images.githubusercontent.com/33669341/53703892-180a2a00-3e17-11e9-931f-35832252c3af.PNG)
 
