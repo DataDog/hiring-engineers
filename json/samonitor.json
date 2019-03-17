@@ -1,0 +1,25 @@
+{
+	"name": "MyMetric monitor",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:mymetric{host:eve.docker} > 800",
+	"message": " @info@tine.dk\n\n{{#is_alert}} MyMetric on {{host.name}} with IP {{host.ip}} is at {{value}}, we should check what is happening. {{/is_alert}}\n{{#is_warning}} MyMetric is above 500, we should check what is happening. {{/is_warning}}\n{{#is_no_data}} No data reporting for MyMetric for the last 10 minutes, we should check what is happening. {{/is_no_data}}",
+	"tags": [
+		"mymetric.monitor"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 5,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

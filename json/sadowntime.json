@@ -1,0 +1,13 @@
+{
+  "scope": "*",
+  "monitor_tags": ["mymetric.monitor"],
+  "message": "@info@info@tine.dk MyMetric Monitor notifications going offline. Scheduled silence weekdays 7pm to 9am Copenhagen timezone (winter).",
+  "timezone": "CET",
+  "start": 1552932000,
+  "end": 1552982400,
+  "recurrence": {
+    "type": "weeks",
+    "period": 1,
+    "week_days": ["Mon", "Tue", "Wed", "Thu", "Fri"]     
+  }
+}

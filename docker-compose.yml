@@ -1,0 +1,41 @@
+version: "3.4"
+
+services:
+  datadog:
+    image: datadog/agent:latest
+    environment:
+      - DD_API_KEY=8923495892e42d2b7919f8764641d254
+      - DD_APM_ENABLED=1
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/proc/:/host/proc/:ro"
+      - "/sys/fs/cgroup/:/host/sys/fs/cgroup:ro"
+      - "./datadog-config/datadog.yaml:/etc/datadog-agent/datadog.yaml"
+      - "./datadog-config/conf.d/mysql.d/conf.yaml:/etc/datadog-agent/conf.d/mysql.d/conf.yaml"
+      - "./datadog-config/checks.d/mymetric.py:/etc/datadog-agent/checks.d/mymetric.py"
+      - "./datadog-config/conf.d/mymetric.yaml:/etc/datadog-agent/conf.d/mymetric.yaml"
+    ports:
+      - "5002:5002"
+      
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: exampledb
+    volumes:
+      - "./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "mysql-data:/var/lib/mysql"
+      
+  flask:
+    build: flask
+    volumes:
+      - "./flask/app.py:/app.py"
+    ports:
+      - "5050:5050"
+    environment:
+      - DATADOG_TRACE_AGENT_HOSTNAME=datadog
+
+volumes:
+  mysql-data:

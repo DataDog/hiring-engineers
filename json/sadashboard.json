@@ -1,0 +1,38 @@
+{
+  "title" : "SA Excercise",
+  "widgets" : [
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "avg:mymetric{host:eve.docker}"}
+      ],
+      "title": "eve.docker - mymetric"
+    }},
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "anomalies(avg:mysql.performance.slow_queries{*}, 'basic', 2)"}
+      ],
+      "title": "Anomaly graph for MySQL slow queries"    
+    }},
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "anomalies(avg:mymetric{host:eve.docker}, 'basic', 2)"}
+      ],
+      "title": "Anomaly graph for mymetric - so we can see the graph"    
+    }},
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "avg:mymetric{*}.rollup(sum, 3600)"}
+      ],
+      "title": "Sum rollup of mymetric values recorded in the last hour"    
+    }}
+  ],
+  "layout_type": "ordered",
+  "description" : "SA Excercise Dash.",
+  "is_read_only": true,
+  "notify_list": ["mail@tine.dk"]
+}
+
