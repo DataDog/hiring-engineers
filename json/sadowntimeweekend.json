@@ -1,10 +1,10 @@
 {
   "scope": "*",
   "monitor_tags": ["mymetric.monitor"],
-  "message": "@info@info@tine.dk MyMetric Monitor notifications going offline. Scheduled silence all day Sat-Sun Copenhagen timezone (winter).",
+  "message": "@info@info@tine.dk MyMetric Monitor notifications going offline. Scheduled silence all day Sat-Mon 9am Copenhagen timezone (dst / summertime).",
   "timezone": "CET",
-  "start": 1553295600,
-  "end": 1553468400,
+  "start": 1555711200,
+  "end": 1555916400,
   "recurrence": {
     "type": "weeks",
     "period": 1,
