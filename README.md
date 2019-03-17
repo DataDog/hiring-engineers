@@ -139,7 +139,8 @@ To submit your answers:
 ### The Datadog Agent and Metrics
 
 * [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
+* [Datadog v6.x Docker-image repo](https://hub.docker.com/r/datadog/agent/)
+* [Datadog v6.x Docker-image documentation](https://github.com/DataDog/datadog-agent/tree/master/Dockerfiles/agent)
 * [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
 * [Datadog API](https://docs.datadoghq.com/api/)
 
