@@ -1,0 +1,4 @@
+#
+Flask==1.0.2
+ddtrace==0.22.0
+json_log_formatter

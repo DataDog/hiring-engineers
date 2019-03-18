@@ -1,0 +1,21 @@
+{
+  "title": "My Timeboard",
+  "widgets": [{
+    "definition": {
+      "type": "timeseries",
+      "requests": [{
+        "q": "avg:my_metric{host:terrellea}"
+      }],
+      "title": "My Metric scope over my host"
+    }
+  }],
+  "layout_type": "ordered",
+  "description": "A dashboard with My Random Metric and Postgres Network Bytes Received",
+  "is_read_only": true,
+  "notify_list": ["mordac@domain.com"],
+  "template_variables": [{
+    "name": "terrellea",
+    "prefix": "exercise-host",
+    "default": "my-future-job"
+  }]
+}

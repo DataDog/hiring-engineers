@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+
+logs:
+
+  - type: file
+    path: /var/log/my-log.json
+    service: flask
+    source: python
+    sourcecategory: sourcecode
