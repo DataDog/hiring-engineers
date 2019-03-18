@@ -11,11 +11,11 @@ Suggestions for updates are committed to README.md in this pull request.
 
 ## Feature request
 
-It would be pretty great if the API allowed for:
+It would be neat if the API allowed for:
 
-- Deleting things like a Monitor, Downtime, Dashboard by generic names rather than id. This would allow for repeated testing of API calls with less clicking.
+- Deleting things like a Monitor, Downtime, Dashboard by generic names (or tags) in API requests rather than id. This would allow for repeated testing of API calls with less clicking.
 
-- Creating repeat Downtime with a past start date. It is probably possible to script calculation of POSIX time for "7pm next weekday, in local timezone", but it seems unnecessary.
+- Allow creating repeat Downtime with a past start date, so it can be scripted easily. It is probably possible to script calculation of POSIX time for "7pm next weekday, in local timezone", but it seems unnecessary.
 
 # Prerequisites - Setup the environment
 
@@ -514,6 +514,126 @@ It could technically be set to start Saturday 9am as the weekday monitor silence
 #### Email
 
 None, due to start date issue and the far future start date workaround.
+
+# Collecting APM Data
+
+
+Adding Flask container definition under `services:` in [docker-compose.yml](./docker-compose.yml):
+
+```yaml
+  flask:
+    build: flask
+    volumes:
+      - "./flask/app.py:/app.py"
+    ports:
+      - "5050:5050"
+    environment:
+      - DATADOG_TRACE_AGENT_HOSTNAME=datadog
+```
+
+Environment variable and exposed port to enable communication with host and datadog container.
+
+Flask image [Dockerfile](./flask/Dockerfile):
+
+```dockerfile
+FROM python:3
+
+RUN pip install flask
+RUN pip install ddtrace
+
+COPY app.py /app.py
+EXPOSE 5050
+CMD ddtrace-run python /app.py
+```
+
+This builds a Docker image which:
+
+* Pulls in python:3 image
+* installs flask and ddtrace
+* Copies app.py into the container
+* Exposes port 5050
+* Runs the python app with ddtrace-run to collect metrics which can be sent to datadog
+
+Contents of [app.py](./flask/app.py): is the flask app supplied with the excercise:
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+### Result
+
+[Screenshot](./screenshots/Flask app.png): Flask app container showing up under `Infrastructure->Containers`:
+
+<img src="./screenshots/Flask app.png" width="500" height="332" alt="_DSC4652"></a>
+
+Note that these urls will need to be visited in order to generate data, which will show up in datadog APM:
+
+* [http://localhost:5050/](http://localhost:5050/)
+* [http://localhost:5050/api/apm](http://localhost:5050/api/apm)
+* [http://localhost:5050/api/trace](http://localhost:5050/api/trace)
+
+### Notes
+
+Looking at this now, I am wondering whether I was actually supposed to finish the app functionality. As in, actually starting the APM, posting traces etc on the various urls.
+
+If so, I have misunderstood the task.
+
+However, the app runs and is reporting to datadog.
+
+## Bonus Question: What is the difference between a Service and a Resource?
+
+In datadog terminology, a service is an app. It can consist of various parts, like cache server, DB, application server, which together form an app.
+
+A resource is a function call or similar activity which registers a process trace within the service in the APM.
+
+# Final question
+
+> Is there anything creative you would use Datadog for?
+
+I have to admit I am unusually low on creative thinking at this point.
+
+* Monitor whenever my roommate adds new media on our shared drive and send me the file title so I can check if I want to watch it.
+
+* Submit the total from my spending account daily, add anomaly function to alert me if my spending pattern is unusually high or low.
+
+* Have a Movie theater submit percent of available tickets sold, pr viewing lounge at the time when every movie starts. This should show which times of day are more popular.
+Then add anomaly function. This should give them some idea of when a movie showing in that lounge is unusually profit generating and not, regardless of time of day.
+
+
+
+
+
+
+
+
+
 
 
 
