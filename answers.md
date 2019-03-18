@@ -624,7 +624,7 @@ I have to admit I am unusually low on creative thinking at this point.
 
 * Monitor whenever my roommate adds new media on our shared drive and send me the file title so I can check if I want to watch it.
 
-* Submit the total from my spending account daily, add anomaly function to alert me if my spending pattern is unusually high or low.
+* Submit the total from my spending account daily, add anomaly function to alert me if my spending pattern is unusually high or low throughout the month.
 
 * Have a Movie theater submit percent of available tickets sold, pr viewing lounge at the time when every movie starts. This should show which times of day are more popular.
 Then add anomaly function. This should give them some idea of when a movie showing in that lounge is unusually profit generating and not, regardless of time of day.
