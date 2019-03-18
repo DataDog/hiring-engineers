@@ -1,8 +1,0 @@
-ad_identifiers:
-  - elasticsearch
-  - elasticsearch-oss
-
-init_config:
-
-instances:
-  - url: "http://%%host%%:9200"
