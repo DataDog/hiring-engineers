@@ -604,27 +604,21 @@ Note that these urls will need to be visited in order to generate data, which wi
 
 ### Notes
 
-Looking at this now, I am wondering whether I was actually supposed to finish the app functionality. As in, actually starting the APM, posting traces etc on the various urls.
-
-If so, I have misunderstood the task.
-
-However, the app runs and is reporting to datadog.
+Looking at this now, I am wondering whether "fully instrumented" means I was actually supposed to finish the app functionality - not just get it reporting to Datadog. As in, actually starting the APM on one url, posting traces on the other, etc.
 
 ## Bonus Question: What is the difference between a Service and a Resource?
 
 In datadog terminology, a service is an app. It can consist of various parts, like cache server, DB, application server, which together form an app.
 
-A resource is a function call or similar activity which registers a process trace within the service in the APM.
+A resource is a function call or similar activity which registers a process trace entry within the service in the APM.
 
 # Final question
 
 > Is there anything creative you would use Datadog for?
 
-I have to admit I am unusually low on creative thinking at this point.
+* Submit the total from my spending account daily, add anomaly function to alert me if my spending pattern is unusually high or low throughout the month.
 
 * Monitor whenever my roommate adds new media on our shared drive and send me the file title so I can check if I want to watch it.
-
-* Submit the total from my spending account daily, add anomaly function to alert me if my spending pattern is unusually high or low throughout the month.
 
 * Have a Movie theater submit percent of available tickets sold, pr viewing lounge at the time when every movie starts. This should show which times of day are more popular.
 Then add anomaly function. This should give them some idea of when a movie showing in that lounge is unusually profit generating and not, regardless of time of day.
