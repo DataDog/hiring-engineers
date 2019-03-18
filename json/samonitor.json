@@ -15,7 +15,7 @@
 		"notify_no_data": true,
 		"renotify_interval": "0",
 		"escalation_message": "",
-		"no_data_timeframe": 5,
+		"no_data_timeframe": 10,
 		"include_tags": true,
 		"thresholds": {
 			"critical": 800,
