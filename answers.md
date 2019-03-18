@@ -1,19 +1,30 @@
-# About the test
+# How to run
 
-I think perhaps Alex (recruiter) sent me the wrong tech excercise link? After completing the test I realized there is both a "Solution Engineer" and a "Solution Architect" branch. I was sent this link: [https://github.com/DataDog/hiring-engineers/tree/solutions-engineer](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer).
-The Solution Architect branch looks a lot simpler, so I am guessing it's fine.
+1. Check out the git repo on a machine which has Docker installed.
+2. Cd to the root of the repo
+3. Run `docker-compose up`
+	* This will set up all needed containers locally.
+4. Edit the [saexcercise.sh](./saexcercise.sh) to use your own API/APP keys - or just use mine.
+5. Run the bash script: `./saexcercise.sh`
+	* This will create the below Dashboard & widgets, Monitor and Monitor Downtime in Datadog UI.
+
+# Notes for the test
+
+## The right test?
+
+I think perhaps I got sent the wrong tech excercise link? After completing the test I realized there is both a "Solution Engineer" and a "Solution Architect" branch. I was sent this link: [https://github.com/DataDog/hiring-engineers/tree/solutions-engineer](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer).
+
+The Solution Architect branch looks simpler, so I am guessing it's fine in either case.
 
 ## Suggestions
 
-Through the exercise I found a couple of things which were outdated or could be clearer in the README.md file. Especially outdated versions of Vagrant Ubuntu image and Docker Datadog agent added a fair overhead of time and would be good to fix.
-
-Suggestions for updates are committed to README.md in this pull request.
+I found one or two things which seemed outdated or could have saved me time. Suggestions for updates are committed to README.md in this pull request.
 
 ## Feature request
 
 It would be neat if the API allowed for:
 
-- Deleting things like a Monitor, Downtime, Dashboard by generic names (or tags) in API requests rather than id. This would allow for repeated testing of API calls with less clicking.
+- Deleting the UI elements (Monitor, Downtime, Dashboard) through API by generic names or tags, rather than id. This would allow for repeated testing of API calls with less clicking.
 
 - Allow creating repeat Downtime with a past start date, so it can be scripted easily. It is probably possible to script calculation of POSIX time for "7pm next weekday, in local timezone", but it seems unnecessary.
 
@@ -22,7 +33,7 @@ It would be neat if the API allowed for:
 Initially spun up a Vagrant Ubuntu image, but realized I had no need for the additional layer.
 Also tried out the OSX agent, which works fine. 
 
-Ended up deciding on Docker for Mac, as the cleanest solution. The advantage here is that the entire setup is self contained. It can be submitted in this repository and be spun up on any machine which has Docker installed.
+Ended up deciding on Docker for Mac, as the cleanest solution for setting up the needed infrastructure. The advantage is the entire setup is self contained. It can be committed to repo and be spun up anywhere Docker is installed.
 
 Datadog Agent container configured in [docker-compose.yml](./docker-compose.yml) file:
 
@@ -41,7 +52,7 @@ Datadog Agent container configured in [docker-compose.yml](./docker-compose.yml)
 ```
 
 Local agent web UI which was available with the OSX agent, does not show up on the mapped port 5002 as expected. This feature is perhaps not included in the Docker agent.
-Leaving for now, as the agent runs just fine without it.
+Leaving for now, as it is not needed.
 
 # Collecting Metrics
 
@@ -68,7 +79,7 @@ tags:
 
 Also set a new hostname, for better overview and because it's pretty.
 
-Additionally, changing hostname creates a new host in Datadog monitoring. Initially I had installed the 5.x Agent linked in the README.md, which caused mismatch with API documentation. A new host ensured I could change to 6.x and discard any metrics submitted by 5.x. Nice and clean.
+Additionally, changing hostname creates a new host in Datadog monitoring. As I had initially installed v5.x of the datadog agent, changing hostname let's me get rid of any 5.x metrics which have been reported and eliminate risk of any backwards compatibility issues.
 
 ### Result
 
@@ -110,11 +121,11 @@ GRANT PROCESS ON *.* TO 'datadog';
 GRANT SELECT ON performance_schema.* TO 'datadog';
 ```
 
-`MAX_USER_CONNECTIONS` is commented out, as the setting is not needed in this setup and MySQL doesn't like it. Replication grant probably not needed at all, unless DB replication is actually set up. Leaving it here for now, as it doesn't hurt. 
+`MAX_USER_CONNECTIONS` is commented out, as the setting is not needed in this setup and MySQL doesn't like it. The replication grant query is likely not needed at all, unless DB replication is actually set up. 
 
-The [datadog-init.sql](./docker-entrypoint-initdb.d/datadog-init.sql) file is only read on first container start, [when the DB is initialized](https://hub.docker.com/_/mysql#initializing-a-fresh-instance). To keep mysql creds persistent across container restarts, `/var/lib/mysql` is mounted to `mysql-data` volume on host in the docker compose file (see above).
+The [datadog-init.sql](./docker-entrypoint-initdb.d/datadog-init.sql) file is only read on first container start, [when the DB is initialized](https://hub.docker.com/_/mysql#initializing-a-fresh-instance). To keep mysql creds persistent across container restarts, `/var/lib/mysql` is mounted to `mysql-data` volume on host in the [docker-compose](./docker-compose.yml) file.
 
-This ensures the DB data needed for Datadog agent integration is persistent across container stop/start/up, destroyed on `docker-compose down` and recreated on initial `docker-compose up`.
+This ensures DB data needed for Datadog agent integration is persistent across container stop/start/up, destroyed on `docker-compose down` and recreated on initial `docker-compose up`.
 
 ### Datadog agent config
 
@@ -214,7 +225,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-JSON moved to separate import files, as I ran out of quotation mark levels - and it's neater. [sadashboard.json](./json/sadashboard.json):
+JSON part lives in separate import files, as it's neater. [sadashboard.json](./json/sadashboard.json):
 
 ```json
 {
@@ -242,14 +253,6 @@ JSON moved to separate import files, as I ran out of quotation mark levels - and
 <img src="./screenshots/Dashboard MyMetric.png" width="500" height="332" alt="_DSC4652"></a>
 
 ## Any metric from the Integration on your Database with the anomaly function applied.
-
-Struggled quite a bit with the exact syntax of the function call here, as I had not looked closer at the UI (or docs), only API. Couldn't find API documentation for the anomaly function, only the anomaly Monitor.
-
-At some point I stumbled upon a section which told me I could export JSON from the UI, if I created the widget there first (...). This was "unfortunately" the same query as I had put together myself at this point, but nice to know it was correct.
-
-On a side note, the UI was surprisingly easy and feature full. Good to know!
-
-In the end the issue turned out to be shortage of quotation mark levels in the shell script file. Oh, the little things. This is when I exported the JSON parts from the shell script. Issue solved and all was well. Yay!
 
 Added 2 widgets. The DB container does nothing, so we can't actually see the fancy anomaly graph feature. I took the liberty of adding a mymetric widget with the anomaly function applied as well.
 
@@ -291,7 +294,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-JSON widget definition for rollup metric, in [sadashboard.json](./json/sadashboard.json):
+JSON widget definition for metric rollup widget, in [sadashboard.json](./json/sadashboard.json):
 
 ```json
    {"definition": {
