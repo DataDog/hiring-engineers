@@ -214,7 +214,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-JSON exported to separate code, as I ran out of quotation mark levels - and it's neater. [sadashboard.json](./json/sadashboard.json):
+JSON moved to separate import files, as I ran out of quotation mark levels - and it's neater. [sadashboard.json](./json/sadashboard.json):
 
 ```json
 {
@@ -291,7 +291,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-JSON exported to separate code, as I ran out of quotation mark levels - and it's neater. [sadashboard.json](./json/sadashboard.json):
+JSON widget definition for rollup metric, in [sadashboard.json](./json/sadashboard.json):
 
 ```json
    {"definition": {
@@ -340,6 +340,180 @@ The anomaly function will adapt to known/expected patterns if set up correctly, 
 
 **In short:** It allows you to monitor variable metrics and be alerted at the right times.
 
+# Monitoring Data
+
+## Create Metric Monitor
+
+### Requirements
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Please configure the monitor’s message so that it will:
+
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+### Solution
+
+Added monitor API call to [saexcercise.sh](./saexcercise.sh) bash script:
+
+```shell
+curl -X POST -H "Content-type: application/json" \
+-d @./json/samonitor.json \
+"https://api.datadoghq.com/api/v1/monitor?api_key=${api_key}&application_key=${app_key}"
+```
+
+Monitor definition in [samonitor.json](./json/samonitor.json) file, imported in curl call above:
+
+```json
+{
+	"name": "MyMetric monitor",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:mymetric{host:eve.docker} > 800",
+	"message": " @info@tine.dk\n\n{{#is_alert}} MyMetric on {{host.name}} with IP {{host.ip}} is at {{value}}, we should check what is happening. {{/is_alert}}\n{{#is_warning}} MyMetric is above 500, we should check what is happening. {{/is_warning}}\n{{#is_no_data}} No data reporting for MyMetric for the last 10 minutes, we should check what is happening. {{/is_no_data}}",
+	"tags": [
+		"mymetric.monitor"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+
+### Result
+
+[Screenshot](./screenshots/MyMetric_monitor.png): MyMetric Monitor shows up in Datadog UI `Monitors->MyMetric monitor`:
+
+<img src="./screenshots/MyMetric_monitor.png" width="500" height="332" alt="_DSC4652"></a>
+
+#### Emails
+
+**Warning**
+[Screenshot](./screenshots/Monitor Warning email.png): MyMetric Monitor Warning email variant:
+
+<img src="./screenshots/Monitor Warning email.png" width="500" height="332" alt="_DSC4652"></a>
+
+**Alert**
+[Screenshot](./screenshots/Monitor Alert email.png): MyMetric Monitor "Alert" email variant:
+
+(NB: Note that host IP and trigger value are only included on Alert emails, as pr requirements)
+
+<img src="./screenshots/Monitor Alert email.png" width="500" height="332" alt="_DSC4652"></a>
+
+
+**No Data**
+[Screenshot](./screenshots/Monitor No Data email.png): MyMetric Monitor "No Data" email variant:
+
+<img src="./screenshots/Monitor No Data email.png" width="500" height="332" alt="_DSC4652"></a>
+
+(NB: Wrong value of 5min mentioned here, as `no_data_timeframe` was incorrectly set at this time. Has since been fixed.)
+
+
+## Bonus Question: Monitor Downtime config
+
+### Requirements
+
+Set up two scheduled downtimes for this monitor:
+
+* One that silences it from 7pm to 9am daily on M-F,
+* And one that silences it all day on Sat-Sun.
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+### Downtime 7pm to 9am daily on M-F
+
+Added downtime API call to [saexcercise.sh](./saexcercise.sh) bash script:
+
+```shell
+curl -X POST -H "Content-type: application/json" \
+-d @./json/sadowntime.json \
+"https://api.datadoghq.com/api/v1/downtime?api_key=${api_key}&application_key=${app_key}"
+```
+
+Downtime definition in [sadowntime.json](./json/sadowntime.json) file, imported in curl call above:
+
+```json
+{
+  "scope": "*",
+  "monitor_tags": ["mymetric.monitor"],
+  "message": "@info@info@tine.dk MyMetric Monitor notifications going offline. Scheduled silence weekdays 7pm to 9am Copenhagen timezone (dst / summertime).",
+  "timezone": "CET",
+  "start": 1555347600,
+  "end": 1555398000,
+  "recurrence": {
+    "type": "weeks",
+    "period": 1,
+    "week_days": ["Mon", "Tue", "Wed", "Thu", "Fri"]     
+  }
+}
+```
+
+As start dates for recurring Downtime unfortunately cannot be set to start in the past, a far(ish) future start date of April 15th has been set. This ensures the script will be able to run, for the next few weeks.
+
+It is surely possible to calculate a "next weekday 7pm in Copenhagen DST timezone" start date, but I chose to not spend time on it as it has little purpose.
+
+I am also not sure whether datadog can figure out DST on it's own. If not, the monitor will be off by 1 hour in winter time.
+
+
+### Downtime Sat-Sun
+
+Doesn't look like these can be bundled (Adding more Downtime's in 1 API call). Added yet-another downtime API call to [saexcercise.sh](./saexcercise.sh) bash script:
+
+```shell
+curl -X POST -H "Content-type: application/json" \
+-d @./json/sadowntimeweekend.json \
+"https://api.datadoghq.com/api/v1/downtime?api_key=${api_key}&application_key=${app_key}"
+```
+
+Weekend Downtime definition in [sadowntimeweekend.json](./json/sadowntimeweekend.json) file, imported in curl call above:
+
+```json
+{
+  "scope": "*",
+  "monitor_tags": ["mymetric.monitor"],
+  "message": "@info@info@tine.dk MyMetric Monitor notifications going offline. Scheduled silence all day Sat-Mon 9am Copenhagen timezone (dst / summertime).",
+  "timezone": "CET",
+  "start": 1555711200,
+  "end": 1555916400,
+  "recurrence": {
+    "type": "weeks",
+    "period": 1,
+    "week_days": ["Sat"]     
+  }
+}
+```
+
+Set to start on April 20th, due to start date issue. The weekend downtime silences from Saturday 12am to Monday 9am, as the weekday monitor doesn't account for 12am-9am Monday.
+
+It could technically be set to start Saturday 9am as the weekday monitor silences Friday 7pm - Saturday 9am, which means there is some overlap.
+
+### Result
+
+[Screenshot](./screenshots/Downtime.png): Downtime for weekdays and weekend shows up in Datadog UI `Monitors->Manage Downtime`:
+
+<img src="./screenshots/Downtime.png" width="500" height="332" alt="_DSC4652"></a>
+
+#### Email
+
+None, due to start date issue and the far future start date workaround.
 
 
 
