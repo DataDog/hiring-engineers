@@ -241,7 +241,117 @@ JSON exported to separate code, as I ran out of quotation mark levels - and it's
 
 <img src="./screenshots/Dashboard MyMetric.png" width="500" height="332" alt="_DSC4652"></a>
 
-## 
+## Any metric from the Integration on your Database with the anomaly function applied.
+
+Struggled quite a bit with the exact syntax of the function call here, as I had not looked closer at the UI (or docs), only API. Couldn't find API documentation for the anomaly function, only the anomaly Monitor.
+
+At some point I stumbled upon a section which told me I could export JSON from the UI, if I created the widget there first (...). This was "unfortunately" the same query as I had put together myself at this point, but nice to know it was correct.
+
+On a side note, the UI was surprisingly easy and feature full. Good to know!
+
+In the end the issue turned out to be shortage of quotation mark levels in the shell script file. Oh, the little things. This is when I exported the JSON parts from the shell script. Issue solved and all was well. Yay!
+
+Added 2 widgets. The DB container does nothing, so we can't actually see the fancy anomaly graph feature. I took the liberty of adding a mymetric widget with the anomaly function applied as well.
+
+The additional widget definitions in the [sadashboard.json](./json/sadashboard.json) file:
+
+```json
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "anomalies(avg:mysql.performance.slow_queries{*}, 'basic', 2)"}
+      ],
+      "title": "Anomaly graph for MySQL slow queries"    
+    }},
+    {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "anomalies(avg:mymetric{host:eve.docker}, 'basic', 2)"}
+      ],
+      "title": "Anomaly graph for mymetric - so we can see the graph"    
+    }}
+```
+
+### Result
+
+[Screenshot](./screenshots/Dashboard anomaly graphs.png): MySQL and MyMetric anomaly graph shows up in Datadog UI under `Dasboards->SA Excercise`:
+
+<img src="./screenshots/Dashboard anomaly graphs.png" width="500" height="332" alt="_DSC4652"></a>
+
+## Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+```shell
+#!/bin/bash
+
+api_key=8923495892e42d2b7919f8764641d254
+app_key=f75db8c09aaa5bc351c9d1d983c98fda24d98d43
+
+curl  -X POST -H "Content-type: application/json" \
+-d @./json/sadashboard.json \
+"https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
+```
+
+JSON exported to separate code, as I ran out of quotation mark levels - and it's neater. [sadashboard.json](./json/sadashboard.json):
+
+```json
+   {"definition": {
+      "type": "timeseries",
+      "requests": [
+        {"q": "avg:mymetric{*}.rollup(sum, 3600)"}
+      ],
+      "title": "Sum rollup of mymetric values recorded in the last hour"    
+    }}
+```
+
+### Result
+
+[Screenshot](./screenshots/Dashboard Rollup.png): Rollup graph shows up in Datadog UI `Dasboards->SA Excercise`:
+
+<img src="./screenshots/Dashboard Rollup.png" width="500" height="332" alt="_DSC4652"></a>
+
+## Set the Timeboard's timeframe to the past 5 minutes
+
+### Result
+
+[Screenshot](./screenshots/Dashboard 5min.png): Screenshot of `Dasboards->SA Excercise`, 5min timeframe:
+
+<img src="./screenshots/Dashboard 5min.png" width="500" height="332" alt="_DSC4652"></a>
+
+## Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Assuming "this graph" == the last one (rollup).
+
+### Result
+
+[Screenshot](./screenshots/Email sum rollup.png): Screenshot of snapshot email sent from `Dasboards->SA Excercise`, 5min timeframe:
+
+<img src="./screenshots/Email sum rollup.png" width="500" height="332" alt="_DSC4652"></a>
+
+## Bonus Question: What is the Anomaly graph displaying?
+
+The anomaly graph is displaying the normal graph, with a grey "anomaly" overlay. Anomalies can be calculated with 3 different algorithms which adapt to repeated or emerging patterns (trends) to a varying degree. How it adapts and what is considered an anomaly, depends on which algorithm is used (basic, agile, robust) and the tolerance margin (deviation number).
+
+This is super useful, for instance:
+
+* In order to have an alert for high traffic/cpu/etc in order to detect potential oncoming need for resources in time. Or detect an attack. But not be alerted on daily / weekly peak hour traffic. 
+* Know when site is down, but not be alerted simply because it is nighttime and there happens to be no traffic whatsoever.
+
+The anomaly function will adapt to known/expected patterns if set up correctly, but highlight anything beyond this. 
+
+**In short:** It allows you to monitor variable metrics and be alerted at the right times.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
