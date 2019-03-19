@@ -7,6 +7,8 @@ Your answers to the questions go here.
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
+Temp: This configuration is handled in the yaml, so we can either edit the yaml directly, or access the datadog agent GUI.
+
 ## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
