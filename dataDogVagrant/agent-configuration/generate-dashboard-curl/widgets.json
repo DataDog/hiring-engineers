@@ -1,0 +1,35 @@
+{
+  "title" : "Custom Dashboard",
+  "widgets" : [
+    {"definition": {
+    "type": "timeseries",
+    "requests": [
+        {"q": "avg:custom_metric.my_metric{host:ubuntu}"}
+    ],
+    "title": "host:ubuntu - custom_metric"
+    }},
+    {"definition": {
+        "type": "timeseries",
+        "requests": [
+            {"q": "anomalies(avg:postgresql.rows_returned{host:ubuntu}, 'basic', 2)"}
+        ],
+        "title": "host:ubuntu::postgres - rows_returned"
+    }},
+    {"definition": {
+        "type": "timeseries",
+        "requests": [
+            {"q": "avg:custom_metric.my_metric{host:ubuntu}.rollup(sum, 3600)"}
+        ],
+        "title": "host:ubuntu::custom_rollup - custom_metric - past hour"
+    }}
+  ],
+  "layout_type": "ordered",
+  "description" : "Custom Dashboard for DataDog SE Exercise Showing custom_metric.",
+  "is_read_only": true,
+  "notify_list": ["russelviola@gmail.com"],
+  "template_variables": [{
+      "name": "host1",
+      "prefix": "host",
+      "default": "my-host"
+  }]
+}

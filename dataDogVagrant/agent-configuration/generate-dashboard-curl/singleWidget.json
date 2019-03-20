@@ -1,0 +1,23 @@
+{
+  "title" : "Custom Dashboard, Single Widget",
+  "widgets" : [
+    {"definition": {
+    "type": "timeseries",
+    "requests": [
+        {"q": "avg:custom_metric.my_metric{host:ubuntu}"},
+        {"q": "anomalies(avg:postgresql.rows_returned{host:ubuntu}, 'basic', 2)"},
+        {"q": "avg:custom_metric.my_metric{host:ubuntu}.rollup(sum, 3600)"}
+    ],
+    "title": "custom_metric.my_metric over ubuntu"
+    }}
+  ],
+  "layout_type": "ordered",
+  "description" : "Custom Dashboard for DataDog SE Exercise Showing custom_metric, all requests in one.",
+  "is_read_only": true,
+  "notify_list": ["russelviola@gmail.com"],
+  "template_variables": [{
+      "name": "ubuntu",
+      "prefix": "ubuntu",
+      "default": "ubuntu"
+  }]
+}
