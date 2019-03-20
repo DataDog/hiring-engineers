@@ -1,5 +1,8 @@
 Your answers to the questions go here.
 
+test embed link from datatdog:
+<iframe src="https://app.datadoghq.com/graph/embed?token=d650b5991853a9911f0e2fa2d372098aa48856840f67889cd28f32bd28bf686a&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+
 ## Collecting Metrics:
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
