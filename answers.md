@@ -5,7 +5,7 @@ So, a little background on this:
 
 I ended up using vagrant after exploring Docker and just using a standalone VM. I chose vagrant because I had an existing Ubuntu VM environment that I wanted to "vagrantize", if you will. I realize now that this somewhat defeats the purpose of vagrant boxes, as they should be small, and include provisions in the form of a shell script in the vagrant file in order to have the most portable box possible. Doombox has those provisions on the inside so it's a *little* big. If I were to approach this a second time, I would provision the vagrant box by the more standard convention, or use docker.
 
-On the bright side, since Doombox is basically a full fledge Ubuntu machine, you can interact with it's UI by enabling that option in the vagrant file, or by clicking "show" in the virtualbox dashboard. If you did that you could always fire up DOOM while you're there ```
+On the bright side, since Doombox is basically a full fledge Ubuntu machine, you can interact with it's UI by enabling that option in the vagrant file, or by clicking "show" in your VirtualBox dashboard. If you did that you could always fire up DOOM while you're in there ```/home/vagrant/restful-doom/src/restful-doom -iwad Doom1.WAD -apiport 6666 ...``` and, as you may have noticed, play the game via API calls, but that's another story for another day.
 
 With all that said, [Here's Doombox in all its glory on VagrantCloud](https://app.vagrantup.com/russelviola/boxes/doombox/versions/1.0.1)
 
