@@ -29,11 +29,42 @@ Collecting Metrics:
 To install the agent, We can follow the steps for [Ubuntu Datadog Agent Integration](https://app.datadoghq.com/account/settings#agent/ubuntu) and run ```DD_API_KEY=<YOUR_API_KEY> -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```, which starts up the agent after installation. Then we can look to our [Datadog Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) and see it's installed, we'll see something like this: 
 
 <img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/UbuntuHostShot.png" alt="Ubuntu Host Map Icon" height="500" />
-
+<img src="" alt="U" height="500" />
 
 ### - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-  
+Since we're using a Linux system, our Agent config file lives at [```etc/datadog-agent/datadog.yaml```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml). We can open this with our favorite IDE and take a look inside.
+the top of the file will show your API key, so you know you're in the right place.
+```yaml
+# The Datadog api key to associate your Agent's data with your organization.
+# Can be found here:
+# https://app.datadoghq.com/account/settings
+api_key: ad00c177c779cc3d503ee10c55c302dd
+
+# The site of the Datadog intake to send Agent data to.
+# Defaults to 'datadoghq.com', set to 'datadoghq.eu' to send data to the EU site.
+# site: datadoghq.com
+
+# The host of the Datadog intake server to send Agent data to, only set this option
+# if you need the Agent to send data to a custom URL.
+# Overrides the site setting defined in "site".
+# dd_url: https://app.datadoghq.com
+```
+If we look down to around row 48 we'll see the ```tags``` configuration. Un-comment the line and add our tags:
+```yaml
+# Set the host's tags (optional)
+tags:
+  - name:doombox
+  - env:dev
+  - role:virtual_machine
+  - test_tag:hello
+```
+#### It's important to note that when we make changes to the agents configuration files, we need to restart it for them to take effect. In the cli run ```service datadog-agent restart```
+
+Once our agent is up and running again, after a minute or two we'll see the results reflected on our [Host Map Details](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842):
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashTags.png" alt="Host Tag View" height="230" />
+
 ### - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
