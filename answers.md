@@ -1,6 +1,9 @@
 Prerequisites - Setup the environment:
 ======================================
+So, a little background on this:
+I ended up using vagrant after exploring Docker and just using a standalone VM. I chose vagrant because I had an existing Ubuntu VM environment that I wanted to "vagrantize", if you will. I realize now that this somewhat defeats the purpose of vagrant boxes, as they should be small, and include provisions in the form of a shell script in the vagrant file in order to have the most portable box possible...... 
 
+Doombox is a *little* bit bigger than your average vagrant machine, I'd reckon. If I were to do this again I would be using Docker for its portability. 
 
 vagrant cloud link: https://app.vagrantup.com/russelviola/boxes/doombox/versions/1.0.1
 
