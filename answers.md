@@ -1,17 +1,27 @@
 Prerequisites - Setup the environment:
 ======================================
-So, a little background on this:
+So, a little context on this:
 
 
 I ended up using vagrant after exploring Docker and just using a standalone VM. I chose vagrant because I had an existing Ubuntu VM environment that I wanted to "vagrantize", if you will. I realize now that this somewhat defeats the purpose of vagrant boxes, as they should be small, and include provisions in the form of a shell script in the vagrant file in order to have the most portable box possible. Doombox has those provisions on the inside so it's a *little* big. If I were to approach this a second time, I would provision the vagrant box by the more standard convention, or use docker.
 
-On the bright side, since Doombox is basically a full fledge Ubuntu machine, you can interact with it's UI by enabling that option in the vagrant file, or by clicking "show" in your VirtualBox dashboard. If you did that you could always fire up DOOM while you're in there ```/home/vagrant/restful-doom/src/restful-doom -iwad Doom1.WAD -apiport 6666 ...``` and, as you may have noticed, play the game via API calls, but that's another story for another day.
+On the bright side, since Doombox is basically a full fledged Ubuntu machine, you can interact with it's UI by enabling that option in the vagrant file, or by clicking "show" in your VirtualBox dashboard for the machine. If you did that you could always fire up DOOM while you're in there ```/home/vagrant/restful-doom/src/restful-doom -iwad Doom1.WAD -apiport 6666 ...``` and, as you may have noticed, play the game via API calls, but that's another story for another day.
 
-With all that said, [Here's Doombox in all its glory on VagrantCloud](https://app.vagrantup.com/russelviola/boxes/doombox/versions/1.0.1)
+#### With all that said, [Here's Doombox in all its glory on VagrantCloud](https://app.vagrantup.com/russelviola/boxes/doombox/versions/1.0.1) (Spoiler, it's a large file)
 
-Doombox is a *little* bit bigger than your average vagrant machine, I'd reckon. If I were to do this again I would be using Docker for its portability. 
+#### To get started with this, on a machine with vagrant installed run:
 
-vagrant cloud link: https://app.vagrantup.com/russelviola/boxes/doombox/versions/1.0.1
+```
+vagrant init russelviola/doombox 
+vagrant up
+```
+
+- I'm working out the kinks with the auto-ssh configuration, so you'll probably see some ```default: Warning: Authentication failure. Retrying...``` errors before the machine gives up. That's a work in progress.
+
+- **_Then_**, when the machine tires and finally gives up all hope of connecting via private key, you can use ```vagrant ssh```, you'll be prompted for a password, which is ```vagrant```
+
+
+You don't necessarily need to run this to understand my approach to this exercise, as I've documented that below, but I wanted to include access to the environment 1. because that's what vagrant is for, and 2. in the case that you'd like to explore my environment with all of the following requirements implemented.
 
 ___
 Collecting Metrics:
