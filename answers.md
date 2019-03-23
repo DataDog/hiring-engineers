@@ -67,7 +67,108 @@ Once our agent is up and running again, after a minute or two we'll see the resu
 
 <img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashTags.png" alt="Host Tag View" height="230" />
 
+These tags will help us later on when we're building dashboards to view all of the data coming from the Datadog Agent.
+
 ### - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+#### The first thing we have to do is get PostgreSQL squared away.
+
+First Install PostgreSQL with ```sudo apt-get install postgresql```
+
+Then we can follow the [PostgreSQL Integration Guide](https://docs.datadoghq.com/integrations/postgres/):
+
+We can get into the postres console as root ```sudo -u postgres psql```, then create a new user, datadog.
+
+```
+create user datadog with password '<PASSWORD>';
+grant pg_monitor to datadog;
+```
+The second command here, is granting 'datadog' access to all of those sweet, sweet metrics that PostgreSQL collects for itself as it runs. Now, the next part isn't totally necessary, but I thought it would be nice to see an actual database connected to the agent. I brought in [WorldDB](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/world-1.0/dbsamples-0.1/world) a simple SQL database for development purposes:
+
+while in the postgres console:
+```
+CREATE DATABASE worlddb;
+```
+from [WorldDB directory](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/world-1.0/dbsamples-0.1/world):
+```
+sudo psql -U postgres -d worlddb -f world.sql
+```
+and just like we did with ```pg_monitor``` in our postgres console, ```grant worlddb to datadog;```
+
+#### The second piece to the integration is configuring the agent itself. We're going to be making changes to [etc/datadog-agent/conf.d/postgres.d/conf.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/postgres.d/conf.yaml):
+```yaml
+init_config:
+
+instances:
+  - host: localhost
+    port: 5432
+    username: datadog
+    password: datadog
+    dbname: worlddb
+    ssl: False
+    use_psycopg2: False # Force using psycogp2 instead of pg8000 to connect. WARNING: psycopg2 doesn't support ssl mode.
+    tags:
+      - db_tag
+      - optional_tag2
+```
+The agent will log into postgres as the ```datadog``` user we created via ```localhost``` and connect to ```worlddb```
+```yaml
+#    Collect metrics regarding PL/pgSQL functions from pg_stat_user_functions
+    collect_function_metrics: True
+#
+
+#    Collect count metrics, default value is True for backward compatibility but they might be slow,
+#    suggested value is False.
+    collect_count_metrics: False
+#
+
+#    Collect metrics regarding transactions from pg_stat_activity, default value is False. Please make sure the user
+#    has sufficient privileges to read from pg_stat_activity before enabling this option.
+    collect_activity_metrics: True
+#
+
+#    Collect database size metrics. Default value is True but they might be slow with large databases
+    collect_database_size_metrics: True
+#
+
+#    Include statistics from the default database 'postgres' in the check metrics, default to false
+    collect_default_database:
+#
+
+## log Section (Available for Agent >=6.0)
+logs:
+
+    # - type : (mandatory) type of log input source (tcp / udp / file)
+    #   port / path : (mandatory) Set port if type is tcp or udp. Set path if type is file
+    #   service : (mandatory) name of the service owning the log
+    #   source : (mandatory) attribute that defines which integration is sending the logs
+    #   sourcecategory : (optional) Multiple value attribute. Can be used to refine the source attribute
+    #   tags: (optional) add tags to each logs collected
+
+  - type: file
+    path: /var/log/pg_log/pg.log
+    source: postgresql
+    sourcecategory: database
+    service: worlddb
+```
+Here we're enabling some configuration options to collect more metrics, as well as hooking up our agent to the location of PostgreSQL's logs, which can be configured in [/etc/postgresql/10/main/postgresql.conf](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/postgres-conf.d/postgresql.conf)
+```yaml
+# This is used when logging to stderr:
+logging_collector = on		# Enable capturing of stderr and csvlog
+					# into log files. Required to be on for
+					# csvlogs.
+					# (change requires restart)
+
+# These are only used if logging_collector is on:
+log_directory = '/var/log/pg_log'			# directory where log files are written,
+					# can be absolute or relative to PGDATA
+log_filename = 'pg.log'	# log file name pattern,
+					# can include strftime() escapes
+log_file_mode = 0644			# creation mode for log files,
+					# begin with 0 to use octal notation
+#log_truncate_on_rotation = off		# If on, an existing log file with the
+```
+
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ___
