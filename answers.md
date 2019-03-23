@@ -239,24 +239,86 @@ ___
 Visualizing Data:
 =================
 ### Utilize the Datadog API to create a Timeboard that contains:
+#### - Your custom metric scoped over your host.
+#### - Any metric from the Integration on your Database with the anomaly function applied.
+#### - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+We'll be looking at the [Curl Implementation From DataDog's API Docs](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard). I've included a [python script](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-python/generateDashboard.py) in this repository that I was trying to implement as well, but for the sake of time, Curl was the way to go.
 
-### - Your custom metric scoped over your host.
-### - Any metric from the Integration on your Database with the anomaly function applied.
-### - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-### - Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Essentially, we can build a Bash script that will make a call to the API signature ```POST https://api.datadoghq.com/api/v1/dashboard```, house our API Keys, and reference a seperate Json, where we will house the actual construction of our Dashboard. Then all we have to do is run the Bash script [```./vagrant/generate-dashboard-curl/dashboardGenerator.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) or [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh) and either check our terminal for the appropriate response or check our [Dashboard List](https://app.datadoghq.com/dashboard/lists)
+
+I noticed that we could either put all the metrics into one widget, or define widgets seperately. So I built one of each with their respective Json bodies. (We'll examine the single widget example here. To check out the multiple widget version, refer to [dashboardGenerator.sh](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) and [widgets.json](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/widgets.json))
+
+The compostition of [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh):
+
+```shell
+# !/bin/bash
+
+api_key=ad00c177c779cc3d503ee10c55c302dd
+app_key=dfd765459564830537d9cb5f0cce7ccd7b402cff
+
+curl  -X POST -H "Content-type: application/json" \
+-d @./singleWidget.json \
+"https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
+```
+
+And [singleWidget.json](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/singleWidget.json) that we're referencing in our script:
+
+```json
+{
+  "title" : "Custom Dashboard, Single Widget",
+  "widgets" : [
+    {"definition": {
+    "type": "timeseries",
+    "requests": [
+        {"q": "avg:custom_metric.my_metric{host:ubuntu}"},
+        {"q": "anomalies(avg:postgresql.rows_returned{host:ubuntu}, 'basic', 2)"},
+        {"q": "avg:custom_metric.my_metric{host:ubuntu}.rollup(sum, 3600)"}
+    ],
+    "title": "custom_metric.my_metric over ubuntu"
+    }}
+  ],
+  "layout_type": "ordered",
+  "description" : "Custom Dashboard for DataDog SE Exercise Showing custom_metric, all requests in one.",
+  "is_read_only": true,
+  "notify_list": ["russelviola@gmail.com"],
+  "template_variables": [{
+      "name": "ubuntu",
+      "prefix": "ubuntu",
+      "default": "ubuntu"
+  }]
+}
+```
+We can think of each widget as it's own graph that will show up on our dashboard. We can add multiple metrics to each graph, and have multiple graphs defined in a single API call. We can create, update, delete, and even get dashboards via the REST API. 
+
+Imagine a continuous integration scenario where we might want to change our dashboards dynamically with changes to our application. We could parameterize our API calls and have then kick off updates from a CI tool based on what's happening in our pipeline. This opens up huge possibilities in terms of automation!
+
 
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
+We can see the dashboard in action [here](https://app.datadoghq.com/dashboard/k8t-5pz-umh/custom-dashboard-single-widget?tile_size=m&page=0&is_auto=false&from_ts=1553103414201&to_ts=1553126657406&live=false&fullscreen_widget=6742393085938141) and explore the different monitors we've applied with our API call:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/CustomDashSingleWidget.png" alt="singlewidget" height="500" />
 
 ### - Set the Timeboard's timeframe to the past 5 minutes
+We can click and drag on the timeline of our graph to look at the last 5 minutes,
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/last5MinutesWithNotation.png" height="300" />
+
 ### - Take a snapshot of this graph and use the @ notation to send it to yourself.
+Then take a snapshot using the camera icon and leave a notation to our colleagues.
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/notationSnapshotEmailAlert.png" height="500" />
 
 ___
 ### Bonus Question: What is the Anomaly graph displaying?
+The [Anomoly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#pagetitle) feature is a handy algorythm that observes the trends of a given metric, and adjusts the threshold for unusual behavior based on that. It's a way to keep the expected range of behavior from our systems _dynamic_ as opposed to having to manually adjust our expectations as our application scales.
+
+With the example of my ```postgresql.rows_returned``` metric, as entries to the database continue to expand with the use of my application, so will the amount of information it delivers to users. Maybe this is an ever expanding library or list of products on an eccommerce application. I don't want to have to re-gauge expectations for my monitors for something that can be predicted behavior as we scale. With an anomaly monitor on, we'll see when deviations to this norm happen dynamically, based on trends, rather than static values.
 
 ___
 Monitoring Data:
 ==================
 ### Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+In this case, I performed all my actions via the Datadog Application following [the Datadog Alerting Documentation](https://docs.datadoghq.com/monitors/). These can be configured via the [Datadog API](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) much like we did earlier with our dashboard.
 
 ### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
@@ -264,12 +326,26 @@ Monitoring Data:
 ### - Alerting threshold of 800
 ### - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorEditor.png" height="500" />
+
 ### Please configure the monitor’s message so that it will:
 
 ### - Send you an email whenever the monitor triggers.
 ### - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ### - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+There's information in the editor on using this markdown under ```Use message template variables```, but to see the full extent of what we can parameterize, look to the [Notifications Documentation](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#message-template-variables)
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorEditor2.png" height="500" />
+
+So I thought I was being quite clever here in parameterizing the ```Alert Title Field```. It turns out that you can, and it works, but as we'll see later, it looks pretty bad when we're sending Downtime Notifications.
+
 ### - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Here's an example of a warning notification we get from the monitor:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorWarningWithNumbers.png" height="500" />
+
 ___
 ### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 ### - One that silences it from 7pm to 9am daily on M-F,
