@@ -351,6 +351,25 @@ ___
 ### - One that silences it from 7pm to 9am daily on M-F,
 ### - And one that silences it all day on Sat-Sun.
 ### - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+We can hop on over to the [Manage Downtime](https://app.datadoghq.com/monitors#downtime) section of our Monitor Tab to set custom instances where we won't be alerted by these monitors. We can follow along with the [Downtime Documentation](https://docs.datadoghq.com/monitors/downtimes/) to put these together.
+
+I've configured one for our weekday evenings: 
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/weekdayDowntime.png" height="500" />
+
+You'll notice how hideous my attempts at creating a parameterized monitor title came out here. Since this downtime is referring to the whole monitor, rather than a particular piece of it, we're getting the full title text.
+
+I've also added one for our weekends, starting Friday evening, and ending Monday morning:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/weekendDowntime.png" height="500" />
+
+Here's what we get when the downtime starts:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorDowntimeNotification.png" height="500" />
+
+At this point, I've changed this downtime to work for all monitors. Definitely not because it looked better than my dynamic monitor title. 
+
+#### In reality, I imagine, there are going to be certain alerts which _must_ be up at all times. For anything mission critical, it doesn't matter if it's 3 in the morning on Saturday, I want that alert.
 
 ___
 Collecting APM Data:
