@@ -24,7 +24,7 @@ vagrant up
 - **_Then_**, when the machine tires and finally gives up all hope of connecting via private key, you can use ```vagrant ssh```, you'll be prompted for a password, which is ```vagrant```
 
 
-You don't necessarily need to run this to understand my approach to this exercise, as I've documented that below, but I wanted to include access to the environment 1. because that's what vagrant is for, and 2. in the case that you'd like to explore my environment with all of the following requirements implemented.
+You don't necessarily need to run this to understand my approach to this exercise, as I've documented that below, but I wanted to include access to the environment; 1. because that's what vagrant is for, and 2. in the case that you'd like to explore my environment with all of the following requirements implemented.
 
 ___
 Collecting Metrics:
@@ -378,11 +378,189 @@ Collecting APM Data:
 ### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+For this excercise I've taken the given flask app and made some alterations, as well as prepared a Bash script to populate data for the APM, since I wanted more data on our dashboard side and didn't feel like hitting 4 endpoints over and over manually. _Additionally_, we'll be using [ddtrace](https://docs.datadoghq.com/tracing/languages/python/) rather than injecting trace middleware into the application itself.
+
+The application lives in [/vagrant/flaskApp/datadogAPM.py](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/flaskApp/datadogAPM.py)
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+@app.route('/api/world')
+def db_endpoint():
+    # Set psql credentials
+    hostname = 'localhost'
+    username = 'datadog'
+    password = 'datadog'
+    database = 'worlddb'
+
+    # function to query the database and display 100 entries
+    def doQuery( conn ):
+        cur = conn.cursor()
+        cur.execute( "SELECT * FROM city limit 50")
+        cities = cur.fetchall()
+        # for city in cities :
+        return "{}".format(cities)
+    import psycopg2
+    #connect to db with credentials
+    myConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
+    #perform query function
+    return doQuery( myConnection )
+    #close connection
+    myConnection.close()
+
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port='5050')
+```
+
+I've added an additional endpoint that will query our ```worlddb``` database that we set up in the beginning of the exercise. All it does is grab a bunch of rows from the 'cities' table in the databse and returns them. Enough so that we could get a trace on some PostgreSQL information from our application as well. This was implemented using the [psycopg2 - Python-PostgreSQL Database Adapter](https://github.com/psycopg/psycopg2).
+
+#### To configure our agent for the APM we look to [APM Setup](https://docs.datadoghq.com/agent/apm/?tab=agent630) in the Datadog Documentation.
+
+- First we'll need to install ```ddtrace``` as per the [Tracing Python Applications](https://docs.datadoghq.com/tracing/languages/python/) Documentation.
+
+	```pip install ddtrace```
+
+	We'll come back to this in a moment.
+
+- Then we'll need to configure our agent to go back to our [datadog.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml) and enable ```apm_config``` all the way at the bottom of the file.
+
+```yaml
+apm_config:
+#   Whether or not the APM Agent should run
+ enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if "none" is applied here
+ env: none
+#   The port that the Receiver should listen on
+ receiver_port: 8126
+#   Whether the Trace Agent should listen for non local traffic
+#   Only enable if Traces are being sent to this Agent from another host/container
+ apm_non_local_traffic: false
+#   Extra global sample rate to apply on all the traces
+#   This sample rate is combined to the sample rate from the sampler logic, still promoting interesting traces
+#   From 1 (no extra rate) to 0 (don't sample at all)
+ extra_sample_rate: 1.0
+#   Maximum number of traces per second to sample.
+#   The limit is applied over an average over a few minutes ; much bigger spikes are possible.
+#   Set to 0 to disable the limit.
+ max_traces_per_second: 0
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+ ignore_resources: []
+```
+
+Here we will change ```enabled:``` to ```true```. I've also set ```max_traces-per_second:``` to ```0``` to accomodate my Bash script later on. Everything else is the default value.
+
+From the [/vagrant/flaskApp/](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/flaskApp) directory we can run ```./apm_generator.sh``` to boot up the application, then use curl to loop over the endpoints in our application a few times. After that it will shut down the application and close the port ```localhost:5050```.
+
+Here's what the [Bash Script](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/flaskApp/apm_generator.sh) looks like:
+
+```shell
+#!/bin/bash
+echo "start"
+ddtrace-run python datadogAPM.py &
+sleep 5
+
+echo "Starting datadogAPM.py"
+COUNT=1
+for x in $(seq 1 20)
+do
+  echo "Iteration $x"
+  echo "homepage"
+  curl "http://localhost:5050"
+  echo "apm page"
+  curl "http://localhost:5050/api/apm"
+  echo "trace page"
+  curl "http://localhost:5050/api/trace"
+  echo "world page"
+  curl "http://localhost:5050/api/world"
+  sleep 2
+done
+kill $(pgrep -f 'datadogAPM.py')
+sudo kill $(sudo lsof -t -i:5050)
+echo "Shutting Down datadogAPM.py"
+echo "finished"
+```
+Now that we've run the application with ```ddtrace``` and hit enough endpoints for our agent to register, we can look at our [Trace Search & Analytics](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1553190193487&index=trace-search&live=true&query=env%3Adev&stream_sort=desc&to_ts=1553362993487) tab to view what our agent is picking up:
+
+<img src="/HiringEngineersScreenShots/traceSearchAndAnalytics.png" alt="traceSearchAnalytics" height="500" />
+
+Now that we're seeing some data, we can enable [Trace Search](https://docs.datadoghq.com/agent/apm/?tab=agent630#trace-search) in our [datadog.yaml](/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml):
+
+```yaml
+apm_config:
+#   Whether or not the APM Agent should run
+ enabled: true
+#   The environment tag that Traces should be tagged with
+#   Will inherit from "env" tag if "none" is applied here
+ env: none
+#   The port that the Receiver should listen on
+ receiver_port: 8126
+#   Whether the Trace Agent should listen for non local traffic
+#   Only enable if Traces are being sent to this Agent from another host/container
+ apm_non_local_traffic: false
+#   Extra global sample rate to apply on all the traces
+#   This sample rate is combined to the sample rate from the sampler logic, still promoting interesting traces
+#   From 1 (no extra rate) to 0 (don't sample at all)
+ extra_sample_rate: 1.0
+#   Maximum number of traces per second to sample.
+#   The limit is applied over an average over a few minutes ; much bigger spikes are possible.
+#   Set to 0 to disable the limit.
+ max_traces_per_second: 0
+#   A blacklist of regular expressions can be provided to disable certain traces based on their resource name
+#   all entries must be surrounded by double quotes and separated by commas
+#   Example: ["(GET|POST) /healthcheck", "GET /V1"]
+ ignore_resources: []
+ analyzed_spans:
+   flask|flask.request: 1
+   postgres|postgres.query: 1
+
+```
+
+Down at the bottom we've given a name to the services performing the operations that our agent picked up earlier.
+
+Now we can run ```./apm_generator.sh``` to our hearts content and generate some data for our apm.
+
 ___
 ### Bonus Question: What is the difference between a Service and a Resource?
+
+There's a simple and succint explanation in the [Tracing Terminology](https://docs.datadoghq.com/tracing/guide/terminology/) section of the documentation.
+
+A Service is a set of processes that do the same job. A web application can consist of multiple services. So in our case we've got Flask, our web framework, or PostgreSQL, our database. Web framework and database are both examples of what would be defined as a service in Datadog. The neat thing about services in Datadog is that they get their own [out of the box graphs](https://docs.datadoghq.com/tracing/visualization/service/#out-of-the-box-graphs) for things like total amount of requests, error rate, and more.
+
+A Resource is a particular action for a Service. When we look at our [Trace Search & Analytics](https://app.datadoghq.com/apm/search?cols=%5B%22core_service%22%2C%22log_duration%22%2C%22log_http.method%22%2C%22log_http.status_code%22%5D&from_ts=1553190193487&index=trace-search&live=true&query=env%3Adev&stream_sort=desc&to_ts=1553362993487), we can see all of our resources listed out like ```GET /api/world```. This is an example of a resource belonging to the Flask web framework _Service_.
+
 ___
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-### Please include your fully instrumented app in your submission, as well.-
+
+Here's an [Dashboard](https://app.datadoghq.com/dashboard/68e-zcq-w5q/infrastructure-and-apm-dash?tile_size=m&page=0&is_auto=false&from_ts=1553362200000&to_ts=1553365800000&live=true) where we're looking at our infastructure metrics an our APM metrics. Now we can really visualize the value of getting all of this information in one place where it's easy to consume. We can start to look for correlations in our data, set alerts, look for anomalies, and so much more in our ever changing dynamic infastructures.
+
+<img src="/HiringEngineersScreenShots/traceAndInfrastructureDash.png" alt="trace and infastructure dash" height="400" />
 
 ___
 Final Question:
