@@ -221,7 +221,20 @@ Now we can restart the agent and see if our changes worked. Either check by runn
 
 ___
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Luckily for us, we won't be needing to alter our pyton script to make changes to the collection interval, as it lives in the ```custom_my_metric.yaml``` file we've created. Any time
+Luckily for us, we won't be needing to alter our pyton script to make changes to the collection interval, as it lives in the ```custom_my_metric.yaml``` file we've created. We can alter that and restart the agent to have the changes take effect.
+
+#### An Alternative to accessing the file directly is using the [Agent GUI](https://docs.datadoghq.com/agent/?tab=agentv6#gui). If we're not ssh'd into a VM, this is a great option:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIEditChecks.png" alt="custom metric on host map" height="350" />
+
+Not only can we manage and edit our checks here without having to navigate the cli, we can also check their status:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIChecksOverview.png" alt="custom metric on host map" height="350" />
+
+As well as the overall agent status, logs, and more:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIStatusOverview.png" alt="custom metric on host map" height="350" />
+
 ___
 Visualizing Data:
 =================
