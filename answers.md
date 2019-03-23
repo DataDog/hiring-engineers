@@ -215,11 +215,13 @@ instances:
   - min_collection_interval: 45
 ```
 I've set an interval here to 45s for the custom metric.
+Now we can restart the agent and see if our changes worked. Either check by running ```datadog-agent status``` or viewing the [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842)
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashCustomMetric.png" alt="custom metric on host map" height="230" />
 
 ___
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
-Temp: This configuration is handled in the yaml, so we can either edit the yaml directly, or access the datadog agent GUI.
+Luckily for us, we won't be needing to alter our pyton script to make changes to the collection interval, as it lives in the ```custom_my_metric.yaml``` file we've created. Any time
 ___
 Visualizing Data:
 =================
