@@ -1,4 +1,4 @@
-<img src="" alt="U" height="500" />
+
 
 
 Prerequisites - Setup the environment:
@@ -29,13 +29,19 @@ You don't necessarily need to run this to understand my approach to this exercis
 ___
 Collecting Metrics:
 ===================
-To install the agent, We can follow the steps for [Ubuntu Datadog Agent Integration](https://app.datadoghq.com/account/settings#agent/ubuntu) and run ```DD_API_KEY=<YOUR_API_KEY> -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"```, which starts up the agent after installation. Then we can look to our [Datadog Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) and see it's installed, we'll see something like this: 
+To install the agent, We can follow the steps for [Ubuntu Datadog Agent Integration](https://app.datadoghq.com/account/settings#agent/ubuntu) and run 
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/UbuntuHostShot.png" alt="Ubuntu Host Map Icon" height="500" />
+```
+DD_API_KEY=<YOUR_API_KEY> -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+
+Which starts up the agent after installation. Then we can look to our [Datadog Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) and see it's installed, we'll see something like this: 
+
+<img src="/HiringEngineersScreenShots/UbuntuHostShot.png" alt="Ubuntu Host Map Icon" height="500" />
 
 ### - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Since we're using a Linux system, our Agent config file lives at [```etc/datadog-agent/datadog.yaml```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml). We can open this with our favorite IDE and take a look inside.
+Since we're using a Linux system, our Agent config file lives at [```etc/datadog-agent/datadog.yaml```](/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml). We can open this with our favorite IDE and take a look inside.
 the top of the file will show your API key, so you know you're in the right place.
 ```yaml
 # The Datadog api key to associate your Agent's data with your organization.
@@ -65,7 +71,7 @@ tags:
 
 Once our agent is up and running again, after a minute or two we'll see the results reflected on our [Host Map Details](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842):
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashTags.png" alt="Host Tag View" height="230" />
+<img src="/HiringEngineersScreenShots/HostDashTags.png" alt="Host Tag View" height="230" />
 
 These tags will help us later on when we're building dashboards to view all of the data coming from the Datadog Agent.
 
@@ -83,19 +89,20 @@ We can get into the postres console as root ```sudo -u postgres psql```, then cr
 create user datadog with password '<PASSWORD>';
 grant pg_monitor to datadog;
 ```
-The second command here, is granting 'datadog' access to all of those sweet, sweet metrics that PostgreSQL collects for itself as it runs. Now, the next part isn't totally necessary, but I thought it would be nice to see an actual database connected to the agent. I brought in [WorldDB](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/world-1.0/dbsamples-0.1/world) a simple SQL database for development purposes:
+
+The second command here, is granting 'datadog' access to all of those sweet, sweet metrics that PostgreSQL collects for itself as it runs. Now, the next part isn't totally necessary, but I thought it would be nice to see an actual database connected to the agent. I brought in [WorldDB](/dataDogVagrant/world-1.0/dbsamples-0.1/world) a simple SQL database for development purposes:
 
 while in the postgres console:
 ```
 CREATE DATABASE worlddb;
 ```
-from [WorldDB directory](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/world-1.0/dbsamples-0.1/world):
+from [WorldDB directory](/dataDogVagrant/world-1.0/dbsamples-0.1/world):
 ```
 sudo psql -U postgres -d worlddb -f world.sql
 ```
 and just like we did with ```pg_monitor``` in our postgres console, ```grant worlddb to datadog;```
 
-#### The second piece to the integration is configuring the agent itself. We're going to be making changes to [etc/datadog-agent/conf.d/postgres.d/conf.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/postgres.d/conf.yaml):
+#### The second piece to the integration is configuring the agent itself. We're going to be making changes to [```etc/datadog-agent/conf.d/postgres.d/conf.yaml```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/postgres.d/conf.yaml):
 ```yaml
 init_config:
 
@@ -151,7 +158,7 @@ logs:
     sourcecategory: database
     service: worlddb
 ```
-Here we're enabling some configuration options to collect more metrics, as well as hooking up our agent to the location of PostgreSQL's logs, which can be configured in [/etc/postgresql/10/main/postgresql.conf](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/postgres-conf.d/postgresql.conf)
+Here we're enabling some configuration options to collect more metrics, as well as hooking up our agent to the location of PostgreSQL's logs, which can be configured in [```/etc/postgresql/10/main/postgresql.conf```](/dataDogVagrant/agent-configuration/postgres-conf.d/postgresql.conf)
 ```yaml
 # This is used when logging to stderr:
 logging_collector = on		# Enable capturing of stderr and csvlog
@@ -170,21 +177,21 @@ log_file_mode = 0644			# creation mode for log files,
 ```
 Let's restart the datadog-agent with ```service datadog-agent restart``` and then check it's pulse with ```datadog-agent status```. If we've done everything right for postgres, we should see something like this:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationAgentPickup.png" alt="psql agent check" height="200" /><img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationLogsConfigured.png" alt="psql agent check" height="200" />
+<img src="/HiringEngineersScreenShots/psqlIntegrationAgentPickup.png" alt="psql agent check" height="200" /><img src="/HiringEngineersScreenShots/psqlIntegrationLogsConfigured.png" alt="psql agent check" height="200" />
 
 Awesome! To confirm this data is getting pushed up from the agent, we'll check our [Host View](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842)
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashPsql.png" alt="postgresHostView" height="230" />
+<img src="/HiringEngineersScreenShots/HostDashPsql.png" alt="postgresHostView" height="230" />
 
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 To create this custom check, we'll refer to [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) in the DataDog documentation.
 
-Within our agent configuration directory: ```/etc/datadog-agent/``` we'll find a directory named [checks.d](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d). This is where we can create python scripts for our custom checks, with a matching yaml configuration file in the [etc/datadog-agent/conf.d/](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d) directory. 
+Within our agent configuration directory: ```/etc/datadog-agent/``` we'll find a directory named [checks.d](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d). This is where we can create python scripts for our custom checks, with a matching yaml configuration file in the [```etc/datadog-agent/conf.d/```](/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d) directory. 
 
 Here's how the files for my custom check look:
 
-[/etc/datadog-agent/checks.d/custom_my_metric.py](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d/custom_my_metric.py)
+[```/etc/datadog-agent/checks.d/custom_my_metric.py```](/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d/custom_my_metric.py)
 ```python
 
 import random
@@ -206,7 +213,7 @@ class MyMetricCheck(AgentCheck):
 ``` 
 Notice I've used Python's [Random](https://docs.python.org/3/library/random.html) module to generate a random value between 1 and 1000 for the metric.
 
-[etc/datadog-agent/conf.d/custom_my_metric.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/custom_my_metric.yaml)
+[```etc/datadog-agent/conf.d/custom_my_metric.yaml```](/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/custom_my_metric.yaml)
 ```yaml
 
 init_config:
@@ -217,7 +224,7 @@ instances:
 I've set an interval here to 45s for the custom metric.
 Now we can restart the agent and see if our changes worked. Either check by running ```datadog-agent status``` or viewing the [Host Map](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842)
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashCustomMetric.png" alt="custom metric on host map" height="230" />
+<img src="/HiringEngineersScreenShots/HostDashCustomMetric.png" alt="custom metric on host map" height="230" />
 
 ___
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
@@ -225,15 +232,15 @@ Luckily for us, we won't be needing to alter our pyton script to make changes to
 
 #### An Alternative to accessing the file directly is using the [Agent GUI](https://docs.datadoghq.com/agent/?tab=agentv6#gui). If we're not ssh'd into a VM, this is a great option:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIEditChecks.png" alt="custom metric on host map" height="350" />
+<img src="/HiringEngineersScreenShots/agentGUIEditChecks.png" alt="custom metric on host map" height="350" />
 
 Not only can we manage and edit our checks here without having to navigate the cli, we can also check their status:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIChecksOverview.png" alt="custom metric on host map" height="350" />
+<img src="/HiringEngineersScreenShots/agentGUIChecksOverview.png" alt="custom metric on host map" height="350" />
 
 As well as the overall agent status, logs, and more:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/agentGUIStatusOverview.png" alt="custom metric on host map" height="350" />
+<img src="/HiringEngineersScreenShots/agentGUIStatusOverview.png" alt="custom metric on host map" height="350" />
 
 ___
 Visualizing Data:
@@ -242,13 +249,13 @@ Visualizing Data:
 #### - Your custom metric scoped over your host.
 #### - Any metric from the Integration on your Database with the anomaly function applied.
 #### - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-We'll be looking at the [Curl Implementation From DataDog's API Docs](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard). I've included a [python script](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-python/generateDashboard.py) in this repository that I was trying to implement as well, but for the sake of time, Curl was the way to go.
+We'll be looking at the [Curl Implementation From DataDog's API Docs](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard). I've included a [python script](/dataDogVagrant/agent-configuration/generate-dashboard-python/generateDashboard.py) in this repository that I was trying to implement as well, but for the sake of time, Curl was the way to go.
 
-Essentially, we can build a Bash script that will make a call to the API signature ```POST https://api.datadoghq.com/api/v1/dashboard```, house our API Keys, and reference a seperate Json, where we will house the actual construction of our Dashboard. Then all we have to do is run the Bash script [```./vagrant/generate-dashboard-curl/dashboardGenerator.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) or [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh) and either check our terminal for the appropriate response or check our [Dashboard List](https://app.datadoghq.com/dashboard/lists)
+Essentially, we can build a Bash script that will make a call to the API signature ```POST https://api.datadoghq.com/api/v1/dashboard```, house our API Keys, and reference a seperate Json, where we will house the actual construction of our Dashboard. Then all we have to do is run the Bash script [```./vagrant/generate-dashboard-curl/dashboardGenerator.sh```](/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) or [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh) and either check our terminal for the appropriate response or check our [Dashboard List](https://app.datadoghq.com/dashboard/lists)
 
-I noticed that we could either put all the metrics into one widget, or define widgets seperately. So I built one of each with their respective Json bodies. (We'll examine the single widget example here. To check out the multiple widget version, refer to [dashboardGenerator.sh](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) and [widgets.json](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/widgets.json))
+I noticed that we could either put all the metrics into one widget, or define widgets seperately. So I built one of each with their respective Json bodies. (We'll examine the single widget example here. To check out the multiple widget version, refer to [```dashboardGenerator.sh```](/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGenerator.sh) and [```widgets.json```](/dataDogVagrant/agent-configuration/generate-dashboard-curl/widgets.json))
 
-The compostition of [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh):
+The compostition of [```./vagrant/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh```](/dataDogVagrant/agent-configuration/generate-dashboard-curl/dashboardGeneratorSingleWidget.sh):
 
 ```shell
 # !/bin/bash
@@ -261,7 +268,7 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-And [singleWidget.json](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/singleWidget.json) that we're referencing in our script:
+And [```singleWidget.json```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/generate-dashboard-curl/singleWidget.json) that we're referencing in our script:
 
 ```json
 {
@@ -296,7 +303,7 @@ Imagine a continuous integration scenario where we might want to change our dash
 ### Once this is created, access the Dashboard from your Dashboard List in the UI:
 We can see the dashboard in action [here](https://app.datadoghq.com/dashboard/k8t-5pz-umh/custom-dashboard-single-widget?tile_size=m&page=0&is_auto=false&from_ts=1553103414201&to_ts=1553126657406&live=false&fullscreen_widget=6742393085938141) and explore the different monitors we've applied with our API call:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/CustomDashSingleWidget.png" alt="singlewidget" height="500" />
+<img src="/HiringEngineersScreenShots/CustomDashSingleWidget.png" alt="singlewidget" height="500" />
 
 ### - Set the Timeboard's timeframe to the past 5 minutes
 We can click and drag on the timeline of our graph to look at the last 5 minutes,
@@ -306,7 +313,7 @@ We can click and drag on the timeline of our graph to look at the last 5 minutes
 ### - Take a snapshot of this graph and use the @ notation to send it to yourself.
 Then take a snapshot using the camera icon and leave a notation to our colleagues.
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/notationSnapshotEmailAlert.png" height="500" />
+<img src="/HiringEngineersScreenShots/notationSnapshotEmailAlert.png" height="500" />
 
 ___
 ### Bonus Question: What is the Anomaly graph displaying?
@@ -326,7 +333,7 @@ In this case, I performed all my actions via the Datadog Application following [
 ### - Alerting threshold of 800
 ### - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorEditor.png" height="500" />
+<img src="/HiringEngineersScreenShots/monitorEditor.png" height="500" />
 
 ### Please configure the monitor’s message so that it will:
 
@@ -336,7 +343,7 @@ In this case, I performed all my actions via the Datadog Application following [
 
 There's information in the editor on using this markdown under ```Use message template variables```, but to see the full extent of what we can parameterize, look to the [Notifications Documentation](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#message-template-variables)
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorEditor2.png" height="500" />
+<img src="/HiringEngineersScreenShots/monitorEditor2.png" height="500" />
 
 So I thought I was being quite clever here in parameterizing the ```Alert Title Field```. It turns out that you can, and it works, but as we'll see later, it looks pretty bad when we're sending Downtime Notifications.
 
@@ -344,7 +351,7 @@ So I thought I was being quite clever here in parameterizing the ```Alert Title 
 
 Here's an example of a warning notification we get from the monitor:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorWarningWithNumbers.png" height="500" />
+<img src="/HiringEngineersScreenShots/monitorWarningWithNumbers.png" height="500" />
 
 ___
 ### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -355,19 +362,19 @@ We can hop on over to the [Manage Downtime](https://app.datadoghq.com/monitors#d
 
 I've configured one for our weekday evenings: 
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/weekdayDowntime.png" height="500" />
+<img src="/HiringEngineersScreenShots/weekdayDowntime.png" height="500" />
 
 You'll notice how hideous my attempts at creating a parameterized monitor title came out here. Since this downtime is referring to the whole monitor, rather than a particular piece of it, we're getting the full title text.
 
 I've also added one for our weekends, starting Friday evening, and ending Monday morning:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/weekendDowntime.png" height="500" />
+<img src="/HiringEngineersScreenShots/weekendDowntime.png" height="500" />
 
 Here's what we get when the downtime starts:
 
-<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/monitorDowntimeNotification.png" height="500" />
+<img src="/HiringEngineersScreenShots/monitorDowntimeNotification.png" height="500" />
 
-At this point, I've changed this downtime to work for all monitors. Definitely not because it looked better than my dynamic monitor title. 
+At this point, I've changed this downtime to work for all monitors. Definitely not because it looked better than my dynamic monitor title. ;) 
 
 #### In reality, I imagine, there are going to be certain alerts which _must_ be up at all times. For anything mission critical, it doesn't matter if it's 3 in the morning on Saturday, I want that alert.
 
@@ -380,7 +387,7 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 
 For this excercise I've taken the given flask app and made some alterations, as well as prepared a Bash script to populate data for the APM, since I wanted more data on our dashboard side and didn't feel like hitting 4 endpoints over and over manually. _Additionally_, we'll be using [ddtrace](https://docs.datadoghq.com/tracing/languages/python/) rather than injecting trace middleware into the application itself.
 
-The application lives in [/vagrant/flaskApp/datadogAPM.py](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/flaskApp/datadogAPM.py)
+The application lives in [```/vagrant/flaskApp/datadogAPM.py```](/dataDogVagrant/agent-configuration/flaskApp/datadogAPM.py)
 
 ```python
 from flask import Flask
@@ -446,7 +453,7 @@ I've added an additional endpoint that will query our ```worlddb``` database tha
 
 	We'll come back to this in a moment.
 
-- Then we'll need to configure our agent to go back to our [datadog.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml) and enable ```apm_config``` all the way at the bottom of the file.
+- Then we'll need to configure our agent to go back to our [```datadog.yaml```](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml) and enable ```apm_config``` all the way at the bottom of the file.
 
 ```yaml
 apm_config:
@@ -476,9 +483,9 @@ apm_config:
 
 Here we will change ```enabled:``` to ```true```. I've also set ```max_traces-per_second:``` to ```0``` to accomodate my Bash script later on. Everything else is the default value.
 
-From the [/vagrant/flaskApp/](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/flaskApp) directory we can run ```./apm_generator.sh``` to boot up the application, then use curl to loop over the endpoints in our application a few times. After that it will shut down the application and close the port ```localhost:5050```.
+From the [```/vagrant/flaskApp/```](/dataDogVagrant/agent-configuration/flaskApp) directory we can run ```./apm_generator.sh``` to boot up the application, then use curl to loop over the endpoints in our application a few times. After that it will shut down the application and close the port ```localhost:5050```.
 
-Here's what the [Bash Script](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/flaskApp/apm_generator.sh) looks like:
+Here's what the [Bash Script](/dataDogVagrant/agent-configuration/flaskApp/apm_generator.sh) looks like:
 
 ```shell
 #!/bin/bash
@@ -510,7 +517,7 @@ Now that we've run the application with ```ddtrace``` and hit enough endpoints f
 
 <img src="/HiringEngineersScreenShots/traceSearchAndAnalytics.png" alt="traceSearchAnalytics" height="500" />
 
-Now that we're seeing some data, we can enable [Trace Search](https://docs.datadoghq.com/agent/apm/?tab=agent630#trace-search) in our [datadog.yaml](/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml):
+Now that we're seeing some data, we can enable [Trace Search](https://docs.datadoghq.com/agent/apm/?tab=agent630#trace-search) in our [```datadog.yaml```](/dataDogVagrant/agent-configuration/datadog-agent-config/datadog.yaml):
 
 ```yaml
 apm_config:
@@ -558,7 +565,7 @@ A Resource is a particular action for a Service. When we look at our [Trace Sear
 ___
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Here's an [Dashboard](https://app.datadoghq.com/dashboard/68e-zcq-w5q/infrastructure-and-apm-dash?tile_size=m&page=0&is_auto=false&from_ts=1553362200000&to_ts=1553365800000&live=true) where we're looking at our infastructure metrics an our APM metrics. Now we can really visualize the value of getting all of this information in one place where it's easy to consume. We can start to look for correlations in our data, set alerts, look for anomalies, and so much more in our ever changing dynamic infastructures.
+Here's a [Dashboard](https://app.datadoghq.com/dashboard/68e-zcq-w5q/infrastructure-and-apm-dash?tile_size=m&page=0&is_auto=false&from_ts=1553362200000&to_ts=1553365800000&live=true) where we're looking at our infastructure metrics an our APM metrics. Now we can really visualize the value of getting all of this information in one place where it's easy to consume. We can start to look for correlations in our data, set alerts, look for anomalies, and so much more in our ever changing dynamic infastructures.
 
 <img src="/HiringEngineersScreenShots/traceAndInfrastructureDash.png" alt="trace and infastructure dash" height="400" />
 
@@ -568,5 +575,12 @@ Final Question:
 ### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 ### Is there anything creative you would use Datadog for?
+
+After gaining a better understanding of the Datadog platform, I can say, it could be used for a whole lot! One thing I thought of immediately was implementing this to monitor IOT infastructures. Imagine hooking it up to every facet of your 'smart' home and setting alerts when the temperature goes down too far, or your energy consumption is going above average. Are these devices communicating with eachother properly? We could look at all their connections and turn something abstract , like communications from device to device, into data that's much more tangible and consumable to a human running the show.
+
+
+This relates directly to a personal project I've conceptualized with a friend as well. The concept is a smart guitar humidifying case that essentially reads the environment of the case from an arduino board with peripherals (things like humidity, temperature, light, etc.), that relays that information via API to a web server, which would then communicate with individuals' mobile applications to alert them of changes in those variables, and either automatically, or through manual input from the mobile application, make adjustments to them via mechanisms built into the board in the case itself. 
+
+Now, imagine having to make sure all of the data coming from all of those boxes was coming back correctly, and not malfunctioning. We could use Datadog to get a better view of all of the moving parts in our infrastructure. 
 
 ___
