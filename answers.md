@@ -1,7 +1,7 @@
 This exercise has been a great deal of fun. I've become fully immersed in it over the last two weeks. It's been an incredibly effective way to get me familiar with Datadog's services. It's also helped me to realize that there's so much more to learn about this product, and I'm really psyched about the opportunity to do just that. So take a gander, enjoy the ride, and let me know of any feedback you've got for me.	~ Russel
 
 
-[Prequisites](/answers.md#prerequisites---setup-the-environment)
+[Prerequisites](/answers.md#prerequisites---setup-the-environment)
 
 [Collecting Metrics](/answers.md#collecting-metrics)
 
