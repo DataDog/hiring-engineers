@@ -177,14 +177,45 @@ Awesome! To confirm this data is getting pushed up from the agent, we'll check o
 <img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashPsql.png" alt="postgresHostView" height="230" />
 
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 To create this custom check, we'll refer to [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) in the DataDog documentation.
 
-Within our agent configuration directory: ```/etc/datadog-agent/``` we'll find a directory named [checks.d](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d). This is where we can create python scripts for our custom checks, with a matching yaml configuration file in the [etc/datadog-agent/conf.d/]() directory. 
+Within our agent configuration directory: ```/etc/datadog-agent/``` we'll find a directory named [checks.d](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d). This is where we can create python scripts for our custom checks, with a matching yaml configuration file in the [etc/datadog-agent/conf.d/](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d) directory. 
+
+Here's how the files for my custom check look:
+
+[/etc/datadog-agent/checks.d/custom_my_metric.py](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d/custom_my_metric.py)
+```python
+
+import random
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
 
 
+class MyMetricCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('custom_metric.my_metric', random.randint(1, 1000))
+``` 
+Notice I've used Python's [Random](https://docs.python.org/3/library/random.html) module to generate a random value between 1 and 1000 for the metric.
 
+[etc/datadog-agent/conf.d/custom_my_metric.yaml](https://github.com/RusselViola/hiring-engineers/blob/master/dataDogVagrant/agent-configuration/datadog-agent-config/conf.d/custom_my_metric.yaml)
+```yaml
 
-### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+I've set an interval here to 45s for the custom metric.
+
 ___
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
