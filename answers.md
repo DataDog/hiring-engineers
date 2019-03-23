@@ -172,6 +172,9 @@ Let's restart the datadog-agent with ```service datadog-agent restart``` and the
 
 <img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationAgentPickup.png" alt="psql agent check" height="200" /><img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationLogsConfigured.png" alt="psql agent check" height="200" />
 
+Awesome! To confirm this data is getting pushed up from the agent, we'll check our [Host View](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=878227842)
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashPsql.png" alt="postgresHostView" height="230" />
 
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
