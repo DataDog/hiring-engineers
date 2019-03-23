@@ -168,6 +168,10 @@ log_file_mode = 0644			# creation mode for log files,
 					# begin with 0 to use octal notation
 #log_truncate_on_rotation = off		# If on, an existing log file with the
 ```
+Let's restart the datadog-agent with ```service datadog-agent restart``` and then check it's pulse with ```datadog-agent status```. If we've done everything right for postgres, we should see something like this:
+
+<img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationAgentPickup.png" alt="psql agent check" height="200" /><img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/psqlIntegrationLogsConfigured.png" alt="psql agent check" height="200" />
+
 
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
