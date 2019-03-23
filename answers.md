@@ -177,6 +177,13 @@ Awesome! To confirm this data is getting pushed up from the agent, we'll check o
 <img src="https://github.com/RusselViola/hiring-engineers/blob/master/HiringEngineersScreenShots/HostDashPsql.png" alt="postgresHostView" height="230" />
 
 ### - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+To create this custom check, we'll refer to [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6) in the DataDog documentation.
+
+Within our agent configuration directory: ```/etc/datadog-agent/``` we'll find a directory named [checks.d](https://github.com/RusselViola/hiring-engineers/tree/master/dataDogVagrant/agent-configuration/datadog-agent-config/checks.d). This is where we can create python scripts for our custom checks, with a matching yaml configuration file in the [etc/datadog-agent/conf.d/]() directory. 
+
+
+
+
 ### - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ___
 ### Bonus Question Can you change the collection interval without modifying the Python check file you created?
