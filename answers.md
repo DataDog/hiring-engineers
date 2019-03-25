@@ -10,7 +10,7 @@ Your answers to the questions go here.
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Metric%20Name%20my_metric.png" width="800" height="332" alt="_DSC4652"></a>
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Change%20collection%20time%20to%2045.png" width="800" height="332" alt="_DSC4652"></a>
-* Bonus Question Can you change the collection interval without modifying the Python check file you created?
+**  Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Looks like you can change from portal.
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Bonus%20Answer%20question%201.png" width="800" height="332" alt="_DSC4652"></a>
 * Your custom metric scoped over your host.
@@ -75,6 +75,7 @@ api.Dashboard.create(title=title,
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/snapshot%20taken%20and%20sent.png" width="800" height="332" alt="_DSC4652"></a>
 
 ** Bonus Question: What is the Anomaly graph displaying?
+
 Its using data to keep track of whats normal in its opinion bassed off the prior data.  The more data the better the algorithm can identify things that are not normal.  This specif graph is looking at mysql cpu performance and bassed off of how its has been running in the past it can identify things out of the ordinary.  
 Send you an email whenever the monitor triggers.
 
@@ -86,4 +87,12 @@ Send you an email whenever the monitor triggers.
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Warning%20email.png" width="800" height="332" alt="_DSC4652"></a>
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Triggered%20email.png" width="800" height="332" alt="_DSC4652"></a>
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/No%20data%20email.png" width="800" height="332" alt="_DSC4652"></a>
+
+** Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+* One that silences it from 7pm to 9am daily on M-F,
+* And one that silences it all day on Sat-Sun.
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Saturday%20and%20Sunday%20downtime%20schedule.png" width="800" height="332" alt="_DSC4652"></a>
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/scheduled%20downtime%20%20mon%20-%20friday%20evening.png" width="800" height="332" alt="_DSC4652"></a>
 
