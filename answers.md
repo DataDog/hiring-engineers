@@ -67,3 +67,10 @@ api.Dashboard.create(title=title,
                      is_read_only=is_read_only,
                      notify_list=notify_list,
                      template_variables=template_variables)
+                    
+* Set the Timeboard's timeframe to the past 5 minutes
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/timebord%205min%20screen%20interval.png" width="800" height="332" alt="_DSC4652"></a>
+
+* Take a snapshot of this graph and use the @ notation to send it to yourself. 
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/snapshot%20taken%20and%20sent.png" width="800" height="332" alt="_DSC4652"></a>
+ 
