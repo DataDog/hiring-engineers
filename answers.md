@@ -95,4 +95,12 @@ Send you an email whenever the monitor triggers.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Saturday%20and%20Sunday%20downtime%20schedule.png" width="800" height="332" alt="_DSC4652"></a>
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/scheduled%20downtime%20%20mon%20-%20friday%20evening.png" width="800" height="332" alt="_DSC4652"></a>
+** Bonus Question: What is the difference between a Service and a Resource?
 
+A services is a set of process that do the same thing over and over.  A Resource is an paticular action for a given service.
+
+* Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/dashboard%20with%20apm%20and%20infrastructure%20graphs.png" width="800" height="332" alt="_DSC4652"></a>
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Running%20flask%20app%20with%20ddtrace-run%20.png" width="800" height="332" alt="_DSC4652"></a>
+
+* Please include your fully instrumented app in your submission, as well.
