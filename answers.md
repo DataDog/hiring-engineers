@@ -74,5 +74,6 @@ api.Dashboard.create(title=title,
 * Take a snapshot of this graph and use the @ notation to send it to yourself. 
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/snapshot%20taken%20and%20sent.png" width="800" height="332" alt="_DSC4652"></a>
 
-Bonus Question: What is the Anomaly graph displaying?
+** Bonus Question: What is the Anomaly graph displaying?
+Its using data to keep track of whats normal in its opinion bassed off the prior data.  The more data the better the algorithm can identify things that are not normal.  This specif graph is looking at mysql cpu performance and bassed off of how its has been running in the past it can identify things out of the ordinary.  
 
