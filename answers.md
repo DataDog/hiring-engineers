@@ -76,4 +76,14 @@ api.Dashboard.create(title=title,
 
 ** Bonus Question: What is the Anomaly graph displaying?
 Its using data to keep track of whats normal in its opinion bassed off the prior data.  The more data the better the algorithm can identify things that are not normal.  This specif graph is looking at mysql cpu performance and bassed off of how its has been running in the past it can identify things out of the ordinary.  
+Send you an email whenever the monitor triggers.
+
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Warning%20email.png" width="800" height="332" alt="_DSC4652"></a>
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Triggered%20email.png" width="800" height="332" alt="_DSC4652"></a>
+<img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/No%20data%20email.png" width="800" height="332" alt="_DSC4652"></a>
 
