@@ -104,3 +104,10 @@ A services is a set of process that do the same thing over and over.  A Resource
 <img src="http://480103081bda39217c58-f86642ef36cf4c67ddae8eac86589bac.r68.cf1.rackcdn.com/Running%20flask%20app%20with%20ddtrace-run%20.png" width="800" height="332" alt="_DSC4652"></a>
 
 * Please include your fully instrumented app in your submission, as well.
+
+** Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+* Is there anything creative you would use Datadog for?
+
+Cryptopcurrency's and the blockchain are becoming more and more mainstream and the new buzz words in tech.  It has intrigued me ever since the bitcoin run on December 2017 when it almost hit the $20k price mark. I like to keep track of certain events to make sure that if for some reason I find a way to go back in time I will have a plan.  I think using Datadog to track my favorite crypto exchanges would be really cool. Most major exchanges provide API's into your accounts so having a  Datadog dashboard that could be a single source of truth could give someone the edge needed to stay on top of what's going on in the market.  This market does not sleep and there are huge fluctuations in price at any given moment.  Using features like anomaly monitoring I can see this helping identify changes that may be going on or pointing out things that are starting to happen.  I have found myself prematurely changing my position in certain coins because of events that happen organically, not out of the norm.  I can see using timeboards to correlate social media post and actions taking place on an exchange to possibly help identify more of the shady practices like a pump and dump scenario.  I think the possibilities are endless with what you could track in this wild west crypto market, and who knows maybe it will help someone not miss the bus on the next crypto run to the moon.
+
