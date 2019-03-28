@@ -1,7 +1,7 @@
 ﻿# Prerequisites - Setup the environment
 [x] You can spin up a fresh linux VM via Vagrant Ubuntu VM 
 
-![vagrant](screenshots/1-vagrantversion.png)
+![vagrant](screenshots/1-host_map.PNG)
 
 # 1. Collecting Metrics
 
