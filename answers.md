@@ -1,9 +1,9 @@
-# Prerequisites - Setup the environment
+﻿# Prerequisites - Setup the environment
 [x] You can spin up a fresh linux VM via Vagrant Ubuntu VM 
 
-![vagrant](./screenshots\1-vagrantversion.png)
+![vagrant](./screenshots/1-vagrantversion.png)
 
-# 1. Collecting Metrics</h2>
+# 1. Collecting Metrics
 
 ### Tasks
 
@@ -15,30 +15,30 @@
 ### Screenshots
 Host Map and Configuration
 
-![host_map](./screenshots\1-host_map.png)
+![host_map](./screenshots/1-host_map.png)
 ### Host Map
 
-![Host_map1](./screenshots\1-host_map1.png)
+![Host_map1](./screenshots/1-host_map1.png)
 ### Host Map 2
 
-![Host_map1](./screenshots\hostnametags.png)
+![Host_map1](./screenshots/hostnametags.png)
 
 ### MySQL Integration
 
-![Host_map2](./screenshots\1_mysql.png)
+![Host_map2](./screenshots/1_mysql.png)
 
 ### MySQL Integration MySql agent check
 
-![agent_check](./screenshots\1_mysql_agentcheck.png)
+![agent_check](./screenshots/1_mysql_agentcheck.png)
 
 
 ### Agent Check my_metric
 
-![agent_check](./screenshots\1_Agent_Check.png)
+![agent_check](./screenshots/1_Agent_Check.png)
 
 ### my_metric yaml
 
-![agent_check](./screenshots\1_Agent_Checkconf.png)
+![agent_check](./screenshots/1_Agent_Checkconf.png)
 
 
 ### Questions
