@@ -15,30 +15,30 @@
 ### Screenshots
 Host Map and Configuration
 
-![host_map](screenshots/1-host_map.png)
+![host_map](screenshots/1-host_map.PNG)
 ### Host Map
 
-![Host_map1](screenshots/1-host_map1.png)
+![Host_map1](screenshots/1-host_map1.PNG)
 ### Host Map 2
 
-![Host_map1](screenshots/hostnametags.png)
+![Host_map1](screenshots/hostnametags.PNG)
 
 ### MySQL Integration
 
-![Host_map2](screenshots/1_mysql.png)
+![Host_map2](screenshots/1_mysql.PNG)
 
 ### MySQL Integration MySql agent check
 
-![agent_check](screenshots/1_mysql_agentcheck.png)
+![agent_check](screenshots/1_mysql_agentcheck.PNG)
 
 
 ### Agent Check my_metric
 
-![agent_check](screenshots/1_Agent_Check.png)
+![agent_check](screenshots/1_Agent_Check.PNG)
 
 ### my_metric yaml
 
-![agent_check](screenshots/1_Agent_Checkconf.png)
+![agent_check](screenshots/1_Agent_Checkconf.PNG)
 
 
 ### Questions
@@ -59,10 +59,10 @@ Can you change the collection interval without modifying the Python check file y
   ### Screenshots
   
   #### Timeboard
-  ![Timeboard](screenshots/2_timeboard2.png)
+  ![Timeboard](screenshots/2_timeboard2.PNG)
  
   #### Graph w/ @ notation to send self  
-  ![Graph Snapshot](screenshots/Anomaly_5min_MySQL.png)
+  ![Graph Snapshot](screenshots/Anomaly_5min_MySQL.PNG)
   
   ### Questions
    What is the anomaly graph displaying?  
@@ -85,16 +85,16 @@ Can you change the collection interval without modifying the Python check file y
   ### Screenshots
 
   #### Monitoring Data
-  ![Monitoring Data](screenshots/3_Notification_Entire_infra.png)
+  ![Monitoring Data](screenshots/3_Notification_Entire_infra.PNG)
   
   #### Monitor Alert
-  ![Monitor Alert](screenshots/3_Alert.png)
+  ![Monitor Alert](screenshots/3_Alert.PNG)
   
   #### No Data Alert
-  ![No Data](screenshots/3_No_Data.png)
+  ![No Data](screenshots/3_No_Data.PNG)
   
   #### Downtime (Bonus)
-  ![Downtime](screenshots/3_Downtime.png) 
+  ![Downtime](screenshots/3_Downtime.PNG) 
 
   # 4. Collecting APM Data   
 Given an app use Datadog’s APM solution   
@@ -102,9 +102,9 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 [Dashboard Link](https://p.datadoghq.com/sb/ov0483fsnj4ruvv8-bbe1d97bcb9454657c24cb9a41719c1d)
 
-![APM and Infrasctructure](screenshots/4_APM_timeboard_Public_URL.png)
+![APM and Infrasctructure](screenshots/4_APM_timeboard_Public_URL.PNG)
 
-![APM and Infrasctructure](screenshots/4_Public_URL_access.png)
+![APM and Infrasctructure](screenshots/4_Public_URL_access.PNG)
   
 ### Question: What is the difference between a Service and a Resource? 
 A service is a set of processes that do the same job. For instance, a simple web application may consist of two services:
