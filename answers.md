@@ -120,8 +120,17 @@ For a SQL database: a resource is the query itself, such as SELECT * FROM users 
 # 5. Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?  
+Is there anything creative you would use Datadog for? 
 
+# Telecom monitoring system
+
+### Telecom operators typically do not allow access from their operations and maintenance platforms to the internet or to the cloud. An on-premise solution until paradigm change to the cloud would be especially interesting for the following platforms:
+
+### core monitoring VoLTE and 5G
+### protocol analysis tools
+### monitoring logs.
+
+### Nowadays, the data are collected from the remote probes and correlated with the data in a central point of mediation, but these machines do not have a monitoring of their status, which makes it difficult to analyze the system capacity. With an on-premise system from Datadog it would be very interesting both the monitoring of the infratrura and the APM of these applications especially PIC (Performance Intelligence Center) solution.
 
 # aircraft check list
 
