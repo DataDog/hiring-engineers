@@ -106,6 +106,7 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
 ```
+This is the screenshot
  ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/my_metric.png)   
 
 And then the YAML file
@@ -150,7 +151,7 @@ This is the body:
     }},
  ```
 * Any metric from the Integration on your Database with the anomaly function applied.
-This is as well the body I have used on Postman
+This is as well the body I have used on Postman. I have used the percent usage connections for alerting
  ```
  {"definition": {
    "type": "timeseries",
@@ -171,13 +172,16 @@ This is as well the body I have used on Postman
 ``` 
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
 Used Postman to run a POST POST "https://api.datadoghq.com/api/v1/dashboard?app_key=04d117a9f3b1e1728cdf7738a20bc3062f2ff7d6&api_key=49514af82afd9cde0bd302ba37201f49"
+
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dashboard.png)
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+Here is the dashboard used as example:
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/notify.png)
 
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dashboardPostman.png)
@@ -201,6 +205,8 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+To create the Monitor y have used the API as well. This is the body of the request with the different text depending on the type of alert and the metric value, host name and host ip. 
 ```
 {
 	"name": "My_Metric monitor",
@@ -228,8 +234,13 @@ Please configure the monitor’s message so that it will:
 	}
 }
 ```
+Some screenshots of the process. 
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitor.png)
+
+Screenshot of the email
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitorEmail.png)
+
+Screenshot of the monitor
 ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitorUI.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -238,6 +249,8 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   One that silences it from 7pm to 9am daily on M-F,
+  
+  Again using Postman as it is simple:
 Call:https://api.datadoghq.com/api/v1/downtime?application_key=04d117a9f3b1e1728cdf7738a20bc3062f2ff7d6&api_key=49514af82afd9cde0bd302ba37201f49
 JSON Body:
 ```
@@ -322,7 +335,7 @@ This is the screenshot of the flask application instrumented
 A service, in a datadog context, is the application it self, composed by different elements like DB or app Server. and the resource is one single request or call 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-![Screenshot]https://github.com/polflip/hiring-engineers/blob/master/(dashboardInfraAPM.png)
+![Screenshot]https://github.com/polflip/hiring-engineers/blob/master/dashboardInfraAPM.png)
 
 
 Please include your fully instrumented app in your submission, as well.
