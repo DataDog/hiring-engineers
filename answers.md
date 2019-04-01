@@ -14,7 +14,7 @@ tags:
    - test:polflip
    ```
    
-  ![Screenshot](tags.png)
+  ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/tags.png)
   
   
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -66,13 +66,13 @@ instances:
     password: datadog
 ```    
 
-   ![Screenshot](dbintegration.png)
+   ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dbintegration.png)
     
   After configuring the integration, we can see it running on 
   https://app.datadoghq.com/account/settings#integrations/postgres
   
   It appears on the integration
- ![Screenshot](dbintegration2.png)
+ ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dbintegration2.png)
  
 ``` 
   And running the datadog-agent status command
@@ -106,7 +106,7 @@ class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
 ```
- ![Screenshot](my_metric.png)   
+ ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/my_metric.png)   
 
 And then the YAML file
  ```
@@ -123,10 +123,10 @@ init_config:
 instances:
  - min_collection_interval: 45
  ```
- ![Screenshot](changeInterval.png)
+ ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/changeInterval.png)
  
  As a result, the metric appears on Metric Explorer:
- ![Screenshot](my_metricUI.png)
+ ![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/my_metricUI.png)
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 Yes, this goes in the yaml file
 
@@ -172,15 +172,15 @@ This is as well the body I have used on Postman
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 Used Postman to run a POST POST "https://api.datadoghq.com/api/v1/dashboard?app_key=04d117a9f3b1e1728cdf7738a20bc3062f2ff7d6&api_key=49514af82afd9cde0bd302ba37201f49"
-![Screenshot](dashboard.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dashboard.png)
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-![Screenshot](notify.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/notify.png)
 
-![Screenshot](dashboardPostman.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/dashboardPostman.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 It is displaying the normal behaviour and it adapts over time. The more time is running, the more the algorith learns and can better identify anomalies
@@ -228,9 +228,9 @@ Please configure the monitor’s message so that it will:
 	}
 }
 ```
-![Screenshot](monitor.png)
-![Screenshot](monitorEmail.png)
-![Screenshot](monitorUI.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitor.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitorEmail.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/monitorUI.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -255,13 +255,13 @@ JSON Body:
   }
 }
 ```
-![Screenshot](downtime.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/downtime.png)
 
 And one that silences it all day on Sat-Sun.
-![Screenshot](downtimeweekend.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/downtimeweekend.png)
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![Screenshot](downtimeNotification.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/downtimeNotification.png)
 
 ## Collecting APM Data:
 
@@ -315,14 +315,14 @@ And then run the instrumented application
 ddtrace-run python flask_app.py
 ```
 This is the screenshot of the flask application instrumented
-![Screenshot](flask.png)
+![Screenshot](https://github.com/polflip/hiring-engineers/blob/master/flask.png)
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 A service, in a datadog context, is the application it self, composed by different elements like DB or app Server. and the resource is one single request or call 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-![Screenshot](dashboardInfraAPM.png)
+![Screenshot]https://github.com/polflip/hiring-engineers/blob/master/(dashboardInfraAPM.png)
 
 
 Please include your fully instrumented app in your submission, as well.
