@@ -122,6 +122,17 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?  
 
+
+# aircraft check list
+
+### Every aircraft has a checklist that lists all of the items that must be checked and the order to do them in. For a big complex plane like an airliner these are quite extensive. There are a eletronic form that need to be delivery 10 min before take off without this you can delay the take off process. All companies need to delivery and to make it faster you can use datadog for this check list for some tasks.
+### For the flight you want to do, you do a weight and balance calculation to make sure you are within safe limits,and know how much fuel you can take.
+### Before the first flight of the day, or when you’re a new pilot on that particular aircraft,you would do a visual external check. This is just to check that there is no obvious fault that would compromise safety, like damage, broken or missing parts, flat or underinflated tyres, external lights not working. You would also check the engine oil level, fuel contamination by water, free movement of the control surfaces, free of icing, stall warning horn check. In the cockpit, before running through the checklist, you’d do a similar visual inspection to make sure that there was no obvious problems with instruments (like cracked glass, or anything missing),check for anything placarded by a previous pilot. You’d check for damage to harnesses, proper closure of the doors, clear windscreen, loose items in the cabin etc. You would check for full and free movement of the controls and visually check that they did what they were supposed to regarding control surface motion, etc (this is also on the checklist). You would generally briefly power up to check that there was power, and that the voltage was normal.If you had a passenger you would usually brief them about how to use the harness, close the door properly, explain how to keep themselves free of the controls,what you were doing, and make it clear who’s in charge. Then it’s on to the checklist, divided into pre-engine start, and post-engine start. Engine start may require permission from ATC. Included is the setting of instruments (e.g. the altimeter must be calibrated to the QNH or QFE pressure, align the gyrocompass to the magnetic compass). After engine start there is usually a warm up period, a power check, and a magneto check, to verify that both magnetos are working correctly.If you are doing a series of takeoffs, like just doing circuits with fullstops, backtracks and takeoffs,you usually only do a brief engine check before the takeoff, you don’t run through a full test each time.
+
+
+
+# Health application
+
 ### Amyotrophic Lateral Sclerosis patient to be able to communicate free of human intervention, thus returning the high esteem and making it more independent. 
 ### Using only eye movements they can access all computer resources and turn on light and TV change channels open doors and so on.
 ### The solution : Using tobii 4C + Optikey connected to a notebook and DataDog monitoring will help with dashboards to prevent system outage and remote support for this patient.
