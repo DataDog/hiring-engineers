@@ -1,0 +1,848 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Datadog.Trace</name>
+    </assembly>
+    <members>
+        <member name="T:Datadog.Trace.AgentHttpHeaderNames">
+            <summary>
+            Names of HTTP headers that can be used when sending traces to the Trace Agent.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.AgentHttpHeaderNames.Language">
+            <summary>
+            The language-specific tracer that generated this span.
+            Always ".NET" for the .NET Tracer.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.AgentHttpHeaderNames.LanguageInterpreter">
+            <summary>
+            The interpreter version for the given language, e.g. ".NET Framework 4.7.2" or ".NET Core 2.1".
+            The value of <see cref="P:System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription"/>.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.AgentHttpHeaderNames.TracerVersion">
+            <summary>
+            The version of the tracer that generated this span.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.ExtensionMethods.HttpHeadersExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.Http.Headers.HttpHeaders"/> objects.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.HttpHeadersExtensions.Wrap(System.Net.Http.Headers.HttpHeaders)">
+            <summary>
+            Provides an <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/> implementation that wraps the specified <see cref="T:System.Net.Http.Headers.HttpHeaders"/>.
+            </summary>
+            <param name="headers">The HTTP headers to wrap.</param>
+            <returns>An object that implements <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/>.</returns>
+        </member>
+        <member name="T:Datadog.Trace.ExtensionMethods.NameValueCollectionExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Specialized.NameValueCollection"/> objects.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.NameValueCollectionExtensions.Wrap(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Provides an <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/> implementation that wraps the specified <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <param name="collection">The name/value collection to wrap.</param>
+            <returns>An object that implements <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/>.</returns>
+        </member>
+        <member name="T:Datadog.Trace.ExtensionMethods.SpanExtensions">
+            <summary>
+            Extension methods for the <see cref="T:Datadog.Trace.Span"/> class.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.SpanExtensions.SetTraceSamplingPriority(Datadog.Trace.Span,Datadog.Trace.SamplingPriority)">
+            <summary>
+            Sets the sampling priority for the trace that the specified <see cref="T:Datadog.Trace.Span"/> belongs to.
+            </summary>
+            <param name="span">A span that belongs to the trace.</param>
+            <param name="samplingPriority">The new sampling priority for the trace.</param>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.SpanExtensions.AddTagsFromDbCommand(Datadog.Trace.Span,System.Data.Common.DbCommand)">
+            <summary>
+            Adds standard tags to a span with values taken from the specified <see cref="T:System.Data.Common.DbCommand"/>.
+            </summary>
+            <param name="span">The span to add the tags to.</param>
+            <param name="command">The db command to get tags values from.</param>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.StringExtensions.TrimEnd(System.String,System.String,System.StringComparison)">
+            <summary>
+            Removes the trailing occurrence of a substring from the current string.
+            </summary>
+            <param name="value">The original string.</param>
+            <param name="suffix">The string to remove from the end of <paramref name="value"/>.</param>
+            <param name="comparisonType">One of the enumeration values that determines how this string and <paramref name="suffix"/> are compared.</param>
+            <returns>A new string with <paramref name="suffix"/> removed from the end, if found. Otherwise, <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Datadog.Trace.ExtensionMethods.TimeExtensions.ToUnixTimeNanoseconds(System.DateTimeOffset)">
+            <summary>
+            Returns the number of nanoseconds that have elapsed since 1970-01-01T00:00:00.000Z.
+            </summary>
+            <param name="dateTimeOffset">The value to get the number of elapsed nanoseconds for.</param>
+            <returns>The number of nanoseconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
+        </member>
+        <member name="T:Datadog.Trace.Headers.IHeadersCollection">
+            <summary>
+            Specified a common interface that can be used to manipulate collections of headers.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Headers.IHeadersCollection.GetValues(System.String)">
+            <summary>
+            Returns all header values for a specified header stored in the collection.
+            </summary>
+            <param name="name">The specified header to return values for.</param>
+            <returns>Zero or more header strings.</returns>
+        </member>
+        <member name="M:Datadog.Trace.Headers.IHeadersCollection.Set(System.String,System.String)">
+            <summary>
+            Sets the value of an entry in the collection, replacing any previous values.
+            </summary>
+            <param name="name">The header to add to the collection.</param>
+            <param name="value">The content of the header.</param>
+        </member>
+        <member name="M:Datadog.Trace.Headers.IHeadersCollection.Add(System.String,System.String)">
+            <summary>
+            Adds the specified header and its value into the collection.
+            </summary>
+            <param name="name">The header to add to the collection.</param>
+            <param name="value">The content of the header.</param>
+        </member>
+        <member name="M:Datadog.Trace.Headers.IHeadersCollection.Remove(System.String)">
+            <summary>
+            Removes the specified header from the collection.
+            </summary>
+            <param name="name">The name of the header to remove from the collection.</param>
+        </member>
+        <member name="T:Datadog.Trace.HttpHeaderNames">
+            <summary>
+            Names of HTTP headers that can be used tracing inbound or outbound HTTP requests.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.HttpHeaderNames.TraceId">
+            <summary>
+            ID of a distributed trace.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.HttpHeaderNames.ParentId">
+            <summary>
+            ID of the parent span in a distributed trace.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.HttpHeaderNames.SamplingPriority">
+            <summary>
+            Setting used to determine whether a trace should be sampled or not.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.HttpHeaderNames.TracingEnabled">
+            <summary>
+            If header is set to "false", tracing is disabled for that http request.
+            Tracing is enabled by default.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.ISpanContext">
+            <summary>
+            Span context interface.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.ISpanContext.TraceId">
+            <summary>
+            Gets the trace identifier.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.ISpanContext.SpanId">
+            <summary>
+            Gets the span identifier.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.ISpanContext.ServiceName">
+            <summary>
+            Gets the service name to propagate to child spans.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Logging.ILog">
+            <summary>
+            Simple interface that represent a logger.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Logging.ILog.Log(Datadog.Trace.Logging.LogLevel,System.Func{System.String},System.Exception,System.Object[])">
+            <summary>
+            Log a message the specified log level.
+            </summary>
+            <param name="logLevel">The log level.</param>
+            <param name="messageFunc">The message function.</param>
+            <param name="exception">An optional exception.</param>
+            <param name="formatParameters">Optional format parameters for the message generated by the messagefunc. </param>
+            <returns>true if the message was logged. Otherwise false.</returns>
+            <remarks>
+            Note to implementers: the message func should not be called if the loglevel is not enabled
+            so as not to incur performance penalties.
+            
+            To check IsEnabled call Log with only LogLevel and check the return value, no event will be written.
+            </remarks>
+        </member>
+        <member name="T:Datadog.Trace.Logging.LogLevel">
+            <summary>
+            The log level.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Logging.ILogProvider">
+            <summary>
+            Represents a way to get a <see cref="T:Datadog.Trace.Logging.ILog"/>
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Logging.ILogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the specified named logger.
+            </summary>
+            <param name="name">Name of the logger.</param>
+            <returns>The logger reference.</returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.ILogProvider.OpenNestedContext(System.String)">
+            <summary>
+            Opens a nested diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="message">The message to add to the diagnostics context.</param>
+            <returns>A disposable that when disposed removes the message from the context.</returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.ILogProvider.OpenMappedContext(System.String,System.String)">
+            <summary>
+            Opens a mapped diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <returns>A disposable that when disposed removes the map from the context.</returns>
+        </member>
+        <member name="T:Datadog.Trace.Logging.LogProvider">
+            <summary>
+            Provides a mechanism to create instances of <see cref="T:Datadog.Trace.Logging.ILog" /> objects.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.SetCurrentLogProvider(Datadog.Trace.Logging.ILogProvider)">
+            <summary>
+            Sets the current log provider.
+            </summary>
+            <param name="logProvider">The log provider.</param>
+        </member>
+        <member name="P:Datadog.Trace.Logging.LogProvider.IsDisabled">
+            <summary>
+            Gets or sets a value indicating whether this is logging is disabled.
+            </summary>
+            <value>
+            <c>true</c> if logging is disabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Datadog.Trace.Logging.LogProvider.OnCurrentLogProviderSet">
+            <summary>
+            Sets an action that is invoked when a consumer of your library has called SetCurrentLogProvider. It is 
+            important that hook into this if you are using child libraries (especially ilmerged ones) that are using
+            LibLog (or other logging abstraction) so you adapt and delegate to them.
+            <see cref="M:Datadog.Trace.Logging.LogProvider.SetCurrentLogProvider(Datadog.Trace.Logging.ILogProvider)"/> 
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.For``1">
+            <summary>
+            Gets a logger for the specified type.
+            </summary>
+            <typeparam name="T">The type whose name will be used for the logger.</typeparam>
+            <returns>An instance of <see cref="T:Datadog.Trace.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.GetCurrentClassLogger">
+            <summary>
+            Gets a logger for the current class.
+            </summary>
+            <returns>An instance of <see cref="T:Datadog.Trace.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.GetLogger(System.Type,System.String)">
+            <summary>
+            Gets a logger for the specified type.
+            </summary>
+            <param name="type">The type whose name will be used for the logger.</param>
+            <param name="fallbackTypeName">If the type is null then this name will be used as the log name instead</param>
+            <returns>An instance of <see cref="T:Datadog.Trace.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.GetLogger(System.String)">
+            <summary>
+            Gets a logger with the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>An instance of <see cref="T:Datadog.Trace.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.OpenNestedContext(System.String)">
+            <summary>
+            Opens a nested diagnostics context.
+            </summary>
+            <param name="message">A message.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that closes context when disposed.</returns>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProvider.OpenMappedContext(System.String,System.String)">
+            <summary>
+            Opens a mapped diagnostics context.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that closes context when disposed.</returns>
+        </member>
+        <member name="T:Datadog.Trace.Logging.LogProviders.LoupeLogProvider.WriteDelegate">
+            <summary>
+            The form of the Loupe Log.Write method we're using
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Logging.LogProviders.LoupeLogProvider.ProviderIsAvailableOverride">
+            <summary>
+            Gets or sets a value indicating whether [provider is available override]. Used in tests.
+            </summary>
+            <value>
+            <c>true</c> if [provider is available override]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Datadog.Trace.Logging.LogProviders.LogMessageFormatter.SimulateStructuredLogging(System.Func{System.String},System.Object[])">
+            <summary>
+            Some logging frameworks support structured logging, such as serilog. This will allow you to add names to structured data in a format string:
+            For example: Log("Log message to {user}", user). This only works with serilog, but as the user of LibLog, you don't know if serilog is actually 
+            used. So, this class simulates that. it will replace any text in {curly braces} with an index number. 
+            
+            "Log {message} to {user}" would turn into => "Log {0} to {1}". Then the format parameters are handled using regular .net string.Format.
+            </summary>
+            <param name="messageBuilder">The message builder.</param>
+            <param name="formatParameters">The format parameters.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Datadog.Trace.SamplingPriority">
+            <summary>
+            A traces sampling priority determines whether is should be kept and stored.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SamplingPriority.UserReject">
+            <summary>
+            Explicitly ask the backend to not store a trace.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SamplingPriority.AutoReject">
+            <summary>
+            Used by the built-in sampler to inform the backend that a trace should be rejected and not stored.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SamplingPriority.AutoKeep">
+            <summary>
+            Used by the built-in sampler to inform the backend that a trace should be kept and stored.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SamplingPriority.UserKeep">
+            <summary>
+            Explicitly ask the backend to keep a trace.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Scope">
+            <summary>
+            A scope is a handle used to manage the concept of an active span.
+            Meaning that at a given time at most one span is considered active and
+            all newly created spans that are not created with the ignoreActiveSpan
+            parameter will be automatically children of the active span.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Scope.Span">
+            <summary>
+            Gets the active span wrapped in this scope
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Scope.Datadog#Trace#Interfaces#IScope#Span">
+            <summary>
+            Gets the active span wrapped in this scope
+            Proxy to Span without concrete return value
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Scope.Close">
+            <summary>
+            Closes the current scope and makes its parent scope active
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Scope.Dispose">
+            <summary>
+            Closes the current scope and makes its parent scope active
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Span">
+            <summary>
+            A Span represents a logical unit of work in the system. It may be
+            related to other spans by parent/children relationships. The span
+            tracks the duration of an operation as well as associated metadata in
+            the form of a resource name, a service name, and user defined tags.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.OperationName">
+            <summary>
+            Gets or sets operation name
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.ResourceName">
+            <summary>
+            Gets or sets the resource name
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.Type">
+            <summary>
+            Gets or sets the type of request this span represents (ex: web, db).
+            Not to be confused with span kind.
+            </summary>
+            <seealso cref="T:Datadog.Trace.SpanTypes"/>
+        </member>
+        <member name="P:Datadog.Trace.Span.Error">
+            <summary>
+            Gets or sets a value indicating whether this span represents an error
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.ServiceName">
+            <summary>
+            Gets or sets the service name.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.TraceId">
+            <summary>
+            Gets the trace's unique identifier.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Span.SpanId">
+            <summary>
+            Gets the span's unique identifier.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Span.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Datadog.Trace.Span.SetTag(System.String,System.String)">
+            <summary>
+            Add a tag metadata to the span
+            </summary>
+            <param name="key">The tag's key</param>
+            <param name="value">The tag's value</param>
+            <returns> The span object itself</returns>
+        </member>
+        <member name="M:Datadog.Trace.Span.Datadog#Trace#Interfaces#ISpan#SetTag(System.String,System.String)">
+            <summary>
+            Proxy to SetTag without return value
+            See <see cref="M:Datadog.Trace.Span.SetTag(System.String,System.String)"/> for more information
+            </summary>
+            <param name="key">The tag's key</param>
+            <param name="value">The tag's value</param>
+            <returns> The ISpan object itself</returns>
+        </member>
+        <member name="M:Datadog.Trace.Span.Finish">
+            <summary>
+            Record the end time of the span and flushes it to the backend.
+            After the span has been finished all modifications will be ignored.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Span.Finish(System.DateTimeOffset)">
+            <summary>
+            Explicitly set the end time of the span and flushes it to the backend.
+            After the span has been finished all modifications will be ignored.
+            </summary>
+            <param name="finishTimestamp">Explicit value for the end time of the Span</param>
+        </member>
+        <member name="M:Datadog.Trace.Span.Dispose">
+            <summary>
+            Record the end time of the span and flushes it to the backend.
+            After the span has been finished all modifications will be ignored.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Span.SetException(System.Exception)">
+            <summary>
+            Add the StackTrace and other exception metadata to the span
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Datadog.Trace.Span.Datadog#Trace#Interfaces#ISpan#SetException(System.Exception)">
+            <summary>
+            Proxy to SetException without return value
+            See <see cref="M:Datadog.Trace.Span.SetException(System.Exception)"/> for more information
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Datadog.Trace.Span.GetTag(System.String)">
+            <summary>
+            Gets the value (or default/null if the key is not a valid tag) of a tag with the key value passed
+            </summary>
+            <param name="key">The tag's key</param>
+            <returns> The value for the tag with the key specified, or null if the tag does not exist</returns>
+        </member>
+        <member name="T:Datadog.Trace.SpanContext">
+            <summary>
+            The SpanContext contains all the information needed to express relationships between spans inside or outside the process boundaries.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.SpanContext.#ctor(System.Nullable{System.UInt64},System.UInt64,System.Nullable{Datadog.Trace.SamplingPriority},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datadog.Trace.SpanContext"/> class
+            from a propagated context. <see cref="P:Datadog.Trace.SpanContext.Parent"/> will be null
+            since this is a root context locally.
+            </summary>
+            <param name="traceId">The propagated trace id.</param>
+            <param name="spanId">The propagated span id.</param>
+            <param name="samplingPriority">The propagated sampling priority.</param>
+            <param name="serviceName">The service name to propagate to child spans.</param>
+        </member>
+        <member name="M:Datadog.Trace.SpanContext.#ctor(Datadog.Trace.ISpanContext,Datadog.Trace.ITraceContext,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datadog.Trace.SpanContext"/> class
+            that is the child of the specified parent context.
+            </summary>
+            <param name="parent">The parent context.</param>
+            <param name="traceContext">The trace context.</param>
+            <param name="serviceName">The service name to propagate to child spans.</param>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.Parent">
+            <summary>
+            Gets the parent context.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.TraceId">
+            <summary>
+            Gets the trace id
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.ParentId">
+            <summary>
+            Gets the span id of the parent span
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.SpanId">
+            <summary>
+            Gets the span id
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.ServiceName">
+            <summary>
+            Gets or sets the service name to propagate to child spans.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.TraceContext">
+            <summary>
+            Gets the trace context.
+            Returns null for contexts created from incoming propagated context.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.SpanContext.SamplingPriority">
+            <summary>
+            Gets the sampling priority for contexts created from incoming propagated context.
+            Returns null for local contexts.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.SpanContextPropagator.Inject(Datadog.Trace.SpanContext,Datadog.Trace.Headers.IHeadersCollection)">
+            <summary>
+            Propagates the specified context by adding new headers to a <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/>.
+            This locks the sampling priority for <paramref name="context"/>.
+            </summary>
+            <param name="context">A <see cref="T:Datadog.Trace.SpanContext"/> value that will be propagated into <paramref name="headers"/>.</param>
+            <param name="headers">A <see cref="T:Datadog.Trace.Headers.IHeadersCollection"/> to add new headers to.</param>
+        </member>
+        <member name="M:Datadog.Trace.SpanContextPropagator.Extract(Datadog.Trace.Headers.IHeadersCollection)">
+            <summary>
+            Extracts a <see cref="T:Datadog.Trace.SpanContext"/> from the values found in the specified headers.
+            </summary>
+            <param name="headers">The headers that contain the values to be extracted.</param>
+            <returns>A new <see cref="T:Datadog.Trace.SpanContext"/> that contains the values obtained from <paramref name="headers"/>.</returns>
+        </member>
+        <member name="T:Datadog.Trace.SpanKinds">
+            <summary>
+            A set of standard span kinds that can be used by integrations.
+            Not to be confused with span types.
+            </summary>
+            <seealso cref="T:Datadog.Trace.SpanTypes"/>
+        </member>
+        <member name="F:Datadog.Trace.SpanKinds.Client">
+            <summary>
+            A span generated by the client in a client/server architecture.
+            </summary>
+            <seealso cref="F:Datadog.Trace.Tags.SpanKind"/>
+        </member>
+        <member name="F:Datadog.Trace.SpanKinds.Server">
+            <summary>
+            A span generated by the server in a client/server architecture.
+            </summary>
+            <seealso cref="F:Datadog.Trace.Tags.SpanKind"/>
+        </member>
+        <member name="F:Datadog.Trace.SpanKinds.Producer">
+            <summary>
+            A span generated by the producer in a producer/consumer architecture.
+            </summary>
+            <seealso cref="F:Datadog.Trace.Tags.SpanKind"/>
+        </member>
+        <member name="F:Datadog.Trace.SpanKinds.Consumer">
+            <summary>
+            A span generated by the consumer in a producer/consumer architecture.
+            </summary>
+            <seealso cref="F:Datadog.Trace.Tags.SpanKind"/>
+        </member>
+        <member name="T:Datadog.Trace.SpanTypes">
+            <summary>
+            A set of standard span types that can be used by integrations.
+            Not to be confused with span kinds.
+            </summary>
+            <seealso cref="T:Datadog.Trace.SpanKinds"/>
+        </member>
+        <member name="F:Datadog.Trace.SpanTypes.Redis">
+            <summary>
+            The span type for a Redis client integration.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SpanTypes.Sql">
+            <summary>
+            The span type for a SQL client integration.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SpanTypes.Web">
+            <summary>
+            The span type for a web framework integration (incoming HTTP requests).
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SpanTypes.MongoDb">
+            <summary>
+            The span type for a MongoDB integration.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.SpanTypes.Http">
+            <summary>
+            The span type for an outgoing HTTP integration.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Tags">
+            <summary>
+            Standard span tags used by integrations.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.Env">
+            <summary>
+            The environment of the profiled service.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.InstrumentationName">
+            <summary>
+            The name of the integration that generated the span.
+            Use OpenTracing tag "component"
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.InstrumentedMethod">
+            <summary>
+            The name of the method that was instrumented to generate the span.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.SpanKind">
+            <summary>
+            The kind of span (e.g. client, server). Not to be confused with <see cref="P:Datadog.Trace.Span.Type"/>.
+            </summary>
+            <seealso cref="T:Datadog.Trace.SpanKinds"/>
+        </member>
+        <member name="F:Datadog.Trace.Tags.HttpUrl">
+            <summary>
+            The URL of an HTTP request
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.HttpMethod">
+            <summary>
+            The method of an HTTP request
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.HttpRequestHeadersHost">
+            <summary>
+            The host of an HTTP request
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.HttpStatusCode">
+            <summary>
+            The status code of an HTTP response
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.ErrorMsg">
+            <summary>
+            The error message of an exception
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.ErrorType">
+            <summary>
+            The type of an exception
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.ErrorStack">
+            <summary>
+            The stack trace of an exception
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.DbType">
+            <summary>
+            The type of database (e.g. mssql, mysql)
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.DbUser">
+            <summary>
+            The user used to sign into a database
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.DbName">
+            <summary>
+            The name of the database.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.SqlQuery">
+            <summary>
+            The query text
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.SqlRows">
+            <summary>
+            The number of rows returned by a query
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.AspNetRoute">
+            <summary>
+            The ASP.NET routing template.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.AspNetController">
+            <summary>
+            The MVC or Web API controller name.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.AspNetAction">
+            <summary>
+            The MVC or Web API action name.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.OutHost">
+            <summary>
+            The hostname of a outgoing server connection.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.OutPort">
+            <summary>
+            The port of a outgoing server connection.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.RedisRawCommand">
+            <summary>
+            The raw command sent to Redis.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.MongoDbQuery">
+            <summary>
+            A MongoDB query.
+            </summary>
+        </member>
+        <member name="F:Datadog.Trace.Tags.MongoDbCollection">
+            <summary>
+            A MongoDB collection name.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.TraceContext.SamplingPriority">
+            <summary>
+            Gets or sets sampling priority.
+            Once the sampling priority is locked with <see cref="M:Datadog.Trace.TraceContext.LockSamplingPriority"/>,
+            further attempts to set this are ignored.
+            </summary>
+        </member>
+        <member name="T:Datadog.Trace.Tracer">
+            <summary>
+            The tracer is responsible for creating spans and flushing them to the Datadog agent
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.Instance">
+            <summary>
+            Gets or sets the global tracer object
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.ActiveScope">
+            <summary>
+            Gets the active scope
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.Datadog#Trace#IDatadogTracer#IsDebugEnabled">
+            <summary>
+            Gets a value indicating whether debugging mode is enabled.
+            </summary>
+            <value><c>true</c> is debugging is enabled, otherwise <c>false</c>.</value>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.DefaultServiceName">
+            <summary>
+            Gets the default service name for traces where a service name is not specified.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.Datadog#Trace#IDatadogTracer#ScopeManager">
+            <summary>
+            Gets the tracer's scope manager, which determines which span is currently active, if any.
+            </summary>
+        </member>
+        <member name="P:Datadog.Trace.Tracer.Datadog#Trace#IDatadogTracer#Sampler">
+            <summary>
+            Gets the <see cref="T:Datadog.Trace.Sampling.ISampler"/> instance used by this <see cref="T:Datadog.Trace.IDatadogTracer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.Create(System.Uri,System.String,System.Boolean)">
+            <summary>
+            Create a new Tracer with the given parameters
+            </summary>
+            <param name="agentEndpoint">The agent endpoint where the traces will be sent (default is http://localhost:8126).</param>
+            <param name="defaultServiceName">Default name of the service (default is the name of the executing assembly).</param>
+            <param name="isDebugEnabled">Turns on all debug logging (this may have an impact on application performance).</param>
+            <returns>The newly created tracer</returns>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.ActivateSpan(Datadog.Trace.Span,System.Boolean)">
+            <summary>
+            Make a span active and return a scope that can be disposed to close the span
+            </summary>
+            <param name="span">The span to activate</param>
+            <param name="finishOnClose">If set to false, closing the returned scope will not close the enclosed span </param>
+            <returns>A Scope object wrapping this span</returns>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.StartActive(System.String,Datadog.Trace.ISpanContext,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Boolean)">
+            <summary>
+            This is a shortcut for <see cref="M:Datadog.Trace.Tracer.StartSpan(System.String,Datadog.Trace.ISpanContext,System.String,System.Nullable{System.DateTimeOffset},System.Boolean)"/> and <see cref="M:Datadog.Trace.Tracer.ActivateSpan(Datadog.Trace.Span,System.Boolean)"/>, it creates a new span with the given parameters and makes it active.
+            </summary>
+            <param name="operationName">The span's operation name</param>
+            <param name="parent">The span's parent</param>
+            <param name="serviceName">The span's service name</param>
+            <param name="startTime">An explicit start time for that span</param>
+            <param name="ignoreActiveScope">If set the span will not be a child of the currently active span</param>
+            <param name="finishOnClose">If set to false, closing the returned scope will not close the enclosed span </param>
+            <returns>A scope wrapping the newly created span</returns>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.StartSpan(System.String,Datadog.Trace.ISpanContext,System.String,System.Nullable{System.DateTimeOffset},System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Datadog.Trace.Span"/> with the specified parameters.
+            </summary>
+            <param name="operationName">The span's operation name</param>
+            <param name="parent">The span's parent</param>
+            <param name="serviceName">The span's service name</param>
+            <param name="startTime">An explicit start time for that span</param>
+            <param name="ignoreActiveScope">If set the span will not be a child of the currently active span</param>
+            <returns>The newly created span</returns>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.Datadog#Trace#IDatadogTracer#Write(System.Collections.Generic.List{Datadog.Trace.Span})">
+            <summary>
+            Writes the specified <see cref="T:Datadog.Trace.Span"/> collection to the agent writer.
+            </summary>
+            <param name="trace">The <see cref="T:Datadog.Trace.Span"/> collection to write.</param>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.CreateAgentUri">
+            <summary>
+            Create an Uri to the Agent using host and port from
+            environment variables or defaults if not set.
+            </summary>
+            <returns>An Uri that can be used to send traces to the Agent.</returns>
+        </member>
+        <member name="M:Datadog.Trace.Tracer.CreateDefaultServiceName">
+            <summary>
+            Determines the default service name for the executing application by looking at
+            environment variables, hosted app name (.NET Framework on IIS only), assembly name, and process name.
+            </summary>
+            <returns>The default service name.</returns>
+        </member>
+    </members>
+</doc>
