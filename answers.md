@@ -7,7 +7,7 @@ uses the ServiceStack .NET framework. You can see it hosted here;
 
 http://datadog.rift.ie/metadata
 
-It's a very basic app, just returning the stirngs as outlined in the Flask app. 
+It's a very basic app, just returning the strings as outlined in the Flask app. 
 
 rift.ie is a url I use for personal projects and playing with different frameworks. 
 
@@ -43,7 +43,7 @@ and a database application.
 
 It is a term for the seperate applications running within a single application to fulfill the applications purpose. 
 
-A resourse is a particular action for a service. For a web app it might be an endpoint, for a database it might be a query.
+A resource is a particular action for a service. For a web app it might be an endpoint, for a database it might be a query.
 Resources are grouped together under canonical names. 
 
 _Is there anything creative you would use Datadog for?_
