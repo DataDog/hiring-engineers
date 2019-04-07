@@ -1,4 +1,4 @@
-Your answers to the questions go here.
+### Daniel Fitzgerald Sales Engineer Technical Test
 
 I installed the agent on a Windows Server 2016 box. 
 
@@ -25,6 +25,8 @@ _**Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then i
 ![Installed Postgres Database Image](https://github.com/DataDog/hiring-engineers/blob/c8b76cffd3ab13e3885752e26bdbef09580aaea5/screenshots/postgres_check_running.png?raw=true)
 
 _**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**_
+
+https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/src/CustomMetric
 
 ![my_metric UI screenshot](https://github.com/DanielFitzgerald/hiring-engineers/blob/daniel-fitzgerald-solutions-engineer-test/screenshots/my_metric_dashboard.png?raw=true)
 
