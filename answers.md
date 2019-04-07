@@ -13,9 +13,6 @@ rift.ie is a url I use for personal projects and playing with different framewor
 
 I added screenshots which cover the tasks.
 
-My ApiKey is 0abc30d0ee629946d0716b1f448b0a1a  
-And App Key is 9df11451b5e157dff64b13f79374e8cfc9f47b1d
-
 _**Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**_
 
 ![Host map screenshot with tags](https://github.com/DataDog/hiring-engineers/blob/c8b76cffd3ab13e3885752e26bdbef09580aaea5/screenshots/host_map.png?raw=true)
