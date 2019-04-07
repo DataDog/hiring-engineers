@@ -11,8 +11,8 @@ It's a very basic app, just returning the strings as outlined in the Flask app.
 
 rift.ie is a url I use for personal projects and playing with different frameworks. 
 
-I added screenshots which cover the tasks in the [screenshot folder](https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/screenshots) and inline below.
-and the custom metric code in the [src/CustomMetric folder](https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/src/CustomMetric).  
+I added screenshots which cover the tasks in the [screenshot folder](https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/screenshots) and inline below.  
+The custom metric code is in the [src/CustomMetric folder](https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/src/CustomMetric).    
 The main app is in [src](https://github.com/DanielFitzgerald/hiring-engineers/tree/daniel-fitzgerald-solutions-engineer-test/src/)
 
 _**Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**_
