@@ -16,6 +16,10 @@ I added screenshots which cover the tasks.
 My ApiKey is 0abc30d0ee629946d0716b1f448b0a1a
 And App Key is 9df11451b5e157dff64b13f79374e8cfc9f47b1d
 
+_Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
+
+![Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog](https://github.com/DataDog/hiring-engineers/blob/c8b76cffd3ab13e3885752e26bdbef09580aaea5/screenshots/host_map.png?raw=true "Logo Title Text 1")
+
 _Can you change the collection interval without modifying the Python check file you created?_
 
 There's a 'my_metric.yaml' file which goes into the C:\ProgramData\Datadog\conf.d folder with the same name as
@@ -32,9 +36,13 @@ _What is the Anomoly graph testing?_
 The anomaly algo lets you set a threshold value, if your metric deviates over or above this predicted range, it will
 come up in the graph, it is also possible to set alerts to fire if the threshold is met. 
 
+https://app.datadoghq.com/dashboard/7v3-zsc-isd/database-connection-metric-with-anomoly?tile_size=m&page=0&is_auto=false&from_ts=1554662400000&to_ts=1554666000000&live=true
+
 _Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:_
 
 Screenshot added. 
+https://app.datadoghq.com/monitors#downtime?id=500514459
+https://app.datadoghq.com/monitors#downtime?id=499122232
 
 _What is the difference between a Service and a Resource?_
 
