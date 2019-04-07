@@ -65,11 +65,11 @@ _**Monitoring Data**_
 _**Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**_
 
 Monitor
-https://app.datadoghq.com/monitors/9385657\
+https://app.datadoghq.com/monitors/9385657  
 Nightly
-https://app.datadoghq.com/monitors#downtime?id=500514459\
+https://app.datadoghq.com/monitors#downtime?id=500514459  
 Weekend
-https://app.datadoghq.com/monitors#downtime?id=499122232
+https://app.datadoghq.com/monitors#downtime?id=499122232  
 
 ![alert screenshot](https://github.com/DanielFitzgerald/hiring-engineers/blob/daniel-fitzgerald-solutions-engineer-test/screenshots/metric_text_conditions.png?raw=true)
 
@@ -78,9 +78,9 @@ https://app.datadoghq.com/monitors#downtime?id=499122232
 _**Collecting APM Data:**_
 
 You can hit these URLs to create the traces;
-http://datadog.rift.ie/api/trace?format=json\
-http://datadog.rift.ie/api/apm?format=json\
-http://datadog.rift.ie/entry?format=json
+http://datadog.rift.ie/api/trace?format=json  
+http://datadog.rift.ie/api/apm?format=json  
+http://datadog.rift.ie/entry?format=json  
 
 Code\
 https://github.com/DanielFitzgerald/hiring-engineers/blob/daniel-fitzgerald-solutions-engineer-test/src/DataDog.TechnicalTest/DataDog.TechnicalTest.ServiceInterface/MyServices.cs
