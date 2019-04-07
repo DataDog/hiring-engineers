@@ -77,7 +77,7 @@ https://app.datadoghq.com/monitors#downtime?id=499122232
 
 _**Collecting APM Data:**_
 
-You can hit these URLs to create the traces;
+You can hit these URLs to create the traces;  
 http://datadog.rift.ie/api/trace?format=json  
 http://datadog.rift.ie/api/apm?format=json  
 http://datadog.rift.ie/entry?format=json  
