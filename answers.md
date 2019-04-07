@@ -6,7 +6,7 @@
 
 * *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496652/in/dateposted-public/" title="Capture"><img src="https://live.staticflickr.com/7815/47505496652_99c846d5ee_h.jpg" width="1600" height="744" alt="Capture"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496652/in/dateposted-public/" title="Capture"><img src="https://live.staticflickr.com/7815/47505496652_99c846d5ee_h.jpg" width="1600" height="744" alt="Capture"></a>
 
 * *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
 
@@ -110,8 +110,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-<img src="https://live.staticflickr.com/7874/33679391758_70cdf796a8_b.jpg" width="500" height="332" alt="_DSC4652"></a>
-
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="1600" height="1145" alt="3 metrics"></a>
 * **Bonus Question**: What is the Anomaly graph displaying?
 It can be used to detect when a metric is behaving differently.
 
@@ -192,14 +191,14 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 ```
 TEST for each notification:
 * ALERT:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a>
 * WARNING:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a>
 * NO DATA:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a>
 
 * Real WARNING example:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a>
 
 
 
@@ -289,9 +288,9 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 ```
 Notification received for both downtimes:
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a>
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a>
 
 ## Collecting APM Data:
 
@@ -340,10 +339,10 @@ Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask reques
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 * Service: it is a set of processes that do the same job, it can be a single process or a set of process. In this particular case the service is the app itself.
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839887/in/dateposted-public/" title="Service"><img src="https://live.staticflickr.com/7863/32615839887_f71ec96b92_h.jpg" width="1600" height="220" alt="Service"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839887/in/dateposted-public/" title="Service"><img src="https://live.staticflickr.com/7863/32615839887_f71ec96b92_h.jpg" width="1600" height="220" alt="Service"></a>
 * Resources: Actions performed by the service. In this example we have three resources:
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496572/in/dateposted-public/" title="resource"><img src="https://live.staticflickr.com/7866/47505496572_8b764daf4f_h.jpg" width="1600" height="257" alt="resource"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496572/in/dateposted-public/" title="resource"><img src="https://live.staticflickr.com/7866/47505496572_8b764daf4f_h.jpg" width="1600" height="257" alt="resource"></a>
 
 ## Final Question:
 
