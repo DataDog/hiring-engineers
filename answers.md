@@ -202,13 +202,14 @@ TEST for each notification:
 
 
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* **Bonus Question**: *Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  * *One that silences it from 7pm to 9am daily on M-F,*
+  * *And one that silences it all day on Sat-Sun.*
+  * *Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
 
-Two downtimes configured as following:
+Two downtimes configured as following taking CET timezone:
+
 ```
 root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/v1/downtime" \
 >      -d "api_key=${api_key}" \
@@ -336,7 +337,7 @@ Link to dashboard with both
 <iframe src="https://app.datadoghq.com/graph/embed?token=0b3c0f28319a23dd2de5648f96470c6ac3d1d84cc1f68b4e9cc318d082ef6416&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
 
 Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask requests:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a>
 
 * Service: it is a set of processes that do the same job, it can be a single process or a set of process. In this particular case the service is the app itself.
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839887/in/dateposted-public/" title="Service"><img src="https://live.staticflickr.com/7863/32615839887_f71ec96b92_h.jpg" width="1600" height="220" alt="Service"></a>
@@ -346,4 +347,4 @@ Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask reques
 
 ## Final Question:
 
-In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different cloud and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alert, put DataDog in a unique position in the market.
+In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different clouds and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alert, put DataDog in a unique position in the market.
