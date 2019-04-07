@@ -6,9 +6,7 @@
 
 * *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
-<a href="https://www.flickr.com/photos/147840972@N03/46831112674/in/dateposted-public/" title="host map with tag">
-<img src="https://live.staticflickr.com/7915/46831112674_d15050149d_b.jpg" width="500" height="332" alt="_DSC4652"></a>
-
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496652/in/dateposted-public/" title="Capture"><img src="https://live.staticflickr.com/7815/47505496652_99c846d5ee_h.jpg" width="1600" height="744" alt="Capture"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 * *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
 
@@ -104,9 +102,9 @@ Tried to add the anomaly function using following script but got Json Parse erro
 
 `anomalies(avg:postgresql.max_connections{host:jaime}, 'basic', 2)`
 
-So I added it using UI, with following results:
+So I added it using UI with following results:
 
-<iframe src="https://app.datadoghq.com/graph/embed?token=7c1db6f1ca5f3c1d4264757db163bb6657ab82f1f68853471435e14b9efe02db&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+"https://app.datadoghq.com/graph/embed?token=7c1db6f1ca5f3c1d4264757db163bb6657ab82f1f68853471435e14b9efe02db&height=300&width=600&legend=true" 
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -119,8 +117,7 @@ It can be used to detect when a metric is behaving differently.
 
 # Monitoring Data
 
-
-Configuration:
+Created following monitor:
 ```
 
 root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/v1/monitor/${monitor_id}" \
@@ -193,14 +190,16 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 }
 
 ```
+TEST for each notification:
+* ALERT:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+* WARNING:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+* NO DATA:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
-Output examples:
-ALERT:
-
-WARNING:
-
-NO DATA:
-
+* Real WARNING example:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 
 
@@ -210,7 +209,7 @@ NO DATA:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-The two downtimes configured:
+Two downtimes configured as following:
 ```
 root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/v1/downtime" \
 >      -d "api_key=${api_key}" \
@@ -288,8 +287,11 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
     }
 ]
 ```
+Notification received for both downtimes:
 
-Screenshot:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 ## Collecting APM Data:
 
@@ -330,9 +332,19 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
 ```
-<iframe src="https://app.datadoghq.com/graph/embed?token=0b3c0f28319a23dd2de5648f96470c6ac3d1d84cc1f68b4e9cc318d082ef6416&height=300&width=600&legend=true" width="600" height="300" frameborder="0"></iframe>
+Link to dashboard with both 
 
+<iframe src="https://app.datadoghq.com/graph/embed?token=0b3c0f28319a23dd2de5648f96470c6ac3d1d84cc1f68b4e9cc318d082ef6416&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
 
-Service: it is a set of processes that do the same job, it can be a single process or a set of process. In this particular case the service is the app itself.
+Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask requests:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
-Resources: Actions performed by the service. In this example we have three resources:
+* Service: it is a set of processes that do the same job, it can be a single process or a set of process. In this particular case the service is the app itself.
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839887/in/dateposted-public/" title="Service"><img src="https://live.staticflickr.com/7863/32615839887_f71ec96b92_h.jpg" width="1600" height="220" alt="Service"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+* Resources: Actions performed by the service. In this example we have three resources:
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496572/in/dateposted-public/" title="resource"><img src="https://live.staticflickr.com/7866/47505496572_8b764daf4f_h.jpg" width="1600" height="257" alt="resource"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+## Final Question:
+
+In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different cloud and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alert, put DataDog in a unique position in the market.
