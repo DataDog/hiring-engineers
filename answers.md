@@ -12,6 +12,7 @@ In this step, I have install the DataDog agents in Ubuntu, CentOS flavors of Lin
 <img src="https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/tags.jpg "Adding Tags">
 
 APM Tag
+
 <img src="https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/apm-tag.jpg" alt= "APM Tags">
 
 ### Step 2:
@@ -31,15 +32,14 @@ Custom metric rollup
 <img src="https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/5min-story.jpg" alt= "Rollup">
 
 ### Step 6:
-Notebook [Link]("https://app.datadoghq.com/notebook/110047/Analysis%20Notebook)]
+Notebook [Link]("https://app.datadoghq.com/notebook/110047/Analysis%20Notebook)
 
-Analysis [[Link]("https://app.datadoghq.com/notebook/110047/Analysis-Notebook?cell=soqfsrv8)]
+Analysis [Link]("https://app.datadoghq.com/notebook/110047/Analysis-Notebook?cell=soqfsrv8)
 
 ## Monitoring Data:
 
 ### Step 7:
 Configure monitors
-
 
 ### Step 8:
 Different thresholds
