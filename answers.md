@@ -32,9 +32,9 @@ Custom metric rollup
 <img src="https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/5min-story.jpg" alt= "Rollup">
 
 ### Step 6:
-Notebook [Link]("https://app.datadoghq.com/notebook/110047/Analysis%20Notebook)
+Notebook [Link]("https://app.datadoghq.com/notebook/110047/Analysis%20Notebook")
 
-Analysis [Link]("https://app.datadoghq.com/notebook/110047/Analysis-Notebook?cell=soqfsrv8)
+Analysis [Link]("https://app.datadoghq.com/notebook/110047/Analysis-Notebook?cell=soqfsrv8")
 
 ## Monitoring Data:
 
@@ -73,3 +73,9 @@ Instrumented PHP, Java, Ruby, Python applications. By far, java seems to be the 
 
 ## Final Question:
 Screen time tracking could be awesome!!! How many hours did I spend to review metrics in DataDog UI
+
+## Links
+Dashboard Link - https://app.datadoghq.com/dashboard/kne-d3n-dvn/application--server-health?tile_size=m&page=0&is_auto=false&from_ts=1554656400000&to_ts=1554742800000&live=true
+Monitor Link - https://app.datadoghq.com/monitors/9434143
+
+## PS: I used ec2 instances as I can run synthetics traffic using siege during random times.
