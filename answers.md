@@ -7,7 +7,7 @@ Instrument DataDog Infrastructure and APM Agents.
 In this step, I have install the DataDog agents in Ubuntu, CentOS flavors of Linux. over the weekend, I played with various agent types and tech stacks.
 
 ##### Here is the reference of Host Map
-(https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/hostmap.jpg "Host Map")
+<img src="https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/hostmap.jpg" alt="Host Map")
 ##### Tags are added both in AWS and Agent Configuration
 (https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/tags.jpg "Adding Tags")
 
