@@ -112,7 +112,7 @@ curl  -X POST -H "Content-type: application/json" \
               "requests": [
               {"q": "avg:custom.my_metric{host:jimbuntu}"},
               {"q": "avg:custom.my_metric{*}.rollup(sum, 3600)"},
-		      {"q": "anomalies(avg:mysql.performance.user_time{*}, "basic", 2)"}
+	      {"q": "anomalies(avg:mysql.performance.user_time{*}, "basic", 2)"}
               ],
               "yaxis": { "scale": "log"}
           }
