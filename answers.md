@@ -109,7 +109,7 @@ After that, using the UI we can modify the Timeboard. Here we have added a anoma
 
 We can also modify the Timeboard’s timeframe and take real time graph annotations. In this case I have selected the past 5 minutes, take a snapshot and send it to myself:  
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="1600" height="1145" alt="3 metrics"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="640" height="418"  alt="3 metrics"></a>
 
 # Monitoring Data
 
@@ -126,14 +126,14 @@ In order to create it, once again we can use the API or the UI. Here we are usin
 Besides of that, we can configure the notification method. Here we are going to create different messages based on whether the monitor is in an Alert, Warning, or No Data state. Message will include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. Here you can see some samples:
 TEST for each notification:
 * ALERT:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="640" height="418"  alt="test alert"></a>
 * WARNING:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="640" height="418" alt="test warn"></a>
 * NO DATA:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="640" height="418" alt="test no data"></a>
 
 * Real WARNING example:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="640" height="418" alt="WARN"></a>
 
 You can access that notification from the API:
 
@@ -222,9 +222,9 @@ Besides of that, we are aware that in order to be effective and accurate custome
 We have also configured the notification to be notified when downtimes are scheduled:
 
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="640" height="418"  alt="Downtime daily"></a>
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="640" height="418"  alt="downtime weekend"></a>
 
 
 Once more everything is accessible using the API:
