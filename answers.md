@@ -27,9 +27,41 @@ tags:
     - type:vagrant
     - role:dd_challenge
 ```
-3. Host Map in action
+3. Restart datadog agent
+```
+$sudo service datadog-agent status
+```
+4. Host Map in action
 
 ![Host Map](/img/Host_Map.png)
 
 
+##  Integration with Postgres
 
+1. Install Postgres
+
+2.Create user with proper access to your PostgreSQL server
+
+```
+sudo psql
+postgres=# create user datadog with password '<PASSWORD>';
+postgres=# grant pg_monitor to datadog;
+```
+3. Create & configure postgres.d/conf.yaml file to point to your server, port etc.
+$vi /etc/datadog-agent/conf.d/postgres.d/config.yaml 
+change parameters
+
+```
+    host: localhost
+    port: 5432
+    username: datadog
+    password: <PASSWORD>
+```
+4. Restart Agent
+
+```
+$sudo service datadog-agent status
+```
+5. Postgres on Host Map
+
+![Host Map_Postgres](/img/host_map_postgres.png)
