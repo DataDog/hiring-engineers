@@ -40,7 +40,7 @@ $sudo service datadog-agent status
 
 1. Install Postgres
 
-2.Create user with proper access to your PostgreSQL server
+2. Create user with proper access to your PostgreSQL server
 
 ```
 sudo psql
@@ -48,8 +48,10 @@ postgres=# create user datadog with password '<PASSWORD>';
 postgres=# grant pg_monitor to datadog;
 ```
 3. Create & configure postgres.d/conf.yaml file to point to your server, port etc.
+
 $vi /etc/datadog-agent/conf.d/postgres.d/config.yaml 
-change parameters
+
+change below parameters -
 
 ```
     host: localhost
@@ -65,3 +67,37 @@ $sudo service datadog-agent status
 5. Postgres on Host Map
 
 ![Host Map_Postgres](/img/host_map_postgres.png)
+
+##  Random number generator Custom Check
+
+1. Install python
+```
+$ sudo apt install python3
+```
+2. Python code to generate random number
+
+[Code](/files/custom_random_check.py)
+
+3. Configuration file to configure collection interval to 45 seconds
+
+[Yaml config](/files/custom_random_check.yaml)
+
+4. Copy python script to `/etc/datadog-agent/checks.d`
+5. Copy yaml config to `/etc/datadog-agent/conf.d`
+6. Restart Agent
+7. Verify custom check is working
+```
+$sudo -u dd-agent -- datadog-agent check custom_random_check
+```
+8. Custom metric can be seen in Dashboard
+
+![Host Map_Postgres](/img/custom_metric.png)
+
+
+##Bonus Question## 
+Can you change the collection interval without modifying the Python check file you created?
+
+Yes, collection interval can be changed by changing the yaml configuration file as above.
+
+
+
