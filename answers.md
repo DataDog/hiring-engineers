@@ -2,17 +2,17 @@
 
 Hi,
 
-This is Jaime Alonso from DataDog. My goal today is to show you not only the strengths and deep insight the tool is able to provide but also the easy-of-use and the friendly management and configuration, which makes DataDog the best tool to have visibility across *any cloud, any app, any metric*.
+This is Jaime Alonso from DataDog. My goal today is to show you not only the strengths and deep insight DatDog is able to provide you but also the easy-of-use and the friendly management and configuration. This makes DataDog the best tool to have visibility across **any cloud, any app, any metric**
 
 ## Collecting Metrics:
 
 First of all, we will start by collecting metrics. For this example, we have installed the DataDog agent in an Ubuntu VM.
-In order to add dimensions to metrics, so they can be filtered, aggregated, and compared, we can use *tags*. We can easily add tags in the UI or by editing the agent file, in this case we have added two, one to identify the host owner (`host:Jaime`) and another one for the environment (`env:demo`). Immediately, we can use hostMap UI to visualize our server and the tags, here there is only one but if we add more hosts with the same tags we will be able to visualizing all together:
+In order to add dimensions to metrics, so they can be filtered, aggregated, and compared, we can use **tags**. We can easily add tags in the UI or by editing the agent file, in this case we have added two, one to identify the host owner (`host:Jaime`) and another one for the environment (`env:demo`). Immediately, we can use hostMap UI to visualize our server and the tags, here there is only one but if we add more hosts with the same tags we will be able to visualizing all together:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496652/in/dateposted-public/" title="Capture"><img src="https://live.staticflickr.com/7815/47505496652_99c846d5ee_h.jpg" width="1600" height="744" alt="Capture"></a>
 
 
-DataDog admits more than +200  built-in *integrations*. In this case we have installed a postgreSQL DB in our host, and then in order to start collecting  metrics we just need to modify the `postgres.d/conf.yaml` in the agent config  directory. This file also accepts tagging so we can filter not only by hosts, but also by app.
+DataDog admits more than +200  built-in **integrations**. In this case we have installed a postgreSQL DB in our host, and then in order to start collecting  metrics we just need to modify the `postgres.d/conf.yaml` in the agent config  directory. This file also accepts tagging so we can filter not only by hosts, but also by app.
 
 ```
 instances:
@@ -25,7 +25,7 @@ instances:
       - demo_sql
 ```
 
-DataDog brings by default lots of metrics in order to collect information from a broad environment but following the idea of “any host, any app” it also allows us to submit *custom metrics*. Here we have created a python script which submits a custom metric what is basically a random number between 1 and 1000:
+DataDog brings by default lots of metrics in order to collect information from a broad environment but following the idea of “any host, any app” it also allows us to submit **custom metrics**. Here we have created a python script which submits a custom metric what is basically a random number between 1 and 1000:
 
 ```
 import random
@@ -61,17 +61,9 @@ instances:
 
 ## Visualizing Data:
 
-Now that our environment has been configured to collect the data it is time to start visualizing it. For this we would like to show you also the strength and easy-to-use of the the *Datadog API*.
+Now that our environment has been configured to collect the data it is time to start visualizing it. For this we would like to show you also the strength and easy-to-use of the the **Datadog API**.
 
-We can use the API through different methods, here we will use curl. We are going to create to create a Timeboard that contains:*
-
-* *Your custom metric scoped over your host.*
-* *Any metric from the Integration on your Database with the anomaly function applied.*
-* *Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket*
-
-*Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.*
-
-Created Timeboard using curl:
+We can use the API through different methods, like pythong ruby or curl.
 
 Below example shows how to create a timeboard using API through curl. It will create a timeboard which contains our custom metric scoped over our host. And also a rollup function applied to sum up all the points for the past hour:
 ```
@@ -103,22 +95,22 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 
 ```
-After that, using the UI we can modify the Timeboard. Here we have added a anomaly function to the metric max_connections of our PostgreSQL in order to detect any if a metric is behaving abnormally, in this case if anyone has changed the max_connection configuration which could affect the entire host performance:
+After that, using the UI we can modify the Timeboard. Here we have added a **anomaly** function to the metric max_connections of our PostgreSQL in order to detect any if a metric is behaving abnormally, in this case if anyone has changed the max_connection configuration which could affect the entire host performance:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46848741134/in/dateposted-public/" title="timeboard"><img src="https://live.staticflickr.com/7854/46848741134_1951f13929_z.jpg" width="640" height="295" alt="timeboard"></a>
 
-We can also modify the Timeboard’s timeframe and take real time graph annotations. In this case I have selected the past 5 minutes, take a snapshot and send it to myself:  
+We can also modify the Timeboard’s timeframe and take real time graph **annotations**. In this case I have selected the past 5 minutes, take a snapshot and send it to myself:  
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="640" height="418"  alt="3 metrics"></a>
 
 # Monitoring Data
 
-DataDog allows us to have a “self driving” monitoring, letting us to focus on real added value task instead of having to be manually monitoring our environment.
+DataDog allows us to have a **self driving** monitoring experience, letting us to focus on our business instead of being manually monitoring our environment.
 
-To that end, we can create *Monitors*. As an example let’s create a monitor to watch the average of our custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-•	Warning threshold of 500
-•	Alerting threshold of 800
-•	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+To that end, we can create **Monitors**. As an example let’s create a monitor to watch the average of our custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+*	Warning threshold of 500
+*	Alerting threshold of 800
+*	And also ensure that it will notify you if there is No Data for this query over the past 10m.
 In order to create it, once again we can use the API or the UI. Here we are using the UI to create the monitor:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47572740111/in/dateposted-public/" title="alerts1"><img src="https://live.staticflickr.com/7828/47572740111_acf3c652e5_z.jpg" width="640" height="418" alt="alerts1"></a>
@@ -210,7 +202,7 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 }
 
 ```
-Besides of that, we are aware that in order to be effective and accurate customers require to mute notifications when there are scheduled downtimes or even out of hours. Here we have configured two downtimes, 
+Besides of that, we are aware that in order to be effective and accurate customers require to **mute notifications** when there are scheduled downtimes or even out of hours. Here we have configured two downtimes, 
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
@@ -308,7 +300,7 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 
 ## Collecting APM Data:
 
-Datadog APM provides you with deep insight into your application’s performance-from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests-side by side with your logs and infrastructure monitoring.
+Datadog APM provides you with deep insight into your **application’s performance-from** automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests-side by side with your logs and infrastructure monitoring.
 
 Here we have a simple web flask application:
 
@@ -349,7 +341,7 @@ if __name__ == '__main__':
 
 ```
 
-Below you can see a Dashboard showing the metric from the host (system.net.tcp.in_segs) from the process (cpu for process app.py) and also traces for the application, in such a way it is easier to correlate and understand the behavior of the application:
+Below you can see a Dashboard showing the metric from the Network stack from host (system.net.tcp.in_segs) from the OS process (cpu for process app.py) and also traces from the application, in such a way it is very easy to correlate and understand the behavior of the application:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a>
 
@@ -369,7 +361,7 @@ We can also have a further info using the UI showing some of the APM components,
 
 In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different clouds and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alerting, makes DataDog the best partner for your business.
 
-*any cloud, any app, any metric*
+**any cloud, any app, any metric**
 
 
 
