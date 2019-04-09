@@ -76,11 +76,11 @@ $ sudo apt install python3
 ```
 2. Python code to generate random number
 
-[Code] (/files/custom_random_check.py)
+![Code](/files/custom_random_check.py)
 
 3. Configuration file to configure collection interval to 45 seconds
 
-[Yaml config] (/files/custom_random_check.yaml)
+![Yaml config](/files/custom_random_check.yaml)
 
 4. Copy python script to `/etc/datadog-agent/checks.d`
 5. Copy yaml config to `/etc/datadog-agent/conf.d`
