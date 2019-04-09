@@ -1,16 +1,19 @@
 ### JAIME ALONSO answers 
 
+Hi,
+
+This is Jaime Alonso from DataDog. My goal today is to show you not only the strengths and deep insight the tool is able to provide but also the easy-of-use and the friendly management and configuration, which makes DataDog the best tool to have visibility across *any cloud, any app, any metric*.
+
 ## Collecting Metrics:
 
-
-
-* *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
+First of all, we will start by collecting metrics. For this example, we have installed the DataDog agent in an Ubuntu VM.
+In order to add dimensions to metrics, so they can be filtered, aggregated, and compared, we can use *tags*. We can easily add tags in the UI or by editing the agent file, in this case we have added two, one to identify the host owner (`host:Jaime`) and another one for the environment (`env:demo`). Immediately, we can use hostMap UI to visualize our server and the tags, here there is only one but if we add more hosts with the same tags we will be able to visualizing all together:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496652/in/dateposted-public/" title="Capture"><img src="https://live.staticflickr.com/7815/47505496652_99c846d5ee_h.jpg" width="1600" height="744" alt="Capture"></a>
 
-* *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
 
-I installed postgresql and configured postgress.yaml integration file:
+DataDog admits more than +200  built-in *integrations*. In this case we have installed a postgreSQL DB in our host, and then in order to start collecting  metrics we just need to modify the `postgres.d/conf.yaml` in the agent config  directory. This file also accepts tagging so we can filter not only by hosts, but also by app.
+
 ```
 instances:
   - host: localhost
@@ -21,8 +24,9 @@ instances:
       - jaime_sql
       - demo_sql
 ```
-* *Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.*
-my_metric.py pythong script:
+
+DataDog brings by default lots of metrics in order to collect information from a broad environment but following the idea of “any host, any app” it also allows us to submit *custom metrics*. Here we have created a python script which submits a custom metric what is basically a random number between 1 and 1000:
+
 ```
 import random
 # the following try/except block will make the custom check compatible with any Agent version
@@ -44,8 +48,9 @@ class HelloCheck(AgentCheck):
 
 ```
 
-* *Change your check's collection interval so that it only submits the metric once every 45 seconds.*
-Output of /etc/datadog-agent/conf.d/my_metric.yaml
+Then as with the postgresSQL integration we can create a custom integration for my metric by adding a configuration file in the agent conf.d directory. Here we want the metric to be collected every 45 secs to we add the min_collection_interval variable:
+
+`/etc/datadog-agent/conf.d/my_metric.yaml:`
 ```
 root@precise64:/etc/datadog-agent/conf.d# more my_metric.yaml
 init_config:
@@ -53,14 +58,12 @@ init_config:
 instances:
   - min_collection_interval: 45
 ```
-* **Bonus Question** *Can you change the collection interval without modifying the Python check file you created?*
-
-Using the min_collection_interval in the configuration file
-
 
 ## Visualizing Data:
 
-*Utilize the Datadog API to create a Timeboard that contains:*
+Now that our environment has been configured to collect the data it is time to start visualizing it. For this we would like to show you also the strength and easy-to-use of the the *Datadog API*.
+
+We can use the API through different methods, here we will use curl. We are going to create to create a Timeboard that contains:*
 
 * *Your custom metric scoped over your host.*
 * *Any metric from the Integration on your Database with the anomaly function applied.*
@@ -69,6 +72,8 @@ Using the min_collection_interval in the configuration file
 *Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.*
 
 Created Timeboard using curl:
+
+Below example shows how to create a timeboard using API through curl. It will create a timeboard which contains our custom metric scoped over our host. And also a rollup function applied to sum up all the points for the past hour:
 ```
 api_key=8afff3f9fbf730889172d9f07993a9bb
 app_key=95bd59d7e0acaee62fcc3e54aa6d276cfdcabc05
@@ -98,25 +103,41 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 
 ```
-Tried to add the anomaly function using following script but got Json Parse error:
+After that, using the UI we can modify the Timeboard. Here we have added a anomaly function to the metric max_connections of our PostgreSQL in order to detect any if a metric is behaving abnormally, in this case if anyone has changed the max_connection configuration which could affect the entire host performance:
 
-`anomalies(avg:postgresql.max_connections{host:jaime}, 'basic', 2)`
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46848741134/in/dateposted-public/" title="timeboard"><img src="https://live.staticflickr.com/7854/46848741134_1951f13929_z.jpg" width="640" height="295" alt="timeboard"></a>
 
-So I added it using UI with following results:
+We can also modify the Timeboard’s timeframe and take real time graph annotations. In this case I have selected the past 5 minutes, take a snapshot and send it to myself:  
 
-"https://app.datadoghq.com/graph/embed?token=7c1db6f1ca5f3c1d4264757db163bb6657ab82f1f68853471435e14b9efe02db&height=300&width=600&legend=true" 
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="1600" height="1145" alt="3 metrics"></a>
-* **Bonus Question**: What is the Anomaly graph displaying?
-It can be used to detect when a metric is behaving differently.
 
 # Monitoring Data
 
-Created following monitor:
+DataDog allows us to have a “self driving” monitoring, letting us to focus on real added value task instead of having to be manually monitoring our environment.
+
+To that end, we can create *Monitors*. As an example let’s create a monitor to watch the average of our custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+•	Warning threshold of 500
+•	Alerting threshold of 800
+•	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+In order to create it, once again we can use the API or the UI. Here we are using the UI to create the monitor:
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47572740111/in/dateposted-public/" title="alerts1"><img src="https://live.staticflickr.com/7828/47572740111_acf3c652e5_z.jpg" width="640" height="418" alt="alerts1"></a>
+
+Besides of that, we can configure the notification method. Here we are going to create different messages based on whether the monitor is in an Alert, Warning, or No Data state. Message will include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. Here you can see some samples:
+TEST for each notification:
+* ALERT:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a>
+* WARNING:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a>
+* NO DATA:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a>
+
+* Real WARNING example:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a>
+
+You can access that notification from the API:
+
+
 ```
 
 root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/v1/monitor/${monitor_id}" \
@@ -189,27 +210,24 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
 }
 
 ```
-TEST for each notification:
-* ALERT:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="1600" height="1041" alt="test alert"></a>
-* WARNING:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="1600" height="1189" alt="test warn"></a>
-* NO DATA:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="1600" height="728" alt="test no data"></a>
+Besides of that, we are aware that in order to be effective and accurate customers require to mute notifications when there are scheduled downtimes or even out of hours. Here we have configured two downtimes, 
 
-* Real WARNING example:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="1600" height="1225" alt="WARN"></a>
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
+ 
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/33695868918/in/dateposted-public/" title="downtime2"><img src="https://live.staticflickr.com/7896/33695868918_5ea157ab64_z.jpg" width="640" height="347" alt="downtime2"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/33695868268/in/dateposted-public/" title="downtime1"><img src="https://live.staticflickr.com/7832/33695868268_ef50f12f34_z.jpg" width="640" height="335" alt="downtime1"></a>
 
 
+We have also configured the notification to be notified when downtimes are scheduled:
 
-* **Bonus Question**: *Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:*
 
-  * *One that silences it from 7pm to 9am daily on M-F,*
-  * *And one that silences it all day on Sat-Sun.*
-  * *Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.*
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a>
 
-Two downtimes configured as following taking CET timezone:
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a>
 
+
+Once more everything is accessible using the API:
 ```
 root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/v1/downtime" \
 >      -d "api_key=${api_key}" \
@@ -287,15 +305,13 @@ root@precise64:/etc/postgresql/9.1/main# curl -G "https://api.datadoghq.com/api/
     }
 ]
 ```
-Notification received for both downtimes:
-
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/40592510253/in/dateposted-public/" title="Downtime daily"><img src="https://live.staticflickr.com/7877/40592510253_4dbc0a5500_h.jpg" width="1600" height="880" alt="Downtime daily"></a>
-
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46642957685/in/dateposted-public/" title="downtime weekend"><img src="https://live.staticflickr.com/7923/46642957685_c7da868707_h.jpg" width="1600" height="750" alt="downtime weekend"></a>
 
 ## Collecting APM Data:
 
-app.py:
+Datadog APM provides you with deep insight into your application’s performance-from automatically generated dashboards monitoring key metrics, such as request volume and latency, to detailed traces of individual requests-side by side with your logs and infrastructure monitoring.
+
+Here we have a simple web flask application:
+
 ```
 root@precise64:/home/vagrant/my_app# more app.py
 from ddtrace import patch_all
@@ -332,12 +348,16 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
 ```
-Link to dashboard with both 
+
+Below you can see a Dashboard showing the metric from the host (system.net.tcp.in_segs) from the process (cpu for process app.py) and also traces for the application, in such a way it is easier to correlate and understand the behavior of the application:
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a>
+
+We are able to create an interactive dashboard with the data: 
 
 <iframe src="https://app.datadoghq.com/graph/embed?token=0b3c0f28319a23dd2de5648f96470c6ac3d1d84cc1f68b4e9cc318d082ef6416&height=300&width=600&legend=false" width="600" height="300" frameborder="0"></iframe>
 
-Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask requests:
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496602/in/dateposted-public/" title="dashboard"><img src="https://live.staticflickr.com/7808/47505496602_05a5c54803_h.jpg" width="1600" height="547" alt="dashboard"></a>
+We can also have a further info using the UI showing some of the APM components, here we will see the following:
 
 * Service: it is a set of processes that do the same job, it can be a single process or a set of process. In this particular case the service is the app itself.
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839887/in/dateposted-public/" title="Service"><img src="https://live.staticflickr.com/7863/32615839887_f71ec96b92_h.jpg" width="1600" height="220" alt="Service"></a>
@@ -347,4 +367,9 @@ Dashboard showing system.net.tcp.in_segs/cpu for process app.py/hit flask reques
 
 ## Final Question:
 
-In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different clouds and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alert, put DataDog in a unique position in the market.
+In a world where most of the software is being developed in "decoupled way", with thousands of microservices running in different clouds and communicating each other through a service mesh platform, having a tool which provides end to end visibility, monitoring and alerting, makes DataDog the best partner for your business.
+
+*any cloud, any app, any metric*
+
+
+
