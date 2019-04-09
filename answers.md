@@ -79,10 +79,9 @@ $sudo service datadog-agent status
 $ sudo apt install python3
 ```
 2. Python code to generate random number
+[Code](/files/custom_random_check.py)
 
-![Code](/files/custom_random_check.py)
-
-```
+```python
 from random import *
 # the following try/except block will make the custom check compatible with any Agent version
 
@@ -106,9 +105,8 @@ class RandomCheck(AgentCheck):
 ```
 
 3. Configuration file to configure collection interval to 45 seconds
-
-![Yaml config](/files/custom_random_check.yaml)
-```
+[Yaml config](/files/custom_random_check.yaml)
+```yaml
 init_config:
 
 instances:
