@@ -101,7 +101,7 @@ After that, using the UI we can modify the Timeboard. Here we have added a **ano
 
 We can also modify the Timeboard’s timeframe and take real time graph **annotations**. In this case I have selected the past 5 minutes, take a snapshot and send it to myself:  
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496682/in/dateposted-public/" title="3 metrics"><img src="https://live.staticflickr.com/7828/47505496682_b95b49cb41_h.jpg" width="640" height="418"  alt="3 metrics"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47573129211/in/dateposted-public/" title="unnamed"><img src="https://live.staticflickr.com/7852/47573129211_8823225d0b.jpg" width="452" height="180" alt="unnamed"></a>
 
 # Monitoring Data
 
@@ -116,15 +116,23 @@ In order to create it, once again we can use the API or the UI. Here we are usin
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47572740111/in/dateposted-public/" title="alerts1"><img src="https://live.staticflickr.com/7828/47572740111_acf3c652e5_z.jpg" width="640" height="418" alt="alerts1"></a>
 
 Besides of that, we can configure the notification method. Here we are going to create different messages based on whether the monitor is in an Alert, Warning, or No Data state. Message will include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. Here you can see some samples:
-TEST for each notification:
+* TEST for each notification:
 * ALERT:
+
+
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496512/in/dateposted-public/" title="test alert"><img src="https://live.staticflickr.com/7909/47505496512_0bced4d492_h.jpg" width="640" height="418"  alt="test alert"></a>
 * WARNING:
+
+
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/32615839867/in/dateposted-public/" title="test warn"><img src="https://live.staticflickr.com/7879/32615839867_db674cb099_h.jpg" width="640" height="418" alt="test warn"></a>
 * NO DATA:
+
+
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/46834723974/in/dateposted-public/" title="test no data"><img src="https://live.staticflickr.com/7881/46834723974_3e4f7199e3_h.jpg" width="640" height="418" alt="test no data"></a>
 
 * Real WARNING example:
+
+
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/147840972@N03/47505496482/in/dateposted-public/" title="WARN"><img src="https://live.staticflickr.com/7923/47505496482_420f945101_h.jpg" width="640" height="418" alt="WARN"></a>
 
 You can access that notification from the API:
