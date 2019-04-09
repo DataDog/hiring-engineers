@@ -137,6 +137,7 @@ The anomaly graph uses some clever statistics to highlight any derivations from 
 for i in {1..100}; do mysql -u root -proot -D mysql -e "SELECT * FROM Users"; done
 ```
 And behold, an anomaly! 
+
 ![MySQL blip](https://s3.us-east-2.amazonaws.com/jim-dd/mysql-graph.png)
 
 
