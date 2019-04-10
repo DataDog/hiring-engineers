@@ -246,18 +246,18 @@ In this case, the anamoly graph is displayed on postgres bgwriter checkpoint fun
 
 6. Schedule weekday downtime configuration
 
-![monitor_downtown_weekday_config](/img/monitor_downtown_weekday_config.png)
+![monitor_downtown_weekday_config](/img/monitor_downtime_weekday_config.png)
 
 7. Schedule weekday downtime notification email
 
-![monitor_downtown_weekday_email](/img/monitor_downtown_weekday_email.png)
+![monitor_downtown_weekday_email](/img/monitor_downtime_weekday_email.png)
 
 8. Schedule weekend downtime configuration
 
-![monitor_downtown_weekday_config](/img/monitor_downtown_weekend_config.png)
+![monitor_downtown_weekday_config](/img/monitor_downtime_weekend_config.png)
 
 9. Schedule weekend downtimee notification email
 
-![monitor_downtown_weekday_email](/img/monitor_downtown_weekend_email.png)
+![monitor_downtown_weekday_email](/img/monitor_downtime_weekend_email.png)
 
 
