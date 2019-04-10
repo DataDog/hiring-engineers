@@ -1,10 +1,10 @@
-## Environment Setup
+### Environment Setup
 
 Host OS: Mac OS X
 Installed Vagrant
 Vagrant OS: ubuntu/xenial64
   
-  ## Collecting Metrics
+# Collecting Metrics
   
 ##  Install Agent
 
@@ -126,7 +126,7 @@ $sudo -u dd-agent -- datadog-agent check custom_random_check
 
 
 
-## Bonus Question
+#### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
 
 Yes, collection interval can be changed by changing the yaml configuration file as above.
@@ -213,9 +213,51 @@ api.Dashboard.create(title = title,
 
 ![timeboard_notification](/img/timeboard_notification.png)
 
-# Bonus Question
+#### Bonus Question
 What is the Anomaly graph displaying?
+
 By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends
 In this case, the anamoly graph is displayed on postgres bgwriter checkpoint function. The graph displays deviation of the metric from the normal average.
+
+
+# Monitoring Data
+
+1. Create Monitor : set alert conditions to configure warning,alert & no data notifications
+
+![monitor config](/img/monitor_config.png)
+
+2. Create Monitor : conditional notification message template
+
+![monitor message](/img/monitor_message.png)
+
+3. Email : Alert
+
+![email alert](/img/monitor_alert.png)
+
+4. Email : Warning
+
+![email warning](/img/monitor_warning.png)
+
+5. Email : No Data
+
+![email no data](/img/monitor_no_data.png)
+
+#### Bonus Question
+
+6. Schedule weekday downtime configuration
+
+![monitor_downtown_weekday_config](/img/monitor_downtown_weekday_config.png)
+
+7. Schedule weekday downtime notification email
+
+![monitor_downtown_weekday_email](/img/monitor_downtown_weekday_email.png)
+
+8. Schedule weekend downtime configuration
+
+![monitor_downtown_weekday_config](/img/monitor_downtown_weekend_config.png)
+
+9. Schedule weekend downtimee notification email
+
+![monitor_downtown_weekday_email](/img/monitor_downtown_weekend_email.png)
 
 
