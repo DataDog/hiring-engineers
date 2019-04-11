@@ -1,15 +1,19 @@
 ### Environment Setup
 
 Host OS: Mac OS X
+
 Installed Vagrant
+
 Vagrant OS: ubuntu/xenial64
   
 # Collecting Metrics
   
 ##  Install Agent
 
+SSH into the vagrant ubuntu host and run below command
+
 ```
-$DD_API_KEY=<<API_KEY>> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=<<API_KEY>> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 ##  Adding Tags
