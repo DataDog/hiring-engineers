@@ -365,11 +365,10 @@ In above example, '/api/hello' and '/api/random' are resources which accepts req
 Is there anything creative you would use Datadog for?
 
 
-
 I think with the proliferation of IoT devices, the need for monitoring and alerting sensors is imminent. 
 As the latest Datadog agent is written in Go,and go has an extremely light memory/cpu footprint, running the datadog agents on sensors is possible. I could think of numerous IoT usecases wherein datadog can be used.
 
-###Monitoring shipping containers###: tracking shipping containers by monitoring data such as temperature, pressure, GPS, container opened/closed etc. Let's say a container is carrying fishes, then detecting and alerting anamolies on container's temperature data can save the fishes from going bad and potentially save some losses.
+**Monitoring shipping containers** tracking shipping containers by monitoring data such as temperature, pressure, GPS, container opened/closed etc. Let's say a container is carrying fishes, then detecting and alerting anamolies on container's temperature data can save the fishes from going bad and potentially save some losses.
 
-###Employee Happiness Index###: Employees everyday can choose to answer "How was your day?" question by pressing one of the two buttons (Happy, Sad) attached to a Raspberry Pi. Datadog dashboard displaying the overall happiness index can be projected on a big screen in office to boost employee satisfaction.
+**Employee Happiness Index** Employees everyday can choose to answer "How was your day?" question by pressing one of the two buttons (Happy, Sad) attached to a Raspberry Pi. Datadog dashboard displaying the overall happiness index can be projected on a big screen in office to boost employee satisfaction.
 
