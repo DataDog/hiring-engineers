@@ -340,8 +340,15 @@ curl localhost:5050/api/hello
 
 ![trace_list](/img/trace_list.png)
 
-7. Final dasboard with APM & Infra metrics
+7. Final timeboard with APM & Infra metrics
 ![apm_infra_final_dashboard](/img/apm_infra_final_dashboard.png)
+
+8. Final screenboard with APM & Infra metrics (for Public sharing)
+
+[Screenboard link](https://p.datadoghq.com/sb/op0jcrfv5cfk07tu-d634974855064ab8bb11daab4820e41f)
+
+![apm_infra_final_dashboard](/img/final_public_screenboard.png)
+
 
 #### Bonus Question
 8. What is the difference between a Service and a Resource?
