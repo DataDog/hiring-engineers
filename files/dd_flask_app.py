@@ -2,7 +2,6 @@ from flask import Flask
 import logging
 import sys
 from random import randint
-import datetime
 
 
 # Have flask use stdout as the logger
