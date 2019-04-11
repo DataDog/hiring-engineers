@@ -211,7 +211,7 @@ api.Dashboard.create(title = title,
 
  ![timeboard_api](/img/timeboard_with_api.png)
 
-5. Timeboard with 5 min timeframt
+5. Timeboard with 5 min timeframe
 
  ![timeboard_5_min](/img/timeboard_5_min.png)
 
