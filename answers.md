@@ -9,7 +9,7 @@ Vagrant OS: ubuntu/xenial64
 ##  Install Agent
 
 ```
-  DD_API_KEY=<<API_KEY>> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+$DD_API_KEY=<<API_KEY>> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 ##  Adding Tags
@@ -18,7 +18,7 @@ The configuration files and folders for the Agent are located in:
 
 /etc/datadog-agent/datadog.yaml
 
-1. edit datadog.yaml
+1. Edit datadog.yaml
 2. Add tags
 
 ```
@@ -29,7 +29,7 @@ tags:
 ```
 3. Restart datadog agent
 ```
-$sudo service datadog-agent status
+$sudo service datadog-agent restart
 ```
 4. Host Map in action
 
@@ -66,7 +66,7 @@ change below parameters -
 5. Restart Agent
 
 ```
-$sudo service datadog-agent status
+$sudo service datadog-agent restart
 ```
 6. Postgres on Host Map
 
