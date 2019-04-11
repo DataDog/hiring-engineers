@@ -55,7 +55,9 @@ postgres=# grant pg_monitor to datadog;
 ```
 4. Create & configure postgres.d/conf.yaml file to point to your server, port etc.
 
-$vi /etc/datadog-agent/conf.d/postgres.d/config.yaml 
+```
+sudo $vi /etc/datadog-agent/conf.d/postgres.d/config.yaml 
+```
 
 change below parameters -
 
@@ -133,7 +135,7 @@ $sudo -u dd-agent -- datadog-agent check custom_random_check
 #### Bonus Question
 Can you change the collection interval without modifying the Python check file you created?
 
-Yes, collection interval can be changed by changing the yaml configuration file as above.
+> Yes, collection interval can be changed by changing the yaml configuration file as above.
 
 # Visualizing Data:
 
@@ -220,7 +222,7 @@ api.Dashboard.create(title = title,
 #### Bonus Question
 What is the Anomaly graph displaying?
 
-By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends
+> By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends
 In this case, the anamoly graph is displayed on postgres bgwriter checkpoint function. The graph displays deviation of the metric from the normal average.
 
 
@@ -282,8 +284,6 @@ from flask import Flask
 import logging
 import sys
 from random import randint
-import datetime
-
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -356,12 +356,12 @@ curl localhost:5050/api/hello
 
 #### Bonus Question
 
-8. What is the difference between a Service and a Resource?
+9. What is the difference between a Service and a Resource?
 
-A service is a set of processes that do the same job. 
-In above example, service is the flask webapp which is sending traces to datadog.
-A Resource is a particular action for a service.
-In above example, '/api/hello' and '/api/random' are resources which accepts requests to the flask app service.
+> A service is a set of processes that do the same job. 
+> In above example, service is the flask webapp which is sending traces to datadog.
+> A Resource is a particular action for a service.
+> In above example, '/api/hello' and '/api/random' are resources which accepts requests to the flask app service.
 
 
 # Final Question
@@ -370,9 +370,9 @@ Is there anything creative you would use Datadog for?
 
 
 I think with the proliferation of IoT devices, the need for monitoring and alerting sensors is imminent. 
-As the latest Datadog agent is written in Go,and go has an extremely light memory/cpu footprint, running the datadog agents on sensors is possible. I could think of numerous IoT usecases wherein datadog can be used.
+As the latest Datadog agent is written in Go,and go has an extremely light memory/cpu footprint, running the datadog agents even on small sensors is possible. I could think of numerous IoT usecases wherein datadog can be used.
 
-**Monitoring shipping containers** tracking shipping containers by monitoring data such as temperature, pressure, GPS, container opened/closed etc. Let's say a container is carrying fishes, then detecting and alerting anamolies on container's temperature data can save the fishes from going bad and potentially save some losses.
+**Monitoring shipping containers:**  Tracking shipping containers by monitoring data such as temperature, pressure, GPS, container opened/closed etc . Let's say a container is carrying fishes, then detecting and alerting anamolies on container's temperature data can save the fishes from going bad and potentially save some losses. Datadog can continuously monitor container data and alert in case of anamolies
 
-**Employee Happiness Index** Employees everyday can choose to answer "How was your day?" question by pressing one of the two buttons (Happy, Sad) attached to a Raspberry Pi. Datadog dashboard displaying the overall happiness index can be projected on a big screen in office to boost employee satisfaction.
+**Employee Happiness Index:**  Employees everyday can choose to answer "How was your day?" question by pressing one of the two buttons (Happy, Sad) attached to a Raspberry Pi. Datadog dashboard displaying the overall happiness index can be projected on a big screen in office to boost employee satisfaction.
 
