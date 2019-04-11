@@ -261,3 +261,102 @@ In this case, the anamoly graph is displayed on postgres bgwriter checkpoint fun
 ![monitor_downtown_weekday_email](/img/monitor_downtime_weekend_mail.png)
 
 
+# Collecting APM Data:
+
+
+1. Install ddtrace python client
+
+```
+pip install ddtrace
+```
+
+
+2. Flask App [code](/files/dd_flask_app.py)
+
+```python
+from flask import Flask
+import logging
+import sys
+from random import randint
+import datetime
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+@app.route('/api/hello')
+def hello():
+    return 'Hello World! '
+
+
+@app.route('/api/random')
+def random():
+    return "Random number {}\n".format(randint(1,1000))
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+3. Instrument above flask application
+
+```
+ddtrace-run python3 dd_flask_app.py
+```
+
+4. Hit app endpoints to simulate traces
+
+```
+curl localhost:5050/api/random
+```
+
+```
+curl localhost:5050/api/hello
+```
+
+5. Traces Datadog dashboard
+
+![apm_dd_trace](/img/apm_dd_trace.png)
+
+6. Trace list
+
+![trace_list](/img/trace_list.png)
+
+7. Final dasboard with APM & Infra metrics
+![apm_infra_final_dashboard](/img/apm_infra_final_dashboard.png)
+
+#### Bonus Question
+8. What is the difference between a Service and a Resource?
+
+A service is a set of processes that do the same job. 
+In above example, service is the flask webapp which is sending traces to datadog.
+A Resource is a particular action for a service.
+In above example, '/api/hello' and '/api/random' are resources which accepts requests to the flask app service.
+
+
+# Final Question
+
+
+
+
+
+
+
