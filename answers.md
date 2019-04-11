@@ -1,14 +1,14 @@
 ### Environment Setup
 
-Host OS: Mac OS X
+**Host OS:** Mac OS X
 
-Installed Vagrant
+Installed Vagrant & VirtualBox
 
-Vagrant OS: ubuntu/xenial64
+**Vagrant OS:** ubuntu/xenial64
   
 # Collecting Metrics
   
-##  Install Agent
+##  Install Datadog Agent
 
 SSH into the vagrant ubuntu host and run below command
 
