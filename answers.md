@@ -33,7 +33,7 @@ $sudo service datadog-agent status
 ```
 4. Host Map in action
 
-![Host Map](/img/Host_Map.png)
+ ![Host Map](/img/Host_Map.png)
 
 
 ##  Integration with Postgres
@@ -70,7 +70,7 @@ $sudo service datadog-agent status
 ```
 6. Postgres on Host Map
 
-![Host Map_Postgres](/img/host_map_postgres.png)
+ ![Host Map_Postgres](/img/host_map_postgres.png)
 
 ##  Random number generator Custom Check
 
@@ -122,7 +122,7 @@ $sudo -u dd-agent -- datadog-agent check custom_random_check
 ```
 8. Custom metric can be seen in Dashboard
 
-![custom_metric](/img/custom_metric.png)
+ ![custom_metric](/img/custom_metric.png)
 
 
 
@@ -203,15 +203,15 @@ api.Dashboard.create(title = title,
 
 4. Dashboard in action
 
-![timeboard_api](/img/timeboard_with_api.png)
+ ![timeboard_api](/img/timeboard_with_api.png)
 
 5. Timeboard with 5 min timeframt
 
-![timeboard_5_min](/img/timeboard_5_min.png)
+ ![timeboard_5_min](/img/timeboard_5_min.png)
 
 6. Snapshot notification with comments
 
-![timeboard_notification](/img/timeboard_notification.png)
+ ![timeboard_notification](/img/timeboard_notification.png)
 
 #### Bonus Question
 What is the Anomaly graph displaying?
@@ -224,41 +224,41 @@ In this case, the anamoly graph is displayed on postgres bgwriter checkpoint fun
 
 1. Create Monitor : set alert conditions to configure warning,alert & no data notifications
 
-![monitor config](/img/monitor_config.png)
+ ![monitor config](/img/monitor_config.png)
 
 2. Create Monitor : conditional notification message template
 
-![monitor message](/img/monitor_message.png)
+ ![monitor message](/img/monitor_message.png)
 
 3. Email : Alert
 
-![email alert](/img/monitor_alert.png)
+ ![email alert](/img/monitor_alert.png)
 
 4. Email : Warning
 
-![email warning](/img/monitor_warning.png)
+ ![email warning](/img/monitor_warning.png)
 
 5. Email : No Data
 
-![email no data](/img/monitor_no_data.png)
+ ![email no data](/img/monitor_no_data.png)
 
 #### Bonus Question
 
 6. Schedule weekday downtime configuration
 
-![monitor_downtown_weekday_config](/img/monitor_downtime_weekday_config.png)
+ ![monitor_downtown_weekday_config](/img/monitor_downtime_weekday_config.png)
 
 7. Schedule weekday downtime notification email
 
-![monitor_downtown_weekday_email](/img/monitor_downtime_weekday_mail.png)
+ ![monitor_downtown_weekday_email](/img/monitor_downtime_weekday_mail.png)
 
 8. Schedule weekend downtime configuration
 
-![monitor_downtown_weekday_config](/img/monitor_downtime_weekend_config.png)
+ ![monitor_downtown_weekday_config](/img/monitor_downtime_weekend_config.png)
 
 9. Schedule weekend downtimee notification email
 
-![monitor_downtown_weekday_email](/img/monitor_downtime_weekend_mail.png)
+ ![monitor_downtown_weekday_email](/img/monitor_downtime_weekend_mail.png)
 
 
 # Collecting APM Data:
@@ -334,23 +334,24 @@ curl localhost:5050/api/hello
 
 5. Traces Datadog dashboard
 
-![apm_dd_trace](/img/apm_dd_trace.png)
+ ![apm_dd_trace](/img/apm_dd_trace.png)
 
 6. Trace list
 
-![trace_list](/img/trace_list.png)
+ ![trace_list](/img/trace_list.png)
 
 7. Final timeboard with APM & Infra metrics
-![apm_infra_final_dashboard](/img/apm_infra_final_dashboard.png)
+ ![apm_infra_final_dashboard](/img/apm_infra_final_dashboard.png)
 
 8. Final screenboard with APM & Infra metrics (for Public sharing)
 
-[Screenboard link](https://p.datadoghq.com/sb/op0jcrfv5cfk07tu-d634974855064ab8bb11daab4820e41f)
+ [Screenboard link](https://p.datadoghq.com/sb/op0jcrfv5cfk07tu-d634974855064ab8bb11daab4820e41f)
 
-![apm_infra_final_dashboard](/img/final_public_screenboard.png)
+ ![apm_infra_final_dashboard](/img/final_public_screenboard.png)
 
 
 #### Bonus Question
+
 8. What is the difference between a Service and a Resource?
 
 A service is a set of processes that do the same job. 
@@ -361,9 +362,14 @@ In above example, '/api/hello' and '/api/random' are resources which accepts req
 
 # Final Question
 
+Is there anything creative you would use Datadog for?
 
 
 
+I think with the proliferation of IoT devices, the need for monitoring and alerting sensors is imminent. 
+As the latest Datadog agent is written in Go,and go has an extremely light memory/cpu footprint, running the datadog agents on sensors is possible. I could think of numerous IoT usecases wherein datadog can be used.
 
+###Monitoring shipping containers###: tracking shipping containers by monitoring data such as temperature, pressure, GPS, container opened/closed etc. Let's say a container is carrying fishes, then detecting and alerting anamolies on container's temperature data can save the fishes from going bad and potentially save some losses.
 
+###Employee Happiness Index###: Employees everyday can choose to answer "How was your day?" question by pressing one of the two buttons (Happy, Sad) attached to a Raspberry Pi. Datadog dashboard displaying the overall happiness index can be projected on a big screen in office to boost employee satisfaction.
 
