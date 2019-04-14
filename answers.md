@@ -104,3 +104,40 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 > In my dashboard, I am showing MongoDB queries per second. Since my database is not used for anything, its baseline is 0 queries per second. If I make a bunch of queries to the database, I can demonstrate an anomalous spike in the metric and therefore the graph shows a red spike in queries per second representing a anomaly/deviation from the baseline.
 > <img src="Screenshot 2019-04-14 15.54.22.png">
+
+
+## Monitoring Data
+
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Please configure the monitor’s message so that it will:
+
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+> New Monitor creation:
+> <img src="Screenshot 2019-04-14 16.08.46.png">
+> <img src="Screenshot 2019-04-14 16.25.47.png">
+> Email from Monitor:
+> <img src="Screenshot 2019-04-14 16.24.55.png">
+
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that \
+  'notification.
+
+> Monitoring downtime entries:
+> <img src="Screenshot 2019-04-14 16.34.24.png">
+> <img src="Screenshot 2019-04-14 16.34.18.png">
+> Email confirmation notifying of the upcoming downtime:
+> <img src="Screenshot 2019-04-14 16.35.08.png">
