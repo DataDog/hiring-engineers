@@ -11,7 +11,7 @@ In this step, I have install the DataDog agents in Ubuntu, CentOS flavors of Lin
 
 Installation in Linux is easy with one single command: I must say this was very easy installation compared to other tools I have used.
 
-> DD_API_KEY=a4f8c6c682be39cc35de01220c3b789d bash -c "$(curl -L
+> DD_API_KEY=<has> bash -c "$(curl -L
 > https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 ##### Here is the reference of Host Map
