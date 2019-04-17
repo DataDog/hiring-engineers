@@ -2,48 +2,65 @@
 # Technical Interview Round - VP
 
 ## Introduction
-Purpose of this document is to provide the details of steps taken to install, instrument and correlate metrics data for various integrations point.
+Purpose of this document is to go through the steps to install, instrument and correlate metrics data using DataDog Agents for various integration points.
 
 ## Collecting Metrics:
 
 ### Step 1:
-Instrument DataDog Infrastructure and APM Agents. In this step, I have install the DataDog agents in Ubuntu, CentOS flavors of Linux. over the weekend, I played with various agent types and tech stacks.
+Instrument DataDog Infrastructure and APM Agents. In this step, I have installed the DataDog agents in Ubuntu and AWS versions of Linux.
 
-> Installation in Linux is **easy with one single command**: I must say this
-> was very easy installation compared to other tools I have used.
+> Installation in Linux is **very easy with one single command**. I must say this
+> is the easiest installation method compared to other tools I have used.
 
-> DD_API_KEY=<KEY> bash -c "$(curl -L
-> https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```curl
+DD_API_KEY=<KEY_GOES_HERE> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
 
 ##### Here is the reference of Host Map
 ![Host Map](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/hostmap.jpg)
 
-##### Tags are added both in AWS and Agent Configuration
+##### Tags are added in AWS and Agent Configurations
 ![Adding Tags](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/tags.jpg)
-
 ![APM Tag](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/apm-tag.jpg)
 
 ### Step 2:
-I installed MySQL integration. The configuration for the same is below:
-![MySQL integration](https://lh6.googleusercontent.com/Ji4mr2CkRplBgn22sbzkNGcivqqP3A7mG4tR4OkzQ1H-APY758dt4sXe-UNEs_XgCwG0EY3aJPFrDGZtunX6d-ExMhjdeJ2d3xbpxazrJgrGQrcYMuDE3iX5o2HhXEpaOQlNFEBg)
+I installed MySQL integration based on the instructions in documentation. The steps are very simple and easy as listed below;
+
+* Create **mysql.yaml** file at this location: **/etc/datadog-agent/conf.d/mysql.d**
+* I ran this command to create a yaml file ```sudo vi /etc/datadog-agent/conf.d/mysql.d/mysql.yaml ```
+* Add this Information in the **mysql.yaml** file
+
+  ``` yaml
+  init_config:
+
+    instances:
+      - server: localhost
+        user: datadog
+        pass: KEY_GOES_HERE
+        ```
+* Restart the datadog agent. Use this command in linux ```sudo service datadog-agent restart```
+
+Then I created the following dashboard to confirm that the DataDog MySQL integration agent is able to collect DB metrics from the host.
+
+![MySQL integration](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/mysql-metrics.jpg)
 
 ### Step 3:
-I created a custom agent check with the following file names
-![custom agent](https://lh6.googleusercontent.com/7R5uDo4ueNYkJ2ePqiIIixjC09Vh3UsJr4y7fAP8kwff7hKybrjo2z4y7DEYRqnx-5sgiCZL618slh1UmXAmQqqdu-JKZR9saXQr_Bco4DC-9tMkKzF_Z-vYFlZJjDGm9yWpBht2)
+I created a custom agent to generate random metric point between **0 to 1000** by creating two individual files ```my_metric.yaml``` and ```my_metric.py``` at the following locations
 
-Content of **my_metric.yaml** file located at **/etc/datadog-agent/conf.d**
+![Custom Agent](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/custom_metric.jpg)
 
-  ```
+Contents of **my_metric.yaml** file located at **/etc/datadog-agent/conf.d**
+
+  ``` yaml
 init_config:
+
 instances:
 [{}]
 ```
 
-I further changed the check's collection interval so that it only submits the metric once every 45 seconds.
-
 Content of **my_metric.py** file located at **/etc/datadog-agent/checks.d**
 
-```
+``` Python
 from checks import AgentCheck
 
 # content of the special variable __version__ will be shown in the Agent status page
@@ -61,8 +78,9 @@ class MyMetric(AgentCheck):
         self.gauge('my_metric', x, tags=['env=production'])
 ```
 
-**Bonus Question**: I changed the interval in **my_metric.yaml** file instead of python script as suggest in the documentation - [https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval)
-```
+**Bonus Question**: I changed the interval of custom metric collection in **my_metric.yaml** file instead of python script as suggest in the documentation to 45 seconds, such that it only submits the metric once every 45 seconds. [https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval)
+
+``` yaml
 init_config:
 
 instances:
@@ -72,15 +90,18 @@ instances:
 ## Visualizing Data:
 
 ### Step 3:
-Create Dashboard using API
-I chose python approach here. I added datadog api libraries by using this command - **pip install datadog**
+I created the following dashboards using APIs. I chose python libraries to automate CRUD functions via APIs. First, I added datadog api libraries to my host by using this command - ```pip install datadog```
 
-```
+#### Create a Dashboard
+
+[Create Dashboard](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/scripts/dashboard-create.py)
+
+``` Python
 from datadog import initialize, api
 
 options = {
-    'api_key': 'KEY',
-    'app_key': 'KEY'
+    'api_key': 'KEY_GOES_HERE',
+    'app_key': 'KEY_GOES_HERE'
 }
 
 initialize(**options)
@@ -110,12 +131,16 @@ api.Dashboard.create(title=title,
 
 Then I updated the dashboard using this API and added Anomalies detection as well as Roll up sum
 
-```
+#### Update Dashboard
+
+[Update Dashboard](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/scripts/dashboard-update.py)
+
+``` Python
 from datadog import initialize, api
 
 options = {
-    'api_key': 'KEY',
-    'app_key': 'KEY'
+    'api_key': 'KEY_GOES_HERE',
+    'app_key': 'KEY_GOES_HERE'
 }
 
 initialize(**options)
@@ -138,7 +163,7 @@ widgets = [{
         'requests': [
             {'q': 'avg:my_metric{host:i-08021c29f543d000a}'}
         ],
-        'title': 'Last 1 hr Metrics'
+        'title': 'Last 1 hr Custom Metrics'
                     }
     },
     {
@@ -175,32 +200,44 @@ api.Dashboard.update(dashboard_id,
                                          )
 ```
 ### Step 4:
-Narrow to 5 minutes timeslice
+Then I narrowed the time window to 5 minutes time slice by clicking and dragging on the chart
+![5 Minutes Timeslice](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/narrow-5-min-window.jpg)
 
 ### Step 5:
-Annotate and send metrics to self by clicking on the metric chart and choosing **Annotate this graph** option
+Then I added annotation and sent metrics to myself by clicking on the metric chart and chose **Annotate this graph** option
 
+![Annotate this graph](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/annotate-this-graph.jpg)
 
+Type your message with ```@mention```
+
+![Annotation](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/annotate.jpg)
 
 ### Step 6:
-What is the Anomaly graph displaying?
-The graph is used to identify the numeric metric range. It help us to understand the abnormal behaviour of the metric in a given environment. It also highlights the standard metric range in the chart in grey color and shows deviation from standards highlighted in red color.
+
+#### What is the Anomaly graph displaying?
+The anomaly graph is used to identify the metric range. It help us to understand the abnormal behavior of the metric in a given environment by highlights the standard metric range in the chart in grey color and shows deviation from standards highlighted in red color.
 
 ## Monitoring Data:
 
 ### Step 7:
 Metric Monitor : Specify the range of threshold while setting up a monitor
 
+![Setup a new monitor](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/monitor-metric.jpg)
 
 ### Step 8:
 Define different messages based on type of threshold and conditions
 
+![Messages](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/custom-message-alert.jpg)
+
 ### Step 9:
-Email notification received as soon as the thresholds are met
+I received Email notification as soon as the thresholds were met
+
+![Email Notification](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/alert-notification.jpg)
 
 ### Step 10:
 Monitor History with current incident
 
+![Monitor History](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/alert-history.png)
 
 ### Step 11:
 Scheduled Downtime
@@ -214,15 +251,15 @@ Define scheduled downtime window on Saturday and Sunday due to weekend
 ![During weekend](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/snooze-weekend.jpg)
 
 ## Collecting APM Data:
-I instrumented PHP, Java, Ruby, Python applications to see the depth of instrumentation. Java APM agent was the easiest and the fastest to instrument from the above list of agents I tried.
+I instrumented PHP, Java, Ruby, Python applications to see the depth of APM instrumentation. Java APM agent was the fastest and easiest to instrument.
 
 ### Step 12
-I used this step to install python agent
+I used this command to install python agent  ```pip install ddtrace```
 
 ### Step 13
-Fully Instrumented Python(Flask) Script
+Here is the fully instrumented Python(Flask) script
 
-```
+``` Python
 from flask import Flask
 import logging
 import sys
@@ -262,11 +299,18 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+### Step 14
+
+Execute your newly created python script by running this command ```ddtrace-run python test.py ```
+
+![Execute Python Script with APM](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/run-apm.jpg)
+
+Summary View of APM Instrumentation
+
 ![APM Instrumentation](https://github.com/TechParmar/hiring-engineers/blob/solutions-engineer/img/apm-instrumentation.jpg)
 
-
 ## Final Question:
-Screen time tracking could be awesome!!! How many hours did I spend to review metrics in DataDog UI
+Ability to track the uptime of the servers and suggest end-users with a recommended power cycle approach might be a good idea to manage system resources. It avoids abnormal system behaviors such as freeze and slow responses due to in-memory resource consumption.  
 
 ## Links
 [Dashboard Link](https://app.datadoghq.com/dashboard/kne-d3n-dvn/application--server-health?tile_size=m&page=0&is_auto=false&from_ts=1554656400000&to_ts=1554742800000&live=true)
