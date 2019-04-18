@@ -1,0 +1,42 @@
+{"dd.span_id": 0, "message": " * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)", "dd.trace_id": 0, "time": "2019-04-16T03:11:04.742537"}
+{"dd.span_id": 6052761529557768056, "message": "error setting numeric metric _dd1.sr.eausr:None", "dd.trace_id": 12420772233253564676, "time": "2019-04-16T03:11:17.375002"}
+{"dd.span_id": 0, "message": "resetting queues. pids(old:None new:27799)", "dd.trace_id": 0, "time": "2019-04-16T03:11:17.381210"}
+{"dd.span_id": 0, "message": "starting flush thread", "dd.trace_id": 0, "time": "2019-04-16T03:11:17.382586"}
+{"dd.span_id": 0, "message": "10.0.2.2 - - [16/Apr/2019 03:11:17] \"GET / HTTP/1.1\" 200 -", "dd.trace_id": 0, "time": "2019-04-16T03:11:17.385357"}
+{"dd.span_id": 0, "message": "reported 1 traces in 0.00137s", "dd.trace_id": 0, "time": "2019-04-16T03:11:18.387769"}
+{"dd.span_id": 0, "message": "initialized RateSampler, sample 100% of traces", "dd.trace_id": 0, "time": "2019-04-16T03:11:18.389169"}
+{"dd.span_id": 0, "message": "10.0.2.2 - - [16/Apr/2019 03:11:20] \"GET / HTTP/1.1\" 200 -", "dd.trace_id": 0, "time": "2019-04-16T03:11:20.353395"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:18:56.153743", "message": " * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)"}
+{"dd.trace_id": 810035169415517486, "dd.span_id": 4403275575715968593, "time": "2019-04-18T02:19:04.791767", "message": "error setting numeric metric _dd1.sr.eausr:None"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:04.794688", "message": "resetting queues. pids(old:None new:6223)"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:04.796268", "message": "starting flush thread"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:04.798117", "message": "10.0.2.2 - - [18/Apr/2019 02:19:04] \"GET / HTTP/1.1\" 200 -"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:05.799877", "message": "reported 1 traces in 0.00129s"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:06.292971", "message": "10.0.2.2 - - [18/Apr/2019 02:19:06] \"GET / HTTP/1.1\" 200 -"}
+{"dd.trace_id": 0, "dd.span_id": 0, "time": "2019-04-18T02:19:06.802324", "message": "initialized RateSampler, sample 100% of traces"}
+{"message": " * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)", "time": "2019-04-18T02:24:27.296914"}
+{"message": "error setting numeric metric _dd1.sr.eausr:None", "time": "2019-04-18T02:24:33.351110"}
+{"message": "resetting queues. pids(old:None new:7279)", "time": "2019-04-18T02:24:33.357792"}
+{"message": "starting flush thread", "time": "2019-04-18T02:24:33.359777"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:24:33] \"GET / HTTP/1.1\" 200 -", "time": "2019-04-18T02:24:33.362496"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:24:34] \"GET / HTTP/1.1\" 200 -", "time": "2019-04-18T02:24:34.135999"}
+{"message": "reported 2 traces in 0.00172s", "time": "2019-04-18T02:24:34.365992"}
+{"message": "error setting numeric metric _dd1.sr.eausr:None, 1 additional messages skipped", "time": "2019-04-18T02:25:07.201129"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:25:07] \"GET /api/inventory HTTP/1.1\" 200 -", "time": "2019-04-18T02:25:07.216175"}
+{"message": "reported 1 traces in 0.00124s", "time": "2019-04-18T02:25:07.424460"}
+{"message": "initialized RateSampler, sample 100% of traces", "time": "2019-04-18T02:25:07.426634"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:25:08] \"GET /api/inventory HTTP/1.1\" 200 -", "time": "2019-04-18T02:25:08.435802"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:25:09] \"GET /api/inventory HTTP/1.1\" 200 -", "time": "2019-04-18T02:25:09.230479"}
+{"message": "error setting numeric metric _dd1.sr.eausr:None, 5 additional messages skipped", "time": "2019-04-18T02:27:51.322949"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:27:51] \"GET /api/inventory HTTP/1.1\" 200 -", "time": "2019-04-18T02:27:51.335215"}
+{"message": "reported 1 traces in 0.00178s, 1 additional messages skipped", "time": "2019-04-18T02:27:51.848261"}
+{"message": " * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)", "time": "2019-04-18T02:45:02.078473"}
+{"message": "error setting numeric metric _dd1.sr.eausr:None", "time": "2019-04-18T02:45:15.048184"}
+{"message": "resetting queues. pids(old:None new:10954)", "time": "2019-04-18T02:45:15.054777"}
+{"message": "starting flush thread", "time": "2019-04-18T02:45:15.057233"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:45:15] \"GET / HTTP/1.1\" 200 -", "time": "2019-04-18T02:45:15.061308"}
+{"message": "reported 1 traces in 0.00181s", "time": "2019-04-18T02:45:16.061984"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:45:17] \"GET / HTTP/1.1\" 200 -", "time": "2019-04-18T02:45:17.183458"}
+{"message": "initialized RateSampler, sample 100% of traces", "time": "2019-04-18T02:45:18.067563"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:45:21] \"GET /api/apm HTTP/1.1\" 200 -", "time": "2019-04-18T02:45:21.273257"}
+{"message": "10.0.2.2 - - [18/Apr/2019 02:45:30] \"GET /api/inventory HTTP/1.1\" 200 -", "time": "2019-04-18T02:45:30.218524"}

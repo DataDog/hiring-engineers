@@ -92,8 +92,12 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-> I set the timeframe to 15 minutes as I didn't see an option for 5 minute interval
+> The newly created doashboard can be located at: <a href="https://app.datadoghq.com/dashboard/sq4-qu4-a2x/my-new-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1555555815000&to_ts=1555556715000&live=true">https://app.datadoghq.com/dashboard/sq4-qu4-a2x/my-new-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1555555815000&to_ts=1555556715000&live=true
+>
+> I set the timeframe to display the last 15 minutes
 > <img src="Screenshot 2019-04-14 15.39.45.png">
+> I can select a time interval of 5 minutes by highlighting a 5 minute section of the timeseries graph; however, that only shows that exact timeframe, not a running graph of the last 5 minutes.
+> <img src="Screenshot 2019-04-17 22.08.39.png">
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
@@ -141,3 +145,65 @@ Please configure the monitor’s message so that it will:
 > <img src="Screenshot 2019-04-14 16.34.18.png">
 > Email confirmation notifying of the upcoming downtime:
 > <img src="Screenshot 2019-04-14 16.35.08.png">
+
+
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+> Fully instrumented app can be found in <a href="flask-app.py">flask-app.py</a>
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+> For simplicity, I chose to use `ddtrace-run python3 /vagrant/hiring-engineers/flask-app.py`
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+> A Service is a set of processes that do the same job, for example the flask library in a python script is a service that creates web applications or APIs. A Resource is a specific action for a given service, for example a flask API can have different routes that perform different actions within the API.
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+> A New dashboard that integrates APM tracing and Infrastructure monitoring can be found at <a href="https://app.datadoghq.com/dashboard/7vv-yip-g9k/apm-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1555292820000&to_ts=1555296420000&live=true">https://app.datadoghq.com/dashboard/7vv-yip-g9k/apm-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1555292820000&to_ts=1555296420000&live=true</a>
+> In this dashboard, I am representing correlated and time-bound graphs showing hit counts on a flask API, MongoDB commands, and CPU on the host.
+> <img src="Screenshot 2019-04-14 22.47.36.png">
+
+Please include your fully instrumented app in your submission, as well.
+
+> Fully instrumented <a href="flask-app.py">flask-app.py</a>
+>
+> While not instructed to do so, I wanted to learn a bit more about the platform, so I added some basic logging to pull into the Logs engine. To do so, I had to add the following lines to `/etc/datadog-agent/datadog.yaml`:
+> ```
+> logs_enabled: true
+> ```
+> and I had to create `/etc/datadog-agent/conf.d/python.d/conf.yml` with the contents:
+> ```
+> #Log section
+> logs:
+>
+>     # - type : file (mandatory) type of log input source (tcp / udp / file)
+>     #   port / path : (mandatory) Set port if type is tcp or udp. Set path if type is file
+>     #   service : (mandatory) name of the service owning the log
+>     #   source : (mandatory) attribute that defines which integration is sending the logs
+>     #   sourcecategory : (optional) Multiple value attribute. Can be used to refine the source attribtue
+>     #   tags: (optional) add tags to each logs collected
+>
+>   - type: file
+>     path: /vagrant/hiring-engineers/flask-app.log
+>     service: flask-app
+>     source: python
+>     sourcecategory: sourcecode
+>     #For multiline logs, if they start with a timestamp with format yyyy-mm-dd uncomment the below processing rule
+>     #log_processing_rules:
+>     #   - type: multi_line
+>     #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+>     #     name: new_log_start_with_date
+> ```
+> <img src="Screenshot 2019-04-14 23.22.29.png">
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+>

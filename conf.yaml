@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+  # Specify the MongoDB URI, with database to use for reporting (defaults to "admin")
+  # E.g. mongodb://datadog:LnCbkX4uhpuLHSUrcayEoAZA@localhost:27016/my-db
+  - server: mongodb://datadog:qsKfBnD1CAsCt9Wz613T912Q@localhost:27017
+    # tags:
+    #   - optional_tag1
+    #   - optional_tag2
+    replica_check: true
