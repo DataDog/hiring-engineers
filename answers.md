@@ -206,4 +206,10 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+> I have current customers complaining that some SAAS applications are a "black box" that they don't have visibility into health or performance. I think it would be great to implement the new Synthetics solution to monitor the health of SAAS applications or cloud-based APIs.
 >
+> I took the liberty to play around with this solution and add some basic SAAS monitoring with Datadog Synthetics. I created an API test to do a simple GET on a cloud-based API.
+> <img src="Screenshot 2019-04-17 23.48.28.png">
+> <img src="Screenshot 2019-04-17 23.56.25.png">
+> In this case I knew it would fail because I used a temporary authorization token. When it timed out, I got the alert as expected.
+> <img src="Screenshot 2019-04-18 21.35.10.png">
