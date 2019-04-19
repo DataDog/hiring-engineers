@@ -212,4 +212,4 @@ Is there anything creative you would use Datadog for?
 > <img src="Screenshot 2019-04-17 23.48.28.png">
 > <img src="Screenshot 2019-04-17 23.56.25.png">
 > In this case I knew it would fail because I used a temporary authorization token. When it timed out, I got the alert as expected.
-> <img src="Screenshot 2019-04-18 21.35.10.png">
+> <img src="Screenshot 2019-04-18 22.01.32.png">
