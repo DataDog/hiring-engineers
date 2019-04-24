@@ -4,7 +4,7 @@ This page includes personal answers for each steps with the link(and some inline
 
 ## Step 0 - Prerequisites - Setup the environment
 
-Setup an environment with Ubuntu 16.04 using Vagrant for this exercise as recommended in the exercise. Created a single box project using [this Vagrantfile]("scripts/Vagrantfile") and below is the screenshot of Vagrant version check.
+Setup an environment with Ubuntu 16.04 using Vagrant for this exercise as recommended in the exercise. Created a single box project using [this Vagrantfile](scripts/Vagrantfile) and below is the screenshot of Vagrant version check.
 
 ![Screenshot of Vagrant version check](images/vagrant_version_check.png)
 
@@ -33,7 +33,7 @@ Installed MySQL 5.6 and configured the agent to collect database metrics.
 
 ![Screenshot of Custom Metric](images/custom_metric.png)
 
-A script used to generate random number([custom_hello.py](scripts/custom_metric.py)) located at `/etc/datadog-agent/checks.d/custom_metric.py` is as below.
+A script used to generate random number([custom_hello.py](scripts/custom_hello.py)) located at `/etc/datadog-agent/checks.d/custom_hello.py` is as below.
 
 ```
 # the following try/except block will make the custom check compatible with any Agent version
@@ -78,7 +78,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Below `curl` command creates a new dashboard with three  widgets. Link to the dashboard is [https://app.datadoghq.com/dashboard/ree-ip4-urv](https://app.datadoghq.com/dashboard/ree-ip4-urv).
+Below `curl` command creates a new dashboard with three  widgets. Link to the dashboard is [https://app.datadoghq.com/dashboard/ree-ip4-urv](https://app.datadoghq.com/dashboard/ree-ip4-urv?tile_size=m&page=0&is_auto=false&from_ts=1556060640000&to_ts=1556064240000&live=false).
 
 ```
 curl -X POST -H "Content-type: application/json" \
@@ -188,7 +188,7 @@ APM menu page for `flask` service in Datadog console. Link to this APM page is [
 
 ![Screenshot of APM](images/apm_flask_app.png)
 
-Link to the dashboard that include both APM and Infrastructure Metrics is [https://app.datadoghq.com/dashboard/n69-kni-4g3](https://app.datadoghq.com/dashboard/n69-kni-4g3).
+Link to the dashboard that include both APM and Infrastructure Metrics is [https://app.datadoghq.com/dashboard/n69-kni-4g3](https://app.datadoghq.com/dashboard/n69-kni-4g3?tile_size=m&page=0&is_auto=false&from_ts=1556064540000&to_ts=1556068140000&live=false).
 
 ![Screenshot of APM and Infra](images/apm_to_dashboard.png)
 
