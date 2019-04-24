@@ -1,6 +1,6 @@
 # Answers
 
-This page includes the answers for each steps with the link(and some inline codes) to the scripts and screenshots located in `scripts` and `images` subdirectories respectively. 
+This page includes personal answers for each steps with the link(and some inline codes) to the scripts and screenshots located in `scripts` and `images` subdirectories respectively. 
 
 ## Step 0 - Prerequisites - Setup the environment
 
