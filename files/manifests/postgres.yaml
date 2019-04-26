@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: postgres
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: postgres
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        ad.datadoghq.com/postgres.check_names: '["postgres"]'
+        ad.datadoghq.com/postgres.init_configs: '[{}]'
+        ad.datadoghq.com/postgres.instances: '[{"host":"%%host%%","port":"5432","username":"datadog","password":"datadog"}]'
+      creationTimestamp: null
+      labels:
+        run: postgres
+    spec:
+      containers:
+      - image: postgres
+        name: postgres
+        volumeMounts:
+        - mountPath: "/var/lib/postgresql/data"
+          name: pgdata-vol
+          subPath: postgres
+        resources: {}
+        ports:
+        - containerPort: 5432
+      volumes:
+      - name: pgdata-vol
+        persistentVolumeClaim:
+          claimName: pgdata-pvc
+status: {}

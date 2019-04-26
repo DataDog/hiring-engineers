@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: flask-apm
+  name: flask-apm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: flask-apm
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: flask-apm
+    spec:
+      containers:
+      - image: kennonkwok/flask-apm
+        env:
+          - name: DATADOG_TRACE_AGENT_HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+        name: flask-apm
+        ports:
+        - containerPort: 5050
+        resources: {}
+status: {}

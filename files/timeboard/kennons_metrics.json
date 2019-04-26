@@ -1,0 +1,40 @@
+{
+    "title" : "Kennon's Metrics",
+    "widgets" : [{
+       "definition": {
+            "type": "query_value",
+            "requests": [
+                {
+                    "q": "sum:my_metric{*}.rollup(sum, 3600)",
+                    "aggregator" : "last"
+                 }
+            ],
+            "title": "my_metric last hour",
+            "autoscale": true,
+            "precision": 1
+        }
+      },
+      {
+        "definition": {
+            "type": "timeseries",
+            "requests": [
+                {"q": "sum:my_metric{*} by {host}"}
+            ],
+            "title": "Average my_metric"
+        }
+      },
+      {
+        "definition": {
+            "type": "timeseries",
+            "requests": [
+                {"q": "anomalies(avg:postgresql.percent_usage_connections{*}, 'basic', 2)"}
+            ],
+            "title": "Postgres Connection Anomalies"
+        }
+      }
+    ],
+    "layout_type": "ordered",
+    "description" : "A dashboard with memory info.",
+    "is_read_only": true,
+    "notify_list": ["kennon.kwok@gmail.com"]
+}

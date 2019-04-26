@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: flask-apm
+  name: flask-apm
+spec:
+  ports:
+  - port: 5050
+    protocol: TCP
+    targetPort: 5050
+  selector:
+    run: flask-apm
+  type: LoadBalancer
+status:
+  loadBalancer: {}
