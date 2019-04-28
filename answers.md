@@ -139,7 +139,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-  The Anomaly graph is tracking the Postgres connection capacity.  At this point, any connections are an anomaly since the DB isn't bein used.
+  Anomaly detection uses algorithms to detect when a metric is behaving differently than it has in the past while taking in to account any temporal patterns. This anomaly graph is tracking the Postgres connection capacity.  At this point, any connections are an anomaly since the DB isn't being used.
 
 
 ## Monitoring Data
@@ -179,6 +179,9 @@ Please configure the monitor’s message so that it will:
 Since I'm running on a Kubernetes cluster, I packaged the flask app using Docker with ddtrace-run as the CMD to start the app.  Then, in GKE, I set up a deployment, and a service to pull my image from docker hub and run it on my cluster and expose the service via a Google Cloud load balancer.  Additionally, I set up Datadog Synthetic checks to generate traffic to the api endpoints.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+A service is the name of a set of processes that do the same job - in this case, flask in the service.
+A resource is the particular action, in this case it's the API end points /, /api/trace, and /api/apm.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
