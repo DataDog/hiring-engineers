@@ -197,4 +197,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I run a lot of IoT components in my house - that would be an easy target and super useful for me.  Included in there would be weather/temperature monitors, power consumption, and EV charging metrics!
+I run a lot of IoT components in my house - that would be an easy target and super useful for me.  Included in there would be weather/temperature monitors, power consumption, EV charging metrics, and BBQ!!
