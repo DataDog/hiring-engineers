@@ -1,0 +1,78 @@
+CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
+CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
+
+api_key=b2a249da9744daa8e0ecea088421865d
+app_key=c6a0500783dc98a1f24bde2d1e411f7d35dd7121
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "title" : "My Custom Metric",
+      "widgets" : [{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "hello.world{*}"}
+              ],
+              "title": "Hello World?"
+          }
+      }],
+      "layout_type": "ordered",
+      "description" : "A dashboard with memory info.",
+      "is_read_only": true,
+      "notify_list": ["user@domain.com"],
+      "template_variables": [{
+          "name": "alphadog",
+          "prefix": "host",
+          "default": "my-host"
+      }]
+}' \
+"https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
+
+
+dashboard_id=whr-d2c-z6n
+
+curl  -X PUT -H "Content-type: application/json" \
+-d '{
+      "title" : "My Custom Metricv2",
+      "widgets" : [{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "hello.world{*}"}
+              ],
+              "title": "Hello World?"
+          }
+      },
+      	{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "sum:mysql.performance.queries{*}"}
+              ],
+              "title": "Mysql"
+          }
+      }],
+      "layout_type": "ordered",
+      "description" : "An updated dashboard with more info.",
+      "is_read_only": true,
+      "notify_list": ["moises.zannoni@gmail.com"],
+      "template_variables": [{
+          "name": "alphadog",
+          "prefix": "host",
+          "default": "my-host"
+      }]
+}' \
+"https://api.datadoghq.com/api/v1/dashboard/${dashboard_id}?api_key=${api_key}&application_key=${app_key}"
+
+
+
+nohup python3 ./app.py &
+`nohup python3 ./app.py > nohup.out 2> nohup.err < /dev/null &`
+
+Puedes evitar ese mensaje con el comando arriba.
+Lo que estas haciendo es redireccionando la salida de consola (trazas) a un fichero nohup.out (pon otro fichero con mejor nombre si quieres) con `> nohup.out`. (edited) 
+Lo mismo para `2> nohup.err` para trazas de error. Y todo lo demas a tomar por culo que es el `< /dev/null`
+No te compliques mucho, es solo piping input y output de la terminal bash. De hecho lo he tenido que mirar porque esto lo usaba hace un porron de tiempo.
+Prueba y me cuentas
+ps aux | grep nohup
+Si quieres empezar de cero… matando la app… `kill <pid>`
