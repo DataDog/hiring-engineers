@@ -1,0 +1,6 @@
+logs:
+  - type: file
+    path: /home/vagrant/flaskapp.log
+    service: Jacky_Flask
+    source: python
+    sourcecategory: sourcecode

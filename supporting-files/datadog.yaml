@@ -1,0 +1,4 @@
+api_key: —
+hostname: jacky-datadog-exercise
+tags: env:exercise, role:was
+logs_enabled: true
