@@ -8,6 +8,7 @@ I have spun up Ubuntu 16.04(ubuntu/xenial64) via Vagrant and below is the screen
 
 ## 1. Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
 Here's the host and its tags on the Host Map page.
 ![Screenshot of host and tags](screenshots/1_host_and_tags.png)
 
@@ -57,7 +58,7 @@ instances:
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-    * We can change the interval via min_collection_interval in custom_jacky_metric.yaml or we try adjusting the interval from Datadog portal(Metric - Summary - my_metric - Edit Interval in METADATA)
+    * We can change the interval via min_collection_interval in custom_jacky_metric.yaml or we can try adjusting the interval from Datadog portal(Metric - Summary - my_metric - Edit Interval in METADATA)
 ![Screenshot of adjusting check interval from Datadog UI](screenshots/1_adjust_check_interval.png)
 
 ## 2. Visualizing Data:
@@ -126,9 +127,10 @@ api.Timeboard.create(title=title,
                      read_only=read_only)
 ```
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+We can see newly created Jacky Timeboard for Exercise from the Dashboard list.
 ![Screenshot of Timeboard in Dashboard List](screenshots/2_timeboard_in_dashboard_list.png)
+
+In the Timeboard, we can see timeboard graphs and the anomaly function applied graph.
 ![Screenshot of Accessing My Timeboard](screenshots/2_timeboard.png)
 
 * Set the Timeboard's timeframe to the past 5 minutes
@@ -180,7 +182,11 @@ Here's the email notification for alert. (I triggered TEST alert to check email 
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 We can achieve the requirements by setting Schedule Downtime. Here's the configuration.
+
+**For weekdays** 
 ![Screenshot of configuration for Scheduled Downtime](screenshots/3_scheduled_downtime_config_weekdays.png)
+
+**For weekends** 
 ![Screenshot of configuration for Scheduled Downtime](screenshots/3_scheduled_downtime_config_weekend.png)
 
 The email notification for weekdays
@@ -227,7 +233,7 @@ if __name__ == '__main__':
 
 For APM instrument, I ran the following
 ```
-# DATADOG_SERVICE_NAME="Jacky Flask" ddtrace-run python flaskapp.py 2>&1 | tee flaskapp.log
+$ DATADOG_SERVICE_NAME="Jacky Flask" ddtrace-run python flaskapp.py 2>&1 | tee flaskapp.log
 ```
 This allow to execute the flaskapp.py with Datadog APM and print logs to stdout and write the logs into a log file(flaskapp.log). I've gathered the application logs to ship to Datadog Log Explore to see how it works.
 
