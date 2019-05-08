@@ -196,6 +196,17 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+Tried to run ddtrace-run with the following command
+```
+ddtrace-run python3 ./dogapp.py > nohup.out 2> nohup.err < /dev/null &
+```
+
+But I didn't managed to make it work, even when I activated the APM in datadog.yml
+
+![](images/apmon.PNG)
+
+Couldn't figure out why it wasn't working.
+
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
