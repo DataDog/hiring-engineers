@@ -26,7 +26,7 @@ class HelloCheck(AgentCheck):
 ![](images/45seconds.PNG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-Yes, by modifying the .yml file
+Yes, by modifying the .yaml file
 
 ## Visualizing Data:
 
@@ -201,7 +201,7 @@ Tried to run ddtrace-run with the following command
 ddtrace-run python3 ./dogapp.py > nohup.out 2> nohup.err < /dev/null &
 ```
 
-But I didn't managed to make it work, even when I activated the APM in datadog.yml
+But I didn't managed to make it work, even when I activated the APM in datadog.yaml
 
 ![](images/apmon.PNG)
 
