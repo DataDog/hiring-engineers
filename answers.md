@@ -64,6 +64,41 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
+```
+curl  -X PUT -H "Content-type: application/json" \
+-d '{
+      "title" : "My Custom Metricv2",
+      "widgets" : [{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "my_metric{*}"}
+              ],
+              "title": "Hello World?"
+          }
+      },
+      	{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "sum:mysql.performance.queries{*}"}
+              ],
+              "title": "Mysql"
+          }
+      }],
+      "layout_type": "ordered",
+      "description" : "An updated dashboard with more info.",
+      "is_read_only": true,
+      "notify_list": ["moises.zannoni@gmail.com"],
+      "template_variables": [{
+          "name": "alphadog",
+          "prefix": "host",
+          "default": "my-host"
+      }]
+}' \
+"https://api.datadoghq.com/api/v1/dashboard/${dashboard_id}?api_key=${api_key}&application_key=${app_key}"
+```
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
@@ -113,8 +148,11 @@ Please configure the monitor’s message so that it will:
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+  
   * And one that silences it all day on Sat-Sun.
+  
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
 
 ## Collecting APM Data:
 
