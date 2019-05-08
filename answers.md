@@ -149,14 +149,21 @@ Please configure the monitor’s message so that it will:
 
   * One that silences it from 7pm to 9am daily on M-F,
   
+  ![](images/Silenceweek.PNG)
+  
   * And one that silences it all day on Sat-Sun.
+  
+   ![](images/Silenceweekend.PNG)
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
+   ![](images/notifications.PNG)
 
 ## Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+**No Changes**
 
 ```python
 from flask import Flask
