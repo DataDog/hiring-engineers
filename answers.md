@@ -91,7 +91,24 @@ Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![](images/Monitor01.PNG)
+![](images/Monitor02.PNG)
+![](images/Monitor03.PNG)
+![](images/Monitor04.PNG)
+![](images/Monitor05.PNG)
+
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+**No Data**
+![](images/AlertNoData.PNG)
+
+**Warning**
+![](images/AlertWanringPNG.PNG)
+
+**Alert**
+![](images/Alert.PNG)
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
