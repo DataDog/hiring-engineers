@@ -8,11 +8,25 @@
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+Installed MySQL
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+```
+from checks import AgentCheck
+import random
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', random.uniform(0, 1000))
+```
+
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+![](images/45seconds.PNG)
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+Yes, by modifying the .yml file
 
 ## Visualizing Data:
 
@@ -24,10 +38,42 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+```
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "title" : "My Custom Metric",
+      "widgets" : [{
+          "definition": {
+              "type": "timeseries",
+              "requests": [
+                  {"q": "my_metric{*}"}
+              ],
+              "title": "Hello World?"
+          }
+      }],
+      "layout_type": "ordered",
+      "description" : "A dashboard with memory info.",
+      "is_read_only": true,
+      "notify_list": ["user@domain.com"],
+      "template_variables": [{
+          "name": "alphadog",
+          "prefix": "host",
+          "default": "my-host"
+      }]
+}' \
+"https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
+```
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+![](images/5minutes.PNG)
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![](images/emailsendPNG.PNG)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
