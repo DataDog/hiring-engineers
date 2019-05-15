@@ -4,7 +4,7 @@ I added tags, mysql, and a custom agent check for the random number
 between 0 and 1000.
 
 Modified Datadog.yaml
-
+```
 tags:
 
 \- env:test
@@ -16,7 +16,7 @@ tags:
 \- osversion:1604
 
 \- location:nyc
-
+```
 The different tags seen on the host map page.
 
 ![collecting-metrics-tags.PNG](collecting-metrics-tags.PNG)
@@ -55,16 +55,17 @@ class HelloCheck(AgentCheck):
 def check(self, instance):
 
 self.gauge(\'my\_metric\', random.randint(1,1001),
-tags=\[\'location:nyc\'\])```
+tags=\[\'location:nyc\'\])
+```
 
 **/etc/datadog-agent/conf.d/custom\_random.yaml**
-
+```
 init\_config:
 
 instances:
 
 \- min\_collection\_interval: 45
-
+```
 **BONUS**: Yes, not quite changing - could submit the variable over the
 API using CRON by parsing the variable manually, and posting to DD\'s
 API directly. This could be valuable in a case where more data is needed
@@ -101,7 +102,7 @@ needed for the API calls):
 
 **Timeboard-2.sh (creates the roll\_up, and avg) -
 https://app.datadoghq.com/dashboard/46q-ua7-udp/visualizing-data-api-2?from\_ts=1557920921417&to\_ts=1557924521417&live=true&tile\_size=m**
-
+```
 \#!/bin/bash
 
 api\_key=xxx
@@ -203,7 +204,7 @@ curl -X POST -H \"Content-type: application/json\" \\
 \' \\
 
 [https://api.datadoghq.com/api/v1/dashboard?api\_key=\${api\_key}&application\_key=\${app\_key}](https://api.datadoghq.com/api/v1/dashboard?api_key=$%7bapi_key%7d&application_key=$%7bapp_key%7d)
-
+```
 The dashboard created by the API call:
 
 ![timeboard-2.PNG](timeboard-2.PNG)
@@ -211,7 +212,7 @@ The dashboard created by the API call:
 Here is the python call I used to create the anomaly:
 
 **Anomaly.py**
-
+```
 from datadog import initialize, api
 
 options = {
@@ -276,7 +277,7 @@ is\_read\_only=is\_read\_only,
 notify\_list=notify\_list,
 
 template\_variables=template\_variables)
-
+```
 
 ![anomaly-test.PNG](anomaly-test.PNG)
 
@@ -321,7 +322,7 @@ flask server with DD which worked:
 /root/.local/bin/ddtrace-run python3 web.py
 
 **Web.py**
-
+```
 from flask import Flask
 
 import logging
@@ -366,7 +367,7 @@ return \'Posting Traces\'
 if \_\_name\_\_ == \'\_\_main\_\_\':
 
 app.run(host=\'0.0.0.0\', port=\'5050\')
-
+```
 The flask web server can be accessed at
 <http://208.167.253.94:5050/api/apm>
 
@@ -389,9 +390,9 @@ is then a function accessed under the service, such as a URI, or a class
 
 1.  I have used DD to show the status of Hashicorp vault by evaluating,
     and posting to DD over the API.
-
+```
     vault status \| grep \'Sealed\' \| grep \'true\' \| wc -l
-
+```
 2\. I previously setup all of my cryptomining rigs to send in data that
 was around speeds, hashrate, power usage, etc - passing the data to
 logs, then ingesting in ELK, displaying in Grafana. This could be done
