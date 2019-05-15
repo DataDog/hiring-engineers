@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-api_key=29df0174a45acb5a3bf99f1b619fc1f9
-app_key=0c8c550b9d5c08306d08bc03af07a0570e68f089
+api_key=xxx
+app_key=xxx
 
 curl  -X POST -H "Content-type: application/json" \
 -d '
