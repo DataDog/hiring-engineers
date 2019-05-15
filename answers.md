@@ -1,4 +1,4 @@
-[Collecting Metrics]{.underline}
+**[Collecting Metrics]**
 
 I added tags, mysql, and a custom agent check for the random number
 between 0 and 1000.
@@ -19,8 +19,7 @@ tags:
 
 The different tags seen on the host map page.
 
-![collecting-metrics-tags.PNG](collecting-metrics-tags.PNG){width="10.697916666666666in"
-height="5.423768591426072in"}
+![collecting-metrics-tags.PNG](collecting-metrics-tags.PNG)
 
 I created the two files below to evaluate the custom check for
 my\_metric, and create the configuration to run every 45 seconds.
@@ -71,7 +70,7 @@ API using CRON by parsing the variable manually, and posting to DD\'s
 API directly. This could be valuable in a case where more data is needed
 for a short duration.
 
-[Visualizing Data]{.underline}
+**[Visualizing Data]**
 
 I have not been able to get the anomaly function to work in bash. I took
 identical JSON that was outputted from a GET, and can\'t find any
@@ -98,8 +97,7 @@ still used these for reference since the dashboards contain the query
 needed for the API calls):
 <https://app.datadoghq.com/dashboard/kfz-vxx-isv/visualizing-data?from_ts=1557643246938&to_ts=1557644146938&live=true&tile_size=m>
 
-![visualizing-data-last5.PNG](visualizing-data-last5.PNG){width="8.624959536307962in"
-height="2.6037740594925634in"}
+![visualizing-data-last5.PNG](visualizing-data-last5.PNG)
 
 **Timeboard-2.sh (creates the roll\_up, and avg) -
 https://app.datadoghq.com/dashboard/46q-ua7-udp/visualizing-data-api-2?from\_ts=1557920921417&to\_ts=1557924521417&live=true&tile\_size=m**
@@ -208,7 +206,7 @@ curl -X POST -H \"Content-type: application/json\" \\
 
 The dashboard created by the API call:
 
-![timeboard-2.PNG](timeboard-2.PNG){width="9.614583333333334in" height="2.8125in"}
+![timeboard-2.PNG](timeboard-2.PNG)
 
 Here is the python call I used to create the anomaly:
 
@@ -280,8 +278,7 @@ notify\_list=notify\_list,
 template\_variables=template\_variables)
 
 
-![anomaly-test.PNG](anomaly-test.PNG){width="4.958333333333333in"
-height="2.7708333333333335in"}
+![anomaly-test.PNG](anomaly-test.PNG)
 
 **BONUS:** Anomaly detection is looking for anomalies that are 2
 deviations outside of the normal window, and showing them in red on the
@@ -292,33 +289,28 @@ Email showing dashboard being sent over:
 
 Screenshot showing email of the anomaly dashboard.
 
-![visualizing-data-email.PNG](visualizing-data-email.PNG){width="6.5259230096237975in"
-height="4.072916666666667in"}
+![visualizing-data-email.PNG](visualizing-data-email.PNG)
 
-[Monitoring Data]{.underline}
+**[Monitoring Data]**
 
 I created an alert to trigger when the warning is over 500, and alerting
 is at 800. It will also notify if no data exists in 10 minutes.
 
-![monitoring-data-alert.PNG](monitoring-data-alert.PNG){width="6.0in"
-height="7.122475940507437in"}
+![monitoring-data-alert.PNG](monitoring-data-alert.PNG)
 
 A screenshot of the alert part triggering:
 
-![monitoring-data-email-notification.PNG](monitoring-data-email-notification.PNG){width="9.741823053368329in"
-height="5.916666666666667in"}
+![monitoring-data-email-notification.PNG](monitoring-data-email-notification.PNG)
 
 **BONUS:** See below screenshots for the two notifications I received
 after setting up the maintenance windows. (I set in CDT, looks like it
 defaults to UTC in the email. DD visualization still shows CDT though.)
 
-![monitoring-data-bonus-window-ss.PNG](monitoring-data-bonus-window-ss.PNG){width="7.388509405074366in"
-height="3.28125in"}
+![monitoring-data-bonus-window-ss.PNG](monitoring-data-bonus-window-ss.PNG)
 
-![monitoring-data-bonus-window-mf.PNG](monitoring-data-bonus-window-mf.PNG){width="7.552083333333333in"
-height="3.154887357830271in"}
+![monitoring-data-bonus-window-mf.PNG](monitoring-data-bonus-window-mf.PNG)
 
-[Collecting APM Data]{.underline}
+**[Collecting APM Data]**
 
 I used the default flask application provided, and had to attempt a few
 different routes to get dd-trace working. The command still wasn't
@@ -384,15 +376,14 @@ consistent load going to the APM agent.
 See this screenshot for a dashboard with APM, Infrastructure metrics,
 AND syslog from the machine on a single dashboard.
 
-![collecting-apm-infra-logs.PNG](collecting-apm-infra-logs.PNG){width="7.424227909011374in"
-height="3.859604111986002in"}
+![collecting-apm-infra-logs.PNG](collecting-apm-infra-logs.PNG)
 
 **BONUS:** A service is an application, in a micro-service context this
 could be a login process as part of the larger application. A resource
 is then a function accessed under the service, such as a URI, or a class
 / method. In this case, /api/apm for example.
 
-[Final Question]{.underline}
+**[Final Question]**
 
 **Is there anything creative you would use Datadog for?**
 
