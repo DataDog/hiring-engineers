@@ -25,7 +25,7 @@ I created the two files below to evaluate the custom check for
 my\_metric, and create the configuration to run every 45 seconds.
 
 **/etc/datadog-agent/checks.d/custom\_random.py**
-
+```
 \# the following try/except block will make the custom check compatible
 with any Agent version
 
@@ -55,7 +55,7 @@ class HelloCheck(AgentCheck):
 def check(self, instance):
 
 self.gauge(\'my\_metric\', random.randint(1,1001),
-tags=\[\'location:nyc\'\])
+tags=\[\'location:nyc\'\])```
 
 **/etc/datadog-agent/conf.d/custom\_random.yaml**
 
