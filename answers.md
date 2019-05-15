@@ -3,19 +3,19 @@
 I added tags, mysql, and a custom agent check for the random number
 between 0 and 1000.
 
-Modified Datadog.yaml
+**Modified Datadog.yaml**
 ```
 tags:
 
-\- env:test
+- env:test
 
-\- dbtype:mysql
+- dbtype:mysql
 
-\- os:ubuntu
+- os:ubuntu
 
-\- osversion:1604
+- osversion:1604
 
-\- location:nyc
+- location:nyc
 ```
 The different tags seen on the host map page.
 
@@ -388,7 +388,7 @@ is then a function accessed under the service, such as a URI, or a class
 
 **Is there anything creative you would use Datadog for?**
 
-1.  I have used DD to show the status of Hashicorp vault by evaluating,
+1\.  I have used DD to show the status of Hashicorp vault by evaluating,
     and posting to DD over the API.
 ```
     vault status \| grep \'Sealed\' \| grep \'true\' \| wc -l
