@@ -8,6 +8,8 @@ Please provide screenshots and code snippets for all steps.
  
 ![](img/env_setup.png)
 
+
+
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -34,17 +36,23 @@ https://docs.datadoghq.com/integrations/mysql/
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Following the custom agent documentation for developers which can be found at: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
-Script for: [Agent Check](my_metric.py)
+
+Script for the custom agent check: [Agent Check](my_metric.py)
 
 Verifying The check is running:
 ![](img/agent_verify.png)
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
 Set at the configuration level to satisfy the Bonus Question.
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+
 The default value is 15, it can be changed in the configuration file ([Agent Check Conf](my_metric.yaml)) but we have to bear in mind that the collector will try to run the check every 45 seconds but the check might need to wait in line, depending on how many integrations are enabled on the same Agent. 
+
+
 
 ## Visualizing Data:
 
@@ -54,39 +62,43 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+
 Using the New Dashboard Endpoint with the layout_type argument set as ordered to create a dashboard that resembles the previous timeboard.
 [Create Timeboard Script](create_timeboard.py)
 Dashboard created through the Script:
 ![](img/dashboard.png)
 
+
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
 
 Snapshot graph and notification reception
 ![](img/snapshot.png)
 ![](img/graph_notification.png)
 
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+
 Reference: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+
 Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past. In this specific case it is showing anomalies regarding the percentage of CPU time spent in user space by MySQL.
 
 
-## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+## Monitoring Data
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
-Please configure the monitor’s message so that it will:
-
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
 
 Reference:https://docs.datadoghq.com/monitors/monitor_types/metric/
 
@@ -146,6 +158,7 @@ Monday to Friday Downtime:
 Weekend Downtime:
 ![](img/sat_sun_downtime_notification.png)
 ![](img/sat_sun_downtime.png)
+
 
 
 ## Collecting APM Data:
