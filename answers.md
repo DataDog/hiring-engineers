@@ -206,6 +206,11 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+
+Following the steps in reference: https://docs.datadoghq.com/tracing/
+
+
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
