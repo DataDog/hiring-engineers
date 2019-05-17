@@ -6,8 +6,8 @@ Please provide screenshots and code snippets for all steps.
 
  - Spin up a fresh linux VM via Vagrant and Virtual Box
  
-#![](img/{env_setup.png})
-<img src="img/{env_setup.png}">
+#![](img/env_setup.png)
+<img src="img/env_setup.png">
 
 
 ## Collecting Metrics:
