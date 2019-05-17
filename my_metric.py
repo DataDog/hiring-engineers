@@ -13,4 +13,4 @@ __version__ = "1.0.0"
 
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('my_metric', random.randint(0,1000), tags=['env:dev'])
+        self.gauge('my_metric', random.randint(self,0,1000), tags=['env:dev'])

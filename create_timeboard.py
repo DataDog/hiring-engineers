@@ -24,21 +24,21 @@ widgets = [{#my_metric
         'requests': [
             {'q': 'avg:my_metric{*}.rollup(sum,3600)'}
         ],
-        'title': 'Custom Metric Points Last Hour'
+        'title': 'Custom Metric Rollupp Last Hour'
     }
 },
 {#DB metric with anomaly function applied
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {"q": "anomalies(avg:mysql.innodb.data_read{*}.as_count(), 'basic', 3)"}
+            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 3)"}
         ],
-        'title': 'Anomalies MySQL'
+        'title': 'Anomalies MySQL CPU Time'
     }
 }
 ]
 layout_type = 'ordered' # for Timeboard
-description = 'A dashboard with my_metric, my_metric summed up and DB info.'
+description = 'A dashboard with my_metric, my_metric rollup and DB CPU info.'
 is_read_only = True
 notify_list = ['user@domain.com']
 template_variables = [{
