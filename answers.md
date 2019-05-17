@@ -55,16 +55,22 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
 Using the New Dashboard Endpoint with the layout_type argument set as ordered to create a dashboard that resembles the previous timeboard.
 [Create Timeboard Script](create_timeboard.py)
+Dashboard created through the Script:
+#![](img/{dashboard.png})
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Snapshot graph and notification reception
+#![](img/{snapshot.png})
+#![](img/{notification.png})
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+Reference: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past. In this specific case it is showing anomalies regarding the percentage of CPU time spent in user space by MySQL.
+
 
 ## Monitoring Data
 
