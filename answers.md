@@ -14,32 +14,37 @@ Please provide screenshots and code snippets for all steps.
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-First of all I have added the tags following the documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=python
+First of all I have added the tags in the configuration file datadog.yaml found in the Datadog conf.d directory.
+I have done this following the documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=python
+
 ![](img/tags_config_file.png)
 
 I then access the Host Map through the Side Navigation Menu:
 <img src="img/infrastructure_host_map.png" width="500">
 
-Host Map
+#####Host Map
 ![](img/host_map.png)
 
-Host Configuration
-![](img/host.png)
+#####Host Configuration
+![](img/host_configuration.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 ![](img/mysql_vagrant.png)
 
-Following the instructions for the MySql Integration
-https://docs.datadoghq.com/integrations/mysql/
+Following the instructions for the MySql Integration: https://docs.datadoghq.com/integrations/mysql/
+
+#####mySql check
 ![](img/mySql_datadogAgent_Status.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+
 Following the custom agent documentation for developers which can be found at: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
 
 Script for the custom agent check: [Agent Check](my_metric.py)
 
-Verifying The check is running:
+#####Verifying The check is running:
 ![](img/agent_verify.png)
 
 
@@ -65,7 +70,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Using the New Dashboard Endpoint with the layout_type argument set as ordered to create a dashboard that resembles the previous timeboard.
 [Create Timeboard Script](create_timeboard.py)
-Dashboard created through the Script:
+
+#####Dashboard created through the Script:
 ![](img/dashboard.png)
 
 
@@ -73,7 +79,7 @@ Dashboard created through the Script:
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 
-Snapshot graph and notification reception
+#####Snapshot graph and notification reception
 ![](img/snapshot.png)
 ![](img/graph_notification.png)
 
@@ -131,13 +137,13 @@ Message to be sent:
 	{{/is_no_data}} @asalineroj@gmail.com
 ```
 
-* No Data Notification
+* #####No Data Notification
 ![](img/no_data_monitor.png)
 
-* Warning Notification
+* #####Warning Notification
 ![](img/warning_monitor.png)
 
-* Alert Notification
+* #####Alert Notification
 ![](img/alert_monitor.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -150,12 +156,13 @@ Reference for Managing Downtime: https://docs.datadoghq.com/monitors/downtimes/
 
 Following the downtime documentation for monitors and the intuitive GUI I configure a downtime for 7pm-9am from Monday to Friday and another downtime for all day Saturday and Sunday. 
 
-Please bear in mind the downtime times were set on Europe/Dublin Timezone which is different to UTC
-Monday to Friday Downtime:
+Please bear in mind the downtime times were set on Europe/Dublin Timezone which is different to UTC.
+
+#####Monday to Friday Downtime:
 ![](img/m_f_downtime_notification.png)
 ![](img/m_f_downtime.png)
 
-Weekend Downtime:
+#####Weekend Downtime:
 ![](img/sat_sun_downtime_notification.png)
 ![](img/sat_sun_downtime.png)
 
