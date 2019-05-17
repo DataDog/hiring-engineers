@@ -29,7 +29,7 @@ Host Configuration
 
 Following the instructions for the MySql Integration
 https://docs.datadoghq.com/integrations/mysql/
-
+![](img/mySql_datadogAgent_Status.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Following the custom agent documentation for developers which can be found at: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
