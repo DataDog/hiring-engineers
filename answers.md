@@ -6,8 +6,7 @@ Please provide screenshots and code snippets for all steps.
 
  - Spin up a fresh linux VM via Vagrant and Virtual Box
  
-#![](img/{env_setup.png})
-<img src="img/{env_setup.png}">
+![](img/env_setup.png)
 
 
 ## Collecting Metrics:
@@ -15,19 +14,19 @@ Please provide screenshots and code snippets for all steps.
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 First of all I have added the tags following the documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=python
-#![](img/{tags_config_file.png})
+![](img/tags_config_file.png)
 
 I then access the Host Map through the Side Navigation Menu
-#![](img/{infrastructure_host_map.png})
+![](img/infrastructure_host_map.png)
 
 Host Map
-#![](img/{host_map.png})
+![](img/host_map.png)
 
 Host Configuration
-#![](img/{host.png})
+![](img/host.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-#![](img/{mysql_vagrant.png})
+![](img/mysql_vagrant.png)
 
 Following the instructions for the MySql Integration
 https://docs.datadoghq.com/integrations/mysql/
@@ -38,7 +37,7 @@ Following the custom agent documentation for developers which can be found at: h
 [Agent Check](my_metric.py)
 
 Verifying your check
-#![](img/{agent_verify.png})
+![](img/agent_verify.png)
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -58,14 +57,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 Using the New Dashboard Endpoint with the layout_type argument set as ordered to create a dashboard that resembles the previous timeboard.
 [Create Timeboard Script](create_timeboard.py)
 Dashboard created through the Script:
-#![](img/{dashboard.png})
+![](img/dashboard.png)
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Snapshot graph and notification reception
-#![](img/{snapshot.png})
-#![](img/{notification.png})
+![](img/snapshot.png)
+![](img/notification.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 Reference: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
