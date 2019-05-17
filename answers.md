@@ -64,7 +64,7 @@ Dashboard created through the Script:
 
 Snapshot graph and notification reception
 ![](img/snapshot.png)
-![](img/notification.png)
+![](img/graph_notification.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 Reference: https://docs.datadoghq.com/monitors/monitor_types/anomaly/
@@ -88,11 +88,65 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+Reference:https://docs.datadoghq.com/monitors/monitor_types/metric/
+
+I create a Metric monitor in the Monitors section. and then configure the Monitor accordingly:
+	1. Detection Method: Threshold Alert
+	2. Defined metric: my_metric
+	3. Alert Conditions (Already defaulted to trigger when metric is above the threshold during the last 5 minutes):
+		3.a. Alert threshold: 800
+		3.b. Warning threshold: 500
+		3.c. Select Nofity if data is missing for more than 10 minutes.
+
+
+Message to be sent:
+```	
+	my_metric threshold
+
+	{{#is_alert}}
+	ALERT on Host {{host.name}} with IP: {{host.ip}} 
+	my_metric value is: {{value}} above the acceptable 800 threshold
+	{{/is_alert}}
+
+
+	{{#is_warning}}
+	WARNING
+	my_metric value is: {{value}} above the acceptable 500 threshold
+	{{/is_warning}}
+
+	{{#is_no_data}}
+	No Data on my_metric in the last 10 minutes
+	{{/is_no_data}} @asalineroj@gmail.com
+```
+
+* No Data Notification
+![](img/no_data_monitor.png)
+
+* Warning Notification
+![](img/warning_monitor.png)
+
+* Alert Notification
+![](img/alert_monitor.png)
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Reference for Managing Downtime: https://docs.datadoghq.com/monitors/downtimes/
+
+Following the downtime documentation for monitors and the intuitive GUI I configure a downtime for 7pm-9am from Monday to Friday and another downtime for all day Saturday and Sunday. 
+
+Please bear in mind the downtime times were set on Europe/Dublin Timezone which is different to UTC
+Monday to Friday Downtime:
+![](img/m_f_downtime_notification.png)
+![](img/m_f_downtime.png)
+
+Weekend Downtime:
+![](img/sat_sun_downtime_notification.png)
+![](img/sat_sun_downtime.png)
+
 
 ## Collecting APM Data:
 
