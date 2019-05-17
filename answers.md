@@ -34,9 +34,9 @@ https://docs.datadoghq.com/integrations/mysql/
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Following the custom agent documentation for developers which can be found at: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
 
-#![Agent Check](my_metric.py)
+Script for: [Agent Check](my_metric.py)
 
-Verifying your check
+Verifying The check is running:
 ![](img/agent_verify.png)
 
 
