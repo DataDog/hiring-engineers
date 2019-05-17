@@ -15,8 +15,8 @@ Please provide screenshots and code snippets for all steps.
 First of all I have added the tags following the documentation: https://docs.datadoghq.com/tagging/assigning_tags/?tab=python
 ![](img/tags_config_file.png)
 
-I then access the Host Map through the Side Navigation Menu
-<img src="img/infrastructure_host_map.png" width="350">
+I then access the Host Map through the Side Navigation Menu:
+<img src="img/infrastructure_host_map.png" width="500">
 
 Host Map
 ![](img/host_map.png)
