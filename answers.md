@@ -16,7 +16,7 @@ First of all I have added the tags following the documentation: https://docs.dat
 ![](img/tags_config_file.png)
 
 I then access the Host Map through the Side Navigation Menu
-<img src="img/infrastructure_host_map.png" width="50">
+![](img/infrastructure_host_map.png")
 
 Host Map
 ![](img/host_map.png)
