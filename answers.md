@@ -22,10 +22,10 @@ I have done this following the documentation: https://docs.datadoghq.com/tagging
 I then access the Host Map through the Side Navigation Menu:
 <img src="img/infrastructure_host_map.png" width="500">
 
-#####Host Map
+##### Host Map
 ![](img/host_map.png)
 
-#####Host Configuration
+##### Host Configuration
 ![](img/host_configuration.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -33,7 +33,8 @@ I then access the Host Map through the Side Navigation Menu:
 
 Following the instructions for the MySql Integration: https://docs.datadoghq.com/integrations/mysql/
 
-#####mySql check
+##### mySql check
+
 ![](img/mySql_datadogAgent_Status.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -44,7 +45,7 @@ Following the custom agent documentation for developers which can be found at: h
 
 Script for the custom agent check: [Agent Check](my_metric.py)
 
-#####Verifying The check is running:
+##### Verifying The check is running:
 ![](img/agent_verify.png)
 
 
@@ -71,7 +72,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 Using the New Dashboard Endpoint with the layout_type argument set as ordered to create a dashboard that resembles the previous timeboard.
 [Create Timeboard Script](create_timeboard.py)
 
-#####Dashboard created through the Script:
+##### Dashboard created through the Script:
 ![](img/dashboard.png)
 
 
@@ -79,7 +80,7 @@ Using the New Dashboard Endpoint with the layout_type argument set as ordered to
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 
-#####Snapshot graph and notification reception
+##### Snapshot graph and notification reception
 ![](img/snapshot.png)
 ![](img/graph_notification.png)
 
@@ -158,11 +159,11 @@ Following the downtime documentation for monitors and the intuitive GUI I config
 
 Please bear in mind the downtime times were set on Europe/Dublin Timezone which is different to UTC.
 
-#####Monday to Friday Downtime:
+##### Monday to Friday Downtime:
 ![](img/m_f_downtime_notification.png)
 ![](img/m_f_downtime.png)
 
-#####Weekend Downtime:
+##### Weekend Downtime:
 ![](img/sat_sun_downtime_notification.png)
 ![](img/sat_sun_downtime.png)
 
