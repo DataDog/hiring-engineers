@@ -222,6 +222,13 @@ Dashboard created as Screenboard to enable sharing the results publicly
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 
+Services:
+A service is a set of processes that do the same job. Services must have a type attached, APM automatically assigns services one of four types: web, database, cache, custom.
+
+Resources:
+A Resource is a particular action for a service.Resources should be grouped together under a canonical name. 
+
+In summary a Service would be a collection of Resources that are grouped together to perform a job.
 
 
 
@@ -234,7 +241,7 @@ Is there anything creative you would use Datadog for?
 
 #### Final Question Ideas:
 
-* Polarisation of populations, salary drifts between highest and lowest paid workers... Will start thinking...
+* Polarisation of populations, salary drifts between highest and lowest paid workers... 
 * Food, raw material availability
 * Pollution rates
 * Talent availability and job opportunities
@@ -242,9 +249,9 @@ Is there anything creative you would use Datadog for?
 * Matching excess of something in one part of world with shortfall of same somewhere else.
 * Personal biorhythms, when is optimum time for a person to work, rest or eat
 	What type of exercise is needed/ best for each person
-
 * Optimising crop yields
 
+* Climate control, draughts and natural hazards monitoring and prediction, projects similar to the [Wifire Project](https://wifire.ucsd.edu/) could be very useful in countries such as Spain, Portugal and Australia.
 
 ## Instructions
 
