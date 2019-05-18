@@ -223,6 +223,21 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+
+Final Question Ideas:
+
+* Polarisation of populations, salary drifts between highest and lowest paid workers... Will start thinking...
+* Food, raw material availability
+* Pollution rates
+* Talent availability and job opportunities
+* Hate speech and hate crime ratios
+* Matching excess of something in one part of world with shortfall of same somewhere else.
+* Personal biorhythms, when is optimum time for a person to work, rest or eat
+	What type of exercise is needed/ best for each person
+
+* Optimising crop yields
+
+
 ## Instructions
 
 If you have a question, create an issue in this repository.
