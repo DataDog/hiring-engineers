@@ -224,7 +224,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 
-Final Question Ideas:
+#### Final Question Ideas:
 
 * Polarisation of populations, salary drifts between highest and lowest paid workers... Will start thinking...
 * Food, raw material availability
