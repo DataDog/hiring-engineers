@@ -209,13 +209,19 @@ if __name__ == '__main__':
 
 Following the steps in reference: https://docs.datadoghq.com/tracing/
 
+![Apm Services Viewer](img/flask_app_traces.png)
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well.
+[Public Dashboard URL](https://p.datadoghq.com/sb/bvgvqnbavycwdow1-da0cafc634c482bd516c7d19080de05f)
+
+### Dashboard:
+![](img/apm_infrastructure_dashboard)
+
+
 
 ## Final Question:
 
