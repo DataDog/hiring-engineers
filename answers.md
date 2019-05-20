@@ -241,17 +241,21 @@ Is there anything creative you would use Datadog for?
 
 #### Final Question Ideas:
 
-* Polarisation of populations, salary drifts between highest and lowest paid workers... 
-* Food, raw material availability
+Some uses that I would personally find interesting for Datadog’s solution to be applied to would be:
+
 * Pollution rates
-* Talent availability and job opportunities
-* Hate speech and hate crime ratios
-* Matching excess of something in one part of world with shortfall of same somewhere else.
-* Personal biorhythms, when is optimum time for a person to work, rest or eat
-	What type of exercise is needed/ best for each person
-* Optimising crop yields
+	* Monitoring real time levels of pollution, allergens, etc.
+	* Madrid, London and other big European cities have huge pollution problems
+	* Monitoring Traffic control, Public transport usage and pollution levels
+
+* Personal biorhythms, when is optimum time for a person to workout, rest or eat:
+	* What type of exercise is needed/best for each person
+	* What food is available in season in the region
+		* Create sustainable diets
+		* Monitor diet effectiveness
 
 * Climate control, draughts and natural hazards monitoring and prediction, projects similar to the [Wifire Project](https://wifire.ucsd.edu/) could be very useful in countries such as Spain, Portugal and Australia.
+
 
 ## Instructions
 
