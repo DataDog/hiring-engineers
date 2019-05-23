@@ -1,4 +1,22 @@
+## Start your monitoring with DataDog
+
+The Porpuse of this document is to give the reader an introductory guide of DataDog and the different features.
+
+Requirements:
+* Ubuntu 16.04 (Minimum)
+* Any Database Management System (We are going to use MySQL)
+* When signing up for Datadog, use “Datadog Recruiting Candidate” in the “Company” field
+
+
+
 ## Collecting Metrics:
+
+The first task will be collect metrics, for this we need to intall the Agent in your Ubuntu machine.
+Log into your https://www.datadoghq.com/ with your information and navigate to the little puzzle piece title "Integrations" and Select "Agents", then click over Ubuntu and copy and paste Use the easy one-step instal similar to the example below.
+
+```
+DD_API_KEY=b2a249da9744daa8e0eceaXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
