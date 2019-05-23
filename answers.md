@@ -12,21 +12,28 @@ Requirements:
 ## Collecting Metrics:
 
 The first task will be collect metrics, for this we need to intall the Agent in your Ubuntu machine.
-Log into your https://www.datadoghq.com/ with your information and navigate to the little puzzle piece title "Integrations" and Select "Agents", then click over Ubuntu and copy and paste Use the easy one-step instal similar to the example below.
+Log into your https://www.datadoghq.com/ with your information and navigate to the little puzzle piece title "Integrations" and Select "Agents", then click over Ubuntu and copy and paste the easy one-step install similar to the example below.
 
 ```
 DD_API_KEY=b2a249da9744daa8e0eceaXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+For this we could use different methods, however in this exercise we will use the configuration file to add tags.
+
+Navigate to the directory where datadog-agent was installed and modify the file datadog.yaml as show in the pictures below.
 
 ![](images/Tags.PNG)
 
+Check the Tags have been applied as configured.
+
 ![](images/Tags4.PNG)
+
+For more methods to assign tags, please follow the documentation linked here https://docs.datadoghq.com/tagging/#assigning-tags
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-Installed MySQL
+Intall any Database Management System, for example MySQL following this guideline https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
