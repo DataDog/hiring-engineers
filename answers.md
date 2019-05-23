@@ -37,6 +37,11 @@ Intall any Database Management System, for example MySQL following this guidelin
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+To create a custom agente check we first need to navigate to your checks.d folder, the path should look something like this
+"/etc/datadog-agent/checks.d$" within that folder create a new file and name it as you prefer, make sure the extension of this file is .py and inside copy and paste the following script.
+
+For example my_metric.py
+
 ```
 from checks import AgentCheck
 import random
@@ -47,6 +52,11 @@ class HelloCheck(AgentCheck):
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+To determine the behaviour of the previously created custom check we are going to navigate to the folder "/etc/datadog-agent/conf.d$" and create a file with the same name as the custom agent with the extension .yaml
+
+For example my_metric.yaml
+
+Within that file, write the code as the example below, as you can see you can fraction the time, 1 being 1 minute I used 0.75 to achieve 45 seconds.  
 
 ![](images/45seconds.PNG)
 
