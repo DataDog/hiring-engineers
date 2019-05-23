@@ -73,6 +73,13 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+At your bash console, type the api_key and the app_key, to get this values, please go again to your dashboard and click on the puzzle icon and this time click on API's. 
+
+api_key=b2a249da9744daa8e0eceXXXXXXXXXXX
+app_key=c6a0500783dc98a1f24bde2d1e411fXXXXXXXXXX
+
+After defying your api and app key, proceed to copy and paste the following script, please be mindful to change the name of the custom metric to the apropiate name. 
+
 ```
 curl  -X POST -H "Content-type: application/json" \
 -d '{
@@ -98,6 +105,15 @@ curl  -X POST -H "Content-type: application/json" \
 }' \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
+
+To update and modify the previous dashboard the procedure will be very similar, however at the begining og the operation we will have to define the dashboard_id. You may still have it on the output of the last command you ran, if not run the first script below.
+
+```
+curl "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
+```
+
+After getting the dashboard_id, declare it on your bash and continue with the next script to update your dashboard with a MySQL metric.
+If you wish to add another type of metric, please change it as required.
 
 ```
 curl  -X PUT -H "Content-type: application/json" \
