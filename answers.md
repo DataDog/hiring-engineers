@@ -177,6 +177,7 @@ To include more information in your messages, please check the varibles availabl
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#conditional-variables
 
 ## The result should look similar to:
+
 ![](images/Monitor01.PNG)
 ![](images/Monitor02.PNG)
 ![](images/Monitor03.PNG)
@@ -197,15 +198,21 @@ https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#condit
 
 * **Bonus Exercise**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Let's set up two scheduled downtimes for this monitor:
 
-  * One that silences it from 7pm to 9am daily on M-F,
+To create them go to the UI and click on the Exclamation Icon, then click on Manage Downtime.
+
+Fill out the information as required.
+
+**The Results should look similar to:**
+
+  * This one will silences it from 7pm to 9am daily on M-F,
   
   ![](images/Silenceweek.PNG)
   
-  * And one that silences it all day on Sat-Sun.
+  * This one will silences it all day on Sat-Sun.
   
    ![](images/Silenceweekend.PNG)
   
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  * Make sure that your email is notified when you schedule the downtime.
   
    ![](images/notifications.PNG)
 
@@ -246,32 +253,30 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-Tried to run ddtrace-run with the following command
+To active APM on your Datadog-Agent, navigate to the instalation folder "/etc/datadog-agent$" and modify the file datadog.yaml
+Find the apm_config file and comment it out, same for the line that says "enable"
+
+![](images/apmon.PNG)
+
+Run ddtrace-run with the following command so the process is execute in the background and doesn't expire with the session.
 ```
 ddtrace-run python3 ./dogapp.py > nohup.out 2> nohup.err < /dev/null &
 ```
 
-But I didn't managed to make it work, even when I activated the APM in datadog.yaml
-
-![](images/apmon.PNG)
-
-Couldn't figure out why it wasn't working.
-
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+## Datadog is useful for everyone:
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+You can use Datadog for anything really, thinking on a very small scale I could setup an small IOT in my Door with a contact, setup 0 as a value when the circuit is close and 1 when the circuit is open, so I can monitor when someone goes into my room.
 
-Please include your fully instrumented app in your submission, as well.
+You could setup software with a cognotive services such as Microsoft Vision to identify Weapons in Public Places, if possitive send alerts to the respectives police enforcements.
 
-## Final Question:
-
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
-Is there anything creative you would use Datadog for?
-
-Anything really, could setup an small IOT in my Door with a contact, setup 0 as a value when the circuit is close and 1 when the circuit is open, so I can monitor when someone goes into my room.
-
-In more useful escenarios, you could setup software with a cognotive services such as Microsoft Vision to identify Weapons in Public Places, if possitive send alerts to the respectives police enforcements.
 IoT devices could monitor residential metrics, such as water, electricity, high impacts near areas that are promtept to people falling and monitor elderly houses to alert different departments such as firefighters, ambulences and such.
+
+This are just a few ideas on how we could use Datadog, how would you use it?
+
+## Conclusion:
+
+We just had a taste of Datadog as a solution, but this is just the beginning on your Journey, what you can achieve with DataDog is only bound by your imagination.
+
+Don't hesitate on reaching out, I want to learn what are you trying to achieve and how can I help you to achieve it, sugin DataDog.
