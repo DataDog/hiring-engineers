@@ -56,22 +56,18 @@ To determine the behaviour of the previously created custom check we are going t
 
 For example my_metric.yaml
 
-Within that file, write the code as the example below, as you can see you can fraction the time, 1 being 1 minute I used 0.75 to achieve 45 seconds.  
+Within that file, write the code as the example below, as you can see you can fraction the time, 1 being 1 minute I used 0.75 to achieve 45 seconds.  You can either modify the collection interval in either the py or the yaml fiels.
 
 ![](images/45seconds.PNG)
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-Yes, by modifying the .yaml file
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+In the follownig exercise we will utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 At your bash console, type the api_key and the app_key, to get this values, please go again to your dashboard and click on the puzzle icon and this time click on API's. 
 
@@ -152,39 +148,42 @@ curl  -X PUT -H "Content-type: application/json" \
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
+* You can click on the UI and expand the different metric you are monitoring, for example I expanded and narrowed the view to the past 5 minutes in the metric "my_metric" 
 
 ![](images/5minutes.PNG)
 
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+Simply click into a point in the metric and select the option "annotate this graph" drag and drop the area and use the comment with the @ to send an email to yourself or other members of the team.
 
 ![](images/emailsendPNG.PNG)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
 
 ## Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Let's create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* Warning threshold of 500
 * Alerting threshold of 800
+* Warning threshold of 500
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Please configure the monitor’s message so that it will:
+We will also configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+To include more information in your messages, please check the varibles availables
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#conditional-variables
+
+## The result should look similar to:
 ![](images/Monitor01.PNG)
 ![](images/Monitor02.PNG)
 ![](images/Monitor03.PNG)
 ![](images/Monitor04.PNG)
 ![](images/Monitor05.PNG)
 
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+## The different notifications should look similar to:
 
 **No Data**
 ![](images/AlertNoData.PNG)
@@ -196,7 +195,7 @@ Please configure the monitor’s message so that it will:
 ![](images/Alert.PNG)
 
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* **Bonus Exercise**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Let's set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   
