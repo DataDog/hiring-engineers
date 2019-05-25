@@ -2,7 +2,9 @@
 
 I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise.  I then installed the Datadog agent
 
-DD_API_KEY=2e86941d4e6dacc36d7adfee0dfcb274 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=xxxxxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+(actual API key removed from command) 
 
 The agent started and reported back to the Datadog UI
 
