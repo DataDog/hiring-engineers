@@ -1,6 +1,6 @@
 ## Start your monitoring with DataDog
 
-The Porpuse of this document is to give the reader an introductory guide of DataDog and the different features.
+The Purpose of this document is to give the reader an introductory guide of DataDog and the different features.
 
 Requirements:
 * Ubuntu 16.04 (Minimum)
@@ -11,7 +11,7 @@ Requirements:
 
 ## Collecting Metrics:
 
-The first task will be collect metrics, for this we need to intall the Agent in your Ubuntu machine.
+The first task will be collect metrics, for this we need to install the Agent in your Ubuntu machine.
 Log into your https://www.datadoghq.com/ with your information and navigate to the little puzzle piece title "Integrations" and Select "Agents", then click over Ubuntu and copy and paste the easy one-step install similar to the example below.
 
 ```
@@ -54,7 +54,7 @@ class HelloCheck(AgentCheck):
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 To determine the behaviour of the previously created custom check we are going to navigate to the folder "/etc/datadog-agent/conf.d$" and create a file with the same name as the custom agent with the extension .yaml
 
-For example my_metric.yaml
+For example, my_metric.yaml
 
 Within that file, write the code as the example below, as you can see you can fraction the time, 1 being 1 minute I used 0.75 to achieve 45 seconds.  You can either modify the collection interval in either the py or the yaml fiels.
 
@@ -63,7 +63,7 @@ Within that file, write the code as the example below, as you can see you can fr
 
 ## Visualizing Data:
 
-In the follownig exercise we will utilize the Datadog API to create a Timeboard that contains:
+In the following exercise we will utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
@@ -102,14 +102,18 @@ curl  -X POST -H "Content-type: application/json" \
 "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
-To update and modify the previous dashboard the procedure will be very similar, however at the begining og the operation we will have to define the dashboard_id. You may still have it on the output of the last command you ran, if not run the first script below.
+
+To update and modify the previous dashboard the procedure will be very similar, however at the beginning of the operation we will have to declare the dashboard_id. You may still have it on the output of the last command you ran, if not run the first script below.
+
 
 ```
 curl "https://api.datadoghq.com/api/v1/dashboard?api_key=${api_key}&application_key=${app_key}"
 ```
 
+
 After getting the dashboard_id, declare it on your bash and continue with the next script to update your dashboard with a MySQL metric.
 If you wish to add another type of metric, please change it as required.
+
 
 ```
 curl  -X PUT -H "Content-type: application/json" \
@@ -253,7 +257,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-To active APM on your Datadog-Agent, navigate to the instalation folder "/etc/datadog-agent$" and modify the file datadog.yaml
+To active APM on your Datadog-Agent, navigate to the installation folder "/etc/datadog-agent$" and modify the file datadog.yaml
 Find the apm_config file and comment it out, same for the line that says "enable"
 
 ![](images/apmon.PNG)
@@ -269,9 +273,9 @@ ddtrace-run python3 ./dogapp.py > nohup.out 2> nohup.err < /dev/null &
 
 You can use Datadog for anything really, thinking on a very small scale I could setup an small IOT in my Door with a contact, setup 0 as a value when the circuit is close and 1 when the circuit is open, so I can monitor when someone goes into my room.
 
-You could setup software with a cognotive services such as Microsoft Vision to identify Weapons in Public Places, if possitive send alerts to the respectives police enforcements.
+You could setup software with a cognitive service such as Microsoft Vision to identify Weapons in Public Places, if positive send alerts to the respective police enforcements.
 
-IoT devices could monitor residential metrics, such as water, electricity, high impacts near areas that are promtept to people falling and monitor elderly houses to alert different departments such as firefighters, ambulences and such.
+IoT devices could monitor residential metrics, such as water, electricity, high impacts near areas that are prompt to people falling and monitor elderly houses to alert different departments such as firefighters, ambulances and such.
 
 This are just a few ideas on how we could use Datadog, how would you use it?
 
