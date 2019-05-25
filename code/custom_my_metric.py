@@ -14,5 +14,4 @@ __version__ = "1.0.0"
 
 class CustomMyMetric(AgentCheck):
     def check(self, instance):
-#        self.gauge('my_metric', 1, tags=['custom:my_metric'])
          self.gauge('my_metric', random.randint(0,1001), tags=['custom:my_metric'])
