@@ -2,7 +2,8 @@
 
 I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise.  I then installed the Datadog agent
 
-DD_API_KEY=xxxxxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+``DD_API_KEY=xxxxxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+``
 
 (actual API key removed from command) 
 
@@ -15,15 +16,17 @@ The agent started and reported back to the Datadog UI
 
 see hostmap1.jpg
 
-(I also add the agent to a second EC2 host just to see what it looks like in the UI)
+(I also added the agent to a second EC2 host just to see what it looks like in the UI)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 I installed a MySQL database as you can see from the tag on my host - see mysql1.jpg
 
+``
 sudo yum install mysql-server
 sudo service mysqld start
 mysql -u root -p
+``
 
 and then created the Datadog MySQL users as per integration instuctions
 
@@ -31,7 +34,8 @@ and then created the Datadog MySQL users as per integration instuctions
 
 see mymetric1.jpg
 
-see files
+see files in the code directory in this repo:
+
 /etc/datadog-agent/conf.d/custom_my_metric.yaml
 /etc/datadog-agent/checks.d/custom_my_metric.py
 
@@ -44,8 +48,8 @@ This is done in the yaml file: /etc/datadog-agent/conf.d/custom_my_metric.yaml
 
 Yes, change the YAML file instead of the python file as follows:
 
-min_collection_interval: 45
-
+``min_collection_interval: 45
+``
 
 ## Visualizing Data:
 
@@ -96,40 +100,8 @@ Please configure the monitor’s message so that it will:
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+I used the given Flask app in my exercise.
 
-```python
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -142,17 +114,3 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-
