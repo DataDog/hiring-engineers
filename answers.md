@@ -279,4 +279,4 @@ This are just a few ideas on how we could use Datadog, how would you use it?
 
 We just had a taste of Datadog as a solution, but this is just the beginning on your Journey, what you can achieve with DataDog is only bound by your imagination.
 
-Don't hesitate on reaching out, I want to learn what are you trying to achieve and how can I help you to achieve it, sugin DataDog.
+Don't hesitate on reaching out, I want to learn what are you trying to achieve and how can I help you to achieve it, using DataDog.
