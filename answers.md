@@ -22,13 +22,11 @@ see hostmap1.jpg
 
 I installed a MySQL database as you can see from the tag on my host - see mysql1.jpg
 
-``
+```
 sudo yum install mysql-server
-
 sudo service mysqld start
-
 mysql -u root -p
-``
+```
 
 and then created the Datadog MySQL users as per integration instuctions
 
