@@ -46,6 +46,9 @@ see files in the code directory in this repo:
 
 [custom_my_metric.py](code/custom_my_metric.py)
 
+[link to live graph](https://app.datadoghq.com/graph/embed?from_ts=1558776583626&to_ts=1558862983626&token=f9edbc66ec0b32530e088dabe704c14fae0a807c5d15050e03a23844c31fd60b&height=500&width=1000&legend=true&tile_size=m&live=true)
+
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 This is done in the yaml file: /etc/datadog-agent/conf.d/custom_my_metric.yaml
