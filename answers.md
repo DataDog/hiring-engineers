@@ -41,6 +41,8 @@ see files in the code directory in this repo:
 /etc/datadog-agent/conf.d/custom_my_metric.yaml
 /etc/datadog-agent/checks.d/custom_my_metric.py
 
+[custom_my_metric.yaml](code/custom_my_metric.yaml)
+
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
