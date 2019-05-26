@@ -14,8 +14,8 @@ The agent started and reported back to the Datadog UI
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-see hostmap1.jpg
-![ScreenShot](/img/hostmap1.jpg)
+
+![ScreenShot](img/hostmap1.JPG)
 
 (I also added the agent to a second EC2 host just to see what it looks like in the UI)
 
@@ -33,7 +33,8 @@ and then created the Datadog MySQL users as per integration instuctions
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-see mymetric1.jpg
+
+![ScreenShot](img/mymetric1.JPG)
 
 see files in the code directory in this repo:
 
@@ -70,7 +71,9 @@ Timeboard can only be set to the last 15 mins as far as I can tell?
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-see email_mymetric1.jpg
+
+![ScreenShot](img/email_mymetric1.JPG)
+
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
