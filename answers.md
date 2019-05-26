@@ -15,6 +15,7 @@ The agent started and reported back to the Datadog UI
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 see hostmap1.jpg
+![ScreenShot](/img/hostmap1.jpg)
 
 (I also added the agent to a second EC2 host just to see what it looks like in the UI)
 
@@ -100,7 +101,7 @@ Please configure the monitor’s message so that it will:
 
 ## Collecting APM Data:
 
-I used the given Flask app in my exercise.
+I used the given Flask app in my exercise - see apm_app.py in the code folder
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
