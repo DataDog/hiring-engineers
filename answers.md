@@ -140,6 +140,8 @@ See the email screenshot below:
 
 ![ScreenShot](img/emailmonitor1.JPG)
 
+(note: the host IP is not displaying in the email even though I asked for it to be sent in the definition of the monitor - to be investigated later)
+
 and the downtime definitions below:
 
 ![ScreenShot](img/downtime1.JPG)
