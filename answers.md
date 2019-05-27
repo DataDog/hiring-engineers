@@ -81,7 +81,7 @@ This is done in the yaml file: /etc/datadog-agent/conf.d/custom_my_metric.yaml
 
 Yes, change the YAML file instead of the python file as follows, for example, to change the collection interval to 50 seconds, do:
 
-``min_collection_interval: 45
+``min_collection_interval: 50
 ``
 
 ## Visualizing Data:
@@ -126,6 +126,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+See the configutation of my monitor below:
+
 ![ScreenShot](img/monitor1.JPG)
 
 
@@ -140,13 +142,8 @@ See the email screenshot below:
 
 ![ScreenShot](img/emailmonitor1.JPG)
 
-(note: the host IP is not displaying in the email even though I asked for it to be sent in the definition of the monitor - to be investigated later)
+(note: the host IP is not displaying in the email even though I asked for it to be sent in the definition of the monitor - to be investigated later why not)
 
-and the downtime definitions below:
-
-![ScreenShot](img/downtime1.JPG)
-
-![ScreenShot](img/downtime2.JPG)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -154,34 +151,56 @@ and the downtime definitions below:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-email notification fo scheduled downtime:
+email notification of scheduled downtime below:
 
 ![ScreenShot](img/downtime3.JPG)
 
+and the downtime definitions below:
+
+![ScreenShot](img/downtime1.JPG)
+
+![ScreenShot](img/downtime2.JPG)
 
 
 ## Collecting APM Data:
 
 I used the given Flask app in my exercise - see [apm_app.py](code/apm_app.py) in the code folder
 
-sudo yum install gcc
+I installed ddtrace and Flask and ran ddtrace using the commands below:
+
+```
 sudo pip install ddtrace
-ddtrace-run python apm_app.py
-pip install flask
 sudo pip install flask
 ddtrace-run python apm_app.py
+```
 
-Using a browser, generate some events by going to the web resources that the flask server presents.  Use the public IP of the Ec2 instance
+Using a browser, I generated some events by going to the web resources that the flask server presents.  Using the public IP of the EC2 instance as follows:
+
+![ScreenShot](img/flaskresource1.JPG)
 
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+A service is a set of processes that have the same function like a wep application or a database.
+A resource is, for example, an individual web page or a particular database query.
+
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Screenshot of Flask and infra metrics:
+
+![ScreenShot](img/flasktimeboard1.JPG)
+
+
+[link to live graph](https://app.datadoghq.com/graph/embed?token=66e6b3184efe1dffcec43b56d9bdbdd8f1f5744192a1aaa307120fc310e1958b&height=400&width=800&legend=true)
+
 
 Please include your fully instrumented app in your submission, as well.
 
-see [apm_app.py](code/apm_app.py)
+see my app here: [apm_app.py](code/apm_app.py)
+
+
 
 ## Final Question:
 
