@@ -37,19 +37,9 @@ widgets = [
 
 layout_type = 'ordered'
 description = 'A dashboard with various metrics'
-#is_read_only = True
-#notify_list = ['user@domain.com']
-#template_variables = [{
-#    'name': 'host1',
-#    'prefix': 'host',
-#    'default': 'my-host'
-#}]
 
 api.Dashboard.create(title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,
-#                     is_read_only=is_read_only,
-#                     notify_list=notify_list,
-#                     template_variables=template_variables
 )
