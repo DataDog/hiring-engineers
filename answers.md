@@ -9,34 +9,55 @@ I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exe
 
 The agent started and reported back to the Datadog UI
 
+![ScreenShot](img/agent_start1.JPG)
+
 
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+See screenshot below (I also added the agent to a second EC2 host just to see what it looks like in the UI):
 
 ![ScreenShot](img/hostmap1.JPG)
 
-(I also added the agent to a second EC2 host just to see what it looks like in the UI)
+
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I installed a MySQL database as you can see from the tag on my host - see mysql1.jpg
+I installed a MySQL database and created a test database as you can see from the screenshots below and the tag on my host - see below:
 
 ```
 sudo yum install mysql-server
 sudo service mysqld start
 mysql -u root -p
+
+CREATE DATABASE  Employee;
+use Employee;
+create table Info (EmpId INT, First_Name VARCHAR(20),Last_Name VARCHAR(20),Address VARCHAR(20),City VARCHAR(15), Department VARCHAR(10),Salary INT);
+insert into Info values ( "1" , "Tom" , "Parker" , "WestStreet" , "Las Vegas" , "Accounts" , 1000 );
+
+CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';
+GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
+
 ```
 
-and then created the Datadog MySQL users as per integration instuctions
+![ScreenShot](img/mysql1.JPG)
+
+![ScreenShot](img/mysql2.JPG)
+
+
+and then created the Datadog MySQL users and edited the conf & log files as per the integration instuctions
+
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+See the screenshot of my_metric below:
 
 ![ScreenShot](img/mymetric1.JPG)
 
-see files in the code directory in this repo:
+see files in the code directory in this repo to show my configuration of this metric:
 
 /etc/datadog-agent/conf.d/custom_my_metric.yaml
 
