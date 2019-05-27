@@ -162,7 +162,17 @@ email notification fo scheduled downtime:
 
 ## Collecting APM Data:
 
-I used the given Flask app in my exercise - see [app_app.py](code/apm_app.py) in the code folder
+I used the given Flask app in my exercise - see [apm_app.py](code/apm_app.py) in the code folder
+
+sudo yum install gcc
+sudo pip install ddtrace
+ddtrace-run python apm_app.py
+pip install flask
+sudo pip install flask
+ddtrace-run python apm_app.py
+
+Using a browser, generate some events by going to the web resources that the flask server presents.  Use the public IP of the Ec2 instance
+
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -171,8 +181,14 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
+see [apm_app.py](code/apm_app.py)
+
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+I would use Datadog to send alets from a twitter stream every time my company name and the sentiment is mentioned on Twitter
+
+
