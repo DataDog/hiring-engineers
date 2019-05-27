@@ -208,6 +208,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-I would use Datadog to send alets from a twitter stream every time my company name and the sentiment is mentioned on Twitter
+
+Yes, I would use Datadog to send alets from Twitter streams/tweets every time my company name was mentioned on Twitter.  The Twitter stream could be accessed using the Twitter API and parsed for my company name and then sent on to Datadog usng the Datadog API.  Using this, the company could montior mentions of products and assess their popularity and/or any support issues.  A further refinement would be to assess the sentiment of the tweets and group them accordingly before sending them to Datadog.
 
 
