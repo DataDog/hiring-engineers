@@ -74,9 +74,12 @@ see files in the code directory in this repo to show my configuration of this me
 
 This is done in the yaml file: /etc/datadog-agent/conf.d/custom_my_metric.yaml
 
+``min_collection_interval: 45
+``
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, change the YAML file instead of the python file as follows:
+Yes, change the YAML file instead of the python file as follows, for example, to change the collection interval to 50 seconds, do:
 
 ``min_collection_interval: 45
 ``
@@ -89,16 +92,21 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-see script: api_call.py
+see script in the code section for my API call: [api_call.py](code/api_call.py)
+
+![ScreenShot](img/mycustomtimeboard1.JPG)
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-Timeboard can only be set to the last 15 mins as far as I can tell?
+Timeboard can only be set to a miniumum of the last 15 mins in the UI as far as I can tell?
+
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+See the screenshot of the email below:
 
 ![ScreenShot](img/email_mymetric1.JPG)
 
@@ -106,6 +114,7 @@ Timeboard can only be set to the last 15 mins as far as I can tell?
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 The anomaly graph is telling me that it doens't have enough historical data yet for this algorithm.
+
 
 ## Monitoring Data
 
@@ -117,6 +126,9 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+![ScreenShot](img/monitor1.JPG)
+
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
@@ -124,15 +136,31 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+See the email screenshot below:
+
+![ScreenShot](img/emailmonitor1.JPG)
+
+and the downtime definitions below:
+
+![ScreenShot](img/downtime1.JPG)
+
+![ScreenShot](img/downtime2.JPG)
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+email notification fo scheduled downtime:
+
+![ScreenShot](img/downtime3.JPG)
+
+
 
 ## Collecting APM Data:
 
-I used the given Flask app in my exercise - see apm_app.py in the code folder
+I used the given Flask app in my exercise - see [app_app.py](code/apm_app.py) in the code folder
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
