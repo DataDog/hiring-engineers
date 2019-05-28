@@ -7,30 +7,6 @@
 - I went with the Dockerized agent route so I added tags using the `-e DD_TAGS=environment:aws` environment variable when launching the agent container using the following command:
 
 ```
-docker run -d --net=host \
---name dd-agent \
--v /var/run/docker.sock:/var/run/docker.sock:ro \
--v /proc/:/host/proc/:ro \
--v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
--v /opt/datadog-agent-conf.d:/conf.d:ro \
--e DD_API_KEY=50d8ea7029104283da3811080caa6ebd \
--e DD_TAGS=environment:docker-desktop \
-datadog/agent:latest
-
-
-docker run -d \
---net=host \
---name dd-agent \
--v /var/run/docker.sock:/var/run/docker.sock:ro \
--v /proc/:/host/proc/:ro \
--v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
--v /opt/datadog-agent/conf.d:/conf.d:ro \
--v /opt/datadog-agent/checks.d:/checks.d:ro \
--e DD_API_KEY=50d8ea7029104283da3811080caa6ebd \
--e DD_TAGS=environment:aws \
--e DD_APM_ENABLED=true \
-datadog/agent:latest
-
 
 docker run -d \
 --name dd-agent \
@@ -39,7 +15,7 @@ docker run -d \
 -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
 -v /opt/datadog-agent/conf.d:/conf.d:ro \
 -v /opt/datadog-agent/checks.d:/checks.d:ro \
--e DD_API_KEY=50d8ea7029104283da3811080caa6ebd \
+-e DD_API_KEY=XXXXXXXXX \
 -e DD_TAGS=environment:aws \
 -e DD_APM_ENABLED=true \
 -p 8126:8126/tcp \
