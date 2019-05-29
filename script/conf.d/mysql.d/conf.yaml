@@ -1,0 +1,77 @@
+init_config:
+
+instances:
+
+  ## @param server - string - required
+  ## MySQL server to connect to.
+  ## NOTE: Even if the server name is "localhost", the agent connects to MySQL using TCP/IP, unless you also
+  ## provide a value for the sock key (below).
+  #
+  - server: 127.0.0.1
+
+  ## @param user - string - required
+  ## Datadog Username created to connect to MySQL.
+  #
+    user: datadog
+
+  ## @param pass - string - required
+  ## Password associated with the datadog user.
+  #
+    pass: admin2
+
+  ## @param port - integer - optional - default: 3306
+  ## Port to use when connecting to MySQL.
+  #
+    port: 3306
+
+  ## @param sock - string - optional
+  ## Set the sock parameter if you want to connect to MySQL using a Unix Socket.
+  #
+  #  sock: <SOCK_PATH>
+
+  ## @param defaults_file - string - optional
+  ## Enter the path of an alternate configuration mechanism file.
+  #
+  #  defaults_file: <CONFIGURATION_FILE_PATH>
+
+  ## @param connect_timeout - integer - optional - default: 10
+  ## Change the timeout time in second for the Agent queries.
+  #
+  #  connect_timeout: 10
+
+  ## @param tags  - list of key:value elements - optional
+  ## List of tags to attach to every metric, event and service check emitted by this integration.
+  ##
+  ## Learn more about tagging: https://docs.datadoghq.com/tagging/
+  #
+tags:
+ - database:mysql
+  #    - <KEY_2>:<VALUE_2>
+
+  ## @param ssl - object - optional
+  ## Use this parameter to configure a SSL connection between the Agent and MySQL:
+  ## `key`: Path to your key file.
+  ## `cert`: path to your cert file.
+  ## `ca`: path to your ca file.
+  #
+  #  ssl:
+  #    key: <KEY_FILE_PATH>
+  #    cert: <CERT_FILE_PATH>
+  #    ca: <CA_PATH_FILE>
+
+  ## @param max_custom_queries - integer - optional - default: 20
+  ## Set the maximum number of custom queries to execute with this integration.
+  #
+  #  max_custom_queries: 20
+
+  ## @param queries - custom object - optional
+  ## Define custom queries to collect custom metrics on your MySQL
+  ## See https://docs.datadoghq.com/integrations/faq/how-to-collect-metrics-from-custom-mysql-queries to learn more.
+  ##
+queries:
+  - query: SELECT value FROM stocks.trading WHERE company = 'MarketBiz'
+    metric: mysql.query_custom
+    tags:
+        - tester: mysql
+    type: gauge
+    field: value
