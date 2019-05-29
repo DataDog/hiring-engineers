@@ -15,12 +15,11 @@ docker run -d \
 -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
 -v /opt/datadog-agent/conf.d:/conf.d:ro \
 -v /opt/datadog-agent/checks.d:/checks.d:ro \
--e DD_API_KEY=XXXXX \
+-e DD_API_KEY=XXXXXX \
 -e DD_TAGS=environment:aws \
 -e DD_APM_ENABLED=true \
 -p 8126:8126/tcp \
 datadog/agent:latest
-
 
 
 ```
@@ -220,15 +219,52 @@ For the bonus question:
 
 ### Collecting APM Data
 
-I tried enabling APM in the Docker DataDog container using the `-e DD_APM_ENABLED=true ` however it is still shows up as 
+
+- I followed these docs (https://docs.datadoghq.com/tracing/setup/python/) and installed the required tracing packages before running the app using ` ddtrace-run python app.py &` . The final `app.py` looks like this:
 
 ```
-# Enable APM by setting the DD_APM_ENABLED envvar to true, or override this configuration
-apm_config:
-  enabled: false
+# cat app.py
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
 ```
 
-within the dd-agent container. I went through launching the Flask app using `/app# ddtrace-run python app.py &`, however it did not show up under the `APM` section in the dashboard. I'm not sure if i'm missing a step here but the docs made it sound that these were the only requirements to start seeing the tracing data in the dashboard.
+Below is a screen shot from a dashboard with both infra and APM metrics:
+
+
+![apm.png](img/apm.png)
+![apm_1.png](img/apm_2.png)
+
+
+The link to the dashboard: https://app.datadoghq.com/dashboard/6gr-h74-hde/
+
 
 ### Final Question
 
