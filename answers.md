@@ -5,7 +5,25 @@ Your answers to the questions go here.
 Task1 (Host Map and tags)
 ![Optional Text](../master/images/host-mapping.png)
 
+---
+
 Task2 (Datadog integration for MySQL)
+![Optional Text](../master/images/sql_integration.png)
+
+---
+
+Task3 (Setup custom agent check for my_metric) <br/> 
+![Optional Text](../master/images/custom_metric_collection.png)
+
+---
+
+Task4 (Script to generate random number < 1000) <br/>
+[link to custom_my_metric.py python script](../master/script/checks.d/custom_my_metric.py)
+
+---
+
+Task5 (Bonus Question : change the collection interval without modifying the Python file) <br/>
+[link to custom_metric.yaml](../master/script/conf.d/custom_my_metric.yaml)
 
 ---
 
