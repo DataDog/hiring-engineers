@@ -158,5 +158,20 @@ Email
 ![Optional Text](../master/email_custom_threshold.png)
 
 AlertDowntime
-![Optional Text](../master/weekday_alert_mute.png)
-![Optional Text](../master/weekend_alert_mute.png)
+![Optional Text](../master/images/weekday_alert_mute.png)
+![Optional Text](../master/images/weekend_alert_mute.png)
+![Optional Text](../master/images/downtime_notification.png)
+
+---
+
+<h2>PART - 4 Flask</h2>
+
+![Optional Text](../master/images/flask_request_response_stats.png)
+![Optional Text](../master/images/flask-apm-service.png)
+
+--
+
+<h2>PART - 5 Future ideas</h2>
+
+In the current age of IoT, monitoring and orchestration is an absolute necessity. This could be a great platform to take smart homes to the next level, which focus on making life easier for the elderly or aged. Collaborating with voice and visual detection, Datadog could be used to control devices such as lighting, manage thermostats and even help connect to emergency services, eliminating the need for the user to be acquainted with technology.
+
