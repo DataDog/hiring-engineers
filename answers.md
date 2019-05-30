@@ -155,7 +155,7 @@ Dashboard
 ![Optional Text](../master/custom_threshold_reporting.png)
 
 Email
-![Optional Text](../master/email_custom_threshold.png)
+![Optional Text](../master/images/email_custom_threshold.png)
 
 AlertDowntime
 ![Optional Text](../master/images/weekday_alert_mute.png)
