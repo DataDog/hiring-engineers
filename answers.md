@@ -64,6 +64,8 @@ Response and dashboard
 ```
 {"notify_list":[],"description":"A dashboard with custom timeseries.","template_variables":[{"default":"my-host","prefix":"host","name":"host1"}],"is_read_only":true,"id":"yke-yz3-v2s","title":"Custom Metric API mapping","url":"/dashboard/yke-yz3-v2s/custom-metric-api-mapping","created_at":"2019-05-26T13:38:18.435269+00:00","modified_at":"2019-05-26T13:38:18.435269+00:00","author_handle":"supra33.b@gmail.com","widgets":[{"definition":{"requests":[{"q":"avg:my_metric{*}"}],"type":"timeseries","title":"Custom Metric timeseries"},"id":8489546693992828}],"layout_type":"ordered"} 
 ```
+![Optional Text](../master/API_custom_metric_mapping.png)
+
 ---
 
 Task2 - Datadog API to create a Timeboard for the database with the anomaly function applied
@@ -99,6 +101,8 @@ Response
 ```
 
 Screenshot of the timeseries - https://tinyurl.com/y2wefmum
+
+![Optional Text](../master/mysql-datadoghq-anomaly_reporting.png)
 
 ---
 Task3 - Custom metric with the rollup sum function into 1hr buckets.
@@ -139,3 +143,20 @@ Response and dashboard
 "https://api.datadoghq.com/api/v1/dashboard/qhh-jsp-jfv?api_key=c21d0fba6cf7fd6347cbc1f57b0f1e22&application_key=3c7911780905fefea18aab8f47d7099328bb1d51"
 {"notify_list":["supra33.b@gmail.com"],"description":null,"template_variables":[{"default":"my-host","prefix":"host","name":"host1"}],"is_read_only":true,"id":"qhh-jsp-jfv","title":"Custom Metric rollup in 1 hr buckets","url":"/dashboard/qhh-jsp-jfv/custom-metric-rollup-in-1-hr-buckets","created_at":"2019-05-26T13:37:12.554359+00:00","modified_at":"2019-05-29T03:41:34.108916+00:00","author_handle":"supra33.b@gmail.com","widgets":[{"definition":{"requests":[{"q":"avg:my_metric{*}.rollup(sum, 3600)"}],"type":"timeseries","title":"Custom Metric rollup in 1 hr buckets"},"id":7558535943651744}],"layout_type":"ordered"}
 ```
+![Optional Text](../master/API_custom_metric_1hr_rollup.png)
+
+---
+
+<h2>PART - 3 (Monitoring Data)</h2>
+
+Task1 - Custom metric threshold alerting.
+
+Dashboard
+![Optional Text](../master/custom_threshold_reporting.png)
+
+Email
+![Optional Text](../master/email_custom_threshold.png)
+
+AlertDowntime
+![Optional Text](../master/weekday_alert_mute.png)
+![Optional Text](../master/weekend_alert_mute.png)
