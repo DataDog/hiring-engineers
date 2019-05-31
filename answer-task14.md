@@ -7,10 +7,13 @@ The only option to do this, it seems by creating recurring non-peak hours to sup
 This is actually used during maintenance windows, to reduce false alarm. 
 - One that silences it from 7pm to 9am daily on M-F (answer-task14.pic1.png)
 - And one that silences it all day on Sat-Sun (answer-task14.pic1.png)
+-	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification (answer-task14-pic4.png)
 
 Snapshots:
 - answer-task14-pic1.png
 - answer-task14-pic2.png
+- answer-task14-pic3.png
+- answer-task14-pic4.png
 
 Reference:
 https://docs.datadoghq.com/monitors/downtimes/
