@@ -16,6 +16,7 @@ APM will be able to triage performance issue that related to hybrid infrastructu
 Last, APM will be able to trace problem and find the root cause through analyzing transactions, queries and error codes.
 
 Steps:
+- i use PHYMYADMIN application for this exercise.
 - PHPMYADMIN application is running on Apache Server (sg-web-01) and MySQL database (sg-db-01)
 - installed datadog-php-tracer.deb on sg-web-01
 -	enable APM in Datadog.yaml
@@ -28,9 +29,9 @@ Public URL:
 Dashboard Explanation
 I categorized my dashboard into 4 sections as follows:
 - Application Performance => display high level application performance metrics like Web and Database Request / Duration
-- Infrastructure => display the resource consumption on application and database server
+- Infrastructure => display the resource consumption on application and database server. I ran calculation to calculate some percentage metrics.
 - Problem Tracing => display high level problem like SLAO/SLA, Triggered Alarm and Log Statistic
-- Anomalies and Forecasts => would be used for planning and prevention of future problem and knowing the unknown
+- Anomalies and Forecasts => it would be used for planning and prevention of future problem and knowing the unknown
 
 Snapshot:
 - answer-task15-pic1.png
