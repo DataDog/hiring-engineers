@@ -18,5 +18,5 @@ These are some sample interesting business cases:
 - On the other hand, if I see my sales is declining every day, how do I prevent it not to go down further?
 
 Technical use cases:
-- I would to monitor and plan my users, customers, infrastructure growth in general.
+- I would to monitor and plan my users, customers, infrastructure growth e.g: my customer is growing 100-200 in a month, I would like to compare it with my web traffic load.
 - I would to provide analytical feedback to the devops team, where people spend most of the time in the application or where they spend much less time.
