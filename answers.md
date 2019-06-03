@@ -1,5 +1,3 @@
-
-
 ## Nicola Kabar's Answers
 
 ### Collecting Metrics
@@ -10,12 +8,13 @@
 
 docker run -d \
 --name dd-agent \
+--net=host \
 -v /var/run/docker.sock:/var/run/docker.sock:ro \
 -v /proc/:/host/proc/:ro \
 -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
 -v /opt/datadog-agent/conf.d:/conf.d:ro \
 -v /opt/datadog-agent/checks.d:/checks.d:ro \
--e DD_API_KEY=XXXXXX \
+-e DD_API_KEY=XXXXXXX \
 -e DD_TAGS=environment:aws \
 -e DD_APM_ENABLED=true \
 -p 8126:8126/tcp \
@@ -28,9 +27,41 @@ datadog/agent:latest
 
 
 
-- I also installed MongoDB on the host(natively) and went through the Datadog console to configure the MongoDB integration
+- I also installed MongoDB on the host(natively) and went through the Datadog console to configure the MongoDB integration. Once Installed Mongo, I created a read-only user account for the agent to be able to connect to it using the following:
 
-![tags.png](img/mongo_int.png)
+```
+use admin
+db.createUser({
+  "user":"datadog",
+  "pwd": "PASSWORD",
+  "roles" : [
+    {role: 'read', db: 'admin' },
+    {role: 'clusterMonitor', db: 'admin'},
+    {role: 'read', db: 'local' }
+  ]
+})
+```
+
+I also added the following `mongo.yaml` configs under `/opt/datadog-agent/conf.d`
+
+
+```
+$ cat mongo.yaml
+  init_config:
+  instances:
+    - server: mongodb://datadog:<PASSWORD>@localhost:27017/admin
+      additional_metrics:
+        - collection       # collect metrics for each collection
+        - metrics.commands
+        - tcmalloc
+        - top
+
+```
+
+
+![tags.png](img/integration_ui.png)
+
+![tags.png](img/mongo_int_v2.png)
 
 Also to confirm I checked the agent status:
 
@@ -48,7 +79,7 @@ Also to confirm I checked the agent status:
 <snip>
 ```
 
--For the custom check, I followed https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6 and installed the python script here:
+-For the custom check, I followed  and installed the python script here:
 
 ```
 root@ip-10-99-31-215:/opt/datadog-agent-conf.d# cat conf.d/custom_random_metric.yaml
@@ -78,7 +109,7 @@ class MyRandomCheck(AgentCheck):
 init_config:
 
 instances:
-  - min_collection_interval: 30
+  - min_collection_interval: 45
 ```
 
 - Bonus Question: I did not have to change the interval time from the python script itself. I did it using the agent configuration option. Below is a confirmation:
@@ -206,6 +237,8 @@ curl  -X POST -H "Content-type: application/json" \
 ### Monitoring Data
 
 Below is the notification I got when testing the Monitor Alert I created.
+
+![alerting_setup.png](img/alerting_setup.png)
 
 ![alert.png](img/alert.png)
 
