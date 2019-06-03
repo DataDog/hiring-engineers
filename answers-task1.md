@@ -18,7 +18,7 @@ Steps:
 -	Install Virtual Box
 - Within the Windows command prompt, I ran:
 PS C:\HashiCorp\Vagrant\bin> .\vagrant.exe init ubuntu/xenial64
-Before deploying the VMs, I edited the Vagrantfile for creating 2 VM boxes.
+Before deploying the VMs, I edited the Vagrantfile for creating 2 VM boxes at once.
 
 config.vm.define "web" do |web|
     web.vm.box = "ubuntu/xenial64"
