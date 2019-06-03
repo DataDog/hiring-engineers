@@ -9,7 +9,7 @@ ANSWER #1A:
 Brief Explanation:
 Vagrant is one of the automated provisioning tool to quickly spin up virtual machines.
 I spun up 2 VMs by customizing the Vagrant configuration file. I planned them for Web and Database Servers.
-I use the Ubuntu/Xenial64 (v. 16.04).
+The 2 VMs are sg-web-01 and sg-db-01. I use the Ubuntu/Xenial64 (v. 16.04).
 
 Steps:
 -	Download Vagrant
