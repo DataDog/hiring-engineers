@@ -118,7 +118,7 @@ Qn: Change your check's collection interval so that it only submits the metric o
 sudo -u dd-agent -- datadog-agent check my_metric
 ```
 <br>
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  <br>
 Did not modify py code.
 
 <br>
@@ -195,12 +195,12 @@ https://api.datadoghq.{{datadog_site}}/api/v1/dashboard/:DASHBOARD_ID?api_key={{
 
 Qn: Once this is created, access the Dashboard from your Dashboard List in the UI:
     Set the Timeboard's timeframe to the past 5 minutes
-![dashboard](images/jdasb2.png)
+![dashboard](images/jdasb2_5min.png)
 
 Qn: Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![dashboard](images/jdasb3.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+* **Bonus Question**: What is the Anomaly graph displaying? <br>
 The grey area shows the boundary of 2 standard deviations from the metric of total mongoDB connections
 
 
@@ -214,14 +214,16 @@ Qn: Create a new Metric Monitor that watches the average of your custom metric (
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Setup monitor
-![monitor]](images/monitor1.png)
+![monitor](images/monitor1.png)
 
 Qn: Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![monitor]](images/monitor2.png)
+![monitor](images/monitor2.png)
+
+Monitor message template below.
 ```
 {{#is_alert}}
 Value of my_metric hit {{value}} on {{host.ip}}.
@@ -236,14 +238,13 @@ Value of my_metric hit {{value}}. Relax, just a heads up :)
 No data has been seen for the past 10mins. Please check.
 {{/is_no_data}}
 ```
-Monitor message template
 
 
 Qn: When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![monitor alert](images/monitoralert.png)
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: <br>
   Qn: One that silences it from 7pm to 9am daily on M-F,
 
 ![downtime](images/downtime1.png)
@@ -260,7 +261,7 @@ Qn: When this monitor sends you an email notification, take a screenshot of the 
 
 ## Collecting APM Data:
 
-Used the provided Flask app as below.
+Used the provided Flask app without change to simulate the scenario where the dev team is unwilling to make direct changes to their code
 
 ```python
 from flask import Flask
@@ -294,7 +295,7 @@ if __name__ == '__main__':
 ```
 
 Config Datadog agent to collect traces
-1. edit datadog.yaml (apm sect is right at bott)
+1. Edit datadog.yaml (apm sect is right at bott)
 ```yaml
    apm_config:
       enabled: true
@@ -302,7 +303,7 @@ Config Datadog agent to collect traces
 
 2. Restart agent
 
-3. use pip to install ddtrace and run app
+3. Use pip to install ddtrace and run app
 ```
 ./pip install ddtrace
 sudo ./pip install flask
@@ -315,18 +316,22 @@ for i in {1..30}; do curl localhost:5050/api/apm; curl localhost:5050/api/trace;
 ```
 
 ![apm services](images/apm1.png)
+Main Services screen
 ![apm services detailed](images/apm2.png)
+Detailed Services Page
 ![apm traces](images/apm3.png)
+APM Trace
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
-A Service is a set of processes that perform the same job, something like a microservice
-A Resource is a subset of a service that does a particular action (eg. endpoint or query)
+* **Bonus Question**: What is the difference between a Service and a Resource? <br>
+A Service is a set of processes that perform the same job, something like a microservice. <br>
+A Resource is a subset of a service that does a particular action (eg. endpoint or query).
 
 Qn: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 ![apm dashboard](images/APMdasb.png)
-http://app.datadoghq.com/screen/722324
+http://app.datadoghq.com/screen/722324 <br>
 Public links only can be generated for Screenboards.
+
 
 ## Final Question:
 
