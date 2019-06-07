@@ -8,7 +8,7 @@ Environment setup on an AWS EC2 Amazon Linux 2 instance
 
 ## Collecting Metrics:
 
-Qn: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+Q: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 1. Add tags in /etc/datadog-agent/datadog.yaml
 
@@ -25,10 +25,10 @@ sudo service datadog-agent restart   # enable any changes to config, v fast!
 sudo datadog-agent status            # check agent came up properly
 ```
 ![hosttags](images/hosttags1.png)  
-
+Screenshot with host tags
 <br>
 
-Qn: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+Q: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 1. Install and config Mongo on host
 ```sh
@@ -76,11 +76,11 @@ sudo service datadog-agent restart
 sudo datadog-agent status           # check mongo part is up
 ```
 ![MongoDBdash](images/MongoDBoverview.png)
-
+Screenshot of MongoDB dashboard, database read/write load is very low!
 <br>
 
 
-Qn: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+Q: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 1. Create conf.d/my_metric.yaml
 ```yaml
@@ -105,12 +105,12 @@ class MyMetricCheck(AgentCheck):
 ```
 <br>
 
-Qn: Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Q: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 1. modify conf.d/my_metric.yaml
 ```yaml
 - instances:
-  - min_collection_interval: 45 (means metric could be collected as often as every 45secs)
+  - min_collection_interval: 45
 ```
 2. Restart agent
 3. Verify check is running
@@ -119,7 +119,7 @@ sudo -u dd-agent -- datadog-agent check my_metric
 ```
 <br>
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?  <br>
-Did not modify py code.
+Since that was answered earlier, I would probably use a time.sleep(45)
 
 <br>
 <br>
@@ -128,8 +128,8 @@ Did not modify py code.
 
 POSTMAN was used to call APIs for the following section
 
-Utilize the Datadog API to create a Timeboard that contains:
-Qn: Your custom metric scoped over your host.
+Utilize the Datadog API to create a Timeboard that contains:<br>
+Q: Your custom metric scoped over your host.
 
 ```json
 https://api.datadoghq.{{datadog_site}}/api/v1/dashboard?api_key={{datadog_api_key}}&application_key={{datadog_application_key}}
@@ -154,8 +154,9 @@ https://api.datadoghq.{{datadog_site}}/api/v1/dashboard?api_key={{datadog_api_ke
 }
 ```
 <br>
-Qn: Any metric from the Integration on your Database with the anomaly function applied.  
-Qn: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket  
+Q: Any metric from the Integration on your Database with the anomaly function applied.<br>
+Q: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket<br>  
+
 Use update dashboard API to push out changes  
 
 ```json
@@ -192,13 +193,16 @@ https://api.datadoghq.{{datadog_site}}/api/v1/dashboard/:DASHBOARD_ID?api_key={{
 }
 ```
 ![dashboard](images/jdasb.png)
+Screenshot of resulting timeboard with 3 widgets
 
-Qn: Once this is created, access the Dashboard from your Dashboard List in the UI:
+Q: Once this is created, access the Dashboard from your Dashboard List in the UI:
     Set the Timeboard's timeframe to the past 5 minutes
 ![dashboard](images/jdasb2_5min.png)
+Screenshot of timeboard scoped to past 5mins
 
-Qn: Take a snapshot of this graph and use the @ notation to send it to yourself.
-![dashboard](images/jdasb3.png)
+Q: Take a snapshot of this graph and use the @ notation to send it to yourself.
+![dashboard](images/jdasb3.png)<br>
+Screenshot of sending note to self on graph
 
 * **Bonus Question**: What is the Anomaly graph displaying? <br>
 The grey area shows the boundary of 2 standard deviations from the metric of total mongoDB connections
@@ -208,15 +212,15 @@ The grey area shows the boundary of 2 standard deviations from the metric of tot
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Qn: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Q: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Setup monitor
 ![monitor](images/monitor1.png)
+Screenshot of monitor setup
 
-Qn: Please configure the monitor’s message so that it will:
+Q: Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -240,18 +244,20 @@ No data has been seen for the past 10mins. Please check.
 ```
 
 
-Qn: When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+Q: When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![monitor alert](images/monitoralert.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor: <br>
-  Qn: One that silences it from 7pm to 9am daily on M-F,
+  Q: One that silences it from 7pm to 9am daily on M-F,
 
 ![downtime](images/downtime1.png)
+Screenshot of recurring downtime that mutes monitor from 7p to 9a on weeknights. +1 for work-life balance.
 
-  Qn: And one that silences it all day on Sat-Sun.
+  Q: And one that silences it all day on Sat-Sun.
 
 ![downtime](images/downtime2.png)
+Screenshot of recurring downtime that mutes monitor all weekend.
 
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
@@ -316,17 +322,17 @@ for i in {1..30}; do curl localhost:5050/api/apm; curl localhost:5050/api/trace;
 ```
 
 ![apm services](images/apm1.png)
-Main Services screen
+Screenshot of Main Services page
 ![apm services detailed](images/apm2.png)
-Detailed Services Page
+Screenshot of Detailed Services Page
 ![apm traces](images/apm3.png)
-APM Trace
+Screenshot of APM Trace
 
 * **Bonus Question**: What is the difference between a Service and a Resource? <br>
-A Service is a set of processes that perform the same job, something like a microservice. <br>
+A Service is a set of processes that perform the same job, you can think of it like a microservice. <br>
 A Resource is a subset of a service that does a particular action (eg. endpoint or query).
 
-Qn: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Q: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 ![apm dashboard](images/APMdasb.png)
 http://app.datadoghq.com/screen/722324 <br>
@@ -339,5 +345,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Using Datadog Python library and public realtime APIs (eg. data.gov.sg) custom metrics can be easily graphed and  anomalities in carpark and taxi availability highlighted for better travel optimization.
-Monitoring Smart Home electricity meters and IoT devices would also reveal very cool trends and help save electricity usage.
+Here are some ideas:
+- Using Datadog Python library and public realtime APIs (eg. data.gov.sg) custom metrics can be easily graphed and patterns in carpark and taxi availability highlighted for better travel optimization.
+- Monitoring Smart Home electricity meters and IoT devices would also reveal very cool trends and help save electricity usage.
+- Use banking APIs to extract transcations and use eg. heatmap to identify anomalies and outliers for potential fraudulent activity
