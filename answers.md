@@ -24,7 +24,7 @@ tags:
 sudo service datadog-agent restart   # enable any changes to config, v fast!
 sudo datadog-agent status            # check agent came up properly
 ```
-![hosttags](images/hosttags1.png)  
+![hosttags](images/hosttags2.png)  
 Screenshot with host tags
 <br>
 
