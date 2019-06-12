@@ -3,27 +3,27 @@ Your answers to the questions go here.
 <h2>PART - 1 (Collecting metrics)</h2>
 
 Task1 (Host Map and tags)
-![Optional Text](../master/images/host-mapping.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/host-mapping.png)
 
 ---
 
 Task2 (Datadog integration for MySQL)
-![Optional Text](../master/images/sql_integration.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/sql_integration.png)
 
 ---
 
 Task3 (Setup custom agent check for my_metric) <br/> 
-![Optional Text](../master/images/custom_metric_collection.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/custom_metric_collection.png)
 
 ---
 
 Task4 (Script to generate random number < 1000) <br/>
-[link to custom_my_metric.py python script](../master/script/checks.d/custom_my_metric.py)
+[link to custom_my_metric.py python script](https://github.com/Supradeep333/hiring-engineers/blob/master/script/checks.d/custom_my_metric.py)
 
 ---
 
 Task5 (Bonus Question : change the collection interval without modifying the Python file) <br/>
-[link to custom_metric.yaml](../master/script/conf.d/custom_my_metric.yaml)
+[link to custom_metric.yaml](https://github.com/Supradeep333/hiring-engineers/blob/master/script/conf.d/custom_my_metric.yaml)
 
 ---
 
@@ -64,7 +64,7 @@ Response and dashboard
 ```
 {"notify_list":[],"description":"A dashboard with custom timeseries.","template_variables":[{"default":"my-host","prefix":"host","name":"host1"}],"is_read_only":true,"id":"yke-yz3-v2s","title":"Custom Metric API mapping","url":"/dashboard/yke-yz3-v2s/custom-metric-api-mapping","created_at":"2019-05-26T13:38:18.435269+00:00","modified_at":"2019-05-26T13:38:18.435269+00:00","author_handle":"supra33.b@gmail.com","widgets":[{"definition":{"requests":[{"q":"avg:my_metric{*}"}],"type":"timeseries","title":"Custom Metric timeseries"},"id":8489546693992828}],"layout_type":"ordered"} 
 ```
-![Optional Text](../master/API_custom_metric_mapping.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/API_custom_metric_mapping.png)
 
 ---
 
@@ -102,7 +102,7 @@ Response
 
 Screenshot of the timeseries - https://tinyurl.com/y2wefmum
 
-![Optional Text](../master/mysql-datadoghq-anomaly_reporting.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/mysql-datadoghq-anomaly_reporting.png)
 
 ---
 Task3 - Custom metric with the rollup sum function into 1hr buckets.
@@ -143,7 +143,7 @@ Response and dashboard
 "https://api.datadoghq.com/api/v1/dashboard/qhh-jsp-jfv?api_key=c21d0fba6cf7fd6347cbc1f57b0f1e22&application_key=3c7911780905fefea18aab8f47d7099328bb1d51"
 {"notify_list":["supra33.b@gmail.com"],"description":null,"template_variables":[{"default":"my-host","prefix":"host","name":"host1"}],"is_read_only":true,"id":"qhh-jsp-jfv","title":"Custom Metric rollup in 1 hr buckets","url":"/dashboard/qhh-jsp-jfv/custom-metric-rollup-in-1-hr-buckets","created_at":"2019-05-26T13:37:12.554359+00:00","modified_at":"2019-05-29T03:41:34.108916+00:00","author_handle":"supra33.b@gmail.com","widgets":[{"definition":{"requests":[{"q":"avg:my_metric{*}.rollup(sum, 3600)"}],"type":"timeseries","title":"Custom Metric rollup in 1 hr buckets"},"id":7558535943651744}],"layout_type":"ordered"}
 ```
-![Optional Text](../master/API_custom_metric_1hr_rollup.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/API_custom_metric_1hr_rollup.png)
 
 ---
 
@@ -152,26 +152,26 @@ Response and dashboard
 Task1 - Custom metric threshold alerting.
 
 Dashboard
-![Optional Text](../master/custom_threshold_reporting.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/custom_threshold_reporting.png)
 
 Email
-![Optional Text](../master/images/email_custom_threshold.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/email_custom_threshold.png)
 
 AlertDowntime
-![Optional Text](../master/images/weekday_alert_mute.png)
-![Optional Text](../master/images/weekend_alert_mute.png)
-![Optional Text](../master/images/downtime_notification.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/weekday_alert_mute.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/weekend_alert_mute.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/downtime_notification.png)
 
 ---
 
 <h2>PART - 4 Flask</h2>
 
-![Optional Text](../master/images/flask_request_response_stats.png)
-![Optional Text](../master/images/flask-apm-service.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/flask_request_response_stats.png)
+![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/flask-apm-service.png)
 
 --
 
 <h2>PART - 5 Future ideas</h2>
 
-In the current age of IoT, monitoring and orchestration is an absolute necessity. This could be a great platform to take smart homes to the next level, which focus on making life easier for the elderly or aged. Collaborating with voice and visual detection, Datadog could be used to control devices such as lighting, manage thermostats and even help connect to emergency services, eliminating the need for the user to be acquainted with technology.
+In the current age of IoT, monitoring and orchestration is an absolute necessity. This could be a great platform to take smart homes to the next level, which focuses on making life easier for the elderly or aged. Collaborating with voice and visual detection, Datadog could be used to control devices such as lighting, manage thermostats and even help connect to emergency services, eliminating the need for the user to be acquainted with technology.
 
