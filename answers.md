@@ -169,6 +169,15 @@ AlertDowntime
 ![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/flask_request_response_stats.png)
 ![Optional Text](https://github.com/Supradeep333/hiring-engineers/blob/master/images/flask-apm-service.png)
 
+Bonus Question: What is the difference between a Service and a Resource?
+--
+A Service is a set of processes that perform the same job. It may consist of services such as the examples below : 
+webapp and database
+webapp, admin, and query
+
+
+A Resource is a subset of a service that does a particular action. Example : SQL query is the resource for SQL database.
+
 --
 
 <h2>PART - 5 Future ideas</h2>
