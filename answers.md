@@ -79,9 +79,9 @@ Steps:
 - Go to Infrastructure host map.
 
 Snapshots:
-![ScreenShot](/files/task3-pic1.png)
-![ScreenShot](/files/task3-pic2.png)
-![ScreenShot](/files/task3-pic3.png)
+![ScreenShot](files/task3-pic1.png)
+![ScreenShot](files/task3-pic2.png)
+![ScreenShot](files/task3-pic3.png)
 
 Reference:
 https://docs.datadoghq.com/tagging/
@@ -115,13 +115,13 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 sudo vi /etc/datadog-agent/datadog-agent.yaml
 logs_enabled: true
 
-[task4-mysqld-conf-yaml.txt](task4-mysqld-conf-yaml.txt)
+[task4-mysqld-conf-yaml.txt](files/task4-mysqld-conf-yaml.txt)
 
 - Go to Host map sg-db-01
 
 Snapshots:
-![ScreenShot](task4-pic1.png)
-![ScreenShot](task4-pic2.png)
+![ScreenShot](files/task4-pic1.png)
+![ScreenShot](files/task4-pic2.png)
 
 Reference:
 https://docs.datadoghq.com/integrations/mysql/
@@ -142,7 +142,7 @@ Steps:
 
 Snapshots:
 
-![ScreenShot](task5-pic1.png)
+![ScreenShot](files/task5-pic1.png)
 
 Ref:
 https://datadog.github.io/summit-training-session/handson/customagentcheck/
@@ -176,9 +176,9 @@ instances:
      }]
 
 Snapshots:
-![ScreenShot](task6-pic1.png)
-![ScreenShot](task6-pic2.png)
-![ScreenShot](task6-pic3.png)
+![ScreenShot](files/task6-pic1.png)
+![ScreenShot](files/task6-pic2.png)
+![ScreenShot](files/task6-pic3.png)
 
  Reference:
  https://docs.datadoghq.com/developers/metrics/custom_metrics/
@@ -195,8 +195,8 @@ The host agent that has been integrated with the custom metric quite immediately
 I can correlate this metric easily among other metrics in the hostmap to help pinpointing some related issues with that host.
 I created 1 timeboard dashboard with 3 main widgets for the custom metric.
 - Widget1: host map to show the host map
-- Widget2: query (answer-task7-pic2.png) to display the last metric from the custom script
-- Widget3: historical graph (answer-task7-pic3.png) to display the historical graph of the metric
+- Widget2: query to display the last metric from the custom script
+- Widget3: historical graph to display the historical graph of the metric
 
 Steps:
 - Go to Host Map and look for new my metric on the Host
@@ -204,12 +204,12 @@ Steps:
 - Dashboard widgets can be seen here: answer-task7-json1.txt
 
 Snapshots:
-![ScreenShot](task7-pic1.png)
-![ScreenShot](task7-pic2.png)
-![ScreenShot](task7-pic3.png)
+![ScreenShot](files/task7-pic1.png)
+![ScreenShot](files/task7-pic2.png)
+![ScreenShot](files/task7-pic3.png)
 
 Scripts:
-[task7-json1.txt](task7-json1.txt)
+[task7-json1.txt](files/task7-json1.txt)
 
 Reference:
 https://docs.datadoghq.com/getting_started/#dashboards
@@ -230,12 +230,12 @@ I can trace when the anomaly occurred based on the timestamp and I might be able
 Steps:
 - On the timeboard dashboard, at one time series widget
 - Go to function > Algorithms > Anonmalies to display anomaly graph
- ![ScreenShot](task8-pic1.png)
+ ![ScreenShot](files/task8-pic1.png)
 - Change the time period of the graph and start seeing the anomaly
- ![ScreenShot](task8-pic2.png)
+ ![ScreenShot](files/task8-pic2.png)
 
 Json script:
-[task8-json1.txt](task8-json1.txt)
+[task8-json1.txt](files/task8-json1.txt)
 
 Reference:
 https://docs.datadoghq.com/graphing/functions/algorithms/#anomalies
@@ -257,10 +257,10 @@ Steps:
 
 Snapshots:
 
-![ScreenShot](task9-pic1.png)
-![ScreenShot](task9-pic2.png)
+![ScreenShot](files/task9-pic1.png)
+![ScreenShot](files/task9-pic2.png)
 
-[task9-json1.txt](task9-json1.txt)
+[task9-json1.txt](files/task9-json1.txt)
 
 References:
 https://docs.datadoghq.com/graphing/functions/rollup/
@@ -282,9 +282,9 @@ Steps:
 
 Snapshots:
 
-![ScreenShot](task10-pic1.png)
-![ScreenShot](task10-pic2.png)
-![ScreenShot](task10-pic3.png)
+![ScreenShot](files/task10-pic1.png)
+![ScreenShot](files/task10-pic2.png)
+![ScreenShot](files/task10-pic3.png)
 
 
 Reference:
@@ -315,7 +315,7 @@ Steps:
 
 Snapshot
 
-![ScreenShot](task11-pic1.png)
+![ScreenShot](files/task11-pic1.png)
 
 Reference:
 https://docs.datadoghq.com/api/?lang=python#monitors
@@ -341,7 +341,7 @@ Steps:
 
 Snapshot:
 
-![ScreenShot](task12-pic1.png)
+![ScreenShot](files/task12-pic1.png)
 
 Reference:
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning#variables
@@ -356,7 +356,7 @@ This will quickly identify why this alert was triggered.
 
 Snapshot:
 
-![ScreenShot](task13-pic1.png)
+![ScreenShot](files/task13-pic1.png)
 
 
 TASK #14:
@@ -368,11 +368,11 @@ The only option to do this, it seems by creating recurring non-peak hours to sup
 This is actually used during maintenance windows, to reduce false alarm. 
 - One that silences it from 7pm to 9am daily on M-F
 
-![ScreenShot](task14-pic1.png)
+![ScreenShot](files/task14-pic1.png)
 
 - And one that silences it all day on Sat-Sun
 
-![ScreenShot](task14-pic2.png)
+![ScreenShot](files/task14-pic2.png)
 
 
 
@@ -426,8 +426,8 @@ I categorized my dashboard into 4 sections as follows:
 
 Snapshot:
 
-![ScreenShot](task15-pic1.png)
-![ScreenShot](task15-pic2.png)
+![ScreenShot](files/task15-pic1.png)
+![ScreenShot](files/task15-pic2.png)
 
 
 TASK #16:
