@@ -1,0 +1,26 @@
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "anomalies(avg:mysql.net.connections{host:sg-db-01}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    },
+    {
+      "q": "anomalies(avg:mysql.performance.com_load{host:sg-db-01}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true
+}

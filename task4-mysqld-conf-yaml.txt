@@ -1,0 +1,43 @@
+init_config:
+
+instances:
+  ## @param server - string - required
+  ## MySQL server to connect to.
+  ## NOTE: Even if the server name is "localhost", the agent connects to MySQL using TCP/IP, unless you also
+  ## provide a value for the sock key (below).
+  #
+  - server: localhost
+
+  ## @param user - string - required
+  ## Datadog Username created to connect to MySQL.
+  #
+    user: datadog
+
+  ## @param pass - string - required
+  ## Password associated with the datadog user.
+  #
+    pass: 'datadog'
+
+  ## @param port - integer - optional - default: 3306
+  ## Port to use when connecting to MySQL.
+  #
+  #  port: 3306
+
+logs:
+    - type: file
+      path: /var/log/mysql/error.log
+      source: mysql
+      sourcecategory: database
+      service: myapplication
+
+    - type: file
+      path: /var/log/mysql/mysql-slow.log
+      source: mysql
+      sourcecategory: database
+      service: myapplication
+
+    - type: file
+      path: /var/log/mysql/mysql.log
+      source: mysql
+      sourcecategory: database
+      service: myapplication

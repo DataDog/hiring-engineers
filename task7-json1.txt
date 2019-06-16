@@ -1,0 +1,70 @@
+{
+  "viz": "hostmap",
+  "style": {
+    "palette": "hostmap_blues",
+    "paletteFlip": false,
+    "fillMin": null,
+    "fillMax": null
+  },
+  "scope": [
+    "host:sg-db-01"
+  ],
+  "requests": [
+    {
+      "q": "sum:my_metric{host:sg-db-01} by {host}",
+      "type": "size"
+    },
+    {
+      "q": "sum:my_metric{host:sg-db-01} by {host}",
+      "type": "fill"
+    }
+  ],
+  "noMetricHosts": true,
+  "noGroupHosts": true
+}
+
+{
+  "viz": "query_value",
+  "autoscale": true,
+  "requests": [
+    {
+      "q": "avg:my_metric{host:sg-db-01}",
+      "type": null,
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "last",
+      "conditional_formats": []
+    }
+  ],
+  "precision": 0
+}
+
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:sg-db-01}",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    },
+    {
+      "q": "avg:my_metric{host:sg-db-01}.rollup(sum, 3600)",
+      "type": "bars",
+      "style": {
+        "palette": "orange",
+        "type": "solid",
+        "width": "normal"
+      }
+    }
+  ],
+  "autoscale": true
+}

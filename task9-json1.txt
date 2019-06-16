@@ -1,0 +1,17 @@
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{*}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
