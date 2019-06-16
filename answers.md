@@ -79,9 +79,9 @@ Steps:
 - Go to Infrastructure host map.
 
 Snapshots:
-![ScreenShot](task3-pic1.png)
-![ScreenShot](task3-pic2.png)
-![ScreenShot](task3-pic3.png)
+![ScreenShot](/files/task3-pic1.png)
+![ScreenShot](/files/task3-pic2.png)
+![ScreenShot](/files/task3-pic3.png)
 
 Reference:
 https://docs.datadoghq.com/tagging/
