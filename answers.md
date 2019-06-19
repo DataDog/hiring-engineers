@@ -107,7 +107,108 @@ View of newly created "MySql Overview" dashboard:
 
 > * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Create the new agent Check:
+```bash
+$ sudo vi /etc/datadog-agent/checks.d/custom-my-new-check.py
+```
+
+```python
+import random
+
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+
+class MyNewCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000), tags=['some_key:some_value'])
+```
+
+Create the Check YAML config (must have same name as Check Python file itself):
+```bash
+$ sudo vi /etc/datadog-agent/conf.d/custom-my-new-check.yaml
+```
+
+```yaml
+instances: [{}]
+```
+
+
+```bash
+$ sudo chown dd-agent:dd-agent /etc/datadog-agent/checks.d/custom-my-new-check.py
+$ sudo chown dd-agent:dd-agent /etc/datadog-agent/conf.d/custom-my-new-check.yaml
+$ sudo systemctl restart datadog-agent
+```
+Verify Check is running:
+```bash
+$ sudo -u dd-agent -- datadog-agent check custom-my-new-check
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1560933040,
+          1
+        ]
+      ],
+      "tags": [
+        "some_key:some_value"
+      ],
+      "host": "ubuntu",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    custom-my-new-check (1.0.0)
+    ---------------------------
+      Instance ID: custom-my-new-check:d884b5186b651429 [OK]
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+```
+
 
 > * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+Change contents of conf.d/custom-my-new-check.yml to the following:
+
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+Verify Check is running at expected interval through Metric Explorer:
+
+![Alt text](img/4-Metric-Explorer_Datadog.png?raw=true "Datadog Metric Explorer")
+
+
+
 > * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+Yes, change the interval in the Check's YAML configuration file, as described above.
