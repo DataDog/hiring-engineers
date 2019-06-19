@@ -212,3 +212,107 @@ Verify Check is running at expected interval through Metric Explorer:
 > * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 Yes, change the interval in the Check's YAML configuration file, as described above.
+
+
+## Visualizing Data:
+
+> Utilize the Datadog API to create a Timeboard that contains:
+
+> * Your custom metric scoped over your host.
+> * Any metric from the Integration on your Database with the anomaly function applied.
+> * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+I added "MySQL CPU Time" to the dashboard as it provided data I could visualise immediately. 
+
+I chose to make the API call via Curl:
+
+```bash
+curl  -X POST -H \"Content-type: application/json\" \
+-d "{
+      \"graphs\" : [
+		{
+          \"title\": \"My Custom Check Metric\",
+          \"definition\": {
+              \"events\": [],
+              \"requests\": [
+                  {\"q\": \"my_metric{host:ubuntu}\"}
+              ],
+              \"viz\": \"timeseries\"
+          }
+		},
+		{
+          \"title\": \"MySQL CPU Time (Anomaly Detection)\",
+          \"definition\": {
+              \"events\": [],
+              \"requests\": [
+                  {\"q\": \"anomalies(avg:mysql.performance.user_time{*}, 'basic', 4, direction='above', alert_window='last_1m')\"}
+              ],
+              \"viz\": \"timeseries\"
+          }
+		},
+		{
+          \"title\": \"My Custom Check Metric (Summed)\",
+          \"definition\": {
+              \"events\": [],
+              \"requests\": [
+                  {\"q\": \"my_metric{host:ubuntu}.rollup(sum, 3600)\"}
+              ],
+              \"viz\": \"timeseries\"
+          }
+		}		
+	  ],
+      \"title\" : \"My Awesome Dashboard\",
+      \"description\" : \"A dashboard containing my custom metric + database stuff.\",
+      \"template_variables\": [{
+          \"name\": \"ubuntu\",
+          \"prefix\": \"host\"
+      }],
+      \"read_only\": \"True\"
+}" \
+"https://api.datadoghq.com/api/v1/dash?api_key=${api_key}&application_key=${app_key}"
+```
+
+API response:
+```bash
+{"dash":{"read_only":true,"graphs":[{"definition":{"viz":"timeseries","requests":[{"q":"my_metric{host:ubuntu}"}],"events":[]},"title":"My Custom Check Metric"},{"definition":{"viz":"timeseries","requests":[{"q":"anomalies(avg:mysql.performance.user_time{*}, 'basic', 4, direction='above', alert_window='last_1m')"}],"events":[]},"title":"MySQL CPU Time (Anomaly Detection)"},{"definition":{"viz":"timeseries","requests":[{"q":"my_metric{host:ubuntu}.rollup(sum, 3600)"}],"events":[]},"title":"My Custom Check Metric (Summed)"}],"template_variables":[{"prefix":"host","name":"ubuntu"}],"description":"A dashboard containing my custom metric + database stuff.","title":"My Awesome Dashboard","created":"2019-06-19T11:32:09.463544+00:00","new_id":"day-53d-x2v","id":1250296,"created_by":{"disabled":false,"handle":"feeney.john@gmail.com","name":"**************","is_admin":true,"role":null,"access_role":"adm","verified":true,"email":"***********@gmail.com","icon":"https://secure.gravatar.com/avatar/b7e70f2a4e9e07cb81008531290985a0?s=48&d=retro"},"modified":"2019-06-19T11:32:09.463544+00:00"},"url":"/dash/1250296/my-awesome-dashboard","resource":"/api/v1/dash/1250296"}
+```
+
+This is what the graphs look like in my new Timeboard:
+
+![Alt text](img/5-My-Awesome-Dashboard_Datadog-v2.png?raw=true "New Timeboard")
+
+
+> Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+> Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+> * Set the Timeboard's timeframe to the past 5 minutes
+
+Easiest way to do this I found was to use the Timeboard keyboard shortcuts (Alt + \[ and Alt + \]):
+
+![Alt text](img/6-My-Awesome-Dashboard-Timeboard_Tools.png?raw=true)
+
+Which allows for a 5 minute timeseries:
+
+![Alt text](img/6-My-Awesome-Dashboard-Timeframe_Datadog.png?raw=true)
+
+
+> * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Annotating a graph results in the generaton of snapshot of the graph during that given timeframe.
+  
+![Alt text](img/7-My-Awesome-Dashboard_Annotation.png?raw=true)
+
+Below are a couple of snapshots I received using this mechanism:
+
+![Alt text](img/8-Snapshots_Datadog.png?raw=true)
+
+Very nice and intuitive feature.
+
+
+> * **Bonus Question**: What is the Anomaly graph displaying?
+
+
+The anomaly graph highlights deviations from past behaviour or trends. These deviations are marked in red. Recurring or expected behaviour is bounded by a grey area in the chart.  
+
+![Alt text](img/9-anomaly-graph.png?raw=true)
