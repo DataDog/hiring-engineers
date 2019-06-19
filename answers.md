@@ -7,7 +7,7 @@ Your answers to the questions go here.
 > * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 > * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
-As my host OS is Windows 10 x64, I opted for VMware Workstation 15 to set up my guest VM (Ubuntu 18.04).
+As my host OS is Windows 10 x64, I opted for VMware Workstation 15 to set up my guest VM (Ubuntu 18.04). VMWare makes it easy and convenient to run VMs on Windows - it provides excellent tools for host/guest communication and sharing, as well as arguably the best support for HDPI displays. 
 
 > Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
@@ -24,7 +24,7 @@ Immediately after installation, incoming metrics could be seen in the “System 
 > * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 ```bash
-sudo vi /etc/datadog-agent/datadog.yaml
+$ sudo vi /etc/datadog-agent/datadog.yaml
 ```
 
 Set arbitrary tags: 
@@ -376,7 +376,7 @@ Setting up a scheduled downtime is really easy: Monitors > Manage Downtime > Sch
 > 
 >  * One that silences it from 7pm to 9am daily on M-F,
 
-![Alt text](img/12-Schedule_Downtime_M-F.png?raw=true)
+![Alt text](img/12-Schedule_Downtime_M-F-v2.png?raw=true)
 
 
 >  * And one that silences it all day on Sat-Sun.
@@ -501,4 +501,7 @@ App uses the code from the exercise above.
 > 
 > Is there anything creative you would use Datadog for?
 
+My Wireless ISP provides a patchy service from time to time. Download speeds can suffer in the evenings due to high contention. I often complain, but it would be good to back up my griping with data. 
+
+I have a satellite box that runs on Linux and is wired to my router. I think a nifty idea might be to write a node.js or python app that periodically records ping times to google.com and the results of speed tests using the [speedtest.net API](https://github.com/ddsol/speedtest.net). These metrics would then be transmitted to Datadog and, through various chart types, I could visualise just how crappy a service I am getting and paying for!
 
