@@ -137,11 +137,12 @@ Create the Check YAML config (must have same name as Check Python file itself):
 $ sudo vi /etc/datadog-agent/conf.d/custom-my-new-check.yaml
 ```
 
+Set initial contents of config as follows:
 ```yaml
 instances: [{}]
 ```
 
-
+Ensure permissions are correct and restart the agent:
 ```bash
 $ sudo chown dd-agent:dd-agent /etc/datadog-agent/checks.d/custom-my-new-check.py
 $ sudo chown dd-agent:dd-agent /etc/datadog-agent/conf.d/custom-my-new-check.yaml
@@ -299,20 +300,97 @@ Which allows for a 5 minute timeseries:
 
 > * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-Annotating a graph results in the generaton of snapshot of the graph during that given timeframe.
+Annotating a graph results in the generaton of a snapshot of the graph during that given timeframe.
   
 ![Alt text](img/7-My-Awesome-Dashboard_Annotation.png?raw=true)
 
-Below are a couple of snapshots I received using this mechanism:
+Below are a couple of snapshots I received in the Datadog application using this mechanism:
 
 ![Alt text](img/8-Snapshots_Datadog.png?raw=true)
 
-Very nice and intuitive feature.
+And here is one of the emails I received:
+![Alt text](img/8b-anomaly-email.png?raw=true)
+
+
+Very nice and intuitive feature!
 
 
 > * **Bonus Question**: What is the Anomaly graph displaying?
 
 
-The anomaly graph highlights deviations from past behaviour or trends. These deviations are marked in red. Recurring or expected behaviour is bounded by a grey area in the chart.  
+The anomaly graph highlights deviations from past behaviour (or algorithmically deduced trends). These deviations are marked in red. Recurring or expected behaviour is bounded by a grey area in the chart.  
 
 ![Alt text](img/9-anomaly-graph.png?raw=true)
+
+
+## Monitoring Data
+
+> Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+>
+> Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+> 
+> * Warning threshold of 500
+> * Alerting threshold of 800
+> * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+The monitor thresholds were configured through the UI as follows:
+![Alt text](img/10-Metric-Monitor-Setup_Datadog.png?raw=true)
+
+>
+> Please configure the monitor’s message so that it will:
+>
+> * Send you an email whenever the monitor triggers.
+> * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+> * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+>
+The following is the monitor's message configuration:
+ 
+```bash
+{{#is_warning}}
+Custom metric has exceeded the Warning threshold!
+{{/is_warning}}
+
+{{#is_alert}}
+Custom metric has exceeded the Alert threshold!
+Host IP: {{host.ip}}
+Value: {{value}}
+{{/is_alert}}
+
+{{#is_no_data}}
+No data for custom metric has been transmitted during the last 10 minutes!
+{{/is_no_data}}  
+
+Notify: @*********@gmail.com
+```
+
+> * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+> 
+
+The Alert email, once received, looks like this:
+![Alt text](img/11-Alert-email.png?raw=true)
+
+
+> * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+Setting up a scheduled downtime is really easy: Monitors > Manage Downtime > Scheduled Downtime
+> 
+>  * One that silences it from 7pm to 9am daily on M-F,
+
+![Alt text](img/12-Schedule_Downtime_M-F.png?raw=true)
+
+
+>  * And one that silences it all day on Sat-Sun.
+
+![Alt text](img/12-Schedule_Downtime_S-S.png?raw=true)
+
+>  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Set up a one-time downtime schedule for the purpose of receiving an email:
+
+![Alt text](img/13-one-time-downtime.png?raw=true)
+
+The email appears as follows:
+
+![Alt text](img/14-Downtime-email.png?raw=true)
+
+
