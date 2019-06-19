@@ -393,4 +393,112 @@ The email appears as follows:
 
 ![Alt text](img/14-Downtime-email.png?raw=true)
 
+## Collecting APM Data:
+
+> Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+> ```python
+> from flask import Flask
+> import logging
+> import sys
+>
+> # Have flask use stdout as the logger
+> main_logger = logging.getLogger()
+> main_logger.setLevel(logging.DEBUG)
+> c = logging.StreamHandler(sys.stdout)
+> formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+> c.setFormatter(formatter)
+> main_logger.addHandler(c)
+> 
+> app = Flask(__name__)
+> 
+> @app.route('/')
+> def api_entry():
+>     return 'Entrypoint to the Application'
+>
+> @app.route('/api/apm')
+> def apm_endpoint():
+>     return 'Getting APM Started'
+> 
+> @app.route('/api/trace')
+> def trace_endpoint():
+>    return 'Posting Traces'
+>
+> if __name__ == '__main__':
+>     app.run(host='0.0.0.0', port='5050')
+```
+```
+> * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+Install prerequisites:
+```bash
+$ sudo apt install python-pip
+$ sudo pip install flask
+```
+
+Install the Datadog tracing library:
+```bash
+$ sudo pip install ddtrace
+```
+
+Output:
+```bash
+Successfully installed ddtrace-0.26.0 psutil-5.6.3
+```
+
+Create a new Flask file - with the above code - called "_instrumentation-example.py_" and launch with the Datadog tracing library:
+
+```bash
+$ ddtrace-run python instrumentation-example.py 
+ * Serving Flask app "instrumentation-example" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2019-06-19 13:56:22,362 INFO [werkzeug] [_internal.py:122] -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2019-06-19 13:56:22,362 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+
+```
+
+Load test the application with Apache Jmeter. 200 users with a ramp-up time of 60 seconds and an infinite loop.
+
+![Alt text](img/16-Jmeter-Load-Test.png?raw=true)
+
+
+Observed the presence of a new service:
+![Alt text](img/15-service.png?raw=true)
+
+ 
+The service dashboard provides an overview of the following metrics:
+![Alt text](img/17-APM-Dashboard1.png?raw=true)
+![Alt text](img/17-APM-Dashboard2.png?raw=true)
+
+
+
+
+> * **Bonus Question**: What is the difference between a Service and a Resource?
+
+In Datadog terminology, a Service is a logical collection of operations. Examples of services include a database or a web application. 
+
+Resources, on the other hand, are processes or actions within these services. So, taking a web application for example, a resource might be an MVC controller or URL endpoint. In a database service, SQL queries are considered resources.   
+
+> Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Link to APM and Infrastructure Screenboard [can be found here](https://p.datadoghq.com/sb/cxt6eo591kjs99jg-917c139b3eec03957759c5d6e6bacdaf):
+
+
+Screenshot of Screenboard:
+![Alt text](img/19-My-Screenboard.png?raw=true)
+
+>
+> Please include your fully instrumented app in your submission, as well.
+
+App uses the code from the exercise above.
+
+## Final Question:
+
+> Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+> 
+> Is there anything creative you would use Datadog for?
+
 
