@@ -101,7 +101,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-Timeboard can only be set to a miniumum of the last 15 mins in the UI as far as I can tell?
+Timeboard can only be set to a minimum of the last 15 mins in the UI as far as I can tell?
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -113,7 +113,7 @@ See the screenshot of the email below:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph is telling me that it doens't have enough historical data yet for this algorithm.
+The anomaly graph is telling me that it doesn't have enough historical data yet for this algorithm.
 
 
 ## Monitoring Data
@@ -126,7 +126,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-See the configutation of my monitor below:
+See the configuration of my monitor below:
 
 ![ScreenShot](img/monitor1.JPG)
 
@@ -209,6 +209,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 
-Yes, I would use Datadog to send alets from Twitter streams/tweets every time my company name was mentioned on Twitter.  The Twitter stream could be accessed using the Twitter API and parsed for my company name and then sent on to Datadog usng the Datadog API.  Using this, the company could montior mentions of products and assess their popularity and/or any support issues.  A further refinement would be to assess the sentiment of the tweets and group them accordingly before sending them to Datadog.
+Yes, I would use Datadog to send alerts from Twitter streams/tweets every time my company name was mentioned on Twitter.  The Twitter stream could be accessed using the Twitter API and parsed for my company name and then sent on to Datadog using the Datadog API.  Using this, the company could monitor mentions of products and assess their popularity and/or any support issues.  A further refinement would be to assess the sentiment of the tweets and group them accordingly before sending them to Datadog.
 
 
