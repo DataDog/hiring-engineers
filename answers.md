@@ -1,6 +1,6 @@
 ## Prerequisites - Setup the environment
 
-I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise - this new host is ready to use within minutes of logging into the AWS dashboard and navigating to the EC2 service.  The following is a very useful link to the Datadog documentation and support pages: [Datadog docd](https://docs.datadoghq.com/) 
+I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise - this new host is ready to use within minutes of logging into the AWS dashboard and navigating to the EC2 service.  The following is a very useful link to the Datadog documentation and support pages: [Datadog docs](https://docs.datadoghq.com/) 
 
 I then installed the Datadog agent on the EC2 instance according to the Datadog agent instructions here:
 
