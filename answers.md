@@ -1,13 +1,19 @@
 ## Prerequisites - Setup the environment
 
-I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise.  I then installed the Datadog agent
+I spun up a new Amazon Linux EC2 instance in AWS as my Datadog host for this exercise - this new host is ready to use within minutes of logging into the AWS dashboard and navigating to the EC2 service.  The following is a very useful link to the Datadog documentation and support pages: [Datadog docd](https://docs.datadoghq.com/) 
+
+I then installed the Datadog agent on the EC2 instance according to the Datadog agent instructions here:
+
+[agent installation](https://app.datadoghq.com/account/settings#agent/aws)
+
+The agent can be very easily deployed using the command below which can be directly copied from the Datadog portal which even conveniently fills in your API key for you when you are logged into your account. 
 
 ``DD_API_KEY=xxxxxx bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ``
 
-(actual API key removed from command) 
+(actual API key removed from command for privacy reasons)
 
-The agent started and reported back to the Datadog UI
+The agent started and reported back to the Datadog UI as can be seen in the screenshot below:
 
 ![ScreenShot](img/agent_start1.JPG)
 
@@ -15,6 +21,18 @@ The agent started and reported back to the Datadog UI
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+Instructions and an explanation of the function of tags can be found here: [Tags](https://docs.datadoghq.com/tagging/)
+
+The Agent configuration file (datadog.yaml) can be used to set host tags which apply to all metrics, traces, and logs forwarded by the Datadog Agent.  I added the following atgs to my host:
+
+1) ec2_linux_ami  (this tag indicates an EC2 instance and the OS)
+2) env:prod       (tag indicates that the host is in production)
+3) role:mysql     (tag indicates that this is also a MySQL host)
+
+see screenshot of the definition of tags in the datadog.yaml file
+
+![ScreenShot](img/tags1.JPG)
 
 See screenshot below (I also added the agent to a second EC2 host just to see what it looks like in the UI):
 
@@ -211,4 +229,5 @@ Is there anything creative you would use Datadog for?
 
 Yes, I would use Datadog to send alerts from Twitter streams/tweets every time my company name was mentioned on Twitter.  The Twitter stream could be accessed using the Twitter API and parsed for my company name and then sent on to Datadog using the Datadog API.  Using this, the company could monitor mentions of products and assess their popularity and/or any support issues.  A further refinement would be to assess the sentiment of the tweets and group them accordingly before sending them to Datadog.
 
-
+You can find the starting point for the Twitter API here:
+[Twitter API](https://developer.twitter.com/en/docs.html)
