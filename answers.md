@@ -22,9 +22,10 @@ The agent started and reported back to the Datadog UI as can be seen in the scre
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+
 Instructions and an explanation of the function of tags can be found here: [Tags](https://docs.datadoghq.com/tagging/)
 
-The Agent configuration file (datadog.yaml) can be used to set host tags which apply to all metrics, traces, and logs forwarded by the Datadog Agent.  I added the following atgs to my host:
+The Agent configuration file (datadog.yaml) can be used to set host tags which apply to all metrics, traces, and logs forwarded by the Datadog Agent.  I added the following tags to my host:
 
 1) ec2_linux_ami  (this tag indicates an EC2 instance and the OS)
 2) env:prod       (tag indicates that the host is in production)
@@ -42,8 +43,14 @@ See screenshot below (I also added the agent to a second EC2 host just to see wh
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+
 I installed a MySQL database and created a test database as you can see from the screenshots below and the tag on my host - see below:
 
+
+The commands to install a MySQL server on the EC2 host are below along with the MYSQL commands to create a test database called 'Employee', create a table in the DB and insert some test values.
+
+Also, from the data dog integration instructions, I've given the MySQL commands to create a user specifically for Datadog and grant that user permissions to run - 
+see [MySQL integration](https://docs.datadoghq.com/integrations/mysql/) for the full instructions.  The conf and log files also need to be modified as per these instructions.
 ```
 sudo yum install mysql-server
 sudo service mysqld start
@@ -66,10 +73,11 @@ GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 ![ScreenShot](img/mysql2.JPG)
 
 
-and then created the Datadog MySQL users and edited the conf & log files as per the integration instuctions
-
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+A custom agent check has value when you want to collect metrics for unique systems or applications that don't already have a specific integration for Datadog.  In this case, my custom agent uses some basic python code and the Random function generator within python to create a random number.  Full details on the custom agent check are here: [Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6)
+
 
 See the screenshot of my_metric below:
 
@@ -84,6 +92,9 @@ see files in the code directory in this repo to show my configuration of this me
 [custom_my_metric.yaml](code/custom_my_metric.yaml)
 
 [custom_my_metric.py](code/custom_my_metric.py)
+
+
+One of Datadog's unique features is the ability to send a link to a third party of a live real-time graph of your data - see below a live graph for my Custom Check:
 
 [link to live graph](https://app.datadoghq.com/graph/embed?from_ts=1558776583626&to_ts=1558862983626&token=f9edbc66ec0b32530e088dabe704c14fae0a807c5d15050e03a23844c31fd60b&height=500&width=1000&legend=true&tile_size=m&live=true)
 
@@ -111,6 +122,15 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 see script in the code section for my API call: [api_call.py](code/api_call.py)
+
+This metric is scoped over my host as defined in the following line of the python file:
+
+avg:my_metric{host:ec2.datadog}
+
+I used the anomaly function on the mysql.performance metric in the script.
+And I used the rollup function on my metric over 1 hour (=3600 seconds) in the script to give a sum of the metric over the previous hour.
+
+here's a screenshot of my custom metric:
 
 ![ScreenShot](img/mycustomtimeboard1.JPG)
 
