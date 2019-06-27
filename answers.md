@@ -75,7 +75,11 @@
 ## Collecting APM Data:
 - [x] Instrument the Flask app using Datadog’s APM solution.
 - [x] Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+- [x] Please include your fully instrumented app in your submission.
+
   - https://p.datadoghq.com/sb/7le8a7jjc0an3ex5-2496e5fdf930ebaec877dcb2d4852647
+
+![flask-app](screenshots/flask-app.png)
 
 ![flask-dashboard](screenshots/flask-dashboard.png)
 
