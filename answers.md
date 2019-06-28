@@ -125,12 +125,15 @@ see script in the code section for my API call: [api_call.py](code/api_call.py)
 
 This metric is scoped over my host as defined in the following line of the python file:
 
+```
 avg:my_metric{host:ec2.datadog}
+```
 
 I used the anomaly function on the mysql.performance metric in the script.
-And I used the rollup function on my metric over 1 hour (=3600 seconds) in the script to give a sum of the metric over the previous hour.
 
-here's a screenshot of my custom metric:
+And I used the rollup function on my metric over 1 hour (=3600 seconds) in the script to give a sum of the metric over the previous hour.  You can see that the value of the rollup function is approx 40k which makes sense because my custom metric is producing a random number between 0 and 1000 every 45 seconds which implies 80 random numbers will be produced per hour and it's safe to assume that the average value of a random number will be 500.  Therefore, the rollup function should equal approx 80*500=40,000 as a rollup sum over the previous hour. 
+
+Here's a screenshot of my custom metric where you can see the rollup equal to approx 40k (except for the last data point as the hour is not complete):
 
 ![ScreenShot](img/mycustomtimeboard1.JPG)
 
@@ -139,20 +142,22 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-Timeboard can only be set to a minimum of the last 15 mins in the UI as far as I can tell?
+The screenshot above shows me accessing the Timeboard from the UI.  However, the Timeboard can only be set to a minimum of the last 15 mins in the UI and so it is not possible to set it to 5 mins.
 
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-See the screenshot of the email below:
+See the screenshot of the email below where I sent the graph to myself by email:
 
 ![ScreenShot](img/email_mymetric1.JPG)
 
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph is telling me that it doesn't have enough historical data yet for this algorithm.
 
+The anomaly graph is telling me that it doesn't have enough historical data yet for this algorithm.  The problem here is that anomaly detection requires a larger amount of historical data than I had collected at that point to be able to make good predictions using a baseline of past behaviour.
+
+See the Datadog support page here for a full description: [Anomaly Detection](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
 
 ## Monitoring Data
 
@@ -164,10 +169,12 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-See the configuration of my monitor below:
+See the configuration of my monitor below where I configured a monitor which would warn when my custom metric went over 500 (which should be approx 50% of the time as it's a random number between 0 and 1000) and it would send a warning when over 800.
 
 ![ScreenShot](img/monitor1.JPG)
 
+Alerting is described in more detail here: [Alerting](https://docs.datadoghq.com/monitors/)
+The definition of the monitor notifications is defined here: [Monitor Notifications](https://docs.datadoghq.com/monitors/notifications/?tab=is_alertis_warning)
 
 Please configure the monitor’s message so that it will:
 
@@ -189,7 +196,9 @@ See the email screenshot below:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-email notification of scheduled downtime below:
+Alerting downtimes are described here in more details: [Downtimes](https://docs.datadoghq.com/monitors/downtimes/)
+
+the email notification of the scheduled downtime is below:
 
 ![ScreenShot](img/downtime3.JPG)
 
@@ -251,3 +260,11 @@ Yes, I would use Datadog to send alerts from Twitter streams/tweets every time m
 
 You can find the starting point for the Twitter API here:
 [Twitter API](https://developer.twitter.com/en/docs.html)
+
+Note that, conveniently, there is a package available which makes Twitter API calls to search tweets very easy - it is the equivalent of a CURL command and is called TWURL.  An example is:
+see [Twurl](https://developer.twitter.com/en/docs/tutorials/using-twurl.html) 
+```
+twurl /1.1/search/tweets.json?q=datadog | jq .
+```
+
+This is a simple command to search all tweets for the word 'datadog'  (note that it assumes that the Twitter API keys have already been defined in an earlier command) 
