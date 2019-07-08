@@ -24,7 +24,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 
 Signed up as follows:
-![Signed up](images/01-signed-up.png)
+![Signed up](images/01-signup.png)
 
 ## Collecting Metrics:
 
