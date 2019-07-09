@@ -33,6 +33,7 @@ Signed up as follows:
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 ![MySQL](images/03-mysql.png)
+![MySQL](images/06-mysql-dashboard.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 ```python
