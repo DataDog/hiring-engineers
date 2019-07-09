@@ -29,7 +29,7 @@ Signed up as follows:
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![Tags](images/02-tags.png)
+![Tags](images/02-host-tags.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 ![MySQL](images/03-mysql.png)
@@ -120,7 +120,7 @@ api.Timeboard.create(title=title,
                      template_variables=template_variables,
                      read_only=read_only)
 ```
-[timeboard.yaml](https://github.com/foogaro/hiring-engineers/blob/master/files/timeboard.py).
+[timeboard.py](https://github.com/foogaro/hiring-engineers/blob/master/files/timeboard.py).
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -239,7 +239,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-* **Final Answer**: Domotic might be a good use case, monitoring your house and all tis devices can be really usefull and a lots of fun. Suppose monitoring all those Arduino like devices.
+* **Final Answer**: Domotic might be a good use case, monitoring your house and all its devices can be really usefull and a lots of fun. Suppose monitoring all those Arduino like devices.
 It should be also easy, as the main languange is python.
 
 ## Instructions
