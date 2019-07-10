@@ -11,7 +11,7 @@ Setup the environment
 1. Install Datadog Agent and confirm services are running on my host
 <img src="<a href="//imgur.com/a/75fMg3q">"</a>
 2. Get metrics from my host
-<img src="<a href="//imgur.com/a/RhhmORs"></a>
+<img src="//imgur.com/a/RhhmORs"</>
 
 
 Collecting Metrics
