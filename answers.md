@@ -1,4 +1,5 @@
-##Prerequisites
+Prerequisites
+==
 
 Setup the environment
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -7,7 +8,9 @@ You can spin up a fresh linux VM via Vagrant or other tools so that you don’t 
 You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-<!-- Collecting Metrics -->
+Collecting Metrics
+==
+
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
