@@ -4,50 +4,68 @@ Prerequisites
 Setup the environment
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 Collecting Metrics
 ==
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Visualizing Data:
+1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+
+Visualizing Data
+==
+
 Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+1. Your custom metric scoped over your host.
+
+2. Any metric from the Integration on your Database with the anomaly function applied.
+
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Accessing the Dashboard
+==
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
-Monitoring Data
+1. Set the Timeboard's timeframe to the past 5 minutes
+
+2. Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+3. Bonus Question: What is the Anomaly graph displaying?
+
+
+Monitoring 
+==
+
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+1. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Please configure the monitor’s message so that it will:
 
-Send you an email whenever the monitor triggers.
+2. Please configure the monitor’s message so that it will:
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+3. Send you an email whenever the monitor triggers.
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+4. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+5. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+6. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+7. Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
