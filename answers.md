@@ -2,7 +2,16 @@ Prerequisites
 ==
 
 Setup the environment
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+
+- Windows 10 box with WAMP/MySQL 8.0.16/Python 3.7
+- Check SQL Services installed and running on Port 3310
+- Check Python Installed
+- Check WAMP Services Running
+
+1. Install Datadog Agent and confirm services are running on my host
+<a href="//imgur.com/a/75fMg3q"></a>
+2. Get metrics from my host
+<a href="//imgur.com/a/RhhmORs"></a>
 
 
 Collecting Metrics
