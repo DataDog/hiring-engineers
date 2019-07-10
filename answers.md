@@ -9,9 +9,9 @@ Setup the environment
 - Check WAMP Services Running
 
 1. Install Datadog Agent and confirm services are running on my host
-<a href="//imgur.com/a/75fMg3q"></a>
+<img src="<a href="//imgur.com/a/75fMg3q">"</a>
 2. Get metrics from my host
-<a href="//imgur.com/a/RhhmORs"></a>
+<img src="<a href="//imgur.com/a/RhhmORs"></a>
 
 
 Collecting Metrics
