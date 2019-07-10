@@ -8,9 +8,9 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 Collecting Metrics
 ==
 
-- Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-- Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
