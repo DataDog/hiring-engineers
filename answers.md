@@ -3,26 +3,25 @@ Prerequisites
 
 Setup the environment
 
-- Windows 10 box with WAMP/MySQL 8.0.16/Python 3.7
-- Check SQL Services installed and running on Port 3310
-- Check Python Installed
-- Check WAMP Services Running
+- Vagrant with Virtual box running Ubuntu/xenial64
 
-1. Install Datadog Agent and confirm services are running on my host
+1. Install Datadog Agent and confirm status on host
 
-[Services Installed](https://i.imgur.com/X7DAuP0.png)
-
-2. Get metrics from my host
-
-[Host Metrics](https://i.imgur.com/CxP3zcP.png)
-
+![Agent Status](https://i.imgur.com/3VGA69k.png)
 
 Collecting Metrics
 ==
 
 1. Add tags in the Agent config file and show us a screen-shot of your host and its tags on the Host Map page in Datadog.
 
+![Host Metrics](https://i.imgur.com/6Jct9kD.png)
+
+
 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+- installed mysql
+
+![MySQL Status](https://i.imgur.com/bVNTWSn.png)
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
