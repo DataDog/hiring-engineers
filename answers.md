@@ -3,7 +3,10 @@ Prerequisites
 
 Setup the environment
 
+Set-up multiples environments
+
 - Vagrant with Virtual box running Ubuntu/xenial64
+- Windows 10 Box
 
 1. Install Datadog Agent and confirm status on host
 
@@ -25,9 +28,28 @@ Collecting Metrics
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+- config file custom_firstcheck.yaml
+![Yaml Config](https://i.imgur.com/F9oEj96.png)
+
+- python script custom_firstcheck.py
+![Python Script](https://i.imgur.com/Inzymim.png)
+
+I ran in to quite a few issues with creating a custom agent check and began trouble shooting and took the steps below based on each issue I came acrros:
+
+- agent could not import due to newer version so added datadog_check.checks and the modules would not load
+- I then found instance was not defined error was appearing so adjusted my config file accordingly
+- tried removing the import lines from my python code and could still not define my_metric or see it my datadog UI
+- no modules were loading so I removed them completely
+- last step was to try and insert my_metric with a defined value but without being able to import the agentcheck this would not work.
+
+Decided to move on with the technical exam as best I could and come back to this if time permits.
+
+
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+I would just do this in the yaml config file
 
 
 Visualizing Data
