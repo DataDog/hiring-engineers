@@ -135,47 +135,32 @@ Collecting APM Data
 
 1. Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-from flask import Flask
-import logging
-import sys
+- installed python-pip
+- installed ddtrace
+- enabled settings for APM=true in yaml
+- added app key
+- add my_app.py to my repository anyway for your reference.
 
-Have flask use stdout as the logger
-
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+I ran in to dependency issues again here so was unable to complete the APM install.
 
 2. Bonus Question: What is the difference between a Service and a Resource?
 
-Provide a link and a screen-shot of a Dashboard with both APM and Infrastructure Metrics.
+Services are defined to run and complete defined tasks. Services have dependencies which are resources required for the Service to complete that task.
 
-Please include your fully instrumented app in your submission, as well.
+Resources are made up of elements required for that Service to complete it's task/run.
+
+For example DataDog Agent is a Service that is dependent on the resource datadog.yaml
+
 
 3. Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
+After I spent the last few days building out my environments and getting under the hood of Datadog which has been extremely fun, A use case that I could see Datadog really helping the world achieve something ground breaking would be monitoring all hospital equipment availability, Hospital ward/bed availability and much more.
+
+The data can be consumed by dispatchers for ambulance drivers or even publicly available to the consumer to pick which hospital to go as that emergency department may not be as congested. The use cases are endless which is what really excites me about Datadog.
+
+This would result in people gaining faster care in times of need and could potentially result in Datadog saving peoples lives.
 
 
