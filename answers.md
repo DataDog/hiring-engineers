@@ -33,7 +33,7 @@ Collecting Metrics
 - python script custom_firstcheck.py
 ![Python Script](https://i.imgur.com/Inzymim.png)
 
-I ran in to quite a few issues with creating a custom agent check and began trouble shooting my environment as I thought I may of missed a dependency. Check my installs folder for the files and everything seems to be in order. Tried restarting the agent and the machine and still ntohing appearing in my Datadog UI.
+I ran in to quite a few issues with creating a custom agent check and began trouble shooting my environment as I thought I may of missed a dependency. Check my installs folder for the files and everything seems to be in order. Tried restarting the agent and the machine and still nothing appearing in my Datadog UI.
 
 
 Decided to move on with the technical exam as best I could and come back to this with a fresh mind.
@@ -54,13 +54,13 @@ Visualizing Data
 
 Utilize the Datadog API to create a Time-board that contains:
 
-- As I didn't create my_metric and was running in to environment issue, I have chosen to use system metrics already included in Datadog. The dependencies issues weren't allowing me to utilise the API either so I used the Datadog front end UI and created all of the below using Datadog instead.
+- As I didn't create my_metric and was running in to environment issue, I have chosen to use system metrics already included in Datadog. The dependencies issues weren't allowing me to utilize the API either so I used the Datadog front end UI and created all of the below using Datadog instead.
 
 1. Your custom metric scoped over your host.
 
 2. Any metric from the Integration on your Database with the anomaly function applied.
 
-3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+3. Your custom metric with the roll-up function applied to sum up all the points for the past hour into one bucket
 
 ![My Time-board](https://i.imgur.com/ofCNBZl.png)
 
@@ -75,12 +75,19 @@ Once this is created, access the Dashboard from your Dashboard List in the UI: h
 
 1. Set the Time-board's time-frame to the past 5 minutes
 
+You can see this is set to 5 minutes. I did this by zooming over the time-board.
 
+![My Time-board](https://i.imgur.com/ofCNBZl.png)
 
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+Snapshot of Graph using @ notation to send to myself
+
+![Notation Sent to myself](https://i.imgur.com/D7FQmlz.png)
+
 3. Bonus Question: What is the Anomaly graph displaying?
 
+The anomaly is displaying anything that is a deviation from the normal average.
 
 Monitoring 
 ==
@@ -95,6 +102,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 - Notify you if there is No Data for this query over the past 10m.
 
+
 2. Please configure the monitor’s message so that it will:
 
 3. Send you an email whenever the monitor triggers.
@@ -103,7 +111,11 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 5. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+![Alert Configuration](https://i.imgur.com/FL6yTfe.png)
+
 6. When this monitor sends you an email notification, take a screen-shot of the email that it sends you.
+
+![Alert Email](https://i.imgur.com/Sf2oaD0.png)
 
 7. Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -111,6 +123,12 @@ One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 
 Make sure that your email is notified when you schedule the downtime and take a screen-shot of that notification.
+
+![Downtime Email](https://i.imgur.com/yzqPydH.png)
+
+I noticed a timezone issues here even though I set them in Sydney Time.
+
+![Downtime Email](https://i.imgur.com/6urZNr8.png)
 
 Collecting APM Data
 ==
