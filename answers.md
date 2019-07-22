@@ -3,7 +3,7 @@ Prerequisites
 
 Setup the environment
 
-Set-up multiples environments
+Set-up multiple environments
 
 - Vagrant with Virtual box running Ubuntu/xenial64
 - Windows 10 Box
