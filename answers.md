@@ -7,6 +7,7 @@ Set-up multiples environments
 
 - Vagrant with Virtual box running Ubuntu/xenial64
 - Windows 10 Box
+- datadog docker
 
 1. Install Datadog Agent and confirm status on host
 
@@ -22,34 +23,30 @@ Collecting Metrics
 
 2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-- installed mysql
-
+- installed mysql and you can see the integration in hostmap page
 ![MySQL Status](https://i.imgur.com/bVNTWSn.png)
 
-3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+![MySQL Integration Installed](https://i.imgur.com/YwrGSOQ.png)
 
-- config file custom_firstcheck.yaml
-![Yaml Config](https://i.imgur.com/F9oEj96.png)
+3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 - python script custom_firstcheck.py
 ![Python Script](https://i.imgur.com/Inzymim.png)
 
-I ran in to quite a few issues with creating a custom agent check and began trouble shooting and took the steps below based on each issue I came acrros:
+I ran in to quite a few issues with creating a custom agent check and began trouble shooting my environment as I thought I may of missed a dependency. Check my installs folder for the files and everything seems to be in order. Tried restarting the agent and the machine and still ntohing appearing in my Datadog UI.
 
-- agent could not import due to newer version so added datadog_check.checks and the modules would not load
-- I then found instance was not defined error was appearing so adjusted my config file accordingly
-- tried removing the import lines from my python code and could still not define my_metric or see it my datadog UI
-- no modules were loading so I removed them completely
-- last step was to try and insert my_metric with a defined value but without being able to import the agentcheck this would not work.
 
-Decided to move on with the technical exam as best I could and come back to this if time permits.
+Decided to move on with the technical exam as best I could and come back to this with a fresh mind.
 
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+- File I would of used
+![Yaml Config](https://i.imgur.com/F9oEj96.png)
+
 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-I would just do this in the yaml config file
+I would just edit the config file in sublime/notepadd++
 
 
 Visualizing Data
@@ -57,20 +54,28 @@ Visualizing Data
 
 Utilize the Datadog API to create a Time-board that contains:
 
+- As I didn't create my_metric and was running in to environment issue, I have chosen to use system metrics already included in Datadog. The dependencies issues weren't allowing me to utilise the API either so I used the Datadog front end UI and created all of the below using Datadog instead.
+
 1. Your custom metric scoped over your host.
 
 2. Any metric from the Integration on your Database with the anomaly function applied.
 
 3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+![My Time-board](https://i.imgur.com/ofCNBZl.png)
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Time-board.
+
+Script I would of used: custom_timeboard.py
 
 Accessing the Dashboard
 ==
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Once this is created, access the Dashboard from your Dashboard List in the UI: https://docs.datadoghq.com/api/?lang=python#dashboards
 
 1. Set the Time-board's time-frame to the past 5 minutes
+
+
 
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
