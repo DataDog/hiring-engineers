@@ -7,6 +7,9 @@ Set-up multiple environments
 
 - Vagrant with Virtual box running Ubuntu/xenial64
 - Windows 10 Box
+
+Also installed 
+
 - datadog docker
 
 1. Install Datadog Agent and confirm status on host
@@ -25,6 +28,8 @@ Collecting Metrics
 
 - installed mysql and you can see the integration in hostmap page
 ![MySQL Status](https://i.imgur.com/bVNTWSn.png)
+
+![MySQL Status](https://imgur.com/NOrkg4w)
 
 ![MySQL Integration Installed](https://i.imgur.com/YwrGSOQ.png)
 
