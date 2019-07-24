@@ -62,7 +62,7 @@ Utilize the Datadog API to create a Time-board that contains:
 
 3. Your custom metric with the roll-up function applied to sum up all the points for the past hour into one bucket
 
-![My Custom Metric](https://imgur.com/Z3qFmPz)
+![My Custom Metric](https://i.imgur.com/ShorcWY.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Time-board.
 
