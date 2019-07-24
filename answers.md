@@ -38,10 +38,7 @@ Collecting Metrics
 - python script custom_firstcheck.py
 ![Python Script](https://i.imgur.com/Inzymim.png)
 
-I ran in to quite a few issues with creating a custom agent check and began trouble shooting my environment as I thought I may of missed a dependency. Check my installs folder for the files and everything seems to be in order. Tried restarting the agent and the machine and still nothing appearing in my Datadog UI.
-
-
-Decided to move on with the technical exam as best I could and come back to this with a fresh mind.
+![My Custom Metric](https://imgur.com/Z3qFmPz)
 
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
