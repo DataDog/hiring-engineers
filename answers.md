@@ -56,15 +56,13 @@ Visualizing Data
 
 Utilize the Datadog API to create a Time-board that contains:
 
-- As I didn't create my_metric and was running in to environment issue, I have chosen to use system metrics already included in Datadog. The dependencies issues weren't allowing me to utilize the API either so I used the Datadog front end UI and created all of the below using Datadog instead.
-
 1. Your custom metric scoped over your host.
 
 2. Any metric from the Integration on your Database with the anomaly function applied.
 
 3. Your custom metric with the roll-up function applied to sum up all the points for the past hour into one bucket
 
-![My Time-board](https://i.imgur.com/ofCNBZl.png)
+![My Custom Metric](https://imgur.com/Z3qFmPz)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Time-board.
 
