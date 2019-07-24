@@ -139,9 +139,9 @@ Collecting APM Data
 - installed ddtrace
 - enabled settings for APM=true in yaml
 - added app key
-- add my_app.py to my repository anyway for your reference.
+- added my_app.py to my repository anyway for your reference.
 
-I ran in to dependency issues again here so was unable to complete the APM install.
+I ran in to dependency issues here so was unable to complete the APM install.
 
 2. Bonus Question: What is the difference between a Service and a Resource?
 
