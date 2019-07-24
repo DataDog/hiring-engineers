@@ -77,7 +77,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI: h
 
 You can see this is set to 5 minutes. I did this by zooming over the time-board.
 
-![My Time-board](https://i.imgur.com/ofCNBZl.png)
+![My Time-board](https://i.imgur.com/tyIA11k.png)
 
 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
 
