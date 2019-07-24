@@ -38,7 +38,7 @@ Collecting Metrics
 - python script custom_firstcheck.py
 ![Python Script](https://i.imgur.com/Inzymim.png)
 
-![My Custom Metric](https://imgur.com/Z3qFmPz.png)
+![My Custom Metric](https://i.imgur.com/ShorcWY.png)
 
 
 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
