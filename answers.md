@@ -6,7 +6,7 @@ Datadog is a monitoring service for different architecture layers, either in clo
 This guide will use the Datadog Agent to monitor a server (that is the local workstation), a local MySQL database, a custom metric and a python application, to simulate a real and complete monitoring service.
 
 ## Environment 
-For this demo, the environment will be based on Linux containers, using the Docker image format, which is the most used format for running Linux containers. Nowadays, organization are following the digital transformation using the Linux container to ship their application on the cloud. As such, an environment based on this technology is a better fit for demo also in terms of portability and ease of replication.
+For this demo, the environment will be based on Linux containers, using the Docker image format, which is the most used format for running Linux containers. Nowadays, organization are following the digital transformation using the Linux containers to ship their applications on the cloud. As such, an environment based on this technology is a better fit for a demo, also in terms of portability and ease of replication.
 
 However, Datadog supports the following platforms:
 ![Supported platforms](images/dd-envs.png)
@@ -34,11 +34,12 @@ Signup as per the following image:
 Once registered, a confirmation email is sent as follows:
 ![Signed up](images/01-signup.png)
 
-The signup process also provides a API KEY belongs to the account and which is used to run the Datadog Agent on the system.
+The signup process also provides a API KEY, which belongs to the account and it is used to run the Datadog Agent on the system.
 
 ## Docker
 Docker is a piece of software that lets you create Linux containers with a specific image format, that is, the Docker image format.
-Linux containers are a mash-up of functionalities available with the Linux kernel (that's why you often hear the phrase, Containers are Linux). Linux containers provide a lot of flexibility in regards to application deployment. As a matter of fact, not just the application gets deployed, but the entire software stack. And the software stack is made of the application itself, its dependencies, the operative system, and the tools and processes running in the operating system. Freezing the complete software stack gives tremendous portability capability.
+Linux containers are a mash-up of functionalities available with the Linux kernel (that's why you often hear the phrase, Containers are Linux). Linux containers provide a lot of flexibility in regards to application deployment. As a matter of fact, not just the application gets deployed, but the entire software stack. And the software stack is made by the application itself, its dependencies, the operative system, and the tools and processes running in the operating system. Freezing the complete software stack gives tremendous portability capability.
+
 Docker brought Linux containers to a large scale, providing a toolkit for developers and administrators.
 
 Docker can be installed following the instructions described in the [https://www.docker.com](https://www.docker.com) site. There is a Docker software bundle specific for each platform such as Linux (Debian and Red Hat based), Windows, and Mac OS.
@@ -131,8 +132,9 @@ GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 ```
 
-Now that the database is ready to accept a user authenticated as "datadog", the Datadog Agent itself needs the integration, that is needs to know how to connect to the MySQL database.
+Now that the database is ready to accept a user authentication as "datadog", the Datadog Agent itself needs the integration, that needs to know how to connect to the MySQL database.
 As stated before, the database is running locally, therefore the integration will point to MySQL running on "localhost" listening on its default port which is 3306.
+
 Datadog Agent relies on a specific folder to read all its integration points.
 By default the folder with all the configuration is located at the following path: ```/etc/datadog-agent/conf.d```
 For MySQL there is the subfolder ```mysql.d``` which contains the configuration file.
@@ -185,13 +187,14 @@ The script is also available here [randomcheck.py](https://github.com/foogaro/hi
 The script must be located in the folder ```/etc/datadog-agent/checks.d```.
 
 #### Integration
-The integration, as previously described for the MySQL database, is triggered by a file in the YAML format into the ```/etc/datadog-agent/conf.d``` folder, the file filename must be the same as its script, except for the file extension.
+The integration, as previously described for the MySQL database, it is triggered by a file in the YAML format into the ```/etc/datadog-agent/conf.d``` folder. The file filename must be the same as its script filename, except for the file extension.
+
 In this case:
 * ```/etc/datadog-agent/checks.d/randomcheck.py```.
 * ```/etc/datadog-agent/conf.d/randomcheck.yaml```.
 
 The metric might need to be submitted at regular intervals, which by default are every 15 seconds. The value could be changed based on requirements, for example the metric needs to be submitted once every 45 seconds.
-The resulting YaML file would look like the following:
+The resulting YAML file would look like the following:
 ```yaml
 init_config:
 
@@ -212,7 +215,7 @@ The platform should display the host generic view with the tags previously confi
 ![Tags](images/02-host-tags.png)
 
 ### Database
-The platform should display the host generic view with the tags previously configured, as follows:
+The platform should display the host generic view with the database previously configured, as follows:
 ![MySQL](images/04-host-mysql.png)
 
 The database Integration should also be visible as validated in the integration section at the following URL: [https://app.datadoghq.com/account/settings#integrations/mysql](https://app.datadoghq.com/account/settings#integrations/mysql)
@@ -299,6 +302,7 @@ api.Timeboard.create(title=title,
 ```
 
 The Python script to create the Timeboard, it is available for download at the following link:
+
 [https://github.com/foogaro/hiring-engineers/blob/master/files/timeboard.py](https://github.com/foogaro/hiring-engineers/blob/master/files/timeboard.py).
 
 The script can be launched in a terminal window with the following command:
@@ -318,12 +322,12 @@ Click on the "Hiring Engineer Timeboard", and the resulting dashboard should loo
 The Timeboard, as its name suggests, shows metric's values overtime, and this time can also be adjusted to have insight for a specific period, like for example the last 5 minutes, as shown below:
 ![Timeboard](images/timeboard-5min.png)
 
-In case the insight shows up something important that needs to be shared, the user can take a snapshot and use the @ notation to send it to other people of the team, as shown below:
+In this case the insight shows up something important that needs to be shared, the user can take a snapshot and use the @ notation to send it to other people of the team, as shown below:
 ![Timeboard](images/timeboard-snapshot.png)
 
 
 ## Monitoring Data
-Looking at a dashboard overtime can be tedious and the team in charge of looking at the graphs can do other tasks and be more productive. For this case the Datadog platform provide an automatic mechanism to monitor the data based on threshold, on which some actions might be taken.
+Looking at a dashboard overtime can be tedious and the team in charge of looking at the graphs can do other tasks and be more productive. For this case the Datadog platform provides an automatic mechanism to monitor the data based on threshold, on which some actions might be taken.
 
 The platform can create a new Metric Monitor that watches the average of the custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 * Warning threshold of 500
@@ -340,7 +344,7 @@ And the configuration are the following:
 Furthermore, the Monitor feature provides the capability to send custom email to notify the user about the value of the metric.
 
 ### Notification
-For example, the monitor can be configured the monitor’s message so that it will:
+For example, the monitor can configure monitor’s message so that it will:
 * Send an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -382,7 +386,7 @@ A reminder is sent via email when the downtime is triggered (started or stopped)
 
 ## Collecting APM Data
 As described at the beginning, Datadog Agent can collect metrics in a full-stack fashion, top-down, from the host to the application level, to check, verify and detect performance issues.
-Transaction traces, app health, throughput, latency, can be collected and monitor with Datadog APM.
+Transaction traces, application health, throughput, latency, can be collected and monitored with Datadog APM.
 
 ### Flask Application
 A REST application can be monitored/traced using the Datadog Trace capabilities. Given the following Flask app instrument this using Datadog’s APM solution:
@@ -426,6 +430,7 @@ The application can be monitored by running the application with Python and Data
 
 ### Dashboard
 The application Flask can be downloaded from the following URL:
+
 [https://github.com/foogaro/hiring-engineers/blob/master/files/apm_flask.py](https://github.com/foogaro/hiring-engineers/blob/master/files/apm_flask.py).
 
 The application REST API can be invoked using cURL from a terminal window to quickly repeat the call, as follows:
@@ -442,7 +447,7 @@ Datadog monitoring provides a full set of features such as Analytics, Infrastruc
 The scenario in which the platform can be adopted and promoted are really heterogeneous, from the industry sector to the manufacturing sector, weather, IoT, really any scenario.
 The Datadog platform could be also used to monitor buildings, by a domotic point of view. As ingle apartment or a building composed by several apartments and lofts, can monitor:
 * energy efficiency
-* set threshold to automatically switch on or off devices (such as eater, air conditioning, and so on)
+* set threshold to automatically switch on or off devices (such as heater, air conditioning, and so on)
 * resource consumption;
 
 Everything could be automated to prevent waste of money and resources, to less impact on the environment and contribute to a green environment.
