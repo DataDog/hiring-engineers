@@ -17,13 +17,12 @@ In the next paragraphs are listed the required and optional softwares to run the
 
 ### Required
 * Docker; 
-* Python 3, python3-setuptools, easy_install3, pip-3
+* Python 3, python3-setuptools, easy_install3, pip-3;
 * Python Datadog Agent package;
-* Python Flask package
+* Python Flask package.
 
 ### Optional 
 * Git;
-* 
 
 ### Datadog trial
 Open the browser to the Datadog site and click on the "Free trial" button, at the following link:
