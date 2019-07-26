@@ -217,6 +217,7 @@ The platform should display the host generic view with the tags previously confi
 ![MySQL](images/04-host-mysql.png)
 
 The database Integration should also be visible as validated in the integration section at the following URL: [https://app.datadoghq.com/account/settings#integrations/mysql](https://app.datadoghq.com/account/settings#integrations/mysql)
+
 And the page should look like the following:
 ![MySQL](images/03-mysql.png)
 
@@ -225,6 +226,7 @@ The platform should display the host generic view with the metric previously con
 ![Metric](images/03-host-metrics.png)
 
 The metric should also be visible in the metric section at the following URL: [https://app.datadoghq.com/metric/explorer](https://app.datadoghq.com/metric/explorer)
+
 And the page should look like the following:
 ![Metric](images/04-metrics.png)
 
@@ -331,6 +333,7 @@ The platform can create a new Metric Monitor that watches the average of the cus
 
 ### Threshold
 The threshold can be set in the Monitor section at the following URL: [https://app.datadoghq.com/monitors#create/metric](https://app.datadoghq.com/monitors#create/metric)
+
 And the configuration are the following:
 ![Timeboard](images/metric-monitor-1.png)
 ![Timeboard](images/metric-monitor-2.png)
