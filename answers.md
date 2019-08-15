@@ -17,7 +17,7 @@ I am using an Window 10 Environment for quick deployments of VMs without the com
 3. Installed the Datadog Agent with the script below.
 
 ```
-DD_API_KEY=8661becd6d0b8a1ca58cf10bcdc5daf5 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+DD_API_KEY=(REMOVED) bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
 
 <a href='https://photos.google.com/share/AF1QipPihy_WRyTybaI12AWNMfmIG4XRhLvMRbQziZ6evcEBdSfgq0OjHXxn9Znib3L5wQ?key=d1ZTMk0wMXFtZF9RMXVJVzZjUEdnaXI5QnlCMkZR&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/408ndZ1PpunAcOoVitoQwx1tu1RnX5ZwxMNB3qUEoxhmh6WWtjaAcE86AkEdS6bpd6oWiP7OWenjKcNsEdiBxWkrncKDcc2dIo6_mXNxvrs4hXOadyTfUg6ymDPfLZJdzcGgSoDdsg=w2400' width="500" /></a>
@@ -169,13 +169,13 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. (DONE)
 
-Download the file [Here](https://drive.google.com/open?id=1r5xFdRC1KSrm_jLbU1QmYKbGG8tO8guL)
+Download the file (removed)
 ```python
 from datadog import initialize, api
 
 options = {
-        'api_key': '8661becd6d0b8a1ca58cf10bcdc5daf5',
-        'app_key': '3c0afd9ba4e06d356e47d481ebb6d0c58e59ac3f'
+        'api_key': 'REMOVED',
+        'app_key': 'removed'
 }
 
 initialize(**options)
@@ -230,7 +230,7 @@ Set the Timeboard's timeframe to the past 5 minutes (DONE)
 
 Take a snapshot of this graph and use the @ notation to send it to yourself. (DONE)
 
-<a href='https://photos.google.com/share/AF1QipN7VhKkKh5T1F2AtvNyR2bQkhp2KCsBhgB7FFr_H_Lkfq2lZ_tiI0Qok_pX2qalQQ?key=SkNldXEtV002VHBSS3pZTzhSU3RBNkZuZl9iNk9n&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/d0y7LrDeu3r2R3aKBPUaOZpeimf2o6ykcQ1MHDQTm4CxDIaJa3v3pRrIwNDkcvD5bnpuKwN0jNdqiI-Sqrr0Y7NDg1Ulwd0TA0D0MHKr8eL6RMY2cMIzDZtgA_StBGC7wSp3GD618w=w2400' width="600" /></a>
+PHOTO REMOVED
 
 •	Bonus Question: What is the Anomaly graph displaying?
 
@@ -246,7 +246,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 [LINK TO THE DATADOG PAGE](https://app.datadoghq.com/monitors#10799322/edit)
 
-<a href='https://photos.google.com/share/AF1QipP7iXEU58IY2O3NnytTk_U3meWjS92Q6uReogO__pgu5RWGCfPCSCNKPd7aktuzMA?key=OVhDc28wTHZPVExDajRZZFFwR1FncTNVOEJZOFFR&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/Rl0Qos6lXgqULvOCmiMoX5LeX8E0cuJzZpEMdacGmDvk1g3G1qBav6hBVj2FUQF7CAgtAKGbmOzG_eoH4IxNqqd1sKYbIijIfHO4RcbQZYeNnzr-F9LiLXmKhtWkAw6kxTyljjzqdQ=w2400' width="600" /></a>
+PHOTO REMOVED
 
 Please configure the monitor’s message so that it will:
 
@@ -259,21 +259,21 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. (DONE)
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you. (DONE)
 
-<a href='https://photos.google.com/share/AF1QipNRdS9lsVk2Y-Y3_u2KrQ5Z-4XEVnil1B0isOSxXd_owmNLOWwLPxh6nVCtv2jbzw?key=Z0JsQzJJNFZ2Qk9YTnRIS2ZJdExGSDBOY3k2UllR&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/W6SWZazslrrywpCfjfx1W8iBRykFKAciHiLFVQJvysYYzXO4xp7n01L-phH7k_IUwzYkpV1mUvChceqK5YoJX6wLnxNrLdJxr8dfPjheoMOETtEt7Fqh-BSV_YQzO5-2RMYgzWgGQg=w2400' width="400" /></a>
+PHOTO REMOVED
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F, [Link to Datadog](https://app.datadoghq.com/monitors#downtime?id=582265222)
 
-  <a href='https://photos.google.com/share/AF1QipNll0ptw4CWQAEujJnmEA-FVOkTvUBCDZ27bSWzG9ZRcBUSd_VcXCTcOrTYPoAdpA?key=aF9VSlJTbnl0WEkwS0F4N3ZnVW9CdTBnU0Q1Z3BR&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/XshRm7UAqJhD0me7rtVZGQ3rOhKiAkwlDjN9oPDDXnEDt-Oqeo4u2wrCazUoD8YQuRtXhLrwciinikU6llkMmyZZO7rBXa6WGS1hgxSl-o1hr3k1b-DYdLEcW41zd7hQ6C15c1A6Lw=w2400' width="600"/></a>
+PHOTO REMOVED
 
 And one that silences it all day on Sat-Sun. [Link to Datadog](https://app.datadoghq.com/monitors#downtime?id=582265222)
 
-<a href='https://photos.google.com/share/AF1QipPLVwzXgidS5AF4WcWCGJYWvs2fiA3y6YwyvjTs7jX0U2vKk7D7RCUkaYkQyrlREA?key=U2dPVU1jYVI0OHdNVXRNZ1NDaTNyVTN6R280VGhB&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/j2DLD88dm0si0dUTdFo2r3uniu-zjHPcaYb0bcXUUPZOrQMQYQq6SIKTBjHr9TsW8dnASrRX5UBhsbES5MvvjVgDPIJJpJzoTf4BrXfd1LjI06VgZrw_Ww-gL5UPLynGfAf_17HLxw=w2400' width="600" /></a>
+PHOTO REMOVED
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-<a href='https://photos.google.com/share/AF1QipNVRg7wL6EbEXHB-tV9iwgAK7vyC-16Fn-F_VwF7uxJqa5cTij27xdIVDFIWFfjsg?key=a1Vvc0gzYmgzYmNpb2JWc1BKRW5tNF8tSmtkWlBn&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/b-RzzkBNYY8GyJyroE4OB3MWT4i89ANCAhRfHcJMaX3D_wE5JVFwZFa9Wmr83C5o7bl_y1ywHpETsx1Q22BZxMoCUQTsFFArzN7OwTFT1WsLjAl82TwAnd3qDxd0co8FPW0QloqS0A=w2400' width="400"/></a>
+PHOTO REMOVED
 
 ## Collecting APM Data:
 
