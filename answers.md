@@ -13,7 +13,7 @@ DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/Dat
 
 ## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
-Finally I added some example tags to the /etc/datadog-agernt/datadog.yaml file.
+I added some example tags to the /etc/datadog-agernt/datadog.yaml file and restarted agent
 
 Screenshot of agent YAML file and host map on Datadog UI:
 ![YAML file with tags](./YAML_file_with_tags.png)
