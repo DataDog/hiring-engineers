@@ -76,6 +76,8 @@ Screenshot of my_metric in Datadog UI Metrics Explorer:
 
 ![My metric](./My_metric.png)
 
+<br/>
+<br/>
 
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds
 
@@ -87,6 +89,9 @@ I edited the yaml file: /etc/datadog-agent/conf.d/my_metric.yaml
       - min_collection_interval: 45
 
 Then I restarted the agent.
+
+<br/>
+<br/>
 
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
