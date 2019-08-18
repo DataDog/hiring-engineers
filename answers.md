@@ -31,20 +31,20 @@ I installed postgres on the Ubuntu server.
 
 In Postgres I configured a new user 'datadog' using instructions provided for Postgres.
 
-- create user datadog with password '<PASSWORD>';
-- grant pg_monitor to datadog;
+  - create user datadog with password '<PASSWORD>';
+  - grant pg_monitor to datadog;
   
 I then configured the '/etc/datadog-agent/conf.d/postgres.d/onf.yaml file with the corresponding connection info
 
-- host: localhost
-- port: 5432
-- username: datadog
-- password: datadog
-- dbname: postgres
+  - host: localhost
+  - port: 5432
+  - username: datadog
+  - password: datadog
+  - dbname: postgres
 
 I restarted the datado agent and now webt to Datadog UI to see the metrics
 
-Screenshot of Postgres metreics in Datadog UI Metrics Explorer:
+Screenshot of Postgres metrics in Datadog UI Metrics Explorer:
 ![Postgres metrics](./Postgres_metrics.png)
 
 <br/>
@@ -52,12 +52,29 @@ Screenshot of Postgres metreics in Datadog UI Metrics Explorer:
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
 
-I followed the isntructions in "https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6"
+I followed the instructions in "https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6"
 
-First I created a Python file with the script:
+First I created a Python script: /etc/datadog-agent/checks.d/my_metric.py
 
+    import random
+    from checks import AgentCheck
+    class my_metric_class(AgentCheck):
+          def check(self, instance):
+              self.gauge('my_metric', random.randint(1,1000))
+          
+          
+and a yaml file: /etc/datadog-agent/conf.d/my_metric.yaml
 
-![My Metric](./My_metric.png)
+    init_config:
+
+    instances:
+      [{}]
+
+Then I restarted the agent.
+
+Screenshot of my_metric in Datadog UI Metrics Explorer: 
+
+![My metric](./My_metric.png)
 
 
 
