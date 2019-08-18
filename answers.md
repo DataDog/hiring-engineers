@@ -6,7 +6,8 @@ I then installed the Datadog agent on this Ubuntu server with the command:
 
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
-
+<br/>
+<br/>
 
 # Collecting Metrics
 
