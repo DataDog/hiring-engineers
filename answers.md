@@ -7,4 +7,4 @@ I then installed the Datadog agent with the following command:
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 
-[YAML file with tags](docs/CONTRIBUTING.md)
+[YAML file with tags](blob/master/YAML_file_with_tags.png)
