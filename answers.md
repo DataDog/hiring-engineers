@@ -90,6 +90,10 @@ I edited the yaml file: /etc/datadog-agent/conf.d/my_metric.yaml
 
 Then I restarted the agent.
 
+I can now see that the metric interval went to 45 seconds
+
+![My metric 45](./My_metric_45.png)
+
 <br/>
 <br/>
 
