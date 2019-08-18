@@ -46,3 +46,20 @@ I restarted the datado agent and now webt to Datadog UI to see the metrics
 
 Screenshot of Postgres metreics in Datadog UI Metrics Explorer:
 ![Postgres metrics](./Postgres_metrics.png)
+
+<br/>
+<br/>
+
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000
+
+I followed the isntructions in "https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6"
+
+First I created a Python file with the script:
+
+
+![My Metric](./My_metric.png)
+
+
+
+
+
