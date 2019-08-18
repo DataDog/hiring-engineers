@@ -26,3 +26,23 @@ Screenshot of host map in Datadog UI:
 <br/>
 
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+I installed postgres on the Ubuntu server.
+
+In Postgres I configured a new user 'datadog' using instructions provided for Postgres.
+
+- create user datadog with password '<PASSWORD>';
+- grant pg_monitor to datadog;
+  
+I then configured the '/etc/datadog-agent/conf.d/postgres.d/onf.yaml file with the corresponding info
+
+- host: localhost
+- port: 5432
+- username: datadog
+- password: datadog
+- dbname: postgres
+
+I restarted the datado agent and now webt to Datadog UI to see the metrics
+
+Screenshot of Postgres metreics in Datadog UI Metrics Explorer:
+![Postgres metrics](./Postgres_metrics.png)
