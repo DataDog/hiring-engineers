@@ -1,4 +1,4 @@
-##### Prerequisites - Setup the environment #####
+# Prerequisites - Setup the environment #
 
 I started a Ubuntu 18.04 instance on AWS.
 
