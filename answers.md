@@ -1,10 +1,12 @@
 # Prerequisites - Setup the environment #
 
-I started a Ubuntu 18.04 instance on AWS.
+I started a Ubuntu 18.04 server on AWS.
 
-I then installed the Datadog agent with the following command:
+I then installed the Datadog agent on this Ubuntu server with the command:
 
 DD_API_KEY=<MY_API_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+
+Finally I added some example tags to the /etc/datadog-agernt/datadog.yaml file.
 
 Screenshot of agent YAML file and host map on Datadog UI:
 ![YAML file with tags](./YAML_file_with_tags.png)
