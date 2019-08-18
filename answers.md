@@ -34,7 +34,7 @@ In Postgres I configured a new user 'datadog' using instructions provided for Po
 - create user datadog with password '<PASSWORD>';
 - grant pg_monitor to datadog;
   
-I then configured the '/etc/datadog-agent/conf.d/postgres.d/onf.yaml file with the corresponding info
+I then configured the '/etc/datadog-agent/conf.d/postgres.d/onf.yaml file with the corresponding connection info
 
 - host: localhost
 - port: 5432
