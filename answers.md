@@ -20,3 +20,9 @@ Screenshot of agent YAML file and host map on Datadog UI:
 
 Screenshot of host map in Datadog UI:
 ![Host map with tags](./Host_map_with_tags.png)
+
+
+<br/>
+<br/>
+
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
