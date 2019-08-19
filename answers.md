@@ -101,4 +101,76 @@ I can now see that the metric interval went to 45 seconds
 
 Yes, this is possible by ediuting the yaml file in the conf.d directory like in the example above.
 
+<br/>
+<br/>
+
+# Visualizing Data
+
+I installed the Datadog Python package which contains the Datadog API:
+
+    sudo apt-get install python
+    sudo apt-get install python-pip
+    pip install datadog
+
+Then I created a standalone Python script (as below). 
+
+It uses the Datadog API to create the custom dashboard in the Datadog UI. The dashboard contains three time graphs
+
+- my_metric over ubuntu host
+- Anomalies of the metric "postgresql.bgwriter.checkpoints_timed"
+- my-metric rolled up to single hourly values
+
+I also created a new APP key for this purpose.
+
+Python script:
+
+###
+    from datadog import initialize, api
+
+    options = {
+            'api_key': '******',
+            'app_key': '******'
+        }
+
+    initialize(**options)
+
+    title = 'Exercise Timeboard'
+
+    widgets = [{
+        'definition': {
+            'type': 'timeseries',
+            'requests': [
+              {'q': 'avg:my_metric{host:ubuntu}'}
+            ],
+            'title': 'my_metric over host ubuntu'
+        }
+    },{
+        'definition': {
+            'type': 'timeseries',
+            'requests': [
+              {'q': 'anomalies(avg:postgresql.bgwriter.checkpoints_timed{host:ubuntu},"basic",2)'}
+            ],
+            'title': 'postgres checkpoints anomalies'
+        }
+    },{
+        'definition': {
+            'type': 'timeseries',
+            'requests': [
+              {'q': 'sum:my_metric{host:ubuntu}.rollup(sum,3600)'}
+            ],
+            'title': 'my_metric rollup over last hour'
+        }
+    }]
+
+    layout_type = 'ordered'
+
+    description = 'An example timeboard for technical exercise.'
+
+    api.Dashboard.create(title=title,
+                         widgets=widgets,
+                         layout_type=layout_type,
+                         description=description)
+
+###
+
 
