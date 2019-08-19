@@ -172,7 +172,7 @@ Python script:
                          description=description)
 
 ###
-standard deviations above the ordinary value for over the last 5 minutes
+
 Screenshot of custom dashboard:
 ![Custom dashboard](./Custom_dashboard.png)
 
