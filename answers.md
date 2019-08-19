@@ -270,16 +270,16 @@ For the web app it could be the URL and for the DB it could be the actua SQL que
 
 ## Is there anything creative you would use Datadog for?
 
-I belive that the flexibility of Datadog metric collection and manipulation could be used to create very informative and actionable combined business and IT metrics dashboards. 
+I believe that the flexibility of Datadog metric collection and manipulation could be leveraged to create very informative and actionable combined business + IT metrics dashboards. 
 
 For example by collecting:
-- number of received purchase orders from CRM system (or any DB)
+- number of received purchase orders from the CRM system (or any DB)
 - monetary value of these purchase orders
-- IT perfromance metrics (latency, packet loss, file system, memory etc)
+- IT performance metrics (latency, packet loss, file system, memory etc)
 
 It would be possible to detect:
 - if a given IT metric has an impact on the business metric (number of received purchased orders)
-- if a given business metric (number of received purchased orders) has an alert (e.g. low amount) is caused by a correlated IT metric (e.g. packet loss, low free memory etc, high garbage collection, latency) and if so call to immediate action
+- if a given business metric (number of received purchase orders) has an alert (e.g. low amount) is it caused by a correlated IT metric (e.g. packet loss, low free memory etc, high garbage collection, latency) and if so call to immediate action
 
 
 
