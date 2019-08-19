@@ -207,9 +207,9 @@ For example by collecting:
 - monetary value of these purchase orders
 - IT perfromance metrics (latency, packet loss, file system, memory etc)
 
-It could be possible to understand
+It would be possible to detect:
 - if a given IT metric has an impact on the business metric (number of received purchased orders)
-- if a given business metric (number of received purchased orders) has an alert (low amount) is caused by a correlated IT metric and if so call to immediate action
+- if a given business metric (number of received purchased orders) has an alert (e.g. low amount) is caused by a correlated IT metric (e.g. packet loss, low free memory etc, high garbage collection, latency) and if so call to immediate action
 
 
 
