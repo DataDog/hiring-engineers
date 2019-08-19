@@ -172,9 +172,11 @@ Python script:
                          description=description)
 
 ###
-
+standard deviations above the ordinary value for over the last 5 minutes
 Screenshot of custom dashboard:
 ![Custom dashboard](./Custom_dashboard.png)
+
+I then set the time interval to 5 minutes and took a snapshot sending it to myself via @ annotation
 
 
 Screenshot of custom dashboard snapshot with @ annotation:
@@ -184,3 +186,12 @@ Screenshot of custom dashboard snapshot with @ annotation:
 Screenshot of snapshot received via mail:
 ![Snapshot_mai](./Snapshot_mail.png)
 
+<br/>
+<br/>
+
+## Bonus Question: What is the Anomaly graph displaying?
+
+The anomaly grapgh displays occurences of the "postgresql.bgwriter.checkpoints_timed" metric values that are 2 standard deviations (configured) above the ordinary value
+
+<br/>
+<br/>
