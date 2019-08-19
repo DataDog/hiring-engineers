@@ -228,6 +228,11 @@ Screenshot of monitor configuration:
 Screenshot of received notifiction:
 ![Notification mail](./Notification_mail.png)
 
+<br/>
+<br/>
+
+## Bonus Question: Add scheduled downtimes
+
 I then added scheduled downtimes for this monitor:
 
 ![Downtime 1](./Downtime_1b.png)
