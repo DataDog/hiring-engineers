@@ -1,6 +1,6 @@
 # Prerequisites - Setup the environment
 
-I started a Ubuntu 18.04 server on AWS.
+I started a Ubuntu 18.04 server using VMWare Fusion on my Mac.
 
 I then installed the Datadog agent on this Ubuntu server with the command:
 
