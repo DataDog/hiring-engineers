@@ -1,50 +1,208 @@
 Your answers to the questions go here.
 
-If you want to apply as a solutions engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
-
-<a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
-
-## The Exercise
-
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
-
-## Questions
-
-Please provide screenshots and code snippets for all steps.
-
 ## Prerequisites - Setup the environment
 
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
-
-* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+The enviroment I initalized was a RedHat 8. The virtual machine set on my local network on an ESXi Hypervisor.
 
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+Inside of datadog.yaml file I created the tag "environment:dev". Tags allows us to filter machines in our enviroment. This allows us to group machines together and to look at any specific set of machines. 
+[Two screenshots provided]
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+I have installed MySql database. The intergration for MySQL was also added to the datadog dashboard. Performance Metrics were also enabled and collecting data.
+[Two screenshots provided]
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+I created a python file called my_metric.py using the reference below. This was then placed inside the checks.d folder. 
+I then created a file called my_metrics.yaml inside of the conf.d folder.
+
+my_metric.py:
+=============
+from random import randint
+from checks import AgentCheck
+class my_metrics(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0,1000))
+		
+my_metric.yaml:
+===============
+init_config:
+
+instances:
+  [{
+      min_collection_interval: 45
+  }]
+  
+ref=https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+In order to change the metric interval I used the "min_collection_interval: 45" in the my_metric.yaml.
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+The collection interval was changed inside the my_metric.yaml as show above.
 
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+{
+  "viz": "query_value",
+  "autoscale": true,
+  "requests": [
+    {
+      "q": "avg:my_metric{host:datadog.rhel8}",
+      "type": null,
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "last",
+      "conditional_formats": []
+    }
+  ],
+  "precision": 0
+}
+[Screenshot Provided]
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+* Any metric from the Integration on your Database with the anomaly function applied.
+I used the metric mysql.performance.cpu_time and applied the anomaly function.
+
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "anomalies(avg:mysql.performance.cpu_time{host:datadog.rhel8}, 'basic', 2)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
+
+[Screnshot attached]
+
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+The rollup function was created and applied to the metric as shown below.
+
+{
+  "viz": "timeseries",
+  "requests": [
+    {
+      "q": "avg:my_metric{host:datadog.rhel8}.rollup(sum, 3600)",
+      "type": "line",
+      "style": {
+        "palette": "dog_classic",
+        "type": "solid",
+        "width": "normal"
+      },
+      "aggregator": "avg",
+      "conditional_formats": []
+    }
+  ],
+  "autoscale": true
+}
+
+[Screenshot attached]
+
+Q. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+A. The Dashboard was created using the below POST Request via Postman.
+
+{ 
+   "title":"API Dashboard",
+   "description":"",
+   "widgets":[ 
+      { 
+         
+         "definition":{ 
+            "type":"timeseries",
+            "requests":[ 
+               { 
+                  "q":"sum:my_metric{host:datadog.rhel8}",
+                  "display_type":"line",
+                  "style":{ 
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "title":"Sum of my_metric over host:datadog.rhel8"
+         }
+      },
+      { 
+         
+         "definition":{ 
+            "type":"timeseries",
+            "requests":[ 
+               { 
+                  "q":"anomalies(avg:mysql.performance.cpu_time{host:datadog.rhel8}, 'basic', 2)",
+                  "display_type":"line",
+                  "style":{ 
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "title":"Avg of mysql.performance.cpu_time over host:datadog.rhel8"
+         }
+      },
+      { 
+         
+         "definition":{ 
+            "type":"timeseries",
+            "requests":[ 
+               { 
+                  "q":"avg:my_metric{host:datadog.rhel8}.rollup(sum, 3600)",
+                  "display_type":"line",
+                  "style":{ 
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "title":"Rollup of my_metric - 1 hour"
+         }
+      }
+   ],
+   "template_variables":[ 
+      { 
+         "name":"var",
+         "default":"*",
+         "prefix":null
+      }
+   ],
+   "layout_type":"ordered",
+   "is_read_only":false,
+   "notify_list":[ 
+
+   ]
+}
+[Screenshots Attached]
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+Q. * Set the Timeboard's timeframe to the past 5 minutes
+A. I have selected on the Widget the past 5 minutes for my_metric, then selecting Annotate this graph.
+
+[Screenshot Attached]
+
+Q.* Take a snapshot of this graph and use the @ notation to send it to yourself.
+A. To send the graph using the @ notation the process is as above, by selecting "Annotate this graph".
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+The Anomaly graph will highlight if the current data is behaving differently based on past trends. 
 
 ## Monitoring Data
 
@@ -56,18 +214,36 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Please configure the monitor’s message so that it will:
+[Screenshot Attached]
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+Q. Please configure the monitor’s message so that it will:
+A. In order to create the monitoring message, we mody the "Say whats happening" on Step4. 
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+{{#is_alert}} My Metric is above {{value}} on {{host.ip}} {{/is_alert}}
+{{#is_warning}} My Metric is in warning state {{value}} {{/is_warning}}
+{{#is_no_data}} My Metric has no data {{value}} {{/is_no_data}}
+
+@philipbrophy@gmail.com
+Q. * Send you an email whenever the monitor triggers.
+A. The email is sent using the @ notation.
+
+Q. * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+A. Using the format above, would send an email based on an alert, warning or not data.
+
+Q. * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+A. The metric value is held in the reserve variable {{value}}.
+
+Q. * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+A. [Screenshot Provided]
+
+Q. * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+A. In order to schedule downtimes I clicked into manage Downtime under the monitors. From here I schedule a downtime as seen per the screenshots.
+[Screenshots Attached]
 
 ## Collecting APM Data:
 
@@ -106,54 +282,19 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+Q. * **Bonus Question**: What is the difference between a Service and a Resource?
+A. A Service is a set of processes that do the same job. For example a database serivce. A resource is an action that is taken on a Service. For example a "SELECT * FROM users;" on a database.
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Q. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+A. In this dashboard I just did a simple CPU time vs HTTP 200 requests.
+https://p.datadoghq.com/sb/gi624z8qfxllgtyd-86665e10ec28ef4466c49468b918136e
 
+[Screenshot Attached]
 Please include your fully instrumented app in your submission, as well.
-
+A. App attached.
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Q. Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
-Is there anything creative you would use Datadog for?
+A. I am very imnpressed with the Datadog graphing technology and algorithms. One area that I can see where this could be used is in the analysis of Network Data Trending with cisco or Juniper devices. For example, when there is a spike in Network data on an interface, it is not obvious if this is due to an interface going down and traffic been switch to it, or if it just a normal high load for that time of the day. With datadog anomaly algorithms you would be able to very quickly see if the spike is due to a historical trend or is a new issue. Layer2/3 monitoring of networking devices.
 
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
