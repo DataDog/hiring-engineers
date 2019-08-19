@@ -95,7 +95,6 @@ I can now see that the metric interval went to 45 seconds
 ![My metric 45](./My_metric_45.png)
 
 <br/>
-<br/>
 
 ## Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
@@ -188,7 +187,6 @@ Screenshot of custom dashboard snapshot with @ annotation:
 Screenshot of snapshot received via mail:
 ![Snapshot_mai](./Snapshot_mail.png)
 
-<br/>
 <br/>
 
 ## Bonus Question: What is the Anomaly graph displaying?
