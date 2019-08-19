@@ -191,7 +191,7 @@ Screenshot of snapshot received via mail:
 
 ## Bonus Question: What is the Anomaly graph displaying?
 
-The anomaly grapgh displays occurences of the "postgresql.bgwriter.checkpoints_timed" metric values that are 2 standard deviations (configured) above the ordinary value
+The anomaly graph displays occurences of the "postgresql.bgwriter.checkpoints_timed" metric values that are 2 standard deviations (configured) above the ordinary value
 
 <br/>
 <br/>
