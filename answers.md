@@ -230,13 +230,15 @@ Screenshot of received notifiction:
 
 I then added scheduled downtimes for this monitor:
 
-![Downtime 1](./Downtime1b.png)
-![Downtime 1](./Downtime1b.png)
+![Downtime 1](./Downtime_1b.png)
+
+![Downtime 2](./Downtime_2b.png)
 
 and I received the email notifications fore these schedules downtimes:
 
-![Downtime 1 Mail](./Downtime1b_mail.png)
-![Downtime 1 Mail](./Downtime2b_mail.png)
+![Downtime 1 Mail](./Downtime_1b_mail.png)
+
+![Downtime 2 Mail](./Downtime_2b_mail.png)
 
 <br/>
 <br/>
