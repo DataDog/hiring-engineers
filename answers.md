@@ -247,6 +247,25 @@ and I received the email notifications fore these schedules downtimes:
 <br/>
 <br/>
 
+# Collecting APM Data
+
+## Implementing APM
+
+
+
+## Bonus Question
+
+A service is a set of processes that do the same job. 
+
+For example a web application could consost of two services: the web frontend service and the back end DB service
+
+A resource is a particular action for a service.
+
+For the web app it could be the URL and for the DB it could be the actua SQL query (like a SELECT)
+
+<br/>
+<br/>
+
 
 # Final Question
 
