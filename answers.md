@@ -173,4 +173,14 @@ Python script:
 
 ###
 
+Screenshot of custom dashboard:
+![Custom dashboard](./Custom_dashboard.png)
+
+
+Screenshot of custom dashboard snapshot with @ annotation:
+![Snapshot](./Snapshot.png)
+
+
+Screenshot of snapshot received via mail:
+![Snapshot_mai](./Snapshot_mail.png)
 
