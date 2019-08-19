@@ -196,7 +196,7 @@ The anomaly graph displays occurences of the "postgresql.bgwriter.checkpoints_ti
 <br/>
 <br/>
 
-## Final Question
+# Final Question
 
 ## Is there anything creative you would use Datadog for?
 
@@ -210,6 +210,41 @@ For example by collecting:
 It would be possible to detect:
 - if a given IT metric has an impact on the business metric (number of received purchased orders)
 - if a given business metric (number of received purchased orders) has an alert (e.g. low amount) is caused by a correlated IT metric (e.g. packet loss, low free memory etc, high garbage collection, latency) and if so call to immediate action
+
+<br/>
+<br/>
+
+# Monitoring Data
+
+I configured a metric monitor for the "my_metric"
+
+- Send Warning if value crosses threshold of 500
+- Send Alert f value crosses threshold of 800
+- Send notification if there are missing data for the past 10m.
+
+I also configured the contents of the notification mail:
+
+    {{#is_alert}}
+    ALERT! The value of my_metric {{value}} is above the alert threshold {{threshold}} on host {{host.name}} ({{host.ip}})
+    {{/is_alert}} 
+
+    {{#is_warning}}
+    WARNING! The value of my_metric {{value}} is above the warning threshold {{warn_threshold}} on host {{host.name}} ({{host.ip}})
+    {{/is_warning}} 
+
+    {{#is_no_data}}
+    DATA IS MISSING on {{host.name}} ({{host.ip}}) !
+    {{/is_no_data}} 
+
+    @jfrische@gmail.com
+    
+    
+Screenshot of monitor configuration:
+![Monitor definition](./Monitor_definition.png)
+
+Screenshot of received notifiction:
+![Notification mail](./Notification_mail.png)
+
 
 
 
