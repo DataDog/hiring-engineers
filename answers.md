@@ -176,6 +176,8 @@ Python script:
 Screenshot of custom dashboard:
 ![Custom dashboard](./Custom_dashboard.png)
 
+<br/>
+
 I then set the time interval to 5 minutes and took a snapshot sending it to myself via @ annotation
 
 
