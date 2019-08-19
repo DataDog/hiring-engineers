@@ -229,7 +229,6 @@ Screenshot of received notifiction:
 ![Notification mail](./Notification_mail.png)
 
 <br/>
-<br/>
 
 ## Bonus Question: Add scheduled downtimes
 
@@ -247,6 +246,7 @@ and I received the email notifications fore these schedules downtimes:
 
 <br/>
 <br/>
+
 
 # Final Question
 
