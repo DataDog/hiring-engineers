@@ -249,7 +249,59 @@ and I received the email notifications fore these schedules downtimes:
 
 # Collecting APM Data
 
+In installed pip and then the datadog module and then I instrumented the below Flask application (app.py):
 
+    from flask import Flask
+    import logging
+    import sys
+
+    # Have flask use stdout as the logger
+    main_logger = logging.getLogger()
+    main_logger.setLevel(logging.DEBUG)
+    c = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    c.setFormatter(formatter)
+    main_logger.addHandler(c)
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def api_entry():
+        return 'Entrypoint to the Application'
+
+    @app.route('/api/apm')
+    def apm_endpoint():
+        return 'Getting APM Started'
+
+    @app.route('/api/trace')
+    def trace_endpoint():
+        return 'Posting Traces'
+
+    if __name__ == '__main__':
+        app.run(host='127.0.0.1', port='5050')
+
+I started the Flask app with the command
+
+    DD_TRACE_ANALYTICS_ENABLED=true DD_RUNTIME_METRICS_ENABLED=true ddtrace-run python3 app.py
+    
+I launched somne transactions of the app whi is now traced in Datadog.
+
+Now I go to Datadog UI -> APM -> 
+
+Screenshots below from the Datadog UI for Flask app:
+
+![Flask1](./Flask1.png)
+
+![Flask_traces](./Flask_traces.png)
+
+![Flask_flame](./Flask_flame.png)
+
+
+I also created a combined dahsboard showing genereal infratructure emtrics (CPU, disk, memory) with APM trace metrics for the Flask app (requests, response time, status code)
+
+Screenshot oc combined dashboard:
+
+![Combined_dashboard](./Combined_dashboard.png)
 
 
 ## Bonus Question
