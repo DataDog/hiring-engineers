@@ -299,7 +299,7 @@ Screenshots below from the Datadog UI for Flask app:
 
 I also created a combined dahsboard showing genereal infratructure emtrics (CPU, disk, memory) with APM trace metrics for the Flask app (requests, response time, status code)
 
-Screenshot oc combined dashboard:
+Screenshot of combined dashboard:
 
 ![Combined_dashboard](./Combined_dashboard.png)
 
