@@ -8,4 +8,4 @@ As a part of my application, I was asked to complete the Solutions Engineer tech
 I decided to utilize the containerized approach with Docker for Linux. 
 After creating a Datadog account, I obtained my unique Datadog API key from the online User Interface (UI). Then, I ran the installation command to install a Datadog container on my local host which pulled a Docker image from Docker hub and ran it to create the container.
 
-![Docker container](https://imgur.com/HBXYq9y)
+![Docker container](https://i.imgur.com/HBXYq9y.png)
