@@ -35,23 +35,3 @@ Now I edit my Datadog agent configuration by adding my unique API key and a few 
 Next, I will install a PostgreSQL database to my host, give Datadog read-only access to it, and configure my PostgreSQL configuration file to collect logs. 
 
 ### Installing and starting PostgreSQL
-
-```
- apt-get install -y postgresql
- service posgresql start
- su – postgres psql
- ```
-
-### Preparing and making sure connection check is working
-
-![Preparing PostgreSQL](https://i.imgur.com/0Y6CopP.png)
-
-To start collecting logs, update database password from above, add tags, and update logging path.
-
-```
- vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml 
-```
-
-![PostgreSQL collecting logs](https://i.imgur.com/r2YXxuv.png)
-
-## Custom agent check
