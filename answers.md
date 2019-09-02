@@ -18,14 +18,12 @@ First, I need to execute my docker container to install basic components. All co
  docker exec -it dd-agent /bin/bash
  apt-get update 
 apt-get install -y vim 
-
 ```
 
 Now I edit my Datadog agent configuration by adding my unique API key and a few custom tags to uniquely identify various systems in my infrastructure for easier troubleshooting and analyzing.
 
 ```
  vi /etc/datadog-agent/datadog.yaml 
-
 ```
 
 ![Adding API key to Datadog agent](https://i.imgur.com/yWlaDCE.png)
@@ -42,7 +40,6 @@ Next, I will install a PostgreSQL database to my host, give Datadog read-only ac
 apt-get install -y postgresql
  service posgresql start
  su – postgres psql
-
 ```
 
 ### Preparing and making sure connection check is working
@@ -53,7 +50,40 @@ To start collecting logs, update database password from above, add tags, and upd
 
 ```
 vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
-
 ```
 
 ![PostgreSQL collecting logs](https://i.imgur.com/r2YXxuv.png)
+
+Edit your PostgreSQL configuration file /etc/postgresql/<version>/main/postgresql.conf and add the following parameters.
+
+```
+logging_collector = on
+log_directory = 'pg_log'
+log_filename = 'pg.log'
+log_statement = 'all'
+log_line_prefix= '%m [%p] %d %a %u %h %c '
+log_file_mode = 0644
+```
+
+Collecting logs is disabled by default in the Datadog agent, enable it in your datadog.yaml file by adding the following.
+
+```
+logs_enabled: true
+```
+
+Restart Datadog Docker agent to engage changes and check status.
+
+```
+docker exec -it dd-agent agent stop
+docker start dd-agent
+docker exec -it dd-agent /bin/bash
+service postgresql start
+exit
+docker exec -it dd-agent agent status
+```
+
+![Postgres status](https://i.imgur.com/YerSBhm.png)
+
+Postgres metrics shown
+
+![Postgres metrics shown](https://i.imgur.com/VU8gnxk.png)
