@@ -310,6 +310,8 @@ curl localhost:5050/api/apm
 curl localhost:5050/api/trace
 ```
 
+[Screenboard public link](https://p.datadoghq.com/sb/9tih1srkiqscbnrd-37ddabaf306c697b542656c735c640ed)
+
 Screenshot of APM:
 
 ![APM](https://i.imgur.com/QrsW0vi.png)
