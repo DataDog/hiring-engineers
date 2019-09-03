@@ -12,7 +12,7 @@ After creating a Datadog account, I obtained my unique Datadog API key from the 
 
 # Collecting metrics
 
-First, I will need to get inside my Docker container to install basic components. All commands inside the dd-agent container will be executed as root unless otherwise noted.
+First, I needed to get inside my Docker container to install basic components. All commands inside the dd-agent container were executed as root unless otherwise noted.
 
 ```
  docker exec -it dd-agent /bin/bash
@@ -20,7 +20,7 @@ First, I will need to get inside my Docker container to install basic components
 apt-get install -y vim 
 ```
 
-Then, I will edit my Datadog agent configuration by adding my unique API key and a few custom tags to uniquely identify various systems in my infrastructure for easier troubleshooting and analyzing.
+Then, I edited my Datadog agent configuration by adding my unique API key and a few custom tags to uniquely identify various systems in my infrastructure for easier troubleshooting and analyzing.
 
 ```
  vi /etc/datadog-agent/datadog.yaml 
@@ -32,7 +32,7 @@ Then, I will edit my Datadog agent configuration by adding my unique API key and
 
 ## PostgreSQL
 
-Next, I will install a PostgreSQL database to my host, give Datadog read-only access to it, and configure my PostgreSQL configuration file to collect logs. 
+Next, I installed a PostgreSQL database to my host, gave Datadog read-only access to it, and configured my PostgreSQL configuration file to collect logs. 
 
 ### Installing and starting PostgreSQL
 
@@ -47,7 +47,7 @@ psql
 
 ![Preparing PostgreSQL](https://i.imgur.com/0Y6CopP.png)
 
-To start collecting logs, I will need to update database password from above, add tags, and update the logging path in the PostgreSQL configuration file.
+To start collecting logs, I needed to update database password from above, add tags, and update the logging path in the PostgreSQL configuration file.
 
 ```
 vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
@@ -55,7 +55,7 @@ vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
 
 ![PostgreSQL collecting logs](https://i.imgur.com/r2YXxuv.png)
 
-Next, I need to configure `/etc/postgresql/11/main/postgresql.conf` to enable log collection by adding the following parameters:
+Next, I needed to configure `/etc/postgresql/11/main/postgresql.conf` to enable log collection by adding the following parameters:
 
 ```
 logging_collector = on
@@ -66,13 +66,13 @@ log_line_prefix= '%m [%p] %d %a %u %h %c '
 log_file_mode = 0644
 ```
 
-Additionally, collecting logs is disabled by default in the Datadog agent, so I will need to enable it in my `datadog.yaml` file by adding the following:
+Additionally, collecting logs was disabled by default in the Datadog agent, so I needed to enable it in my `datadog.yaml` file by adding the following:
 
 ```
 logs_enabled: true
 ```
 
-Lastly, I will need to restart Datadog Docker agent to engage changes and check status.
+Lastly, a restart of Datadog Docker agent to engage changes and check status.
 
 ```
 docker exec -it dd-agent agent stop
@@ -91,7 +91,7 @@ Here are the PostgreSQL metrics showing a healthy state:
 
 ## Create custom metric
 
-First install the Datadog API.
+First, I installed the Datadog API.
 
 ```
 pip install datadog
@@ -136,7 +136,7 @@ The collection interval can be modified in the configuration `.yaml` file, as I 
 
 # Visualizing data
 
-Utilizing the Datadog API, I have created a Dashboard which contains:
+Utilizing the Datadog API, I created a Dashboard which contains:
 
 * my_metric scoped over my host.
 * Max connections metric from the integration on PostgreSQL with the anomaly function applied.
@@ -216,14 +216,14 @@ The anomaly graph is displaying anomalies in your metric. You can apply the anom
 
 # Monitoring data
 
-I will create a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
+I created a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
 * Warning threshold of 500
 * Alerting threshold of 800
 * No data for the query over the past 10 minutes
 
 ![Metric monitor](https://i.imgur.com/X0p2RKB.png)
 
-Configuring the monitor’s message so that it will:
+Configure the monitor’s message so that it will:
 * Send me an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -243,10 +243,60 @@ All email notifications:
 
 # Collecting APM data
 
-In order to collect APM data, the first thing I need to do is enable apm_logging in the datadog.yaml file.
+In order to collect APM data, the first thing I needed to do is enable apm_logging in the `datadog.yaml` file.
 
 ```
 vi /etc/datadog-agent/datadog.yaml
 ```
 
 ![Enable APM logging](https://i.imgur.com/Jc1V4bC.png)
+
+I installed the Agent
+
+![Installing APM agent](https://i.imgur.com/GkRevx1.png)
+
+I installed the Pyton clients
+
+```
+pip install ddtrace
+pip install flask
+```
+
+Execute the following `my_app.py` file with command `ddtrace-run python my_app.py` to instrument:
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+From another terminal window, stimulate the trace with a `curl` command:
+```
+curl localhost:5050/api/hello
+```
+
