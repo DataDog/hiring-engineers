@@ -149,7 +149,7 @@ Utilizing the Datadog API, I created a Timeboard which contains:
 * Max connections metric from the integration on PostgreSQL with the anomaly function applied.
 * my_metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-<
+<script src="scripts/VisualizingData.py">Visualizing Data script</script>
 
 Screen capture after executing the Python code above.
 
