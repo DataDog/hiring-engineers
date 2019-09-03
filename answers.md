@@ -327,3 +327,14 @@ Resources represent a particular domain of a customer application - they are typ
 
 Is there anything creative you would use Datadog for?
 
+After playing around with Datadog for the last week, I began to see how useful it can become when applied creatively. There seems to be an unlimited number of ways it can be used, it just takes a creative mind to use it in a way that refines our day-to-day choices and allows us to see data from a legible perspective. One example which comes to mind is the headache of finding parking in a busy city.
+
+I have lived in the Los Angeles area for most of my life and one of the problems I face both during the weekdays and the weekends is finding street parking. The restriction signs are extremely difficult to comprehend. It is not uncommon to find yourself reading layers and layers of parking restrictions for time allowance, duration allowance, and the restrictions applied to certain types of vehicles.
+
+Imagine if we created an application which took your GPS location, created an interactive map, and showed you where there is parking near you and, based on your search criteria, if you could park there with your type of car. Implementing this would require hardware installed on designated parking meters but with the right funding this could be done using Datadog’s monitoring capabilities. Furthermore, we could create anomaly tables which may even refine traffic monitoring used by services like Google Maps and Waze. For example, if there is a concert at the Hollywood Bowl one Saturday evening and all street parking spots within a 2 mile radius are taken, this can notify map users that traffic congestion will be higher than normal for that weekend.
+
+The example I mentioned may be a little farfetched since it will require a collaboration with both the municipal bodies and the private companies willing to invest in something like this but it only takes a wild idea to start a snowball effect of betterment in the future.
+
+# Thank you for your time
+
+I hope you have made it this far in my exercise for the Technical Account Manager role and I look forward to presenting this material to you in person.
