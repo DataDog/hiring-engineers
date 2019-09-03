@@ -228,12 +228,12 @@ I created a metric monitor which watches the average of my_metric and sends out 
 * Alerting threshold of 800
 * No data for the query over the past 10 minutes
 
-![Metric monitor](https://i.imgur.com/X0p2RKB.png)
-
 Configure the monitor’s message so that it will:
-* Send me an email whenever the monitor triggers.
+* Send an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![Metric monitor](https://i.imgur.com/X0p2RKB.png)
 
 **Bonus question:** Downtimes
 
@@ -306,14 +306,24 @@ if __name__ == '__main__':
 
 From another terminal window, I stimulated the trace with a `curl` command:
 ```
-curl localhost:5050/api/hello
+curl localhost:5050/api/apm
+curl localhost:5050/api/trace
 ```
 
-Screen shot of my service:
+Screenshot of APM:
 
-![Flask service](https://i.imgur.com/QrsW0vi.png)
+![APM](https://i.imgur.com/QrsW0vi.png)
+
+Screenshot of infrastructure metrics:
+
+![Infrastructure metrics](https://i.imgur.com/Drei8gl.png)
 
 **Bonus question:** What is the difference between a Service and a Resource?
 
 Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of scaling instances. For instance, a single webapp service and its backend database service.
 Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job. For instance, in a database service, these would be database queries with the span name `db.query`.
+
+# Final question
+
+Is there anything creative you would use Datadog for?
+
