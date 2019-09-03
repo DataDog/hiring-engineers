@@ -6,13 +6,13 @@ As a part of my application, I was asked to complete the Solutions Engineer tech
 # Setting up the environment
 
 I decided to utilize the containerized approach with Docker for Linux.
-After creating a Datadog account, I obtained my unique Datadog API key from the online User Interface (UI). Then, I ran the installation command to install a Datadog container on my local host which pulled a Docker image from Docker hub and ran it to create the container. 
+After creating a Datadog account, I obtained my unique Datadog API key from the online user interface under Integrations > APIs > API Keys. Then, I ran the installation command to install a Datadog container on my local host which pulled a Docker image from Docker Hub and executed it to create the container. 
 
 ![Docker container](https://i.imgur.com/HBXYq9y.png)
 
 # Collecting metrics
 
-First, I need to execute my docker container to install basic components. All commands inside the dd-agent container will be executed as root unless otherwise noted.
+First, I will need to get inside my Docker container to install basic components. All commands inside the dd-agent container will be executed as root unless otherwise noted.
 
 ```
  docker exec -it dd-agent /bin/bash
@@ -20,7 +20,7 @@ First, I need to execute my docker container to install basic components. All co
 apt-get install -y vim 
 ```
 
-Now I edit my Datadog agent configuration by adding my unique API key and a few custom tags to uniquely identify various systems in my infrastructure for easier troubleshooting and analyzing.
+Then, I will edit my Datadog agent configuration by adding my unique API key and a few custom tags to uniquely identify various systems in my infrastructure for easier troubleshooting and analyzing.
 
 ```
  vi /etc/datadog-agent/datadog.yaml 
@@ -39,14 +39,15 @@ Next, I will install a PostgreSQL database to my host, give Datadog read-only ac
 ```
 apt-get install -y postgresql
  service posgresql start
- su – postgres psql
+ su – postgres 
+psql
 ```
 
 ### Preparing and making sure connection check is working
 
 ![Preparing PostgreSQL](https://i.imgur.com/0Y6CopP.png)
 
-To start collecting logs, update database password from above, add tags, and update logging path.
+To start collecting logs, I will need to update database password from above, add tags, and update the logging path in the PostgreSQL configuration file.
 
 ```
 vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
@@ -54,7 +55,7 @@ vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
 
 ![PostgreSQL collecting logs](https://i.imgur.com/r2YXxuv.png)
 
-Edit your PostgreSQL configuration file /etc/postgresql/<version>/main/postgresql.conf and add the following parameters.
+Next, I need to configure `/etc/postgresql/11/main/postgresql.conf` to enable log collection by adding the following parameters:
 
 ```
 logging_collector = on
@@ -65,13 +66,13 @@ log_line_prefix= '%m [%p] %d %a %u %h %c '
 log_file_mode = 0644
 ```
 
-Collecting logs is disabled by default in the Datadog agent, enable it in your datadog.yaml file by adding the following.
+Additionally, collecting logs is disabled by default in the Datadog agent, so I will need to enable it in my `datadog.yaml` file by adding the following:
 
 ```
 logs_enabled: true
 ```
 
-Restart Datadog Docker agent to engage changes and check status.
+Lastly, I will need to restart Datadog Docker agent to engage changes and check status.
 
 ```
 docker exec -it dd-agent agent stop
@@ -84,19 +85,19 @@ docker exec -it dd-agent agent status
 
 ![Postgres status](https://i.imgur.com/YerSBhm.png)
 
-Postgres metrics shown
+Here are the PostgreSQL metrics showing a healthy state:
 
 ![Postgres metrics shown](https://i.imgur.com/VU8gnxk.png)
 
 ## Create custom metric
 
-First install the Datadog API
+First install the Datadog API.
 
 ```
 pip install datadog
 ```
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 and change your check's collection interval so that it only submits the metric once every 45 seconds.
+Here are the steps to create a custom agent check that submits a metric named my_metric with a random value between 0 and 1000 and change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ```
 vi /etc/datadog-agent/checks.d/custom_my_metric.py
@@ -107,7 +108,6 @@ Add the following code:
 ```
 from checks import AgentCheck
 from random import randint
-
 
 class MyMetricCheck(AgentCheck):
     def check(self, instance):
@@ -121,7 +121,7 @@ Create the corresponding configuration file.
 vi /etc/datadog-agent/conf.d/custom_my_metric.yaml
 ```
 
-Add the following code to change your check's collection interval so that it only submits the metric once every 45 seconds.
+Add the following code to change the check's collection interval so that it only submits the metric once every 45 seconds.
 
 ```
 init_config:
@@ -131,7 +131,8 @@ instances:
 ```
 
 Bonus question: Can you change the collection interval without modifying the Python check file you created?
-The collection interval can be modified in the configuration .yaml file, as I have done above.
+
+The collection interval can be modified in the configuration `.yaml` file, as I have done above.
 
 # Visualizing data
 
@@ -215,7 +216,7 @@ The anomaly graph is displaying anomalies in your metric. You can apply the anom
 
 # Monitoring data
 
-Next, I will create a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
+I will create a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
 * Warning threshold of 500
 * Alerting threshold of 800
 * No data for the query over the past 10 minutes
