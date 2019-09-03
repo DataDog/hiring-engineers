@@ -6,13 +6,16 @@ As a part of my application, I was asked to complete the Solutions Engineer tech
 # Setting up the environment
 
 I decided to utilize the containerized approach with Docker for Linux.
-After creating a Datadog account, I obtained my unique Datadog API key from the online user interface under Integrations > APIs > API Keys. Then, I ran the installation command to install a Datadog container on my local host which pulled a Docker image from Docker Hub and executed it to create the container. 
+
+First, I obtained my unique Datadog API key from the online user interface under Integrations > APIs > API Keys. Then, I ran the installation command to install a Datadog container on my local host which pulled a Docker image from Docker Hub and executed it to create the container. 
 
 ![Docker container](https://i.imgur.com/HBXYq9y.png)
 
+Then, I set up my Datadog account through the [Datadog online portal](https://www.datadoghq.com/).
+
 # Collecting metrics
 
-First, I needed to get inside my Docker container to install basic components. All commands inside the dd-agent container were executed as root unless otherwise noted.
+First, I needed to get inside my Docker container to install basic components. All commands inside the dd-agent container were executed as `root` unless otherwise noted.
 
 ```
  docker exec -it dd-agent /bin/bash
@@ -29,6 +32,10 @@ Then, I edited my Datadog agent configuration by adding my unique API key and a 
 ![Adding API key to Datadog agent](https://i.imgur.com/yWlaDCE.png)
 
 ![Adding tags to Datadog agent](https://i.imgur.com/UewE9Nm.png)
+
+Here is a screenshot of my Host Map page showing infrastructure and tags:
+
+![Host Map](https://i.imgur.com/3cwR3Si.png)
 
 ## PostgreSQL
 
@@ -130,13 +137,13 @@ instances:
   - min_collection_interval: 45
 ```
 
-Bonus question: Can you change the collection interval without modifying the Python check file you created?
+**Bonus question:** Can you change the collection interval without modifying the Python check file you created?
 
 The collection interval can be modified in the configuration `.yaml` file, as I have done above.
 
 # Visualizing data
 
-Utilizing the Datadog API, I created a Dashboard which contains:
+Utilizing the Datadog API, I created a Timeboard which contains:
 
 * my_metric scoped over my host.
 * Max connections metric from the integration on PostgreSQL with the anomaly function applied.
@@ -210,13 +217,13 @@ Setting the Timeboard's timeframe to the past 5 minutes and sending a snapshot t
 ![Check out this killer metric!!](https://i.imgur.com/byVN7Iw.png)
 ![Email received](https://i.imgur.com/IpFfD6O.png)
 
-Bonus Question: What is the Anomaly graph displaying?
+**Bonus question:** What is the Anomaly graph displaying?
 
-The anomaly graph is displaying anomalies in your metric. You can apply the anomaly algorithm to your metrics to enable yourself to identify patters that may be behaving outside of its normal behavior, which are difficult to monitor with traditional threshold-based alerting. For example, building a service in your CI/CD platform will consume far more computing power during weekday business hours whereas in the evenings and weekends it will not be as high. Both are normal behaviors which normal threshold alerting will not be able to capture.
+The anomaly graph is displaying anomalies in your metric. You can apply the anomaly algorithm to your metrics to enable yourself to identify patterns which may be behaving outside of their normal behaviors, which are difficult to monitor with traditional threshold-based alerting. For example, building a service in your CI/CD platform will consume far more computing power during weekday business hours whereas in the evenings and weekends it will not be as high. Both are normal behaviors which normal threshold alerting will not be able to capture.
 
 # Monitoring data
 
-I created a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
+I created a metric monitor which watches the average of my_metric and sends out an alert email if it is above the following values over the past 5 minutes:
 * Warning threshold of 500
 * Alerting threshold of 800
 * No data for the query over the past 10 minutes
@@ -228,7 +235,8 @@ Configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-Downtimes:
+**Bonus question:** Downtimes
+
 * One that silences it from 7pm to 9am daily on M-F.
 
 ![Weekday downtimes](https://i.imgur.com/5N9NHhL.png)
@@ -243,7 +251,7 @@ All email notifications:
 
 # Collecting APM data
 
-In order to collect APM data, the first thing I needed to do is enable apm_logging in the `datadog.yaml` file.
+In order to collect APM data, the first thing I needed to do is enable APM logging in the `datadog.yaml` file.
 
 ```
 vi /etc/datadog-agent/datadog.yaml
@@ -263,7 +271,7 @@ pip install ddtrace
 pip install flask
 ```
 
-I executed the following `my_app.py` file with command `ddtrace-run python my_app.py` to instrument:
+I executed the following `my_app.py` file with command `DD_TRACE_ANALYTICS_ENABLED=true ddtrace-run python my_app.py` to instrument:
 
 ```
 from flask import Flask
@@ -305,7 +313,7 @@ Screen shot of my service:
 
 ![Flask service](https://i.imgur.com/QrsW0vi.png)
 
-Bonus Question: What is the difference between a Service and a Resource?
+**Bonus question:** What is the difference between a Service and a Resource?
 
-A service is a set of processes that do the same job. For instance, a single webapp service and its backend database service.
-A resource, on the other hand, is the request or call. For instance, `/api/hello` from above.
+Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of scaling instances. For instance, a single webapp service and its backend database service.
+Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job. For instance, in a database service, these would be database queries with the span name `db.query`.
