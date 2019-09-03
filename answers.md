@@ -87,3 +87,52 @@ docker exec -it dd-agent agent status
 Postgres metrics shown
 
 ![Postgres metrics shown](https://i.imgur.com/VU8gnxk.png)
+
+## Create custom metric
+
+First install the Datadog API
+
+```
+pip install datadog
+```
+
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 and change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+```
+vi /etc/datadog-agent/checks.d/custom_my_metric.py
+```
+
+Add the following code:
+
+```
+from checks import AgentCheck
+from random import randint
+
+
+class MyMetricCheck(AgentCheck):
+    def check(self, instance):
+        random_number = randint(0, 1000)
+        self.gauge('my_metric', random_number, tags=['metric:my_metric'])
+```
+
+Create the corresponding configuration file.
+
+```
+vi /etc/datadog-agent/conf.d/custom_my_metric.yaml
+```
+
+Add the following code to change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+```
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+Bonus question: Can you change the collection interval without modifying the Python check file you created?
+The collection interval can be modified in the configuration .yaml file, as I have done above.
+
+# Visualizing data
+
+
