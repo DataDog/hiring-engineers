@@ -135,4 +135,80 @@ The collection interval can be modified in the configuration .yaml file, as I ha
 
 # Visualizing data
 
+Utilizing the Datadog API, I have created a Timeboard that contains:
+
+my_metric scoped over my host.
+Max connections metric from the integration on PostgreSQL with the anomaly function applied.
+my_metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': 'xxxxxxxxxxxxxxxxxx',
+    'app_key': 'xxxxxxxxxxxxxxxxxx'
+}
+
+initialize(**options)
+
+title = 'My timeboard'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}'}
+        ],
+        'title': 'my_metric values'
+    }
+},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:postgresql.max_connections{*}, 'basic', 3, direction='above', alert_window='last_5m', interval=20, count_default_zero='true')"}
+        ],
+        'title': 'PostgreSQL maximum number of client connections allowed'
+    }
+},
+    {
+    'definition': {
+        'type': 'query_value',
+        'requests': [
+            {'q': "avg:my_metric{*}.rollup(sum, 3600)"}
+        ],
+        'title': 'my_metric sum of all points in the past hour'
+    }
+}]
+
+layout_type = 'ordered'
+description = 'My timeboard for the Technical Account Manager exercise'
+is_read_only = True
+notify_list = ['user@domain.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'docker-desktop'
+}]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables)
+
+```
+
+Screen capture after executing the Python code above.
+
+![The Ultimate Dashboard](https://i.imgur.com/yChUZH9.png)
+
+Setting the Timeboard's timeframe to the past 5 minutes and sending a snapshot to myself.
+
+![Check out this killer metric!!](https://i.imgur.com/byVN7Iw.png)
+![Email received](https://i.imgur.com/IpFfD6O.png)
+
+Bonus Question: What is the Anomaly graph displaying?
+
 
