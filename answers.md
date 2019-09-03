@@ -135,7 +135,7 @@ The collection interval can be modified in the configuration .yaml file, as I ha
 
 # Visualizing data
 
-Utilizing the Datadog API, I have created a Timeboard that contains:
+Utilizing the Datadog API, I have created a Dashboard which contains:
 
 my_metric scoped over my host.
 Max connections metric from the integration on PostgreSQL with the anomaly function applied.
@@ -210,5 +210,24 @@ Setting the Timeboard's timeframe to the past 5 minutes and sending a snapshot t
 ![Email received](https://i.imgur.com/IpFfD6O.png)
 
 Bonus Question: What is the Anomaly graph displaying?
+The anomaly graph is displaying anomalies in your metric. You can apply the anomaly algorithm to your metrics to enable yourself to identify patters that may be behaving outside of its normal behavior, which are difficult to monitor with traditional threshold-based alerting. For example, building a service in your CI/CD platform will consume far more computing power during weekday business hours whereas in the evenings and weekends it will not be as high. Both are normal behaviors which normal threshold alerting will not be able to capture.
+
+# Monitoring data
+
+Next, I will create a metric monitor which watches the average of my_metric and send out an alert email if it is above the following values over the past 5 minutes:
+Warning threshold of 500
+Alerting threshold of 800
+No data for the query over the past 10 minutes
+
+![Metric monitor](https://i.imgur.com/X0p2RKB.png)
+
+![Emails received](https://i.imgur.com/L8xORkj.png)
+
+Configuring the monitor’s message so that it will:
+Send me an email whenever the monitor triggers.
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 
+
+Screenshot of emails:
