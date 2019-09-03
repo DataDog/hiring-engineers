@@ -239,3 +239,13 @@ Downtimes:
 All email notifications:
 
 ![Email notifications](https://i.imgur.com/L8xORkj.png)
+
+# Collecting APM data
+
+In order to collect APM data, the first thing I need to do is enable apm_logging in the datadog.yaml file.
+
+```
+vi /etc/datadog-agent/datadog.yaml
+```
+
+![Enable APM logging](https://i.imgur.com/Jc1V4bC.png)
