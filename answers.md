@@ -251,18 +251,19 @@ vi /etc/datadog-agent/datadog.yaml
 
 ![Enable APM logging](https://i.imgur.com/Jc1V4bC.png)
 
-I installed the Agent
+I installed the Agent:
 
 ![Installing APM agent](https://i.imgur.com/GkRevx1.png)
 
-I installed the Pyton clients
+I installed the Pyton clients from inside the new container:
 
 ```
+docker exec -it charming_sammet /bin/bash
 pip install ddtrace
 pip install flask
 ```
 
-Execute the following `my_app.py` file with command `ddtrace-run python my_app.py` to instrument:
+I executed the following `my_app.py` file with command `ddtrace-run python my_app.py` to instrument:
 
 ```
 from flask import Flask
@@ -295,8 +296,16 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-From another terminal window, stimulate the trace with a `curl` command:
+From another terminal window, I stimulated the trace with a `curl` command:
 ```
 curl localhost:5050/api/hello
 ```
 
+Screen shot of my service:
+
+![Flask service](https://i.imgur.com/QrsW0vi.png)
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+A service is a set of processes that do the same job. For instance, a single webapp service and its backend database service.
+A resource, on the other hand, is the request or call. For instance, `/api/hello` from above.
