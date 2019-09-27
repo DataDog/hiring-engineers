@@ -20,7 +20,7 @@ tags:
    - test:succeeded
 ```
 
-Screenshots: [screenshots/debian-dd-box_extra_tags.png]
+![screenshot]: [screenshots/debian-dd-box_extra_tags.png]
 
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
@@ -51,5 +51,5 @@ instances:
 3) Restart the datadog Agent;
 4) Install datadog mysql integration on the datadog dashboard.
 
-Screenshot: [screenshots/debian-dd-box_mysql_integration.png] [screenshots/debian-dd-box_mysql_metrics.png]
-Screenshot: [screenshots/debian-dd-box_mysql_metrics.png]
+![screenshot]: [screenshots/debian-dd-box_mysql_integration.png] 
+![screenshot]: [screenshots/debian-dd-box_mysql_metrics.png]
