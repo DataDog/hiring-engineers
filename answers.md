@@ -53,3 +53,45 @@ instances:
 
 ![screenshot][screenshots/debian-dd-box_mysql_integration.png] 
 ![screenshot][screenshots/debian-dd-box_mysql_metrics.png]
+
+
+**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
+
+For that I wrote the datadog-agent/check.d/custom_check.py script with the following code:
+
+```python
+from datadog_checks.checks import AgentCheck
+from random import randint
+
+class Check(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0,1000))
+```
+
+And the following datadog-agent/conf.d/custom_check.yaml file:
+
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 30
+```
+
+![screenshots/debian-dd-box_custom_my_metric.png]
+
+
+**Change your check's collection interval so that it only submits the metric once every 45 seconds.**
+
+For that I just changed the datadog-agent/conf.d/custom_check.yaml to the following:
+
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+**Bonus Question Can you change the collection interval without modifying the Python check file you created?**
+
+Yes, just changing the parameter `min_collection_interval` to the desired value on the custom_check.yaml file without modifying the python check script.
+
