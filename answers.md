@@ -170,7 +170,7 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.**
 
-Please check the screenshot below which shows I'm sending the 5 minutes graph to myself using the datadog dashboard
+Please check the screenshot below which shows I'm sending the 5 minutes graph to myself using the datadog dashboard:
 
 ![screenshots/datadog-debian-box_my_metric_sending_snapshot.png]
 
@@ -182,5 +182,110 @@ The blue line shows the regular cpu time per user and the red line possible anom
 
 
 # Monitoring Data
+
+**Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (mymetric) and will alert if it’s above the following values over the past 5 minutes:
+
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.**
+
+Please check the screenshots belos with the metric monitor in place:
+
+[screenshots/datadog-debian-box_my_metric_check_monitor1.png]
+[screenshots/datadog-debian-box_my_metric_check_monitor2.png]
+
+
+**Please configure the monitor’s message so that it will:
+Send you an email whenever the monitor triggers.
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+
+I've changed the `Say what's happening` session on the datadog dashboard Monitors with the following content:
+
+```
+my_metric message notification over host {{host.name}}
+
+@all 
+{{#is_alert}}my_metric is now critical over value {{value}} on host {{host.ip}}{{/is_alert}}
+{{#is_warning}}my_metric is now warn over value {{value}} on host {{host.ip}}{{/is_warning}}  
+{{#is_no_data}}my_metric no data received{{/is_no_data}} 
+```
+
+Please also check the screenshots of the test alerts I received for this metric monitor:
+
+[screenshots/datadog-debian-box_my_metric_warn_alert.png]
+[screenshots/datadog-debian-box_my_metric_no_data_alert.png]
+
+
+**Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+
+I've scheduleded two downtime  under 'Monitors'/'Manage Downtime' for my_metrics monitoring. Please check the screenshots below:
+
+[screenshots/datadog-debian-box_my_metric_downtime_weekdays.png]
+[screenshots/datadog-debian-box_my_metric_downtime_weekends.png]
+
+# Collecting APM Data:
+
+**Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:**
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+**Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Please include your fully instrumented app in your submission, as well.**
+
+
+
+
+
+
+
+**Bonus Question: What is the difference between a Service and a Resource?**
+
+
+# Final Question:
+
+**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?**
+
+
+
+
 
 
