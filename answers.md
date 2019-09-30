@@ -20,7 +20,7 @@ tags:
    - test:succeeded
 ```
 
-![screenshot][screenshots/debian-dd-box_extra_tags.png]
+[screenshots/debian-dd-box_extra_tags.png]
 
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
@@ -270,13 +270,27 @@ if __name__ == '__main__':
 Please include your fully instrumented app in your submission, as well.**
 
 
+Firstly, I did install the `ddtrace` package using pip3:
+```bash
+pip3 install ddtrace
+```
 
+then I run the SAME flask application with the same code as above as following:
 
+```bash
+ddtrace-run python3 flask_app.py
+```
 
+Check below the Datadog Dashboard Screenshot using an APM metric `datadog.trace_agent.cpu_percent` and Infrastructure metrics `system.cpu.user` and `system.load.norm.1` together:
+
+[screenshots/datadog-debian-box_apm_and_infra_dashboard.png]
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
 
+For a DataDog point of view a Service is a set of processes that executes/perform the same job, like a Database or the Flask web application we run on the previous example. 
+
+A Resource is a subset of a service that executes some particular action, like a SQL query or some API endpoint for that  same Flask web application. 
 
 # Final Question:
 
@@ -285,7 +299,6 @@ Please include your fully instrumented app in your submission, as well.**
 Is there anything creative you would use Datadog for?**
 
 
+I was very surprised while running the DataDog APM and Kubernetes integration for a LAMP stack infra responsible for hosting more than 10.000 e-commerce websites. 
 
-
-
-
+It's impressive the deep level of observability which we achieved using DataDog. suddenly, we could visualize and monitoring our solution based on our own custom metrics and easily identify poor performance behaviour on our application. Plus, it's easy and fast to start collecting metrics and creating great dashboards, even for more complex microservices architectures.
