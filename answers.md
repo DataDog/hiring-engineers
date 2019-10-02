@@ -20,7 +20,7 @@ tags:
    - test:succeeded
 ```
 
-[screenshots/debian-dd-box_extra_tags.png]
+[screenshots/datadog-debian-box_extra_tags.png]
 
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
@@ -59,8 +59,11 @@ instances:
 3) Restart the datadog Agent;
 4) Install datadog mysql integration on the datadog dashboard.
 
-![screenshot][screenshots/debian-dd-box_mysql_integration.png] 
-![screenshot][screenshots/debian-dd-box_mysql_metrics.png]
+[screenshots/datadog-debian-box_mysql_integration.png] 
+[screenshots/datadog-debian-box_mysql_dashboard.png]
+
+[Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
+
 
 **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
@@ -84,7 +87,7 @@ instances:
   - min_collection_interval: 30
 ```
 
-![screenshots/debian-dd-box_custom_my_metric.png]
+![screenshots/datadog-debian-box_custom_my_metric.png]
 
 
 **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
@@ -161,8 +164,10 @@ widgets = [{
 api.Dashboard.create(title=title,widgets=widgets,description=description,layout_type=layout_type)
 ```
 
-![screenshots/datadog-debian-box_dashboard_api_creation.png]
-![screenshots/datadog-debian-box_my_metric_rollup_function.png]
+[screenshots/datadog-debian-box_my_metric_dashboard.png]
+[screenshots/datadog-debian-box_my_metric_rollup_function.png]
+
+[my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
 
 
 **Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -191,7 +196,7 @@ Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.**
 
-Please check the screenshots belos with the metric monitor in place:
+Please check the screenshots below with the metric monitor in place:
 
 [screenshots/datadog-debian-box_my_metric_check_monitor1.png]
 [screenshots/datadog-debian-box_my_metric_check_monitor2.png]
@@ -230,6 +235,7 @@ I've scheduleded two downtime  under 'Monitors'/'Manage Downtime' for my_metrics
 
 [screenshots/datadog-debian-box_my_metric_downtime_weekdays.png]
 [screenshots/datadog-debian-box_my_metric_downtime_weekends.png]
+[screenshots/datadog-debian-box_my_metric_downtime_notification.png]
 
 # Collecting APM Data:
 
@@ -284,6 +290,7 @@ ddtrace-run python3 flask_app.py
 Check below the Datadog Dashboard Screenshot using an APM metric `datadog.trace_agent.cpu_percent` and Infrastructure metrics `system.cpu.user` and `system.load.norm.1` together:
 
 [screenshots/datadog-debian-box_apm_and_infra_dashboard.png]
+[Dashboard APM x Infra](https://app.datadoghq.eu/dashboard/94w-9sb-gxb/apm?from_ts=1570005453668&to_ts=1570009053668&live=true&tile_size=m)
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
@@ -292,6 +299,7 @@ For a DataDog point of view a Service is a set of processes that executes/perfor
 
 A Resource is a subset of a service that executes some particular action, like a SQL query or some API endpoint for that  same Flask web application. 
 
+
 # Final Question:
 
 **Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
@@ -299,6 +307,6 @@ A Resource is a subset of a service that executes some particular action, like a
 Is there anything creative you would use Datadog for?**
 
 
-I was very surprised while running the DataDog APM and Kubernetes integration for a LAMP stack infra responsible for hosting more than 10.000 e-commerce websites. 
+I was very surprised while running DataDog APM and Kubernetes integration for a LAMP stack responsible for hosting more than 10.000 e-commerce websites. 
 
-It's impressive the deep level of observability which we achieved using DataDog. suddenly, we could visualize and monitoring our solution based on our own custom metrics and easily identify poor performance behaviour on our application. Plus, it's easy and fast to start collecting metrics and creating great dashboards, even for more complex microservices architectures.
+It's impressive the deep level of observability which we achieved using DataDog. Suddenly, we could visualize and monitoring our solution based on our own custom metrics and easily identify poor performance behaviour on our application. Plus, it's easy and fast to start collecting metrics and creating great dashboards, even for more complex microservices architectures.
