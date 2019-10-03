@@ -1,0 +1,13 @@
+---
+
+- name: daemon-reload
+  shell: "systemctl daemon-reload"
+  tags:
+    - daemon-reload
+
+- name: flask-app-reload
+  service:
+    name: flask-app
+    state: restarted
+  tags:
+    - flask-app-reload

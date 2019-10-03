@@ -1,0 +1,75 @@
+{
+  "title": "Custom metric and MySQL CPU Timeboard",
+  "description": "",
+  "widgets": [
+    {
+      "id": 4563710390415855,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:custom_namespace.my_metric{host:recruting-host.example.com}",
+            "display_type": "bars",
+            "style": {
+              "palette": "cool",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "title": "Avg of custom_namespace.my_metric over host:recruting-host.example.com",
+        "show_legend": false,
+        "legend_size": "0"
+      }
+    },
+    {
+      "id": 6049331420821734,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:mysql.performance.cpu_time{host:recruting-host.example.com}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "anomalies(avg:mysql.performance.cpu_time{host:recruting-host.example.com}, 'basic', 2)",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "title": "mysql.performance.cpu_time, mysql.performance.cpu_time"
+      }
+    },
+    {
+      "id": 4270422174334556,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:custom_namespace.my_metric{host:recruting-host.example.com}.rollup(sum, 3600)",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "title": "Avg of custom_namespace.my_metric over host:recruting-host.example.com"
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "ordered",
+  "is_read_only": false,
+  "notify_list": [],
+}

@@ -1,0 +1,22 @@
+{
+    "recurrence": {
+        "week_days": [],
+        "type": "days",
+        "period": 1
+    },
+    "end": 1570172400,
+    "monitor_tags": [
+        "*"
+    ],
+    "monitor_id": 33925,
+    "disabled": false,
+    "start": 1570122000,
+    "creator_id": 1000016964,
+    "timezone": "Europe/Amsterdam",
+    "active": true,
+    "scope": [
+        "host:recruting-host.example.com"
+    ],
+    "message": "Enable downtime for monitor \"Custom metric monitor\". @amsterdam@marcomusso.eu",
+    "downtime_type": 1
+}

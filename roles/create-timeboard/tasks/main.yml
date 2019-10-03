@@ -1,0 +1,9 @@
+---
+
+- name: Create a timeboard via the API
+  uri:
+    url: "https://api.{{ datadog_site }}/api/v1/dashboard?api_key={{ datadog_api_key }}&application_key={{ datadog_app_key }}"
+    method: POST
+    body: "{{ lookup('file','timeboard.json') }}"
+    body_format: json
+  when: create_timeboard

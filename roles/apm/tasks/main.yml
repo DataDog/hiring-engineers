@@ -1,0 +1,75 @@
+---
+
+- name: Install pip and python3 and gcc as dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python3-pip.noarch
+    - gcc
+    - python3-devel
+
+- name: Install flask
+  shell: /bin/pip3 install {{ item }}  # always triggers and it's a workaround because of the localhost/pip3 problem specific to vagrant
+  with_items:
+    - flask
+    - ddtrace
+
+- name: Add directory for app
+  file:
+    state: directory
+    path: /opt/app
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy app to host
+  copy:
+    src: files/app.py
+    dest: /opt/app
+    mode: '0755'
+  notify: flask-app-reload
+
+- name: Add systemd unit file for the python app
+  copy:
+    src: files/flask-app.service
+    dest: /etc/systemd/system/
+  notify:
+    - daemon-reload
+    - flask-app-reload
+
+- name: Run the python app
+  service:
+    name: flask-app
+    state: started
+
+- name: Poor-man load generator (just calls to /api/apm and /api/trace)
+  cron:
+    user="root"
+    name="{{ item.name }}"
+    minute="{{ item.minute }}"
+    hour="{{ item.hour }}"
+    day="{{ item.day }}"
+    month="{{ item.month }}"
+    weekday="{{ item.weekday }}"
+    job="{{ item.job }}"
+    state=present
+  with_items:
+    - {
+        name: 'Call /api/apm',
+        minute: '*/3',
+        hour: '*',
+        day: '*',
+        month: '*',
+        weekday:  '*',
+        job: "for i in 1 2 3 4 5 6 7 8 9 10; do /bin/sleep $(expr $RANDOM \\% 10); curl http://localhost:5050/api/apm; done >/dev/null 2>&1"
+      }
+    - {
+        name: 'Call /api/trace',
+        minute: '*/5',
+        hour: '*',
+        day: '*',
+        month: '*',
+        weekday:  '*',
+        job: "for i in 1 2 3 4 5 6 7 8 9 10; do /bin/sleep $(expr $RANDOM \\% 10); curl http://localhost:5050/api/trace; done >/dev/null 2>&1"
+      }

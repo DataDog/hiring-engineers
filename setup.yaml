@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  order: sorted
+  become: true
+  gather_facts: true
+  remote_user: vagrant
+
+  roles:
+    - { role: Datadog.datadog,                   tags: ["datadog-agent"] }
+    - { role: geerlingguy.mysql,                 tags: ["mysql"] }
+    - { role: configure-agent-mysql-integration, tags: ["configure-agent-mysql-integration"] }
+    - { role: configure-agent-custom-check,      tags: ["configure-agent-custom-check"] }
+    - { role: apm,                               tags: ["apm"] }
+    - { role: create-timeboard,                  tags: ["create-timeboard"] }
+    - { role: create-monitor,                    tags: ["create-monitor"] }
+

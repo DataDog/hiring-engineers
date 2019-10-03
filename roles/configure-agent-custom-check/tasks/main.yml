@@ -1,0 +1,19 @@
+---
+
+- name: Add custom check script
+  copy:
+    src: files/etc/datadog-agent/checks.d/custom_metric.py
+    dest: /etc/datadog-agent/checks.d/custom_metric.py
+    owner: dd-agent
+    group: dd-agent
+    mode: 0644
+  notify: datadog-agent-restart
+
+- name: Add custom check configuration
+  copy:
+    content: "init_config:\n\ninstances:\n  - min_collection_interval: 45\n"
+    dest: /etc/datadog-agent/conf.d/custom_metric.yaml
+    owner: dd-agent
+    group: dd-agent
+    mode: 0644
+  notify: datadog-agent-restart

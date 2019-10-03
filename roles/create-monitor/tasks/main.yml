@@ -1,0 +1,27 @@
+---
+
+- name: Create a monitor via the API
+  uri:
+    url: "https://api.{{ datadog_site }}/api/v1/monitor?api_key={{ datadog_api_key }}&application_key={{ datadog_app_key }}"
+    src: files/monitor.json
+    method: POST
+    body_format: json
+  when: create_monitor
+
+# if the previous step change the GET the monitor ID and save it to be used by the nbext two steps
+
+- name: Add scheduled downtimes "from 7pm to 9am daily on M-F"
+  uri:
+    url: "https://api.{{ datadog_site }}/api/v1/downtime?api_key={{ datadog_api_key }}&application_key={{ datadog_app_key }}"
+    method: POST
+    body: "{{ lookup('file','downtime-7pm-9am.json') }}"
+    body_format: json
+  when: create_monitor_downtime_night
+
+- name: Add scheduled downtime "all day on Sat-Sun"
+  uri:
+    url: "https://api.{{ datadog_site }}/api/v1/downtime?api_key={{ datadog_api_key }}&application_key={{ datadog_app_key }}"
+    method: POST
+    body: "{{ lookup('file','downtime-Sat-Sun.json') }}"
+    body_format: json
+  when: create_monitor_downtime_weekend

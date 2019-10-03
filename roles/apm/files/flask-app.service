@@ -1,0 +1,12 @@
+[Unit]
+Description=Test app
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/opt/app
+ExecStart=/usr/local/bin/ddtrace-run /bin/python3 /opt/app/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

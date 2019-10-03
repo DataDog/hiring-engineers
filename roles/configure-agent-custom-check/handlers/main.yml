@@ -1,0 +1,6 @@
+---
+
+- name: datadog-agent-restart
+  shell: "systemctl restart datadog-agent"
+  tags:
+    - datadog-agent-restart

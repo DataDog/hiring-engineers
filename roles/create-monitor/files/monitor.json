@@ -1,0 +1,25 @@
+{
+  "name": "Custom metric monitor",
+  "type": "metric alert",
+  "query": "avg(last_5m):avg:custom_namespace.my_metric{*} > 800",
+  "message": "{{#is_alert}}\nMonitor, as reported by {{host.ip}}, is in alert state (threshold: {{threshold}}).\n{{/is_alert}} \n\n{{#is_warning}}\nMonitor is in warning state (threshold: {{warn_threshold}}).\n{{/is_warning}} \n\n{{#is_warning_recovery}}\nMonitor recovered from a warning.\n{{/is_warning_recovery}} \n\n{{#is_recovery}}\nMonitor completely recovered.\n{{/is_recovery}} \n\n{{#is_no_data}}\nNo data was received for this metric.\n{{/is_no_data}}\n\nNotify: @amsterdam@marcomusso.eu",
+  "tags": [
+    "monitor:custom_metric"
+  ],
+  "options": {
+    "notify_audit": false,
+    "locked": false,
+    "timeout_h": 0,
+    "new_host_delay": 300,
+    "require_full_window": true,
+    "notify_no_data": true,
+    "renotify_interval": "0",
+    "escalation_message": "",
+    "include_tags": true,
+    "no_data_timeframe": 10,
+    "thresholds": {
+      "critical": 800,
+      "warning": 500
+    }
+  }
+}

@@ -1,0 +1,40 @@
+---
+
+mysql_datadog_password: "NotS0HiddenPassw0rd"  # should be a mysql_native_password hash, maybe taken from the ansible vault or some other secrets provider
+datadog_url: "https://app.datadoghq.eu"
+datadog_site: "datadoghq.eu"
+datadog_api_key: "2f1aaf2259d44081397a3fbe5574bb29"
+datadog_app_key: "940b3c7c239c901346ebcb68348724781dbff666"
+datadog_config:
+  hostname: "recruting-host.example.com"
+  log_level: INFO
+  process_config:
+    enabled: "true"  # has to be set as a string
+  tags:
+    - "application:solution-engineer"
+    - "virtual:virtualbox"
+    - "role:db"
+    - "db_type:mysql"
+    - "availability-zone:vagrant"
+datadog_checks:
+  process:
+    init_config:
+    instances:
+      - name: dd-agent
+        pid_file: '/opt/datadog-agent/run/agent.pid'
+mysql_databases:
+  - name: example_db
+    collation: utf8_general_ci
+    encoding: utf8
+mysql_users:
+  - name: "datadog"
+    password: "{{ mysql_datadog_password }}"
+    priv: "*.*:PROCESS,REPLICATION CLIENT/performance_schema.*:SELECT"  # this line doesn't grant PROCESS and it should according to docs
+    # TODO For mySQL 8.0+ set max_user_connections with:
+    # mysql> ALTER USER 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+
+create_monitor: false
+create_timeboard: false
+
+create_monitor_downtime_night: false
+create_monitor_downtime_weekend: false

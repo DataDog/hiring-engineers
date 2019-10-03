@@ -1,0 +1,4 @@
+.vagrant
+.DS_Store
+callback_plugins/__pycache__
+callback_plugins/profile_tasks.pyc
