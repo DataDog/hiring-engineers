@@ -91,7 +91,7 @@ curl  -X POST -H "Content-type: application/json" \
       "layout_type": "ordered",
       "description" : "RP Dashboard",
       "is_read_only": true,
-      "notify_list": ["ram28nov@gmail.com"],
+      "notify_list": [""],
       "template_variables": [{
           "name": "host1",
           "prefix": "host",
