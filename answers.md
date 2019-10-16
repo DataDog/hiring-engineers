@@ -50,10 +50,10 @@ Utilize the Datadog API to create a Timeboard that contains:
 Basics ways to visualise yoyr data.
 * Your custom metric scoped over your host.
   * Scoping a metric over a host is a great way to what is happening on a specific host.
-  * <img src="images/my_metric_over_host.png" >
+  * <img src="images/my_metric_over_host.PNG" >
 * Any metric from the Integration on your Database with the anomaly function applied.
   * You can apply anomonly detection to different metrics, that will help you notice that something is out of the ordinary.
-  * <img src="images/dynamodb_check_failed_anomoly.png" >
+  * <img src="images/dynamodb_check_failed_anomoly.PNG" >
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
   * You can create custom functions to help provide the easiest visuals to analyse. Here we are creating a "rollup" of the sumation of one hours worth of my_metric, this may be helpful when you are not worried about the minute to minue changes that a gauge datatype can return, but the larger picutre of the trend of that gauge.
   * avg:custom.my_metric{*}.rollup(sum, 3600)
