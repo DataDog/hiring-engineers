@@ -1,4 +1,16 @@
-Your answers to the questions go here.
+<img src="images/datadog_logo_share_tt.png" width="300" >
+
+# Introduction to Datadog - Ryan Donat
+
+## Topics:
+* Collecting Metrics
+  * How can we use Datadog to collect metrics from our system? 
+* Visulizing Data
+  * Once we have collected Metrics, how can we use Datadog to visulize them?
+* Monitoring Data
+  * When your data is visulized exactly how you want it, how do you set up Monitors so that someone does not need to be watching the dashboard indefinitely for anomolies?
+* Collecting APM Data
+  * Now that we are collecting,visulizing, and monitoring our data and metrics, what else is there? Application Performance Monitoring lets you deep dive into your application's performance.
 
 ## Collecting Metrics:
 
