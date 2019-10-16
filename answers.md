@@ -1,6 +1,7 @@
 <img src="images/datadog_logo_share_tt.png" width="300" >
 
 # Introduction to Datadog - Ryan Donat
+#itsallaboutthedata
 
 ## Topics:
 * Collecting Metrics
@@ -46,9 +47,17 @@ Library integrations use the Datadog API to allow you to monitor applications ba
 
 Utilize the Datadog API to create a Timeboard that contains:
 
+Basics ways to visualise yoyr data.
 * Your custom metric scoped over your host.
+  * Scoping a metric over a host is a great way to what is happening on a specific host.
+  * <img src="images/my_metric_over_host.png" >
 * Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+  * You can apply anomonly detection to different metrics, that will help you notice that something is out of the ordinary.
+  * <img src="images/dynamodb_check_failed_anomoly.png" >
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+  * You can create custom functions to help provide the easiest visuals to analyse. Here we are creating a "rollup" of the sumation of one hours worth of my_metric, this may be helpful when you are not worried about the minute to minue changes that a gauge datatype can return, but the larger picutre of the trend of that gauge.
+  * avg:custom.my_metric{*}.rollup(sum, 3600)
+  * <img src="images/my_metric_with_1_hour_rollup_over_1_day.png" >
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -57,6 +66,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
+  * Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting.
+  * In the scenario of our screen shot we are 
+  * https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview
 
 ## Monitoring Data
 
