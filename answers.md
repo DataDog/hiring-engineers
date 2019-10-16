@@ -83,6 +83,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+  * This functionality can be created with this query
+    * avg(last_5m):avg:custom.my_metric{host:i-0004adc938adf651a} > 800
+* <img src="images/monitor_status.png" >
+* <img src="images/monitor_eval_graph.png" >
 
 Please configure the monitor’s message so that it will:
 
@@ -90,12 +94,16 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<img src="images/email_alert.png" >
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+    * <img src="images/downtime_config.png" >
+    * The user Ryan Donat is on the list to be notify when downtime is Scheduled. He is sent an email to inform him.
+      * <img src="images/downtime_config_email.png" >
 
 ## Collecting APM Data:
 
