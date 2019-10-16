@@ -64,10 +64,12 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+  * You can change the timeframe of the Timeboard that you are looking at, 15minutes - 1 mounth, you can even set specific date ranges.
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+  * If you find something curious you can take a "Snapshot" of the graph, write a comment and send it to specific users that may be interested.
+    * <img src="images/snapshot_example.png" >
 * **Bonus Question**: What is the Anomaly graph displaying?
   * Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting.
-  * In the scenario of our screen shot we are 
   * https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview
 
 ## Monitoring Data
