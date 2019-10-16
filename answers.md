@@ -11,14 +11,35 @@
   * When your data is visulized exactly how you want it, how do you set up Monitors so that someone does not need to be watching the dashboard indefinitely for anomolies?
 * Collecting APM Data
   * Now that we are collecting,visulizing, and monitoring our data and metrics, what else is there? Application Performance Monitoring lets you deep dive into your application's performance.
+  
+**NOTE:** As always, documentation in our friend, throughout this Introduction there will be many references and quotes to and from documentation that explains these topics in greater depth.
 
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Datadog provides three main types of integrations that allow us to collect metrics:
+
+* Agent-based integrations are installed with the Datadog Agent and use a Python class called check to define the metrics to collect.
+* Authentication (crawler) based integrations are set up in the Datadog App where you provide credentials for obtaining metrics with the * API. These include popular integrations like Slack,AWS,Azure, and PagerDuty.
+Library integrations use the Datadog API to allow you to monitor applications based on the language they are written in, like Node.js, or Python.
+
+### Example of Authentication based integration:
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+SCREENSHOT OF Datadog and DynamoDb
+
+### Agent based integrations with custom Checks:
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+  * Custom checks are well suited to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service, or open source project, it is recommended that you create a full fledged Agent Integration.
+  * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+  * https://docs.datadoghq.com/agent/
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+  *https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+### How do we keep all data data comming into Datadog from a plethora of host organized?
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+  * Tags are a way of adding dimensions to metrics, so they can be filtered, aggregated, and compared in Datadog visualizations. Using tags enables you to observe aggregate performance across a number of hosts and (optionally) narrow the set further based on specific elements. In summary, tagging is a method to observe aggregate data points.
+  * Typically, it’s helpful to look at containers, VMs, and cloud infrastructure at the “service” level in aggregate. For example, it’s more helpful to look at CPU usage across a collection of hosts that represents a service, rather than CPU usage for server A or server B separately. Containers and cloud environments regularly churn through hosts, so it is critical to tag these to allow for aggregation of the metrics you’re getting.
+  * https://docs.datadoghq.com/tagging/
 
 ## Visualizing Data:
 
