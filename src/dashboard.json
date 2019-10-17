@@ -1,0 +1,38 @@
+{
+  "title" : "Sales Engineer Interview Dashboard",
+  "widgets" : [{
+      "definition": {
+          "type": "timeseries",
+          "requests": [
+              {"q": "avg:my_metric{*}"}
+          ],
+          "title": "Average of my_metric"
+      }
+  },
+  {
+      "definition": {
+          "type": "timeseries",
+          "requests": [
+              {"q": "anomalies(avg:mysql.performance.threads_running{*}, 'basic', 2)"}
+          ],
+          "title": "Mysql Anomaly Detection of Number of Running Threads"
+      }
+  },
+  {
+      "definition": {
+          "type": "timeseries",
+          "requests": [
+              {"q": "my_metric{*}.rollup(sum, 3600)"}
+          ],
+          "title": "Average Sum Rollup of my_metric by hour"
+      }
+  }],
+  "layout_type": "ordered",
+  "description" : "A dashboard that displays my custom metric",
+  "is_read_only": true,
+  "template_variables": [{
+      "name": "host1",
+      "prefix": "host",
+      "default": "my-host"
+  }]
+}
