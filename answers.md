@@ -186,34 +186,50 @@ api.Dashboard.create(title=title,
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+TASK: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-  * This functionality can be created with this query
-    * avg(last_5m):avg:custom.my_metric{host:i-0004adc938adf651a} > 800
+
+This functionality can all be configured in the Manage Monitors simply
+* <img src="images/monitor_config.png" >
+* Which boils down to this query
+  * avg(last_5m):avg:custom.my_metric{host:i-0004adc938adf651a} > 800
+When the monitor is up and running you will be able to view the Status and History to get an understanding on the behavior of the metric and when and for how long it has moved outside the green zone.
+  * https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold
 * <img src="images/monitor_status.png" >
 * <img src="images/monitor_eval_graph.png" >
 
-Please configure the monitor’s message so that it will:
-
+SUBTASK: Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+Being able to configure the monitor notification messages is a power tool that ensures that when emails are going out, they are only going to ge specific group needed, and they will contain all of the important information for the task to be addressed immediatly.
+* Here we are using Condition Variables as well as Message Template Variables to pass in the values that triggered the alert/warning to the email notification that is being sent out.
+
+```
+{{#is_alert}} ALERT, custom.my_metric exceeded alert threshold of 800, reported value: {{value}} {{/is_alert}}
+
+{{#is_warning}} WARNING, custom.my_metric exceeded alert threshold of 500, reported value my_metric: {{value}} {{/is_warning}} 
+
+@ryan.e.donat@gmail.com
+```
+
+* SUBTASK: When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 <img src="images/email_alert.png" >
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-    * <img src="images/downtime_config.png" >
-    * The user Ryan Donat is on the list to be notify when downtime is Scheduled. He is sent an email to inform him.
-      * <img src="images/downtime_config_email.png" >
+  
+Wheather it is a reoccuring maintenance or low priority monitor that is not important after dark, you can schedule downtime for a monitor which will mute if from sending out notifications during the specified timeframe.
+* https://docs.datadoghq.com/monitors/downtimes/
+* <img src="images/downtime_config.png" width="400" >
+* The user Ryan Donat is on the list to be notify when downtime is Scheduled. He is sent an email to inform him.
+ * <img src="images/downtime_config_email.png" width="400" >
 
 ## Collecting APM Data:
 
