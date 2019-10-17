@@ -93,7 +93,13 @@ instances:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
   * Tags are a way of adding dimensions to metrics, so they can be filtered, aggregated, and compared in Datadog visualizations. Using tags enables you to observe aggregate performance across a number of hosts and (optionally) narrow the set further based on specific elements. In summary, tagging is a method to observe aggregate data points.
   * Typically, it’s helpful to look at containers, VMs, and cloud infrastructure at the “service” level in aggregate. For example, it’s more helpful to look at CPU usage across a collection of hosts that represents a service, rather than CPU usage for server A or server B separately. Containers and cloud environments regularly churn through hosts, so it is critical to tag these to allow for aggregation of the metrics you’re getting.
+  * You can create tags within the host's configuration file.
+  
+``` vim /etc/datadog-agent/datadog.yaml```
 
+    * <img src="images/tagging_console.png" >
+  * Once you have the tags on your Host, you will be able to view those tags in the Host Map.
+    * <img src="images/host_tags.png" >
   * https://docs.datadoghq.com/tagging/
 
 ## Visualizing Data:
@@ -113,6 +119,59 @@ Basics ways to visualise yoyr data.
   * You can create custom functions to help provide the easiest visuals to analyse. Here we are creating a "rollup" of the sumation of one hours worth of my_metric, this may be helpful when you are not worried about the minute to minue changes that a gauge datatype can return, but the larger picutre of the trend of that gauge.
   * _avg:custom.my_metric{*}.rollup(sum, 3600)_
   * <img src="images/my_metric_with_1_hour_rollup_over_1_day.png" >
+
+The items above were completed though the Datadog GUI, but it is also possible to create, update, and destroy Dashboards via the Datadog API with Python, Ruby, and Curl.
+* Here is an example using Python.
+
+``` pip install datadog```
+
+```python 
+from datadog import initialize, api
+options = {
+        'api_key': '***************************59571'
+        }
+initialize(**options)
+title = 'Dashboard from py API'
+widgets =[{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:custom.my_metric{*}'}
+            ],
+        'title': 'Raw my_metric'
+        }
+    },
+    {
+    'definitions': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'anomalies(avg:aws.dynamodb.conditional_check_failed_requests{*}', 'basic', 2, direction='above', 'alert_window='last_5m', interval=30, count_default_zero='true' by {host})'}
+            ],
+            'title': 'DynamoDB Anomaly'
+            }
+    },
+    {
+    'definitions': {
+        'type': 'query_value',
+        'request': [
+            {'q': "avg:custom.my_metric{*}.rollup(sum, 3600)"}
+            ],
+        'title': '1 Hour Rolling Sum'
+        }
+    }]
+    
+layout_type = 'ordered'
+description = 'Ryan Donat used a Python program utilizing the datadog dashboard API to create this Dashboard.'
+is_read_only = False
+notify_list = ['ryan.e.donat@gmail.com']
+template_variables = [{}]
+api.Dashboard.create(title=title,
+    widgets=widgets,
+    description=description,
+    is_read_only=is_read_only,
+    notify_list=notify_list,
+    template_variables=template_variables)
+```
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
