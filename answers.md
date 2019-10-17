@@ -233,7 +233,7 @@ Wheather it is a reoccuring maintenance or low priority monitor that is not impo
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+TASK: Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 ```python
 from flask import Flask
@@ -266,16 +266,48 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+**Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+To run and monitor this Flask application first we need to install the prerequisites.
+
+```
+pip install flask
+pip install ddtrace
+```
+
+Then run the python application:
+
+```
+ddtrace-run python myFlaskApp.py
+```
+
+Once running we can hit the endpoints with the commands:
+
+```
+curl localhost:5050/api/apm
+curl localhost:5050/api/trace
+```
+
+After these commands have run the system will make the services tab under APM avaiable.
+
+SUBTASK: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+<img src="images/apm_dashboard.png" >
+<img src="images/apm_endpoints.png" >
+
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+* Monitoring and Visualizing Blood Sugar levels for people with diabetes. The heathcare industry is trying to keep up quickly changing technology, but often fall well behind of the curve. I have a few friends who have Diabetus and their monitoring solutions all seem archaic. Luckly there are now technologies that can continuously monitor ones blood sugar levels and update some cloud application via WiFi. If that infrastructure is there, we can integrate those web applications with data dog. This could give an individual real power over monitoring their blood sugar levels with powerful tools like anomoly detection, and Monitor notifications to keep a friend or family member in the loop. 
+
+
+
+
+## Parting Thoughts:
+I have been told that the 100th employee for datadog Dublin was hired recently. 
