@@ -9,31 +9,33 @@
 * Visulizing Data
   * Once we have collected Metrics, how can we use Datadog to visulize them?
 * Monitoring Data
-  * When your data is visulized exactly how you want it, how do you set up Monitors so that someone does not need to be watching the dashboard indefinitely for anomolies?
+  * After the data have been visualized, how do you set up Monitors so that someone does not need to be watching the dashboard indefinitely for anomolies?
 * Collecting APM Data
-  * Now that we are collecting,visulizing, and monitoring our data and metrics, what else is there? Application Performance Monitoring lets you deep dive into your application's performance.
+  * Now that we are collecting, visulizing, and monitoring our data and metrics, what else is there? Application Performance Monitoring lets you deep dive into your application's performance.
   
-**NOTE:** As always, documentation is our friend, throughout this Introduction there will be many references and quotes to and from documentation that explains these topics in greater depth.
+**NOTE:** As always, documentation is our friend, throughout this tutorial there will be many references and quotes to and from documentation that explains these topics in greater depth.
 
 ## Collecting Metrics:
 
 ### Datadog provides three main types of integrations that allow us to collect metrics:
 
 * Agent-based integrations are installed with the Datadog Agent and use a Python class called check to define the metrics to collect.
-* Authentication (crawler) based integrations are set up in the Datadog App where you provide credentials for obtaining metrics with the
-* API. These include popular integrations like Slack,AWS,Azure, and PagerDuty.
+* Authentication (crawler) based integrations are set up in the Datadog App where you provide credentials for obtaining metrics with the API. These include popular integrations like Slack, AWS, Azure, and PagerDuty.
 Library integrations use the Datadog API to allow you to monitor applications based on the language they are written in, like Node.js, or Python.
 
 ### Example of Authentication based integration:
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* SCREENSHOT OF Datadog and DynamoDb
+* TASK: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database. View metrics available via that integration.
+* Here we have authorized Datadog to access all of the metrics that AWS already catpures for our use in Datadog
+* https://docs.datadoghq.com/integrations/amazon_web_services/?tab=allpermissions#installation
+* <img src="images/dynamodb_steadystate.png" >
 
 ### Agent based integrations with custom Checks:
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+* TASK: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Custom checks are well suited to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service, or open source project, it is recommended that you create a full fledged Agent Integration.
 * https://docs.datadoghq.com/agent/
 * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
-  * Ceate the custom Agent check configuration file.
+
+#### Ceate the custom Agent check configuration file.
 ``` 
 vim /etc/datadog_agent/conf.d/custom_metric.d/custom_metric.yaml
 ```
@@ -75,7 +77,7 @@ class RandIntCheck(AgentCheck):
   * Custom checks are well suited to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service, or open source project, it is recommended that you create a full fledged Agent Integration.
   * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
   * https://docs.datadoghq.com/agent/
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+* SUBTASK: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ``` 
 vim /etc/datadog_agent/conf.d/custom_metric.d/custom_metric.yaml
@@ -89,33 +91,32 @@ instances:
   * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-### How do we keep all of the data comming into Datadog many different host organized?
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### How do we keep all of the data comming into Datadog from many different host organized?
+* TASK: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
   * Tags are a way of adding dimensions to metrics, so they can be filtered, aggregated, and compared in Datadog visualizations. Using tags enables you to observe aggregate performance across a number of hosts and (optionally) narrow the set further based on specific elements. In summary, tagging is a method to observe aggregate data points.
   * Typically, it’s helpful to look at containers, VMs, and cloud infrastructure at the “service” level in aggregate. For example, it’s more helpful to look at CPU usage across a collection of hosts that represents a service, rather than CPU usage for server A or server B separately. Containers and cloud environments regularly churn through hosts, so it is critical to tag these to allow for aggregation of the metrics you’re getting.
   * You can create tags within the host's configuration file.
   
 ``` vim /etc/datadog-agent/datadog.yaml```
 
-    * <img src="images/tagging_console.png" >
+  * <img src="images/tagging_console.png" >
   * Once you have the tags on your Host, you will be able to view those tags in the Host Map.
     * <img src="images/host_tags.png" >
   * https://docs.datadoghq.com/tagging/
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+TASK: Utilize the Datadog API to create a Timeboard that contains:
 
-Basics ways to visualise yoyr data.
-* Your custom metric scoped over your host.
+* SUBTASK: Visualize your custom metric scoped over your host.
   * Scoping a metric over a host is a great way to see what is happening on a specific host.
   * <img src="images/my_metric_over_host.PNG" >
-* Any metric from the Integration on your Database with the anomaly function applied.
+* SUBTASK: Visualize any metric from the Integration on your Database with the anomaly function applied.
   * You can apply anomonly detection to different metrics, that will help you notice that something is out of the ordinary. Here we see the peaks are drawn in <span style="color:red">RED</span> because they are anomalous to the previous data.
   * <img src="images/dynamodb_check_failed_anomaly.png" >
   * Here is an example the anomaly fuction applied to my_metric, this is a little easier to see what is happening here. The graph has the greyed area indicating the expected range of the metrics value, and highlights in RED when the metric breaks that range.
   * <img src="images/my_metric_anomaly.png" >
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+* SUBTASK: Visualize your custom metric with the rollup function applied to sum up all the points for the past hour into a rolling summation.
   * You can create custom functions to help provide the easiest visuals to analyse. Here we are creating a "rollup" of the sumation of one hours worth of my_metric, this may be helpful when you are not worried about the minute to minue changes that a gauge datatype can return, but the larger picutre of the trend of that gauge.
   * _avg:custom.my_metric{*}.rollup(sum, 3600)_
   * <img src="images/my_metric_with_1_hour_rollup_over_1_day.png" >
@@ -173,17 +174,14 @@ api.Dashboard.create(title=title,
     template_variables=template_variables)
 ```
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-* Set the Timeboard's timeframe to the past 5 minutes
+* SUBTASK: Visualize set the Timeboard's timeframe to the past 15 minutes
   * You can change the timeframe of the Timeboard that you are looking at, 15minutes - 1 mounth, you can even set specific date ranges.
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+* SUBTASK: Take a snapshot of this graph and use the @ notation to send it to yourself.
   * If you find something curious you can take a "Snapshot" of the graph, write a comment and send it to specific users that may be interested.
     * <img src="images/snapshot_example.png" >
 * **Bonus Question**: What is the Anomaly graph displaying?
   * Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting.
+  * In our example of anomaly detection above we are looking at the metric aws.dynamodb.conditional_check_failed_requests, and using prior data to identify if any of the current behavior is anomalous.
   * https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview
 
 ## Monitoring Data
