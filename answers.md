@@ -30,10 +30,62 @@ Library integrations use the Datadog API to allow you to monitor applications ba
 
 ### Agent based integrations with custom Checks:
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+* Custom checks are well suited to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service, or open source project, it is recommended that you create a full fledged Agent Integration.
+* https://docs.datadoghq.com/agent/
+* https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
+  * Ceate the custom Agent check configuration file.
+``` 
+vim /etc/datadog_agent/conf.d/custom_metric.d/custom_metric.yaml
+```
+
+  * Add necessary parameters.
+```
+instances: [{}]
+```
+
+  * Create the python method that contains the funtionality of the custom check.
+``` 
+vim /etc/datadog_agent/checks.d/custom_metric.py
+```
+
+```python 
+/*
+SOURCE: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#overview
+*/
+import random
+
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+    from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.2.5"
+
+
+class RandIntCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('custom.my_metric', random.randint(0, 1000), tags=['random:1000'])
+ ```
+
+
   * Custom checks are well suited to collect metrics from custom applications or unique systems. However, if you are trying to collect metrics from a generally available application, public service, or open source project, it is recommended that you create a full fledged Agent Integration.
   * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6
   * https://docs.datadoghq.com/agent/
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+``` 
+vim /etc/datadog_agent/conf.d/custom_metric.d/custom_metric.yaml
+```
+
+```python 
+init_config:
+instances:
+     - min_collection_interval: 45
+ ```
   * https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#collection-interval
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
@@ -41,6 +93,7 @@ Library integrations use the Datadog API to allow you to monitor applications ba
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
   * Tags are a way of adding dimensions to metrics, so they can be filtered, aggregated, and compared in Datadog visualizations. Using tags enables you to observe aggregate performance across a number of hosts and (optionally) narrow the set further based on specific elements. In summary, tagging is a method to observe aggregate data points.
   * Typically, it’s helpful to look at containers, VMs, and cloud infrastructure at the “service” level in aggregate. For example, it’s more helpful to look at CPU usage across a collection of hosts that represents a service, rather than CPU usage for server A or server B separately. Containers and cloud environments regularly churn through hosts, so it is critical to tag these to allow for aggregation of the metrics you’re getting.
+
   * https://docs.datadoghq.com/tagging/
 
 ## Visualizing Data:
