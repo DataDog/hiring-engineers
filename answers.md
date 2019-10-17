@@ -295,12 +295,17 @@ Here is what the APM Services data will look like:
 
 
 We can see all of the APM data comming into the APM dashboard but how can we add these graphs one of our pre-built dashboards?
+
 SUBTASK: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 * For the APM data that you want on one of you dashboard, you need to take the Export action on the graph and export it to the desired dashboard.
 * Here we can see our APM metric for number of requests.
   * <img src="images/dashboard_with_apm.png" >
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+  * https://docs.datadoghq.com/tracing/visualization/
+  * <img src="images/service_resource.png" >
+  * In APM, groups of services are the highest level view we have. Using the interface we are able to explore how the different services interact with each other. If there is something curious happening with one peticular service, we can drill down into the service and view the many resources that are working to create the functionality of that service. If something is wrong with a resource, you can view the traces and logs associated with that resource, to identify the root cause of the issue.
+
 
 
 ## Final Question:
