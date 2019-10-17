@@ -49,9 +49,9 @@ vim /etc/datadog_agent/checks.d/custom_metric.py
 ```
 
 ```python 
-/*
-SOURCE: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6#overview
-*/
+
+# SOURCE: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6\#overview
+
 import random
 
 # the following try/except block will make the custom check compatible with any Agent version
