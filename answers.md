@@ -312,4 +312,4 @@ Is there anything creative you would use Datadog for?
 I have been told that the 100th employee for datadog Dublin was hired recently. Assuming whoever gets hired for this role would bump the office up to 101 employees, and assuming its okay to relate said employees to dogs, I in my professional experiance believe that while the office maintains 101 employees, they should all be nicknamed the "101 Dalmatians"
 
 <img src="images/101.jpg" >
-
+Image source: https://www.bigw.com.au/product/disney-movie-collection-101-dalmatians/p/680409/
