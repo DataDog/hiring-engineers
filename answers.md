@@ -1,7 +1,7 @@
 <img src="images/datadog_logo_share_tt.png" width="300" >
 
 # Introduction to Datadog - Ryan Donat
-#itsallaboutthedata
+Its all about the data.
 
 ## Topics:
 * Collecting Metrics
@@ -304,10 +304,12 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-* Monitoring and Visualizing Blood Sugar levels for people with diabetes. The heathcare industry is trying to keep up quickly changing technology, but often fall well behind of the curve. I have a few friends who have Diabetus and their monitoring solutions all seem archaic. Luckly there are now technologies that can continuously monitor ones blood sugar levels and update some cloud application via WiFi. If that infrastructure is there, we can integrate those web applications with data dog. This could give an individual real power over monitoring their blood sugar levels with powerful tools like anomoly detection, and Monitor notifications to keep a friend or family member in the loop. 
-
-
+* Monitoring and Visualizing Blood Sugar levels for people with diabetes. The heathcare industry is trying to keep up quickly changing technology, but often fall well behind of the curve. I have a few friends who have Diabetus and their monitoring solutions all seem archaic. Luckly there are now technologies that can continuously monitor ones blood sugar levels and update some cloud application via WiFi. If that infrastructure is there, we can integrate those web applications with datadog. This could give an individual real power over monitoring their blood sugar levels with powerful tools like anomoly detection, and Monitor notifications to keep a friend or family member in the loop. I would be curiuos to sese a metric gauge on someones blood sugar, and then apply the Anomalies function like we did in this excecise. Could we get the parameters into a place that the anomalies would be correctly reported around insulin spikes when the individual injects, blood sugar spikes when somebody eats, if the individual keeps a stong habit, the anomaly detection may be able to find a useful pattern.
+  * Although Datadog is not designed just to monitor just one host, its power comes in with monitoring many host. Thinking into a dystopian future where Health Privacy does not exist. Maybe a school district monitors all of the diabetic children, with the goal of keeping them healthy and focused on learning. The school district would be able to monitor many children over many different school. At this level they would be able to identify trends based on hosts within a specific school, or host with a specific teach. These trends could be used to help fix any issues with blood sugar levels those kids are having. I think I have watched too much of the tv show Black Mirror.
 
 
 ## Parting Thoughts:
-I have been told that the 100th employee for datadog Dublin was hired recently. 
+I have been told that the 100th employee for datadog Dublin was hired recently. Assuming whoever gets hired for this role would bump the office up to 101 employees, and assuming its okay to relate said employees to dogs, I in my professional experiance believe that while the office maintains 101 employees, they should all be nicknamed the "101 Dalmatians"
+
+<img src="images/101.jpg" >
+
