@@ -5,7 +5,7 @@ Its all about the data.
 
 ## Topics:
 * Collecting Metrics
-  * How can we use Datadog to collect metrics from our system? 
+  * How can we use Datadog to collect metrics from our host? 
 * Visulizing Data
   * Once we have collected Metrics, how can we use Datadog to visulize them?
 * Monitoring Data
@@ -289,11 +289,16 @@ curl localhost:5050/api/trace
 ```
 
 After these commands have run the system will make the services tab under APM avaiable.
-
-SUBTASK: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+Here is what the APM Services data will look like:
 <img src="images/apm_dashboard.png" >
 <img src="images/apm_endpoints.png" >
 
+
+We can see all of the APM data comming into the APM dashboard but how can we add these graphs one of our pre-built dashboards?
+SUBTASK: Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+* For the APM data that you want on one of you dashboard, you need to take the Export action on the graph and export it to the desired dashboard.
+* Here we can see our APM metric for number of requests.
+  * <img src="images/dashboard_with_apm.png" >
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
