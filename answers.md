@@ -346,3 +346,10 @@ A service is something that satisfies a business requirement, typically on a res
 A resource is a piece of data that is affected by the CRUD operations
 
 For example, a resource could be a certain piece of clothing sold on an ecommerce site. A service would be checking if that article of clothing was still in inventory to be able to sell it, otherwise marking it as sold out.
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Is there anything creative you would use Datadog for?
+
+There are so many things you could apply Datadog monitoring to but one that sticks out in my mind is monitoring room temperatures, noise levels, and other various factors to see what conditions would help me get the best night sleep!
