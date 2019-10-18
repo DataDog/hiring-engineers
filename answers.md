@@ -15,13 +15,13 @@ $ vagrant up
 ```
 This will download the Ubuntu Xenial image and create a `VagrantFile` in your current directory and then start the virtual machine.
 
-I then registered for a datadog account using the provided instructions.
+I then registered for a Datadog account using the provided instructions.
 
 ## Collecting Metrics:
 -----
 ### Tagging
 
-  The first task surrounding collecting metrics is adding custom tags to the Datadog Agent. As refferred to in the [documentation](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6), tags are added within the main datadog.yaml file found in the root directory of the application --> [`/etc/datadog-agent`](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6) 
+  The first task surrounding collecting metrics is adding custom tags to the Datadog Agent. As referred to in the [documentation](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6), tags are added within the main `datadog.yaml` file found in the root directory of the application --> [`/etc/datadog-agent`](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6)
 
 
 The first custom attribute I added was a custom hostname but feel free to use the default hostname provided:
@@ -41,7 +41,7 @@ tags:
    - os:ubuntu_xenial
 ```
 
-After I added these attributes to the `datadog.yaml` file I saved and restarted the datadog agent using the following command which I will refer throughout the post:
+After I added these attributes to the `datadog.yaml` file I saved and restarted the Datadog agent using the following command which I will refer throughout the post:
 
 ```Shell
 $ sudo service datadog-agent restart
@@ -58,14 +58,13 @@ After allowing a short period of time for the agent to sync with the UI the foll
 Success!
 
 ### Database Integration
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 The next step was to add a database integration to the Agent. I chose to use MySQL because of previous experience using it but there are countless other database integrations supported by Datadog. I first installed MySQL on the Ubuntu VM with the simple command:
 ```Shell
 $ sudo apt-get update (updates package registry)
 $ sudo apt-get install mysql-server
 ```
-I selected MySQL from the list under the Integrations tab of the UI and followed the configuration instructions. I created the datadog user and granted it the necessary permissions. I finally added the config code to the mysql config file found at `/etc/datadog-agent/conf.d/mysql.d/conf.yaml`
+I selected MySQL from the list under the Integrations tab of the UI and followed the configuration instructions. I created the Datadog user and granted it the necessary permissions. I finally added the config code to the mysql config file found at `/etc/datadog-agent/conf.d/mysql.d/conf.yaml`
 ```Shell
 init_config:
 
@@ -90,6 +89,8 @@ I then restarted the Agent and checked the status. After syncing, the UI showed 
 And shortly thereafter, the metrics began populating the MySQL dashboard in the Dashboard tab of the UI.
 
 ![MySQL Dashboard](imgs/mysql_dashboard.png "MySQL Dashboard")
+
+- [Link](https://app.datadoghq.com/dash/integration/12/mysql---overview?from_ts=1571359140144&to_ts=1571362740144&live=true&tile_size=m)
 
 ### Custom Metric
 
@@ -133,7 +134,6 @@ After restarting the Agent, my_metric began populating in the UI --> Metrics -->
 ![my_metric initial](imgs/my_metric_populated.png "my_metric initial")
 
 ### Configure The Metric
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 Our metric is now populating but what if we wanted it to collect on a specified interval? The default collection interval of the Agent is 15 seconds. We will now change the interval to every 45 seconds. To do this you simply add one line to the my_metric.yaml file:
 
@@ -163,7 +163,7 @@ You can change the interval without modifying the python script. You would add t
 -----
 The next task is to create a Dashboard of various graphs as described in the instructions. The caveat here is to use the Datadog API instead of the UI to create it. To do this I am going to use [Postman](https://www.getpostman.com/) which is, in my opinion, the easiest and most robust tool to test APIs.
 
-I first retreived my API key and my Application Key from the API subtab of the Integrations tab of the UI and added them to the [Postman Environment Variables](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/). Using the URL found in the [API documentation](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard) I created three graphs. The full payload can be found [here](src/dashboard.json) but I will explain snippets based on the different graphs.
+I first retrieved my API key and my Application Key from the API subtab of the Integrations tab of the UI and added them to the [Postman Environment Variables](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/). Using the URL found in the [API documentation](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard) I created three graphs. The full payload can be found [here](src/dashboard.json) but I will explain snippets based on the different graphs.
 
 ![Postman](imgs/postman_dashboard_req.png "postman")
 
@@ -184,7 +184,7 @@ I first retreived my API key and my Application Key from the API subtab of the I
 ```
 As you can see we want to plot this as a timeseries. And we want to plot the average of my_metric over `"*"` which in our case is the one host registered.
 
-2) The anomaly detection of any database metric. I chose anonamly detection of the average number of open threads or connections to the database.
+2) The anomaly detection of any database metric. I chose anomaly detection of the average number of open threads or connections to the database.
 ```json
   {
       "definition": {
@@ -216,13 +216,15 @@ Again, the full POST payload can be found [here](src/dashboard.json). After send
 
 ![Custom Dashboard](imgs/custom_dashboard_ui.png "Custom Dashboard")
 
+- [Link](https://app.datadoghq.com/dashboard/66j-zgm-abd/sales-engineer-interview-dashboard?from_ts=1571276292111&to_ts=1571362692111&live=true&tile_size=m)
+
 Suppose, however, there was a timeframe when our metric collection was particularly interesting and you wanted to share that with other members of your team or escalate it to a higher level of investigation With the Datadog UI that is as simple as sending a tweet. You can click and drag the time window to a particular 5 minute interval of interest and prefixing an `@` symbol before an email address or another Datadog user in your Company's account send that screenshot to them as I have done below:
 
 ![Custom Dashboard Interval](imgs/custom_dashboard_5min.png "Custom Dashboard Interval")
 
 ![Send the Interval](imgs/send_my_metric.png "Send the Interval")
 
-Once you submit the message the recipient will recieve an email notification!
+Once you submit the message the recipient will receive an email notification!
 
 ![Sharing Email](imgs/metric_share_email.png "Sharing Email")
 
@@ -230,27 +232,117 @@ Once you submit the message the recipient will recieve an email notification!
 
 What is the Anomaly graph displaying?
 
-- The anomaly graph is displaying the metric and reports occurences of the values that are above or below the set standard deviation within the configured algorithm in the function call.
+- The anomaly graph is displaying the metric and reports occurrences of the values that are above or below the set standard deviation within the configured algorithm in the function call.
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Now that we have a metric configured to report into a dashboard, we would like to monitor the value of the metric to make sure we're operating in a normal range of values. We want to make sure a developer or other stakeholder is alerted when there are values showing up that are not within the normal range. We are going to create a new Monitor that is configured to the my_metric metric. We should warn the developer when the value passes 500 and alert them when it is above 800. Finally, we should alert developers if no data is coming in from my_metric over the past 10 minute window as the service may be down. Shown below is the configured monitor through the Datadog UI.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+![my_metric monitor](imgs/monitor_metric_alert.png "my_metric monitor")
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+Notice towards the bottom we also configure a smart alert message based on which configuration is alerting and we also provide an email of a team member to send it to when it goes off. We use the `{{#variable}}...{{/variable}}` notation to change the message for alert versus warning versus other configured thresholds. In a future, more advanced configuration we can also add an escalation policy. We also have access to the built-in variables related to the agent like host information. As you can see in the screenshot above, the host name and host IP are included in the message which, when triggered, produce a sample alert:
 
-Please configure the monitor’s message so that it will:
+![my_metric monitor alert email](imgs/alert_email_notification.png "my_metric monitor alert email")
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+#### **Bonus Question**:
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+Since this metric is not critical to the performance or availability of our application, we can setup downtime windows where the alert will be silenced and won't send notifications. As seen in the [Monitoring documentation](https://docs.datadoghq.com/monitors/downtimes/) you can easily schedule these windows in the UI. Below are the 2 downtime configurations as laid out in the exercise.
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+1) First is from 7 PM to 9 AM on the weekdays, Monday through Friday.
+
+![Weekday Downtime](imgs/downtime_weekday_config.png "Weekday Downtime")
+
+![Weekday Downtime Alert](imgs/downtime_weekday.png "Weekday Downtime Alert")
+
+2) The Second is all day on Saturday and Sunday - no reporting on the weekends.
+
+![Weekend Downtime](imgs/downtime_weekend_config.png "Weekend Downtime")
+
+![Weekend Downtime Alert](imgs/downtime_weekend.png "Weekend Downtime Alert")
+
+## Collecting APM Data:
+
+The next task was interacting with Datadog's APM solution. Using the [APM documentation](https://docs.datadoghq.com/getting_started/tracing/#apm-agent-setup) I ventured to get the tracing metrics from the given Python app.
+
+The first thing I did was uncomment the APM lines in the `datadog.yaml` file.
+
+```
+####################################
+## Trace Collection Configuration ##
+####################################
+
+apm_config:
+
+  enabled: true
+```
+
+After that I downloaded the necessary tools and packages I would need to collect the trace metrics using the following commands.
+
+```Shell
+$ sudo apt-get install python-pip
+$ pip install flask
+$ pip install ddtrace
+```
+
+After that was completed, I restarted the Datadog agent for the changes to take effect. All that was necessary to get the traces populating onto the APM dashboard was running the provided python code (below) with the `ddtrace-run` command
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+And ran it using:
+```
+$ ddtrace-run python app.py
+```
+
+To create some mock data I ssh'd into the vagrant VM and generated some fake traffic using the following bash command which executed a GET request every 3 seconds.
+
+```Shell
+$ while sleep 3; do curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET 0.0.0.0:5050/api/trace; done
+```
+The APM dashboard began populating from the flask app.
+
+![APM Graphs](imgs/apm_flask_ui.png "APM Graphs")
+
+I then created a dashboard plotting a few of the metrics generated by the tracing.
+
+![APM Dashboard](imgs/apm_flask_dashboard.png "APM Dashboard")
+
+- [Link](https://app.datadoghq.com/dashboard/49y-2vn-uja/apm-and-infra-dashboard?from_ts=1571359008986&to_ts=1571362608986&live=true&tile_size=m)
+
+#### **Bonus Question**:
+
+What is the difference between a Service and a Resource?
+
+A service is something that satisfies a business requirement, typically on a resource.
+
+A resource is a piece of data that is affected by the CRUD operations
+
+For example, a resource could be a certain piece of clothing sold on an ecommerce site. A service would be checking if that article of clothing was still in inventory to be able to sell it, otherwise marking it as sold out.
