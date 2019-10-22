@@ -59,15 +59,14 @@ instances:
 3) Restart the datadog Agent;
 4) Install datadog mysql integration on the datadog dashboard.
 
-[screenshots/datadog-debian-box_mysql_integration.png] 
-[screenshots/datadog-debian-box_mysql_dashboard.png]
-
-[Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
+![screenshot_datadog-debian-box_mysql_integration](screenshot_datadog-debian-box_mysql_integration.png) 
+[screenshot_datadog-debian-box_mysql_dashboard](screenshot_datadog-debian-box_mysql_dashboard.png)
+![Datadog_Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
 
 
 **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
-For that I wrote the datadog-agent/check.d/custom_check.py script with the following code:
+For that I wrote the datadog-agent/checks.d/custom_check.py script with the following code:
 
 ```python
 from datadog_checks.checks import AgentCheck
@@ -87,7 +86,7 @@ instances:
   - min_collection_interval: 30
 ```
 
-![screenshots/datadog-debian-box_custom_my_metric.png]
+![datadog-debian-box_custom_my_metric](datadog-debian-box_custom_my_metric.png)
 
 
 **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
@@ -164,10 +163,9 @@ widgets = [{
 api.Dashboard.create(title=title,widgets=widgets,description=description,layout_type=layout_type)
 ```
 
-[screenshots/datadog-debian-box_my_metric_dashboard.png]
-[screenshots/datadog-debian-box_my_metric_rollup_function.png]
-
-[my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
+![screenshot_datadog-debian-box_my_metric_dashboard](screenshot_datadog-debian-box_my_metric_dashboard.png)
+![screenshot_datadog-debian-box_my_metric_rollup_function](screenshot_datadog-debian-box_my_metric_rollup_function.png)
+[datadog_my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
 
 
 **Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -177,7 +175,7 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.**
 
 Please check the screenshot below which shows I'm sending the 5 minutes graph to myself using the datadog dashboard:
 
-![screenshots/datadog-debian-box_my_metric_sending_snapshot.png]
+![screenshot_datadog-debian-box_my_metric_sending_snapshot](screenshot_datadog-debian-box_my_metric_sending_snapshot.png)
 
 **Bonus Question: What is the Anomaly graph displaying?**
 
@@ -185,6 +183,7 @@ On the graph I've created the Anomaly will show any deviation on Mysql CPU usage
 
 The blue line shows the regular cpu time per user and the red line possible anomalies.
 
+![screenshot_datadog-debian-box_mysql_anomaly](screenshot_datadog-debian-box_mysql_anomaly.png)
 
 # Monitoring Data
 
