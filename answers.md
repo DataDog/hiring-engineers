@@ -20,7 +20,7 @@ tags:
    - test:succeeded
 ```
 
-![screenshot_extra_tags](datadog-debian-box_extra_tags.png)
+![screenshot_extra_tags](screenshots/datadog-debian-box_extra_tags.png)
 
 
 **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
