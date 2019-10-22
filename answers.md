@@ -64,7 +64,7 @@ instances:
 
 ![screenshot_datadog-debian-box_mysql_dashboard](screenshot_datadog-debian-box_mysql_dashboard.png)
 
-![Datadog_Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
+[Datadog_Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
 
 
 **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
@@ -170,7 +170,7 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 
 ![screenshot_datadog-debian-box_my_metric_rollup_function](screenshot_datadog-debian-box_my_metric_rollup_function.png)
 
-![datadog_my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
+[datadog_my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
 
 
 **Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -298,7 +298,7 @@ Check below the Datadog Dashboard Screenshot using an APM metric `datadog.trace_
 ![screenshot_datadog-debian-box_apm_and_infra_dashboard](screenshot_datadog-debian-box_apm_and_infra_dashboard.png)
 
 
-![Datadog_Dashboard APM x Infra](https://app.datadoghq.eu/dashboard/94w-9sb-gxb/apm?from_ts=1570005453668&to_ts=1570009053668&live=true&tile_size=m)
+[Datadog_Dashboard APM x Infra](https://app.datadoghq.eu/dashboard/94w-9sb-gxb/apm?from_ts=1570005453668&to_ts=1570009053668&live=true&tile_size=m)
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
