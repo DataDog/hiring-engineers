@@ -57,10 +57,13 @@ instances:
 ```
 
 3) Restart the datadog Agent;
+
 4) Install datadog mysql integration on the datadog dashboard.
 
 ![screenshot_datadog-debian-box_mysql_integration](screenshot_datadog-debian-box_mysql_integration.png) 
-[screenshot_datadog-debian-box_mysql_dashboard](screenshot_datadog-debian-box_mysql_dashboard.png)
+
+![screenshot_datadog-debian-box_mysql_dashboard](screenshot_datadog-debian-box_mysql_dashboard.png)
+
 ![Datadog_Mysql Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1570004078694&to_ts=1570007678694&live=true&tile_size=m)
 
 
@@ -86,7 +89,7 @@ instances:
   - min_collection_interval: 30
 ```
 
-![datadog-debian-box_custom_my_metric](datadog-debian-box_custom_my_metric.png)
+![datadog-debian-box_custom_my_metric](screenshot_datadog-debian-box_custom_my_metric.png)
 
 
 **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
@@ -164,8 +167,10 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 ```
 
 ![screenshot_datadog-debian-box_my_metric_dashboard](screenshot_datadog-debian-box_my_metric_dashboard.png)
+
 ![screenshot_datadog-debian-box_my_metric_rollup_function](screenshot_datadog-debian-box_my_metric_rollup_function.png)
-[datadog_my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
+
+![datadog_my_metric Dashboard](https://app.datadoghq.eu/dashboard/q9c-efx-wuk/mymetric-dashboard?from_ts=1570004595206&to_ts=1570008195206&live=true&tile_size=m)
 
 
 **Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -179,7 +184,7 @@ Please check the screenshot below which shows I'm sending the 5 minutes graph to
 
 **Bonus Question: What is the Anomaly graph displaying?**
 
-On the graph I've created the Anomaly will show any deviation on Mysql CPU usage per user, based on previous collected metrics. This could be a good graph for identify possible sql queries using too much resource or having a different behaviour than expected.
+On the graph I've created the Anomaly function will show any deviation on Mysql CPU usage per user, based on previous collected metrics. This could be a good graph for identify possible sql queries using too much resource or having a different behaviour than expected.
 
 The blue line shows the regular cpu time per user and the red line possible anomalies.
 
@@ -197,8 +202,9 @@ And also ensure that it will notify you if there is No Data for this query over 
 
 Please check the screenshots below with the metric monitor in place:
 
-[screenshots/datadog-debian-box_my_metric_check_monitor1.png]
-[screenshots/datadog-debian-box_my_metric_check_monitor2.png]
+![datadog-debian-box_my_metric_check_monitor1](screenshot_datadog-debian-box_my_metric_check_monitor1.png)
+
+![screenshot_datadog-debian-box_my_metric_check_monitor2](screenshot_datadog-debian-box_my_metric_check_monitor2.png)
 
 
 **Please configure the monitor’s message so that it will:
@@ -210,18 +216,17 @@ When this monitor sends you an email notification, take a screenshot of the emai
 I've changed the `Say what's happening` session on the datadog dashboard Monitors with the following content:
 
 ```
-my_metric message notification over host {{host.name}}
+my_metric message notification
 
 @all 
-{{#is_alert}}my_metric is now critical over value {{value}} on host {{host.ip}}{{/is_alert}}
-{{#is_warning}}my_metric is now warn over value {{value}} on host {{host.ip}}{{/is_warning}}  
+{{#is_alert}}my_metric is now critical over value {{value}} on host {{host}}{{/is_alert}}
+{{#is_warning}}my_metric is now warn over value {{value}} on host {{host}}{{/is_warning}}  
 {{#is_no_data}}my_metric no data received{{/is_no_data}} 
 ```
 
-Please also check the screenshots of the test alerts I received for this metric monitor:
+Please also check the screenshot for this metric monitor:
 
-[screenshots/datadog-debian-box_my_metric_warn_alert.png]
-[screenshots/datadog-debian-box_my_metric_no_data_alert.png]
+![screenshot_datadog-debian-box_my_metric_warn_alert](screenshot_datadog-debian-box_my_metric_warn_alert.png)
 
 
 **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
@@ -232,9 +237,11 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 I've scheduleded two downtime  under 'Monitors'/'Manage Downtime' for my_metrics monitoring. Please check the screenshots below:
 
-[screenshots/datadog-debian-box_my_metric_downtime_weekdays.png]
-[screenshots/datadog-debian-box_my_metric_downtime_weekends.png]
-[screenshots/datadog-debian-box_my_metric_downtime_notification.png]
+![screenshot_datadog-debian-box_my_metric_downtime_weekdays](screenshot_datadog-debian-box_my_metric_downtime_weekdays.png)
+
+![screenshot_datadog-debian-box_my_metric_downtime_weekends](screenshot_datadog-debian-box_my_metric_downtime_weekends.png)
+
+![screenshot_datadog-debian-box_my_metric_downtime_notification](screenshot_datadog-debian-box_my_metric_downtime_notification.png)
 
 # Collecting APM Data:
 
@@ -288,8 +295,10 @@ ddtrace-run python3 flask_app.py
 
 Check below the Datadog Dashboard Screenshot using an APM metric `datadog.trace_agent.cpu_percent` and Infrastructure metrics `system.cpu.user` and `system.load.norm.1` together:
 
-[screenshots/datadog-debian-box_apm_and_infra_dashboard.png]
-[Dashboard APM x Infra](https://app.datadoghq.eu/dashboard/94w-9sb-gxb/apm?from_ts=1570005453668&to_ts=1570009053668&live=true&tile_size=m)
+![screenshot_datadog-debian-box_apm_and_infra_dashboard](screenshot_datadog-debian-box_apm_and_infra_dashboard.png)
+
+
+![Datadog_Dashboard APM x Infra](https://app.datadoghq.eu/dashboard/94w-9sb-gxb/apm?from_ts=1570005453668&to_ts=1570009053668&live=true&tile_size=m)
 
 
 **Bonus Question: What is the difference between a Service and a Resource?**
