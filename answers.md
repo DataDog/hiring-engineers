@@ -184,9 +184,7 @@ Please check the screenshot below which shows I'm sending the 5 minutes graph to
 
 **Bonus Question: What is the Anomaly graph displaying?**
 
-On the graph I've created the Anomaly function will show any deviation on Mysql CPU usage per user, based on previous collected metrics. This could be a good graph for identify possible sql queries using too much resource or having a different behaviour than expected.
-
-The blue line shows the regular cpu time per user and the red line possible anomalies.
+On the graph I've created the Anomaly function will show any deviation on the percentage of CPU time spent in user space by MySQL based on previous collected metrics. Thus, this graph could be useful in the future for detecting locking issues or very inefficient queries on the Database. The Anomaly function will display a red line in case any deviation from normal average usage (outside the gray area on the graph) happens.
 
 ![screenshot_datadog-debian-box_mysql_anomaly](screenshot_datadog-debian-box_mysql_anomaly.png)
 
@@ -314,7 +312,10 @@ A Resource is a subset of a service that executes some particular action, like a
 
 Is there anything creative you would use Datadog for?**
 
+Yes, I would love to use Datadog for monitoring the water level and quality on the Amsterdam canals. 
 
-I was very surprised while running DataDog APM and Kubernetes integration for a LAMP stack responsible for hosting more than 10.000 e-commerce websites. 
+Amsterdam has more than one hundred kilometers of canals. Originally, the canals were build for drainage, transport, defense and sewage. However, nowadays they are even more important because there are many people living on the canals on "houseboats".
 
-It's impressive the deep level of observability which we achieved using DataDog. Suddenly, we could visualize and monitoring our solution based on our own custom metrics and easily identify poor performance behaviour on our application. Plus, it's easy and fast to start collecting metrics and creating great dashboards, even for more complex microservices architectures.
+A device would do a real-time measurement on the water quality and level and report to Datadog. Datadog features like Anomaly function and Monitors could be combined to introduce a better flood warning system thus people would have time to leave their "houseboats" safely in case the canal reaches a dangerous water level.
+
+A public Datadog Dashboard could also be created for displaying the water quality and pollution level  on each specify canal. Thus, would be easier to identify which canals are safe for recreation activities like swimming or even fishing.
