@@ -1,9 +1,15 @@
 
 ## Collecting Metrics:
 
+Install is strightforward for Ubuntu:
+
+```
+DD_API_KEY=$DATADOG_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+```
+
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-From datadog.yaml
+Just add tags to datadog.yaml in /etc/datadog-agent
 
 
       tags:
@@ -12,7 +18,7 @@ From datadog.yaml
 
 I also tossed the agent on another old linux box just to have more than one machine showing
 
-
+After the install and adding tags the following infrastructure appears
 ![tags.jpg](images/tags.jpg)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -99,7 +105,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 
-For me the easiest way to do it is with curl because there's no dependencies on any
+For me the quickest way to do it is with curl because there's no dependencies on any
 python libraries.  You can "cheat" and just make a dashboard, do a GET using the api
 then take a few things out of the JSON and POST it back with a different name
 
@@ -139,7 +145,11 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-This is a basic read the docs and do it.  Screenshots below.
+This is a basic read the docs and do it.  Basically set the thresholds,  
+  make sure it alerts on none and use tags to display  
+  different text depending on alert condition.
+
+  Screenshots below.
 
 
 ![alert_config](images/alert_config.png)
@@ -232,6 +242,8 @@ To run the app put ddtrace-run in front of the command (after the nohup)
 
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+
 The service is the higher level application or microservice listening on a port and running as a process or set of processes.
 
 
@@ -248,11 +260,14 @@ Resources are nicely displayed under their cooresponding service.
 Here is a dahsboard that has CPU utilization and Django hits along with SQL metrics.  You can see the corresponding increase in CPU when the browser
 refresh button was hit a few times.
 
-There are a couple interesting things this dashboard reveals. You  can see a correlation between a longer response time when a single request at the
-beginning makes close to 1k postgressql calls.
 
 [public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-8f59562f7b1503ac090229b603616026)
+
+[Private Dashboard](https://app.datadoghq.com/dashboard/6jz-e69-p7v/hits-db-cpu?from_ts=1572188400000&live=false&to_ts=1572202800000)
 ![hits_cpu_sql](images/hits_cpu_sql.png)
+
+There are a couple interesting things this dashboard reveals. You  can see a correlation between a longer response time when a single request at the
+beginning makes close to 1k postgressql calls.
 
 
 To investigate the issue further we can look at the resources to determine the offending query:  It is the one with the longest AVG Latency
@@ -284,21 +299,26 @@ that are not traditionally connected to the network and power.  If data is being
 by solar and connected to a software defined mesh network, it would be useful
 to gather environmental data.  Datadog could be used to gather light and temperature
 data for example so that when devices goes offline you could go back and determine
-if there is coorelation to periods of extreme temperature or low light.
+if there is coorelation to periods of extreme temperature or low light. (need light
+to charge that battery if using solar)
 
 ![IOT_metrics](images/IOT_metrics.png)
 
 In this example, I put together an extremely simple circuit that has a photoresistor
 and thermister in voltage dividers plugged into analog digital converters.  I used a [beaglebone](https://beagleboard.org/black/)  
-(similar to a raspberry pi) as the device.  
+(similar concept to Raspberry Pi, but more electronic connectors) as the device.
+
 Voltage readings are taken and converted to more useful values then reported to
 Datadog using the metric API.
 
 Code : [datadog.js](datadog.js)
 
-[public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-cf6d4ceebfd57e75bc3d1437a177b845)
 
-![image](iot_dash/image.png)
+After sitting in the window overnight you can see the temp drop slightly, and when the
+sun starts to come up. (Spikes were from lights going on and off the night before)
+![env_overnight](iot_dash/env_overnight.png)
+[private dashboard](https://app.datadoghq.com/dashboard/6xt-nd4-cvs/iotenv?from_ts=1572180044110&live=true&to_ts=1572266444110) |
+[public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-cf6d4ceebfd57e75bc3d1437a177b845)
 
 Datadog's REST api makes this particularly easy as a device can send metrics
 without even having the agent installed.  This would allow a particularly lightweight
