@@ -19,6 +19,7 @@ Just add tags to datadog.yaml in /etc/datadog-agent
 I also tossed the agent on another old linux box just to have more than one machine showing
 
 After the install and adding tags the following infrastructure appears
+[Infrastructure](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
 ![tags.jpg](images/tags.jpg)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -47,9 +48,10 @@ From conf.d/postgres.d/conf.yaml
     #
     password: *******`
 
-[Postgres Dashboard](https://app.datadoghq.com/dash/integration/17/Postgres%20-%20Metrics?tpl_var_scope=host%3Anuc&from_ts=1572196143005&to_ts=1572199743005&live=true&tile_size=m)
-
 I generated a bit of activity and got the following...
+
+
+[Postgres Dashboard](https://app.datadoghq.com/dash/integration/17/Postgres%20-%20Metrics?tpl_var_scope=host%3Anuc&from_ts=1572196143005&to_ts=1572199743005&live=true&tile_size=m)
 
 ![postgres_dashboad](images/postgres_dashboad.png)
 
@@ -238,6 +240,7 @@ To run the app put ddtrace-run in front of the command (after the nohup)
 2019-10-27 17:34:46,343 INFO [django.server] [basehttp.py:154] - "GET /core/quotes/pdf/4 HTTP/1.1" 200 54317
 ```
 
+[Flashquote service](https://app.datadoghq.com/apm/service/flashquote/django.request?end=1572268207909&env=sandbox&paused=false&start=1572181807909)
 ![instrumented_app](images/instrumented_app.png)
 
 
